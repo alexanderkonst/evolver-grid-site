@@ -14,8 +14,11 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
     "Coming Soon": "bg-muted text-muted-foreground border-border",
   };
 
+  // Special route for AI Upgrade
+  const linkPath = module.slug === "ai-upgrade-v4-01" ? "/ai-upgrade" : `/m/${module.slug}`;
+
   return (
-    <Link to={`/m/${module.slug}`} className="block h-full">
+    <Link to={linkPath} className="block h-full">
       <Card className="group h-full overflow-hidden border-border bg-card hover:border-accent hover:bg-card/80 transition-all duration-300 cursor-pointer">
         {module.thumbnail_image && (
           <div className="aspect-video w-full overflow-hidden bg-muted">
