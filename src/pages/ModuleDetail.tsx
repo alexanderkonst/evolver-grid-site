@@ -44,18 +44,27 @@ const ModuleDetail = () => {
           </Link>
 
           {/* Hero Section */}
-          <div className="mb-12 space-y-6">
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="text-5xl font-serif font-bold">{module.title}</h1>
-              <Badge variant="outline" className="shrink-0">
+          <div className="mb-16 space-y-6">
+            <Badge variant="secondary" className="text-sm">
+              {module.category}
+            </Badge>
+            
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold leading-tight">
+              {module.title}
+            </h1>
+            
+            <p className="text-2xl sm:text-3xl text-muted-foreground leading-relaxed">
+              {module.tagline}
+            </p>
+            
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="text-sm">
                 {module.status}
               </Badge>
             </div>
             
-            <p className="text-2xl text-muted-foreground">{module.tagline}</p>
-            
             {module.hero_CTA_link && module.hero_CTA_label && (
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="mt-4">
                 <a href={module.hero_CTA_link} target="_blank" rel="noopener noreferrer">
                   {module.hero_CTA_label}
                   <ExternalLink className="ml-2 h-4 w-4" />
@@ -65,23 +74,23 @@ const ModuleDetail = () => {
           </div>
 
           {/* What This Is */}
-          <section className="mb-12 pb-12 border-b border-border">
-            <h2 className="text-3xl font-serif font-semibold mb-4">What This Is</h2>
+          <section className="mb-16 pb-16 border-b border-border">
+            <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">What This Is</h2>
             <div 
-              className="prose prose-invert prose-lg max-w-none"
+              className="prose prose-invert prose-lg max-w-none leading-relaxed"
               dangerouslySetInnerHTML={{ __html: module.description }}
             />
           </section>
 
           {/* Who It's For */}
           {module.who_for && module.who_for.length > 0 && (
-            <section className="mb-12 pb-12 border-b border-border">
-              <h2 className="text-3xl font-serif font-semibold mb-4">Who It's For</h2>
-              <ul className="space-y-2">
+            <section className="mb-16 pb-16 border-b border-border">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">Who It's For</h2>
+              <ul className="space-y-4">
                 {module.who_for.map((item, index) => (
-                  <li key={index} className="text-lg text-muted-foreground flex items-start">
-                    <span className="mr-3">•</span>
-                    {item}
+                  <li key={index} className="text-lg sm:text-xl text-foreground flex items-start leading-relaxed">
+                    <span className="mr-4 text-accent">•</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -90,13 +99,13 @@ const ModuleDetail = () => {
 
           {/* Outcomes */}
           {module.outcomes && module.outcomes.length > 0 && (
-            <section className="mb-12 pb-12 border-b border-border">
-              <h2 className="text-3xl font-serif font-semibold mb-4">Outcomes</h2>
-              <ul className="space-y-2">
+            <section className="mb-16 pb-16 border-b border-border">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">Outcomes</h2>
+              <ul className="space-y-4">
                 {module.outcomes.map((item, index) => (
-                  <li key={index} className="text-lg text-muted-foreground flex items-start">
-                    <span className="mr-3">•</span>
-                    {item}
+                  <li key={index} className="text-lg sm:text-xl text-foreground flex items-start leading-relaxed">
+                    <span className="mr-4 text-accent">•</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -105,13 +114,13 @@ const ModuleDetail = () => {
 
           {/* How It Works / Structure */}
           {module.structure && module.structure.length > 0 && (
-            <section className="mb-12 pb-12 border-b border-border">
-              <h2 className="text-3xl font-serif font-semibold mb-4">How It Works</h2>
-              <ol className="space-y-2">
+            <section className="mb-16 pb-16 border-b border-border">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">How It Works</h2>
+              <ol className="space-y-4">
                 {module.structure.map((item, index) => (
-                  <li key={index} className="text-lg text-muted-foreground flex items-start">
-                    <span className="mr-3 font-semibold">{index + 1}.</span>
-                    {item}
+                  <li key={index} className="text-lg sm:text-xl text-foreground flex items-start leading-relaxed">
+                    <span className="mr-4 font-semibold text-accent">{index + 1}.</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ol>
@@ -120,11 +129,11 @@ const ModuleDetail = () => {
 
           {/* Access / App Links */}
           {module.app_links && module.app_links.length > 0 && (
-            <section className="mb-12 pb-12 border-b border-border">
-              <h2 className="text-3xl font-serif font-semibold mb-4">Access</h2>
+            <section className="mb-16 pb-16 border-b border-border">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">Access & App Links</h2>
               <div className="flex flex-wrap gap-4">
                 {module.app_links.map((link, index) => (
-                  <Button key={index} asChild variant="outline">
+                  <Button key={index} asChild variant="outline" size="lg" className="min-w-[160px]">
                     <a href={link.url} target="_blank" rel="noopener noreferrer">
                       {link.label}
                       <ExternalLink className="ml-2 h-4 w-4" />
@@ -135,11 +144,11 @@ const ModuleDetail = () => {
             </section>
           )}
 
-          {/* Story */}
+          {/* Origin Story */}
           {module.story && (
-            <section className="mb-12 pb-12 border-b border-border">
-              <h2 className="text-3xl font-serif font-semibold mb-4">Story</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+            <section className="mb-16 pb-16 border-b border-border">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-6">Origin Story</h2>
+              <p className="text-lg sm:text-xl text-foreground leading-relaxed whitespace-pre-line">
                 {module.story}
               </p>
             </section>
@@ -147,10 +156,10 @@ const ModuleDetail = () => {
 
           {/* Related Modules */}
           {relatedModules.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-3xl font-serif font-semibold mb-6">Related Modules</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {relatedModules.map((relatedModule) => (
+            <section className="mb-16">
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold mb-8">Related Modules</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedModules.slice(0, 3).map((relatedModule) => (
                   <ModuleTile key={relatedModule.id} module={relatedModule} />
                 ))}
               </div>
