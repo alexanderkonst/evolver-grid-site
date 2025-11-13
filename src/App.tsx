@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ModuleDetail from "./pages/ModuleDetail";
+import AIUpgrade from "./pages/AIUpgrade";
+import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +23,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/ai-upgrade" element={<AIUpgrade />} />
+          <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
           <Route path="/m/:slug" element={<ModuleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
