@@ -4,8 +4,14 @@ import Footer from "@/components/Footer";
 import ModuleTile from "@/components/ModuleTile";
 import { modules } from "@/data/modules";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const About = () => {
+  const heroAnimation = useScrollAnimation();
+  const bioAnimation = useScrollAnimation();
+  const areasAnimation = useScrollAnimation();
+  const systemsAnimation = useScrollAnimation();
+  
   // Get featured modules (first 4)
   const featuredModules = modules.slice(0, 4);
 
@@ -16,7 +22,12 @@ const About = () => {
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl">
           {/* Hero */}
-          <div className="mb-16 text-center">
+          <div 
+            ref={heroAnimation.ref}
+            className={`mb-16 text-center transition-all duration-1000 ${
+              heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h1 className="text-5xl sm:text-6xl font-serif font-bold mb-6">
               About Aleksandr Konstantinov
             </h1>
@@ -26,7 +37,12 @@ const About = () => {
           </div>
           
           {/* Bio Section */}
-          <div className="prose prose-lg prose-invert max-w-none space-y-6 mb-16">
+          <div 
+            ref={bioAnimation.ref}
+            className={`prose prose-lg prose-invert max-w-none space-y-6 mb-16 transition-all duration-1000 ${
+              bioAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <p className="text-xl leading-relaxed">
               I work at the intersection of intelligence, systems design, and human evolution.
             </p>
@@ -80,7 +96,12 @@ const About = () => {
           </div>
 
           {/* Core Areas of Work */}
-          <section className="mb-16 pb-16 border-b border-border">
+          <section 
+            ref={areasAnimation.ref}
+            className={`mb-16 pb-16 border-b border-border transition-all duration-1000 ${
+              areasAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-3xl font-serif font-semibold mb-8">Core Areas of Work</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-card border border-border rounded-lg p-6">
@@ -103,7 +124,12 @@ const About = () => {
           </section>
 
           {/* Featured Systems */}
-          <section className="mb-16">
+          <section 
+            ref={systemsAnimation.ref}
+            className={`mb-16 transition-all duration-1000 ${
+              systemsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-3xl font-serif font-semibold mb-8 text-center">Featured Systems</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {featuredModules.map((module) => (
