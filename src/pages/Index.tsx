@@ -11,7 +11,7 @@ const Index = () => {
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6">
-            Alexander Constantinov
+            Aleksandr Konstantinov
           </h1>
           <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto">
             Builder of systems, tools, and experiences that bridge technology and human potential.
