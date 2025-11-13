@@ -8,9 +8,10 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark marine background theme (#0A0F1F) */
+    /* Dark marine background theme with subtle gradient */
     --background: 220 51% 8%;
-    --background-end: 225 50% 10%;
+    --background-mid: 223 48% 9%;
+    --background-end: 225 50% 11%;
     --foreground: 0 0% 100%;
 
     --card: 215 90% 8%;
@@ -49,7 +50,7 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground font-sans antialiased;
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background-end)) 100%);
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background-mid)) 50%, hsl(var(--background-end)) 100%);
     background-attachment: fixed;
   }
 
