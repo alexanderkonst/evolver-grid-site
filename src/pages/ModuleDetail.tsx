@@ -1,0 +1,165 @@
+import { useParams, Link } from "react-router-dom";
+import { getModuleBySlug, getRelatedModules } from "@/data/modules";
+import Navigation from "@/components/Navigation";
+import ModuleTile from "@/components/ModuleTile";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+
+const ModuleDetail = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const module = getModuleBySlug(slug || "");
+
+  if (!module) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h1 className="text-4xl font-serif font-bold mb-4">Module Not Found</h1>
+            <Link to="/">
+              <Button variant="outline">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const relatedModules = getRelatedModules(module.id, module.related_modules);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-4xl">
+          {/* Back Button */}
+          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back
+          </Link>
+
+          {/* Hero Section */}
+          <div className="mb-12 space-y-6">
+            <div className="flex items-start justify-between gap-4">
+              <h1 className="text-5xl font-serif font-bold">{module.title}</h1>
+              <Badge variant="outline" className="shrink-0">
+                {module.status}
+              </Badge>
+            </div>
+            
+            <p className="text-2xl text-muted-foreground">{module.tagline}</p>
+            
+            {module.hero_CTA_link && module.hero_CTA_label && (
+              <Button asChild size="lg">
+                <a href={module.hero_CTA_link} target="_blank" rel="noopener noreferrer">
+                  {module.hero_CTA_label}
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            )}
+          </div>
+
+          {/* What This Is */}
+          <section className="mb-12 pb-12 border-b border-border">
+            <h2 className="text-3xl font-serif font-semibold mb-4">What This Is</h2>
+            <div 
+              className="prose prose-invert prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ __html: module.description }}
+            />
+          </section>
+
+          {/* Who It's For */}
+          {module.who_for && module.who_for.length > 0 && (
+            <section className="mb-12 pb-12 border-b border-border">
+              <h2 className="text-3xl font-serif font-semibold mb-4">Who It's For</h2>
+              <ul className="space-y-2">
+                {module.who_for.map((item, index) => (
+                  <li key={index} className="text-lg text-muted-foreground flex items-start">
+                    <span className="mr-3">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Outcomes */}
+          {module.outcomes && module.outcomes.length > 0 && (
+            <section className="mb-12 pb-12 border-b border-border">
+              <h2 className="text-3xl font-serif font-semibold mb-4">Outcomes</h2>
+              <ul className="space-y-2">
+                {module.outcomes.map((item, index) => (
+                  <li key={index} className="text-lg text-muted-foreground flex items-start">
+                    <span className="mr-3">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* How It Works / Structure */}
+          {module.structure && module.structure.length > 0 && (
+            <section className="mb-12 pb-12 border-b border-border">
+              <h2 className="text-3xl font-serif font-semibold mb-4">How It Works</h2>
+              <ol className="space-y-2">
+                {module.structure.map((item, index) => (
+                  <li key={index} className="text-lg text-muted-foreground flex items-start">
+                    <span className="mr-3 font-semibold">{index + 1}.</span>
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          {/* Access / App Links */}
+          {module.app_links && module.app_links.length > 0 && (
+            <section className="mb-12 pb-12 border-b border-border">
+              <h2 className="text-3xl font-serif font-semibold mb-4">Access</h2>
+              <div className="flex flex-wrap gap-4">
+                {module.app_links.map((link, index) => (
+                  <Button key={index} asChild variant="outline">
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Story */}
+          {module.story && (
+            <section className="mb-12 pb-12 border-b border-border">
+              <h2 className="text-3xl font-serif font-semibold mb-4">Story</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                {module.story}
+              </p>
+            </section>
+          )}
+
+          {/* Related Modules */}
+          {relatedModules.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-3xl font-serif font-semibold mb-6">Related Modules</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {relatedModules.map((relatedModule) => (
+                  <ModuleTile key={relatedModule.id} module={relatedModule} />
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ModuleDetail;
