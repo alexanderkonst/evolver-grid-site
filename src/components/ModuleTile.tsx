@@ -15,7 +15,7 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
   };
 
   return (
-    <Link to={`/m/${module.slug}`}>
+    <Link to={`/m/${module.slug}`} className="block h-full">
       <Card className="group h-full overflow-hidden border-border bg-card hover:border-accent hover:bg-card/80 transition-all duration-300 cursor-pointer">
         {module.thumbnail_image && (
           <div className="aspect-video w-full overflow-hidden bg-muted">
@@ -27,24 +27,19 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
           </div>
         )}
         <div className="p-6 space-y-3">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="text-xl font-serif font-semibold group-hover:text-accent transition-colors">
-              {module.title}
-            </h3>
-            <Badge 
-              variant="outline" 
-              className={`shrink-0 ${statusColor[module.status]}`}
-            >
-              {module.status}
-            </Badge>
-          </div>
+          <h3 className="text-xl font-serif font-semibold group-hover:text-accent transition-colors">
+            {module.title}
+          </h3>
           
-          <p className="text-sm text-muted-foreground line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
             {module.tagline}
           </p>
           
-          <Badge variant="secondary" className="text-xs">
-            {module.category}
+          <Badge 
+            variant="outline" 
+            className={`${statusColor[module.status]}`}
+          >
+            {module.status}
           </Badge>
         </div>
       </Card>

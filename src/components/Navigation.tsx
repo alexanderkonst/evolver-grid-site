@@ -8,11 +8,9 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/work", label: "Work" },
-    { to: "/library", label: "Library" },
-    { to: "/contact", label: "Contact" },
+    { to: "/#modules", label: "Systems", isScroll: true },
+    { to: "/about", label: "About", isScroll: false },
+    { to: "/contact", label: "Contact", isScroll: false },
   ];
 
   return (
@@ -24,20 +22,35 @@ const Navigation = () => {
             to="/" 
             className="text-xl font-serif font-semibold hover:text-accent transition-colors"
           >
-            Alexander Constantinov
+            Aleksandr Konstantinov
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                activeClassName="text-foreground"
-              >
-                {link.label}
-              </NavLink>
+              link.isScroll ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('modules');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  activeClassName="text-foreground"
+                >
+                  {link.label}
+                </NavLink>
+              )
             ))}
           </div>
 
@@ -58,15 +71,31 @@ const Navigation = () => {
         <div className="md:hidden border-t border-border bg-background">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                activeClassName="text-foreground"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </NavLink>
+              link.isScroll ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('modules');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                    setIsOpen(false);
+                  }}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  activeClassName="text-foreground"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </NavLink>
+              )
             ))}
           </div>
         </div>
