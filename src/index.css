@@ -8,9 +8,9 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Marine blue background theme with gradient */
-    --background: 215 100% 5%;
-    --background-end: 220 90% 8%;
+    /* Dark marine background theme (#0A0F1F) */
+    --background: 220 51% 8%;
+    --background-end: 225 50% 10%;
     --foreground: 0 0% 100%;
 
     --card: 215 90% 8%;
@@ -28,7 +28,7 @@ All colors MUST be HSL.
     --muted: 215 70% 15%;
     --muted-foreground: 0 0% 70%;
 
-    --accent: 200 100% 40%;
+    --accent: 235 100% 66%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
