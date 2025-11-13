@@ -5,9 +5,13 @@ import ModuleTile from "@/components/ModuleTile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const heroAnimation = useScrollAnimation();
+  const modulesAnimation = useScrollAnimation();
+  const aboutAnimation = useScrollAnimation();
   
   const categories = ["All", "AI", "Evolution", "Ventures", "Ceremonies", "Tools", "Apps"];
   const filteredModules = getModulesByCategory(selectedCategory);
@@ -17,7 +21,12 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section 
+        ref={heroAnimation.ref}
+        className={`pt-32 pb-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+          heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto max-w-4xl text-center space-y-8">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6">
             Aleksandr Konstantinov
@@ -49,7 +58,13 @@ const Index = () => {
       </section>
 
       {/* Modules Grid */}
-      <section id="modules" className="py-16 px-4 sm:px-6 lg:px-8">
+      <section 
+        id="modules" 
+        ref={modulesAnimation.ref}
+        className={`py-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+          modulesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
             Systems
@@ -85,7 +100,12 @@ const Index = () => {
       </section>
 
       {/* About Preview */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card/30">
+      <section 
+        ref={aboutAnimation.ref}
+        className={`py-16 px-4 sm:px-6 lg:px-8 bg-card/30 transition-all duration-1000 ${
+          aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="container mx-auto max-w-2xl text-center space-y-6">
           <p className="text-xl text-muted-foreground">
             I design systems that help people think, create, and evolve with clarity.
