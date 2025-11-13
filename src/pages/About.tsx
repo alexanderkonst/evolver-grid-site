@@ -1,15 +1,32 @@
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import ModuleTile from "@/components/ModuleTile";
+import { modules } from "@/data/modules";
+import { Button } from "@/components/ui/button";
 
 const About = () => {
+  // Get featured modules (first 4)
+  const featuredModules = modules.slice(0, 4);
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl">
-          <h1 className="text-5xl font-serif font-bold mb-12">About</h1>
+          {/* Hero */}
+          <div className="mb-16 text-center">
+            <h1 className="text-5xl sm:text-6xl font-serif font-bold mb-6">
+              About Aleksandr Konstantinov
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Working at the intersection of intelligence, systems design, and human evolution
+            </p>
+          </div>
           
-          <div className="prose prose-lg prose-invert max-w-none space-y-6">
+          {/* Bio Section */}
+          <div className="prose prose-lg prose-invert max-w-none space-y-6 mb-16">
             <p className="text-xl leading-relaxed">
               I work at the intersection of intelligence, systems design, and human evolution.
             </p>
@@ -61,8 +78,48 @@ const About = () => {
               If my work resonates, explore the systems on the home page or reach out directly.
             </p>
           </div>
+
+          {/* Core Areas of Work */}
+          <section className="mb-16 pb-16 border-b border-border">
+            <h2 className="text-3xl font-serif font-semibold mb-8">Core Areas of Work</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="text-xl font-serif font-semibold mb-2">AI Systems & Protocols</h3>
+                <p className="text-muted-foreground">High-level collaboration frameworks for enhanced intelligence</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="text-xl font-serif font-semibold mb-2">Developmental Maps & Tools</h3>
+                <p className="text-muted-foreground">Systems for clarity, growth, and transformation</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="text-xl font-serif font-semibold mb-2">Venture Architecture</h3>
+                <p className="text-muted-foreground">Strategic design for coherent, sustainable ventures</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="text-xl font-serif font-semibold mb-2">Transformational Containers</h3>
+                <p className="text-muted-foreground">Structured spaces for leadership and evolution</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Featured Systems */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold mb-8 text-center">Featured Systems</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              {featuredModules.map((module) => (
+                <ModuleTile key={module.id} module={module} />
+              ))}
+            </div>
+            <div className="text-center">
+              <Button size="lg" asChild>
+                <Link to="/work">Explore All Systems</Link>
+              </Button>
+            </div>
+          </section>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };

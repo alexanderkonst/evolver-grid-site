@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { modules, getModulesByCategory } from "@/data/modules";
 import ModuleTile from "@/components/ModuleTile";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -11,18 +13,38 @@ const Index = () => {
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navigation />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-4xl text-center space-y-8">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6">
             Aleksandr Konstantinov
           </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Builder of systems, tools, and experiences that bridge technology and human potential.
           </p>
+          
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg"
+              onClick={() => {
+                const element = document.getElementById('modules');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Explore My Systems
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              asChild
+            >
+              <Link to="/about">About Me</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -61,6 +83,20 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      {/* About Preview */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card/30">
+        <div className="container mx-auto max-w-2xl text-center space-y-6">
+          <p className="text-xl text-muted-foreground">
+            I design systems that help people think, create, and evolve with clarity.
+          </p>
+          <Button variant="outline" size="lg" asChild>
+            <Link to="/about">Read More About Me</Link>
+          </Button>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 };
