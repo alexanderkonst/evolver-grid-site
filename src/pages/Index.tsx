@@ -4,6 +4,7 @@ import { modules, getModulesByCategory } from "@/data/modules";
 import ModuleTile from "@/components/ModuleTile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SignalChannels from "@/components/SignalChannels";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
@@ -57,8 +58,11 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Signal Channels */}
+      <SignalChannels />
+
       {/* Modules Grid */}
-      <section 
+      <section
         id="modules" 
         ref={modulesAnimation.ref}
         className={`py-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
