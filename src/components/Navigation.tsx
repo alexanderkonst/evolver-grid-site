@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
 import logo from "@/assets/logo.png";
+import headerImage from "@/assets/header-image.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,11 @@ const Navigation = () => {
           >
             <img src={logo} alt="Aleksandr Konstantinov" className="h-10 w-auto" />
           </Link>
+
+          {/* Header Image - Centered */}
+          <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+            <img src={headerImage} alt="" className="h-12 w-auto opacity-90" />
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
