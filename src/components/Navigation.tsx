@@ -29,7 +29,7 @@ const Navigation = () => {
           </Link>
 
           {/* Header Image - Left Aligned after Logo */}
-          <div className="hidden md:block absolute left-20 top-1/2 transform -translate-y-1/2 pointer-events-none ml-8">
+          <div className="hidden md:block absolute left-16 top-1/2 transform -translate-y-1/2 pointer-events-none ml-4">
             <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '600px', objectFit: 'contain' }} />
           </div>
 
