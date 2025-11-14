@@ -7,15 +7,13 @@ const channels = [
   {
     icon: Youtube,
     title: "YouTube",
-    description: "Deep dives into integral philosophy and evolutionary systems",
-    buttonLabel: "Visit YouTube",
+    buttonLabel: "Visit",
     url: "https://www.youtube.com/@IntegralEvolution",
   },
   {
     icon: Send,
     title: "Telegram",
-    description: "Live transmissions and community updates from ARKHAZM",
-    buttonLabel: "Join Telegram",
+    buttonLabel: "Join",
     url: "https://t.me/ARKHAZM",
   },
 ];
@@ -41,14 +39,9 @@ const SignalChannels = () => {
               <div className="flex flex-col items-center text-center space-y-6 py-6">
                 <channel.icon className="w-8 h-8 text-foreground" strokeWidth={1.5} />
                 
-                <div className="space-y-2">
-                  <h3 className="text-xl font-serif font-semibold">
-                    {channel.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {channel.description}
-                  </p>
-                </div>
+                <h3 className="text-xl font-serif font-semibold">
+                  {channel.title}
+                </h3>
 
                 <Button
                   variant="outline"
