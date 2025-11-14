@@ -131,7 +131,7 @@ const About = () => {
             }`}
           >
             <h2 className="text-3xl font-serif font-semibold mb-8 text-center">Featured Lifehacks</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8">
               {featuredModules.map((module) => (
                 <ModuleTile key={module.id} module={module} />
               ))}
