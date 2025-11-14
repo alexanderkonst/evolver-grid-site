@@ -91,7 +91,7 @@ const About = () => {
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground mt-8">
-              If my work resonates, explore the systems on the home page or reach out directly.
+              If my work resonates, explore the lifehacks on the home page or reach out directly.
             </p>
           </div>
 
@@ -130,7 +130,7 @@ const About = () => {
               systemsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <h2 className="text-3xl font-serif font-semibold mb-8 text-center">Featured Systems</h2>
+            <h2 className="text-3xl font-serif font-semibold mb-8 text-center">Featured Lifehacks</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {featuredModules.map((module) => (
                 <ModuleTile key={module.id} module={module} />
@@ -138,7 +138,7 @@ const About = () => {
             </div>
             <div className="text-center">
               <Button size="lg" asChild>
-                <Link to="/work">Explore All Systems</Link>
+                <Link to="/work">Explore All Lifehacks</Link>
               </Button>
             </div>
           </section>

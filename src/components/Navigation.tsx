@@ -9,7 +9,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { to: "/work", label: "Systems", isScroll: false },
+    { to: "/work", label: "Lifehacks", isScroll: false },
     { to: "/about", label: "About", isScroll: false },
     { to: "/contact", label: "Contact", isScroll: false },
     { to: "/library", label: "Library", isScroll: false },

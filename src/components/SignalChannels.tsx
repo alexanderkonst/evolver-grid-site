@@ -2,6 +2,7 @@ import { Youtube, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import BoldText from "@/components/BoldText";
 
 const channels = [
   {
@@ -30,7 +31,7 @@ const SignalChannels = () => {
     >
       <div className="container mx-auto max-w-4xl">
         <h2 className="text-3xl font-serif font-semibold mb-12 text-center">
-          Signal Channels
+          <BoldText>My Channels</BoldText>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
