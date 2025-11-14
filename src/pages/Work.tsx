@@ -18,7 +18,7 @@ const Work = () => {
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
           <h1 className="text-5xl sm:text-6xl font-serif font-bold mb-12 text-center">
-            All Systems
+            All Lifehacks
           </h1>
           
           {/* Category Filters */}
