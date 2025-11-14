@@ -8,6 +8,7 @@ import SignalChannels from "@/components/SignalChannels";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import profilePhoto from "@/assets/profile-photo.png";
+import BoldText from "@/components/BoldText";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -32,7 +33,7 @@ const Index = () => {
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center text-center space-y-8">
             {/* Profile Photo */}
-            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-lg border-4 border-card">
+            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-lg border-4 border-[hsl(210,70%,15%)]">
               <img 
                 src={profilePhoto} 
                 alt="Aleksandr Konstantinov" 
@@ -42,12 +43,12 @@ const Index = () => {
             
             {/* Name */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold">
-              Aleksandr Konstantinov
+              <BoldText>Aleksandr Konstantinov</BoldText>
             </h1>
             
             {/* Tagline */}
-            <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl">
-              Builder of systems, tools, and experiences that bridge technology and human potential.
+            <p className="text-xl sm:text-2xl max-w-2xl">
+              <BoldText>This page is about you, not about me. Take what you need. Enjoy!</BoldText>
             </p>
             
             {/* CTAs */}
@@ -86,7 +87,7 @@ const Index = () => {
       >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
-            Systems
+            <BoldText>Systems</BoldText>
           </h2>
           
           {/* Category Filters */}
@@ -126,8 +127,8 @@ const Index = () => {
         }`}
       >
         <div className="container mx-auto max-w-2xl text-center space-y-6">
-          <p className="text-xl text-muted-foreground">
-            I design systems that help people think, create, and evolve with clarity.
+          <p className="text-xl">
+            <BoldText>I design systems that help people think, create, and evolve with clarity.</BoldText>
           </p>
           <Button variant="outline" size="lg" asChild>
             <Link to="/about">Read More About Me</Link>

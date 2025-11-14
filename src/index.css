@@ -10,10 +10,10 @@ All colors MUST be HSL.
   :root {
     /* Light paper texture theme inspired by Founder Collective */
     --background: 30 15% 96%;
-    --foreground: 222 47% 11%;
+    --foreground: 210 70% 15%; /* Dark marine blue */
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 210 70% 15%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
@@ -25,7 +25,7 @@ All colors MUST be HSL.
     --secondary-foreground: 222 47% 11%;
 
     --muted: 30 10% 88%;
-    --muted-foreground: 222 20% 40%;
+    --muted-foreground: 210 70% 15%;
 
     --accent: 215 70% 55%;
     --accent-foreground: 0 0% 98%;
@@ -59,4 +59,4 @@ All colors MUST be HSL.
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
