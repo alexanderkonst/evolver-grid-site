@@ -19,22 +19,22 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-20 relative">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity z-10"
           >
             <img src={logo} alt="Aleksandr Konstantinov" className="h-10 w-auto" />
           </Link>
 
-          {/* Header Image - Centered */}
-          <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
-            <img src={headerImage} alt="" className="h-12 w-auto opacity-90" />
+          {/* Header Image - Right Aligned */}
+          <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '300px', objectFit: 'contain' }} />
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 relative z-10">
             {navLinks.map((link) => (
               link.isScroll ? (
                 <a
