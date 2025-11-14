@@ -16,29 +16,32 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
 
   // Special route for AI Upgrade
   const linkPath = module.slug === "ai-upgrade-v4-01" ? "/ai-upgrade" : `/m/${module.slug}`;
-  const isDisabled = module.status === "Coming Soon";
+  const isComingSoon = module.status === "Coming Soon";
+  const isLive = module.status === "Live";
 
   const cardContent = (
-    <Card className={`group h-full overflow-hidden border-border bg-card transition-all duration-300 ${
-      isDisabled 
-        ? 'opacity-50 cursor-not-allowed' 
-        : 'hover:border-accent hover:bg-card/80 cursor-pointer'
+    <Card className={`group h-full overflow-hidden border-border transition-all duration-300 ${
+      isComingSoon 
+        ? 'bg-card/40 hover:bg-card/50 cursor-pointer' 
+        : isLive
+        ? 'bg-card shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:border-accent hover:bg-card/80 cursor-pointer'
+        : 'bg-card hover:border-accent hover:bg-card/80 cursor-pointer'
     }`}>
       {module.thumbnail_image && (
-        <div className="aspect-video w-full overflow-hidden bg-muted">
+        <div className={`aspect-video w-full overflow-hidden ${
+          isComingSoon ? 'bg-muted/30' : 'bg-muted'
+        }`}>
           <img
             src={module.thumbnail_image}
             alt={module.title}
             className={`w-full h-full object-cover transition-transform duration-300 ${
-              !isDisabled && 'group-hover:scale-105'
+              isComingSoon ? 'opacity-40' : 'group-hover:scale-105'
             }`}
           />
         </div>
       )}
       <div className="p-6 space-y-3">
-        <h3 className={`text-xl font-serif font-semibold transition-colors ${
-          !isDisabled && 'group-hover:text-accent'
-        }`}>
+        <h3 className="text-xl font-serif font-semibold transition-colors group-hover:text-accent">
           {module.title}
         </h3>
         
@@ -55,10 +58,6 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
       </div>
     </Card>
   );
-
-  if (isDisabled) {
-    return <div className="block h-full">{cardContent}</div>;
-  }
 
   return (
     <Link to={linkPath} className="block h-full">
