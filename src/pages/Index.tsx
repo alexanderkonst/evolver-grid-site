@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SignalChannels from "@/components/SignalChannels";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import profilePhoto from "@/assets/profile-photo.png";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -24,36 +25,50 @@ const Index = () => {
       {/* Hero Section */}
       <section 
         ref={heroAnimation.ref}
-        className={`pt-32 pb-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+        className={`pt-32 pb-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
           heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="container mx-auto max-w-4xl text-center space-y-8">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6">
-            Aleksandr Konstantinov
-          </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Builder of systems, tools, and experiences that bridge technology and human potential.
-          </p>
-          
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg"
-              onClick={() => {
-                const element = document.getElementById('modules');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Explore My Systems
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              asChild
-            >
-              <Link to="/about">About Me</Link>
-            </Button>
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col items-center text-center space-y-8">
+            {/* Profile Photo */}
+            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-lg border-4 border-card">
+              <img 
+                src={profilePhoto} 
+                alt="Aleksandr Konstantinov" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Name */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold">
+              Aleksandr Konstantinov
+            </h1>
+            
+            {/* Tagline */}
+            <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl">
+              Builder of systems, tools, and experiences that bridge technology and human potential.
+            </p>
+            
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+              <Button 
+                size="lg"
+                onClick={() => {
+                  const element = document.getElementById('modules');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Explore My Systems
+              </Button>
+              <Button 
+                size="lg"
+                variant="outline"
+                asChild
+              >
+                <Link to="/about">About Me</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -106,7 +121,7 @@ const Index = () => {
       {/* About Preview */}
       <section 
         ref={aboutAnimation.ref}
-        className={`py-16 px-4 sm:px-6 lg:px-8 bg-card/30 transition-all duration-1000 ${
+        className={`py-16 px-4 sm:px-6 lg:px-8 bg-secondary/30 transition-all duration-1000 ${
           aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >

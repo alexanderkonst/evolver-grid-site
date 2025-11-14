@@ -3,7 +3,7 @@ import { Youtube, Send } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-card/30 backdrop-blur">
+    <footer className="border-t border-border bg-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Links & Channels */}

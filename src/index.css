@@ -8,36 +8,34 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark marine background theme with subtle gradient */
-    --background: 220 51% 8%;
-    --background-mid: 223 48% 9%;
-    --background-end: 225 50% 11%;
-    --foreground: 0 0% 100%;
+    /* Light paper texture theme inspired by Founder Collective */
+    --background: 30 15% 96%;
+    --foreground: 222 47% 11%;
 
-    --card: 215 90% 8%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 215 90% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 215 100% 5%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 215 80% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 30 15% 92%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 215 70% 15%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 30 10% 88%;
+    --muted-foreground: 222 20% 40%;
 
-    --accent: 235 100% 66%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 215 70% 55%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 215 50% 20%;
-    --input: 215 50% 20%;
-    --ring: 0 0% 100%;
+    --border: 30 10% 85%;
+    --input: 30 10% 85%;
+    --ring: 222 47% 11%;
 
     --radius: 0.5rem;
   }
@@ -50,8 +48,10 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground font-sans antialiased;
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background-mid)) 50%, hsl(var(--background-end)) 100%);
+    background: url('/images/paper-texture.png'), hsl(var(--background));
     background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: overlay;
   }
 
   h1, h2, h3, h4, h5, h6 {
