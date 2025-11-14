@@ -30,7 +30,7 @@ const Navigation = () => {
 
           {/* Header Image - Right Aligned */}
           <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '300px', objectFit: 'contain' }} />
+            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '500px', objectFit: 'contain' }} />
           </div>
 
           {/* Desktop Navigation */}
