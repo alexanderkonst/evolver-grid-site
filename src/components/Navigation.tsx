@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,15 +16,15 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo/Name */}
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
           <Link 
             to="/" 
-            className="text-xl font-serif font-semibold hover:text-accent transition-colors"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            Aleksandr Konstantinov
+            <img src={logo} alt="Aleksandr Konstantinov" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -69,7 +70,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-background">
+        <div className="md:hidden border-t border-border bg-card">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               link.isScroll ? (

@@ -32,10 +32,10 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
   const cardContent = (
     <Card className={`group h-full overflow-hidden border-border transition-all duration-300 ${
       isComingSoon 
-        ? 'bg-card/20 hover:bg-card/30 cursor-default opacity-60' 
+        ? 'bg-card/50 hover:bg-card/60 cursor-default opacity-60' 
         : isLive
-        ? 'bg-card shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:border-accent hover:bg-card/80 cursor-pointer'
-        : 'bg-card hover:border-accent hover:bg-card/80 cursor-pointer'
+        ? 'bg-card shadow-md hover:shadow-lg hover:border-accent cursor-pointer'
+        : 'bg-card shadow-sm hover:shadow-md hover:border-accent cursor-pointer'
     }`}>
       {module.thumbnail_image && (
         <div className={`aspect-video w-full overflow-hidden ${

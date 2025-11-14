@@ -39,7 +39,7 @@ const About = () => {
           {/* Bio Section */}
           <div 
             ref={bioAnimation.ref}
-            className={`prose prose-lg prose-invert max-w-none space-y-6 mb-16 transition-all duration-1000 ${
+            className={`prose prose-lg max-w-none space-y-6 mb-16 transition-all duration-1000 ${
               bioAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
