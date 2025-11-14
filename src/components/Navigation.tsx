@@ -28,9 +28,9 @@ const Navigation = () => {
             <img src={logo} alt="Aleksandr Konstantinov" className="h-10 w-auto" />
           </Link>
 
-          {/* Header Image - Right Aligned */}
-          <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '500px', objectFit: 'contain' }} />
+          {/* Header Image - Left Aligned after Logo */}
+          <div className="hidden md:block absolute left-20 top-1/2 transform -translate-y-1/2 pointer-events-none ml-8">
+            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '600px', objectFit: 'contain' }} />
           </div>
 
           {/* Desktop Navigation */}
