@@ -52,7 +52,6 @@ All colors MUST be HSL.
     background-attachment: fixed;
     background-repeat: repeat;
     background-size: auto;
-    background-blend-mode: overlay;
   }
 
   h1, h2, h3, h4, h5, h6 {
