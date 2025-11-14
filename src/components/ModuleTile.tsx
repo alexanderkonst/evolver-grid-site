@@ -88,21 +88,19 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
 
   if (isComingSoon) {
     return (
-      <>
-        <div className="block h-full">
-          {cardContent}
-        </div>
+      <div className="h-full">
+        {cardContent}
         <WaitlistModal
           isOpen={isWaitlistOpen}
           onClose={() => setIsWaitlistOpen(false)}
           moduleName={module.title}
         />
-      </>
+      </div>
     );
   }
 
   return (
-    <Link to={linkPath} className="block h-full">
+    <Link to={linkPath} className="block h-full group">
       {cardContent}
     </Link>
   );
