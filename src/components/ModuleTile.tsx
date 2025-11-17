@@ -19,8 +19,7 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
     "Coming Soon": "bg-muted text-muted-foreground border-border",
   };
 
-  // Special route for AI Upgrade
-  const linkPath = module.slug === "ai-upgrade-v4-01" ? "/ai-upgrade" : `/m/${module.slug}`;
+  const linkPath = `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
 
