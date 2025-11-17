@@ -30,7 +30,7 @@ const SignalChannels = () => {
       }`}
     >
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-3xl font-serif font-semibold mb-12 text-center">
+        <h2 className="text-3xl font-serif font-semibold mb-12 text-center uppercase">
           <BoldText>My Channels</BoldText>
         </h2>
 
@@ -40,22 +40,22 @@ const SignalChannels = () => {
               <div className="flex flex-col items-center text-center space-y-6 py-6">
                 <channel.icon className="w-8 h-8 text-foreground" strokeWidth={1.5} />
                 
-                <h3 className="text-xl font-serif font-semibold">
-                  {channel.title}
+                <h3 className="text-xl font-serif font-semibold uppercase">
+                  <BoldText>{channel.title}</BoldText>
                 </h3>
 
                 <Button
                   variant="default"
                   size="default"
                   asChild
-                  className="rounded-lg"
+                  className="rounded-lg uppercase"
                 >
                   <a
                     href={channel.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {channel.buttonLabel}
+                    <BoldText>{channel.buttonLabel}</BoldText>
                   </a>
                 </Button>
               </div>

@@ -13,7 +13,7 @@ const Navigation = () => {
     { to: "/work", label: "Lifehacks", isScroll: false },
     { to: "/library", label: "Library", isScroll: false },
     { to: "/contact", label: "Contact", isScroll: false },
-    { to: "https://donate.stripe.com/test_00g03KaKF8xudwI145", label: "Donate", isScroll: false, isExternal: true },
+    { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "Donate", isScroll: false, isExternal: true },
   ];
 
   return (
@@ -25,7 +25,7 @@ const Navigation = () => {
             to="/" 
             className="flex items-center hover:opacity-80 transition-opacity z-10"
           >
-            <img src={logo} alt="Aleksandr Konstantinov" className="h-13 w-auto" />
+            <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
           </Link>
 
           {/* Header Image - Left Aligned after Logo */}
