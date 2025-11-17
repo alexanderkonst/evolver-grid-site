@@ -57,6 +57,38 @@ All colors MUST be HSL.
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+
+  /* Navigation link underline animation */
+  .nav-link {
+    @apply relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Logo glow effects */
+  .logo-glow {
+    filter: drop-shadow(0 0 8px hsla(var(--primary), 0.4));
+  }
+
+  .logo-glow-hover:hover {
+    filter: drop-shadow(0 0 16px hsla(var(--primary), 0.6)) drop-shadow(0 0 24px hsla(var(--accent), 0.4));
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
