@@ -6,32 +6,41 @@ export const modules: Module[] = [
     title: "AI UPGRADE v4.01",
     slug: "ai-upgrade-v4-01",
     category: "AI",
-    tagline: "Next-generation AI optimization protocol",
+    tagline: "Upgrade your AI's thinking to match yours",
     status: "Live",
-    hero_CTA_label: "Access Now",
-    hero_CTA_link: "#",
-    description: "<p>AI UPGRADE v4.01 is a comprehensive protocol designed to optimize your interaction with artificial intelligence systems. This module provides cutting-edge frameworks and methodologies for maximizing AI effectiveness in your personal and professional workflows.</p>",
+    hero_CTA_label: "Get the Upgrade",
+    hero_CTA_link: "/ai-upgrade/install",
+    description: `<p>Your mind moves fast. Your AI doesn't.</p>
+    
+    <p>Instead of keeping pace, default AI over-explains, loses nuance, breaks coherence, gives junior-level insights, interrupts your flow, and dilutes your clarity.</p>
+    
+    <p>For high-level operators, this isn't noise — it's friction you feel every day. If your work depends on clarity, synthesis, or precision, default AI becomes a bottleneck.</p>
+    
+    <p>This upgrade installs the thinking layer your AI has been missing. It removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands.</p>
+    
+    <p><strong>Not a chatbot. A cognitive instrument.</strong></p>`,
     who_for: [
-      "AI enthusiasts looking to deepen their understanding",
-      "Professionals seeking to integrate AI into their workflow",
-      "Entrepreneurs building AI-powered solutions",
-      "Anyone wanting to stay ahead of the AI curve"
+      "Strategic founders & CEOs who think with AI",
+      "High-end consultants requiring precision",
+      "Executive & performance coaches",
+      "Systems thinkers & polymaths who value clarity as a competitive advantage"
     ],
     outcomes: [
-      "Master advanced AI prompting techniques",
-      "Develop personalized AI optimization strategies",
-      "Increase productivity through AI integration",
-      "Understand emerging AI trends and applications"
+      "AI that moves fast instead of dragging behind you",
+      "Structured, precise, and context-aware responses",
+      "Concise, coherent output at senior level",
+      "Reliable cognitive instrument that matches your pace and depth",
+      "Elimination of the drag between your thinking speed and AI output"
     ],
     structure: [
-      "Foundation: Core AI principles and frameworks",
-      "Integration: Practical implementation strategies",
-      "Optimization: Advanced techniques and workflows",
-      "Evolution: Staying current with AI developments"
+      "Install the upgrade in minutes",
+      "Experience immediate transformation in AI behavior",
+      "Your AI becomes fast, sharp, and insightful",
+      "No more cleanup required — get senior-level output instantly"
     ],
-    story: "Born from years of experimentation with AI systems, v4.01 represents the culmination of practical insights and breakthrough methodologies for human-AI collaboration.",
+    story: "Built for the top 20% of operators who don't just use AI — they think with it. After working with hundreds of high-level strategists, founders, and coaches, it became clear: the problem wasn't the people, it was the AI. Standard models couldn't keep up. This upgrade fixes that. Your work deserves responses that match your pace, your depth, and your precision. This upgrade brings your AI up to the level your mind already operates at — instantly.",
     app_links: [
-      { label: "Access Portal", url: "#" }
+      { label: "Get the Upgrade", url: "/ai-upgrade/install" }
     ]
   },
   {
