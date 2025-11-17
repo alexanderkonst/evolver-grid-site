@@ -60,7 +60,7 @@ const Index = () => {
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                <BoldText className="uppercase">Explore My Lifehacks</BoldText>
+                <BoldText className="uppercase">Explore Lifehacks</BoldText>
               </Button>
             </div>
           </div>
