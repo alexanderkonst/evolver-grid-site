@@ -1,7 +1,10 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { getModuleBySlug, getRelatedModules } from "@/data/modules";
 import Navigation from "@/components/Navigation";
 import ModuleTile from "@/components/ModuleTile";
+import SignalChannels from "@/components/SignalChannels";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -9,6 +12,10 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 const ModuleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const module = getModuleBySlug(slug || "");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!module) {
     return (
@@ -167,6 +174,9 @@ const ModuleDetail = () => {
           )}
         </div>
       </div>
+
+      <SignalChannels />
+      <Footer />
     </div>
   );
 };
