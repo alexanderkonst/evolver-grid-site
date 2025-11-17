@@ -11,9 +11,9 @@ const Navigation = () => {
 
   const navLinks = [
     { to: "/work", label: "Lifehacks", isScroll: false },
-    { to: "/about", label: "About", isScroll: false },
-    { to: "/contact", label: "Contact", isScroll: false },
     { to: "/library", label: "Library", isScroll: false },
+    { to: "/contact", label: "Contact", isScroll: false },
+    { to: "https://donate.stripe.com/test_00g03KaKF8xudwI145", label: "Donate", isScroll: false, isExternal: true },
   ];
 
   return (
@@ -25,7 +25,7 @@ const Navigation = () => {
             to="/" 
             className="flex items-center hover:opacity-80 transition-opacity z-10"
           >
-            <img src={logo} alt="Aleksandr Konstantinov" className="h-10 w-auto" />
+            <img src={logo} alt="Aleksandr Konstantinov" className="h-13 w-auto" />
           </Link>
 
           {/* Header Image - Left Aligned after Logo */}
@@ -46,6 +46,16 @@ const Navigation = () => {
                     const element = document.getElementById('modules');
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
+                >
+                  {link.label}
+                </a>
+              ) : link.isExternal ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </a>
@@ -90,6 +100,17 @@ const Navigation = () => {
                     element?.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
                   }}
+                >
+                  {link.label}
+                </a>
+              ) : link.isExternal ? (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </a>
