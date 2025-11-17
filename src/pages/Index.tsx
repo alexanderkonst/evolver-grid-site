@@ -60,14 +60,7 @@ const Index = () => {
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Explore My Lifehacks
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                asChild
-              >
-                <Link to="/about">About Me</Link>
+                <BoldText className="uppercase">Explore My Lifehacks</BoldText>
               </Button>
             </div>
           </div>
@@ -118,23 +111,6 @@ const Index = () => {
 
       {/* Signal Channels */}
       <SignalChannels />
-
-      {/* About Preview */}
-      <section
-        ref={aboutAnimation.ref}
-        className={`py-16 px-4 sm:px-6 lg:px-8 bg-secondary/30 transition-all duration-1000 ${
-          aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
-      >
-        <div className="container mx-auto max-w-2xl text-center space-y-6">
-          <p className="text-xl">
-            <BoldText>I design systems that help people think, create, and evolve with clarity.</BoldText>
-          </p>
-          <Button variant="outline" size="lg" asChild>
-            <Link to="/about">Read More About Me</Link>
-          </Button>
-        </div>
-      </section>
 
       <Footer />
     </div>

@@ -45,10 +45,10 @@ const SignalChannels = () => {
                 </h3>
 
                 <Button
-                  variant="outline"
+                  variant="default"
                   size="default"
                   asChild
-                  className="rounded-lg hover:bg-accent/10 hover:border-accent transition-colors"
+                  className="rounded-lg"
                 >
                   <a
                     href={channel.url}
