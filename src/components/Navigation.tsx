@@ -46,11 +46,12 @@ const Navigation = () => {
               src={headerImage} 
               alt="" 
               className="h-14 w-auto opacity-80"
+              style={{ maxWidth: '720px', objectFit: 'contain' }}
             />
             {/* Logo - On Top */}
             <Link 
               to="/" 
-              className="absolute flex items-center hover:opacity-80 transition-opacity z-10"
+              className="absolute flex items-center transition-all duration-300 hover:scale-110 hover:opacity-90 z-10"
             >
               <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
             </Link>
