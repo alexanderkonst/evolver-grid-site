@@ -51,7 +51,7 @@ const Navigation = () => {
             {/* Logo - On Top */}
             <Link 
               to="/" 
-              className="absolute flex items-center transition-all duration-300 hover:scale-110 hover:opacity-90 z-10"
+              className="absolute flex items-center transition-all duration-300 hover:scale-110 hover:opacity-90 hover:drop-shadow-[0_0_15px_rgba(33,84,153,0.5)] z-10"
             >
               <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
             </Link>
