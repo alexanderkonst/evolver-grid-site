@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,16 @@ import headerImage from "@/assets/header-image.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { to: "/work", label: "Lifehacks", isScroll: false },
@@ -23,13 +33,18 @@ const Navigation = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center hover:opacity-80 transition-opacity z-10"
+            className="flex items-center transition-all duration-300 z-10 logo-glow hover:logo-glow-hover"
           >
             <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
           </Link>
 
           {/* Header Image - Left Aligned after Logo */}
-          <div className="hidden md:block absolute left-12 top-1/2 transform -translate-y-1/2 pointer-events-none ml-4">
+          <div 
+            className="hidden md:block absolute left-12 top-1/2 pointer-events-none ml-4 transition-transform duration-300 ease-out"
+            style={{ 
+              transform: `translate3d(0, calc(-50% + ${scrollY * 0.15}px), 0)`
+            }}
+          >
             <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '600px', objectFit: 'contain' }} />
           </div>
 
@@ -40,7 +55,7 @@ const Navigation = () => {
                 <a
                   key={link.to}
                   href={link.to}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById('modules');
@@ -55,7 +70,7 @@ const Navigation = () => {
                   href={link.to}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </a>
@@ -63,7 +78,7 @@ const Navigation = () => {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   activeClassName="text-foreground"
                 >
                   {link.label}
