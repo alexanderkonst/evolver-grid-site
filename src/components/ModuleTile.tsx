@@ -43,7 +43,7 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
           <img
             src={module.thumbnail_image}
             alt={module.title}
-            className={`w-full h-full object-contain object-center transition-transform duration-300 ${
+            className={`w-full h-full object-cover transition-transform duration-300 ${
               isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-105'
             }`}
           />
