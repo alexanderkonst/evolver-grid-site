@@ -142,19 +142,123 @@ const Destiny = () => {
         </div>
       </section>
 
-      {/* How It Works Section - Deep Charcoal */}
+      {/* Promise Section - Deep Charcoal */}
       <section id="how-it-works" className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center text-white">
-            <BoldText>HOW IT WORKS</BoldText>
+            <BoldText>WHAT WE BUILD: A MINIMALLY VIABLE GENIUS BUSINESS</BoldText>
           </h2>
           
-          <div className="space-y-6 text-lg text-white/80">
-            <p><strong>Placeholder:</strong> Brief overview of the process/method</p>
-            <p>Step 1: Excavate your unique genius pattern</p>
-            <p>Step 2: Design your MVGB (Minimally Viable Genius Business)</p>
-            <p>Step 3: Launch with clarity and confidence</p>
-            <p>This section will explain the transformation journey from scattered to crystallized.</p>
+          <div className="space-y-6 text-lg text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl">
+              I don't help you "find your purpose." You already hear it — that's why the old world hurts so much.
+            </p>
+            
+            <p className="text-xl">
+              What I do is help you turn that loud inner knowing into one simple, grounded business model that:
+            </p>
+            
+            <div className="space-y-4 pl-6 border-l-2" style={{ borderColor: 'hsl(45, 100%, 65%)' }}>
+              <p>• Is built around your true genius, not a trendy niche</p>
+              <p>• Speaks to a real, conscious pain in people you deeply understand</p>
+              <p>• Lives in a doable container (usually 1:1 or small-group deep work)</p>
+              <p>• Has realistic potential to generate thousands per month without burning you out</p>
+            </div>
+            
+            <p className="text-xl font-semibold text-center pt-6" style={{ color: 'hsl(45, 100%, 65%)' }}>
+              Think of it as Destiny, implemented: not as a fantasy, but as a business.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Excalibur Method Section - Warm Off-White */}
+      <section className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-4 text-center">
+            <BoldText>THE EXCALIBUR METHOD</BoldText>
+          </h2>
+          
+          <p className="text-xl text-center mb-16 text-muted-foreground">
+            We don't manifest. We get radically honest, then build.
+          </p>
+          
+          <div className="space-y-12">
+            {/* Step 1 */}
+            <div className="flex gap-6 items-start">
+              <div 
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"
+                style={{ backgroundColor: 'hsl(45, 100%, 65%)', color: 'hsl(220, 30%, 12%)' }}
+              >
+                1
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-serif font-bold mb-3">
+                  <BoldText>NAME THE TRUTH</BoldText>
+                </h3>
+                <p className="text-lg text-foreground/80 leading-relaxed">
+                  We start with a real look at your life: projects, money, responsibilities, energy, partner dynamics.
+                  You keep what feeds you. We're not here to blow up your life — we're here to give your genius a viable lane.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex gap-6 items-start">
+              <div 
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"
+                style={{ backgroundColor: 'hsl(45, 100%, 65%)', color: 'hsl(220, 30%, 12%)' }}
+              >
+                2
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-serif font-bold mb-3">
+                  <BoldText>MAP YOUR GENIUS (APPLESEED)</BoldText>
+                </h3>
+                <p className="text-lg text-foreground/80 leading-relaxed">
+                  We map your zone of genius: what you actually do when you're at your best, who you're naturally built to serve, and the archetypal roles you play.
+                  This becomes your Genius Map — the compass for everything that follows.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex gap-6 items-start">
+              <div 
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"
+                style={{ backgroundColor: 'hsl(45, 100%, 65%)', color: 'hsl(220, 30%, 12%)' }}
+              >
+                3
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-serif font-bold mb-3">
+                  <BoldText>FORGE YOUR EXCALIBUR SENTENCE</BoldText>
+                </h3>
+                <p className="text-lg text-foreground/80 leading-relaxed">
+                  Together we craft a one-sentence unique genius offer that names your ideal person, their real, felt problem, the role you play, and the tangible shift you help create.
+                  Most people feel a mix of relief and "oh shit, that's actually it."
+                </p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="flex gap-6 items-start">
+              <div 
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"
+                style={{ backgroundColor: 'hsl(45, 100%, 65%)', color: 'hsl(220, 30%, 12%)' }}
+              >
+                4
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-serif font-bold mb-3">
+                  <BoldText>DESIGN & TEST YOUR MVGB</BoldText>
+                </h3>
+                <p className="text-lg text-foreground/80 leading-relaxed">
+                  From that sentence, we design your Minimally Viable Genius Business: clear offer and outcome, container, price point, and simple, human outreach.
+                  Then you test it in real conversations, and we refine based on what lands, what doesn't, and what your body says yes to.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
