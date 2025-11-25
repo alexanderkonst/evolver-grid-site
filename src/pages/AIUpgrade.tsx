@@ -256,7 +256,7 @@ const AIUpgrade = () => {
       {/* CTA Section */}
       <section className="py-24 px-6 mb-16">
         <div className="container mx-auto max-w-4xl text-center">
-          <Link to="/ai-upgrade/install">
+          <a href="https://buy.stripe.com/5kQdR93g8dKz7e9eTudEs0s" target="_blank" rel="noopener noreferrer">
             <Button 
               size="lg"
               className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
@@ -265,7 +265,7 @@ const AIUpgrade = () => {
               Get the Upgrade
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
     </div>
