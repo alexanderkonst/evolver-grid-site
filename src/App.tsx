@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -27,19 +28,21 @@ const App = () => (
       <AnimatedBackground />
       <CustomCursor />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/contact" element={<ContactNew />} />
-          <Route path="/ai-upgrade" element={<AIUpgrade />} />
-          <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
-          <Route path="/destiny" element={<Destiny />} />
-          <Route path="/m/:slug" element={<ModuleDetail />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/contact" element={<ContactNew />} />
+            <Route path="/ai-upgrade" element={<AIUpgrade />} />
+            <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
+            <Route path="/destiny" element={<Destiny />} />
+            <Route path="/m/:slug" element={<ModuleDetail />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageTransition>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

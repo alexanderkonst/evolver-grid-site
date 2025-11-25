@@ -5,6 +5,8 @@ import ModuleTile from "@/components/ModuleTile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SignalChannels from "@/components/SignalChannels";
+import SectionDivider from "@/components/SectionDivider";
+import TextReveal from "@/components/TextReveal";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useParallax } from "@/hooks/use-parallax";
@@ -51,7 +53,7 @@ const Index = () => {
             
             {/* Tagline */}
             <p className="text-xl sm:text-2xl max-w-2xl uppercase">
-              <BoldText>This page is about you, not about me. Take what you need. Enjoy!</BoldText>
+              <TextReveal text="This page is about you, not about me. Take what you need. Enjoy!" />
             </p>
             
             {/* CTAs */}
@@ -69,6 +71,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider />
 
       {/* Modules Grid */}
       <section
@@ -112,6 +116,8 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      <SectionDivider />
 
       {/* Signal Channels */}
       <SignalChannels />
