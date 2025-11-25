@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ArrowLeft } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -16,6 +18,11 @@ const Destiny = () => {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Scroll animations for sections
   const isThisYouAnimation = useScrollAnimation(0.2);
   const promiseAnimation = useScrollAnimation(0.2);
@@ -28,6 +35,16 @@ const Destiny = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
+      
+      {/* Back Button */}
+      <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
+        <div className="container mx-auto max-w-4xl">
+          <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            <BoldText>BACK</BoldText>
+          </Link>
+        </div>
+      </div>
       
       {/* Sticky Top Nav */}
       <nav className="fixed top-20 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -60,7 +77,7 @@ const Destiny = () => {
       {/* Hero Section - Deep Charcoal/Midnight Indigo */}
       <section 
         id="hero" 
-        className="min-h-screen flex items-center justify-center pt-40 pb-20 px-6"
+        className="min-h-screen flex items-center justify-center pt-32 pb-20 px-6"
         style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
       >
         <div className="container mx-auto max-w-4xl text-center">

@@ -77,7 +77,7 @@ const Index = () => {
       >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
-            <BoldText>Lifehacks</BoldText>
+            <BoldText>LIFEHACKS</BoldText>
           </h2>
           
           {/* Category Filters */}

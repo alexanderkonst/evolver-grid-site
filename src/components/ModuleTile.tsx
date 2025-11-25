@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import WaitlistModal from "./WaitlistModal";
 import BoldText from "./BoldText";
+import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lucide-react";
 
 interface ModuleTileProps {
   module: Module;
@@ -19,6 +20,18 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
     Beta: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
     "Coming Soon": "bg-muted text-muted-foreground border-border",
   };
+
+  const categoryIcons = {
+    AI: Sparkles,
+    Growth: TrendingUp,
+    Business: Briefcase,
+    Ceremonies: Flower2,
+    Tools: Wrench,
+    Apps: Smartphone,
+    Other: Sparkles,
+  };
+
+  const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Use custom route for Destiny module, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" : `/m/${module.slug}`;
@@ -52,11 +65,16 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
         </div>
       )}
       <div className="p-6 space-y-3">
-        <h3 className={`text-xl font-serif font-semibold transition-colors ${
-          isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
-        }`}>
-          <BoldText>{module.title}</BoldText>
-        </h3>
+        <div className="flex items-start gap-3">
+          <IconComponent className={`h-6 w-6 mt-1 flex-shrink-0 ${
+            isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
+          }`} />
+          <h3 className={`text-xl font-serif font-semibold transition-colors flex-1 ${
+            isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
+          }`}>
+            <BoldText>{module.title}</BoldText>
+          </h3>
+        </div>
         
         <p className={`text-sm line-clamp-2 leading-relaxed ${
           isComingSoon ? 'text-muted-foreground/60' : 'text-muted-foreground'
