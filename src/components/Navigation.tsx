@@ -40,10 +40,7 @@ const Navigation = () => {
 
           {/* Header Image - Left Aligned after Logo */}
           <div 
-            className="hidden md:block absolute left-12 top-1/2 pointer-events-none ml-4 transition-transform duration-300 ease-out"
-            style={{ 
-              transform: `translate3d(0, calc(-50% + ${scrollY * 0.15}px), 0)`
-            }}
+            className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none ml-4"
           >
             <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '600px', objectFit: 'contain' }} />
           </div>
