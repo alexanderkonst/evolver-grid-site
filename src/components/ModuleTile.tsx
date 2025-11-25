@@ -51,12 +51,12 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
   };
 
   const cardContent = (
-    <Card className={`group h-full overflow-hidden border-border transition-all duration-300 ${
+    <Card className={`group h-full overflow-hidden border-border transition-all duration-500 ease-out ${
       isComingSoon 
         ? 'bg-card/50 hover:bg-card/60 cursor-pointer opacity-60' 
         : isLive
-        ? 'bg-card shadow-md hover:shadow-lg hover:border-accent cursor-pointer'
-        : 'bg-card shadow-sm hover:shadow-md hover:border-accent cursor-pointer'
+        ? 'bg-card shadow-md hover:shadow-2xl hover:shadow-accent/20 hover:border-accent hover:-translate-y-2 hover:scale-[1.02] cursor-pointer'
+        : 'bg-card shadow-sm hover:shadow-xl hover:shadow-accent/10 hover:border-accent hover:-translate-y-1 cursor-pointer'
     }`}>
       {module.thumbnail_image && (
         <div className={`aspect-video w-full overflow-hidden ${
@@ -65,8 +65,8 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
           <img
             src={module.thumbnail_image}
             alt={module.title}
-            className={`w-full h-full object-cover transition-transform duration-300 ${
-              isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-105'
+            className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+              isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-110 group-hover:brightness-110'
             }`}
           />
         </div>
@@ -86,8 +86,8 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
               isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
             }`} />
           )}
-          <h3 className={`text-xl font-serif font-semibold transition-colors ${
-            isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
+          <h3 className={`text-xl font-serif font-semibold transition-all duration-300 ${
+            isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent group-hover:scale-105'
           }`}>
             <BoldText>{module.title}</BoldText>
           </h3>
