@@ -19,7 +19,8 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
     "Coming Soon": "bg-muted text-muted-foreground border-border",
   };
 
-  const linkPath = `/m/${module.slug}`;
+  // Use custom route for Destiny module, standard route for others
+  const linkPath = module.slug === "destiny" ? "/destiny" : `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
 

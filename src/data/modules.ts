@@ -4,12 +4,12 @@ export const modules: Module[] = [
   {
     id: "1",
     title: "DESTINY: YOUR UNIQUE GENIUS BUSINESS",
-    slug: "destiny-your-unique-genius-business",
+    slug: "destiny",
     category: "Business",
     tagline: "Activate your genius and design your core offer",
     status: "Live",
-    hero_CTA_label: "Join Waitlist",
-    hero_CTA_link: "#",
+    hero_CTA_label: "Book an Excalibur Call",
+    hero_CTA_link: "https://calendly.com/your-link", // Replace with actual Calendly link
     description: "<p>Destiny: Your Unique Genius Business is a transformative program designed to help you uncover your unique genius and crystallize it into a compelling core offer. Through a series of powerful exercises and frameworks, you'll discover what makes you irreplaceable and how to share that gift with the world.</p>",
     who_for: [
       "Coaches and consultants seeking clarity on their offer",
@@ -33,8 +33,8 @@ export const modules: Module[] = [
   },
   {
     id: "2",
-    title: "3X INTELLIGENCE BOOST FOR YOUR AI MODEL",
-    slug: "3x-intelligence-boost-for-your-ai-model",
+    title: "INTELLIGENCE BOOST FOR YOUR AI MODEL",
+    slug: "intelligence-boost-for-your-ai-model",
     category: "AI",
     tagline: "Upgrade your AI's thinking to match yours",
     status: "Live",
