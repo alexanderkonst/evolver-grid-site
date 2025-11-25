@@ -61,6 +61,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        destiny: {
+          dark: "hsl(var(--destiny-dark))",
+          light: "hsl(var(--destiny-light))",
+          gold: "hsl(var(--destiny-gold))",
+          "gold-dark": "hsl(var(--destiny-gold-dark))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
