@@ -7,6 +7,8 @@ import { useState } from "react";
 import WaitlistModal from "./WaitlistModal";
 import BoldText from "./BoldText";
 import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lucide-react";
+import destinyIcon from "@/assets/destiny-icon.png";
+import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
 
 interface ModuleTileProps {
   module: Module;
@@ -32,6 +34,11 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
   };
 
   const IconComponent = categoryIcons[module.category] || Sparkles;
+
+  // Check if this module should use a custom image
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model";
+  const customImageSrc = module.slug === "destiny" ? destinyIcon : 
+                         module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon : null;
 
   // Use custom route for Destiny module, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" : `/m/${module.slug}`;
@@ -66,9 +73,19 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
       )}
       <div className="p-6 space-y-3">
         <div className="flex items-start gap-3">
-          <IconComponent className={`h-6 w-6 mt-1 flex-shrink-0 ${
-            isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
-          }`} />
+          {useCustomImage && customImageSrc ? (
+            <img 
+              src={customImageSrc} 
+              alt={module.title} 
+              className={`h-6 w-6 mt-1 flex-shrink-0 object-contain ${
+                isComingSoon ? 'opacity-40 grayscale' : ''
+              }`} 
+            />
+          ) : (
+            <IconComponent className={`h-6 w-6 mt-1 flex-shrink-0 ${
+              isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
+            }`} />
+          )}
           <h3 className={`text-xl font-serif font-semibold transition-colors flex-1 ${
             isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
           }`}>

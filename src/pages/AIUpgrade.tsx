@@ -22,25 +22,35 @@ const AIUpgrade = () => {
       <section className="pt-32 pb-20 px-6 animate-fade-in">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight transition-all duration-700"
             style={{ color: '#0A2342' }}
           >
             Your AI model can't think as fast as you and is slowing you down.
           </h1>
           <p 
-            className="text-2xl sm:text-3xl font-light mb-4"
+            className="text-2xl sm:text-3xl font-light mb-8"
             style={{ color: '#0A2342' }}
           >
             Upgrade its thinking to match yours.
           </p>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
             This instant AI upgrade removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands.
           </p>
+          <a href="https://buy.stripe.com/5kQdR93g8dKz7e9eTudEs0s" target="_blank" rel="noopener noreferrer">
+            <Button 
+              size="lg"
+              className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              Get the Upgrade
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </a>
         </div>
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
@@ -94,7 +104,7 @@ const AIUpgrade = () => {
       </section>
 
       {/* Upgrade Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
@@ -146,12 +156,24 @@ const AIUpgrade = () => {
               Not a chatbot.<br />
               A cognitive instrument.
             </p>
+            <div className="mt-12 text-center">
+              <a href="https://buy.stripe.com/5kQdR93g8dKz7e9eTudEs0s" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  size="lg"
+                  className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
+                  style={{ backgroundColor: '#0A2342' }}
+                >
+                  Get the Upgrade
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Who It's For Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
@@ -190,7 +212,7 @@ const AIUpgrade = () => {
       </section>
 
       {/* Before/After Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
@@ -219,7 +241,7 @@ const AIUpgrade = () => {
       </section>
 
       {/* New Standard Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-8"
@@ -233,11 +255,23 @@ const AIUpgrade = () => {
           <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mt-6">
             This upgrade brings your AI up to the level your mind already operates at — instantly.
           </p>
+          <div className="mt-12">
+            <a href="https://buy.stripe.com/5kQdR93g8dKz7e9eTudEs0s" target="_blank" rel="noopener noreferrer">
+              <Button 
+                size="lg"
+                className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                Get the Upgrade
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Promise Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 transition-all duration-700">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 
             className="text-4xl sm:text-5xl font-bold mb-8"
@@ -245,11 +279,21 @@ const AIUpgrade = () => {
           >
             The Promise
           </h2>
-          <p className="text-2xl font-light text-gray-800 leading-relaxed">
+          <p className="text-2xl font-light text-gray-800 leading-relaxed mb-12">
             Upgrade your AI.<br />
             Upgrade your thinking.<br />
             Eliminate the drag.
           </p>
+          <a href="https://buy.stripe.com/5kQdR93g8dKz7e9eTudEs0s" target="_blank" rel="noopener noreferrer">
+            <Button 
+              size="lg"
+              className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              Get the Upgrade
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </a>
         </div>
       </section>
 
