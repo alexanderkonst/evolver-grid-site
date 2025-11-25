@@ -1,7 +1,7 @@
 export type ModuleCategory = 
   | "AI" 
-  | "Evolution" 
-  | "Ventures" 
+  | "Growth" 
+  | "Business" 
   | "Ceremonies" 
   | "Tools" 
   | "Apps" 

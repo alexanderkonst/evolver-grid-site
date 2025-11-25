@@ -20,10 +20,10 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { to: "/work", label: "Lifehacks", isScroll: false },
-    { to: "/library", label: "Library", isScroll: false },
-    { to: "/contact", label: "Contact", isScroll: false },
-    { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "Donate", isScroll: false, isExternal: true },
+    { to: "/work", label: "lifehacks", isScroll: false },
+    { to: "/library", label: "library", isScroll: false },
+    { to: "/contact", label: "contact", isScroll: false },
+    { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },
   ];
 
   return (
