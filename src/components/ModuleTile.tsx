@@ -9,13 +9,17 @@ import BoldText from "./BoldText";
 import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lucide-react";
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
+import cannabisIcon from "@/assets/cannabis-icon.png";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
   module: Module;
+  index?: number;
 }
 
-const ModuleTile = ({ module }: ModuleTileProps) => {
+const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  const { ref, isVisible } = useScrollAnimation(0.1);
   
   const statusColor = {
     Live: "bg-green-500/10 text-green-500 border-green-500/20",
@@ -36,9 +40,10 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
   const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Check if this module should use a custom image
-  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model";
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "cannabis-coaching-journeys";
   const customImageSrc = module.slug === "destiny" ? destinyIcon : 
-                         module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon : null;
+                         module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
+                         module.slug === "cannabis-coaching-journeys" ? cannabisIcon : null;
 
   // Use custom route for Destiny module, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" : `/m/${module.slug}`;
@@ -124,9 +129,21 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
 
   return (
     <>
-      <Link to={linkPath} className="block h-full group">
-        {cardContent}
-      </Link>
+      <div
+        ref={ref}
+        className={`transition-all duration-700 ${
+          isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+        }`}
+        style={{
+          transitionDelay: `${index * 100}ms`,
+        }}
+      >
+        <Link to={linkPath} className="block h-full group">
+          {cardContent}
+        </Link>
+      </div>
       {isComingSoon && (
         <WaitlistModal
           isOpen={isWaitlistOpen}
