@@ -11,12 +11,12 @@ import profilePhoto from "@/assets/profile-photo.png";
 import BoldText from "@/components/BoldText";
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const heroAnimation = useScrollAnimation();
   const modulesAnimation = useScrollAnimation();
   const aboutAnimation = useScrollAnimation();
   
-  const categories = ["All", "AI", "Evolution", "Ventures", "Ceremonies", "Tools", "Apps"];
+  const categories = ["ALL", "AI", "GROWTH", "BUSINESS", "CEREMONIES", "TOOLS", "APPS"];
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
