@@ -3,7 +3,7 @@ import { Module } from "@/types/module";
 export const modules: Module[] = [
   {
     id: "1",
-    title: "Destiny: Your Unique Genius Business",
+    title: "DESTINY: YOUR UNIQUE GENIUS BUSINESS",
     slug: "destiny-your-unique-genius-business",
     category: "Business",
     tagline: "Activate your genius and design your core offer",
@@ -33,8 +33,8 @@ export const modules: Module[] = [
   },
   {
     id: "2",
-    title: "AI UPGRADE v4.02",
-    slug: "ai-upgrade-v4-02",
+    title: "3X INTELLIGENCE BOOST FOR YOUR AI MODEL",
+    slug: "3x-intelligence-boost-for-your-ai-model",
     category: "AI",
     tagline: "Upgrade your AI's thinking to match yours",
     status: "Live",
@@ -75,7 +75,7 @@ export const modules: Module[] = [
   },
   {
     id: "3",
-    title: "Cannabis Coaching Journeys",
+    title: "CANNABIS COACHING JOURNEYS",
     slug: "cannabis-coaching-journeys",
     category: "Ceremonies",
     tagline: "Monthly sonic-breathwork journey with plant allies",
