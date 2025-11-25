@@ -246,8 +246,10 @@ export const getModuleBySlug = (slug: string): Module | undefined => {
 };
 
 export const getModulesByCategory = (category: string): Module[] => {
-  if (category === "All") return modules;
-  return modules.filter((module) => module.category === category);
+  if (category === "ALL") return modules;
+  // Convert input to title case for matching
+  const normalizedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+  return modules.filter((module) => module.category === normalizedCategory);
 };
 
 export const getRelatedModules = (moduleId: string, relatedSlugs?: string[]): Module[] => {

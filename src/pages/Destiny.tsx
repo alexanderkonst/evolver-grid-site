@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import BoldText from "@/components/BoldText";
 
 const Destiny = () => {
   const scrollToSection = (id: string) => {
@@ -18,18 +19,18 @@ const Destiny = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-6 py-4">
             {[
-              { label: "home", id: "hero" },
-              { label: "is this you?", id: "is-this-you" },
-              { label: "how it works", id: "how-it-works" },
-              { label: "about", id: "about" },
-              { label: "start", id: "start" }
+              { label: "HOME", id: "hero" },
+              { label: "IS THIS YOU?", id: "is-this-you" },
+              { label: "HOW IT WORKS", id: "how-it-works" },
+              { label: "ABOUT", id: "about" },
+              { label: "START", id: "start" }
             ].map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors lowercase"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                {link.label}
+                <BoldText>{link.label}</BoldText>
               </button>
             ))}
           </div>
@@ -43,7 +44,7 @@ const Destiny = () => {
         style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
       >
         <div className="container mx-auto max-w-4xl text-center">
-          {/* Central Orb / Spotlight Visual Placeholder */}
+          {/* Central Orb / Spotlight Visual */}
           <div className="mb-8 flex justify-center">
             <div 
               className="w-32 h-32 rounded-full"
@@ -54,30 +55,53 @@ const Destiny = () => {
             />
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white">
-            <span style={{ color: 'hsl(45, 100%, 65%)' }}>Destiny</span>: Your Unique Genius Business
-          </h1>
-          
-          <p className="text-xl sm:text-2xl mb-4 text-white/80">
-            Transform your scattered vision into a Minimally Viable <span style={{ color: 'hsl(45, 100%, 65%)' }}>Genius</span> Business
-          </p>
-          
-          <p className="text-lg mb-12 text-white/60 max-w-2xl mx-auto">
-            For founders at the threshold: capable but scattered. Savings melting. Partner worried. The old way has collapsed—something deeper is calling.
+          {/* Offer Name Overline */}
+          <p className="text-sm uppercase tracking-widest mb-6 text-white/60">
+            <BoldText>DESTINY: YOUR UNIQUE GENIUS BUSINESS</BoldText>
           </p>
 
+          {/* Hero Headline */}
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white">
+            <BoldText>YOUR OLD LIFE IS COLLAPSING. YOUR GENIUS ISN'T.</BoldText>
+          </h1>
+          
+          {/* Hero Subheadline */}
+          <p className="text-xl sm:text-2xl mb-8 text-white/80 max-w-3xl mx-auto leading-relaxed">
+            For founders and visionaries stuck in the in-between — too awake to go back, not yet clear how to go forward — I help you design one Minimally Viable <span style={{ color: 'hsl(45, 100%, 65%)' }}>Genius</span> Business that can actually pay your bills and honor your destiny.
+          </p>
+          
+          {/* Hero Bullets */}
+          <div className="space-y-3 mb-12 max-w-2xl mx-auto">
+            {[
+              "Turn your soul work into one clear, sellable offer",
+              "Aim for a sane target (e.g. 5–10k/month on ~15–20 hours)",
+              "Stop scattering energy across 7 half-projects and build one true lane"
+            ].map((bullet, i) => (
+              <div key={i} className="flex items-start gap-3 text-left">
+                <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(45, 100%, 65%)' }} />
+                <p className="text-white/70 text-base">{bullet}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Primary CTA */}
           <Button 
             size="lg"
-            onClick={() => window.open('https://calendly.com/your-link', '_blank')}
-            className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
+            onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
+            className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all mb-4"
             style={{ 
               backgroundColor: 'hsl(45, 100%, 65%)', 
               color: 'hsl(220, 30%, 12%)',
             }}
           >
-            Book an <span style={{ fontWeight: 700 }}>Excalibur</span> Call
+            <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
+          
+          {/* Subtext under button */}
+          <p className="text-sm text-white/50">
+            Or learn how this works ↓
+          </p>
         </div>
       </section>
 
@@ -85,14 +109,35 @@ const Destiny = () => {
       <section id="is-this-you" className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
-            Is This You?
+            <BoldText>YOU'RE IN THE FORGE, NOT JUST IN A PIVOT</BoldText>
           </h2>
           
-          <div className="space-y-4 text-lg text-foreground/80">
-            <p><strong>Placeholder:</strong> You've built things. Led teams. Launched projects. But now...</p>
-            <p>The old structure has collapsed or is dying. Your savings are melting. Your partner is getting worried.</p>
-            <p>You're highly capable—but scattered across too many ideas. You know something deeper is calling, but you can't quite name it yet.</p>
-            <p>This is the description of someone at a sacred threshold—capable but uncrystallized.</p>
+          <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-xl font-medium">
+              You're not "just changing careers." You're standing between worlds:
+            </p>
+            
+            <div className="space-y-4 pl-6 border-l-2" style={{ borderColor: 'hsl(45, 100%, 65%)' }}>
+              <p>
+                • The old way of working is dead or dying — your body and soul won't tolerate it anymore.
+              </p>
+              <p>
+                • You're receiving real visions — land, projects, communities, products — but they mostly live in your head, voice notes, or ceremony.
+              </p>
+              <p>
+                • Savings are melting, and your partner / family is shifting from "I support you" to "I'm scared."
+              </p>
+              <p>
+                • You're highly capable (founder/leader energy), but right now your power is spread across too many ideas.
+              </p>
+              <p>
+                • If someone asked, "So what exactly do you do?" — you'd hesitate or give three different answers.
+              </p>
+            </div>
+            
+            <p className="text-xl font-semibold text-center pt-6" style={{ color: 'hsl(45, 100%, 50%)' }}>
+              If this feels uncomfortably accurate, this work is for you.
+            </p>
           </div>
         </div>
       </section>
@@ -101,7 +146,7 @@ const Destiny = () => {
       <section id="how-it-works" className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center text-white">
-            How It Works
+            <BoldText>HOW IT WORKS</BoldText>
           </h2>
           
           <div className="space-y-6 text-lg text-white/80">
@@ -118,7 +163,7 @@ const Destiny = () => {
       <section id="about" className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
-            About This Process
+            <BoldText>ABOUT THIS PROCESS</BoldText>
           </h2>
           
           <div className="space-y-4 text-lg text-foreground/80">
@@ -134,7 +179,11 @@ const Destiny = () => {
       <section id="start" className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-white">
-            Ready to Claim Your <span style={{ color: 'hsl(45, 100%, 65%)' }}>Destiny</span>?
+            <span className="text-white">Ready to Claim Your </span>
+            <span style={{ color: 'hsl(45, 100%, 65%)' }}>
+              <BoldText>DESTINY</BoldText>
+            </span>
+            <span className="text-white">?</span>
           </h2>
           
           <p className="text-xl mb-12 text-white/60 max-w-2xl mx-auto">
@@ -143,14 +192,14 @@ const Destiny = () => {
 
           <Button 
             size="lg"
-            onClick={() => window.open('https://calendly.com/your-link', '_blank')}
+            onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
             className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
             style={{ 
               backgroundColor: 'hsl(45, 100%, 65%)', 
               color: 'hsl(220, 30%, 12%)',
             }}
           >
-            Book an <span style={{ fontWeight: 700 }}>Excalibur</span> Call
+            <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>

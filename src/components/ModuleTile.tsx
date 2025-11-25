@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import WaitlistModal from "./WaitlistModal";
+import BoldText from "./BoldText";
 
 interface ModuleTileProps {
   module: Module;
@@ -54,7 +55,7 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
         <h3 className={`text-xl font-serif font-semibold transition-colors ${
           isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
         }`}>
-          {module.title}
+          <BoldText>{module.title}</BoldText>
         </h3>
         
         <p className={`text-sm line-clamp-2 leading-relaxed ${
