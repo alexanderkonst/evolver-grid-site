@@ -263,41 +263,135 @@ const Destiny = () => {
         </div>
       </section>
 
-      {/* About Section - Warm Off-White */}
-      <section id="about" className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
+      {/* Who This Is For / Not For Section - Deep Charcoal */}
+      <section className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
-            <BoldText>ABOUT THIS PROCESS</BoldText>
-          </h2>
-          
-          <div className="space-y-4 text-lg text-foreground/80">
-            <p><strong>Placeholder:</strong> Origin story / credibility / why this matters</p>
-            <p>Born from working with visionary founders who were stuck at the threshold.</p>
-            <p>Not a formula. Not a template. A process to discover YOUR unique pattern.</p>
-            <p>This is about finding your <span style={{ color: 'hsl(45, 100%, 50%)' }}>Excalibur</span>—the business only you can build.</p>
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Who This Is For */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
+                <BoldText>WHO THIS IS FOR</BoldText>
+              </h2>
+              <div className="space-y-4">
+                {[
+                  "Founders, ex-founders, and creative leaders who know they're here to change something real, not just make decent money.",
+                  "People whose old professional identity has cracked, and pretending it still works feels like self-betrayal.",
+                  "Those willing to tell the truth about money, fear, and desire — and then do focused work from there.",
+                  "People ready to commit to one primary lane (for now) and give it a genuine chance."
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(45, 100%, 65%)' }} />
+                    <p className="text-white/70 text-base leading-relaxed">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Who This Is Not For */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
+                <BoldText>WHO THIS IS NOT FOR</BoldText>
+              </h2>
+              <div className="space-y-4">
+                {[
+                  "Anyone looking for \"10k in 10 days\" hacks or copy-paste funnels.",
+                  "People who want AI and automation to do the work instead of real conversations.",
+                  "Folks unwilling to be seen more deeply than their current bio or brand.",
+                  "Anyone who wants a guarantee without taking any risk or responsibility."
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="h-5 w-5 flex-shrink-0 mt-0.5 text-white/40">✕</div>
+                    <p className="text-white/70 text-base leading-relaxed">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Start Section - Deep Charcoal with CTA */}
-      <section id="start" className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-white">
-            <span className="text-white">Ready to Claim Your </span>
-            <span style={{ color: 'hsl(45, 100%, 65%)' }}>
-              <BoldText>DESTINY</BoldText>
-            </span>
-            <span className="text-white">?</span>
+      {/* How We Work Together Section - Warm Off-White */}
+      <section className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
+            <BoldText>HOW WE WORK TOGETHER</BoldText>
           </h2>
           
-          <p className="text-xl mb-12 text-white/60 max-w-2xl mx-auto">
-            <strong>Placeholder:</strong> Final invitation / what happens on the call
-          </p>
+          <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto">
+            <p>
+              We work in a focused, time-bound container (for example, 6–10 weeks), using:
+            </p>
+            <ul className="list-none space-y-2 pl-6">
+              <li>– Deep 1:1 sessions (Zoom or in-person when possible)</li>
+              <li>– Voice / text between sessions for integration and tweaks</li>
+              <li>– Shared living documents (your Genius Map, Excalibur sentence, MVGB spec)</li>
+            </ul>
+            
+            <p className="pt-4">
+              I don't sell endless months of "support." We aim for a clear before/after: you enter in limbo, you leave with one working path.
+            </p>
+            
+            <div className="pt-8 border-t border-border">
+              <h3 className="text-2xl font-serif font-bold mb-4">
+                <BoldText>VALUE EXCHANGE</BoldText>
+              </h3>
+              <ul className="list-none space-y-2">
+                <li>– We agree on a base fee for the container (discussed live).</li>
+                <li>– Plus a small share of revenue from your new MVGB only,</li>
+                <li>– Capped at a fixed amount, so it stays fair and non-extractive.</li>
+              </ul>
+              <p className="pt-4 text-xl font-semibold" style={{ color: 'hsl(45, 100%, 50%)' }}>
+                I win when your genius starts feeding you. That's the point.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section - Deep Charcoal */}
+      <section id="about" className="py-24 px-6" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center text-white">
+            <BoldText>WHO'S HOLDING THIS WORK</BoldText>
+          </h2>
+          
+          <div className="space-y-6 text-lg text-white/80 max-w-3xl mx-auto">
+            <p>
+              I'm Aleksandr — a systems architect, venture builder, and teacher of integral evolution.
+            </p>
+            
+            <p>
+              My life's work is helping people and projects move from myth-level vision to real-world structure. I've built and advised ventures at the intersection of tech, consciousness, and new systems, and helped founders name their true lane and design businesses around it.
+            </p>
+            
+            <p>
+              This offer — Destiny: Your Unique Genius Business — is my own MVGB. It's how my genius plugs straight into yours.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section - Warm Off-White */}
+      <section id="start" className="py-24 px-6" style={{ backgroundColor: 'hsl(30, 25%, 94%)' }}>
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
+            <BoldText>READY TO STOP HOVERING BETWEEN WORLDS?</BoldText>
+          </h2>
+          
+          <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto mb-12">
+            <p>
+              If you feel the gap between who you are and how you make a living getting more painful, that's not a bug — it's a summons.
+            </p>
+            
+            <p>
+              This call is not a sales trap. It's a space to look honestly at where you are, name what's really trying to be born through you, and see whether this container is the right forge.
+            </p>
+          </div>
 
           <Button 
             size="lg"
             onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
-            className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
+            className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all mb-4"
             style={{ 
               backgroundColor: 'hsl(45, 100%, 65%)', 
               color: 'hsl(220, 30%, 12%)',
@@ -306,6 +400,10 @@ const Destiny = () => {
             <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
+          
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            One conversation. Full honesty. No pressure. If it's not the right time or fit, we'll both say so.
+          </p>
         </div>
       </section>
 
