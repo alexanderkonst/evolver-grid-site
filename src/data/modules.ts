@@ -247,8 +247,8 @@ export const getModuleBySlug = (slug: string): Module | undefined => {
 
 export const getModulesByCategory = (category: string): Module[] => {
   if (category === "ALL") return modules;
-  // Convert input to title case for matching
-  const normalizedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+  // Match category with proper casing (AI stays uppercase, others title case)
+  const normalizedCategory = category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
   return modules.filter((module) => module.category === normalizedCategory);
 };
 
