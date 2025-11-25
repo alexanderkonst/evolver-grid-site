@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -23,6 +24,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <AnimatedBackground />
       <CustomCursor />
       <BrowserRouter>
         <Routes>
