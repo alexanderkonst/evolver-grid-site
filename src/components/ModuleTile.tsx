@@ -72,21 +72,21 @@ const ModuleTile = ({ module }: ModuleTileProps) => {
         </div>
       )}
       <div className="p-6 space-y-3">
-        <div className="flex items-start gap-3">
+        <div className="flex flex-col items-center text-center space-y-3">
           {useCustomImage && customImageSrc ? (
             <img 
               src={customImageSrc} 
               alt={module.title} 
-              className={`h-6 w-6 mt-1 flex-shrink-0 object-contain ${
+              className={`h-12 w-12 object-contain ${
                 isComingSoon ? 'opacity-40 grayscale' : ''
               }`} 
             />
           ) : (
-            <IconComponent className={`h-6 w-6 mt-1 flex-shrink-0 ${
+            <IconComponent className={`h-12 w-12 ${
               isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
             }`} />
           )}
-          <h3 className={`text-xl font-serif font-semibold transition-colors flex-1 ${
+          <h3 className={`text-xl font-serif font-semibold transition-colors ${
             isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent'
           }`}>
             <BoldText>{module.title}</BoldText>
