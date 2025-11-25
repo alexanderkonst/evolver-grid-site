@@ -3,8 +3,38 @@ import { Module } from "@/types/module";
 export const modules: Module[] = [
   {
     id: "1",
-    title: "AI UPGRADE v4.01",
-    slug: "ai-upgrade-v4-01",
+    title: "Destiny: Your Unique Genius Business",
+    slug: "destiny-your-unique-genius-business",
+    category: "Business",
+    tagline: "Activate your genius and design your core offer",
+    status: "Live",
+    hero_CTA_label: "Join Waitlist",
+    hero_CTA_link: "#",
+    description: "<p>Destiny: Your Unique Genius Business is a transformative program designed to help you uncover your unique genius and crystallize it into a compelling core offer. Through a series of powerful exercises and frameworks, you'll discover what makes you irreplaceable and how to share that gift with the world.</p>",
+    who_for: [
+      "Coaches and consultants seeking clarity on their offer",
+      "Creative professionals ready to define their niche",
+      "Entrepreneurs building their personal brand",
+      "Change-makers wanting to amplify their impact"
+    ],
+    outcomes: [
+      "Crystal-clear understanding of your unique genius",
+      "A compelling core offer that resonates",
+      "Confidence in your value proposition",
+      "A roadmap for bringing your vision to life"
+    ],
+    structure: [
+      "Discovery: Uncover your natural talents and passions",
+      "Crystallization: Define your unique value proposition",
+      "Design: Craft your signature offer",
+      "Activation: Launch strategy and next steps"
+    ],
+    story: "Destiny emerged from working with hundreds of talented individuals who struggled to articulate their unique value. This program distills that experience into a clear pathway for building a business around your genius.",
+  },
+  {
+    id: "2",
+    title: "AI UPGRADE v4.02",
+    slug: "ai-upgrade-v4-02",
     category: "AI",
     tagline: "Upgrade your AI's thinking to match yours",
     status: "Live",
@@ -44,40 +74,43 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: "2",
-    title: "Destiny Pack",
-    slug: "destiny-pack",
-    category: "Evolution",
-    tagline: "Activate your genius and design your core offer",
-    status: "Coming Soon",
-    hero_CTA_label: "Join Waitlist",
+    id: "3",
+    title: "Cannabis Coaching Journeys",
+    slug: "cannabis-coaching-journeys",
+    category: "Ceremonies",
+    tagline: "Monthly sonic-breathwork journey with plant allies",
+    status: "Live",
+    hero_CTA_label: "Join Next Session",
     hero_CTA_link: "#",
-    description: "<p>The Destiny Pack is a transformative program designed to help you uncover your unique genius and crystallize it into a compelling core offer. Through a series of powerful exercises and frameworks, you'll discover what makes you irreplaceable and how to share that gift with the world.</p>",
+    description: "<p>Cannabis Coaching Journeys is a monthly ceremonial experience combining conscious cannabis use, breathwork, and carefully curated soundscapes. This practice creates a safe container for deep healing, creativity, and spiritual exploration with plant medicine.</p>",
     who_for: [
-      "Coaches and consultants seeking clarity on their offer",
-      "Creative professionals ready to define their niche",
-      "Entrepreneurs building their personal brand",
-      "Change-makers wanting to amplify their impact"
+      "Experienced cannabis users seeking deeper practice",
+      "Ceremony facilitators exploring new modalities",
+      "Artists and creatives accessing flow states",
+      "Spiritual seekers integrating plant wisdom"
     ],
     outcomes: [
-      "Crystal-clear understanding of your unique genius",
-      "A compelling core offer that resonates",
-      "Confidence in your value proposition",
-      "A roadmap for bringing your vision to life"
+      "Profound healing and emotional release",
+      "Enhanced creativity and insight",
+      "Deeper relationship with plant consciousness",
+      "Integration of spiritual experiences"
     ],
     structure: [
-      "Discovery: Uncover your natural talents and passions",
-      "Crystallization: Define your unique value proposition",
-      "Design: Craft your signature offer",
-      "Activation: Launch strategy and next steps"
+      "Preparation: Set intentions and create sacred space",
+      "Journey: Guided breathwork and sonic immersion",
+      "Integration: Group sharing and meaning-making",
+      "Practice: Tools for continuing the work"
     ],
-    story: "The Destiny Pack emerged from working with hundreds of talented individuals who struggled to articulate their unique value. This program distills that experience into a clear pathway.",
+    story: "This ceremony was born from years of personal exploration with plant medicine and sound healing, refined through dozens of group journeys into a powerful transformative experience.",
+    app_links: [
+      { label: "Book Session", url: "#" }
+    ]
   },
   {
-    id: "3",
+    id: "4",
     title: "Heartcraft (Game)",
     slug: "heartcraft-game",
-    category: "Evolution",
+    category: "Growth",
     tagline: "A level-based awakening game using conscious breathwork",
     status: "Coming Soon",
     hero_CTA_label: "Play Beta",
@@ -107,10 +140,10 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: "4",
+    id: "5",
     title: "Integral Mystery School",
     slug: "integral-mystery-school",
-    category: "Evolution",
+    category: "Growth",
     tagline: "A 5-module program on leadership and evolutionary development",
     status: "Coming Soon",
     hero_CTA_label: "Enroll Now",
@@ -141,7 +174,7 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: "5",
+    id: "6",
     title: "New Earth Superapp (Prototype)",
     slug: "new-earth-superapp",
     category: "Apps",
@@ -174,7 +207,7 @@ export const modules: Module[] = [
     ]
   },
   {
-    id: "6",
+    id: "7",
     title: "Quality of Life Map",
     slug: "quality-of-life-map",
     category: "Tools",
@@ -206,39 +239,6 @@ export const modules: Module[] = [
       { label: "Open Map", url: "#" }
     ]
   },
-  {
-    id: "7",
-    title: "Sonic Cannabis Journey",
-    slug: "sonic-cannabis-journey",
-    category: "Ceremonies",
-    tagline: "Monthly sonic-breathwork journey with plant allies",
-    status: "Live",
-    hero_CTA_label: "Join Next Session",
-    hero_CTA_link: "#",
-    description: "<p>Sonic Cannabis Journey is a monthly ceremonial experience combining conscious cannabis use, breathwork, and carefully curated soundscapes. This practice creates a safe container for deep healing, creativity, and spiritual exploration with plant medicine.</p>",
-    who_for: [
-      "Experienced cannabis users seeking deeper practice",
-      "Ceremony facilitators exploring new modalities",
-      "Artists and creatives accessing flow states",
-      "Spiritual seekers integrating plant wisdom"
-    ],
-    outcomes: [
-      "Profound healing and emotional release",
-      "Enhanced creativity and insight",
-      "Deeper relationship with plant consciousness",
-      "Integration of spiritual experiences"
-    ],
-    structure: [
-      "Preparation: Set intentions and create sacred space",
-      "Journey: Guided breathwork and sonic immersion",
-      "Integration: Group sharing and meaning-making",
-      "Practice: Tools for continuing the work"
-    ],
-    story: "This ceremony was born from years of personal exploration with plant medicine and sound healing, refined through dozens of group journeys into a powerful transformative experience.",
-    app_links: [
-      { label: "Book Session", url: "#" }
-    ]
-  }
 ];
 
 export const getModuleBySlug = (slug: string): Module | undefined => {

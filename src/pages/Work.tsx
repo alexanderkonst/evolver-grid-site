@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   
-  const categories = ["All", "AI", "Evolution", "Ventures", "Ceremonies", "Tools", "Apps"];
+  const categories = ["All", "AI", "Growth", "Business", "Ceremonies", "Tools", "Apps"];
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
@@ -18,7 +18,7 @@ const Work = () => {
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
           <h1 className="text-5xl sm:text-6xl font-serif font-bold mb-12 text-center">
-            All Lifehacks
+            All LIFEHACKS
           </h1>
           
           {/* Category Filters */}
