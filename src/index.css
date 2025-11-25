@@ -38,6 +38,12 @@ All colors MUST be HSL.
     --ring: 210 70% 15%;
 
     --radius: 0.5rem;
+
+    /* Destiny Landing Page Colors */
+    --destiny-dark: 220 30% 12%;
+    --destiny-light: 30 25% 94%;
+    --destiny-gold: 45 100% 65%;
+    --destiny-gold-dark: 45 100% 50%;
   }
 }
 
@@ -88,6 +94,76 @@ All colors MUST be HSL.
 
   .logo-glow-hover:hover {
     filter: drop-shadow(0 0 16px hsla(var(--primary), 0.6)) drop-shadow(0 0 24px hsla(var(--accent), 0.4));
+  }
+
+  /* Destiny Landing Page Animations */
+  @keyframes orb-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .orb-pulse {
+    animation: orb-pulse 4s ease-in-out infinite;
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .fade-in-section {
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  /* Scroll margin for anchor navigation */
+  section[id] {
+    scroll-margin-top: 140px;
+  }
+
+  /* Enhanced button hover for Destiny CTAs */
+  .destiny-cta-button {
+    transition: all 0.3s ease;
+  }
+
+  .destiny-cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px hsla(var(--destiny-gold), 0.6);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
