@@ -75,7 +75,7 @@ export const modules: Module[] = [
   },
   {
     id: "3",
-    title: "CANNABIS COACHING JOURNEYS",
+    title: "CANNABIS TRANSFORMATIONAL JOURNEYS & COACHING",
     slug: "cannabis-coaching-journeys",
     category: "Ceremonies",
     tagline: "Monthly sonic-breathwork journey with plant allies",
