@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { useMagnetic } from "@/hooks/use-magnetic";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -38,8 +38,32 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const { ref: magneticRef, position } = useMagnetic(0.15);
     const Comp = asChild ? Slot : "button";
-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+    
+    const combinedRef = React.useCallback(
+      (node: HTMLButtonElement) => {
+        (magneticRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        }
+      },
+      [ref, magneticRef]
+    );
+    
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={combinedRef}
+        style={{
+          transform: `translate(${position.x}px, ${position.y}px)`,
+          transition: 'transform 0.2s ease-out',
+        }}
+        {...props}
+      />
+    );
   },
 );
 Button.displayName = "Button";
