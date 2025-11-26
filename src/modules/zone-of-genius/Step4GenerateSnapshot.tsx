@@ -502,8 +502,8 @@ Output ONLY the Markdown content described above. Do not include explanations of
         </>
       ) : null}
 
-      {/* Navigation */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-12 mt-12 border-t border-slate-200">
+      {/* Navigation - Desktop */}
+      <div className="hidden sm:flex flex-col sm:flex-row items-center justify-center gap-4 pt-12 mt-12 border-t border-slate-200">
         <button
           onClick={handleBack}
           className="px-6 py-2 text-sm rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-700"
@@ -517,6 +517,44 @@ Output ONLY the Markdown content described above. Do not include explanations of
           Start New Assessment
         </button>
       </div>
+
+      {/* Mobile Bottom Bar */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-slate-200 p-3 pb-safe-4 shadow-lg z-50">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <button
+            onClick={handleBack}
+            className="text-xs px-3 py-2 rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-700"
+          >
+            Back
+          </button>
+          <button
+            onClick={handleStartNew}
+            className="text-xs text-slate-500 hover:text-slate-700"
+          >
+            Start New
+          </button>
+        </div>
+        <button
+          onClick={handleDownloadPDF}
+          disabled={isDownloading}
+          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-xs font-medium text-slate-50 shadow-sm hover:bg-slate-800 transition-colors disabled:opacity-50"
+        >
+          {isDownloading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              <span>Generating PDF...</span>
+            </>
+          ) : (
+            <>
+              <Download className="w-4 h-4" />
+              <span>Download Snapshot (PDF)</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Spacer for mobile bottom bar */}
+      <div className="sm:hidden h-32" />
     </main>
   );
 };

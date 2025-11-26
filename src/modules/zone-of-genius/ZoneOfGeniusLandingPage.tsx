@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import BoldText from "@/components/BoldText";
 import { useNavigate } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
@@ -254,6 +255,23 @@ const ZoneOfGeniusLandingPage = () => {
       </main>
 
       <Footer />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
+
+      {/* Sticky Mobile CTA */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-50">
+        <button
+          onClick={handleStartAssessment}
+          className="w-full py-3 rounded-full font-bold transition-all text-sm shadow-[0_0_20px_rgba(26,54,93,0.5)]"
+          style={{ 
+            backgroundColor: 'hsl(210, 70%, 15%)',
+            color: 'white'
+          }}
+        >
+          <BoldText>START FREE ASSESSMENT</BoldText>
+        </button>
+      </div>
     </div>
   );
 };

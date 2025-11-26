@@ -225,7 +225,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             <img 
               src={libraryLogo} 
               alt="Library Logo" 
-              className="h-56 w-56 object-contain"
+              className="h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 object-contain"
             />
           </div>
           
@@ -279,7 +279,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                       key={option.id}
                       onClick={() => setIntentChoice(option.id)}
                       className={cn(
-                        "px-3 py-1 rounded-full border text-xs transition-all",
+                        "px-4 py-2 rounded-full border text-xs transition-all min-h-[44px]",
                         intentChoice === option.id
                           ? "bg-primary text-primary-foreground border-primary"
                           : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
@@ -300,7 +300,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                       key={option.id}
                       onClick={() => setIntentLengthChoice(option.id)}
                       className={cn(
-                        "px-3 py-1 rounded-full border text-xs transition-all",
+                        "px-4 py-2 rounded-full border text-xs transition-all min-h-[44px]",
                         intentLengthChoice === option.id
                           ? "bg-primary text-primary-foreground border-primary"
                           : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
@@ -381,7 +381,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             <button
               onClick={() => setActiveCategory("all")}
               className={cn(
-                "px-4 py-2 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all",
+                "px-4 py-2.5 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all min-h-[44px]",
                 activeCategory === "all"
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
@@ -394,7 +394,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  "px-4 py-2 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all",
+                  "px-4 py-2.5 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all min-h-[44px]",
                   activeCategory === cat.id
                     ? "bg-primary text-primary-foreground border-primary"
                     : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
