@@ -178,11 +178,9 @@ STRUCTURE (in Markdown):
      - Max ~20 words,
      - Framed as an invitation ("Try...", "Experiment with...", "Give yourself...").
 
-6. **Gentle Closing Line with Next Step**  
-   - One short closing sentence that:
-     - Invites them to honor and trust their gifts, and
-     - Gently mentions that Aleksandr offers a "Career Re-Ignition Session" if they want deeper support turning this into concrete career moves.
-   - Keep it soft, not salesy.
+6. **Gentle Closing Line**  
+   - One short closing sentence that invites them to honor and trust their gifts.
+   - Keep it soft and encouraging. Do NOT mention the Career Re-Ignition Session here.
 
 STYLE GUIDELINES:
 
@@ -201,19 +199,43 @@ Output ONLY the Markdown content described above. Do not include explanations of
     
     setIsDownloading(true);
     try {
+      // Temporarily show the hidden PDF content
+      snapshotRef.current.classList.remove('hidden');
+      
       const canvas = await html2canvas(snapshotRef.current, {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
+        foreignObjectRendering: false,
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      // Hide it again
+      snapshotRef.current.classList.add('hidden');
+
+      // Use JPEG for much smaller file size
+      const imgData = canvas.toDataURL('image/jpeg', 0.85);
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = pdfWidth;
+      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      // Add first page
+      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
+      heightLeft -= pdfHeight;
+
+      // Add additional pages if needed
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
+        heightLeft -= pdfHeight;
+      }
+
       pdf.save('Zone-of-Genius-Snapshot.pdf');
       
       toast.success("PDF downloaded successfully!");
@@ -262,30 +284,59 @@ Output ONLY the Markdown content described above. Do not include explanations of
           <p className="text-lg text-muted-foreground">Generating your personalized snapshot...</p>
         </div>
       ) : snapshotMarkdown ? (
-        <div ref={snapshotRef} className="bg-card border border-border rounded-xl p-6 sm:p-8 space-y-6">
-          <div className="prose prose-sm sm:prose max-w-none">
-            <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
+        <>
+          {/* Display version (on screen) */}
+          <div className="bg-card border border-border rounded-xl p-6 sm:p-8 space-y-6">
+            <div className="prose prose-sm sm:prose max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-ul:text-foreground/80 prose-li:text-foreground/80">
+              <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
+            </div>
           </div>
 
-          {/* Next Steps Section for PDF */}
-          <div className="mt-8 pt-8 border-t border-border space-y-4">
-            <h3 className="text-xl font-bold text-foreground">
-              Your Next Step: The 'Career Re-Ignition Session' with Aleksandr
-            </h3>
-            <p className="text-base text-foreground/90">
-              In one focused 90 minute live session, Aleksandr will personally guide you to transform your ZoG insights into a concrete strategic action plan to grow into your next level with confidence and speed.
-            </p>
-            <ul className="space-y-2 text-sm text-foreground/80">
-              <li>• Understand your current situation through the lens of your ZoG</li>
-              <li>• Activate your ZoG</li>
-              <li>• Co-create a potent action plan tailored to your unique strengths</li>
-            </ul>
-            <p className="text-lg font-bold text-primary">$297</p>
-            <p className="text-sm text-muted-foreground">
-              Book your session here: https://www.calendly.com/konstantinov
-            </p>
+          {/* PDF version (hidden) */}
+          <div ref={snapshotRef} className="hidden">
+            <div className="bg-white p-12 space-y-8" style={{ width: '210mm', minHeight: '297mm' }}>
+              {/* Sacred Talents Header */}
+              <div className="text-center space-y-6 pb-8 border-b-2 border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-wider">
+                  Your Core Talents
+                </h2>
+                <div className="space-y-4">
+                  {top3Talents.map((talent, index) => (
+                    <div key={talent.id} className="space-y-1">
+                      <div className="text-xl font-bold text-blue-900">
+                        {index + 1}. {talent.name}
+                      </div>
+                      <div className="text-sm text-gray-600 italic max-w-2xl mx-auto">
+                        {talent.description}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Snapshot Content */}
+              <div className="prose prose-sm max-w-none prose-headings:text-gray-800 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-li:text-gray-700">
+                <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
+              </div>
+
+              {/* Simplified Next Step for PDF */}
+              <div className="mt-12 pt-8 border-t-2 border-gray-200 space-y-4 text-center">
+                <h3 className="text-xl font-bold text-gray-800">
+                  Ready to Turn Insight into Action?
+                </h3>
+                <p className="text-base text-gray-700 max-w-2xl mx-auto">
+                  This is just the beginning. If you'd like support translating your Zone of Genius into a clear, confident career move, Aleksandr offers a focused 60–90 minute Career Re-Ignition Session to transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                </p>
+                <div className="inline-block px-8 py-4 mt-4 text-lg font-bold text-white rounded-full" style={{ backgroundColor: '#1a365d' }}>
+                  Book My Career Re-Ignition Session
+                </div>
+                <p className="text-sm text-gray-600 mt-2">
+                  https://www.calendly.com/konstantinov
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       ) : null}
 
       {/* Download Button */}
@@ -324,7 +375,24 @@ Output ONLY the Markdown content described above. Do not include explanations of
           <p className="text-base text-foreground/90 text-center max-w-2xl mx-auto">
             This is just the beginning. If you'd like support translating your Zone of Genius into a clear, confident career move, Aleksandr offers a focused 60–90 minute Career Re-Ignition Session to transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
           </p>
-          <div className="flex justify-center">
+
+          {/* Integrated Next Step Section */}
+          <div className="mt-8 pt-8 border-t border-border space-y-4">
+            <h4 className="text-xl font-bold text-foreground">
+              Your Next Step After Seeing Your Zone of Genius Could Be: The 'Career Re-Ignition Session' with Aleksandr
+            </h4>
+            <p className="text-base text-foreground/90">
+              In one focused 90 minute live session, Aleksandr will personally guide you to transform your ZoG insights into a concrete strategic action plan to grow into your next level with confidence and speed.
+            </p>
+            <ul className="space-y-2 text-sm text-foreground/80">
+              <li>• Understand your current situation through the lens of your ZoG</li>
+              <li>• Activate your ZoG</li>
+              <li>• Co-create a potent action plan tailored to your unique strengths</li>
+            </ul>
+            <p className="text-lg font-bold text-primary">$297</p>
+          </div>
+
+          <div className="flex justify-center pt-4">
             <a
               href="https://www.calendly.com/konstantinov"
               target="_blank"

@@ -4,6 +4,7 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import BoldText from "@/components/BoldText";
 
 const Step3OrderTalents = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Step3OrderTalents = () => {
   const [localOrdered, setLocalOrdered] = useState<number[]>(
     orderedTalentIds.length > 0 ? orderedTalentIds : top3CoreTalentIds
   );
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (top3CoreTalentIds.length === 0) {
@@ -47,6 +49,31 @@ const Step3OrderTalents = () => {
     navigate("/zone-of-genius/assessment/step-2");
   };
 
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === dropIndex) return;
+    
+    const newOrder = [...localOrdered];
+    const draggedItem = newOrder[draggedIndex];
+    newOrder.splice(draggedIndex, 1);
+    newOrder.splice(dropIndex, 0, draggedItem);
+    
+    setLocalOrdered(newOrder);
+    setDraggedIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
   return (
     <div className="space-y-8">
       <div className="text-center space-y-3">
@@ -54,7 +81,7 @@ const Step3OrderTalents = () => {
           Step 3: Arrange Your Talents in Order of Use
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          Drag and drop your talents or use the arrow buttons to arrange them in the order you typically apply them in your life. The first talent should be the one you use most naturally and frequently.
+          Drag and drop your talents or use the arrow buttons to arrange them <BoldText>IN THE ORDER YOU TYPICALLY APPLY THEM IN YOUR LIFE</BoldText>. The first talent should be the one you use <BoldText>MOST NATURALLY AND FREQUENTLY</BoldText>.
         </p>
       </div>
 
@@ -62,7 +89,16 @@ const Step3OrderTalents = () => {
         {orderedTalents.map((talent, index) => (
           <div
             key={talent.id}
-            className="flex items-center gap-4 p-5 rounded-xl border-2 border-border bg-card/60"
+            draggable
+            onDragStart={() => handleDragStart(index)}
+            onDragOver={(e) => handleDragOver(e, index)}
+            onDrop={(e) => handleDrop(e, index)}
+            onDragEnd={handleDragEnd}
+            className={cn(
+              "flex items-center gap-4 p-5 rounded-xl border-2 border-border bg-card/60 cursor-move transition-all",
+              draggedIndex === index && "opacity-50",
+              "hover:border-primary/50"
+            )}
           >
             <div className="flex flex-col gap-1">
               <button
