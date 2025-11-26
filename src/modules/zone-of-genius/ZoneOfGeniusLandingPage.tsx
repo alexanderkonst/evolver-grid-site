@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
@@ -8,6 +8,10 @@ import profilePhoto from "@/assets/profile-photo.png";
 
 const ZoneOfGeniusLandingPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleStartAssessment = () => {
     navigate("/zone-of-genius/assessment");
@@ -23,7 +27,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* Hero Section */}
           <section className="text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary uppercase">
-              <BoldText>Get instant clarity on your core strengths and a clear path forward with our AI-powered assessment.</BoldText>
+              <BoldText>Get instant clarity on your core strengths and a clear path forward</BoldText>
             </h1>
             
             <p className="text-xl sm:text-2xl text-foreground/90 max-w-3xl mx-auto">
