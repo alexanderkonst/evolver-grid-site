@@ -69,34 +69,132 @@ const Step4GenerateSnapshot = () => {
   };
 
   const buildPrompt = () => {
-    const top10List = top10Talents
-      .map(t => `- ${t.name}: ${t.description}`)
-      .join("\n");
+    const top10List = top10Talents.map(t => ({
+      id: t.id,
+      name: t.name,
+      description: t.description
+    }));
     
-    const top3List = top3Talents
-      .map((t, idx) => `${idx + 1}. ${t.name} – ${t.description}`)
-      .join("\n");
+    const top3List = top3Talents.map(t => ({
+      id: t.id,
+      name: t.name,
+      description: t.description
+    }));
 
-    return `You are Aleksandr's AI assistant helping professionals in career transition clarify their Zone of Genius. Use an encouraging, grounded tone and speak to one person directly ("you"). Keep language concise but deep.
-
-The user has just completed a Zone of Genius assessment.
-
-Their top 10 selected talents (with descriptions) are:
-${top10List}
-
-Their top 3 core talents (with descriptions), in order of how naturally and frequently they are used, are:
-${top3List}
-
-Based on this, generate a concise "ZoG Lifeline Snapshot" in Markdown with the following structure:
-
-1. A title line in bold that names their Zone of Genius in 6–10 words.
-2. A short paragraph (2–3 sentences) summarizing their unique genius and how it naturally wants to express itself in the world.
-3. A section titled "How Your Genius Wants to Express Itself" with 3–5 bullet points describing how these talents typically show up in behavior and contribution.
-4. A section titled "Career Directions to Explore Next" with 4–6 bullet points suggesting types of roles, environments, or paths where this combination of talents is especially valuable.
-5. A gentle closing line inviting them to honor their gifts and consider working with Aleksandr for deeper support, mentioning his "Career Re-Ignition Session" (no hard sell, just a mention).
-
-Write clearly and practically, with warmth and depth. Avoid generic filler. Make it feel tailored to this specific combination of talents.`;
+    return buildZogSnapshotPrompt({
+      top10Talents: top10List,
+      top3OrderedTalents: top3List
+    });
   };
+
+  function buildZogSnapshotPrompt(payload: {
+    top10Talents: {
+      id: number;
+      name: string;
+      description: string;
+    }[];
+    top3OrderedTalents: {
+      id: number;
+      name: string;
+      description: string;
+    }[];
+  }): string {
+    return `
+You are Aleksandr's AI assistant helping professionals in career transition clarify their Zone of Genius.
+
+User context:
+- They just completed a Zone of Genius assessment.
+- You are given:
+  - Their top 10 selected talents (names + descriptions).
+  - Their top 3 core talents, in order of how naturally and frequently they are used.
+
+Use an encouraging, grounded tone. Speak directly to one person as "you".  
+Avoid fluff. Every sentence should feel specific and useful.
+
+----------------
+DATA
+----------------
+
+Top 10 talents:
+${JSON.stringify(payload.top10Talents, null, 2)}
+
+Top 3 core talents in order (1 = strongest / most used):
+${JSON.stringify(payload.top3OrderedTalents, null, 2)}
+
+----------------
+TASK
+----------------
+
+Based on this, generate a **short Markdown report** called a "ZoG Lifeline Snapshot".
+
+The entire output must be:
+- Highly specific and surprising (it should feel like "wow, this is really me"),
+- Extremely concise (no long essays),
+- Immediately useful for real life and career decisions.
+
+STRUCTURE (in Markdown):
+
+1. **Title line (with archetype)**  
+   - One line in bold.  
+   - Format: **"Your Zone of Genius: [short archetype phrase]"**  
+   - The archetype phrase should be 3–7 words that capture their style, e.g. "Systemic Visionary Connector", "Empathic Strategy Alchemist", "Precision Builder of Fair Systems".
+   - Do not reuse generic archetype labels like "Leader", "Helper", "Thinker" without adding a unique twist.
+
+2. **Core Snapshot (2–3 sentences)**  
+   - A short paragraph summarizing:
+     - How their genius naturally wants to move in the world,
+     - What they are like when they are at their best,
+     - The kind of value they instinctively bring to people and systems.
+   - Keep this tight but deep. No more than 80–100 words.
+
+3. **How Your Genius Shows Up (Core Expression Patterns)**  
+   - Heading: \`### How Your Genius Shows Up\`
+   - 3–5 bullet points.
+   - Describe how their talents typically express themselves in behavior, energy, and contribution.
+   - Each bullet:
+     - Max ~20 words.
+     - Should feel concrete and observable (e.g., "You naturally turn messy ideas into clear structures that others can act on.").
+
+4. **Career & Contribution Sweet Spots**  
+   - Heading: \`### Career & Contribution Sweet Spots\`
+   - 4–6 bullet points mixing the following ideas (do NOT make separate sections; keep them in one bullet list):
+     - 2–3 **highly-specific job role patterns** or "kind of roles" where this combo of talents is especially valuable.
+       - Example style: "Service design lead in mission-driven health tech", "Systems-oriented program manager in social impact organizations".
+     - 1–2 bullets about **ideal workplace culture fit** (e.g., fast-paced vs. reflective, structured vs. fluid, big-picture vs. detail-focused).
+     - 1 bullet about **ideal collaborators** (the kinds of people they do their best work with).
+     - 1 bullet pointing to a natural direction for **impact / movements / advocacy causes** where their talents could contribute meaningfully.
+   - Make these bullets feel like "oh, that IS me" – concrete, not vague.
+
+5. **Everyday Life Alignment (This Week)**  
+   - Heading: \`### Everyday Life Alignment (This Week)\`
+   - 4–6 short bullets with practical suggestions that project their genius into daily life.
+   - Draw from these dimensions, but keep it short and integrated (one list, not many sections):
+     - **Daily routine tweaks** that support their genius (e.g., type of morning focus block, energy rhythm).
+     - **Workspace design** ideas (e.g., visual aesthetic, noise level, structure vs. creative chaos) that match their talents.
+     - 1–2 **artistic hobbies or creative outlets** that would feel especially nourishing for their pattern (e.g., improvisational dance vs. detailed design vs. strategy games).
+     - 1 suggestion for a **meditation / inner practice** or reflective ritual best suited to their style (e.g., analytical journaling, somatic breath, devotional practice, visualization).
+     - 1 suggestion for **nature / unconventional adventure** that would refresh and expand their genius (e.g., solo forest walks, group hikes, ocean time, improv workshop).
+   - Each bullet:
+     - Max ~20 words,
+     - Framed as an invitation ("Try...", "Experiment with...", "Give yourself...").
+
+6. **Gentle Closing Line with Next Step**  
+   - One short closing sentence that:
+     - Invites them to honor and trust their gifts, and
+     - Gently mentions that Aleksandr offers a "Career Re-Ignition Session" if they want deeper support turning this into concrete career moves.
+   - Keep it soft, not salesy.
+
+STYLE GUIDELINES:
+
+- Do NOT write more sections than requested.
+- Keep the whole output on the shorter side: no walls of text.
+- Make it feel eerily specific to THIS combination of talents.
+- Avoid cliches like "you are a natural born leader" unless followed by something very concrete and unique.
+- Use plain, human language. No jargon.
+
+Output ONLY the Markdown content described above. Do not include explanations of what you are doing.
+    `.trim();
+  }
 
   const handleDownloadPDF = async () => {
     if (!snapshotRef.current) return;
