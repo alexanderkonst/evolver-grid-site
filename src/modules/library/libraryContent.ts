@@ -34,7 +34,7 @@ export type LibraryItem = {
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   {
     id: "breathEnergy",
-    name: "Breath & Energy",
+    name: "Breathwork",
     description: "Short breathwork and nervous system practices to regulate, energize, and uplift."
   },
   {
@@ -44,12 +44,12 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   },
   {
     id: "realityWisdom",
-    name: "Reality Wisdom",
+    name: "Reality Hacking",
     description: "Wisdom nuggets about the nature of reality, consciousness, and creation."
   },
   {
     id: "spiritualGuidance",
-    name: "Spiritual Guidance",
+    name: "Spiritual Beings",
     description: "Guidance and clearings from spiritual beings and subtle allies."
   },
   {
