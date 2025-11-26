@@ -10,7 +10,6 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ContactNew from "./pages/ContactNew";
-import Work from "./pages/Work";
 import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
 import AIUpgrade from "./pages/AIUpgrade";
@@ -35,7 +34,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
-            <Route path="/work" element={<Work />} />
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />

@@ -138,7 +138,7 @@ const About = () => {
             </div>
             <div className="text-center">
               <Button size="lg" asChild>
-                <Link to="/work">Explore All Lifehacks</Link>
+                <Link to="/#modules">Explore Transformational Tools</Link>
               </Button>
             </div>
           </section>
