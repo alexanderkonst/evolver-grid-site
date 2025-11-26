@@ -10,7 +10,7 @@ import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lu
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
 import cannabisIcon from "@/assets/cannabis-icon.png";
-import qualityOfLifeMapIcon from "@/assets/quality-of-life-activation-icon.png";
+import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
