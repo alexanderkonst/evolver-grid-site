@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import libraryLogo from "@/assets/library-logo.png";
+import BoldText from "@/components/BoldText";
 
 type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
@@ -224,25 +225,31 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             <img 
               src={libraryLogo} 
               alt="Library Logo" 
-              className="h-24 w-24 object-contain"
+              className="h-28 w-28 object-contain"
             />
           </div>
           
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary">
-            Welcome to the Sacred Library of Transformational Content!
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase">
+            <BoldText>Welcome to the Sacred Library of Transformational Content!</BoldText>
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8">
-            This is a curation of powerful energy transmissions by beautiful modern day teachers. If you are new to transformational practices, the recommendation is to start with 5 min breathwork sessions. Enjoy transforming!
+            <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. If you are new to transformational practices, the recommendation is to start with 5 min breathwork sessions. Enjoy transforming!</BoldText>
           </p>
 
           {/* Help Me Choose Button */}
-          <button
-            onClick={() => setIsAdvisorOpen(true)}
-            className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs sm:text-sm text-foreground hover:border-primary/50 transition-colors"
-          >
-            Help me choose a practice
-          </button>
+          <div className="flex justify-center">
+            <button
+              onClick={() => setIsAdvisorOpen(true)}
+              className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              style={{ 
+                backgroundColor: 'hsl(210, 70%, 15%)',
+                color: 'white'
+              }}
+            >
+              <BoldText>Help me choose a practice</BoldText>
+            </button>
+          </div>
 
           {/* Intent Advisor Panel */}
           {isAdvisorOpen && (
