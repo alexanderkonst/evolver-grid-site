@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-type LengthFilter = "all" | "short" | "medium" | "long";
+type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
-type LengthChoice = "any" | "short" | "medium" | "long";
+type LengthChoice = "any" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 
 const Library = () => {
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
@@ -34,9 +34,12 @@ const Library = () => {
     if (filter === "all" || filter === "any") return true;
     if (!item.durationMinutes) return true;
 
-    if (filter === "short") return item.durationMinutes <= 7;
-    if (filter === "medium") return item.durationMinutes > 7 && item.durationMinutes <= 15;
-    if (filter === "long") return item.durationMinutes > 15;
+    if (filter === "5min") return item.durationMinutes <= 5;
+    if (filter === "8min") return item.durationMinutes > 5 && item.durationMinutes <= 8;
+    if (filter === "10min") return item.durationMinutes > 8 && item.durationMinutes <= 10;
+    if (filter === "15min") return item.durationMinutes > 10 && item.durationMinutes <= 15;
+    if (filter === "20min") return item.durationMinutes > 15 && item.durationMinutes <= 20;
+    if (filter === "over20") return item.durationMinutes > 20;
 
     return true;
   };
@@ -163,9 +166,12 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
 
   const timeOptions: { id: LengthChoice; label: string }[] = [
     { id: "any", label: "Any length" },
-    { id: "short", label: "≤ 7 min" },
-    { id: "medium", label: "8–15 min" },
-    { id: "long", label: "16+ min" },
+    { id: "5min", label: "5 min" },
+    { id: "8min", label: "8 min" },
+    { id: "10min", label: "10 min" },
+    { id: "15min", label: "15 min" },
+    { id: "20min", label: "20 min" },
+    { id: "over20", label: ">20 min" },
   ];
 
   const filteredItems = LIBRARY_ITEMS.filter(item => {
@@ -198,7 +204,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           {/* Help Me Choose Button */}
           <button
             onClick={() => setIsAdvisorOpen(true)}
-            className="mt-4 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs sm:text-sm text-foreground hover:border-primary/50 transition-colors"
+            className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs sm:text-sm text-foreground hover:border-primary/50 transition-colors"
           >
             Help me choose a practice
           </button>
@@ -335,9 +341,12 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           <div className="mt-3 flex flex-wrap gap-2 text-xs sm:text-sm">
             {[
               { id: "all", label: "All lengths" },
-              { id: "short", label: "≤ 7 min" },
-              { id: "medium", label: "8–15 min" },
-              { id: "long", label: "16+ min" },
+              { id: "5min", label: "5 min" },
+              { id: "8min", label: "8 min" },
+              { id: "10min", label: "10 min" },
+              { id: "15min", label: "15 min" },
+              { id: "20min", label: "20 min" },
+              { id: "over20", label: ">20 min" },
             ].map(option => (
               <button
                 key={option.id}
@@ -385,7 +394,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                         item.durationLabel ??
                         (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
                       return durationText ? (
-                        <div className="text-xs text-muted-foreground/70">
+                        <div className="text-xs text-muted-foreground">
                           {durationText}
                         </div>
                       ) : null;
