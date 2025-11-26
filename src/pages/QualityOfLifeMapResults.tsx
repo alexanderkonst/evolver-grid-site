@@ -295,11 +295,11 @@ const QualityOfLifeMapResults: FC = () => {
             <Button
               onClick={handleGenerateGuidance}
               disabled={isGuidanceLoading}
-              variant="outline"
               className="text-lg px-8"
               style={{
-                borderColor: '#FFD54F',
-                color: '#FFD54F',
+                backgroundColor: '#FFD54F',
+                color: '#1a2332',
+                boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
               }}
             >
               {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
