@@ -136,9 +136,12 @@ const About = () => {
                 <ModuleTile key={module.id} module={module} />
               ))}
             </div>
-            <div className="text-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" asChild>
                 <Link to="/#modules">Explore Transformational Tools</Link>
+              </Button>
+              <Button size="lg" asChild>
+                <Link to="/library">Explore the Library of Transformation</Link>
               </Button>
             </div>
           </section>

@@ -225,7 +225,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             <img 
               src={libraryLogo} 
               alt="Library Logo" 
-              className="h-28 w-28 object-contain"
+              className="h-56 w-56 object-contain"
             />
           </div>
           
