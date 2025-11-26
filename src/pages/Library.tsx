@@ -28,7 +28,10 @@ const Library = () => {
   const [intentLengthChoice, setIntentLengthChoice] = useState<LengthChoice>("any");
   const [advisorLoading, setAdvisorLoading] = useState(false);
   const [advisorError, setAdvisorError] = useState<string | null>(null);
-  const [advisorSuggestions, setAdvisorSuggestions] = useState<string[] | null>(null);
+  const [advisorSuggestions, setAdvisorSuggestions] = useState<Array<{
+    item: LibraryItem;
+    explanation: string;
+  }> | null>(null);
 
   const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter | LengthChoice): boolean => {
     if (filter === "all" || filter === "any") return true;
@@ -146,7 +149,30 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
         .map(l => l.trim())
         .filter(Boolean);
 
-      setAdvisorSuggestions(lines);
+      // Parse suggestions and match to actual library items
+      const matchedSuggestions = lines
+        .map(line => {
+          // Format: "[title] — [explanation]"
+          const separator = line.indexOf("—");
+          if (separator === -1) return null;
+
+          const title = line.substring(0, separator).trim();
+          const explanation = line.substring(separator + 1).trim();
+
+          // Find matching library item (case-insensitive, fuzzy match)
+          const matchedItem = LIBRARY_ITEMS.find(item => 
+            item.title.toLowerCase() === title.toLowerCase() ||
+            item.title.toLowerCase().includes(title.toLowerCase()) ||
+            title.toLowerCase().includes(item.title.toLowerCase())
+          );
+
+          if (!matchedItem) return null;
+
+          return { item: matchedItem, explanation };
+        })
+        .filter((match): match is { item: LibraryItem; explanation: string } => match !== null);
+
+      setAdvisorSuggestions(matchedSuggestions);
     } catch (err) {
       console.error("Advisor error:", err);
       setAdvisorError("Could not generate suggestions. Please try again.");
@@ -211,7 +237,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
 
           {/* Intent Advisor Panel */}
           {isAdvisorOpen && (
-            <div className="mt-4 rounded-2xl border border-border bg-card/60 p-4 space-y-3 text-xs sm:text-sm">
+            <div className="mt-4 mb-8 rounded-2xl border border-border bg-card/60 p-4 space-y-3 text-xs sm:text-sm">
               <div className="flex justify-between items-center">
                 <h2 className="font-semibold text-foreground text-sm">
                   What do you want right now?
@@ -282,18 +308,53 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                 <p className="text-xs text-red-400 mt-2">{advisorError}</p>
               )}
 
-              {advisorSuggestions && (
-                <div className="mt-3 space-y-1">
-                  <h3 className="text-xs font-semibold text-foreground">
+              {advisorSuggestions && advisorSuggestions.length > 0 && (
+                <div className="mt-4 space-y-3">
+                  <h3 className="text-sm font-semibold text-foreground">
                     Suggested practices:
                   </h3>
-                  <ul className="list-disc pl-4 space-y-1">
-                    {advisorSuggestions.map((line, idx) => (
-                      <li key={idx} className="text-xs text-foreground/90">
-                        {line}
-                      </li>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {advisorSuggestions.map(({ item, explanation }, idx) => (
+                      <div key={idx} className="flex flex-col">
+                        <button
+                          onClick={() => setSelectedItem(item)}
+                          className="flex flex-col rounded-xl border border-border bg-card text-left shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden group"
+                        >
+                          <div className="relative w-full aspect-video overflow-hidden">
+                            <img
+                              src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
+                              alt={item.title}
+                              className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                          </div>
+                          <div className="p-3 flex flex-col gap-1.5">
+                            <div className="text-xs font-semibold text-foreground line-clamp-2">
+                              {item.title}
+                            </div>
+                            {item.teacher && (
+                              <div className="text-[10px] text-muted-foreground">
+                                {item.teacher}
+                              </div>
+                            )}
+                            {(() => {
+                              const durationText =
+                                item.durationLabel ??
+                                (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
+                              return durationText ? (
+                                <div className="text-[10px] text-muted-foreground">
+                                  {durationText}
+                                </div>
+                              ) : null;
+                            })()}
+                          </div>
+                        </button>
+                        <p className="mt-2 text-[11px] text-foreground/70 px-1">
+                          {explanation}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
             </div>
