@@ -180,8 +180,8 @@ export const modules: Module[] = [
     category: "Tools",
     tagline: "A 5-domain framework for rapid life upgrades",
     status: "Coming Soon",
-    hero_CTA_label: "Use Tool",
-    hero_CTA_link: "#",
+    hero_CTA_label: "Start Assessment",
+    hero_CTA_link: "/quality-of-life-map/assessment",
     description: "<p>The Quality of Life Map is a practical assessment and upgrade framework covering five essential life domains. This tool helps you quickly identify areas needing attention and provides actionable pathways for improvement across all dimensions of wellbeing.</p>",
     who_for: [
       "Anyone feeling stuck or overwhelmed",
@@ -203,7 +203,7 @@ export const modules: Module[] = [
     ],
     story: "After years of coaching, I noticed patterns in how life quality breaks down and improves. This map emerged as a simple yet comprehensive tool for rapid transformation.",
     app_links: [
-      { label: "Open Map", url: "#" }
+      { label: "Open Map", url: "/quality-of-life-map/assessment" }
     ]
   },
 ];
