@@ -229,11 +229,11 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             />
           </div>
           
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase text-center">
             <BoldText>Welcome to the Sacred Library of Transformational Content!</BoldText>
           </h1>
           
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-muted-foreground mb-8 text-center">
             <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. If you are new to transformational practices, the recommendation is to start with 5 min breathwork sessions. Enjoy transforming!</BoldText>
           </p>
 
@@ -241,7 +241,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           <div className="flex justify-center">
             <button
               onClick={() => setIsAdvisorOpen(true)}
-              className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)] uppercase"
               style={{ 
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
