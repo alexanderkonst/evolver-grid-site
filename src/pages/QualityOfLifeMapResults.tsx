@@ -231,7 +231,7 @@ const QualityOfLifeMapResults: FC = () => {
         setGuidanceLines(data.guidance);
         toast({
           title: "Guidance Generated",
-          description: "Your personalized next-step guidance is ready.",
+          description: "Your personalized next-step guidance is ready. Scroll down to see it!",
         });
       } else {
         throw new Error("Invalid response format");
@@ -303,6 +303,7 @@ const QualityOfLifeMapResults: FC = () => {
                       angle={90} 
                       domain={[0, 10]}
                       tick={{ fill: '#ffffff', fontSize: 12 }}
+                      tickCount={11}
                     />
                     <Radar 
                       name="Development Level" 
