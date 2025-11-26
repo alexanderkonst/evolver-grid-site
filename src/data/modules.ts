@@ -107,6 +107,39 @@ export const modules: Module[] = [
     ]
   },
   {
+    id: "7",
+    title: "Quality of Life Map",
+    slug: "quality-of-life-map",
+    category: "Tools",
+    tagline: "An integral framework for rapid life upgrades",
+    status: "Live",
+    hero_CTA_label: "Start Assessment",
+    hero_CTA_link: "/quality-of-life-map/assessment",
+    description: "<p>The Quality of Life Map is a practical assessment and upgrade framework covering the essential dimensions of your life. This tool helps you quickly identify areas needing attention and provides actionable pathways for improvement across all dimensions of wellbeing.</p>",
+    who_for: [
+      "Anyone feeling stuck or overwhelmed",
+      "Life coaches and wellness practitioners",
+      "People in transition seeking clarity",
+      "High-performers optimizing their life systems"
+    ],
+    outcomes: [
+      "Clear visibility across all life domains",
+      "Prioritized action steps for improvement",
+      "Balanced approach to personal development",
+      "Measurable progress over time"
+    ],
+    structure: [
+      "Assessment: Evaluate current state using integral framework",
+      "Analysis: Identify priority areas and patterns",
+      "Action: Generate personalized upgrade plans",
+      "Tracking: Monitor progress and iterate"
+    ],
+    story: "After years of coaching, I noticed patterns in how life quality breaks down and improves. This map emerged as a simple yet comprehensive tool for rapid transformation.",
+    app_links: [
+      { label: "Open Map", url: "/quality-of-life-map/assessment" }
+    ]
+  },
+  {
     id: "4",
     title: "Heartcraft (Game)",
     slug: "heartcraft-game",
@@ -171,39 +204,6 @@ export const modules: Module[] = [
     story: "Years of studying wisdom traditions and developmental psychology crystallized into this synthesis—a practical path for those called to serve human evolution.",
     app_links: [
       { label: "Course Portal", url: "#" }
-    ]
-  },
-  {
-    id: "7",
-    title: "Quality of Life Map",
-    slug: "quality-of-life-map",
-    category: "Tools",
-    tagline: "A 5-domain framework for rapid life upgrades",
-    status: "Live",
-    hero_CTA_label: "Start Assessment",
-    hero_CTA_link: "/quality-of-life-map/assessment",
-    description: "<p>The Quality of Life Map is a practical assessment and upgrade framework covering five essential life domains. This tool helps you quickly identify areas needing attention and provides actionable pathways for improvement across all dimensions of wellbeing.</p>",
-    who_for: [
-      "Anyone feeling stuck or overwhelmed",
-      "Life coaches and wellness practitioners",
-      "People in transition seeking clarity",
-      "High-performers optimizing their life systems"
-    ],
-    outcomes: [
-      "Clear visibility across all life domains",
-      "Prioritized action steps for improvement",
-      "Balanced approach to personal development",
-      "Measurable progress over time"
-    ],
-    structure: [
-      "Assessment: Evaluate current state across 5 domains",
-      "Analysis: Identify priority areas and patterns",
-      "Action: Generate personalized upgrade plans",
-      "Tracking: Monitor progress and iterate"
-    ],
-    story: "After years of coaching, I noticed patterns in how life quality breaks down and improves. This map emerged as a simple yet comprehensive tool for rapid transformation.",
-    app_links: [
-      { label: "Open Map", url: "/quality-of-life-map/assessment" }
     ]
   },
 ];
