@@ -105,7 +105,7 @@ const Step3OrderTalents = () => {
                 onClick={() => moveUp(index)}
                 disabled={index === 0}
                 className={cn(
-                  "p-1 rounded hover:bg-primary/10 transition-colors",
+                  "p-2 sm:p-1 rounded hover:bg-primary/10 transition-colors min-h-[44px] sm:min-h-0",
                   index === 0 ? "opacity-30 cursor-not-allowed" : "opacity-100"
                 )}
               >
@@ -115,7 +115,7 @@ const Step3OrderTalents = () => {
                 onClick={() => moveDown(index)}
                 disabled={index === orderedTalents.length - 1}
                 className={cn(
-                  "p-1 rounded hover:bg-primary/10 transition-colors",
+                  "p-2 sm:p-1 rounded hover:bg-primary/10 transition-colors min-h-[44px] sm:min-h-0",
                   index === orderedTalents.length - 1 ? "opacity-30 cursor-not-allowed" : "opacity-100"
                 )}
               >

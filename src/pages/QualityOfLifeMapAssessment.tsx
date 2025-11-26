@@ -133,8 +133,8 @@ const QualityOfLifeMapAssessment = () => {
             })}
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-between items-center">
+          {/* Navigation Buttons - Desktop */}
+          <div className="hidden sm:flex justify-between items-center">
             <Button
               variant="outline"
               onClick={handlePrevious}
@@ -161,6 +161,40 @@ const QualityOfLifeMapAssessment = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
+
+          {/* Mobile Bottom Bar */}
+          <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-[hsl(220,30%,12%)] border-t border-white/20 p-4 shadow-lg z-10">
+            <div className="flex items-center justify-between gap-3 mb-3">
+              {currentIndex > 0 && (
+                <button
+                  onClick={handlePrevious}
+                  className="text-xs px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors"
+                >
+                  <ArrowLeft className="inline mr-1 h-3 w-3" />
+                  Previous
+                </button>
+              )}
+              <div className="text-xs text-white/60 flex-1 text-center">
+                Domain {currentIndex + 1}/{DOMAINS.length}
+              </div>
+            </div>
+            <button
+              onClick={handleNext}
+              disabled={!hasAnswer}
+              className="w-full py-3 rounded-full font-bold transition-all text-sm"
+              style={{
+                backgroundColor: hasAnswer ? 'hsl(var(--destiny-gold))' : 'hsl(var(--destiny-gold), 0.4)',
+                color: 'hsl(var(--destiny-dark))',
+                opacity: hasAnswer ? 1 : 0.5,
+              }}
+            >
+              {isLastDomain ? "See Results" : "Next Domain"}
+              <ArrowRight className="inline ml-2 h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Spacer for mobile bottom bar */}
+          <div className="sm:hidden h-32" />
         </div>
       </section>
     </div>

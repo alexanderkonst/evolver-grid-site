@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { ArrowRight, CheckCircle2, ArrowLeft } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
@@ -515,6 +516,23 @@ const Destiny = () => {
       </section>
 
       <Footer />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
+
+      {/* Sticky Mobile CTA */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-50">
+        <button
+          onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
+          className="w-full py-3 rounded-full font-bold transition-all text-sm shadow-[0_0_20px_rgba(45,100,165,0.4)]"
+          style={{ 
+            backgroundColor: 'hsl(var(--destiny-gold))', 
+            color: 'hsl(var(--destiny-dark))',
+          }}
+        >
+          <BoldText>BOOK EXCALIBUR CALL</BoldText>
+        </button>
+      </div>
     </div>
   );
 };
