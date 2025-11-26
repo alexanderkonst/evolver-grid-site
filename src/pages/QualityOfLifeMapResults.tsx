@@ -514,18 +514,20 @@ const QualityOfLifeMapResults: FC = () => {
 
           {/* Guidance Section */}
           {guidanceLines && (
-            <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'white/5' }}>
+            <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
               <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
                 <BoldText>NEXT-STEP GUIDANCE</BoldText>
               </h2>
-              <div className="space-y-4">
-                {guidanceLines.map((line, idx) => (
+              <div className="space-y-6">
+                {guidanceLines.map((block, idx) => (
                   <div 
                     key={idx}
-                    className="p-4 rounded-lg"
+                    className="p-5 rounded-lg"
                     style={{ backgroundColor: '#f5ece1' }}
                   >
-                    <p style={{ color: '#0a3a52' }}>{line}</p>
+                    <div style={{ color: '#0a3a52' }} className="whitespace-pre-line leading-relaxed">
+                      {block}
+                    </div>
                   </div>
                 ))}
               </div>
