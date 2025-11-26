@@ -220,11 +220,11 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary">
-            Practice Library
+            Welcome to the Sacred Library of Transformational Content!
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8">
-            Curated practices, activations, and transmissions to support your evolution.
+            This is a curation of powerful energy transmissions by beautiful modern day teachers. If you are new to transformational practices, the recommendation is to start with 5 min breathwork sessions. Enjoy transforming!
           </p>
 
           {/* Help Me Choose Button */}
