@@ -179,7 +179,7 @@ export const modules: Module[] = [
     slug: "quality-of-life-map",
     category: "Tools",
     tagline: "A 5-domain framework for rapid life upgrades",
-    status: "Coming Soon",
+    status: "Live",
     hero_CTA_label: "Start Assessment",
     hero_CTA_link: "/quality-of-life-map/assessment",
     description: "<p>The Quality of Life Map is a practical assessment and upgrade framework covering five essential life domains. This tool helps you quickly identify areas needing attention and provides actionable pathways for improvement across all dimensions of wellbeing.</p>",
