@@ -18,7 +18,7 @@ const Index = () => {
   const modulesAnimation = useScrollAnimation();
   const aboutAnimation = useScrollAnimation();
   
-  const categories = ["ALL", "AI", "GROWTH", "BUSINESS", "CEREMONIES", "TOOLS", "APPS"];
+  const categories = ["ALL", "AI", "GROWTH", "BUSINESS", "CEREMONIES", "TOOLS"];
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
@@ -62,7 +62,7 @@ const Index = () => {
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                <BoldText className="uppercase">Explore Lifehacks</BoldText>
+                <BoldText className="uppercase">Explore Transformational Tools</BoldText>
               </Button>
             </div>
           </div>
@@ -81,7 +81,7 @@ const Index = () => {
       >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
-            <BoldText>LIFEHACKS</BoldText>
+            <BoldText>TRANSFORMATIONAL TOOLS</BoldText>
           </h2>
           
           {/* Category Filters */}

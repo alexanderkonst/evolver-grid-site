@@ -20,7 +20,7 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { to: "/work", label: "lifehacks", isScroll: false },
+    { to: "/work", label: "tools", isScroll: false },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
     { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },

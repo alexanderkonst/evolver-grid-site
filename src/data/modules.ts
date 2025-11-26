@@ -36,7 +36,7 @@ export const modules: Module[] = [
     title: "INTELLIGENCE BOOST FOR YOUR AI MODEL",
     slug: "intelligence-boost-for-your-ai-model",
     category: "AI",
-    tagline: "Upgrade your AI's thinking to match yours",
+    tagline: "Upgrade your AI's thinking to match the power of your creative output",
     status: "Live",
     hero_CTA_label: "Get the Upgrade",
     hero_CTA_link: "/ai-upgrade/install",
@@ -171,39 +171,6 @@ export const modules: Module[] = [
     story: "Years of studying wisdom traditions and developmental psychology crystallized into this synthesis—a practical path for those called to serve human evolution.",
     app_links: [
       { label: "Course Portal", url: "#" }
-    ]
-  },
-  {
-    id: "6",
-    title: "New Earth Superapp (Prototype)",
-    slug: "new-earth-superapp",
-    category: "Apps",
-    tagline: "Holonic coordination, messaging, and purpose discovery tools",
-    status: "Coming Soon",
-    hero_CTA_label: "Request Access",
-    hero_CTA_link: "#",
-    description: "<p>The New Earth Superapp is an experimental platform for next-generation collaboration and coordination. Built on holonic principles, it enables communities to organize around shared purpose while maintaining individual autonomy and creativity.</p>",
-    who_for: [
-      "Communities experimenting with new forms of organization",
-      "Purpose-driven teams and collectives",
-      "Social innovators and system designers",
-      "Anyone interested in post-hierarchical coordination"
-    ],
-    outcomes: [
-      "Discover and articulate your unique purpose",
-      "Connect with aligned collaborators",
-      "Coordinate complex projects effortlessly",
-      "Experience emergence in action"
-    ],
-    structure: [
-      "Purpose Discovery: Find your unique role",
-      "Network Weaving: Connect with others",
-      "Project Coordination: Organize initiatives",
-      "Collective Intelligence: Sense-making tools"
-    ],
-    story: "This prototype emerged from the question: what would a social app look like if it was designed for human flourishing rather than attention extraction?",
-    app_links: [
-      { label: "Beta Access", url: "#" }
     ]
   },
   {
