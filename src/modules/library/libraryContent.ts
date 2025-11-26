@@ -60,7 +60,7 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   {
     id: "animalSpirits",
     name: "Animal Spirits",
-    description: "Coming soon: journeys to connect with the spirits of animals."
+    description: "Journeys to connect with the spirits of animals."
   }
 ];
 
@@ -84,6 +84,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=fd7SIapXES4",
     youtubeId: "fd7SIapXES4",
+    durationLabel: "5 min",
+    durationMinutes: 5,
     intents: ["breathwork", "feelBetter", "activation"]
   },
   {
@@ -93,6 +95,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=XNINqgkZVEU",
     youtubeId: "XNINqgkZVEU",
+    durationLabel: "5 min",
+    durationMinutes: 5,
     intents: ["breathwork", "feelBetter"]
   },
   {
@@ -102,6 +106,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=GPo4EFq4XeY",
     youtubeId: "GPo4EFq4XeY",
+    durationLabel: "5 min",
+    durationMinutes: 5,
     intents: ["breathwork", "activation"]
   },
   {
@@ -111,6 +117,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=gVtaA8u4SFs",
     youtubeId: "gVtaA8u4SFs",
+    durationLabel: "5 min",
+    durationMinutes: 5,
     intents: ["breathwork", "feelBetter"]
   },
   {
@@ -119,17 +127,19 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Feel High Naturally",
     url: "https://www.youtube.com/watch?v=70obRpYkeFc",
     youtubeId: "70obRpYkeFc",
+    durationLabel: "5 min",
+    durationMinutes: 5,
     intents: ["breathwork", "activation", "feelBetter"]
   },
   {
-    id: "regulate-nervous-system-7min",
+    id: "regulate-nervous-system-8min",
     categoryId: "breathEnergy",
     title: "Regulate Your Nervous System",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=61-mn1d5RIM",
     youtubeId: "61-mn1d5RIM",
-    durationLabel: "7 min",
-    durationMinutes: 7,
+    durationLabel: "8 min",
+    durationMinutes: 8,
     intents: ["breathwork", "feelBetter"]
   },
   {
@@ -139,6 +149,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=GdiQVpWsxeU",
     youtubeId: "GdiQVpWsxeU",
+    durationLabel: "8 min",
+    durationMinutes: 8,
     intents: ["breathwork", "feelBetter"]
   },
   {
@@ -148,6 +160,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=wrVG0CYJyWc&t=1s",
     youtubeId: "wrVG0CYJyWc",
+    durationLabel: "8 min",
+    durationMinutes: 8,
     intents: ["breathwork", "activation"]
   },
   {
@@ -157,6 +171,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=errP3gH9OlE",
     youtubeId: "errP3gH9OlE",
+    durationLabel: "8 min",
+    durationMinutes: 8,
     intents: ["breathwork", "activation"]
   },
   {
@@ -166,6 +182,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=errP3gH9OlE",
     youtubeId: "errP3gH9OlE",
+    durationLabel: "8 min",
+    durationMinutes: 8,
     intents: ["breathwork", "activation"]
   },
   {
@@ -186,6 +204,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=BcayO9W3ZDI&t=3s",
     youtubeId: "BcayO9W3ZDI",
+    durationLabel: "10 min",
+    durationMinutes: 10,
     intents: ["breathwork", "activation"]
   },
   {
@@ -206,6 +226,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=UvVznVFk-OA",
     youtubeId: "UvVznVFk-OA",
+    durationLabel: "15 min",
+    durationMinutes: 15,
     intents: ["activation", "breathwork"]
   },
   {
@@ -215,6 +237,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=cXCBsJAJSMk",
     youtubeId: "cXCBsJAJSMk",
+    durationLabel: "15 min",
+    durationMinutes: 15,
     intents: ["breathwork", "feelBetter"]
   },
   {
@@ -235,6 +259,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Christopher August",
     url: "https://www.youtube.com/watch?v=MPK6IfOmmR0",
     youtubeId: "MPK6IfOmmR0",
+    durationLabel: "20 min",
+    durationMinutes: 20,
     intents: ["activation", "breathwork"]
   },
 
@@ -246,6 +272,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Ariel Gatoga",
     url: "https://www.youtube.com/watch?v=W3Mrnf39tVE",
     youtubeId: "W3Mrnf39tVE",
+    durationLabel: "20 min",
+    durationMinutes: 20,
     intents: ["receiveWisdom", "activation"]
   },
   {
@@ -255,6 +283,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sri Akarshana",
     url: "https://www.youtube.com/watch?v=r4mRoB7CEno",
     youtubeId: "r4mRoB7CEno",
+    durationLabel: "20 min",
+    durationMinutes: 20,
     intents: ["receiveWisdom", "activation"]
   },
 
@@ -266,6 +296,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Bashar",
     url: "https://youtube.com/shorts/VhyByp4_t8U?si=4EJIqq8udHG5FZfo",
     youtubeId: "VhyByp4_t8U",
+    durationLabel: "2 min",
+    durationMinutes: 2,
     intents: ["receiveWisdom"]
   },
   {
@@ -275,6 +307,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Bashar",
     url: "https://www.youtube.com/shorts/U7NPTcxGUBo",
     youtubeId: "U7NPTcxGUBo",
+    durationLabel: "2 min",
+    durationMinutes: 2,
     intents: ["receiveWisdom"]
   },
 
@@ -286,6 +320,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Stephanie Kojec",
     url: "https://www.youtube.com/watch?v=Dp2AIif-6sk",
     youtubeId: "Dp2AIif-6sk",
+    durationLabel: "15 min",
+    durationMinutes: 15,
     intents: ["psychic", "activation"]
   },
 
@@ -297,6 +333,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Drunvalo Melchizedek",
     url: "https://www.youtube.com/watch?v=CUNuj-xgY-w",
     youtubeId: "CUNuj-xgY-w",
+    durationLabel: "10 min",
+    durationMinutes: 10,
     intents: ["activation"]
   },
   {
@@ -306,6 +344,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Drunvalo Melchizedek",
     url: "https://www.youtube.com/watch?v=mja7hKE-BC8",
     youtubeId: "mja7hKE-BC8",
+    durationLabel: "20 min",
+    durationMinutes: 20,
     intents: ["activation"]
   },
   {
@@ -315,6 +355,21 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Stephanie Kojec",
     url: "https://www.youtube.com/watch?v=pPFXD0e8sLA&t=8s",
     youtubeId: "pPFXD0e8sLA",
+    durationLabel: "20 min",
+    durationMinutes: 20,
     intents: ["activation", "psychic"]
+  },
+
+  // Animal Spirits
+  {
+    id: "black-panther-journey",
+    categoryId: "animalSpirits",
+    title: "Black Panther",
+    teacher: "Stephanie Kojec",
+    url: "https://youtu.be/H8QNRtYqE6U?si=upjYr5eRNyhJYI7z",
+    youtubeId: "H8QNRtYqE6U",
+    durationLabel: "20 min",
+    durationMinutes: 20,
+    intents: ["psychic", "activation"]
   }
 ];
