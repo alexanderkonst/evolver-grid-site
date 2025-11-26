@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import type { FC } from "react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -9,11 +10,17 @@ import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
-const QualityOfLifeMapResults = () => {
+const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
   const { answers, reset, isComplete } = useQolAssessment();
   const snapshotRef = useRef<HTMLDivElement | null>(null);
+  const { toast } = useToast();
+  
+  const [guidanceLines, setGuidanceLines] = useState<string[] | null>(null);
+  const [isGuidanceLoading, setIsGuidanceLoading] = useState(false);
 
   // If assessment not complete, show prompt to complete it
   if (!isComplete) {
@@ -89,21 +96,86 @@ const QualityOfLifeMapResults = () => {
   const handleDownloadPdf = async () => {
     if (!snapshotRef.current) return;
 
-    const element = snapshotRef.current;
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      backgroundColor: 'hsl(220, 30%, 12%)',
-    });
-    const imgData = canvas.toDataURL("image/png");
+    try {
+      const element = snapshotRef.current;
+      const canvas = await html2canvas(element, {
+        scale: 1.5,
+        backgroundColor: 'hsl(220, 30%, 12%)',
+        logging: false,
+      });
+      
+      // Use JPEG with quality setting for smaller file size
+      const imgData = canvas.toDataURL("image/jpeg", 0.85);
 
-    const pdf = new jsPDF("p", "mm", "a4");
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
 
-    const dateStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-    pdf.save(`quality-of-life-map-snapshot-${dateStr}.pdf`);
+      const dateStr = new Date().toISOString().slice(0, 10);
+      pdf.save(`quality-of-life-map-snapshot-${dateStr}.pdf`);
+      
+      toast({
+        title: "PDF Downloaded",
+        description: "Your snapshot has been saved successfully.",
+      });
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      toast({
+        title: "Download Failed",
+        description: "Could not generate PDF. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleGenerateGuidance = async () => {
+    try {
+      setIsGuidanceLoading(true);
+      
+      const domainData = domainResults.map(({ domain, stageValue, stage }) => {
+        const nextStage = stageValue < 10 
+          ? domain.stages.find(s => s.id === stageValue + 1) 
+          : null;
+        
+        return {
+          name: domain.name,
+          stageValue,
+          currentStageTitle: stage?.title || "",
+          currentStageDescription: stage?.description || "",
+          nextStageTitle: nextStage?.title || "",
+          nextStageDescription: nextStage?.description || "",
+        };
+      });
+
+      const { data, error } = await supabase.functions.invoke('generate-qol-guidance', {
+        body: { domains: domainData }
+      });
+
+      if (error) throw error;
+      
+      if (data?.guidance && Array.isArray(data.guidance)) {
+        setGuidanceLines(data.guidance);
+        toast({
+          title: "Guidance Generated",
+          description: "Your personalized next-step guidance is ready.",
+        });
+      } else {
+        throw new Error("Invalid response format");
+      }
+      
+    } catch (error: any) {
+      console.error("Guidance generation error:", error);
+      const errorMessage = error.message || "Could not generate guidance. Please try again.";
+      toast({
+        title: "Generation Failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    } finally {
+      setIsGuidanceLoading(false);
+    }
   };
 
   return (
@@ -286,6 +358,26 @@ const QualityOfLifeMapResults = () => {
           </div>
           </div>
 
+          {/* Guidance Section */}
+          {guidanceLines && (
+            <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'white/5' }}>
+              <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
+                <BoldText>NEXT-STEP GUIDANCE</BoldText>
+              </h2>
+              <div className="space-y-4">
+                {guidanceLines.map((line, idx) => (
+                  <div 
+                    key={idx}
+                    className="p-4 rounded-lg"
+                    style={{ backgroundColor: 'hsl(var(--destiny-light))' }}
+                  >
+                    <p style={{ color: 'hsl(var(--marine-blue))' }}>{line}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
             <Button
@@ -297,6 +389,18 @@ const QualityOfLifeMapResults = () => {
               }}
             >
               Download Snapshot as PDF
+            </Button>
+            <Button
+              onClick={handleGenerateGuidance}
+              disabled={isGuidanceLoading}
+              variant="outline"
+              className="text-lg px-8"
+              style={{
+                borderColor: 'hsl(var(--destiny-gold))',
+                color: 'hsl(var(--destiny-gold))',
+              }}
+            >
+              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
             </Button>
             <Button
               onClick={handleRetake}
