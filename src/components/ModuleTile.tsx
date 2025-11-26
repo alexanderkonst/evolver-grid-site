@@ -10,6 +10,7 @@ import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lu
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
 import cannabisIcon from "@/assets/cannabis-icon.png";
+import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
@@ -40,10 +41,11 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Check if this module should use a custom image
-  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "cannabis-coaching-journeys";
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "cannabis-coaching-journeys" || module.slug === "quality-of-life-map";
   const customImageSrc = module.slug === "destiny" ? destinyIcon : 
                          module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
-                         module.slug === "cannabis-coaching-journeys" ? cannabisIcon : null;
+                         module.slug === "cannabis-coaching-journeys" ? cannabisIcon :
+                         module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon : null;
 
   // Use custom route for Destiny module, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" : `/m/${module.slug}`;
