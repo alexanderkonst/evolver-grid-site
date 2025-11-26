@@ -662,7 +662,7 @@ If the honest answer is no, refine the response or clearly state the limitation 
           </h1>
           
           <p className="text-xl text-gray-700 leading-relaxed text-center mb-12 max-w-2xl mx-auto">
-            Copy the upgrade below and paste it into your AI model.
+            Copy the upgrade below and paste it in the beginning of each conversation with your AI model where you'd like an intelligence boost.
           </p>
 
           {/* Code Box */}
