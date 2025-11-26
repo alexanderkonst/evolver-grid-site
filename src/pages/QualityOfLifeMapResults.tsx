@@ -114,36 +114,64 @@ const QualityOfLifeMapResults: FC = () => {
 
     try {
       const element = snapshotRef.current;
+      
+      // Improved html2canvas configuration
       const canvas = await html2canvas(element, {
         scale: 2,
-        backgroundColor: '#1a2332', // hsl(220, 30%, 12%)
+        backgroundColor: '#1a2332',
         logging: false,
         useCORS: true,
-        allowTaint: true,
-        windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight,
+        allowTaint: false,
+        foreignObjectRendering: false,
+        imageTimeout: 0,
+        removeContainer: true,
       });
       
-      const imgData = canvas.toDataURL("image/jpeg", 0.9);
+      const imgData = canvas.toDataURL("image/png", 1.0);
 
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-      const pageHeight = pdf.internal.pageSize.getHeight();
-
-      let heightLeft = pdfHeight;
-      let position = 0;
-
-      // Add first page
-      pdf.addImage(imgData, "JPEG", 0, position, pdfWidth, pdfHeight);
-      heightLeft -= pageHeight;
-
-      // Add additional pages if content overflows
-      while (heightLeft > 0) {
-        position = heightLeft - pdfHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, position, pdfWidth, pdfHeight);
-        heightLeft -= pageHeight;
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      // Calculate image dimensions to fit page width
+      const imgWidth = pdfWidth - 20; // 10mm margin on each side
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      // Add pages with proper margins
+      let yPosition = 0;
+      let remainingHeight = imgHeight;
+      let pageNumber = 0;
+      
+      while (remainingHeight > 0) {
+        if (pageNumber > 0) {
+          pdf.addPage();
+        }
+        
+        const availableHeight = pdfHeight - 20; // 10mm margin top and bottom
+        const sourceY = (pageNumber * availableHeight * canvas.width) / imgWidth;
+        const sourceHeight = (availableHeight * canvas.width) / imgWidth;
+        
+        // Create a temporary canvas for this page slice
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = Math.min(sourceHeight, canvas.height - sourceY);
+        
+        const ctx = pageCanvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(
+            canvas,
+            0, sourceY, canvas.width, pageCanvas.height,
+            0, 0, canvas.width, pageCanvas.height
+          );
+          
+          const pageImgData = pageCanvas.toDataURL("image/png", 1.0);
+          const pageImgHeight = (pageCanvas.height * imgWidth) / canvas.width;
+          
+          pdf.addImage(pageImgData, "PNG", 10, 10, imgWidth, pageImgHeight);
+        }
+        
+        remainingHeight -= availableHeight;
+        pageNumber++;
       }
 
       const dateStr = new Date().toISOString().slice(0, 10);
@@ -232,90 +260,59 @@ const QualityOfLifeMapResults: FC = () => {
       >
         <div className="container mx-auto max-w-4xl">
           {/* Snapshot Content - wrapped for PDF export */}
-          <div ref={snapshotRef}>
+          <div ref={snapshotRef} style={{ padding: '40px 20px', backgroundColor: '#1a2332' }}>
             {/* Main Heading */}
             <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-white">
-              <BoldText>YOUR QUALITY OF LIFE MAP SNAPSHOT</BoldText>
-            </h1>
-            
-            {/* Overall Level */}
-            <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: 'rgba(255, 213, 79, 0.1)', border: '2px solid #FFD54F' }}>
-              <p className="text-2xl font-bold text-white">
-                Overall Development Level: <span style={{ color: '#FFD54F' }}>Stage {overallStageRounded}</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Radar Chart */}
-          <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
-            <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
-              <BoldText>VISUAL MAP</BoldText>
-            </h2>
-            <div className="w-full flex justify-center">
-              <div style={{ width: 600, height: 450 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={radarData}>
-                    <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
-                    <PolarAngleAxis 
-                      dataKey="domain" 
-                      tick={{ fill: 'white', fontSize: 13 }}
-                    />
-                    <PolarRadiusAxis 
-                      angle={90} 
-                      domain={[0, 10]}
-                      tick={{ fill: 'rgba(255, 255, 255, 0.6)' }}
-                    />
-                    <Radar
-                      name="Quality of Life"
-                      dataKey="value"
-                      stroke="#FFD54F"
-                      fill="#FFD54F"
-                      fillOpacity={0.4}
-                      strokeWidth={2}
-                    />
-                  </RadarChart>
-                </ResponsiveContainer>
+              <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-white">
+                <BoldText>YOUR QUALITY OF LIFE MAP SNAPSHOT</BoldText>
+              </h1>
+              
+              {/* Overall Level */}
+              <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: 'rgba(255, 213, 79, 0.1)', border: '2px solid #FFD54F' }}>
+                <p className="text-2xl font-bold text-white">
+                  Overall Development Level: <span style={{ color: '#FFD54F' }}>Stage {overallStageRounded}</span>
+                </p>
               </div>
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button
-              onClick={handleDownloadPdf}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-              }}
-            >
-              Download Snapshot as PDF
-            </Button>
-            <Button
-              onClick={handleGenerateGuidance}
-              disabled={isGuidanceLoading}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-                boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
-              }}
-            >
-              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
-            </Button>
-            <Button
-              onClick={handleRetake}
-              variant="outline"
-              className="text-lg px-8"
-              style={{
-                borderColor: '#FFD54F',
-                color: '#FFD54F',
-              }}
-            >
-              Retake Assessment
-            </Button>
-          </div>
+            {/* PDF-Friendly Bar Chart for PDF Export */}
+            <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+              <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
+                <BoldText>VISUAL MAP</BoldText>
+              </h2>
+              <div className="space-y-4" style={{ maxWidth: '700px', margin: '0 auto' }}>
+                {radarData.map((item) => (
+                  <div key={item.domain} className="flex items-center gap-4">
+                    <div 
+                      className="text-sm font-semibold text-white text-right" 
+                      style={{ width: '120px', flexShrink: 0 }}
+                    >
+                      {item.domain}
+                    </div>
+                    <div 
+                      className="flex-1 h-8 rounded-full relative"
+                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                    >
+                      <div
+                        className="h-full rounded-full flex items-center justify-end pr-3"
+                        style={{
+                          width: `${(item.value / 10) * 100}%`,
+                          backgroundColor: '#FFD54F',
+                          minWidth: item.value > 0 ? '40px' : '0',
+                        }}
+                      >
+                        <span className="text-sm font-bold" style={{ color: '#1a2332' }}>
+                          {item.value}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center mt-6 text-sm text-white/60">
+                Scale: 0-10 (10 = highest development)
+              </div>
+            </div>
 
           {/* Top Growth Opportunities */}
           <div className="mb-12">
@@ -430,6 +427,43 @@ const QualityOfLifeMapResults: FC = () => {
               ))}
             </div>
           </div>
+          </div>
+
+          {/* Action Buttons - Outside snapshot for PDF */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center my-16">
+            <Button
+              onClick={handleDownloadPdf}
+              className="text-lg px-8"
+              style={{
+                backgroundColor: '#FFD54F',
+                color: '#1a2332',
+              }}
+            >
+              Download Snapshot as PDF
+            </Button>
+            <Button
+              onClick={handleGenerateGuidance}
+              disabled={isGuidanceLoading}
+              className="text-lg px-8"
+              style={{
+                backgroundColor: '#FFD54F',
+                color: '#1a2332',
+                boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
+              }}
+            >
+              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
+            </Button>
+            <Button
+              onClick={handleRetake}
+              variant="outline"
+              className="text-lg px-8"
+              style={{
+                borderColor: '#FFD54F',
+                color: '#FFD54F',
+              }}
+            >
+              Retake Assessment
+            </Button>
           </div>
 
           {/* Guidance Section */}
