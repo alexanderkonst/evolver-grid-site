@@ -87,9 +87,20 @@ const QualityOfLifeMapResults: FC = () => {
   const growthDomains = sorted.slice(0, 3);
   const strengthDomains = sorted.slice(-3).reverse();
 
-  // Prepare data for radar chart
+  // Prepare data for radar chart with abbreviated labels
+  const domainAbbreviations: Record<string, string> = {
+    "Wealth": "Wealth",
+    "Health": "Health",
+    "Happiness": "Happiness",
+    "Love & Relationships": "Love",
+    "Impact": "Impact",
+    "Growth": "Growth",
+    "Social Ties": "Social",
+    "Home": "Home",
+  };
+  
   const radarData = domainResults.map(({ domain, stageValue }) => ({
-    domain: domain.name,
+    domain: domainAbbreviations[domain.name] || domain.name,
     value: stageValue,
   }));
 
@@ -104,19 +115,36 @@ const QualityOfLifeMapResults: FC = () => {
     try {
       const element = snapshotRef.current;
       const canvas = await html2canvas(element, {
-        scale: 1.5,
-        backgroundColor: 'hsl(220, 30%, 12%)',
+        scale: 2,
+        backgroundColor: '#1a2332', // hsl(220, 30%, 12%)
         logging: false,
+        useCORS: true,
+        allowTaint: true,
+        windowWidth: element.scrollWidth,
+        windowHeight: element.scrollHeight,
       });
       
-      // Use JPEG with quality setting for smaller file size
-      const imgData = canvas.toDataURL("image/jpeg", 0.85);
+      const imgData = canvas.toDataURL("image/jpeg", 0.9);
 
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      const pageHeight = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+      let heightLeft = pdfHeight;
+      let position = 0;
+
+      // Add first page
+      pdf.addImage(imgData, "JPEG", 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pageHeight;
+
+      // Add additional pages if content overflows
+      while (heightLeft > 0) {
+        position = heightLeft - pdfHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, position, pdfWidth, pdfHeight);
+        heightLeft -= pageHeight;
+      }
 
       const dateStr = new Date().toISOString().slice(0, 10);
       pdf.save(`quality-of-life-map-snapshot-${dateStr}.pdf`);
@@ -212,40 +240,44 @@ const QualityOfLifeMapResults: FC = () => {
             </h1>
             
             {/* Overall Level */}
-            <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: 'hsl(var(--destiny-gold))/10', border: '2px solid hsl(var(--destiny-gold))' }}>
+            <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: 'rgba(255, 213, 79, 0.1)', border: '2px solid #FFD54F' }}>
               <p className="text-2xl font-bold text-white">
-                Overall Development Level: <span style={{ color: 'hsl(var(--destiny-gold))' }}>Stage {overallStageRounded}</span>
+                Overall Development Level: <span style={{ color: '#FFD54F' }}>Stage {overallStageRounded}</span>
               </p>
             </div>
           </div>
 
           {/* Radar Chart */}
-          <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'white/5' }}>
+          <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
             <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
               <BoldText>VISUAL MAP</BoldText>
             </h2>
-            <ResponsiveContainer width="100%" height={400}>
-              <RadarChart data={radarData}>
-                <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
-                <PolarAngleAxis 
-                  dataKey="domain" 
-                  tick={{ fill: 'white', fontSize: 14 }}
-                />
-                <PolarRadiusAxis 
-                  angle={90} 
-                  domain={[0, 10]}
-                  tick={{ fill: 'rgba(255, 255, 255, 0.6)' }}
-                />
-                <Radar
-                  name="Quality of Life"
-                  dataKey="value"
-                  stroke="hsl(var(--destiny-gold))"
-                  fill="hsl(var(--destiny-gold))"
-                  fillOpacity={0.4}
-                  strokeWidth={2}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
+            <div className="w-full flex justify-center">
+              <div style={{ width: 600, height: 450 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radarData}>
+                    <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
+                    <PolarAngleAxis 
+                      dataKey="domain" 
+                      tick={{ fill: 'white', fontSize: 13 }}
+                    />
+                    <PolarRadiusAxis 
+                      angle={90} 
+                      domain={[0, 10]}
+                      tick={{ fill: 'rgba(255, 255, 255, 0.6)' }}
+                    />
+                    <Radar
+                      name="Quality of Life"
+                      dataKey="value"
+                      stroke="#FFD54F"
+                      fill="#FFD54F"
+                      fillOpacity={0.4}
+                      strokeWidth={2}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
 
           {/* Action Buttons */}
@@ -254,8 +286,8 @@ const QualityOfLifeMapResults: FC = () => {
               onClick={handleDownloadPdf}
               className="text-lg px-8"
               style={{
-                backgroundColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-dark))',
+                backgroundColor: '#FFD54F',
+                color: '#1a2332',
               }}
             >
               Download Snapshot as PDF
@@ -266,8 +298,8 @@ const QualityOfLifeMapResults: FC = () => {
               variant="outline"
               className="text-lg px-8"
               style={{
-                borderColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-gold))',
+                borderColor: '#FFD54F',
+                color: '#FFD54F',
               }}
             >
               {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
@@ -277,8 +309,8 @@ const QualityOfLifeMapResults: FC = () => {
               variant="outline"
               className="text-lg px-8"
               style={{
-                borderColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-gold))',
+                borderColor: '#FFD54F',
+                color: '#FFD54F',
               }}
             >
               Retake Assessment
@@ -296,25 +328,25 @@ const QualityOfLifeMapResults: FC = () => {
                   key={domain.id}
                   className="p-6 rounded-lg border-2"
                   style={{ 
-                    backgroundColor: 'hsl(var(--destiny-light))',
-                    borderColor: 'hsl(var(--destiny-gold))/30'
+                    backgroundColor: '#f5ece1',
+                    borderColor: 'rgba(255, 213, 79, 0.3)'
                   }}
                 >
                   <div className="flex items-start gap-4">
                     <div 
                       className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'hsl(var(--destiny-gold))/20', color: 'hsl(var(--destiny-gold))' }}
+                      style={{ backgroundColor: 'rgba(255, 213, 79, 0.2)', color: '#FFD54F' }}
                     >
                       {stageValue}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--marine-blue))' }}>
+                      <h3 className="text-xl font-bold mb-2" style={{ color: '#0a3a52' }}>
                         <BoldText>{domain.name.toUpperCase()}</BoldText>
                       </h3>
-                      <p className="text-lg font-semibold mb-1" style={{ color: 'hsl(var(--marine-blue))/80' }}>
+                      <p className="text-lg font-semibold mb-1" style={{ color: 'rgba(10, 58, 82, 0.8)' }}>
                         {stage?.title}
                       </p>
-                      <p style={{ color: 'hsl(var(--marine-blue))/70' }}>
+                      <p style={{ color: 'rgba(10, 58, 82, 0.7)' }}>
                         {stage?.description}
                       </p>
                     </div>
@@ -335,25 +367,25 @@ const QualityOfLifeMapResults: FC = () => {
                   key={domain.id}
                   className="p-6 rounded-lg border-2"
                   style={{ 
-                    backgroundColor: 'hsl(var(--destiny-light))',
-                    borderColor: 'hsl(var(--destiny-gold))/30'
+                    backgroundColor: '#f5ece1',
+                    borderColor: 'rgba(255, 213, 79, 0.3)'
                   }}
                 >
                   <div className="flex items-start gap-4">
                     <div 
                       className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'hsl(var(--destiny-gold))', color: 'hsl(var(--destiny-dark))' }}
+                      style={{ backgroundColor: '#FFD54F', color: '#1a2332' }}
                     >
                       {stageValue}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--marine-blue))' }}>
+                      <h3 className="text-xl font-bold mb-2" style={{ color: '#0a3a52' }}>
                         <BoldText>{domain.name.toUpperCase()}</BoldText>
                       </h3>
-                      <p className="text-lg font-semibold mb-1" style={{ color: 'hsl(var(--marine-blue))/80' }}>
+                      <p className="text-lg font-semibold mb-1" style={{ color: 'rgba(10, 58, 82, 0.8)' }}>
                         {stage?.title}
                       </p>
-                      <p style={{ color: 'hsl(var(--marine-blue))/70' }}>
+                      <p style={{ color: 'rgba(10, 58, 82, 0.7)' }}>
                         {stage?.description}
                       </p>
                     </div>
@@ -373,12 +405,12 @@ const QualityOfLifeMapResults: FC = () => {
                 <div 
                   key={domain.id}
                   className="p-6 rounded-lg"
-                  style={{ backgroundColor: 'white/5', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.2)' }}
                 >
                   <div className="flex items-start gap-4">
                     <div 
                       className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'hsl(var(--destiny-gold))/20', color: 'hsl(var(--destiny-gold))' }}
+                      style={{ backgroundColor: 'rgba(255, 213, 79, 0.2)', color: '#FFD54F' }}
                     >
                       {stageValue}
                     </div>
@@ -411,9 +443,9 @@ const QualityOfLifeMapResults: FC = () => {
                   <div 
                     key={idx}
                     className="p-4 rounded-lg"
-                    style={{ backgroundColor: 'hsl(var(--destiny-light))' }}
+                    style={{ backgroundColor: '#f5ece1' }}
                   >
-                    <p style={{ color: 'hsl(var(--marine-blue))' }}>{line}</p>
+                    <p style={{ color: '#0a3a52' }}>{line}</p>
                   </div>
                 ))}
               </div>
