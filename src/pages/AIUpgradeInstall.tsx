@@ -661,9 +661,59 @@ If the honest answer is no, refine the response or clearly state the limitation 
             Install the Upgrade
           </h1>
           
-          <p className="text-xl text-gray-700 leading-relaxed text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 leading-relaxed text-center mb-8 max-w-2xl mx-auto">
             Copy the upgrade below and paste it in the beginning of each conversation with your AI model where you'd like an intelligence boost.
           </p>
+
+          {/* Copy Button */}
+          <div className="mb-8 text-center">
+            <Button
+              onClick={handleCopy}
+              size="lg"
+              className="text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              {copied ? (
+                <>
+                  <Check className="mr-2 h-5 w-5" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="mr-2 h-5 w-5" />
+                  Copy to Clipboard
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Instructions */}
+          <div className="mb-12 p-8 bg-gray-50 rounded-2xl">
+            <h2 
+              className="text-2xl font-semibold mb-4"
+              style={{ color: '#0A2342' }}
+            >
+              How to Install
+            </h2>
+            <ol className="space-y-3 text-lg text-gray-700">
+              <li className="flex items-start">
+                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>1.</span>
+                <span>Copy the upgrade prompt using the button above</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>2.</span>
+                <span>Open your AI model (ChatGPT, Claude, etc.)</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>3.</span>
+                <span>Paste it at the beginning of your conversation</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>4.</span>
+                <span>Start chatting with your upgraded AI</span>
+              </li>
+            </ol>
+          </div>
 
           {/* Code Box */}
           <div className="relative">
@@ -675,56 +725,6 @@ If the honest answer is no, refine the response or clearly state the limitation 
                 {upgradePrompt}
               </pre>
             </div>
-
-            {/* Copy Button */}
-            <div className="mt-6 text-center">
-              <Button
-                onClick={handleCopy}
-                size="lg"
-                className="text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all"
-                style={{ backgroundColor: '#0A2342' }}
-              >
-                {copied ? (
-                  <>
-                    <Check className="mr-2 h-5 w-5" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="mr-2 h-5 w-5" />
-                    Copy to Clipboard
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
-
-          {/* Instructions */}
-          <div className="mt-12 p-8 bg-gray-50 rounded-2xl">
-            <h2 
-              className="text-2xl font-semibold mb-4"
-              style={{ color: '#0A2342' }}
-            >
-              How to Install
-            </h2>
-            <ol className="space-y-3 text-lg text-gray-700">
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>1.</span>
-                <span>Copy the upgrade prompt above</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>2.</span>
-                <span>Open your AI model (ChatGPT, Claude, etc.)</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>3.</span>
-                <span>Paste the upgrade into the custom instructions or system prompt</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>4.</span>
-                <span>Save and start using your upgraded AI</span>
-              </li>
-            </ol>
           </div>
         </div>
       </section>
