@@ -36,8 +36,8 @@ const Destiny = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Back Button */}
-      <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
+      {/* Back Button - Left Aligned */}
+      <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
           <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
             <ArrowLeft className="mr-2 h-4 w-4" />
