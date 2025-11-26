@@ -148,6 +148,41 @@ export const modules: Module[] = [
     ]
   },
   {
+    id: "8",
+    title: "ZONE OF GENIUS DISCOVERY",
+    slug: "zone-of-genius",
+    category: "Tools",
+    tagline: "Get AI-powered clarity on your core strengths and next career step",
+    status: "Live",
+    price: "free",
+    version: "v1.0",
+    hero_CTA_label: "Open Tool",
+    hero_CTA_link: "/zone-of-genius",
+    description: "<p>Zone of Genius Discovery is a free AI-powered assessment that reveals your core strengths and provides a clear path forward in your career. Get your personalized ZoG Snapshot PDF with strategic insights in just 5 minutes.</p>",
+    who_for: [
+      "Professionals in career transition",
+      "Anyone seeking clarity on their unique talents",
+      "Leaders wanting to align work with strengths",
+      "Career coaches and advisors"
+    ],
+    outcomes: [
+      "Clear understanding of your top 3 core talents",
+      "Personalized Zone of Genius statement",
+      "Strategic career insights and next steps",
+      "Downloadable PDF report for future reference"
+    ],
+    structure: [
+      "Assessment: Quick AI-powered strengths analysis",
+      "Analysis: Identify your Zone of Genius",
+      "Insights: Strategic career recommendations",
+      "Action: Clear next steps and opportunities"
+    ],
+    story: "After working with hundreds of professionals in career transitions, I saw a clear pattern: people struggle to articulate their unique value. This AI-powered tool distills years of coaching insights into a fast, accessible assessment that reveals your Zone of Genius.",
+    app_links: [
+      { label: "Start Assessment", url: "/zone-of-genius/assessment" }
+    ]
+  },
+  {
     id: "4",
     title: "Heartcraft (Game)",
     slug: "heartcraft-game",
