@@ -10,7 +10,7 @@ import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lu
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
 import cannabisIcon from "@/assets/cannabis-icon.png";
-import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
+import qualityOfLifeMapIcon from "@/assets/quality-of-life-activation-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
@@ -106,20 +106,34 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
           {module.tagline}
         </p>
         
-        <div className="flex items-center gap-2">
-          <Badge 
-            variant="outline" 
-            className={`${statusColor[module.status]}`}
-          >
-            {module.status}
-          </Badge>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <Badge 
+              variant="outline" 
+              className={`${statusColor[module.status]}`}
+            >
+              {module.status}
+            </Badge>
+            
+            {module.price && (
+              <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                {module.price}
+              </Badge>
+            )}
+            
+            {module.version && (
+              <Badge variant="outline" className="bg-muted/50 text-muted-foreground border-border">
+                {module.version}
+              </Badge>
+            )}
+          </div>
           
           {isComingSoon && (
             <Button
-              variant="outline"
+              variant="default"
               size="sm"
               onClick={handleWaitlistClick}
-              className="ml-auto"
+              className="w-full"
             >
               Join Waitlist
             </Button>

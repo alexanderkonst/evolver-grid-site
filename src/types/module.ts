@@ -31,4 +31,6 @@ export interface Module {
   app_links?: ModuleLink[];
   related_modules?: string[]; // Array of module slugs
   thumbnail_image?: string;
+  price?: string;
+  version?: string;
 }
