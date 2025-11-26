@@ -20,6 +20,7 @@ const Step4GenerateSnapshot = () => {
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [archetypeTitle, setArchetypeTitle] = useState<string>("");
   const snapshotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,6 +34,20 @@ const Step4GenerateSnapshot = () => {
       handleGenerate();
     }
   }, [orderedTalentIds, snapshotMarkdown, navigate]);
+
+  // Extract archetype title from markdown
+  useEffect(() => {
+    if (snapshotMarkdown) {
+      const lines = snapshotMarkdown.split('\n');
+      const firstBoldLine = lines.find(line => line.startsWith('**Your Zone of Genius:'));
+      if (firstBoldLine) {
+        const match = firstBoldLine.match(/\*\*Your Zone of Genius: (.+?)\*\*/);
+        if (match) {
+          setArchetypeTitle(match[1]);
+        }
+      }
+    }
+  }, [snapshotMarkdown]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -258,41 +273,152 @@ Output ONLY the Markdown content described above. Do not include explanations of
     }
   };
 
+  // Custom Markdown components for styling
+  const markdownComponents = {
+    h3: (props: any) => (
+      <h3
+        className="mt-6 text-sm sm:text-base font-semibold text-slate-900 first:mt-0"
+        {...props}
+      />
+    ),
+    p: (props: any) => (
+      <p className="mt-3 text-sm leading-relaxed text-slate-700" {...props} />
+    ),
+    ul: (props: any) => (
+      <ul className="mt-3 space-y-2" {...props} />
+    ),
+    li: (props: any) => (
+      <li className="ml-4 list-disc text-sm leading-relaxed text-slate-700" {...props} />
+    ),
+    strong: (props: any) => (
+      <strong className="font-semibold text-slate-900" {...props} />
+    ),
+  };
+
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-3">
-        <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Step 4: Generate Your Zone of Genius Snapshot PDF
-        </h2>
-        <p className="text-lg text-primary font-semibold">
-          Your ZoG Lifeline Snapshot is Ready!
+    <main className="mx-auto max-w-5xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+      {/* De-emphasized Step Indicator */}
+      <div className="mb-8 text-center">
+        <p className="text-xs text-slate-500 uppercase tracking-wider">Step 4 of 4</p>
+      </div>
+
+      {/* Main Heading */}
+      <div className="text-center space-y-2 mb-4">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">
+          Your Zone of Genius Snapshot
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600">
+          This is your personalized ZoG Lifeline Snapshot, based on your top talents.
         </p>
       </div>
 
-      {/* Top 3 Talents Summary */}
-      <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
-        <p className="text-sm text-muted-foreground mb-2">Your top 3 core talents:</p>
-        <p className="text-lg font-semibold text-foreground">
-          {top3Talents.map(t => t.name).join(", ")}
+      {/* Reassurance Line */}
+      <p className="mt-4 text-xs sm:text-sm text-slate-500 text-center mb-8">
+        This isn't a generic template. It's generated from your specific talent
+        pattern and refreshed every time you redo the assessment.
+      </p>
+
+      {/* Top 3 Talents as Pills */}
+      <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center mb-8">
+        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          Your top 3 core talents
         </p>
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
+          {top3Talents.map(talent => (
+            <span
+              key={talent.id}
+              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs sm:text-sm text-slate-700 shadow-sm"
+            >
+              {talent.name}
+            </span>
+          ))}
+        </div>
       </div>
 
-      {/* Snapshot Content */}
+      {/* Loading State */}
       {isGenerating ? (
         <div className="flex flex-col items-center justify-center py-16 space-y-4">
-          <Loader2 className="w-12 h-12 animate-spin text-primary" />
-          <p className="text-lg text-muted-foreground">Generating your personalized snapshot...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-slate-600" />
+          <p className="text-lg text-slate-600">Generating your personalized snapshot...</p>
         </div>
       ) : snapshotMarkdown ? (
         <>
-          {/* Display version (on screen) */}
-          <div className="bg-card border border-border rounded-xl p-6 sm:p-8 space-y-6">
-            <div className="prose prose-sm sm:prose max-w-none prose-headings:text-foreground prose-headings:font-bold prose-p:text-foreground/90 prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-foreground/80 prose-li:text-foreground/80 prose-li:leading-relaxed">
-              <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
-            </div>
-          </div>
+          {/* Two-Column Layout */}
+          <section className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1.1fr)]">
+            {/* Left Column: Snapshot */}
+            <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 sm:p-8 shadow-sm animate-fade-in">
+              {/* Archetype Badge */}
+              {archetypeTitle && (
+                <div className="mb-4 inline-flex items-center rounded-full bg-slate-900 text-slate-50 px-4 py-1 text-xs sm:text-sm">
+                  {archetypeTitle}
+                </div>
+              )}
 
-          {/* PDF version (hidden) */}
+              {/* Snapshot Content */}
+              <div>
+                <ReactMarkdown components={markdownComponents}>
+                  {snapshotMarkdown}
+                </ReactMarkdown>
+              </div>
+            </div>
+
+            {/* Right Column: Summary & Actions */}
+            <div className="space-y-4">
+              {/* Quick Summary */}
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h2 className="text-sm font-semibold text-slate-900">
+                  Snapshot in One Glance
+                </h2>
+                <ul className="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700">
+                  <li>• 3 core talents in action</li>
+                  <li>• Career & contribution sweet spots</li>
+                  <li>• Everyday life alignment ideas for this week</li>
+                </ul>
+              </div>
+
+              {/* Download Button */}
+              <button
+                onClick={handleDownloadPDF}
+                disabled={isDownloading}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-50 shadow-sm hover:bg-slate-800 transition-colors disabled:opacity-50"
+              >
+                {isDownloading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Generating PDF...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4" />
+                    <span>Download My Zone of Genius Snapshot (PDF)</span>
+                  </>
+                )}
+              </button>
+
+              {/* CTA Card */}
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 sm:p-5">
+                <h2 className="text-sm font-semibold text-slate-900">
+                  Ready to Turn Insight into Action?
+                </h2>
+                <p className="mt-2 text-xs sm:text-sm text-slate-700">
+                  If you'd like support turning this snapshot into a clear, confident move,
+                  book a focused Career Re-Ignition Session with Aleksandr.
+                </p>
+                <p className="mt-2 text-xs font-semibold text-slate-900">$297 · 60–90 minutes</p>
+                <a
+                  href="https://www.calendly.com/konstantinov"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-slate-50 px-4 py-2 text-xs sm:text-sm font-medium text-slate-900 hover:bg-slate-100 transition-colors"
+                >
+                  Book My Session
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* PDF Version (Hidden) */}
           <div ref={snapshotRef} className="hidden">
             <div className="bg-white p-12 space-y-8" style={{ width: '210mm', minHeight: '297mm' }}>
               {/* Sacred Talents Header */}
@@ -339,93 +465,22 @@ Output ONLY the Markdown content described above. Do not include explanations of
         </>
       ) : null}
 
-      {/* Download Button */}
-      {snapshotMarkdown && !isGenerating && (
-        <div className="flex justify-center">
-          <button
-            onClick={handleDownloadPDF}
-            disabled={isDownloading}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-            style={{ 
-              backgroundColor: 'hsl(210, 70%, 15%)',
-              color: 'white'
-            }}
-          >
-            {isDownloading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Generating PDF...
-              </>
-            ) : (
-              <>
-                <Download className="w-5 h-5" />
-                Download My Zone of Genius Snapshot (PDF)
-              </>
-            )}
-          </button>
-        </div>
-      )}
-
-      {/* CTA Card */}
-      {snapshotMarkdown && !isGenerating && (
-        <div className="bg-card/60 border-2 border-border rounded-2xl p-6 sm:p-8 space-y-6">
-          <h3 className="text-2xl font-bold text-center text-primary">
-            Ready to Turn Insight into Action?
-          </h3>
-          <p className="text-base text-foreground/90 text-center max-w-2xl mx-auto">
-            This is just the beginning. If you'd like support translating your Zone of Genius into a clear, confident career move, Aleksandr offers a focused 60–90 minute Career Re-Ignition Session to transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
-          </p>
-
-          {/* Integrated Next Step Section */}
-          <div className="mt-8 pt-8 border-t border-border space-y-4 text-center">
-            <h4 className="text-xl font-bold text-foreground">
-              Your Next Step After Seeing Your Zone of Genius Could Be: The 'Career Re-Ignition Session' with Aleksandr
-            </h4>
-            <p className="text-base text-foreground/90 max-w-2xl mx-auto">
-              In one focused 90 minute live session, Aleksandr will personally guide you to transform your ZoG insights into a concrete strategic action plan to grow into your next level with confidence and speed.
-            </p>
-            <ul className="space-y-2 text-sm text-foreground/80 text-left max-w-xl mx-auto">
-              <li>• Understand your current situation through the lens of your ZoG</li>
-              <li>• Activate your ZoG</li>
-              <li>• Co-create a potent action plan tailored to your unique strengths</li>
-            </ul>
-            <p className="text-lg font-bold text-primary">$297</p>
-          </div>
-
-          <div className="flex justify-center pt-4">
-            <a
-              href="https://www.calendly.com/konstantinov"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-              style={{ 
-                backgroundColor: 'hsl(210, 70%, 15%)',
-                color: 'white'
-              }}
-            >
-              Book My Career Re-Ignition Session
-              <ExternalLink size={20} />
-            </a>
-          </div>
-        </div>
-      )}
-
       {/* Navigation */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-12 mt-12 border-t border-slate-200">
         <button
           onClick={handleBack}
-          className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+          className="px-6 py-2 text-sm rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-700"
         >
           Back to Step 3
         </button>
         <button
           onClick={handleStartNew}
-          className="text-sm text-primary hover:underline"
+          className="text-xs text-slate-500 hover:text-slate-700 hover:underline"
         >
           Start New Assessment
         </button>
       </div>
-    </div>
+    </main>
   );
 };
 
