@@ -115,6 +115,13 @@ const QualityOfLifeMapResults: FC = () => {
     try {
       const element = snapshotRef.current;
       
+      // Show PDF-only elements and hide display-only elements
+      const pdfOnlyElements = element.querySelectorAll('.pdf-only');
+      const pdfExcludeElements = element.querySelectorAll('.pdf-exclude');
+      
+      pdfOnlyElements.forEach((el: any) => el.style.display = 'block');
+      pdfExcludeElements.forEach((el: any) => el.style.display = 'none');
+      
       // Improved html2canvas configuration
       const canvas = await html2canvas(element, {
         scale: 2,
@@ -126,6 +133,10 @@ const QualityOfLifeMapResults: FC = () => {
         imageTimeout: 0,
         removeContainer: true,
       });
+      
+      // Restore display
+      pdfOnlyElements.forEach((el: any) => el.style.display = 'none');
+      pdfExcludeElements.forEach((el: any) => el.style.display = '');
       
       const imgData = canvas.toDataURL("image/png", 1.0);
 
@@ -275,8 +286,42 @@ const QualityOfLifeMapResults: FC = () => {
               </div>
             </div>
 
-            {/* PDF-Friendly Bar Chart for PDF Export */}
-            <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            {/* Radar Chart - Visual Map (Display only, not in PDF) */}
+            <div className="mb-16 p-8 rounded-lg pdf-exclude" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+              <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
+                <BoldText>VISUAL MAP</BoldText>
+              </h2>
+              <div style={{ width: '100%', height: '400px' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radarData}>
+                    <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
+                    <PolarAngleAxis 
+                      dataKey="domain" 
+                      tick={{ fill: '#ffffff', fontSize: 14 }}
+                    />
+                    <PolarRadiusAxis 
+                      angle={90} 
+                      domain={[0, 10]}
+                      tick={{ fill: '#ffffff', fontSize: 12 }}
+                    />
+                    <Radar 
+                      name="Development Level" 
+                      dataKey="value" 
+                      stroke="#FFD54F" 
+                      fill="#FFD54F" 
+                      fillOpacity={0.6}
+                      strokeWidth={2}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="text-center mt-6 text-sm text-white/60">
+                Scale: 0-10 (10 = highest development)
+              </div>
+            </div>
+
+            {/* Bar Chart - For PDF only (hidden from display) */}
+            <div className="mb-16 p-8 rounded-lg pdf-only" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', display: 'none' }}>
               <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
                 <BoldText>VISUAL MAP</BoldText>
               </h2>
@@ -312,6 +357,43 @@ const QualityOfLifeMapResults: FC = () => {
               <div className="text-center mt-6 text-sm text-white/60">
                 Scale: 0-10 (10 = highest development)
               </div>
+            </div>
+
+            {/* Action Buttons - Right after Visual Map */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 pdf-exclude">
+              <Button
+                onClick={handleDownloadPdf}
+                className="text-lg px-8"
+                style={{
+                  backgroundColor: '#FFD54F',
+                  color: '#1a2332',
+                }}
+              >
+                Download Snapshot as PDF
+              </Button>
+              <Button
+                onClick={handleGenerateGuidance}
+                disabled={isGuidanceLoading}
+                className="text-lg px-8"
+                style={{
+                  backgroundColor: '#FFD54F',
+                  color: '#1a2332',
+                  boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
+                }}
+              >
+                {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
+              </Button>
+              <Button
+                onClick={handleRetake}
+                variant="outline"
+                className="text-lg px-8"
+                style={{
+                  borderColor: '#FFD54F',
+                  color: '#FFD54F',
+                }}
+              >
+                Retake Assessment
+              </Button>
             </div>
 
           {/* Top Growth Opportunities */}
@@ -427,43 +509,6 @@ const QualityOfLifeMapResults: FC = () => {
               ))}
             </div>
           </div>
-          </div>
-
-          {/* Action Buttons - Outside snapshot for PDF */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center my-16">
-            <Button
-              onClick={handleDownloadPdf}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-              }}
-            >
-              Download Snapshot as PDF
-            </Button>
-            <Button
-              onClick={handleGenerateGuidance}
-              disabled={isGuidanceLoading}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-                boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
-              }}
-            >
-              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
-            </Button>
-            <Button
-              onClick={handleRetake}
-              variant="outline"
-              className="text-lg px-8"
-              style={{
-                borderColor: '#FFD54F',
-                color: '#FFD54F',
-              }}
-            >
-              Retake Assessment
-            </Button>
           </div>
 
           {/* Guidance Section */}

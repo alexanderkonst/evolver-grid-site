@@ -287,7 +287,7 @@ Output ONLY the Markdown content described above. Do not include explanations of
         <>
           {/* Display version (on screen) */}
           <div className="bg-card border border-border rounded-xl p-6 sm:p-8 space-y-6">
-            <div className="prose prose-sm sm:prose max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-ul:text-foreground/80 prose-li:text-foreground/80">
+            <div className="prose prose-sm sm:prose max-w-none prose-headings:text-foreground prose-headings:font-bold prose-p:text-foreground/90 prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-foreground/80 prose-li:text-foreground/80 prose-li:leading-relaxed">
               <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
             </div>
           </div>
@@ -377,14 +377,14 @@ Output ONLY the Markdown content described above. Do not include explanations of
           </p>
 
           {/* Integrated Next Step Section */}
-          <div className="mt-8 pt-8 border-t border-border space-y-4">
+          <div className="mt-8 pt-8 border-t border-border space-y-4 text-center">
             <h4 className="text-xl font-bold text-foreground">
               Your Next Step After Seeing Your Zone of Genius Could Be: The 'Career Re-Ignition Session' with Aleksandr
             </h4>
-            <p className="text-base text-foreground/90">
+            <p className="text-base text-foreground/90 max-w-2xl mx-auto">
               In one focused 90 minute live session, Aleksandr will personally guide you to transform your ZoG insights into a concrete strategic action plan to grow into your next level with confidence and speed.
             </p>
-            <ul className="space-y-2 text-sm text-foreground/80">
+            <ul className="space-y-2 text-sm text-foreground/80 text-left max-w-xl mx-auto">
               <li>• Understand your current situation through the lens of your ZoG</li>
               <li>• Activate your ZoG</li>
               <li>• Co-create a potent action plan tailored to your unique strengths</li>
