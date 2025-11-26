@@ -420,19 +420,36 @@ Output ONLY the Markdown content described above. Do not include explanations of
 
           {/* PDF Version (Hidden) */}
           <div ref={snapshotRef} className="hidden">
-            <div className="bg-white p-12 space-y-8" style={{ width: '210mm', minHeight: '297mm' }}>
-              {/* Sacred Talents Header */}
-              <div className="text-center space-y-6 pb-8 border-b-2 border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-800 uppercase tracking-wider">
-                  Your Core Talents
+            <div className="bg-white p-12 space-y-6" style={{ width: '210mm', minHeight: '297mm' }}>
+              {/* Header Block */}
+              <div className="text-center space-y-2 pb-6 border-b-2 border-gray-200">
+                <h1 className="text-3xl font-bold text-gray-900">
+                  Your Zone of Genius Snapshot
+                </h1>
+                <p className="text-sm text-gray-600">
+                  Your personalized ZoG Lifeline Snapshot, based on your unique talent pattern
+                </p>
+              </div>
+
+              {/* Archetype Highlight */}
+              {archetypeTitle && (
+                <div className="bg-gray-900 text-white px-6 py-3 rounded-full inline-block text-center mb-4">
+                  <p className="text-base font-semibold">{archetypeTitle}</p>
+                </div>
+              )}
+
+              {/* Top 3 Core Talents */}
+              <div className="space-y-4 pb-6 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Your Top 3 Core Talents
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {top3Talents.map((talent, index) => (
                     <div key={talent.id} className="space-y-1">
-                      <div className="text-xl font-bold text-blue-900">
+                      <div className="text-base font-bold text-gray-900">
                         {index + 1}. {talent.name}
                       </div>
-                      <div className="text-sm text-gray-600 italic max-w-2xl mx-auto">
+                      <div className="text-sm text-gray-600 pl-5">
                         {talent.description}
                       </div>
                     </div>
@@ -440,24 +457,44 @@ Output ONLY the Markdown content described above. Do not include explanations of
                 </div>
               </div>
 
-              {/* Snapshot Content */}
-              <div className="prose prose-sm max-w-none prose-headings:text-gray-800 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-li:text-gray-700">
-                <ReactMarkdown>{snapshotMarkdown}</ReactMarkdown>
+              {/* Main Snapshot Body - Render Markdown with proper styling */}
+              <div className="space-y-4">
+                <ReactMarkdown
+                  components={{
+                    h3: ({ node, ...props }) => (
+                      <h3 className="text-lg font-bold text-gray-900 mt-6 mb-3 first:mt-0" {...props} />
+                    ),
+                    p: ({ node, ...props }) => (
+                      <p className="text-sm leading-relaxed text-gray-700 mb-3" {...props} />
+                    ),
+                    ul: ({ node, ...props }) => (
+                      <ul className="space-y-2 mb-4" {...props} />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li className="text-sm leading-relaxed text-gray-700 ml-4 list-disc" {...props} />
+                    ),
+                    strong: ({ node, ...props }) => (
+                      <strong className="font-bold text-gray-900" {...props} />
+                    ),
+                  }}
+                >
+                  {snapshotMarkdown}
+                </ReactMarkdown>
               </div>
 
-              {/* Simplified Next Step for PDF */}
-              <div className="mt-12 pt-8 border-t-2 border-gray-200 space-y-4 text-center">
-                <h3 className="text-xl font-bold text-gray-800">
-                  Ready to Turn Insight into Action?
+              {/* Bottom Next Step Block */}
+              <div className="mt-12 pt-6 border-t-2 border-gray-300 space-y-3">
+                <h3 className="text-xl font-bold text-gray-900 text-center">
+                  Your Next Step: Career Re-Ignition Session
                 </h3>
-                <p className="text-base text-gray-700 max-w-2xl mx-auto">
-                  This is just the beginning. If you'd like support translating your Zone of Genius into a clear, confident career move, Aleksandr offers a focused 60–90 minute Career Re-Ignition Session to transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                <p className="text-sm text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
+                  This is just the beginning. In a focused 60–90 minute session, Aleksandr will personally guide you to transform your ZoG insights into a concrete 3-step strategic action plan to land your next fulfilling role.
                 </p>
-                <div className="inline-block px-8 py-4 mt-4 text-lg font-bold text-white rounded-full" style={{ backgroundColor: '#1a365d' }}>
-                  Book My Career Re-Ignition Session
-                </div>
-                <p className="text-sm text-gray-600 mt-2">
-                  https://www.calendly.com/konstantinov
+                <p className="text-base font-bold text-gray-900 text-center">
+                  $297 · 60–90 minutes
+                </p>
+                <p className="text-sm text-gray-600 text-center">
+                  Book here: https://www.calendly.com/konstantinov
                 </p>
               </div>
             </div>

@@ -238,10 +238,10 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           </p>
 
           {/* Help Me Choose Button */}
-          <div className="flex justify-center">
+          <div className="flex justify-center my-8">
             <button
               onClick={() => setIsAdvisorOpen(true)}
-              className="mt-8 mb-6 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)] uppercase"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)] uppercase"
               style={{ 
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
