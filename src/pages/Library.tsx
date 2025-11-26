@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import libraryLogo from "@/assets/library-logo.png";
 
 type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
@@ -219,6 +220,14 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
       
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
+          <div className="flex justify-center mb-6">
+            <img 
+              src={libraryLogo} 
+              alt="Library Logo" 
+              className="h-24 w-24 object-contain"
+            />
+          </div>
+          
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary">
             Welcome to the Sacred Library of Transformational Content!
           </h1>
