@@ -5,20 +5,33 @@ import {
   LIBRARY_CATEGORIES,
   LIBRARY_ITEMS,
   LibraryItem,
-  LibraryCategoryId
+  LibraryCategoryId,
+  ExperienceIntent
 } from "@/modules/library/libraryContent";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 type LengthFilter = "all" | "short" | "medium" | "long";
+type IntentChoice = ExperienceIntent | null;
+type LengthChoice = "any" | "short" | "medium" | "long";
 
 const Library = () => {
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
   const [search, setSearch] = useState("");
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
+  
+  // Intent advisor state
+  const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
+  const [intentChoice, setIntentChoice] = useState<IntentChoice>(null);
+  const [intentLengthChoice, setIntentLengthChoice] = useState<LengthChoice>("any");
+  const [advisorLoading, setAdvisorLoading] = useState(false);
+  const [advisorError, setAdvisorError] = useState<string | null>(null);
+  const [advisorSuggestions, setAdvisorSuggestions] = useState<string[] | null>(null);
 
-  const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter): boolean => {
-    if (filter === "all") return true;
+  const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter | LengthChoice): boolean => {
+    if (filter === "all" || filter === "any") return true;
     if (!item.durationMinutes) return true;
 
     if (filter === "short") return item.durationMinutes <= 7;
@@ -27,6 +40,133 @@ const Library = () => {
 
     return true;
   };
+
+  const buildAdvisorPrompt = (payload: {
+    intent: IntentChoice;
+    lengthChoice: LengthChoice;
+    items: {
+      id: string;
+      title: string;
+      teacher?: string;
+      categoryId: LibraryCategoryId;
+      durationMinutes: number | null;
+    }[];
+  }): string => {
+    return `You are helping a user choose a practice from a small curated practice library.
+
+The user has told you:
+- Their current intention (what they want right now).
+- How much time they have.
+
+You are given a JSON list of candidate practices with:
+- id
+- title
+- teacher
+- categoryId (breathEnergy, moneyAbundance, realityWisdom, spiritualGuidance, activations, animalSpirits)
+- durationMinutes (may be null).
+
+From this list:
+- Choose up to 3 practices that best match the user's intention and time.
+- Prefer shorter practices if lengthChoice is "short"; prefer longer or deeper ones if "long".
+- Prefer breathwork videos for breathwork / feelBetter intentions, activations for activation / psychic intentions, and wisdom videos for receiveWisdom intentions.
+
+For each chosen practice, output ONE line in the following format:
+[title] — [very short explanation of why it's a good match for their intention right now, in 1 short sentence]
+
+Style:
+- Be encouraging but concise.
+- Do not mention the library, JSON, IDs, or this prompt.
+- Do not number the lines; just one suggestion per line.
+
+User intent and choices:
+${JSON.stringify({ intent: payload.intent, lengthChoice: payload.lengthChoice }, null, 2)}
+
+Candidate practices:
+${JSON.stringify(payload.items, null, 2)}
+
+Now output up to 3 lines, each describing one recommended practice.`.trim();
+  };
+
+  const handleGetAdvisorSuggestions = async () => {
+    if (!intentChoice) return;
+    
+    try {
+      setAdvisorLoading(true);
+      setAdvisorError(null);
+      setAdvisorSuggestions(null);
+
+      const matching = LIBRARY_ITEMS.filter(item => {
+        const matchesIntent = !item.intents || item.intents.includes(intentChoice);
+        const matchesLength = matchesLengthFilter(item, intentLengthChoice);
+        return matchesIntent && matchesLength;
+      });
+
+      if (matching.length === 0) {
+        setAdvisorError("No practices match that combo yet. Try relaxing one of the filters.");
+        return;
+      }
+
+      const payload = {
+        intent: intentChoice,
+        lengthChoice: intentLengthChoice,
+        items: matching.map(item => ({
+          id: item.id,
+          title: item.title,
+          teacher: item.teacher,
+          categoryId: item.categoryId,
+          durationMinutes: item.durationMinutes ?? null,
+        })),
+      };
+
+      const prompt = buildAdvisorPrompt(payload);
+
+      const { data, error } = await supabase.functions.invoke("library-advisor", {
+        body: { prompt },
+      });
+
+      if (error) {
+        if (error.message?.includes("429") || error.message?.includes("Rate limit")) {
+          toast.error("Rate limits exceeded, please try again later.");
+          setAdvisorError("Rate limits exceeded. Please try again in a moment.");
+        } else if (error.message?.includes("402") || error.message?.includes("Payment")) {
+          toast.error("Payment required. Please add funds to your workspace.");
+          setAdvisorError("Payment required. Please contact support.");
+        } else {
+          throw error;
+        }
+        return;
+      }
+
+      const responseText = data?.generatedText || "";
+      const lines = responseText
+        .split("\n")
+        .map(l => l.trim())
+        .filter(Boolean);
+
+      setAdvisorSuggestions(lines);
+    } catch (err) {
+      console.error("Advisor error:", err);
+      setAdvisorError("Could not generate suggestions. Please try again.");
+      toast.error("Failed to generate suggestions");
+    } finally {
+      setAdvisorLoading(false);
+    }
+  };
+
+  const intentOptions: { id: ExperienceIntent; label: string }[] = [
+    { id: "breathwork", label: "Do a breathwork practice" },
+    { id: "activation", label: "Receive an activation" },
+    { id: "receiveWisdom", label: "Receive wisdom" },
+    { id: "feelBetter", label: "Feel better right now" },
+    { id: "psychic", label: "Activate psychic abilities" },
+  ];
+
+  const timeOptions: { id: LengthChoice; label: string }[] = [
+    { id: "any", label: "Any length" },
+    { id: "short", label: "≤ 7 min" },
+    { id: "medium", label: "8–15 min" },
+    { id: "long", label: "16+ min" },
+  ];
 
   const filteredItems = LIBRARY_ITEMS.filter(item => {
     const matchesCategory =
@@ -54,6 +194,104 @@ const Library = () => {
           <p className="text-lg text-muted-foreground mb-8">
             Curated practices, activations, and transmissions to support your evolution.
           </p>
+
+          {/* Help Me Choose Button */}
+          <button
+            onClick={() => setIsAdvisorOpen(true)}
+            className="mt-4 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs sm:text-sm text-foreground hover:border-primary/50 transition-colors"
+          >
+            Help me choose a practice
+          </button>
+
+          {/* Intent Advisor Panel */}
+          {isAdvisorOpen && (
+            <div className="mt-4 rounded-2xl border border-border bg-card/60 p-4 space-y-3 text-xs sm:text-sm">
+              <div className="flex justify-between items-center">
+                <h2 className="font-semibold text-foreground text-sm">
+                  What do you want right now?
+                </h2>
+                <button
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => {
+                    setIsAdvisorOpen(false);
+                    setAdvisorSuggestions(null);
+                    setAdvisorError(null);
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+
+              {/* Intention choices */}
+              <div className="space-y-1">
+                <p className="text-foreground/80">Choose your intention:</p>
+                <div className="flex flex-wrap gap-2">
+                  {intentOptions.map(option => (
+                    <button
+                      key={option.id}
+                      onClick={() => setIntentChoice(option.id)}
+                      className={cn(
+                        "px-3 py-1 rounded-full border text-xs transition-all",
+                        intentChoice === option.id
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
+                      )}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Time choices */}
+              <div className="space-y-1">
+                <p className="text-foreground/80">How much time do you have?</p>
+                <div className="flex flex-wrap gap-2">
+                  {timeOptions.map(option => (
+                    <button
+                      key={option.id}
+                      onClick={() => setIntentLengthChoice(option.id)}
+                      className={cn(
+                        "px-3 py-1 rounded-full border text-xs transition-all",
+                        intentLengthChoice === option.id
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
+                      )}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={handleGetAdvisorSuggestions}
+                disabled={advisorLoading || !intentChoice}
+                className="mt-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs sm:text-sm text-foreground disabled:opacity-60 hover:bg-card/80 transition-colors"
+              >
+                {advisorLoading ? "Finding practices..." : "Suggest practices"}
+              </button>
+
+              {advisorError && (
+                <p className="text-xs text-red-400 mt-2">{advisorError}</p>
+              )}
+
+              {advisorSuggestions && (
+                <div className="mt-3 space-y-1">
+                  <h3 className="text-xs font-semibold text-foreground">
+                    Suggested practices:
+                  </h3>
+                  <ul className="list-disc pl-4 space-y-1">
+                    {advisorSuggestions.map((line, idx) => (
+                      <li key={idx} className="text-xs text-foreground/90">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Category Chips */}
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
