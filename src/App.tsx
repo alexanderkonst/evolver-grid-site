@@ -21,6 +21,9 @@ import QolLayout from "./modules/quality-of-life-map/QolLayout";
 import ZoneOfGeniusLandingPage from "./modules/zone-of-genius/ZoneOfGeniusLandingPage";
 import ZoneOfGeniusAssessmentLayout from "./modules/zone-of-genius/ZoneOfGeniusAssessmentLayout";
 import Step1SelectTop10Talents from "./modules/zone-of-genius/Step1SelectTop10Talents";
+import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3CoreTalents";
+import Step3OrderTalents from "./modules/zone-of-genius/Step3OrderTalents";
+import Step4GenerateSnapshot from "./modules/zone-of-genius/Step4GenerateSnapshot";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +53,9 @@ const App = () => (
             <Route path="/zone-of-genius/assessment" element={<ZoneOfGeniusAssessmentLayout />}>
               <Route index element={<Step1SelectTop10Talents />} />
               <Route path="step-1" element={<Step1SelectTop10Talents />} />
+              <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />
+              <Route path="step-3" element={<Step3OrderTalents />} />
+              <Route path="step-4" element={<Step4GenerateSnapshot />} />
             </Route>
             <Route path="/m/:slug" element={<ModuleDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
