@@ -5,28 +5,31 @@ import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 
-const Step1SelectTop10Talents = () => {
+const Step2SelectTop3CoreTalents = () => {
   const navigate = useNavigate();
-  const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
-  const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
+  const { selectedTop10TalentIds, top3CoreTalentIds, setTop3CoreTalentIds } = useZoneOfGenius();
+  const [localSelected, setLocalSelected] = useState<number[]>(top3CoreTalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
 
   useEffect(() => {
-    setLocalSelected(selectedTop10TalentIds);
-  }, [selectedTop10TalentIds]);
+    if (selectedTop10TalentIds.length === 0) {
+      navigate("/zone-of-genius/assessment/step-1");
+      return;
+    }
+    setLocalSelected(top3CoreTalentIds);
+  }, [selectedTop10TalentIds, top3CoreTalentIds, navigate]);
+
+  const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
 
   const handleTalentClick = (talentId: number) => {
     if (localSelected.includes(talentId)) {
-      // Deselect
       setLocalSelected(localSelected.filter(id => id !== talentId));
       setShowMaxWarning(false);
     } else {
-      // Try to select
-      if (localSelected.length < 10) {
+      if (localSelected.length < 3) {
         setLocalSelected([...localSelected, talentId]);
         setShowMaxWarning(false);
       } else {
-        // Show warning
         setShowMaxWarning(true);
         setTimeout(() => setShowMaxWarning(false), 3000);
       }
@@ -34,49 +37,46 @@ const Step1SelectTop10Talents = () => {
   };
 
   const handleContinue = () => {
-    setSelectedTop10TalentIds(localSelected);
-    navigate("/zone-of-genius/assessment/step-2");
+    setTop3CoreTalentIds(localSelected);
+    navigate("/zone-of-genius/assessment/step-3");
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius");
+    navigate("/zone-of-genius/assessment/step-1");
   };
 
-  const canContinue = localSelected.length === 10;
+  const canContinue = localSelected.length === 3;
 
   return (
     <div className="space-y-8">
-      {/* Page Title */}
       <div className="text-center space-y-3">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Step 1: Select Your Top 10 Most Energizing Talents
+          Step 2: Narrow Down to Your Top 3 Core Talents
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From the list below, choose the 10 talents that feel most alive and natural to you. Don't overthink it — go with what feels true.
+          From your selected talents, choose the 3 that feel like your absolute strongest abilities — the ones you can't not use.
         </p>
       </div>
 
-      {/* Progress Indicator */}
       <div className="flex items-center justify-between bg-card/60 border border-border rounded-xl p-4">
         <div className="flex items-center gap-3">
           <div className={cn(
             "text-2xl font-bold transition-colors",
-            localSelected.length === 10 ? "text-green-500" : "text-primary"
+            localSelected.length === 3 ? "text-green-500" : "text-primary"
           )}>
-            {localSelected.length} / 10
+            {localSelected.length} / 3
           </div>
-          <span className="text-sm text-muted-foreground">talents selected</span>
+          <span className="text-sm text-muted-foreground">core talents selected</span>
         </div>
         {showMaxWarning && (
           <div className="text-xs sm:text-sm text-orange-500 animate-fade-in">
-            You can only select up to 10 talents. Please deselect one to choose another.
+            You can only select 3 core talents. Please deselect one to choose another.
           </div>
         )}
       </div>
 
-      {/* Talent Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {TALENTS.map((talent) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {top10Talents.map((talent) => {
           const isSelected = localSelected.includes(talent.id);
           return (
             <button
@@ -105,41 +105,37 @@ const Step1SelectTop10Talents = () => {
         })}
       </div>
 
-      {/* Navigation Buttons - Desktop */}
       <div className="hidden sm:flex items-center justify-center gap-4 pt-8">
         <button
           onClick={handleBack}
           className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
         >
-          Back to Landing Page
+          Back to Step 1
         </button>
         <button
           onClick={handleContinue}
           disabled={!canContinue}
           className={cn(
             "px-8 py-3 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]",
-            canContinue
-              ? "opacity-100 cursor-pointer"
-              : "opacity-50 cursor-not-allowed"
+            canContinue ? "opacity-100 cursor-pointer" : "opacity-50 cursor-not-allowed"
           )}
           style={{ 
             backgroundColor: 'hsl(210, 70%, 15%)',
             color: 'white'
           }}
         >
-          Continue to Step 2
+          Continue to Step 3
         </button>
       </div>
 
-      {/* Sticky Bottom Bar - Mobile */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg z-10">
         <div className="flex items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-2">
             <div className={cn(
               "text-xl font-bold transition-colors",
-              localSelected.length === 10 ? "text-green-500" : "text-primary"
+              localSelected.length === 3 ? "text-green-500" : "text-primary"
             )}>
-              {localSelected.length} / 10
+              {localSelected.length} / 3
             </div>
             <span className="text-xs text-muted-foreground">selected</span>
           </div>
@@ -155,23 +151,20 @@ const Step1SelectTop10Talents = () => {
           disabled={!canContinue}
           className={cn(
             "w-full py-3 rounded-full font-bold transition-all text-sm",
-            canContinue
-              ? "opacity-100"
-              : "opacity-50 cursor-not-allowed"
+            canContinue ? "opacity-100" : "opacity-50 cursor-not-allowed"
           )}
           style={{ 
             backgroundColor: 'hsl(210, 70%, 15%)',
             color: 'white'
           }}
         >
-          Continue to Step 2
+          Continue to Step 3
         </button>
       </div>
 
-      {/* Spacer for mobile sticky bar */}
       <div className="sm:hidden h-32" />
     </div>
   );
 };
 
-export default Step1SelectTop10Talents;
+export default Step2SelectTop3CoreTalents;
