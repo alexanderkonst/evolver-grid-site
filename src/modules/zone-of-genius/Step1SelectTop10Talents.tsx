@@ -4,6 +4,7 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import BoldText from "@/components/BoldText";
 
 const Step1SelectTop10Talents = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const Step1SelectTop10Talents = () => {
           Step 1: Select Your Top 10 Most Energizing Talents
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From the list below, choose the 10 talents that feel most alive and natural to you. Don't overthink it — go with what feels true.
+          From the list below, choose the 10 talents that <BoldText>FEEL MOST ALIVE AND NATURAL</BoldText> to you. Don't overthink it — go with what <BoldText>FEELS TRUE</BoldText>.
         </p>
       </div>
 
