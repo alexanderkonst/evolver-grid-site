@@ -9,7 +9,6 @@ import SectionDivider from "@/components/SectionDivider";
 import TextReveal from "@/components/TextReveal";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { useParallax } from "@/hooks/use-parallax";
 import profilePhoto from "@/assets/profile-photo.png";
 import BoldText from "@/components/BoldText";
 
@@ -18,7 +17,6 @@ const Index = () => {
   const heroAnimation = useScrollAnimation();
   const modulesAnimation = useScrollAnimation();
   const aboutAnimation = useScrollAnimation();
-  const scrollY = useParallax();
   
   const categories = ["ALL", "AI", "GROWTH", "BUSINESS", "CEREMONIES", "TOOLS", "APPS"];
   const filteredModules = getModulesByCategory(selectedCategory);
@@ -33,7 +31,6 @@ const Index = () => {
         className={`pt-32 pb-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
           heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
-        style={{ transform: `translateY(${scrollY * 0.15}px)` }}
       >
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center text-center space-y-8">
@@ -81,7 +78,6 @@ const Index = () => {
         className={`py-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
           modulesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
-        style={{ transform: `translateY(${scrollY * 0.05}px)` }}
       >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
