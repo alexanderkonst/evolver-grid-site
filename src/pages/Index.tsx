@@ -50,7 +50,7 @@ const Index = () => {
             
             {/* Tagline */}
             <p className="text-xl sm:text-2xl max-w-2xl uppercase">
-              <TextReveal text="This page is about you, not about me. Take what you need. Enjoy!" />
+              <BoldText>This page is about you, not about me. Take what you need. Enjoy!</BoldText>
             </p>
             
             {/* CTAs */}
