@@ -5,6 +5,7 @@ import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
 
 const QualityOfLifeMapResults = () => {
   const navigate = useNavigate();
@@ -70,6 +71,12 @@ const QualityOfLifeMapResults = () => {
   const growthDomains = sorted.slice(0, 3);
   const strengthDomains = sorted.slice(-3).reverse();
 
+  // Prepare data for radar chart
+  const radarData = domainResults.map(({ domain, stageValue }) => ({
+    domain: domain.name,
+    value: stageValue,
+  }));
+
   const handleRetake = () => {
     reset();
     navigate("/quality-of-life-map/assessment");
@@ -107,6 +114,35 @@ const QualityOfLifeMapResults = () => {
                 Overall Development Level: <span style={{ color: 'hsl(var(--destiny-gold))' }}>Stage {overallStageRounded}</span>
               </p>
             </div>
+          </div>
+
+          {/* Radar Chart */}
+          <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: 'white/5' }}>
+            <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
+              <BoldText>VISUAL MAP</BoldText>
+            </h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <RadarChart data={radarData}>
+                <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
+                <PolarAngleAxis 
+                  dataKey="domain" 
+                  tick={{ fill: 'white', fontSize: 14 }}
+                />
+                <PolarRadiusAxis 
+                  angle={90} 
+                  domain={[0, 10]}
+                  tick={{ fill: 'rgba(255, 255, 255, 0.6)' }}
+                />
+                <Radar
+                  name="Quality of Life"
+                  dataKey="value"
+                  stroke="hsl(var(--destiny-gold))"
+                  fill="hsl(var(--destiny-gold))"
+                  fillOpacity={0.4}
+                  strokeWidth={2}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </div>
 
           {/* Top Growth Opportunities */}
