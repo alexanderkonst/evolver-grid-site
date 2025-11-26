@@ -18,6 +18,7 @@ import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 import QualityOfLifeMapResults from "./pages/QualityOfLifeMapResults";
+import QolLayout from "./modules/quality-of-life-map/QolLayout";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,8 +41,10 @@ const App = () => (
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />
-            <Route path="/quality-of-life-map/assessment" element={<QualityOfLifeMapAssessment />} />
-            <Route path="/quality-of-life-map/results" element={<QualityOfLifeMapResults />} />
+            <Route path="/quality-of-life-map" element={<QolLayout />}>
+              <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
+              <Route path="results" element={<QualityOfLifeMapResults />} />
+            </Route>
             <Route path="/m/:slug" element={<ModuleDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
