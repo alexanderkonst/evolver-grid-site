@@ -64,6 +64,14 @@ const Index = () => {
               >
                 <BoldText className="uppercase">Explore Transformational Tools</BoldText>
               </Button>
+              <Button 
+                size="lg"
+                asChild
+              >
+                <Link to="/library">
+                  <BoldText className="uppercase">Explore the Library of Transformation</BoldText>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
