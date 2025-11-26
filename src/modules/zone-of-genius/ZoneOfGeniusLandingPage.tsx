@@ -23,15 +23,11 @@ const ZoneOfGeniusLandingPage = () => {
           {/* Hero Section */}
           <section className="text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary uppercase">
-              <BoldText>Get AI-Powered Clarity & Your Next Career Step, Fast</BoldText>
+              <BoldText>Get instant clarity on your core strengths and a clear path forward with our AI-powered assessment.</BoldText>
             </h1>
             
             <p className="text-xl sm:text-2xl text-foreground/90 max-w-3xl mx-auto">
-              <BoldText>Get instant clarity on your core strengths and a clear path forward with our AI-powered assessment.</BoldText>
-            </p>
-            
-            <p className="text-lg text-muted-foreground">
-              <BoldText>Get Your Free AI-Powered 'ZoG Lifeline Snapshot' in Minutes</BoldText>
+              <BoldText>Get Your Free Zone of Genius Snapshot in Minutes</BoldText>
             </p>
             
             <button
@@ -42,12 +38,50 @@ const ZoneOfGeniusLandingPage = () => {
                 color: 'white'
               }}
             >
-              <BoldText>Discover your FREE Zone of Genius NOW</BoldText>
+              <BoldText>Reveal your Zone of Genius Now</BoldText>
             </button>
             
             <p className="text-sm text-muted-foreground">
               AI-Powered Clarity · Personalized PDF Report · Strategic Career Insights
             </p>
+          </section>
+
+          {/* About Section */}
+          <section className="space-y-8">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="w-full lg:w-1/3">
+                <img
+                  src={profilePhoto}
+                  alt="Aleksandr Konstantinov"
+                  className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-primary/20"
+                />
+              </div>
+              
+              <div className="w-full lg:w-2/3 space-y-4">
+                <h2 className="text-3xl font-bold text-primary">
+                  Your Guide Through Career Transition: Aleksandr Konstantinov
+                </h2>
+                
+                <p className="text-lg text-foreground/90">
+                  As an MIT alum specializing in Zone of Genius activation and AI-enhanced career strategy, I am dedicated to helping professionals navigate transitions with confidence and clarity. My unique approach combines cutting-edge AI insights with deep human understanding.
+                </p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
+                    <p className="text-2xl font-bold text-primary">10+ Years</p>
+                    <p className="text-sm text-muted-foreground">Career Transformation</p>
+                  </div>
+                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
+                    <p className="text-2xl font-bold text-primary">250+ People</p>
+                    <p className="text-sm text-muted-foreground">Got Their Zone</p>
+                  </div>
+                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
+                    <p className="text-2xl font-bold text-primary">MIT Alum</p>
+                    <p className="text-sm text-muted-foreground">AI & Human Potential</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* Snapshot Features Section */}
@@ -104,44 +138,6 @@ const ZoneOfGeniusLandingPage = () => {
             </div>
           </section>
 
-          {/* About Section */}
-          <section className="space-y-8">
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-              <div className="w-full lg:w-1/3">
-                <img
-                  src={profilePhoto}
-                  alt="Aleksandr Konstantinov"
-                  className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-primary/20"
-                />
-              </div>
-              
-              <div className="w-full lg:w-2/3 space-y-4">
-                <h2 className="text-3xl font-bold text-primary">
-                  Your Guide Through Career Transition: Aleksandr Konstantinov
-                </h2>
-                
-                <p className="text-lg text-foreground/90">
-                  As an MIT alum specializing in Zone of Genius activation and AI-enhanced career strategy, I am dedicated to helping professionals navigate transitions with confidence and clarity. My unique approach combines cutting-edge AI insights with deep human understanding.
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
-                    <p className="text-2xl font-bold text-primary">10+ Years</p>
-                    <p className="text-sm text-muted-foreground">Career Transformation</p>
-                  </div>
-                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
-                    <p className="text-2xl font-bold text-primary">250+ People</p>
-                    <p className="text-sm text-muted-foreground">Got Their Zone</p>
-                  </div>
-                  <div className="text-center p-4 rounded-xl border border-border bg-card/40">
-                    <p className="text-2xl font-bold text-primary">MIT Alum</p>
-                    <p className="text-sm text-muted-foreground">AI & Human Potential</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Success Stories Section */}
           <section className="space-y-8">
             <h2 className="text-3xl font-bold text-center text-primary">
@@ -161,6 +157,10 @@ const ZoneOfGeniusLandingPage = () => {
                 {
                   quote: "This was an outstanding training! I am so grateful to know my zone of genius now (and why!). Truly profound. I am taking my time to review suggestions from AI. I am so inspired to lean into my talents and share them globally. Thank you, thank you, thank you.",
                   name: "Tshatiqua"
+                },
+                {
+                  quote: "Sasha … this is a miracle of miracles. I'm re-reading it—brilliant! Totally badass. Other tools come at this half-baked and shallow; they've got no depth. Your approach, though, I love it. A tool that just plain works!",
+                  name: "Alexey"
                 }
               ].map((testimonial, idx) => (
                 <div
@@ -175,15 +175,6 @@ const ZoneOfGeniusLandingPage = () => {
                   </p>
                 </div>
               ))}
-            </div>
-
-            <div className="p-6 rounded-2xl border-2 border-primary/50 bg-primary/5">
-              <p className="text-base text-foreground/90 italic mb-4">
-                "Sasha … this is a miracle of miracles. I'm re-reading it—brilliant! Totally badass. Other tools come at this half-baked and shallow; they've got no depth. Your approach, though, I love it. A tool that just plain works!"
-              </p>
-              <p className="text-sm font-semibold text-primary">
-                — Alexey
-              </p>
             </div>
 
             <p className="text-center text-lg text-muted-foreground">
@@ -212,7 +203,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* CTA: Book Career Re-Ignition Session */}
           <section className="space-y-6 py-12 px-6 sm:px-8 rounded-3xl border-2 border-border bg-card/60">
             <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary">
-              Your Next Step: The 'Zone of Genius Activation Session' with Aleksandr
+              Your Next Step After Seeing Your Zone of Genius Could Be: The 'Zone of Genius Activation Session' with Aleksandr
             </h2>
             
             <p className="text-lg text-foreground/90 text-center max-w-3xl mx-auto">
@@ -236,7 +227,7 @@ const ZoneOfGeniusLandingPage = () => {
               <p className="text-3xl font-bold text-primary mb-4">$297</p>
               
               <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-                Sounds like something deep about you? This is just the beginning. Want to know how to use your Zone of Genius to land a job tailored to your Genius?
+                Your Zone of Genius Snapshot sounds like something truly resonant and deep about you? This is just the beginning. Want to know how to activate your purpose and mission and know what you are truly meant to do for others?
               </p>
               
               <a
