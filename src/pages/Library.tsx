@@ -230,7 +230,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           </div>
           
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase text-center">
-            <BoldText>Welcome to the Sacred Library of Transformational Content!</BoldText>
+            <BoldText>Welcome to the Sacred Library of Transformation!</BoldText>
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8 text-center">
