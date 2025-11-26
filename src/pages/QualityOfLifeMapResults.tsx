@@ -1,15 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useRef } from "react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const QualityOfLifeMapResults = () => {
   const navigate = useNavigate();
   const { answers, reset, isComplete } = useQolAssessment();
+  const snapshotRef = useRef<HTMLDivElement | null>(null);
 
   // If assessment not complete, show prompt to complete it
   if (!isComplete) {
@@ -82,6 +86,26 @@ const QualityOfLifeMapResults = () => {
     navigate("/quality-of-life-map/assessment");
   };
 
+  const handleDownloadPdf = async () => {
+    if (!snapshotRef.current) return;
+
+    const element = snapshotRef.current;
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      backgroundColor: 'hsl(220, 30%, 12%)',
+    });
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+
+    const dateStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    pdf.save(`quality-of-life-map-snapshot-${dateStr}.pdf`);
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -102,8 +126,10 @@ const QualityOfLifeMapResults = () => {
         style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
       >
         <div className="container mx-auto max-w-4xl">
-          {/* Main Heading */}
-          <div className="text-center mb-12">
+          {/* Snapshot Content - wrapped for PDF export */}
+          <div ref={snapshotRef}>
+            {/* Main Heading */}
+            <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-white">
               <BoldText>YOUR QUALITY OF LIFE MAP SNAPSHOT</BoldText>
             </h1>
@@ -258,9 +284,20 @@ const QualityOfLifeMapResults = () => {
               ))}
             </div>
           </div>
+          </div>
 
-          {/* Retake Button */}
-          <div className="text-center">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+            <Button
+              onClick={handleDownloadPdf}
+              className="text-lg px-8"
+              style={{
+                backgroundColor: 'hsl(var(--destiny-gold))',
+                color: 'hsl(var(--destiny-dark))',
+              }}
+            >
+              Download Snapshot as PDF
+            </Button>
             <Button
               onClick={handleRetake}
               variant="outline"
