@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
@@ -21,6 +21,11 @@ const QualityOfLifeMapResults: FC = () => {
   
   const [guidanceLines, setGuidanceLines] = useState<string[] | null>(null);
   const [isGuidanceLoading, setIsGuidanceLoading] = useState(false);
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // If assessment not complete, show prompt to complete it
   if (!isComplete) {
@@ -243,6 +248,43 @@ const QualityOfLifeMapResults: FC = () => {
             </ResponsiveContainer>
           </div>
 
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <Button
+              onClick={handleDownloadPdf}
+              className="text-lg px-8"
+              style={{
+                backgroundColor: 'hsl(var(--destiny-gold))',
+                color: 'hsl(var(--destiny-dark))',
+              }}
+            >
+              Download Snapshot as PDF
+            </Button>
+            <Button
+              onClick={handleGenerateGuidance}
+              disabled={isGuidanceLoading}
+              variant="outline"
+              className="text-lg px-8"
+              style={{
+                borderColor: 'hsl(var(--destiny-gold))',
+                color: 'hsl(var(--destiny-gold))',
+              }}
+            >
+              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
+            </Button>
+            <Button
+              onClick={handleRetake}
+              variant="outline"
+              className="text-lg px-8"
+              style={{
+                borderColor: 'hsl(var(--destiny-gold))',
+                color: 'hsl(var(--destiny-gold))',
+              }}
+            >
+              Retake Assessment
+            </Button>
+          </div>
+
           {/* Top Growth Opportunities */}
           <div className="mb-12">
             <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
@@ -336,7 +378,7 @@ const QualityOfLifeMapResults: FC = () => {
                   <div className="flex items-start gap-4">
                     <div 
                       className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'white/10', color: 'white/80' }}
+                      style={{ backgroundColor: 'hsl(var(--destiny-gold))/20', color: 'hsl(var(--destiny-gold))' }}
                     >
                       {stageValue}
                     </div>
@@ -377,43 +419,6 @@ const QualityOfLifeMapResults: FC = () => {
               </div>
             </div>
           )}
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-            <Button
-              onClick={handleDownloadPdf}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-dark))',
-              }}
-            >
-              Download Snapshot as PDF
-            </Button>
-            <Button
-              onClick={handleGenerateGuidance}
-              disabled={isGuidanceLoading}
-              variant="outline"
-              className="text-lg px-8"
-              style={{
-                borderColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-gold))',
-              }}
-            >
-              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
-            </Button>
-            <Button
-              onClick={handleRetake}
-              variant="outline"
-              className="text-lg px-8"
-              style={{
-                borderColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-gold))',
-              }}
-            >
-              Retake Assessment
-            </Button>
-          </div>
         </div>
       </section>
     </div>
