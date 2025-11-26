@@ -20,6 +20,7 @@ export type LibraryItem = {
   url: string;
   youtubeId: string;
   durationLabel?: string;
+  durationMinutes?: number;
 };
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -64,7 +65,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Christopher August",
     url: "https://www.youtube.com/watch?v=hxDKLyJ0Q0E",
     youtubeId: "hxDKLyJ0Q0E",
-    durationLabel: "5 min"
+    durationLabel: "5 min",
+    durationMinutes: 5
   },
   {
     id: "feel-better-fast-energy-boost",
@@ -112,7 +114,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=61-mn1d5RIM",
     youtubeId: "61-mn1d5RIM",
-    durationLabel: "7 min"
+    durationLabel: "7 min",
+    durationMinutes: 7
   },
   {
     id: "feel-better",
@@ -153,7 +156,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=OOgBjpQt3yQ",
     youtubeId: "OOgBjpQt3yQ",
-    durationLabel: "10 min"
+    durationLabel: "10 min",
+    durationMinutes: 10
   },
   {
     id: "energy-2",
@@ -170,7 +174,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=cYXNkVpJVWk",
     youtubeId: "cYXNkVpJVWk",
-    durationLabel: "15 min"
+    durationLabel: "15 min",
+    durationMinutes: 15
   },
   {
     id: "chakra-activation",
@@ -195,7 +200,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     teacher: "Christopher August",
     url: "https://www.youtube.com/watch?v=s4FSz1lRUHM",
     youtubeId: "s4FSz1lRUHM",
-    durationLabel: "20 min"
+    durationLabel: "20 min",
+    durationMinutes: 20
   },
   {
     id: "soul-activation-christopher",

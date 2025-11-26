@@ -9,10 +9,24 @@ import {
 } from "@/modules/library/libraryContent";
 import { cn } from "@/lib/utils";
 
+type LengthFilter = "all" | "short" | "medium" | "long";
+
 const Library = () => {
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
   const [search, setSearch] = useState("");
+  const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
+
+  const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter): boolean => {
+    if (filter === "all") return true;
+    if (!item.durationMinutes) return true;
+
+    if (filter === "short") return item.durationMinutes <= 7;
+    if (filter === "medium") return item.durationMinutes > 7 && item.durationMinutes <= 15;
+    if (filter === "long") return item.durationMinutes > 15;
+
+    return true;
+  };
 
   const filteredItems = LIBRARY_ITEMS.filter(item => {
     const matchesCategory =
@@ -22,7 +36,9 @@ const Library = () => {
       !query ||
       item.title.toLowerCase().includes(query) ||
       (item.teacher ?? "").toLowerCase().includes(query);
-    return matchesCategory && matchesSearch;
+    const matchesLength = matchesLengthFilter(item, lengthFilter);
+
+    return matchesCategory && matchesSearch && matchesLength;
   });
 
   return (
@@ -77,6 +93,29 @@ const Library = () => {
             className="mt-6 w-full max-w-md rounded-full border border-border bg-background/50 px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
 
+          {/* Length Filter */}
+          <div className="mt-3 flex flex-wrap gap-2 text-xs sm:text-sm">
+            {[
+              { id: "all", label: "All lengths" },
+              { id: "short", label: "≤ 7 min" },
+              { id: "medium", label: "8–15 min" },
+              { id: "long", label: "16+ min" },
+            ].map(option => (
+              <button
+                key={option.id}
+                onClick={() => setLengthFilter(option.id as LengthFilter)}
+                className={cn(
+                  "px-3 py-1 rounded-full border transition-all",
+                  lengthFilter === option.id
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
+                )}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
           {/* Video Grid */}
           {filteredItems.length > 0 ? (
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -103,11 +142,16 @@ const Library = () => {
                         {item.teacher}
                       </div>
                     )}
-                    {item.durationLabel && (
-                      <div className="text-xs text-muted-foreground/70">
-                        {item.durationLabel}
-                      </div>
-                    )}
+                    {(() => {
+                      const durationText =
+                        item.durationLabel ??
+                        (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
+                      return durationText ? (
+                        <div className="text-xs text-muted-foreground/70">
+                          {durationText}
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                 </button>
               ))}
