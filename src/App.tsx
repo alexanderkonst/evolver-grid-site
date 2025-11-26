@@ -18,6 +18,7 @@ import Destiny from "./pages/Destiny";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 import QualityOfLifeMapResults from "./pages/QualityOfLifeMapResults";
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
+import ZoneOfGeniusLandingPage from "./modules/zone-of-genius/ZoneOfGeniusLandingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
               <Route path="results" element={<QualityOfLifeMapResults />} />
             </Route>
+            <Route path="/zone-of-genius" element={<ZoneOfGeniusLandingPage />} />
             <Route path="/m/:slug" element={<ModuleDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
