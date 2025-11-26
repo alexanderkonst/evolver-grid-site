@@ -12,6 +12,13 @@ export type LibraryCategory = {
   description?: string;
 };
 
+export type ExperienceIntent =
+  | "breathwork"
+  | "activation"
+  | "receiveWisdom"
+  | "feelBetter"
+  | "psychic";
+
 export type LibraryItem = {
   id: string;
   categoryId: LibraryCategoryId;
@@ -21,6 +28,7 @@ export type LibraryItem = {
   youtubeId: string;
   durationLabel?: string;
   durationMinutes?: number;
+  intents?: ExperienceIntent[];
 };
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -66,7 +74,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     url: "https://www.youtube.com/watch?v=hxDKLyJ0Q0E",
     youtubeId: "hxDKLyJ0Q0E",
     durationLabel: "5 min",
-    durationMinutes: 5
+    durationMinutes: 5,
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "feel-better-fast-energy-boost",
@@ -74,7 +83,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Feel Better Fast | Daily Energy Boost",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=fd7SIapXES4",
-    youtubeId: "fd7SIapXES4"
+    youtubeId: "fd7SIapXES4",
+    intents: ["breathwork", "feelBetter", "activation"]
   },
   {
     id: "heart-coherence-breathing",
@@ -82,7 +92,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Heart Coherence Breathing",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=XNINqgkZVEU",
-    youtubeId: "XNINqgkZVEU"
+    youtubeId: "XNINqgkZVEU",
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "energizing-breath-of-fire",
@@ -90,7 +101,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Energizing Breath of Fire",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=GPo4EFq4XeY",
-    youtubeId: "GPo4EFq4XeY"
+    youtubeId: "GPo4EFq4XeY",
+    intents: ["breathwork", "activation"]
   },
   {
     id: "vagus-nerve-reset-anxiety",
@@ -98,14 +110,16 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Vagus Nerve Reset to Stop Anxiety",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=gVtaA8u4SFs",
-    youtubeId: "gVtaA8u4SFs"
+    youtubeId: "gVtaA8u4SFs",
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "feel-high-naturally",
     categoryId: "breathEnergy",
     title: "Feel High Naturally",
     url: "https://www.youtube.com/watch?v=70obRpYkeFc",
-    youtubeId: "70obRpYkeFc"
+    youtubeId: "70obRpYkeFc",
+    intents: ["breathwork", "activation", "feelBetter"]
   },
   {
     id: "regulate-nervous-system-7min",
@@ -115,7 +129,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     url: "https://www.youtube.com/watch?v=61-mn1d5RIM",
     youtubeId: "61-mn1d5RIM",
     durationLabel: "7 min",
-    durationMinutes: 7
+    durationMinutes: 7,
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "feel-better",
@@ -123,7 +138,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Feel Better",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=GdiQVpWsxeU",
-    youtubeId: "GdiQVpWsxeU"
+    youtubeId: "GdiQVpWsxeU",
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "boost-life-force-energy",
@@ -131,7 +147,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Boost Life Force Energy",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=wrVG0CYJyWc&t=1s",
-    youtubeId: "wrVG0CYJyWc"
+    youtubeId: "wrVG0CYJyWc",
+    intents: ["breathwork", "activation"]
   },
   {
     id: "energy-1",
@@ -139,7 +156,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Energy",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=errP3gH9OlE",
-    youtubeId: "errP3gH9OlE"
+    youtubeId: "errP3gH9OlE",
+    intents: ["breathwork", "activation"]
   },
   {
     id: "energy-to-start-your-day",
@@ -147,7 +165,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Energy to Start Your Day",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=errP3gH9OlE",
-    youtubeId: "errP3gH9OlE"
+    youtubeId: "errP3gH9OlE",
+    intents: ["breathwork", "activation"]
   },
   {
     id: "heart-coherence-stress-relief",
@@ -157,7 +176,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     url: "https://www.youtube.com/watch?v=OOgBjpQt3yQ",
     youtubeId: "OOgBjpQt3yQ",
     durationLabel: "10 min",
-    durationMinutes: 10
+    durationMinutes: 10,
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "energy-2",
@@ -165,7 +185,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Energy",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=BcayO9W3ZDI&t=3s",
-    youtubeId: "BcayO9W3ZDI"
+    youtubeId: "BcayO9W3ZDI",
+    intents: ["breathwork", "activation"]
   },
   {
     id: "rewire-brain-15min",
@@ -175,7 +196,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     url: "https://www.youtube.com/watch?v=cYXNkVpJVWk",
     youtubeId: "cYXNkVpJVWk",
     durationLabel: "15 min",
-    durationMinutes: 15
+    durationMinutes: 15,
+    intents: ["breathwork", "activation"]
   },
   {
     id: "chakra-activation",
@@ -183,7 +205,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Chakra Activation",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=UvVznVFk-OA",
-    youtubeId: "UvVznVFk-OA"
+    youtubeId: "UvVznVFk-OA",
+    intents: ["activation", "breathwork"]
   },
   {
     id: "deep-release",
@@ -191,7 +214,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Deep Release",
     teacher: "Sandy",
     url: "https://www.youtube.com/watch?v=cXCBsJAJSMk",
-    youtubeId: "cXCBsJAJSMk"
+    youtubeId: "cXCBsJAJSMk",
+    intents: ["breathwork", "feelBetter"]
   },
   {
     id: "clarity-focus-20min",
@@ -201,7 +225,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     url: "https://www.youtube.com/watch?v=s4FSz1lRUHM",
     youtubeId: "s4FSz1lRUHM",
     durationLabel: "20 min",
-    durationMinutes: 20
+    durationMinutes: 20,
+    intents: ["breathwork", "activation"]
   },
   {
     id: "soul-activation-christopher",
@@ -209,7 +234,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Soul Activation",
     teacher: "Christopher August",
     url: "https://www.youtube.com/watch?v=MPK6IfOmmR0",
-    youtubeId: "MPK6IfOmmR0"
+    youtubeId: "MPK6IfOmmR0",
+    intents: ["activation", "breathwork"]
   },
 
   // Money & Abundance
@@ -219,7 +245,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Money Activations – Working With The Spirit of Money",
     teacher: "Ariel Gatoga",
     url: "https://www.youtube.com/watch?v=W3Mrnf39tVE",
-    youtubeId: "W3Mrnf39tVE"
+    youtubeId: "W3Mrnf39tVE",
+    intents: ["receiveWisdom", "activation"]
   },
   {
     id: "manifest-unexpected-money",
@@ -227,7 +254,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Manifest UNEXPECTED Money",
     teacher: "Sri Akarshana",
     url: "https://www.youtube.com/watch?v=r4mRoB7CEno",
-    youtubeId: "r4mRoB7CEno"
+    youtubeId: "r4mRoB7CEno",
+    intents: ["receiveWisdom", "activation"]
   },
 
   // Reality Wisdom
@@ -237,7 +265,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Learn about Reality – Wisdom Nugget",
     teacher: "Bashar",
     url: "https://youtube.com/shorts/VhyByp4_t8U?si=4EJIqq8udHG5FZfo",
-    youtubeId: "VhyByp4_t8U"
+    youtubeId: "VhyByp4_t8U",
+    intents: ["receiveWisdom"]
   },
   {
     id: "bashar-reality-wisdom-2",
@@ -245,7 +274,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Wisdom Nugget",
     teacher: "Bashar",
     url: "https://www.youtube.com/shorts/U7NPTcxGUBo",
-    youtubeId: "U7NPTcxGUBo"
+    youtubeId: "U7NPTcxGUBo",
+    intents: ["receiveWisdom"]
   },
 
   // Spiritual Guidance
@@ -255,7 +285,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Psychic Clearing with Archangel Mikael",
     teacher: "Stephanie Kojec",
     url: "https://www.youtube.com/watch?v=Dp2AIif-6sk",
-    youtubeId: "Dp2AIif-6sk"
+    youtubeId: "Dp2AIif-6sk",
+    intents: ["psychic", "activation"]
   },
 
   // Activations
@@ -265,7 +296,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Unity Breath",
     teacher: "Drunvalo Melchizedek",
     url: "https://www.youtube.com/watch?v=CUNuj-xgY-w",
-    youtubeId: "CUNuj-xgY-w"
+    youtubeId: "CUNuj-xgY-w",
+    intents: ["activation"]
   },
   {
     id: "heart-meditation-drunvalo",
@@ -273,7 +305,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Heart Meditation",
     teacher: "Drunvalo Melchizedek",
     url: "https://www.youtube.com/watch?v=mja7hKE-BC8",
-    youtubeId: "mja7hKE-BC8"
+    youtubeId: "mja7hKE-BC8",
+    intents: ["activation"]
   },
   {
     id: "violet-emerald-flame-intuition",
@@ -281,6 +314,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     title: "Violet and Emerald Flame of Intuition",
     teacher: "Stephanie Kojec",
     url: "https://www.youtube.com/watch?v=pPFXD0e8sLA&t=8s",
-    youtubeId: "pPFXD0e8sLA"
+    youtubeId: "pPFXD0e8sLA",
+    intents: ["activation", "psychic"]
   }
 ];
