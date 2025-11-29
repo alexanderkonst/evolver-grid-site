@@ -123,7 +123,7 @@ User context:
   - Their top 10 selected talents (names + descriptions).
   - Their top 3 core talents, in order of how naturally and frequently they are used.
 
-Use an encouraging, grounded tone. Speak directly to one person as "you".  
+Use an encouraging, grounded tone. Speak directly to one person as "you".
 Avoid fluff. Every sentence should feel specific and useful.
 
 ----------------
@@ -170,7 +170,18 @@ STRUCTURE (in Markdown):
      - Max ~20 words.
      - Should feel concrete and observable (e.g., "You naturally turn messy ideas into clear structures that others can act on.").
 
-4. **Career & Contribution Sweet Spots**  
+4. **Where You Get Stuck (Your Edge)**  
+   - Heading: \`### Where You Get Stuck (Your Edge)\`
+   - 2–3 bullet points.
+   - Describe the most common traps or overextensions that come with this genius pattern:
+     - Where they overdo or underuse their gifts.
+     - Typical misunderstandings with others.
+     - Situations where their strengths become liabilities.
+   - Each bullet:
+     - Max ~20 words.
+     - Must stay kind but honest. No shaming; frame this as "here is how to work skillfully with your own pattern."
+
+5. **Career & Contribution Sweet Spots**  
    - Heading: \`### Career & Contribution Sweet Spots\`
    - 4–6 bullet points mixing the following ideas (do NOT make separate sections; keep them in one bullet list):
      - 2–3 **highly-specific job role patterns** or "kind of roles" where this combo of talents is especially valuable.
@@ -180,7 +191,7 @@ STRUCTURE (in Markdown):
      - 1 bullet pointing to a natural direction for **impact / movements / advocacy causes** where their talents could contribute meaningfully.
    - Make these bullets feel like "oh, that IS me" – concrete, not vague.
 
-5. **Everyday Life Alignment (This Week)**  
+6. **Everyday Life Alignment (This Week)**  
    - Heading: \`### Everyday Life Alignment (This Week)\`
    - 4–6 short bullets with practical suggestions that project their genius into daily life.
    - Draw from these dimensions, but keep it short and integrated (one list, not many sections):
@@ -193,9 +204,11 @@ STRUCTURE (in Markdown):
      - Max ~20 words,
      - Framed as an invitation ("Try...", "Experiment with...", "Give yourself...").
 
-6. **Gentle Closing Line**  
-   - One short closing sentence that invites them to honor and trust their gifts.
-   - Keep it soft and encouraging. Do NOT mention the Career Re-Ignition Session here.
+7. **Gentle Closing Line with Next Step**  
+   - One short closing sentence that:
+     - Invites them to honor and trust their gifts, and
+     - Gently mentions that Aleksandr offers a "Career Re-Ignition Session" if they want deeper support turning this into concrete career moves.
+   - Keep it soft, not salesy.
 
 STYLE GUIDELINES:
 
@@ -203,6 +216,7 @@ STYLE GUIDELINES:
 - Keep the whole output on the shorter side: no walls of text.
 - Make it feel eerily specific to THIS combination of talents.
 - Avoid cliches like "you are a natural born leader" unless followed by something very concrete and unique.
+- Include both light and shadow: clearly name their edge without shaming them.
 - Use plain, human language. No jargon.
 
 Output ONLY the Markdown content described above. Do not include explanations of what you are doing.
@@ -297,29 +311,35 @@ Output ONLY the Markdown content described above. Do not include explanations of
 
   return (
     <main className="mx-auto max-w-5xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
-      {/* De-emphasized Step Indicator */}
-      <div className="mb-8 text-center">
-        <p className="text-xs text-slate-500 uppercase tracking-wider">Step 4 of 4</p>
-      </div>
-
-      {/* Main Heading */}
-      <div className="text-center space-y-2 mb-4">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">
-          Your Zone of Genius Snapshot
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600">
-          This is your personalized ZoG Lifeline Snapshot, based on your top talents.
+      {/* Step indicator */}
+      <div className="flex items-center justify-center">
+        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          Step 4 of 4 · Lifeline Snapshot
         </p>
       </div>
 
-      {/* Reassurance Line */}
-      <p className="mt-4 text-xs sm:text-sm text-slate-500 text-center mb-8">
-        This isn't a generic template. It's generated from your specific talent
-        pattern and refreshed every time you redo the assessment.
+      {/* Main heading */}
+      <h1 className="mt-4 text-center text-2xl sm:text-3xl font-semibold text-slate-900">
+        You Just Unlocked Your Zone of Genius
+      </h1>
+      <p className="mt-2 text-center text-sm sm:text-base text-slate-600">
+        This snapshot is a mirror of how your deepest talents want to move in the world, right now.
       </p>
 
-      {/* Top 3 Talents as Pills */}
-      <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center mb-8">
+      {/* Archetype reveal */}
+      {archetypeTitle && (
+        <div className="mt-6 flex flex-col items-center gap-3 text-center">
+          <span className="inline-flex items-center rounded-full bg-slate-900 px-4 py-1 text-xs sm:text-sm font-medium text-slate-50">
+            Unlocked Archetype
+          </span>
+          <p className="max-w-xl text-lg sm:text-xl font-semibold text-slate-900">
+            {archetypeTitle}
+          </p>
+        </div>
+      )}
+
+      {/* Top 3 core talents as chips */}
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center mb-8">
         <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
           Your top 3 core talents
         </p>
@@ -343,29 +363,32 @@ Output ONLY the Markdown content described above. Do not include explanations of
         </div>
       ) : snapshotMarkdown ? (
         <>
-          {/* Two-Column Layout */}
+          {/* Main content */}
           <section className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1.1fr)]">
-            {/* Left Column: Snapshot */}
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 sm:p-8 shadow-sm animate-fade-in">
-              {/* Archetype Badge */}
-              {archetypeTitle && (
-                <div className="mb-4 inline-flex items-center rounded-full bg-slate-900 text-slate-50 px-4 py-1 text-xs sm:text-sm">
-                  {archetypeTitle}
-                </div>
-              )}
+            {/* Left: snapshot */}
+            <article className="rounded-3xl border border-slate-200 bg-white/90 p-6 sm:p-8 shadow-sm">
+              {/* Snapshot markdown */}
+              <ReactMarkdown components={markdownComponents}>
+                {snapshotMarkdown}
+              </ReactMarkdown>
+            </article>
 
-              {/* Snapshot Content */}
-              <div>
-                <ReactMarkdown components={markdownComponents}>
-                  {snapshotMarkdown}
-                </ReactMarkdown>
+            {/* Right: summary + PDF + CTA */}
+            <aside className="space-y-4">
+              {/* Essence sentence card */}
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <h2 className="text-sm font-semibold text-slate-900">
+                  What This Snapshot Really Says
+                </h2>
+                <p className="mt-2 text-xs sm:text-sm text-slate-700">
+                  In simple terms: this is how your gifts naturally want to move, where they tend to get stuck, and
+                  what your next chapter is asking of you.
+                </p>
               </div>
-            </div>
 
-            {/* Right Column: Summary & Actions */}
-            <div className="space-y-4">
-              {/* Download Button */}
+              {/* PDF button */}
               <button
+                type="button"
                 onClick={handleDownloadPDF}
                 disabled={isDownloading}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-50 shadow-sm hover:bg-slate-800 transition-colors disabled:opacity-50"
@@ -383,14 +406,14 @@ Output ONLY the Markdown content described above. Do not include explanations of
                 )}
               </button>
 
-              {/* CTA Card */}
+              {/* Action / session CTA */}
               <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 sm:p-5">
                 <h2 className="text-sm font-semibold text-slate-900">
-                  Ready to Turn Insight into Action?
+                  If This Hit Home
                 </h2>
                 <p className="mt-2 text-xs sm:text-sm text-slate-700">
-                  If you'd like support turning this snapshot into a clear, confident move,
-                  book a focused Career Re-Ignition Session with Aleksandr.
+                  If this description feels uncannily accurate and you want help turning it into concrete career moves,
+                  Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
                 </p>
                 <p className="mt-2 text-xs font-semibold text-slate-900">$297 · 60–90 minutes</p>
                 <a
@@ -403,8 +426,25 @@ Output ONLY the Markdown content described above. Do not include explanations of
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
-            </div>
+
+              {/* Micro-quest hint */}
+              <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 p-4 sm:p-5">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600">
+                  Start Here This Week
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-700">
+                  Choose one suggestion from "Everyday Life Alignment (This Week)" below and treat it as a 7-day micro-quest.
+                  That's where the snapshot becomes real.
+                </p>
+              </div>
+            </aside>
           </section>
+
+          {/* Gentle closing under the grid */}
+          <p className="mt-10 text-center text-xs sm:text-sm text-slate-500">
+            This isn't a final verdict. It's your current character card in the game of your life.
+            You can always come back, reassess, and level up.
+          </p>
 
           {/* PDF Version (Hidden) */}
           <div ref={snapshotRef} className="hidden">
