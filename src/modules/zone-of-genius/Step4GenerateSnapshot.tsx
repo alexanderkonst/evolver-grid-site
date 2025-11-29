@@ -364,18 +364,6 @@ Output ONLY the Markdown content described above. Do not include explanations of
 
             {/* Right Column: Summary & Actions */}
             <div className="space-y-4">
-              {/* Quick Summary */}
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                <h2 className="text-sm font-semibold text-slate-900">
-                  Snapshot in One Glance
-                </h2>
-                <ul className="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-700">
-                  <li>• 3 core talents in action</li>
-                  <li>• Career & contribution sweet spots</li>
-                  <li>• Everyday life alignment ideas for this week</li>
-                </ul>
-              </div>
-
               {/* Download Button */}
               <button
                 onClick={handleDownloadPDF}

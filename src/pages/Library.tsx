@@ -234,7 +234,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8 text-center">
-            <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. If you are new to transformational practices, the recommendation is to start with 5 min breathwork sessions. Enjoy transforming!</BoldText>
+            <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. Enjoy transforming!</BoldText>
           </p>
 
           {/* Help Me Choose Button */}

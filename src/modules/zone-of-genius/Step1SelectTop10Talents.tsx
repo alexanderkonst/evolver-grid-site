@@ -11,6 +11,15 @@ const Step1SelectTop10Talents = () => {
   const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
   const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
+  const [randomizedTalents] = useState(() => {
+    // Randomize talents order on mount
+    const shuffled = [...TALENTS];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  });
 
   useEffect(() => {
     setLocalSelected(selectedTop10TalentIds);
@@ -77,7 +86,7 @@ const Step1SelectTop10Talents = () => {
 
       {/* Talent Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {TALENTS.map((talent) => {
+        {randomizedTalents.map((talent) => {
           const isSelected = localSelected.includes(talent.id);
           return (
             <button
