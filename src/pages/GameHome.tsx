@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
+import { useToast } from "@/hooks/use-toast";
 
 interface GameProfile {
   id: string;
   last_zog_snapshot_id: string | null;
   last_qol_snapshot_id: string | null;
   total_quests_completed: number;
+  last_quest_title: string | null;
 }
 
 interface ZogSnapshot {
@@ -35,13 +38,40 @@ interface QolSnapshot {
   home_stage: number;
 }
 
+interface QuestSuggestion {
+  quest_title: string;
+  practice_type: string;
+  approx_duration_minutes: number;
+  why_it_is_a_good_next_move: string;
+}
+
+const INTENTIONS = [
+  { id: "calm", label: "Calm my nervous system" },
+  { id: "money", label: "Feel clearer about money" },
+  { id: "purpose", label: "Clarify my direction / purpose" },
+  { id: "relationships", label: "Deepen my relationships" },
+  { id: "creativity", label: "Ignite my creativity" },
+  { id: "growth", label: "Grow as a human (general)" },
+];
+
 const GameHome = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState<GameProfile | null>(null);
+  const [profileId, setProfileId] = useState<string | null>(null);
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [previousQolSnapshot, setPreviousQolSnapshot] = useState<QolSnapshot | null>(null);
+  
+  // Next Quest state
+  const [selectedIntention, setSelectedIntention] = useState<string | null>(null);
+  const [isLoadingQuest, setIsLoadingQuest] = useState(false);
+  const [questSuggestion, setQuestSuggestion] = useState<{
+    main: QuestSuggestion;
+    alternatives: QuestSuggestion[];
+  } | null>(null);
+  const [questCompleted, setQuestCompleted] = useState(false);
 
   useEffect(() => {
     loadGameData();
@@ -51,20 +81,18 @@ const GameHome = () => {
     try {
       setIsLoading(true);
       
-      // Get or create profile ID
-      const profileId = await getOrCreateGameProfileId();
+      const id = await getOrCreateGameProfileId();
+      setProfileId(id);
       
-      // Fetch game profile
       const { data: profileData, error: profileError } = await supabase
         .from('game_profiles')
         .select('*')
-        .eq('id', profileId)
+        .eq('id', id)
         .single();
 
       if (profileError) throw profileError;
       setProfile(profileData);
 
-      // Fetch ZoG snapshot if exists
       if (profileData.last_zog_snapshot_id) {
         const { data: zogData, error: zogError } = await supabase
           .from('zog_snapshots')
@@ -84,7 +112,6 @@ const GameHome = () => {
         }
       }
 
-      // Fetch current QoL snapshot if exists
       if (profileData.last_qol_snapshot_id) {
         const { data: currentQolData, error: currentQolError } = await supabase
           .from('qol_snapshots')
@@ -96,11 +123,10 @@ const GameHome = () => {
           setCurrentQolSnapshot(currentQolData);
         }
 
-        // Fetch previous QoL snapshot for comparison
         const { data: allSnapshots, error: allSnapshotsError } = await supabase
           .from('qol_snapshots')
           .select('*')
-          .eq('profile_id', profileId)
+          .eq('profile_id', id)
           .order('created_at', { ascending: false })
           .limit(2);
 
@@ -130,6 +156,27 @@ const GameHome = () => {
     };
   };
 
+  const getLowestDomains = (): string[] => {
+    if (!currentQolSnapshot) return [];
+
+    const domainStages = [
+      { name: "Wealth", value: currentQolSnapshot.wealth_stage },
+      { name: "Health", value: currentQolSnapshot.health_stage },
+      { name: "Happiness", value: currentQolSnapshot.happiness_stage },
+      { name: "Love & Relationships", value: currentQolSnapshot.love_relationships_stage },
+      { name: "Impact", value: currentQolSnapshot.impact_stage },
+      { name: "Growth", value: currentQolSnapshot.growth_stage },
+      { name: "Social Ties", value: currentQolSnapshot.social_ties_stage },
+      { name: "Home", value: currentQolSnapshot.home_stage },
+    ];
+
+    const minValue = Math.min(...domainStages.map(d => d.value));
+    return domainStages
+      .filter(d => d.value === minValue)
+      .slice(0, 2)
+      .map(d => d.name);
+  };
+
   const getLifeSummary = () => {
     if (!currentQolSnapshot) return "";
 
@@ -147,11 +194,10 @@ const GameHome = () => {
     const minValue = Math.min(...domainStages.map(d => d.value));
     const lowestDomains = domainStages.filter(d => d.value === minValue).slice(0, 2);
 
-    // Check if all domains are equal
     const allEqual = domainStages.every(d => d.value === minValue);
     
     if (allEqual) {
-      return "Your life is fairly balanced. You can choose any domain that feels most alive for you right now.";
+      return "Your world is fairly even right now. You can choose any area that feels most alive for you.";
     }
 
     if (lowestDomains.length === 1) {
@@ -164,6 +210,83 @@ const GameHome = () => {
   const hasLeveledUp = (domainStage: number, domainKey: keyof QolSnapshot) => {
     if (!previousQolSnapshot || typeof previousQolSnapshot[domainKey] !== 'number') return false;
     return domainStage > (previousQolSnapshot[domainKey] as number);
+  };
+
+  const handleIntentionSelect = async (intention: string) => {
+    setSelectedIntention(intention);
+    setQuestSuggestion(null);
+    setQuestCompleted(false);
+    setIsLoadingQuest(true);
+
+    try {
+      const practices = LIBRARY_ITEMS.map(item => ({
+        title: item.title,
+        type: item.categoryId,
+        duration_minutes: item.durationMinutes || 10,
+        description: item.teacher ? `by ${item.teacher}` : undefined,
+      }));
+
+      const context = {
+        lowestDomains: getLowestDomains(),
+        archetypeTitle: zogSnapshot?.archetype_title,
+        corePattern: zogSnapshot?.core_pattern,
+      };
+
+      const { data, error } = await supabase.functions.invoke('suggest-next-quest', {
+        body: { intention, practices, context }
+      });
+
+      if (error) throw error;
+      
+      setQuestSuggestion(data);
+    } catch (error) {
+      console.error('Error fetching quest suggestion:', error);
+      toast({
+        title: "Couldn't find a quest",
+        description: "Please try again or visit the Library directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoadingQuest(false);
+    }
+  };
+
+  const handleQuestComplete = async () => {
+    if (!profileId || !questSuggestion) return;
+
+    try {
+      const { error } = await supabase
+        .from('game_profiles')
+        .update({
+          total_quests_completed: (profile?.total_quests_completed || 0) + 1,
+          last_quest_title: questSuggestion.main.quest_title,
+          last_quest_completed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', profileId);
+
+      if (error) throw error;
+
+      setQuestCompleted(true);
+      
+      // Reload profile data to update quest count
+      const { data: updatedProfile } = await supabase
+        .from('game_profiles')
+        .select('*')
+        .eq('id', profileId)
+        .single();
+      
+      if (updatedProfile) {
+        setProfile(updatedProfile);
+      }
+    } catch (error) {
+      console.error('Error completing quest:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save quest completion. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (isLoading) {
@@ -183,7 +306,6 @@ const GameHome = () => {
       
       <div className="pt-24 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
-          {/* Back Link */}
           <Link to="/" className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />
             <BoldText>BACK TO HOME</BoldText>
@@ -191,7 +313,7 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-12">
-            <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
+            <p className="text-xs uppercase tracking-widest text-slate-500 mb-3">
               Game of You · Character Home
             </p>
             <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
@@ -199,8 +321,8 @@ const GameHome = () => {
             </h1>
             <p className="text-base text-slate-600 max-w-2xl mx-auto">
               {hasAnyData 
-                ? "You've already started playing. Let's see where you are now."
-                : "This game turns your life into a character, a world, and a quest."}
+                ? "You're already playing. Let's see who you are and where you are now."
+                : "This game turns your life into a character, a world, and one next move."}
             </p>
           </div>
 
@@ -212,23 +334,23 @@ const GameHome = () => {
                   <Sparkles className="w-8 h-8 text-slate-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                  Create Your Character
+                  Start Your Character
                 </h2>
-                <p className="text-base text-slate-600 mb-8">
-                  In two short steps, you'll see your unique genius and a clear snapshot of your life.
+                <p className="text-base text-slate-600 mb-8 leading-relaxed">
+                  First, we'll discover your unique Zone of Genius. Then we'll map your life across eight domains. From there, the game begins.
                 </p>
                 <Button
                   size="lg"
                   onClick={() => navigate("/zone-of-genius?fromGame=1")}
                   className="w-full sm:w-auto"
                 >
-                  <BoldText className="uppercase">Start: Discover My Zone of Genius</BoldText>
+                  <BoldText className="uppercase">Begin: Discover My Zone of Genius</BoldText>
                 </Button>
               </div>
             </div>
           )}
 
-          {/* Character Section */}
+          {/* Character & World Sections */}
           {hasAnyData && (
             <div className="space-y-8">
               {/* Your Character */}
@@ -239,7 +361,7 @@ const GameHome = () => {
                   </h2>
                   
                   <div className="mb-4">
-                    <p className="text-sm uppercase tracking-wider text-slate-500 mb-1">Archetype</p>
+                    <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Archetype</p>
                     <p className="text-2xl font-bold text-slate-900">
                       {zogSnapshot.archetype_title}
                     </p>
@@ -249,19 +371,24 @@ const GameHome = () => {
                     {zogSnapshot.core_pattern}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {zogSnapshot.top_three_talents.map((talent, idx) => (
-                      <span
-                        key={idx}
-                        className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white"
-                      >
-                        {talent}
-                      </span>
-                    ))}
+                  <div className="mb-4">
+                    <p className="text-xs uppercase tracking-wider text-slate-500 mb-3">
+                      Top talents in your Zone of Genius
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {zogSnapshot.top_three_talents.map((talent, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white"
+                        >
+                          {talent}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
-                  <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-4">
-                    This is the flavor of genius you radiate when you stop pretending to be someone else.
+                  <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-4 mt-6">
+                    This is the pattern of genius you radiate when you stop performing and start being yourself.
                   </p>
                 </div>
               ) : (
@@ -287,7 +414,6 @@ const GameHome = () => {
                     Your World Right Now
                   </h2>
 
-                  {/* 8 Domain Cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
                       { key: 'wealth_stage', id: 'wealth' },
@@ -311,7 +437,7 @@ const GameHome = () => {
                           {leveledUp && (
                             <div className="absolute top-2 right-2">
                               <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-800">
-                                ▲ Level up
+                                ▲ Level up since last time
                               </span>
                             </div>
                           )}
@@ -326,7 +452,6 @@ const GameHome = () => {
                     })}
                   </div>
 
-                  {/* Summary */}
                   <div className="rounded-2xl border border-slate-300 bg-slate-50 p-4">
                     <p className="text-sm text-slate-700 italic">
                       {getLifeSummary()}
@@ -348,13 +473,146 @@ const GameHome = () => {
                   </Button>
                 </div>
               )}
+
+              {/* Your Next Quest */}
+              <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
+                <h2 className="text-xl font-bold text-slate-900 mb-4">
+                  Your Next Quest
+                </h2>
+
+                {profile && profile.total_quests_completed > 0 && (
+                  <p className="text-sm text-slate-600 mb-4">
+                    You've completed {profile.total_quests_completed === 1 ? '1 quest' : `${profile.total_quests_completed} quests`} so far.
+                    {profile.last_quest_title && (
+                      <span className="block mt-1">
+                        Last one: "{profile.last_quest_title}".
+                      </span>
+                    )}
+                  </p>
+                )}
+
+                {!currentQolSnapshot && (
+                  <p className="text-sm text-slate-600 mb-4 bg-slate-50 p-3 rounded-lg">
+                    For more tailored quests,{' '}
+                    <button
+                      onClick={() => navigate("/quality-of-life-map/assessment?fromGame=1")}
+                      className="underline hover:no-underline"
+                    >
+                      map your life snapshot
+                    </button>
+                    .
+                  </p>
+                )}
+
+                <p className="text-base font-medium text-slate-900 mb-4">
+                  What do you want to lean into next?
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {INTENTIONS.map(intent => (
+                    <button
+                      key={intent.id}
+                      onClick={() => handleIntentionSelect(intent.label)}
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                        selectedIntention === intent.label
+                          ? 'bg-slate-900 text-white'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                    >
+                      {intent.label}
+                    </button>
+                  ))}
+                </div>
+
+                {isLoadingQuest && (
+                  <div className="flex items-center justify-center py-8 text-slate-600">
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    <span>Finding a quest for you…</span>
+                  </div>
+                )}
+
+                {questSuggestion && !isLoadingQuest && (
+                  <div className="space-y-6">
+                    {/* Main Quest */}
+                    <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-6">
+                      <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
+                        Main Quest
+                      </p>
+                      <h3 className="text-xl font-bold text-slate-900 mb-2">
+                        {questSuggestion.main.quest_title}
+                      </h3>
+                      <p className="text-sm text-slate-600 mb-3">
+                        {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min
+                      </p>
+                      <p className="text-base text-slate-700 leading-relaxed mb-4">
+                        {questSuggestion.main.why_it_is_a_good_next_move}
+                      </p>
+                      
+                      {!questCompleted ? (
+                        <Button
+                          onClick={handleQuestComplete}
+                          size="sm"
+                          className="w-full sm:w-auto"
+                        >
+                          I completed this quest today
+                        </Button>
+                      ) : (
+                        <div className="flex items-center gap-2 text-emerald-700">
+                          <CheckCircle2 className="w-5 h-5" />
+                          <p className="text-sm italic">
+                            Beautiful. That's one more conscious move in the direction of the life you're building.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Alternatives */}
+                    {questSuggestion.alternatives && questSuggestion.alternatives.length > 0 && (
+                      <div>
+                        <p className="text-xs uppercase tracking-wider text-slate-500 mb-3">
+                          Other options that would also work
+                        </p>
+                        <div className="space-y-3">
+                          {questSuggestion.alternatives.map((alt, idx) => (
+                            <div key={idx} className="rounded-xl border border-slate-200 bg-white p-4">
+                              <h4 className="text-base font-semibold text-slate-900 mb-1">
+                                {alt.quest_title}
+                              </h4>
+                              <p className="text-xs text-slate-600 mb-2">
+                                {alt.practice_type} · ~{alt.approx_duration_minutes} min
+                              </p>
+                              <p className="text-sm text-slate-700">
+                                {alt.why_it_is_a_good_next_move}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {!questSuggestion && !isLoadingQuest && selectedIntention && (
+                  <div className="text-center py-8">
+                    <p className="text-slate-600 mb-4">
+                      I couldn't find a quest right now. Please try again or visit the Library directly.
+                    </p>
+                    <Button
+                      variant="outline"
+                      onClick={() => navigate("/library")}
+                    >
+                      Open Library
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
           {/* Footer: Other Moves */}
           {hasAnyData && (
             <div className="mt-16 pt-8 border-t border-slate-200">
-              <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">
+              <h3 className="text-base font-semibold text-slate-900 mb-4 text-center">
                 Other moves
               </h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
