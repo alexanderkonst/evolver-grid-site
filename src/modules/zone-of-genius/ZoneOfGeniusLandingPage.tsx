@@ -341,7 +341,7 @@ const ZoneOfGeniusLandingPage = () => {
             <div className="space-y-4 text-foreground/90 leading-relaxed">
               <p>The free snapshot gives you clarity.</p>
               <p>If you want support turning that clarity into a specific decision or pivot, you can book a Career Re-Ignition Session with me.</p>
-              <p>In 60–90 minutes we will:</p>
+              <p>In 90 minutes we will:</p>
               <ul className="space-y-2 pl-6">
                 <li className="flex items-start gap-3">
                   <span className="text-primary">•</span>
@@ -369,7 +369,7 @@ const ZoneOfGeniusLandingPage = () => {
                 Explore a Career Re-Ignition Session
                 <ExternalLink size={18} />
               </a>
-              <p className="text-sm text-muted-foreground mt-3">$297 · 60–90 minutes</p>
+              <p className="text-sm text-muted-foreground mt-3">$297 · 90 minutes</p>
             </div>
           </section>
 
