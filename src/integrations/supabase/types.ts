@@ -28,6 +28,7 @@ export type Database = {
           longest_streak_days: number
           total_quests_completed: number
           updated_at: string
+          user_id: string | null
           xp_body: number
           xp_heart: number
           xp_mind: number
@@ -48,6 +49,7 @@ export type Database = {
           longest_streak_days?: number
           total_quests_completed?: number
           updated_at?: string
+          user_id?: string | null
           xp_body?: number
           xp_heart?: number
           xp_mind?: number
@@ -68,6 +70,7 @@ export type Database = {
           longest_streak_days?: number
           total_quests_completed?: number
           updated_at?: string
+          user_id?: string | null
           xp_body?: number
           xp_heart?: number
           xp_mind?: number
