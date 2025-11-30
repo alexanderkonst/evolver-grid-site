@@ -95,6 +95,45 @@ export type Database = {
           },
         ]
       }
+      player_upgrades: {
+        Row: {
+          completed_at: string | null
+          id: string
+          profile_id: string
+          status: string
+          upgrade_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          profile_id: string
+          status?: string
+          upgrade_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          profile_id?: string
+          status?: string
+          upgrade_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "player_upgrades_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "player_upgrades_upgrade_id_fkey"
+            columns: ["upgrade_id"]
+            isOneToOne: false
+            referencedRelation: "upgrade_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       qol_snapshots: {
         Row: {
           created_at: string
@@ -191,6 +230,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      upgrade_catalog: {
+        Row: {
+          branch: string
+          code: string
+          created_at: string
+          description: string
+          id: string
+          is_paid: boolean
+          path_slug: string
+          short_label: string
+          sort_order: number
+          title: string
+          xp_reward: number
+        }
+        Insert: {
+          branch: string
+          code: string
+          created_at?: string
+          description: string
+          id?: string
+          is_paid?: boolean
+          path_slug: string
+          short_label: string
+          sort_order?: number
+          title: string
+          xp_reward?: number
+        }
+        Update: {
+          branch?: string
+          code?: string
+          created_at?: string
+          description?: string
+          id?: string
+          is_paid?: boolean
+          path_slug?: string
+          short_label?: string
+          sort_order?: number
+          title?: string
+          xp_reward?: number
+        }
+        Relationships: []
       }
       zog_snapshots: {
         Row: {
