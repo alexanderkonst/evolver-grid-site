@@ -51,100 +51,100 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 relative">
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center transition-all duration-300 z-10 logo-glow hover:logo-glow-hover"
-          >
-            <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
-          </Link>
+        <div className="flex justify-between items-center h-20">
+          {/* Left: Logo + Navigation */}
+          <div className="flex items-center gap-8">
+            <Link 
+              to="/" 
+              className="flex items-center transition-all duration-300 logo-glow hover:logo-glow-hover"
+            >
+              <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
+            </Link>
 
-          {/* Header Image - Left Aligned after Logo */}
-          <div 
-            className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none ml-4"
-          >
-            <img src={headerImage} alt="" className="h-12 w-auto opacity-80" style={{ maxWidth: '600px', objectFit: 'contain' }} />
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                link.isScroll ? (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById('modules');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ) : link.isExternal ? (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    activeClassName="text-foreground"
+                  >
+                    {link.label}
+                  </NavLink>
+                )
+              ))}
+            </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 relative z-10">
-            {navLinks.map((link) => (
-              link.isScroll ? (
-                <a
-                  key={link.to}
-                  href={link.to}
-                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById('modules');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {link.label}
-                </a>
-              ) : link.isExternal ? (
-                <a
-                  key={link.to}
-                  href={link.to}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </a>
+          {/* Right: Auth Status & Mobile Menu Button */}
+          <div className="flex items-center gap-2">
+            {/* Auth Status - Desktop */}
+            <div className="hidden md:flex items-center">
+              {user ? (
+                <div className="flex items-center gap-3 pl-4 border-l border-border">
+                  <span className="text-xs text-muted-foreground">
+                    {user.email}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleLogout}
+                    className="h-8 text-xs"
+                  >
+                    <LogOut className="h-3 w-3 mr-1" />
+                    Log out
+                  </Button>
+                </div>
               ) : (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  activeClassName="text-foreground"
-                >
-                  {link.label}
-                </NavLink>
-              )
-            ))}
-            
-            {/* Auth Status */}
-            {user ? (
-              <div className="flex items-center gap-3 pl-4 border-l border-border">
-                <span className="text-xs text-muted-foreground">
-                  {user.email}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleLogout}
-                  className="h-8 text-xs"
-                >
-                  <LogOut className="h-3 w-3 mr-1" />
-                  Log out
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 pl-4 border-l border-border">
-                <span className="text-xs text-muted-foreground">Playing as guest</span>
-                <Button
-                  variant="default"
-                  size="sm"
-                  asChild
-                  className="h-8 text-xs"
-                >
-                  <Link to="/auth">Log in / Sign up</Link>
-                </Button>
-              </div>
-            )}
-          </div>
+                <div className="flex items-center gap-2 pl-4 border-l border-border">
+                  <span className="text-xs text-muted-foreground">Playing as guest</span>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    asChild
+                    className="h-8 text-xs"
+                  >
+                    <Link to="/auth">Log in / Sign up</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
       </div>
 
