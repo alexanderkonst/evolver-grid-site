@@ -1,27 +1,48 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
 import { TALENTS } from './talents';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, ArrowLeft } from 'lucide-react';
 
 const Step0SwipeTalents = () => {
   const navigate = useNavigate();
   const { setYesTalentIds } = useZoneOfGenius();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [yesTalents, setYesTalents] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<('yes' | 'no' | null)[]>(new Array(TALENTS.length).fill(null));
   const [isComplete, setIsComplete] = useState(false);
+  
+  // Swipe detection
+  const cardRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const currentTalent = TALENTS[currentIndex];
   const progressPercent = ((currentIndex + 1) / TALENTS.length) * 100;
+  const currentAnswer = answers[currentIndex];
+  
+  // Derive yesTalents from answers array
+  const yesTalents = answers.filter((answer, idx) => answer === 'yes').map((_, idx) => {
+    const yesIndices: number[] = [];
+    answers.forEach((answer, i) => {
+      if (answer === 'yes') yesIndices.push(TALENTS[i].id);
+    });
+    return yesIndices;
+  }).flat();
+  const yesTalentCount = yesTalents.length;
 
   const handleYes = () => {
-    setYesTalents(prev => [...prev, currentTalent.id]);
+    const newAnswers = [...answers];
+    newAnswers[currentIndex] = 'yes';
+    setAnswers(newAnswers);
     moveToNext();
   };
 
   const handleNo = () => {
+    const newAnswers = [...answers];
+    newAnswers[currentIndex] = 'no';
+    setAnswers(newAnswers);
     moveToNext();
   };
 
@@ -33,6 +54,42 @@ const Step0SwipeTalents = () => {
     }
   };
 
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  // Swipe gesture detection
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swiped left = "Not really me"
+        handleNo();
+      } else {
+        // Swiped right = "This feels like me"
+        handleYes();
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Reset touch positions when index changes
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  }, [currentIndex]);
+
   const handleContinue = () => {
     setYesTalentIds(yesTalents);
     navigate('/zone-of-genius/assessment/step-1');
@@ -40,7 +97,7 @@ const Step0SwipeTalents = () => {
 
   const handleRescan = () => {
     setCurrentIndex(0);
-    setYesTalents([]);
+    setAnswers(new Array(TALENTS.length).fill(null));
     setIsComplete(false);
   };
 
@@ -53,13 +110,13 @@ const Step0SwipeTalents = () => {
           </h2>
           <p className="text-base sm:text-lg text-foreground mb-2">
             You said <span className="font-bold text-primary">YES</span> to{' '}
-            <span className="font-bold">{yesTalents.length}</span> talents.
+            <span className="font-bold">{yesTalentCount}</span> talents.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground mb-6">
             Next, you'll choose your Top 10 from these.
           </p>
           
-          {yesTalents.length < 10 && (
+          {yesTalentCount < 10 && (
             <div className="bg-muted/50 border border-border rounded-lg p-4 mb-6 text-left">
               <p className="text-sm text-muted-foreground">
                 You selected fewer than 10 talents. That's okay — you might have a very focused pattern.
@@ -92,13 +149,29 @@ const Step0SwipeTalents = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Back Button */}
+      {currentIndex > 0 && (
+        <div className="mb-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleBack}
+            className="gap-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Button>
+        </div>
+      )}
+
       {/* Instructions */}
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
           You'll see each talent one by one.<br />
-          Tap <strong>"This feels like me"</strong> if this is a natural part of you — something you're good at, 
+          <span className="sm:hidden">Swipe left for "Not really me", swipe right for "This feels like me".</span>
+          <span className="hidden sm:inline">Tap <strong>"This feels like me"</strong> if this is a natural part of you — something you're good at, 
           drawn to, or that people already recognize in you.<br />
-          Use <strong>"Not really me"</strong> otherwise.
+          Use <strong>"Not really me"</strong> otherwise.</span>
         </p>
         <p className="text-xs sm:text-sm text-muted-foreground">
           <strong>Don't mark what you wish you were. Mark what you already are.</strong>
@@ -115,20 +188,35 @@ const Step0SwipeTalents = () => {
             Talent {currentIndex + 1} of {TALENTS.length}
           </span>
           <span className="text-xs sm:text-sm text-primary font-semibold">
-            Yes selected: {yesTalents.length}
+            Yes selected: {yesTalentCount}
           </span>
         </div>
         <Progress value={progressPercent} className="h-2" />
       </div>
 
-      {/* Talent Card */}
-      <div className="bg-card border-2 border-primary/20 rounded-lg p-6 sm:p-8 mb-6 sm:mb-8 shadow-lg">
+      {/* Talent Card with Swipe Support */}
+      <div 
+        ref={cardRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        className="bg-card border-2 border-primary/20 rounded-lg p-6 sm:p-8 mb-6 sm:mb-8 shadow-lg touch-pan-y select-none"
+      >
         <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4 text-center">
           {currentTalent.name}
         </h3>
         <p className="text-sm sm:text-base text-foreground leading-relaxed text-center">
           {currentTalent.description}
         </p>
+        
+        {/* Visual feedback for previously answered talents */}
+        {currentAnswer && (
+          <div className="mt-4 text-center">
+            <span className={`text-xs font-semibold ${currentAnswer === 'yes' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Previously selected: {currentAnswer === 'yes' ? 'This feels like me' : 'Not really me'}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Action Buttons */}
@@ -137,7 +225,7 @@ const Step0SwipeTalents = () => {
           variant="outline"
           size="lg"
           onClick={handleNo}
-          className="flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2"
+          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2 ${currentAnswer === 'no' ? 'border-primary/50' : ''}`}
         >
           <ThumbsDown className="w-5 h-5" />
           Not really me
@@ -145,12 +233,16 @@ const Step0SwipeTalents = () => {
         <Button
           size="lg"
           onClick={handleYes}
-          className="flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2"
+          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2 ${currentAnswer === 'yes' ? 'ring-2 ring-primary' : ''}`}
         >
           <ThumbsUp className="w-5 h-5" />
           This feels like me
         </Button>
       </div>
+      
+      <p className="text-xs text-center text-muted-foreground mt-4 sm:hidden">
+        💡 Swipe left or right to answer
+      </p>
     </div>
   );
 };
