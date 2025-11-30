@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
 import { TALENTS } from './talents';
@@ -9,8 +9,19 @@ import { ThumbsUp, ThumbsDown, ArrowLeft } from 'lucide-react';
 const Step0SwipeTalents = () => {
   const navigate = useNavigate();
   const { setYesTalentIds } = useZoneOfGenius();
+  
+  // Randomize talent order once on mount
+  const shuffledTalents = useMemo(() => {
+    const talents = [...TALENTS];
+    for (let i = talents.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [talents[i], talents[j]] = [talents[j], talents[i]];
+    }
+    return talents;
+  }, []);
+  
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<('yes' | 'no' | null)[]>(new Array(TALENTS.length).fill(null));
+  const [answers, setAnswers] = useState<('yes' | 'no' | null)[]>(new Array(shuffledTalents.length).fill(null));
   const [isComplete, setIsComplete] = useState(false);
   
   // Swipe detection
@@ -18,18 +29,17 @@ const Step0SwipeTalents = () => {
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
 
-  const currentTalent = TALENTS[currentIndex];
-  const progressPercent = ((currentIndex + 1) / TALENTS.length) * 100;
+  const currentTalent = shuffledTalents[currentIndex];
+  const progressPercent = ((currentIndex + 1) / shuffledTalents.length) * 100;
   const currentAnswer = answers[currentIndex];
   
-  // Derive yesTalents from answers array
-  const yesTalents = answers.filter((answer, idx) => answer === 'yes').map((_, idx) => {
-    const yesIndices: number[] = [];
-    answers.forEach((answer, i) => {
-      if (answer === 'yes') yesIndices.push(TALENTS[i].id);
-    });
-    return yesIndices;
-  }).flat();
+  // Derive yesTalents from answers array using shuffled order
+  const yesTalents: number[] = [];
+  answers.forEach((answer, i) => {
+    if (answer === 'yes') {
+      yesTalents.push(shuffledTalents[i].id);
+    }
+  });
   const yesTalentCount = yesTalents.length;
 
   const handleYes = () => {
@@ -47,7 +57,7 @@ const Step0SwipeTalents = () => {
   };
 
   const moveToNext = () => {
-    if (currentIndex < TALENTS.length - 1) {
+    if (currentIndex < shuffledTalents.length - 1) {
       setCurrentIndex(prev => prev + 1);
     } else {
       setIsComplete(true);
@@ -97,7 +107,7 @@ const Step0SwipeTalents = () => {
 
   const handleRescan = () => {
     setCurrentIndex(0);
-    setAnswers(new Array(TALENTS.length).fill(null));
+    setAnswers(new Array(shuffledTalents.length).fill(null));
     setIsComplete(false);
   };
 
@@ -185,7 +195,7 @@ const Step0SwipeTalents = () => {
       <div className="mb-6 sm:mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-xs sm:text-sm text-muted-foreground">
-            Talent {currentIndex + 1} of {TALENTS.length}
+            Talent {currentIndex + 1} of {shuffledTalents.length}
           </span>
           <span className="text-xs sm:text-sm text-primary font-semibold">
             Yes selected: {yesTalentCount}
