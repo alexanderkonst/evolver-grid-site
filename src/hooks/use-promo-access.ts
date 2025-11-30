@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 // Shared promo codes for all products
 export const VALID_PROMO_CODES = [
-  "AIUPGRADEGIFT",
-  "GIFT100",
+  "GIFTED",         // Universal promo code across entire website
+  "AIUPGRADEGIFT",  // AI Upgrade specific code
 ];
 
 export const validatePromoCode = (code: string): boolean => {
