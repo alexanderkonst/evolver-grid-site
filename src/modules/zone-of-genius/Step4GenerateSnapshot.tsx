@@ -16,6 +16,7 @@ const Step4GenerateSnapshot = () => {
     orderedTalentIds,
     snapshotMarkdown,
     setSnapshotMarkdown,
+    resetAssessment,
   } = useZoneOfGenius();
 
   const [isGenerating, setIsGenerating] = useState(false);
@@ -282,8 +283,8 @@ Output ONLY the Markdown content described above. Do not include explanations of
 
   const handleStartNew = () => {
     if (confirm("Are you sure you want to start a new assessment? Your current progress will be lost.")) {
-      setSnapshotMarkdown(null);
-      navigate("/zone-of-genius/assessment/step-1");
+      resetAssessment();
+      navigate("/zone-of-genius/assessment/step-0");
     }
   };
 

@@ -9,10 +9,11 @@ const ZoneOfGeniusAssessmentLayout = () => {
   const location = useLocation();
   
   const steps = [
-    { number: 1, label: "Select Top 10 talents", path: "/zone-of-genius/assessment/step-1" },
-    { number: 2, label: "Narrow to Top 3 core talents", path: "/zone-of-genius/assessment/step-2" },
-    { number: 3, label: "Order your talents", path: "/zone-of-genius/assessment/step-3" },
-    { number: 4, label: "Get your Zone of Genius Snapshot", path: "/zone-of-genius/assessment/step-4" },
+    { number: 1, label: "Quick Scan – Swipe Talents", path: "/zone-of-genius/assessment/step-0" },
+    { number: 2, label: "Choose Your Top 10 Talents", path: "/zone-of-genius/assessment/step-1" },
+    { number: 3, label: "Choose Your Top 3 Core Talents", path: "/zone-of-genius/assessment/step-2" },
+    { number: 4, label: "Order Your Top 3", path: "/zone-of-genius/assessment/step-3" },
+    { number: 5, label: "Your Zone of Genius Snapshot", path: "/zone-of-genius/assessment/step-4" },
   ];
 
   const currentStepIndex = steps.findIndex(step => location.pathname.includes(step.path));

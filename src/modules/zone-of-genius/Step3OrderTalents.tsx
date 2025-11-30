@@ -78,10 +78,16 @@ const Step3OrderTalents = () => {
     <div className="space-y-8">
       <div className="text-center space-y-3">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Step 3: Arrange Your Talents in Order of Use
+          Order Your Top 3
         </h2>
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          Drag and drop your talents or use the arrow buttons to arrange them <BoldText>IN THE ORDER YOU TYPICALLY APPLY THEM IN YOUR LIFE</BoldText>. The first talent should be the one you use <BoldText>MOST NATURALLY AND FREQUENTLY</BoldText>.
+        <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-2">
+          Put your 3 core talents in order, from <strong>most defining</strong> (#1) to third (#3).
+        </p>
+        <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+          Arrange them by how <BoldText>YOU TYPICALLY APPLY THEM IN YOUR LIFE</BoldText> — what you use <BoldText>MOST NATURALLY AND FREQUENTLY</BoldText>.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2">
+          You can drag talents or use the arrow buttons to reorder them.
         </p>
       </div>
 
@@ -144,7 +150,7 @@ const Step3OrderTalents = () => {
           onClick={handleBack}
           className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
         >
-          Back to Step 2
+          Back to Step 3
         </button>
         <button
           onClick={handleContinue}
@@ -164,7 +170,7 @@ const Step3OrderTalents = () => {
             onClick={handleBack}
             className="text-xs px-3 py-2 rounded-full border border-border bg-background hover:bg-muted transition-colors"
           >
-            Back to Step 2
+            Back to Step 3
           </button>
         </div>
         <button

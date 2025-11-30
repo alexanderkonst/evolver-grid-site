@@ -51,10 +51,10 @@ const Step2SelectTop3CoreTalents = () => {
     <div className="space-y-8">
       <div className="text-center space-y-3">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Step 2: Narrow Down to Your Top 3 Core Talents
+          Choose Your Top 3 Core Talents
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From your selected talents, choose the 3 that feel like your absolute strongest abilities — the ones you can't not use.
+          From your Top 10, choose the <strong>3 talents</strong> that feel most essential — the ones you'd keep even if you had to drop the rest.
         </p>
       </div>
 
@@ -110,7 +110,7 @@ const Step2SelectTop3CoreTalents = () => {
           onClick={handleBack}
           className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
         >
-          Back to Step 1
+          Back to Step 2
         </button>
         <button
           onClick={handleContinue}
@@ -124,7 +124,7 @@ const Step2SelectTop3CoreTalents = () => {
             color: 'white'
           }}
         >
-          Continue to Step 3
+          Continue to Step 4
         </button>
       </div>
 
@@ -158,7 +158,7 @@ const Step2SelectTop3CoreTalents = () => {
             color: 'white'
           }}
         >
-          Continue to Step 3
+          Continue to Step 4
         </button>
       </div>
 
