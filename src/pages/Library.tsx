@@ -13,6 +13,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import libraryLogo from "@/assets/library-logo.png";
 import BoldText from "@/components/BoldText";
+import { markPracticeDone } from "@/lib/practiceSystem";
+import { CheckCircle2 } from "lucide-react";
 
 type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
@@ -23,6 +25,7 @@ const Library = () => {
   const [search, setSearch] = useState("");
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
+  const [markingDone, setMarkingDone] = useState<string | null>(null);
   
   // Intent advisor state
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -34,6 +37,24 @@ const Library = () => {
     item: LibraryItem;
     explanation: string;
   }> | null>(null);
+
+  const handleMarkAsDone = async (item: LibraryItem, e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    setMarkingDone(item.id);
+
+    const result = await markPracticeDone(item.id, item.primaryPath);
+
+    if (result.success) {
+      toast.success(result.message || "Practice logged. +10 XP");
+    } else {
+      toast.error(result.error || "Failed to log practice");
+    }
+
+    setMarkingDone(null);
+  };
 
   const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter | LengthChoice): boolean => {
     if (filter === "all" || filter === "any") return true;
@@ -444,40 +465,54 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           {filteredItems.length > 0 ? (
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredItems.map(item => (
-                <button
+                <div
                   key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className="flex flex-col rounded-xl border border-border bg-card text-left shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden group"
+                  className="flex flex-col rounded-xl border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden"
                 >
-                  <div className="relative w-full aspect-video overflow-hidden">
-                    <img
-                      src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
-                      alt={item.title}
-                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                  </div>
-                  <div className="p-4 flex flex-col gap-2">
-                    <div className="text-sm font-semibold text-foreground line-clamp-2">
-                      {item.title}
+                  <button
+                    onClick={() => setSelectedItem(item)}
+                    className="flex flex-col text-left group"
+                  >
+                    <div className="relative w-full aspect-video overflow-hidden">
+                      <img
+                        src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
+                        alt={item.title}
+                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                     </div>
-                    {item.teacher && (
-                      <div className="text-xs text-muted-foreground">
-                        {item.teacher}
+                    <div className="p-4 flex flex-col gap-2">
+                      <div className="text-sm font-semibold text-foreground line-clamp-2">
+                        {item.title}
                       </div>
-                    )}
-                    {(() => {
-                      const durationText =
-                        item.durationLabel ??
-                        (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
-                      return durationText ? (
+                      {item.teacher && (
                         <div className="text-xs text-muted-foreground">
-                          {durationText}
+                          {item.teacher}
                         </div>
-                      ) : null;
-                    })()}
+                      )}
+                      {(() => {
+                        const durationText =
+                          item.durationLabel ??
+                          (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
+                        return durationText ? (
+                          <div className="text-xs text-muted-foreground">
+                            {durationText}
+                          </div>
+                        ) : null;
+                      })()}
+                    </div>
+                  </button>
+                  <div className="px-4 pb-4">
+                    <button
+                      onClick={(e) => handleMarkAsDone(item, e)}
+                      disabled={markingDone === item.id}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-all disabled:opacity-50 min-h-[44px]"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                      {markingDone === item.id ? "Logging..." : "Mark as done"}
+                    </button>
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           ) : (
@@ -519,10 +554,18 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
               />
             </div>
             {selectedItem.teacher && (
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-4">
                 Guided by {selectedItem.teacher}
               </p>
             )}
+            <button
+              onClick={() => handleMarkAsDone(selectedItem)}
+              disabled={markingDone === selectedItem.id}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-all disabled:opacity-50 min-h-[44px]"
+            >
+              <CheckCircle2 className="w-4 h-4" />
+              {markingDone === selectedItem.id ? "Logging..." : "Mark as done"}
+            </button>
           </div>
         </div>
       )}

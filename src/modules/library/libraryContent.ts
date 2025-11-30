@@ -21,6 +21,8 @@ export type ExperienceIntent =
 
 export type DevelopmentPath = "body" | "mind" | "heart" | "spirit" | "uniqueness_work";
 
+export type QolDomain = "wealth" | "health" | "happiness" | "love_relationships" | "impact" | "growth" | "social_ties" | "home";
+
 export type LibraryItem = {
   id: string;
   categoryId: LibraryCategoryId;
@@ -33,6 +35,7 @@ export type LibraryItem = {
   intents?: ExperienceIntent[];
   primaryPath?: DevelopmentPath;
   secondaryPath?: DevelopmentPath;
+  primaryDomain?: QolDomain;
 };
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -80,7 +83,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "5 min",
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "feel-better-fast-energy-boost",
@@ -92,7 +96,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "5 min",
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter", "activation"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "heart-coherence-breathing",
@@ -105,7 +110,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart"
+    secondaryPath: "heart",
+    primaryDomain: "health"
   },
   {
     id: "energizing-breath-of-fire",
@@ -117,7 +123,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "5 min",
     durationMinutes: 5,
     intents: ["breathwork", "activation"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "vagus-nerve-reset-anxiety",
@@ -130,7 +137,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart"
+    secondaryPath: "heart",
+    primaryDomain: "health"
   },
   {
     id: "feel-high-naturally",
@@ -141,7 +149,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "5 min",
     durationMinutes: 5,
     intents: ["breathwork", "activation", "feelBetter"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "happiness"
   },
   {
     id: "regulate-nervous-system-8min",
@@ -153,7 +162,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "8 min",
     durationMinutes: 8,
     intents: ["breathwork", "feelBetter"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "feel-better",
@@ -165,7 +175,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "8 min",
     durationMinutes: 8,
     intents: ["breathwork", "feelBetter"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "happiness"
   },
   {
     id: "boost-life-force-energy",
@@ -178,7 +189,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 8,
     intents: ["breathwork", "activation"],
     primaryPath: "body",
-    secondaryPath: "spirit"
+    secondaryPath: "spirit",
+    primaryDomain: "health"
   },
   {
     id: "energy-1",
@@ -190,7 +202,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "8 min",
     durationMinutes: 8,
     intents: ["breathwork", "activation"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "energy-to-start-your-day",
@@ -202,7 +215,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "8 min",
     durationMinutes: 8,
     intents: ["breathwork", "activation"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "heart-coherence-stress-relief",
@@ -215,7 +229,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 10,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart"
+    secondaryPath: "heart",
+    primaryDomain: "health"
   },
   {
     id: "energy-2",
@@ -227,7 +242,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "10 min",
     durationMinutes: 10,
     intents: ["breathwork", "activation"],
-    primaryPath: "body"
+    primaryPath: "body",
+    primaryDomain: "health"
   },
   {
     id: "rewire-brain-15min",
@@ -240,7 +256,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 15,
     intents: ["breathwork", "activation"],
     primaryPath: "body",
-    secondaryPath: "mind"
+    secondaryPath: "mind",
+    primaryDomain: "health"
   },
   {
     id: "chakra-activation",
@@ -253,7 +270,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 15,
     intents: ["activation", "breathwork"],
     primaryPath: "body",
-    secondaryPath: "spirit"
+    secondaryPath: "spirit",
+    primaryDomain: "health"
   },
   {
     id: "deep-release",
@@ -266,7 +284,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 15,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart"
+    secondaryPath: "heart",
+    primaryDomain: "happiness"
   },
   {
     id: "clarity-focus-20min",
@@ -279,7 +298,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["breathwork", "activation"],
     primaryPath: "body",
-    secondaryPath: "mind"
+    secondaryPath: "mind",
+    primaryDomain: "health"
   },
   {
     id: "soul-activation-christopher",
@@ -292,7 +312,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["activation", "breathwork"],
     primaryPath: "spirit",
-    secondaryPath: "body"
+    secondaryPath: "body",
+    primaryDomain: "growth"
   },
 
   // Money & Abundance
@@ -307,7 +328,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["receiveWisdom", "activation"],
     primaryPath: "uniqueness_work",
-    secondaryPath: "mind"
+    secondaryPath: "mind",
+    primaryDomain: "wealth"
   },
   {
     id: "manifest-unexpected-money",
@@ -320,7 +342,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["receiveWisdom", "activation"],
     primaryPath: "uniqueness_work",
-    secondaryPath: "mind"
+    secondaryPath: "mind",
+    primaryDomain: "wealth"
   },
 
   // Reality Wisdom
@@ -334,7 +357,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "2 min",
     durationMinutes: 2,
     intents: ["receiveWisdom"],
-    primaryPath: "mind"
+    primaryPath: "mind",
+    primaryDomain: "growth"
   },
   {
     id: "bashar-reality-wisdom-2",
@@ -346,7 +370,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "2 min",
     durationMinutes: 2,
     intents: ["receiveWisdom"],
-    primaryPath: "mind"
+    primaryPath: "mind",
+    primaryDomain: "growth"
   },
 
   // Spiritual Guidance
@@ -360,7 +385,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "15 min",
     durationMinutes: 15,
     intents: ["psychic", "activation"],
-    primaryPath: "spirit"
+    primaryPath: "spirit",
+    primaryDomain: "growth"
   },
 
   // Activations
@@ -375,7 +401,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 10,
     intents: ["activation"],
     primaryPath: "spirit",
-    secondaryPath: "body"
+    secondaryPath: "body",
+    primaryDomain: "growth"
   },
   {
     id: "heart-meditation-drunvalo",
@@ -388,7 +415,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["activation"],
     primaryPath: "heart",
-    secondaryPath: "spirit"
+    secondaryPath: "spirit",
+    primaryDomain: "love_relationships"
   },
   {
     id: "violet-emerald-flame-intuition",
@@ -401,7 +429,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 20,
     intents: ["activation", "psychic"],
     primaryPath: "spirit",
-    secondaryPath: "mind"
+    secondaryPath: "mind",
+    primaryDomain: "growth"
   },
 
   // Animal Spirits
@@ -415,6 +444,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "20 min",
     durationMinutes: 20,
     intents: ["psychic", "activation"],
-    primaryPath: "spirit"
+    primaryPath: "spirit",
+    primaryDomain: "growth"
   }
 ];
