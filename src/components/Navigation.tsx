@@ -43,6 +43,7 @@ const Navigation = () => {
 
   const navLinks = [
     { to: "/#modules", label: "tools", isScroll: true },
+    { to: "/game", label: "game of you", isScroll: false },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
     { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },
