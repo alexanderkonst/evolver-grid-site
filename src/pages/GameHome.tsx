@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
-import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
+import { LIBRARY_ITEMS, LIBRARY_CATEGORIES, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
+import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 
 interface GameProfile {
   id: string;
@@ -108,6 +109,10 @@ const GameHome = () => {
   } | null>(null);
   const [questCompleted, setQuestCompleted] = useState(false);
   const [recentQuests, setRecentQuests] = useState<Quest[]>([]);
+  
+  // Suggested practices state
+  const [suggestedPractices, setSuggestedPractices] = useState<LibraryItem[]>([]);
+  const [markingPracticeDone, setMarkingPracticeDone] = useState<string | null>(null);
 
   useEffect(() => {
     loadGameData();
@@ -206,6 +211,10 @@ const GameHome = () => {
           console.error("Error fetching current QoL snapshot:", currentQolError);
         } else if (currentQolData) {
           setCurrentQolSnapshot(currentQolData);
+          
+          // Generate suggested practices
+          const suggestions = getSuggestedPractices(LIBRARY_ITEMS, currentQolData);
+          setSuggestedPractices(suggestions);
         }
 
         // Fetch previous QoL snapshot for comparison
@@ -514,6 +523,30 @@ const GameHome = () => {
         variant: "destructive",
       });
     }
+  };
+
+  const handleMarkPracticeDone = async (practice: LibraryItem) => {
+    setMarkingPracticeDone(practice.id);
+
+    const result = await markPracticeDone(practice.id, practice.primaryPath);
+
+    if (result.success) {
+      toast({
+        title: result.message || "Practice logged!",
+        description: "Your XP has been updated.",
+      });
+      
+      // Reload game data to reflect new XP/level
+      await loadGameData();
+    } else {
+      toast({
+        title: "Error",
+        description: result.error || "Failed to log practice",
+        variant: "destructive",
+      });
+    }
+
+    setMarkingPracticeDone(null);
   };
 
   if (isLoading) {
@@ -1257,6 +1290,88 @@ const GameHome = () => {
                   </div>
                 )}
               </div>
+
+              {/* Suggested Practices for Today */}
+              {suggestedPractices.length > 0 && (
+                <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
+                  <h2 className="text-xl font-bold text-slate-900 mb-2">
+                    Suggested Practices for Today
+                  </h2>
+                  <p className="text-sm text-slate-600 mb-6">
+                    Based on your current Quality of Life, these practices are especially supportive right now.
+                  </p>
+
+                  <div className="grid grid-cols-1 gap-4">
+                    {suggestedPractices.map(practice => {
+                      const durationText = practice.durationLabel ?? 
+                        (practice.durationMinutes ? `${practice.durationMinutes} min` : undefined);
+                      const categoryName = LIBRARY_CATEGORIES.find(c => c.id === practice.categoryId)?.name;
+                      
+                      return (
+                        <div
+                          key={practice.id}
+                          className="flex flex-col sm:flex-row gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-all"
+                        >
+                          <div className="flex-shrink-0 sm:w-48">
+                            <img
+                              src={`https://img.youtube.com/vi/${practice.youtubeId}/hqdefault.jpg`}
+                              alt={practice.title}
+                              className="w-full rounded-lg aspect-video object-cover"
+                            />
+                          </div>
+                          <div className="flex-1 flex flex-col">
+                            <h3 className="text-base font-semibold text-slate-900 mb-1">
+                              {practice.title}
+                            </h3>
+                            {practice.teacher && (
+                              <p className="text-xs text-slate-600 mb-2">
+                                by {practice.teacher}
+                              </p>
+                            )}
+                            <div className="flex flex-wrap gap-2 mb-3">
+                              {categoryName && (
+                                <span className="inline-block px-2 py-1 text-xs rounded-full bg-slate-200 text-slate-700">
+                                  {categoryName}
+                                </span>
+                              )}
+                              {durationText && (
+                                <span className="inline-block px-2 py-1 text-xs rounded-full bg-slate-200 text-slate-700">
+                                  {durationText}
+                                </span>
+                              )}
+                              {practice.primaryDomain && (
+                                <span className="inline-block px-2 py-1 text-xs rounded-full bg-slate-200 text-slate-700">
+                                  {practice.primaryDomain.replace('_', ' ')}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => navigate("/library")}
+                                className="flex-1"
+                              >
+                                Open in Library
+                              </Button>
+                              <Button
+                                variant="default"
+                                size="sm"
+                                onClick={() => handleMarkPracticeDone(practice)}
+                                disabled={markingPracticeDone === practice.id}
+                                className="flex-1 min-h-[44px]"
+                              >
+                                <CheckCircle2 className="w-4 h-4 mr-2" />
+                                {markingPracticeDone === practice.id ? "Logging..." : "Mark as done"}
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Recent Quests */}
               {recentQuests.length > 0 && (

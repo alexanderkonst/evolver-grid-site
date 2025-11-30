@@ -20,12 +20,14 @@ export type Database = {
           created_at: string
           current_streak_days: number
           id: string
+          last_practice_at: string | null
           last_qol_snapshot_id: string | null
           last_quest_completed_at: string | null
           last_quest_title: string | null
           last_zog_snapshot_id: string | null
           level: number
           longest_streak_days: number
+          practice_count: number
           total_quests_completed: number
           updated_at: string
           user_id: string | null
@@ -41,12 +43,14 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           id?: string
+          last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          practice_count?: number
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
@@ -62,12 +66,14 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           id?: string
+          last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          practice_count?: number
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
