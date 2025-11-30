@@ -6,12 +6,13 @@ import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
@@ -21,11 +22,76 @@ const QualityOfLifeMapResults: FC = () => {
   
   const [guidanceLines, setGuidanceLines] = useState<string[] | null>(null);
   const [isGuidanceLoading, setIsGuidanceLoading] = useState(false);
+  const [profileId, setProfileId] = useState<string | null>(null);
+
+  // Get or create profile ID on mount
+  useEffect(() => {
+    getOrCreateGameProfileId()
+      .then(id => setProfileId(id))
+      .catch(err => {
+        console.error("Failed to get game profile ID:", err);
+        // Don't block the UI, just log the error
+      });
+  }, []);
 
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Save snapshot to database when results are complete
+  useEffect(() => {
+    if (isComplete && profileId) {
+      saveSnapshotToDatabase();
+    }
+  }, [isComplete, profileId]);
+
+  const saveSnapshotToDatabase = async () => {
+    if (!profileId) {
+      console.warn("No profile ID available, skipping database save");
+      return;
+    }
+
+    try {
+      // Build the snapshot row data with explicit typing
+      const snapshotInsert = {
+        profile_id: profileId,
+        wealth_stage: (answers.wealth ?? 1) as number,
+        health_stage: (answers.health ?? 1) as number,
+        happiness_stage: (answers.happiness ?? 1) as number,
+        love_relationships_stage: (answers.love ?? 1) as number,
+        impact_stage: (answers.impact ?? 1) as number,
+        growth_stage: (answers.growth ?? 1) as number,
+        social_ties_stage: (answers.socialTies ?? 1) as number,
+        home_stage: (answers.home ?? 1) as number,
+      };
+
+      // Insert snapshot
+      const { data: newSnapshot, error: snapshotError } = await supabase
+        .from('qol_snapshots')
+        .insert(snapshotInsert)
+        .select('id')
+        .single();
+
+      if (snapshotError) throw snapshotError;
+
+      // Update game profile to point to this snapshot
+      const { error: updateError } = await supabase
+        .from('game_profiles')
+        .update({
+          last_qol_snapshot_id: newSnapshot.id,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', profileId);
+
+      if (updateError) throw updateError;
+
+      console.log("QoL snapshot saved successfully to database");
+    } catch (err) {
+      console.error("Failed to save QoL snapshot to database:", err);
+      // Don't show error toast to user - this is a background operation
+    }
+  };
 
   // If assessment not complete, show prompt to complete it
   if (!isComplete) {
