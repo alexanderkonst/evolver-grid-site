@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Download, ExternalLink, Loader2, ArrowLeft } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -20,10 +21,21 @@ const Step4GenerateSnapshot = () => {
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [profileId, setProfileId] = useState<string | null>(null);
   const snapshotRef = useRef<HTMLDivElement>(null);
 
   // Parse the snapshot sections
   const parsedSnapshot = snapshotMarkdown ? parseSnapshotSections(snapshotMarkdown) : null;
+
+  // Get or create profile ID on mount
+  useEffect(() => {
+    getOrCreateGameProfileId()
+      .then(id => setProfileId(id))
+      .catch(err => {
+        console.error("Failed to get game profile ID:", err);
+        // Don't block the UI, just log the error
+      });
+  }, []);
 
   useEffect(() => {
     if (orderedTalentIds.length === 0) {
@@ -63,11 +75,60 @@ const Step4GenerateSnapshot = () => {
       const generatedText = data?.generatedText || "";
       setSnapshotMarkdown(generatedText);
       toast.success("Your Zone of Genius Snapshot is ready!");
+      
+      // Save snapshot to database
+      await saveSnapshotToDatabase(generatedText);
     } catch (err) {
       console.error("Snapshot generation error:", err);
       toast.error("Failed to generate snapshot. Please try again.");
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const saveSnapshotToDatabase = async (snapshotText: string) => {
+    if (!profileId) {
+      console.warn("No profile ID available, skipping database save");
+      return;
+    }
+
+    try {
+      const parsed = parseSnapshotSections(snapshotText);
+      
+      // Prepare talent arrays
+      const top3TalentNames = top3Talents.map(t => t.name);
+      const top10TalentNames = top10Talents.map(t => t.name);
+
+      // Insert snapshot
+      const { data: snapshotData, error: snapshotError } = await supabase
+        .from('zog_snapshots')
+        .insert({
+          profile_id: profileId,
+          archetype_title: parsed.archetypeTitle,
+          core_pattern: parsed.description,
+          top_three_talents: top3TalentNames,
+          top_ten_talents: top10TalentNames,
+        })
+        .select('id')
+        .single();
+
+      if (snapshotError) throw snapshotError;
+
+      // Update game profile to point to this snapshot
+      const { error: updateError } = await supabase
+        .from('game_profiles')
+        .update({
+          last_zog_snapshot_id: snapshotData.id,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', profileId);
+
+      if (updateError) throw updateError;
+
+      console.log("Snapshot saved successfully to database");
+    } catch (err) {
+      console.error("Failed to save snapshot to database:", err);
+      // Don't show error toast to user - this is a background operation
     }
   };
 
