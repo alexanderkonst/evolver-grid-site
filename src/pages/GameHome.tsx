@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
+import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 
 interface GameProfile {
   id: string;
@@ -16,6 +17,19 @@ interface GameProfile {
   last_qol_snapshot_id: string | null;
   total_quests_completed: number;
   last_quest_title: string | null;
+  xp_total: number;
+  level: number;
+  current_streak_days: number;
+  longest_streak_days: number;
+  last_quest_completed_at: string | null;
+}
+
+interface Quest {
+  id: string;
+  title: string;
+  practice_type: string | null;
+  duration_minutes: number | null;
+  completed_at: string;
 }
 
 interface ZogSnapshot {
@@ -72,6 +86,7 @@ const GameHome = () => {
     alternatives: QuestSuggestion[];
   } | null>(null);
   const [questCompleted, setQuestCompleted] = useState(false);
+  const [recentQuests, setRecentQuests] = useState<Quest[]>([]);
 
   useEffect(() => {
     loadGameData();
@@ -172,6 +187,18 @@ const GameHome = () => {
         if (!allSnapshotsError && allSnapshots && allSnapshots.length > 1) {
           setPreviousQolSnapshot(allSnapshots[1]);
         }
+      }
+
+      // Load recent quests
+      const { data: questsData, error: questsError } = await supabase
+        .from('quests')
+        .select('id, title, practice_type, duration_minutes, completed_at')
+        .eq('profile_id', id)
+        .order('completed_at', { ascending: false })
+        .limit(5);
+
+      if (!questsError && questsData) {
+        setRecentQuests(questsData);
       }
     } catch (err) {
       console.error("❌ Failed to load game data:", err);
@@ -305,30 +332,67 @@ const GameHome = () => {
     if (!profileId || !questSuggestion) return;
 
     try {
-      const { error } = await supabase
-        .from('game_profiles')
-        .update({
-          total_quests_completed: (profile?.total_quests_completed || 0) + 1,
-          last_quest_title: questSuggestion.main.quest_title,
-          last_quest_completed_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', profileId);
+      const durationMinutes = questSuggestion.main.approx_duration_minutes || 10;
+      const xpAwarded = calculateQuestXp(durationMinutes);
+      const intention = selectedIntention 
+        ? INTENTIONS.find(i => i.id === selectedIntention)?.label || null
+        : null;
 
-      if (error) throw error;
+      // Insert quest record
+      const { error: questError } = await supabase
+        .from('quests')
+        .insert({
+          profile_id: profileId,
+          title: questSuggestion.main.quest_title,
+          practice_type: questSuggestion.main.practice_type,
+          path: null, // Will be set in Part 2
+          intention: intention,
+          duration_minutes: durationMinutes,
+          xp_awarded: xpAwarded,
+        });
 
-      setQuestCompleted(true);
-      
-      // Reload profile data to update quest count
-      const { data: updatedProfile } = await supabase
+      if (questError) throw questError;
+
+      // Update game profile with XP, level, and streak
+      const { data: currentProfile, error: fetchError } = await supabase
         .from('game_profiles')
         .select('*')
         .eq('id', profileId)
         .single();
+
+      if (fetchError) throw fetchError;
+
+      const newXpTotal = currentProfile.xp_total + xpAwarded;
+      const newLevel = Math.floor(newXpTotal / 100) + 1;
       
-      if (updatedProfile) {
-        setProfile(updatedProfile);
-      }
+      const streakCalc = calculateStreak(
+        currentProfile.last_quest_completed_at,
+        currentProfile.current_streak_days
+      );
+
+      const { error: updateError } = await supabase
+        .from('game_profiles')
+        .update({
+          total_quests_completed: currentProfile.total_quests_completed + 1,
+          last_quest_title: questSuggestion.main.quest_title,
+          last_quest_completed_at: new Date().toISOString(),
+          xp_total: newXpTotal,
+          level: newLevel,
+          current_streak_days: streakCalc.newStreak,
+          longest_streak_days: Math.max(
+            currentProfile.longest_streak_days,
+            streakCalc.newStreak
+          ),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', profileId);
+
+      if (updateError) throw updateError;
+
+      setQuestCompleted(true);
+      
+      // Reload all data
+      await loadGameData();
     } catch (error) {
       console.error('Error completing quest:', error);
       toast({
@@ -374,6 +438,41 @@ const GameHome = () => {
                 ? "You're already playing. Let's see who you are and where you are now."
                 : "This game turns your life into a character, a world, and one next move."}
             </p>
+
+            {/* XP and Level Display */}
+            {profile && hasAnyData && (
+              <div className="mt-6 inline-block">
+                <div className="flex items-center gap-4 text-sm text-slate-600">
+                  <div className="flex items-center gap-2">
+                    <Trophy className="w-4 h-4 text-slate-900" />
+                    <span className="font-semibold">
+                      Level {profile.level} · {profile.xp_total} XP
+                    </span>
+                  </div>
+                  {profile.current_streak_days > 0 && (
+                    <div className="flex items-center gap-2">
+                      <Flame className="w-4 h-4 text-orange-500" />
+                      <span>
+                        Streak: {profile.current_streak_days} day{profile.current_streak_days !== 1 ? 's' : ''} · 
+                        Longest: {profile.longest_streak_days}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                {/* Progress bar to next level */}
+                <div className="mt-3 w-64 mx-auto">
+                  <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-slate-900 transition-all duration-500"
+                      style={{ width: `${(profile.xp_total % 100)}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Next level at {Math.ceil(profile.xp_total / 100) * 100} XP
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Onboarding State */}
@@ -705,6 +804,53 @@ const GameHome = () => {
                   </div>
                 )}
               </div>
+
+              {/* Recent Quests */}
+              {recentQuests.length > 0 && (
+                <div className="mt-8 rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8">
+                  <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                    Recent quests
+                  </h3>
+                  <div className="space-y-3">
+                    {recentQuests.map(quest => (
+                      <div
+                        key={quest.id}
+                        className="flex flex-wrap items-center gap-2 text-sm text-slate-700 py-2 border-b border-slate-100 last:border-0"
+                      >
+                        <span className="font-medium text-slate-900">{quest.title}</span>
+                        <span className="text-slate-400">·</span>
+                        {quest.practice_type && (
+                          <>
+                            <span className="text-slate-600">{quest.practice_type}</span>
+                            <span className="text-slate-400">·</span>
+                          </>
+                        )}
+                        {quest.duration_minutes && (
+                          <>
+                            <span className="text-slate-600">{quest.duration_minutes} min</span>
+                            <span className="text-slate-400">·</span>
+                          </>
+                        )}
+                        <span className="text-slate-500 text-xs">
+                          {new Date(quest.completed_at).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {recentQuests.length === 0 && profile && profile.total_quests_completed === 0 && (
+                <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
+                  <p className="text-sm text-slate-600">
+                    You haven't completed any quests yet. Your first one is the most important.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 

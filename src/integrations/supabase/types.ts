@@ -18,35 +18,62 @@ export type Database = {
         Row: {
           ai_upgrade_access: boolean | null
           created_at: string
+          current_streak_days: number
           id: string
           last_qol_snapshot_id: string | null
           last_quest_completed_at: string | null
           last_quest_title: string | null
           last_zog_snapshot_id: string | null
+          level: number
+          longest_streak_days: number
           total_quests_completed: number
           updated_at: string
+          xp_body: number
+          xp_heart: number
+          xp_mind: number
+          xp_spirit: number
+          xp_total: number
+          xp_uniqueness_work: number
         }
         Insert: {
           ai_upgrade_access?: boolean | null
           created_at?: string
+          current_streak_days?: number
           id?: string
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
+          level?: number
+          longest_streak_days?: number
           total_quests_completed?: number
           updated_at?: string
+          xp_body?: number
+          xp_heart?: number
+          xp_mind?: number
+          xp_spirit?: number
+          xp_total?: number
+          xp_uniqueness_work?: number
         }
         Update: {
           ai_upgrade_access?: boolean | null
           created_at?: string
+          current_streak_days?: number
           id?: string
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
+          level?: number
+          longest_streak_days?: number
           total_quests_completed?: number
           updated_at?: string
+          xp_body?: number
+          xp_heart?: number
+          xp_mind?: number
+          xp_spirit?: number
+          xp_total?: number
+          xp_uniqueness_work?: number
         }
         Relationships: [
           {
@@ -78,6 +105,7 @@ export type Database = {
           profile_id: string | null
           social_ties_stage: number
           wealth_stage: number
+          xp_awarded: boolean
         }
         Insert: {
           created_at?: string
@@ -91,6 +119,7 @@ export type Database = {
           profile_id?: string | null
           social_ties_stage: number
           wealth_stage: number
+          xp_awarded?: boolean
         }
         Update: {
           created_at?: string
@@ -104,10 +133,55 @@ export type Database = {
           profile_id?: string | null
           social_ties_stage?: number
           wealth_stage?: number
+          xp_awarded?: boolean
         }
         Relationships: [
           {
             foreignKeyName: "fk_profile"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quests: {
+        Row: {
+          completed_at: string
+          duration_minutes: number | null
+          id: string
+          intention: string | null
+          path: string | null
+          practice_type: string | null
+          profile_id: string
+          title: string
+          xp_awarded: number
+        }
+        Insert: {
+          completed_at?: string
+          duration_minutes?: number | null
+          id?: string
+          intention?: string | null
+          path?: string | null
+          practice_type?: string | null
+          profile_id: string
+          title: string
+          xp_awarded?: number
+        }
+        Update: {
+          completed_at?: string
+          duration_minutes?: number | null
+          id?: string
+          intention?: string | null
+          path?: string | null
+          practice_type?: string | null
+          profile_id?: string
+          title?: string
+          xp_awarded?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quests_profile_id_fkey"
             columns: ["profile_id"]
             isOneToOne: false
             referencedRelation: "game_profiles"
@@ -124,6 +198,7 @@ export type Database = {
           profile_id: string | null
           top_ten_talents: Json
           top_three_talents: Json
+          xp_awarded: boolean
         }
         Insert: {
           archetype_title: string
@@ -133,6 +208,7 @@ export type Database = {
           profile_id?: string | null
           top_ten_talents: Json
           top_three_talents: Json
+          xp_awarded?: boolean
         }
         Update: {
           archetype_title?: string
@@ -142,6 +218,7 @@ export type Database = {
           profile_id?: string | null
           top_ten_talents?: Json
           top_three_talents?: Json
+          xp_awarded?: boolean
         }
         Relationships: [
           {
