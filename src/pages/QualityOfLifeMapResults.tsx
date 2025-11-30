@@ -64,27 +64,58 @@ const QualityOfLifeMapResults: FC = () => {
         growth_stage: (answers.growth ?? 1) as number,
         social_ties_stage: (answers.socialTies ?? 1) as number,
         home_stage: (answers.home ?? 1) as number,
+        xp_awarded: false,
       };
 
       // Insert snapshot
       const { data: newSnapshot, error: snapshotError } = await supabase
         .from('qol_snapshots')
         .insert(snapshotInsert)
-        .select('id')
+        .select('id, xp_awarded')
         .single();
 
       if (snapshotError) throw snapshotError;
 
-      // Update game profile to point to this snapshot
-      const { error: updateError } = await supabase
-        .from('game_profiles')
-        .update({
-          last_qol_snapshot_id: newSnapshot.id,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', profileId);
+      // Award XP for completing QoL (only if not already awarded)
+      if (!newSnapshot.xp_awarded) {
+        const { data: profileData } = await supabase
+          .from('game_profiles')
+          .select('xp_total')
+          .eq('id', profileId)
+          .single();
 
-      if (updateError) throw updateError;
+        if (profileData) {
+          const newXpTotal = profileData.xp_total + 30;
+          const newLevel = Math.floor(newXpTotal / 100) + 1;
+
+          await supabase
+            .from('game_profiles')
+            .update({
+              last_qol_snapshot_id: newSnapshot.id,
+              xp_total: newXpTotal,
+              level: newLevel,
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', profileId);
+
+          // Mark snapshot as XP awarded
+          await supabase
+            .from('qol_snapshots')
+            .update({ xp_awarded: true })
+            .eq('id', newSnapshot.id);
+
+          console.log(`✅ Awarded 30 XP for QoL completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
+        }
+      } else {
+        // Just update the reference without awarding XP again
+        await supabase
+          .from('game_profiles')
+          .update({
+            last_qol_snapshot_id: newSnapshot.id,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', profileId);
+      }
 
       console.log("QoL snapshot saved successfully to database");
     } catch (err) {
