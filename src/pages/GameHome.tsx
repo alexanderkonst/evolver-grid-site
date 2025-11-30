@@ -84,23 +84,54 @@ const GameHome = () => {
       const id = await getOrCreateGameProfileId();
       setProfileId(id);
       
+      console.log("Loading game data for profile:", id);
+      
       const { data: profileData, error: profileError } = await supabase
         .from('game_profiles')
         .select('*')
         .eq('id', id)
-        .single();
+        .maybeSingle();
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        console.error("Error fetching game profile:", profileError);
+        throw profileError;
+      }
+
+      if (!profileData) {
+        console.warn("No game profile found, creating one...");
+        // Profile should have been created by getOrCreateGameProfileId, but handle edge case
+        return;
+      }
+
+      console.log("Game profile loaded:", {
+        id: profileData.id,
+        last_zog_snapshot_id: profileData.last_zog_snapshot_id,
+        last_qol_snapshot_id: profileData.last_qol_snapshot_id,
+        total_quests_completed: profileData.total_quests_completed,
+      });
+
       setProfile(profileData);
 
+      // Load ZoG snapshot if it exists
       if (profileData.last_zog_snapshot_id) {
+        console.log("Loading ZoG snapshot:", profileData.last_zog_snapshot_id);
+        
         const { data: zogData, error: zogError } = await supabase
           .from('zog_snapshots')
           .select('*')
           .eq('id', profileData.last_zog_snapshot_id)
-          .single();
+          .maybeSingle();
 
-        if (!zogError && zogData) {
+        if (zogError) {
+          console.error("❌ Error fetching ZoG snapshot:", zogError);
+        } else if (zogData) {
+          console.log("✅ ZoG snapshot loaded:", {
+            id: zogData.id,
+            archetype_title: zogData.archetype_title,
+            has_core_pattern: !!zogData.core_pattern,
+            top_three_count: Array.isArray(zogData.top_three_talents) ? zogData.top_three_talents.length : 0,
+          });
+
           setZogSnapshot({
             id: zogData.id,
             archetype_title: zogData.archetype_title,
@@ -109,20 +140,28 @@ const GameHome = () => {
               ? zogData.top_three_talents as string[]
               : [],
           });
+        } else {
+          console.warn("⚠️ ZoG snapshot ID exists but snapshot not found");
         }
+      } else {
+        console.log("No ZoG snapshot linked to profile yet");
       }
 
+      // Load current QoL snapshot if it exists
       if (profileData.last_qol_snapshot_id) {
         const { data: currentQolData, error: currentQolError } = await supabase
           .from('qol_snapshots')
           .select('*')
           .eq('id', profileData.last_qol_snapshot_id)
-          .single();
+          .maybeSingle();
 
-        if (!currentQolError && currentQolData) {
+        if (currentQolError) {
+          console.error("Error fetching current QoL snapshot:", currentQolError);
+        } else if (currentQolData) {
           setCurrentQolSnapshot(currentQolData);
         }
 
+        // Fetch previous QoL snapshot for comparison
         const { data: allSnapshots, error: allSnapshotsError } = await supabase
           .from('qol_snapshots')
           .select('*')
@@ -135,7 +174,12 @@ const GameHome = () => {
         }
       }
     } catch (err) {
-      console.error("Failed to load game data:", err);
+      console.error("❌ Failed to load game data:", err);
+      toast({
+        title: "Error loading data",
+        description: "Please refresh the page to try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }

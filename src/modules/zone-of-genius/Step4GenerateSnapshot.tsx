@@ -22,6 +22,7 @@ const Step4GenerateSnapshot = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
+  const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const snapshotRef = useRef<HTMLDivElement>(null);
 
   // Parse the snapshot sections
@@ -29,10 +30,15 @@ const Step4GenerateSnapshot = () => {
 
   // Get or create profile ID on mount
   useEffect(() => {
+    setIsLoadingProfile(true);
     getOrCreateGameProfileId()
-      .then(id => setProfileId(id))
+      .then(id => {
+        setProfileId(id);
+        setIsLoadingProfile(false);
+      })
       .catch(err => {
         console.error("Failed to get game profile ID:", err);
+        setIsLoadingProfile(false);
         // Don't block the UI, just log the error
       });
   }, []);
@@ -43,11 +49,11 @@ const Step4GenerateSnapshot = () => {
       return;
     }
     
-    // Auto-generate if not already generated
-    if (!snapshotMarkdown) {
+    // Only auto-generate once profileId is loaded
+    if (!snapshotMarkdown && !isLoadingProfile && profileId) {
       handleGenerate();
     }
-  }, [orderedTalentIds, snapshotMarkdown, navigate]);
+  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -88,7 +94,8 @@ const Step4GenerateSnapshot = () => {
 
   const saveSnapshotToDatabase = async (snapshotText: string) => {
     if (!profileId) {
-      console.warn("No profile ID available, skipping database save");
+      console.error("CRITICAL: No profile ID available when trying to save ZoG snapshot");
+      toast.error("Failed to save your snapshot. Please reload and try again.");
       return;
     }
 
@@ -98,6 +105,14 @@ const Step4GenerateSnapshot = () => {
       // Prepare talent arrays
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
+
+      console.log("Saving ZoG snapshot to database...", {
+        profileId,
+        archetypeTitle: parsed.archetypeTitle,
+        hasDescription: !!parsed.description,
+        top3Count: top3TalentNames.length,
+        top10Count: top10TalentNames.length,
+      });
 
       // Insert snapshot
       const { data: snapshotData, error: snapshotError } = await supabase
@@ -112,7 +127,12 @@ const Step4GenerateSnapshot = () => {
         .select('id')
         .single();
 
-      if (snapshotError) throw snapshotError;
+      if (snapshotError) {
+        console.error("Error inserting ZoG snapshot:", snapshotError);
+        throw snapshotError;
+      }
+
+      console.log("ZoG snapshot inserted successfully:", snapshotData.id);
 
       // Update game profile to point to this snapshot
       const { error: updateError } = await supabase
@@ -123,12 +143,16 @@ const Step4GenerateSnapshot = () => {
         })
         .eq('id', profileId);
 
-      if (updateError) throw updateError;
+      if (updateError) {
+        console.error("Error updating game_profiles:", updateError);
+        throw updateError;
+      }
 
-      console.log("Snapshot saved successfully to database");
+      console.log("✅ ZoG snapshot saved and game_profiles updated successfully!");
+      toast.success("Your Zone of Genius has been saved!");
     } catch (err) {
-      console.error("Failed to save snapshot to database:", err);
-      // Don't show error toast to user - this is a background operation
+      console.error("❌ Failed to save snapshot to database:", err);
+      toast.error("Failed to save your snapshot. Your progress is still shown, but may not persist.");
     }
   };
 
