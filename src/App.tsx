@@ -16,6 +16,7 @@ import AIUpgrade from "./pages/AIUpgrade";
 import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
 import GameHome from "./pages/GameHome";
+import Auth from "./pages/Auth";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 import QualityOfLifeMapResults from "./pages/QualityOfLifeMapResults";
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />

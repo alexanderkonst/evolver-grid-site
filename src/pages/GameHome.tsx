@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -90,6 +90,7 @@ const GameHome = () => {
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [previousQolSnapshot, setPreviousQolSnapshot] = useState<QolSnapshot | null>(null);
+  const [user, setUser] = useState<any>(null);
   
   // Next Quest state
   const [selectedPath, setSelectedPath] = useState<DevelopmentPath>("body");
@@ -104,6 +105,17 @@ const GameHome = () => {
 
   useEffect(() => {
     loadGameData();
+    
+    // Check auth status
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const loadGameData = async () => {
@@ -458,6 +470,35 @@ const GameHome = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
+      
+      {/* Guest Banner */}
+      {!user && (
+        <div className="bg-amber-50 border-b border-amber-200">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between gap-4 max-w-4xl mx-auto">
+              <div className="flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-semibold text-amber-900">
+                    You're playing as a guest
+                  </p>
+                  <p className="text-xs text-amber-700">
+                    Log in to keep your character and progress across devices.
+                  </p>
+                </div>
+              </div>
+              <Button
+                size="sm"
+                variant="default"
+                asChild
+                className="flex-shrink-0"
+              >
+                <Link to="/auth">Log in / Sign up</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className="pt-24 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">

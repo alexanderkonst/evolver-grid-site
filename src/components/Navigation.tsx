@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 import headerImage from "@/assets/header-image.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +21,25 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Get initial user
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/");
+  };
 
   const navLinks = [
     { to: "/#modules", label: "tools", isScroll: true },
@@ -82,6 +104,36 @@ const Navigation = () => {
                 </NavLink>
               )
             ))}
+            
+            {/* Auth Status */}
+            {user ? (
+              <div className="flex items-center gap-3 pl-4 border-l border-border">
+                <span className="text-xs text-muted-foreground">
+                  {user.email}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="h-8 text-xs"
+                >
+                  <LogOut className="h-3 w-3 mr-1" />
+                  Log out
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 pl-4 border-l border-border">
+                <span className="text-xs text-muted-foreground">Playing as guest</span>
+                <Button
+                  variant="default"
+                  size="sm"
+                  asChild
+                  className="h-8 text-xs"
+                >
+                  <Link to="/auth">Log in / Sign up</Link>
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -138,6 +190,40 @@ const Navigation = () => {
                 </NavLink>
               )
             ))}
+            
+            {/* Mobile Auth Status */}
+            <div className="pt-3 border-t border-border mt-3">
+              {user ? (
+                <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground">Logged in as: {user.email}</p>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="w-full justify-start"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Log out
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground">You're playing as a guest</p>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    asChild
+                    className="w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link to="/auth">Log in / Sign up</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
