@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle, Lock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
+import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
 
 interface GameProfile {
   id: string;
@@ -91,6 +92,11 @@ const GameHome = () => {
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [previousQolSnapshot, setPreviousQolSnapshot] = useState<QolSnapshot | null>(null);
   const [user, setUser] = useState<any>(null);
+  
+  // Path of Genius state
+  const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
+  const [entrepreneurialUpgrades, setEntrepreneurialUpgrades] = useState<Upgrade[]>([]);
+  const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
   
   // Next Quest state
   const [selectedPath, setSelectedPath] = useState<DevelopmentPath>("body");
@@ -225,6 +231,33 @@ const GameHome = () => {
 
       if (!questsError && questsData) {
         setRecentQuests(questsData);
+      }
+
+      // Load Path of Genius upgrades
+      const masteryData = await getUpgradesByBranch('uniqueness_work', 'mastery_of_genius');
+      const entrepreneurialData = await getUpgradesByBranch('uniqueness_work', 'entrepreneurial_path');
+      setMasteryUpgrades(masteryData);
+      setEntrepreneurialUpgrades(entrepreneurialData);
+
+      // Load player's completed upgrades
+      const playerUpgradesData = await getPlayerUpgrades(id);
+      const completedCodes = new Set(playerUpgradesData.map(pu => pu.code));
+      setCompletedUpgradeCodes(completedCodes);
+
+      // Auto-complete ZoG assessment if snapshot exists but upgrade not completed
+      if (profileData.last_zog_snapshot_id && !completedCodes.has('zog_assessment_completed')) {
+        await completeUpgrade(id, 'zog_assessment_completed');
+        completedCodes.add('zog_assessment_completed');
+        setCompletedUpgradeCodes(new Set(completedCodes));
+        // Reload profile to get updated XP
+        const { data: updatedProfile } = await supabase
+          .from('game_profiles')
+          .select('*')
+          .eq('id', id)
+          .single();
+        if (updatedProfile) {
+          setProfile(updatedProfile);
+        }
       }
     } catch (err) {
       console.error("❌ Failed to load game data:", err);
@@ -451,6 +484,33 @@ const GameHome = () => {
       toast({
         title: "Error",
         description: "Failed to save quest completion. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleUpgradeComplete = async (upgradeCode: string) => {
+    if (!profileId) return;
+    
+    try {
+      const result = await completeUpgrade(profileId, upgradeCode);
+      
+      if (result.success) {
+        toast({
+          title: "Upgrade completed!",
+          description: "Your XP and level have been updated.",
+        });
+        
+        // Reload data to reflect new XP/level
+        await loadGameData();
+      } else {
+        throw result.error;
+      }
+    } catch (error) {
+      console.error('Error completing upgrade:', error);
+      toast({
+        title: "Error",
+        description: "Failed to mark upgrade as complete. Please try again.",
         variant: "destructive",
       });
     }
@@ -728,6 +788,264 @@ const GameHome = () => {
                       </div>
                     );
                   })}
+                </div>
+              </div>
+
+              {/* Path of Genius (Showing Up) */}
+              <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
+                  Path of Genius (Showing Up)
+                </h2>
+                <p className="text-sm text-slate-600 mb-6">
+                  Track concrete upgrades in how you understand, express, and offer your Genius to the world. 
+                  First you deepen Mastery of Genius, then you branch into the Entrepreneurial Path.
+                </p>
+
+                {/* Mastery of Genius Branch */}
+                <div className="mb-8">
+                  <h3 className="text-base font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-slate-900"></span>
+                    Mastery of Genius
+                  </h3>
+                  <div className="space-y-4">
+                    {masteryUpgrades.map(upgrade => {
+                      const isCompleted = completedUpgradeCodes.has(upgrade.code);
+                      
+                      return (
+                        <div key={upgrade.code} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex-1">
+                              <h4 className="text-base font-semibold text-slate-900 mb-1">
+                                {upgrade.title}
+                              </h4>
+                              <p className="text-sm text-slate-600 leading-relaxed">
+                                {upgrade.description}
+                              </p>
+                            </div>
+                            {isCompleted && (
+                              <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                            )}
+                          </div>
+
+                          {isCompleted ? (
+                            <div className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                              ✓ Completed
+                            </div>
+                          ) : (
+                            <div className="flex flex-col sm:flex-row gap-2 mt-4">
+                              {upgrade.code === 'zog_intro_video_watched' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => navigate('/resources/zog-intro-video')}
+                                    className="flex-1"
+                                  >
+                                    Watch Intro Video
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'personality_tests_completed' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => navigate('/resources/personality-tests')}
+                                    className="flex-1"
+                                  >
+                                    Explore Personality Tests
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'zog_assessment_completed' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => navigate('/zone-of-genius/assessment')}
+                                    className="flex-1"
+                                  >
+                                    Retake ZoG Assessment
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'appleseed_received' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
+                                    className="flex-1"
+                                  >
+                                    Book AppleSeed Session
+                                    <ExternalLink className="w-4 h-4 ml-2" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'excalibur_received' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
+                                    className="flex-1"
+                                  >
+                                    Book Excalibur Session ($297)
+                                    <ExternalLink className="w-4 h-4 ml-2" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Entrepreneurial Path Branch */}
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-slate-900"></span>
+                    Entrepreneurial Path
+                  </h3>
+                  <div className="space-y-4">
+                    {entrepreneurialUpgrades.map(upgrade => {
+                      const isCompleted = completedUpgradeCodes.has(upgrade.code);
+                      const excaliburCompleted = completedUpgradeCodes.has('excalibur_received');
+                      const isLocked = !excaliburCompleted;
+                      
+                      return (
+                        <div 
+                          key={upgrade.code} 
+                          className={`rounded-xl border p-4 ${
+                            isLocked 
+                              ? 'border-slate-300 bg-slate-100' 
+                              : 'border-slate-200 bg-slate-50'
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex-1">
+                              <h4 className={`text-base font-semibold mb-1 flex items-center gap-2 ${
+                                isLocked ? 'text-slate-500' : 'text-slate-900'
+                              }`}>
+                                {isLocked && <Lock className="w-4 h-4" />}
+                                {upgrade.title}
+                              </h4>
+                              <p className={`text-sm leading-relaxed ${
+                                isLocked ? 'text-slate-500' : 'text-slate-600'
+                              }`}>
+                                {upgrade.description}
+                              </p>
+                            </div>
+                            {isCompleted && <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />}
+                          </div>
+
+                          {isLocked ? (
+                            <div className="inline-flex items-center gap-1 rounded-full bg-slate-200 px-3 py-1 text-xs font-medium text-slate-600">
+                              <Lock className="w-3 h-3" />
+                              Locked – unlocks after Excalibur
+                            </div>
+                          ) : isCompleted ? (
+                            <div className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                              ✓ Completed
+                            </div>
+                          ) : (
+                            <div className="flex flex-col sm:flex-row gap-2 mt-4">
+                              {upgrade.code === 'destiny_business_defined' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
+                                    className="flex-1"
+                                  >
+                                    Design Destiny Business
+                                    <ExternalLink className="w-4 h-4 ml-2" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'first_transformational_product_listed' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => navigate('/library')}
+                                    className="flex-1"
+                                  >
+                                    Showcase First Product
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                              {upgrade.code === 'venture_cooperative_joined' && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    onClick={() => toast({
+                                      title: "Coming Soon",
+                                      description: "Venture Cooperative details will be available soon.",
+                                    })}
+                                    className="flex-1"
+                                  >
+                                    Enter Venture Cooperative
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleUpgradeComplete(upgrade.code)}
+                                  >
+                                    Mark as done
+                                  </Button>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 

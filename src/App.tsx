@@ -17,6 +17,8 @@ import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
+import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
+import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 import QualityOfLifeMapResults from "./pages/QualityOfLifeMapResults";
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />
             <Route path="/game" element={<GameHome />} />
+            <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
+            <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
             <Route path="/quality-of-life-map" element={<QolLayout />}>
               <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
               <Route path="results" element={<QualityOfLifeMapResults />} />
