@@ -97,6 +97,16 @@ const ModuleDetail = () => {
             <Badge variant="outline" className="text-sm text-white/60 border-white/20">
               <BoldText>{module.status}</BoldText>
             </Badge>
+            {module.price && (
+              <Badge variant="outline" className="text-sm text-white/60 border-white/20">
+                <BoldText>{module.price}</BoldText>
+              </Badge>
+            )}
+            {module.version && (
+              <Badge variant="outline" className="text-sm text-white/60 border-white/20">
+                <BoldText>{module.version}</BoldText>
+              </Badge>
+            )}
           </div>
           
           {module.hero_CTA_link && module.hero_CTA_label && (
@@ -109,11 +119,13 @@ const ModuleDetail = () => {
                 color: 'hsl(var(--destiny-dark))',
               }}
             >
-              <a href={module.hero_CTA_link} target="_blank" rel="noopener noreferrer">
+              <Link to={module.hero_CTA_link}>
                 <BoldText>{module.hero_CTA_label}</BoldText>
-                <ExternalLink className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
+          )}
+          {module.price && module.slug === "intelligence-boost-for-your-ai-model" && (
+            <p className="text-sm text-white/60 mt-4">One-time payment · Instant access</p>
           )}
         </div>
       </section>
@@ -216,24 +228,33 @@ const ModuleDetail = () => {
               <BoldText>ACCESS & APP LINKS</BoldText>
             </h2>
             <div className="flex flex-wrap gap-4 justify-center">
-              {module.app_links.map((link, index) => (
-                <Button 
-                  key={index} 
-                  asChild 
-                  variant="outline" 
-                  size="lg" 
-                  className="min-w-[160px] rounded-full"
-                  style={{ 
-                    borderColor: 'hsl(var(--destiny-gold-dark))',
-                    color: 'hsl(var(--destiny-dark))'
-                  }}
-                >
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    <BoldText>{link.label}</BoldText>
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              ))}
+              {module.app_links.map((link, index) => {
+                const isExternal = link.url.startsWith('http') || link.url.startsWith('#');
+                return (
+                  <Button 
+                    key={index} 
+                    asChild 
+                    variant="outline" 
+                    size="lg" 
+                    className="min-w-[160px] rounded-full"
+                    style={{ 
+                      borderColor: 'hsl(var(--destiny-gold-dark))',
+                      color: 'hsl(var(--destiny-dark))'
+                    }}
+                  >
+                    {isExternal ? (
+                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        <BoldText>{link.label}</BoldText>
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    ) : (
+                      <Link to={link.url}>
+                        <BoldText>{link.label}</BoldText>
+                      </Link>
+                    )}
+                  </Button>
+                );
+              })}
             </div>
           </div>
         </section>
