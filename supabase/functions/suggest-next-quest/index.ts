@@ -1,0 +1,167 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
+interface Practice {
+  title: string;
+  type: string;
+  duration_minutes: number;
+  description?: string;
+}
+
+interface NextQuestContext {
+  lowestDomains?: string[];
+  archetypeTitle?: string;
+  corePattern?: string;
+}
+
+interface SuggestQuestRequest {
+  intention: string;
+  practices: Practice[];
+  context?: NextQuestContext;
+}
+
+const handler = async (req: Request): Promise<Response> => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const { intention, practices, context }: SuggestQuestRequest = await req.json();
+
+    if (!intention || !practices || practices.length === 0) {
+      return new Response(
+        JSON.stringify({ error: 'Missing intention or practices' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error('LOVABLE_API_KEY not configured');
+    }
+
+    // Build context description for the LLM
+    let contextDescription = '';
+    if (context?.lowestDomains && context.lowestDomains.length > 0) {
+      contextDescription += `\n- Lowest life domain(s): ${context.lowestDomains.join(', ')}`;
+    }
+    if (context?.archetypeTitle) {
+      contextDescription += `\n- Zone of Genius archetype: ${context.archetypeTitle}`;
+    }
+    if (context?.corePattern) {
+      contextDescription += `\n- Core pattern: ${context.corePattern}`;
+    }
+
+    const systemPrompt = `You are a guide inside a life-RPG called "Game of You".
+
+You receive:
+- intention: what the player most wants right now (e.g. "Calm my nervous system", "Feel clearer about money")
+${contextDescription ? `- context about the player:${contextDescription}` : ''}
+- a list of practices from a library, where each practice has: title, type, duration_minutes, and optional description
+
+YOUR TASK:
+Choose ONE practice as the Main Quest:
+- It should be low-friction, doable today, and high-impact for the intention
+${context?.lowestDomains ? `- Prefer practices that support one of these domains: ${context.lowestDomains.join(', ')}` : ''}
+${context?.archetypeTitle ? `- Pick something that fits their archetype: ${context.archetypeTitle}` : ''}
+
+Optionally choose up to TWO alternative practices that would also be good next steps.
+
+For each selected practice, return:
+- quest_title: the practice title
+- practice_type: the type
+- approx_duration_minutes: rounded duration in minutes
+- why_it_is_a_good_next_move: 1-2 sentences that are concrete and grounded (no vague spiritual clichés), explicitly tie to:
+  * the intention wording
+  ${context?.lowestDomains ? `* the lowest domain(s) if relevant` : ''}
+  ${context?.archetypeTitle ? `* the archetype/pattern if relevant` : ''}
+
+Tone: Calm, kind, precise. Encourage without hype.
+
+Return ONLY valid JSON in this exact shape (no markdown, no backticks):
+{
+  "main": {
+    "quest_title": "...",
+    "practice_type": "...",
+    "approx_duration_minutes": 8,
+    "why_it_is_a_good_next_move": "..."
+  },
+  "alternatives": [
+    {
+      "quest_title": "...",
+      "practice_type": "...",
+      "approx_duration_minutes": 12,
+      "why_it_is_a_good_next_move": "..."
+    }
+  ]
+}`;
+
+    const userPrompt = `Player's intention: "${intention}"
+
+Available practices:
+${practices.map(p => `- ${p.title} (${p.type}, ${p.duration_minutes} min)${p.description ? `: ${p.description}` : ''}`).join('\n')}
+
+Select the best Main Quest and up to 2 alternatives.`;
+
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt }
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      if (response.status === 429) {
+        return new Response(
+          JSON.stringify({ error: 'Rate limit exceeded. Please try again in a moment.' }),
+          { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+      if (response.status === 402) {
+        return new Response(
+          JSON.stringify({ error: 'AI service requires payment. Please contact support.' }),
+          { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+      const errorText = await response.text();
+      console.error('AI gateway error:', response.status, errorText);
+      throw new Error(`AI gateway error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const content = data.choices?.[0]?.message?.content;
+
+    if (!content) {
+      throw new Error('No content in AI response');
+    }
+
+    // Parse the JSON response
+    const result = JSON.parse(content);
+
+    return new Response(
+      JSON.stringify(result),
+      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+
+  } catch (error: any) {
+    console.error('Error in suggest-next-quest:', error);
+    return new Response(
+      JSON.stringify({ error: error.message || 'Internal server error' }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
+};
+
+serve(handler);

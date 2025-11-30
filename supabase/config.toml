@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.validate-promo-code]
 verify_jwt = false
+
+[functions.suggest-next-quest]
+verify_jwt = false
