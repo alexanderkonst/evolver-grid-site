@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       game_profiles: {
         Row: {
+          ai_upgrade_access: boolean | null
           created_at: string
           id: string
           last_qol_snapshot_id: string | null
@@ -26,6 +27,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          ai_upgrade_access?: boolean | null
           created_at?: string
           id?: string
           last_qol_snapshot_id?: string | null
@@ -36,6 +38,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          ai_upgrade_access?: boolean | null
           created_at?: string
           id?: string
           last_qol_snapshot_id?: string | null

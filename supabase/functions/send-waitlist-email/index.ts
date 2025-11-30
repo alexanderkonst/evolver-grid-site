@@ -11,6 +11,19 @@ interface WaitlistRequest {
   module: string;
 }
 
+// Simple email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// HTML escape function to prevent injection
+const escapeHtml = (unsafe: string): string => {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -18,6 +31,26 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { email, module }: WaitlistRequest = await req.json();
+
+    // Validate email format
+    if (!email || !EMAIL_REGEX.test(email) || email.length > 255) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid email address' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Validate module name
+    if (!module || typeof module !== 'string' || module.length > 100) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid module name' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Sanitize inputs for HTML
+    const sanitizedEmail = escapeHtml(email);
+    const sanitizedModule = escapeHtml(module);
 
     console.log('Sending waitlist notification for:', { email, module });
 
@@ -32,11 +65,11 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "ARKHAZM <onboarding@resend.dev>",
         to: ["alexanderkonst@gmail.com"],
-        subject: `Waitlist - ${module}`,
+        subject: `Waitlist - ${sanitizedModule}`,
         html: `
           <h2>New Waitlist Signup</h2>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Module:</strong> ${module}</p>
+          <p><strong>Email:</strong> ${sanitizedEmail}</p>
+          <p><strong>Module:</strong> ${sanitizedModule}</p>
         `,
       }),
     });
