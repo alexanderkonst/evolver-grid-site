@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
-import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
+import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 
 interface GameProfile {
@@ -254,6 +254,12 @@ const GameHome = () => {
   const hasLeveledUp = (domainStage: number, domainKey: keyof QolSnapshot) => {
     if (!previousQolSnapshot || typeof previousQolSnapshot[domainKey] !== 'number') return false;
     return domainStage > (previousQolSnapshot[domainKey] as number);
+  };
+
+  const findPracticeByTitle = (title: string): LibraryItem | undefined => {
+    return LIBRARY_ITEMS.find(item => 
+      item.title.toLowerCase() === title.toLowerCase()
+    );
   };
 
   const handleIntentionSelect = async (intention: string) => {
@@ -578,37 +584,72 @@ const GameHome = () => {
                 {questSuggestion && !isLoadingQuest && (
                   <div className="space-y-6">
                     {/* Main Quest */}
-                    <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-6">
-                      <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
-                        Main Quest
-                      </p>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">
-                        {questSuggestion.main.quest_title}
-                      </h3>
-                      <p className="text-sm text-slate-600 mb-3">
-                        {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min
-                      </p>
-                      <p className="text-base text-slate-700 leading-relaxed mb-4">
-                        {questSuggestion.main.why_it_is_a_good_next_move}
-                      </p>
-                      
-                      {!questCompleted ? (
-                        <Button
-                          onClick={handleQuestComplete}
-                          size="sm"
-                          className="w-full sm:w-auto"
-                        >
-                          I completed this quest today
-                        </Button>
-                      ) : (
-                        <div className="flex items-center gap-2 text-emerald-700">
-                          <CheckCircle2 className="w-5 h-5" />
-                          <p className="text-sm italic">
-                            Beautiful. That's one more conscious move in the direction of the life you're building.
+                    {(() => {
+                      const practice = findPracticeByTitle(questSuggestion.main.quest_title);
+                      return (
+                        <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-6">
+                          <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
+                            Main Quest
                           </p>
+                          <h3 className="text-xl font-bold text-slate-900 mb-2">
+                            {questSuggestion.main.quest_title}
+                          </h3>
+                          <p className="text-sm text-slate-600 mb-3">
+                            {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min
+                          </p>
+                          <p className="text-base text-slate-700 leading-relaxed mb-4">
+                            {questSuggestion.main.why_it_is_a_good_next_move}
+                          </p>
+
+                          {/* Embedded YouTube Video */}
+                          {practice && (
+                            <div className="mb-4 rounded-lg overflow-hidden">
+                              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                                <iframe
+                                  className="absolute top-0 left-0 w-full h-full"
+                                  src={`https://www.youtube.com/embed/${practice.youtubeId}`}
+                                  title={practice.title}
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                />
+                              </div>
+                            </div>
+                          )}
+                          
+                          <div className="flex flex-col sm:flex-row gap-3">
+                            {!questCompleted ? (
+                              <Button
+                                onClick={handleQuestComplete}
+                                size="sm"
+                                className="flex-1"
+                              >
+                                I completed this quest today
+                              </Button>
+                            ) : (
+                              <div className="flex items-center gap-2 text-emerald-700">
+                                <CheckCircle2 className="w-5 h-5" />
+                                <p className="text-sm italic">
+                                  Beautiful. That's one more conscious move in the direction of the life you're building.
+                                </p>
+                              </div>
+                            )}
+                            
+                            {practice && !questCompleted && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => window.open(practice.url, '_blank')}
+                                className="flex-shrink-0"
+                              >
+                                <ExternalLink className="w-4 h-4 mr-2" />
+                                Watch on YouTube
+                              </Button>
+                            )}
+                          </div>
                         </div>
-                      )}
-                    </div>
+                      );
+                    })()}
 
                     {/* Alternatives */}
                     {questSuggestion.alternatives && questSuggestion.alternatives.length > 0 && (
@@ -617,19 +658,33 @@ const GameHome = () => {
                           Other options that would also work
                         </p>
                         <div className="space-y-3">
-                          {questSuggestion.alternatives.map((alt, idx) => (
-                            <div key={idx} className="rounded-xl border border-slate-200 bg-white p-4">
-                              <h4 className="text-base font-semibold text-slate-900 mb-1">
-                                {alt.quest_title}
-                              </h4>
-                              <p className="text-xs text-slate-600 mb-2">
-                                {alt.practice_type} · ~{alt.approx_duration_minutes} min
-                              </p>
-                              <p className="text-sm text-slate-700">
-                                {alt.why_it_is_a_good_next_move}
-                              </p>
-                            </div>
-                          ))}
+                          {questSuggestion.alternatives.map((alt, idx) => {
+                            const altPractice = findPracticeByTitle(alt.quest_title);
+                            return (
+                              <div key={idx} className="rounded-xl border border-slate-200 bg-white p-4">
+                                <h4 className="text-base font-semibold text-slate-900 mb-1">
+                                  {alt.quest_title}
+                                </h4>
+                                <p className="text-xs text-slate-600 mb-2">
+                                  {alt.practice_type} · ~{alt.approx_duration_minutes} min
+                                </p>
+                                <p className="text-sm text-slate-700 mb-3">
+                                  {alt.why_it_is_a_good_next_move}
+                                </p>
+                                
+                                {altPractice && (
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => window.open(altPractice.url, '_blank')}
+                                  >
+                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                    Watch Practice
+                                  </Button>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     )}
