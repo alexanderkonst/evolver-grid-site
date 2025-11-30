@@ -4,10 +4,9 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Download, ExternalLink, Loader2 } from "lucide-react";
+import { Download, ExternalLink, Loader2, ArrowLeft } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import ReactMarkdown from "react-markdown";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -21,8 +20,10 @@ const Step4GenerateSnapshot = () => {
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
-  const [archetypeTitle, setArchetypeTitle] = useState<string>("");
   const snapshotRef = useRef<HTMLDivElement>(null);
+
+  // Parse the snapshot sections
+  const parsedSnapshot = snapshotMarkdown ? parseSnapshotSections(snapshotMarkdown) : null;
 
   useEffect(() => {
     if (orderedTalentIds.length === 0) {
@@ -35,20 +36,6 @@ const Step4GenerateSnapshot = () => {
       handleGenerate();
     }
   }, [orderedTalentIds, snapshotMarkdown, navigate]);
-
-  // Extract archetype title from markdown
-  useEffect(() => {
-    if (snapshotMarkdown) {
-      const lines = snapshotMarkdown.split('\n');
-      const firstBoldLine = lines.find(line => line.startsWith('**Your Zone of Genius:'));
-      if (firstBoldLine) {
-        const match = firstBoldLine.match(/\*\*Your Zone of Genius: (.+?)\*\*/);
-        if (match) {
-          setArchetypeTitle(match[1]);
-        }
-      }
-    }
-  }, [snapshotMarkdown]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -104,124 +91,76 @@ const Step4GenerateSnapshot = () => {
   };
 
   function buildZogSnapshotPrompt(payload: {
-    top10Talents: {
-      id: number;
-      name: string;
-      description: string;
-    }[];
-    top3OrderedTalents: {
-      id: number;
-      name: string;
-      description: string;
-    }[];
+    top10Talents: { id: number; name: string; description: string; }[];
+    top3OrderedTalents: { id: number; name: string; description: string; }[];
   }): string {
-    return `
-You are Aleksandr's AI assistant helping professionals in career transition clarify their Zone of Genius.
+    return `You are helping a person integrate their Zone of Genius.
+They have just completed an assessment where they selected their Top 10 talents and Top 3 core talents.
+Use the information below to generate a short, premium, highly practical snapshot of their pattern.
 
-User context:
-- They just completed a Zone of Genius assessment.
-- You are given:
-  - Their top 10 selected talents (names + descriptions).
-  - Their top 3 core talents, in order of how naturally and frequently they are used.
-
-Use an encouraging, grounded tone. Speak directly to one person as "you".
-Avoid fluff. Every sentence should feel specific and useful.
-
-----------------
-DATA
-----------------
-
+INPUT:
 Top 10 talents:
 ${JSON.stringify(payload.top10Talents, null, 2)}
 
 Top 3 core talents in order (1 = strongest / most used):
 ${JSON.stringify(payload.top3OrderedTalents, null, 2)}
 
-----------------
-TASK
-----------------
+OUTPUT:
+Write plain text (no markdown headings) with the following clearly labeled sections, in this exact order:
 
-Based on this, generate a **short Markdown report** called a "ZoG Lifeline Snapshot".
+Archetype Title:
+– 1 short phrase that names their Zone of Genius archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
 
-The entire output must be:
-- Highly specific and surprising (it should feel like "wow, this is really me"),
-- Extremely concise (no long essays),
-- Immediately useful for real life and career decisions.
+Core Pattern (1–2 sentences):
+– A concise summary of what their genius actually does in the world when it's on. Focus on behavior and impact, not abstract traits.
 
-STRUCTURE (in Markdown):
+Superpowers in Action (3 bullets max):
+– Each bullet 1 sentence.
+– Describe concrete ways this pattern shows up in daily life and work when they are at their best.
 
-1. **Title line (with archetype)**  
-   - One line in bold.  
-   - Format: **"Your Zone of Genius: [short archetype phrase]"**  
-   - The archetype phrase should be 3–7 words that capture their style, e.g. "Systemic Visionary Connector", "Empathic Strategy Alchemist", "Precision Builder of Fair Systems".
-   - Do not reuse generic archetype labels like "Leader", "Helper", "Thinker" without adding a unique twist.
+Your Edge (3 bullets max):
+– Each bullet 1 sentence.
+– Name the most common ways they overuse, distort, or sabotage this pattern. Be honest and a bit sharp, but not cruel.
 
-2. **Core Snapshot (2–3 sentences)**  
-   - A short paragraph summarizing:
-     - How their genius naturally wants to move in the world,
-     - What they are like when they are at their best,
-     - The kind of value they instinctively bring to people and systems.
-   - Keep this tight but deep. No more than 80–100 words.
+Where This Genius Thrives (3–5 bullets):
+– Each bullet 1 sentence.
+– Describe roles, environments, and types of work where this pattern tends to shine.
 
-3. **How Your Genius Shows Up (Core Expression Patterns)**  
-   - Heading: \`### How Your Genius Shows Up\`
-   - 3–5 bullet points.
-   - Describe how their talents typically express themselves in behavior, energy, and contribution.
-   - Each bullet:
-     - Max ~20 words.
-     - Should feel concrete and observable (e.g., "You naturally turn messy ideas into clear structures that others can act on.").
+This Week's Upgrade (3 bullets):
+– Each bullet is a small, specific 7-day micro-quest they could try.
+– Each quest must be concrete and observable (who/what/when), not vague advice.
 
-4. **Where You Get Stuck (Your Edge)**  
-   - Heading: \`### Where You Get Stuck (Your Edge)\`
-   - 2–3 bullet points.
-   - Describe the most common traps or overextensions that come with this genius pattern:
-     - Where they overdo or underuse their gifts.
-     - Typical misunderstandings with others.
-     - Situations where their strengths become liabilities.
-   - Each bullet:
-     - Max ~20 words.
-     - Must stay kind but honest. No shaming; frame this as "here is how to work skillfully with your own pattern."
+GENERAL STYLE RULES:
+– Use clear, simple language a smart 15-year-old could understand.
+– No paragraphs longer than 2 sentences.
+– No more than 20 words per sentence.
+– Speak directly to 'you'.
+– Avoid generic self-help clichés. Make it feel tailored and precise.`.trim();
+  }
 
-5. **Career & Contribution Sweet Spots**  
-   - Heading: \`### Career & Contribution Sweet Spots\`
-   - 4–6 bullet points mixing the following ideas (do NOT make separate sections; keep them in one bullet list):
-     - 2–3 **highly-specific job role patterns** or "kind of roles" where this combo of talents is especially valuable.
-       - Example style: "Service design lead in mission-driven health tech", "Systems-oriented program manager in social impact organizations".
-     - 1–2 bullets about **ideal workplace culture fit** (e.g., fast-paced vs. reflective, structured vs. fluid, big-picture vs. detail-focused).
-     - 1 bullet about **ideal collaborators** (the kinds of people they do their best work with).
-     - 1 bullet pointing to a natural direction for **impact / movements / advocacy causes** where their talents could contribute meaningfully.
-   - Make these bullets feel like "oh, that IS me" – concrete, not vague.
-
-6. **Everyday Life Alignment (This Week)**  
-   - Heading: \`### Everyday Life Alignment (This Week)\`
-   - 4–6 short bullets with practical suggestions that project their genius into daily life.
-   - Draw from these dimensions, but keep it short and integrated (one list, not many sections):
-     - **Daily routine tweaks** that support their genius (e.g., type of morning focus block, energy rhythm).
-     - **Workspace design** ideas (e.g., visual aesthetic, noise level, structure vs. creative chaos) that match their talents.
-     - 1–2 **artistic hobbies or creative outlets** that would feel especially nourishing for their pattern (e.g., improvisational dance vs. detailed design vs. strategy games).
-     - 1 suggestion for a **meditation / inner practice** or reflective ritual best suited to their style (e.g., analytical journaling, somatic breath, devotional practice, visualization).
-     - 1 suggestion for **nature / unconventional adventure** that would refresh and expand their genius (e.g., solo forest walks, group hikes, ocean time, improv workshop).
-   - Each bullet:
-     - Max ~20 words,
-     - Framed as an invitation ("Try...", "Experiment with...", "Give yourself...").
-
-7. **Gentle Closing Line with Next Step**  
-   - One short closing sentence that:
-     - Invites them to honor and trust their gifts, and
-     - Gently mentions that Aleksandr offers a "Career Re-Ignition Session" if they want deeper support turning this into concrete career moves.
-   - Keep it soft, not salesy.
-
-STYLE GUIDELINES:
-
-- Do NOT write more sections than requested.
-- Keep the whole output on the shorter side: no walls of text.
-- Make it feel eerily specific to THIS combination of talents.
-- Avoid cliches like "you are a natural born leader" unless followed by something very concrete and unique.
-- Include both light and shadow: clearly name their edge without shaming them.
-- Use plain, human language. No jargon.
-
-Output ONLY the Markdown content described above. Do not include explanations of what you are doing.
-    `.trim();
+  function parseSnapshotSections(text: string) {
+    const sections: Record<string, string> = {};
+    
+    // Extract sections by looking for labels
+    const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Core Pattern:|$)/s);
+    sections.archetypeTitle = archetypeMatch?.[1]?.trim() || "";
+    
+    const corePatternMatch = text.match(/Core Pattern.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
+    sections.corePattern = corePatternMatch?.[1]?.trim() || "";
+    
+    const superpowersMatch = text.match(/Superpowers in Action.*?:\s*(.+?)(?=\n\n|Your Edge:|$)/s);
+    sections.superpowers = superpowersMatch?.[1]?.trim() || "";
+    
+    const edgeMatch = text.match(/Your Edge.*?:\s*(.+?)(?=\n\n|Where This Genius Thrives:|$)/s);
+    sections.edge = edgeMatch?.[1]?.trim() || "";
+    
+    const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)(?=\n\n|This Week's Upgrade:|$)/s);
+    sections.thrives = thrivesMatch?.[1]?.trim() || "";
+    
+    const upgradeMatch = text.match(/This Week's Upgrade.*?:\s*(.+?)$/s);
+    sections.upgrade = upgradeMatch?.[1]?.trim() || "";
+    
+    return sections;
   }
 
   const handleDownloadPDF = async () => {
@@ -243,7 +182,7 @@ Output ONLY the Markdown content described above. Do not include explanations of
       // Hide it again
       snapshotRef.current.classList.add('hidden');
 
-      // Use JPEG for much smaller file size
+      // Use JPEG for smaller file size
       const imgData = canvas.toDataURL('image/jpeg', 0.85);
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -288,73 +227,40 @@ Output ONLY the Markdown content described above. Do not include explanations of
     }
   };
 
-  // Custom Markdown components for styling
-  const markdownComponents = {
-    h3: (props: any) => (
-      <h3
-        className="mt-6 text-sm sm:text-base font-semibold text-slate-900 first:mt-0"
-        {...props}
-      />
-    ),
-    p: (props: any) => (
-      <p className="mt-3 text-sm leading-relaxed text-slate-700" {...props} />
-    ),
-    ul: (props: any) => (
-      <ul className="mt-3 space-y-2" {...props} />
-    ),
-    li: (props: any) => (
-      <li className="ml-4 list-disc text-sm leading-relaxed text-slate-700" {...props} />
-    ),
-    strong: (props: any) => (
-      <strong className="font-semibold text-slate-900" {...props} />
-    ),
+  const formatBullets = (text: string) => {
+    return text.split('\n').filter(line => line.trim()).map((line, idx) => {
+      const cleanLine = line.replace(/^[-–•]\s*/, '').trim();
+      return cleanLine ? <li key={idx}>{cleanLine}</li> : null;
+    }).filter(Boolean);
   };
 
+  const currentDate = new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
   return (
-    <main className="mx-auto max-w-5xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
       {/* Step indicator */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mb-6">
         <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-          Step 4 of 4 · Lifeline Snapshot
+          STEP 5 OF 5 · LIFELINE SNAPSHOT
         </p>
       </div>
 
-      {/* Main heading */}
-      <h1 className="mt-4 text-center text-2xl sm:text-3xl font-semibold text-slate-900">
-        You Just Unlocked Your Zone of Genius
-      </h1>
-      <p className="mt-2 text-center text-sm sm:text-base text-slate-600">
-        This snapshot is a mirror of how your deepest talents want to move in the world, right now.
-      </p>
-
-      {/* Archetype reveal */}
-      {archetypeTitle && (
-        <div className="mt-6 flex flex-col items-center gap-3 text-center">
-          <span className="inline-flex items-center rounded-full bg-slate-900 px-4 py-1 text-xs sm:text-sm font-medium text-slate-50">
-            Unlocked Archetype
-          </span>
-          <p className="max-w-xl text-lg sm:text-xl font-semibold text-slate-900">
-            {archetypeTitle}
-          </p>
-        </div>
-      )}
-
-      {/* Top 3 core talents as chips */}
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center mb-8">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-          Your top 3 core talents
+      {/* Hero: unlock moment */}
+      <section className="rounded-3xl bg-gradient-to-b from-slate-50 to-white px-6 py-12 sm:px-12 sm:py-16 text-center border border-slate-200 shadow-sm mb-12">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+          You Just Unlocked Your Zone of Genius
+        </h1>
+        <p className="mt-4 text-base sm:text-lg text-slate-700 max-w-3xl mx-auto">
+          This is your current character card in the game of your life — a mirror of how your deepest talents want to move right now.
         </p>
-        <div className="mt-3 flex flex-wrap justify-center gap-2">
-          {top3Talents.map(talent => (
-            <span
-              key={talent.id}
-              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs sm:text-sm text-slate-700 shadow-sm"
-            >
-              {talent.name}
-            </span>
-          ))}
-        </div>
-      </div>
+        <p className="mt-3 text-xs text-slate-500 max-w-2xl mx-auto">
+          Take a breath. Read slowly. This is not a test result — it's a starting point.
+        </p>
+      </section>
 
       {/* Loading State */}
       {isGenerating ? (
@@ -362,37 +268,107 @@ Output ONLY the Markdown content described above. Do not include explanations of
           <Loader2 className="w-12 h-12 animate-spin text-slate-600" />
           <p className="text-lg text-slate-600">Generating your personalized snapshot...</p>
         </div>
-      ) : snapshotMarkdown ? (
+      ) : parsedSnapshot ? (
         <>
-          {/* Main content */}
-          <section className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1.1fr)]">
-            {/* Left: snapshot */}
-            <article className="rounded-3xl border border-slate-200 bg-white/90 p-6 sm:p-8 shadow-sm">
-              {/* Snapshot markdown */}
-              <ReactMarkdown components={markdownComponents}>
-                {snapshotMarkdown}
-              </ReactMarkdown>
-            </article>
-
-            {/* Right: summary + PDF + CTA */}
-            <aside className="space-y-4">
-              {/* Essence sentence card */}
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                <h2 className="text-sm font-semibold text-slate-900">
-                  What This Snapshot Really Says
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-slate-700">
-                  In simple terms: this is how your gifts naturally want to move, where they tend to get stuck, and
-                  what your next chapter is asking of you.
+          {/* Main Layout: Two columns */}
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
+            {/* LEFT COLUMN */}
+            <div className="space-y-6">
+              {/* Character Card */}
+              <article className="rounded-3xl border-2 border-slate-900/10 bg-white p-8 sm:p-10 shadow-lg">
+                <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">
+                  Zone of Genius Character Card
                 </p>
-              </div>
+                <p className="text-xs text-slate-400 mb-6">
+                  Generated on: {currentDate}
+                </p>
+                
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
+                  {parsedSnapshot.archetypeTitle}
+                </h2>
+                
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed text-center mb-6">
+                  {parsedSnapshot.corePattern}
+                </p>
+                
+                <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-slate-200">
+                  {top3Talents.map(talent => (
+                    <span
+                      key={talent.id}
+                      className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-xs sm:text-sm font-medium text-white"
+                    >
+                      {talent.name}
+                    </span>
+                  ))}
+                </div>
+              </article>
 
-              {/* PDF button */}
+              {/* Panel A: Superpowers in Action */}
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  Superpowers in Action
+                </h3>
+                <p className="text-xs text-slate-600 mb-3">
+                  How this genius tends to show up when you are on.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                  {formatBullets(parsedSnapshot.superpowers)}
+                </ul>
+              </article>
+
+              {/* Panel B: Your Edge */}
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  Your Edge (Where You Trip Yourself Up)
+                </h3>
+                <p className="text-xs text-slate-600 mb-3">
+                  Patterns that quietly sabotage you when this genius goes off-track.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                  {formatBullets(parsedSnapshot.edge)}
+                </ul>
+              </article>
+
+              {/* Panel C: Where This Genius Thrives */}
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  Where This Genius Thrives
+                </h3>
+                <p className="text-xs text-slate-600 mb-3">
+                  Environments and roles where this pattern tends to shine.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                  {formatBullets(parsedSnapshot.thrives)}
+                </ul>
+              </article>
+
+              {/* Micro-Quest Card */}
+              <article className="rounded-2xl border-2 border-slate-900 bg-slate-50 p-6 shadow-md">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                    START HERE THIS WEEK
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  This Week's Upgrade
+                </h3>
+                <p className="text-sm text-slate-700 mb-4">
+                  Choose one small action and treat it as a 7-day experiment in living your Zone of Genius.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-800 list-decimal list-inside font-medium">
+                  {formatBullets(parsedSnapshot.upgrade)}
+                </ul>
+              </article>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <aside className="space-y-6">
+              {/* Download PDF button */}
               <button
                 type="button"
                 onClick={handleDownloadPDF}
                 disabled={isDownloading}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-50 shadow-sm hover:bg-slate-800 transition-colors disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-slate-800 transition-colors disabled:opacity-50"
               >
                 {isDownloading ? (
                   <>
@@ -407,183 +383,170 @@ Output ONLY the Markdown content described above. Do not include explanations of
                 )}
               </button>
 
-              {/* Action / session CTA */}
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 sm:p-5">
-                <h2 className="text-sm font-semibold text-slate-900">
+              {/* Meta card: How to Use This Snapshot */}
+              <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-900 mb-3">
+                  How to Use This Snapshot
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400">•</span>
+                    <span>Pick 1 micro-quest for this week.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400">•</span>
+                    <span>Share this card with someone who knows you well.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-400">•</span>
+                    <span>Revisit in a few months as your character evolves.</span>
+                  </li>
+                </ul>
+              </article>
+
+              {/* Session card: If This Hit Home */}
+              <article className="rounded-2xl border border-slate-300 bg-slate-50 p-5 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-900 mb-2">
                   If This Hit Home
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-slate-700">
-                  If this description feels uncannily accurate and you want help turning it into concrete career moves,
+                </h3>
+                <p className="text-xs text-slate-700 mb-3">
+                  If this description feels uncannily accurate and you want help turning it into concrete career moves, 
                   Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
                 </p>
-                <p className="mt-2 text-xs font-semibold text-slate-900">$297 · 60–90 minutes</p>
+                <p className="text-xs font-semibold text-slate-900 mb-3">
+                  $297 · 90 minutes
+                </p>
                 <a
                   href="https://www.calendly.com/konstantinov"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-slate-50 px-4 py-2 text-xs sm:text-sm font-medium text-slate-900 hover:bg-slate-100 transition-colors"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-slate-900 hover:bg-slate-50 transition-colors"
                 >
-                  Book My Session
+                  Book a Deep-Dive Session
                   <ExternalLink className="w-3 h-3" />
                 </a>
-              </div>
-
-              {/* Micro-quest hint */}
-              <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 p-4 sm:p-5">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                  Start Here This Week
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-slate-700">
-                  Choose one suggestion from "Everyday Life Alignment (This Week)" below and treat it as a 7-day micro-quest.
-                  That's where the snapshot becomes real.
-                </p>
-              </div>
+              </article>
             </aside>
-          </section>
+          </div>
 
-          {/* Gentle closing under the grid */}
-          <p className="mt-10 text-center text-xs sm:text-sm text-slate-500">
-            This isn't a final verdict. It's your current character card in the game of your life.
-            You can always come back, reassess, and level up.
-          </p>
+          {/* Footer / continuity line */}
+          <div className="mt-16 pt-8 border-t border-slate-200 text-center space-y-6">
+            <p className="text-sm text-slate-600 max-w-2xl mx-auto">
+              This isn't a final verdict. It's your current character card in the game of your life. 
+              You can always come back, reassess, and level up.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={handleBack}
+                className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to previous step
+              </button>
+              <button
+                onClick={handleStartNew}
+                className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+              >
+                Start new assessment
+              </button>
+            </div>
+          </div>
 
-          {/* PDF Version (Hidden) */}
+          {/* Hidden PDF content */}
           <div ref={snapshotRef} className="hidden">
-            <div className="bg-white p-12 space-y-6" style={{ width: '210mm', minHeight: '297mm' }}>
-              {/* Header Block */}
-              <div className="text-center space-y-2 pb-6 border-b-2 border-gray-200">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Your Zone of Genius Snapshot
-                </h1>
-                <p className="text-sm text-gray-600">
-                  Your personalized ZoG Lifeline Snapshot, based on your unique talent pattern
+            <div className="bg-white p-12" style={{ width: '800px' }}>
+              {/* PDF Header */}
+              <div className="text-center mb-8 pb-6 border-b-2 border-slate-200">
+                <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
+                  Zone of Genius Character Card
                 </p>
-              </div>
-
-              {/* Archetype Highlight */}
-              {archetypeTitle && (
-                <div className="bg-gray-900 text-white px-6 py-3 rounded-full inline-block text-center mb-4">
-                  <p className="text-base font-semibold">{archetypeTitle}</p>
-                </div>
-              )}
-
-              {/* Top 3 Core Talents */}
-              <div className="space-y-4 pb-6 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900">
-                  Your Top 3 Core Talents
-                </h2>
-                <div className="space-y-3">
-                  {top3Talents.map((talent, index) => (
-                    <div key={talent.id} className="space-y-1">
-                      <div className="text-base font-bold text-gray-900">
-                        {index + 1}. {talent.name}
-                      </div>
-                      <div className="text-sm text-gray-600 pl-5">
-                        {talent.description}
-                      </div>
-                    </div>
+                <p className="text-xs text-slate-400 mb-4">
+                  Generated on: {currentDate}
+                </p>
+                
+                {/* Top 3 talents prominently at top */}
+                <div className="flex flex-wrap justify-center gap-3 mb-6">
+                  {top3Talents.map(talent => (
+                    <span
+                      key={talent.id}
+                      className="inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white"
+                    >
+                      {talent.name}
+                    </span>
                   ))}
                 </div>
+                
+                <h1 className="text-3xl font-bold text-slate-900 mb-3">
+                  {parsedSnapshot.archetypeTitle}
+                </h1>
+                
+                <p className="text-base text-slate-700 leading-relaxed max-w-2xl mx-auto">
+                  {parsedSnapshot.corePattern}
+                </p>
               </div>
 
-              {/* Main Snapshot Body - Render Markdown with proper styling */}
-              <div className="space-y-4">
-                <ReactMarkdown
-                  components={{
-                    h3: ({ node, ...props }) => (
-                      <h3 className="text-lg font-bold text-gray-900 mt-6 mb-3 first:mt-0" {...props} />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <p className="text-sm leading-relaxed text-gray-700 mb-3" {...props} />
-                    ),
-                    ul: ({ node, ...props }) => (
-                      <ul className="space-y-2 mb-4" {...props} />
-                    ),
-                    li: ({ node, ...props }) => (
-                      <li className="text-sm leading-relaxed text-gray-700 ml-4 list-disc" {...props} />
-                    ),
-                    strong: ({ node, ...props }) => (
-                      <strong className="font-bold text-gray-900" {...props} />
-                    ),
-                  }}
-                >
-                  {snapshotMarkdown}
-                </ReactMarkdown>
-              </div>
+              {/* PDF Body: Panels */}
+              <div className="space-y-6">
+                {/* Superpowers */}
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                    Superpowers in Action
+                  </h2>
+                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.superpowers)}
+                  </ul>
+                </div>
 
-              {/* Bottom Next Step Block */}
-              <div className="mt-12 pt-6 border-t-2 border-gray-300 space-y-3">
-                <h3 className="text-xl font-bold text-gray-900 text-center">
-                  Your Next Step: Career Re-Ignition Session
-                </h3>
-                <p className="text-sm text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
-                  This is just the beginning. In a focused 60–90 minute session, Aleksandr will personally guide you to transform your ZoG insights into a concrete 3-step strategic action plan to land your next fulfilling role.
-                </p>
-                <p className="text-base font-bold text-gray-900 text-center">
-                  $297 · 60–90 minutes
-                </p>
-                <p className="text-sm text-gray-600 text-center">
-                  Book here: https://www.calendly.com/konstantinov
-                </p>
+                {/* Edge */}
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                    Your Edge (Where You Trip Yourself Up)
+                  </h2>
+                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.edge)}
+                  </ul>
+                </div>
+
+                {/* Thrives */}
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                    Where This Genius Thrives
+                  </h2>
+                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.thrives)}
+                  </ul>
+                </div>
+
+                {/* This Week's Upgrade */}
+                <div className="mt-8 pt-6 border-t-2 border-slate-200">
+                  <h2 className="text-xl font-bold text-slate-900 mb-2">
+                    This Week's Upgrade
+                  </h2>
+                  <ul className="space-y-2 text-sm text-slate-800 list-decimal list-inside font-medium">
+                    {formatBullets(parsedSnapshot.upgrade)}
+                  </ul>
+                </div>
+
+                {/* PDF Footer CTA */}
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                    Ready to Turn Insight into Action?
+                  </h3>
+                  <p className="text-sm text-slate-700 mb-2">
+                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear, 
+                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to 
+                    transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                  </p>
+                  <p className="text-sm font-semibold text-slate-900">
+                    Book My Career Re-Ignition Session at calendly.com/konstantinov
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </>
       ) : null}
-
-      {/* Navigation - Desktop */}
-      <div className="hidden sm:flex flex-col sm:flex-row items-center justify-center gap-4 pt-12 mt-12 border-t border-slate-200">
-        <button
-          onClick={handleBack}
-          className="px-6 py-2 text-sm rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-700"
-        >
-          Back to Step 3
-        </button>
-        <button
-          onClick={handleStartNew}
-          className="text-xs text-slate-500 hover:text-slate-700 hover:underline"
-        >
-          Start New Assessment
-        </button>
-      </div>
-
-      {/* Mobile Bottom Bar */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-slate-200 p-3 pb-safe-4 shadow-lg z-50">
-        <div className="flex items-center justify-between gap-2 mb-2">
-          <button
-            onClick={handleBack}
-            className="text-xs px-3 py-2 rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-700"
-          >
-            Back
-          </button>
-          <button
-            onClick={handleStartNew}
-            className="text-xs text-slate-500 hover:text-slate-700"
-          >
-            Start New
-          </button>
-        </div>
-        <button
-          onClick={handleDownloadPDF}
-          disabled={isDownloading}
-          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-xs font-medium text-slate-50 shadow-sm hover:bg-slate-800 transition-colors disabled:opacity-50"
-        >
-          {isDownloading ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Generating PDF...</span>
-            </>
-          ) : (
-            <>
-              <Download className="w-4 h-4" />
-              <span>Download Snapshot (PDF)</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Spacer for mobile bottom bar */}
-      <div className="sm:hidden h-32" />
     </main>
   );
 };
