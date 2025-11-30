@@ -10,12 +10,15 @@ interface Practice {
   type: string;
   duration_minutes: number;
   description?: string;
+  primary_path?: string;
+  secondary_path?: string;
 }
 
 interface NextQuestContext {
   lowestDomains?: string[];
   archetypeTitle?: string;
   corePattern?: string;
+  pathSlug?: "body" | "mind" | "heart" | "spirit" | "uniqueness_work" | "any";
 }
 
 interface SuggestQuestRequest {
@@ -46,6 +49,16 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Build context description for the LLM
     let contextDescription = '';
+    if (context?.pathSlug && context.pathSlug !== 'any') {
+      const pathNames: Record<string, string> = {
+        body: 'Body',
+        mind: 'Mind',
+        heart: 'Heart',
+        spirit: 'Spirit',
+        uniqueness_work: 'Uniqueness & Work'
+      };
+      contextDescription += `\n- Selected development path: ${pathNames[context.pathSlug] || context.pathSlug}`;
+    }
     if (context?.lowestDomains && context.lowestDomains.length > 0) {
       contextDescription += `\n- Lowest life domain(s): ${context.lowestDomains.join(', ')}`;
     }
@@ -61,12 +74,13 @@ const handler = async (req: Request): Promise<Response> => {
 You receive:
 - intention: what the player most wants right now (e.g. "Calm my nervous system", "Feel clearer about money")
 ${contextDescription ? `- context about the player:${contextDescription}` : ''}
-- a list of practices from a library, where each practice has: title, type, duration_minutes, and optional description
+- a list of practices from a library, where each practice has: title, type, duration_minutes, primary_path, secondary_path, and optional description
 
 YOUR TASK:
 Choose ONE practice as the Main Quest:
-- It should be low-friction, doable today, and high-impact for the intention
-${context?.lowestDomains ? `- Prefer practices that support one of these domains: ${context.lowestDomains.join(', ')}` : ''}
+- It must be doable today and clearly helpful for the intention
+${context?.pathSlug && context.pathSlug !== 'any' ? `- STRONGLY prefer practices whose primary_path or secondary_path matches "${context.pathSlug}"` : ''}
+${context?.lowestDomains ? `- Also consider practices that support these life domains: ${context.lowestDomains.join(', ')}` : ''}
 ${context?.archetypeTitle ? `- Pick something that fits their archetype: ${context.archetypeTitle}` : ''}
 
 Optionally choose up to TWO alternative practices that would also be good next steps.
@@ -75,12 +89,13 @@ For each selected practice, return:
 - quest_title: the practice title
 - practice_type: the type
 - approx_duration_minutes: rounded duration in minutes
-- why_it_is_a_good_next_move: 1-2 sentences that are concrete and grounded (no vague spiritual clichés), explicitly tie to:
-  * the intention wording
-  ${context?.lowestDomains ? `* the lowest domain(s) if relevant` : ''}
-  ${context?.archetypeTitle ? `* the archetype/pattern if relevant` : ''}
+- why_it_is_a_good_next_move: 1-2 sentences that:
+  * reference the intention
+  * mention the development path (body/mind/heart/spirit/uniqueness & work) in plain language at least once
+  ${context?.lowestDomains ? `* optionally mention the weakest domain(s) if relevant` : ''}
+  ${context?.archetypeTitle ? `* optionally reference their archetype if relevant` : ''}
 
-Tone: Calm, kind, precise. Encourage without hype.
+Tone: Grounded, kind, precise. No fluff or vague spiritual clichés.
 
 Return ONLY valid JSON in this exact shape (no markdown, no backticks):
 {
@@ -103,7 +118,7 @@ Return ONLY valid JSON in this exact shape (no markdown, no backticks):
     const userPrompt = `Player's intention: "${intention}"
 
 Available practices:
-${practices.map(p => `- ${p.title} (${p.type}, ${p.duration_minutes} min)${p.description ? `: ${p.description}` : ''}`).join('\n')}
+${practices.map(p => `- ${p.title} (${p.type}, ${p.duration_minutes} min, primary_path: ${p.primary_path || 'none'}, secondary_path: ${p.secondary_path || 'none'})${p.description ? `: ${p.description}` : ''}`).join('\n')}
 
 Select the best Main Quest and up to 2 alternatives.`;
 
