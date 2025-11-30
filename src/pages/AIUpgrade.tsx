@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { useAIUpgradeAccess, validatePromoCode } from "@/hooks/use-ai-upgrade-access";
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { useAIUpgradeAccess, validatePromoCode } from "@/hooks/use-promo-access";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,7 @@ const AIUpgrade = () => {
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showPromoInput, setShowPromoInput] = useState(false);
 
   useEffect(() => {
     if (hasAccess) {
@@ -91,33 +92,49 @@ const AIUpgrade = () => {
           </a>
           <p className="text-sm text-gray-600 mt-4">One-time payment · Instant access</p>
 
-          {/* Promo Code Section */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-center text-gray-600 mb-4">
-              Have a promo code to access AI UPGRADE as a gift?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <Input
-                type="text"
-                placeholder="Enter promo code"
-                value={promoCode}
-                onChange={(e) => {
-                  setPromoCode(e.target.value);
-                  setPromoError("");
-                }}
-                className="flex-1 rounded-full"
-              />
-              <Button
-                onClick={handleApplyPromo}
-                variant="outline"
-                className="rounded-full px-8"
-                style={{ borderColor: '#0A2342', color: '#0A2342' }}
+          {/* Subtle Promo Code Section */}
+          <div className="mt-8 pt-6">
+            <div className="text-center">
+              <button
+                onClick={() => setShowPromoInput(!showPromoInput)}
+                className="text-sm text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
               >
-                Apply
-              </Button>
+                Have a promo code?
+                {showPromoInput ? (
+                  <ChevronUp className="h-3 w-3" />
+                ) : (
+                  <ChevronDown className="h-3 w-3" />
+                )}
+              </button>
             </div>
-            {promoError && (
-              <p className="text-center text-red-500 text-sm mt-2">{promoError}</p>
+            
+            {showPromoInput && (
+              <div className="mt-4 max-w-sm mx-auto animate-in slide-in-from-top-2 duration-200">
+                <div className="flex gap-2">
+                  <Input
+                    type="text"
+                    placeholder="Enter promo code"
+                    value={promoCode}
+                    onChange={(e) => {
+                      setPromoCode(e.target.value);
+                      setPromoError("");
+                    }}
+                    className="flex-1 text-sm h-9"
+                  />
+                  <Button
+                    onClick={handleApplyPromo}
+                    variant="outline"
+                    size="sm"
+                    className="text-sm"
+                    style={{ borderColor: '#0A2342', color: '#0A2342' }}
+                  >
+                    Apply
+                  </Button>
+                </div>
+                {promoError && (
+                  <p className="text-xs text-red-500 mt-1">{promoError}</p>
+                )}
+              </div>
             )}
           </div>
         </div>

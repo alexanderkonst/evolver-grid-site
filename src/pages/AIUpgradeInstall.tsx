@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { useAIUpgradeAccess } from "@/hooks/use-ai-upgrade-access";
+import { useAIUpgradeAccess } from "@/hooks/use-promo-access";
 
 const AIUpgradeInstall = () => {
   const navigate = useNavigate();
