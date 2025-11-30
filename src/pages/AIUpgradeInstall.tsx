@@ -1,10 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useAIUpgradeAccess } from "@/hooks/use-ai-upgrade-access";
 
 const AIUpgradeInstall = () => {
+  const navigate = useNavigate();
+  const { hasAccess } = useAIUpgradeAccess();
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (!hasAccess) {
+      navigate("/ai-upgrade");
+    }
+  }, [hasAccess, navigate]);
 
   const PROMPTS = [
     {
