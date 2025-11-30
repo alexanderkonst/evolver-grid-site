@@ -507,13 +507,13 @@ If the honest answer is no, refine the response or clearly state the limitation 
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
-        <div className="container mx-auto px-6 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
+        <div className="container mx-auto px-6 py-5">
           <Link 
             to="/ai-upgrade" 
-            className="text-sm font-medium hover:opacity-70 transition-opacity"
+            className="text-sm font-semibold hover:opacity-70 transition-opacity"
             style={{ color: '#0A2342' }}
           >
             ← Back
@@ -523,58 +523,91 @@ If the honest answer is no, refine the response or clearly state the limitation 
 
       {/* Main Content */}
       <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <h1 
-            className="text-4xl sm:text-5xl font-bold mb-8 text-center"
-            style={{ color: '#0A2342' }}
-          >
-            Install the Upgrade
-          </h1>
-          
-          <p className="text-xl text-gray-700 leading-relaxed text-center mb-8 max-w-2xl mx-auto">
-            Copy any prompt below and paste it in your AI conversation (ChatGPT, Claude, etc.) to use it.
-          </p>
+        <div className="container mx-auto max-w-5xl">
+          {/* Hero Header */}
+          <div className="text-center mb-16">
+            <h1 
+              className="text-5xl sm:text-6xl font-bold mb-6 tracking-tight"
+              style={{ color: '#0A2342' }}
+            >
+              Install the Upgrade
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Copy any prompt below and paste it in your AI conversation (ChatGPT, Claude, etc.) to use it.
+            </p>
+          </div>
 
           {/* Prompt Launcher Section */}
-          <div className="mb-12 p-8 bg-gray-50 rounded-2xl border border-gray-200">
-            <div className="space-y-4">
-              {PROMPTS.map((prompt) => (
+          <div className="mb-16">
+            {/* Primary Prompt - Highlighted */}
+            <div className="mb-8 relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-3xl blur opacity-30 animate-pulse"></div>
+              <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl border border-amber-500/20">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
+                    ⭐ Primary Upgrade
+                  </span>
+                </div>
                 <button
-                  key={prompt.id}
-                  onClick={() => handleCopy(prompt.id, prompt.content)}
-                  className="w-full px-6 py-4 rounded-full text-white font-medium text-lg transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
-                  style={{ backgroundColor: '#0A2342' }}
+                  onClick={() => handleCopy(PROMPTS[0].id, PROMPTS[0].content)}
+                  className="w-full px-8 py-6 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold text-xl transition-all hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] hover:from-amber-400 hover:to-amber-500"
                 >
-                  {copiedId === prompt.id ? "Copied!" : prompt.label}
+                  {copiedId === PROMPTS[0].id ? "✓ Copied!" : PROMPTS[0].label}
                 </button>
-              ))}
+                <p className="text-center text-slate-400 text-sm mt-4 leading-relaxed">
+                  Transform your AI into a coherent holonic meta-intelligence with v4.02
+                </p>
+              </div>
+            </div>
+
+            {/* Secondary Prompts */}
+            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-200/50">
+              <h3 className="text-center text-sm font-semibold uppercase tracking-wider text-slate-500 mb-6">
+                Additional Power-Up Prompts
+              </h3>
+              <div className="space-y-3">
+                {PROMPTS.slice(1).map((prompt) => (
+                  <button
+                    key={prompt.id}
+                    onClick={() => handleCopy(prompt.id, prompt.content)}
+                    className="w-full px-6 py-4 rounded-2xl text-white font-semibold text-lg transition-all hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] border border-slate-700/10"
+                    style={{ 
+                      backgroundColor: '#0A2342',
+                      boxShadow: '0 4px 14px 0 rgba(10, 35, 66, 0.15)'
+                    }}
+                  >
+                    {copiedId === prompt.id ? "✓ Copied!" : prompt.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Instructions */}
-          <div className="p-8 bg-white rounded-2xl border border-gray-200">
+          <div className="p-10 bg-white/80 backdrop-blur-sm rounded-3xl border border-slate-200/50 shadow-xl">
             <h2 
-              className="text-2xl font-semibold mb-4"
+              className="text-3xl font-bold mb-6 text-center"
               style={{ color: '#0A2342' }}
             >
               How to Use These Prompts
             </h2>
-            <ol className="space-y-3 text-lg text-gray-700">
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>1.</span>
-                <span>Click any prompt button above to copy it to your clipboard</span>
+            <ol className="space-y-4 max-w-2xl mx-auto">
+              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>1</span>
+                <span className="text-lg text-slate-700 pt-0.5">Click any prompt button above to copy it to your clipboard</span>
               </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>2.</span>
-                <span>Open your AI model (ChatGPT, Claude, etc.)</span>
+              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>2</span>
+                <span className="text-lg text-slate-700 pt-0.5">Open your AI model (ChatGPT, Claude, etc.)</span>
               </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>3.</span>
-                <span>Paste the prompt in your conversation</span>
+              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>3</span>
+                <span className="text-lg text-slate-700 pt-0.5">Paste the prompt in your conversation</span>
               </li>
-              <li className="flex items-start">
-                <span className="mr-3 font-semibold" style={{ color: '#0A2342' }}>4.</span>
-                <span>Get upgraded results based on which prompt you chose</span>
+              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>4</span>
+                <span className="text-lg text-slate-700 pt-0.5">Get upgraded results based on which prompt you chose</span>
               </li>
             </ol>
           </div>
