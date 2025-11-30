@@ -8,22 +8,27 @@ import BoldText from "@/components/BoldText";
 
 const Step1SelectTop10Talents = () => {
   const navigate = useNavigate();
-  const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
+  const { yesTalentIds, selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
   const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
-  const [randomizedTalents] = useState(() => {
-    // Randomize talents order on mount
-    const shuffled = [...TALENTS];
+  const [randomizedTalents, setRandomizedTalents] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Filter talents to only show those marked "Yes" in Step 0
+    const filteredTalents = TALENTS.filter(talent => yesTalentIds.includes(talent.id));
+    const shuffled = [...filteredTalents];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return shuffled;
-  });
+    setRandomizedTalents(shuffled);
+  }, [yesTalentIds]);
 
   useEffect(() => {
     setLocalSelected(selectedTop10TalentIds);
   }, [selectedTop10TalentIds]);
+
+  const maxSelectable = Math.min(yesTalentIds.length, 10);
 
   const handleTalentClick = (talentId: number) => {
     if (localSelected.includes(talentId)) {
@@ -32,7 +37,7 @@ const Step1SelectTop10Talents = () => {
       setShowMaxWarning(false);
     } else {
       // Try to select
-      if (localSelected.length < 10) {
+      if (localSelected.length < maxSelectable) {
         setLocalSelected([...localSelected, talentId]);
         setShowMaxWarning(false);
       } else {
@@ -49,21 +54,29 @@ const Step1SelectTop10Talents = () => {
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius");
+    navigate("/zone-of-genius/assessment/step-0");
   };
 
-  const canContinue = localSelected.length === 10;
+  const canContinue = localSelected.length === maxSelectable;
 
   return (
     <div className="space-y-8">
       {/* Page Title */}
       <div className="text-center space-y-3">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Step 1: Select Your Top 10 Most Energizing Talents
+          Choose Your Top {maxSelectable} Talents
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From the list below, choose the 10 talents that <BoldText>FEEL MOST ALIVE AND NATURAL</BoldText> to you. Don't overthink it — go with what <BoldText>FEELS TRUE</BoldText>.
+          From the talents you just said <strong>YES</strong> to, choose the <strong>{maxSelectable}</strong> that feel most central to who you are.
         </p>
+        <p className="text-sm text-muted-foreground">
+          These are talents you rely on often and that others consistently notice in you.
+        </p>
+        {yesTalentIds.length < 10 && (
+          <div className="bg-muted/50 border border-border rounded-lg p-3 mt-4 text-sm text-muted-foreground max-w-xl mx-auto">
+            You selected fewer than 10 talents in the previous step, so we'll use all of them here.
+          </div>
+        )}
       </div>
 
       {/* Progress Indicator */}
@@ -71,15 +84,15 @@ const Step1SelectTop10Talents = () => {
         <div className="flex items-center gap-3">
           <div className={cn(
             "text-2xl font-bold transition-colors",
-            localSelected.length === 10 ? "text-green-500" : "text-primary"
+            localSelected.length === maxSelectable ? "text-green-500" : "text-primary"
           )}>
-            {localSelected.length} / 10
+            {localSelected.length} / {maxSelectable}
           </div>
           <span className="text-sm text-muted-foreground">talents selected</span>
         </div>
         {showMaxWarning && (
           <div className="text-xs sm:text-sm text-orange-500 animate-fade-in">
-            You can only select up to 10 talents. Please deselect one to choose another.
+            You can only select up to {maxSelectable} talents. Please deselect one to choose another.
           </div>
         )}
       </div>
@@ -121,7 +134,7 @@ const Step1SelectTop10Talents = () => {
           onClick={handleBack}
           className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
         >
-          Back to Landing Page
+          Back to Step 1
         </button>
         <button
           onClick={handleContinue}
@@ -147,9 +160,9 @@ const Step1SelectTop10Talents = () => {
           <div className="flex items-center gap-2">
             <div className={cn(
               "text-xl font-bold transition-colors",
-              localSelected.length === 10 ? "text-green-500" : "text-primary"
+              localSelected.length === maxSelectable ? "text-green-500" : "text-primary"
             )}>
-              {localSelected.length} / 10
+              {localSelected.length} / {maxSelectable}
             </div>
             <span className="text-xs text-muted-foreground">selected</span>
           </div>
