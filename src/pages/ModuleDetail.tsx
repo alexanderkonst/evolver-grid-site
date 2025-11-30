@@ -93,11 +93,21 @@ const ModuleDetail = () => {
             {module.tagline}
           </p>
           
+          {/* Prominent Price Display for AI Upgrade */}
+          {module.slug === "intelligence-boost-for-your-ai-model" && module.price && (
+            <div className="mb-6">
+              <p className="text-5xl sm:text-6xl font-bold text-white mb-2" style={{ color: 'hsl(var(--destiny-gold))' }}>
+                {module.price}
+              </p>
+              <p className="text-lg text-white/60">One-time payment · Instant access</p>
+            </div>
+          )}
+          
           <div className="flex items-center justify-center gap-3 mb-8">
             <Badge variant="outline" className="text-sm text-white/60 border-white/20">
               <BoldText>{module.status}</BoldText>
             </Badge>
-            {module.price && (
+            {module.price && module.slug !== "intelligence-boost-for-your-ai-model" && (
               <Badge variant="outline" className="text-sm text-white/60 border-white/20">
                 <BoldText>{module.price}</BoldText>
               </Badge>
@@ -123,9 +133,6 @@ const ModuleDetail = () => {
                 <BoldText>{module.hero_CTA_label}</BoldText>
               </Link>
             </Button>
-          )}
-          {module.price && module.slug === "intelligence-boost-for-your-ai-model" && (
-            <p className="text-sm text-white/60 mt-4">One-time payment · Instant access</p>
           )}
         </div>
       </section>
