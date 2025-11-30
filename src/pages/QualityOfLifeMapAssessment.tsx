@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -12,6 +12,11 @@ const QualityOfLifeMapAssessment = () => {
   const navigate = useNavigate();
   const { answers, setAnswer } = useQolAssessment();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const domain = DOMAINS[currentIndex];
   const isLastDomain = currentIndex === DOMAINS.length - 1;
