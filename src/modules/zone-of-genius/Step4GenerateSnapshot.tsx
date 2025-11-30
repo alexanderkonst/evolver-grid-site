@@ -111,42 +111,45 @@ Write plain text (no markdown headings) with the following clearly labeled secti
 Archetype Title:
 – 1 short phrase that names their Zone of Genius archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
 
-Core Pattern (1–2 sentences):
-– A concise summary of what their genius actually does in the world when it's on. Focus on behavior and impact, not abstract traits.
+Your Zone of Genius Description (3–4 rich sentences):
+– What this genius naturally seeks or does when active.
+– How it shows up when they are at their best.
+– The unique value they bring to environments.
+– Make this feel like a fuller character description, not just a summary.
 
 Superpowers in Action (3 bullets max):
 – Each bullet 1 sentence.
 – Describe concrete ways this pattern shows up in daily life and work when they are at their best.
 
 Your Edge (3 bullets max):
+– This is their supershadow — the flip side of their gift where growth happens.
 – Each bullet 1 sentence.
-– Name the most common ways they overuse, distort, or sabotage this pattern. Be honest and a bit sharp, but not cruel.
+– Be direct, piercing, uncomfortable but true. Name the most common ways they overuse, distort, or sabotage this pattern.
+– Make it cut deeper than generic warnings. This should feel like an honest mirror.
 
-Where This Genius Thrives (3–5 bullets):
+Where This Genius Thrives (exactly 6 bullets):
 – Each bullet 1 sentence.
-– Describe roles, environments, and types of work where this pattern tends to shine.
-
-This Week's Upgrade (3 bullets):
-– Each bullet is a small, specific 7-day micro-quest they could try.
-– Each quest must be concrete and observable (who/what/when), not vague advice.
+– Describe roles, environments, types of work, collaboration styles, and impact areas where this pattern tends to shine.
+– Mix specificity: include role types, cultural fit, ideal collaborators, and contribution directions.
 
 GENERAL STYLE RULES:
 – Use clear, simple language a smart 15-year-old could understand.
-– No paragraphs longer than 2 sentences.
+– No paragraphs longer than 2 sentences in the description section.
 – No more than 20 words per sentence.
 – Speak directly to 'you'.
-– Avoid generic self-help clichés. Make it feel tailored and precise.`.trim();
+– Avoid generic self-help clichés. Make it feel tailored, precise, and surprising.
+– For Your Edge: be honest and sharp, but not cruel. Frame as "working skillfully with your own pattern."`.trim();
   }
 
   function parseSnapshotSections(text: string) {
     const sections: Record<string, string> = {};
     
     // Extract sections by looking for labels
-    const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Core Pattern:|$)/s);
+    const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Your Zone of Genius Description:|$)/s);
     sections.archetypeTitle = archetypeMatch?.[1]?.trim() || "";
     
-    const corePatternMatch = text.match(/Core Pattern.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
-    sections.corePattern = corePatternMatch?.[1]?.trim() || "";
+    const descriptionMatch = text.match(/Your Zone of Genius Description.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
+    sections.description = descriptionMatch?.[1]?.trim() || "";
     
     const superpowersMatch = text.match(/Superpowers in Action.*?:\s*(.+?)(?=\n\n|Your Edge:|$)/s);
     sections.superpowers = superpowersMatch?.[1]?.trim() || "";
@@ -154,11 +157,8 @@ GENERAL STYLE RULES:
     const edgeMatch = text.match(/Your Edge.*?:\s*(.+?)(?=\n\n|Where This Genius Thrives:|$)/s);
     sections.edge = edgeMatch?.[1]?.trim() || "";
     
-    const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)(?=\n\n|This Week's Upgrade:|$)/s);
+    const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)$/s);
     sections.thrives = thrivesMatch?.[1]?.trim() || "";
-    
-    const upgradeMatch = text.match(/This Week's Upgrade.*?:\s*(.+?)$/s);
-    sections.upgrade = upgradeMatch?.[1]?.trim() || "";
     
     return sections;
   }
@@ -283,13 +283,15 @@ GENERAL STYLE RULES:
                   Generated on: {currentDate}
                 </p>
                 
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
                   {parsedSnapshot.archetypeTitle}
                 </h2>
                 
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed text-center mb-6">
-                  {parsedSnapshot.corePattern}
-                </p>
+                <div className="prose prose-sm sm:prose-base max-w-none mb-6">
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                    {parsedSnapshot.description}
+                  </p>
+                </div>
                 
                 <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-slate-200">
                   {top3Talents.map(talent => (
@@ -322,7 +324,7 @@ GENERAL STYLE RULES:
                   Your Edge (Where You Trip Yourself Up)
                 </h3>
                 <p className="text-xs text-slate-600 mb-3">
-                  Patterns that quietly sabotage you when this genius goes off-track.
+                  Your supershadow — the flip side of your gift. Growth happens here.
                 </p>
                 <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
                   {formatBullets(parsedSnapshot.edge)}
@@ -342,23 +344,6 @@ GENERAL STYLE RULES:
                 </ul>
               </article>
 
-              {/* Micro-Quest Card */}
-              <article className="rounded-2xl border-2 border-slate-900 bg-slate-50 p-6 shadow-md">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                    START HERE THIS WEEK
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
-                  This Week's Upgrade
-                </h3>
-                <p className="text-sm text-slate-700 mb-4">
-                  Choose one small action and treat it as a 7-day experiment in living your Zone of Genius.
-                </p>
-                <ul className="space-y-2 text-sm text-slate-800 list-decimal list-inside font-medium">
-                  {formatBullets(parsedSnapshot.upgrade)}
-                </ul>
-              </article>
             </div>
 
             {/* RIGHT COLUMN */}
@@ -382,27 +367,6 @@ GENERAL STYLE RULES:
                   </>
                 )}
               </button>
-
-              {/* Meta card: How to Use This Snapshot */}
-              <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-900 mb-3">
-                  How to Use This Snapshot
-                </h3>
-                <ul className="space-y-2 text-xs text-slate-700">
-                  <li className="flex items-start gap-2">
-                    <span className="text-slate-400">•</span>
-                    <span>Pick 1 micro-quest for this week.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-slate-400">•</span>
-                    <span>Share this card with someone who knows you well.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-slate-400">•</span>
-                    <span>Revisit in a few months as your character evolves.</span>
-                  </li>
-                </ul>
-              </article>
 
               {/* Session card: If This Hit Home */}
               <article className="rounded-2xl border border-slate-300 bg-slate-50 p-5 shadow-sm">
@@ -481,9 +445,11 @@ GENERAL STYLE RULES:
                   {parsedSnapshot.archetypeTitle}
                 </h1>
                 
-                <p className="text-base text-slate-700 leading-relaxed max-w-2xl mx-auto">
-                  {parsedSnapshot.corePattern}
-                </p>
+                <div className="max-w-2xl mx-auto">
+                  <p className="text-base text-slate-700 leading-relaxed">
+                    {parsedSnapshot.description}
+                  </p>
+                </div>
               </div>
 
               {/* PDF Body: Panels */}
@@ -515,16 +481,6 @@ GENERAL STYLE RULES:
                   </h2>
                   <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
                     {formatBullets(parsedSnapshot.thrives)}
-                  </ul>
-                </div>
-
-                {/* This Week's Upgrade */}
-                <div className="mt-8 pt-6 border-t-2 border-slate-200">
-                  <h2 className="text-xl font-bold text-slate-900 mb-2">
-                    This Week's Upgrade
-                  </h2>
-                  <ul className="space-y-2 text-sm text-slate-800 list-decimal list-inside font-medium">
-                    {formatBullets(parsedSnapshot.upgrade)}
                   </ul>
                 </div>
 
