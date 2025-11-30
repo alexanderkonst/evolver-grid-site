@@ -5,15 +5,15 @@ import { useAIUpgradeAccess } from "@/hooks/use-promo-access";
 
 const AIUpgradeInstall = () => {
   const navigate = useNavigate();
-  const { hasAccess } = useAIUpgradeAccess();
+  const { hasAccess, isLoading } = useAIUpgradeAccess();
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!hasAccess) {
+    if (!isLoading && !hasAccess) {
       navigate("/ai-upgrade");
     }
-  }, [hasAccess, navigate]);
+  }, [hasAccess, isLoading, navigate]);
 
   const PROMPTS = [
     {

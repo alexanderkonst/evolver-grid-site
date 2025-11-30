@@ -1,41 +1,70 @@
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
-// Shared promo codes for all products
-export const VALID_PROMO_CODES = [
-  "GIFTED",         // Universal promo code across entire website
-  "AIUPGRADEGIFT",  // AI Upgrade specific code
-];
-
-export const validatePromoCode = (code: string): boolean => {
-  const normalized = code.trim().toUpperCase();
-  return VALID_PROMO_CODES.includes(normalized);
-};
-
-// AI Upgrade access management
-const AI_UPGRADE_ACCESS_KEY = "ai_upgrade_access_granted";
-
+// Server-side promo code validation for AI Upgrade
 export const useAIUpgradeAccess = () => {
   const [hasAccess, setHasAccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [profileId, setProfileId] = useState<string | null>(null);
 
   useEffect(() => {
-    const access = localStorage.getItem(AI_UPGRADE_ACCESS_KEY);
-    setHasAccess(access === "true");
+    const checkAccess = async () => {
+      try {
+        const id = await getOrCreateGameProfileId();
+        setProfileId(id);
+
+        // Check access from database
+        const { data, error } = await supabase
+          .from('game_profiles')
+          .select('ai_upgrade_access')
+          .eq('id', id)
+          .single();
+
+        if (!error && data?.ai_upgrade_access) {
+          setHasAccess(true);
+        }
+      } catch (error) {
+        console.error('Error checking access:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAccess();
   }, []);
 
-  const grantAccess = () => {
-    localStorage.setItem(AI_UPGRADE_ACCESS_KEY, "true");
-    setHasAccess(true);
+  const validateAndGrantAccess = async (code: string): Promise<boolean> => {
+    if (!profileId) {
+      return false;
+    }
+
+    try {
+      const { data, error } = await supabase.functions.invoke('validate-promo-code', {
+        body: { promoCode: code, profileId }
+      });
+
+      if (error) {
+        console.error('Error validating promo code:', error);
+        return false;
+      }
+
+      if (data?.valid) {
+        setHasAccess(true);
+        return true;
+      }
+
+      return false;
+    } catch (error) {
+      console.error('Error validating promo code:', error);
+      return false;
+    }
   };
 
-  const revokeAccess = () => {
-    localStorage.removeItem(AI_UPGRADE_ACCESS_KEY);
-    setHasAccess(false);
-  };
-
-  return { hasAccess, grantAccess, revokeAccess };
+  return { hasAccess, isLoading, validateAndGrantAccess };
 };
 
-// Zone of Genius access management
+// Zone of Genius access management (free, client-side only)
 const ZONE_OF_GENIUS_ACCESS_KEY = "zone_of_genius_access_granted";
 
 export const useZoneOfGeniusAccess = () => {

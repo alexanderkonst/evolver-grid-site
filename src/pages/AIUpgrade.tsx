@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import { useAIUpgradeAccess, validatePromoCode } from "@/hooks/use-promo-access";
+import { useAIUpgradeAccess } from "@/hooks/use-promo-access";
 import {
   Dialog,
   DialogContent,
@@ -14,19 +14,20 @@ import { Input } from "@/components/ui/input";
 
 const AIUpgrade = () => {
   const navigate = useNavigate();
-  const { hasAccess, grantAccess } = useAIUpgradeAccess();
+  const { hasAccess, isLoading, validateAndGrantAccess } = useAIUpgradeAccess();
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showPromoInput, setShowPromoInput] = useState(false);
+  const [isValidating, setIsValidating] = useState(false);
 
   useEffect(() => {
-    if (hasAccess) {
+    if (hasAccess && !isLoading) {
       navigate("/ai-upgrade/install");
     }
-  }, [hasAccess, navigate]);
+  }, [hasAccess, isLoading, navigate]);
 
-  const handleApplyPromo = () => {
+  const handleApplyPromo = async () => {
     setPromoError("");
     
     if (!promoCode.trim()) {
@@ -34,11 +35,16 @@ const AIUpgrade = () => {
       return;
     }
 
-    if (validatePromoCode(promoCode)) {
-      grantAccess();
-      setShowSuccessModal(true);
-    } else {
-      setPromoError("Invalid or expired promo code.");
+    setIsValidating(true);
+    try {
+      const isValid = await validateAndGrantAccess(promoCode);
+      if (isValid) {
+        setShowSuccessModal(true);
+      } else {
+        setPromoError("Invalid or expired promo code.");
+      }
+    } finally {
+      setIsValidating(false);
     }
   };
 
@@ -127,8 +133,9 @@ const AIUpgrade = () => {
                     size="sm"
                     className="text-sm"
                     style={{ borderColor: '#0A2342', color: '#0A2342' }}
+                    disabled={isValidating}
                   >
-                    Apply
+                    {isValidating ? "Validating..." : "Apply"}
                   </Button>
                 </div>
                 {promoError && (
