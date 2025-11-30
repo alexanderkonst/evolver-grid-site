@@ -14,7 +14,142 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      game_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          last_qol_snapshot_id: string | null
+          last_quest_completed_at: string | null
+          last_quest_title: string | null
+          last_zog_snapshot_id: string | null
+          total_quests_completed: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_qol_snapshot_id?: string | null
+          last_quest_completed_at?: string | null
+          last_quest_title?: string | null
+          last_zog_snapshot_id?: string | null
+          total_quests_completed?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_qol_snapshot_id?: string | null
+          last_quest_completed_at?: string | null
+          last_quest_title?: string | null
+          last_zog_snapshot_id?: string | null
+          total_quests_completed?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_last_qol_snapshot"
+            columns: ["last_qol_snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "qol_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_last_zog_snapshot"
+            columns: ["last_zog_snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "zog_snapshots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      qol_snapshots: {
+        Row: {
+          created_at: string
+          growth_stage: number
+          happiness_stage: number
+          health_stage: number
+          home_stage: number
+          id: string
+          impact_stage: number
+          love_relationships_stage: number
+          profile_id: string | null
+          social_ties_stage: number
+          wealth_stage: number
+        }
+        Insert: {
+          created_at?: string
+          growth_stage: number
+          happiness_stage: number
+          health_stage: number
+          home_stage: number
+          id?: string
+          impact_stage: number
+          love_relationships_stage: number
+          profile_id?: string | null
+          social_ties_stage: number
+          wealth_stage: number
+        }
+        Update: {
+          created_at?: string
+          growth_stage?: number
+          happiness_stage?: number
+          health_stage?: number
+          home_stage?: number
+          id?: string
+          impact_stage?: number
+          love_relationships_stage?: number
+          profile_id?: string | null
+          social_ties_stage?: number
+          wealth_stage?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_profile"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      zog_snapshots: {
+        Row: {
+          archetype_title: string
+          core_pattern: string
+          created_at: string
+          id: string
+          profile_id: string | null
+          top_ten_talents: Json
+          top_three_talents: Json
+        }
+        Insert: {
+          archetype_title: string
+          core_pattern: string
+          created_at?: string
+          id?: string
+          profile_id?: string | null
+          top_ten_talents: Json
+          top_three_talents: Json
+        }
+        Update: {
+          archetype_title?: string
+          core_pattern?: string
+          created_at?: string
+          id?: string
+          profile_id?: string | null
+          top_ten_talents?: Json
+          top_three_talents?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_profile"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
