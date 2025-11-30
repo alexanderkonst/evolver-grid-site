@@ -85,10 +85,11 @@ const AIUpgrade = () => {
               className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
               style={{ backgroundColor: '#0A2342' }}
             >
-              Get the Upgrade
+              Get the Upgrade — $33
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
+          <p className="text-sm text-gray-600 mt-4">One-time payment · Instant access</p>
 
           {/* Promo Code Section */}
           <div className="mt-12 pt-8 border-t border-gray-200">
@@ -261,7 +262,7 @@ const AIUpgrade = () => {
                   className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
                   style={{ backgroundColor: '#0A2342' }}
                 >
-                  Get the Upgrade
+                  Get the Upgrade — $33
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
@@ -360,7 +361,7 @@ const AIUpgrade = () => {
                 className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                Get the Upgrade
+                Get the Upgrade — $33
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
@@ -388,7 +389,7 @@ const AIUpgrade = () => {
               className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
               style={{ backgroundColor: '#0A2342' }}
             >
-              Get the Upgrade
+              Get the Upgrade — $33
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
@@ -404,7 +405,7 @@ const AIUpgrade = () => {
               className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
               style={{ backgroundColor: '#0A2342' }}
             >
-              Get the Upgrade
+              Get the Upgrade — $33
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
