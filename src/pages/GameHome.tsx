@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
-import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
+import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 
@@ -22,7 +22,20 @@ interface GameProfile {
   current_streak_days: number;
   longest_streak_days: number;
   last_quest_completed_at: string | null;
+  xp_body: number;
+  xp_mind: number;
+  xp_heart: number;
+  xp_spirit: number;
+  xp_uniqueness_work: number;
 }
+
+const PATH_LABELS: Record<DevelopmentPath, string> = {
+  body: "Body",
+  mind: "Mind",
+  heart: "Heart",
+  spirit: "Spirit",
+  uniqueness_work: "Uniqueness & Work"
+};
 
 interface Quest {
   id: string;
@@ -79,6 +92,7 @@ const GameHome = () => {
   const [previousQolSnapshot, setPreviousQolSnapshot] = useState<QolSnapshot | null>(null);
   
   // Next Quest state
+  const [selectedPath, setSelectedPath] = useState<DevelopmentPath>("body");
   const [selectedIntention, setSelectedIntention] = useState<string | null>(null);
   const [isLoadingQuest, setIsLoadingQuest] = useState(false);
   const [questSuggestion, setQuestSuggestion] = useState<{
@@ -296,14 +310,29 @@ const GameHome = () => {
     setIsLoadingQuest(true);
 
     try {
-      const practices = LIBRARY_ITEMS.map(item => ({
+      // Filter practices by selected path
+      let filteredPractices = LIBRARY_ITEMS;
+      if (selectedPath) {
+        filteredPractices = LIBRARY_ITEMS.filter(item => 
+          item.primaryPath === selectedPath || item.secondaryPath === selectedPath
+        );
+        // If no practices match, fall back to all practices
+        if (filteredPractices.length === 0) {
+          filteredPractices = LIBRARY_ITEMS;
+        }
+      }
+
+      const practices = filteredPractices.map(item => ({
         title: item.title,
         type: item.categoryId,
         duration_minutes: item.durationMinutes || 10,
         description: item.teacher ? `by ${item.teacher}` : undefined,
+        primary_path: item.primaryPath,
+        secondary_path: item.secondaryPath
       }));
 
       const context = {
+        pathSlug: selectedPath,
         lowestDomains: getLowestDomains(),
         archetypeTitle: zogSnapshot?.archetype_title,
         corePattern: zogSnapshot?.core_pattern,
@@ -345,7 +374,7 @@ const GameHome = () => {
           profile_id: profileId,
           title: questSuggestion.main.quest_title,
           practice_type: questSuggestion.main.practice_type,
-          path: null, // Will be set in Part 2
+          path: selectedPath,
           intention: intention,
           duration_minutes: durationMinutes,
           xp_awarded: xpAwarded,
@@ -370,6 +399,17 @@ const GameHome = () => {
         currentProfile.current_streak_days
       );
 
+      // Add path-specific XP
+      const pathXpMap: Record<DevelopmentPath, keyof GameProfile> = {
+        body: 'xp_body',
+        mind: 'xp_mind',
+        heart: 'xp_heart',
+        spirit: 'xp_spirit',
+        uniqueness_work: 'xp_uniqueness_work'
+      };
+      const pathXpField = pathXpMap[selectedPath];
+      const newPathXp = (currentProfile[pathXpField] as number) + xpAwarded;
+
       const { error: updateError } = await supabase
         .from('game_profiles')
         .update({
@@ -383,6 +423,7 @@ const GameHome = () => {
             currentProfile.longest_streak_days,
             streakCalc.newStreak
           ),
+          [pathXpField]: newPathXp,
           updated_at: new Date().toISOString(),
         })
         .eq('id', profileId);
@@ -623,6 +664,32 @@ const GameHome = () => {
                 </div>
               )}
 
+              {/* Path Progress */}
+              <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
+                <h2 className="text-xl font-bold text-slate-900 mb-6">
+                  Path Progress
+                </h2>
+                <div className="space-y-3">
+                  {(Object.entries(PATH_LABELS) as [DevelopmentPath, string][]).map(([pathSlug, pathName]) => {
+                    const pathXpMap: Record<DevelopmentPath, keyof GameProfile> = {
+                      body: 'xp_body',
+                      mind: 'xp_mind',
+                      heart: 'xp_heart',
+                      spirit: 'xp_spirit',
+                      uniqueness_work: 'xp_uniqueness_work'
+                    };
+                    const xpField = pathXpMap[pathSlug];
+                    const xpValue = profile?.[xpField] as number || 0;
+                    return (
+                      <div key={pathSlug} className="flex items-center justify-between text-sm py-2 border-b border-slate-100 last:border-0">
+                        <span className="font-medium text-slate-700">{pathName}</span>
+                        <span className="font-bold text-slate-900">{xpValue} XP</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Your Next Quest */}
               <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
                 <h2 className="text-xl font-bold text-slate-900 mb-4">
@@ -653,25 +720,52 @@ const GameHome = () => {
                   </p>
                 )}
 
-                <p className="text-base font-medium text-slate-900 mb-4">
-                  What do you want to lean into next?
-                </p>
+                {!selectedIntention && (
+                  <>
+                    <div className="mb-6">
+                      <p className="text-base font-medium text-slate-900 mb-3">
+                        Choose a path to work with now
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {(Object.entries(PATH_LABELS) as [DevelopmentPath, string][]).map(([pathSlug, pathName]) => (
+                          <button
+                            key={pathSlug}
+                            onClick={() => setSelectedPath(pathSlug)}
+                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                              selectedPath === pathSlug
+                                ? 'bg-slate-900 text-white'
+                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                            }`}
+                          >
+                            {pathName}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {INTENTIONS.map(intent => (
-                    <button
-                      key={intent.id}
-                      onClick={() => handleIntentionSelect(intent.label)}
-                      className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                        selectedIntention === intent.label
-                          ? 'bg-slate-900 text-white'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                      }`}
-                    >
-                      {intent.label}
-                    </button>
-                  ))}
-                </div>
+                    <p className="text-base font-medium text-slate-900 mb-4">
+                      Within this path, what do you want to lean into next?
+                    </p>
+                  </>
+                )}
+
+                {!selectedIntention && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {INTENTIONS.map(intent => (
+                      <button
+                        key={intent.id}
+                        onClick={() => handleIntentionSelect(intent.label)}
+                        className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                          selectedIntention === intent.label
+                            ? 'bg-slate-900 text-white'
+                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        }`}
+                      >
+                        {intent.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 {isLoadingQuest && (
                   <div className="flex items-center justify-center py-8 text-slate-600">
@@ -694,7 +788,7 @@ const GameHome = () => {
                             {questSuggestion.main.quest_title}
                           </h3>
                           <p className="text-sm text-slate-600 mb-3">
-                            {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min
+                            {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min · Path: {PATH_LABELS[selectedPath]}
                           </p>
                           <p className="text-base text-slate-700 leading-relaxed mb-4">
                             {questSuggestion.main.why_it_is_a_good_next_move}

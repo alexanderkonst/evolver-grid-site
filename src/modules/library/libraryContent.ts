@@ -19,6 +19,8 @@ export type ExperienceIntent =
   | "feelBetter"
   | "psychic";
 
+export type DevelopmentPath = "body" | "mind" | "heart" | "spirit" | "uniqueness_work";
+
 export type LibraryItem = {
   id: string;
   categoryId: LibraryCategoryId;
@@ -29,6 +31,8 @@ export type LibraryItem = {
   durationLabel?: string;
   durationMinutes?: number;
   intents?: ExperienceIntent[];
+  primaryPath?: DevelopmentPath;
+  secondaryPath?: DevelopmentPath;
 };
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -75,7 +79,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "hxDKLyJ0Q0E",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body"
   },
   {
     id: "feel-better-fast-energy-boost",
@@ -86,7 +91,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "fd7SIapXES4",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "feelBetter", "activation"]
+    intents: ["breathwork", "feelBetter", "activation"],
+    primaryPath: "body"
   },
   {
     id: "heart-coherence-breathing",
@@ -97,7 +103,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "XNINqgkZVEU",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body",
+    secondaryPath: "heart"
   },
   {
     id: "energizing-breath-of-fire",
@@ -108,7 +116,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "GPo4EFq4XeY",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body"
   },
   {
     id: "vagus-nerve-reset-anxiety",
@@ -119,7 +128,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "gVtaA8u4SFs",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body",
+    secondaryPath: "heart"
   },
   {
     id: "feel-high-naturally",
@@ -129,7 +140,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "70obRpYkeFc",
     durationLabel: "5 min",
     durationMinutes: 5,
-    intents: ["breathwork", "activation", "feelBetter"]
+    intents: ["breathwork", "activation", "feelBetter"],
+    primaryPath: "body"
   },
   {
     id: "regulate-nervous-system-8min",
@@ -140,7 +152,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "61-mn1d5RIM",
     durationLabel: "8 min",
     durationMinutes: 8,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body"
   },
   {
     id: "feel-better",
@@ -151,7 +164,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "GdiQVpWsxeU",
     durationLabel: "8 min",
     durationMinutes: 8,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body"
   },
   {
     id: "boost-life-force-energy",
@@ -162,7 +176,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "wrVG0CYJyWc",
     durationLabel: "8 min",
     durationMinutes: 8,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body",
+    secondaryPath: "spirit"
   },
   {
     id: "energy-1",
@@ -173,7 +189,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "errP3gH9OlE",
     durationLabel: "8 min",
     durationMinutes: 8,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body"
   },
   {
     id: "energy-to-start-your-day",
@@ -184,7 +201,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "errP3gH9OlE",
     durationLabel: "8 min",
     durationMinutes: 8,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body"
   },
   {
     id: "heart-coherence-stress-relief",
@@ -195,7 +213,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "OOgBjpQt3yQ",
     durationLabel: "10 min",
     durationMinutes: 10,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body",
+    secondaryPath: "heart"
   },
   {
     id: "energy-2",
@@ -206,7 +226,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "BcayO9W3ZDI",
     durationLabel: "10 min",
     durationMinutes: 10,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body"
   },
   {
     id: "rewire-brain-15min",
@@ -217,7 +238,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "cYXNkVpJVWk",
     durationLabel: "15 min",
     durationMinutes: 15,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body",
+    secondaryPath: "mind"
   },
   {
     id: "chakra-activation",
@@ -228,7 +251,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "UvVznVFk-OA",
     durationLabel: "15 min",
     durationMinutes: 15,
-    intents: ["activation", "breathwork"]
+    intents: ["activation", "breathwork"],
+    primaryPath: "body",
+    secondaryPath: "spirit"
   },
   {
     id: "deep-release",
@@ -239,7 +264,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "cXCBsJAJSMk",
     durationLabel: "15 min",
     durationMinutes: 15,
-    intents: ["breathwork", "feelBetter"]
+    intents: ["breathwork", "feelBetter"],
+    primaryPath: "body",
+    secondaryPath: "heart"
   },
   {
     id: "clarity-focus-20min",
@@ -250,7 +277,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "s4FSz1lRUHM",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["breathwork", "activation"]
+    intents: ["breathwork", "activation"],
+    primaryPath: "body",
+    secondaryPath: "mind"
   },
   {
     id: "soul-activation-christopher",
@@ -261,7 +290,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "MPK6IfOmmR0",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["activation", "breathwork"]
+    intents: ["activation", "breathwork"],
+    primaryPath: "spirit",
+    secondaryPath: "body"
   },
 
   // Money & Abundance
@@ -274,7 +305,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "W3Mrnf39tVE",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["receiveWisdom", "activation"]
+    intents: ["receiveWisdom", "activation"],
+    primaryPath: "uniqueness_work",
+    secondaryPath: "mind"
   },
   {
     id: "manifest-unexpected-money",
@@ -285,7 +318,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "r4mRoB7CEno",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["receiveWisdom", "activation"]
+    intents: ["receiveWisdom", "activation"],
+    primaryPath: "uniqueness_work",
+    secondaryPath: "mind"
   },
 
   // Reality Wisdom
@@ -298,7 +333,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "VhyByp4_t8U",
     durationLabel: "2 min",
     durationMinutes: 2,
-    intents: ["receiveWisdom"]
+    intents: ["receiveWisdom"],
+    primaryPath: "mind"
   },
   {
     id: "bashar-reality-wisdom-2",
@@ -309,7 +345,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "U7NPTcxGUBo",
     durationLabel: "2 min",
     durationMinutes: 2,
-    intents: ["receiveWisdom"]
+    intents: ["receiveWisdom"],
+    primaryPath: "mind"
   },
 
   // Spiritual Guidance
@@ -322,7 +359,8 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "Dp2AIif-6sk",
     durationLabel: "15 min",
     durationMinutes: 15,
-    intents: ["psychic", "activation"]
+    intents: ["psychic", "activation"],
+    primaryPath: "spirit"
   },
 
   // Activations
@@ -335,7 +373,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "CUNuj-xgY-w",
     durationLabel: "10 min",
     durationMinutes: 10,
-    intents: ["activation"]
+    intents: ["activation"],
+    primaryPath: "spirit",
+    secondaryPath: "body"
   },
   {
     id: "heart-meditation-drunvalo",
@@ -346,7 +386,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "mja7hKE-BC8",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["activation"]
+    intents: ["activation"],
+    primaryPath: "heart",
+    secondaryPath: "spirit"
   },
   {
     id: "violet-emerald-flame-intuition",
@@ -357,7 +399,9 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "pPFXD0e8sLA",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["activation", "psychic"]
+    intents: ["activation", "psychic"],
+    primaryPath: "spirit",
+    secondaryPath: "mind"
   },
 
   // Animal Spirits
@@ -370,6 +414,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     youtubeId: "H8QNRtYqE6U",
     durationLabel: "20 min",
     durationMinutes: 20,
-    intents: ["psychic", "activation"]
+    intents: ["psychic", "activation"],
+    primaryPath: "spirit"
   }
 ];
