@@ -1,8 +1,51 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useAIUpgradeAccess, validatePromoCode } from "@/hooks/use-ai-upgrade-access";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const AIUpgrade = () => {
+  const navigate = useNavigate();
+  const { hasAccess, grantAccess } = useAIUpgradeAccess();
+  const [promoCode, setPromoCode] = useState("");
+  const [promoError, setPromoError] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  useEffect(() => {
+    if (hasAccess) {
+      navigate("/ai-upgrade/install");
+    }
+  }, [hasAccess, navigate]);
+
+  const handleApplyPromo = () => {
+    setPromoError("");
+    
+    if (!promoCode.trim()) {
+      setPromoError("Please enter a promo code.");
+      return;
+    }
+
+    if (validatePromoCode(promoCode)) {
+      grantAccess();
+      setShowSuccessModal(true);
+    } else {
+      setPromoError("Invalid or expired promo code.");
+    }
+  };
+
+  const handleModalContinue = () => {
+    setShowSuccessModal(false);
+    navigate("/ai-upgrade/install");
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation - Simple back link */}
@@ -46,8 +89,63 @@ const AIUpgrade = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </a>
+
+          {/* Promo Code Section */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <p className="text-center text-gray-600 mb-4">
+              Have a promo code to access AI UPGRADE as a gift?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <Input
+                type="text"
+                placeholder="Enter promo code"
+                value={promoCode}
+                onChange={(e) => {
+                  setPromoCode(e.target.value);
+                  setPromoError("");
+                }}
+                className="flex-1 rounded-full"
+              />
+              <Button
+                onClick={handleApplyPromo}
+                variant="outline"
+                className="rounded-full px-8"
+                style={{ borderColor: '#0A2342', color: '#0A2342' }}
+              >
+                Apply
+              </Button>
+            </div>
+            {promoError && (
+              <p className="text-center text-red-500 text-sm mt-2">{promoError}</p>
+            )}
+          </div>
         </div>
       </section>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl" style={{ color: '#0A2342' }}>
+              Gift Unlocked! 🌐
+            </DialogTitle>
+            <DialogDescription className="text-base pt-4 leading-relaxed">
+              Your promo code unlocks this product as a gift for you.
+              <br />
+              Enjoy, and may it serve you. 🌐
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center pt-4">
+            <Button
+              onClick={handleModalContinue}
+              className="rounded-full px-8 text-white"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              Continue
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Problem Section */}
       <section className="py-20 px-6 bg-gray-50 transition-all duration-700">

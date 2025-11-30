@@ -43,7 +43,7 @@ export const modules: Module[] = [
     price: "$33",
     version: "v4.02",
     hero_CTA_label: "Get the Upgrade",
-    hero_CTA_link: "/ai-upgrade/install",
+    hero_CTA_link: "/ai-upgrade",
     description: `<p>Your mind moves fast. Your AI doesn't.</p>
     
     <p>Instead of keeping pace, default AI over-explains, loses nuance, breaks coherence, gives junior-level insights, interrupts your flow, and dilutes your clarity.</p>
@@ -74,7 +74,7 @@ export const modules: Module[] = [
     ],
     story: "Built for the top 20% of operators who don't just use AI — they think with it. After working with hundreds of high-level strategists, founders, and coaches, it became clear: the problem wasn't the people, it was the AI. Standard models couldn't keep up. This upgrade fixes that. Your work deserves responses that match your pace, your depth, and your precision. This upgrade brings your AI up to the level your mind already operates at — instantly.",
     app_links: [
-      { label: "Get the Upgrade", url: "/ai-upgrade/install" }
+      { label: "Get the Upgrade", url: "/ai-upgrade" }
     ]
   },
   {
