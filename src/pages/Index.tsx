@@ -79,6 +79,27 @@ const Index = () => {
 
       <SectionDivider />
 
+      {/* Game of You Card */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-4xl">
+          <div 
+            onClick={() => window.location.href = '/game'}
+            className="rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
+          >
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
+                <BoldText>PLAY YOUR LIFE AS A GAME</BoldText>
+              </h2>
+              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                See yourself as a character, your life as a world, and choose one next move.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
       {/* Modules Grid */}
       <section
         id="modules"
