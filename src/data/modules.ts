@@ -34,6 +34,36 @@ export const modules: Module[] = [
     story: "Destiny emerged from working with hundreds of talented individuals who struggled to articulate their unique value. This program distills that experience into a clear pathway for building a business around your genius.",
   },
   {
+    id: "9",
+    title: "GENIUS OFFER SNAPSHOT",
+    slug: "genius-offer",
+    category: "Business",
+    tagline: "Turn your genius into one clear offer people can say yes to.",
+    status: "Live",
+    price: "$111 (founding)",
+    version: "v1.0",
+    hero_CTA_label: "Claim Your Genius Offer",
+    hero_CTA_link: "/genius-offer",
+    description: "<p>In 48 hours, get a one-page Genius Offer Snapshot that turns your complexity into one clear, concrete offer. Perfect for multi-talented founders, coaches, and creators who struggle to put their magic into one simple offer people actually understand and buy.</p>",
+    who_for: [
+      "Founders, coaches, and creators who are good at many things",
+      "People with experience whose positioning feels fuzzy",
+      "Anyone who wants honest reflection, not hype"
+    ],
+    outcomes: [
+      "One clear Genius Offer sentence",
+      "A one-page Offer Snapshot PDF",
+      "3 revenue-focused next moves",
+      "Optional 45-min integration call"
+    ],
+    structure: [
+      "Quick Intake: 10–15 minute questionnaire",
+      "Deep Synthesis: Mapping your genius into one offer",
+      "Delivery: PDF + next moves within 48 hours"
+    ],
+    story: "Again and again, I saw the same bottleneck: incredibly gifted people who couldn't answer 'So what do you actually offer?' in a way that leads to a yes. This service is the sharpest slice of my work.",
+  },
+  {
     id: "2",
     title: "INTELLIGENCE BOOST FOR YOUR AI MODEL",
     slug: "intelligence-boost-for-your-ai-model",

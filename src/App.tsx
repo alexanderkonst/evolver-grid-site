@@ -15,6 +15,7 @@ import ModuleDetail from "./pages/ModuleDetail";
 import AIUpgrade from "./pages/AIUpgrade";
 import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
+import GeniusOffer from "./pages/GeniusOffer";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />
+            <Route path="/genius-offer" element={<GeniusOffer />} />
             <Route path="/game" element={<GameHome />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
