@@ -213,6 +213,38 @@ export const modules: Module[] = [
     ]
   },
   {
+    id: "10",
+    title: "MULTIPLE INTELLIGENCES SELF-ASSESSMENT",
+    slug: "intelligences",
+    category: "Tools",
+    tagline: "A free 2–3 minute test to quickly map the ways you're naturally most intelligent",
+    status: "Live",
+    price: "free",
+    version: "v1.0",
+    hero_CTA_label: "Take the Quick Test",
+    hero_CTA_link: "/intelligences",
+    description: "<p>A fast way to see which forms of intelligence feel most natural to you right now — so we can better understand how your genius expresses itself.</p>",
+    who_for: [
+      "Anyone curious about their natural strengths",
+      "People exploring their Zone of Genius",
+      "Those working on their Genius Offer"
+    ],
+    outcomes: [
+      "Clear ranking of your top intelligences",
+      "Self-awareness of how you naturally think",
+      "Useful input for Genius Offer creation"
+    ],
+    structure: [
+      "Rank 10 intelligences from most to least 'you'",
+      "Takes 2–3 minutes",
+      "Results saved for future reference"
+    ],
+    story: "Understanding how you're naturally intelligent helps clarify how your genius wants to express itself in the world.",
+    app_links: [
+      { label: "Start Assessment", url: "/intelligences" }
+    ]
+  },
+  {
     id: "4",
     title: "Heartcraft (Game)",
     slug: "heartcraft-game",

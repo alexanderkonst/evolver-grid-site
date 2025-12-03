@@ -101,6 +101,75 @@ export type Database = {
           },
         ]
       }
+      genius_offer_requests: {
+        Row: {
+          ai_summary_raw: string | null
+          best_client_story: string | null
+          created_at: string
+          email: string
+          extra_notes: string | null
+          has_ai_assistant: boolean
+          id: string
+          intelligences_note: string | null
+          name: string
+          no_ai_genius_description: string | null
+          offers_sold: string | null
+          status: string
+        }
+        Insert: {
+          ai_summary_raw?: string | null
+          best_client_story?: string | null
+          created_at?: string
+          email: string
+          extra_notes?: string | null
+          has_ai_assistant: boolean
+          id?: string
+          intelligences_note?: string | null
+          name: string
+          no_ai_genius_description?: string | null
+          offers_sold?: string | null
+          status?: string
+        }
+        Update: {
+          ai_summary_raw?: string | null
+          best_client_story?: string | null
+          created_at?: string
+          email?: string
+          extra_notes?: string | null
+          has_ai_assistant?: boolean
+          id?: string
+          intelligences_note?: string | null
+          name?: string
+          no_ai_genius_description?: string | null
+          offers_sold?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      multiple_intelligences_assessments: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          ranking: Json
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          ranking: Json
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          ranking?: Json
+        }
+        Relationships: []
+      }
       player_upgrades: {
         Row: {
           completed_at: string | null

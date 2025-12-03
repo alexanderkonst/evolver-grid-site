@@ -53,6 +53,7 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const linkPath = module.slug === "destiny" ? "/destiny" : 
                    module.slug === "zone-of-genius" ? "/zone-of-genius" :
                    module.slug === "genius-offer" ? "/genius-offer" :
+                   module.slug === "intelligences" ? "/intelligences" :
                    `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
