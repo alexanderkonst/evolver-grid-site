@@ -121,9 +121,12 @@ export type Database = {
           name: string
           no_ai_genius_description: string | null
           offers_sold: string | null
+          pdf_url: string | null
           products_sold: string | null
           source_branch: string | null
           status: string
+          summary_promise: string | null
+          summary_title: string | null
           user_id: string | null
         }
         Insert: {
@@ -139,9 +142,12 @@ export type Database = {
           name: string
           no_ai_genius_description?: string | null
           offers_sold?: string | null
+          pdf_url?: string | null
           products_sold?: string | null
           source_branch?: string | null
           status?: string
+          summary_promise?: string | null
+          summary_title?: string | null
           user_id?: string | null
         }
         Update: {
@@ -157,9 +163,12 @@ export type Database = {
           name?: string
           no_ai_genius_description?: string | null
           offers_sold?: string | null
+          pdf_url?: string | null
           products_sold?: string | null
           source_branch?: string | null
           status?: string
+          summary_promise?: string | null
+          summary_title?: string | null
           user_id?: string | null
         }
         Relationships: []

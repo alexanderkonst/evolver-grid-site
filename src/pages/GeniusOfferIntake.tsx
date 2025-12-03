@@ -164,6 +164,8 @@ const GeniusOfferIntake = () => {
     if (data.has_ai_assistant) {
       if (data.ai_knows_offers === null) return "ai_knows_offers";
       if (!data.ai_summary) return "ai_prompt";
+      // If AI knows offers, skip manual questions
+      if (data.ai_knows_offers) return "submit";
       return "products_sold";
     } else {
       if (!data.zone_of_genius_completed) return "zog_redirect";
@@ -327,21 +329,35 @@ const GeniusOfferIntake = () => {
       <div className="min-h-screen bg-background text-foreground">
         <Navigation />
         <div className="pt-32 pb-20 px-4">
-          <div className="max-w-xl mx-auto text-center space-y-6">
+          <div className="max-w-xl mx-auto text-center space-y-8">
             <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto">
               <Check className="h-8 w-8 text-accent" />
             </div>
             <h1 className="text-3xl md:text-4xl font-serif">
-              <BoldText>THANK YOU</BoldText>
+              <BoldText>THANK YOU – I&apos;VE GOT EVERYTHING I NEED.</BoldText>
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              I&apos;ve received everything I need to craft your Genius Offer.<br />
-              You&apos;ll receive your PDF via email within 48 hours.
-            </p>
-            <Button variant="outline" onClick={() => navigate("/")}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
+            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed text-left">
+              <p>I&apos;ve received your info and will now craft your Genius Offer.</p>
+              <p>Within 48 hours you&apos;ll receive:</p>
+              <ul className="list-disc list-inside space-y-1 ml-2">
+                <li>A beautifully designed PDF of your Genius Offer</li>
+                <li>A short Loom video where I walk through what stands out and suggested next steps</li>
+              </ul>
+              <p>You&apos;ll also be able to find your Genius Offer inside your profile once it&apos;s ready.</p>
+            </div>
+            <div className="pt-4 space-y-4">
+              <Button 
+                size="lg" 
+                onClick={() => window.open("https://t.me/your_telegram_handle", "_blank")}
+                className="w-full"
+              >
+                <BoldText>MESSAGE ME ON TELEGRAM</BoldText>
+              </Button>
+              <Button variant="outline" onClick={() => navigate("/game")}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Profile
+              </Button>
+            </div>
           </div>
         </div>
         <Footer />
@@ -577,7 +593,12 @@ const GeniusOfferIntake = () => {
                 onClick={() => {
                   if (progress.ai_summary.trim()) {
                     updateProgress({ ai_summary: progress.ai_summary.trim() });
-                    setCurrentStep("products_sold");
+                    // If AI knows offers, skip manual questions and go to submit
+                    if (progress.ai_knows_offers) {
+                      handleSubmit();
+                    } else {
+                      setCurrentStep("products_sold");
+                    }
                   } else {
                     toast({ title: "Please paste your AI's response", variant: "destructive" });
                   }
@@ -585,8 +606,8 @@ const GeniusOfferIntake = () => {
                 className="w-full"
                 disabled={!progress.ai_summary.trim()}
               >
-                <BoldText>NEXT</BoldText>
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <BoldText>{progress.ai_knows_offers ? "SUBMIT" : "NEXT"}</BoldText>
+                {progress.ai_knows_offers ? <Check className="ml-2 h-4 w-4" /> : <ArrowRight className="ml-2 h-4 w-4" />}
               </Button>
             </div>
           )}

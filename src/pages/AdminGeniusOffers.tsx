@@ -38,6 +38,9 @@ interface GeniusOfferRequest {
   extra_notes: string | null;
   intelligences_note: string | null;
   status: string;
+  pdf_url: string | null;
+  summary_title: string | null;
+  summary_promise: string | null;
 }
 
 const STATUS_OPTIONS = [
@@ -47,6 +50,16 @@ const STATUS_OPTIONS = [
   { value: "completed", label: "Completed" },
   { value: "cancelled", label: "Cancelled" },
 ];
+
+const getAiBranchLabel = (req: GeniusOfferRequest) => {
+  if (!req.has_ai_assistant) return "No AI (Tests)";
+  if (req.source_branch === "ai") {
+    // Check if they went through the full AI prompt or short
+    if (req.products_sold || req.best_clients) return "AI (short prompt)";
+    return "AI + offers known";
+  }
+  return req.source_branch || "AI";
+};
 
 const AdminGeniusOffers = () => {
   const { toast } = useToast();
@@ -135,6 +148,7 @@ const AdminGeniusOffers = () => {
                     <th className="text-left py-3 px-4 text-sm font-semibold">Created</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Source</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Status</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold">PDF</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">View</th>
                   </tr>
                 </thead>
@@ -146,17 +160,29 @@ const AdminGeniusOffers = () => {
                       <td className="py-3 px-4 text-sm text-muted-foreground">{formatDate(req.created_at)}</td>
                       <td className="py-3 px-4 text-sm">
                         <span className={req.source_branch === "ai" ? "text-accent" : "text-primary"}>
-                          {req.source_branch || (req.has_ai_assistant ? "ai" : "tests")}
+                          {getAiBranchLabel(req)}
                         </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
                         <span className={`px-2 py-1 rounded text-xs ${
-                          req.status === "offer_delivered" ? "bg-accent/20 text-accent" :
-                          req.status === "in_progress" ? "bg-primary/20 text-primary" :
+                          req.status === "completed" ? "bg-accent/20 text-accent" :
+                          req.status === "apple_seed_in_progress" || req.status === "excalibur_in_progress" ? "bg-primary/20 text-primary" :
                           "bg-secondary text-muted-foreground"
                         }`}>
                           {STATUS_OPTIONS.find(s => s.value === req.status)?.label || req.status}
                         </span>
+                      </td>
+                      <td className="py-3 px-4 text-sm">
+                        {req.status === "completed" && req.pdf_url && (
+                          <a 
+                            href={req.pdf_url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-accent hover:underline mr-2"
+                          >
+                            PDF
+                          </a>
+                        )}
                       </td>
                       <td className="py-3 px-4">
                         <Button
