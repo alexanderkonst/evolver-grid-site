@@ -40,11 +40,10 @@ const GeniusOffer = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just show confirmation - will add backend later
     setFormSubmitted(true);
     toast({
       title: "Application received",
-      description: "I'll review your answers and reply within 24 hours.",
+      description: "I'll review your application and reply within 24 hours.",
     });
   };
 
@@ -59,21 +58,18 @@ const GeniusOffer = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
-                <BoldText>YOUR GENIUS OFFER, CRYSTAL-CLEAR IN 48 HOURS</BoldText>
+                <BoldText>ONE CLEAR GENIUS OFFER YOU CAN ACTUALLY SELL</BoldText>
               </h1>
-              <p className="text-xl text-muted-foreground">
-                For multi-talented founders, coaches, and creators who struggle to put their magic into one simple offer people actually understand and buy.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                You're good at many things, but when someone asks "So what do you actually offer?", your answer gets long, fuzzy, or abstract. This service gives you one sharp, grounded offer that fits you perfectly—and is easy to say, share, and sell.
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                In 48 hours, we'll distill all your talents, ideas, and modalities into <strong>one sharp, test-ready offer</strong> you can start selling immediately – without burning down everything you've built so far.
               </p>
               <div className="space-y-3">
                 <Button size="lg" onClick={scrollToApply} className="text-lg px-8">
-                  <BoldText>CLAIM YOUR GENIUS OFFER</BoldText>
+                  <BoldText>APPLY FOR YOUR GENIUS OFFER</BoldText>
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <p className="text-sm text-muted-foreground">
-                  Founding circle pricing for the first 5 people.
+                  For multi-talented founders, coaches, and creators ready to stop "being everything" and start <strong>selling one thing clearly</strong>.
                 </p>
               </div>
             </div>
@@ -117,7 +113,7 @@ const GeniusOffer = () => {
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 text-center">
-                  Your Genius Offer Snapshot (PDF)
+                  Your Genius Offer Sheet (PDF)
                 </p>
               </div>
             </div>
@@ -125,19 +121,19 @@ const GeniusOffer = () => {
         </div>
       </section>
 
-      {/* Is This You Section */}
+      {/* Section 1 – The Pain */}
       <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-serif mb-8 text-center">
-            <BoldText>YOU'RE SMART, CAPABLE… AND ODDLY HARD TO EXPLAIN</BoldText>
+            <BoldText>IF YOU'RE HONEST, THIS IS WHERE YOU ARE:</BoldText>
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="space-y-4 max-w-3xl mx-auto">
             {[
-              "You're great at many things—but your offer feels scattered or vague.",
-              "People say \"wow\" in conversations, but don't know what to buy from you.",
-              "Your website or bio doesn't really capture what you do best.",
-              "You've tried to niche down, but every version feels too small or not quite you.",
-              "You sense there is one powerful, simple offer in you—you just can't quite see it.",
+              <>You're good at <strong>many things</strong>, so you keep trying to cram them all into one offer.</>,
+              <>Your website, socials, or Notion are full of <strong>half-built offers</strong> and beautiful ideas that don't move money.</>,
+              <>People say "wow, you're so talented" – but when they ask "so what do you <em>actually</em> do?" you still hesitate.</>,
+              <>You've done the inner work, taken programs, maybe even hired strategists – and still don't have <strong>one offer that feels true <em>and</em> sellable.</strong></>,
+              <>Deep down, you know: without a clear offer, you're <strong>stalling your own impact and income.</strong></>,
             ].map((item, idx) => (
               <div key={idx} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
                 <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0"></div>
@@ -145,110 +141,158 @@ const GeniusOffer = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Core Promise Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif mb-4 text-center">
-            <BoldText>WHAT YOU GET</BoldText>
-          </h2>
-          <p className="text-center text-lg text-muted-foreground mb-12">
-            In 48 hours, you receive a one-page "Genius Offer Snapshot" that turns your complexity into one clear, concrete offer.
+          <p className="text-center mt-8 text-lg italic text-foreground/80">
+            This container exists to end that loop.
           </p>
-
-          <div className="space-y-6">
-            {[
-              {
-                from: '"I do a lot of things, it\'s hard to explain…"',
-                to: '"I help [specific people] go from [starting point] to [clear outcome] with [your unique method]."',
-              },
-              {
-                from: "having ideas and half-written notes",
-                to: "one sharp offer you can put on a landing page, in your bio, and in DMs.",
-              },
-              {
-                from: "vague next steps",
-                to: "3 grounded, revenue-focused moves to start getting paid for this offer.",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="grid md:grid-cols-2 gap-4">
-                <div className="p-4 bg-destructive/5 border border-destructive/20 rounded-lg">
-                  <span className="text-xs uppercase text-destructive/70 font-medium">From</span>
-                  <p className="mt-1 text-muted-foreground">{item.from}</p>
-                </div>
-                <div className="p-4 bg-green-500/5 border border-green-500/20 rounded-lg">
-                  <span className="text-xs uppercase text-green-600 font-medium">To</span>
-                  <p className="mt-1 text-foreground">{item.to}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Deliverables Section */}
+      {/* Section 2 – The Promise */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
+            <BoldText>WHAT YOU WALK AWAY WITH (IN 48 HOURS)</BoldText>
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* The Artifact */}
+            <div className="p-6 bg-card border border-border rounded-lg space-y-4">
+              <h3 className="text-xl font-serif font-semibold">The Artifact</h3>
+              <p className="text-muted-foreground">A <strong>one-page Genius Offer Sheet</strong> that includes:</p>
+              <ul className="space-y-2">
+                {[
+                  <>Your <strong>core offer sentence</strong> (who it's for, the transformation, and how it works)</>,
+                  <>A <strong>clear promise</strong> in plain language</>,
+                  <>Ideal client snapshot (who you speak to first)</>,
+                  <>Price point (or price range) that actually fits your reality</>,
+                  <>One simple way to deliver it (session / sprint / container)</>,
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* The Action */}
+            <div className="p-6 bg-card border border-border rounded-lg space-y-4">
+              <h3 className="text-xl font-serif font-semibold">The Action</h3>
+              <p className="text-muted-foreground">A <strong>ready-to-use test script</strong>, e.g.:</p>
+              <ul className="space-y-2 mb-4">
+                {[
+                  "A short DM or email you can send to 5–10 people",
+                  "Optional social post hook to announce or float the offer",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-muted-foreground">A list of <strong>3 immediate moves</strong> to test your offer in the next 7–14 days</p>
+              <p className="text-muted-foreground text-sm">Simple criteria: "how to know if this offer is working" so you don't gaslight yourself.</p>
+            </div>
+          </div>
+
+          <p className="text-center mt-10 text-muted-foreground italic">
+            Not another 50-page PDF.<br />
+            One sharp page + a simple plan you can actually act on.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 3 – Who This Is For */}
       <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
-            <BoldText>EXACTLY WHAT YOU'LL RECEIVE</BoldText>
-          </h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-2xl font-serif mb-6">
+                <BoldText>THIS IS FOR YOU IF…</BoldText>
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  <>You're a <strong>founder, coach, guide, or creator</strong> with <em>too many</em> ideas and skills.</>,
+                  <>You've already done inner work / training / certifications – you're not starting from zero.</>,
+                  <>You're willing to <strong>talk to real humans</strong> about your offer in the next 2 weeks.</>,
+                  <>You want something that is <strong>true to your soul <em>and</em></strong> legible to normal humans.</>,
+                  <>You're ready to stop endlessly tweaking and <strong>actually ship something.</strong></>,
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
+                    <span className="text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Your Genius Offer Sentence",
-                description: "A single, human sentence that captures who you serve, what result you help them achieve, and what makes you different.",
-              },
-              {
-                title: "Offer Snapshot One-Pager (PDF)",
-                description: "A clean one-page document you can share with collaborators, use as the basis for a landing page, and anchor your outreach around.",
-              },
-              {
-                title: "3 Revenue-Focused Next Moves",
-                description: "Three specific actions to start turning this offer into income (e.g. who to message, what to test, and how to phrase it).",
-              },
-              {
-                title: "Optional Integration Call (45 min)",
-                description: "For founding circle clients, the option to book a 45-minute call to walk through your Genius Offer and refine it together.",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="p-6 bg-card border border-border rounded-lg space-y-2">
-                <div className="flex items-center gap-2">
-                  <Check className="h-5 w-5 text-accent" />
-                  <h3 className="font-serif font-semibold text-lg">{item.title}</h3>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
+            <div>
+              <h2 className="text-2xl font-serif mb-6">
+                <BoldText>THIS IS NOT FOR YOU IF…</BoldText>
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  <>You just want a <strong>pretty sentence</strong> to admire, not an offer you'll test.</>,
+                  <>You are not willing to reach out to potential clients in the next 2–4 weeks.</>,
+                  <>You want a full "build my entire business for me" program (this is the <strong>first sharp cut</strong>, not the whole business).</>,
+                  <>You're looking for generic templates you can copy-paste – this is <strong>deeply tailored</strong>.</>,
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="h-5 w-5 flex items-center justify-center mt-0.5 shrink-0">
+                      <div className="h-0.5 w-4 bg-destructive/50"></div>
+                    </div>
+                    <span className="text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works + Apply Section */}
+      {/* Section 4 – How It Works */}
       <section id="apply" className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
-            <BoldText>HOW IT WORKS (SIMPLE AND FAST)</BoldText>
+            <BoldText>HOW IT WORKS</BoldText>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
               {
                 step: "1",
-                title: "Quick Intake (10–15 minutes)",
-                description: "You answer a few focused questions about you, your work, and who you'd love to help. (If you already have your Zone of Genius written somewhere, you can just paste it.)",
+                title: "You share signal",
+                description: (
+                  <div className="space-y-2">
+                    <p>After you apply and are accepted, you'll receive a short intake prompt / form.</p>
+                    <p className="text-sm">You can either:</p>
+                    <ul className="text-sm space-y-1 ml-4">
+                      <li>• Paste a short "who I am & what I've done" blurb, <strong>or</strong></li>
+                      <li>• Ask your own AI model to describe your genius and send that as raw material, plus any links.</li>
+                    </ul>
+                  </div>
+                ),
               },
               {
                 step: "2",
-                title: "Deep Synthesis (my work)",
-                description: "I map your genius, your past wins, and your ideal client into one coherent offer. I use my Zone of Genius framework plus AI-assisted refinement to distill the clearest, most truthful offer I can see for you.",
+                title: "I distill your Genius Offer",
+                description: (
+                  <div className="space-y-2">
+                    <p>I run your signal through a <strong>refined Excalibur-style process</strong> I've already used with multiple founders.</p>
+                    <p className="text-sm">I combine: your data, my pattern-recognition, and tight iteration with AI to arrive at <strong>one clean, testable offer</strong> that rings true <em>and</em> makes sense.</p>
+                  </div>
+                ),
               },
               {
                 step: "3",
-                title: "Delivery in 48 Hours",
-                description: "You receive your Genius Offer Snapshot PDF via email within 48 hours, plus an option to book a 45-minute integration call if you'd like live refinement.",
+                title: "We refine & lock it in",
+                description: (
+                  <div className="space-y-2">
+                    <p>You receive your <strong>Genius Offer Sheet</strong> and action steps within <strong>48 hours</strong> of completing the intake.</p>
+                    <p className="text-sm">We have a <strong>30-minute live or async refinement round</strong> (video or Loom + comments) to tweak language and ensure it <em>really</em> feels like you.</p>
+                    <p className="text-sm font-medium">You leave with: one offer, one script, and a concrete next step.</p>
+                  </div>
+                ),
               },
             ].map((item, idx) => (
               <div key={idx} className="text-center space-y-4">
@@ -256,18 +300,25 @@ const GeniusOffer = () => {
                   {item.step}
                 </div>
                 <h3 className="font-serif font-semibold">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                <div className="text-muted-foreground text-sm leading-relaxed text-left">
+                  {item.description}
+                </div>
               </div>
             ))}
           </div>
+
+          <p className="text-center mb-12 text-muted-foreground italic">
+            No overwhelm, no 12-week curriculum.<br />
+            One focused pass. One clear offer.
+          </p>
 
           {/* Apply Form */}
           <div className="bg-card border border-border rounded-lg p-8 max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <p className="text-lg font-serif mb-2">
-                <BoldText>FOUNDING CIRCLE PRICE FOR THE FIRST 5 PEOPLE: $111</BoldText>
+                <BoldText>LAUNCH RATE: $111 USD</BoldText>
               </p>
-              <p className="text-sm text-muted-foreground">(USD or EUR)</p>
+              <p className="text-sm text-muted-foreground">Price will increase as results and case studies accumulate.</p>
             </div>
 
             {formSubmitted ? (
@@ -279,7 +330,8 @@ const GeniusOffer = () => {
                   <BoldText>THANK YOU!</BoldText>
                 </h3>
                 <p className="text-muted-foreground">
-                  I'll review your answers and reply with next steps and payment details within 24 hours.
+                  I'll review your application to confirm it's a fit.<br />
+                  If it is, I'll send payment details and your intake in the next 24 hours.
                 </p>
               </div>
             ) : (
@@ -347,7 +399,7 @@ const GeniusOffer = () => {
                 </div>
 
                 <Button type="submit" size="lg" className="w-full">
-                  <BoldText>APPLY FOR FOUNDING CIRCLE</BoldText>
+                  <BoldText>APPLY FOR YOUR GENIUS OFFER</BoldText>
                 </Button>
               </form>
             )}
@@ -355,111 +407,74 @@ const GeniusOffer = () => {
         </div>
       </section>
 
-      {/* Who This Is For Section */}
+      {/* Section 5 – Why This Is Different */}
       <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-serif mb-6">
-                <BoldText>WHO THIS IS FOR</BoldText>
-              </h2>
-              <ul className="space-y-3">
-                {[
-                  "Founders, coaches, and creators who are good at many things and want one clear offer to lead with.",
-                  "People who already have some experience, skills, or clients—but whose positioning is fuzzy.",
-                  "Humans who want an honest, grounded reflection, not hype or fake niching.",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-serif mb-6">
-                <BoldText>WHO THIS IS NOT FOR</BoldText>
-              </h2>
-              <ul className="space-y-3">
-                {[
-                  "If you're not willing to take action on the offer once it's clear.",
-                  "If you want a full business build-out, website, and funnel in one go.",
-                  "If you're looking for generic templates instead of a personalized synthesis.",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="h-5 w-5 flex items-center justify-center mt-0.5 shrink-0">
-                      <div className="h-0.5 w-4 bg-destructive/50"></div>
-                    </div>
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Me Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif mb-6">
-            <BoldText>WHY I BUILT THIS</BoldText>
+          <h2 className="text-3xl md:text-4xl font-serif mb-8 text-center">
+            <BoldText>WHY THIS IS DIFFERENT FROM "JUST ANOTHER CLARITY SESSION"</BoldText>
           </h2>
-          <p className="text-muted-foreground leading-relaxed text-lg">
-            For years I've helped founders, social innovators, and creators articulate their Zone of Genius and turn it into offers, ventures, and movements. Again and again, I saw the same bottleneck: incredibly gifted people who couldn't answer "So what do you actually offer?" in a way that leads to a yes. This service is the sharpest, simplest slice of my work: one clear offer that fits your genius and can start moving money and opportunities toward you.
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 px-4 bg-secondary/30">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
-            <BoldText>FREQUENTLY ASKED QUESTIONS</BoldText>
-          </h2>
-
-          <div className="space-y-6">
+          <div className="space-y-4 max-w-3xl mx-auto">
             {[
-              {
-                q: "Is this a full business strategy?",
-                a: "No. This is the first, sharpest piece: one clear offer + 3 concrete next moves. You can absolutely build more around it later, but this is about getting out of the fog and into focused action.",
-              },
-              {
-                q: "What if I don't like the offer you propose?",
-                a: "Then we refine. The point is not to impose a clever sentence on you, but to find language that feels true in your body and is clear in the market. Founding circle clients can use the integration call exactly for this.",
-              },
-              {
-                q: "Do I need to have a business already?",
-                a: "You don't need a full business, but you do need some real skills, experience, or ways you've already helped people. This works best if there's at least some raw material to work with.",
-              },
-              {
-                q: "Why $111 for the founding circle?",
-                a: "Because I want this to be a no-brainer for the first wave of people while I refine the process even further. In exchange, I'll likely ask for honest feedback and (if it truly helped) a short testimonial.",
-              },
+              <><strong>Not therapy, not vague coaching.</strong> This is a <strong>crafting process</strong> that outputs a concrete offer, not just insights.</>,
+              <><strong>Not generic positioning.</strong> Your offer is grounded in your actual genius, not in whatever niche seems hot this month.</>,
+              <><strong>Built to be tested.</strong> Everything is oriented toward: "Can I talk to real humans about this and see if they say yes?"</>,
+              <><strong>Engine, not a one-off trick.</strong> The same pattern that shapes your first offer can later power future versions, products, and collaborations.</>,
             ].map((item, idx) => (
-              <div key={idx} className="p-6 bg-card border border-border rounded-lg">
-                <h3 className="font-serif font-semibold mb-2">{item.q}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.a}</p>
+              <div key={idx} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
+                <Check className="h-5 w-5 text-accent mt-0.5 shrink-0" />
+                <p className="text-muted-foreground">{item}</p>
               </div>
             ))}
           </div>
+          <p className="text-center mt-8 text-muted-foreground italic">
+            It's the bridge between "I'm good at many things" and "here's the one thing you can pay me for right now."
+          </p>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Section 6 – Logistics & Pricing */}
       <section className="py-20 px-4">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-serif mb-8 text-center">
+            <BoldText>LOGISTICS & PRICING</BoldText>
+          </h2>
+          <div className="space-y-4 max-w-2xl mx-auto">
+            {[
+              <><strong>Format:</strong> 100% online, async + one short live/async refinement touchpoint.</>,
+              <><strong>Timeline:</strong> Delivery within <strong>48 hours</strong> of completed intake.</>,
+              <><strong>Price (launch rate):</strong> <strong>$111 USD</strong> – This is the current launch rate as I focus my work on this offer. Price will increase as results and case studies accumulate.</>,
+              <><strong>Slots:</strong> Limited per week to keep quality high.</>,
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
+                <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0"></div>
+                <p className="text-muted-foreground">{item}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center mt-8 text-sm text-muted-foreground">
+            I've already used this pattern to craft Excalibur-style offers for multiple founders.<br />
+            Now I'm making this the front door to my work.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 7 – Final CTA */}
+      <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-serif mb-6">
-            <BoldText>READY TO GET CLEAR?</BoldText>
+            <BoldText>IF YOU WANT ONE CLEAR, TESTABLE OFFER – START HERE</BoldText>
           </h2>
-          <p className="text-muted-foreground mb-8">
-            Stop explaining yourself in circles. Get one sharp offer that fits your genius.
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            If you're done spinning in your own complexity and want <strong>one offer you can actually put in front of people</strong>, this is the first step. No giant program, no reinvention of your entire life – just a precise cut that gives you something real to sell.
           </p>
           <Button size="lg" onClick={scrollToApply} className="text-lg px-8">
-            <BoldText>CLAIM YOUR GENIUS OFFER</BoldText>
+            <BoldText>APPLY FOR YOUR GENIUS OFFER</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
+          <p className="text-sm text-muted-foreground mt-4">
+            I'll review your application to confirm it's a fit.<br />
+            If it is, I'll send payment details and your intake in the next 24 hours.
+          </p>
         </div>
       </section>
 
