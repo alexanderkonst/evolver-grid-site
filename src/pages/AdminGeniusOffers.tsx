@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Eye, Check } from "lucide-react";
+import { ArrowLeft, Eye, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { User } from "@supabase/supabase-js";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+const ADMIN_EMAIL = "alexanderkonst@gmail.com";
 
 interface GeniusOfferRequest {
   id: string;
@@ -54,7 +57,6 @@ const STATUS_OPTIONS = [
 const getAiBranchLabel = (req: GeniusOfferRequest) => {
   if (!req.has_ai_assistant) return "No AI (Tests)";
   if (req.source_branch === "ai") {
-    // Check if they went through the full AI prompt or short
     if (req.products_sold || req.best_clients) return "AI (short prompt)";
     return "AI + offers known";
   }
@@ -62,16 +64,41 @@ const getAiBranchLabel = (req: GeniusOfferRequest) => {
 };
 
 const AdminGeniusOffers = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [requests, setRequests] = useState<GeniusOfferRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState<GeniusOfferRequest | null>(null);
 
   useEffect(() => {
-    fetchRequests();
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+      
+      if (session?.user?.email === ADMIN_EMAIL) {
+        fetchRequests();
+      } else {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user?.email === ADMIN_EMAIL) {
+        fetchRequests();
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const fetchRequests = async () => {
+    setLoading(true);
     const { data, error } = await supabase
       .from("genius_offer_requests")
       .select("*")
@@ -115,6 +142,63 @@ const AdminGeniusOffers = () => {
     });
   };
 
+  // Loading state
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  // Not logged in
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
+        <div className="pt-32 pb-20 px-4">
+          <div className="max-w-md mx-auto text-center space-y-6">
+            <h1 className="text-2xl font-serif">
+              <BoldText>ACCESS REQUIRED</BoldText>
+            </h1>
+            <p className="text-muted-foreground">
+              You need to be signed in to view this page.
+            </p>
+            <Button onClick={() => navigate("/auth?redirect=/genius-admin")}>
+              <BoldText>SIGN IN</BoldText>
+            </Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Not admin
+  if (user.email !== ADMIN_EMAIL) {
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
+        <div className="pt-32 pb-20 px-4">
+          <div className="max-w-md mx-auto text-center space-y-6">
+            <h1 className="text-2xl font-serif">
+              <BoldText>NOT AUTHORIZED</BoldText>
+            </h1>
+            <p className="text-muted-foreground">
+              You don&apos;t have permission to access this page.
+            </p>
+            <Button variant="outline" onClick={() => navigate("/")}>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Admin view
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
@@ -131,11 +215,13 @@ const AdminGeniusOffers = () => {
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl font-serif text-center mb-8">
-            <BoldText>GENIUS OFFER REQUESTS</BoldText>
+            <BoldText>GENIUS OFFERS – ADMIN</BoldText>
           </h1>
 
           {loading ? (
-            <p className="text-center text-muted-foreground">Loading...</p>
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+            </div>
           ) : requests.length === 0 ? (
             <p className="text-center text-muted-foreground">No requests yet.</p>
           ) : (
@@ -143,10 +229,9 @@ const AdminGeniusOffers = () => {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="text-left py-3 px-4 text-sm font-semibold">Name</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold">Email</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold">User</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Created</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold">Source</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold">Branch</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Status</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">PDF</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">View</th>
@@ -155,11 +240,15 @@ const AdminGeniusOffers = () => {
                 <tbody>
                   {requests.map((req) => (
                     <tr key={req.id} className="border-b border-border/50 hover:bg-secondary/20">
-                      <td className="py-3 px-4 text-sm">{req.name}</td>
-                      <td className="py-3 px-4 text-sm">{req.email}</td>
+                      <td className="py-3 px-4 text-sm">
+                        <div>
+                          <p className="font-medium">{req.name}</p>
+                          <p className="text-xs text-muted-foreground">{req.email}</p>
+                        </div>
+                      </td>
                       <td className="py-3 px-4 text-sm text-muted-foreground">{formatDate(req.created_at)}</td>
                       <td className="py-3 px-4 text-sm">
-                        <span className={req.source_branch === "ai" ? "text-accent" : "text-primary"}>
+                        <span className={req.has_ai_assistant ? "text-accent" : "text-primary"}>
                           {getAiBranchLabel(req)}
                         </span>
                       </td>
@@ -173,15 +262,17 @@ const AdminGeniusOffers = () => {
                         </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
-                        {req.status === "completed" && req.pdf_url && (
+                        {req.pdf_url ? (
                           <a 
                             href={req.pdf_url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-accent hover:underline mr-2"
+                            className="text-accent hover:underline"
                           >
-                            PDF
+                            Open PDF
                           </a>
+                        ) : (
+                          <span className="text-muted-foreground">–</span>
                         )}
                       </td>
                       <td className="py-3 px-4">
@@ -241,8 +332,8 @@ const AdminGeniusOffers = () => {
               </div>
 
               <div>
-                <span className="text-sm font-semibold">Has AI Assistant:</span>
-                <p className="text-muted-foreground">{selectedRequest.has_ai_assistant ? "Yes" : "No"}</p>
+                <span className="text-sm font-semibold">Branch:</span>
+                <p className="text-muted-foreground">{getAiBranchLabel(selectedRequest)}</p>
               </div>
 
               {selectedRequest.ai_summary_raw && (
@@ -293,6 +384,22 @@ const AdminGeniusOffers = () => {
                 <div>
                   <span className="text-sm font-semibold">Intelligences Note:</span>
                   <p className="mt-1 text-muted-foreground">{selectedRequest.intelligences_note}</p>
+                </div>
+              )}
+
+              {selectedRequest.pdf_url && (
+                <div>
+                  <span className="text-sm font-semibold">PDF:</span>
+                  <p className="mt-1">
+                    <a 
+                      href={selectedRequest.pdf_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline"
+                    >
+                      {selectedRequest.pdf_url}
+                    </a>
+                  </p>
                 </div>
               )}
             </div>
