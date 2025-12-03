@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle, Lock } from "lucide-react";
+import gameOfYouLogo from "@/assets/game-of-you-logo.png";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -602,6 +603,11 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-12">
+            <img 
+              src={gameOfYouLogo} 
+              alt="Game of You" 
+              className="w-32 sm:w-40 mx-auto mb-6"
+            />
             <p className="text-xs uppercase tracking-widest text-slate-500 mb-3">
               Game of You · Character Home
             </p>
