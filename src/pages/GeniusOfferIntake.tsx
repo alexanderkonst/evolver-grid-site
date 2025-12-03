@@ -87,7 +87,7 @@ const GeniusOfferIntake = () => {
         }));
         
         // Load wizard progress
-        await loadProgress(session.user.id);
+        const savedProgress = await loadProgress(session.user.id);
         
         // Check if returning from ZoG or MI
         const from = searchParams.get("from");
@@ -102,7 +102,8 @@ const GeniusOfferIntake = () => {
           
           if (zogData && zogData.length > 0) {
             setProgress(prev => ({ ...prev, zone_of_genius_completed: true }));
-            await updateProgress({ zone_of_genius_completed: true });
+            await updateProgressDb(session.user.id, { zone_of_genius_completed: true });
+            setCurrentStep("zog_redirect"); // Show completion indicator
           }
         } else if (from === "mi") {
           // Check if MI was completed
@@ -114,8 +115,16 @@ const GeniusOfferIntake = () => {
           
           if (miData && miData.length > 0) {
             setProgress(prev => ({ ...prev, multiple_intelligences_completed: true }));
-            await updateProgress({ multiple_intelligences_completed: true });
+            await updateProgressDb(session.user.id, { multiple_intelligences_completed: true });
+            setCurrentStep("mi_redirect"); // Show completion indicator
           }
+        } else if (savedProgress) {
+          // Determine initial step from saved progress
+          const initialStep = determineInitialStep(savedProgress);
+          setCurrentStep(initialStep);
+        } else {
+          // New user with no progress - start at name
+          setCurrentStep("name");
         }
       }
       setLoading(false);
@@ -136,7 +145,7 @@ const GeniusOfferIntake = () => {
     return () => subscription.unsubscribe();
   }, [searchParams]);
 
-  // Determine current step based on progress
+  // Determine current step only on initial load
   useEffect(() => {
     if (loading) return;
     
@@ -144,40 +153,26 @@ const GeniusOfferIntake = () => {
       setCurrentStep("auth");
       return;
     }
+    // Step is set in the auth useEffect above based on saved progress
+  }, [user, loading]);
 
-    // Determine step based on progress
-    if (!progress.name) {
-      setCurrentStep("name");
-    } else if (!progress.email) {
-      setCurrentStep("email");
-    } else if (progress.has_ai_assistant === null) {
-      setCurrentStep("ai_branch");
-    } else if (progress.has_ai_assistant) {
-      // AI Branch
-      if (progress.ai_knows_offers === null) {
-        setCurrentStep("ai_knows_offers");
-      } else if (!progress.ai_summary) {
-        setCurrentStep("ai_prompt");
-      } else if (!progress.products_sold) {
-        setCurrentStep("products_sold");
-      } else {
-        setCurrentStep("best_clients");
-      }
+  const determineInitialStep = (data: WizardProgress): WizardStep => {
+    if (!data.name) return "name";
+    if (!data.email) return "email";
+    if (data.has_ai_assistant === null) return "ai_branch";
+    
+    if (data.has_ai_assistant) {
+      if (data.ai_knows_offers === null) return "ai_knows_offers";
+      if (!data.ai_summary) return "ai_prompt";
+      return "products_sold";
     } else {
-      // Tests Branch
-      if (!progress.zone_of_genius_completed) {
-        setCurrentStep("zog_redirect");
-      } else if (!progress.multiple_intelligences_completed) {
-        setCurrentStep("mi_redirect");
-      } else if (!progress.products_sold) {
-        setCurrentStep("products_sold");
-      } else {
-        setCurrentStep("best_clients");
-      }
+      if (!data.zone_of_genius_completed) return "zog_redirect";
+      if (!data.multiple_intelligences_completed) return "mi_redirect";
+      return "products_sold";
     }
-  }, [user, progress, loading]);
+  };
 
-  const loadProgress = async (userId: string) => {
+  const loadProgress = async (userId: string): Promise<WizardProgress | null> => {
     const { data } = await supabase
       .from("genius_offer_wizard_progress")
       .select("*")
@@ -185,7 +180,7 @@ const GeniusOfferIntake = () => {
       .single();
     
     if (data) {
-      setProgress({
+      const progressData: WizardProgress = {
         current_step: data.current_step || 1,
         name: data.name || "",
         email: data.email || "",
@@ -196,8 +191,21 @@ const GeniusOfferIntake = () => {
         multiple_intelligences_completed: data.multiple_intelligences_completed || false,
         products_sold: data.products_sold || "",
         best_clients: data.best_clients || "",
-      });
+      };
+      setProgress(progressData);
+      return progressData;
     }
+    return null;
+  };
+
+  const updateProgressDb = async (userId: string, updates: Partial<WizardProgress>) => {
+    await supabase
+      .from("genius_offer_wizard_progress")
+      .upsert({
+        user_id: userId,
+        ...updates,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: "user_id" });
   };
 
   const updateProgress = async (updates: Partial<WizardProgress>) => {
@@ -370,6 +378,7 @@ const GeniusOfferIntake = () => {
                 onClick={() => {
                   if (progress.name.trim()) {
                     updateProgress({ name: progress.name.trim() });
+                    setCurrentStep("email");
                   } else {
                     toast({ title: "Please enter your name", variant: "destructive" });
                   }
@@ -389,7 +398,7 @@ const GeniusOfferIntake = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => updateProgress({ name: "" })}
+                onClick={() => setCurrentStep("name")}
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -411,6 +420,7 @@ const GeniusOfferIntake = () => {
                 onClick={() => {
                   if (progress.email.trim() && progress.email.includes("@")) {
                     updateProgress({ email: progress.email.trim() });
+                    setCurrentStep("ai_branch");
                   } else {
                     toast({ title: "Please enter a valid email", variant: "destructive" });
                   }
@@ -430,7 +440,7 @@ const GeniusOfferIntake = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => updateProgress({ email: "" })}
+                onClick={() => setCurrentStep("email")}
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -447,7 +457,10 @@ const GeniusOfferIntake = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => updateProgress({ has_ai_assistant: true })}
+                  onClick={() => {
+                    updateProgress({ has_ai_assistant: true });
+                    setCurrentStep("ai_knows_offers");
+                  }}
                   className="w-full py-6"
                 >
                   <BoldText>YES</BoldText>
@@ -455,7 +468,10 @@ const GeniusOfferIntake = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => updateProgress({ has_ai_assistant: false })}
+                  onClick={() => {
+                    updateProgress({ has_ai_assistant: false });
+                    setCurrentStep("zog_redirect");
+                  }}
                   className="w-full py-6"
                 >
                   <BoldText>NO</BoldText>
@@ -470,7 +486,7 @@ const GeniusOfferIntake = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => updateProgress({ has_ai_assistant: null })}
+                onClick={() => setCurrentStep("ai_branch")}
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -487,7 +503,10 @@ const GeniusOfferIntake = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => updateProgress({ ai_knows_offers: true })}
+                  onClick={() => {
+                    updateProgress({ ai_knows_offers: true });
+                    setCurrentStep("ai_prompt");
+                  }}
                   className="w-full py-6"
                 >
                   <BoldText>YES</BoldText>
@@ -495,7 +514,10 @@ const GeniusOfferIntake = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => updateProgress({ ai_knows_offers: false })}
+                  onClick={() => {
+                    updateProgress({ ai_knows_offers: false });
+                    setCurrentStep("ai_prompt");
+                  }}
                   className="w-full py-6"
                 >
                   <BoldText>NO</BoldText>
@@ -510,7 +532,7 @@ const GeniusOfferIntake = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => updateProgress({ ai_knows_offers: null })}
+                onClick={() => setCurrentStep("ai_knows_offers")}
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -555,6 +577,7 @@ const GeniusOfferIntake = () => {
                 onClick={() => {
                   if (progress.ai_summary.trim()) {
                     updateProgress({ ai_summary: progress.ai_summary.trim() });
+                    setCurrentStep("products_sold");
                   } else {
                     toast({ title: "Please paste your AI's response", variant: "destructive" });
                   }
@@ -574,7 +597,7 @@ const GeniusOfferIntake = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => updateProgress({ has_ai_assistant: null })}
+                onClick={() => setCurrentStep("ai_branch")}
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -668,7 +691,7 @@ const GeniusOfferIntake = () => {
                 size="sm"
                 onClick={() => {
                   if (progress.has_ai_assistant) {
-                    updateProgress({ ai_summary: "" });
+                    setCurrentStep("ai_prompt");
                   } else {
                     setCurrentStep("mi_redirect");
                   }
