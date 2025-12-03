@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -7,7 +8,7 @@ import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const GeniusOffer = () => {
@@ -71,8 +72,18 @@ const GeniusOffer = () => {
       <Navigation />
       <ScrollToTop />
 
+      {/* Back Button */}
+      <div className="pt-24 px-4">
+        <div className="container mx-auto max-w-3xl">
+          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            <BoldText>BACK</BoldText>
+          </Link>
+        </div>
+      </div>
+
       {/* Hero Section - Centered */}
-      <section className="pt-32 pb-20 px-4">
+      <section className="pt-8 pb-20 px-4">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
             <BoldText>ONE CLEAR GENIUS OFFER YOU CAN ACTUALLY SELL</BoldText>
