@@ -348,7 +348,7 @@ const GeniusOfferIntake = () => {
             <div className="pt-4 space-y-4">
               <Button 
                 size="lg" 
-                onClick={() => window.open("https://t.me/your_telegram_handle", "_blank")}
+                onClick={() => window.open("https://t.me/integralevolution", "_blank")}
                 className="w-full"
               >
                 <BoldText>MESSAGE ME ON TELEGRAM</BoldText>
