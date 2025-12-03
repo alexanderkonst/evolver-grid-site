@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ArrowLeft, GripVertical, ArrowUp, ArrowDown, Check } from "lucide-react";
+import { ArrowLeft, GripVertical, ArrowUp, ArrowDown, Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { User } from "@supabase/supabase-js";
 
 interface Intelligence {
   id: string;
@@ -32,17 +31,35 @@ const INTELLIGENCES: Intelligence[] = [
 
 const MultipleIntelligences = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnTo = searchParams.get("return");
+  
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const [showAssessment, setShowAssessment] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [ranking, setRanking] = useState<Intelligence[]>(INTELLIGENCES);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      setLoading(false);
+    };
+    
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const moveItem = (fromIndex: number, toIndex: number) => {
@@ -71,21 +88,39 @@ const MultipleIntelligences = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim() || !email.trim()) {
-      toast({ title: "Please fill in your name and email.", variant: "destructive" });
+    if (!user) {
+      toast({ title: "Please log in to save your results.", variant: "destructive" });
+      navigate("/auth?redirect=/intelligences" + (returnTo ? `?return=${returnTo}` : ""));
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("multiple_intelligences_assessments").insert({
-        name: name.trim(),
-        email: email.trim(),
+      const orderedIntelligences = ranking.map((i, idx) => ({ 
+        key: i.id, 
+        name: i.name,
+        rank: idx + 1 
+      }));
+
+      // Save to legacy table
+      await supabase.from("multiple_intelligences_assessments").insert({
+        name: user.email || "User",
+        email: user.email || "",
         ranking: ranking.map((i, idx) => ({ rank: idx + 1, id: i.id, name: i.name })),
       });
 
-      if (error) throw error;
+      // Update wizard progress if returning to genius offer
+      if (returnTo === "genius-offer") {
+        await supabase
+          .from("genius_offer_wizard_progress")
+          .upsert({
+            user_id: user.id,
+            multiple_intelligences_completed: true,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: "user_id" });
+      }
+
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error saving assessment:", error);
@@ -94,6 +129,14 @@ const MultipleIntelligences = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   if (isSubmitted) {
     return (
@@ -109,7 +152,7 @@ const MultipleIntelligences = () => {
               <BoldText>SAVED</BoldText>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              You can mention your top 2–3 intelligences when working with me on your Genius Offer — or I may ask you for them later.
+              Your Multiple Intelligences ranking has been saved.
             </p>
             <div className="p-4 bg-secondary/30 rounded-xl text-left">
               <p className="text-sm font-semibold mb-2">Your Top 3:</p>
@@ -119,12 +162,23 @@ const MultipleIntelligences = () => {
                 ))}
               </ol>
             </div>
-            <Link to="/">
-              <Button variant="outline" className="mt-4">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
+            
+            {returnTo === "genius-offer" ? (
+              <Button 
+                size="lg" 
+                onClick={() => navigate("/genius-offer-intake?from=mi")}
+                className="w-full"
+              >
+                <BoldText>CONTINUE TO GENIUS OFFER CREATION</BoldText>
               </Button>
-            </Link>
+            ) : (
+              <Link to="/">
+                <Button variant="outline" className="mt-4">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
         <Footer />
@@ -155,11 +209,11 @@ const MultipleIntelligences = () => {
           </h1>
           <p className="text-xl text-muted-foreground mb-2">Quick Self-Assessment</p>
           <p className="text-muted-foreground mb-8">
-            This is not a formal psychometric test. It&apos;s a fast way to see which forms of intelligence feel most natural to you right now.
+            A 2–3 minute drag-and-drop test to see which intelligences feel most natural to you.
           </p>
           {!showAssessment && (
             <Button size="lg" onClick={() => setShowAssessment(true)}>
-              <BoldText>START THE SELF-ASSESSMENT</BoldText>
+              <BoldText>START THE ASSESSMENT</BoldText>
             </Button>
           )}
         </div>
@@ -169,35 +223,13 @@ const MultipleIntelligences = () => {
       {showAssessment && (
         <section className="pb-20 px-4">
           <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8">
-            {/* Name & Email */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Your name *</Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your full name"
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Your email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className="mt-1"
-                />
-              </div>
-            </div>
-
             {/* Instructions */}
             <div className="text-center">
               <p className="text-muted-foreground">
-                Drag the intelligences to reorder them from <strong>most &quot;you&quot;</strong> at the top to <strong>least &quot;you&quot;</strong> at the bottom.
+                Reorder these from <strong>most &quot;you&quot;</strong> at the top to <strong>least &quot;you&quot;</strong> at the bottom.
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
+                Think about: how much you love using it, how naturally it comes, and how often you solve problems this way.
               </p>
             </div>
 
@@ -250,8 +282,14 @@ const MultipleIntelligences = () => {
               ))}
             </div>
 
+            {!user && (
+              <p className="text-sm text-center text-muted-foreground">
+                You&apos;ll need to log in to save your results.
+              </p>
+            )}
+
             <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-              <BoldText>{isSubmitting ? "SAVING..." : "SAVE RESULTS"}</BoldText>
+              <BoldText>{isSubmitting ? "SAVING..." : "SAVE MY RANKING"}</BoldText>
             </Button>
           </form>
         </section>

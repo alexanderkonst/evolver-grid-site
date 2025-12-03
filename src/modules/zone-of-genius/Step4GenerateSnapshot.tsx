@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +11,8 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnTo = searchParams.get("return");
   const {
     selectedTop10TalentIds,
     orderedTalentIds,
@@ -514,19 +516,30 @@ GENERAL STYLE RULES:
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={handleBack}
-                className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to previous step
-              </button>
-              <button
-                onClick={handleStartNew}
-                className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
-              >
-                Start new assessment
-              </button>
+              {returnTo === "genius-offer" ? (
+                <button
+                  onClick={() => navigate("/genius-offer-intake?from=zog")}
+                  className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                >
+                  Continue to Genius Offer Creation
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={handleBack}
+                    className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to previous step
+                  </button>
+                  <button
+                    onClick={handleStartNew}
+                    className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    Start new assessment
+                  </button>
+                </>
+              )}
             </div>
           </div>
 

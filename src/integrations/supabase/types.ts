@@ -27,6 +27,7 @@ export type Database = {
           last_zog_snapshot_id: string | null
           level: number
           longest_streak_days: number
+          multiple_intelligences_completed: boolean | null
           practice_count: number
           total_quests_completed: number
           updated_at: string
@@ -37,6 +38,7 @@ export type Database = {
           xp_spirit: number
           xp_total: number
           xp_uniqueness_work: number
+          zone_of_genius_completed: boolean | null
         }
         Insert: {
           ai_upgrade_access?: boolean | null
@@ -50,6 +52,7 @@ export type Database = {
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          multiple_intelligences_completed?: boolean | null
           practice_count?: number
           total_quests_completed?: number
           updated_at?: string
@@ -60,6 +63,7 @@ export type Database = {
           xp_spirit?: number
           xp_total?: number
           xp_uniqueness_work?: number
+          zone_of_genius_completed?: boolean | null
         }
         Update: {
           ai_upgrade_access?: boolean | null
@@ -73,6 +77,7 @@ export type Database = {
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          multiple_intelligences_completed?: boolean | null
           practice_count?: number
           total_quests_completed?: number
           updated_at?: string
@@ -83,6 +88,7 @@ export type Database = {
           xp_spirit?: number
           xp_total?: number
           xp_uniqueness_work?: number
+          zone_of_genius_completed?: boolean | null
         }
         Relationships: [
           {
@@ -105,6 +111,7 @@ export type Database = {
         Row: {
           ai_summary_raw: string | null
           best_client_story: string | null
+          best_clients: string | null
           created_at: string
           email: string
           extra_notes: string | null
@@ -114,11 +121,15 @@ export type Database = {
           name: string
           no_ai_genius_description: string | null
           offers_sold: string | null
+          products_sold: string | null
+          source_branch: string | null
           status: string
+          user_id: string | null
         }
         Insert: {
           ai_summary_raw?: string | null
           best_client_story?: string | null
+          best_clients?: string | null
           created_at?: string
           email: string
           extra_notes?: string | null
@@ -128,11 +139,15 @@ export type Database = {
           name: string
           no_ai_genius_description?: string | null
           offers_sold?: string | null
+          products_sold?: string | null
+          source_branch?: string | null
           status?: string
+          user_id?: string | null
         }
         Update: {
           ai_summary_raw?: string | null
           best_client_story?: string | null
+          best_clients?: string | null
           created_at?: string
           email?: string
           extra_notes?: string | null
@@ -142,7 +157,61 @@ export type Database = {
           name?: string
           no_ai_genius_description?: string | null
           offers_sold?: string | null
+          products_sold?: string | null
+          source_branch?: string | null
           status?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      genius_offer_wizard_progress: {
+        Row: {
+          ai_knows_offers: boolean | null
+          ai_summary: string | null
+          best_clients: string | null
+          created_at: string | null
+          current_step: number | null
+          email: string | null
+          has_ai_assistant: boolean | null
+          id: string
+          multiple_intelligences_completed: boolean | null
+          name: string | null
+          products_sold: string | null
+          updated_at: string | null
+          user_id: string
+          zone_of_genius_completed: boolean | null
+        }
+        Insert: {
+          ai_knows_offers?: boolean | null
+          ai_summary?: string | null
+          best_clients?: string | null
+          created_at?: string | null
+          current_step?: number | null
+          email?: string | null
+          has_ai_assistant?: boolean | null
+          id?: string
+          multiple_intelligences_completed?: boolean | null
+          name?: string | null
+          products_sold?: string | null
+          updated_at?: string | null
+          user_id: string
+          zone_of_genius_completed?: boolean | null
+        }
+        Update: {
+          ai_knows_offers?: boolean | null
+          ai_summary?: string | null
+          best_clients?: string | null
+          created_at?: string | null
+          current_step?: number | null
+          email?: string | null
+          has_ai_assistant?: boolean | null
+          id?: string
+          multiple_intelligences_completed?: boolean | null
+          name?: string | null
+          products_sold?: string | null
+          updated_at?: string | null
+          user_id?: string
+          zone_of_genius_completed?: boolean | null
         }
         Relationships: []
       }
@@ -167,6 +236,30 @@ export type Database = {
           id?: string
           name?: string
           ranking?: Json
+        }
+        Relationships: []
+      }
+      multiple_intelligences_results: {
+        Row: {
+          created_at: string | null
+          id: string
+          ordered_intelligences: Json
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ordered_intelligences: Json
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ordered_intelligences?: Json
+          updated_at?: string | null
+          user_id?: string
         }
         Relationships: []
       }

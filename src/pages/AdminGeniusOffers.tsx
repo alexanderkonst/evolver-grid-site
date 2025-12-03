@@ -24,13 +24,17 @@ import {
 interface GeniusOfferRequest {
   id: string;
   created_at: string;
+  user_id: string | null;
   name: string;
   email: string;
   has_ai_assistant: boolean;
+  source_branch: string | null;
   ai_summary_raw: string | null;
   no_ai_genius_description: string | null;
   offers_sold: string | null;
   best_client_story: string | null;
+  products_sold: string | null;
+  best_clients: string | null;
   extra_notes: string | null;
   intelligences_note: string | null;
   status: string;
@@ -38,8 +42,10 @@ interface GeniusOfferRequest {
 
 const STATUS_OPTIONS = [
   { value: "intake_received", label: "Intake Received" },
-  { value: "in_progress", label: "In Progress" },
-  { value: "offer_delivered", label: "Offer Delivered" },
+  { value: "apple_seed_in_progress", label: "AppleSeed In Progress" },
+  { value: "excalibur_in_progress", label: "Excalibur In Progress" },
+  { value: "completed", label: "Completed" },
+  { value: "cancelled", label: "Cancelled" },
 ];
 
 const AdminGeniusOffers = () => {
@@ -127,7 +133,7 @@ const AdminGeniusOffers = () => {
                     <th className="text-left py-3 px-4 text-sm font-semibold">Name</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Email</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Created</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold">Has AI</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold">Source</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">Status</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold">View</th>
                   </tr>
@@ -139,11 +145,9 @@ const AdminGeniusOffers = () => {
                       <td className="py-3 px-4 text-sm">{req.email}</td>
                       <td className="py-3 px-4 text-sm text-muted-foreground">{formatDate(req.created_at)}</td>
                       <td className="py-3 px-4 text-sm">
-                        {req.has_ai_assistant ? (
-                          <span className="text-accent">Yes</span>
-                        ) : (
-                          <span className="text-muted-foreground">No</span>
-                        )}
+                        <span className={req.source_branch === "ai" ? "text-accent" : "text-primary"}>
+                          {req.source_branch || (req.has_ai_assistant ? "ai" : "tests")}
+                        </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
                         <span className={`px-2 py-1 rounded text-xs ${
@@ -215,7 +219,7 @@ const AdminGeniusOffers = () => {
                 <p className="text-muted-foreground">{selectedRequest.has_ai_assistant ? "Yes" : "No"}</p>
               </div>
 
-              {selectedRequest.has_ai_assistant && selectedRequest.ai_summary_raw && (
+              {selectedRequest.ai_summary_raw && (
                 <div>
                   <span className="text-sm font-semibold">AI Summary:</span>
                   <pre className="mt-2 p-4 bg-secondary/30 rounded-lg text-sm whitespace-pre-wrap">
@@ -224,27 +228,32 @@ const AdminGeniusOffers = () => {
                 </div>
               )}
 
-              {!selectedRequest.has_ai_assistant && (
-                <>
-                  {selectedRequest.no_ai_genius_description && (
-                    <div>
-                      <span className="text-sm font-semibold">Genius Description:</span>
-                      <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.no_ai_genius_description}</p>
-                    </div>
-                  )}
-                  {selectedRequest.offers_sold && (
-                    <div>
-                      <span className="text-sm font-semibold">Offers Sold:</span>
-                      <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.offers_sold}</p>
-                    </div>
-                  )}
-                  {selectedRequest.best_client_story && (
-                    <div>
-                      <span className="text-sm font-semibold">Best Client Story:</span>
-                      <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.best_client_story}</p>
-                    </div>
-                  )}
-                </>
+              {selectedRequest.products_sold && (
+                <div>
+                  <span className="text-sm font-semibold">Products Sold:</span>
+                  <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.products_sold}</p>
+                </div>
+              )}
+
+              {selectedRequest.best_clients && (
+                <div>
+                  <span className="text-sm font-semibold">Best Clients:</span>
+                  <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.best_clients}</p>
+                </div>
+              )}
+
+              {selectedRequest.no_ai_genius_description && (
+                <div>
+                  <span className="text-sm font-semibold">Genius Description (Legacy):</span>
+                  <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.no_ai_genius_description}</p>
+                </div>
+              )}
+
+              {selectedRequest.best_client_story && (
+                <div>
+                  <span className="text-sm font-semibold">Best Client Story (Legacy):</span>
+                  <p className="mt-1 text-muted-foreground whitespace-pre-wrap">{selectedRequest.best_client_story}</p>
+                </div>
               )}
 
               {selectedRequest.extra_notes && (
