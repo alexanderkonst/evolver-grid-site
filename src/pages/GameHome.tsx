@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle, Lock } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, AlertCircle, Lock, Download, FileText } from "lucide-react";
 import gameOfYouLogo from "@/assets/game-of-you-logo.png";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
@@ -68,6 +68,14 @@ interface QolSnapshot {
   home_stage: number;
 }
 
+interface GeniusOffer {
+  id: string;
+  status: string;
+  pdf_url: string | null;
+  summary_title: string | null;
+  summary_promise: string | null;
+}
+
 interface QuestSuggestion {
   quest_title: string;
   practice_type: string;
@@ -114,6 +122,9 @@ const GameHome = () => {
   // Suggested practices state
   const [suggestedPractices, setSuggestedPractices] = useState<LibraryItem[]>([]);
   const [markingPracticeDone, setMarkingPracticeDone] = useState<string | null>(null);
+  
+  // Genius Offer state
+  const [geniusOffer, setGeniusOffer] = useState<GeniusOffer | null>(null);
 
   useEffect(() => {
     loadGameData();
@@ -267,6 +278,22 @@ const GameHome = () => {
           .single();
         if (updatedProfile) {
           setProfile(updatedProfile);
+        }
+      }
+      
+      // Load Genius Offer for logged-in user
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      if (currentUser) {
+        const { data: geniusOfferData } = await supabase
+          .from('genius_offer_requests')
+          .select('id, status, pdf_url, summary_title, summary_promise')
+          .eq('user_id', currentUser.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        
+        if (geniusOfferData) {
+          setGeniusOffer(geniusOfferData);
         }
       }
     } catch (err) {
@@ -734,6 +761,59 @@ const GameHome = () => {
                   >
                     <BoldText className="uppercase">Discover My Zone of Genius</BoldText>
                   </Button>
+                </div>
+              )}
+
+              {/* Your Genius Offer */}
+              {user && (
+                <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
+                  <div className="flex items-center gap-3 mb-6">
+                    <FileText className="w-6 h-6 text-slate-700" />
+                    <h2 className="text-xl font-bold text-slate-900">
+                      Your Genius Offer
+                    </h2>
+                  </div>
+                  
+                  {geniusOffer && geniusOffer.status === 'completed' && geniusOffer.pdf_url ? (
+                    <div className="space-y-4">
+                      {geniusOffer.summary_title && (
+                        <p className="text-2xl font-bold text-slate-900">
+                          {geniusOffer.summary_title}
+                        </p>
+                      )}
+                      {geniusOffer.summary_promise && (
+                        <p className="text-base text-slate-700 leading-relaxed">
+                          {geniusOffer.summary_promise}
+                        </p>
+                      )}
+                      <Button
+                        onClick={() => window.open(geniusOffer.pdf_url!, '_blank')}
+                        className="w-full sm:w-auto"
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        <BoldText className="uppercase">Download PDF</BoldText>
+                      </Button>
+                    </div>
+                  ) : geniusOffer ? (
+                    <div className="text-center py-6">
+                      <Loader2 className="w-8 h-8 text-slate-400 animate-spin mx-auto mb-4" />
+                      <p className="text-base text-slate-600">
+                        Your Genius Offer is being crafted.<br />
+                        You'll see it here once it's ready.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="text-center py-6">
+                      <p className="text-base text-slate-600 mb-6">
+                        Transform your genius into a clear, sellable offer.
+                      </p>
+                      <Button
+                        onClick={() => navigate("/genius-offer")}
+                      >
+                        <BoldText className="uppercase">Create Your Genius Offer</BoldText>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               )}
 

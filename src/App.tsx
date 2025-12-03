@@ -58,6 +58,7 @@ const App = () => (
             <Route path="/genius-offer" element={<GeniusOffer />} />
             <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
             <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
+            <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/game" element={<GameHome />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
