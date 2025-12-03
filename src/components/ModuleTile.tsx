@@ -49,9 +49,10 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
                          module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon :
                          module.slug === "zone-of-genius" ? zoneOfGeniusIcon : null;
 
-  // Use custom route for Destiny module, standard route for others
+  // Use custom route for special modules, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" : 
                    module.slug === "zone-of-genius" ? "/zone-of-genius" :
+                   module.slug === "genius-offer" ? "/genius-offer" :
                    `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
