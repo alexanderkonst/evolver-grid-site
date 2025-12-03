@@ -16,6 +16,9 @@ import AIUpgrade from "./pages/AIUpgrade";
 import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
 import GeniusOffer from "./pages/GeniusOffer";
+import GeniusOfferIntake from "./pages/GeniusOfferIntake";
+import AdminGeniusOffers from "./pages/AdminGeniusOffers";
+import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
@@ -53,6 +56,9 @@ const App = () => (
             <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />
             <Route path="/genius-offer" element={<GeniusOffer />} />
+            <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
+            <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
+            <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/game" element={<GameHome />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
