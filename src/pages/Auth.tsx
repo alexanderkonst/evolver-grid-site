@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,10 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
+  
+  const redirectTo = searchParams.get("redirect") || "/game";
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,11 +37,11 @@ const Auth = () => {
 
       toast({
         title: "Success!",
-        description: "Your account has been created. Redirecting to your character home...",
+        description: "Your account has been created. Redirecting...",
       });
 
       // Redirect immediately since auto-confirm is enabled
-      setTimeout(() => navigate("/game"), 1000);
+      setTimeout(() => navigate(redirectTo), 1000);
     } catch (error: any) {
       toast({
         title: "Sign up failed",
@@ -64,10 +67,10 @@ const Auth = () => {
 
       toast({
         title: "Welcome back!",
-        description: "Redirecting to your character home...",
+        description: "Redirecting...",
       });
 
-      setTimeout(() => navigate("/game"), 500);
+      setTimeout(() => navigate(redirectTo), 500);
     } catch (error: any) {
       toast({
         title: "Login failed",
