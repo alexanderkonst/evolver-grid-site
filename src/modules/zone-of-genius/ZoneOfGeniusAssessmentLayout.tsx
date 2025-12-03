@@ -1,9 +1,11 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
+import { ArrowLeft } from "lucide-react";
+import BoldText from "@/components/BoldText";
 
 const ZoneOfGeniusAssessmentLayout = () => {
   const location = useLocation();
@@ -24,9 +26,17 @@ const ZoneOfGeniusAssessmentLayout = () => {
       <div className="min-h-screen flex flex-col">
         <Navigation />
         
-        <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-6xl">
             
+            {/* Back/Exit Link */}
+            <div className="mb-6">
+              <Link to="/zone-of-genius" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                <BoldText>EXIT TO OVERVIEW</BoldText>
+              </Link>
+            </div>
+
             {/* Title Banner */}
             <div className="text-center mb-8">
               <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-6">

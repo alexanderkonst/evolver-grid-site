@@ -5,6 +5,8 @@ import ModuleTile from "@/components/ModuleTile";
 import { modules } from "@/data/modules";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { ArrowLeft } from "lucide-react";
+import BoldText from "@/components/BoldText";
 
 const About = () => {
   const heroAnimation = useScrollAnimation();
@@ -19,8 +21,16 @@ const About = () => {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl">
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              <BoldText>BACK</BoldText>
+            </Link>
+          </div>
+
           {/* Hero */}
           <div 
             ref={heroAnimation.ref}
@@ -91,7 +101,7 @@ const About = () => {
             </p>
 
             <p className="text-lg leading-relaxed text-muted-foreground mt-8">
-              If my work resonates, explore the lifehacks on the home page or reach out directly.
+              If my work resonates, explore the Transformational Tools on the home page or reach out directly.
             </p>
           </div>
 

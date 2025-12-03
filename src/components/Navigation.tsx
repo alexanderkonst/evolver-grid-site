@@ -72,8 +72,12 @@ const Navigation = () => {
                     className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     onClick={(e) => {
                       e.preventDefault();
-                      const element = document.getElementById('modules');
-                      element?.scrollIntoView({ behavior: 'smooth' });
+                      if (window.location.pathname === '/') {
+                        const element = document.getElementById('modules');
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = '/#modules';
+                      }
                     }}
                   >
                     {link.label}
@@ -161,9 +165,13 @@ const Navigation = () => {
                   className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById('modules');
-                    element?.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
+                    if (window.location.pathname === '/') {
+                      const element = document.getElementById('modules');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.href = '/#modules';
+                    }
                   }}
                 >
                   {link.label}

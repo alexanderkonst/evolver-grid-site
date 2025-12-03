@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ArrowLeft } from "lucide-react";
 import {
   LIBRARY_CATEGORIES,
   LIBRARY_ITEMS,
@@ -240,8 +242,16 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
     <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              <BoldText>BACK</BoldText>
+            </Link>
+          </div>
+
           <div className="flex justify-center mb-6">
             <img 
               src={libraryLogo} 
