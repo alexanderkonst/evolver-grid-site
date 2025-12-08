@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -32,7 +34,7 @@ const MensCircle = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -58,9 +60,17 @@ const MensCircle = () => {
   if (!isAuthenticated) {
     return (
       <div 
-        className="min-h-screen flex flex-col items-center justify-center px-6"
+        className="min-h-screen flex flex-col items-center justify-center px-6 relative"
         style={{ backgroundColor: "#041a2f" }}
       >
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 flex items-center gap-2 text-sm opacity-70 hover:opacity-100 transition-opacity"
+          style={{ color: "#E0E4EA" }}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Назад</span>
+        </button>
         <div className="max-w-md w-full text-center space-y-8">
           <img 
             src={mensCircleIcon} 
