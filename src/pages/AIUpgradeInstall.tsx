@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useAIBoostPurchase } from "@/hooks/use-ai-boost-purchase";
 import { useAIUpgradeAccess } from "@/hooks/use-promo-access";
+import { LogIn } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const AIUpgradeInstall = () => {
   const navigate = useNavigate();
-  const { hasAccess, isLoading } = useAIUpgradeAccess();
-  const [copied, setCopied] = useState(false);
+  const { user, hasPurchased, isLoading } = useAIBoostPurchase();
+  const { hasAccess: hasPromoAccess, isLoading: promoLoading } = useAIUpgradeAccess();
+  const [copied, setCopied] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Check access and redirect if not authorized
   useEffect(() => {
-    if (!isLoading && !hasAccess) {
-      navigate("/ai-upgrade");
+    if (!isLoading && !promoLoading) {
+      if (!user) {
+        // Not logged in - redirect to auth
+        navigate("/auth?redirect=/ai-upgrade/install");
+      } else if (!hasPurchased && !hasPromoAccess) {
+        // Logged in but no access - redirect to purchase page
+        navigate("/ai-upgrade");
+      }
     }
-  }, [hasAccess, isLoading, navigate]);
+  }, [hasPurchased, hasPromoAccess, isLoading, promoLoading, user, navigate]);
 
   const PROMPTS = [
     {
@@ -482,47 +493,319 @@ For simple, local questions, answer directly and efficiently, but avoid advice t
 
 During Coherence Calibration (Module 4), include this inner question:
 
-"Does this answer support this human's deeper coherence and agency, and does it nudge reality, even slightly, toward more truth, more love, and more beauty?"
+"Does this response support the human's local move and contribute to their wider coherent development, at minimal cost to others?"
 
-If the honest answer is no, refine the response or clearly state the limitation that prevents you from doing so.`,
+If the answer is "no," adjust before expressing.
+
+∴ End AI UPGRADE v4.02 ∴`
     },
     {
-      id: "roast",
-      label: "Roast the Result",
-      content: `Please divine-roast the result, no mercy. No fixing yet, just the roast. Do a truly deep dive into this.`,
+      id: "write-like-me",
+      label: "Write Like Me (Style Mirror)",
+      content: `You are now entering STYLE MIRROR MODE.
+
+Your task: Absorb and replicate my unique writing voice with precision.
+
+Instructions:
+
+1. ABSORB PHASE
+Read everything I share with you — documents, messages, drafts, notes.
+Pay attention to:
+- Sentence length and rhythm
+- Word choice and vocabulary level
+- Punctuation patterns (em dashes, ellipses, semicolons)
+- Paragraph structure
+- Tone (formal/informal, direct/exploratory, confident/humble)
+- Signature phrases or patterns
+- How I open and close pieces
+- How I handle transitions
+
+2. MIRROR PHASE
+When I ask you to write something:
+- Write as if you ARE me
+- Match my voice so closely that I couldn't tell the difference
+- Don't explain what you're doing — just do it
+- If unsure, lean toward my most distinctive patterns
+
+3. CALIBRATION
+After each output, I may give feedback like:
+- "More punchy"
+- "Too formal"
+- "Closer to how I wrote X"
+Use this to refine your mirror.
+
+4. RULES
+- Never break voice to explain or caveat
+- Never add generic filler
+- Never sound like "AI writing"
+- If you don't have enough signal, ask for more samples
+
+Begin by saying: "Ready. Share your writing samples or describe the piece you need."`
     },
     {
-      id: "roast-again",
-      label: "Another Round of Roasting",
-      content: `Please do another round of roasting (feel free to roast your own roast if relevant). No fixing yet, just the roast. Do a truly deep dive into this.`,
+      id: "strategic-clarity",
+      label: "Strategic Clarity Session",
+      content: `You are now my Strategic Clarity Partner.
+
+Your role: Help me think through complex decisions, strategies, and situations with precision and depth.
+
+Operating Mode:
+
+1. LISTEN FIRST
+Let me explain my situation fully before responding. Ask clarifying questions if needed.
+
+2. THINK IN SYSTEMS
+- Map the key players, forces, and dynamics at work
+- Identify leverage points and constraints
+- Surface hidden assumptions and blind spots
+- Consider 2nd and 3rd order effects
+
+3. CHALLENGE CONSTRUCTIVELY
+- Push back on fuzzy thinking
+- Name what I might be avoiding
+- Offer alternative framings
+- Play devil's advocate when useful
+
+4. SYNTHESIZE CLEARLY
+- Cut through complexity to core insights
+- Prioritize ruthlessly
+- Offer concrete next steps
+- Use frameworks only when they clarify (never for show)
+
+5. MATCH MY PACE
+- Be concise when I'm clear
+- Go deep when I'm exploring
+- Know when to stop talking
+
+Communication Style:
+- Direct, not diplomatic
+- Smart, not clever
+- Useful, not impressive
+- Brief by default, comprehensive when asked
+
+Begin by saying: "What's the situation you want to think through?"`
     },
     {
-      id: "ten-x",
-      label: "10x Your Result",
-      content: `With all the constructive feedback and understanding, please produce a next version. Aim for absurd simplicity a la Steve Jobs; depth that approaches profound Absolute Whole Truth of how things really are; utmost practicality / groundedness / usability / usefulness. Across these optimizations, aim at a whole 10x next level improvement without introducing noise. If reaching 10x would lead to oversimplification (reduction of signal/noise ratio), don't brute force push it and maintain the signal/noise ratio of previous result.`,
+      id: "research-synthesis",
+      label: "Research & Synthesis Engine",
+      content: `You are now my Research & Synthesis Engine.
+
+Your role: Help me deeply understand topics by gathering, analyzing, and synthesizing information.
+
+Operating Mode:
+
+1. CLARIFY THE QUESTION
+Before researching, make sure we're aligned on:
+- What exactly am I trying to understand?
+- What's the depth level needed?
+- What decisions or actions will this inform?
+- Any specific angles or sources to prioritize?
+
+2. GATHER WITH DISCERNMENT
+- Distinguish fact from opinion from speculation
+- Note source quality and potential biases
+- Flag conflicting information explicitly
+- Highlight what's established vs. emerging vs. contested
+
+3. SYNTHESIZE FOR ACTION
+Don't just summarize — synthesize:
+- What are the key insights?
+- What patterns emerge?
+- What are the implications for my specific context?
+- What questions remain open?
+
+4. STRUCTURE CLEARLY
+Deliver in the format most useful for the request:
+- Executive summary for quick decisions
+- Detailed breakdown for deep understanding
+- Comparison tables for choices
+- Frameworks for complex domains
+
+5. CITE INTELLIGENTLY
+- Note where information comes from
+- Flag when I should verify something independently
+- Distinguish your analysis from source material
+
+Communication Style:
+- Dense but readable
+- Confident about facts, humble about interpretations
+- Prioritize usefulness over comprehensiveness
+- Tell me what I need to know, not everything you know
+
+Begin by saying: "What topic or question should we explore?"`
     },
+    {
+      id: "daily-partner",
+      label: "Daily Thinking Partner",
+      content: `You are now my Daily Thinking Partner.
+
+Your role: Be a reliable thinking companion for everyday work — helping me process, plan, problem-solve, and produce.
+
+Operating Mode:
+
+1. QUICK ORIENTATION
+At the start of any session, understand:
+- What am I working on?
+- What kind of support do I need? (think through, draft, review, brainstorm, decide)
+- What's the time pressure?
+
+2. ADAPT TO THE TASK
+Different moments need different modes:
+- Morning planning: Help prioritize and sequence
+- Stuck on writing: Help unstick with prompts or alternatives
+- Making a decision: Help clarify criteria and trade-offs
+- Processing an idea: Listen, reflect, ask good questions
+- Reviewing work: Give honest, useful feedback
+
+3. BE A FORCE MULTIPLIER
+- Catch my blind spots
+- Remember context from our conversation
+- Offer options rather than single answers
+- Move me toward completion, not perfection
+
+4. STAY USEFUL
+- Match my energy and pace
+- Be brief when I'm moving fast
+- Go deep when I'm exploring
+- Know when to lead and when to follow
+
+Communication Style:
+- Conversational but efficient
+- Smart without showing off
+- Supportive without being soft
+- Honest without being harsh
+
+Begin by saying: "What are we working on?"`
+    }
   ];
 
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const handleCopy = (promptId: string, content: string) => {
-    navigator.clipboard.writeText(content);
-    setCopiedId(promptId);
-    toast({
-      title: "Prompt copied to clipboard ✓",
-      description: "Paste it in your AI conversation to use it.",
-    });
-    setTimeout(() => setCopiedId(null), 1500);
+  const handleCopy = async (content: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      setCopied(id);
+      toast({
+        title: "Copied to clipboard",
+        description: "The prompt has been copied. Paste it into your AI chat.",
+      });
+      setTimeout(() => setCopied(null), 2000);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try selecting and copying the text manually.",
+        variant: "destructive",
+      });
+    }
   };
 
+  // Loading state
+  if (isLoading || promoLoading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A2342] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Auth gate - user not logged in
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-white">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+          <div className="container mx-auto px-6 py-4">
+            <Link 
+              to="/" 
+              className="text-sm font-medium hover:opacity-70 transition-opacity"
+              style={{ color: '#0A2342' }}
+            >
+              ← Back
+            </Link>
+          </div>
+        </nav>
+
+        <div className="pt-32 pb-20 px-6 flex items-center justify-center min-h-screen">
+          <div className="text-center max-w-md mx-auto">
+            <div 
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              <LogIn className="w-8 h-8 text-white" />
+            </div>
+            <h1 
+              className="text-3xl font-bold mb-4"
+              style={{ color: '#0A2342' }}
+            >
+              Sign in to access your AI Upgrade
+            </h1>
+            <p className="text-gray-600 mb-8">
+              Create a free account or log in so we can remember your upgrade.
+            </p>
+            <Button
+              onClick={() => navigate("/auth?redirect=/ai-upgrade/install")}
+              size="lg"
+              className="w-full text-lg py-6 rounded-full text-white"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              Log in / Sign up
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Locked state - no access
+  if (!hasPurchased && !hasPromoAccess) {
+    return (
+      <div className="min-h-screen bg-white">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+          <div className="container mx-auto px-6 py-4">
+            <Link 
+              to="/" 
+              className="text-sm font-medium hover:opacity-70 transition-opacity"
+              style={{ color: '#0A2342' }}
+            >
+              ← Back
+            </Link>
+          </div>
+        </nav>
+
+        <div className="pt-32 pb-20 px-6 flex items-center justify-center min-h-screen">
+          <div className="text-center max-w-md mx-auto">
+            <h1 
+              className="text-3xl font-bold mb-4"
+              style={{ color: '#0A2342' }}
+            >
+              AI Upgrade
+            </h1>
+            <p className="text-gray-600 mb-8">
+              This upgrade unlocks your personalized AI prompt boost.
+            </p>
+            <Button
+              onClick={() => navigate("/ai-upgrade")}
+              size="lg"
+              className="w-full text-lg py-6 rounded-full text-white"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              Get AI Upgrade
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Full access - show prompts
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50">
-        <div className="container mx-auto px-6 py-5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+        <div className="container mx-auto px-6 py-4">
           <Link 
-            to="/ai-upgrade" 
-            className="text-sm font-semibold hover:opacity-70 transition-opacity"
+            to="/" 
+            className="text-sm font-medium hover:opacity-70 transition-opacity"
             style={{ color: '#0A2342' }}
           >
             ← Back
@@ -530,96 +813,142 @@ If the honest answer is no, refine the response or clearly state the limitation 
         </div>
       </nav>
 
-      {/* Main Content */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-5xl">
-          {/* Hero Header */}
-          <div className="text-center mb-16">
-            <h1 
-              className="text-5xl sm:text-6xl font-bold mb-6 tracking-tight"
-              style={{ color: '#0A2342' }}
-            >
-              Install the Upgrade
-            </h1>
-            
-            <p className="text-xl sm:text-2xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              Copy any prompt below and paste it in your AI conversation (ChatGPT, Claude, etc.) to use it.
-            </p>
-          </div>
+      {/* Hero Header */}
+      <section className="pt-32 pb-12 px-6">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h1 
+            className="text-4xl sm:text-5xl font-bold mb-4"
+            style={{ color: '#0A2342' }}
+          >
+            Your AI Upgrade is Active
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Copy any prompt below and paste it into your AI chat to unlock enhanced capabilities.
+          </p>
+        </div>
+      </section>
 
-          {/* Prompt Launcher Section */}
-          <div className="mb-16">
-            {/* Primary Prompt - Highlighted */}
-            <div className="mb-8 relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-3xl blur opacity-30 animate-pulse"></div>
-              <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl border border-amber-500/20">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
-                    ⭐ Primary Upgrade
-                  </span>
-                </div>
-                <button
-                  onClick={() => handleCopy(PROMPTS[0].id, PROMPTS[0].content)}
-                  className="w-full px-8 py-6 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold text-xl transition-all hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] hover:from-amber-400 hover:to-amber-500"
-                >
-                  {copiedId === PROMPTS[0].id ? "✓ Copied!" : PROMPTS[0].label}
-                </button>
-                <p className="text-center text-slate-400 text-sm mt-4 leading-relaxed">
-                  Transform your AI into a coherent holonic meta-intelligence with v4.02
-                </p>
-              </div>
+      {/* Primary Upgrade Prompt */}
+      <section className="pb-12 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div 
+            className="relative p-8 rounded-2xl border-2 shadow-lg"
+            style={{ 
+              borderColor: '#0A2342',
+              background: 'linear-gradient(135deg, rgba(10,35,66,0.03) 0%, rgba(10,35,66,0.08) 100%)'
+            }}
+          >
+            <div className="absolute -top-3 left-6">
+              <span 
+                className="px-3 py-1 text-xs font-semibold rounded-full text-white"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                PRIMARY UPGRADE
+              </span>
             </div>
-
-            {/* Secondary Prompts */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-200/50">
-              <h3 className="text-center text-sm font-semibold uppercase tracking-wider text-slate-500 mb-6">
-                Additional Power-Up Prompts
-              </h3>
-              <div className="space-y-3">
-                {PROMPTS.slice(1).map((prompt) => (
-                  <button
-                    key={prompt.id}
-                    onClick={() => handleCopy(prompt.id, prompt.content)}
-                    className="w-full px-6 py-4 rounded-2xl text-white font-semibold text-lg transition-all hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] border border-slate-700/10"
-                    style={{ 
-                      backgroundColor: '#0A2342',
-                      boxShadow: '0 4px 14px 0 rgba(10, 35, 66, 0.15)'
-                    }}
-                  >
-                    {copiedId === prompt.id ? "✓ Copied!" : prompt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Instructions */}
-          <div className="p-10 bg-white/80 backdrop-blur-sm rounded-3xl border border-slate-200/50 shadow-xl">
             <h2 
-              className="text-3xl font-bold mb-6 text-center"
+              className="text-2xl font-bold mb-2"
               style={{ color: '#0A2342' }}
             >
-              How to Use These Prompts
+              {PROMPTS[0].label}
             </h2>
-            <ol className="space-y-4 max-w-2xl mx-auto">
-              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>1</span>
-                <span className="text-lg text-slate-700 pt-0.5">Click any prompt button above to copy it to your clipboard</span>
-              </li>
-              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>2</span>
-                <span className="text-lg text-slate-700 pt-0.5">Open your AI model (ChatGPT, Claude, etc.)</span>
-              </li>
-              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>3</span>
-                <span className="text-lg text-slate-700 pt-0.5">Paste the prompt in your conversation</span>
-              </li>
-              <li className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: '#0A2342' }}>4</span>
-                <span className="text-lg text-slate-700 pt-0.5">Get upgraded results based on which prompt you chose</span>
-              </li>
-            </ol>
+            <p className="text-gray-600 mb-6">
+              The complete AI operating system upgrade. Copy and paste this into any AI chat to transform its capabilities.
+            </p>
+            <button
+              onClick={() => handleCopy(PROMPTS[0].content, PROMPTS[0].id)}
+              className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:shadow-lg"
+              style={{ backgroundColor: '#0A2342' }}
+            >
+              {copied === PROMPTS[0].id ? "✓ Copied!" : "Copy Primary Upgrade Prompt"}
+            </button>
           </div>
+        </div>
+      </section>
+
+      {/* Secondary Prompts */}
+      <section className="pb-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <h2 
+            className="text-2xl font-bold mb-6"
+            style={{ color: '#0A2342' }}
+          >
+            Additional Specialized Prompts
+          </h2>
+          <div className="grid gap-4">
+            {PROMPTS.slice(1).map((prompt) => (
+              <div 
+                key={prompt.id}
+                className="p-6 rounded-xl border border-gray-200 hover:border-gray-300 transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <h3 
+                    className="text-lg font-semibold"
+                    style={{ color: '#0A2342' }}
+                  >
+                    {prompt.label}
+                  </h3>
+                  <button
+                    onClick={() => handleCopy(prompt.content, prompt.id)}
+                    className="px-4 py-2 text-sm font-medium rounded-lg border transition-all hover:bg-gray-50"
+                    style={{ borderColor: '#0A2342', color: '#0A2342' }}
+                  >
+                    {copied === prompt.id ? "✓ Copied" : "Copy"}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Instructions */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <h2 
+            className="text-2xl font-bold mb-8 text-center"
+            style={{ color: '#0A2342' }}
+          >
+            How to Use
+          </h2>
+          <ol className="space-y-4 text-lg text-gray-700">
+            <li className="flex gap-4">
+              <span 
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                1
+              </span>
+              <span>Click "Copy" on any prompt above</span>
+            </li>
+            <li className="flex gap-4">
+              <span 
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                2
+              </span>
+              <span>Open your AI chat (ChatGPT, Claude, etc.)</span>
+            </li>
+            <li className="flex gap-4">
+              <span 
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                3
+              </span>
+              <span>Paste the prompt and press Enter</span>
+            </li>
+            <li className="flex gap-4">
+              <span 
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                style={{ backgroundColor: '#0A2342' }}
+              >
+                4
+              </span>
+              <span>Experience your upgraded AI</span>
+            </li>
+          </ol>
         </div>
       </section>
     </div>
