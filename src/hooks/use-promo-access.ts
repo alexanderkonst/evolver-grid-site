@@ -40,6 +40,13 @@ export const useAIUpgradeAccess = () => {
     }
 
     try {
+      // Check if user is authenticated - promo code requires auth
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        console.error('User must be logged in to use promo code');
+        return false;
+      }
+
       const { data, error } = await supabase.functions.invoke('validate-promo-code', {
         body: { promoCode: code, profileId }
       });
