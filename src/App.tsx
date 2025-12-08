@@ -13,7 +13,6 @@ import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
 import AIUpgrade from "./pages/AIUpgrade";
-import AIUpgradeInstall from "./pages/AIUpgradeInstall";
 import Destiny from "./pages/Destiny";
 import GeniusOffer from "./pages/GeniusOffer";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
@@ -53,7 +52,6 @@ const App = () => (
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
-            <Route path="/ai-upgrade/install" element={<AIUpgradeInstall />} />
             <Route path="/destiny" element={<Destiny />} />
             <Route path="/genius-offer" element={<GeniusOffer />} />
             <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
