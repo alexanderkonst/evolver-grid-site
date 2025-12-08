@@ -75,7 +75,11 @@ const SkillTrees = () => {
                                         borderColor: isActive ? tree.color : undefined,
                                     }}
                                 >
-                                    <TreeIcon className="w-4 h-4" />
+                                    {tree.iconImage ? (
+                                        <img src={tree.iconImage} alt={tree.name} className="w-6 h-6 rounded-full object-cover" />
+                                    ) : (
+                                        <TreeIcon className="w-4 h-4" />
+                                    )}
                                     <span className="text-sm font-medium hidden sm:inline">{tree.name}</span>
                                 </button>
                             );
