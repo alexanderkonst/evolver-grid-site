@@ -585,7 +585,7 @@ const AIUpgrade = () => {
   const { toast } = useToast();
   
   const { user, hasPurchased, isLoading, recordPurchase } = useAIBoostPurchase();
-  const { hasAccess: hasPromoAccess, isLoading: promoLoading, validateAndGrantAccess } = useAIUpgradeAccess();
+  const { hasAccess: hasPromoAccess, isLoading: promoLoading, validateAndGrantAccess } = useAIUpgradeAccess(user);
   
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
@@ -633,11 +633,11 @@ const AIUpgrade = () => {
 
     setIsValidating(true);
     try {
-      const isValid = await validateAndGrantAccess(promoCode);
-      if (isValid) {
+      const result = await validateAndGrantAccess(promoCode);
+      if (result.success) {
         setShowSuccessModal(true);
       } else {
-        setPromoError("Invalid or expired promo code.");
+        setPromoError(result.error || "Invalid or expired promo code.");
       }
     } finally {
       setIsValidating(false);
