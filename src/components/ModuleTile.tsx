@@ -9,7 +9,7 @@ import BoldText from "./BoldText";
 import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lucide-react";
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
-import cannabisIcon from "@/assets/cannabis-icon.png";
+import mensCircleIcon from "@/assets/mens-circle-icon.png";
 import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import zoneOfGeniusIcon from "@/assets/zone-of-genius-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -42,10 +42,10 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Check if this module should use a custom image
-  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "cannabis-coaching-journeys" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius";
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "mens-circle" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius";
   const customImageSrc = module.slug === "destiny" ? destinyIcon : 
                          module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
-                         module.slug === "cannabis-coaching-journeys" ? cannabisIcon :
+                         module.slug === "mens-circle" ? mensCircleIcon :
                          module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon :
                          module.slug === "zone-of-genius" ? zoneOfGeniusIcon : null;
 
@@ -54,6 +54,7 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
                    module.slug === "zone-of-genius" ? "/zone-of-genius" :
                    module.slug === "genius-offer" ? "/genius-offer" :
                    module.slug === "intelligences" ? "/intelligences" :
+                   module.slug === "mens-circle" ? "/mens-circle" :
                    `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";

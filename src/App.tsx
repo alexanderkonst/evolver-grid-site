@@ -14,6 +14,7 @@ import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
 import AIUpgrade from "./pages/AIUpgrade";
 import Destiny from "./pages/Destiny";
+import MensCircle from "./pages/MensCircle";
 import GeniusOffer from "./pages/GeniusOffer";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminGeniusOffers from "./pages/AdminGeniusOffers";
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
+            <Route path="/mens-circle" element={<MensCircle />} />
             <Route path="/genius-offer" element={<GeniusOffer />} />
             <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
             <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
