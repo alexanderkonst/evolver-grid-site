@@ -104,7 +104,11 @@ const SkillTree = ({ tree, progress = {}, onNodeClick }: SkillTreeProps) => {
                 style={{ backgroundColor: `${tree.color}20`, borderColor: `${tree.color}40` }}
             >
                 <div className="flex items-center gap-2">
-                    <tree.icon className="w-4 h-4" style={{ color: tree.color }} />
+                    {tree.iconImage ? (
+                        <img src={tree.iconImage} alt={tree.name} className="w-6 h-6 rounded-full object-cover" />
+                    ) : (
+                        <tree.icon className="w-4 h-4" style={{ color: tree.color }} />
+                    )}
                     <span className="text-sm font-medium" style={{ color: tree.color }}>
                         {tree.name}
                     </span>

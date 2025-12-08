@@ -1,5 +1,10 @@
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 
+// Custom icons
+import wakingUpIcon from "@/assets/skill-tree-waking-up.png";
+import growingUpIcon from "@/assets/skill-tree-growing-up.png";
+import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.png";
+
 // Types
 export interface SkillNode {
     id: string;
@@ -18,7 +23,8 @@ export interface SkillTree {
     description: string;
     color: string; // primary accent color
     bgGradient: string; // gradient for tree section
-    icon: typeof Sparkles; // lucide icon as placeholder
+    icon: typeof Sparkles; // lucide icon as fallback
+    iconImage?: string; // custom image icon
     nodes: SkillNode[];
 }
 
@@ -32,6 +38,7 @@ export const skillTrees: SkillTree[] = [
         color: "#9b5de5", // violet
         bgGradient: "from-violet-950/50 via-purple-900/30 to-transparent",
         icon: Sparkles,
+        iconImage: wakingUpIcon,
         nodes: [
             {
                 id: "wu-awareness-101",
@@ -106,6 +113,7 @@ export const skillTrees: SkillTree[] = [
         color: "#f5a623", // gold/amber
         bgGradient: "from-amber-950/50 via-orange-900/30 to-transparent",
         icon: Crown,
+        iconImage: growingUpIcon,
         nodes: [
             {
                 id: "gu-self-honesty",
@@ -162,6 +170,7 @@ export const skillTrees: SkillTree[] = [
         color: "#4361ee", // deep indigo
         bgGradient: "from-indigo-950/50 via-blue-900/30 to-transparent",
         icon: Droplet,
+        iconImage: cleaningUpIcon,
         nodes: [
             {
                 id: "cu-feel-feelings",
