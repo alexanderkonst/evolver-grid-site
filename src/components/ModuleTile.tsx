@@ -12,6 +12,7 @@ import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
 import mensCircleIcon from "@/assets/mens-circle-icon.png";
 import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import zoneOfGeniusIcon from "@/assets/zone-of-genius-icon.png";
+import geniusOfferIcon from "@/assets/genius-offer-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
@@ -22,7 +23,7 @@ interface ModuleTileProps {
 const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
   const { ref, isVisible } = useScrollAnimation(0.1);
-  
+
   const statusColor = {
     Live: "bg-green-500/10 text-green-500 border-green-500/20",
     Beta: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
@@ -42,20 +43,21 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Check if this module should use a custom image
-  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "mens-circle" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius";
-  const customImageSrc = module.slug === "destiny" ? destinyIcon : 
-                         module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
-                         module.slug === "mens-circle" ? mensCircleIcon :
-                         module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon :
-                         module.slug === "zone-of-genius" ? zoneOfGeniusIcon : null;
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "mens-circle" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius" || module.slug === "genius-offer";
+  const customImageSrc = module.slug === "destiny" ? destinyIcon :
+    module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
+      module.slug === "mens-circle" ? mensCircleIcon :
+        module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon :
+          module.slug === "zone-of-genius" ? zoneOfGeniusIcon :
+            module.slug === "genius-offer" ? geniusOfferIcon : null;
 
   // Use custom route for special modules, standard route for others
-  const linkPath = module.slug === "destiny" ? "/destiny" : 
-                   module.slug === "zone-of-genius" ? "/zone-of-genius" :
-                   module.slug === "genius-offer" ? "/genius-offer" :
-                   module.slug === "intelligences" ? "/intelligences" :
-                   module.slug === "mens-circle" ? "/mens-circle" :
-                   `/m/${module.slug}`;
+  const linkPath = module.slug === "destiny" ? "/destiny" :
+    module.slug === "zone-of-genius" ? "/zone-of-genius" :
+      module.slug === "genius-offer" ? "/genius-offer" :
+        module.slug === "intelligences" ? "/intelligences" :
+          module.slug === "mens-circle" ? "/mens-circle" :
+            `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
 
@@ -65,76 +67,69 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   };
 
   const cardContent = (
-    <Card className={`group h-full overflow-hidden border-border transition-all duration-500 ease-out ${
-      isComingSoon 
-        ? 'bg-card/50 hover:bg-card/60 cursor-pointer opacity-60' 
-        : isLive
+    <Card className={`group h-full overflow-hidden border-border transition-all duration-500 ease-out ${isComingSoon
+      ? 'bg-card/50 hover:bg-card/60 cursor-pointer opacity-60'
+      : isLive
         ? 'bg-card shadow-md hover:shadow-2xl hover:shadow-accent/20 hover:border-accent hover:-translate-y-2 hover:scale-[1.02] cursor-pointer'
         : 'bg-card shadow-sm hover:shadow-xl hover:shadow-accent/10 hover:border-accent hover:-translate-y-1 cursor-pointer'
-    }`}>
+      }`}>
       {module.thumbnail_image && (
-        <div className={`aspect-video w-full overflow-hidden ${
-          isComingSoon ? 'bg-muted/10' : 'bg-muted'
-        }`}>
+        <div className={`aspect-video w-full overflow-hidden ${isComingSoon ? 'bg-muted/10' : 'bg-muted'
+          }`}>
           <img
             src={module.thumbnail_image}
             alt={module.title}
-            className={`w-full h-full object-cover transition-all duration-700 ease-out ${
-              isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-110 group-hover:brightness-110'
-            }`}
+            className={`w-full h-full object-cover transition-all duration-700 ease-out ${isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-110 group-hover:brightness-110'
+              }`}
           />
         </div>
       )}
       <div className="p-6 space-y-3">
         <div className="flex flex-col items-center text-center space-y-3">
           {useCustomImage && customImageSrc ? (
-            <img 
-              src={customImageSrc} 
-              alt={module.title} 
-              className={`h-12 w-12 object-contain ${
-                isComingSoon ? 'opacity-40 grayscale' : ''
-              }`} 
+            <img
+              src={customImageSrc}
+              alt={module.title}
+              className={`h-12 w-12 object-contain ${isComingSoon ? 'opacity-40 grayscale' : ''
+                }`}
             />
           ) : (
-            <IconComponent className={`h-12 w-12 ${
-              isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
-            }`} />
+            <IconComponent className={`h-12 w-12 ${isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
+              }`} />
           )}
-          <h3 className={`text-xl font-serif font-semibold transition-all duration-300 ${
-            isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent group-hover:scale-105'
-          }`}>
+          <h3 className={`text-xl font-serif font-semibold transition-all duration-300 ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent group-hover:scale-105'
+            }`}>
             <BoldText>{module.title}</BoldText>
           </h3>
         </div>
-        
-        <p className={`text-sm line-clamp-2 leading-relaxed ${
-          isComingSoon ? 'text-muted-foreground/60' : 'text-muted-foreground'
-        }`}>
+
+        <p className={`text-sm line-clamp-2 leading-relaxed ${isComingSoon ? 'text-muted-foreground/60' : 'text-muted-foreground'
+          }`}>
           {module.tagline}
         </p>
-        
+
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge 
-              variant="outline" 
+            <Badge
+              variant="outline"
               className={`${statusColor[module.status]}`}
             >
               {module.status}
             </Badge>
-            
+
             {module.price && (
               <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
                 {module.price}
               </Badge>
             )}
-            
+
             {module.version && (
               <Badge variant="outline" className="bg-muted/50 text-muted-foreground border-border">
                 {module.version}
               </Badge>
             )}
           </div>
-          
+
           {isComingSoon && (
             <Button
               variant="default"
@@ -154,11 +149,10 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
     <>
       <div
         ref={ref}
-        className={`transition-all duration-700 ${
-          isVisible
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-8'
-        }`}
+        className={`transition-all duration-700 ${isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+          }`}
         style={{
           transitionDelay: `${index * 100}ms`,
         }}

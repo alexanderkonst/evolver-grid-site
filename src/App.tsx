@@ -21,6 +21,7 @@ import AdminGeniusOffers from "./pages/AdminGeniusOffers";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
+import Profile from "./pages/Profile";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
             <Route path="/mens-circle" element={<MensCircle />} />

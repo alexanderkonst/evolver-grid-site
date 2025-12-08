@@ -1,16 +1,29 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, ChevronDown, User, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 import headerImage from "@/assets/header-image.png";
+
+interface UserProfile {
+  first_name: string | null;
+  last_name: string | null;
+}
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [user, setUser] = useState<any>(null);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,19 +39,51 @@ const Navigation = () => {
     // Get initial user
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
+      if (user) {
+        fetchUserProfile(user.id);
+      }
     });
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        fetchUserProfile(session.user.id);
+      } else {
+        setUserProfile(null);
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
+  const fetchUserProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from('game_profiles')
+      .select('first_name, last_name')
+      .eq('user_id', userId)
+      .maybeSingle();
+
+    if (data) {
+      setUserProfile(data);
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    setUserProfile(null);
     navigate("/");
+  };
+
+  // Get display name: first name, or email prefix, or "Account"
+  const getDisplayName = () => {
+    if (userProfile?.first_name) {
+      return userProfile.first_name;
+    }
+    if (user?.email) {
+      return user.email.split('@')[0];
+    }
+    return "Account";
   };
 
   const navLinks = [
@@ -55,8 +100,8 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           {/* Left: Logo + Navigation */}
           <div className="flex items-center gap-8">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="flex items-center transition-all duration-300 logo-glow hover:logo-glow-hover"
             >
               <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
@@ -111,19 +156,38 @@ const Navigation = () => {
             {/* Auth Status - Desktop */}
             <div className="hidden md:flex items-center">
               {user ? (
-                <div className="flex items-center gap-3 pl-4 border-l border-border">
-                  <span className="text-xs text-muted-foreground">
-                    {user.email}
-                  </span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleLogout}
-                    className="h-8 text-xs"
-                  >
-                    <LogOut className="h-3 w-3 mr-1" />
-                    Log out
-                  </Button>
+                <div className="flex items-center pl-4 border-l border-border">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 text-xs flex items-center gap-1"
+                      >
+                        {getDisplayName()}
+                        <ChevronDown className="h-3 w-3" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem asChild>
+                        <Link to="/profile" className="flex items-center cursor-pointer">
+                          <User className="h-4 w-4 mr-2" />
+                          Profile
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to="/game" className="flex items-center cursor-pointer">
+                          <Gamepad2 className="h-4 w-4 mr-2" />
+                          Game of You Character
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Log out
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               ) : (
                 <div className="flex items-center gap-2 pl-4 border-l border-border">
@@ -199,12 +263,29 @@ const Navigation = () => {
                 </NavLink>
               )
             ))}
-            
+
             {/* Mobile Auth Status */}
             <div className="pt-3 border-t border-border mt-3">
               {user ? (
                 <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground">Logged in as: {user.email}</p>
+                  <p className="text-sm font-medium text-foreground">{getDisplayName()}</p>
+                  <p className="text-xs text-muted-foreground">{user.email}</p>
+                  <Link
+                    to="/profile"
+                    className="flex items-center py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    Profile
+                  </Link>
+                  <Link
+                    to="/game"
+                    className="flex items-center py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Gamepad2 className="h-4 w-4 mr-2" />
+                    Game of You Character
+                  </Link>
                   <Button
                     variant="ghost"
                     size="sm"

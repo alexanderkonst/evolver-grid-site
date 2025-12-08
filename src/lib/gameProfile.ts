@@ -36,7 +36,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     // User is authenticated - find or create profile linked to user_id
     const { data: existingProfile, error: fetchError } = await supabase
       .from('game_profiles')
-      .select('id')
+      .select('id, first_name, last_name')
       .eq('user_id', user.id)
       .maybeSingle();
 
@@ -45,8 +45,22 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       throw fetchError;
     }
 
+    // Get name from user metadata (set during signup)
+    const metaFirstName = user.user_metadata?.first_name || null;
+    const metaLastName = user.user_metadata?.last_name || null;
+
     if (existingProfile) {
       // Found existing profile for this user
+      // Sync names from metadata if profile doesn't have them yet
+      if ((!existingProfile.first_name || !existingProfile.last_name) && (metaFirstName || metaLastName)) {
+        await supabase
+          .from('game_profiles')
+          .update({
+            first_name: existingProfile.first_name || metaFirstName,
+            last_name: existingProfile.last_name || metaLastName,
+          })
+          .eq('id', existingProfile.id);
+      }
       return existingProfile.id;
     }
 
@@ -61,10 +75,14 @@ export async function getOrCreateGameProfileId(): Promise<string> {
         .maybeSingle();
 
       if (anonymousProfile && !anonymousProfile.user_id) {
-        // This is an unclaimed anonymous profile - attach it to the user
+        // This is an unclaimed anonymous profile - attach it to the user with names
         const { error: updateError } = await supabase
           .from('game_profiles')
-          .update({ user_id: user.id })
+          .update({
+            user_id: user.id,
+            first_name: metaFirstName,
+            last_name: metaLastName,
+          })
           .eq('id', anonymousId);
 
         if (!updateError) {
@@ -73,10 +91,14 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       }
     }
 
-    // Create a new profile for this user
+    // Create a new profile for this user (with names from metadata)
     const { data, error } = await supabase
       .from('game_profiles')
-      .insert({ user_id: user.id })
+      .insert({
+        user_id: user.id,
+        first_name: metaFirstName,
+        last_name: metaLastName,
+      })
       .select('id')
       .single();
 

@@ -27,6 +27,8 @@ const INTELLIGENCES: Intelligence[] = [
   { id: "spatial", name: "Spatial / Visual", description: "You think in images, shapes, and visual relationships." },
   { id: "emotional", name: "Emotional", description: "You feel into atmospheres, moods, and emotional states." },
   { id: "practical", name: "Practical / Operational", description: "You naturally organize, execute, and make things work." },
+  { id: "spiritual", name: "Spiritual", description: "You ask deep questions about what matters most and seek ultimate meaning." },
+  { id: "moral", name: "Moral / Ethical", description: "You discern the right thing to do in this moment, in this situation." },
 ];
 
 const MultipleIntelligences = () => {
@@ -34,7 +36,7 @@ const MultipleIntelligences = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  
+
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAssessment, setShowAssessment] = useState(false);
@@ -46,13 +48,13 @@ const MultipleIntelligences = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);
     };
-    
+
     checkAuth();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -97,10 +99,10 @@ const MultipleIntelligences = () => {
     setIsSubmitting(true);
 
     try {
-      const orderedIntelligences = ranking.map((i, idx) => ({ 
-        key: i.id, 
+      const orderedIntelligences = ranking.map((i, idx) => ({
+        key: i.id,
         name: i.name,
-        rank: idx + 1 
+        rank: idx + 1
       }));
 
       // Save to legacy table
@@ -162,10 +164,10 @@ const MultipleIntelligences = () => {
                 ))}
               </ol>
             </div>
-            
+
             {returnTo === "genius-offer" ? (
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => navigate("/genius-offer-intake?from=mi")}
                 className="w-full"
               >
@@ -242,11 +244,10 @@ const MultipleIntelligences = () => {
                   onDragStart={() => handleDragStart(index)}
                   onDragOver={(e) => handleDragOver(e, index)}
                   onDragEnd={handleDragEnd}
-                  className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${
-                    draggedIndex === index
+                  className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${draggedIndex === index
                       ? "border-accent bg-accent/10 scale-[1.02]"
                       : "border-border bg-card/60 hover:border-accent/50"
-                  }`}
+                    }`}
                 >
                   <GripVertical className="h-5 w-5 text-muted-foreground cursor-grab flex-shrink-0" />
                   <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-xs font-semibold flex-shrink-0">
