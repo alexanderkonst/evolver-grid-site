@@ -59,7 +59,7 @@ const MensCircle = () => {
   // Password Gate Screen
   if (!isAuthenticated) {
     return (
-      <div 
+      <div
         className="min-h-screen flex flex-col items-center justify-center px-6 relative"
         style={{ backgroundColor: "#041a2f" }}
       >
@@ -72,20 +72,20 @@ const MensCircle = () => {
           <span>Назад</span>
         </button>
         <div className="max-w-md w-full text-center space-y-8">
-          <img 
-            src={mensCircleIcon} 
-            alt="Men's Circle" 
+          <img
+            src={mensCircleIcon}
+            alt="Men's Circle"
             className="w-24 h-24 mx-auto mb-6"
           />
-          <p 
+          <p
             className="text-lg font-serif leading-relaxed"
             style={{ color: "#E0E4EA" }}
           >
             <BionicText>
-              Это закрытый модуль. Введите код доступа, чтобы войти в пространство Мужского круга с каннабисом.
+              Вход в этот модуль по приглашению. Введите код доступа, чтобы войти в пространство Мужского круга.
             </BionicText>
           </p>
-          
+
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <Input
               type="password"
@@ -97,12 +97,12 @@ const MensCircle = () => {
             {error && (
               <p className="text-red-400 text-sm">Неверный код доступа</p>
             )}
-            <Button 
+            <Button
               type="submit"
               className="w-full py-6 text-lg font-serif rounded-full"
-              style={{ 
-                backgroundColor: "#E0E4EA", 
-                color: "#041a2f" 
+              style={{
+                backgroundColor: "#E0E4EA",
+                color: "#041a2f"
               }}
             >
               <BionicText>Войти</BionicText>
@@ -115,18 +115,18 @@ const MensCircle = () => {
 
   // Main Landing Page (after password)
   return (
-    <div 
+    <div
       className="min-h-screen font-serif"
       style={{ backgroundColor: "#041a2f", color: "#E0E4EA" }}
     >
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <img 
-            src={mensCircleIcon} 
-            alt="Men's Circle" 
+          <img
+            src={mensCircleIcon}
+            alt="Men's Circle"
             className="w-20 h-20 mx-auto mb-4"
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
@@ -137,12 +137,12 @@ const MensCircle = () => {
               Создаём один из самых душевных, качественных, трансформирующих и глобально ориентированных русскоязычных мужских кругов на планете с каннабисом как растением силы.
             </BionicText>
           </h2>
-          <Button 
+          <Button
             onClick={scrollToPayment}
             className="px-8 py-6 text-lg font-serif rounded-full mt-8"
-            style={{ 
-              backgroundColor: "#E0E4EA", 
-              color: "#041a2f" 
+            style={{
+              backgroundColor: "#E0E4EA",
+              color: "#041a2f"
             }}
           >
             <BionicText>Записаться на первый круг</BionicText>
@@ -170,7 +170,7 @@ const MensCircle = () => {
           <h3 className="text-2xl md:text-3xl text-center mb-8">
             <BionicText>КАК УСТРОЕН КРУГ</BionicText>
           </h3>
-          
+
           <div className="space-y-4 text-lg leading-relaxed opacity-90">
             <p><BionicText>Дата первого круга: 4 января</BionicText></p>
             <p><BionicText>Длительность: 2 часа</BionicText></p>
@@ -192,7 +192,7 @@ const MensCircle = () => {
           <h3 className="text-2xl md:text-3xl text-center mb-8">
             <BionicText>ВКЛАД ЗА УЧАСТИЕ</BionicText>
           </h3>
-          
+
           <p className="text-lg leading-relaxed opacity-90 text-center">
             <BionicText>
               За участие в круге я прошу ежемесячный вклад — это поддерживает мою работу по созданию, удержанию и организации поля, а также даёт возможность делать стипендии для других.
@@ -229,7 +229,7 @@ const MensCircle = () => {
           <h3 className="text-2xl md:text-3xl text-center mb-8">
             <BionicText>FAQ</BionicText>
           </h3>
-          
+
           <div className="space-y-8">
             <div className="space-y-4">
               <h4 className="text-xl font-semibold">
@@ -263,7 +263,7 @@ const MensCircle = () => {
           <h3 className="text-2xl md:text-3xl mb-8">
             <BionicText>КАК ПРИСОЕДИНИТЬСЯ</BionicText>
           </h3>
-          
+
           <ol className="space-y-4 text-lg leading-relaxed opacity-90 text-left max-w-xl mx-auto list-decimal list-inside">
             <li><BionicText>Выберите свой уровень ежемесячного вклада.</BionicText></li>
             <li><BionicText>Оплатите через Stripe по ссылке на этой странице.</BionicText></li>
@@ -271,11 +271,11 @@ const MensCircle = () => {
           </ol>
 
           <div className="pt-8">
-            <Button 
+            <Button
               className="px-8 py-6 text-lg font-serif rounded-full"
-              style={{ 
-                backgroundColor: "#E0E4EA", 
-                color: "#041a2f" 
+              style={{
+                backgroundColor: "#E0E4EA",
+                color: "#041a2f"
               }}
               onClick={() => {
                 // TODO: Add Stripe payment link
