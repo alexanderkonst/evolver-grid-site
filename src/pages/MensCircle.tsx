@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import mensCircleIcon from "@/assets/mens-circle-icon.png";
 
-const PASSWORD = "REPLACE_WITH_PASSWORD";
+const PASSWORD = "растениесилы";
 
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
   const words = children.split(" ");
