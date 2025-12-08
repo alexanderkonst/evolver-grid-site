@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useStripePortal } from "@/hooks/use-stripe-portal";
 
 interface UserProfile {
     id: string;
@@ -36,6 +37,9 @@ const Profile = () => {
     const [editFirstName, setEditFirstName] = useState("");
     const [editLastName, setEditLastName] = useState("");
     const [isSaving, setIsSaving] = useState(false);
+
+    // Stripe portal hook
+    const { openPortal, isLoading: isPortalLoading } = useStripePortal();
 
     useEffect(() => {
         loadUserData();
@@ -119,14 +123,6 @@ const Profile = () => {
         setEditFirstName(profile?.first_name || "");
         setEditLastName(profile?.last_name || "");
         setIsEditing(false);
-    };
-
-    const handleManageSubscription = async () => {
-        toast({
-            title: "Coming Soon",
-            description: "Subscription management will be available soon.",
-        });
-        // TODO: Implement Stripe Customer Portal integration
     };
 
     const formatDate = (dateString: string) => {
@@ -330,8 +326,19 @@ const Profile = () => {
                                         <p className="text-sm text-muted-foreground mb-4">
                                             Manage your active subscriptions, update payment methods, or cancel.
                                         </p>
-                                        <Button variant="outline" onClick={handleManageSubscription}>
-                                            Manage Subscription
+                                        <Button
+                                            variant="outline"
+                                            onClick={openPortal}
+                                            disabled={isPortalLoading}
+                                        >
+                                            {isPortalLoading ? (
+                                                <>
+                                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                    Opening...
+                                                </>
+                                            ) : (
+                                                "Manage Subscription"
+                                            )}
                                         </Button>
                                     </div>
                                 </div>
