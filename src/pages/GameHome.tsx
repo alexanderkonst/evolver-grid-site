@@ -102,12 +102,12 @@ const GameHome = () => {
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [previousQolSnapshot, setPreviousQolSnapshot] = useState<QolSnapshot | null>(null);
   const [user, setUser] = useState<any>(null);
-  
+
   // Path of Genius state
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
   const [entrepreneurialUpgrades, setEntrepreneurialUpgrades] = useState<Upgrade[]>([]);
   const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
-  
+
   // Next Quest state
   const [selectedPath, setSelectedPath] = useState<DevelopmentPath>("body");
   const [selectedIntention, setSelectedIntention] = useState<string | null>(null);
@@ -118,17 +118,17 @@ const GameHome = () => {
   } | null>(null);
   const [questCompleted, setQuestCompleted] = useState(false);
   const [recentQuests, setRecentQuests] = useState<Quest[]>([]);
-  
+
   // Suggested practices state
   const [suggestedPractices, setSuggestedPractices] = useState<LibraryItem[]>([]);
   const [markingPracticeDone, setMarkingPracticeDone] = useState<string | null>(null);
-  
+
   // Genius Offer state
   const [geniusOffer, setGeniusOffer] = useState<GeniusOffer | null>(null);
 
   useEffect(() => {
     loadGameData();
-    
+
     // Check auth status
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
@@ -144,12 +144,12 @@ const GameHome = () => {
   const loadGameData = async () => {
     try {
       setIsLoading(true);
-      
+
       const id = await getOrCreateGameProfileId();
       setProfileId(id);
-      
+
       console.log("Loading game data for profile:", id);
-      
+
       const { data: profileData, error: profileError } = await supabase
         .from('game_profiles')
         .select('*')
@@ -179,7 +179,7 @@ const GameHome = () => {
       // Load ZoG snapshot if it exists
       if (profileData.last_zog_snapshot_id) {
         console.log("Loading ZoG snapshot:", profileData.last_zog_snapshot_id);
-        
+
         const { data: zogData, error: zogError } = await supabase
           .from('zog_snapshots')
           .select('*')
@@ -200,7 +200,7 @@ const GameHome = () => {
             id: zogData.id,
             archetype_title: zogData.archetype_title,
             core_pattern: zogData.core_pattern,
-            top_three_talents: Array.isArray(zogData.top_three_talents) 
+            top_three_talents: Array.isArray(zogData.top_three_talents)
               ? zogData.top_three_talents as string[]
               : [],
           });
@@ -223,7 +223,7 @@ const GameHome = () => {
           console.error("Error fetching current QoL snapshot:", currentQolError);
         } else if (currentQolData) {
           setCurrentQolSnapshot(currentQolData);
-          
+
           // Generate suggested practices
           const suggestions = getSuggestedPractices(LIBRARY_ITEMS, currentQolData);
           setSuggestedPractices(suggestions);
@@ -280,7 +280,7 @@ const GameHome = () => {
           setProfile(updatedProfile);
         }
       }
-      
+
       // Load Genius Offer for logged-in user
       const { data: { user: currentUser } } = await supabase.auth.getUser();
       if (currentUser) {
@@ -291,7 +291,7 @@ const GameHome = () => {
           .order('created_at', { ascending: false })
           .limit(1)
           .maybeSingle();
-        
+
         if (geniusOfferData) {
           setGeniusOffer(geniusOfferData);
         }
@@ -313,7 +313,7 @@ const GameHome = () => {
   const getDomainStageInfo = (domainId: string, stageValue: number) => {
     const domain = DOMAINS.find(d => d.id === domainId);
     if (!domain) return { name: domainId, title: `Stage ${stageValue}`, description: "" };
-    
+
     const stage = domain.stages.find(s => s.id === stageValue);
     return {
       name: domain.name,
@@ -362,7 +362,7 @@ const GameHome = () => {
     const lowestDomains = domainStages.filter(d => d.value === minValue).slice(0, 2);
 
     const allEqual = domainStages.every(d => d.value === minValue);
-    
+
     if (allEqual) {
       return "Your world is fairly even right now. You can choose any area that feels most alive for you.";
     }
@@ -380,7 +380,7 @@ const GameHome = () => {
   };
 
   const findPracticeByTitle = (title: string): LibraryItem | undefined => {
-    return LIBRARY_ITEMS.find(item => 
+    return LIBRARY_ITEMS.find(item =>
       item.title.toLowerCase() === title.toLowerCase()
     );
   };
@@ -395,7 +395,7 @@ const GameHome = () => {
       // Filter practices by selected path
       let filteredPractices = LIBRARY_ITEMS;
       if (selectedPath) {
-        filteredPractices = LIBRARY_ITEMS.filter(item => 
+        filteredPractices = LIBRARY_ITEMS.filter(item =>
           item.primaryPath === selectedPath || item.secondaryPath === selectedPath
         );
         // If no practices match, fall back to all practices
@@ -425,7 +425,7 @@ const GameHome = () => {
       });
 
       if (error) throw error;
-      
+
       setQuestSuggestion(data);
     } catch (error) {
       console.error('Error fetching quest suggestion:', error);
@@ -445,7 +445,7 @@ const GameHome = () => {
     try {
       const durationMinutes = questSuggestion.main.approx_duration_minutes || 10;
       const xpAwarded = calculateQuestXp(durationMinutes);
-      const intention = selectedIntention 
+      const intention = selectedIntention
         ? INTENTIONS.find(i => i.id === selectedIntention)?.label || null
         : null;
 
@@ -475,7 +475,7 @@ const GameHome = () => {
 
       const newXpTotal = currentProfile.xp_total + xpAwarded;
       const newLevel = Math.floor(newXpTotal / 100) + 1;
-      
+
       const streakCalc = calculateStreak(
         currentProfile.last_quest_completed_at,
         currentProfile.current_streak_days
@@ -513,7 +513,7 @@ const GameHome = () => {
       if (updateError) throw updateError;
 
       setQuestCompleted(true);
-      
+
       // Reload all data
       await loadGameData();
     } catch (error) {
@@ -528,16 +528,16 @@ const GameHome = () => {
 
   const handleUpgradeComplete = async (upgradeCode: string) => {
     if (!profileId) return;
-    
+
     try {
       const result = await completeUpgrade(profileId, upgradeCode);
-      
+
       if (result.success) {
         toast({
           title: "Upgrade completed!",
           description: "Your XP and level have been updated.",
         });
-        
+
         // Reload data to reflect new XP/level
         await loadGameData();
       } else {
@@ -563,7 +563,7 @@ const GameHome = () => {
         title: result.message || "Practice logged!",
         description: "Your XP has been updated.",
       });
-      
+
       // Reload game data to reflect new XP/level
       await loadGameData();
     } else {
@@ -591,7 +591,7 @@ const GameHome = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       {/* Guest Banner */}
       {!user && (
         <div className="bg-amber-50 border-b border-amber-200">
@@ -620,7 +620,7 @@ const GameHome = () => {
           </div>
         </div>
       )}
-      
+
       <div className="pt-24 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
           <Link to="/" className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6">
@@ -630,9 +630,9 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-12">
-            <img 
-              src={gameOfYouLogo} 
-              alt="Game of You" 
+            <img
+              src={gameOfYouLogo}
+              alt="Game of You"
               className="w-32 sm:w-40 mx-auto mb-6"
             />
             <p className="text-xs uppercase tracking-widest text-slate-500 mb-3">
@@ -642,7 +642,7 @@ const GameHome = () => {
               {hasAnyData ? "Welcome back" : "Welcome, Player One"}
             </h1>
             <p className="text-base text-slate-600 max-w-2xl mx-auto">
-              {hasAnyData 
+              {hasAnyData
                 ? "You're already playing. Let's see who you are and where you are now."
                 : "This game turns your life into a character, a world, and one next move."}
             </p>
@@ -661,7 +661,7 @@ const GameHome = () => {
                     <div className="flex items-center gap-2">
                       <Flame className="w-4 h-4 text-orange-500" />
                       <span>
-                        Streak: {profile.current_streak_days} day{profile.current_streak_days !== 1 ? 's' : ''} · 
+                        Streak: {profile.current_streak_days} day{profile.current_streak_days !== 1 ? 's' : ''} ·
                         Longest: {profile.longest_streak_days}
                       </span>
                     </div>
@@ -716,7 +716,7 @@ const GameHome = () => {
                   <h2 className="text-xl font-bold text-slate-900 mb-6">
                     Your Character
                   </h2>
-                  
+
                   <div className="mb-4">
                     <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Archetype</p>
                     <p className="text-2xl font-bold text-slate-900">
@@ -773,7 +773,7 @@ const GameHome = () => {
                       Your Genius Offer
                     </h2>
                   </div>
-                  
+
                   {geniusOffer && geniusOffer.status === 'completed' && geniusOffer.pdf_url ? (
                     <div className="space-y-4">
                       {geniusOffer.summary_title && (
@@ -916,7 +916,7 @@ const GameHome = () => {
                   Path of Genius (Showing Up)
                 </h2>
                 <p className="text-sm text-slate-600 mb-6">
-                  Track concrete upgrades in how you understand, express, and offer your Genius to the world. 
+                  Track concrete upgrades in how you understand, express, and offer your Genius to the world.
                   First you deepen Mastery of Genius, then you branch into the Entrepreneurial Path.
                 </p>
 
@@ -929,7 +929,7 @@ const GameHome = () => {
                   <div className="space-y-4">
                     {masteryUpgrades.map(upgrade => {
                       const isCompleted = completedUpgradeCodes.has(upgrade.code);
-                      
+
                       return (
                         <div key={upgrade.code} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
                           <div className="flex items-start justify-between gap-3 mb-2">
@@ -1063,27 +1063,24 @@ const GameHome = () => {
                       const isCompleted = completedUpgradeCodes.has(upgrade.code);
                       const excaliburCompleted = completedUpgradeCodes.has('excalibur_received');
                       const isLocked = !excaliburCompleted;
-                      
+
                       return (
-                        <div 
-                          key={upgrade.code} 
-                          className={`rounded-xl border p-4 ${
-                            isLocked 
-                              ? 'border-slate-300 bg-slate-100' 
+                        <div
+                          key={upgrade.code}
+                          className={`rounded-xl border p-4 ${isLocked
+                              ? 'border-slate-300 bg-slate-100'
                               : 'border-slate-200 bg-slate-50'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-start justify-between gap-3 mb-2">
                             <div className="flex-1">
-                              <h4 className={`text-base font-semibold mb-1 flex items-center gap-2 ${
-                                isLocked ? 'text-slate-500' : 'text-slate-900'
-                              }`}>
+                              <h4 className={`text-base font-semibold mb-1 flex items-center gap-2 ${isLocked ? 'text-slate-500' : 'text-slate-900'
+                                }`}>
                                 {isLocked && <Lock className="w-4 h-4" />}
                                 {upgrade.title}
                               </h4>
-                              <p className={`text-sm leading-relaxed ${
-                                isLocked ? 'text-slate-500' : 'text-slate-600'
-                              }`}>
+                              <p className={`text-sm leading-relaxed ${isLocked ? 'text-slate-500' : 'text-slate-600'
+                                }`}>
                                 {upgrade.description}
                               </p>
                             </div>
@@ -1209,11 +1206,10 @@ const GameHome = () => {
                           <button
                             key={pathSlug}
                             onClick={() => setSelectedPath(pathSlug)}
-                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                              selectedPath === pathSlug
+                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedPath === pathSlug
                                 ? 'bg-slate-900 text-white'
                                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                            }`}
+                              }`}
                           >
                             {pathName}
                           </button>
@@ -1233,11 +1229,10 @@ const GameHome = () => {
                       <button
                         key={intent.id}
                         onClick={() => handleIntentionSelect(intent.label)}
-                        className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                          selectedIntention === intent.label
+                        className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedIntention === intent.label
                             ? 'bg-slate-900 text-white'
                             : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                        }`}
+                          }`}
                       >
                         {intent.label}
                       </button>
@@ -1287,7 +1282,7 @@ const GameHome = () => {
                               </div>
                             </div>
                           )}
-                          
+
                           <div className="flex flex-col sm:flex-row gap-3">
                             {!questCompleted ? (
                               <Button
@@ -1305,7 +1300,7 @@ const GameHome = () => {
                                 </p>
                               </div>
                             )}
-                            
+
                             {practice && !questCompleted && (
                               <Button
                                 variant="outline"
@@ -1342,7 +1337,7 @@ const GameHome = () => {
                                 <p className="text-sm text-slate-700 mb-3">
                                   {alt.why_it_is_a_good_next_move}
                                 </p>
-                                
+
                                 {altPractice && (
                                   <Button
                                     variant="outline"
@@ -1389,10 +1384,10 @@ const GameHome = () => {
 
                   <div className="grid grid-cols-1 gap-4">
                     {suggestedPractices.map(practice => {
-                      const durationText = practice.durationLabel ?? 
+                      const durationText = practice.durationLabel ??
                         (practice.durationMinutes ? `${practice.durationMinutes} min` : undefined);
                       const categoryName = LIBRARY_CATEGORIES.find(c => c.id === practice.categoryId)?.name;
-                      
+
                       return (
                         <div
                           key={practice.id}
@@ -1515,6 +1510,12 @@ const GameHome = () => {
                 Other moves
               </h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="outline"
+                  onClick={() => navigate("/skills")}
+                >
+                  View Skill Trees
+                </Button>
                 <Button
                   variant="outline"
                   onClick={() => navigate("/quality-of-life-map/assessment?fromGame=1")}

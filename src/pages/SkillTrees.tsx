@@ -1,0 +1,155 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import SkillTree from "@/components/SkillTree";
+import BoldText from "@/components/BoldText";
+import { skillTrees } from "@/data/skillTrees";
+import { cn } from "@/lib/utils";
+
+const SkillTrees = () => {
+    const navigate = useNavigate();
+    const [activeTreeId, setActiveTreeId] = useState(skillTrees[0].id);
+
+    const activeTree = skillTrees.find((t) => t.id === activeTreeId) || skillTrees[0];
+
+    // Mock progress data (in future, fetch from database)
+    const mockProgress: Record<string, "locked" | "available" | "in_progress" | "completed"> = {
+        "wu-awareness-101": "completed",
+        "wu-breath-anchor": "completed",
+        "wu-body-scan": "in_progress",
+        "gu-self-honesty": "completed",
+        "cu-feel-feelings": "available",
+        "su-zone-of-genius": "completed",
+        "su-values-clarity": "available",
+        "rd-sleep-hygiene": "completed",
+        "rd-breath-basics": "available",
+        "rd-daily-movement": "in_progress",
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col bg-background">
+            <Navigation />
+
+            <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+                <div className="container mx-auto max-w-6xl">
+                    {/* Back link */}
+                    <button
+                        onClick={() => navigate("/game")}
+                        className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6"
+                    >
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        <BoldText>BACK TO CHARACTER</BoldText>
+                    </button>
+
+                    {/* Page Header */}
+                    <div className="text-center mb-8">
+                        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+                            <BoldText>SKILL TREES</BoldText>
+                        </h1>
+                        <p className="text-muted-foreground max-w-2xl mx-auto">
+                            Five paths of development. Each skill unlocks as you complete practices and quests.
+                        </p>
+                    </div>
+
+                    {/* Tree Selector Tabs */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-8">
+                        {skillTrees.map((tree) => {
+                            const isActive = tree.id === activeTreeId;
+                            const TreeIcon = tree.icon;
+
+                            return (
+                                <button
+                                    key={tree.id}
+                                    onClick={() => setActiveTreeId(tree.id)}
+                                    className={cn(
+                                        "flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all duration-200",
+                                        isActive
+                                            ? "border-current shadow-lg"
+                                            : "border-border bg-muted/30 hover:bg-muted/50"
+                                    )}
+                                    style={{
+                                        color: isActive ? tree.color : undefined,
+                                        backgroundColor: isActive ? `${tree.color}15` : undefined,
+                                        borderColor: isActive ? tree.color : undefined,
+                                    }}
+                                >
+                                    <TreeIcon className="w-4 h-4" />
+                                    <span className="text-sm font-medium hidden sm:inline">{tree.name}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Active Tree Info */}
+                    <div className="text-center mb-6">
+                        <h2
+                            className="text-xl font-semibold mb-1"
+                            style={{ color: activeTree.color }}
+                        >
+                            {activeTree.name}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">{activeTree.tagline}</p>
+                    </div>
+
+                    {/* Skill Tree Visualization */}
+                    <div
+                        className="relative w-full aspect-square max-w-2xl mx-auto rounded-xl border border-border overflow-hidden"
+                        style={{ backgroundColor: "#0a0a0a" }}
+                    >
+                        <SkillTree
+                            tree={activeTree}
+                            progress={mockProgress}
+                            onNodeClick={(node) => {
+                                console.log("Node clicked:", node);
+                                // TODO: Open practice modal or navigate to quest
+                            }}
+                        />
+                    </div>
+
+                    {/* Tree Description */}
+                    <div className="text-center mt-8 max-w-xl mx-auto">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                            {activeTree.description}
+                        </p>
+                    </div>
+
+                    {/* Legend */}
+                    <div className="flex flex-wrap justify-center gap-6 mt-10 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full bg-muted/30 border border-muted/50" />
+                            <span>Locked</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 rounded-full border-2" style={{ borderColor: activeTree.color }} />
+                            <span>Available</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div
+                                className="w-4 h-4 rounded-full animate-pulse"
+                                style={{ backgroundColor: `${activeTree.color}40`, borderColor: activeTree.color }}
+                            />
+                            <span>In Progress</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div
+                                className="w-4 h-4 rounded-full flex items-center justify-center"
+                                style={{ backgroundColor: `${activeTree.color}30` }}
+                            >
+                                <svg className="w-2.5 h-2.5" fill={activeTree.color} viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                </svg>
+                            </div>
+                            <span>Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+};
+
+export default SkillTrees;

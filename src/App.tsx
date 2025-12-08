@@ -22,6 +22,7 @@ import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import SkillTrees from "./pages/SkillTrees";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/game" element={<GameHome />} />
+            <Route path="/skills" element={<SkillTrees />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
             <Route path="/quality-of-life-map" element={<QolLayout />}>
