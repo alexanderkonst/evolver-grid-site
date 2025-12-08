@@ -22,8 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const ADMIN_EMAIL = "alexanderkonst@gmail.com";
-
 interface GeniusOfferRequest {
   id: string;
   created_at: string;
@@ -68,29 +66,60 @@ const AdminGeniusOffers = () => {
   const { toast } = useToast();
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [requests, setRequests] = useState<GeniusOfferRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState<GeniusOfferRequest | null>(null);
+
+  const checkAdminRole = async (userId: string) => {
+    const { data, error } = await supabase.rpc('has_role', {
+      _user_id: userId,
+      _role: 'admin'
+    });
+    
+    if (error) {
+      console.error("Error checking admin role:", error);
+      return false;
+    }
+    
+    return data === true;
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
-      setAuthLoading(false);
       
-      if (session?.user?.email === ADMIN_EMAIL) {
-        fetchRequests();
+      if (session?.user) {
+        const hasAdminRole = await checkAdminRole(session.user.id);
+        setIsAdmin(hasAdminRole);
+        
+        if (hasAdminRole) {
+          fetchRequests();
+        } else {
+          setLoading(false);
+        }
       } else {
         setLoading(false);
       }
+      
+      setAuthLoading(false);
     };
 
     checkAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user ?? null);
-      if (session?.user?.email === ADMIN_EMAIL) {
-        fetchRequests();
+      
+      if (session?.user) {
+        const hasAdminRole = await checkAdminRole(session.user.id);
+        setIsAdmin(hasAdminRole);
+        
+        if (hasAdminRole) {
+          fetchRequests();
+        }
+      } else {
+        setIsAdmin(false);
       }
     });
 
@@ -175,7 +204,7 @@ const AdminGeniusOffers = () => {
   }
 
   // Not admin
-  if (user.email !== ADMIN_EMAIL) {
+  if (!isAdmin) {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <Navigation />
