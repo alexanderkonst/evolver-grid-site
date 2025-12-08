@@ -797,9 +797,28 @@ Begin by saying: "What are we working on?"`
     );
   }
 
+  // Prompt Launcher button data - mapped to the specific prompts
+  const LAUNCHER_BUTTONS = [
+    { id: "boost-intel", label: "Boost Intelligence of Your AI Model", promptIndex: 0 },
+    { id: "roast", label: "Roast the Result", promptIndex: 1 },
+    { id: "roast-again", label: "Another Round of Roasting", promptIndex: 2 },
+    { id: "10x", label: "10x Your Result", promptIndex: 3 },
+    { id: "iteration", label: "Full Iteration Cycle", promptIndex: 4 },
+  ];
+
+  const handleTelegramContact = () => {
+    window.open("https://t.me/konstantinov", "_blank");
+  };
+
   // Full access - show prompts
   return (
-    <div className="min-h-screen bg-white">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{ 
+        backgroundImage: 'url(/images/paper-texture.png)',
+        backgroundColor: '#0A2342'
+      }}
+    >
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
         <div className="container mx-auto px-6 py-4">
@@ -813,144 +832,48 @@ Begin by saying: "What are we working on?"`
         </div>
       </nav>
 
-      {/* Hero Header */}
-      <section className="pt-32 pb-12 px-6">
-        <div className="container mx-auto max-w-4xl text-center">
+      {/* Main Content - Centered Card */}
+      <div className="min-h-screen flex items-center justify-center px-4 py-24">
+        <div 
+          className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 sm:p-10"
+        >
+          {/* Title */}
           <h1 
-            className="text-4xl sm:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl font-bold text-center mb-3"
             style={{ color: '#0A2342' }}
           >
-            Your AI Upgrade is Active
+            Prompt Launcher
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Copy any prompt below and paste it into your AI chat to unlock enhanced capabilities.
+          
+          {/* Subtitle */}
+          <p className="text-center text-gray-500 mb-8 text-sm sm:text-base">
+            Tap to copy a prompt to your clipboard
           </p>
-        </div>
-      </section>
 
-      {/* Primary Upgrade Prompt */}
-      <section className="pb-12 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div 
-            className="relative p-8 rounded-2xl border-2 shadow-lg"
-            style={{ 
-              borderColor: '#0A2342',
-              background: 'linear-gradient(135deg, rgba(10,35,66,0.03) 0%, rgba(10,35,66,0.08) 100%)'
-            }}
-          >
-            <div className="absolute -top-3 left-6">
-              <span 
-                className="px-3 py-1 text-xs font-semibold rounded-full text-white"
+          {/* Prompt Buttons */}
+          <div className="flex flex-col gap-4">
+            {LAUNCHER_BUTTONS.map((button) => (
+              <button
+                key={button.id}
+                onClick={() => handleCopy(PROMPTS[button.promptIndex].content, button.id)}
+                className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                PRIMARY UPGRADE
-              </span>
-            </div>
-            <h2 
-              className="text-2xl font-bold mb-2"
-              style={{ color: '#0A2342' }}
-            >
-              {PROMPTS[0].label}
-            </h2>
-            <p className="text-gray-600 mb-6">
-              The complete AI operating system upgrade. Copy and paste this into any AI chat to transform its capabilities.
-            </p>
+                {copied === button.id ? "✓ Copied!" : button.label}
+              </button>
+            ))}
+            
+            {/* Telegram Contact Button */}
             <button
-              onClick={() => handleCopy(PROMPTS[0].content, PROMPTS[0].id)}
-              className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:shadow-lg"
+              onClick={handleTelegramContact}
+              className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
               style={{ backgroundColor: '#0A2342' }}
             >
-              {copied === PROMPTS[0].id ? "✓ Copied!" : "Copy Primary Upgrade Prompt"}
+              Contact me on Telegram
             </button>
           </div>
         </div>
-      </section>
-
-      {/* Secondary Prompts */}
-      <section className="pb-20 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <h2 
-            className="text-2xl font-bold mb-6"
-            style={{ color: '#0A2342' }}
-          >
-            Additional Specialized Prompts
-          </h2>
-          <div className="grid gap-4">
-            {PROMPTS.slice(1).map((prompt) => (
-              <div 
-                key={prompt.id}
-                className="p-6 rounded-xl border border-gray-200 hover:border-gray-300 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <h3 
-                    className="text-lg font-semibold"
-                    style={{ color: '#0A2342' }}
-                  >
-                    {prompt.label}
-                  </h3>
-                  <button
-                    onClick={() => handleCopy(prompt.content, prompt.id)}
-                    className="px-4 py-2 text-sm font-medium rounded-lg border transition-all hover:bg-gray-50"
-                    style={{ borderColor: '#0A2342', color: '#0A2342' }}
-                  >
-                    {copied === prompt.id ? "✓ Copied" : "Copy"}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Instructions */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto max-w-4xl">
-          <h2 
-            className="text-2xl font-bold mb-8 text-center"
-            style={{ color: '#0A2342' }}
-          >
-            How to Use
-          </h2>
-          <ol className="space-y-4 text-lg text-gray-700">
-            <li className="flex gap-4">
-              <span 
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                style={{ backgroundColor: '#0A2342' }}
-              >
-                1
-              </span>
-              <span>Click "Copy" on any prompt above</span>
-            </li>
-            <li className="flex gap-4">
-              <span 
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                style={{ backgroundColor: '#0A2342' }}
-              >
-                2
-              </span>
-              <span>Open your AI chat (ChatGPT, Claude, etc.)</span>
-            </li>
-            <li className="flex gap-4">
-              <span 
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                style={{ backgroundColor: '#0A2342' }}
-              >
-                3
-              </span>
-              <span>Paste the prompt and press Enter</span>
-            </li>
-            <li className="flex gap-4">
-              <span 
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                style={{ backgroundColor: '#0A2342' }}
-              >
-                4
-              </span>
-              <span>Experience your upgraded AI</span>
-            </li>
-          </ol>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
