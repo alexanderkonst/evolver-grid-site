@@ -109,37 +109,35 @@ export const modules: Module[] = [
   },
   {
     id: "3",
-    title: "CANNABIS TRANSFORMATIONAL JOURNEYS & COACHING",
-    slug: "cannabis-coaching-journeys",
+    title: "ONLINE MEN'S CIRCLE",
+    slug: "mens-circle",
     category: "Ceremonies",
-    tagline: "Monthly sonic-breathwork journey with plant allies",
+    tagline: "Мужской круг с каннабисом как растением силы",
     status: "Live",
-    price: "price varies by format",
-    version: "v2.0",
-    hero_CTA_label: "Join Next Session",
-    hero_CTA_link: "#",
-    description: "<p>Cannabis Coaching Journeys is a monthly ceremonial experience combining conscious cannabis use, breathwork, and carefully curated soundscapes. This practice creates a safe container for deep healing, creativity, and spiritual exploration with plant medicine.</p>",
+    price: "$33–$333/month",
+    version: "v1.0",
+    hero_CTA_label: "Записаться",
+    hero_CTA_link: "/mens-circle",
+    description: "<p>Создаём один из самых душевных, качественных, трансформирующих и глобально ориентированных русскоязычных мужских кругов на планете с каннабисом как растением силы.</p>",
     who_for: [
-      "Experienced cannabis users seeking deeper practice",
-      "Ceremony facilitators exploring new modalities",
-      "Artists and creatives accessing flow states",
-      "Spiritual seekers integrating plant wisdom"
+      "Russian-speaking men seeking authentic connection",
+      "Those who view cannabis as a plant ally",
+      "Men ready for honest conversation and growth"
     ],
     outcomes: [
-      "Profound healing and emotional release",
-      "Enhanced creativity and insight",
-      "Deeper relationship with plant consciousness",
-      "Integration of spiritual experiences"
+      "Deep connection with like-minded men",
+      "Regular sacred space for growth",
+      "Community support and accountability"
     ],
     structure: [
-      "Preparation: Set intentions and create sacred space",
-      "Journey: Guided breathwork and sonic immersion",
-      "Integration: Group sharing and meaning-making",
-      "Practice: Tools for continuing the work"
+      "Opening meditation",
+      "Open conversation and sharing",
+      "Closing meditation",
+      "Monthly gatherings"
     ],
-    story: "This ceremony was born from years of personal exploration with plant medicine and sound healing, refined through dozens of group journeys into a powerful transformative experience.",
+    story: "A space for Russian-speaking men who approach cannabis as a plant of power and want to use it not for escape, but for honest conversation, support, and growth.",
     app_links: [
-      { label: "Book Session", url: "#" }
+      { label: "Join Circle", url: "/mens-circle" }
     ]
   },
   {
