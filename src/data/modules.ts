@@ -112,7 +112,7 @@ export const modules: Module[] = [
     title: "ONLINE MEN'S CIRCLE",
     slug: "mens-circle",
     category: "Ceremonies",
-    tagline: "Мужской круг с каннабисом как растением силы",
+    tagline: "Пространство для глубокого разговора и поддержки",
     status: "Live",
     price: "$33–$333/month",
     version: "v1.0",
