@@ -88,7 +88,7 @@ const MensCircle = () => {
 
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <Input
-              type="password"
+              type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Код доступа"
