@@ -29,7 +29,7 @@ const SkillTrees = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'hsl(220, 40%, 8%)' }}>
             <Navigation />
 
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
@@ -37,24 +37,24 @@ const SkillTrees = () => {
                     {/* Back link */}
                     <button
                         onClick={() => navigate("/game")}
-                        className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6"
+                        className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-6"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         <BoldText>BACK TO CHARACTER</BoldText>
                     </button>
 
                     {/* Page Header */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+                    <div className="text-center mb-6 sm:mb-8">
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
                             <BoldText>SKILL TREES</BoldText>
                         </h1>
-                        <p className="text-muted-foreground max-w-2xl mx-auto">
+                        <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base px-2">
                             Five paths of development. Each skill unlocks as you complete practices and quests.
                         </p>
                     </div>
 
                     {/* Tree Selector Tabs */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-8">
+                    <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 px-2">
                         {skillTrees.map((tree) => {
                             const isActive = tree.id === activeTreeId;
                             const TreeIcon = tree.icon;
@@ -87,20 +87,20 @@ const SkillTrees = () => {
                     </div>
 
                     {/* Active Tree Info */}
-                    <div className="text-center mb-6">
+                    <div className="text-center mb-4 sm:mb-6">
                         <h2
-                            className="text-xl font-semibold mb-1"
+                            className="text-lg sm:text-xl font-semibold mb-1"
                             style={{ color: activeTree.color }}
                         >
                             {activeTree.name}
                         </h2>
-                        <p className="text-sm text-muted-foreground">{activeTree.tagline}</p>
+                        <p className="text-xs sm:text-sm text-slate-400">{activeTree.tagline}</p>
                     </div>
 
                     {/* Skill Tree Visualization */}
                     <div
-                        className="relative w-full aspect-square max-w-2xl mx-auto rounded-xl border border-border overflow-hidden"
-                        style={{ backgroundColor: "#0a0a0a" }}
+                        className="relative w-full aspect-square max-w-2xl mx-auto rounded-xl border overflow-hidden"
+                        style={{ backgroundColor: 'hsl(220, 35%, 10%)', borderColor: 'hsl(220, 30%, 20%)' }}
                     >
                         <SkillTree
                             tree={activeTree}
@@ -113,14 +113,14 @@ const SkillTrees = () => {
                     </div>
 
                     {/* Tree Description */}
-                    <div className="text-center mt-8 max-w-xl mx-auto">
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                    <div className="text-center mt-6 sm:mt-8 max-w-xl mx-auto px-2">
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                             {activeTree.description}
                         </p>
                     </div>
 
                     {/* Legend */}
-                    <div className="flex flex-wrap justify-center gap-6 mt-10 text-xs text-muted-foreground">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs text-slate-400">
                         <div className="flex items-center gap-2">
                             <div className="w-4 h-4 rounded-full bg-muted/30 border border-muted/50" />
                             <span>Locked</span>

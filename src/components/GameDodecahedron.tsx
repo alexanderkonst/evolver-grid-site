@@ -154,14 +154,14 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                         {/* Icon container with progress ring */}
                         <div className="relative">
                             {/* Progress ring */}
-                            <svg className="absolute inset-0 w-14 h-14 sm:w-16 sm:h-16 -rotate-90">
+                            <svg className="absolute inset-0 w-18 h-18 sm:w-22 sm:h-22 -rotate-90" style={{ width: '72px', height: '72px' }}>
                                 <circle
                                     cx="50%"
                                     cy="50%"
                                     r="45%"
                                     fill="none"
                                     stroke={path.color}
-                                    strokeWidth="2"
+                                    strokeWidth="3"
                                     strokeOpacity="0.2"
                                 />
                                 <circle
@@ -170,7 +170,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                                     r="45%"
                                     fill="none"
                                     stroke={path.color}
-                                    strokeWidth="2"
+                                    strokeWidth="3"
                                     strokeDasharray={`${currentProgress * 2.83} 283`}
                                     strokeLinecap="round"
                                 />
@@ -178,18 +178,19 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
 
                             {/* Icon */}
                             <div
-                                className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center"
-                                style={{ backgroundColor: `${path.color}20` }}
+                                className="w-18 h-18 sm:w-22 sm:h-22 rounded-full flex items-center justify-center"
+                                style={{ backgroundColor: `${path.color}25`, width: '72px', height: '72px' }}
                             >
                                 {path.icon ? (
                                     <img
                                         src={path.icon}
                                         alt={path.name}
-                                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+                                        className="w-14 h-14 sm:w-18 sm:h-18 rounded-full object-cover"
+                                        style={{ width: '56px', height: '56px' }}
                                     />
                                 ) : (
                                     <FallbackIcon
-                                        className="w-6 h-6 sm:w-8 sm:h-8"
+                                        className="w-8 h-8 sm:w-10 sm:h-10"
                                         style={{ color: path.color }}
                                     />
                                 )}
