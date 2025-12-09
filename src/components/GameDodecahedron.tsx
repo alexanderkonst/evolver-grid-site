@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import gameMapCenter from "@/assets/dodecahedron.jpg";
-import wakingUpIcon from "@/assets/skill-tree-waking-up.jpg";
-import growingUpIcon from "@/assets/skill-tree-growing-up.jpg";
-import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.jpg";
-import showingUpIcon from "@/assets/skill-tree-showing-up.jpg";
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// External icon URLs
+const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
+const growingUpIcon = "https://i.imgur.com/IKYoNej.jpeg";
+const cleaningUpIcon = "https://i.imgur.com/opqt3kV.jpeg";
+const showingUpIcon = "https://i.imgur.com/6ct5Dca.jpeg";
+const groundingIcon = "https://i.imgur.com/JVeQGZx.jpeg"; // Placeholder - user to provide
 
 interface DevelopmentPath {
     id: string;
@@ -63,10 +66,11 @@ const PATHS: DevelopmentPath[] = [
         progress: 20,
     },
     {
-        id: "rooting-down",
-        name: "Rooting Down",
+        id: "grounding",
+        name: "Grounding",
         subtitle: "Life Energy · Body",
         color: "#2d6a4f",
+        icon: groundingIcon,
         fallbackIcon: TreeDeciduous,
         position: { angle: 144, distance: 38 },
         progress: 55,

@@ -278,7 +278,7 @@ const PersonalityTestUploadModal = ({
                     {!results && (
                         <div className="p-3 rounded-lg bg-muted/50 border border-border">
                             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">What to upload</p>
-                            <p className="text-sm text-foreground">
+                            <p className="text-sm text-foreground mb-3">
                                 {testType === 'enneagram' && (
                                     <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
                                 )}
@@ -289,6 +289,18 @@ const PersonalityTestUploadModal = ({
                                     <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from myBodyGraph or Jovian Archive).</>
                                 )}
                             </p>
+                            <div className="rounded-lg overflow-hidden border border-border">
+                                <img 
+                                    src={
+                                        testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
+                                        testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
+                                        'https://i.imgur.com/oHYAq89.jpeg'
+                                    }
+                                    alt={`Example ${testType} result`}
+                                    className="w-full h-auto max-h-32 object-cover object-top"
+                                />
+                                <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
+                            </div>
                         </div>
                     )}
 

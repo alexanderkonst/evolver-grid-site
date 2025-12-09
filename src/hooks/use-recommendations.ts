@@ -31,7 +31,7 @@ const PATH_COLORS: Record<string, string> = {
     "growing-up": "#f5a623",
     "cleaning-up": "#4361ee",
     "showing-up": "#ff6b35",
-    "rooting-down": "#2d6a4f",
+    "grounding": "#2d6a4f",
 };
 
 const PATH_NAMES: Record<string, string> = {
@@ -39,7 +39,7 @@ const PATH_NAMES: Record<string, string> = {
     "growing-up": "Growing Up",
     "cleaning-up": "Cleaning Up",
     "showing-up": "Showing Up",
-    "rooting-down": "Rooting Down",
+    "grounding": "Grounding",
 };
 
 /**
@@ -74,7 +74,7 @@ export function useRecommendations(profileId: string | null): Recommendations {
                     "growing-up": (profile as any)?.xp_mind || 0,
                     "cleaning-up": (profile as any)?.xp_heart || 0,
                     "showing-up": (profile as any)?.xp_uniqueness_work || 0,
-                    "rooting-down": (profile as any)?.xp_body || 0,
+                    "grounding": (profile as any)?.xp_body || 0,
                 };
 
                 // Find the path with lowest XP (needs most attention)

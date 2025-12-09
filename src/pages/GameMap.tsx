@@ -70,7 +70,7 @@ const GameMap = () => {
 
                 if (totalPathXP > 0) {
                     setPathProgress({
-                        "rooting-down": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
+                        "grounding": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
                         "growing-up": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
                         "cleaning-up": Math.min(100, ((profile.xp_heart || 0) / 500) * 100),
                         "waking-up": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
