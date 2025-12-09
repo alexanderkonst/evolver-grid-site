@@ -5,7 +5,7 @@ const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
 const growingUpIcon = "https://i.imgur.com/IKYoNej.jpeg";
 const cleaningUpIcon = "https://i.imgur.com/opqt3kV.jpeg";
 const showingUpIcon = "https://i.imgur.com/6ct5Dca.jpeg";
-const groundingIcon = "https://i.imgur.com/JVeQGZx.jpeg"; // User to provide actual URL
+const groundingIcon = "https://i.imgur.com/NdNMFFa.jpeg";
 
 // Types
 export interface SkillNode {
