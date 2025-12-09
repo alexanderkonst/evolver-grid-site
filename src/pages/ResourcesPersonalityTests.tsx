@@ -16,7 +16,7 @@ const ResourcesPersonalityTests = () => {
     {
       name: "Enneagram",
       description: "Explore your core motivations, fears, and patterns through the nine personality types.",
-      url: "https://www.eclecticenergies.com/enneagram/test",
+      url: "https://www.enneagraminstitute.com/",
     },
     {
       name: "Multiple Intelligences",
@@ -28,7 +28,7 @@ const ResourcesPersonalityTests = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       <main className="flex-1 pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Back Button */}
@@ -43,15 +43,15 @@ const ResourcesPersonalityTests = () => {
             <h1 className="text-3xl font-bold mb-4">
               Explore Your Inner Landscape
             </h1>
-            
+
             <p className="text-lg text-muted-foreground mb-6">
-              Optionally take 2–3 personality and self-knowledge tests to enrich your understanding of how your Genius 
+              Optionally take 2–3 personality and self-knowledge tests to enrich your understanding of how your Genius
               expresses through your patterns, strengths, and preferences.
             </p>
 
             <div className="bg-muted/50 rounded-lg p-4 mb-8">
               <p className="text-sm text-muted-foreground">
-                <strong>Note:</strong> These tests are entirely optional and are meant to complement your Zone of Genius 
+                <strong>Note:</strong> These tests are entirely optional and are meant to complement your Zone of Genius
                 discovery, not replace it. Take what resonates and leave the rest.
               </p>
             </div>
