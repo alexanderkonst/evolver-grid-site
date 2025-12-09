@@ -1,29 +1,55 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Upload, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
+import PersonalityTestUploadModal from "@/components/PersonalityTestUploadModal";
+
+type TestType = "enneagram" | "16personalities" | "human_design";
+
+interface TestConfig {
+  name: string;
+  description: string;
+  url: string;
+  testType: TestType;
+  uploaded?: boolean;
+}
 
 const ResourcesPersonalityTests = () => {
-  const tests = [
+  const [uploadModal, setUploadModal] = useState<{
+    open: boolean;
+    testType: TestType;
+    testName: string;
+  } | null>(null);
+  const [uploadedTests, setUploadedTests] = useState<Set<TestType>>(new Set());
+
+  const tests: TestConfig[] = [
     {
       name: "MBTI (16 Personalities)",
       description: "Discover your personality type based on preferences in how you perceive the world and make decisions.",
       url: "https://www.16personalities.com/",
+      testType: "16personalities",
     },
     {
       name: "Enneagram",
       description: "Explore your core motivations, fears, and patterns through the nine personality types.",
       url: "https://www.enneagraminstitute.com/",
+      testType: "enneagram",
     },
     {
-      name: "Multiple Intelligences",
-      description: "Identify your dominant intelligences across linguistic, logical, spatial, musical, bodily, interpersonal, intrapersonal, and naturalistic dimensions.",
-      url: "https://www.literacynet.org/mi/assessment/findyourstrengths.html",
+      name: "Human Design",
+      description: "Discover your unique energetic blueprint combining astrology, I-Ching, Kabbalah and chakra system.",
+      url: "https://www.mybodygraph.com/",
+      testType: "human_design",
     },
   ];
+
+  const handleUploadSuccess = (testType: TestType) => {
+    setUploadedTests((prev) => new Set([...prev, testType]));
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -45,46 +71,84 @@ const ResourcesPersonalityTests = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground mb-6">
-              Optionally take 2–3 personality and self-knowledge tests to enrich your understanding of how your Genius
-              expresses through your patterns, strengths, and preferences.
+              Take personality tests to enrich your understanding of how your Genius
+              expresses through your patterns, strengths, and preferences. Upload your results to save them to your profile.
             </p>
 
             <div className="bg-muted/50 rounded-lg p-4 mb-8">
               <p className="text-sm text-muted-foreground">
-                <strong>Note:</strong> These tests are entirely optional and are meant to complement your Zone of Genius
-                discovery, not replace it. Take what resonates and leave the rest.
+                <strong>New:</strong> After taking a test, screenshot your results and upload them.
+                AI will analyze and save the data to your profile for personalization.
               </p>
             </div>
 
             <div className="space-y-4">
-              {tests.map((test) => (
-                <Card key={test.name} className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg mb-2">{test.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        {test.description}
-                      </p>
+              {tests.map((test) => {
+                const isUploaded = uploadedTests.has(test.testType);
+
+                return (
+                  <Card key={test.name} className="p-6">
+                    <div className="flex items-start justify-between gap-4 flex-wrap">
+                      <div className="flex-1 min-w-[200px]">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold text-lg">{test.name}</h3>
+                          {isUploaded && (
+                            <span className="flex items-center gap-1 text-xs text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full">
+                              <Check className="w-3 h-3" />
+                              Saved
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {test.description}
+                        </p>
+                      </div>
+                      <div className="flex gap-2 flex-shrink-0">
+                        <a
+                          href={test.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button variant="outline" size="sm">
+                            Take Test
+                            <ExternalLink className="ml-2 h-4 w-4" />
+                          </Button>
+                        </a>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          onClick={() => setUploadModal({
+                            open: true,
+                            testType: test.testType,
+                            testName: test.name,
+                          })}
+                          className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                        >
+                          <Upload className="mr-2 h-4 w-4" />
+                          Upload Results
+                        </Button>
+                      </div>
                     </div>
-                    <a
-                      href={test.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="outline" size="sm">
-                        Take Test
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                );
+              })}
             </div>
           </Card>
         </div>
       </main>
 
       <Footer />
+
+      {/* Upload Modal */}
+      {uploadModal && (
+        <PersonalityTestUploadModal
+          open={uploadModal.open}
+          onClose={() => setUploadModal(null)}
+          testType={uploadModal.testType}
+          testName={uploadModal.testName}
+          onSuccess={() => handleUploadSuccess(uploadModal.testType)}
+        />
+      )}
     </div>
   );
 };
