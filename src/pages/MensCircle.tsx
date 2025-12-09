@@ -234,6 +234,14 @@ const MensCircle = () => {
       {/* Join Section - Contribution with Stripe Buttons */}
       <section id="join-section" className="py-20 px-6">
         <div className="max-w-3xl mx-auto space-y-8">
+          {/* Second Logo */}
+          <div className="text-center mb-8">
+            <img
+              src="https://i.imgur.com/EH24PWf.png"
+              alt="Men's Circle"
+              className="w-56 h-56 mx-auto object-contain"
+            />
+          </div>
           <h3 className="text-2xl md:text-3xl text-center mb-4">
             <BionicText>ЗАПИСАТЬСЯ НА ПЕРВЫЙ КРУГ</BionicText>
           </h3>
@@ -356,15 +364,6 @@ const MensCircle = () => {
             </Button>
           </div>
         </div>
-      </section>
-
-      {/* Second Logo before Footer */}
-      <section className="py-16 px-6 text-center">
-        <img
-          src="https://i.imgur.com/EH24PWf.png"
-          alt="Men's Circle"
-          className="w-56 h-56 mx-auto object-contain"
-        />
       </section>
 
       <div className="bg-white">
