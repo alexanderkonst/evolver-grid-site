@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,100 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 // Logo is loaded from Imgur URL
+
+// CSS for animations (injected as style tag)
+const animationStyles = `
+  @keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.3)); }
+    50% { filter: drop-shadow(0 0 40px rgba(100, 200, 255, 0.6)); }
+  }
+  
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-glow {
+    animation: logoGlow 6s ease-in-out infinite;
+  }
+  
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .btn-premium {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-premium:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(224, 228, 234, 0.4);
+  }
+`;
+
+// Film Grain Overlay Component
+const FilmGrain = () => (
+  <div
+    className="pointer-events-none fixed inset-0 z-50"
+    style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+      opacity: 0.03,
+      animation: 'grain 8s steps(10) infinite',
+    }}
+  />
+);
+
+// Scroll fade-in hook
+const useFadeInOnScroll = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return ref;
+};
 
 const PASSWORD = "растениесилы";
 
@@ -75,7 +169,7 @@ const MensCircle = () => {
           <img
             src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-64 h-64 mx-auto mb-6 object-contain"
+            className="w-64 h-64 mx-auto mb-6 object-contain logo-glow"
           />
           <p
             className="text-lg font-serif leading-relaxed"
@@ -99,7 +193,7 @@ const MensCircle = () => {
             )}
             <Button
               type="submit"
-              className="w-full py-6 text-lg font-serif rounded-full"
+              className="w-full py-6 text-lg font-serif rounded-full btn-premium"
               style={{
                 backgroundColor: "#E0E4EA",
                 color: "#041a2f"
@@ -116,9 +210,23 @@ const MensCircle = () => {
   // Main Landing Page (after password)
   return (
     <div
-      className="min-h-screen font-serif"
+      className="min-h-screen font-serif relative overflow-hidden"
       style={{ backgroundColor: "#041a2f", color: "#E0E4EA" }}
     >
+      {/* Inject animation styles */}
+      <style dangerouslySetInnerHTML={{ __html: animationStyles }} />
+
+      {/* Film Grain Overlay */}
+      <FilmGrain />
+
+      {/* Radial Gradient Overlay for depth */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{
+          background: 'radial-gradient(ellipse at center top, rgba(100, 200, 255, 0.08) 0%, transparent 50%)',
+        }}
+      />
+
       <Navigation />
 
       {/* Hero Section */}
@@ -127,7 +235,7 @@ const MensCircle = () => {
           <img
             src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-56 h-56 mx-auto mb-4 object-contain"
+            className="w-56 h-56 mx-auto mb-4 object-contain logo-glow"
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
             <BionicText>МУЖСКОЙ КРУГ С КАННАБИСОМ</BionicText>
@@ -139,7 +247,7 @@ const MensCircle = () => {
           </h2>
           <Button
             onClick={scrollToPayment}
-            className="px-8 py-6 text-lg font-serif rounded-full mt-8"
+            className="px-8 py-6 text-lg font-serif rounded-full mt-8 btn-premium"
             style={{
               backgroundColor: "#E0E4EA",
               color: "#041a2f"
@@ -253,7 +361,7 @@ const MensCircle = () => {
             {/* $33 Option */}
             <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full"
+                className="px-10 py-6 text-xl font-serif rounded-full btn-premium"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -269,7 +377,7 @@ const MensCircle = () => {
             {/* $100 Option */}
             <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full"
+                className="px-10 py-6 text-xl font-serif rounded-full btn-premium"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -285,7 +393,7 @@ const MensCircle = () => {
             {/* $333 Option */}
             <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full"
+                className="px-10 py-6 text-xl font-serif rounded-full btn-premium"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
