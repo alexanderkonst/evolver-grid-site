@@ -54,6 +54,7 @@ export type Database = {
           level: number
           longest_streak_days: number
           multiple_intelligences_completed: boolean | null
+          personality_tests: Json | null
           practice_count: number
           total_quests_completed: number
           updated_at: string
@@ -81,6 +82,7 @@ export type Database = {
           level?: number
           longest_streak_days?: number
           multiple_intelligences_completed?: boolean | null
+          personality_tests?: Json | null
           practice_count?: number
           total_quests_completed?: number
           updated_at?: string
@@ -108,6 +110,7 @@ export type Database = {
           level?: number
           longest_streak_days?: number
           multiple_intelligences_completed?: boolean | null
+          personality_tests?: Json | null
           practice_count?: number
           total_quests_completed?: number
           updated_at?: string

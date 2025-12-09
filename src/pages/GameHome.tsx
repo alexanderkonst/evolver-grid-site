@@ -522,9 +522,9 @@ const GameHome = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Compass className="w-4 h-4" />
-                      <span className="text-sm">Want to explore other options?</span>
+                      <span className="text-sm">See all practices in the Library</span>
                     </div>
-                    <Button variant="ghost" size="sm" onClick={() => navigate('/library')}>
+                    <Button variant="ghost" size="sm" onClick={() => navigate('/library?from=game')}>
                       Browse Library →
                     </Button>
                   </div>
@@ -553,7 +553,7 @@ const GameHome = () => {
                             </span>
                           ))}
                         </div>
-                        <Button variant="link" size="sm" className="mt-2 p-0 h-auto" onClick={() => navigate('/zone-of-genius')}>
+                        <Button variant="link" size="sm" className="mt-2 p-0 h-auto" onClick={() => navigate('/game/snapshot')}>
                           View full snapshot →
                         </Button>
                       </>
@@ -568,40 +568,50 @@ const GameHome = () => {
                   <div>
                     <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">My World</p>
                     {currentQolSnapshot ? (
-                      <>
-                        <div className="grid grid-cols-4 gap-2 mb-3">
-                          {[
-                            { key: 'wealth_stage', id: 'wealth' },
-                            { key: 'health_stage', id: 'health' },
-                            { key: 'happiness_stage', id: 'happiness' },
-                            { key: 'love_relationships_stage', id: 'love' },
-                            { key: 'impact_stage', id: 'impact' },
-                            { key: 'growth_stage', id: 'growth' },
-                            { key: 'social_ties_stage', id: 'socialTies' },
-                            { key: 'home_stage', id: 'home' },
-                          ].map(({ key, id }) => {
-                            const stageValue = currentQolSnapshot[key as keyof QolSnapshot] as number;
-                            const info = getDomainStageInfo(id, stageValue);
-                            const lowestDomains = getLowestDomains();
-                            const isLowest = lowestDomains.some(d => d.toLowerCase().includes(info.name.toLowerCase().split(' ')[0]));
-                            return (
-                              <div 
-                                key={id} 
-                                className={`rounded-lg p-2 text-center ${isLowest ? 'bg-amber-100 border border-amber-300' : 'bg-slate-100'}`}
-                              >
-                                <p className="text-[10px] text-slate-500 truncate">{info.name}</p>
-                                <p className="text-lg font-bold text-slate-900">{stageValue}</p>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <p className="text-xs text-slate-500 italic">
-                          Focus areas: {getLowestDomains().join(', ') || 'Balanced'}
-                        </p>
-                        <Button variant="link" size="sm" className="mt-1 p-0 h-auto" onClick={() => navigate('/quality-of-life-map/results')}>
-                          View full map →
-                        </Button>
-                      </>
+                      (() => {
+                        const domainEntries = [
+                          { key: 'wealth_stage', id: 'wealth' },
+                          { key: 'health_stage', id: 'health' },
+                          { key: 'happiness_stage', id: 'happiness' },
+                          { key: 'love_relationships_stage', id: 'love' },
+                          { key: 'impact_stage', id: 'impact' },
+                          { key: 'growth_stage', id: 'growth' },
+                          { key: 'social_ties_stage', id: 'socialTies' },
+                          { key: 'home_stage', id: 'home' },
+                        ];
+                        const values = domainEntries.map(({ key }) => currentQolSnapshot[key as keyof QolSnapshot] as number);
+                        const minValue = Math.min(...values);
+                        const maxValue = Math.max(...values);
+                        
+                        return (
+                          <>
+                            <div className="grid grid-cols-4 gap-2 mb-3">
+                              {domainEntries.map(({ key, id }) => {
+                                const stageValue = currentQolSnapshot[key as keyof QolSnapshot] as number;
+                                const info = getDomainStageInfo(id, stageValue);
+                                const isLowest = stageValue === minValue;
+                                const isHighest = stageValue === maxValue && stageValue !== minValue;
+                                
+                                return (
+                                  <div 
+                                    key={id} 
+                                    className={`rounded-lg p-2 text-center bg-slate-100 transition-all ${
+                                      isLowest ? 'shadow-[0_0_12px_rgba(239,68,68,0.4)]' : 
+                                      isHighest ? 'shadow-[0_0_12px_rgba(34,197,94,0.4)]' : ''
+                                    }`}
+                                  >
+                                    <p className="text-[10px] text-slate-500 truncate">{info.name}</p>
+                                    <p className="text-lg font-bold text-slate-900">{stageValue}</p>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                            <Button variant="link" size="sm" className="mt-1 p-0 h-auto" onClick={() => navigate('/game/snapshot')}>
+                              View full map →
+                            </Button>
+                          </>
+                        );
+                      })()
                     ) : (
                       <Button size="sm" onClick={() => navigate('/quality-of-life-map/assessment')}>
                         Map My Life
@@ -633,7 +643,7 @@ const GameHome = () => {
                       <div 
                         key={pathSlug} 
                         className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-colors cursor-pointer"
-                        onClick={() => navigate('/library')}
+                        onClick={() => navigate(`/game/path/${pathSlug}`)}
                       >
                         <p className="text-sm font-semibold text-slate-900">{pathName}</p>
                         <p className="text-xs text-slate-500">{xpValue} XP</p>
