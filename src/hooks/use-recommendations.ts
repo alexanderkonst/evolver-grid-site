@@ -1,0 +1,148 @@
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Upgrade, getPlayerUpgrades } from "@/lib/upgradeSystem";
+
+interface RecommendedQuest {
+    id: string;
+    title: string;
+    path: string;
+    pathColor: string;
+    xp: number;
+    duration: string;
+}
+
+interface RecommendedUpgrade {
+    id: string;
+    title: string;
+    path: string;
+    pathColor: string;
+    description: string;
+    unlocksCount: number;
+}
+
+interface Recommendations {
+    quest: RecommendedQuest | null;
+    upgrade: RecommendedUpgrade | null;
+    loading: boolean;
+}
+
+const PATH_COLORS: Record<string, string> = {
+    "waking-up": "#9b5de5",
+    "growing-up": "#f5a623",
+    "cleaning-up": "#4361ee",
+    "showing-up": "#ff6b35",
+    "rooting-down": "#2d6a4f",
+};
+
+const PATH_NAMES: Record<string, string> = {
+    "waking-up": "Waking Up",
+    "growing-up": "Growing Up",
+    "cleaning-up": "Cleaning Up",
+    "showing-up": "Showing Up",
+    "rooting-down": "Rooting Down",
+};
+
+/**
+ * Hook to get personalized quest and upgrade recommendations
+ * Uses path balance to suggest the least-developed path
+ */
+export function useRecommendations(profileId: string | null): Recommendations {
+    const [recommendations, setRecommendations] = useState<Recommendations>({
+        quest: null,
+        upgrade: null,
+        loading: true,
+    });
+
+    useEffect(() => {
+        if (!profileId) {
+            setRecommendations({ quest: null, upgrade: null, loading: false });
+            return;
+        }
+
+        const fetchRecommendations = async () => {
+            try {
+                // Get player's current XP per path
+                const { data: profile } = await supabase
+                    .from("game_profiles")
+                    .select("xp_body, xp_mind, xp_heart, xp_spirit, xp_uniqueness_work")
+                    .eq("id", profileId)
+                    .single();
+
+                // Map XP to paths (using existing XP columns)
+                const pathXp: Record<string, number> = {
+                    "waking-up": (profile as any)?.xp_spirit || 0,
+                    "growing-up": (profile as any)?.xp_mind || 0,
+                    "cleaning-up": (profile as any)?.xp_heart || 0,
+                    "showing-up": (profile as any)?.xp_uniqueness_work || 0,
+                    "rooting-down": (profile as any)?.xp_body || 0,
+                };
+
+                // Find the path with lowest XP (needs most attention)
+                const sortedPaths = Object.entries(pathXp).sort((a, b) => a[1] - b[1]);
+                const suggestedPath = sortedPaths[0][0]; // lowest XP path
+
+                // Get player's completed upgrades
+                const completedUpgrades = await getPlayerUpgrades(profileId);
+                const completedIds = new Set(completedUpgrades.map((u) => u.upgradeId));
+
+                // Get all upgrades from the suggested path
+                const { data: pathUpgrades } = await supabase
+                    .from("upgrade_catalog")
+                    .select("*")
+                    .eq("path_slug", suggestedPath)
+                    .order("sort_order", { ascending: true });
+
+                // Find first uncompleted upgrade (quest-like)
+                const availableUpgrades = (pathUpgrades || []).filter(
+                    (u: any) => !completedIds.has(u.id)
+                );
+
+                // Quest: First available practice (quick, free)
+                const questUpgrade = availableUpgrades.find(
+                    (u: any) => !u.is_paid && u.xp_reward <= 50
+                ) || availableUpgrades[0];
+
+                // Upgrade: First available paid or larger unlock
+                const upgradeOption = availableUpgrades.find(
+                    (u: any) => u.is_paid || u.xp_reward > 50
+                ) || availableUpgrades[1];
+
+                // Build recommendations
+                const quest: RecommendedQuest | null = questUpgrade
+                    ? {
+                        id: questUpgrade.id,
+                        title: questUpgrade.title,
+                        path: PATH_NAMES[suggestedPath] || suggestedPath,
+                        pathColor: PATH_COLORS[suggestedPath] || "#888",
+                        xp: questUpgrade.xp_reward,
+                        duration: "5 min",
+                    }
+                    : null;
+
+                const upgrade: RecommendedUpgrade | null = upgradeOption
+                    ? {
+                        id: upgradeOption.id,
+                        title: upgradeOption.title,
+                        path: PATH_NAMES[suggestedPath] || suggestedPath,
+                        pathColor: PATH_COLORS[suggestedPath] || "#888",
+                        description: upgradeOption.short_label || upgradeOption.description,
+                        unlocksCount: 3, // Placeholder - could be calculated from dependencies
+                    }
+                    : null;
+
+                setRecommendations({
+                    quest,
+                    upgrade,
+                    loading: false,
+                });
+            } catch (error) {
+                console.error("Error fetching recommendations:", error);
+                setRecommendations({ quest: null, upgrade: null, loading: false });
+            }
+        };
+
+        fetchRecommendations();
+    }, [profileId]);
+
+    return recommendations;
+}
