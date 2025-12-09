@@ -49,6 +49,8 @@ interface PersonalityTests {
     strategy: string;
     authority: string;
     profile: string;
+    definition?: string;
+    incarnation_cross?: string;
   };
 }
 
@@ -424,14 +426,34 @@ const CharacterSnapshot: React.FC = () => {
                   )}
                   {personalityTests.human_design && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Human Design</p>
-                      <p className="font-semibold">{personalityTests.human_design.type}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {personalityTests.human_design.strategy} · {personalityTests.human_design.authority}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Profile: {personalityTests.human_design.profile}
-                      </p>
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Human Design</p>
+                      <p className="font-semibold text-lg mb-3">{personalityTests.human_design.type}</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 rounded bg-background border">
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Strategy</p>
+                          <p className="text-sm font-medium">{personalityTests.human_design.strategy}</p>
+                        </div>
+                        <div className="p-2 rounded bg-background border">
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Authority</p>
+                          <p className="text-sm font-medium">{personalityTests.human_design.authority}</p>
+                        </div>
+                        <div className="p-2 rounded bg-background border">
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Profile</p>
+                          <p className="text-sm font-medium">{personalityTests.human_design.profile}</p>
+                        </div>
+                        {personalityTests.human_design.definition && (
+                          <div className="p-2 rounded bg-background border">
+                            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Definition</p>
+                            <p className="text-sm font-medium">{personalityTests.human_design.definition}</p>
+                          </div>
+                        )}
+                        {personalityTests.human_design.incarnation_cross && (
+                          <div className="p-2 rounded bg-background border col-span-2">
+                            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Incarnation Cross</p>
+                            <p className="text-sm font-medium">{personalityTests.human_design.incarnation_cross}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </CardContent>
