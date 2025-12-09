@@ -14,7 +14,7 @@ const SkillTrees = () => {
     
     // Map path IDs to tree IDs
     const pathToTreeMap: Record<string, string> = {
-        body: 'rooting-down',
+        body: 'grounding',
         mind: 'growing-up',
         heart: 'cleaning-up',
         spirit: 'waking-up',
@@ -38,9 +38,9 @@ const SkillTrees = () => {
         "cu-feel-feelings": "available",
         "su-zone-of-genius": "completed",
         "su-values-clarity": "available",
-        "rd-sleep-hygiene": "completed",
-        "rd-breath-basics": "available",
-        "rd-daily-movement": "in_progress",
+        "gr-sleep-hygiene": "completed",
+        "gr-breath-basics": "available",
+        "gr-daily-movement": "in_progress",
     };
 
     return (
