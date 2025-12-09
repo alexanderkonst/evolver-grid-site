@@ -14,7 +14,7 @@ const SkillTrees = () => {
     
     // Map path IDs to tree IDs
     const pathToTreeMap: Record<string, string> = {
-        body: 'radical-discipline',
+        body: 'rooting-down',
         mind: 'growing-up',
         heart: 'cleaning-up',
         spirit: 'waking-up',
@@ -101,10 +101,31 @@ const SkillTrees = () => {
                         })}
                     </div>
 
-                    {/* Active Tree Info */}
-                    <div className="text-center mb-4 sm:mb-6">
+                    {/* Large Icon + Active Tree Info */}
+                    <div className="flex flex-col items-center mb-6 sm:mb-8">
+                        {/* Large icon */}
+                        <div className="mb-4">
+                            {activeTree.iconImage ? (
+                                <img 
+                                    src={activeTree.iconImage} 
+                                    alt={activeTree.name} 
+                                    className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg"
+                                    style={{ boxShadow: `0 0 30px ${activeTree.color}40` }}
+                                />
+                            ) : (
+                                <div 
+                                    className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center"
+                                    style={{ backgroundColor: `${activeTree.color}20` }}
+                                >
+                                    <activeTree.icon 
+                                        className="w-12 h-12 sm:w-14 sm:h-14" 
+                                        style={{ color: activeTree.color }}
+                                    />
+                                </div>
+                            )}
+                        </div>
                         <h2
-                            className="text-lg sm:text-xl font-semibold mb-1"
+                            className="text-xl sm:text-2xl font-bold mb-1"
                             style={{ color: activeTree.color }}
                         >
                             {activeTree.name}
