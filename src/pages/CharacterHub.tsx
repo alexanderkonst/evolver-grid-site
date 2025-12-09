@@ -217,100 +217,189 @@ const CharacterHub = () => {
                         <p className="text-slate-400 text-xs mt-3">Tap to explore your paths</p>
                     </div>
 
-                    {/* 6 Character Tiles - 2x3 Grid */}
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm mx-auto">
-                        {/* Zone of Genius */}
-                        <CharacterTile
-                            id="zog"
-                            title="Zone of Genius"
-                            subtitle={zogSnapshot?.archetype_title?.split(" ")[0] || undefined}
-                            icon={<Sparkles className="w-full h-full" />}
-                            color="#9b5de5"
-                            progress={zogSnapshot ? 100 : 0}
-                            isLocked={!zogSnapshot}
-                            unlockHint="Complete assessment"
-                            onClick={() => navigate(zogSnapshot ? "/zone-of-genius/results" : "/zone-of-genius/assessment")}
-                        />
+                    {/* ✨ SUGGESTED FOR YOU */}
+                    <div className="mb-6">
+                        <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+                            <Sparkles className="w-4 h-4" />
+                            SUGGESTED FOR YOU
+                        </h2>
 
-                        {/* Genius Offer */}
-                        <CharacterTile
-                            id="genius-offer"
-                            title="Genius Offer"
-                            subtitle={geniusOffer?.status === "completed" ? "Ready" : geniusOffer?.status || undefined}
-                            icon={<Gift className="w-full h-full" />}
-                            color="#f5a623"
-                            progress={geniusOffer?.status === "completed" ? 100 : geniusOffer ? 50 : 0}
-                            isLocked={!zogSnapshot}
-                            unlockHint="ZoG first"
-                            onClick={() => navigate(geniusOffer ? "/profile" : "/genius-offer/intake")}
-                        />
+                        {/* Next Quest Card */}
+                        <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 mb-3">
+                            <div className="flex items-start justify-between">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Target className="w-4 h-4 text-amber-400" />
+                                        <span className="text-xs text-amber-400 font-medium">Next Quest</span>
+                                    </div>
+                                    <h3 className="font-semibold text-foreground">
+                                        {profile?.last_quest_title || "5-Minute Breath Anchor"}
+                                    </h3>
+                                    <p className="text-xs text-muted-foreground mt-1">
+                                        Waking Up · 25 XP · 5 min
+                                    </p>
+                                </div>
+                                <Button
+                                    size="sm"
+                                    className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                    onClick={() => navigate("/map")}
+                                >
+                                    Start →
+                                </Button>
+                            </div>
+                        </div>
 
-                        {/* Quality of Life */}
-                        <CharacterTile
-                            id="qol"
-                            title="Quality of Life"
-                            icon={<Heart className="w-full h-full" />}
-                            color="#ff6b35"
-                            progress={qolSnapshot ? 100 : 0}
-                            isLocked={!qolSnapshot}
-                            unlockHint="Complete assessment"
-                            onClick={() => navigate(qolSnapshot ? "/quality-of-life-map/results" : "/quality-of-life-map/assessment")}
-                        >
-                            {qolSnapshot && (
-                                <span className="text-lg font-bold" style={{ color: "#ff6b35" }}>
-                                    {getQolAverage()}
-                                </span>
-                            )}
-                        </CharacterTile>
-
-                        {/* Evolution / Progress */}
-                        <CharacterTile
-                            id="evolution"
-                            title="Evolution"
-                            icon={<TrendingUp className="w-full h-full" />}
-                            color="#4361ee"
-                            progress={Math.min(100, ((profile?.xp_total || 0) / 500) * 100)}
-                            onClick={() => navigate("/game")}
-                        >
-                            <span className="text-xs text-slate-400">
-                                {profile?.current_streak_days || 0}🔥 streak
-                            </span>
-                        </CharacterTile>
-
-                        {/* Current Quest */}
-                        <CharacterTile
-                            id="quest"
-                            title="My Quest"
-                            subtitle={profile?.last_quest_title?.slice(0, 15) || "Get started"}
-                            icon={<Target className="w-full h-full" />}
-                            color="#2d6a4f"
-                            onClick={() => navigate("/map")}
-                        />
-
-                        {/* Upgrades */}
-                        <CharacterTile
-                            id="upgrades"
-                            title="Upgrades"
-                            icon={<Zap className="w-full h-full" />}
-                            color="#f72585"
-                            progress={Math.min(100, upgradeCount * 10)}
-                            onClick={() => navigate("/game")}
-                        >
-                            <span className="text-lg font-bold" style={{ color: "#f72585" }}>
-                                {upgradeCount}
-                            </span>
-                        </CharacterTile>
+                        {/* Recommended Upgrade Card */}
+                        <div className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/10">
+                            <div className="flex items-start justify-between">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Zap className="w-4 h-4 text-purple-400" />
+                                        <span className="text-xs text-purple-400 font-medium">Recommended Upgrade</span>
+                                    </div>
+                                    <h3 className="font-semibold text-foreground">
+                                        Morning Ritual Protocol
+                                    </h3>
+                                    <p className="text-xs text-muted-foreground mt-1">
+                                        Rooting Down · Unlocks 3 quests
+                                    </p>
+                                </div>
+                                <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+                                    onClick={() => navigate("/game-legacy")}
+                                >
+                                    View
+                                </Button>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Quick Action */}
-                    <div className="text-center mt-8">
+                    {/* 🗺️ EXPLORE */}
+                    <div className="mb-6">
+                        <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4" />
+                            EXPLORE
+                        </h2>
+
+                        {/* Path Pills */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {[
+                                { name: "Waking Up", color: "#9b5de5" },
+                                { name: "Growing Up", color: "#f5a623" },
+                                { name: "Cleaning Up", color: "#4361ee" },
+                                { name: "Showing Up", color: "#ff6b35" },
+                                { name: "Rooting Down", color: "#2d6a4f" },
+                            ].map((path) => (
+                                <button
+                                    key={path.name}
+                                    onClick={() => navigate("/skills")}
+                                    className="px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105"
+                                    style={{
+                                        backgroundColor: `${path.color}20`,
+                                        color: path.color,
+                                        border: `1px solid ${path.color}40`
+                                    }}
+                                >
+                                    {path.name}
+                                </button>
+                            ))}
+                        </div>
+
                         <Button
+                            variant="outline"
+                            className="w-full"
                             onClick={() => navigate("/map")}
-                            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-medium px-6"
                         >
-                            <Sparkles className="w-4 h-4 mr-2" />
-                            Get a Quest
+                            Open Full Game Map
                         </Button>
+                    </div>
+
+                    {/* 📊 YOUR PROFILE */}
+                    <div>
+                        <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+                            <Heart className="w-4 h-4" />
+                            YOUR PROFILE
+                        </h2>
+
+                        {/* 6 Character Tiles - 2x3 Grid */}
+                        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                            {/* Zone of Genius */}
+                            <CharacterTile
+                                id="zog"
+                                title="Genius"
+                                icon={<Sparkles className="w-full h-full" />}
+                                color="#9b5de5"
+                                progress={zogSnapshot ? 100 : 0}
+                                isLocked={!zogSnapshot}
+                                unlockHint="Start"
+                                size="sm"
+                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius/results" : "/zone-of-genius/assessment")}
+                            />
+
+                            {/* Quality of Life */}
+                            <CharacterTile
+                                id="qol"
+                                title="Life Map"
+                                icon={<Heart className="w-full h-full" />}
+                                color="#ff6b35"
+                                progress={qolSnapshot ? 100 : 0}
+                                isLocked={!qolSnapshot}
+                                unlockHint="Start"
+                                size="sm"
+                                onClick={() => navigate(qolSnapshot ? "/quality-of-life-map/results" : "/quality-of-life-map/assessment")}
+                            />
+
+                            {/* Genius Offer */}
+                            <CharacterTile
+                                id="genius-offer"
+                                title="Offer"
+                                icon={<Gift className="w-full h-full" />}
+                                color="#f5a623"
+                                progress={geniusOffer?.status === "completed" ? 100 : geniusOffer ? 50 : 0}
+                                isLocked={!zogSnapshot}
+                                unlockHint="ZoG first"
+                                size="sm"
+                                onClick={() => navigate(geniusOffer ? "/profile" : "/genius-offer/intake")}
+                            />
+
+                            {/* Evolution / Progress */}
+                            <CharacterTile
+                                id="evolution"
+                                title="Progress"
+                                icon={<TrendingUp className="w-full h-full" />}
+                                color="#4361ee"
+                                progress={Math.min(100, ((profile?.xp_total || 0) / 500) * 100)}
+                                size="sm"
+                                onClick={() => navigate("/game-legacy")}
+                            />
+
+                            {/* Current Quest */}
+                            <CharacterTile
+                                id="quest"
+                                title="Quest"
+                                icon={<Target className="w-full h-full" />}
+                                color="#2d6a4f"
+                                size="sm"
+                                onClick={() => navigate("/map")}
+                            />
+
+                            {/* Upgrades */}
+                            <CharacterTile
+                                id="upgrades"
+                                title="Upgrades"
+                                icon={<Zap className="w-full h-full" />}
+                                color="#f72585"
+                                progress={Math.min(100, upgradeCount * 10)}
+                                size="sm"
+                                onClick={() => navigate("/game-legacy")}
+                            >
+                                <span className="text-sm font-bold" style={{ color: "#f72585" }}>
+                                    {upgradeCount}
+                                </span>
+                            </CharacterTile>
+                        </div>
                     </div>
                 </div>
             </main>
