@@ -178,7 +178,7 @@ const Navigation = () => {
                       <DropdownMenuItem asChild>
                         <Link to="/game" className="flex items-center cursor-pointer">
                           <Gamepad2 className="h-4 w-4 mr-2" />
-                          Game of You Character
+                          Game of You
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -284,7 +284,7 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <Gamepad2 className="h-4 w-4 mr-2" />
-                    Game of You Character
+                    Game of You
                   </Link>
                   <Button
                     variant="ghost"
