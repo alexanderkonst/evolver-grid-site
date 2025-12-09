@@ -24,6 +24,7 @@ import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
 import GameMap from "./pages/GameMap";
+import CharacterHub from "./pages/CharacterHub";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/game" element={<GameHome />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />
+            <Route path="/character" element={<CharacterHub />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
             <Route path="/quality-of-life-map" element={<QolLayout />}>
