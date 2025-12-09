@@ -52,7 +52,7 @@ const SkillNode = ({ node, status, color, onClick }: SkillNodeProps) => {
             {/* Tooltip */}
             <div
                 className={cn(
-                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 w-56 p-3 rounded-lg",
+                    "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-56 p-3 rounded-lg",
                     "bg-popover border border-border shadow-xl",
                     "transition-all duration-200 z-20",
                     isHovered ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
@@ -81,7 +81,7 @@ const SkillNode = ({ node, status, color, onClick }: SkillNodeProps) => {
                 onMouseLeave={() => setIsHovered(false)}
                 disabled={status === "locked"}
                 className={cn(
-                    "relative w-14 h-14 rounded-full border-2 transition-all duration-300",
+                    "relative w-20 h-20 rounded-full border-2 transition-all duration-300",
                     styles.bg,
                     styles.border,
                     styles.opacity,

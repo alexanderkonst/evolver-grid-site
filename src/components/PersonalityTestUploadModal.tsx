@@ -274,6 +274,24 @@ const PersonalityTestUploadModal = ({
                 </DialogHeader>
 
                 <div className="space-y-4">
+                    {/* Example section */}
+                    {!results && (
+                        <div className="p-3 rounded-lg bg-muted/50 border border-border">
+                            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">What to upload</p>
+                            <p className="text-sm text-foreground">
+                                {testType === 'enneagram' && (
+                                    <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
+                                )}
+                                {testType === '16personalities' && (
+                                    <>Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.</>
+                                )}
+                                {testType === 'human_design' && (
+                                    <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from myBodyGraph or Jovian Archive).</>
+                                )}
+                            </p>
+                        </div>
+                    )}
+
                     {/* Upload zone or preview */}
                     {!results ? (
                         <div
