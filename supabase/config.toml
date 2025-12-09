@@ -17,3 +17,18 @@ verify_jwt = true
 
 [functions.library-advisor]
 verify_jwt = true
+
+[functions.analyze-personality-test]
+verify_jwt = true
+
+[functions.generate-soul-colors]
+verify_jwt = true
+
+[functions.mark-practice-done]
+verify_jwt = true
+
+[functions.send-genius-offer-notification]
+verify_jwt = false
+
+[functions.create-portal-session]
+verify_jwt = true
