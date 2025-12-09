@@ -555,9 +555,6 @@ const GameHome = () => {
                             </span>
                           ))}
                         </div>
-                        <Button variant="link" size="sm" className="mt-2 p-0 h-auto" onClick={() => navigate('/game/snapshot')}>
-                          View full snapshot →
-                        </Button>
                       </>
                     ) : (
                       <Button size="sm" onClick={() => navigate('/zone-of-genius/assessment')}>
