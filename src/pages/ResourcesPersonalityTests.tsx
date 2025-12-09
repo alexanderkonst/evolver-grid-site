@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Upload, Check, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowLeft, ExternalLink, Upload, Check, Loader2, ArrowRight } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
@@ -21,6 +21,7 @@ interface TestConfig {
 }
 
 const ResourcesPersonalityTests = () => {
+  const navigate = useNavigate();
   const [uploadModal, setUploadModal] = useState<{
     open: boolean;
     testType: TestType;
@@ -28,6 +29,7 @@ const ResourcesPersonalityTests = () => {
   } | null>(null);
   const [uploadedTests, setUploadedTests] = useState<Set<TestType>>(new Set());
   const [loading, setLoading] = useState(true);
+  const [miCompleted, setMiCompleted] = useState(false);
 
   // Load existing saved tests on mount
   useEffect(() => {
@@ -39,7 +41,7 @@ const ResourcesPersonalityTests = () => {
       const profileId = await getOrCreateGameProfileId();
       const { data: profile } = await supabase
         .from('game_profiles')
-        .select('personality_tests')
+        .select('personality_tests, multiple_intelligences_completed')
         .eq('id', profileId)
         .single();
 
@@ -52,6 +54,24 @@ const ResourcesPersonalityTests = () => {
         if (existingTests.human_design) savedTypes.add('human_design');
         
         setUploadedTests(savedTypes);
+      }
+      
+      if (profile?.multiple_intelligences_completed) {
+        setMiCompleted(true);
+      }
+
+      // Also check multiple_intelligences_results table for authenticated users
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: miResult } = await supabase
+          .from('multiple_intelligences_results')
+          .select('id')
+          .eq('user_id', user.id)
+          .maybeSingle();
+        
+        if (miResult) {
+          setMiCompleted(true);
+        }
       }
     } catch (error) {
       console.error('Error loading existing tests:', error);
@@ -122,6 +142,37 @@ const ResourcesPersonalityTests = () => {
               </div>
             ) : (
               <div className="space-y-4">
+                {/* Multiple Intelligences Card - Featured at top */}
+                <Card className="p-6 border-2 border-purple-200 bg-purple-50/30">
+                  <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div className="flex-1 min-w-[200px]">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-semibold text-lg">Multiple Intelligences</h3>
+                        {miCompleted && (
+                          <span className="flex items-center gap-1 text-xs text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                            <Check className="w-3 h-3" />
+                            Completed
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        A 2-3 minute drag-and-drop assessment to discover which of the 12 intelligences feel most natural to you. No screenshot needed.
+                      </p>
+                    </div>
+                    <div className="flex gap-2 flex-shrink-0">
+                      <Button
+                        variant={miCompleted ? "outline" : "default"}
+                        size="sm"
+                        onClick={() => navigate('/intelligences')}
+                      >
+                        {miCompleted ? 'Retake' : 'Take Assessment'}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Screenshot-based tests */}
                 {tests.map((test) => {
                   const isUploaded = uploadedTests.has(test.testType);
 
