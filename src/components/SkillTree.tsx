@@ -98,22 +98,6 @@ const SkillTree = ({ tree, progress = {}, onNodeClick }: SkillTreeProps) => {
                 />
             ))}
 
-            {/* Tree name badge */}
-            <div
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full"
-                style={{ backgroundColor: `${tree.color}20`, borderColor: `${tree.color}40` }}
-            >
-                <div className="flex items-center gap-2">
-                    {tree.iconImage ? (
-                        <img src={tree.iconImage} alt={tree.name} className="w-6 h-6 rounded-full object-cover" />
-                    ) : (
-                        <tree.icon className="w-4 h-4" style={{ color: tree.color }} />
-                    )}
-                    <span className="text-sm font-medium" style={{ color: tree.color }}>
-                        {tree.name}
-                    </span>
-                </div>
-            </div>
         </div>
     );
 };
