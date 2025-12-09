@@ -130,7 +130,7 @@ const CharacterHub = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "hsl(220, 40%, 8%)" }}>
+            <div className="min-h-screen flex items-center justify-center bg-background">
                 <Loader2 className="w-8 h-8 animate-spin text-amber-400" />
             </div>
         );
@@ -138,7 +138,7 @@ const CharacterHub = () => {
 
     if (!user) {
         return (
-            <div className="min-h-screen flex flex-col" style={{ backgroundColor: "hsl(220, 40%, 8%)" }}>
+            <div className="min-h-screen flex flex-col bg-background">
                 <Navigation />
                 <main className="flex-grow flex items-center justify-center px-4">
                     <div className="text-center">
@@ -156,7 +156,7 @@ const CharacterHub = () => {
     }
 
     return (
-        <div className="min-h-screen flex flex-col" style={{ backgroundColor: "hsl(220, 40%, 8%)" }}>
+        <div className="min-h-screen flex flex-col bg-background">
             <Navigation />
 
             <main className="flex-grow pt-20 pb-20 px-4">
