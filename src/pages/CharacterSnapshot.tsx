@@ -83,7 +83,7 @@ const CharacterSnapshot: React.FC = () => {
     setLoading(true);
     try {
       const profileId = await getOrCreateGameProfileId();
-      
+
       // Load game profile with snapshots
       const { data: profile } = await supabase
         .from('game_profiles')
@@ -155,10 +155,10 @@ const CharacterSnapshot: React.FC = () => {
   const getDomainInfo = (domainId: string, stageValue: number) => {
     const domain = DOMAINS.find(d => d.id === domainId);
     if (!domain) return { name: domainId, currentTitle: '', nextTitle: '' };
-    
+
     const currentStage = domain.stages.find(s => s.id === stageValue);
     const nextStage = domain.stages.find(s => s.id === stageValue + 1);
-    
+
     return {
       name: domain.name,
       currentTitle: currentStage?.title || `Stage ${stageValue}`,
@@ -179,25 +179,25 @@ const CharacterSnapshot: React.FC = () => {
   // Calculate highest and lowest domains for highlighting
   const getDomainStyles = (domainId: string): { className: string; label: string | null } => {
     if (!qolSnapshot) return { className: '', label: null };
-    
+
     const stageKey = DOMAIN_TO_STAGE_KEY[domainId];
     if (!stageKey) return { className: '', label: null };
-    
+
     const values = Object.values(DOMAIN_TO_STAGE_KEY).map(key => qolSnapshot[key] || 0);
     const currentValue = qolSnapshot[stageKey] || 0;
     const minValue = Math.min(...values);
     const maxValue = Math.max(...values);
-    
+
     if (currentValue === minValue && minValue !== maxValue) {
-      return { 
-        className: 'bg-red-50 border-red-200', 
-        label: '↓ needs attention' 
+      return {
+        className: 'bg-red-50 border-red-200',
+        label: '↓ needs attention'
       };
     }
     if (currentValue === maxValue && minValue !== maxValue) {
-      return { 
-        className: 'bg-emerald-50 border-emerald-200', 
-        label: '✓ strength' 
+      return {
+        className: 'bg-emerald-50 border-emerald-200',
+        label: '✓ strength'
       };
     }
     return { className: 'bg-muted/50 border-transparent', label: null };
@@ -206,7 +206,7 @@ const CharacterSnapshot: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main className="container max-w-4xl mx-auto px-4 py-8 pt-24">
         <Link to="/game" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="w-4 h-4" />
@@ -215,7 +215,7 @@ const CharacterSnapshot: React.FC = () => {
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">
-            {firstName ? `${firstName}'s Character` : 'Your Character'} · Full Snapshot
+            {firstName ? `${firstName}'s` : 'Your'} Full Snapshot
           </h1>
           <p className="text-muted-foreground">
             Your self-understanding in one place
@@ -303,10 +303,10 @@ const CharacterSnapshot: React.FC = () => {
                       const value = qolSnapshot[stageKey] || 0;
                       const info = getDomainInfo(domainId, value);
                       const { className, label } = getDomainStyles(domainId);
-                      
+
                       return (
-                        <div 
-                          key={domainId} 
+                        <div
+                          key={domainId}
                           className={`p-4 rounded-lg border transition-all ${className}`}
                         >
                           <div className="flex items-center justify-between mb-2">
@@ -347,12 +347,11 @@ const CharacterSnapshot: React.FC = () => {
                   <div className="space-y-2">
                     {multipleIntelligences.ordered_intelligences.slice(0, 5).map((intel, idx) => (
                       <div key={intel} className="flex items-center gap-3">
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                          idx === 0 ? 'bg-amber-500 text-white' :
-                          idx === 1 ? 'bg-gray-300 text-gray-700' :
-                          idx === 2 ? 'bg-amber-700 text-white' :
-                          'bg-muted text-muted-foreground'
-                        }`}>
+                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${idx === 0 ? 'bg-amber-500 text-white' :
+                            idx === 1 ? 'bg-gray-300 text-gray-700' :
+                              idx === 2 ? 'bg-amber-700 text-white' :
+                                'bg-muted text-muted-foreground'
+                          }`}>
                           {idx + 1}
                         </span>
                         <span className={idx < 3 ? 'font-medium' : 'text-muted-foreground'}>
