@@ -18,7 +18,6 @@ interface Intelligence {
 
 const INTELLIGENCES: Intelligence[] = [
   { id: "verbal", name: "Verbal / Linguistic", description: "You think and express through words, writing, and language." },
-  { id: "interpersonal", name: "Interpersonal", description: "You understand people, emotions, and social dynamics." },
   { id: "intrapersonal", name: "Intrapersonal", description: "You deeply sense your inner world, motives, and patterns." },
   { id: "systemic", name: "Systemic / Strategic", description: "You see patterns, systems, and long-range implications." },
   { id: "creative", name: "Creative / Imaginal", description: "You generate original ideas, images, and playful possibilities." },
