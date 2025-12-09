@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import gameMapCenter from "@/assets/game-map-center.png";
+import gameMapCenter from "@/assets/dodecahedron.jpg";
 import wakingUpIcon from "@/assets/skill-tree-waking-up.png";
 import growingUpIcon from "@/assets/skill-tree-growing-up.png";
 import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.png";
@@ -121,11 +121,12 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
             </svg>
 
             {/* Center image - the dodecahedron */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/5 aspect-video">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/3 aspect-square">
                 <img
                     src={gameMapCenter}
                     alt="Game of You Center"
-                    className="w-full h-full object-contain opacity-90"
+                    className="w-full h-full object-cover rounded-full animate-pulse"
+                    style={{ animationDuration: "4s" }}
                 />
             </div>
 
