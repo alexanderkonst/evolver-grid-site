@@ -9,6 +9,7 @@ import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getPlayerUpgrades } from "@/lib/upgradeSystem";
+import { useRecommendations } from "@/hooks/use-recommendations";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -21,6 +22,9 @@ const CharacterHub = () => {
     const [soulColors, setSoulColors] = useState<string[] | null>(null);
     const [generatingColors, setGeneratingColors] = useState(false);
     const [upgradeCount, setUpgradeCount] = useState(0);
+
+    // Get personalized recommendations
+    const recommendations = useRecommendations(profile?.id || null);
 
     useEffect(() => {
         loadCharacterData();
@@ -225,55 +229,101 @@ const CharacterHub = () => {
                         </h2>
 
                         {/* Next Quest Card */}
-                        <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 mb-3">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <Target className="w-4 h-4 text-amber-400" />
-                                        <span className="text-xs text-amber-400 font-medium">Next Quest</span>
+                        {recommendations.quest ? (
+                            <div
+                                className="p-4 rounded-xl border mb-3"
+                                style={{
+                                    borderColor: `${recommendations.quest.pathColor}40`,
+                                    backgroundColor: `${recommendations.quest.pathColor}10`
+                                }}
+                            >
+                                <div className="flex items-start justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <Target className="w-4 h-4" style={{ color: recommendations.quest.pathColor }} />
+                                            <span className="text-xs font-medium" style={{ color: recommendations.quest.pathColor }}>
+                                                Next Quest
+                                            </span>
+                                        </div>
+                                        <h3 className="font-semibold text-foreground">
+                                            {recommendations.quest.title}
+                                        </h3>
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                            {recommendations.quest.path} · {recommendations.quest.xp} XP · {recommendations.quest.duration}
+                                        </p>
                                     </div>
-                                    <h3 className="font-semibold text-foreground">
-                                        {profile?.last_quest_title || "5-Minute Breath Anchor"}
-                                    </h3>
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                        Waking Up · 25 XP · 5 min
-                                    </p>
+                                    <Button
+                                        size="sm"
+                                        style={{ backgroundColor: recommendations.quest.pathColor }}
+                                        className="text-white hover:opacity-90"
+                                        onClick={() => navigate("/map")}
+                                    >
+                                        Start →
+                                    </Button>
                                 </div>
-                                <Button
-                                    size="sm"
-                                    className="bg-amber-500 hover:bg-amber-600 text-slate-900"
-                                    onClick={() => navigate("/map")}
-                                >
-                                    Start →
-                                </Button>
                             </div>
-                        </div>
+                        ) : (
+                            <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 mb-3">
+                                <div className="flex items-start justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <Target className="w-4 h-4 text-amber-400" />
+                                            <span className="text-xs text-amber-400 font-medium">Next Quest</span>
+                                        </div>
+                                        <h3 className="font-semibold text-foreground">
+                                            Find Your First Quest
+                                        </h3>
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                            Explore the Game Map to discover quests
+                                        </p>
+                                    </div>
+                                    <Button
+                                        size="sm"
+                                        className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                        onClick={() => navigate("/map")}
+                                    >
+                                        Explore →
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Recommended Upgrade Card */}
-                        <div className="p-4 rounded-xl border border-purple-500/30 bg-purple-500/10">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <Zap className="w-4 h-4 text-purple-400" />
-                                        <span className="text-xs text-purple-400 font-medium">Recommended Upgrade</span>
+                        {recommendations.upgrade ? (
+                            <div
+                                className="p-4 rounded-xl border"
+                                style={{
+                                    borderColor: `${recommendations.upgrade.pathColor}40`,
+                                    backgroundColor: `${recommendations.upgrade.pathColor}10`
+                                }}
+                            >
+                                <div className="flex items-start justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <Zap className="w-4 h-4" style={{ color: recommendations.upgrade.pathColor }} />
+                                            <span className="text-xs font-medium" style={{ color: recommendations.upgrade.pathColor }}>
+                                                Recommended Upgrade
+                                            </span>
+                                        </div>
+                                        <h3 className="font-semibold text-foreground">
+                                            {recommendations.upgrade.title}
+                                        </h3>
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                            {recommendations.upgrade.path} · {recommendations.upgrade.description}
+                                        </p>
                                     </div>
-                                    <h3 className="font-semibold text-foreground">
-                                        Morning Ritual Protocol
-                                    </h3>
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                        Rooting Down · Unlocks 3 quests
-                                    </p>
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        style={{ borderColor: `${recommendations.upgrade.pathColor}60`, color: recommendations.upgrade.pathColor }}
+                                        className="hover:opacity-80"
+                                        onClick={() => navigate("/game-legacy")}
+                                    >
+                                        View
+                                    </Button>
                                 </div>
-                                <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
-                                    onClick={() => navigate("/game-legacy")}
-                                >
-                                    View
-                                </Button>
                             </div>
-                        </div>
+                        ) : null}
                     </div>
 
                     {/* 🗺️ EXPLORE */}
