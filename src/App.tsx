@@ -66,10 +66,9 @@ const App = () => (
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/game" element={<CharacterHub />} />
-            <Route path="/game-legacy" element={<GameHome />} />
+            <Route path="/game/details" element={<GameHome />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />
-            <Route path="/character" element={<CharacterHub />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
             <Route path="/quality-of-life-map" element={<QolLayout />}>
