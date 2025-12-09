@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import mensCircleIcon from "@/assets/mens-circle-icon.png";
+import mensCircleLogo from "@/assets/mens-circle-logo.jpg";
 
 const PASSWORD = "растениесилы";
 
@@ -73,7 +73,7 @@ const MensCircle = () => {
         </button>
         <div className="max-w-md w-full text-center space-y-8">
           <img
-            src={mensCircleIcon}
+            src={mensCircleLogo}
             alt="Men's Circle"
             className="w-24 h-24 mx-auto mb-6"
           />
@@ -82,7 +82,7 @@ const MensCircle = () => {
             style={{ color: "#E0E4EA" }}
           >
             <BionicText>
-              Вход в этот модуль по приглашению. Введите код доступа, чтобы войти в пространство Мужского круга.
+              Вход на эту страницу по приглашению. Введите код доступа, чтобы войти в пространство Мужского круга.
             </BionicText>
           </p>
 
@@ -125,7 +125,7 @@ const MensCircle = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <img
-            src={mensCircleIcon}
+            src={mensCircleLogo}
             alt="Men's Circle"
             className="w-20 h-20 mx-auto mb-4"
           />

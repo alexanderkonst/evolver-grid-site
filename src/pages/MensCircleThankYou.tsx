@@ -5,7 +5,7 @@ import { ArrowLeft, Calendar, Send, CheckCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import mensCircleIcon from "@/assets/mens-circle-icon.png";
+import mensCircleLogo from "@/assets/mens-circle-logo.jpg";
 
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
     const words = children.split(" ");
@@ -81,7 +81,7 @@ const MensCircleThankYou = () => {
                     </div>
 
                     <img
-                        src={mensCircleIcon}
+                        src={mensCircleLogo}
                         alt="Men's Circle"
                         className="w-16 h-16 mx-auto"
                     />
