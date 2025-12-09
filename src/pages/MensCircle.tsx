@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import mensCircleLogo from "@/assets/mens-circle-logo.jpg";
+// Logo is loaded from Imgur URL
 
 const PASSWORD = "растениесилы";
 
@@ -73,9 +73,9 @@ const MensCircle = () => {
         </button>
         <div className="max-w-md w-full text-center space-y-8">
           <img
-            src={mensCircleLogo}
+            src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-24 h-24 mx-auto mb-6"
+            className="w-32 h-32 mx-auto mb-6 object-contain"
           />
           <p
             className="text-lg font-serif leading-relaxed"
@@ -125,9 +125,9 @@ const MensCircle = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <img
-            src={mensCircleLogo}
+            src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-20 h-20 mx-auto mb-4"
+            className="w-28 h-28 mx-auto mb-4 object-contain"
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
             <BionicText>МУЖСКОЙ КРУГ С КАННАБИСОМ</BionicText>

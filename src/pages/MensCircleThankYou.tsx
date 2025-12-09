@@ -5,7 +5,7 @@ import { ArrowLeft, Calendar, Send, CheckCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import mensCircleLogo from "@/assets/mens-circle-logo.jpg";
+// Logo is loaded from Imgur URL
 
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
     const words = children.split(" ");
@@ -81,9 +81,9 @@ const MensCircleThankYou = () => {
                     </div>
 
                     <img
-                        src={mensCircleLogo}
+                        src="https://i.imgur.com/NGSxNw8.png"
                         alt="Men's Circle"
-                        className="w-16 h-16 mx-auto"
+                        className="w-24 h-24 mx-auto object-contain"
                     />
 
                     <h1 className="text-3xl md:text-4xl leading-tight">
