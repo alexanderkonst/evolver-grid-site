@@ -251,8 +251,7 @@ const MensCircle = () => {
                   color: "#041a2f"
                 }}
                 onClick={() => {
-                  // TODO: Add Stripe payment link for $33
-                  window.open("#", "_blank");
+                  window.open("https://buy.stripe.com/fZu14ndUMfSHgOJcLmdEs0u", "_blank");
                 }}
               >
                 <BionicText>$33 в месяц</BionicText>
@@ -271,8 +270,7 @@ const MensCircle = () => {
                   color: "#041a2f"
                 }}
                 onClick={() => {
-                  // TODO: Add Stripe payment link for $100
-                  window.open("#", "_blank");
+                  window.open("https://buy.stripe.com/28E14n4kc21R8id8v6dEs0v", "_blank");
                 }}
               >
                 <BionicText>$100 в месяц</BionicText>
@@ -291,8 +289,7 @@ const MensCircle = () => {
                   color: "#041a2f"
                 }}
                 onClick={() => {
-                  // TODO: Add Stripe payment link for $333
-                  window.open("#", "_blank");
+                  window.open("https://buy.stripe.com/28EeVdg2UeODcyt8v6dEs0w", "_blank");
                 }}
               >
                 <BionicText>$333 в месяц</BionicText>
@@ -340,6 +337,17 @@ const MensCircle = () => {
                 <p><BionicText>Если видим риск для безопасности, дорабатываем предложение и возвращаемся к нему позже.</BionicText></p>
                 <p><BionicText>Если после двух раундов правок единства нет, выносим вопрос на голосование; решение принимается, если за него не менее 2/3 участников.</BionicText></p>
               </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xl font-semibold">
+                <BionicText>Будет ли доступна запись?</BionicText>
+              </h4>
+              <p className="text-lg leading-relaxed opacity-90">
+                <BionicText>
+                  Да, запись будет доступна только для зарегистрированных участников.
+                </BionicText>
+              </p>
             </div>
           </div>
 
