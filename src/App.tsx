@@ -25,6 +25,7 @@ import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
 import GameMap from "./pages/GameMap";
 import CharacterHub from "./pages/CharacterHub";
+import CharacterSnapshot from "./pages/CharacterSnapshot";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
@@ -66,6 +67,8 @@ const App = () => (
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/game" element={<GameHome />} />
+            <Route path="/game/snapshot" element={<CharacterSnapshot />} />
+            <Route path="/game/path/:pathId" element={<SkillTrees />} />
             <Route path="/character" element={<GameHome />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />

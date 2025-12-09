@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,7 +10,22 @@ import { cn } from "@/lib/utils";
 
 const SkillTrees = () => {
     const navigate = useNavigate();
-    const [activeTreeId, setActiveTreeId] = useState(skillTrees[0].id);
+    const { pathId } = useParams<{ pathId: string }>();
+    
+    // Map path IDs to tree IDs
+    const pathToTreeMap: Record<string, string> = {
+        body: 'radical-discipline',
+        mind: 'growing-up',
+        heart: 'cleaning-up',
+        spirit: 'waking-up',
+        uniqueness_work: 'showing-up',
+    };
+    
+    const initialTreeId = pathId && pathToTreeMap[pathId] 
+        ? pathToTreeMap[pathId] 
+        : skillTrees[0].id;
+    
+    const [activeTreeId, setActiveTreeId] = useState(initialTreeId);
 
     const activeTree = skillTrees.find((t) => t.id === activeTreeId) || skillTrees[0];
 

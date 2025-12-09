@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
@@ -23,6 +23,8 @@ type IntentChoice = ExperienceIntent | null;
 type LengthChoice = "any" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 
 const Library = () => {
+  const [searchParams] = useSearchParams();
+  const fromGame = searchParams.get('from') === 'game';
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
   const [search, setSearch] = useState("");
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
@@ -246,9 +248,9 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
         <div className="container mx-auto max-w-6xl">
           {/* Back Button */}
           <div className="mb-6">
-            <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+            <Link to={fromGame ? "/game" : "/"} className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>BACK</BoldText>
+              <BoldText>{fromGame ? "BACK TO GAME" : "BACK"}</BoldText>
             </Link>
           </div>
 
