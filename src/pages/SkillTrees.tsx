@@ -29,7 +29,7 @@ const SkillTrees = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'hsl(220, 40%, 8%)' }}>
+        <div className="min-h-screen flex flex-col bg-background">
             <Navigation />
 
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
@@ -37,7 +37,7 @@ const SkillTrees = () => {
                     {/* Back link */}
                     <button
                         onClick={() => navigate("/game")}
-                        className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-6"
+                        className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         <BoldText>BACK TO CHARACTER</BoldText>
@@ -45,7 +45,7 @@ const SkillTrees = () => {
 
                     {/* Page Header */}
                     <div className="text-center mb-6 sm:mb-8">
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
                             <BoldText>SKILL TREES</BoldText>
                         </h1>
                         <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base px-2">
@@ -94,13 +94,12 @@ const SkillTrees = () => {
                         >
                             {activeTree.name}
                         </h2>
-                        <p className="text-xs sm:text-sm text-slate-400">{activeTree.tagline}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">{activeTree.tagline}</p>
                     </div>
 
                     {/* Skill Tree Visualization */}
                     <div
-                        className="relative w-full aspect-square max-w-2xl mx-auto rounded-xl border overflow-hidden"
-                        style={{ backgroundColor: 'hsl(220, 35%, 10%)', borderColor: 'hsl(220, 30%, 20%)' }}
+                        className="relative w-full aspect-square max-w-2xl mx-auto rounded-xl border border-border overflow-hidden bg-muted/20"
                     >
                         <SkillTree
                             tree={activeTree}
@@ -114,7 +113,7 @@ const SkillTrees = () => {
 
                     {/* Tree Description */}
                     <div className="text-center mt-6 sm:mt-8 max-w-xl mx-auto px-2">
-                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                             {activeTree.description}
                         </p>
                     </div>
