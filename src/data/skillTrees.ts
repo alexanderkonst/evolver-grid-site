@@ -1,9 +1,9 @@
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 
 // Custom icons
-import wakingUpIcon from "@/assets/skill-tree-waking-up.png";
-import growingUpIcon from "@/assets/skill-tree-growing-up.png";
-import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.png";
+import wakingUpIcon from "@/assets/skill-tree-waking-up.jpg";
+import growingUpIcon from "@/assets/skill-tree-growing-up.jpg";
+import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.jpg";
 
 // Types
 export interface SkillNode {
