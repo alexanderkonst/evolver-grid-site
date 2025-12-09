@@ -15,17 +15,16 @@ const animationStyles = `
     50% { filter: drop-shadow(0 0 40px rgba(100, 200, 255, 0.6)); }
   }
   
-  @keyframes grain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -10%); }
-    20% { transform: translate(-15%, 5%); }
-    30% { transform: translate(7%, -25%); }
-    40% { transform: translate(-5%, 25%); }
-    50% { transform: translate(-15%, 10%); }
-    60% { transform: translate(15%, 0%); }
-    70% { transform: translate(0%, 15%); }
-    80% { transform: translate(3%, 35%); }
-    90% { transform: translate(-10%, 10%); }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+    25% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+    50% { transform: translateY(-10px) translateX(-5px); opacity: 0.5; }
+    75% { transform: translateY(-30px) translateX(5px); opacity: 0.9; }
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
   }
   
   @keyframes fadeInUp {
@@ -62,19 +61,48 @@ const animationStyles = `
     transform: scale(1.03);
     box-shadow: 0 0 30px rgba(224, 228, 234, 0.4);
   }
+  
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(100,200,255,0.3) 100%);
+    border-radius: 50%;
+    animation: twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+  }
 `;
 
-// Film Grain Overlay Component
-const FilmGrain = () => (
-  <div
-    className="pointer-events-none fixed inset-0 z-50"
-    style={{
-      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-      opacity: 0.03,
-      animation: 'grain 8s steps(10) infinite',
-    }}
-  />
-);
+// Floating Stars Overlay Component
+const FloatingStars = () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 5,
+  }));
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-10 overflow-hidden">
+      {stars.map((star) => (
+        <div
+          key={star.id}
+          className="star"
+          style={{
+            left: star.left,
+            top: star.top,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            '--twinkle-duration': `${star.duration}s`,
+            '--twinkle-delay': `${star.delay}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+};
 
 // Scroll fade-in hook
 const useFadeInOnScroll = () => {
@@ -216,8 +244,8 @@ const MensCircle = () => {
       {/* Inject animation styles */}
       <style dangerouslySetInnerHTML={{ __html: animationStyles }} />
 
-      {/* Film Grain Overlay */}
-      <FilmGrain />
+      {/* Floating Stars Overlay */}
+      <FloatingStars />
 
       {/* Radial Gradient Overlay for depth */}
       <div
