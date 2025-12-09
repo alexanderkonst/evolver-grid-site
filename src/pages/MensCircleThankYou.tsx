@@ -83,7 +83,7 @@ const MensCircleThankYou = () => {
                     <img
                         src="https://i.imgur.com/NGSxNw8.png"
                         alt="Men's Circle"
-                        className="w-24 h-24 mx-auto object-contain"
+                        className="w-48 h-48 mx-auto object-contain"
                     />
 
                     <h1 className="text-3xl md:text-4xl leading-tight">

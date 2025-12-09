@@ -75,7 +75,7 @@ const MensCircle = () => {
           <img
             src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-32 h-32 mx-auto mb-6 object-contain"
+            className="w-64 h-64 mx-auto mb-6 object-contain"
           />
           <p
             className="text-lg font-serif leading-relaxed"
@@ -127,7 +127,7 @@ const MensCircle = () => {
           <img
             src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-28 h-28 mx-auto mb-4 object-contain"
+            className="w-56 h-56 mx-auto mb-4 object-contain"
           />
           <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
             <BionicText>МУЖСКОЙ КРУГ С КАННАБИСОМ</BionicText>
