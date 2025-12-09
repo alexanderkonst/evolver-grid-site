@@ -173,6 +173,7 @@ const MensCircle = () => {
 
           <div className="space-y-4 text-lg leading-relaxed opacity-90">
             <p><BionicText>Дата первого круга: 4 января</BionicText></p>
+            <p><BionicText>Время: 11 вечера по Бали · 10 утра по Амстердаму · 7 утра по Сан-Франциско</BionicText></p>
             <p><BionicText>Длительность: 2 часа</BionicText></p>
             <p><BionicText>Частота: по умолчанию раз в месяц, можем поменять вместе на первом круге.</BionicText></p>
           </div>
