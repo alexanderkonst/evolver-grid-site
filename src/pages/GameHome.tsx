@@ -133,58 +133,59 @@ const GameHome = () => {
       const id = await getOrCreateGameProfileId();
       setProfileId(id);
 
-      const { data: profileData, error: profileError } = await supabase
-        .from('game_profiles')
-        .select('*')
-        .eq('id', id)
-        .maybeSingle();
+      // Parallelize the main profile fetch with upgrades fetch
+      const [profileResult, masteryData] = await Promise.all([
+        supabase
+          .from('game_profiles')
+          .select('*')
+          .eq('id', id)
+          .maybeSingle(),
+        getUpgradesByBranch('uniqueness_work', 'mastery_of_genius'),
+      ]);
 
-      if (profileError) throw profileError;
+      if (profileResult.error) throw profileResult.error;
+      const profileData = profileResult.data;
       if (!profileData) return;
 
       setProfile(profileData);
-
-      // Load ZoG snapshot
-      if (profileData.last_zog_snapshot_id) {
-        const { data: zogData } = await supabase
-          .from('zog_snapshots')
-          .select('*')
-          .eq('id', profileData.last_zog_snapshot_id)
-          .maybeSingle();
-
-        if (zogData) {
-          setZogSnapshot({
-            id: zogData.id,
-            archetype_title: zogData.archetype_title,
-            core_pattern: zogData.core_pattern,
-            top_three_talents: Array.isArray(zogData.top_three_talents)
-              ? zogData.top_three_talents as string[]
-              : [],
-          });
-        }
-      }
-
-      // Load QoL snapshot
-      if (profileData.last_qol_snapshot_id) {
-        const { data: qolData } = await supabase
-          .from('qol_snapshots')
-          .select('*')
-          .eq('id', profileData.last_qol_snapshot_id)
-          .maybeSingle();
-
-        if (qolData) {
-          setCurrentQolSnapshot(qolData);
-          const suggestions = getSuggestedPractices(LIBRARY_ITEMS, qolData);
-          setSuggestedPractices(suggestions);
-        }
-      }
-
-      // Load upgrades and find next recommended
-      const masteryData = await getUpgradesByBranch('uniqueness_work', 'mastery_of_genius');
       setMasteryUpgrades(masteryData);
 
-      const playerUpgradesData = await getPlayerUpgrades(id);
-      const completedCodes = new Set(playerUpgradesData.map(pu => pu.code));
+      // Now parallelize snapshot fetches and player upgrades
+      const zogPromise = profileData.last_zog_snapshot_id
+        ? supabase.from('zog_snapshots').select('*').eq('id', profileData.last_zog_snapshot_id).maybeSingle()
+        : Promise.resolve({ data: null, error: null });
+
+      const qolPromise = profileData.last_qol_snapshot_id
+        ? supabase.from('qol_snapshots').select('*').eq('id', profileData.last_qol_snapshot_id).maybeSingle()
+        : Promise.resolve({ data: null, error: null });
+
+      const [zogResult, qolResult, playerUpgradesData] = await Promise.all([
+        zogPromise,
+        qolPromise,
+        getPlayerUpgrades(id),
+      ]);
+
+      // Process ZoG snapshot
+      if (zogResult?.data) {
+        setZogSnapshot({
+          id: zogResult.data.id,
+          archetype_title: zogResult.data.archetype_title,
+          core_pattern: zogResult.data.core_pattern,
+          top_three_talents: Array.isArray(zogResult.data.top_three_talents)
+            ? zogResult.data.top_three_talents as string[]
+            : [],
+        });
+      }
+
+      // Process QoL snapshot
+      if (qolResult?.data) {
+        setCurrentQolSnapshot(qolResult.data);
+        const suggestions = getSuggestedPractices(LIBRARY_ITEMS, qolResult.data);
+        setSuggestedPractices(suggestions);
+      }
+
+      // Process player upgrades
+      const completedCodes = new Set<string>((playerUpgradesData || []).map((pu: any) => pu.code));
       setCompletedUpgradeCodes(completedCodes);
 
       // Find next uncompleted upgrade
@@ -195,7 +196,7 @@ const GameHome = () => {
       if (profileData.last_zog_snapshot_id && !completedCodes.has('zog_assessment_completed')) {
         await completeUpgrade(id, 'zog_assessment_completed');
         completedCodes.add('zog_assessment_completed');
-        setCompletedUpgradeCodes(new Set(completedCodes));
+        setCompletedUpgradeCodes(new Set<string>(completedCodes));
       }
 
     } catch (err) {
@@ -585,23 +586,35 @@ const GameHome = () => {
                         
                         return (
                           <>
-                            <div className="grid grid-cols-4 gap-2 mb-3">
+                            <div className="grid grid-cols-2 gap-2 mb-3">
                               {domainEntries.map(({ key, id }) => {
                                 const stageValue = currentQolSnapshot[key as keyof QolSnapshot] as number;
                                 const info = getDomainStageInfo(id, stageValue);
-                                const isLowest = stageValue === minValue;
-                                const isHighest = stageValue === maxValue && stageValue !== minValue;
+                                const isLowest = stageValue === minValue && minValue !== maxValue;
+                                const isHighest = stageValue === maxValue && minValue !== maxValue;
                                 
                                 return (
                                   <div 
                                     key={id} 
-                                    className={`rounded-lg p-2 text-center bg-slate-100 transition-all ${
-                                      isLowest ? 'shadow-[0_0_12px_rgba(239,68,68,0.4)]' : 
-                                      isHighest ? 'shadow-[0_0_12px_rgba(34,197,94,0.4)]' : ''
+                                    className={`rounded-lg p-2.5 transition-all ${
+                                      isLowest ? 'bg-red-50 border border-red-200' : 
+                                      isHighest ? 'bg-emerald-50 border border-emerald-200' : 
+                                      'bg-slate-100 border border-transparent'
                                     }`}
                                   >
-                                    <p className="text-[10px] text-slate-500 truncate">{info.name}</p>
-                                    <p className="text-lg font-bold text-slate-900">{stageValue}</p>
+                                    <div className="flex items-center justify-between mb-0.5">
+                                      <p className="text-xs font-semibold text-slate-800">{info.name}</p>
+                                      <p className="text-xs text-slate-500">{stageValue}/10</p>
+                                    </div>
+                                    <p className={`text-[10px] leading-tight ${isLowest ? 'text-red-600' : isHighest ? 'text-emerald-600' : 'text-slate-500'}`}>
+                                      {info.title}
+                                    </p>
+                                    {isLowest && (
+                                      <span className="text-[9px] text-red-500 font-medium">↓ needs attention</span>
+                                    )}
+                                    {isHighest && (
+                                      <span className="text-[9px] text-emerald-600 font-medium">✓ strength</span>
+                                    )}
                                   </div>
                                 );
                               })}

@@ -175,11 +175,11 @@ const CharacterSnapshot: React.FC = () => {
   const hasAnyData = zogSnapshot || qolSnapshot || multipleIntelligences || personalityTests;
 
   // Calculate highest and lowest domains for highlighting
-  const getHighlightClass = (domainId: string): string => {
-    if (!qolSnapshot) return '';
+  const getDomainStyles = (domainId: string): { className: string; label: string | null } => {
+    if (!qolSnapshot) return { className: '', label: null };
     
     const stageKey = DOMAIN_TO_STAGE_KEY[domainId];
-    if (!stageKey) return '';
+    if (!stageKey) return { className: '', label: null };
     
     const values = Object.values(DOMAIN_TO_STAGE_KEY).map(key => qolSnapshot[key] || 0);
     const currentValue = qolSnapshot[stageKey] || 0;
@@ -187,12 +187,18 @@ const CharacterSnapshot: React.FC = () => {
     const maxValue = Math.max(...values);
     
     if (currentValue === minValue && minValue !== maxValue) {
-      return 'shadow-[0_0_12px_rgba(239,68,68,0.5)] ring-2 ring-red-200';
+      return { 
+        className: 'bg-red-50 border-red-200', 
+        label: '↓ needs attention' 
+      };
     }
     if (currentValue === maxValue && minValue !== maxValue) {
-      return 'shadow-[0_0_12px_rgba(34,197,94,0.5)] ring-2 ring-emerald-200';
+      return { 
+        className: 'bg-emerald-50 border-emerald-200', 
+        label: '✓ strength' 
+      };
     }
-    return '';
+    return { className: 'bg-muted/50 border-transparent', label: null };
   };
 
   return (
@@ -210,7 +216,7 @@ const CharacterSnapshot: React.FC = () => {
             {firstName ? `${firstName}'s Character` : 'Your Character'} · Full Snapshot
           </h1>
           <p className="text-muted-foreground">
-            Everything we know about you in one place
+            Your self-understanding in one place
           </p>
           <Button variant="ghost" size="sm" onClick={loadCharacterData} className="mt-2">
             <RefreshCw className="w-4 h-4 mr-2" />
@@ -294,31 +300,30 @@ const CharacterSnapshot: React.FC = () => {
                     {Object.entries(DOMAIN_TO_STAGE_KEY).map(([domainId, stageKey]) => {
                       const value = qolSnapshot[stageKey] || 0;
                       const info = getDomainInfo(domainId, value);
-                      const highlightClass = getHighlightClass(domainId);
+                      const { className, label } = getDomainStyles(domainId);
                       
                       return (
                         <div 
                           key={domainId} 
-                          className={`p-4 bg-muted/50 rounded-lg transition-all ${highlightClass}`}
+                          className={`p-4 rounded-lg border transition-all ${className}`}
                         >
                           <div className="flex items-center justify-between mb-2">
                             <p className="text-sm font-semibold text-foreground">{info.name}</p>
                             <p className="text-sm text-muted-foreground">{value}/10</p>
                           </div>
-                          <p className="text-xs text-foreground mb-1">
-                            <span className="font-medium">{info.currentTitle}</span>
+                          <p className="text-sm text-foreground font-medium mb-1">
+                            {info.currentTitle}
                           </p>
                           {value < 10 && (
                             <p className="text-xs text-muted-foreground">
                               → growing into <span className="italic">{info.nextTitle}</span>
                             </p>
                           )}
-                          <div className="w-full h-1.5 bg-muted rounded-full mt-2">
-                            <div 
-                              className="h-full bg-emerald-500 rounded-full transition-all"
-                              style={{ width: `${(value / 10) * 100}%` }}
-                            />
-                          </div>
+                          {label && (
+                            <p className={`text-xs mt-2 font-medium ${label.startsWith('↓') ? 'text-red-600' : 'text-emerald-600'}`}>
+                              {label}
+                            </p>
+                          )}
                         </div>
                       );
                     })}
@@ -371,9 +376,28 @@ const CharacterSnapshot: React.FC = () => {
                   {personalityTests.enneagram && (
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Enneagram</p>
-                      <p className="font-semibold">
+                      <p className="font-semibold mb-3">
                         Type {personalityTests.enneagram.primary_type}: {personalityTests.enneagram.primary_name}
                       </p>
+                      {personalityTests.enneagram.scores && (
+                        <div className="space-y-1.5">
+                          {Object.entries(personalityTests.enneagram.scores)
+                            .map(([key, value]) => ({
+                              type: parseInt(key.replace('type_', '')),
+                              score: value as number
+                            }))
+                            .sort((a, b) => b.score - a.score)
+                            .map(({ type, score }) => (
+                              <div key={type} className="flex items-center gap-2 text-xs">
+                                <span className="w-14 text-muted-foreground">Type {type}</span>
+                                <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                                  <div className="h-full bg-primary" style={{ width: `${(score / 30) * 100}%` }} />
+                                </div>
+                                <span className="w-6 text-right text-foreground">{score}</span>
+                              </div>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   )}
                   {personalityTests['16personalities'] && (
@@ -382,7 +406,20 @@ const CharacterSnapshot: React.FC = () => {
                       <p className="font-semibold">
                         {personalityTests['16personalities'].type_code} – {personalityTests['16personalities'].type_name}
                       </p>
-                      <p className="text-sm text-muted-foreground">{personalityTests['16personalities'].variant}</p>
+                      <p className="text-sm text-muted-foreground mb-3">{personalityTests['16personalities'].variant}</p>
+                      {personalityTests['16personalities'].traits && (
+                        <div className="space-y-1.5">
+                          {Object.entries(personalityTests['16personalities'].traits).map(([trait, value]) => (
+                            <div key={trait} className="flex items-center gap-2 text-xs">
+                              <span className="w-20 text-muted-foreground capitalize">{trait}</span>
+                              <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                                <div className="h-full bg-primary" style={{ width: `${value as number}%` }} />
+                              </div>
+                              <span className="w-10 text-right text-foreground">{value as number}%</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                   {personalityTests.human_design && (
@@ -391,6 +428,9 @@ const CharacterSnapshot: React.FC = () => {
                       <p className="font-semibold">{personalityTests.human_design.type}</p>
                       <p className="text-sm text-muted-foreground">
                         {personalityTests.human_design.strategy} · {personalityTests.human_design.authority}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Profile: {personalityTests.human_design.profile}
                       </p>
                     </div>
                   )}
