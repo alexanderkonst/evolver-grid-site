@@ -243,9 +243,9 @@ const MensCircle = () => {
 
           <div className="grid gap-6">
             {/* $33 Option */}
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                className="px-10 py-6 text-xl font-serif rounded-full"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -256,15 +256,12 @@ const MensCircle = () => {
               >
                 <BionicText>$33 в месяц</BionicText>
               </Button>
-              <p className="text-xl">
-                <BionicText>Для тех, кто в процессе перехода</BionicText>
-              </p>
             </div>
 
             {/* $100 Option */}
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                className="px-10 py-6 text-xl font-serif rounded-full"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -275,15 +272,12 @@ const MensCircle = () => {
               >
                 <BionicText>$100 в месяц</BionicText>
               </Button>
-              <p className="text-xl">
-                <BionicText>Полная трансформационная ценность</BionicText>
-              </p>
             </div>
 
             {/* $333 Option */}
-            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <div className="text-center">
               <Button
-                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                className="px-10 py-6 text-xl font-serif rounded-full"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -294,9 +288,6 @@ const MensCircle = () => {
               >
                 <BionicText>$333 в месяц</BionicText>
               </Button>
-              <p className="text-xl">
-                <BionicText>Стать бенефактором</BionicText>
-              </p>
             </div>
           </div>
 
@@ -322,7 +313,7 @@ const MensCircle = () => {
               </h4>
               <p className="text-lg leading-relaxed opacity-90">
                 <BionicText>
-                  Рекомендация — примерно 30–50% от вашей обычной дозы. Каждый сам отвечает за выбранную дозу, своё здоровье и соблюдение законов своей страны.
+                  Рекомендация — примерно 30–50% от вашей обычной дозы. Каждый сам отвечает за свои отношения с растением.
                 </BionicText>
               </p>
             </div>
@@ -367,7 +358,18 @@ const MensCircle = () => {
         </div>
       </section>
 
-      <Footer />
+      {/* Second Logo before Footer */}
+      <section className="py-16 px-6 text-center">
+        <img
+          src="https://i.imgur.com/EH24PWf.png"
+          alt="Men's Circle"
+          className="w-56 h-56 mx-auto object-contain"
+        />
+      </section>
+
+      <div className="bg-white">
+        <Footer />
+      </div>
       <ScrollToTop />
     </div>
   );
