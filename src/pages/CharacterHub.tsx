@@ -8,6 +8,7 @@ import CharacterTile from "@/components/CharacterTile";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { getPlayerUpgrades } from "@/lib/upgradeSystem";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const CharacterHub = () => {
     const [geniusOffer, setGeniusOffer] = useState<any>(null);
     const [soulColors, setSoulColors] = useState<string[] | null>(null);
     const [generatingColors, setGeneratingColors] = useState(false);
+    const [upgradeCount, setUpgradeCount] = useState(0);
 
     useEffect(() => {
         loadCharacterData();
@@ -66,6 +68,10 @@ const CharacterHub = () => {
                         .single();
                     setQolSnapshot(qolData);
                 }
+
+                // Get player's completed upgrades count
+                const upgrades = await getPlayerUpgrades(profileData.id);
+                setUpgradeCount(upgrades.length);
             }
 
             // Get Genius Offer status
@@ -287,9 +293,12 @@ const CharacterHub = () => {
                             title="Upgrades"
                             icon={<Zap className="w-full h-full" />}
                             color="#f72585"
+                            progress={Math.min(100, upgradeCount * 10)}
                             onClick={() => navigate("/game")}
                         >
-                            <span className="text-xs text-slate-400">Path powers</span>
+                            <span className="text-lg font-bold" style={{ color: "#f72585" }}>
+                                {upgradeCount}
+                            </span>
                         </CharacterTile>
                     </div>
 
