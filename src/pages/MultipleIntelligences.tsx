@@ -99,18 +99,41 @@ const MultipleIntelligences = () => {
     setIsSubmitting(true);
 
     try {
-      const orderedIntelligences = ranking.map((i, idx) => ({
-        key: i.id,
-        name: i.name,
-        rank: idx + 1
-      }));
+      const orderedIntelligenceNames = ranking.map((i) => i.name);
 
-      // Save to legacy table
+      // Save to multiple_intelligences_results table (for CharacterSnapshot)
+      const { error: miError } = await supabase
+        .from("multiple_intelligences_results")
+        .upsert({
+          user_id: user.id,
+          ordered_intelligences: orderedIntelligenceNames,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: "user_id" });
+
+      if (miError) {
+        console.error("Error saving to multiple_intelligences_results:", miError);
+      }
+
+      // Save to legacy table for backwards compatibility
       await supabase.from("multiple_intelligences_assessments").insert({
         name: user.email || "User",
         email: user.email || "",
         ranking: ranking.map((i, idx) => ({ rank: idx + 1, id: i.id, name: i.name })),
       });
+
+      // Update game_profiles to mark MI completed
+      const { data: profile } = await supabase
+        .from("game_profiles")
+        .select("id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (profile) {
+        await supabase
+          .from("game_profiles")
+          .update({ multiple_intelligences_completed: true })
+          .eq("id", profile.id);
+      }
 
       // Update wizard progress if returning to genius offer
       if (returnTo === "genius-offer") {
