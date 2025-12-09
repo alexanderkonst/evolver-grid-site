@@ -178,48 +178,135 @@ const MensCircle = () => {
             <p><BionicText>Частота: по умолчанию раз в месяц, можем поменять вместе на первом круге.</BionicText></p>
           </div>
 
-          <ul className="space-y-3 text-lg leading-relaxed opacity-90 list-disc list-inside mt-8">
-            <li><BionicText>в начале я провожу короткую медитацию;</BionicText></li>
-            <li><BionicText>затем — живой разговор и то, что рождается в моменте, никаких других правил;</BionicText></li>
-            <li><BionicText>в конце — ещё одна короткая медитация;</BionicText></li>
-            <li><BionicText>правила и периодичность встреч дорабатываем вместе.</BionicText></li>
-          </ul>
+          {/* Beautiful cards instead of bullet points */}
+          <div className="grid gap-6 mt-12">
+            <div className="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🧘</span>
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-2">
+                    <BionicText>Медитация</BionicText>
+                  </h4>
+                  <p className="text-lg opacity-90">
+                    <BionicText>В начале и в конце я проведу для нас медитацию, чтобы погрузиться глубже в себя и отпустить груз тревог.</BionicText>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">💬</span>
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-2">
+                    <BionicText>Живой разговор</BionicText>
+                  </h4>
+                  <p className="text-lg opacity-90">
+                    <BionicText>Затем будет живой разговор и то, что рождается в моменте.</BionicText>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🤝</span>
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-2">
+                    <BionicText>Вместе создаём</BionicText>
+                  </h4>
+                  <p className="text-lg opacity-90">
+                    <BionicText>Правила и периодичность встреч дорабатываем вместе.</BionicText>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Contribution Section */}
-      <section className="py-20 px-6">
+      {/* Join Section - Contribution with Stripe Buttons */}
+      <section id="join-section" className="py-20 px-6">
         <div className="max-w-3xl mx-auto space-y-8">
-          <h3 className="text-2xl md:text-3xl text-center mb-8">
-            <BionicText>ВКЛАД ЗА УЧАСТИЕ</BionicText>
+          <h3 className="text-2xl md:text-3xl text-center mb-4">
+            <BionicText>ЗАПИСАТЬСЯ НА ПЕРВЫЙ КРУГ</BionicText>
           </h3>
-
-          <p className="text-lg leading-relaxed opacity-90 text-center">
-            <BionicText>
-              За участие в круге я прошу ежемесячный вклад — это поддерживает мою работу по созданию, удержанию и организации поля, а также даёт возможность делать стипендии для других.
-            </BionicText>
+          <p className="text-xl text-center opacity-90 mb-12">
+            <BionicText>Выберите свой вклад за участие</BionicText>
           </p>
 
-          <div className="space-y-6 mt-8">
-            <div className="p-6 bg-white/5 rounded-lg border border-white/10">
-              <p className="text-lg">
-                <BionicText>$33 в месяц — для тех, кому важно войти бережно, но оставаться в честном обмене.</BionicText>
+          <div className="grid gap-6">
+            {/* $33 Option */}
+            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+              <Button
+                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                style={{
+                  backgroundColor: "#E0E4EA",
+                  color: "#041a2f"
+                }}
+                onClick={() => {
+                  // TODO: Add Stripe payment link for $33
+                  window.open("#", "_blank");
+                }}
+              >
+                <BionicText>$33 в месяц</BionicText>
+              </Button>
+              <p className="text-xl">
+                <BionicText>Для тех, кто в процессе перехода на свой следующий уровень</BionicText>
               </p>
             </div>
-            <div className="p-6 bg-white/5 rounded-lg border border-white/10">
-              <p className="text-lg">
-                <BionicText>$100 в месяц — сбалансированный обмен за энергию, архитектуру, ведение и организацию круга.</BionicText>
+
+            {/* $100 Option */}
+            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+              <Button
+                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                style={{
+                  backgroundColor: "#E0E4EA",
+                  color: "#041a2f"
+                }}
+                onClick={() => {
+                  // TODO: Add Stripe payment link for $100
+                  window.open("#", "_blank");
+                }}
+              >
+                <BionicText>$100 в месяц</BionicText>
+              </Button>
+              <p className="text-xl">
+                <BionicText>Полная трансформационная ценность</BionicText>
               </p>
             </div>
-            <div className="p-6 bg-white/5 rounded-lg border border-white/10">
-              <p className="text-lg">
-                <BionicText>$333 в месяц — для тех, кто чувствует отклик поддержать меня, круг и стипендии для других участников.</BionicText>
+
+            {/* $333 Option */}
+            <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
+              <Button
+                className="px-10 py-6 text-xl font-serif rounded-full mb-6"
+                style={{
+                  backgroundColor: "#E0E4EA",
+                  color: "#041a2f"
+                }}
+                onClick={() => {
+                  // TODO: Add Stripe payment link for $333
+                  window.open("#", "_blank");
+                }}
+              >
+                <BionicText>$333 в месяц</BionicText>
+              </Button>
+              <p className="text-xl">
+                <BionicText>Стать бенефактором</BionicText>
               </p>
             </div>
           </div>
 
-          <p className="text-lg leading-relaxed opacity-90 text-center mt-8">
-            <BionicText>Выбираете уровень сами, без объяснений.</BionicText>
+          <p className="text-lg leading-relaxed opacity-90 text-center mt-12">
+            <BionicText>
+              Ежемесячный вклад за участие в круге поддерживает мою работу по созданию, удержанию и организации поля, а также даёт возможность делать стипендии для других.
+            </BionicText>
           </p>
         </div>
       </section>
@@ -255,32 +342,15 @@ const MensCircle = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* How to Join Section */}
-      <section id="join-section" className="py-20 px-6">
-        <div className="max-w-3xl mx-auto space-y-8 text-center">
-          <h3 className="text-2xl md:text-3xl mb-8">
-            <BionicText>КАК ПРИСОЕДИНИТЬСЯ</BionicText>
-          </h3>
-
-          <ol className="space-y-4 text-lg leading-relaxed opacity-90 text-left max-w-xl mx-auto list-decimal list-inside">
-            <li><BionicText>Выберите свой уровень ежемесячного вклада.</BionicText></li>
-            <li><BionicText>Оплатите через Stripe по ссылке на этой странице.</BionicText></li>
-            <li><BionicText>Получите письмо / сообщение с подробностями и ссылкой на первый круг.</BionicText></li>
-          </ol>
-
-          <div className="pt-8">
+          {/* CTA Button after FAQ */}
+          <div className="pt-8 text-center">
             <Button
+              onClick={scrollToPayment}
               className="px-8 py-6 text-lg font-serif rounded-full"
               style={{
                 backgroundColor: "#E0E4EA",
                 color: "#041a2f"
-              }}
-              onClick={() => {
-                // TODO: Add Stripe payment link
-                window.open("#", "_blank");
               }}
             >
               <BionicText>Записаться на первый круг</BionicText>
