@@ -176,7 +176,7 @@ const MultipleIntelligences = () => {
               <BoldText>SAVED</BoldText>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Your Multiple Intelligences ranking has been saved.
+              Your Multiple Intelligences ranking has been added to your "Who I Am and Where I Am" snapshot.
             </p>
             <div className="p-4 bg-secondary/30 rounded-xl text-left">
               <p className="text-sm font-semibold mb-2">Your Top 3:</p>
@@ -196,12 +196,10 @@ const MultipleIntelligences = () => {
                 <BoldText>CONTINUE TO GENIUS OFFER CREATION</BoldText>
               </Button>
             ) : (
-              <Link to="/">
-                <Button variant="outline" className="mt-4">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Button>
-              </Link>
+              <Button onClick={() => navigate("/game")} className="mt-4">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Game
+              </Button>
             )}
           </div>
         </div>
