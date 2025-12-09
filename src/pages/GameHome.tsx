@@ -535,10 +535,16 @@ const GameHome = () => {
 
               {/* ===== SECTION 2: CHARACTER SNAPSHOT ===== */}
               <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-slate-600" />
-                  WHERE I AM
-                </h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <Heart className="w-5 h-5 text-slate-600" />
+                    WHO I AM AND WHERE I AM
+                  </h2>
+                  <Button size="sm" onClick={() => navigate('/game/snapshot')}>
+                    <FileText className="w-4 h-4 mr-1" />
+                    View Full Snapshot
+                  </Button>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Character Identity */}
@@ -617,9 +623,6 @@ const GameHome = () => {
                                 );
                               })}
                             </div>
-                            <Button variant="link" size="sm" className="mt-1 p-0 h-auto" onClick={() => navigate('/game/snapshot')}>
-                              View full snapshot →
-                            </Button>
                           </>
                         );
                       })()
@@ -688,29 +691,36 @@ const GameHome = () => {
               <div id="upgrades-section" className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-900 mb-4">Path of Genius Upgrades</h2>
                 <div className="space-y-3">
-                  {masteryUpgrades.map(upgrade => {
+                {masteryUpgrades.map(upgrade => {
                     const isCompleted = completedUpgradeCodes.has(upgrade.code);
-                    // Allow clicking personality tests even when completed (to add more tests)
-                    const isAlwaysClickable = upgrade.code === 'personality_tests_completed';
+                    // Allow clicking personality tests and ZoG assessment even when completed (to update)
+                    const isAlwaysClickable = upgrade.code === 'personality_tests_completed' || upgrade.code === 'zog_assessment_completed';
                     return (
                       <div 
                         key={upgrade.code}
                         className={`rounded-xl border p-4 ${isCompleted ? 'border-emerald-200 bg-emerald-50' : 'border-slate-200 bg-slate-50'}`}
                       >
                         <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <p className={`font-semibold ${isCompleted ? 'text-emerald-800' : 'text-slate-900'}`}>
-                              {upgrade.title}
-                            </p>
-                            <p className="text-xs text-slate-500">+{upgrade.xp_reward} XP</p>
+                          <div className="flex-1 flex items-center gap-2">
+                            {isCompleted && (
+                              <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                            )}
+                            <div>
+                              <p className={`font-semibold ${isCompleted ? 'text-emerald-800' : 'text-slate-900'}`}>
+                                {upgrade.title}
+                              </p>
+                              <p className="text-xs text-slate-500">+{upgrade.xp_reward} XP</p>
+                            </div>
                           </div>
-                          {isCompleted && !isAlwaysClickable ? (
-                            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                          ) : (
-                            <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
-                              {isCompleted ? 'Add More' : 'Start'}
+                          {isCompleted && isAlwaysClickable ? (
+                            <Button size="sm" variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-100" onClick={() => handleUpgradeAction(upgrade)}>
+                              Update
                             </Button>
-                          )}
+                          ) : !isCompleted ? (
+                            <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
+                              Start
+                            </Button>
+                          ) : null}
                         </div>
                       </div>
                     );
