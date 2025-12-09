@@ -3,6 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Upload, Loader2, Check, AlertCircle, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { completeUpgrade } from "@/lib/upgradeSystem";
+import { useToast } from "@/hooks/use-toast";
 
 interface PersonalityTestUploadModalProps {
     open: boolean;
@@ -19,12 +22,14 @@ const PersonalityTestUploadModal = ({
     testName,
     onSuccess,
 }: PersonalityTestUploadModalProps) => {
+    const { toast } = useToast();
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [analyzing, setAnalyzing] = useState(false);
     const [results, setResults] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
     const [saved, setSaved] = useState(false);
+    const [saving, setSaving] = useState(false);
 
     const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0];
@@ -92,11 +97,46 @@ const PersonalityTestUploadModal = ({
     const handleSave = async () => {
         if (!results) return;
 
+        setSaving(true);
+        setError(null);
+
         try {
-            // Just call onSuccess with results - personality_tests column doesn't exist yet
-            // When the column is added, this can be expanded to save to DB
+            const profileId = await getOrCreateGameProfileId();
+            
+            // Get existing personality tests from profile
+            const { data: profile, error: fetchError } = await supabase
+                .from('game_profiles')
+                .select('personality_tests')
+                .eq('id', profileId)
+                .single();
+            
+            if (fetchError) throw fetchError;
+            
+            // Merge with existing tests
+            const existingTests = (profile?.personality_tests as Record<string, any>) || {};
+            const updatedTests = {
+                ...existingTests,
+                [testType]: results
+            };
+            
+            // Save to database
+            const { error: updateError } = await supabase
+                .from('game_profiles')
+                .update({ personality_tests: updatedTests })
+                .eq('id', profileId);
+            
+            if (updateError) throw updateError;
+            
+            // Complete the upgrade if this is the first test (or any test)
+            await completeUpgrade(profileId, 'personality_tests_completed');
+            
             setSaved(true);
             onSuccess?.(results);
+            
+            toast({
+                title: "Results saved!",
+                description: "+20 XP for exploring your inner landscape.",
+            });
 
             // Close after brief delay to show success
             setTimeout(() => {
@@ -105,6 +145,8 @@ const PersonalityTestUploadModal = ({
         } catch (err: any) {
             console.error("Save error:", err);
             setError(err.message || "Failed to save results");
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -114,6 +156,7 @@ const PersonalityTestUploadModal = ({
         setResults(null);
         setError(null);
         setSaved(false);
+        setSaving(false);
         setAnalyzing(false);
         onClose();
     };
@@ -128,23 +171,23 @@ const PersonalityTestUploadModal = ({
 
         return (
             <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-purple-500/20 border border-purple-500/30">
-                    <div className="text-lg font-semibold text-purple-300">
+                <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                    <div className="text-lg font-semibold text-foreground">
                         Type {data.primary_type} - {data.primary_name}
                     </div>
-                    <div className="text-sm text-slate-400">Primary Type</div>
+                    <div className="text-sm text-muted-foreground">Primary Type</div>
                 </div>
                 <div className="space-y-2">
                     {sortedScores.map(({ type, score }) => (
                         <div key={type} className="flex items-center gap-2 text-sm">
-                            <span className="w-20 text-slate-400">Type {type}:</span>
-                            <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <span className="w-20 text-muted-foreground">Type {type}:</span>
+                            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-purple-500"
+                                    className="h-full bg-primary"
                                     style={{ width: `${(score / 30) * 100}%` }}
                                 />
                             </div>
-                            <span className="w-8 text-right">{score}</span>
+                            <span className="w-8 text-right text-foreground">{score}</span>
                         </div>
                     ))}
                 </div>
@@ -154,23 +197,23 @@ const PersonalityTestUploadModal = ({
 
     const render16PersonalitiesResults = (data: any) => (
         <div className="space-y-3">
-            <div className="p-3 rounded-lg bg-amber-500/20 border border-amber-500/30">
-                <div className="text-lg font-semibold text-amber-300">
+            <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                <div className="text-lg font-semibold text-foreground">
                     {data.type_code} - {data.type_name}
                 </div>
-                <div className="text-sm text-slate-400">{data.variant} Variant</div>
+                <div className="text-sm text-muted-foreground">{data.variant} Variant</div>
             </div>
             <div className="space-y-2">
                 {Object.entries(data.traits || {}).map(([trait, value]) => (
                     <div key={trait} className="flex items-center gap-2 text-sm">
-                        <span className="w-24 text-slate-400 capitalize">{trait}:</span>
-                        <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                        <span className="w-24 text-muted-foreground capitalize">{trait}:</span>
+                        <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-amber-500"
+                                className="h-full bg-primary"
                                 style={{ width: `${value as number}%` }}
                             />
                         </div>
-                        <span className="w-10 text-right">{value as number}%</span>
+                        <span className="w-10 text-right text-foreground">{value as number}%</span>
                     </div>
                 ))}
             </div>
@@ -179,27 +222,27 @@ const PersonalityTestUploadModal = ({
 
     const renderHumanDesignResults = (data: any) => (
         <div className="space-y-2">
-            <div className="p-3 rounded-lg bg-blue-500/20 border border-blue-500/30">
-                <div className="text-lg font-semibold text-blue-300">{data.type}</div>
-                <div className="text-sm text-slate-400">Profile {data.profile}</div>
+            <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                <div className="text-lg font-semibold text-foreground">{data.type}</div>
+                <div className="text-sm text-muted-foreground">Profile {data.profile}</div>
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="p-2 rounded bg-slate-800">
-                    <div className="text-slate-400">Strategy</div>
-                    <div className="text-white">{data.strategy}</div>
+                <div className="p-2 rounded bg-muted">
+                    <div className="text-muted-foreground text-xs">Strategy</div>
+                    <div className="text-foreground">{data.strategy}</div>
                 </div>
-                <div className="p-2 rounded bg-slate-800">
-                    <div className="text-slate-400">Authority</div>
-                    <div className="text-white">{data.authority}</div>
+                <div className="p-2 rounded bg-muted">
+                    <div className="text-muted-foreground text-xs">Authority</div>
+                    <div className="text-foreground">{data.authority}</div>
                 </div>
-                <div className="p-2 rounded bg-slate-800">
-                    <div className="text-slate-400">Definition</div>
-                    <div className="text-white">{data.definition}</div>
+                <div className="p-2 rounded bg-muted">
+                    <div className="text-muted-foreground text-xs">Definition</div>
+                    <div className="text-foreground">{data.definition}</div>
                 </div>
                 {data.incarnation_cross && (
-                    <div className="p-2 rounded bg-slate-800 col-span-2">
-                        <div className="text-slate-400">Incarnation Cross</div>
-                        <div className="text-white">{data.incarnation_cross}</div>
+                    <div className="p-2 rounded bg-muted col-span-2">
+                        <div className="text-muted-foreground text-xs">Incarnation Cross</div>
+                        <div className="text-foreground">{data.incarnation_cross}</div>
                     </div>
                 )}
             </div>
@@ -223,9 +266,9 @@ const PersonalityTestUploadModal = ({
 
     return (
         <Dialog open={open} onOpenChange={handleClose}>
-            <DialogContent className="max-w-md bg-slate-900 border-slate-700">
+            <DialogContent className="max-w-md bg-card border-border">
                 <DialogHeader>
-                    <DialogTitle className="text-white">
+                    <DialogTitle className="text-foreground">
                         Upload Your {testName} Results
                     </DialogTitle>
                 </DialogHeader>
@@ -236,7 +279,7 @@ const PersonalityTestUploadModal = ({
                         <div
                             onDrop={handleDrop}
                             onDragOver={(e) => e.preventDefault()}
-                            className="relative border-2 border-dashed border-slate-600 rounded-lg p-6 text-center hover:border-slate-500 transition-colors cursor-pointer"
+                            className="relative border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer"
                         >
                             <input
                                 type="file"
@@ -251,19 +294,19 @@ const PersonalityTestUploadModal = ({
                                         alt="Preview"
                                         className="max-h-48 mx-auto rounded"
                                     />
-                                    <p className="text-sm text-slate-400">Click or drop to change</p>
+                                    <p className="text-sm text-muted-foreground">Click or drop to change</p>
                                 </div>
                             ) : (
                                 <div className="space-y-2">
-                                    <Upload className="w-10 h-10 mx-auto text-slate-500" />
-                                    <p className="text-slate-400">Drop screenshot here</p>
-                                    <p className="text-xs text-slate-500">or click to browse</p>
+                                    <Upload className="w-10 h-10 mx-auto text-muted-foreground" />
+                                    <p className="text-foreground">Drop screenshot here</p>
+                                    <p className="text-xs text-muted-foreground">or click to browse</p>
                                 </div>
                             )}
                         </div>
                     ) : (
                         <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-green-400">
+                            <div className="flex items-center gap-2 text-emerald-600">
                                 <Check className="w-5 h-5" />
                                 <span className="font-medium">Results Extracted</span>
                             </div>
@@ -273,7 +316,7 @@ const PersonalityTestUploadModal = ({
 
                     {/* Error display */}
                     {error && (
-                        <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/20 text-red-300">
+                        <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 text-destructive">
                             <AlertCircle className="w-5 h-5 flex-shrink-0" />
                             <span className="text-sm">{error}</span>
                         </div>
@@ -293,7 +336,7 @@ const PersonalityTestUploadModal = ({
                                 <Button
                                     onClick={handleAnalyze}
                                     disabled={!file || analyzing}
-                                    className="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                    className="flex-1"
                                 >
                                     {analyzing ? (
                                         <>
@@ -320,10 +363,15 @@ const PersonalityTestUploadModal = ({
                                 </Button>
                                 <Button
                                     onClick={handleSave}
-                                    disabled={saved}
-                                    className="flex-1 bg-green-600 hover:bg-green-700"
+                                    disabled={saved || saving}
+                                    className="flex-1"
                                 >
-                                    {saved ? (
+                                    {saving ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                            Saving...
+                                        </>
+                                    ) : saved ? (
                                         <>
                                             <Check className="w-4 h-4 mr-2" />
                                             Saved!

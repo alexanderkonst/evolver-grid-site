@@ -607,7 +607,7 @@ const GameHome = () => {
                               })}
                             </div>
                             <Button variant="link" size="sm" className="mt-1 p-0 h-auto" onClick={() => navigate('/game/snapshot')}>
-                              View full map →
+                              View full snapshot →
                             </Button>
                           </>
                         );

@@ -6,8 +6,9 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Sparkles, Target, Brain, Heart, User, Loader2 } from 'lucide-react';
+import { ArrowLeft, Sparkles, Target, Brain, Heart, User, Loader2, RefreshCw } from 'lucide-react';
 import { TALENTS } from '@/modules/zone-of-genius/talents';
+import { DOMAINS } from '@/modules/quality-of-life-map/qolConfig';
 
 interface ZogSnapshot {
   archetype_title: string;
@@ -51,15 +52,16 @@ interface PersonalityTests {
   };
 }
 
-const DOMAIN_LABELS: Record<string, string> = {
-  wealth: 'Wealth',
-  health: 'Health',
-  happiness: 'Happiness',
-  love_relationships: 'Love',
-  impact: 'Impact',
-  growth: 'Growth',
-  social_ties: 'Social',
-  home: 'Home',
+// Map domain IDs to their stage keys
+const DOMAIN_TO_STAGE_KEY: Record<string, keyof QolSnapshot> = {
+  wealth: 'wealth_stage',
+  health: 'health_stage',
+  happiness: 'happiness_stage',
+  love: 'love_relationships_stage',
+  impact: 'impact_stage',
+  growth: 'growth_stage',
+  socialTies: 'social_ties_stage',
+  home: 'home_stage',
 };
 
 const CharacterSnapshot: React.FC = () => {
@@ -76,6 +78,7 @@ const CharacterSnapshot: React.FC = () => {
   }, []);
 
   const loadCharacterData = async () => {
+    setLoading(true);
     try {
       const profileId = await getOrCreateGameProfileId();
       
@@ -147,6 +150,20 @@ const CharacterSnapshot: React.FC = () => {
     return talent?.name || `Talent ${id}`;
   };
 
+  const getDomainInfo = (domainId: string, stageValue: number) => {
+    const domain = DOMAINS.find(d => d.id === domainId);
+    if (!domain) return { name: domainId, currentTitle: '', nextTitle: '' };
+    
+    const currentStage = domain.stages.find(s => s.id === stageValue);
+    const nextStage = domain.stages.find(s => s.id === stageValue + 1);
+    
+    return {
+      name: domain.name,
+      currentTitle: currentStage?.title || `Stage ${stageValue}`,
+      nextTitle: nextStage?.title || 'Peak',
+    };
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -156,6 +173,27 @@ const CharacterSnapshot: React.FC = () => {
   }
 
   const hasAnyData = zogSnapshot || qolSnapshot || multipleIntelligences || personalityTests;
+
+  // Calculate highest and lowest domains for highlighting
+  const getHighlightClass = (domainId: string): string => {
+    if (!qolSnapshot) return '';
+    
+    const stageKey = DOMAIN_TO_STAGE_KEY[domainId];
+    if (!stageKey) return '';
+    
+    const values = Object.values(DOMAIN_TO_STAGE_KEY).map(key => qolSnapshot[key] || 0);
+    const currentValue = qolSnapshot[stageKey] || 0;
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+    
+    if (currentValue === minValue && minValue !== maxValue) {
+      return 'shadow-[0_0_12px_rgba(239,68,68,0.5)] ring-2 ring-red-200';
+    }
+    if (currentValue === maxValue && minValue !== maxValue) {
+      return 'shadow-[0_0_12px_rgba(34,197,94,0.5)] ring-2 ring-emerald-200';
+    }
+    return '';
+  };
 
   return (
     <div className="min-h-screen">
@@ -174,6 +212,10 @@ const CharacterSnapshot: React.FC = () => {
           <p className="text-muted-foreground">
             Everything we know about you in one place
           </p>
+          <Button variant="ghost" size="sm" onClick={loadCharacterData} className="mt-2">
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Refresh
+          </Button>
         </div>
 
         {!hasAnyData ? (
@@ -238,7 +280,7 @@ const CharacterSnapshot: React.FC = () => {
               </Card>
             )}
 
-            {/* Quality of Life Section */}
+            {/* Quality of Life Section - Enhanced Format */}
             {qolSnapshot && (
               <Card>
                 <CardHeader>
@@ -248,14 +290,29 @@ const CharacterSnapshot: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {Object.entries(DOMAIN_LABELS).map(([key, label]) => {
-                      const stageKey = key === 'love_relationships' ? 'love_relationships_stage' : `${key}_stage`;
-                      const value = qolSnapshot[stageKey as keyof QolSnapshot] || 0;
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {Object.entries(DOMAIN_TO_STAGE_KEY).map(([domainId, stageKey]) => {
+                      const value = qolSnapshot[stageKey] || 0;
+                      const info = getDomainInfo(domainId, value);
+                      const highlightClass = getHighlightClass(domainId);
+                      
                       return (
-                        <div key={key} className="text-center p-3 bg-muted/50 rounded-lg">
-                          <p className="text-xs text-muted-foreground mb-1">{label}</p>
-                          <p className="text-2xl font-bold">{value}</p>
+                        <div 
+                          key={domainId} 
+                          className={`p-4 bg-muted/50 rounded-lg transition-all ${highlightClass}`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm font-semibold text-foreground">{info.name}</p>
+                            <p className="text-sm text-muted-foreground">{value}/10</p>
+                          </div>
+                          <p className="text-xs text-foreground mb-1">
+                            <span className="font-medium">{info.currentTitle}</span>
+                          </p>
+                          {value < 10 && (
+                            <p className="text-xs text-muted-foreground">
+                              → growing into <span className="italic">{info.nextTitle}</span>
+                            </p>
+                          )}
                           <div className="w-full h-1.5 bg-muted rounded-full mt-2">
                             <div 
                               className="h-full bg-emerald-500 rounded-full transition-all"
