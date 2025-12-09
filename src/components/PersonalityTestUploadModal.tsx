@@ -286,7 +286,7 @@ const PersonalityTestUploadModal = ({
                                     <>Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.</>
                                 )}
                                 {testType === 'human_design' && (
-                                    <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from myBodyGraph or Jovian Archive).</>
+                                    <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from humdes.com).</>
                                 )}
                             </p>
                             <div className="rounded-lg overflow-hidden border border-border">

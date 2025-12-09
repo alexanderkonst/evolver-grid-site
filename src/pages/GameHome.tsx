@@ -483,7 +483,7 @@ const GameHome = () => {
                       <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Suggested Quest</span>
                     </div>
                     <p className="text-sm text-slate-600 mb-4">
-                      Take a practice from the Library to earn XP and level up.
+                      Earn XP and level up by transforming.
                     </p>
                     <Button 
                       onClick={() => setShowQuestPicker(true)} 
@@ -524,7 +524,7 @@ const GameHome = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Compass className="w-4 h-4" />
-                      <span className="text-sm">See all practices in the Library</span>
+                      <span className="text-sm">See all transformational journeys in the Library</span>
                     </div>
                     <Button variant="ghost" size="sm" onClick={() => navigate('/library?from=game')}>
                       Browse Library →
