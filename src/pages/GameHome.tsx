@@ -637,16 +637,25 @@ const GameHome = () => {
                 </div>
               </div>
 
-              {/* ===== SECTION 3: EXPLORE PATHS ===== */}
+              {/* ===== SECTION 3: EXPLORE UPGRADES ===== */}
               <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                   <Compass className="w-5 h-5 text-slate-600" />
-                  EXPLORE THE GAME
+                  EXPLORE THE UPGRADES
                 </h2>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {/* Path Progress */}
-                  {(Object.entries(PATH_LABELS) as [DevelopmentPath, string][]).map(([pathSlug, pathName]) => {
+                {/* Infographic Image */}
+                <div className="mb-6">
+                  <img 
+                    src="https://i.imgur.com/t4mDGOf.jpeg" 
+                    alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Grounding" 
+                    className="w-full rounded-xl border border-slate-200"
+                  />
+                </div>
+
+                {/* Path Progress - sorted by XP, stacked vertically */}
+                <div className="space-y-3">
+                  {(() => {
                     const pathXpMap: Record<DevelopmentPath, keyof GameProfile> = {
                       body: 'xp_body',
                       mind: 'xp_mind',
@@ -654,75 +663,100 @@ const GameHome = () => {
                       spirit: 'xp_spirit',
                       uniqueness_work: 'xp_uniqueness_work'
                     };
-                    const xpValue = profile?.[pathXpMap[pathSlug]] as number || 0;
-                    return (
-                      <div 
-                        key={pathSlug} 
-                        className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-colors cursor-pointer"
-                        onClick={() => navigate(`/game/path/${pathSlug}`)}
-                      >
-                        <p className="text-sm font-semibold text-slate-900">{pathName}</p>
-                        <p className="text-xs text-slate-500">{xpValue} XP</p>
-                        <div className="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-slate-700 rounded-full transition-all"
-                            style={{ width: `${Math.min((xpValue / 200) * 100, 100)}%` }}
-                          />
+                    
+                    // Sort paths by XP (highest first)
+                    const sortedPaths = (Object.entries(PATH_LABELS) as [DevelopmentPath, string][])
+                      .map(([pathSlug, pathName]) => ({
+                        pathSlug,
+                        pathName,
+                        xpValue: (profile?.[pathXpMap[pathSlug]] as number) || 0
+                      }))
+                      .sort((a, b) => b.xpValue - a.xpValue);
+                    
+                    const maxXp = Math.max(...sortedPaths.map(p => p.xpValue), 100);
+                    
+                    return sortedPaths.map(({ pathSlug, pathName, xpValue }) => {
+                      // Count upgrades for this path (currently only uniqueness_work has upgrades)
+                      const upgradeCount = pathSlug === 'uniqueness_work' 
+                        ? Array.from(completedUpgradeCodes).filter(code => 
+                            masteryUpgrades.some(u => u.code === code)
+                          ).length
+                        : 0;
+                      const totalUpgrades = pathSlug === 'uniqueness_work' ? masteryUpgrades.length : 0;
+                      
+                      return (
+                        <div 
+                          key={pathSlug} 
+                          className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-colors cursor-pointer"
+                          onClick={() => navigate(`/game/path/${pathSlug}`)}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="font-semibold text-slate-900">{pathName}</p>
+                            <div className="flex items-center gap-3">
+                              {totalUpgrades > 0 && (
+                                <span className="text-xs text-slate-500">
+                                  {upgradeCount}/{totalUpgrades} upgrades
+                                </span>
+                              )}
+                              <span className="text-xs font-medium text-slate-700 bg-slate-200 rounded-full px-2 py-0.5">
+                                {xpValue} XP
+                              </span>
+                            </div>
+                          </div>
+                          <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-slate-700 rounded-full transition-all"
+                              style={{ width: `${Math.min((xpValue / maxXp) * 100, 100)}%` }}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-
-                  {/* Upgrades Card */}
-                  <div 
-                    className="rounded-xl border border-purple-200 bg-purple-50 p-4 hover:border-purple-300 transition-colors cursor-pointer"
-                    onClick={() => {
-                      const el = document.getElementById('upgrades-section');
-                      el?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    <p className="text-sm font-semibold text-purple-900">All Upgrades</p>
-                    <p className="text-xs text-purple-600">
-                      {completedUpgradeCodes.size}/{masteryUpgrades.length} completed
-                    </p>
-                  </div>
+                      );
+                    });
+                  })()}
                 </div>
               </div>
 
-              {/* ===== UPGRADES LIST ===== */}
+              {/* ===== SHOWING UP UPGRADES ===== */}
               <div id="upgrades-section" className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-900 mb-4">Path of Genius Upgrades</h2>
+                <h2 className="text-lg font-bold text-slate-900 mb-4">SHOWING UP UPGRADES</h2>
                 <div className="space-y-3">
-                {masteryUpgrades.map(upgrade => {
+                {masteryUpgrades.map((upgrade, index) => {
                     const isCompleted = completedUpgradeCodes.has(upgrade.code);
                     // Allow clicking personality tests and ZoG assessment even when completed (to update)
                     const isAlwaysClickable = upgrade.code === 'personality_tests_completed' || upgrade.code === 'zog_assessment_completed';
+                    const stepNumber = index + 1;
                     return (
                       <div 
                         key={upgrade.code}
                         className={`rounded-xl border p-4 ${isCompleted ? 'border-emerald-200 bg-emerald-50' : 'border-slate-200 bg-slate-50'}`}
                       >
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1 flex items-center gap-2">
-                            {isCompleted && (
-                              <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                            )}
+                        <div className="flex items-start gap-4">
+                          {/* Big Step Number */}
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold ${
+                            isCompleted 
+                              ? 'bg-emerald-600 text-white' 
+                              : 'bg-slate-200 text-slate-600'
+                          }`}>
+                            {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : stepNumber}
+                          </div>
+                          
+                          <div className="flex-1 flex items-center justify-between">
                             <div>
                               <p className={`font-semibold ${isCompleted ? 'text-emerald-800' : 'text-slate-900'}`}>
                                 {upgrade.title}
                               </p>
                               <p className="text-xs text-slate-500">+{upgrade.xp_reward} XP</p>
                             </div>
+                            {isCompleted && isAlwaysClickable ? (
+                              <Button size="sm" variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-100" onClick={() => handleUpgradeAction(upgrade)}>
+                                Update
+                              </Button>
+                            ) : !isCompleted ? (
+                              <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
+                                Start
+                              </Button>
+                            ) : null}
                           </div>
-                          {isCompleted && isAlwaysClickable ? (
-                            <Button size="sm" variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-100" onClick={() => handleUpgradeAction(upgrade)}>
-                              Update
-                            </Button>
-                          ) : !isCompleted ? (
-                            <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
-                              Start
-                            </Button>
-                          ) : null}
                         </div>
                       </div>
                     );
