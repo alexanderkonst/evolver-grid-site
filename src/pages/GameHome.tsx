@@ -535,16 +535,10 @@ const GameHome = () => {
 
               {/* ===== SECTION 2: CHARACTER SNAPSHOT ===== */}
               <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-slate-600" />
-                    WHO I AM AND WHERE I AM
-                  </h2>
-                  <Button size="sm" onClick={() => navigate('/game/snapshot')}>
-                    <FileText className="w-4 h-4 mr-1" />
-                    View Full Snapshot
-                  </Button>
-                </div>
+                <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-slate-600" />
+                  WHO I AM AND WHERE I AM
+                </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Character Identity */}
@@ -632,6 +626,14 @@ const GameHome = () => {
                       </Button>
                     )}
                   </div>
+                </div>
+
+                {/* View Full Snapshot Button - at bottom */}
+                <div className="mt-6 pt-4 border-t border-slate-200">
+                  <Button className="w-full" onClick={() => navigate('/game/snapshot')}>
+                    <FileText className="w-4 h-4 mr-2" />
+                    View Full Snapshot
+                  </Button>
                 </div>
               </div>
 
