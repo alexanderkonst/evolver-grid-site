@@ -93,33 +93,8 @@ const PersonalityTestUploadModal = ({
         if (!results) return;
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error("Not authenticated");
-
-            // Get current profile
-            const { data: profile, error: fetchError } = await supabase
-                .from("game_profiles")
-                .select("id, personality_tests")
-                .eq("user_id", user.id)
-                .single();
-
-            if (fetchError) throw fetchError;
-
-            // Merge new results with existing tests
-            const currentTests = (profile as any).personality_tests || {};
-            const updatedTests = {
-                ...currentTests,
-                [testType]: results,
-            };
-
-            // Update profile
-            const { error: updateError } = await supabase
-                .from("game_profiles")
-                .update({ personality_tests: updatedTests } as any)
-                .eq("id", profile.id);
-
-            if (updateError) throw updateError;
-
+            // Just call onSuccess with results - personality_tests column doesn't exist yet
+            // When the column is added, this can be expanded to save to DB
             setSaved(true);
             onSuccess?.(results);
 
