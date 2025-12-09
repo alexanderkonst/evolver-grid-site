@@ -4,6 +4,7 @@ import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 import wakingUpIcon from "@/assets/skill-tree-waking-up.jpg";
 import growingUpIcon from "@/assets/skill-tree-growing-up.jpg";
 import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.jpg";
+import showingUpIcon from "@/assets/skill-tree-showing-up.jpg";
 
 // Types
 export interface SkillNode {
@@ -236,6 +237,7 @@ export const skillTrees: SkillTree[] = [
         color: "#ff6b35", // orange/coral
         bgGradient: "from-orange-950/50 via-red-900/30 to-transparent",
         icon: Sun,
+        iconImage: showingUpIcon,
         nodes: [
             {
                 id: "su-zone-of-genius",

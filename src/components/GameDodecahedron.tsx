@@ -3,6 +3,7 @@ import gameMapCenter from "@/assets/dodecahedron.jpg";
 import wakingUpIcon from "@/assets/skill-tree-waking-up.jpg";
 import growingUpIcon from "@/assets/skill-tree-growing-up.jpg";
 import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.jpg";
+import showingUpIcon from "@/assets/skill-tree-showing-up.jpg";
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +37,7 @@ const PATHS: DevelopmentPath[] = [
         name: "Showing Up",
         subtitle: "Excitement · Uniqueness",
         color: "#ff6b35",
+        icon: showingUpIcon,
         fallbackIcon: Sun,
         position: { angle: 288, distance: 38 },
         progress: 30,
