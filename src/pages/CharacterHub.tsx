@@ -317,7 +317,7 @@ const CharacterHub = () => {
                                         variant="outline"
                                         style={{ borderColor: `${recommendations.upgrade.pathColor}60`, color: recommendations.upgrade.pathColor }}
                                         className="hover:opacity-80"
-                                        onClick={() => navigate("/game-legacy")}
+                                        onClick={() => navigate("/game/details")}
                                     >
                                         View
                                     </Button>
@@ -326,55 +326,15 @@ const CharacterHub = () => {
                         ) : null}
                     </div>
 
-                    {/* 🗺️ EXPLORE */}
-                    <div className="mb-6">
-                        <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
-                            <TrendingUp className="w-4 h-4" />
-                            EXPLORE
-                        </h2>
-
-                        {/* Path Pills */}
-                        <div className="flex flex-wrap gap-2 mb-4">
-                            {[
-                                { name: "Waking Up", color: "#9b5de5" },
-                                { name: "Growing Up", color: "#f5a623" },
-                                { name: "Cleaning Up", color: "#4361ee" },
-                                { name: "Showing Up", color: "#ff6b35" },
-                                { name: "Rooting Down", color: "#2d6a4f" },
-                            ].map((path) => (
-                                <button
-                                    key={path.name}
-                                    onClick={() => navigate("/skills")}
-                                    className="px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105"
-                                    style={{
-                                        backgroundColor: `${path.color}20`,
-                                        color: path.color,
-                                        border: `1px solid ${path.color}40`
-                                    }}
-                                >
-                                    {path.name}
-                                </button>
-                            ))}
-                        </div>
-
-                        <Button
-                            variant="outline"
-                            className="w-full"
-                            onClick={() => navigate("/map")}
-                        >
-                            Open Full Game Map
-                        </Button>
-                    </div>
-
-                    {/* 📊 YOUR PROFILE */}
+                    {/* 📊 YOUR ASSESSMENTS */}
                     <div>
                         <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
                             <Heart className="w-4 h-4" />
-                            YOUR PROFILE
+                            YOUR ASSESSMENTS
                         </h2>
 
-                        {/* 6 Character Tiles - 2x3 Grid */}
-                        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                        {/* 4 Assessment Tiles */}
+                        <div className="grid grid-cols-4 gap-2">
                             {/* Zone of Genius */}
                             <CharacterTile
                                 id="zog"
@@ -385,13 +345,13 @@ const CharacterHub = () => {
                                 isLocked={!zogSnapshot}
                                 unlockHint="Start"
                                 size="sm"
-                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius/results" : "/zone-of-genius/assessment")}
+                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : "/zone-of-genius/assessment")}
                             />
 
                             {/* Quality of Life */}
                             <CharacterTile
                                 id="qol"
-                                title="Life Map"
+                                title="Life"
                                 icon={<Heart className="w-full h-full" />}
                                 color="#ff6b35"
                                 progress={qolSnapshot ? 100 : 0}
@@ -409,46 +369,20 @@ const CharacterHub = () => {
                                 color="#f5a623"
                                 progress={geniusOffer?.status === "completed" ? 100 : geniusOffer ? 50 : 0}
                                 isLocked={!zogSnapshot}
-                                unlockHint="ZoG first"
+                                unlockHint="ZoG"
                                 size="sm"
-                                onClick={() => navigate(geniusOffer ? "/profile" : "/genius-offer/intake")}
+                                onClick={() => navigate(geniusOffer ? "/profile" : "/genius-offer-intake")}
                             />
 
-                            {/* Evolution / Progress */}
+                            {/* Multiple Intelligences */}
                             <CharacterTile
-                                id="evolution"
-                                title="Progress"
+                                id="mi"
+                                title="MI"
                                 icon={<TrendingUp className="w-full h-full" />}
                                 color="#4361ee"
-                                progress={Math.min(100, ((profile?.xp_total || 0) / 500) * 100)}
                                 size="sm"
-                                onClick={() => navigate("/game-legacy")}
+                                onClick={() => navigate("/intelligences")}
                             />
-
-                            {/* Current Quest */}
-                            <CharacterTile
-                                id="quest"
-                                title="Quest"
-                                icon={<Target className="w-full h-full" />}
-                                color="#2d6a4f"
-                                size="sm"
-                                onClick={() => navigate("/map")}
-                            />
-
-                            {/* Upgrades */}
-                            <CharacterTile
-                                id="upgrades"
-                                title="Upgrades"
-                                icon={<Zap className="w-full h-full" />}
-                                color="#f72585"
-                                progress={Math.min(100, upgradeCount * 10)}
-                                size="sm"
-                                onClick={() => navigate("/game-legacy")}
-                            >
-                                <span className="text-sm font-bold" style={{ color: "#f72585" }}>
-                                    {upgradeCount}
-                                </span>
-                            </CharacterTile>
                         </div>
                     </div>
                 </div>
