@@ -257,7 +257,7 @@ const MensCircle = () => {
                 <BionicText>$33 в месяц</BionicText>
               </Button>
               <p className="text-xl">
-                <BionicText>Для тех, кто в процессе перехода на свой следующий уровень</BionicText>
+                <BionicText>Для тех, кто в процессе перехода</BionicText>
               </p>
             </div>
 
