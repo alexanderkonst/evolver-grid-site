@@ -144,7 +144,7 @@ export function useAllPathsProgress() {
                 "waking-up": { completed: 0, total: 7 },
                 "growing-up": { completed: 0, total: 5 },
                 "cleaning-up": { completed: 0, total: 6 },
-                "rooting-down": { completed: 0, total: 7 },
+                "grounding": { completed: 0, total: 7 },
             });
         } catch (error) {
             console.error("Error loading path progress:", error);

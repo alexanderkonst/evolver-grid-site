@@ -1,10 +1,11 @@
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 
-// Custom icons
-import wakingUpIcon from "@/assets/skill-tree-waking-up.jpg";
-import growingUpIcon from "@/assets/skill-tree-growing-up.jpg";
-import cleaningUpIcon from "@/assets/skill-tree-cleaning-up.jpg";
-import showingUpIcon from "@/assets/skill-tree-showing-up.jpg";
+// Custom icon URLs (hosted externally)
+const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
+const growingUpIcon = "https://i.imgur.com/IKYoNej.jpeg";
+const cleaningUpIcon = "https://i.imgur.com/opqt3kV.jpeg";
+const showingUpIcon = "https://i.imgur.com/6ct5Dca.jpeg";
+const groundingIcon = "https://i.imgur.com/JVeQGZx.jpeg"; // User to provide actual URL
 
 // Types
 export interface SkillNode {
@@ -296,16 +297,17 @@ export const skillTrees: SkillTree[] = [
         ],
     },
     {
-        id: "rooting-down",
-        name: "Rooting Down",
-        tagline: "Body · Grounding · Environment",
+        id: "grounding",
+        name: "Grounding",
+        tagline: "Body · Foundation · Environment",
         description: "HRV, movement, strength, posture, breath, sleep, home — the foundation of everything.",
         color: "#2d6a4f", // forest green
         bgGradient: "from-green-950/50 via-emerald-900/30 to-transparent",
         icon: TreeDeciduous,
+        iconImage: groundingIcon,
         nodes: [
             {
-                id: "rd-sleep-hygiene",
+                id: "gr-sleep-hygiene",
                 name: "Sleep Hygiene",
                 description: "The foundation of recovery. Master your sleep environment and rhythm.",
                 position: { x: 50, y: 15 },
@@ -314,7 +316,7 @@ export const skillTrees: SkillTree[] = [
                 xpReward: 50,
             },
             {
-                id: "rd-breath-basics",
+                id: "gr-breath-basics",
                 name: "Breath Basics",
                 description: "Nasal breathing, diaphragmatic breath, basic coherence.",
                 position: { x: 30, y: 30 },
@@ -323,7 +325,7 @@ export const skillTrees: SkillTree[] = [
                 xpReward: 50,
             },
             {
-                id: "rd-daily-movement",
+                id: "gr-daily-movement",
                 name: "Daily Movement",
                 description: "Move every day. It doesn't have to be intense.",
                 position: { x: 70, y: 30 },
@@ -332,38 +334,38 @@ export const skillTrees: SkillTree[] = [
                 xpReward: 50,
             },
             {
-                id: "rd-hrv-tracking",
+                id: "gr-hrv-tracking",
                 name: "HRV Tracking",
                 description: "Measure your nervous system readiness. Objective feedback.",
                 position: { x: 30, y: 55 },
-                prerequisites: ["rd-sleep-hygiene", "rd-breath-basics"],
+                prerequisites: ["gr-sleep-hygiene", "gr-breath-basics"],
                 quests: [],
                 xpReward: 100,
             },
             {
-                id: "rd-strength-base",
+                id: "gr-strength-base",
                 name: "Strength Foundation",
                 description: "Basic resistance training. Build structural integrity.",
                 position: { x: 70, y: 55 },
-                prerequisites: ["rd-daily-movement"],
+                prerequisites: ["gr-daily-movement"],
                 quests: [],
                 xpReward: 100,
             },
             {
-                id: "rd-environment-design",
+                id: "gr-environment-design",
                 name: "Environment Design",
                 description: "Your home and workspace shape you. Design them consciously.",
                 position: { x: 50, y: 75 },
-                prerequisites: ["rd-hrv-tracking"],
+                prerequisites: ["gr-hrv-tracking"],
                 quests: [],
                 xpReward: 150,
             },
             {
-                id: "rd-embodied-presence",
+                id: "gr-embodied-presence",
                 name: "Embodied Presence",
                 description: "Your body becomes your ally. Ground for everything else.",
                 position: { x: 50, y: 90 },
-                prerequisites: ["rd-strength-base", "rd-environment-design"],
+                prerequisites: ["gr-strength-base", "gr-environment-design"],
                 quests: [],
                 xpReward: 300,
             },

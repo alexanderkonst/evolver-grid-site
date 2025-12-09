@@ -364,6 +364,7 @@ const GameHome = () => {
         navigate('/resources/zog-intro-video');
         break;
       case 'personality_tests_completed':
+        // Always navigate - user can add more tests even if upgrade is "completed"
         navigate('/resources/personality-tests');
         break;
       case 'zog_assessment_completed':
@@ -692,6 +693,8 @@ const GameHome = () => {
                 <div className="space-y-3">
                   {masteryUpgrades.map(upgrade => {
                     const isCompleted = completedUpgradeCodes.has(upgrade.code);
+                    // Allow clicking personality tests even when completed (to add more tests)
+                    const isAlwaysClickable = upgrade.code === 'personality_tests_completed';
                     return (
                       <div 
                         key={upgrade.code}
@@ -704,11 +707,11 @@ const GameHome = () => {
                             </p>
                             <p className="text-xs text-slate-500">+{upgrade.xp_reward} XP</p>
                           </div>
-                          {isCompleted ? (
+                          {isCompleted && !isAlwaysClickable ? (
                             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                           ) : (
                             <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
-                              Start
+                              {isCompleted ? 'Add More' : 'Start'}
                             </Button>
                           )}
                         </div>
