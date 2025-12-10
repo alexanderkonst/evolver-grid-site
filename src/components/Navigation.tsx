@@ -162,7 +162,7 @@ const Navigation = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-8 text-xs flex items-center gap-1"
+                        className="h-8 text-xs flex items-center gap-1 text-foreground"
                       >
                         {getDisplayName()}
                         <ChevronDown className="h-3 w-3" />
