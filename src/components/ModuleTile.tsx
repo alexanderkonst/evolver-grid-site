@@ -105,7 +105,7 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
           </h3>
         </div>
 
-        <p className={`text-sm line-clamp-2 leading-relaxed ${isComingSoon ? 'text-muted-foreground/60' : 'text-muted-foreground'
+        <p className={`text-sm line-clamp-2 leading-relaxed text-center ${isComingSoon ? 'text-muted-foreground/60' : 'text-muted-foreground'
           }`}>
           {module.tagline}
         </p>
