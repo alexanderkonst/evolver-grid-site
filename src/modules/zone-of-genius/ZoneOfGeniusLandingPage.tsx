@@ -19,50 +19,42 @@ const ZoneOfGeniusLandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl space-y-20">
-          
+
           {/* Hero Section */}
           <section className="text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary">
-              Name the work you were actually built to do.
+              Name what you love doing
             </h1>
-            
+
             <p className="text-xl sm:text-2xl text-foreground/80 max-w-3xl mx-auto">
-              A 20-minute, AI-assisted Zone of Genius snapshot that shows your core talents, where they thrive, and where they don't.
+              Zone of Genius test that shows your core talents, where you thrive, and where you don't.
             </p>
-            
+
             <button
               onClick={handleStartAssessment}
               className="mt-8 px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-              style={{ 
+              style={{
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
               }}
             >
               Start My Zone of Genius Snapshot
             </button>
-            
+
             <p className="text-sm text-muted-foreground">
-              Free · ~20 minutes · One page you'll actually use (not a 40-page report)
+              Free · ~3-15 minutes · One page you'll actually use (not a 40-page report)
             </p>
           </section>
 
           {/* Real Problem Section */}
           <section className="space-y-6 max-w-3xl mx-auto">
-            <p className="text-xs uppercase tracking-wider text-primary/70 text-center">
-              For people who are 'successful' and still off
-            </p>
-            
-            <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary">
-              You're not lost. You're just unnamed.
-            </h2>
-            
             <p className="text-lg text-foreground/90 text-center">
               You might recognize yourself here:
             </p>
-            
+
             <ul className="space-y-3">
               {[
                 "You're good at many things, but nothing feels like the obvious center of gravity.",
@@ -76,7 +68,7 @@ const ZoneOfGeniusLandingPage = () => {
                 </li>
               ))}
             </ul>
-            
+
             <p className="text-lg text-foreground/80 text-center pt-4">
               This snapshot is built to give language to that.
             </p>
@@ -92,7 +84,7 @@ const ZoneOfGeniusLandingPage = () => {
                 Not a personality test. A one-page 'this is me' card.
               </h2>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               {[
                 {
@@ -128,7 +120,7 @@ const ZoneOfGeniusLandingPage = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary">
               In one session you walk away with:
             </h2>
-            
+
             <ul className="space-y-3">
               {[
                 "A short archetype phrase that finally sounds like you, not a horoscope.",
@@ -143,7 +135,7 @@ const ZoneOfGeniusLandingPage = () => {
                 </li>
               ))}
             </ul>
-            
+
             <p className="text-sm text-muted-foreground text-center pt-4">
               You get this both on-screen and as a clean PDF you can save, print, or bring into coaching/therapy/conversation.
             </p>
@@ -152,7 +144,7 @@ const ZoneOfGeniusLandingPage = () => {
               <button
                 onClick={handleStartAssessment}
                 className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-                style={{ 
+                style={{
                   backgroundColor: 'hsl(210, 70%, 15%)',
                   color: 'white'
                 }}
@@ -172,7 +164,7 @@ const ZoneOfGeniusLandingPage = () => {
                 Simple flow. Surprisingly deep output.
               </h2>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               {[
                 {
@@ -201,7 +193,7 @@ const ZoneOfGeniusLandingPage = () => {
                 </div>
               ))}
             </div>
-            
+
             <p className="text-xs text-muted-foreground text-center pt-4">
               You can redo the assessment any time to see how your expression evolves.
             </p>
@@ -214,7 +206,7 @@ const ZoneOfGeniusLandingPage = () => {
                 What people say after seeing their snapshot
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 {
@@ -263,13 +255,13 @@ const ZoneOfGeniusLandingPage = () => {
                 Built by someone obsessed with 'what were you really made for?'
               </h2>
             </div>
-            
+
             <p className="text-lg text-foreground/90 leading-relaxed">
               I'm Aleksandr. For the last decade I've helped founders, creators, and high-potential humans move from 'successful but misaligned' into work that actually fits.
               My background blends MIT-trained strategy, AI systems design, and deep integral / consciousness work.
               This tool compresses the patterns I've seen across hundreds of people into a single page you can get in under half an hour.
             </p>
-            
+
             <ul className="space-y-2 pt-4">
               {[
                 "10+ years guiding people through big career and life pivots",
@@ -289,7 +281,7 @@ const ZoneOfGeniusLandingPage = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary">
               This is for you if…
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <ul className="space-y-3">
@@ -306,7 +298,7 @@ const ZoneOfGeniusLandingPage = () => {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-foreground">
                   This is not for you if…
@@ -337,7 +329,7 @@ const ZoneOfGeniusLandingPage = () => {
                 Want help turning this into your next concrete move?
               </h2>
             </div>
-            
+
             <div className="space-y-4 text-foreground/90 leading-relaxed">
               <p>The free snapshot gives you clarity.</p>
               <p>If you want support turning that clarity into a specific decision or pivot, you can book a Career Re-Ignition Session with me.</p>
@@ -358,7 +350,7 @@ const ZoneOfGeniusLandingPage = () => {
               </ul>
               <p className="pt-2">Many people use the snapshot on their own. Some choose to go deeper with a guide. Both are valid.</p>
             </div>
-            
+
             <div className="text-center pt-6">
               <a
                 href="https://www.calendly.com/konstantinov"
@@ -378,15 +370,15 @@ const ZoneOfGeniusLandingPage = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
               Ready to see your Zone of Genius on one clean page?
             </h2>
-            
+
             <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
               One focused assessment. One snapshot. A different way of making decisions from here.
             </p>
-            
+
             <button
               onClick={handleStartAssessment}
               className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-              style={{ 
+              style={{
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
               }}
@@ -412,7 +404,7 @@ const ZoneOfGeniusLandingPage = () => {
         <button
           onClick={handleStartAssessment}
           className="w-full py-3 rounded-full font-semibold transition-all text-sm shadow-[0_0_20px_rgba(26,54,93,0.5)]"
-          style={{ 
+          style={{
             backgroundColor: 'hsl(210, 70%, 15%)',
             color: 'white'
           }}
