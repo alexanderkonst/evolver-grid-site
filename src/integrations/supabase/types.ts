@@ -510,6 +510,7 @@ export type Database = {
           core_pattern: string
           created_at: string
           id: string
+          mastery_action: string | null
           profile_id: string | null
           top_ten_talents: Json
           top_three_talents: Json
@@ -520,6 +521,7 @@ export type Database = {
           core_pattern: string
           created_at?: string
           id?: string
+          mastery_action?: string | null
           profile_id?: string | null
           top_ten_talents: Json
           top_three_talents: Json
@@ -530,6 +532,7 @@ export type Database = {
           core_pattern?: string
           created_at?: string
           id?: string
+          mastery_action?: string | null
           profile_id?: string | null
           top_ten_talents?: Json
           top_three_talents?: Json

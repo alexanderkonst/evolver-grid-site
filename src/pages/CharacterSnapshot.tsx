@@ -15,6 +15,7 @@ interface ZogSnapshot {
   core_pattern: string;
   top_three_talents: number[];
   top_ten_talents: number[];
+  mastery_action: string | null;
 }
 
 interface QolSnapshot {
@@ -99,7 +100,7 @@ const CharacterSnapshot: React.FC = () => {
         if (profile.last_zog_snapshot_id) {
           const { data: zog } = await supabase
             .from('zog_snapshots')
-            .select('archetype_title, core_pattern, top_three_talents, top_ten_talents')
+            .select('archetype_title, core_pattern, top_three_talents, top_ten_talents, mastery_action')
             .eq('id', profile.last_zog_snapshot_id)
             .single();
           if (zog) {
@@ -107,6 +108,7 @@ const CharacterSnapshot: React.FC = () => {
               ...zog,
               top_three_talents: zog.top_three_talents as number[],
               top_ten_talents: zog.top_ten_talents as number[],
+              mastery_action: zog.mastery_action,
             });
           }
         }
@@ -284,6 +286,12 @@ const CharacterSnapshot: React.FC = () => {
                       ))}
                     </div>
                   </div>
+                  {zogSnapshot.mastery_action && (
+                    <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                      <p className="text-xs uppercase tracking-wider text-amber-700 mb-1">🔁 Mastery Action</p>
+                      <p className="text-sm font-medium text-amber-900">{zogSnapshot.mastery_action}</p>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}

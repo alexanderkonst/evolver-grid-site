@@ -125,6 +125,7 @@ const Step4GenerateSnapshot = () => {
           core_pattern: parsed.description,
           top_three_talents: top3TalentNames,
           top_ten_talents: top10TalentNames,
+          mastery_action: parsed.masteryAction || null,
           xp_awarded: false,
         })
         .select('id, xp_awarded')
@@ -247,6 +248,12 @@ Where This Genius Thrives (exactly 6 bullets):
 – Describe roles, environments, types of work, collaboration styles, and impact areas where this pattern tends to shine.
 – Mix specificity: include role types, cultural fit, ideal collaborators, and contribution directions.
 
+Mastery Action:
+– Answer this question: "Knowing my Zone of Genius and all you know about me, what's one action that if repeated again and again, successfully leads me to being more masterful each time this action is performed?"
+– Write exactly 1 sentence, max 25 words.
+– Be specific, concrete, and actionable. This should be a repeatable practice, not a vague aspiration.
+– Example: "Spend 15 minutes daily sketching system diagrams that connect disparate ideas into unified frameworks."
+
 GENERAL STYLE RULES:
 – Use clear, simple language a smart 15-year-old could understand.
 – No paragraphs longer than 2 sentences in the description section.
@@ -272,8 +279,11 @@ GENERAL STYLE RULES:
     const edgeMatch = text.match(/Your Edge.*?:\s*(.+?)(?=\n\n|Where This Genius Thrives:|$)/s);
     sections.edge = edgeMatch?.[1]?.trim() || "";
     
-    const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)$/s);
+    const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)(?=\n\n|Mastery Action:|$)/s);
     sections.thrives = thrivesMatch?.[1]?.trim() || "";
+    
+    const masteryMatch = text.match(/Mastery Action:\s*[-–]?\s*(.+?)$/s);
+    sections.masteryAction = masteryMatch?.[1]?.trim() || "";
     
     return sections;
   }
@@ -458,6 +468,21 @@ GENERAL STYLE RULES:
                   {formatBullets(parsedSnapshot.thrives)}
                 </ul>
               </article>
+
+              {/* Panel D: Mastery Action */}
+              {parsedSnapshot.masteryAction && (
+                <article className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                    🔁 Your Mastery Action
+                  </h3>
+                  <p className="text-xs text-slate-600 mb-3">
+                    One repeatable action that builds mastery over time.
+                  </p>
+                  <p className="text-base text-slate-800 font-medium leading-relaxed">
+                    {parsedSnapshot.masteryAction}
+                  </p>
+                </article>
+              )}
 
             </div>
 
