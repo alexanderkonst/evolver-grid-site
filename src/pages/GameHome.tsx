@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { 
-  ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame, 
+import {
+  ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame,
   AlertCircle, Lock, Download, FileText, Target, Zap, Compass, Heart
 } from "lucide-react";
 import gameOfYouLogo from "@/assets/game-of-you-logo.png";
@@ -84,7 +84,7 @@ const QUEST_MODES = [
 const GameHome = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  
+
   // Core state
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState<GameProfile | null>(null);
@@ -115,7 +115,7 @@ const GameHome = () => {
 
   useEffect(() => {
     loadGameData();
-    
+
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
     });
@@ -242,7 +242,7 @@ const GameHome = () => {
 
   const handleStartQuest = async () => {
     if (!selectedDuration || !selectedMode) return;
-    
+
     setIsLoadingQuest(true);
     setQuestSuggestion(null);
     setQuestCompleted(false);
@@ -271,10 +271,10 @@ const GameHome = () => {
       };
 
       const { data, error } = await supabase.functions.invoke('suggest-next-quest', {
-        body: { 
-          intention: `${selectedMode} practice for ${selectedDuration} minutes`, 
-          practices, 
-          context 
+        body: {
+          intention: `${selectedMode} practice for ${selectedDuration} minutes`,
+          practices,
+          context
         }
       });
 
@@ -347,7 +347,7 @@ const GameHome = () => {
   const handleMarkPracticeDone = async (practice: LibraryItem) => {
     setMarkingPracticeDone(practice.id);
     const result = await markPracticeDone(practice.id, practice.primaryPath);
-    
+
     if (result.success) {
       toast({ title: "+10 XP earned!", description: "Practice logged." });
       await loadGameData();
@@ -467,7 +467,7 @@ const GameHome = () => {
           {/* MAIN GAME SECTIONS */}
           {hasAnyData && (
             <div className="space-y-6">
-              
+
               {/* ===== SECTION 1: YOUR NEXT MOVE ===== */}
               <div className="rounded-3xl border-2 border-amber-200 bg-amber-50/50 p-6 sm:p-8 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
@@ -485,8 +485,8 @@ const GameHome = () => {
                     <p className="text-sm text-slate-600 mb-4">
                       Earn XP and level up by transforming.
                     </p>
-                    <Button 
-                      onClick={() => setShowQuestPicker(true)} 
+                    <Button
+                      onClick={() => setShowQuestPicker(true)}
                       className="w-full"
                       size="sm"
                     >
@@ -504,9 +504,9 @@ const GameHome = () => {
                       <>
                         <p className="text-sm font-semibold text-slate-900 mb-1">{nextRecommendedUpgrade.title}</p>
                         <p className="text-xs text-slate-500 mb-3">+{nextRecommendedUpgrade.xp_reward} XP</p>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="w-full"
                           onClick={() => handleUpgradeAction(nextRecommendedUpgrade)}
                         >
@@ -551,7 +551,7 @@ const GameHome = () => {
                         <div className="flex flex-wrap gap-1.5">
                           {zogSnapshot.top_three_talents.map((talent, idx) => (
                             <span key={idx} className="inline-flex rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
-                              {talent}
+                              {talent.replace(/^Talent\s+/i, '')}
                             </span>
                           ))}
                         </div>
@@ -581,7 +581,7 @@ const GameHome = () => {
                         const values = domainEntries.map(({ key }) => currentQolSnapshot[key as keyof QolSnapshot] as number);
                         const minValue = Math.min(...values);
                         const maxValue = Math.max(...values);
-                        
+
                         return (
                           <>
                             <div className="grid grid-cols-2 gap-2 mb-3">
@@ -590,15 +590,14 @@ const GameHome = () => {
                                 const info = getDomainStageInfo(id, stageValue);
                                 const isLowest = stageValue === minValue && minValue !== maxValue;
                                 const isHighest = stageValue === maxValue && minValue !== maxValue;
-                                
+
                                 return (
-                                  <div 
-                                    key={id} 
-                                    className={`rounded-lg p-2.5 transition-all ${
-                                      isLowest ? 'bg-red-50 border border-red-200' : 
-                                      isHighest ? 'bg-emerald-50 border border-emerald-200' : 
-                                      'bg-slate-100 border border-transparent'
-                                    }`}
+                                  <div
+                                    key={id}
+                                    className={`rounded-lg p-2.5 transition-all ${isLowest ? 'bg-red-50 border border-red-200' :
+                                        isHighest ? 'bg-emerald-50 border border-emerald-200' :
+                                          'bg-slate-100 border border-transparent'
+                                      }`}
                                   >
                                     <div className="flex items-center justify-between mb-0.5">
                                       <p className="text-xs font-semibold text-slate-800">{info.name}</p>
@@ -646,9 +645,9 @@ const GameHome = () => {
 
                 {/* Infographic Image */}
                 <div className="mb-6">
-                  <img 
-                    src="https://i.imgur.com/t4mDGOf.jpeg" 
-                    alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Grounding" 
+                  <img
+                    src="https://i.imgur.com/t4mDGOf.jpeg"
+                    alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Grounding"
                     className="w-full rounded-xl border border-slate-200"
                   />
                 </div>
@@ -663,7 +662,7 @@ const GameHome = () => {
                       spirit: 'xp_spirit',
                       uniqueness_work: 'xp_uniqueness_work'
                     };
-                    
+
                     // Sort paths by XP (highest first)
                     const sortedPaths = (Object.entries(PATH_LABELS) as [DevelopmentPath, string][])
                       .map(([pathSlug, pathName]) => ({
@@ -672,21 +671,21 @@ const GameHome = () => {
                         xpValue: (profile?.[pathXpMap[pathSlug]] as number) || 0
                       }))
                       .sort((a, b) => b.xpValue - a.xpValue);
-                    
+
                     const maxXp = Math.max(...sortedPaths.map(p => p.xpValue), 100);
-                    
+
                     return sortedPaths.map(({ pathSlug, pathName, xpValue }) => {
                       // Count upgrades for this path (currently only uniqueness_work has upgrades)
-                      const upgradeCount = pathSlug === 'uniqueness_work' 
-                        ? Array.from(completedUpgradeCodes).filter(code => 
-                            masteryUpgrades.some(u => u.code === code)
-                          ).length
+                      const upgradeCount = pathSlug === 'uniqueness_work'
+                        ? Array.from(completedUpgradeCodes).filter(code =>
+                          masteryUpgrades.some(u => u.code === code)
+                        ).length
                         : 0;
                       const totalUpgrades = pathSlug === 'uniqueness_work' ? masteryUpgrades.length : 0;
-                      
+
                       return (
-                        <div 
-                          key={pathSlug} 
+                        <div
+                          key={pathSlug}
                           className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-colors cursor-pointer"
                           onClick={() => navigate(`/game/path/${pathSlug}`)}
                         >
@@ -704,7 +703,7 @@ const GameHome = () => {
                             </div>
                           </div>
                           <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                            <div 
+                            <div
                               className="h-full bg-slate-700 rounded-full transition-all"
                               style={{ width: `${Math.min((xpValue / maxXp) * 100, 100)}%` }}
                             />
@@ -720,26 +719,25 @@ const GameHome = () => {
               <div id="upgrades-section" className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
                 <h2 className="text-lg font-bold text-slate-900 mb-4">SHOWING UP UPGRADES</h2>
                 <div className="space-y-3">
-                {masteryUpgrades.map((upgrade, index) => {
+                  {masteryUpgrades.map((upgrade, index) => {
                     const isCompleted = completedUpgradeCodes.has(upgrade.code);
                     // Allow clicking personality tests and ZoG assessment even when completed (to update)
                     const isAlwaysClickable = upgrade.code === 'personality_tests_completed' || upgrade.code === 'zog_assessment_completed';
                     const stepNumber = index + 1;
                     return (
-                      <div 
+                      <div
                         key={upgrade.code}
                         className={`rounded-xl border p-4 ${isCompleted ? 'border-emerald-200 bg-emerald-50' : 'border-slate-200 bg-slate-50'}`}
                       >
                         <div className="flex items-start gap-4">
                           {/* Big Step Number */}
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold ${
-                            isCompleted 
-                              ? 'bg-emerald-600 text-white' 
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold ${isCompleted
+                              ? 'bg-emerald-600 text-white'
                               : 'bg-slate-200 text-slate-600'
-                          }`}>
+                            }`}>
                             {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : stepNumber}
                           </div>
-                          
+
                           <div className="flex-1 flex items-center justify-between">
                             <div>
                               <p className={`font-semibold ${isCompleted ? 'text-emerald-800' : 'text-slate-900'}`}>
@@ -773,7 +771,7 @@ const GameHome = () => {
               <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-slate-900">Choose Your Quest</h2>
-                  <button 
+                  <button
                     onClick={() => {
                       setShowQuestPicker(false);
                       setSelectedDuration(null);
@@ -796,11 +794,10 @@ const GameHome = () => {
                           <button
                             key={dur}
                             onClick={() => setSelectedDuration(dur)}
-                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                              selectedDuration === dur
+                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedDuration === dur
                                 ? 'bg-slate-900 text-white'
                                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                            }`}
+                              }`}
                           >
                             {dur >= 60 ? `${dur / 60}h` : `${dur}m`}
                           </button>
@@ -816,11 +813,10 @@ const GameHome = () => {
                           <button
                             key={mode.id}
                             onClick={() => setSelectedMode(mode.id)}
-                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                              selectedMode === mode.id
+                            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedMode === mode.id
                                 ? 'bg-slate-900 text-white'
                                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                            }`}
+                              }`}
                           >
                             {mode.label}
                           </button>
@@ -828,7 +824,7 @@ const GameHome = () => {
                       </div>
                     </div>
 
-                    <Button 
+                    <Button
                       onClick={handleStartQuest}
                       disabled={!selectedDuration || !selectedMode || isLoadingQuest}
                       className="w-full"
@@ -889,8 +885,8 @@ const GameHome = () => {
                       )}
                     </div>
 
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="w-full"
                       onClick={() => {
                         setQuestSuggestion(null);
