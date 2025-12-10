@@ -22,6 +22,7 @@ import AdminGeniusOffers from "./pages/AdminGeniusOffers";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
 import GameMap from "./pages/GameMap";
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
