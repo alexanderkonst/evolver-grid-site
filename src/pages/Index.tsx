@@ -17,45 +17,44 @@ const Index = () => {
   const heroAnimation = useScrollAnimation();
   const modulesAnimation = useScrollAnimation();
   const aboutAnimation = useScrollAnimation();
-  
+
   const categories = ["ALL", "AI", "GROWTH", "BUSINESS", "CEREMONIES", "TOOLS"];
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section 
+      <section
         ref={heroAnimation.ref}
-        className={`pt-32 pb-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-          heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`pt-32 pb-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-center text-center space-y-8">
             {/* Profile Photo */}
             <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-lg border-4 border-[hsl(210,70%,15%)]">
-              <img 
-                src={profilePhoto} 
-                alt="Aleksandr Konstantinov" 
+              <img
+                src={profilePhoto}
+                alt="Aleksandr Konstantinov"
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Name */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold uppercase">
               <BoldText>Aleksandr Konstantinov</BoldText>
             </h1>
-            
+
             {/* Tagline */}
             <p className="text-xl sm:text-2xl max-w-2xl uppercase">
               <BoldText>This page is about you, not about me. Take what you need. Enjoy!</BoldText>
             </p>
-            
+
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Button 
+              <Button
                 size="lg"
                 onClick={() => {
                   const element = document.getElementById('modules');
@@ -64,7 +63,7 @@ const Index = () => {
               >
                 <BoldText className="uppercase">Explore Transformational Tools</BoldText>
               </Button>
-              <Button 
+              <Button
                 size="lg"
                 asChild
               >
@@ -79,10 +78,10 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* Game of You Card */}
+      {/* Game of Life Card */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <div 
+          <div
             onClick={() => window.location.href = '/game'}
             className="rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
           >
@@ -104,15 +103,14 @@ const Index = () => {
       <section
         id="modules"
         ref={modulesAnimation.ref}
-        className={`py-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
-          modulesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-16 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${modulesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-serif font-semibold mb-8 text-center">
             <BoldText>TRANSFORMATIONAL TOOLS</BoldText>
           </h2>
-          
+
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map((category) => (

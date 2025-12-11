@@ -4,7 +4,7 @@ import {
   ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame,
   AlertCircle, Lock, Download, FileText, Target, Zap, Compass, Heart
 } from "lucide-react";
-import gameOfYouLogo from "@/assets/game-of-you-logo.png";
+import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -423,7 +423,7 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-10">
-            <img src={gameOfYouLogo} alt="Game of You" className="w-32 mx-auto mb-4" />
+            <img src={gameOfLifeLogo} alt="Game of Life" className="w-32 mx-auto mb-4" />
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
               {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
             </h1>
@@ -595,8 +595,8 @@ const GameHome = () => {
                                   <div
                                     key={id}
                                     className={`rounded-lg p-2.5 transition-all ${isLowest ? 'bg-red-50 border border-red-200' :
-                                        isHighest ? 'bg-emerald-50 border border-emerald-200' :
-                                          'bg-slate-100 border border-transparent'
+                                      isHighest ? 'bg-emerald-50 border border-emerald-200' :
+                                        'bg-slate-100 border border-transparent'
                                       }`}
                                   >
                                     <div className="flex items-center justify-between mb-0.5">
@@ -732,8 +732,8 @@ const GameHome = () => {
                         <div className="flex items-start gap-4">
                           {/* Big Step Number */}
                           <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold ${isCompleted
-                              ? 'bg-emerald-600 text-white'
-                              : 'bg-slate-200 text-slate-600'
+                            ? 'bg-emerald-600 text-white'
+                            : 'bg-slate-200 text-slate-600'
                             }`}>
                             {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : stepNumber}
                           </div>
@@ -795,8 +795,8 @@ const GameHome = () => {
                             key={dur}
                             onClick={() => setSelectedDuration(dur)}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedDuration === dur
-                                ? 'bg-slate-900 text-white'
-                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                              ? 'bg-slate-900 text-white'
+                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                               }`}
                           >
                             {dur >= 60 ? `${dur / 60}h` : `${dur}m`}
@@ -814,8 +814,8 @@ const GameHome = () => {
                             key={mode.id}
                             onClick={() => setSelectedMode(mode.id)}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedMode === mode.id
-                                ? 'bg-slate-900 text-white'
-                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                              ? 'bg-slate-900 text-white'
+                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                               }`}
                           >
                             {mode.label}

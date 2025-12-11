@@ -130,7 +130,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/3 aspect-square">
                 <img
                     src={gameMapCenter}
-                    alt="Game of You Center"
+                    alt="Game of Life Center"
                     className="w-full h-full object-cover rounded-full animate-pulse"
                     style={{ animationDuration: "4s" }}
                 />

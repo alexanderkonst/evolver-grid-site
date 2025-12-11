@@ -87,7 +87,7 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { to: "/game", label: "game of you", isScroll: false, isPrimary: true },
+    { to: "/game", label: "game of life", isScroll: false, isPrimary: true },
     { to: "/#modules", label: "tools", isScroll: true },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
@@ -178,7 +178,7 @@ const Navigation = () => {
                       <DropdownMenuItem asChild>
                         <Link to="/game" className="flex items-center cursor-pointer">
                           <Gamepad2 className="h-4 w-4 mr-2" />
-                          Game of You
+                          Game of Life
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -284,7 +284,7 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <Gamepad2 className="h-4 w-4 mr-2" />
-                    Game of You
+                    Game of Life
                   </Link>
                   <Button
                     variant="ghost"

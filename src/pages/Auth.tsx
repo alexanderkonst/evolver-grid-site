@@ -205,7 +205,7 @@ const Auth = () => {
       <main className="flex-grow flex items-center justify-center px-4 py-24">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Welcome to the Game of You</CardTitle>
+            <CardTitle className="text-2xl font-bold">Welcome to the Game of Life</CardTitle>
             <CardDescription>
               Create an account or log in to save your character progress across devices.
             </CardDescription>

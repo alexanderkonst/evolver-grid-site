@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 /**
  * Gets or creates a game profile ID, with support for both authenticated users and anonymous guests.
  * 
- * This function manages profiles for the "Game of You" system:
+ * This function manages profiles for the "Game of Life" system:
  * - If user is logged in: finds or creates a profile linked to their user_id
  * - If user is guest: falls back to device-based localStorage profile
  * - Supports profile migration: attaches anonymous profiles to users on first login
