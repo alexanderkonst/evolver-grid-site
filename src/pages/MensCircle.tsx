@@ -558,11 +558,8 @@ const MensCircle = () => {
               </p>
             </div>
 
-            {/* $100 Option - Recommended */}
-            <div className="p-4 md:p-6 bg-white/8 rounded-2xl border-2 border-white/20 text-center relative scale-[1.02] md:scale-105">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white/20 text-xs md:text-sm px-3 py-1 rounded-full whitespace-nowrap">
-                <BionicText>Рекомендуемый</BionicText>
-              </span>
+            {/* $100 Option */}
+            <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
               <Button
                 className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-6 text-base md:text-xl font-serif rounded-full btn-premium mb-3 min-h-[48px]"
                 style={{
