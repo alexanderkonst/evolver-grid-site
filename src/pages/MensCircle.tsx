@@ -98,16 +98,16 @@ const BionicText = ({ children, className = "" }: { children: string; className?
 
 // Section Header Component
 const SectionHeader = ({ children }: { children: string }) => (
-  <h3 className="text-2xl md:text-3xl text-center mb-8 uppercase tracking-wide">
+  <h3 className="text-xl md:text-3xl text-center mb-6 md:mb-8 uppercase tracking-wide">
     <BionicText>{children}</BionicText>
   </h3>
 );
 
 // CTA Button Component
-const CTAButton = ({ onClick }: { onClick: () => void }) => (
+const CTAButton = ({ onClick, compact = false }: { onClick: () => void; compact?: boolean }) => (
   <Button
     onClick={onClick}
-    className="px-8 py-6 text-lg font-serif rounded-full btn-premium"
+    className={`${compact ? 'px-6 py-4 text-base' : 'px-6 md:px-8 py-5 md:py-6 text-base md:text-lg'} font-serif rounded-full btn-premium w-full sm:w-auto min-h-[48px]`}
     style={{
       backgroundColor: "#E0E4EA",
       color: "#041a2f"
@@ -117,14 +117,58 @@ const CTAButton = ({ onClick }: { onClick: () => void }) => (
   </Button>
 );
 
+// Sticky Mobile CTA Component
+const StickyMobileCTA = ({ onClick }: { onClick: () => void }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAtPayment, setIsAtPayment] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollY / pageHeight;
+      
+      // Show after 20% scroll
+      setIsVisible(scrollPercent > 0.2);
+      
+      // Hide when at payment section
+      const paymentSection = document.getElementById("join-section");
+      if (paymentSection) {
+        const rect = paymentSection.getBoundingClientRect();
+        setIsAtPayment(rect.top < window.innerHeight && rect.bottom > 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (!isVisible || isAtPayment) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#041a2f]/95 backdrop-blur-sm border-t border-white/10 p-4 pb-safe-4">
+      <Button
+        onClick={onClick}
+        className="w-full py-4 text-base font-serif rounded-full btn-premium min-h-[48px]"
+        style={{
+          backgroundColor: "#E0E4EA",
+          color: "#041a2f"
+        }}
+      >
+        <BionicText>Записаться на круг</BionicText>
+      </Button>
+    </div>
+  );
+};
+
 // Info Card Component
 const InfoCard = ({ icon: Icon, children }: { icon: React.ElementType; children: React.ReactNode }) => (
-  <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
-    <div className="flex items-start gap-4">
-      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+  <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+    <div className="flex items-start gap-3 md:gap-4">
+      <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
         <Icon className="w-5 h-5 md:w-6 md:h-6" />
       </div>
-      <div className="flex-1 text-base md:text-lg leading-relaxed opacity-90">
+      <div className="flex-1 text-[15px] md:text-lg leading-relaxed opacity-90">
         {children}
       </div>
     </div>
@@ -133,15 +177,15 @@ const InfoCard = ({ icon: Icon, children }: { icon: React.ElementType; children:
 
 // Meeting Step Component
 const MeetingStep = ({ title, duration, description }: { title: string; duration: string; description: string }) => (
-  <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+  <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap items-center gap-2">
-        <h4 className="text-lg md:text-xl font-semibold">
+        <h4 className="text-base md:text-xl font-semibold">
           <BionicText>{title}</BionicText>
         </h4>
-        <span className="text-sm opacity-70 bg-white/10 px-2 py-1 rounded-full">{duration}</span>
+        <span className="text-xs md:text-sm opacity-70 bg-white/10 px-2 py-1 rounded-full whitespace-nowrap">{duration}</span>
       </div>
-      <p className="text-base md:text-lg opacity-90 leading-relaxed">
+      <p className="text-[15px] md:text-lg opacity-90 leading-relaxed">
         <BionicText>{description}</BionicText>
       </p>
     </div>
@@ -151,8 +195,8 @@ const MeetingStep = ({ title, duration, description }: { title: string; duration
 // Bullet Item Component
 const BulletItem = ({ children }: { children: string }) => (
   <div className="flex items-start gap-3">
-    <div className="w-2 h-2 rounded-full bg-white/60 mt-2.5 flex-shrink-0" />
-    <p className="text-base md:text-lg leading-relaxed opacity-90">
+    <div className="w-2 h-2 rounded-full bg-white/60 mt-2 md:mt-2.5 flex-shrink-0" />
+    <p className="text-[15px] md:text-lg leading-relaxed opacity-90">
       <BionicText>{children}</BionicText>
     </p>
   </div>
@@ -262,42 +306,42 @@ const MensCircle = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-28 md:pt-32 pb-16 md:pb-20 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+      <section className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-8">
           <img
             src="https://i.imgur.com/NGSxNw8.png"
             alt="Men's Circle"
-            className="w-40 h-40 md:w-56 md:h-56 mx-auto mb-4 object-contain logo-glow"
+            className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
-          <h1 className="text-3xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2">
             <BionicText>Мужской Круг Правды с Каннабисом</BionicText>
           </h1>
-          <h2 className="text-lg md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto">
+          <h2 className="text-base md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto px-2">
             <BionicText>
               Круг, где мужчины говорят как есть в осознанном взаимодействии с каннабисом.
             </BionicText>
           </h2>
-          <div className="pt-4">
+          <div className="pt-2 md:pt-4">
             <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
       </section>
 
       {/* For Whom Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="text-center mb-4">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          <div className="text-center mb-2 md:mb-4">
             <img
               src="https://i.imgur.com/Q6c3UZT.png"
               alt="For Whom"
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
           <SectionHeader>Для кого это</SectionHeader>
-          <p className="text-lg md:text-xl text-center opacity-90 mb-8">
+          <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
             <BionicText>Для русскоязычных мужчин, которые:</BionicText>
           </p>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <BulletItem>Чувствуют внутреннее напряжение, усталость, потерянность — даже если снаружи "всё нормально".</BulletItem>
             <BulletItem>Много несут в себе и редко говорят о самом важном вслух.</BulletItem>
             <BulletItem>Хочется честных, тёплых мужских разговоров без игры в "я в порядке".</BulletItem>
@@ -307,40 +351,40 @@ const MensCircle = () => {
       </section>
 
       {/* What Is This Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-8">
+      <section className="py-12 md:py-20 px-4 md:px-6">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Что это</SectionHeader>
-          <div className="space-y-6 text-center">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+          <div className="space-y-4 md:space-y-6 text-center">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Онлайн-круг для русскоязычных мужчин со всего мира.</BionicText>
             </p>
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Мы встречаемся в Zoom, и каждый участник входит в круг в союзе с растением-учителем (каннабисом) в мягкой, осознанной дозе.</BionicText>
             </p>
-            <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-8">
-              <p className="text-lg md:text-xl leading-relaxed opacity-90">
+            <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8">
+              <p className="text-base md:text-xl leading-relaxed opacity-90">
                 <BionicText>Это не про накуриться вместе. Это про внимательную совместную работу с растением, чтобы честнее чувствовать, говорить и впускать свет внутрь.</BionicText>
               </p>
             </div>
           </div>
-          <div className="pt-8 text-center">
+          <div className="pt-6 md:pt-8 text-center">
             <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
       </section>
 
       {/* How Meeting Goes Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="text-center mb-4">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          <div className="text-center mb-2 md:mb-4">
             <img
               src="https://i.imgur.com/RpmgjXZ.png"
               alt="How Meeting Goes"
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
           <SectionHeader>Как проходит встреча</SectionHeader>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <MeetingStep
               title="Открытие"
               duration="10–15 мин"
@@ -376,20 +420,20 @@ const MensCircle = () => {
       </section>
 
       {/* Who Leads Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-8">
+      <section className="py-12 md:py-20 px-4 md:px-6">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Кто ведёт</SectionHeader>
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-4 md:space-y-6">
             {/* Profile Photos */}
-            <div className="flex justify-center gap-4 md:gap-6 mb-6">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
+            <div className="flex justify-center gap-3 md:gap-6 mb-4 md:mb-6">
+              <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
                 <img
                   src="https://i.imgur.com/40cWWoe.jpeg"
                   alt="Aleksandr - Shamanic"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
+              <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
                 <img
                   src="https://i.imgur.com/XctlWbQ.jpeg"
                   alt="Aleksandr - Professional"
@@ -397,24 +441,24 @@ const MensCircle = () => {
                 />
               </div>
             </div>
-            <p className="text-xl md:text-2xl font-semibold">
+            <p className="text-lg md:text-2xl font-semibold">
               <BionicText>Я — Александр.</BionicText>
             </p>
-            <div className="space-y-4 text-lg md:text-xl leading-relaxed opacity-90">
+            <div className="space-y-3 md:space-y-4 text-[15px] md:text-xl leading-relaxed opacity-90">
               <p><BionicText>Провёл 150+ церемоний и процессов с растениями-учителями для людей из разных стран и культур.</BionicText></p>
               <p>
                 <BionicText>Давно и плотно углубляю мастерство в интегральной теории у Кена Уилбера.</BionicText>
-                <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-sm">(сертификат)</a>
+                <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-xs md:text-sm">(сертификат)</a>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
               <p><BionicText>Я совмещаю глубину церемониального поля с приземлённым пониманием работы, денег и реальной жизни.</BionicText></p>
             </div>
           </div>
-          <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-8">
-            <p className="text-lg md:text-xl font-semibold mb-4 text-center">
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8">
+            <p className="text-base md:text-xl font-semibold mb-3 md:mb-4 text-center">
               <BionicText>В круге я:</BionicText>
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <BulletItem>держу поле и границы,</BulletItem>
               <BulletItem>веду две активации,</BulletItem>
               <BulletItem>слежу за безопасностью и ритмом,</BulletItem>
@@ -425,78 +469,80 @@ const MensCircle = () => {
       </section>
 
       {/* Safety and Rules Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="text-center mb-4">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          <div className="text-center mb-2 md:mb-4">
             <img
               src="https://i.imgur.com/GMwBqqz.png"
               alt="Safety and Rules"
-              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
           <SectionHeader>Безопасность и правила</SectionHeader>
-          <p className="text-lg md:text-xl text-center opacity-90 mb-8">
+          <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
             <BionicText>Чтобы круг был живым и безопасным, мы опираемся на несколько простых вещей.</BionicText>
           </p>
 
-          <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-6">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-4 md:mb-6">
+            <p className="text-[15px] md:text-xl leading-relaxed opacity-90">
               <BionicText>Участвуем только в союзе с каннабисом в мягкой, осознанной дозе. Нельзя присоединиться не пригласив растение в свое поле.</BionicText>
             </p>
           </div>
 
-          {/* Mental Health */}
-          <InfoCard icon={Shield}>
-            <p className="font-semibold mb-2"><BionicText>Про психическое здоровье</BionicText></p>
-            <p><BionicText>Если у тебя тяжёлые психиатрические диагнозы, были эпизоды психоза или сейчас очень нестабильное состояние — это пространство не подойдёт.</BionicText></p>
-            <p className="mt-2"><BionicText>Круг не является психотерапией и не заменяет работу с врачом или терапевтом.</BionicText></p>
-          </InfoCard>
+          <div className="space-y-3 md:space-y-4">
+            {/* Mental Health */}
+            <InfoCard icon={Shield}>
+              <p className="font-semibold mb-2"><BionicText>Про психическое здоровье</BionicText></p>
+              <p><BionicText>Если у тебя тяжёлые психиатрические диагнозы, были эпизоды психоза или сейчас очень нестабильное состояние — это пространство не подойдёт.</BionicText></p>
+              <p className="mt-2"><BionicText>Круг не является психотерапией и не заменяет работу с врачом или терапевтом.</BionicText></p>
+            </InfoCard>
 
-          {/* Presence Format */}
-          <InfoCard icon={Users}>
-            <p className="font-semibold mb-2"><BionicText>Формат присутствия</BionicText></p>
-            <div className="space-y-2">
-              <p><BionicText>Конфиденциальность: всё, что сказано в кругу, остаётся в кругу.</BionicText></p>
-              <p><BionicText>Камеры включены. Мы приходим как участники, а не как зрители.</BionicText></p>
-              <p><BionicText>Я оставляю за собой право остановить процесс или человека, если вижу, что это небезопасно для него или для поля.</BionicText></p>
-            </div>
-          </InfoCard>
+            {/* Presence Format */}
+            <InfoCard icon={Users}>
+              <p className="font-semibold mb-2"><BionicText>Формат присутствия</BionicText></p>
+              <div className="space-y-1.5 md:space-y-2">
+                <p><BionicText>Конфиденциальность: всё, что сказано в кругу, остаётся в кругу.</BionicText></p>
+                <p><BionicText>Камеры включены. Мы приходим как участники, а не как зрители.</BionicText></p>
+                <p><BionicText>Я оставляю за собой право остановить процесс или человека, если вижу, что это небезопасно для него или для поля.</BionicText></p>
+              </div>
+            </InfoCard>
 
-          {/* How We Speak */}
-          <InfoCard icon={MessageCircle}>
-            <p className="font-semibold mb-2"><BionicText>Как мы говорим</BionicText></p>
-            <div className="space-y-2">
-              <p><BionicText>Говорим от себя, честно и по сути.</BionicText></p>
-              <p><BionicText>Не даём советов без прямого запроса.</BionicText></p>
-              <p><BionicText>Не перебиваем и не спорим с личным опытом другого.</BionicText></p>
-              <p><BionicText>Уважаем время и место каждого.</BionicText></p>
-            </div>
-          </InfoCard>
+            {/* How We Speak */}
+            <InfoCard icon={MessageCircle}>
+              <p className="font-semibold mb-2"><BionicText>Как мы говорим</BionicText></p>
+              <div className="space-y-1.5 md:space-y-2">
+                <p><BionicText>Говорим от себя, честно и по сути.</BionicText></p>
+                <p><BionicText>Не даём советов без прямого запроса.</BionicText></p>
+                <p><BionicText>Не перебиваем и не спорим с личным опытом другого.</BionicText></p>
+                <p><BionicText>Уважаем время и место каждого.</BionicText></p>
+              </div>
+            </InfoCard>
+          </div>
         </div>
       </section>
 
       {/* Contribution Section */}
-      <section id="join-section" className="py-16 md:py-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="text-center mb-8">
+      <section id="join-section" className="py-12 md:py-20 px-4 md:px-6">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          <div className="text-center mb-4 md:mb-8">
             <img
               src="https://i.imgur.com/EH24PWf.png"
               alt="Men's Circle"
-              className="w-40 h-40 md:w-56 md:h-56 mx-auto object-contain"
+              className="w-32 h-32 md:w-56 md:h-56 mx-auto object-contain"
             />
           </div>
           <SectionHeader>Вклад и деньги</SectionHeader>
-          <div className="text-center space-y-4 mb-8">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+          <div className="text-center space-y-3 md:space-y-4 mb-6 md:mb-8">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Формат один и тот же для всех. Ты сам выбираешь уровень вклада — по своим возможностям и отклику.</BionicText>
             </p>
           </div>
 
-          <div className="grid gap-4 md:gap-6">
+          <div className="grid gap-3 md:gap-6">
             {/* $33 Option */}
-            <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
               <Button
-                className="px-8 md:px-10 py-5 md:py-6 text-lg md:text-xl font-serif rounded-full btn-premium mb-4"
+                className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-6 text-base md:text-xl font-serif rounded-full btn-premium mb-3 min-h-[48px]"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -507,15 +553,18 @@ const MensCircle = () => {
               >
                 <BionicText>$33 в месяц</BionicText>
               </Button>
-              <p className="text-base md:text-lg opacity-80">
+              <p className="text-sm md:text-lg opacity-80 leading-relaxed">
                 <BionicText>Базовый вклад за месяц (1 встреча), минимальный энергообмен, чтобы круг жил.</BionicText>
               </p>
             </div>
 
-            {/* $100 Option */}
-            <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
+            {/* $100 Option - Recommended */}
+            <div className="p-4 md:p-6 bg-white/8 rounded-2xl border-2 border-white/20 text-center relative scale-[1.02] md:scale-105">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white/20 text-xs md:text-sm px-3 py-1 rounded-full whitespace-nowrap">
+                <BionicText>Рекомендуемый</BionicText>
+              </span>
               <Button
-                className="px-8 md:px-10 py-5 md:py-6 text-lg md:text-xl font-serif rounded-full btn-premium mb-4"
+                className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-6 text-base md:text-xl font-serif rounded-full btn-premium mb-3 min-h-[48px]"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -526,15 +575,15 @@ const MensCircle = () => {
               >
                 <BionicText>$100 в месяц</BionicText>
               </Button>
-              <p className="text-base md:text-lg opacity-80">
+              <p className="text-sm md:text-lg opacity-80 leading-relaxed">
                 <BionicText>Поддерживающий вклад, если хочешь сильнее поддержать поле и моё время.</BionicText>
               </p>
             </div>
 
             {/* $333 Option */}
-            <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
               <Button
-                className="px-8 md:px-10 py-5 md:py-6 text-lg md:text-xl font-serif rounded-full btn-premium mb-4"
+                className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-6 text-base md:text-xl font-serif rounded-full btn-premium mb-3 min-h-[48px]"
                 style={{
                   backgroundColor: "#E0E4EA",
                   color: "#041a2f"
@@ -545,32 +594,32 @@ const MensCircle = () => {
               >
                 <BionicText>$333 в месяц</BionicText>
               </Button>
-              <p className="text-base md:text-lg opacity-80">
+              <p className="text-sm md:text-lg opacity-80 leading-relaxed">
                 <BionicText>Вклад покровителя поля, если можешь и чувствуешь, что это твоё «да».</BionicText>
               </p>
             </div>
           </div>
 
-          <div className="text-center space-y-4 mt-8">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+          <div className="text-center space-y-3 md:space-y-4 mt-6 md:mt-8">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Содержание одинаково для всех уровней. Разный вклад — про честность с самим собой.</BionicText>
             </p>
-            <p className="text-lg md:text-xl leading-relaxed opacity-80 italic">
+            <p className="text-base md:text-xl leading-relaxed opacity-80 italic">
               <BionicText>Если отклик сильный, а с деньгами сейчас сложно — напиши, найдём форму.</BionicText>
             </p>
           </div>
 
-          <div className="pt-8 text-center">
+          <div className="pt-6 md:pt-8 text-center hidden md:block">
             <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
       </section>
 
       {/* What You Take Away Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-8">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Что ты заберёшь с собой</SectionHeader>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <InfoCard icon={Heart}>
               <span className="flex items-center"><BionicText>Место, где можно говорить правду, а не играть роль.</BionicText></span>
             </InfoCard>
@@ -591,17 +640,17 @@ const MensCircle = () => {
       </section>
 
       {/* What This Is Not Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-8">
+      <section className="py-12 md:py-20 px-4 md:px-6">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Что это точно не</SectionHeader>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <BulletItem>Не «покурить с пацанами».</BulletItem>
             <BulletItem>Не соревнование «кто круче».</BulletItem>
             <BulletItem>Не психотерапия и не диагностика.</BulletItem>
             <BulletItem>Не секта и не культ, где кто-то решает за тебя, как тебе жить.</BulletItem>
           </div>
-          <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-8 text-center">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8 text-center">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Это круг для взрослых мужчин, которые чувствуют: «Хватит делать вид, что всё ок. Пора говорить по-настоящему — и впускать свет внутрь.»</BionicText>
             </p>
           </div>
@@ -609,13 +658,13 @@ const MensCircle = () => {
       </section>
 
       {/* How to Join Section */}
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-8">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Как присоединиться</SectionHeader>
-          <p className="text-lg md:text-xl text-center opacity-90 mb-8">
+          <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
             <BionicText>Если хочешь попасть в ближайший круг:</BionicText>
           </p>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <InfoCard icon={Send}>
               <BionicText>Напиши мне (Telegram / почта) пару строк о себе и своём намерении.</BionicText>
             </InfoCard>
@@ -623,16 +672,20 @@ const MensCircle = () => {
               <BionicText>Я отвечу с датой, деталями и простыми инструкциями по подготовке.</BionicText>
             </InfoCard>
           </div>
-          <div className="pt-8 text-center">
+          <div className="pt-6 md:pt-8 text-center hidden md:block">
             <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
       </section>
 
+      {/* Bottom padding for sticky CTA on mobile */}
+      <div className="h-20 md:hidden" />
+      
       <div className="bg-white">
         <Footer />
       </div>
       <ScrollToTop />
+      <StickyMobileCTA onClick={scrollToPayment} />
     </div>
   );
 };
