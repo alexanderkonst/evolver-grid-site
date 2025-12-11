@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ExternalLink, ChevronRight, CheckCircle, Target } from "lucide-react";
 
-// Bionic text component - bolds first half of each word
+// Bionic text component - bolds first half of each word (for headings only)
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
     const words = children.split(" ");
     return (
@@ -42,12 +42,12 @@ const GeniusLayerMatching = () => {
 
                     {/* Hero Section */}
                     <section className="text-center space-y-6">
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary leading-tight uppercase tracking-wide">
-                            <BionicText>Genius-Layer Matching for Founder Ecosystems</BionicText>
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl text-primary leading-tight uppercase tracking-wide">
+                            <BionicText>GENIUS-LAYER MATCHING FOR FOUNDER ECOSYSTEMS</BionicText>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto">
-                            <BionicText>Stop guessing co-founder fit. Start matching on how people are actually built to play.</BionicText>
+                            Stop guessing co-founder fit. Start matching on how people are actually built to play.
                         </p>
 
                         <div className="flex flex-col gap-4 justify-center pt-4">
@@ -61,7 +61,7 @@ const GeniusLayerMatching = () => {
                                     color: 'white'
                                 }}
                             >
-                                <BionicText>Talk to Aleksandr about a pilot</BionicText>
+                                Talk to Aleksandr about a pilot
                                 <ExternalLink size={18} />
                             </a>
                         </div>
@@ -71,37 +71,37 @@ const GeniusLayerMatching = () => {
                                 href="#how-pilot-works"
                                 className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
                             >
-                                <BionicText>Learn how the 3-way A/B pilot works</BionicText>
+                                Learn how the 3-way A/B pilot works
                             </a>
                         </div>
                     </section>
 
                     {/* Problem Section */}
                     <section className="text-center space-y-4">
-                        <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                            <BionicText>Matching on Ideas Isn't Enough</BionicText>
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <BionicText>MATCHING ON IDEAS ISN'T ENOUGH</BionicText>
                         </h2>
 
                         <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
-                            <BionicText>Most founder programs try to match people based on what they're building and what's on their CV. But what actually makes or breaks teams is how people operate: the roles they default to, how they decide, and what they become under pressure.</BionicText>
+                            Most founder programs try to match people based on what they're building and what's on their CV. But what actually makes or breaks teams is how people <em>operate</em>: the roles they default to, how they decide, and what they become under pressure.
                         </p>
                     </section>
 
                     {/* Solution Section */}
                     <section className="text-center space-y-4">
-                        <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                            <BionicText>Add a "Genius Layer" to Your Matching</BionicText>
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <BionicText>ADD A "GENIUS LAYER" TO YOUR MATCHING</BionicText>
                         </h2>
 
                         <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
-                            <BionicText>We use a short Zone-of-Genius assessment to surface each founder's deep operating pattern – the role they're structurally built to excel at. Boardy (an AI matchmaker) then uses these high-signal snapshots to generate a concrete map of who should meet whom, and in what roles.</BionicText>
+                            We use a short <em>Zone-of-Genius</em> assessment to surface each founder's deep operating pattern – the role they're structurally built to excel at. Boardy (an AI matchmaker) then uses these high-signal snapshots to generate a concrete map of who should meet whom, and in what roles.
                         </p>
                     </section>
 
                     {/* Why It Matters Section */}
                     <section className="text-center space-y-6">
-                        <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                            <BionicText>Why This Matters Now</BionicText>
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <BionicText>WHY THIS MATTERS NOW</BionicText>
                         </h2>
 
                         <ul className="space-y-4 text-left max-w-xl mx-auto">
@@ -112,7 +112,7 @@ const GeniusLayerMatching = () => {
                             ].map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
                                     <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                                    <span className="text-foreground/90"><BionicText>{item}</BionicText></span>
+                                    <span className="text-foreground/90">{item}</span>
                                 </li>
                             ))}
                         </ul>
@@ -121,14 +121,14 @@ const GeniusLayerMatching = () => {
                     {/* How The Pilot Works Section */}
                     <section id="how-pilot-works" className="space-y-8">
                         <div className="text-center space-y-3">
-                            <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                                <BionicText>Run a Fast, 3-Way A/B Pilot</BionicText>
+                            <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                                <BionicText>RUN A FAST, 3-WAY A/B PILOT</BionicText>
                             </h2>
                             <p className="text-muted-foreground">
-                                <BionicText>We keep it absurdly simple and data-honest.</BionicText>
+                                We keep it absurdly simple and data-honest.
                             </p>
                             <p className="text-lg font-semibold text-primary">
-                                <BionicText>{`Pilot fee: ${PILOT_PRICE}`}</BionicText>
+                                Pilot fee: {PILOT_PRICE}
                             </p>
                         </div>
 
@@ -174,11 +174,11 @@ const GeniusLayerMatching = () => {
                                     </div>
                                     <div className="flex-1">
                                         <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">
-                                            <BionicText>{item.title}</BionicText>
+                                            {item.title}
                                         </h3>
                                         {item.description && (
                                             <p className="text-sm text-muted-foreground leading-relaxed">
-                                                <BionicText>{item.description}</BionicText>
+                                                {item.description}
                                             </p>
                                         )}
                                         {item.bullets && (
@@ -186,7 +186,7 @@ const GeniusLayerMatching = () => {
                                                 {item.bullets.map((bullet, idx) => (
                                                     <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                                                         <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                        <span><BionicText>{bullet}</BionicText></span>
+                                                        <span>{bullet}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -201,10 +201,10 @@ const GeniusLayerMatching = () => {
                     <section className="text-center space-y-6">
                         <div>
                             <p className="text-xs uppercase tracking-wider text-primary/70 mb-2">
-                                <BionicText>Designed for serious ecosystem builders</BionicText>
+                                Designed for serious ecosystem builders
                             </p>
-                            <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                                <BionicText>Venture Studios, Founder Ecosystems, Accelerators</BionicText>
+                            <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                                <BionicText>VENTURE STUDIOS, FOUNDER ECOSYSTEMS, ACCELERATORS</BionicText>
                             </h2>
                         </div>
 
@@ -216,7 +216,7 @@ const GeniusLayerMatching = () => {
                             ].map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
                                     <Target className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                                    <span className="text-foreground/90"><BionicText>{item}</BionicText></span>
+                                    <span className="text-foreground/90">{item}</span>
                                 </li>
                             ))}
                         </ul>
@@ -224,7 +224,7 @@ const GeniusLayerMatching = () => {
 
                     {/* FAQ Section */}
                     <section className="space-y-8">
-                        <h2 className="text-xl sm:text-2xl font-bold text-center text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-center text-primary uppercase tracking-wide">
                             <BionicText>FAQ</BionicText>
                         </h2>
 
@@ -248,8 +248,8 @@ const GeniusLayerMatching = () => {
                                 }
                             ].map((faq, idx) => (
                                 <div key={idx} className="space-y-2">
-                                    <h3 className="font-semibold text-foreground"><BionicText>{faq.q}</BionicText></h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed"><BionicText>{faq.a}</BionicText></p>
+                                    <h3 className="font-semibold text-foreground">{faq.q}</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
                                 </div>
                             ))}
                         </div>
@@ -257,12 +257,12 @@ const GeniusLayerMatching = () => {
 
                     {/* Final CTA Section */}
                     <section className="text-center space-y-6 py-10 px-6 rounded-3xl border-2 border-primary/30 bg-primary/5">
-                        <h2 className="text-xl sm:text-2xl font-bold text-primary uppercase tracking-wide">
-                            <BionicText>Run a Genius-Layer Pilot with Aleksandr Today</BionicText>
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <BionicText>RUN A GENIUS-LAYER PILOT WITH ALEKSANDR TODAY</BionicText>
                         </h2>
 
                         <p className="text-base text-foreground/80 max-w-2xl mx-auto">
-                            <BionicText>If you're running a founder ecosystem and want to see whether higher-fidelity "genius" signals actually improve your matching, this is the place to start.</BionicText>
+                            If you're running a founder ecosystem and want to see whether higher-fidelity "genius" signals actually improve your matching, this is the place to start.
                         </p>
 
                         <div className="flex justify-center">
@@ -276,7 +276,7 @@ const GeniusLayerMatching = () => {
                                     color: 'white'
                                 }}
                             >
-                                <BionicText>Talk to Aleksandr about a pilot</BionicText>
+                                Talk to Aleksandr about a pilot
                                 <ExternalLink size={18} />
                             </a>
                         </div>
