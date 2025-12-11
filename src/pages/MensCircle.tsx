@@ -432,25 +432,18 @@ const MensCircle = () => {
       {/* Who Leads Section */}
       <section className="py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          {/* Shamanic Photo - Above Header */}
+          <div className="text-center mb-2">
+            <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
+              <img
+                src="https://i.imgur.com/40cWWoe.jpeg"
+                alt="Aleksandr - Shamanic"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          </div>
           <SectionHeader>Кто ведёт</SectionHeader>
           <div className="text-center space-y-4 md:space-y-6">
-            {/* Profile Photos */}
-            <div className="flex justify-center gap-3 md:gap-6 mb-4 md:mb-6">
-              <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
-                <img
-                  src="https://i.imgur.com/40cWWoe.jpeg"
-                  alt="Aleksandr - Shamanic"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
-                <img
-                  src="https://i.imgur.com/XctlWbQ.jpeg"
-                  alt="Aleksandr - Professional"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </div>
             <p className="text-lg md:text-2xl font-semibold">
               <BionicText>Я — Александр.</BionicText>
             </p>
@@ -472,6 +465,16 @@ const MensCircle = () => {
               <BulletItem>веду две активации,</BulletItem>
               <BulletItem>слежу за безопасностью и ритмом,</BulletItem>
               <BulletItem>вмешиваюсь, если кто-то теряет контакт с собой или ломает поле.</BulletItem>
+            </div>
+          </div>
+          {/* Professional Photo - At End */}
+          <div className="text-center pt-4">
+            <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
+              <img
+                src="https://i.imgur.com/XctlWbQ.jpeg"
+                alt="Aleksandr - Professional"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
           </div>
           <div className="pt-6 md:pt-8 text-center">
