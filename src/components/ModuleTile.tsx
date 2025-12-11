@@ -14,6 +14,7 @@ import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import zoneOfGeniusIcon from "@/assets/zone-of-genius-icon.png";
 import geniusOfferIcon from "@/assets/genius-offer-icon.png";
 import multipleIntelligencesIcon from "@/assets/multiple-intelligences-icon.png";
+import geniusLayerMatchingIcon from "@/assets/genius-layer-matching-icon.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 interface ModuleTileProps {
@@ -44,14 +45,15 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
   const IconComponent = categoryIcons[module.category] || Sparkles;
 
   // Check if this module should use a custom image
-  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "mens-circle" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius" || module.slug === "genius-offer" || module.slug === "intelligences";
+  const useCustomImage = module.slug === "destiny" || module.slug === "intelligence-boost-for-your-ai-model" || module.slug === "mens-circle" || module.slug === "quality-of-life-map" || module.slug === "zone-of-genius" || module.slug === "genius-offer" || module.slug === "intelligences" || module.slug === "genius-layer-matching";
   const customImageSrc = module.slug === "destiny" ? destinyIcon :
     module.slug === "intelligence-boost-for-your-ai-model" ? aiUpgradeIcon :
       module.slug === "mens-circle" ? mensCircleIcon :
         module.slug === "quality-of-life-map" ? qualityOfLifeMapIcon :
           module.slug === "zone-of-genius" ? zoneOfGeniusIcon :
             module.slug === "genius-offer" ? geniusOfferIcon :
-              module.slug === "intelligences" ? multipleIntelligencesIcon : null;
+              module.slug === "intelligences" ? multipleIntelligencesIcon :
+                module.slug === "genius-layer-matching" ? geniusLayerMatchingIcon : null;
 
   // Use custom route for special modules, standard route for others
   const linkPath = module.slug === "destiny" ? "/destiny" :
@@ -59,7 +61,8 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
       module.slug === "genius-offer" ? "/genius-offer" :
         module.slug === "intelligences" ? "/intelligences" :
           module.slug === "mens-circle" ? "/mens-circle" :
-            `/m/${module.slug}`;
+            module.slug === "genius-layer-matching" ? "/genius-layer-matching" :
+              `/m/${module.slug}`;
   const isComingSoon = module.status === "Coming Soon";
   const isLive = module.status === "Live";
 
