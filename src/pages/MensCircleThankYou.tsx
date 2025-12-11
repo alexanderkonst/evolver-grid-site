@@ -92,14 +92,14 @@ const MensCircleThankYou = () => {
 
                     <p className="text-xl leading-relaxed opacity-90">
                         <BionicText>
-                            Добро пожаловать в Мужской круг. Ниже — все детали для участия в первом круге.
+                            Добро пожаловать в Мужской круг. Ниже — все детали для участия в ближайшем круге.
                         </BionicText>
                     </p>
 
                     {/* Event Details Card */}
                     <div className="p-8 bg-white/5 rounded-2xl border border-white/10 text-left space-y-6 mt-12">
                         <h2 className="text-2xl text-center mb-6">
-                            <BionicText>ДЕТАЛИ ПЕРВОГО КРУГА</BionicText>
+                            <BionicText>ВАЖНЫЕ ДЕТАЛИ</BionicText>
                         </h2>
 
                         <div className="space-y-4">
@@ -159,6 +159,18 @@ const MensCircleThankYou = () => {
                                         {EVENT_DETAILS.telegram}
                                     </a>
                                 </div>
+                            </div>
+
+                            {/* Telegram Instructions inside box */}
+                            <div className="pt-4 mt-4 border-t border-white/10 space-y-3">
+                                <p className="text-lg leading-relaxed">
+                                    <BionicText>Напиши мне в Telegram пару строк о себе и своём намерении.</BionicText>
+                                    {" "}
+                                    <a href="https://t.me/integralevolution" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">@integralevolution</a>
+                                </p>
+                                <p className="text-lg leading-relaxed opacity-90">
+                                    <BionicText>Я отвечу продублировав дату, детали и пошлю предельно простые инструкции по подготовке.</BionicText>
+                                </p>
                             </div>
                         </div>
                     </div>
