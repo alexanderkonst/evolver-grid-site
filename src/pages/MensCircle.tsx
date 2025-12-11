@@ -127,10 +127,10 @@ const StickyMobileCTA = ({ onClick }: { onClick: () => void }) => {
       const scrollY = window.scrollY;
       const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = scrollY / pageHeight;
-      
+
       // Show after 20% scroll
       setIsVisible(scrollPercent > 0.2);
-      
+
       // Hide when at payment section
       const paymentSection = document.getElementById("join-section");
       if (paymentSection) {
@@ -332,9 +332,9 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src="https://i.imgur.com/Q6c3UZT.png"
+              src="https://i.imgur.com/raDNNNi.jpeg"
               alt="For Whom"
-              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover rounded-full"
             />
           </div>
           <SectionHeader>Для кого это</SectionHeader>
@@ -353,6 +353,13 @@ const MensCircle = () => {
       {/* What Is This Section */}
       <section className="py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+          <div className="text-center mb-2 md:mb-4">
+            <img
+              src="https://i.imgur.com/Q6c3UZT.png"
+              alt="What Is This"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
+            />
+          </div>
           <SectionHeader>Что это</SectionHeader>
           <div className="space-y-4 md:space-y-6 text-center">
             <p className="text-base md:text-xl leading-relaxed opacity-90">
@@ -416,6 +423,9 @@ const MensCircle = () => {
               description="Короткий финальный круг и один конкретный шаг, который забираешь с собой. Закрываем поле и возвращаемся в повседневность."
             />
           </div>
+          <div className="pt-6 md:pt-8 text-center">
+            <CTAButton onClick={scrollToPayment} />
+          </div>
         </div>
       </section>
 
@@ -451,7 +461,7 @@ const MensCircle = () => {
                 <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-xs md:text-sm">(сертификат)</a>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
-              <p><BionicText>Я совмещаю глубину церемониального поля с приземлённым пониманием работы, денег и реальной жизни.</BionicText></p>
+              <p><BionicText>Ваш проводник — не только про траву, но и про очень конкретную реальность: деньги, стезя, отношения, ответственность, физическое тело, достижения, творчество, создание блага.</BionicText></p>
             </div>
           </div>
           <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8">
@@ -464,6 +474,9 @@ const MensCircle = () => {
               <BulletItem>слежу за безопасностью и ритмом,</BulletItem>
               <BulletItem>вмешиваюсь, если кто-то теряет контакт с собой или ломает поле.</BulletItem>
             </div>
+          </div>
+          <div className="pt-6 md:pt-8 text-center">
+            <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
       </section>
@@ -480,12 +493,13 @@ const MensCircle = () => {
           </div>
           <SectionHeader>Безопасность и правила</SectionHeader>
           <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
-            <BionicText>Чтобы круг был живым и безопасным, мы опираемся на несколько простых вещей.</BionicText>
+            <BionicText>Чтобы всем было безопасно и по-настоящему, опираемся на несколько простых правил.</BionicText>
           </p>
 
           <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-4 md:mb-6">
+            <p className="font-semibold mb-2"><BionicText>Каннабис</BionicText></p>
             <p className="text-[15px] md:text-xl leading-relaxed opacity-90">
-              <BionicText>Участвуем только в союзе с каннабисом в мягкой, осознанной дозе. Нельзя присоединиться не пригласив растение в свое поле.</BionicText>
+              <BionicText>Участие — только с каннабисом, в мягкой дозировке. Цель — ясность и честность, а не диссоциация.</BionicText>
             </p>
           </div>
 
@@ -517,6 +531,12 @@ const MensCircle = () => {
                 <p><BionicText>Уважаем время и место каждого.</BionicText></p>
               </div>
             </InfoCard>
+          </div>
+
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
+            <p className="text-base md:text-xl leading-relaxed opacity-90">
+              <BionicText>Круг набирается только по приглашениям и рекомендациям и нигде не рекламируется.</BionicText>
+            </p>
           </div>
         </div>
       </section>
@@ -605,7 +625,9 @@ const MensCircle = () => {
               <BionicText>Содержание одинаково для всех уровней. Разный вклад — про честность с самим собой.</BionicText>
             </p>
             <p className="text-base md:text-xl leading-relaxed opacity-80 italic">
-              <BionicText>Если отклик сильный, а с деньгами сейчас сложно — напиши, найдём форму.</BionicText>
+              <BionicText>Если отклик сильный, а с деньгами сейчас непросто — </BionicText>
+              <a href="https://t.me/integralevolution" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">напиши</a>
+              <BionicText>, обязательно решим.</BionicText>
             </p>
           </div>
 
@@ -644,10 +666,10 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <SectionHeader>Что это точно не</SectionHeader>
           <div className="space-y-3 md:space-y-4">
-            <BulletItem>Не «покурить с пацанами».</BulletItem>
-            <BulletItem>Не соревнование «кто круче».</BulletItem>
+            <BulletItem>Не "покурить с пацанами".</BulletItem>
+            <BulletItem>Не соревнование "кто круче".</BulletItem>
             <BulletItem>Не психотерапия и не диагностика.</BulletItem>
-            <BulletItem>Не секта и не культ, где кто-то решает за тебя, как тебе жить.</BulletItem>
+            <BulletItem>Не попытка "перевести" тебя в какую-то веру или систему.</BulletItem>
           </div>
           <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8 text-center">
             <p className="text-base md:text-xl leading-relaxed opacity-90">
@@ -657,30 +679,10 @@ const MensCircle = () => {
         </div>
       </section>
 
-      {/* How to Join Section */}
-      <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
-        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
-          <SectionHeader>Как присоединиться</SectionHeader>
-          <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
-            <BionicText>Если хочешь попасть в ближайший круг:</BionicText>
-          </p>
-          <div className="space-y-3 md:space-y-4">
-            <InfoCard icon={Send}>
-              <BionicText>Напиши мне (Telegram / почта) пару строк о себе и своём намерении.</BionicText>
-            </InfoCard>
-            <InfoCard icon={MessageCircle}>
-              <BionicText>Я отвечу с датой, деталями и простыми инструкциями по подготовке.</BionicText>
-            </InfoCard>
-          </div>
-          <div className="pt-6 md:pt-8 text-center hidden md:block">
-            <CTAButton onClick={scrollToPayment} />
-          </div>
-        </div>
-      </section>
 
       {/* Bottom padding for sticky CTA on mobile */}
       <div className="h-20 md:hidden" />
-      
+
       <div className="bg-white">
         <Footer />
       </div>
