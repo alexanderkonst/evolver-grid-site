@@ -204,6 +204,25 @@ const MensCircleThankYou = () => {
                         </div>
                     </div>
 
+                    {/* Telegram Instructions */}
+                    <div className="pt-8 space-y-4 text-left p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <p className="text-lg leading-relaxed">
+                            <BionicText>Напиши мне в Telegram пару строк о себе и своём намерении.</BionicText>
+                            {" "}
+                            <a
+                                href="https://t.me/integralevolution"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-300 hover:text-blue-200 underline"
+                            >
+                                @integralevolution
+                            </a>
+                        </p>
+                        <p className="text-lg leading-relaxed opacity-90">
+                            <BionicText>Я отвечу продублировав дату, детали и пошлю предельно простые инструкции по подготовке.</BionicText>
+                        </p>
+                    </div>
+
                     {/* Back Link */}
                     <div className="pt-12">
                         <Link
