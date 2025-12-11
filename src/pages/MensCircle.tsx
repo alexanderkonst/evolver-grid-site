@@ -675,6 +675,9 @@ const MensCircle = () => {
               <BionicText>Это круг для взрослых мужчин, которые чувствуют: «Хватит делать вид, что всё ок. Пора говорить по-настоящему — и впускать свет внутрь.»</BionicText>
             </p>
           </div>
+          <div className="pt-6 md:pt-8 text-center">
+            <CTAButton onClick={scrollToPayment} />
+          </div>
         </div>
       </section>
 
