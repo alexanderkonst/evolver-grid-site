@@ -34,6 +34,38 @@ export const modules: Module[] = [
     story: "Destiny emerged from working with hundreds of talented individuals who struggled to articulate their unique value. This program distills that experience into a clear pathway for building a business around your genius.",
   },
   {
+    id: "10",
+    title: "GENIUS-LAYER MATCHING",
+    slug: "genius-layer-matching",
+    category: "Business",
+    tagline: "Stop guessing co-founder fit. Match on how people are built to play.",
+    status: "Live",
+    version: "v1.0",
+    hero_CTA_label: "Talk to Aleksandr about a pilot",
+    hero_CTA_link: "https://www.calendly.com/konstantinov",
+    description: "<p>Add a 'genius layer' to your founder matching. We use Zone-of-Genius assessments to surface each founder's deep operating pattern, then generate smarter matches for venture studios, accelerators, and founder programs.</p>",
+    who_for: [
+      "Venture studios curating founder teams",
+      "Accelerators running cohort matching",
+      "Founder programs seeking better team formation"
+    ],
+    outcomes: [
+      "Fewer mis-matched founder pairs",
+      "Faster trust and role-clarity in new teams",
+      "Differentiated 'we see you' experience for founders"
+    ],
+    structure: [
+      "30-min exploratory call",
+      "5-10 founders take Zone-of-Genius assessment",
+      "3-way A/B pilot with debrief",
+      "Clear recommendations for rollout"
+    ],
+    story: "Most founder programs match on ideas and CVs. But what makes or breaks teams is how people operate. This pilot adds a high-signal 'genius layer' to see if smarter matching actually works.",
+    app_links: [
+      { label: "Book a Pilot Call", url: "https://www.calendly.com/konstantinov" }
+    ]
+  },
+  {
     id: "9",
     title: "GENIUS OFFER SNAPSHOT",
     slug: "genius-offer",

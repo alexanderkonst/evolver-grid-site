@@ -23,6 +23,7 @@ import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
+import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
 import GameMap from "./pages/GameMap";
@@ -70,6 +71,7 @@ const App = () => (
             <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
+            <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
             <Route path="/game" element={<GameHome />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<SkillTrees />} />
