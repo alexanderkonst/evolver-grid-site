@@ -31,7 +31,6 @@ const GeniusLayerMatching = () => {
     }, []);
 
     const CALENDLY_URL = "https://www.calendly.com/konstantinov";
-    const PILOT_PRICE = "$500";
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -127,9 +126,10 @@ const GeniusLayerMatching = () => {
                             <p className="text-muted-foreground">
                                 We keep it absurdly simple and data-honest.
                             </p>
-                            <p className="text-lg font-semibold text-primary">
-                                Pilot fee: {PILOT_PRICE}
-                            </p>
+                            <div className="text-lg font-semibold text-primary space-y-1">
+                                <p>$1,000 for 5 founders</p>
+                                <p>$1,500 for 10 founders</p>
+                            </div>
                         </div>
 
                         <div className="space-y-4">
@@ -240,7 +240,7 @@ const GeniusLayerMatching = () => {
                                 },
                                 {
                                     q: "What about pricing?",
-                                    a: `The pilot is a one-time ${PILOT_PRICE} fee, sized so it's easy to approve as an experiment rather than a big platform decision.`
+                                    a: "The pilot is $1,000 for 5 founders or $1,500 for 10 founders — sized so it's easy to approve as an experiment rather than a big platform decision."
                                 },
                                 {
                                     q: "What happens after the pilot?",
