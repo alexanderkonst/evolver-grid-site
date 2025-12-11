@@ -407,19 +407,13 @@ const MensCircle = () => {
                 <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-sm">(сертификат)</a>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
-              <p><BionicText>Я совмещаю глубину церемониального поля с приземлённым пониманием работы, денег и реальной жизни.</BionicText></p>
+              <p><BionicText>Ваш проводник — не только про траву, но и про очень конкретную реальность: деньги, стезя, отношения, ответственность, физическое тело, достижения, творчество, создание блага.</BionicText></p>
             </div>
           </div>
           <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-8">
-            <p className="text-lg md:text-xl font-semibold mb-4 text-center">
-              <BionicText>В круге я:</BionicText>
+            <p className="text-lg md:text-xl leading-relaxed opacity-90 text-center">
+              <BionicText>В круге моя задача — держать форму, глубину и безопасность процесса, вести активации и вовремя вмешаться, если что-то идёт не туда.</BionicText>
             </p>
-            <div className="space-y-3">
-              <BulletItem>держу поле и границы,</BulletItem>
-              <BulletItem>веду две активации,</BulletItem>
-              <BulletItem>слежу за безопасностью и ритмом,</BulletItem>
-              <BulletItem>вмешиваюсь, если кто-то теряет контакт с собой или ломает поле.</BulletItem>
-            </div>
           </div>
         </div>
       </section>
@@ -436,40 +430,45 @@ const MensCircle = () => {
           </div>
           <SectionHeader>Безопасность и правила</SectionHeader>
           <p className="text-lg md:text-xl text-center opacity-90 mb-8">
-            <BionicText>Чтобы круг был живым и безопасным, мы опираемся на несколько простых вещей.</BionicText>
+            <BionicText>Чтобы всем было безопасно и по-настоящему, опираемся на несколько простых правил.</BionicText>
           </p>
 
-          <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-6">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
-              <BionicText>Участвуем только в союзе с каннабисом в мягкой, осознанной дозе. Нельзя присоединиться не пригласив растение в свое поле.</BionicText>
-            </p>
-          </div>
-
-          {/* Mental Health */}
-          <InfoCard icon={Shield}>
-            <p className="font-semibold mb-2"><BionicText>Про психическое здоровье</BionicText></p>
-            <p><BionicText>Если у тебя тяжёлые психиатрические диагнозы, были эпизоды психоза или сейчас очень нестабильное состояние — это пространство не подойдёт.</BionicText></p>
-            <p className="mt-2"><BionicText>Круг не является психотерапией и не заменяет работу с врачом или терапевтом.</BionicText></p>
-          </InfoCard>
-
-          {/* Presence Format */}
-          <InfoCard icon={Users}>
-            <p className="font-semibold mb-2"><BionicText>Формат присутствия</BionicText></p>
+          {/* Cannabis */}
+          <InfoCard icon={Sparkles}>
+            <p className="font-semibold mb-2"><BionicText>Каннабис</BionicText></p>
             <div className="space-y-2">
-              <p><BionicText>Конфиденциальность: всё, что сказано в кругу, остаётся в кругу.</BionicText></p>
-              <p><BionicText>Камеры включены. Мы приходим как участники, а не как зрители.</BionicText></p>
-              <p><BionicText>Я оставляю за собой право остановить процесс или человека, если вижу, что это небезопасно для него или для поля.</BionicText></p>
+              <p><BionicText>Участие — только с каннабисом в мягкой, осознанной дозе.</BionicText></p>
+              <p><BionicText>Цель — ясность и честность, а не отключиться или потерять контроль.</BionicText></p>
             </div>
           </InfoCard>
 
-          {/* How We Speak */}
-          <InfoCard icon={MessageCircle}>
-            <p className="font-semibold mb-2"><BionicText>Как мы говорим</BionicText></p>
+          {/* Mental Health */}
+          <InfoCard icon={Shield}>
+            <p className="font-semibold mb-2"><BionicText>Психическое состояние</BionicText></p>
             <div className="space-y-2">
-              <p><BionicText>Говорим от себя, честно и по сути.</BionicText></p>
-              <p><BionicText>Не даём советов без прямого запроса.</BionicText></p>
-              <p><BionicText>Не перебиваем и не спорим с личным опытом другого.</BionicText></p>
-              <p><BionicText>Уважаем время и место каждого.</BionicText></p>
+              <p><BionicText>Если у тебя тяжёлые психиатрические диагнозы, были эпизоды психоза или сейчас очень нестабильное состояние — этот формат не подойдёт.</BionicText></p>
+              <p><BionicText>Круг не заменяет психотерапию и не отменяет работу с врачом или терапевтом.</BionicText></p>
+            </div>
+          </InfoCard>
+
+          {/* Presence */}
+          <InfoCard icon={Users}>
+            <p className="font-semibold mb-2"><BionicText>Присутствие</BionicText></p>
+            <div className="space-y-2">
+              <p><BionicText>Конфиденциальность: всё, что сказано в круге, остаётся в круге.</BionicText></p>
+              <p><BionicText>Камеры включены. Мы приходим как участники, а не зрители.</BionicText></p>
+              <p><BionicText>Я оставляю за собой право остановить процесс или кого-то из участников, если вижу, что это небезопасно для него или для круга.</BionicText></p>
+            </div>
+          </InfoCard>
+
+          {/* Communication */}
+          <InfoCard icon={MessageCircle}>
+            <p className="font-semibold mb-2"><BionicText>Общение</BionicText></p>
+            <div className="space-y-2">
+              <p><BionicText>Говорим от себя, о себе, без попытки "исправить" других.</BionicText></p>
+              <p><BionicText>Не даём советов без запроса.</BionicText></p>
+              <p><BionicText>Не перебиваем и не спорим с чужим опытом.</BionicText></p>
+              <p><BionicText>Уважаем время: у каждого есть возможность быть услышанным.</BionicText></p>
             </div>
           </InfoCard>
         </div>
@@ -488,7 +487,7 @@ const MensCircle = () => {
           <SectionHeader>Вклад и деньги</SectionHeader>
           <div className="text-center space-y-4 mb-8">
             <p className="text-lg md:text-xl leading-relaxed opacity-90">
-              <BionicText>Формат один и тот же для всех. Ты сам выбираешь уровень вклада — по своим возможностям и отклику.</BionicText>
+              <BionicText>Формат и содержание одинаковы для всех. Ты сам выбираешь уровень вклада — по своим возможностям и внутреннему отклику.</BionicText>
             </p>
           </div>
 
@@ -508,7 +507,7 @@ const MensCircle = () => {
                 <BionicText>$33 в месяц</BionicText>
               </Button>
               <p className="text-base md:text-lg opacity-80">
-                <BionicText>Базовый вклад за месяц (1 встреча), минимальный энергообмен, чтобы круг жил.</BionicText>
+                <BionicText>Базовый вклад за месяц (1 встреча).</BionicText>
               </p>
             </div>
 
@@ -527,7 +526,7 @@ const MensCircle = () => {
                 <BionicText>$100 в месяц</BionicText>
               </Button>
               <p className="text-base md:text-lg opacity-80">
-                <BionicText>Поддерживающий вклад, если хочешь сильнее поддержать поле и моё время.</BionicText>
+                <BionicText>Поддерживающий вклад, если хочешь сильнее поддержать круг и моё время.</BionicText>
               </p>
             </div>
 
@@ -546,17 +545,16 @@ const MensCircle = () => {
                 <BionicText>$333 в месяц</BionicText>
               </Button>
               <p className="text-base md:text-lg opacity-80">
-                <BionicText>Вклад покровителя поля, если можешь и чувствуешь, что это твоё «да».</BionicText>
+                <BionicText>Вклад покровителя, если можешь и чувствуешь, что это честно для тебя.</BionicText>
               </p>
             </div>
           </div>
 
-          <div className="text-center space-y-4 mt-8">
-            <p className="text-lg md:text-xl leading-relaxed opacity-90">
-              <BionicText>Содержание одинаково для всех уровней. Разный вклад — про честность с самим собой.</BionicText>
-            </p>
+          <div className="text-center mt-8">
             <p className="text-lg md:text-xl leading-relaxed opacity-80 italic">
-              <BionicText>Если отклик сильный, а с деньгами сейчас сложно — напиши, найдём форму.</BionicText>
+              <BionicText>Если отклик сильный, а с деньгами сейчас непросто — </BionicText>
+              <a href="https://t.me/integralevolution" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">напиши</a>
+              <BionicText>, что-нибудь придумаем.</BionicText>
             </p>
           </div>
 
@@ -595,14 +593,14 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-8">
           <SectionHeader>Что это точно не</SectionHeader>
           <div className="space-y-4">
-            <BulletItem>Не «покурить с пацанами».</BulletItem>
-            <BulletItem>Не соревнование «кто круче».</BulletItem>
+            <BulletItem>Не "покурить с пацанами".</BulletItem>
+            <BulletItem>Не соревнование "кто круче".</BulletItem>
             <BulletItem>Не психотерапия и не диагностика.</BulletItem>
-            <BulletItem>Не секта и не культ, где кто-то решает за тебя, как тебе жить.</BulletItem>
+            <BulletItem>Не попытка "перевести" тебя в какую-то веру или систему.</BulletItem>
           </div>
           <div className="p-5 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-8 text-center">
             <p className="text-lg md:text-xl leading-relaxed opacity-90">
-              <BionicText>Это круг для взрослых мужчин, которые чувствуют: «Хватит делать вид, что всё ок. Пора говорить по-настоящему — и впускать свет внутрь.»</BionicText>
+              <BionicText>Это круг для взрослых мужчин, которые чувствуют: "Хватит делать вид, что всё ок. Пора говорить по-настоящему — и впускать свет внутрь."</BionicText>
             </p>
           </div>
         </div>
@@ -612,18 +610,10 @@ const MensCircle = () => {
       <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-8">
           <SectionHeader>Как присоединиться</SectionHeader>
-          <p className="text-lg md:text-xl text-center opacity-90 mb-8">
-            <BionicText>Если хочешь попасть в ближайший круг:</BionicText>
+          <p className="text-lg md:text-xl text-center opacity-90">
+            <BionicText>Круг набирается по тёплым приглашениям и рекомендациям.</BionicText>
           </p>
-          <div className="space-y-4">
-            <InfoCard icon={Send}>
-              <BionicText>Напиши мне (Telegram / почта) пару строк о себе и своём намерении.</BionicText>
-            </InfoCard>
-            <InfoCard icon={MessageCircle}>
-              <BionicText>Я отвечу с датой, деталями и простыми инструкциями по подготовке.</BionicText>
-            </InfoCard>
-          </div>
-          <div className="pt-8 text-center">
+          <div className="pt-4 text-center">
             <CTAButton onClick={scrollToPayment} />
           </div>
         </div>
