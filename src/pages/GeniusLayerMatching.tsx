@@ -128,7 +128,7 @@ const GeniusLayerMatching = () => {
                                 <BionicText>We keep it absurdly simple and data-honest.</BionicText>
                             </p>
                             <p className="text-lg font-semibold text-primary">
-                                <BionicText>Pilot fee: {PILOT_PRICE}</BionicText>
+                                <BionicText>{`Pilot fee: ${PILOT_PRICE}`}</BionicText>
                             </p>
                         </div>
 
