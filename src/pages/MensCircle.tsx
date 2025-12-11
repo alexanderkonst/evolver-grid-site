@@ -334,7 +334,7 @@ const MensCircle = () => {
             <img
               src="https://i.imgur.com/eyruvkF.png"
               alt="For Whom"
-              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover rounded-full"
             />
           </div>
           <SectionHeader>Для кого это</SectionHeader>
