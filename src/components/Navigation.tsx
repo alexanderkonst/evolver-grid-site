@@ -87,8 +87,8 @@ const Navigation = () => {
   };
 
   const navLinks = [
+    { to: "/game", label: "game of you", isScroll: false, isPrimary: true },
     { to: "/#modules", label: "tools", isScroll: true },
-    { to: "/game", label: "game of you", isScroll: false },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
     { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },
@@ -141,7 +141,7 @@ const Navigation = () => {
                   <NavLink
                     key={link.to}
                     to={link.to}
-                    className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className={`nav-link text-sm transition-colors ${link.isPrimary ? 'font-semibold text-amber-600 dark:text-amber-400 drop-shadow-[0_0_6px_rgba(217,119,6,0.4)] hover:drop-shadow-[0_0_10px_rgba(217,119,6,0.6)]' : 'font-medium text-muted-foreground hover:text-foreground'}`}
                     activeClassName="text-foreground"
                   >
                     {link.label}
@@ -255,7 +255,7 @@ const Navigation = () => {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={`block py-2 text-base transition-colors ${link.isPrimary ? 'font-semibold text-amber-600 dark:text-amber-400' : 'font-medium text-muted-foreground hover:text-foreground'}`}
                   activeClassName="text-foreground"
                   onClick={() => setIsOpen(false)}
                 >
