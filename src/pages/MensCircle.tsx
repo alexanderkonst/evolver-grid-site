@@ -457,8 +457,7 @@ const MensCircle = () => {
             <div className="space-y-3 md:space-y-4 text-[15px] md:text-xl leading-relaxed opacity-90">
               <p><BionicText>Провёл 150+ церемоний и процессов с растениями-учителями для людей из разных стран и культур.</BionicText></p>
               <p>
-                <BionicText>Давно и плотно углубляю мастерство в интегральной теории у Кена Уилбера.</BionicText>
-                <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-xs md:text-sm">(сертификат)</a>
+                <BionicText>Давно и плотно углубляю </BionicText><a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">мастерство</a><BionicText> в интегральной теории у Кена Уилбера.</BionicText>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
               <p><BionicText>Ваш проводник — не только про траву, но и про очень конкретную реальность: деньги, стезя, отношения, ответственность, физическое тело, достижения, творчество, создание блага.</BionicText></p>
@@ -525,10 +524,10 @@ const MensCircle = () => {
             <InfoCard icon={MessageCircle}>
               <p className="font-semibold mb-2"><BionicText>Как мы говорим</BionicText></p>
               <div className="space-y-1.5 md:space-y-2">
-                <p><BionicText>Говорим от себя, честно и по сути.</BionicText></p>
-                <p><BionicText>Не даём советов без прямого запроса.</BionicText></p>
-                <p><BionicText>Не перебиваем и не спорим с личным опытом другого.</BionicText></p>
-                <p><BionicText>Уважаем время и место каждого.</BionicText></p>
+                <p><BionicText>Говорим от себя, о себе, без попытки "исправить" других.</BionicText></p>
+                <p><BionicText>Не даём советов без запроса.</BionicText></p>
+                <p><BionicText>Не перебиваем и не спорим с чужим опытом.</BionicText></p>
+                <p><BionicText>Уважаем время: у каждого есть возможность быть услышанным.</BionicText></p>
               </div>
             </InfoCard>
           </div>
