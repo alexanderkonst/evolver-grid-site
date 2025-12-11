@@ -7,7 +7,6 @@ import CustomCursor from "@/components/CustomCursor";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
-import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
@@ -56,7 +55,6 @@ const App = () => (
         <PageTransition>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />

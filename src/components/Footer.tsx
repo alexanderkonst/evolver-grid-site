@@ -8,30 +8,24 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Links & Channels */}
           <nav className="flex flex-wrap justify-center gap-6 items-center">
-            <Link 
-              to="/about" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About
-            </Link>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact
             </Link>
-            <a 
-              href="https://www.youtube.com/@IntegralEvolution" 
-              target="_blank" 
+            <a
+              href="https://www.youtube.com/@IntegralEvolution"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
             >
               <Youtube className="h-4 w-4" />
               YouTube
             </a>
-            <a 
-              href="https://t.me/ARKHAZM" 
-              target="_blank" 
+            <a
+              href="https://t.me/ARKHAZM"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
             >
