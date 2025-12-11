@@ -332,9 +332,9 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src="https://i.imgur.com/raDNNNi.jpeg"
+              src="https://i.imgur.com/eyruvkF.png"
               alt="For Whom"
-              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover rounded-full"
+              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
           <SectionHeader>Для кого это</SectionHeader>
@@ -344,7 +344,7 @@ const MensCircle = () => {
           <div className="space-y-3 md:space-y-4">
             <BulletItem>Чувствуют внутреннее напряжение, усталость, потерянность — даже если снаружи "всё нормально".</BulletItem>
             <BulletItem>Много несут в себе и редко говорят о самом важном вслух.</BulletItem>
-            <BulletItem>Хочется честных, тёплых мужских разговоров без игры в "я в порядке".</BulletItem>
+            <BulletItem>Которым хочется честных, тёплых мужских разговоров без игры в "я в порядке".</BulletItem>
             <BulletItem>Уже знакомы с каннабисом и готовы относиться к нему уважительно как к растению-учителю, а не способу забыться или убежать от проблем.</BulletItem>
           </div>
         </div>
@@ -457,7 +457,7 @@ const MensCircle = () => {
             <div className="space-y-3 md:space-y-4 text-[15px] md:text-xl leading-relaxed opacity-90">
               <p><BionicText>Провёл 150+ церемоний и процессов с растениями-учителями для людей из разных стран и культур.</BionicText></p>
               <p>
-                <BionicText>Давно и плотно углубляю </BionicText><a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">мастерство</a><BionicText> в интегральной теории у Кена Уилбера.</BionicText>
+                <BionicText>Давно и плотно углубляю </BionicText><a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">мастерство</a><BionicText> в интегральной теории и спиральной динамике у Кена Уилбера.</BionicText>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
               <p><BionicText>Ваш проводник — не только про траву, но и про очень конкретную реальность: деньги, стезя, отношения, ответственность, физическое тело, достижения, творчество, создание блага.</BionicText></p>
@@ -496,7 +496,6 @@ const MensCircle = () => {
           </p>
 
           <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-4 md:mb-6">
-            <p className="font-semibold mb-2"><BionicText>Каннабис</BionicText></p>
             <p className="text-[15px] md:text-xl leading-relaxed opacity-90">
               <BionicText>Участие — только с каннабисом, в мягкой дозировке. Цель — ясность и честность, а не диссоциация.</BionicText>
             </p>
