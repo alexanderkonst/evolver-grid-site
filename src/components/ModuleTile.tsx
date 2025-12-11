@@ -95,11 +95,11 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
             <img
               src={customImageSrc}
               alt={module.title}
-              className={`h-12 w-12 object-contain ${isComingSoon ? 'opacity-40 grayscale' : ''
+              className={`h-16 w-16 object-contain ${isComingSoon ? 'opacity-40 grayscale' : ''
                 }`}
             />
           ) : (
-            <IconComponent className={`h-12 w-12 ${isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
+            <IconComponent className={`h-16 w-16 ${isComingSoon ? 'text-muted-foreground/40' : 'text-accent'
               }`} />
           )}
           <h3 className={`text-xl font-serif font-semibold transition-all duration-300 ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent group-hover:scale-105'
