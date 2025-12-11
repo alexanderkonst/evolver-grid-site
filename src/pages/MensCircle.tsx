@@ -274,7 +274,7 @@ const MensCircle = () => {
           </h1>
           <h2 className="text-lg md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto">
             <BionicText>
-              Место, где взрослые мужчины перестают делать вид, что «всё нормально» и говорят по-честному от сердца в союзе с растением-учителем.
+              Круг, где мужчины говорят как есть в осознанном взаимодействии с каннабисом.
             </BionicText>
           </h2>
           <div className="pt-4">
@@ -286,15 +286,22 @@ const MensCircle = () => {
       {/* For Whom Section */}
       <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center mb-4">
+            <img
+              src="https://i.imgur.com/Q6c3UZT.png"
+              alt="For Whom"
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+            />
+          </div>
           <SectionHeader>Для кого это</SectionHeader>
           <p className="text-lg md:text-xl text-center opacity-90 mb-8">
-            <BionicText>Для русскоязычных мужчин, у которых откликается хоть один пункт:</BionicText>
+            <BionicText>Для русскоязычных мужчин, которые:</BionicText>
           </p>
           <div className="space-y-4">
-            <BulletItem>Снаружи у тебя «всё хорошо», а внутри — усталость, пустота или потерянность.</BulletItem>
-            <BulletItem>Ты много перевариваешь в себе и редко говоришь о самом важном.</BulletItem>
-            <BulletItem>Хочешь честных мужских разговоров без понтов, токсичности и «кто круче».</BulletItem>
-            <BulletItem>Чувствуешь, что с каннабисом можно строить зрелые отношения.</BulletItem>
+            <BulletItem>Чувствуют внутреннее напряжение, усталость, потерянность — даже если снаружи "всё нормально".</BulletItem>
+            <BulletItem>Много несут в себе и редко говорят о самом важном вслух.</BulletItem>
+            <BulletItem>Хочется честных, тёплых мужских разговоров без игры в "я в порядке".</BulletItem>
+            <BulletItem>Уже знакомы с каннабисом и готовы относиться к нему уважительно как к растению-учителю, а не способу забыться или убежать от проблем.</BulletItem>
           </div>
         </div>
       </section>
@@ -305,7 +312,7 @@ const MensCircle = () => {
           <SectionHeader>Что это</SectionHeader>
           <div className="space-y-6 text-center">
             <p className="text-lg md:text-xl leading-relaxed opacity-90">
-              <BionicText>Онлайн-круг для до 20 мужчин со всего мира.</BionicText>
+              <BionicText>Онлайн-круг для русскоязычных мужчин со всего мира.</BionicText>
             </p>
             <p className="text-lg md:text-xl leading-relaxed opacity-90">
               <BionicText>Мы встречаемся в Zoom, и каждый участник входит в круг в союзе с растением-учителем (каннабисом) в мягкой, осознанной дозе.</BionicText>
@@ -325,17 +332,24 @@ const MensCircle = () => {
       {/* How Meeting Goes Section */}
       <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center mb-4">
+            <img
+              src="https://i.imgur.com/RpmgjXZ.png"
+              alt="How Meeting Goes"
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+            />
+          </div>
           <SectionHeader>Как проходит встреча</SectionHeader>
           <div className="space-y-4">
             <MeetingStep
               title="Открытие"
               duration="10–15 мин"
-              description="Настрой, короткое дыхание, простые договорённости: ради чего мы здесь и как мы общаемся."
+              description="Короткое знакомство, простые договорённости, настрой. Переход из суеты дня в более собранное состояние."
             />
             <MeetingStep
               title="Союз с растением"
               duration="≈10 мин"
-              description="Каждый соединяется с каннабисом в мягкой дозе с ясным намерением. Задача — не улететь, а стать честнее с собой."
+              description='Каждый соединяется с каннабисом в мягкой дозе с ясным намерением. Цель — не "улететь", а стать честнее и чувствительнее к себе.'
             />
             <MeetingStep
               title="Активация 1 — «Освобождение»"
@@ -366,13 +380,33 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-8">
           <SectionHeader>Кто ведёт</SectionHeader>
           <div className="text-center space-y-6">
+            {/* Profile Photos */}
+            <div className="flex justify-center gap-4 md:gap-6 mb-6">
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
+                <img
+                  src="https://i.imgur.com/40cWWoe.jpeg"
+                  alt="Aleksandr - Shamanic"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/20">
+                <img
+                  src="https://i.imgur.com/XctlWbQ.jpeg"
+                  alt="Aleksandr - Professional"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+            </div>
             <p className="text-xl md:text-2xl font-semibold">
               <BionicText>Я — Александр.</BionicText>
             </p>
             <div className="space-y-4 text-lg md:text-xl leading-relaxed opacity-90">
               <p><BionicText>Провёл 150+ церемоний и процессов с растениями-учителями для людей из разных стран и культур.</BionicText></p>
-              <p><BionicText>Давно и плотно углубляю мастерство в интегральной теории у Кена Уилбера.</BionicText></p>
-              <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии RnD Ventures.</BionicText></p>
+              <p>
+                <BionicText>Давно и плотно углубляю мастерство в интегральной теории у Кена Уилбера.</BionicText>
+                <a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-300 hover:text-blue-200 underline text-sm">(сертификат)</a>
+              </p>
+              <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
               <p><BionicText>Я совмещаю глубину церемониального поля с приземлённым пониманием работы, денег и реальной жизни.</BionicText></p>
             </div>
           </div>
@@ -393,6 +427,13 @@ const MensCircle = () => {
       {/* Safety and Rules Section */}
       <section className="py-16 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center mb-4">
+            <img
+              src="https://i.imgur.com/GMwBqqz.png"
+              alt="Safety and Rules"
+              className="w-24 h-24 md:w-32 md:h-32 mx-auto object-contain"
+            />
+          </div>
           <SectionHeader>Безопасность и правила</SectionHeader>
           <p className="text-lg md:text-xl text-center opacity-90 mb-8">
             <BionicText>Чтобы круг был живым и безопасным, мы опираемся на несколько простых вещей.</BionicText>
@@ -531,19 +572,19 @@ const MensCircle = () => {
           <SectionHeader>Что ты заберёшь с собой</SectionHeader>
           <div className="space-y-4">
             <InfoCard icon={Heart}>
-              <BionicText>Место, где можно говорить правду, а не играть роль.</BionicText>
+              <span className="flex items-center"><BionicText>Место, где можно говорить правду, а не играть роль.</BionicText></span>
             </InfoCard>
             <InfoCard icon={Users}>
-              <BionicText>Ощущение, что ты не один со своими вопросами и переходами.</BionicText>
+              <span className="flex items-center"><BionicText>Ощущение, что ты не один со своими вопросами и переходами.</BionicText></span>
             </InfoCard>
             <InfoCard icon={MessageCircle}>
-              <BionicText>Тёплое, но честное мужское зеркало.</BionicText>
+              <span className="flex items-center"><BionicText>Тёплое, но честное мужское зеркало.</BionicText></span>
             </InfoCard>
             <InfoCard icon={Sparkles}>
-              <BionicText>Более зрелые отношения с каннабисом как с растением-учителем.</BionicText>
+              <span className="flex items-center"><BionicText>Более зрелые отношения с каннабисом как с растением-учителем.</BionicText></span>
             </InfoCard>
             <InfoCard icon={Clock}>
-              <BionicText>Опыт двух активаций — Освобождение и Внутренний Свет — и один конкретный шаг в сторону более честной, собранной жизни.</BionicText>
+              <span className="flex items-center"><BionicText>Опыт двух активаций — Освобождение и Внутренний Свет — и один конкретный шаг в сторону более честной, собранной жизни.</BionicText></span>
             </InfoCard>
           </div>
         </div>
