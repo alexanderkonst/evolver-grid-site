@@ -318,7 +318,7 @@ const MensCircle = () => {
           </h1>
           <h2 className="text-base md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto px-2">
             <BionicText>
-              Круг, где мужчины говорят как есть в осознанном взаимодействии с каннабисом.
+              Пространство, где мужчины говорят как есть в осознанном взаимодействии с каннабисом.
             </BionicText>
           </h2>
           <div className="pt-2 md:pt-4">
