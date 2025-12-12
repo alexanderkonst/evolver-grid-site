@@ -313,7 +313,7 @@ const MensCircle = () => {
             alt="Men's Circle"
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
-          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2" style={{ textShadow: '0 0 20px rgba(218, 165, 32, 0.6), 0 0 40px rgba(218, 165, 32, 0.3)' }}>
+          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2" style={{ textShadow: '0 0 15px rgba(218, 165, 32, 0.4), 0 0 30px rgba(218, 165, 32, 0.2)' }}>
             <BionicText>Мужской Круг с Каннабисом</BionicText>
           </h1>
           <h2 className="text-base md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto px-2">
@@ -334,7 +334,7 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <div className="w-20 h-20 md:w-32 md:h-32 mx-auto rounded-full" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%)' }}>
+            <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%)' }}>
               <img
                 src="https://i.imgur.com/EEe29pz.jpeg"
                 alt="For Whom"
