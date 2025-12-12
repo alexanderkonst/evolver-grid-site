@@ -303,10 +303,8 @@ const MensCircle = () => {
         }}
       />
 
-      <Navigation />
-
       {/* Hero Section */}
-      <section className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+      <section className="pt-12 md:pt-20 pb-12 md:pb-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-8">
           <img
             src="https://i.imgur.com/NGSxNw8.png"
