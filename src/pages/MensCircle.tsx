@@ -330,6 +330,46 @@ const MensCircle = () => {
         </div>
       </section>
 
+      {/* Brief Overview Section */}
+      <section className="py-10 md:py-16 px-4 md:px-6 bg-white/5">
+        <div className="max-w-3xl mx-auto space-y-5 md:space-y-6">
+          <SectionHeader>Кратко о том, что здесь вообще происходит</SectionHeader>
+          <div className="space-y-3 md:space-y-4">
+            <div className="flex items-start gap-3">
+              <span className="text-[#D4AF37] mt-1.5 text-sm">•</span>
+              <p className="text-[15px] md:text-lg leading-relaxed opacity-90">
+                <span className="font-semibold text-[#E0E4EA]">Для кого.</span>{' '}
+                <BionicText>Для русскоязычных мужчин, которые уже знакомы с каннабисом и хотят иметь одно честное, поддерживающее мужское поле в жизни.</BionicText>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#D4AF37] mt-1.5 text-sm">•</span>
+              <p className="text-[15px] md:text-lg leading-relaxed opacity-90">
+                <span className="font-semibold text-[#E0E4EA]">Формат.</span>{' '}
+                <BionicText>Онлайн-встреча в Zoom, до 20 человек, 2–2,5 часа: две медитации-активации и круг высказывания.</BionicText>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#D4AF37] mt-1.5 text-sm">•</span>
+              <p className="text-[15px] md:text-lg leading-relaxed opacity-90">
+                <span className="font-semibold text-[#E0E4EA]">Суть.</span>{' '}
+                <BionicText>Мы создаём поле, в котором можно говорить как есть, чувствовать глубже и расширяться — в осознанном взаимодействии с каннабисом как растением силы.</BionicText>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#D4AF37] mt-1.5 text-sm">•</span>
+              <p className="text-[15px] md:text-lg leading-relaxed opacity-90">
+                <span className="font-semibold text-[#E0E4EA]">Вклад.</span>{' '}
+                <BionicText>Один и тот же формат для всех. Три уровня вклада в месяц — от $33 до $333 — по честности с самим собой и своим достатком.</BionicText>
+              </p>
+            </div>
+          </div>
+          <div className="pt-4 md:pt-6 text-center">
+            <CTAButton onClick={scrollToPayment} />
+          </div>
+        </div>
+      </section>
+
       {/* For Whom Section */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
