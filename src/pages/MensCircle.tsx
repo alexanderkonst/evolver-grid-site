@@ -512,25 +512,23 @@ const MensCircle = () => {
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
-          <SectionHeader>Безопасность и правила</SectionHeader>
-          <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
-            <BionicText>Чтобы всем было безопасно и по-настоящему, опираемся на несколько простых правил.</BionicText>
-          </p>
+          <SectionHeader>Про каннабис</SectionHeader>
 
-          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mb-4 md:mb-6">
-            <p className="text-[15px] md:text-xl leading-relaxed opacity-90">
-              <BionicText>Участие — только с каннабисом, в мягкой дозировке. Цель — ясность и честность, а не диссоциация.</BionicText>
-            </p>
+          <div className="space-y-3 md:space-y-4">
+            <BulletItem>Участие — только с каннабисом, в мягкой дозе.</BulletItem>
+            <BulletItem>В день круга — без алкоголя и других веществ.</BulletItem>
+          </div>
+
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10">
+            <p className="font-semibold mb-3 text-center"><BionicText>Круг не подойдёт, если:</BionicText></p>
+            <div className="space-y-2 md:space-y-3">
+              <BulletItem>у тебя были эпизоды психоза или тяжёлые психиатрические состояния;</BulletItem>
+              <BulletItem>сейчас очень нестабильный период, когда сложно держать базовую опору;</BulletItem>
+              <BulletItem>с каннабисом у тебя тяжёлые реакции, после которых ты долго "собираешься".</BulletItem>
+            </div>
           </div>
 
           <div className="space-y-3 md:space-y-4">
-            {/* Mental Health */}
-            <InfoCard icon={Shield}>
-              <p className="font-semibold mb-2"><BionicText>Про психическое здоровье</BionicText></p>
-              <p><BionicText>Если у тебя тяжёлые психиатрические диагнозы, были эпизоды психоза или сейчас очень нестабильное состояние — это пространство не подойдёт.</BionicText></p>
-              <p className="mt-2"><BionicText>Круг не является психотерапией и не заменяет работу с врачом или терапевтом.</BionicText></p>
-            </InfoCard>
-
             {/* Presence Format */}
             <InfoCard icon={Users}>
               <p className="font-semibold mb-2"><BionicText>Формат присутствия</BionicText></p>
@@ -657,45 +655,28 @@ const MensCircle = () => {
         </div>
       </section>
 
-      {/* What You Take Away Section */}
+      {/* What You Take Away + What This Is Not - Combined Section */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
-          <SectionHeader>Что ты заберёшь с собой</SectionHeader>
+          <SectionHeader>Что ты можешь забрать с собой</SectionHeader>
           <div className="space-y-3 md:space-y-4">
-            <InfoCard icon={Heart}>
-              <span className="flex items-center"><BionicText>Место, где можно говорить правду, а не играть роль.</BionicText></span>
-            </InfoCard>
-            <InfoCard icon={Users}>
-              <span className="flex items-center"><BionicText>Ощущение, что ты не один со своими вопросами и переходами.</BionicText></span>
-            </InfoCard>
-            <InfoCard icon={MessageCircle}>
-              <span className="flex items-center"><BionicText>Тёплое, но честное мужское зеркало.</BionicText></span>
-            </InfoCard>
-            <InfoCard icon={Sparkles}>
-              <span className="flex items-center"><BionicText>Более зрелые отношения с каннабисом как с растением-учителем.</BionicText></span>
-            </InfoCard>
-            <InfoCard icon={Clock}>
-              <span className="flex items-center"><BionicText>Опыт двух активаций — Освобождение и Внутренний Свет — и один конкретный шаг в сторону более честной, собранной жизни.</BionicText></span>
-            </InfoCard>
+            <BulletItem>Одно живое место в жизни, где можно говорить как есть.</BulletItem>
+            <BulletItem>Ощущение, что в твоих вопросах и переходах ты не один.</BulletItem>
+            <BulletItem>Мужское зеркало: другие мужчины, которые тоже пробуют быть честными и взрослыми.</BulletItem>
+            <BulletItem>Более зрелые отношения с каннабисом: не как с "фоном" или привычкой, а как с растением силы, с которым можно взаимодействовать осознанно.</BulletItem>
+            <BulletItem>Опыт двух активаций — Освобождение и Внутренний Свет — и один маленький, но конкретный шаг после встречи.</BulletItem>
           </div>
-        </div>
-      </section>
 
-      {/* What This Is Not Section */}
-      <section className="py-12 md:py-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
-          <SectionHeader>Что это точно не</SectionHeader>
+          <div className="pt-6 md:pt-8">
+            <SectionHeader>Что это точно не</SectionHeader>
+          </div>
           <div className="space-y-3 md:space-y-4">
-            <BulletItem>Не "покурить с пацанами".</BulletItem>
-            <BulletItem>Не соревнование "кто круче".</BulletItem>
-            <BulletItem>Не психотерапия и не диагностика.</BulletItem>
-            <BulletItem>Не попытка "перевести" тебя в какую-то веру или систему.</BulletItem>
+            <BulletItem>не "покурить с пацанами" и не вечеринка;</BulletItem>
+            <BulletItem>не соревнование "кто круче / осознаннее / прожареннее";</BulletItem>
+            <BulletItem>не психотерапия, не диагностика и не медицинский сервис;</BulletItem>
+            <BulletItem>не попытка завербовать тебя в веру, систему или культ.</BulletItem>
           </div>
-          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8 text-center">
-            <p className="text-base md:text-xl leading-relaxed opacity-90">
-              <BionicText>Это круг для взрослых мужчин, которые чувствуют: «Хватит делать вид, что всё ок. Пора говорить по-настоящему — и впускать свет внутрь.»</BionicText>
-            </p>
-          </div>
+
           <div className="pt-6 md:pt-8 text-center">
             <CTAButton onClick={scrollToPayment} />
           </div>
