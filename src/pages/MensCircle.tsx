@@ -313,8 +313,8 @@ const MensCircle = () => {
             alt="Men's Circle"
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
-          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2">
-            <BionicText>Мужской Круг Правды с Каннабисом</BionicText>
+          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2" style={{ textShadow: '0 0 20px rgba(218, 165, 32, 0.6), 0 0 40px rgba(218, 165, 32, 0.3)' }}>
+            <BionicText>Мужской Круг с Каннабисом</BionicText>
           </h1>
           <h2 className="text-base md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto px-2">
             <BionicText>
@@ -323,6 +323,9 @@ const MensCircle = () => {
           </h2>
           <div className="pt-2 md:pt-4">
             <CTAButton onClick={scrollToPayment} />
+            <p className="text-sm md:text-base opacity-70 mt-3 italic">
+              Онлайн, до 20 мужчин, встреча 2–2,5 часа примерно раз в месяц.
+            </p>
           </div>
         </div>
       </section>
@@ -331,22 +334,37 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <img
-              src="https://i.imgur.com/EEe29pz.jpeg"
-              alt="For Whom"
-              className="w-20 h-20 md:w-32 md:h-32 mx-auto object-cover rounded-full"
-              style={{ objectPosition: '40% center' }}
-            />
+            <div className="w-20 h-20 md:w-32 md:h-32 mx-auto rounded-full" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%)' }}>
+              <img
+                src="https://i.imgur.com/EEe29pz.jpeg"
+                alt="For Whom"
+                className="w-full h-full object-cover rounded-full"
+                style={{ objectPosition: '40% center' }}
+              />
+            </div>
           </div>
           <SectionHeader>Для кого это</SectionHeader>
           <p className="text-base md:text-xl text-center opacity-90 mb-6 md:mb-8">
-            <BionicText>Для русскоязычных мужчин, которые:</BionicText>
+            <BionicText>Этот круг — для мужчин, которые узнают себя хотя бы в чём-то из этого:</BionicText>
           </p>
           <div className="space-y-3 md:space-y-4">
-            <BulletItem>Чувствуют внутреннее напряжение, усталость, потерянность — даже если снаружи "всё нормально".</BulletItem>
-            <BulletItem>Много несут в себе и редко говорят о самом важном вслух.</BulletItem>
-            <BulletItem>Которым хочется честных, тёплых мужских разговоров без игры в "я в порядке".</BulletItem>
-            <BulletItem>Уже знакомы с каннабисом и готовы относиться к нему уважительно как к растению-учителю, а не способу забыться или убежать от проблем.</BulletItem>
+            <BulletItem>В жизни много ответственности, а мест, где можно говорить по-настоящему, немного.</BulletItem>
+            <BulletItem>Каннабис уже рядом с тобой — как привычка, как поддержка или как часть пути — и ты хочешь более зрелых, осознанных отношений с ним.</BulletItem>
+            <BulletItem>Внутри бывает тяжело, но ты не хочешь превращать это ни в жалобу, ни в позу "я духовнее всех".</BulletItem>
+            <BulletItem>Хочется мужского поля, где можно быть честным, уязвимым и при этом оставаться взрослым.</BulletItem>
+          </div>
+
+          <div className="p-4 md:p-6 bg-white/5 rounded-2xl border border-white/10 mt-6 md:mt-8">
+            <p className="text-base md:text-xl leading-relaxed opacity-90 text-center mb-4">
+              <BionicText>Это не про "у тебя проблема, приходи лечиться".</BionicText>
+            </p>
+            <p className="text-base md:text-xl leading-relaxed opacity-90 text-center mb-3">
+              <BionicText>Это про:</BionicText>
+            </p>
+            <div className="space-y-2 md:space-y-3">
+              <BulletItem>поле, которое само по себе даёт поддержку и расширение;</BulletItem>
+              <BulletItem>место, где можно хотя бы раз в месяц перестать что-то изображать и просто быть собой — в присутствии других мужчин.</BulletItem>
+            </div>
           </div>
         </div>
       </section>
@@ -622,6 +640,9 @@ const MensCircle = () => {
           <div className="text-center space-y-3 md:space-y-4 mt-6 md:mt-8">
             <p className="text-base md:text-xl leading-relaxed opacity-90">
               <BionicText>Содержание одинаково для всех уровней. Разный вклад — про честность с самим собой.</BionicText>
+            </p>
+            <p className="text-base md:text-xl leading-relaxed opacity-90 font-semibold">
+              <BionicText>Это не про статус, это про "как для меня честно прямо сейчас".</BionicText>
             </p>
             <p className="text-base md:text-xl leading-relaxed opacity-80 italic">
               <BionicText>Если отклик сильный, а с деньгами сейчас непросто — </BionicText>
