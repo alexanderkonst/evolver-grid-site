@@ -324,7 +324,7 @@ const MensCircle = () => {
           <div className="pt-2 md:pt-4">
             <CTAButton onClick={scrollToPayment} />
             <p className="text-sm md:text-base opacity-70 mt-3 italic">
-              Онлайн, до 20 мужчин, встреча 2–2,5 часа примерно раз в месяц.
+              Онлайн встреча на 2 часа раз в месяц.
             </p>
           </div>
         </div>
