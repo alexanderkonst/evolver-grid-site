@@ -71,29 +71,23 @@ const AdminGeniusOffers = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState<GeniusOfferRequest | null>(null);
 
-  const checkAdminRole = async (userId: string) => {
-    const { data, error } = await supabase.rpc('has_role', {
-      _user_id: userId,
-      _role: 'admin'
-    });
-    
-    if (error) {
-      console.error("Error checking admin role:", error);
-      return false;
-    }
-    
-    return data === true;
+  // Admin check by email (simpler than RPC which may not exist)
+  const ADMIN_EMAILS = ['alexanderkonst@gmail.com', 'alex@evolvergrid.com'];
+
+  const checkAdminRole = async (userEmail: string | undefined): Promise<boolean> => {
+    if (!userEmail) return false;
+    return ADMIN_EMAILS.includes(userEmail.toLowerCase());
   };
 
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
-        const hasAdminRole = await checkAdminRole(session.user.id);
+        const hasAdminRole = await checkAdminRole(session.user.email);
         setIsAdmin(hasAdminRole);
-        
+
         if (hasAdminRole) {
           fetchRequests();
         } else {
@@ -102,7 +96,7 @@ const AdminGeniusOffers = () => {
       } else {
         setLoading(false);
       }
-      
+
       setAuthLoading(false);
     };
 
@@ -110,11 +104,11 @@ const AdminGeniusOffers = () => {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
-        const hasAdminRole = await checkAdminRole(session.user.id);
+        const hasAdminRole = await checkAdminRole(session.user.email);
         setIsAdmin(hasAdminRole);
-        
+
         if (hasAdminRole) {
           fetchRequests();
         }
@@ -282,19 +276,18 @@ const AdminGeniusOffers = () => {
                         </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
-                        <span className={`px-2 py-1 rounded text-xs ${
-                          req.status === "completed" ? "bg-accent/20 text-accent" :
+                        <span className={`px-2 py-1 rounded text-xs ${req.status === "completed" ? "bg-accent/20 text-accent" :
                           req.status === "apple_seed_in_progress" || req.status === "excalibur_in_progress" ? "bg-primary/20 text-primary" :
-                          "bg-secondary text-muted-foreground"
-                        }`}>
+                            "bg-secondary text-muted-foreground"
+                          }`}>
                           {STATUS_OPTIONS.find(s => s.value === req.status)?.label || req.status}
                         </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
                         {req.pdf_url ? (
-                          <a 
-                            href={req.pdf_url} 
-                            target="_blank" 
+                          <a
+                            href={req.pdf_url}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-accent hover:underline"
                           >
@@ -420,9 +413,9 @@ const AdminGeniusOffers = () => {
                 <div>
                   <span className="text-sm font-semibold">PDF:</span>
                   <p className="mt-1">
-                    <a 
-                      href={selectedRequest.pdf_url} 
-                      target="_blank" 
+                    <a
+                      href={selectedRequest.pdf_url}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent hover:underline"
                     >
