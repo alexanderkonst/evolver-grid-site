@@ -6,6 +6,7 @@ import { ArrowLeft, Clock, Users, Shield, Heart, Sparkles, MessageCircle, Send }
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import mensCircleLogo from "@/assets/mens-circle-icon.png";
 
 // CSS for animations
 const animationStyles = `
@@ -247,7 +248,7 @@ const MensCircle = () => {
         </button>
         <div className="max-w-md w-full text-center space-y-8">
           <img
-            src="https://i.imgur.com/NGSxNw8.png"
+            src={mensCircleLogo}
             alt="Men's Circle"
             className="w-64 h-64 mx-auto mb-6 object-contain logo-glow"
           />
@@ -307,7 +308,7 @@ const MensCircle = () => {
       <section className="pt-12 md:pt-20 pb-12 md:pb-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-8">
           <img
-            src="https://i.imgur.com/NGSxNw8.png"
+            src={mensCircleLogo}
             alt="Men's Circle"
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
