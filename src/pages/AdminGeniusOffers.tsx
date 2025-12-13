@@ -81,23 +81,28 @@ const AdminGeniusOffers = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        setUser(session?.user ?? null);
 
-      if (session?.user) {
-        const hasAdminRole = await checkAdminRole(session.user.email);
-        setIsAdmin(hasAdminRole);
+        if (session?.user) {
+          const hasAdminRole = await checkAdminRole(session.user.email);
+          setIsAdmin(hasAdminRole);
 
-        if (hasAdminRole) {
-          fetchRequests();
+          if (hasAdminRole) {
+            fetchRequests();
+          } else {
+            setLoading(false);
+          }
         } else {
           setLoading(false);
         }
-      } else {
+      } catch (error) {
+        console.error("Auth check error:", error);
         setLoading(false);
+      } finally {
+        setAuthLoading(false);
       }
-
-      setAuthLoading(false);
     };
 
     checkAuth();
