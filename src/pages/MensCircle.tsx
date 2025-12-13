@@ -452,7 +452,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src={mcGlowStar}
+              src={mcMerkaba}
               alt="How Meeting Goes"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
