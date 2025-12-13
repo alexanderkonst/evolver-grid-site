@@ -281,12 +281,21 @@ const AdminGeniusOffers = () => {
                         </span>
                       </td>
                       <td className="py-3 px-4 text-sm">
-                        <span className={`px-2 py-1 rounded text-xs ${req.status === "completed" ? "bg-accent/20 text-accent" :
-                          req.status === "apple_seed_in_progress" || req.status === "excalibur_in_progress" ? "bg-primary/20 text-primary" :
-                            "bg-secondary text-muted-foreground"
-                          }`}>
-                          {STATUS_OPTIONS.find(s => s.value === req.status)?.label || req.status}
-                        </span>
+                        <Select
+                          value={req.status}
+                          onValueChange={(val) => updateStatus(req.id, val)}
+                        >
+                          <SelectTrigger className="w-[160px] h-8 text-xs">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {STATUS_OPTIONS.map((opt) => (
+                              <SelectItem key={opt.value} value={opt.value}>
+                                {opt.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </td>
                       <td className="py-3 px-4 text-sm">
                         {req.pdf_url ? (
