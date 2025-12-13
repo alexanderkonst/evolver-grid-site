@@ -340,7 +340,7 @@ const MensCircle = () => {
       {/* Brief Overview Section */}
       <section className="py-10 md:py-16 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-5 md:space-y-6">
-          <SectionHeader>Кратко о том, что здесь вообще происходит</SectionHeader>
+          <SectionHeader>Вкратце</SectionHeader>
           <div className="space-y-3 md:space-y-4">
             <div className="flex items-start gap-3">
               <span className="text-[#D4AF37] mt-1.5 text-sm">•</span>
