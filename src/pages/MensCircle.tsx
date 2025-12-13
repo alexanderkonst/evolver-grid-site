@@ -15,6 +15,7 @@ import mcCertificate from "@/assets/mc-certificate.png";
 import mcAlexProfessional from "@/assets/mc-alex-professional.jpg";
 import mcCannabis from "@/assets/mc-cannabis.png";
 import mcCrossStar from "@/assets/mc-cross-star.png";
+import mcDodecahedron from "@/assets/mc-dodecahedron.png";
 
 // CSS for animations
 const animationStyles = `
@@ -421,7 +422,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src={mcMerkaba}
+              src={mcDodecahedron}
               alt="What Is This"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
