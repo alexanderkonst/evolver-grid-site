@@ -7,6 +7,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import mensCircleLogo from "@/assets/mens-circle-icon.png";
+import mcLion from "@/assets/mc-lion.jpg";
+import mcMerkaba from "@/assets/mc-merkaba.png";
+import mcGlowStar from "@/assets/mc-glow-star.png";
+import mcAlexShamanic from "@/assets/mc-alex-shamanic.jpg";
+import mcCertificate from "@/assets/mc-certificate.png";
+import mcAlexProfessional from "@/assets/mc-alex-professional.jpg";
+import mcCannabis from "@/assets/mc-cannabis.png";
+import mcCrossStar from "@/assets/mc-cross-star.png";
 
 // CSS for animations
 const animationStyles = `
@@ -375,7 +383,7 @@ const MensCircle = () => {
           <div className="text-center mb-2 md:mb-4">
             <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%)' }}>
               <img
-                src="https://i.imgur.com/EEe29pz.jpeg"
+                src={mcLion}
                 alt="For Whom"
                 className="w-full h-full object-cover rounded-full"
                 style={{ objectPosition: '40% center' }}
@@ -413,7 +421,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src="https://i.imgur.com/Q6c3UZT.png"
+              src={mcMerkaba}
               alt="What Is This"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
@@ -443,7 +451,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src="https://i.imgur.com/RpmgjXZ.png"
+              src={mcGlowStar}
               alt="How Meeting Goes"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
@@ -494,7 +502,7 @@ const MensCircle = () => {
           <div className="text-center mb-2">
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
               <img
-                src="https://i.imgur.com/40cWWoe.jpeg"
+                src={mcAlexShamanic}
                 alt="Aleksandr - Shamanic"
                 className="w-full h-full object-cover object-center"
               />
@@ -508,7 +516,7 @@ const MensCircle = () => {
             <div className="space-y-3 md:space-y-4 text-[15px] md:text-xl leading-relaxed opacity-90">
               <p><BionicText>Провёл 150+ церемоний и процессов с растениями-учителями для людей из разных стран и культур.</BionicText></p>
               <p>
-                <BionicText>Давно и плотно углубляю </BionicText><a href="https://i.imgur.com/KY4Pd5o.png" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">мастерство</a><BionicText> в интегральной теории и спиральной динамике у Кена Уилбера.</BionicText>
+                <BionicText>Давно и плотно углубляю </BionicText><a href={mcCertificate} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">мастерство</a><BionicText> в интегральной теории и спиральной динамике у Кена Уилбера.</BionicText>
               </p>
               <p><BionicText>Изучал инновационное предпринимательство в MIT, более 10 лет строю стартапы на основе искусственного интеллекта и консультирую фаундеров в web3 стартап студии </BionicText><a href="https://rndao.io/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">RnD Ventures</a>.</p>
               <p><BionicText>Ваш проводник — не только про траву, но и про очень конкретную реальность: деньги, стезя, отношения, ответственность, физическое тело, достижения, творчество, создание блага.</BionicText></p>
@@ -529,7 +537,7 @@ const MensCircle = () => {
           <div className="text-center pt-4">
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
               <img
-                src="https://i.imgur.com/XctlWbQ.jpeg"
+                src={mcAlexProfessional}
                 alt="Aleksandr - Professional"
                 className="w-full h-full object-cover object-center"
               />
@@ -546,7 +554,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <img
-              src="https://i.imgur.com/GMwBqqz.png"
+              src={mcCannabis}
               alt="Safety and Rules"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
@@ -603,7 +611,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-4 md:mb-8">
             <img
-              src="https://i.imgur.com/EH24PWf.png"
+              src={mcCrossStar}
               alt="Men's Circle"
               className="w-32 h-32 md:w-56 md:h-56 mx-auto object-contain"
             />
