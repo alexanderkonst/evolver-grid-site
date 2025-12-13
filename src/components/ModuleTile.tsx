@@ -9,7 +9,7 @@ import BoldText from "./BoldText";
 import { Sparkles, TrendingUp, Briefcase, Flower2, Wrench, Smartphone } from "lucide-react";
 import destinyIcon from "@/assets/destiny-icon.png";
 import aiUpgradeIcon from "@/assets/ai-upgrade-icon.png";
-const mensCircleIcon = "https://i.imgur.com/NGSxNw8.png";
+import mensCircleIcon from "@/assets/mens-circle-icon.png";
 import qualityOfLifeMapIcon from "@/assets/quality-of-life-map-icon.png";
 import zoneOfGeniusIcon from "@/assets/zone-of-genius-icon.png";
 import geniusOfferIcon from "@/assets/genius-offer-icon.png";
