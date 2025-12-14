@@ -117,14 +117,13 @@ const SectionHeader = ({ children }: { children: string }) => (
 const CTAButton = ({ onClick, compact = false }: { onClick: () => void; compact?: boolean }) => (
   <Button
     onClick={onClick}
-    className={`${compact ? 'px-6 py-4 text-base' : 'px-4 md:px-8 py-5 md:py-6 text-sm md:text-lg'} font-serif rounded-full btn-premium w-full sm:w-auto min-h-[48px]`}
+    className={`${compact ? 'px-6 py-4 text-base' : 'px-4 md:px-8 py-4 md:py-6 text-[13px] md:text-lg leading-tight'} font-serif rounded-full btn-premium w-full sm:w-auto min-h-[48px] whitespace-normal`}
     style={{
       backgroundColor: "#E0E4EA",
       color: "#041a2f"
     }}
   >
-    <span className="hidden sm:inline"><BionicText>Записаться на ближайший круг</BionicText></span>
-    <span className="sm:hidden"><BionicText>Записаться на круг</BionicText></span>
+    <BionicText>Записаться на ближайший круг</BionicText>
   </Button>
 );
 
