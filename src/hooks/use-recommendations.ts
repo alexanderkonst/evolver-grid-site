@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Upgrade, getPlayerUpgrades } from "@/lib/upgradeSystem";
+import { PATH_NAMES, PATH_COLORS, PATH_TO_XP_COLUMN } from "@/lib/domains";
 
 interface RecommendedQuest {
     id: string;
@@ -25,22 +26,6 @@ interface Recommendations {
     upgrade: RecommendedUpgrade | null;
     loading: boolean;
 }
-
-const PATH_COLORS: Record<string, string> = {
-    "waking-up": "#9b5de5",
-    "growing-up": "#f5a623",
-    "cleaning-up": "#4361ee",
-    "showing-up": "#ff6b35",
-    "grounding": "#2d6a4f",
-};
-
-const PATH_NAMES: Record<string, string> = {
-    "waking-up": "Waking Up",
-    "growing-up": "Growing Up",
-    "cleaning-up": "Cleaning Up",
-    "showing-up": "Showing Up",
-    "grounding": "Grounding",
-};
 
 /**
  * Hook to get personalized quest and upgrade recommendations
