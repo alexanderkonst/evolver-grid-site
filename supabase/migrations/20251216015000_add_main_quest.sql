@@ -6,14 +6,18 @@ ALTER TABLE game_profiles ADD COLUMN IF NOT EXISTS main_quest_stage TEXT DEFAULT
 ALTER TABLE game_profiles ADD COLUMN IF NOT EXISTS main_quest_status TEXT DEFAULT 'not_started';
 ALTER TABLE game_profiles ADD COLUMN IF NOT EXISTS main_quest_updated_at TIMESTAMPTZ DEFAULT NOW();
 
--- Add check constraint for valid stages
+-- Drop old constraint if exists (for re-running migration)
+ALTER TABLE game_profiles DROP CONSTRAINT IF EXISTS check_main_quest_stage;
+ALTER TABLE game_profiles DROP CONSTRAINT IF EXISTS check_main_quest_status;
+
+-- Add check constraint for valid stages (v0)
 ALTER TABLE game_profiles ADD CONSTRAINT check_main_quest_stage 
   CHECK (main_quest_stage IN (
     'mq_0_gateway',
-    'mq_1_discover_genius',
-    'mq_2_map_life',
-    'mq_3_daily_practice',
-    'mq_4_first_upgrade',
+    'mq_1_profile_clarity',
+    'mq_2_first_side_quest',
+    'mq_3_first_upgrade',
+    'mq_4_daily_loop',
     'mq_5_share_or_build'
   ));
 

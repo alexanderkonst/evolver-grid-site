@@ -21,6 +21,7 @@ import {
   computeNextMainQuestStage,
   isStageObjectiveComplete,
   calculateMainQuestProgress,
+  buildPlayerStats,
   type MainQuestStage,
   type PlayerStats
 } from "@/lib/mainQuest";
@@ -349,11 +350,11 @@ const GameHome = () => {
       }
 
       setQuestCompleted(true);
-      toast({ title: `+${xpAwarded} XP earned!`, description: "Quest completed." });
+      toast({ title: `+${xpAwarded} XP earned!`, description: "Side quest completed." });
       await loadGameData();
     } catch (error) {
       console.error('Error completing quest:', error);
-      toast({ title: "Error", description: "Failed to save quest.", variant: "destructive" });
+      toast({ title: "Error", description: "Failed to save side quest.", variant: "destructive" });
     }
   };
 
@@ -490,17 +491,14 @@ const GameHome = () => {
 
                 {/* Main Quest (Storyline) Card - Always first */}
                 {(() => {
-                  const currentStage = (profile?.main_quest_stage || 'mq_0_gateway') as MainQuestStage;
-                  const playerStats: PlayerStats = {
-                    zoneOfGeniusCompleted: !!profile?.zone_of_genius_completed || !!zogSnapshot,
-                    qualityOfLifeCompleted: !!currentQolSnapshot,
-                    practiceCount: profile?.practice_count || 0,
-                    upgradesCompleted: completedUpgradeCodes.size,
-                    level: profile?.level || 1,
-                  };
+                  const playerStats = buildPlayerStats(
+                    profile,
+                    completedUpgradeCodes.size,
+                    !!zogSnapshot
+                  );
 
-                  // Compute if player should advance to next stage
-                  const computedStage = computeNextMainQuestStage(currentStage, playerStats);
+                  // Compute current stage based on player stats
+                  const computedStage = computeNextMainQuestStage(playerStats);
                   const questCopy = getMainQuestCopy(computedStage);
                   const isComplete = isStageObjectiveComplete(computedStage, playerStats);
                   const progress = calculateMainQuestProgress(computedStage);
@@ -547,21 +545,21 @@ const GameHome = () => {
                 })()}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Suggested Quest Card */}
+                  {/* Side Quest Card */}
                   <div className="rounded-2xl border border-slate-200 bg-white p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Target className="w-4 h-4 text-emerald-600" />
-                      <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Suggested Quest</span>
+                      <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Side Quest (Practice)</span>
                     </div>
                     <p className="text-sm text-slate-600 mb-4">
-                      Earn XP and level up by transforming.
+                      Earn XP with a quick practice from the library.
                     </p>
                     <Button
                       onClick={() => setShowQuestPicker(true)}
                       className="w-full"
                       size="sm"
                     >
-                      Start a Quest →
+                      Start Side Quest →
                     </Button>
                   </div>
 
@@ -841,7 +839,7 @@ const GameHome = () => {
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
               <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-slate-900">Choose Your Quest</h2>
+                  <h2 className="text-xl font-bold text-slate-900">Choose Your Side Quest</h2>
                   <button
                     onClick={() => {
                       setShowQuestPicker(false);
@@ -906,7 +904,7 @@ const GameHome = () => {
                           Finding your quest...
                         </>
                       ) : (
-                        'Find My Quest'
+                        'Find Side Quest'
                       )}
                     </Button>
                   </>
@@ -951,7 +949,7 @@ const GameHome = () => {
                       ) : (
                         <div className="flex items-center gap-2 text-emerald-700 justify-center">
                           <CheckCircle2 className="w-5 h-5" />
-                          <span className="font-medium">Quest completed!</span>
+                          <span className="font-medium">Side quest completed!</span>
                         </div>
                       )}
                     </div>
