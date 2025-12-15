@@ -49,17 +49,17 @@ export function useRecommendations(profileId: string | null): Recommendations {
                 // Get player's current XP per path
                 const { data: profile } = await supabase
                     .from("game_profiles")
-                    .select("xp_body, xp_mind, xp_heart, xp_spirit, xp_uniqueness_work")
+                    .select("xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness")
                     .eq("id", profileId)
                     .single();
 
-                // Map XP to paths (using existing XP columns)
+                // Map XP to paths (using canonical domain slugs)
                 const pathXp: Record<string, number> = {
-                    "waking-up": (profile as any)?.xp_spirit || 0,
-                    "growing-up": (profile as any)?.xp_mind || 0,
-                    "cleaning-up": (profile as any)?.xp_heart || 0,
-                    "showing-up": (profile as any)?.xp_uniqueness_work || 0,
-                    "grounding": (profile as any)?.xp_body || 0,
+                    "spirit": (profile as any)?.xp_spirit || 0,
+                    "mind": (profile as any)?.xp_mind || 0,
+                    "emotions": (profile as any)?.xp_emotions || 0,
+                    "uniqueness": (profile as any)?.xp_uniqueness || 0,
+                    "body": (profile as any)?.xp_body || 0,
                 };
 
                 // Find the path with lowest XP (needs most attention)

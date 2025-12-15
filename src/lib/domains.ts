@@ -33,14 +33,14 @@ export const DOMAINS: Record<DomainSlug, DomainConfig> = {
     uniqueness: {
         slug: 'uniqueness',
         label: 'Showing Up',
-        xpColumn: 'xp_uniqueness_work',
+        xpColumn: 'xp_uniqueness',
         color: '#ff6b35',
         legacyAliases: ['showing-up', 'showing_up', 'showingup'],
     },
     emotions: {
         slug: 'emotions',
         label: 'Cleaning Up',
-        xpColumn: 'xp_heart',
+        xpColumn: 'xp_emotions',
         color: '#4361ee',
         legacyAliases: ['cleaning-up', 'cleaning_up', 'cleaningup', 'heart'],
     },
@@ -151,13 +151,13 @@ export const PATH_COLORS: Record<string, string> = {
 export const PATH_TO_XP_COLUMN: Record<string, string> = {
     'waking-up': 'xp_spirit',
     'growing-up': 'xp_mind',
-    'cleaning-up': 'xp_heart',
-    'showing-up': 'xp_uniqueness_work',
+    'cleaning-up': 'xp_emotions',
+    'showing-up': 'xp_uniqueness',
     'grounding': 'xp_body',
     // Canonical slugs
     'spirit': 'xp_spirit',
     'mind': 'xp_mind',
-    'emotions': 'xp_heart',
-    'uniqueness': 'xp_uniqueness_work',
+    'emotions': 'xp_emotions',
+    'uniqueness': 'xp_uniqueness',
     'body': 'xp_body',
 };

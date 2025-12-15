@@ -33,9 +33,9 @@ interface GameProfile {
   last_quest_completed_at: string | null;
   xp_body: number;
   xp_mind: number;
-  xp_heart: number;
+  xp_emotions: number;
   xp_spirit: number;
-  xp_uniqueness_work: number;
+  xp_uniqueness: number;
 }
 
 interface ZogSnapshot {
@@ -68,9 +68,9 @@ interface QuestSuggestion {
 const PATH_LABELS: Record<DevelopmentPath, string> = {
   body: "Body",
   mind: "Mind",
-  heart: "Heart",
+  emotions: "Emotions",
   spirit: "Spirit",
-  uniqueness_work: "Uniqueness & Work"
+  uniqueness: "Uniqueness"
 };
 
 const QUEST_DURATIONS = [5, 10, 15, 20, 30, 45, 60, 90, 120, 150];
@@ -658,9 +658,9 @@ const GameHome = () => {
                     const pathXpMap: Record<DevelopmentPath, keyof GameProfile> = {
                       body: 'xp_body',
                       mind: 'xp_mind',
-                      heart: 'xp_heart',
+                      emotions: 'xp_emotions',
                       spirit: 'xp_spirit',
-                      uniqueness_work: 'xp_uniqueness_work'
+                      uniqueness: 'xp_uniqueness'
                     };
 
                     // Sort paths by XP (highest first)
@@ -675,13 +675,13 @@ const GameHome = () => {
                     const maxXp = Math.max(...sortedPaths.map(p => p.xpValue), 100);
 
                     return sortedPaths.map(({ pathSlug, pathName, xpValue }) => {
-                      // Count upgrades for this path (currently only uniqueness_work has upgrades)
-                      const upgradeCount = pathSlug === 'uniqueness_work'
+                      // Count upgrades for this path (currently only uniqueness has upgrades)
+                      const upgradeCount = pathSlug === 'uniqueness'
                         ? Array.from(completedUpgradeCodes).filter(code =>
                           masteryUpgrades.some(u => u.code === code)
                         ).length
                         : 0;
-                      const totalUpgrades = pathSlug === 'uniqueness_work' ? masteryUpgrades.length : 0;
+                      const totalUpgrades = pathSlug === 'uniqueness' ? masteryUpgrades.length : 0;
 
                       return (
                         <div

@@ -44,7 +44,7 @@ export async function awardXp(
     // Fetch current profile
     const { data: profile, error: fetchError } = await supabase
       .from('game_profiles')
-      .select('xp_total, xp_body, xp_mind, xp_heart, xp_spirit, xp_uniqueness_work')
+      .select('xp_total, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness')
       .eq('id', profileId)
       .single();
 
@@ -65,9 +65,9 @@ export async function awardXp(
       const pathXpMap: Record<string, string> = {
         'body': 'xp_body',
         'mind': 'xp_mind',
-        'heart': 'xp_heart',
+        'emotions': 'xp_emotions',
         'spirit': 'xp_spirit',
-        'uniqueness_work': 'xp_uniqueness_work',
+        'uniqueness': 'xp_uniqueness',
       };
 
       const pathKey = pathXpMap[path];
