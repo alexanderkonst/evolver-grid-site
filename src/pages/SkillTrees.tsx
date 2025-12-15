@@ -7,24 +7,30 @@ import SkillTree from "@/components/SkillTree";
 import BoldText from "@/components/BoldText";
 import { skillTrees } from "@/data/skillTrees";
 import { cn } from "@/lib/utils";
+import { normalizeDomainSlug, DomainSlug } from "@/lib/domains";
 
 const SkillTrees = () => {
     const navigate = useNavigate();
     const { pathId } = useParams<{ pathId: string }>();
-    
-    // Map path IDs to tree IDs
-    const pathToTreeMap: Record<string, string> = {
+    const [searchParams] = useSearchParams();
+
+    // Support legacy URL params like ?path=waking-up
+    const legacyPath = searchParams.get('path');
+    const normalizedPath = normalizeDomainSlug(pathId || legacyPath);
+
+    // Map canonical domain slugs to tree IDs (skill trees still use legacy IDs internally)
+    const domainToTreeMap: Record<DomainSlug, string> = {
         body: 'grounding',
         mind: 'growing-up',
-        heart: 'cleaning-up',
+        emotions: 'cleaning-up',
         spirit: 'waking-up',
-        uniqueness_work: 'showing-up',
+        uniqueness: 'showing-up',
     };
-    
-    const initialTreeId = pathId && pathToTreeMap[pathId] 
-        ? pathToTreeMap[pathId] 
+
+    const initialTreeId = normalizedPath
+        ? domainToTreeMap[normalizedPath]
         : skillTrees[0].id;
-    
+
     const [activeTreeId, setActiveTreeId] = useState(initialTreeId);
 
     const activeTree = skillTrees.find((t) => t.id === activeTreeId) || skillTrees[0];
@@ -106,19 +112,19 @@ const SkillTrees = () => {
                         {/* Large icon */}
                         <div className="mb-4">
                             {activeTree.iconImage ? (
-                                <img 
-                                    src={activeTree.iconImage} 
-                                    alt={activeTree.name} 
+                                <img
+                                    src={activeTree.iconImage}
+                                    alt={activeTree.name}
                                     className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg"
                                     style={{ boxShadow: `0 0 30px ${activeTree.color}40` }}
                                 />
                             ) : (
-                                <div 
+                                <div
                                     className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center"
                                     style={{ backgroundColor: `${activeTree.color}20` }}
                                 >
-                                    <activeTree.icon 
-                                        className="w-12 h-12 sm:w-14 sm:h-14" 
+                                    <activeTree.icon
+                                        className="w-12 h-12 sm:w-14 sm:h-14"
                                         style={{ color: activeTree.color }}
                                     />
                                 </div>

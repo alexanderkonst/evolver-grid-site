@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import gameMapCenter from "@/assets/dodecahedron.jpg";
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DOMAINS, DomainSlug } from "@/lib/domains";
 
 // External icon URLs
 const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
@@ -11,7 +12,7 @@ const showingUpIcon = "https://i.imgur.com/6ct5Dca.jpeg";
 const groundingIcon = "https://i.imgur.com/NdNMFFa.jpeg";
 
 interface DevelopmentPath {
-    id: string;
+    id: DomainSlug;
     name: string;
     subtitle: string;
     color: string;
@@ -26,50 +27,50 @@ interface DevelopmentPath {
 
 const PATHS: DevelopmentPath[] = [
     {
-        id: "waking-up",
-        name: "Waking Up",
+        id: "spirit",
+        name: DOMAINS.spirit.label,
         subtitle: "Consciousness · Information",
-        color: "#9b5de5",
+        color: DOMAINS.spirit.color,
         icon: wakingUpIcon,
         fallbackIcon: Sparkles,
         position: { angle: 0, distance: 38 },
         progress: 45,
     },
     {
-        id: "showing-up",
-        name: "Showing Up",
+        id: "uniqueness",
+        name: DOMAINS.uniqueness.label,
         subtitle: "Excitement · Uniqueness",
-        color: "#ff6b35",
+        color: DOMAINS.uniqueness.color,
         icon: showingUpIcon,
         fallbackIcon: Sun,
         position: { angle: 288, distance: 38 },
         progress: 30,
     },
     {
-        id: "growing-up",
-        name: "Growing Up",
+        id: "mind",
+        name: DOMAINS.mind.label,
         subtitle: "Worldview · Mind",
-        color: "#f5a623",
+        color: DOMAINS.mind.color,
         icon: growingUpIcon,
         fallbackIcon: Crown,
         position: { angle: 72, distance: 38 },
         progress: 60,
     },
     {
-        id: "cleaning-up",
-        name: "Cleaning Up",
+        id: "emotions",
+        name: DOMAINS.emotions.label,
         subtitle: "Autonomy · Emotions",
-        color: "#4361ee",
+        color: DOMAINS.emotions.color,
         icon: cleaningUpIcon,
         fallbackIcon: Droplet,
         position: { angle: 216, distance: 38 },
         progress: 20,
     },
     {
-        id: "grounding",
-        name: "Grounding",
+        id: "body",
+        name: DOMAINS.body.label,
         subtitle: "Life Energy · Body",
-        color: "#2d6a4f",
+        color: DOMAINS.body.color,
         icon: groundingIcon,
         fallbackIcon: TreeDeciduous,
         position: { angle: 144, distance: 38 },

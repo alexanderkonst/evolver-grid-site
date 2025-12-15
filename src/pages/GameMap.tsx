@@ -70,11 +70,11 @@ const GameMap = () => {
 
                 if (totalPathXP > 0) {
                     setPathProgress({
-                        "grounding": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
-                        "growing-up": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
-                        "cleaning-up": Math.min(100, ((profile.xp_heart || 0) / 500) * 100),
-                        "waking-up": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
-                        "showing-up": Math.min(100, ((profile.xp_uniqueness_work || 0) / 500) * 100),
+                        "body": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
+                        "mind": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
+                        "emotions": Math.min(100, ((profile.xp_heart || 0) / 500) * 100),
+                        "spirit": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
+                        "uniqueness": Math.min(100, ((profile.xp_uniqueness_work || 0) / 500) * 100),
                     });
                 }
 
@@ -83,7 +83,7 @@ const GameMap = () => {
                         title: profile.last_quest_title,
                         practiceType: "Practice",
                         durationMinutes: 10,
-                        pathId: "waking-up",
+                        pathId: "spirit",
                     });
                 }
             }
