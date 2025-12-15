@@ -60,11 +60,11 @@ export type Database = {
           updated_at: string
           user_id: string | null
           xp_body: number
-          xp_heart: number
+          xp_emotions: number
           xp_mind: number
           xp_spirit: number
           xp_total: number
-          xp_uniqueness_work: number
+          xp_uniqueness: number
           zone_of_genius_completed: boolean | null
         }
         Insert: {
@@ -88,11 +88,11 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           xp_body?: number
-          xp_heart?: number
+          xp_emotions?: number
           xp_mind?: number
           xp_spirit?: number
           xp_total?: number
-          xp_uniqueness_work?: number
+          xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
         }
         Update: {
@@ -116,11 +116,11 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           xp_body?: number
-          xp_heart?: number
+          xp_emotions?: number
           xp_mind?: number
           xp_spirit?: number
           xp_total?: number
-          xp_uniqueness_work?: number
+          xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
         }
         Relationships: [
