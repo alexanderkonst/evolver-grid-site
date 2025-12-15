@@ -19,13 +19,15 @@ import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
-  isStageObjectiveComplete,
+  isStageComplete,
   calculateMainQuestProgress,
   buildPlayerStats,
-  updateMainQuestStageIfAdvanced,
+  getStageNumber,
+  getTotalStages,
   type MainQuestStage,
   type PlayerStats
 } from "@/lib/mainQuest";
+import { advanceMainQuestIfEligible, markRealWorldOutputDone } from "@/lib/mainQuestApi";
 
 // Types
 interface GameProfile {
@@ -50,6 +52,7 @@ interface GameProfile {
   zone_of_genius_completed: boolean | null;
   main_quest_stage: string | null;
   main_quest_status: string | null;
+  main_quest_progress: any;
   main_quest_updated_at: string | null;
 }
 
@@ -220,11 +223,9 @@ const GameHome = () => {
         completedCodes.size,
         !!zogResult?.data
       );
-      const computedStage = computeNextMainQuestStage(playerStats);
-      const currentStoredStage = profileData.main_quest_stage as MainQuestStage | null;
 
       // Update profile if stage has advanced
-      await updateMainQuestStageIfAdvanced(supabase, id, currentStoredStage, computedStage);
+      await advanceMainQuestIfEligible(id, profileData, playerStats);
 
     } catch (err) {
       console.error("Failed to load game data:", err);
@@ -511,10 +512,21 @@ const GameHome = () => {
                   );
 
                   // Compute current stage based on player stats
-                  const computedStage = computeNextMainQuestStage(playerStats);
+                  const computedStage = computeNextMainQuestStage(profile, playerStats);
                   const questCopy = getMainQuestCopy(computedStage);
-                  const isComplete = isStageObjectiveComplete(computedStage, playerStats);
+                  const stageComplete = isStageComplete(computedStage, profile, playerStats);
                   const progress = calculateMainQuestProgress(computedStage);
+                  const stageNum = getStageNumber(computedStage);
+                  const totalStages = getTotalStages();
+                  const isFinalStage = computedStage === 'mq_5_real_world_output';
+
+                  const handleMarkDone = async () => {
+                    if (profileId && isFinalStage) {
+                      await markRealWorldOutputDone(profileId);
+                      toast({ title: "🎉 Congratulations!", description: "You've completed the Main Quest storyline!" });
+                      await loadGameData();
+                    }
+                  };
 
                   return (
                     <div className="rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 p-5 mb-4">
@@ -525,32 +537,48 @@ const GameHome = () => {
                           </div>
                           <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Main Quest (Storyline)</span>
                         </div>
-                        <span className="text-xs text-slate-500">{progress}% complete</span>
+                        <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                          Stage {stageNum} of {totalStages}
+                        </span>
                       </div>
 
                       <h3 className="text-lg font-bold text-slate-900 mb-1">{questCopy.title}</h3>
-                      <p className="text-sm text-slate-600 mb-4">{questCopy.objective}</p>
+                      <p className="text-sm text-slate-600 mb-2">{questCopy.objective}</p>
+                      <p className="text-xs text-slate-400 mb-4">💡 {questCopy.completionHint}</p>
 
-                      {/* Progress bar */}
-                      <div className="w-full h-2 bg-slate-200 rounded-full mb-4">
-                        <div
-                          className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
-                          style={{ width: `${progress}%` }}
-                        />
+                      {/* Progress strip */}
+                      <div className="flex gap-1 mb-4">
+                        {Array.from({ length: totalStages }).map((_, i) => (
+                          <div
+                            key={i}
+                            className={`h-2 flex-1 rounded-full transition-all ${i < stageNum ? 'bg-indigo-500' :
+                              i === stageNum - 1 ? 'bg-indigo-300' :
+                                'bg-slate-200'
+                              }`}
+                          />
+                        ))}
                       </div>
 
-                      {isComplete ? (
+                      {stageComplete ? (
                         <div className="flex items-center gap-2 text-emerald-600">
                           <CheckCircle2 className="w-4 h-4" />
                           <span className="text-sm font-medium">Stage Complete! Advancing...</span>
                         </div>
+                      ) : isFinalStage ? (
+                        <Button
+                          onClick={handleMarkDone}
+                          className="w-full bg-indigo-600 hover:bg-indigo-700"
+                          size="sm"
+                        >
+                          {questCopy.ctaLabel} ✓
+                        </Button>
                       ) : (
                         <Button
                           onClick={() => questCopy.ctaRoute && navigate(questCopy.ctaRoute)}
                           className="w-full bg-indigo-600 hover:bg-indigo-700"
                           size="sm"
                         >
-                          {questCopy.ctaText} →
+                          {questCopy.ctaLabel} →
                         </Button>
                       )}
                     </div>
