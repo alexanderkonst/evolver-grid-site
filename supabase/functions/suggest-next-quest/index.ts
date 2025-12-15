@@ -6,6 +6,22 @@
  * 
  * NOTE: This is the "Side Quest" recommender, not the Main Quest state machine.
  * Main Quest progression is handled by suggest-main-quest function.
+ * 
+ * Output Contract:
+ * {
+ *   "domain": "spirit|mind|uniqueness|emotions|body",
+ *   "practice": {
+ *     "id": "string",
+ *     "title": "string",
+ *     "duration_min": 5,
+ *     "tags": ["string"],
+ *     "source": "library"
+ *   },
+ *   "why": ["bullet 1", "bullet 2"],
+ *   "alternatives": [
+ *     {"id":"string","title":"string","duration_min":10}
+ *   ]
+ * }
  */
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -15,34 +31,60 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Canonical domain slugs
+const CANONICAL_DOMAINS = ['spirit', 'mind', 'uniqueness', 'emotions', 'body'] as const;
+type CanonicalDomain = typeof CANONICAL_DOMAINS[number];
+
 interface Practice {
+  id?: string;
   title: string;
   type: string;
   duration_minutes: number;
   description?: string;
   primary_path?: string;
   secondary_path?: string;
+  tags?: string[];
 }
 
-interface NextQuestContext {
+interface SuggestQuestContext {
   lowestDomains?: string[];
   archetypeTitle?: string;
   corePattern?: string;
-  pathSlug?: "body" | "mind" | "emotions" | "spirit" | "uniqueness" | "any";
+  pathSlug?: string;
 }
 
 interface SuggestQuestRequest {
   intention: string;
   practices: Practice[];
-  context?: NextQuestContext;
+  context?: SuggestQuestContext;
 }
 
-// Normalize legacy path slugs to canonical domain slugs
-const normalizeDomainSlug = (slug: string | undefined): string | null => {
+interface SideQuestResponse {
+  domain: CanonicalDomain;
+  practice: {
+    id: string;
+    title: string;
+    duration_min: number;
+    tags: string[];
+    source: 'library';
+  };
+  why: string[];
+  alternatives: Array<{
+    id: string;
+    title: string;
+    duration_min: number;
+  }>;
+}
+
+/**
+ * Normalize legacy path slugs to canonical domain slugs
+ */
+function normalizeDomainSlug(slug: string | undefined): CanonicalDomain | null {
   if (!slug) return null;
   const normalized = slug.toLowerCase().trim();
 
-  const legacyMap: Record<string, string> = {
+  const legacyMap: Record<string, CanonicalDomain> = {
+    // Legacy -> Canonical
     'waking-up': 'spirit',
     'waking_up': 'spirit',
     'growing-up': 'mind',
@@ -56,8 +98,16 @@ const normalizeDomainSlug = (slug: string | undefined): string | null => {
     'grounding': 'body',
   };
 
-  return legacyMap[normalized] || (['spirit', 'mind', 'emotions', 'uniqueness', 'body'].includes(normalized) ? normalized : null);
-};
+  if (legacyMap[normalized]) {
+    return legacyMap[normalized];
+  }
+
+  if (CANONICAL_DOMAINS.includes(normalized as CanonicalDomain)) {
+    return normalized as CanonicalDomain;
+  }
+
+  return null;
+}
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === 'OPTIONS') {
@@ -83,8 +133,6 @@ const handler = async (req: Request): Promise<Response> => {
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) {
       console.log('Auth check - allowing anonymous access for guest users');
-      // Allow anonymous access for guest users who aren't logged in
-      // The game supports both authenticated and guest modes
     }
 
     const { intention, practices, context }: SuggestQuestRequest = await req.json();
@@ -101,22 +149,18 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
-    // Normalize any legacy path slugs in context
-    const normalizedPathSlug = context?.pathSlug && context.pathSlug !== 'any'
-      ? normalizeDomainSlug(context.pathSlug)
-      : context?.pathSlug;
+    // Normalize path slug and all practice paths
+    const normalizedPathSlug = normalizeDomainSlug(context?.pathSlug);
+    const normalizedPractices = practices.map(p => ({
+      ...p,
+      primary_path: normalizeDomainSlug(p.primary_path) || p.primary_path,
+      secondary_path: normalizeDomainSlug(p.secondary_path) || p.secondary_path,
+    }));
 
     // Build context description for the LLM
     let contextDescription = '';
-    if (normalizedPathSlug && normalizedPathSlug !== 'any') {
-      const pathNames: Record<string, string> = {
-        body: 'Body',
-        mind: 'Mind',
-        emotions: 'Emotions',
-        spirit: 'Spirit',
-        uniqueness: 'Uniqueness'
-      };
-      contextDescription += `\n- Selected development path: ${pathNames[normalizedPathSlug] || normalizedPathSlug}`;
+    if (normalizedPathSlug) {
+      contextDescription += `\n- Selected development path: ${normalizedPathSlug}`;
     }
     if (context?.lowestDomains && context.lowestDomains.length > 0) {
       contextDescription += `\n- Lowest life domain(s): ${context.lowestDomains.join(', ')}`;
@@ -131,55 +175,48 @@ const handler = async (req: Request): Promise<Response> => {
     const systemPrompt = `You are a guide inside a life-RPG called "Game of You".
 
 You receive:
-- intention: what the player most wants right now (e.g. "Calm my nervous system", "Feel clearer about money")
+- intention: what the player most wants right now
 ${contextDescription ? `- context about the player:${contextDescription}` : ''}
-- a list of practices from a library, where each practice has: title, type, duration_minutes, primary_path, secondary_path, and optional description
+- a list of practices from a library
 
 YOUR TASK:
-Choose ONE practice as the Main Quest:
-- It must be doable today and clearly helpful for the intention
-${normalizedPathSlug && normalizedPathSlug !== 'any' ? `- STRONGLY prefer practices whose primary_path or secondary_path matches "${normalizedPathSlug}"` : ''}
-${context?.lowestDomains ? `- Also consider practices that support these life domains: ${context.lowestDomains.join(', ')}` : ''}
-${context?.archetypeTitle ? `- Pick something that fits their archetype: ${context.archetypeTitle}` : ''}
+Choose ONE practice as a Side Quest (a practice the player can do today).
+${normalizedPathSlug ? `- STRONGLY prefer practices whose primary_path matches "${normalizedPathSlug}"` : ''}
+${context?.lowestDomains ? `- Consider practices that support: ${context.lowestDomains.join(', ')}` : ''}
 
-Optionally choose up to TWO alternative practices that would also be good next steps.
+Also choose up to TWO alternative practices.
 
-For each selected practice, return:
-- quest_title: the practice title
-- practice_type: the type
-- approx_duration_minutes: rounded duration in minutes
-- why_it_is_a_good_next_move: 1-2 sentences that:
-  * reference the intention
-  * mention the development path (body/mind/heart/spirit/uniqueness & work) in plain language at least once
-  ${context?.lowestDomains ? `* optionally mention the weakest domain(s) if relevant` : ''}
-  ${context?.archetypeTitle ? `* optionally reference their archetype if relevant` : ''}
+IMPORTANT: The only valid domain values are: spirit, mind, uniqueness, emotions, body
+Map any legacy paths: waking-up→spirit, growing-up→mind, cleaning-up→emotions, showing-up→uniqueness, heart→emotions, grounding→body
 
-Tone: Grounded, kind, precise. No fluff or vague spiritual clichés.
-
-Return ONLY valid JSON in this exact shape (no markdown, no backticks):
+Return ONLY valid JSON (no markdown, no backticks) in this exact shape:
 {
-  "main": {
-    "quest_title": "...",
-    "practice_type": "...",
-    "approx_duration_minutes": 8,
-    "why_it_is_a_good_next_move": "..."
+  "domain": "spirit|mind|uniqueness|emotions|body",
+  "practice": {
+    "id": "practice-id-from-input",
+    "title": "Practice Title",
+    "duration_min": 10,
+    "tags": ["meditation", "breathwork"],
+    "source": "library"
   },
+  "why": [
+    "First reason this practice helps with the intention",
+    "Second reason connecting to their archetype or domain"
+  ],
   "alternatives": [
-    {
-      "quest_title": "...",
-      "practice_type": "...",
-      "approx_duration_minutes": 12,
-      "why_it_is_a_good_next_move": "..."
-    }
+    {"id": "alt-id-1", "title": "Alternative Practice 1", "duration_min": 15},
+    {"id": "alt-id-2", "title": "Alternative Practice 2", "duration_min": 8}
   ]
-}`;
+}
+
+Tone: Grounded, kind, precise. No fluff.`;
 
     const userPrompt = `Player's intention: "${intention}"
 
 Available practices:
-${practices.map(p => `- ${p.title} (${p.type}, ${p.duration_minutes} min, primary_path: ${p.primary_path || 'none'}, secondary_path: ${p.secondary_path || 'none'})${p.description ? `: ${p.description}` : ''}`).join('\n')}
+${normalizedPractices.map(p => `- id: "${p.id || p.title.toLowerCase().replace(/\s+/g, '-')}", title: "${p.title}", type: ${p.type}, ${p.duration_minutes} min, domain: ${p.primary_path || 'any'}, tags: [${p.tags?.join(', ') || p.type}]${p.description ? ` — ${p.description}` : ''}`).join('\n')}
 
-Select the best Main Quest and up to 2 alternatives.`;
+Select the best Side Quest and up to 2 alternatives.`;
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
@@ -221,11 +258,32 @@ Select the best Main Quest and up to 2 alternatives.`;
       throw new Error('No content in AI response');
     }
 
-    // Parse the JSON response
-    const result = JSON.parse(content);
+    // Parse and validate the JSON response
+    const aiResult = JSON.parse(content);
+
+    // Ensure domain is canonical
+    const responseDomain = normalizeDomainSlug(aiResult.domain) || 'spirit';
+
+    // Build validated response
+    const validatedResponse: SideQuestResponse = {
+      domain: responseDomain,
+      practice: {
+        id: aiResult.practice?.id || 'unknown',
+        title: aiResult.practice?.title || 'Practice',
+        duration_min: aiResult.practice?.duration_min || 10,
+        tags: aiResult.practice?.tags || [],
+        source: 'library',
+      },
+      why: Array.isArray(aiResult.why) ? aiResult.why : [aiResult.why || 'This practice aligns with your intention.'],
+      alternatives: (aiResult.alternatives || []).map((alt: any) => ({
+        id: alt.id || alt.title?.toLowerCase().replace(/\s+/g, '-') || 'alt',
+        title: alt.title || 'Alternative',
+        duration_min: alt.duration_min || alt.approx_duration_minutes || 10,
+      })),
+    };
 
     return new Response(
-      JSON.stringify(result),
+      JSON.stringify(validatedResponse),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 
