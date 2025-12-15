@@ -241,3 +241,37 @@ export function buildPlayerStats(
         hasRealWorldOutput: false, // TODO: Track this in profile
     };
 }
+
+/**
+ * Update the main_quest_stage in profile if player has advanced
+ * Returns true if stage was updated
+ */
+export async function updateMainQuestStageIfAdvanced(
+    supabase: any,
+    profileId: string,
+    currentStoredStage: MainQuestStage | null,
+    computedStage: MainQuestStage
+): Promise<boolean> {
+    // Only update if computed stage is ahead of stored stage
+    const storedIndex = currentStoredStage ? getStageIndex(currentStoredStage) : -1;
+    const computedIndex = getStageIndex(computedStage);
+
+    if (computedIndex > storedIndex) {
+        const { error } = await supabase
+            .from('game_profiles')
+            .update({
+                main_quest_stage: computedStage,
+                main_quest_status: 'in_progress',
+                main_quest_updated_at: new Date().toISOString(),
+            })
+            .eq('id', profileId);
+
+        if (error) {
+            console.error('Error updating main quest stage:', error);
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+

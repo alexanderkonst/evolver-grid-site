@@ -22,6 +22,7 @@ import {
   isStageObjectiveComplete,
   calculateMainQuestProgress,
   buildPlayerStats,
+  updateMainQuestStageIfAdvanced,
   type MainQuestStage,
   type PlayerStats
 } from "@/lib/mainQuest";
@@ -212,6 +213,18 @@ const GameHome = () => {
         completedCodes.add('zog_assessment_completed');
         setCompletedUpgradeCodes(new Set<string>(completedCodes));
       }
+
+      // Auto-advance Main Quest stage if player has progressed
+      const playerStats = buildPlayerStats(
+        profileData,
+        completedCodes.size,
+        !!zogResult?.data
+      );
+      const computedStage = computeNextMainQuestStage(playerStats);
+      const currentStoredStage = profileData.main_quest_stage as MainQuestStage | null;
+
+      // Update profile if stage has advanced
+      await updateMainQuestStageIfAdvanced(supabase, id, currentStoredStage, computedStage);
 
     } catch (err) {
       console.error("Failed to load game data:", err);
