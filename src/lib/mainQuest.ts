@@ -1,5 +1,5 @@
 /**
- * Main Quest (Storyline) System
+ * Main Quest (Storyline) System v0
  * 
  * Implements a linear progression through the core game experience.
  * Each stage represents a major milestone in the player's journey.
@@ -7,10 +7,10 @@
 
 export type MainQuestStage =
     | 'mq_0_gateway'
-    | 'mq_1_discover_genius'
-    | 'mq_2_map_life'
-    | 'mq_3_daily_practice'
-    | 'mq_4_first_upgrade'
+    | 'mq_1_profile_clarity'
+    | 'mq_2_first_side_quest'
+    | 'mq_3_first_upgrade'
+    | 'mq_4_daily_loop'
     | 'mq_5_share_or_build';
 
 export type MainQuestStatus = 'not_started' | 'in_progress' | 'completed';
@@ -25,11 +25,12 @@ export interface MainQuestCopy {
 }
 
 export interface PlayerStats {
+    hasProfile: boolean;
     zoneOfGeniusCompleted: boolean;
-    qualityOfLifeCompleted: boolean;
     practiceCount: number;
     upgradesCompleted: number;
-    level: number;
+    currentStreak: number;
+    hasRealWorldOutput: boolean;
 }
 
 /**
@@ -37,10 +38,10 @@ export interface PlayerStats {
  */
 export const MAIN_QUEST_STAGES: MainQuestStage[] = [
     'mq_0_gateway',
-    'mq_1_discover_genius',
-    'mq_2_map_life',
-    'mq_3_daily_practice',
-    'mq_4_first_upgrade',
+    'mq_1_profile_clarity',
+    'mq_2_first_side_quest',
+    'mq_3_first_upgrade',
+    'mq_4_daily_loop',
     'mq_5_share_or_build',
 ];
 
@@ -50,43 +51,43 @@ export const MAIN_QUEST_STAGES: MainQuestStage[] = [
 const MAIN_QUEST_COPY: Record<MainQuestStage, Omit<MainQuestCopy, 'stage'>> = {
     mq_0_gateway: {
         title: 'Enter the Game',
-        objective: 'Create your character and begin the journey',
+        objective: 'Complete onboarding and create your player profile',
         ctaText: 'Start Journey',
         ctaRoute: '/zone-of-genius',
         xpReward: 0,
     },
-    mq_1_discover_genius: {
-        title: 'Discover Your Genius',
-        objective: 'Complete the Zone of Genius assessment to unlock your unique archetype',
+    mq_1_profile_clarity: {
+        title: 'Clarify Your Genius',
+        objective: 'Complete the Zone of Genius assessment to unlock your archetype',
         ctaText: 'Discover My Genius',
         ctaRoute: '/zone-of-genius',
         xpReward: 50,
     },
-    mq_2_map_life: {
-        title: 'Map Your Life',
-        objective: 'Complete the Quality of Life assessment to see where you stand',
-        ctaText: 'Map My Life',
-        ctaRoute: '/quality-of-life',
-        xpReward: 50,
-    },
-    mq_3_daily_practice: {
-        title: 'First Daily Practice',
+    mq_2_first_side_quest: {
+        title: 'First Side Quest',
         objective: 'Complete your first practice from the library',
         ctaText: 'Find a Practice',
         ctaRoute: '/library',
         xpReward: 25,
     },
-    mq_4_first_upgrade: {
+    mq_3_first_upgrade: {
         title: 'Unlock Your First Upgrade',
         objective: 'Complete an upgrade to level up your character',
         ctaText: 'Browse Upgrades',
         ctaRoute: '/skills',
         xpReward: 50,
     },
+    mq_4_daily_loop: {
+        title: 'Build the Habit',
+        objective: 'Maintain a 3-day streak with any mix of practices and upgrades',
+        ctaText: 'Continue Streak',
+        ctaRoute: '/library',
+        xpReward: 75,
+    },
     mq_5_share_or_build: {
         title: 'Share or Build',
-        objective: 'Share your progress with a friend or start building your Genius Offer',
-        ctaText: 'Explore Options',
+        objective: 'Create a real-world output: a post, pitch, or demo of your genius',
+        ctaText: 'Create Output',
         ctaRoute: '/genius-offer',
         xpReward: 100,
     },
@@ -118,51 +119,45 @@ export function isStagePassed(currentStage: MainQuestStage, checkStage: MainQues
 }
 
 /**
- * Compute the next Main Quest stage based on player's current stats
- * Returns the stage the player should be working on
+ * Compute the next Main Quest stage based on player's current stats.
+ * This is the core state machine logic.
+ * 
+ * Logic:
+ * - Empty profile → mq_0
+ * - No ZoG snapshot → mq_1
+ * - No practice completed → mq_2
+ * - No upgrade completed → mq_3
+ * - Streak < 3 → mq_4
+ * - Otherwise → mq_5
  */
-export function computeNextMainQuestStage(
-    currentStage: MainQuestStage,
-    stats: PlayerStats
-): MainQuestStage {
-    const currentIndex = getStageIndex(currentStage);
-
-    // Check if current stage is completed and should advance
-    switch (currentStage) {
-        case 'mq_0_gateway':
-            // Gateway is always passed once they start
-            return 'mq_1_discover_genius';
-
-        case 'mq_1_discover_genius':
-            if (stats.zoneOfGeniusCompleted) {
-                return 'mq_2_map_life';
-            }
-            break;
-
-        case 'mq_2_map_life':
-            if (stats.qualityOfLifeCompleted) {
-                return 'mq_3_daily_practice';
-            }
-            break;
-
-        case 'mq_3_daily_practice':
-            if (stats.practiceCount >= 1) {
-                return 'mq_4_first_upgrade';
-            }
-            break;
-
-        case 'mq_4_first_upgrade':
-            if (stats.upgradesCompleted >= 1) {
-                return 'mq_5_share_or_build';
-            }
-            break;
-
-        case 'mq_5_share_or_build':
-            // Final stage - stays here
-            break;
+export function computeNextMainQuestStage(stats: PlayerStats): MainQuestStage {
+    // Gate 0: No profile at all
+    if (!stats.hasProfile) {
+        return 'mq_0_gateway';
     }
 
-    return currentStage;
+    // Gate 1: Need to clarify genius profile
+    if (!stats.zoneOfGeniusCompleted) {
+        return 'mq_1_profile_clarity';
+    }
+
+    // Gate 2: Need first side quest (practice)
+    if (stats.practiceCount < 1) {
+        return 'mq_2_first_side_quest';
+    }
+
+    // Gate 3: Need first upgrade
+    if (stats.upgradesCompleted < 1) {
+        return 'mq_3_first_upgrade';
+    }
+
+    // Gate 4: Need 3-day streak
+    if (stats.currentStreak < 3) {
+        return 'mq_4_daily_loop';
+    }
+
+    // Gate 5: Final stage - share or build
+    return 'mq_5_share_or_build';
 }
 
 /**
@@ -174,17 +169,17 @@ export function isStageObjectiveComplete(
 ): boolean {
     switch (stage) {
         case 'mq_0_gateway':
-            return true; // Always complete once started
-        case 'mq_1_discover_genius':
+            return stats.hasProfile;
+        case 'mq_1_profile_clarity':
             return stats.zoneOfGeniusCompleted;
-        case 'mq_2_map_life':
-            return stats.qualityOfLifeCompleted;
-        case 'mq_3_daily_practice':
+        case 'mq_2_first_side_quest':
             return stats.practiceCount >= 1;
-        case 'mq_4_first_upgrade':
+        case 'mq_3_first_upgrade':
             return stats.upgradesCompleted >= 1;
+        case 'mq_4_daily_loop':
+            return stats.currentStreak >= 3;
         case 'mq_5_share_or_build':
-            return false; // Open-ended final quest
+            return stats.hasRealWorldOutput;
         default:
             return false;
     }
@@ -203,23 +198,46 @@ export function calculateMainQuestProgress(currentStage: MainQuestStage): number
  * Get all Main Quest stages with their completion status
  */
 export function getAllStagesWithStatus(
-    currentStage: MainQuestStage,
     stats: PlayerStats
 ): Array<MainQuestCopy & { status: MainQuestStatus }> {
+    const currentStage = computeNextMainQuestStage(stats);
+    const currentIndex = getStageIndex(currentStage);
+
     return MAIN_QUEST_STAGES.map(stage => {
         const copy = getMainQuestCopy(stage);
-        const currentIndex = getStageIndex(currentStage);
         const stageIndex = getStageIndex(stage);
 
         let status: MainQuestStatus;
         if (stageIndex < currentIndex) {
             status = 'completed';
         } else if (stageIndex === currentIndex) {
-            status = isStageObjectiveComplete(stage, stats) ? 'completed' : 'in_progress';
+            status = 'in_progress';
         } else {
             status = 'not_started';
         }
 
         return { ...copy, status };
     });
+}
+
+/**
+ * Build PlayerStats from a game profile and related data
+ */
+export function buildPlayerStats(
+    profile: {
+        zone_of_genius_completed?: boolean | null;
+        practice_count?: number;
+        current_streak_days?: number;
+    } | null,
+    completedUpgradesCount: number,
+    hasZogSnapshot: boolean
+): PlayerStats {
+    return {
+        hasProfile: !!profile,
+        zoneOfGeniusCompleted: !!profile?.zone_of_genius_completed || hasZogSnapshot,
+        practiceCount: profile?.practice_count || 0,
+        upgradesCompleted: completedUpgradesCount,
+        currentStreak: profile?.current_streak_days || 0,
+        hasRealWorldOutput: false, // TODO: Track this in profile
+    };
 }
