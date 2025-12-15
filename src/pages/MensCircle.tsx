@@ -84,7 +84,7 @@ const FloatingStars = () => {
   );
 };
 
-const PASSWORD = "растениесилы";
+const VALID_PASSWORDS = ["растениесилы", "растениесилы"];
 
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
   const words = children.split(" ");
@@ -224,7 +224,7 @@ const MensCircle = () => {
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === PASSWORD) {
+    if (VALID_PASSWORDS.includes(password.toLowerCase())) {
       setIsAuthenticated(true);
       setError(false);
     } else {
