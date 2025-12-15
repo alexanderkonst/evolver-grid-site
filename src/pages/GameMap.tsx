@@ -54,7 +54,7 @@ const GameMap = () => {
             // Fetch profile data
             const { data: profile } = await supabase
                 .from("game_profiles")
-                .select("first_name, xp_total, level, xp_body, xp_mind, xp_heart, xp_spirit, xp_uniqueness_work, last_quest_title")
+                .select("first_name, xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, last_quest_title")
                 .eq("user_id", user.id)
                 .maybeSingle();
 
@@ -65,16 +65,16 @@ const GameMap = () => {
 
                 // Calculate path progress (simplified - based on XP ratios)
                 const totalPathXP = (profile.xp_body || 0) + (profile.xp_mind || 0) +
-                    (profile.xp_heart || 0) + (profile.xp_spirit || 0) +
-                    (profile.xp_uniqueness_work || 0);
+                    (profile.xp_emotions || 0) + (profile.xp_spirit || 0) +
+                    (profile.xp_uniqueness || 0);
 
                 if (totalPathXP > 0) {
                     setPathProgress({
                         "body": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
                         "mind": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
-                        "emotions": Math.min(100, ((profile.xp_heart || 0) / 500) * 100),
+                        "emotions": Math.min(100, ((profile.xp_emotions || 0) / 500) * 100),
                         "spirit": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
-                        "uniqueness": Math.min(100, ((profile.xp_uniqueness_work || 0) / 500) * 100),
+                        "uniqueness": Math.min(100, ((profile.xp_uniqueness || 0) / 500) * 100),
                     });
                 }
 

@@ -19,7 +19,7 @@ export type ExperienceIntent =
   | "feelBetter"
   | "psychic";
 
-export type DevelopmentPath = "body" | "mind" | "heart" | "spirit" | "uniqueness_work";
+export type DevelopmentPath = "body" | "mind" | "emotions" | "spirit" | "uniqueness";
 
 export type QolDomain = "wealth" | "health" | "happiness" | "love_relationships" | "impact" | "growth" | "social_ties" | "home";
 
@@ -110,7 +110,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart",
+    secondaryPath: "emotions",
     primaryDomain: "health"
   },
   {
@@ -137,7 +137,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 5,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart",
+    secondaryPath: "emotions",
     primaryDomain: "health"
   },
   {
@@ -229,7 +229,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 10,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart",
+    secondaryPath: "emotions",
     primaryDomain: "health"
   },
   {
@@ -284,7 +284,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationMinutes: 15,
     intents: ["breathwork", "feelBetter"],
     primaryPath: "body",
-    secondaryPath: "heart",
+    secondaryPath: "emotions",
     primaryDomain: "happiness"
   },
   {
@@ -327,7 +327,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "20 min",
     durationMinutes: 20,
     intents: ["receiveWisdom", "activation"],
-    primaryPath: "uniqueness_work",
+    primaryPath: "uniqueness",
     secondaryPath: "mind",
     primaryDomain: "wealth"
   },
@@ -341,7 +341,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "20 min",
     durationMinutes: 20,
     intents: ["receiveWisdom", "activation"],
-    primaryPath: "uniqueness_work",
+    primaryPath: "uniqueness",
     secondaryPath: "mind",
     primaryDomain: "wealth"
   },
@@ -414,7 +414,7 @@ export const LIBRARY_ITEMS: LibraryItem[] = [
     durationLabel: "20 min",
     durationMinutes: 20,
     intents: ["activation"],
-    primaryPath: "heart",
+    primaryPath: "emotions",
     secondaryPath: "spirit",
     primaryDomain: "love_relationships"
   },
