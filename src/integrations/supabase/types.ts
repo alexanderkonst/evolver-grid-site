@@ -53,6 +53,9 @@ export type Database = {
           last_zog_snapshot_id: string | null
           level: number
           longest_streak_days: number
+          main_quest_stage: string
+          main_quest_status: string
+          main_quest_updated_at: string
           multiple_intelligences_completed: boolean | null
           personality_tests: Json | null
           practice_count: number
@@ -81,6 +84,9 @@ export type Database = {
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          main_quest_stage?: string
+          main_quest_status?: string
+          main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
           personality_tests?: Json | null
           practice_count?: number
@@ -109,6 +115,9 @@ export type Database = {
           last_zog_snapshot_id?: string | null
           level?: number
           longest_streak_days?: number
+          main_quest_stage?: string
+          main_quest_status?: string
+          main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
           personality_tests?: Json | null
           practice_count?: number
