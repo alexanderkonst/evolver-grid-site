@@ -12,6 +12,9 @@ verify_jwt = false
 [functions.suggest-next-quest]
 verify_jwt = true
 
+[functions.suggest-main-quest]
+verify_jwt = true
+
 [functions.generate-zog-snapshot]
 verify_jwt = true
 
