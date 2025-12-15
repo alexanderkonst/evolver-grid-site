@@ -1,3 +1,12 @@
+/**
+ * suggest-next-quest — Side Quest (Practice) Recommender
+ * 
+ * This function recommends practices from the library based on player intention.
+ * It uses AI to select the best practice match.
+ * 
+ * NOTE: This is the "Side Quest" recommender, not the Main Quest state machine.
+ * Main Quest progression is handled by suggest-main-quest function.
+ */
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
