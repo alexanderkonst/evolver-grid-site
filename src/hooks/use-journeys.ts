@@ -131,20 +131,20 @@ export function useAllPathsProgress() {
             const playerUpgrades = await getPlayerUpgrades(profile.id);
             const completedCodes = new Set(playerUpgrades.map(pu => pu.code));
 
-            // For now, we're loading uniqueness_work path - can expand later
-            const masteryUpgrades = await getUpgradesByBranch("uniqueness_work", "mastery_of_genius");
-            const entrepreneurialUpgrades = await getUpgradesByBranch("uniqueness_work", "entrepreneurial_path");
+            // For now, we're loading uniqueness path - can expand later
+            const masteryUpgrades = await getUpgradesByBranch("uniqueness", "mastery_of_genius");
+            const entrepreneurialUpgrades = await getUpgradesByBranch("uniqueness", "entrepreneurial_path");
 
             const allUpgrades = [...masteryUpgrades, ...entrepreneurialUpgrades];
             const completedCount = allUpgrades.filter(u => completedCodes.has(u.code)).length;
 
             setProgress({
-                "showing-up": { completed: completedCount, total: allUpgrades.length },
+                "uniqueness": { completed: completedCount, total: allUpgrades.length },
                 // Other paths would be added here when they have upgrades
-                "waking-up": { completed: 0, total: 7 },
-                "growing-up": { completed: 0, total: 5 },
-                "cleaning-up": { completed: 0, total: 6 },
-                "grounding": { completed: 0, total: 7 },
+                "spirit": { completed: 0, total: 7 },
+                "mind": { completed: 0, total: 5 },
+                "emotions": { completed: 0, total: 6 },
+                "body": { completed: 0, total: 7 },
             });
         } catch (error) {
             console.error("Error loading path progress:", error);

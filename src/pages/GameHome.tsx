@@ -140,7 +140,7 @@ const GameHome = () => {
           .select('*')
           .eq('id', id)
           .maybeSingle(),
-        getUpgradesByBranch('uniqueness_work', 'mastery_of_genius'),
+        getUpgradesByBranch('uniqueness', 'mastery_of_genius'),
       ]);
 
       if (profileResult.error) throw profileResult.error;
