@@ -16,6 +16,14 @@ import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
+import {
+  getMainQuestCopy,
+  computeNextMainQuestStage,
+  isStageObjectiveComplete,
+  calculateMainQuestProgress,
+  type MainQuestStage,
+  type PlayerStats
+} from "@/lib/mainQuest";
 
 // Types
 interface GameProfile {
@@ -36,6 +44,11 @@ interface GameProfile {
   xp_emotions: number;
   xp_spirit: number;
   xp_uniqueness: number;
+  practice_count: number;
+  zone_of_genius_completed: boolean | null;
+  main_quest_stage: string | null;
+  main_quest_status: string | null;
+  main_quest_updated_at: string | null;
 }
 
 interface ZogSnapshot {
@@ -474,6 +487,64 @@ const GameHome = () => {
                   <Sparkles className="w-5 h-5 text-amber-500" />
                   YOUR NEXT MOVE
                 </h2>
+
+                {/* Main Quest (Storyline) Card - Always first */}
+                {(() => {
+                  const currentStage = (profile?.main_quest_stage || 'mq_0_gateway') as MainQuestStage;
+                  const playerStats: PlayerStats = {
+                    zoneOfGeniusCompleted: !!profile?.zone_of_genius_completed || !!zogSnapshot,
+                    qualityOfLifeCompleted: !!currentQolSnapshot,
+                    practiceCount: profile?.practice_count || 0,
+                    upgradesCompleted: completedUpgradeCodes.size,
+                    level: profile?.level || 1,
+                  };
+
+                  // Compute if player should advance to next stage
+                  const computedStage = computeNextMainQuestStage(currentStage, playerStats);
+                  const questCopy = getMainQuestCopy(computedStage);
+                  const isComplete = isStageObjectiveComplete(computedStage, playerStats);
+                  const progress = calculateMainQuestProgress(computedStage);
+
+                  return (
+                    <div className="rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 p-5 mb-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                            <Sparkles className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Main Quest (Storyline)</span>
+                        </div>
+                        <span className="text-xs text-slate-500">{progress}% complete</span>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">{questCopy.title}</h3>
+                      <p className="text-sm text-slate-600 mb-4">{questCopy.objective}</p>
+
+                      {/* Progress bar */}
+                      <div className="w-full h-2 bg-slate-200 rounded-full mb-4">
+                        <div
+                          className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+
+                      {isComplete ? (
+                        <div className="flex items-center gap-2 text-emerald-600">
+                          <CheckCircle2 className="w-4 h-4" />
+                          <span className="text-sm font-medium">Stage Complete! Advancing...</span>
+                        </div>
+                      ) : (
+                        <Button
+                          onClick={() => questCopy.ctaRoute && navigate(questCopy.ctaRoute)}
+                          className="w-full bg-indigo-600 hover:bg-indigo-700"
+                          size="sm"
+                        >
+                          {questCopy.ctaText} →
+                        </Button>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Suggested Quest Card */}
