@@ -19,7 +19,7 @@ interface NextQuestContext {
   lowestDomains?: string[];
   archetypeTitle?: string;
   corePattern?: string;
-  pathSlug?: "body" | "mind" | "heart" | "spirit" | "uniqueness_work" | "any";
+  pathSlug?: "body" | "mind" | "emotions" | "spirit" | "uniqueness" | "any";
 }
 
 interface SuggestQuestRequest {
@@ -27,6 +27,28 @@ interface SuggestQuestRequest {
   practices: Practice[];
   context?: NextQuestContext;
 }
+
+// Normalize legacy path slugs to canonical domain slugs
+const normalizeDomainSlug = (slug: string | undefined): string | null => {
+  if (!slug) return null;
+  const normalized = slug.toLowerCase().trim();
+
+  const legacyMap: Record<string, string> = {
+    'waking-up': 'spirit',
+    'waking_up': 'spirit',
+    'growing-up': 'mind',
+    'growing_up': 'mind',
+    'cleaning-up': 'emotions',
+    'cleaning_up': 'emotions',
+    'heart': 'emotions',
+    'showing-up': 'uniqueness',
+    'showing_up': 'uniqueness',
+    'uniqueness_work': 'uniqueness',
+    'grounding': 'body',
+  };
+
+  return legacyMap[normalized] || (['spirit', 'mind', 'emotions', 'uniqueness', 'body'].includes(normalized) ? normalized : null);
+};
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === 'OPTIONS') {
@@ -70,17 +92,22 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('LOVABLE_API_KEY not configured');
     }
 
+    // Normalize any legacy path slugs in context
+    const normalizedPathSlug = context?.pathSlug && context.pathSlug !== 'any'
+      ? normalizeDomainSlug(context.pathSlug)
+      : context?.pathSlug;
+
     // Build context description for the LLM
     let contextDescription = '';
-    if (context?.pathSlug && context.pathSlug !== 'any') {
+    if (normalizedPathSlug && normalizedPathSlug !== 'any') {
       const pathNames: Record<string, string> = {
         body: 'Body',
         mind: 'Mind',
-        heart: 'Heart',
+        emotions: 'Emotions',
         spirit: 'Spirit',
-        uniqueness_work: 'Uniqueness & Work'
+        uniqueness: 'Uniqueness'
       };
-      contextDescription += `\n- Selected development path: ${pathNames[context.pathSlug] || context.pathSlug}`;
+      contextDescription += `\n- Selected development path: ${pathNames[normalizedPathSlug] || normalizedPathSlug}`;
     }
     if (context?.lowestDomains && context.lowestDomains.length > 0) {
       contextDescription += `\n- Lowest life domain(s): ${context.lowestDomains.join(', ')}`;
@@ -102,7 +129,7 @@ ${contextDescription ? `- context about the player:${contextDescription}` : ''}
 YOUR TASK:
 Choose ONE practice as the Main Quest:
 - It must be doable today and clearly helpful for the intention
-${context?.pathSlug && context.pathSlug !== 'any' ? `- STRONGLY prefer practices whose primary_path or secondary_path matches "${context.pathSlug}"` : ''}
+${normalizedPathSlug && normalizedPathSlug !== 'any' ? `- STRONGLY prefer practices whose primary_path or secondary_path matches "${normalizedPathSlug}"` : ''}
 ${context?.lowestDomains ? `- Also consider practices that support these life domains: ${context.lowestDomains.join(', ')}` : ''}
 ${context?.archetypeTitle ? `- Pick something that fits their archetype: ${context.archetypeTitle}` : ''}
 

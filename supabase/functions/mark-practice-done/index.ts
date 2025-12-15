@@ -79,17 +79,41 @@ Deno.serve(async (req) => {
       updated_at: new Date().toISOString(),
     };
 
+    // Normalize legacy path slugs to canonical domain slugs
+    const normalizeDomainSlug = (slug: string | undefined): string | null => {
+      if (!slug) return null;
+      const normalized = slug.toLowerCase().trim();
+
+      // Legacy aliases mapping
+      const legacyMap: Record<string, string> = {
+        'waking-up': 'spirit',
+        'waking_up': 'spirit',
+        'growing-up': 'mind',
+        'growing_up': 'mind',
+        'cleaning-up': 'emotions',
+        'cleaning_up': 'emotions',
+        'heart': 'emotions',
+        'showing-up': 'uniqueness',
+        'showing_up': 'uniqueness',
+        'uniqueness_work': 'uniqueness',
+        'grounding': 'body',
+      };
+
+      return legacyMap[normalized] || (['spirit', 'mind', 'emotions', 'uniqueness', 'body'].includes(normalized) ? normalized : null);
+    };
+
     // Add path-specific XP if path is provided
-    if (primaryPath) {
+    const normalizedPath = normalizeDomainSlug(primaryPath);
+    if (normalizedPath) {
       const pathXpMap: Record<string, string> = {
         'body': 'xp_body',
         'mind': 'xp_mind',
-        'heart': 'xp_heart',
+        'emotions': 'xp_emotions',
         'spirit': 'xp_spirit',
-        'uniqueness_work': 'xp_uniqueness_work',
+        'uniqueness': 'xp_uniqueness',
       };
 
-      const pathKey = pathXpMap[primaryPath];
+      const pathKey = pathXpMap[normalizedPath];
       if (pathKey) {
         updates[pathKey] = (profile[pathKey as keyof typeof profile] as number) + xpReward;
       }
