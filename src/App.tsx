@@ -20,6 +20,7 @@ import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminGeniusOffers from "./pages/AdminGeniusOffers";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
+import Today from "./pages/Today";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
@@ -71,9 +72,10 @@ const App = () => (
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
             <Route path="/game" element={<GameHome />} />
+            <Route path="/today" element={<Today />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<SkillTrees />} />
-            <Route path="/character" element={<GameHome />} />
+            <Route path="/character" element={<Today />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
