@@ -137,9 +137,25 @@ export default function TodayPage() {
             const codes = new Set<string>(playerUpgrades.map((pu: any) => pu.code));
             setCompletedUpgradeCodes(codes);
 
-            // Fetch all upgrades and find next recommended
-            const allUpgrades = await getUpgradesByBranch('uniqueness', 'mastery_of_genius');
-            const recommended = getNextRecommendedUpgrade(allUpgrades, codes);
+            // Fetch upgrades from all branches and find next recommended
+            // Check multiple branches to avoid showing only one path
+            const branches = [
+                { path: 'uniqueness', branch: 'mastery_of_genius' },
+                { path: 'spirit', branch: 'mastery_of_spirit' },
+                { path: 'mind', branch: 'mastery_of_mind' },
+                { path: 'emotions', branch: 'mastery_of_emotions' },
+                { path: 'body', branch: 'mastery_of_body' },
+            ];
+
+            let recommended: Upgrade | null = null;
+            for (const { path, branch } of branches) {
+                const branchUpgrades = await getUpgradesByBranch(path, branch);
+                const found = getNextRecommendedUpgrade(branchUpgrades, codes);
+                if (found) {
+                    recommended = found;
+                    break;
+                }
+            }
             setNextUpgrade(recommended);
 
             // Check unlock status for the recommended upgrade
@@ -329,8 +345,8 @@ export default function TodayPage() {
 
                     {/* 1. Main Quest (Storyline) */}
                     <div className={`rounded-2xl border-2 p-5 ${mainQuestComplete || artifactSubmitted
-                            ? 'border-emerald-200 bg-emerald-50'
-                            : 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50'
+                        ? 'border-emerald-200 bg-emerald-50'
+                        : 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50'
                         }`}>
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-2">
@@ -380,8 +396,8 @@ export default function TodayPage() {
 
                     {/* 2. Side Quest (Practice) */}
                     <div className={`rounded-2xl border-2 p-5 ${sideQuestDoneToday
-                            ? 'border-emerald-200 bg-emerald-50'
-                            : 'border-slate-200 bg-white'
+                        ? 'border-emerald-200 bg-emerald-50'
+                        : 'border-slate-200 bg-white'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${sideQuestDoneToday ? 'bg-emerald-500' : 'bg-emerald-600'
@@ -448,8 +464,8 @@ export default function TodayPage() {
 
                     {/* 3. Upgrade (Skill Tree) */}
                     <div className={`rounded-2xl border-2 p-5 ${!upgradeUnlockStatus.unlocked
-                            ? 'border-slate-300 bg-slate-50'
-                            : 'border-slate-200 bg-white'
+                        ? 'border-slate-300 bg-slate-50'
+                        : 'border-slate-200 bg-white'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${!upgradeUnlockStatus.unlocked ? 'bg-slate-400' : 'bg-purple-600'

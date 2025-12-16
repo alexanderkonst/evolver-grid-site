@@ -89,15 +89,23 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
 
         let newStreak = profile.current_streak_days || 0;
         if (lastPractice) {
-            const daysSince = Math.floor((now.getTime() - lastPractice.getTime()) / oneDayMs);
-            if (daysSince <= 1) {
-                if (daysSince === 1) {
-                    newStreak += 1;
-                }
+            // Compare calendar dates, not timestamps
+            const lastDate = new Date(lastPractice.toDateString());
+            const todayDate = new Date(now.toDateString());
+            const daysDiff = Math.floor((todayDate.getTime() - lastDate.getTime()) / oneDayMs);
+
+            if (daysDiff === 0) {
+                // Same day - maintain streak (already counted)
+                // Keep newStreak as is
+            } else if (daysDiff === 1) {
+                // Next day - increment streak
+                newStreak += 1;
             } else {
+                // More than 1 day gap - reset streak
                 newStreak = 1;
             }
         } else {
+            // First practice ever
             newStreak = 1;
         }
 
