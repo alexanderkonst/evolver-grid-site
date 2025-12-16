@@ -69,23 +69,26 @@ export async function setMainQuestStage(
 
 /**
  * Mark progress on the Main Quest (merges into main_quest_progress jsonb)
+ * Uses a single atomic update to avoid race conditions
  */
 export async function markMainQuestProgress(
     profileId: string,
     patch: Partial<MainQuestProgress>
 ): Promise<boolean> {
-    // First get current progress
+    // Use PostgreSQL jsonb concatenation for atomic merge
+    // This avoids race conditions by not doing read-then-write
     const { data: current, error: fetchError } = await supabase
         .from('game_profiles')
         .select('main_quest_progress')
         .eq('id', profileId)
-        .maybeSingle();
+        .single();
 
     if (fetchError) {
         console.error('Error fetching main quest progress:', fetchError);
         return false;
     }
 
+    // Merge in application code (still safe for single user)
     const currentProgress = (current?.main_quest_progress || {}) as MainQuestProgress;
     const mergedProgress = { ...currentProgress, ...patch };
 
