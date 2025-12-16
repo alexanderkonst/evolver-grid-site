@@ -2,25 +2,24 @@
  * Quest Runs API
  * 
  * Functions for logging Side Quest completions and retrieving logbook entries.
+ * Uses the existing 'quests' table.
  */
 
 import { supabase } from '@/integrations/supabase/client';
 import { advanceMainQuestIfEligible } from './mainQuestApi';
-import { buildPlayerStats, type PlayerStats } from './mainQuest';
-import type { CanonicalDomain } from './mainQuest';
+import { buildPlayerStats } from './mainQuest';
+import type { CanonicalDomain, MainQuestProgress } from './mainQuest';
 
 export interface QuestRun {
     id: string;
     profile_id: string;
-    practice_id: string;
-    practice_title: string;
+    title: string;
     practice_type: string | null;
-    domain: CanonicalDomain | null;
-    duration_min: number | null;
+    path: string | null;
+    duration_minutes: number | null;
     xp_awarded: number;
     completed_at: string;
-    notes: string | null;
-    created_at: string;
+    intention: string | null;
 }
 
 export interface CompleteQuestParams {
@@ -34,7 +33,7 @@ export interface CompleteQuestParams {
 }
 
 /**
- * Complete a Side Quest: log to quest_runs, award XP, update streak, advance Main Quest
+ * Complete a Side Quest: log to quests, award XP, update streak, advance Main Quest
  */
 export async function completeSideQuest(params: CompleteQuestParams): Promise<{
     success: boolean;
@@ -43,7 +42,7 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
     questRun?: QuestRun;
     error?: string;
 }> {
-    const { profileId, practiceId, practiceTitle, practiceType, domain, durationMin, notes } = params;
+    const { profileId, practiceTitle, practiceType, domain, durationMin, notes } = params;
 
     try {
         // Calculate XP based on duration
@@ -51,18 +50,17 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
         const durationBonus = Math.floor((durationMin || 10) / 10) * 5;
         const xpAwarded = baseXp + durationBonus;
 
-        // 1. Insert quest run
+        // 1. Insert quest run using existing 'quests' table
         const { data: questRun, error: insertError } = await supabase
-            .from('quest_runs')
+            .from('quests')
             .insert({
                 profile_id: profileId,
-                practice_id: practiceId,
-                practice_title: practiceTitle,
-                practice_type: practiceType,
-                domain: domain,
-                duration_min: durationMin,
+                title: practiceTitle,
+                practice_type: practiceType || null,
+                path: domain || null,
+                duration_minutes: durationMin || null,
                 xp_awarded: xpAwarded,
-                notes: notes,
+                intention: notes || null,
             })
             .select()
             .single();
@@ -93,12 +91,10 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
         if (lastPractice) {
             const daysSince = Math.floor((now.getTime() - lastPractice.getTime()) / oneDayMs);
             if (daysSince <= 1) {
-                // Continue or maintain streak
                 if (daysSince === 1) {
                     newStreak += 1;
                 }
             } else {
-                // Break streak if more than 1 day
                 newStreak = 1;
             }
         } else {
@@ -106,11 +102,12 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
         }
 
         // 4. Update profile: XP, streak, practice count
+        const xpField = `xp_${domain || 'spirit'}` as keyof typeof profile;
         const { error: updateError } = await supabase
             .from('game_profiles')
             .update({
                 xp_total: (profile.xp_total || 0) + xpAwarded,
-                [`xp_${domain || 'spirit'}`]: ((profile as any)[`xp_${domain || 'spirit'}`] || 0) + xpAwarded,
+                [xpField]: ((profile[xpField] as number) || 0) + xpAwarded,
                 practice_count: (profile.practice_count || 0) + 1,
                 current_streak_days: newStreak,
                 longest_streak_days: Math.max(profile.longest_streak_days || 0, newStreak),
@@ -134,6 +131,7 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
             ...profile,
             practice_count: (profile.practice_count || 0) + 1,
             current_streak_days: newStreak,
+            main_quest_progress: profile.main_quest_progress as MainQuestProgress | undefined,
         };
 
         const playerStats = buildPlayerStats(
@@ -164,7 +162,7 @@ export async function getRecentQuestRuns(
     limit: number = 7
 ): Promise<QuestRun[]> {
     const { data, error } = await supabase
-        .from('quest_runs')
+        .from('quests')
         .select('*')
         .eq('profile_id', profileId)
         .order('completed_at', { ascending: false })
@@ -175,7 +173,7 @@ export async function getRecentQuestRuns(
         return [];
     }
 
-    return data as QuestRun[];
+    return (data || []) as QuestRun[];
 }
 
 /**
@@ -183,7 +181,7 @@ export async function getRecentQuestRuns(
  */
 export async function getQuestRunCount(profileId: string): Promise<number> {
     const { count, error } = await supabase
-        .from('quest_runs')
+        .from('quests')
         .select('*', { count: 'exact', head: true })
         .eq('profile_id', profileId);
 
