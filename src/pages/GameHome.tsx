@@ -218,14 +218,18 @@ const GameHome = () => {
       }
 
       // Auto-advance Main Quest stage if player has progressed
+      const profileForStats = {
+        ...profileData,
+        main_quest_progress: profileData.main_quest_progress as import('@/lib/mainQuest').MainQuestProgress | undefined,
+      };
       const playerStats = buildPlayerStats(
-        profileData,
+        profileForStats,
         completedCodes.size,
         !!zogResult?.data
       );
 
       // Update profile if stage has advanced
-      await advanceMainQuestIfEligible(id, profileData, playerStats);
+      await advanceMainQuestIfEligible(id, profileForStats, playerStats);
 
     } catch (err) {
       console.error("Failed to load game data:", err);

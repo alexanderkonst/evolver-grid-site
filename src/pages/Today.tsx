@@ -172,10 +172,10 @@ export default function TodayPage() {
             const practices = LIBRARY_ITEMS.slice(0, 20).map(item => ({
                 id: item.id,
                 title: item.title,
-                type: item.type,
-                duration_minutes: item.duration,
+                type: item.categoryId,
+                duration_minutes: item.durationMinutes || 10,
                 primary_path: item.primaryPath,
-                tags: [item.type],
+                tags: [item.categoryId],
             }));
 
             const { data, error } = await supabase.functions.invoke('suggest-next-quest', {
@@ -401,7 +401,7 @@ export default function TodayPage() {
                                 <div className="flex items-center gap-2 text-emerald-600 mb-3">
                                     <CheckCircle2 className="w-4 h-4" />
                                     <span className="text-sm font-medium">
-                                        Completed: {todayQuestRuns[0]?.practice_title}
+                                        Completed: {todayQuestRuns[0]?.title}
                                     </span>
                                 </div>
                                 <Button
@@ -525,8 +525,8 @@ export default function TodayPage() {
                             {todayQuestRuns.map(run => (
                                 <div key={run.id} className="flex items-center justify-between bg-white rounded-lg border border-slate-200 px-4 py-3">
                                     <div>
-                                        <p className="font-medium text-slate-900">{run.practice_title}</p>
-                                        <p className="text-xs text-slate-500">{run.domain} • {run.duration_min} min</p>
+                                        <p className="font-medium text-slate-900">{run.title}</p>
+                                        <p className="text-xs text-slate-500">{run.path} • {run.duration_minutes} min</p>
                                     </div>
                                     <span className="text-sm font-semibold text-emerald-600">+{run.xp_awarded} XP</span>
                                 </div>
