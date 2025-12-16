@@ -49,6 +49,11 @@ const SkillTrees = () => {
         "gr-daily-movement": "in_progress",
     };
 
+    // Scroll to top when page loads
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <Navigation />

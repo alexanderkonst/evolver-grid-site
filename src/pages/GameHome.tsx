@@ -166,7 +166,15 @@ const GameHome = () => {
       if (!profileData) return;
 
       setProfile(profileData);
-      setMasteryUpgrades(masteryData);
+
+      // Use database upgrades or fallback to hardcoded onboarding upgrades
+      const fallbackUpgrades: Upgrade[] = [
+        { id: 'fb-1', code: 'personality_tests_completed', title: 'Complete Personality Tests', short_label: 'Personality', description: 'Take MBTI, Enneagram, or similar tests', path_slug: 'uniqueness', branch: 'mastery_of_genius', is_paid: false, xp_reward: 50, sort_order: 1 },
+        { id: 'fb-2', code: 'zog_assessment_completed', title: 'Zone of Genius Assessment', short_label: 'ZoG', description: 'Discover your unique genius', path_slug: 'uniqueness', branch: 'mastery_of_genius', is_paid: false, xp_reward: 100, sort_order: 2 },
+        { id: 'fb-3', code: 'genius_offer_draft', title: 'Draft Your Genius Offer', short_label: 'Offer', description: 'Create your unique offer', path_slug: 'uniqueness', branch: 'mastery_of_genius', is_paid: false, xp_reward: 150, sort_order: 3 },
+        { id: 'fb-4', code: 'first_practice_done', title: 'Complete First Practice', short_label: 'First Practice', description: 'Complete any practice from the library', path_slug: 'body', branch: 'mastery_of_genius', is_paid: false, xp_reward: 25, sort_order: 4 },
+      ];
+      setMasteryUpgrades(masteryData.length > 0 ? masteryData : fallbackUpgrades);
 
       // Now parallelize snapshot fetches and player upgrades
       const zogPromise = profileData.last_zog_snapshot_id
@@ -311,14 +319,56 @@ const GameHome = () => {
       });
 
       if (error) throw error;
-      setQuestSuggestion(data);
+
+      if (data && data.practice) {
+        // New format from edge function
+        setQuestSuggestion({
+          main: {
+            quest_title: data.practice.title,
+            practice_type: data.domain || 'spirit',
+            approx_duration_minutes: data.practice.duration_min || selectedDuration,
+            why_it_is_a_good_next_move: data.why?.[0] || 'Great for your practice today.',
+          },
+          alternatives: (data.alternatives || []).map((alt: any) => ({
+            quest_title: alt.title,
+            practice_type: alt.domain || 'spirit',
+            approx_duration_minutes: alt.duration_min || 10,
+            why_it_is_a_good_next_move: '',
+          })),
+        });
+      } else if (data && data.main) {
+        // Old format
+        setQuestSuggestion(data);
+      } else {
+        throw new Error('Invalid response format');
+      }
     } catch (error) {
       console.error('Error fetching quest:', error);
-      toast({
-        title: "Couldn't find a quest",
-        description: "Please try again or visit the Library.",
-        variant: "destructive",
+
+      // Fallback: pick a random practice from the library
+      const matchingPractices = LIBRARY_ITEMS.filter(item => {
+        const dur = item.durationMinutes || 10;
+        return dur <= selectedDuration + 10 && dur >= Math.max(5, selectedDuration - 10);
       });
+
+      if (matchingPractices.length > 0) {
+        const randomPractice = matchingPractices[Math.floor(Math.random() * matchingPractices.length)];
+        setQuestSuggestion({
+          main: {
+            quest_title: randomPractice.title,
+            practice_type: randomPractice.categoryId || 'practice',
+            approx_duration_minutes: randomPractice.durationMinutes || selectedDuration,
+            why_it_is_a_good_next_move: `A ${randomPractice.categoryId} practice to support your journey.`,
+          },
+          alternatives: [],
+        });
+      } else {
+        toast({
+          title: "Couldn't find a quest",
+          description: "Please try again or visit the Library.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoadingQuest(false);
     }
