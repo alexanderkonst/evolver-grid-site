@@ -12,6 +12,8 @@ export interface Upgrade {
   is_paid: boolean;
   xp_reward: number;
   sort_order: number;
+  prereqs?: string[]; // codes of required upgrades
+  unlock_hint?: string; // hint shown when locked
 }
 
 export interface PlayerUpgrade {
@@ -20,6 +22,42 @@ export interface PlayerUpgrade {
   upgrade_id: string;
   status: string;
   completed_at: string | null;
+}
+
+/**
+ * Check if an upgrade is unlocked based on completed upgrades
+ */
+export function isUpgradeUnlocked(
+  upgrade: Upgrade,
+  completedCodes: Set<string>
+): { unlocked: boolean; missingPrereqs: string[] } {
+  if (!upgrade.prereqs || upgrade.prereqs.length === 0) {
+    return { unlocked: true, missingPrereqs: [] };
+  }
+
+  const missing = upgrade.prereqs.filter(code => !completedCodes.has(code));
+  return {
+    unlocked: missing.length === 0,
+    missingPrereqs: missing,
+  };
+}
+
+/**
+ * Get next recommended upgrade (first unlocked but not completed)
+ */
+export function getNextRecommendedUpgrade(
+  upgrades: Upgrade[],
+  completedCodes: Set<string>
+): Upgrade | null {
+  for (const upgrade of upgrades) {
+    if (completedCodes.has(upgrade.code)) continue;
+
+    const { unlocked } = isUpgradeUnlocked(upgrade, completedCodes);
+    if (unlocked) {
+      return upgrade;
+    }
+  }
+  return null;
 }
 
 /**

@@ -13,9 +13,12 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import {
-    Sparkles, Target, Zap, CheckCircle2, Flame, Trophy, ChevronRight, Loader2, BookOpen, Gift
+    Sparkles, Target, Zap, CheckCircle2, Flame, Trophy, ChevronRight, Loader2,
+    BookOpen, Gift, Lock, Upload, Link as LinkIcon, X
 } from "lucide-react";
 import {
     getMainQuestCopy,
@@ -26,9 +29,12 @@ import {
     getTotalStages,
     type MainQuestStage,
 } from "@/lib/mainQuest";
-import { advanceMainQuestIfEligible, markRealWorldOutputDone } from "@/lib/mainQuestApi";
+import { advanceMainQuestIfEligible, markMainQuestProgress } from "@/lib/mainQuestApi";
 import { completeSideQuest, getRecentQuestRuns, type QuestRun } from "@/lib/questRunsApi";
-import { getUpgradesByBranch, getPlayerUpgrades, completeUpgrade, type Upgrade } from "@/lib/upgradeSystem";
+import {
+    getUpgradesByBranch, getPlayerUpgrades, completeUpgrade,
+    isUpgradeUnlocked, getNextRecommendedUpgrade, type Upgrade
+} from "@/lib/upgradeSystem";
 import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
 // Types
@@ -66,8 +72,16 @@ export default function TodayPage() {
     const [profile, setProfile] = useState<TodayProfile | null>(null);
     const [sideQuest, setSideQuest] = useState<SideQuestRecommendation | null>(null);
     const [nextUpgrade, setNextUpgrade] = useState<Upgrade | null>(null);
+    const [upgradeUnlockStatus, setUpgradeUnlockStatus] = useState<{ unlocked: boolean; missingPrereqs: string[] }>({ unlocked: true, missingPrereqs: [] });
     const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
     const [todayQuestRuns, setTodayQuestRuns] = useState<QuestRun[]>([]);
+
+    // World Artifact Modal State
+    const [showArtifactModal, setShowArtifactModal] = useState(false);
+    const [artifactTitle, setArtifactTitle] = useState("");
+    const [artifactUrl, setArtifactUrl] = useState("");
+    const [artifactDescription, setArtifactDescription] = useState("");
+    const [savingArtifact, setSavingArtifact] = useState(false);
 
     // Loading states
     const [loadingSideQuest, setLoadingSideQuest] = useState(false);
@@ -87,9 +101,10 @@ export default function TodayPage() {
 
     const mainQuestComplete = playerStats ? isStageComplete(mainQuestStage, profile, playerStats) : false;
     const sideQuestDoneToday = todayQuestRuns.length > 0;
-    const upgradeDoneToday = false; // TODO: track in session
-
     const allDoneForToday = mainQuestComplete && sideQuestDoneToday;
+
+    // Check if artifact already submitted
+    const artifactSubmitted = profile?.main_quest_progress?.real_world_output_done === true;
 
     // Load data
     const loadTodayData = useCallback(async () => {
@@ -122,10 +137,16 @@ export default function TodayPage() {
             const codes = new Set<string>(playerUpgrades.map((pu: any) => pu.code));
             setCompletedUpgradeCodes(codes);
 
-            // Fetch next available upgrade
+            // Fetch all upgrades and find next recommended
             const allUpgrades = await getUpgradesByBranch('uniqueness', 'mastery_of_genius');
-            const available = allUpgrades.find(u => !codes.has(u.code));
-            setNextUpgrade(available || null);
+            const recommended = getNextRecommendedUpgrade(allUpgrades, codes);
+            setNextUpgrade(recommended);
+
+            // Check unlock status for the recommended upgrade
+            if (recommended) {
+                const status = isUpgradeUnlocked(recommended, codes);
+                setUpgradeUnlockStatus(status);
+            }
 
             // Fetch today's quest runs
             const runs = await getRecentQuestRuns(profileData.id, 7);
@@ -226,23 +247,39 @@ export default function TodayPage() {
         }
     };
 
-    const handleCompleteMainQuest = async () => {
-        if (!profile) return;
+    const handleOpenArtifactModal = () => {
+        setShowArtifactModal(true);
+    };
+
+    const handleSaveArtifact = async () => {
+        if (!profile || !artifactTitle.trim()) return;
 
         try {
-            setCompletingMainQuest(true);
+            setSavingArtifact(true);
 
-            if (mainQuestStage === 'mq_5_real_world_output') {
-                await markRealWorldOutputDone(profile.id);
-                toast({ title: "🎉 Main Quest Complete!", description: "You've created a real-world output!" });
-            }
+            // Save artifact to main_quest_progress
+            await markMainQuestProgress(profile.id, {
+                real_world_output_done: true,
+                artifact: {
+                    title: artifactTitle,
+                    url: artifactUrl || null,
+                    description: artifactDescription || null,
+                    created_at: new Date().toISOString(),
+                },
+            });
 
+            toast({
+                title: "🎉 Main Quest Complete!",
+                description: "Your real-world output has been captured."
+            });
+
+            setShowArtifactModal(false);
             await loadTodayData();
         } catch (err: any) {
-            console.error("Error completing main quest:", err);
+            console.error("Error saving artifact:", err);
             toast({ title: "Error", description: err.message, variant: "destructive" });
         } finally {
-            setCompletingMainQuest(false);
+            setSavingArtifact(false);
         }
     };
 
@@ -291,15 +328,15 @@ export default function TodayPage() {
                 <div className="space-y-4">
 
                     {/* 1. Main Quest (Storyline) */}
-                    <div className={`rounded-2xl border-2 p-5 ${mainQuestComplete
+                    <div className={`rounded-2xl border-2 p-5 ${mainQuestComplete || artifactSubmitted
                             ? 'border-emerald-200 bg-emerald-50'
                             : 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50'
                         }`}>
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-2">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${mainQuestComplete ? 'bg-emerald-500' : 'bg-indigo-600'
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${mainQuestComplete || artifactSubmitted ? 'bg-emerald-500' : 'bg-indigo-600'
                                     }`}>
-                                    {mainQuestComplete
+                                    {mainQuestComplete || artifactSubmitted
                                         ? <CheckCircle2 className="w-4 h-4 text-white" />
                                         : <Sparkles className="w-4 h-4 text-white" />
                                     }
@@ -316,19 +353,19 @@ export default function TodayPage() {
                         <h3 className="text-lg font-bold text-slate-900 mb-1">{mainQuestCopy.title}</h3>
                         <p className="text-sm text-slate-600 mb-4">{mainQuestCopy.objective}</p>
 
-                        {mainQuestComplete ? (
+                        {mainQuestComplete || artifactSubmitted ? (
                             <div className="flex items-center gap-2 text-emerald-600">
                                 <CheckCircle2 className="w-4 h-4" />
                                 <span className="text-sm font-medium">Complete</span>
                             </div>
                         ) : mainQuestStage === 'mq_5_real_world_output' ? (
                             <Button
-                                onClick={handleCompleteMainQuest}
+                                onClick={handleOpenArtifactModal}
                                 disabled={completingMainQuest}
                                 className="w-full bg-indigo-600 hover:bg-indigo-700"
                             >
-                                {completingMainQuest ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                                Mark as Done ✓
+                                <Upload className="w-4 h-4 mr-2" />
+                                Capture Your Output
                             </Button>
                         ) : (
                             <Button
@@ -410,34 +447,60 @@ export default function TodayPage() {
                     </div>
 
                     {/* 3. Upgrade (Skill Tree) */}
-                    <div className="rounded-2xl border-2 border-slate-200 bg-white p-5">
+                    <div className={`rounded-2xl border-2 p-5 ${!upgradeUnlockStatus.unlocked
+                            ? 'border-slate-300 bg-slate-50'
+                            : 'border-slate-200 bg-white'
+                        }`}>
                         <div className="flex items-center gap-2 mb-3">
-                            <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
-                                <Zap className="w-4 h-4 text-white" />
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${!upgradeUnlockStatus.unlocked ? 'bg-slate-400' : 'bg-purple-600'
+                                }`}>
+                                {!upgradeUnlockStatus.unlocked
+                                    ? <Lock className="w-4 h-4 text-white" />
+                                    : <Zap className="w-4 h-4 text-white" />
+                                }
                             </div>
-                            <span className="text-xs font-semibold uppercase tracking-wider text-purple-600">
+                            <span className={`text-xs font-semibold uppercase tracking-wider ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-purple-600'
+                                }`}>
                                 Upgrade (Skill Tree)
                             </span>
+                            {!upgradeUnlockStatus.unlocked && (
+                                <span className="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">
+                                    Locked
+                                </span>
+                            )}
                         </div>
 
                         {nextUpgrade ? (
                             <>
-                                <h3 className="text-lg font-bold text-slate-900 mb-1">
+                                <h3 className={`text-lg font-bold mb-1 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-slate-900'
+                                    }`}>
                                     {nextUpgrade.title}
                                 </h3>
-                                <p className="text-sm text-slate-600 mb-4">
+                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-400' : 'text-slate-600'
+                                    }`}>
                                     {nextUpgrade.description || 'Unlock this upgrade to level up.'}
                                 </p>
-                                <Button
-                                    onClick={handleCompleteUpgrade}
-                                    disabled={completingUpgrade}
-                                    variant="outline"
-                                    className="w-full"
-                                >
-                                    {completingUpgrade ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                                    Complete Upgrade
-                                    <ChevronRight className="w-4 h-4 ml-1" />
-                                </Button>
+
+                                {!upgradeUnlockStatus.unlocked ? (
+                                    <div className="text-sm text-slate-500">
+                                        <Lock className="w-4 h-4 inline mr-1" />
+                                        Requires: {upgradeUnlockStatus.missingPrereqs.join(', ')}
+                                        {nextUpgrade.unlock_hint && (
+                                            <p className="mt-2 text-xs italic">{nextUpgrade.unlock_hint}</p>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <Button
+                                        onClick={handleCompleteUpgrade}
+                                        disabled={completingUpgrade}
+                                        variant="outline"
+                                        className="w-full"
+                                    >
+                                        {completingUpgrade ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                        Complete Upgrade
+                                        <ChevronRight className="w-4 h-4 ml-1" />
+                                    </Button>
+                                )}
                             </>
                         ) : (
                             <div className="text-center py-4">
@@ -473,6 +536,78 @@ export default function TodayPage() {
                 )}
 
             </div>
+
+            {/* World Artifact Modal */}
+            {showArtifactModal && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold text-slate-900">Capture Your Output</h2>
+                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-400 hover:text-slate-600">
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        <p className="text-sm text-slate-600 mb-6">
+                            Document your real-world creation — a post, pitch, demo, or any tangible output.
+                        </p>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                    Title *
+                                </label>
+                                <Input
+                                    placeholder="e.g., My first LinkedIn post about..."
+                                    value={artifactTitle}
+                                    onChange={(e) => setArtifactTitle(e.target.value)}
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                    Link (optional)
+                                </label>
+                                <div className="relative">
+                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                    <Input
+                                        className="pl-10"
+                                        placeholder="https://..."
+                                        value={artifactUrl}
+                                        onChange={(e) => setArtifactUrl(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                    Description (optional)
+                                </label>
+                                <Textarea
+                                    placeholder="What did you create? How does it feel?"
+                                    value={artifactDescription}
+                                    onChange={(e) => setArtifactDescription(e.target.value)}
+                                    rows={3}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3 mt-6">
+                            <Button variant="outline" className="flex-1" onClick={() => setShowArtifactModal(false)}>
+                                Cancel
+                            </Button>
+                            <Button
+                                className="flex-1 bg-indigo-600 hover:bg-indigo-700"
+                                onClick={handleSaveArtifact}
+                                disabled={!artifactTitle.trim() || savingArtifact}
+                            >
+                                {savingArtifact ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                Save Output
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
