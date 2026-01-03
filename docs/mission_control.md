@@ -84,6 +84,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 
 ## Quick Links
 
+- [🎵 Manifesto](./manifesto.md) ← **Coherence tuning fork** (start here)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
 - [Architecture](./ARCHITECTURE.md)
