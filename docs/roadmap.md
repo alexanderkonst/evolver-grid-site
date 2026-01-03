@@ -28,6 +28,8 @@
 | Asset inventory | Asset Inventory | 🟡 Spreadsheet |
 | Skill progression | Skill Trees | 🟡 Partial |
 | Daily recommendations | Recommendation Engine | 🟡 Basic |
+| Matchmaking | AI Matchmaking | 🔵 Concept |
+| Genius monetization | Genius Economy | 🔵 Concept |
 | ... | ... | ... |
 
 ### 3. Missing Modules
@@ -52,33 +54,31 @@ To be discovered through customer journey mapping.
 
 ---
 
-## The Core Question (Still Open)
+## The Core Question ✅ ANSWERED
 
-> **How do we merge the game experience with the transformational experience?**
+> ~~How do we merge the game experience with the transformational experience?~~
 
-### The Pieces We Have
+**See [Transformation Engine](./transformation_engine.md)** — the synthesis is documented.
 
-| Piece | Description |
-|-------|-------------|
-| **5 Development Vectors** | Spirit, Mind, Emotions, Uniqueness, Body |
-| **8 QoL Domains** | Wealth, Health, Happiness, Love, Impact, Growth, Social, Home |
-| **The Link** | Inner (5 vectors) begets Outer (8 domains) |
-| **XP System** | Points earned for actions |
-| **Practices** | Units of transformation (from Library) |
-| **Levels** | Progression milestones |
-| **Skill Trees** | Visual unlockable paths |
-| **Explainers** | Educational content |
-| **Microlearning** | Bite-sized knowledge |
-| **Fundamentals** | Engine of human development |
+Key insight: **Inner work (5 vectors) → Outer results (8 domains)**
+- XP tracks the input (practices)
+- QoL measures the output (life improvement)
+- Decimal stages (2.3 → 2.7) show visible progress in weeks
+- The game IS the transformation visualized
 
-### The Question
+---
 
-How do these all fluidly connect into:
-1. A game that feels like a game (dopamine, progress, achievement)
-2. A transformation engine that actually changes people
-3. An experience that is both — not two things duct-taped together
+## Upcoming Topics to Document
 
-**We haven't reached "absurd simplicity" yet.**
+*Alexander has years of additional frameworks to share:*
+
+- [ ] Asset Mapping system
+- [ ] Mission Discovery (based on Integral Society)
+- [ ] Matchmaking algorithms
+- [ ] Genius Monetization tech
+- [ ] Destiny Pack concept
+- [ ] Evolutionary Address / Inner development measurement
+- [ ] And more...
 
 ---
 
@@ -94,22 +94,7 @@ How do these all fluidly connect into:
 
 ## Session Log
 
-### Day 1 (Jan 3, 2025)
-- ✅ Created documentation foundation
-- ✅ Manifesto as coherence tuning fork
-- ✅ Prime Radiant Spec (L0-L5 architecture)
-- ✅ Game Architecture (implementation reference)
-- ✅ Impact Mapping (6 pillars, 45 focus areas)
-- ✅ Module Registry (LEGO blocks catalog)
-- ✅ Priroda Synthesis (partner insights)
-- ✅ Unified "Body" path naming (removed Grounding/Rooting Down)
-- ✅ 4-loop model (Character Creation, Character Transformation, Genius Monetization, Multiplayer)
-
-### Day 2+ (After birthday)
-- [ ] Customer journey mapping
-- [ ] Module gap analysis
-- [ ] Game progression UX design
-- [ ] Resolve the core integration question
+**Moved to separate file:** [Session Log](./session_log.md)
 
 ---
 
