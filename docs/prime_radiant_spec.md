@@ -151,7 +151,7 @@ XP is awarded for real actions that move life forward:
 - **Growing Up** — Mind / Meaning / Worldview
 - **Cleaning Up** — Emotions / Shadow / Trauma
 - **Showing Up** — Genius / Work / Entrepreneurship
-- **Rooting Down** — Body / Nervous System / Home / Health
+- **Body** — Body / Nervous System / Home / Health
 
 And optionally per domain (Wealth, Health, etc.)
 

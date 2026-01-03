@@ -18,9 +18,9 @@ const SkillTrees = () => {
     const legacyPath = searchParams.get('path');
     const normalizedPath = normalizeDomainSlug(pathId || legacyPath);
 
-    // Map canonical domain slugs to tree IDs (skill trees still use legacy IDs internally)
+    // Map canonical domain slugs to tree IDs
     const domainToTreeMap: Record<DomainSlug, string> = {
-        body: 'grounding',
+        body: 'body',
         mind: 'growing-up',
         emotions: 'cleaning-up',
         spirit: 'waking-up',

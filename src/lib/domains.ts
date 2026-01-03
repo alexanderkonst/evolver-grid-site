@@ -46,10 +46,10 @@ export const DOMAINS: Record<DomainSlug, DomainConfig> = {
     },
     body: {
         slug: 'body',
-        label: 'Grounding',
+        label: 'Body',
         xpColumn: 'xp_body',
         color: '#2d6a4f',
-        legacyAliases: ['grounding'],
+        legacyAliases: ['grounding', 'rooting-down', 'rooting_down'],
     },
 };
 
@@ -124,13 +124,13 @@ export const PATH_NAMES: Record<string, string> = {
     'growing-up': 'Growing Up',
     'cleaning-up': 'Cleaning Up',
     'showing-up': 'Showing Up',
-    'grounding': 'Grounding',
+    'grounding': 'Body',
     // Canonical slugs
     'spirit': 'Waking Up',
     'mind': 'Growing Up',
     'emotions': 'Cleaning Up',
     'uniqueness': 'Showing Up',
-    'body': 'Grounding',
+    'body': 'Body',
 };
 
 export const PATH_COLORS: Record<string, string> = {

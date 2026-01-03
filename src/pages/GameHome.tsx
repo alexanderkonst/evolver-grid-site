@@ -852,7 +852,7 @@ const GameHome = () => {
                 <div className="mb-6">
                   <img
                     src="https://i.imgur.com/t4mDGOf.jpeg"
-                    alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Grounding"
+                    alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Body"
                     className="w-full rounded-xl border border-slate-200"
                   />
                 </div>
