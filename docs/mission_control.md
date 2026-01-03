@@ -108,6 +108,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
 - [🚀 Roadmap](./roadmap.md) ← **What's next** (return to this Monday)
+- [📝 Session Log](./session_log.md) ← Chronicle of what we built
 - [Architecture](./ARCHITECTURE.md)
 - [Today's Brief](./today_brief.md)
 - [Decision Log](./decision_log.md)
