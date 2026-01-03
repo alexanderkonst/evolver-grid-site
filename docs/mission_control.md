@@ -103,6 +103,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [⚙️ Prime Radiant Spec](./prime_radiant_spec.md) ← **Core architecture** (L0-L5 layers)
 - [🎮 Game Architecture](./game_architecture.md) ← **Implementation** (UX, loops, Character Home)
 - [🎯 Game Design Principles](./game_design_principles.md) ← **Reality RPG rules** (11 principles)
+- [🔄 Transformation Engine](./transformation_engine.md) ← **The Core** (5 vectors → 8 domains)
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
