@@ -1,6 +1,6 @@
 # Mission Control
 
-> Single source of truth for the Planetary OS & Network School Sprint
+> Single source of truth for the **Member Portal of the Planetary OS**
 
 ---
 
@@ -13,7 +13,7 @@
 | 1 | **Living Integral Ontological OS** — one living integral planetary civilizational holonic & toroidal ontological operating system | v0.1 | 🔵 Conceptual |
 | 2 | **Joint Planetary Vision** — a joint vision for the emergence of a consciously evolving planet, an impact maximization and optimization method | v0.1 | 🔵 Conceptual |
 | 3 | **Holonic Toroidal Culture** — the cultural substrate and relational field | v0.1 | 🔵 Conceptual |
-| 4 | **Gamified OS Engine** — an intuitive interface to a planetary holonic OS for individuals to onboard | v0.3 | 🟡 Building (Evolver Grid) |
+| 4 | **Gamified OS Engine** — an intuitive interface to a planetary holonic OS for individuals to onboard | v0.3 | 🟡 Building (Member Portal) |
 | 5 | **White-Label Community OS** — UI/UX process for conscious communities, eco-villages, bioregions, venture cooperatives | v0.1 | 🔵 Conceptual |
 | 6 | **Consciousness Evolution Academy** — Sangha / Dojo / mystery school / foundry / incubator / accelerator | v0.2 | 🟡 Piloting (Integral Mystery School) |
 | 7 | **Genius Economy Engine** — gift economy + holonic tokenization + holonic business transaction field | v0.1 | 🔵 Conceptual |
@@ -84,8 +84,9 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 
 ## Quick Links
 
-- [Architecture](./ARCHITECTURE.md)
+- [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
+- [Architecture](./ARCHITECTURE.md)
 - [Today's Brief](./today_brief.md)
 - [Decision Log](./decision_log.md)
 
