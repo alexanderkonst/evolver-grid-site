@@ -51,6 +51,7 @@ interface SuggestQuestContext {
   archetypeTitle?: string;
   corePattern?: string;
   pathSlug?: string;
+  unlocked_practice_tags?: string[];
 }
 
 interface SuggestQuestRequest {

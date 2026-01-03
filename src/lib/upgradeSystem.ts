@@ -1,6 +1,15 @@
 import { supabase } from "@/integrations/supabase/client";
 import { awardXp } from "./xpSystem";
 
+/**
+ * Unlock effects applied when an upgrade is completed
+ */
+export interface UnlockEffects {
+  unlock_next_upgrades?: string[];  // upgrade codes that become available
+  unlock_practice_tags?: string[];  // practice tags to recommend
+  capability_flags?: string[];      // feature flags unlocked
+}
+
 export interface Upgrade {
   id: string;
   code: string;
@@ -13,6 +22,7 @@ export interface Upgrade {
   xp_reward: number;
   sort_order: number;
   prereqs?: string[]; // codes of required upgrades
+  unlock_effects?: UnlockEffects;
   unlock_hint?: string; // hint shown when locked
 }
 
@@ -135,7 +145,12 @@ export async function getUpgradesByBranch(
     return [];
   }
 
-  return data || [];
+  // Map database result to Upgrade type with proper typing
+  return (data || []).map(row => ({
+    ...row,
+    prereqs: row.prereqs || [],
+    unlock_effects: row.unlock_effects as UnlockEffects | undefined,
+  }));
 }
 
 /**
@@ -189,4 +204,113 @@ export async function isUpgradeCompleted(
   }
 
   return !!data;
+}
+
+/**
+ * Canonical domain slugs for XP balancing
+ */
+export const DOMAIN_SLUGS = ['spirit', 'mind', 'uniqueness', 'emotions', 'body'] as const;
+export type DomainSlug = typeof DOMAIN_SLUGS[number];
+
+/**
+ * Map domain slugs to branches
+ */
+const DOMAIN_TO_BRANCH: Record<DomainSlug, { path: string; branch: string }> = {
+  uniqueness: { path: 'uniqueness', branch: 'mastery_of_genius' },
+  spirit: { path: 'spirit', branch: 'mastery_of_spirit' },
+  mind: { path: 'mind', branch: 'mastery_of_mind' },
+  emotions: { path: 'emotions', branch: 'mastery_of_emotions' },
+  body: { path: 'body', branch: 'mastery_of_body' },
+};
+
+/**
+ * Get upgrade titles by their codes (for displaying prereq names)
+ */
+export async function getUpgradeTitlesByCode(
+  codes: string[]
+): Promise<Record<string, string>> {
+  if (codes.length === 0) return {};
+
+  const { data, error } = await supabase
+    .from('upgrade_catalog')
+    .select('code, title')
+    .in('code', codes);
+
+  if (error) {
+    console.error('Error fetching upgrade titles:', error);
+    return {};
+  }
+
+  const titles: Record<string, string> = {};
+  (data || []).forEach(row => {
+    titles[row.code] = row.title;
+  });
+  return titles;
+}
+
+/**
+ * Get all upgrades from the catalog
+ */
+export async function getAllUpgrades(): Promise<Upgrade[]> {
+  const { data, error } = await supabase
+    .from('upgrade_catalog')
+    .select('*')
+    .order('path_slug')
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching all upgrades:', error);
+    return [];
+  }
+
+  return (data || []).map(row => ({
+    ...row,
+    prereqs: row.prereqs || [],
+    unlock_effects: row.unlock_effects as UnlockEffects | undefined,
+  }));
+}
+
+/**
+ * Profile XP shape for domain balancing
+ */
+export interface ProfileXp {
+  xp_spirit: number;
+  xp_mind: number;
+  xp_uniqueness: number;
+  xp_emotions: number;
+  xp_body: number;
+}
+
+/**
+ * Get the next recommended upgrade, prioritizing the user's weakest domain
+ * Falls back to any unlocked upgrade if no domain-specific upgrade is available
+ */
+export async function getRecommendedUpgradeByDomain(
+  profileXp: ProfileXp,
+  completedCodes: Set<string>
+): Promise<{ upgrade: Upgrade | null; domain: DomainSlug | null }> {
+  // Calculate domain rankings (lowest XP first)
+  const domainXp: { domain: DomainSlug; xp: number }[] = [
+    { domain: 'spirit', xp: profileXp.xp_spirit },
+    { domain: 'mind', xp: profileXp.xp_mind },
+    { domain: 'uniqueness', xp: profileXp.xp_uniqueness },
+    { domain: 'emotions', xp: profileXp.xp_emotions },
+    { domain: 'body', xp: profileXp.xp_body },
+  ];
+
+  // Sort by XP ascending (weakest first)
+  domainXp.sort((a, b) => a.xp - b.xp);
+
+  // Try each domain in order of weakness
+  for (const { domain } of domainXp) {
+    const { path, branch } = DOMAIN_TO_BRANCH[domain];
+    const upgrades = await getUpgradesByBranch(path, branch);
+    const recommended = getNextRecommendedUpgrade(upgrades, completedCodes);
+
+    if (recommended) {
+      return { upgrade: recommended, domain };
+    }
+  }
+
+  return { upgrade: null, domain: null };
 }
