@@ -86,6 +86,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 
 - [🎵 Manifesto](./manifesto.md) ← **Coherence tuning fork** (start here)
 - [⚙️ Prime Radiant Spec](./prime_radiant_spec.md) ← **Core architecture** (L0-L5 layers)
+- [🎮 Game Architecture](./game_architecture.md) ← **Implementation** (UX, loops, Character Home)
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
