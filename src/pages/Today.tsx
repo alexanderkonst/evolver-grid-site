@@ -32,8 +32,9 @@ import {
 import { advanceMainQuestIfEligible, markMainQuestProgress } from "@/lib/mainQuestApi";
 import { completeSideQuest, getRecentQuestRuns, type QuestRun } from "@/lib/questRunsApi";
 import {
-    getUpgradesByBranch, getPlayerUpgrades, completeUpgrade,
-    isUpgradeUnlocked, getNextRecommendedUpgrade, type Upgrade
+    getPlayerUpgrades, completeUpgrade,
+    isUpgradeUnlocked, getRecommendedUpgradeByDomain, getUpgradeTitlesByCode,
+    type Upgrade, type ProfileXp, type UnlockEffects
 } from "@/lib/upgradeSystem";
 import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
@@ -41,6 +42,11 @@ import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 interface TodayProfile {
     id: string;
     xp_total: number;
+    xp_spirit: number;
+    xp_mind: number;
+    xp_uniqueness: number;
+    xp_emotions: number;
+    xp_body: number;
     level: number;
     current_streak_days: number;
     longest_streak_days: number;
@@ -73,14 +79,16 @@ export default function TodayPage() {
     const [sideQuest, setSideQuest] = useState<SideQuestRecommendation | null>(null);
     const [nextUpgrade, setNextUpgrade] = useState<Upgrade | null>(null);
     const [upgradeUnlockStatus, setUpgradeUnlockStatus] = useState<{ unlocked: boolean; missingPrereqs: string[] }>({ unlocked: true, missingPrereqs: [] });
+    const [prereqTitles, setPrereqTitles] = useState<Record<string, string>>({});
+    const [unlockedPracticeTags, setUnlockedPracticeTags] = useState<string[]>([]);
     const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
     const [todayQuestRuns, setTodayQuestRuns] = useState<QuestRun[]>([]);
 
     // World Artifact Modal State
     const [showArtifactModal, setShowArtifactModal] = useState(false);
-    const [artifactTitle, setArtifactTitle] = useState("");
+    const [artifactType, setArtifactType] = useState<'post' | 'pitch' | 'demo' | 'doc' | 'video' | 'other'>('post');
     const [artifactUrl, setArtifactUrl] = useState("");
-    const [artifactDescription, setArtifactDescription] = useState("");
+    const [artifactNote, setArtifactNote] = useState("");
     const [savingArtifact, setSavingArtifact] = useState(false);
 
     // Loading states
@@ -137,31 +145,28 @@ export default function TodayPage() {
             const codes = new Set<string>(playerUpgrades.map((pu: any) => pu.code));
             setCompletedUpgradeCodes(codes);
 
-            // Fetch upgrades from all branches and find next recommended
-            // Check multiple branches to avoid showing only one path
-            const branches = [
-                { path: 'uniqueness', branch: 'mastery_of_genius' },
-                { path: 'spirit', branch: 'mastery_of_spirit' },
-                { path: 'mind', branch: 'mastery_of_mind' },
-                { path: 'emotions', branch: 'mastery_of_emotions' },
-                { path: 'body', branch: 'mastery_of_body' },
-            ];
+            // Get next recommended upgrade based on weakest domain (domain-balanced)
+            const profileXp: ProfileXp = {
+                xp_spirit: profileData.xp_spirit || 0,
+                xp_mind: profileData.xp_mind || 0,
+                xp_uniqueness: profileData.xp_uniqueness || 0,
+                xp_emotions: profileData.xp_emotions || 0,
+                xp_body: profileData.xp_body || 0,
+            };
 
-            let recommended: Upgrade | null = null;
-            for (const { path, branch } of branches) {
-                const branchUpgrades = await getUpgradesByBranch(path, branch);
-                const found = getNextRecommendedUpgrade(branchUpgrades, codes);
-                if (found) {
-                    recommended = found;
-                    break;
-                }
-            }
+            const { upgrade: recommended } = await getRecommendedUpgradeByDomain(profileXp, codes);
             setNextUpgrade(recommended);
 
-            // Check unlock status for the recommended upgrade
+            // Check unlock status for the recommended upgrade and fetch prereq titles
             if (recommended) {
                 const status = isUpgradeUnlocked(recommended, codes);
                 setUpgradeUnlockStatus(status);
+
+                // Fetch prereq titles for display
+                if (status.missingPrereqs.length > 0) {
+                    const titles = await getUpgradeTitlesByCode(status.missingPrereqs);
+                    setPrereqTitles(titles);
+                }
             }
 
             // Fetch today's quest runs
@@ -181,7 +186,7 @@ export default function TodayPage() {
         }
     }, [navigate, toast]);
 
-    const fetchSideQuestRecommendation = async () => {
+    const fetchSideQuestRecommendation = async (practiceTags?: string[]) => {
         try {
             setLoadingSideQuest(true);
 
@@ -198,7 +203,10 @@ export default function TodayPage() {
                 body: {
                     intention: "personal growth and transformation",
                     practices,
-                    context: {},
+                    context: {
+                        // Pass unlocked practice tags to influence recommendations
+                        unlocked_practice_tags: practiceTags || unlockedPracticeTags,
+                    },
                 },
             });
 
@@ -268,28 +276,36 @@ export default function TodayPage() {
     };
 
     const handleSaveArtifact = async () => {
-        if (!profile || !artifactTitle.trim()) return;
+        if (!profile) return;
 
         try {
             setSavingArtifact(true);
 
-            // Save artifact to main_quest_progress
+            // Save artifact to main_quest_progress with required structure
             await markMainQuestProgress(profile.id, {
                 real_world_output_done: true,
-                artifact: {
-                    title: artifactTitle,
+                world_artifact: {
+                    type: artifactType,
                     url: artifactUrl || null,
-                    description: artifactDescription || null,
+                    note: artifactNote || null,
                     created_at: new Date().toISOString(),
                 },
             });
 
+            // Advance main quest after capturing artifact
+            if (playerStats) {
+                await advanceMainQuestIfEligible(profile.id, profile, playerStats);
+            }
+
             toast({
-                title: "🎉 Main Quest Complete!",
-                description: "Your real-world output has been captured."
+                title: "🎉 World Artifact Captured!",
+                description: "Your real-world creation has been documented."
             });
 
             setShowArtifactModal(false);
+            setArtifactType('post');
+            setArtifactUrl('');
+            setArtifactNote('');
             await loadTodayData();
         } catch (err: any) {
             console.error("Error saving artifact:", err);
@@ -334,7 +350,7 @@ export default function TodayPage() {
                         <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
                         <h2 className="text-2xl font-bold text-slate-900 mb-2">Done for Today! 🎉</h2>
                         <p className="text-slate-600 mb-6">You've completed your daily actions. Great work!</p>
-                        <Button variant="outline" onClick={fetchSideQuestRecommendation}>
+                        <Button variant="outline" onClick={() => fetchSideQuestRecommendation()}>
                             <Gift className="w-4 h-4 mr-2" />
                             Bonus Side Quest
                         </Button>
@@ -423,7 +439,7 @@ export default function TodayPage() {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    onClick={fetchSideQuestRecommendation}
+                                    onClick={() => fetchSideQuestRecommendation()}
                                     disabled={loadingSideQuest}
                                 >
                                     {loadingSideQuest ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
@@ -456,7 +472,7 @@ export default function TodayPage() {
                                 </Button>
                             </>
                         ) : (
-                            <Button onClick={fetchSideQuestRecommendation} variant="outline" className="w-full">
+                            <Button onClick={() => fetchSideQuestRecommendation()} variant="outline" className="w-full">
                                 Get Practice Recommendation
                             </Button>
                         )}
@@ -500,7 +516,9 @@ export default function TodayPage() {
                                 {!upgradeUnlockStatus.unlocked ? (
                                     <div className="text-sm text-slate-500">
                                         <Lock className="w-4 h-4 inline mr-1" />
-                                        Requires: {upgradeUnlockStatus.missingPrereqs.join(', ')}
+                                        Locked — requires: {upgradeUnlockStatus.missingPrereqs
+                                            .map(code => prereqTitles[code] || code)
+                                            .join(', ')}
                                         {nextUpgrade.unlock_hint && (
                                             <p className="mt-2 text-xs italic">{nextUpgrade.unlock_hint}</p>
                                         )}
@@ -571,13 +589,20 @@ export default function TodayPage() {
                         <div className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                                    Title *
+                                    Type *
                                 </label>
-                                <Input
-                                    placeholder="e.g., My first LinkedIn post about..."
-                                    value={artifactTitle}
-                                    onChange={(e) => setArtifactTitle(e.target.value)}
-                                />
+                                <select
+                                    value={artifactType}
+                                    onChange={(e) => setArtifactType(e.target.value as any)}
+                                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                >
+                                    <option value="post">Post</option>
+                                    <option value="pitch">Pitch</option>
+                                    <option value="demo">Demo</option>
+                                    <option value="doc">Doc</option>
+                                    <option value="video">Video</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
 
                             <div>
@@ -597,12 +622,12 @@ export default function TodayPage() {
 
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                                    Description (optional)
+                                    Notes (optional)
                                 </label>
                                 <Textarea
                                     placeholder="What did you create? How does it feel?"
-                                    value={artifactDescription}
-                                    onChange={(e) => setArtifactDescription(e.target.value)}
+                                    value={artifactNote}
+                                    onChange={(e) => setArtifactNote(e.target.value)}
                                     rows={3}
                                 />
                             </div>
@@ -615,10 +640,10 @@ export default function TodayPage() {
                             <Button
                                 className="flex-1 bg-indigo-600 hover:bg-indigo-700"
                                 onClick={handleSaveArtifact}
-                                disabled={!artifactTitle.trim() || savingArtifact}
+                                disabled={savingArtifact}
                             >
                                 {savingArtifact ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                                Save Output
+                                Mark Artifact Done
                             </Button>
                         </div>
                     </div>

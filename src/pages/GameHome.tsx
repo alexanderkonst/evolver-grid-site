@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame,
@@ -28,6 +28,8 @@ import {
   type PlayerStats
 } from "@/lib/mainQuest";
 import { advanceMainQuestIfEligible, markRealWorldOutputDone } from "@/lib/mainQuestApi";
+import SkillTree from "@/components/SkillTree";
+import { skillTrees } from "@/data/skillTrees";
 
 // Types
 interface GameProfile {
@@ -461,6 +463,45 @@ const GameHome = () => {
     }
   };
 
+  // Get the Showing Up skill tree for visualization
+  const showingUpTree = skillTrees.find(t => t.id === 'showing-up');
+
+  // Map upgrade codes to skill tree node IDs
+  const skillTreeProgress = useMemo(() => {
+    const codeToNodeMap: Record<string, string> = {
+      'zog_assessment_completed': 'su-zone-of-genius',
+      'personality_tests_completed': 'su-values-clarity',
+      'genius_offer_draft': 'su-offer-creation',
+      'first_practice_done': 'su-visibility',
+    };
+
+    const progress: Record<string, "locked" | "available" | "in_progress" | "completed"> = {};
+
+    if (!showingUpTree) return progress;
+
+    // First pass: mark completed nodes
+    showingUpTree.nodes.forEach(node => {
+      const upgradeCode = Object.entries(codeToNodeMap).find(([_, nodeId]) => nodeId === node.id)?.[0];
+      if (upgradeCode && completedUpgradeCodes.has(upgradeCode)) {
+        progress[node.id] = 'completed';
+      }
+    });
+
+    // Second pass: determine available/locked based on prerequisites
+    showingUpTree.nodes.forEach(node => {
+      if (progress[node.id] === 'completed') return;
+
+      if (node.prerequisites.length === 0) {
+        progress[node.id] = 'available';
+      } else {
+        const allPrereqsCompleted = node.prerequisites.every(p => progress[p] === 'completed');
+        progress[node.id] = allPrereqsCompleted ? 'available' : 'locked';
+      }
+    });
+
+    return progress;
+  }, [completedUpgradeCodes, showingUpTree]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen">
@@ -881,7 +922,32 @@ const GameHome = () => {
 
               {/* ===== SHOWING UP UPGRADES ===== */}
               <div id="upgrades-section" className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-900 mb-4">SHOWING UP UPGRADES</h2>
+                <h2 className="text-lg font-bold text-slate-900 mb-4">SHOWING UP SKILL TREE</h2>
+
+                {/* Visual Skill Tree */}
+                {showingUpTree && (
+                  <div className="relative w-full aspect-[4/3] max-w-xl mx-auto rounded-xl border border-slate-200 overflow-hidden bg-slate-50 mb-6">
+                    <SkillTree
+                      tree={showingUpTree}
+                      progress={skillTreeProgress}
+                      onNodeClick={(node) => {
+                        // Find upgrade matching this node and trigger its action
+                        const nodeToCodeMap: Record<string, string> = {
+                          'su-zone-of-genius': 'zog_assessment_completed',
+                          'su-values-clarity': 'personality_tests_completed',
+                          'su-offer-creation': 'genius_offer_draft',
+                          'su-visibility': 'first_practice_done',
+                        };
+                        const upgradeCode = nodeToCodeMap[node.id];
+                        const upgrade = masteryUpgrades.find(u => u.code === upgradeCode);
+                        if (upgrade) handleUpgradeAction(upgrade);
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* Upgrade List */}
+                <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Upgrades Progress</h3>
                 <div className="space-y-3">
                   {masteryUpgrades.map((upgrade, index) => {
                     const isCompleted = completedUpgradeCodes.has(upgrade.code);
