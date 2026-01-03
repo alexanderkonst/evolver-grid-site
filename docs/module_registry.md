@@ -297,9 +297,9 @@ Priroda Children's Research Team
 
 ## External Modules (To Explore)
 
-### Birdy.ai (AI Matchmaking)
+### Boardy.ai (AI Matchmaking)
 
-Source: External (Birdy.ai)
+Source: External (boardy.ai)
 Perspective: #9 AI Holonic Matchmaking
 Version: v1.0+
 Status: ⚪ External (can integrate)
@@ -318,7 +318,7 @@ AI matchmaker with 100k+ user database. Conversational interface where users des
 Could use directly OR build similar functionality internally. API may be available.
 
 **Contact**
-birdy.ai
+boardy.ai
 
 ---
 
