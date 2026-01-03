@@ -71,6 +71,21 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 
 ---
 
+## The Four Core Loops (v1.0)
+
+*How the game actually works — every session activates at least one loop*
+
+| # | Loop | What Happens |
+|---|------|--------------|
+| 1 | **Character Creation** | Self-understanding through profiling (ZoG + QoL + Tests) |
+| 2 | **Character Transformation** | Real change through consistent practice (daily growth) |
+| 3 | **Genius Monetization** | Turn genius into value exchange (offer → business → revenue) |
+| 4 | **Multiplayer** | Find your people, create together (matchmaking → collabs → community) |
+
+> See [Game Design Principles](./game_design_principles.md) for full design reference.
+
+---
+
 ## Pilot Communities
 
 | Community | Type | Status | Notes |
@@ -87,6 +102,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [🎵 Manifesto](./manifesto.md) ← **Coherence tuning fork** (start here)
 - [⚙️ Prime Radiant Spec](./prime_radiant_spec.md) ← **Core architecture** (L0-L5 layers)
 - [🎮 Game Architecture](./game_architecture.md) ← **Implementation** (UX, loops, Character Home)
+- [🎯 Game Design Principles](./game_design_principles.md) ← **Reality RPG rules** (11 principles)
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
