@@ -5,7 +5,7 @@ const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
 const growingUpIcon = "https://i.imgur.com/IKYoNej.jpeg";
 const cleaningUpIcon = "https://i.imgur.com/opqt3kV.jpeg";
 const showingUpIcon = "https://i.imgur.com/6ct5Dca.jpeg";
-const groundingIcon = "https://i.imgur.com/NdNMFFa.jpeg";
+const bodyIcon = "https://i.imgur.com/NdNMFFa.jpeg";
 
 // Types
 export interface SkillNode {
@@ -297,14 +297,14 @@ export const skillTrees: SkillTree[] = [
         ],
     },
     {
-        id: "grounding",
-        name: "Grounding",
+        id: "body",
+        name: "Body",
         tagline: "Body · Foundation · Environment",
         description: "HRV, movement, strength, posture, breath, sleep, home — the foundation of everything.",
         color: "#2d6a4f", // forest green
         bgGradient: "from-green-950/50 via-emerald-900/30 to-transparent",
         icon: TreeDeciduous,
-        iconImage: groundingIcon,
+        iconImage: bodyIcon,
         nodes: [
             {
                 id: "gr-sleep-hygiene",

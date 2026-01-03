@@ -36,12 +36,14 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 | `emotions` | Emotions |
 | `body` | Body |
 
-These map to the 5 Paths (from Prime Radiant):
+These map to the 5 Paths:
 - spirit → Waking Up
 - mind → Growing Up  
 - emotions → Cleaning Up
 - uniqueness → Showing Up
-- body → Rooting Down
+- body → Body
+
+> **Important**: These 5 Paths (for XP/skill trees) are different from the 8 QoL Domains (Wealth, Health, Happiness, Love, Impact, Growth, Social, Home) which measure life outcomes.
 
 ---
 
@@ -94,21 +96,30 @@ These map to the 5 Paths (from Prime Radiant):
 
 ---
 
-## Three Core Loops
+## Four Core Loops
 
-### 1. Character Loop (Profile precision)
+### 1. Character Creation Loop (Profile precision)
+*Self-understanding through accurate profiling*
 ```
-Asset mapping → deeper ZoG mastery → mission/dharma → tests/DOB → better model
-```
-
-### 2. Practice Loop (Daily power-ups)
-```
-Recommended practice → XP → momentum → identity embodiment
+ZoG + QoL + Tests → Genius Profile → deeper mastery → mission/dharma → better model
 ```
 
-### 3. Social/Economic Loop (Exchange)
+### 2. Character Transformation Loop (Daily growth)
+*Real change through consistent practice*
 ```
-Matchmaking → gigs/collabs → "soul fam" / meaning → better matching (flywheel)
+Recommended practice → completion → XP → momentum → identity evolution
+```
+
+### 3. Genius Monetization Loop (Economic engine)
+*Turn genius into sustainable value exchange*
+```
+Genius Profile → Offer → Business → Revenue → Reinvestment
+```
+
+### 4. Multiplayer Loop (Social connection)
+*Find your people, create together*
+```
+Matchmaking → Collabs → "Soul Fam" → Community → Better matching
 ```
 
 **Rewards are not cosmetic. They're functional:** XP + better matches + more opportunity.
