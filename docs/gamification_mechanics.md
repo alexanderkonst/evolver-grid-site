@@ -2,23 +2,43 @@
 
 > 12 engagement hooks — making growth irresistible
 
-*Hijacking dopamine for transformation, not extraction.*
+*This platform rewards becoming, not staying.*
 
 ---
 
-## The Ethical Case
+## Eudaimonic Design Principles
 
-This is NOT addiction for profit. This IS addiction for growth.
+**Design for return without hijack.**
 
-| Extractive Addiction | Beneficial Addiction |
-|---------------------|---------------------|
-| Keeps you scrolling | Keeps you growing |
-| Feeds anxiety | Builds confidence |
-| Wastes time | Creates value |
-| Extracts attention | Invests in self |
-| Zero-sum (they win, you lose) | Positive-sum (everyone wins) |
+| Principle | Meaning |
+|-----------|---------|
+| **Choice-first loops** | Always re-invite, never auto-pull ("come back when ready") |
+| **Visible becoming** | Users see who they are becoming, not just what they unlocked |
+| **Capacity > consumption** | Every interaction trains perception, skill, or contribution |
+| **Natural stopping points** | Clear session endings that complete the loop (no infinite scroll) |
+| **Real-world spillover** | Platform use improves life outside the platform |
 
-**Our goal**: Make evolution the most compelling thing in someone's life.
+**Golden rule**: If daily use increases clarity and self-trust, you're aligned.
+
+---
+
+## Eudaimonic Gamification (Replace Compulsion with Growth)
+
+| ❌ Compulsion | ✅ Growth |
+|--------------|----------|
+| Streaks | **Rhythms** (return when meaningful) |
+| Points | **Signals of coherence / mastery** |
+| FOMO | **Readiness-based unlocks** |
+| Leaderboards | **Personal trajectory + contribution visibility** |
+| Endless quests | **Finite cycles with integration** |
+
+### The Clean Core Loop
+
+```
+Sense → Choose → Act → Integrate → Rest
+```
+
+**Rest is mandatory.** If rest breaks the game, the game is wrong.
 
 ---
 
