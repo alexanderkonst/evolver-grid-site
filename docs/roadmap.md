@@ -1,101 +1,106 @@
 # Roadmap: Next Phase
 
-> What's next after the documentation foundation is complete
+> What's next for the Member Portal
 
-*Last updated: 2025-01-03 (Day 1 of Network School Sprint)*
-
----
-
-## Immediate Next Steps (Monday onwards)
-
-### 1. Customer Journey Map
-**Create a click-by-click journey of every user action**
-
-- Entry point → First value moment
-- Every screen, every click, every decision
-- Map emotions at each step
-- Identify friction points and dopamine hits
-
-### 2. Module Mapping
-**Connect journey steps to existing/needed modules**
-
-| Journey Step | Module | Status |
-|--------------|--------|--------|
-| Genius discovery | Zone of Genius | ✅ Built |
-| Life assessment | Quality of Life Map | ✅ Built |
-| Practice selection | Library | ✅ Built |
-| Mission discovery | Mission Discovery Tool | ⚪ Separate tool |
-| Asset inventory | Asset Inventory | 🟡 Spreadsheet |
-| Skill progression | Skill Trees | 🟡 Partial |
-| Daily recommendations | Recommendation Engine | 🟡 Basic |
-| Matchmaking | AI Matchmaking | 🔵 Concept |
-| Genius monetization | Genius Economy | 🔵 Concept |
-| ... | ... | ... |
-
-### 3. Missing Modules
-**List and prioritize modules that don't exist yet**
-
-To be discovered through customer journey mapping.
-
-### 4. Module Transitions
-**Create smooth connections between modules**
-
-- How does completing ZoG lead to next action?
-- What happens after QoL assessment?
-- How do side quests connect to main quest?
-
-### 5. Game Progression UX
-**Onboarding + Ongoing Gameplay**
-
-- First 5 minutes experience
-- First session completion
-- Return visit experience
-- Long-term progression visualization
+*Last updated: 2025-01-04 (Day 2 of Network School Sprint)*
 
 ---
 
-## The Core Question ✅ ANSWERED
+## ✅ Completed (Day 1-2)
 
-> ~~How do we merge the game experience with the transformational experience?~~
+### Documentation Foundation
+- [x] Manifesto (coherence tuning fork)
+- [x] Prime Radiant Spec (L0-L5 architecture)
+- [x] Game Architecture (implementation reference)
+- [x] Game Design Principles (11 Reality RPG rules)
+- [x] Transformation Engine (5 vectors → 8 domains)
+- [x] Impact Mapping (6 pillars, 45 focus areas)
+- [x] Module Registry (LEGO blocks catalog)
 
-**See [Transformation Engine](./transformation_engine.md)** — the synthesis is documented.
+### Customer Journey
+- [x] Customer Journey Map v2 (3 portals, unified onboarding)
+- [x] Daily Loop Spec v2 ("My Next Move" design)
+- [x] Vector Sequences template (for Alexander to fill)
 
-Key insight: **Inner work (5 vectors) → Outer results (8 domains)**
-- XP tracks the input (practices)
-- QoL measures the output (life improvement)
-- Decimal stages (2.3 → 2.7) show visible progress in weeks
-- The game IS the transformation visualized
+### Key Decisions
+- [x] "Me", "My Life", "My Next Move" framing
+- [x] Not labeled "game" — gamified system
+- [x] One profile per person (all data unified)
+- [x] 6 action types (Practice, Profile Step, Microlearning, Life Action, Monetization Step, Connection)
 
 ---
 
-## Upcoming Topics to Document
+## 🔄 In Progress
 
-*Alexander has years of additional frameworks to share:*
+### Vector Growth Sequences
+**Alexander to fill in recommended order of actions per vector**
 
+| Vector | Status |
+|--------|--------|
+| Spirit | ⬜ Not started |
+| Mind | ⬜ Not started |
+| Emotions | ⬜ Not started |
+| Uniqueness | � Example drafted |
+| Body | ⬜ Not started |
+
+---
+
+## 📋 Next Steps
+
+### 1. Fill Vector Sequences (Content)
+Alexander defines the growth path for each vector:
+- What microlearning comes first?
+- What practices build on each other?
+- What life actions make it real?
+
+### 2. Implement Daily Loop v2 (Code)
+Refactor GameHome.tsx to match new design:
+- [ ] "Me" section (profile summary)
+- [ ] "My Life" section (QoL snapshot)
+- [ ] "My Next Move" (ONE recommended action)
+- [ ] "Explore more" freedom mode
+- [ ] Remove Main Quest / Side Quest / Upgrade cards
+
+### 3. Action Type System (Code)
+Create unified action type handling:
+- [ ] Action type enum (practice, profile_step, microlearning, life_action, monetization_step, connection)
+- [ ] XP award per vector
+- [ ] Completion tracking
+- [ ] Next action recommendation logic
+
+### 4. Onboarding Flow Polish (Code)
+Ensure smooth ZoG → QoL → Portal experience:
+- [ ] Clear progression indicators
+- [ ] "Unlock your growth drivers" messaging
+- [ ] Celebration moments
+
+---
+
+## 🔜 Later (After Core Loop Works)
+
+### Frameworks to Document
 - [ ] Asset Mapping system
-- [ ] Mission Discovery (based on Integral Society)
+- [ ] Mission Discovery (Integral Society)
 - [ ] Matchmaking algorithms
 - [ ] Genius Monetization tech
 - [ ] Destiny Pack concept
-- [ ] Evolutionary Address / Inner development measurement
-- [ ] And more...
+
+### Features to Build
+- [ ] Decimal QoL stages (2.3 → 2.7)
+- [ ] Per-vector levels (not just total XP)
+- [ ] Microlearning content layer
+- [ ] Monetization integration
 
 ---
 
-## Design Principles to Hold
+## Design Principles (Always Hold)
 
 1. **One next move** — Never overwhelm
 2. **Inner begets outer** — 5 vectors drive 8 domains
-3. **Play is transformation** — Not separate activities
-4. **Every action = XP** — Everything counts
-5. **Show progress visually** — Make growth tangible
+3. **First-person** — "Me", "My Life", "My Next Move"
+4. **Freedom with guidance** — Open-world feel
+5. **Every action = XP** — Everything counts
 
 ---
 
-## Session Log
-
-**Moved to separate file:** [Session Log](./session_log.md)
-
----
-
-*Return to this doc on Monday.*
+*See [Session Log](./session_log.md) for daily progress.*
