@@ -47,24 +47,32 @@
 
 | Item | Description |
 |------|-------------|
-| **Customer Journey Map v2** | Complete rewrite: 3 entry portals, unified onboarding, first-person framing |
-| **Daily Loop Spec v2** | "My Next Move" design — ONE action, dynamically chosen |
-| **Clarified Terminology** | "Me", "My Life", "My Next Move" (not "Your World") |
-| **6 Action Types** | Practice, Profile Step, Microlearning, Life Action, Monetization Step, Connection |
+| **Customer Journey Map v3** | With dopamine moments marked at every step |
+| **Daily Loop Spec v2** | "My Next Move" — ONE action, dynamically chosen |
+| **Gamification Mechanics** | 12 engagement hooks + Retention Flywheel |
+| **White-Label Strategy** | Invisible rails, visible storefronts approach |
+| **Vector Sequences Template** | Growth path per vector (for Alexander to fill) |
+| **Updated Roadmap** | Clear completed/in-progress/next structure |
 
 ### Key Decisions Made
 - **Not "game"**: Gamified system, but don't label it as a game
-- **Three portals, one experience**: Transform / Monetize / Belong all lead to same onboarding
-- **Unified onboarding**: ZoG (5 min) → QoL (5 min) → Freedom to explore
-- **QoL is Profile**: Part of the person's data, not game data
-- **One Profile**: All info in one place, shareable with permission
+- **Three portals, one experience**: Transform / Monetize / Belong → same onboarding
+- **Black hole, not a brand**: Invisible infrastructure, visible communities
+- **No emperor, thriving for all**: Value flows to all participants
+- **Build ONE first**: MVP for one community, then extract theme layer
+
+### Strategic Insights Crystallized
+- **Content is covered**: World-class integral microlearning already exists
+- **Life actions covered**: ZoG → monetization → matchmaking is enough to retain
+- **Retention flywheel**: Gamification + Rabbit holes + Monetization + Social
+- **Cross-community network effects**: Matchmaking across all communities
 
 ### Design Patterns Established
-- First-person language throughout
+- First-person language ("Me", "My Life", "My Next Move")
 - ONE recommended action (no choice paralysis)
+- Dopamine moments designed into every transition
 - Freedom mode via "Explore more →"
 - All actions award XP to relevant vector
-- Open-world game feel (guided but not forced)
 
 ---
 
