@@ -107,6 +107,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [🗺️ Customer Journey Map](./customer_journey_map.md) ← **Every click, every action**
 - [🔁 Daily Loop Spec](./daily_loop_spec.md) ← **"My Next Move" design**
 - [📈 Vector Sequences](./vector_sequences.md) ← **Growth path per vector** (template)
+- [🎰 Addiction Mechanics](./addiction_mechanics.md) ← **12 hooks for beneficial addiction**
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
