@@ -1,6 +1,6 @@
-# Addiction Mechanics for Growth
+# Gamification Mechanics
 
-> How to make evolution as addictive as social media — but for wellbeing
+> 12 engagement hooks — making growth irresistible
 
 *Hijacking dopamine for transformation, not extraction.*
 
