@@ -1,191 +1,217 @@
 # Customer Journey Map
 
-> Every click, every action — extracted from actual code
+> The complete user journey through the Member Portal
 
-*This document maps the complete user journey through the Member Portal, from first visit to ongoing gameplay.*
-
----
-
-## Current Entry Points
-
-### Homepage (`/`)
-
-```
-User lands on homepage
-    │
-    ├── [CTA] "Explore Transformational Tools" → scroll to modules grid
-    │
-    ├── [CTA] "Explore the Library of Transformation" → /library
-    │
-    └── [Card] "PLAY YOUR LIFE AS A GAME" → /game
-                "See yourself as a character, your life as a world, 
-                 and choose one next move."
-```
-
-**Available Modules on Homepage:**
-| Module | Category | Price | CTA Route |
-|--------|----------|-------|-----------|
-| Zone of Genius Discovery | Tools | Free | `/zone-of-genius` |
-| Quality of Life Activation | Tools | Free | `/quality-of-life-map/assessment` |
-| Multiple Intelligences | Tools | Free | `/intelligences` |
-| Genius Offer Snapshot | Business | $111 | `/genius-offer` |
-| Destiny: Genius Business | Business | 10% rev | `/destiny` (Calendly) |
-| Genius-Layer Matching | Business | — | Calendly |
-| AI Upgrade | AI | $33 | `/ai-upgrade` |
-| Men's Circle | Ceremonies | — | `/mens-circle` |
+*Three entry portals, one unified experience, one profile.*
 
 ---
 
-## Flow 1: Game Entry (First-Time Player)
+## Three Entry Portals
+
+| Portal | Primary Audience | Value Proposition |
+|--------|-----------------|-------------------|
+| **Transformational Ecosystem** | Growth seekers | Transform yourself |
+| **Venture Cooperative** | Entrepreneurs | Monetize your genius |
+| **Conscious Community Portal** | Community members | Belong to something |
+
+All three lead to the **same unified onboarding** and **same core experience**.
+
+---
+
+## Unified Onboarding Sequence
 
 ```
-/game (GameHome)
-    │
-    ├── IF no profile exists:
-    │       │
-    │       └── Onboarding CTA: "Start Your Character"
-    │               │
-    │               └── "Begin: Discover My Zone of Genius" → /zone-of-genius?fromGame=1
-    │
-    └── IF profile exists:
-            │
-            ├── Character Section (Who I Am)
-            │       ├── Archetype title
-            │       ├── Core pattern
-            │       └── Top 3 talents
-            │
-            ├── World Section (Where I Am)
-            │       └── 8 QoL domains grid
-            │
-            └── Next Move Section
-                    ├── Main Quest progress strip
-                    ├── [Card] "Start Side Quest" → Quest Picker Modal
-                    └── [Card] "Suggested Upgrade" → action
+Entry (any portal)
+       ↓
+┌─────────────────────────────────────────┐
+│ ZONE OF GENIUS                          │
+│ "Discover who you are at your best"     │
+│ ~5 minutes · Immediate wow · Free       │
+│                                         │
+│ Swipe talents → Select top 10 →         │
+│ Narrow to 3 → Rank → AI generates       │
+│ Genius Profile with archetype           │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│ QUALITY OF LIFE MAP                     │
+│ "See where your life is asking for      │
+│  attention — and unlock your            │
+│  exponential growth drivers"            │
+│ ~5 minutes · Free                       │
+│                                         │
+│ Assess 8 domains (Wealth, Health,       │
+│ Happiness, Love, Impact, Growth,        │
+│ Social, Home) → Stages 1-10             │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│ PROFILE COMPLETE                        │
+│ System can now recommend actions        │
+│                                         │
+│ "Based on your genius and where your    │
+│  life is asking for attention, here's   │
+│  your first move..."                    │
+└─────────────────────────────────────────┘
+       ↓
+FREEDOM: Explore what calls you
+(Like open-world games — guided but free)
 ```
 
 ---
 
-## Flow 2: Zone of Genius Assessment (Character Creation)
+## The Profile (One Profile Per Person)
+
+All information about the person lives in ONE profile:
+
+| Component | Description | Source |
+|-----------|-------------|--------|
+| **Genius Profile** | Archetype, talents, core pattern | Zone of Genius |
+| **Quality of Life** | 8 domains × 10 stages (with decimals) | QoL Assessment |
+| **Personality Data** | MBTI, Enneagram, Human Design, etc. | Personality tests |
+| **Progress Data** | XP per vector, level, streak, completions | Actions taken |
+| **Chosen Missions** | What they're contributing to | Mission discovery |
+| **Assets** | What resources they have | Asset inventory |
+
+The profile is:
+- **Visible to the person** (they can see their data)
+- **Shareable** (with permission, to third parties)
+- **Driving recommendations** (informs "My Next Move")
+
+---
+
+## Daily Return Experience
+
+See [Daily Loop Spec](./daily_loop_spec.md) for full details.
 
 ```
-/zone-of-genius (Landing Page)
-    │
-    └── CTA: "Start Assessment" → /zone-of-genius/assessment
-            │
-            ├── Step 0: Swipe Talents (Tinder-style, 60 talents)
-            │       → Swipe right/left on each talent
-            │
-            ├── Step 1: Select Top 10 (from liked talents)
-            │       → Pick your strongest 10
-            │
-            ├── Step 2: Select Top 3 Core Talents
-            │       → Narrow to top 3
-            │
-            ├── Step 3: Order Talents
-            │       → Rank 1-2-3
-            │
-            └── Step 4: Generate Snapshot
-                    → AI generates Genius Profile
-                    → Save to database
-                    → Download PDF option
-                    │
-                    └── Return to /game (with profile now exists)
+Person opens portal
+       ↓
+┌─────────────────────────────────────────┐
+│              ME                         │
+│   Archetype · Talents · Level · XP      │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│            MY LIFE                      │
+│   8 QoL domains at a glance             │
+│   "My life is asking for attention in:  │
+│    [Wealth] and [Health]"               │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│         MY NEXT MOVE                    │
+│   ONE action, dynamically chosen        │
+│   Could be: practice, profile step,     │
+│   microlearning, life action,           │
+│   monetization step, connection         │
+│                                         │
+│   [DO IT] button                        │
+│   "Not this? Explore more →"            │
+└─────────────────────────────────────────┘
 ```
 
 ---
 
-## Flow 3: Quality of Life Assessment
+## Action Types (All Award XP to Vectors)
+
+| Action Type | Description | Example |
+|-------------|-------------|---------|
+| **Practice** | Transformational activity | 10-min breathwork |
+| **Profile Step** | Deeper self-understanding | Take personality test |
+| **Microlearning** | Bite-sized education | 2-min video on shadow work |
+| **Life Action** | Real-world task | Have a difficult conversation |
+| **Monetization Step** | Genius business progression | Draft your offer headline |
+| **Connection** | Social/collaboration | Message your partner |
+
+---
+
+## Zone of Genius Flow (Detailed)
+
+```
+/zone-of-genius (Landing)
+       ↓
+CTA: "Start Discovery" → /zone-of-genius/assessment
+       ↓
+Step 0: Swipe Talents (60 talents, Tinder-style)
+       ↓
+Step 1: Select Top 10 (from liked talents)
+       ↓
+Step 2: Select Top 3 Core Talents
+       ↓
+Step 3: Order Talents (1st, 2nd, 3rd)
+       ↓
+Step 4: AI Generates Genius Profile
+       → Archetype title
+       → Core pattern description
+       → Top 3 talents
+       → One-sentence genius
+       → Save to profile
+       → Optional PDF download
+       ↓
+Return to portal with profile created
+```
+
+---
+
+## Quality of Life Flow (Detailed)
 
 ```
 /quality-of-life-map/assessment
-    │
-    └── Assess 8 domains (slider or multi-choice per domain):
-            1. Wealth (10 stages)
-            2. Health (10 stages)
-            3. Happiness (10 stages)
-            4. Love & Relationships (10 stages)
-            5. Impact (10 stages)
-            6. Growth (10 stages)
-            7. Social Ties (10 stages)
-            8. Home (10 stages)
-            │
-            └── Complete → /quality-of-life-map/results
-                    │
-                    └── Show snapshot + recommendations
+       ↓
+Assess 8 domains (each has 10 stages):
+   1. Wealth
+   2. Health
+   3. Happiness
+   4. Love & Relationships
+   5. Impact
+   6. Growth
+   7. Social Ties
+   8. Home
+       ↓
+Complete → /quality-of-life-map/results
+       ↓
+Show:
+   - Visual snapshot (radar chart or grid)
+   - Lowest domains highlighted
+   - Recommended next moves
+       ↓
+Save to profile
+       ↓
+Return to portal — recommendations now work
 ```
 
 ---
 
-## Flow 4: Daily Game Loop (Return Player)
+## Freedom Mode (Explore)
+
+When person clicks "Explore more →":
 
 ```
-Player opens /game
-    │
-    ├── See Main Quest progress (which quest am I on?)
-    │       │
-    │       └── CTA to advance Main Quest stage
-    │
-    ├── "YOUR NEXT MOVE" section:
-    │       │
-    │       ├── [Side Quest Card] "Start Side Quest"
-    │       │       │
-    │       │       └── Opens Quest Picker Modal:
-    │       │               ├── Duration chips (5-150 min)
-    │       │               ├── Mode chips (Activating/Relaxing/Balanced)
-    │       │               └── Submit → AI recommends practice → "Start Quest"
-    │       │                       │
-    │       │                       └── Player does practice IRL
-    │       │                               │
-    │       │                               └── Marks complete → +XP → streak updated
-    │       │
-    │       └── [Upgrade Card] "Suggested Upgrade" → action route
-    │
-    └── Explore option → /library
+Full action library, filterable by:
+   ├── Vector (Spirit, Mind, Emotions, Uniqueness, Body)
+   ├── Action Type (Practice, Learning, Life Action, etc.)
+   ├── Duration (5, 10, 15, 30, 60 min)
+   └── Energy (Activating, Calming, Balanced)
 ```
+
+Like open-world games: there's a recommended path, but freedom to wander.
 
 ---
 
-## Flow 5: Library (Practice Selection)
+## Monetization Integration
 
-```
-/library
-    │
-    ├── Filter by Path: Spirit, Mind, Emotions, Uniqueness, Body
-    │
-    ├── Filter by Category: Meditation, Breathwork, Somatics, etc.
-    │
-    └── Each practice card:
-        ├── Title, duration, path
-        └── CTA → External link or embedded player
-```
+Paid modules fit naturally into the action sequence:
 
----
+| Free Actions | Paid Actions |
+|--------------|--------------|
+| ZoG Basic | ZoG Deep Dive |
+| QoL Assessment | Coaching call |
+| Practice from Library | Premium course |
+| Microlearning | Genius Offer ($111) |
+| Community connection | Destiny program ($3k) |
 
-## Flow 6: Skill Trees
-
-```
-/skills or /game/path/:pathId
-    │
-    ├── Tab selector: 5 paths (Spirit, Mind, Emotions, Uniqueness, Body)
-    │
-    └── Each tree shows:
-        ├── Nodes with status (locked/available/in_progress/completed)
-        ├── Visual connections between nodes
-        └── Click node → See description + linked quests
-```
-
----
-
-## Main Quest Stages (Storyline)
-
-| Stage | Name | Completion Trigger |
-|-------|------|-------------------|
-| 0 | Entry | User exists |
-| 1 | Know Thyself | ZoG completed |
-| 2 | Map Your World | QoL completed |
-| 3 | First Practice | 1 practice done |
-| 4 | Building Momentum | 5 practices done |
-| 5 | Real World Output | User marks done |
+The system recommends paid actions when appropriate based on progress.
 
 ---
 
@@ -193,42 +219,25 @@ Player opens /game
 
 ```
 IF not logged in:
-    ├── Guest banner: "Playing as guest. Log in to save progress."
-    └── Profile stored in localStorage (lost on clear)
+    ├── Guest mode: profile in localStorage
+    ├── Banner: "Save your progress — create account"
+    └── Full functionality, but data can be lost
 
 IF logged in:
-    └── Profile stored in Supabase (persisted)
+    ├── Profile in Supabase (persisted)
+    ├── Cross-device sync
+    └── Shareable profile for matchmaking
 ```
 
 ---
 
-## 🚧 Open Questions (For Alexander)
+## Notation
 
-1. **Where does QoL live?**
-   - Is it part of Profile (character creation) or Game (transformation)?
-   - Currently: QoL is done early, saved to profile, shown in Game
-
-2. **Monetization path sequence?**
-   - Currently ZoG → Genius Offer ($111) → Destiny ($3k) are separate flows
-   - How should game connect to monetization?
-
-3. **Library vs Side Quests?**
-   - Same content, different framing
-   - Should these merge or stay separate?
-
-4. **Missing from current build:**
-   - Per-vector levels (only total XP)
-   - Domain → Vector mapping for recommendations
-   - Microlearning content per skill node
-   - Decimal QoL stages
+- **Gamified**: Yes (XP, levels, progress bars, streaks)
+- **Labeled as "game"**: No — it's just a well-designed portal
+- **First-person language**: "Me", "My Life", "My Next Move"
 
 ---
 
-## Next: Module Mapping
-
-*See [module_registry.md](./module_registry.md) for the full LEGO blocks catalog.*
-
----
-
-*Customer Journey Map v1.0*
-*Extracted from code: 2025-01-04*
+*Customer Journey Map v2.0*
+*Updated: 2025-01-04*

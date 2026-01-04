@@ -105,6 +105,7 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [🎯 Game Design Principles](./game_design_principles.md) ← **Reality RPG rules** (11 principles)
 - [🔄 Transformation Engine](./transformation_engine.md) ← **The Core** (5 vectors → 8 domains)
 - [🗺️ Customer Journey Map](./customer_journey_map.md) ← **Every click, every action**
+- [🔁 Daily Loop Spec](./daily_loop_spec.md) ← **"My Next Move" design**
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
