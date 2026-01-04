@@ -212,5 +212,38 @@ Goal: Multiple dopamine moments per session, sustained engagement over weeks.
 
 ---
 
-*Addiction Mechanics for Growth v1.0*
-*Created: 2025-01-04*
+## Retention Flywheel (Why They Keep Coming Back)
+
+| Phase | What Keeps Them |
+|-------|-----------------|
+| **Onboarding** | Series of wow effects (ZoG reveal, QoL insights) |
+| **First Week** | Streaks start, first level-ups, visible progress |
+| **First Month** | Skill tree unlocks, deeper rabbit holes |
+| **Ongoing** | Monetization journey, social multiplayer, identity investment |
+
+### The Four Attractors
+
+1. **🎮 Gamification Core**
+   - Streaks, levels, XP, visible progress
+   - Proven by Duolingo
+
+2. **📚 Module Rabbit Holes**
+   - Skill trees with deep progression
+   - Microlearning sequences
+   - Mastery journeys into each vector
+
+3. **💰 Monetization Attractor**
+   - Genius → Offer → Business → Revenue
+   - Real-world value creation
+   - Economic stakes = serious engagement
+
+4. **👥 Social Multiplayer**
+   - Matchmaking: founders, friends, guilds
+   - Community belonging
+   - Coffee chats, projects, sports
+   - "Tinder for conscious connection"
+
+---
+
+*Gamification Mechanics v1.1*
+*Updated: 2025-01-04*

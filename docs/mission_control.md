@@ -111,7 +111,8 @@ Profile → AI Recommendation Engine → Daily Practice + Next Upgrade + Matchma
 - [🗺️ Impact Mapping](./impact_mapping.md) ← Integral Society Blueprint (6 pillars → 4000 projects)
 - [Module Registry](./module_registry.md) ← LEGO blocks for the Planetary OS
 - [Priroda Synthesis](./priroda_synthesis.md) ← Key insights from partnership conversations
-- [🚀 Roadmap](./roadmap.md) ← **What's next** (return to this Monday)
+- [🚀 Roadmap](./roadmap.md) ← **What's next**
+- [🏷️ White-Label Strategy](./white_label_strategy.md) ← **Forkable platform approach**
 - [📝 Session Log](./session_log.md) ← Chronicle of what we built
 - [Architecture](./ARCHITECTURE.md)
 - [Today's Brief](./today_brief.md)
