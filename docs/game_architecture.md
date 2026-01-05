@@ -24,26 +24,44 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
-## Canonical Domains
+## Canonical Vectors (5 Development Dimensions)
 
 **Only these 5 names appear in UI:**
 
-| Key | Display Name |
-|-----|--------------|
-| `spirit` | Spirit |
-| `mind` | Mind |
-| `uniqueness` | Uniqueness |
-| `emotions` | Emotions |
-| `body` | Body |
+| Key | Display Name | Path |
+|-----|--------------|------|
+| `spirit` | Spirit | Waking Up |
+| `mind` | Mind | Growing Up |
+| `emotions` | Emotions | Cleaning Up |
+| `genius` | Genius | Showing Up |
+| `body` | Body | Body |
 
-These map to the 5 Paths:
-- spirit → Waking Up
-- mind → Growing Up  
-- emotions → Cleaning Up
-- uniqueness → Showing Up
-- body → Body
+> **Important**: These 5 Vectors (for XP/skill trees) are the development dimensions. The 8 QoL Domains (Wealth, Health, Happiness, Love, Impact, Growth, Social, Home) measure life outcomes.
 
-> **Important**: These 5 Paths (for XP/skill trees) are different from the 8 QoL Domains (Wealth, Health, Happiness, Love, Impact, Growth, Social, Home) which measure life outcomes.
+---
+
+## Being vs Doing Ontology
+
+| Dimension | Concept | Definition |
+|-----------|---------|------------|
+| **BEING** | Purpose / Zone of Genius | To be authentically yourself — operating at your best |
+| **DOING** | Mission / Contribution | What you DO from that place — projects, causes, impact |
+
+**Purpose = Zone of Genius.** They are the same thing.
+**Mission = Contribution.** What flows from being in your ZoG.
+
+---
+
+## Four Quadrants (Under the Hood)
+
+*This is architectural — not for user interface.*
+
+| Quadrant | Perspective | Loop | Focus |
+|----------|-------------|------|-------|
+| **Q1 (I)** | Interior Individual | Self-Understanding + Transformation | Being, Growing |
+| **Q2 (WE)** | Interior Collective | Social | Relating, Community |
+| **Q3 (IT)** | Exterior Individual | Economic + Venture Co-op | Doing, Professional |
+| **Q4 (ITS)** | Exterior Collective | Systemic | Structures, Collective |
 
 ---
 
@@ -98,28 +116,28 @@ These map to the 5 Paths:
 
 ## Four Core Loops
 
-### 1. Character Creation Loop (Profile precision)
-*Self-understanding through accurate profiling*
+### 1. Self-Understanding Loop (Q1 — Profile precision)
+*Know yourself deeper*
 ```
-ZoG + QoL + Tests → Genius Profile → deeper mastery → mission/dharma → better model
+ZoG + Tests + Mission Discovery → Genius Profile → deeper mastery → better model
 ```
 
-### 2. Character Transformation Loop (Daily growth)
+### 2. Transformation Loop (Q1 — Daily growth)
 *Real change through consistent practice*
 ```
 Recommended practice → completion → XP → momentum → identity evolution
 ```
 
-### 3. Genius Monetization Loop (Economic engine)
-*Turn genius into sustainable value exchange*
+### 3. Economic Loop (Q3 — Genius monetization + Venture Co-op)
+*Turn genius into sustainable value exchange + collective wealth*
 ```
-Genius Profile → Offer → Business → Revenue → Reinvestment
+Genius Profile → Asset Mapping → Offer → Business → Revenue → Co-op → Reinvestment
 ```
 
-### 4. Multiplayer Loop (Social connection)
+### 4. Social Loop (Q2 — Connection)
 *Find your people, create together*
 ```
-Matchmaking → Collabs → "Soul Fam" → Community → Better matching
+Matchmaking → Collabs → "Soul Fam" → Guilds → Community
 ```
 
 **Rewards are not cosmetic. They're functional:** XP + better matches + more opportunity.
