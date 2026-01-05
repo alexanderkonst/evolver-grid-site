@@ -77,26 +77,45 @@ User arrives at Zone of Genius module.
 - **1.5.2** Show where genius applies personally
   - Relationships, hobbies, life areas
 
-🔓 **UNLOCK PREVIEW**: "Now let's see how to grow this..."
+🔓 **UNLOCK PREVIEW**: "Now let's grow this..."
 
-### 1.6 Transition to Game World
+### 1.6 Transition: The Tamagotchi Moment
 
-**CTA needed** — something better than "see where your life is asking for attention"
+**Core insight to communicate:**
+> "You've just met yourself. This profile IS you — and you can grow it."
 
-Options to consider:
-- "Enter your growth journey →"
-- "Unlock your evolution path →"  
-- "See what's holding you back — and fix it →"
-- "Discover your exponential growth drivers →"
+The user realizes: *I am the Tamagotchi. I grow myself as my character.*
+
+**CTA**: "Start growing →" or "Begin your evolution →"
 
 ---
 
-## Phase 2: Game World Unlock
+## Step Banner Pattern (Mobile Game Style)
+
+Throughout onboarding and beyond, show a persistent banner:
+
+```
+┌─────────────────────────────────────────┐
+│ NEXT: [Current step name]               │
+│                                         │
+│ Coming up:                              │
+│ ○ Step 2: Map your life                 │
+│ ○ Step 3: Get your first recommendation │
+│ ○ Step 4: Complete your first action    │
+└─────────────────────────────────────────┘
+```
+
+This gives visibility into the sequence without overwhelming.
+
+---
+
+## Phase 2: Quality of Life (Wow #2)
 
 ### 2.0 Concept
 
-The user now has a profile (who they are). 
-Now they unlock the *game world* (where they grow).
+**Wow → Wow transition**: From genius discovery to life mapping.
+
+No drop-off here — one dopamine spike leads directly to another.
 
 Key insight to communicate:
 > "Your outer life is shaped by your inner development. Master yourself, upgrade your life."
