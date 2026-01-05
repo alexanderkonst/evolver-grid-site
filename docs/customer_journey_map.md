@@ -180,27 +180,24 @@ Key insight to communicate:
 
 ### 2.5 Game World Entry
 
-**First: Show the Inner→Outer Infographic**
+**First: Show Self-Development → Life Results Infographic**
 
 - **2.5.1** Display 5 Vectors → 8 Domains visual:
 
 ```
 ┌─────────────────────────────────────────┐
-│ INNER DEVELOPMENT (5 Vectors)           │
+│ SELF-DEVELOPMENT (5 Vectors)            │
 │ Spirit · Mind · Emotions · Uniqueness · Body │
 │                 ↓                       │
-│ OUTER RESULTS (8 Life Domains)          │
+│ LIFE RESULTS (8 Domains)                │
 │ Wealth · Health · Happiness · Love ·    │
 │ Impact · Growth · Social · Home         │
 └─────────────────────────────────────────┘
 ```
 
 - **2.5.2** Explain growth logic with example:
-  > "To improve Wealth, you might need to:
-  > - Express your genius more (Uniqueness)
-  > - Upgrade your thinking (Mind)
-  > - Release limiting beliefs about money (Emotions)
-  > There's no magic button. Growth = development."
+  > "Want more money? Develop your genius, upgrade your thinking, learn to regulate emotions, release limiting beliefs. This makes you more valuable to people and companies.
+  > There's no magic button. Results follow development."
 
 **Then: Show My Next Move**
 
@@ -310,23 +307,31 @@ When user is ready (level threshold or explicit choice):
 
 ### 2. How to Explain 5 Vectors → 8 Domains Simply?
 
+**Universal language** (works for any community: spiritual, web3, crypto, etc.)
+
 **The one-liner:**
-> "Your inner development drives your outer results."
+> "Your self-development drives your life results."
 
 **The visual (infographic):**
 ```
-INNER WORK          →     OUTER RESULTS
-(what you develop)         (what improves)
+SELF-DEVELOPMENT         →     LIFE RESULTS
+(what you grow)                 (what improves)
 
-Spirit                     Happiness, Growth
-Mind                       Impact, Wealth, Growth
-Emotions                   Love, Social, Happiness
-Uniqueness                 Impact, Wealth
-Body                       Health, Home
+Spirit                         Happiness, Growth
+Mind                           Impact, Wealth, Growth
+Emotions                       Love, Social, Happiness
+Uniqueness                     Impact, Wealth
+Body                           Health, Home
 ```
 
-**The example:**
-> "Want more money? Develop your uniqueness (express genius), upgrade your mind (better thinking), and clear your emotions (release limiting beliefs)."
+**The simple explanation:**
+> "Each life result is driven by different parts of your development."
+
+**The Wealth example:**
+> "Want more money? Develop your genius, upgrade your thinking, learn to regulate your emotions, and release limiting beliefs. This makes you more valuable to people and companies."
+
+**The Health example:**
+> "Want more energy? Develop your body habits, clear emotional stress, and align your daily rhythm."
 
 ---
 
