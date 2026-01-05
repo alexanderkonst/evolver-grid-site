@@ -312,16 +312,19 @@ When user is ready (level threshold or explicit choice):
 **The one-liner:**
 > "Your self-development drives your life results."
 
-**The visual (infographic):**
+**The visual (infographic) — Life Results → What Drives Them:**
 ```
-SELF-DEVELOPMENT         →     LIFE RESULTS
-(what you grow)                 (what improves)
+LIFE RESULTS              ←     SELF-DEVELOPMENT
+(what you want)                 (what you grow)
 
-Spirit                         Happiness, Growth
-Mind                           Impact, Wealth, Growth
-Emotions                       Love, Social, Happiness
-Genius                     Impact, Wealth
-Body                           Health, Home
+Wealth                         Genius + Mind + Emotions
+Health                         Body + Emotions + Spirit
+Happiness                      Spirit + Emotions + Mind
+Love                           Emotions + Spirit + Body
+Impact                         Genius + Mind + Spirit
+Growth                         Mind + Spirit + All
+Social                         Emotions + Genius + Mind
+Home                           Body + Emotions + Spirit
 ```
 
 **The simple explanation:**
