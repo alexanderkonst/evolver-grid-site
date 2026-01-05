@@ -2,123 +2,126 @@
 
 > The recommended order of actions for growth in each vector
 
-*This document defines what actions to recommend at each level of development per vector. Alexander to fill in based on years of framework.*
+*Updated: 2025-01-05*
 
 ---
 
-## Structure Per Vector
+## Genius Vector (Showing Up) — MOST DEVELOPED
 
-Each vector has a **growth sequence** — a recommended order of actions that take a person from beginner to master.
+### MVP Sequence
 
-**Action types available:**
-- 📚 Microlearning (2-5 min educational content)
-- 🧘 Practice (transformational activity from Library)
-- 📝 Profile Step (self-assessment, data capture)
-- ⚡ Life Action (real-world task)
-- 💰 Monetization Step (for Genius Monetization loop)
-- 🤝 Connection (social/collaborative action)
+| # | Action | Type | Description | Price |
+|---|--------|------|-------------|-------|
+| 1 | Zone of Genius Test | 📝 | AI-assisted genius discovery (~1 min) | Free |
+| 2 | Apply Your Genius | 📝 | See how to apply ZoG in life | Free |
+| 3 | Upload Personality Tests | 📝 | MBTI, Enneagram, Human Design, etc. | Free |
+| 4 | Micro: Understanding Genius | 📚 | Clarity on genius, purpose, mission | Free |
+| 5 | Micro: Traits vs Talents | 📚 | Traits, talents, abilities, skills, gifts | Free |
+| 6 | Unique Offering | 💰 | Human-guided offer creation | ~$111 |
+| 7 | Genius Business | 💰 | Full business model with expert | ~$$$+ |
+
+### Later (Roadmap)
+
+| Action | Type | Description |
+|--------|------|-------------|
+| Venture Co-op Entry | 💰 | Revenue sharing, studio services |
+| Co-Founder Matchmaking | 🤝 | Find complementary partners |
+| AI/VIB Coding Setup | 🛠️ | Tools and automations |
+| Mission Discovery Tool | 📝 | Deep purpose alignment |
+| Asset Mapping Tool | 📝 | Map all your assets |
+| Genius Mastery | 📚 | Advanced ZoG development |
+| Micro: Masculine/Feminine | 📚 | Aspect integration |
+| Micro: Essence & Typologies | 📚 | For purpose coaches |
+| Micro: Enneagram Deep | 📚 | Personality system |
+| Micro: Human Design Deep | 📚 | Personality system |
+| Micro: MBTI Deep | 📚 | Personality system |
+| 1:1 Genius Session | 💰 | Individualized deep dive |
 
 ---
 
 ## Spirit Vector (Waking Up)
 
-| Level | Action | Type | Description | XP |
-|-------|--------|------|-------------|-----|
-| 1.1 | | 📚 | | |
-| 1.2 | | 🧘 | | |
-| 1.3 | | ⚡ | | |
-| 2.1 | | 📚 | | |
-| 2.2 | | 🧘 | | |
-| ... | | | | |
+### Content Type: Practices (Library)
 
-*Alexander to fill in the Spirit growth sequence*
+| # | Action | Type | Description |
+|---|--------|------|-------------|
+| 1 | Breathwork intro | 🧘 | Basic breathing practice |
+| 2 | Meditation basics | 🧘 | Presence practice |
+| 3 | Activations | 🧘 | Energy practices |
+| ... | *Rich library exists* | 🧘 | Many practices available |
+
+*Spirit is practice-heavy from existing Library*
 
 ---
 
 ## Mind Vector (Growing Up)
 
-| Level | Action | Type | Description | XP |
-|-------|--------|------|-------------|-----|
-| 1.1 | | 📚 | | |
-| 1.2 | | 🧘 | | |
-| 1.3 | | ⚡ | | |
-| 2.1 | | 📚 | | |
-| 2.2 | | 🧘 | | |
-| ... | | | | |
+### Content Type: Learning (Integral Theory modules)
 
-*Alexander to fill in the Mind growth sequence*
+| # | Action | Type | Description |
+|---|--------|------|-------------|
+| 1 | Intro to Integral | 📚 | Framework overview |
+| 2 | Stages of Development | 📚 | Vertical growth |
+| 3 | Quadrants | 📚 | Perspectives |
+| ... | *Plenitude of learning* | 📚 | Alexander's teaching modules |
+
+*Mind is learning-heavy*
 
 ---
 
 ## Emotions Vector (Cleaning Up)
 
-| Level | Action | Type | Description | XP |
-|-------|--------|------|-------------|-----|
-| 1.1 | | 📚 | | |
-| 1.2 | | 🧘 | | |
-| 1.3 | | ⚡ | | |
-| 2.1 | | 📚 | | |
-| 2.2 | | 🧘 | | |
-| ... | | | | |
+### Content Type: Practices (Releasing)
 
-*Alexander to fill in the Emotions growth sequence*
+| # | Action | Type | Description |
+|---|--------|------|-------------|
+| 1 | Emotional awareness | 🧘 | Name what you feel |
+| 2 | Release breathwork | 🧘 | Letting go practices |
+| 3 | Shadow work intro | 🧘 | Meeting the shadow |
+| ... | *Many release practices* | 🧘 | Breathwork, meditations |
 
----
-
-## Uniqueness Vector (Showing Up)
-
-| Level | Action | Type | Description | XP |
-|-------|--------|------|-------------|-----|
-| 1.1 | Zone of Genius Basic | 📝 | Swipe talents, get initial profile | 100 |
-| 1.2 | Upload Personality Tests | 📝 | MBTI, Enneagram, etc. | 50 |
-| 1.3 | Values Clarification | 📝 | What matters most to you | 50 |
-| 2.1 | Strengths Deep Dive | 📚 | Learn about your talent combination | 25 |
-| 2.2 | Strengths in Action | ⚡ | Use your #1 talent today | 25 |
-| 2.3 | Offer Brainstorm | 📝 | What could you offer the world? | 50 |
-| 3.1 | Draft Genius Offer | 💰 | One-sentence offer | 100 |
-| 3.2 | First Client Conversation | 💰 | Talk to one potential client | 150 |
-| 3.3 | Offer Refinement | 💰 | Based on feedback | 75 |
-| ... | | | | |
-
-*This is the most developed sequence since ZoG exists in code*
+*Emotions is practice-heavy (release focus)*
 
 ---
 
 ## Body Vector
 
-| Level | Action | Type | Description | XP |
-|-------|--------|------|-------------|-----|
-| 1.1 | | 📚 | | |
-| 1.2 | | 🧘 | | |
-| 1.3 | | ⚡ | | |
-| 2.1 | | 📚 | | |
-| 2.2 | | 🧘 | | |
-| ... | | | | |
+### Content Type: Practices (Physical)
 
-*Alexander to fill in the Body growth sequence*
+| # | Action | Type | Description |
+|---|--------|------|-------------|
+| 1 | Body scan | 🧘 | Awareness practice |
+| 2 | Movement intro | 🧘 | Basic movement |
+| ... | *To be developed* | 🧘 | Physical practices |
 
 ---
 
-## How System Uses This
+## Architecture Insight
 
-1. Player completes action → mark complete in database
-2. System looks at player's progress in each vector
-3. For "My Next Move": 
-   - Find lowest QoL domain
-   - Map to primary vector
-   - Find next incomplete action in that vector's sequence
-   - Recommend it
+**Genius vector is richest** because:
+- It's the economic engine
+- Most actionable for real-world results
+- Leads to monetization
 
----
+**Other vectors are practice/learning heavy**:
+- Spirit → Practices (presence, breathwork)
+- Mind → Learning (integral theory)
+- Emotions → Practices (release work)
+- Body → Practices (physical)
 
-## Cross-Linking
-
-- **Practices** link to Library items
-- **Microlearning** links to content modules (to be created)
-- **Life Actions** are tracked via self-report
-- **Monetization Steps** link to paid modules when appropriate
+**This is okay.** Genius is the entry point for most users (economic motivation). Other vectors support well-being.
 
 ---
 
-*Vector Growth Sequences v0.1 (Template)*
-*Created: 2025-01-04*
+## Later: Additional Features
+
+- Professional Guilds
+- Project Matchmaking
+- Organization Matchmaking
+- Resource Matchmaking
+- Ecosystem Connections
+
+---
+
+*Vector Sequences v1.0*
+*Updated: 2025-01-05*
