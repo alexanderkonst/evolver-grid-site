@@ -76,19 +76,50 @@
 
 ---
 
-## Upcoming Topics (To Share Next)
+## Day 2 Continuation — Sunday, Jan 5, 2025
 
-*Alexander has years of additional framework to document:*
+**Location**: Network School, Forest City, Malaysia
 
-- [ ] Vector growth sequences (Alexander to define)
-- [ ] Asset Mapping system
-- [ ] Mission Discovery (based on Integral Society)
-- [ ] Matchmaking algorithms
-- [ ] Genius Monetization tech
-- [ ] Destiny Pack concept
-- [ ] And more...
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Customer Journey Map v5** | Numbered steps, ZoG branching, Tamagotchi moment, Zoom-In, Unlocks table, all design questions answered |
+| **Universal Language** | "Self-Development → Life Results" (not inner/outer) |
+| **8 Domain Examples** | Complete vector→domain mapping for all life areas |
+| **Unlocks Per Phase** | ZoG→QoL→First Action→Skill Trees→Monetization |
+| **First Action Design** | 1-3 min easy wins per domain |
+| **Onboarding Definition** | ZoG (~5 min) + QoL (~5 min) + First Action (1-3 min) |
+
+### Key Decisions Made
+- **Skill trees unlock at 5 actions** (not immediately)
+- **Personalized recommendations = big deal** (not same for everyone)
+- **Most users start with Wealth/Uniqueness** (economic vector)
+- **Step Banner** shows current step + upcoming in simple language
+
+### Design Patterns Refined
+- Universal language for any community (spiritual, web3, crypto, etc.)
+- "Results follow development" — no magic button
+- Infographic shown BEFORE My Next Move
+- Each domain explained with its vector drivers
+
+---
+
+## Status: Where We Are
+
+**✅ Complete:**
+- Customer Journey Map v5 (comprehensive)
+- Gamification Mechanics doc
+- White-Label Strategy doc
+- All design questions answered
+
+**🔜 Next:**
+- Vector Sequences — Alexander to define growth paths per vector
+- First Actions library — one easy action per domain
+- Inner→Outer infographic — visual asset creation
 
 ---
 
 *Session log continues on next work session.*
+
 
