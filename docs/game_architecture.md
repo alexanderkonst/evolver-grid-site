@@ -309,13 +309,22 @@ Each module is a scene the game can send the player into:
 
 ---
 
-## Elevator Pitches
+## Pitches (Simple Enough for a 13-Year-Old)
 
-**15 seconds:**
-> "I'm building a game entry into human mission: Genius Profile becomes the engine — it gives quests, upgrades, matchmaking, and cooperation economy."
+**One-liner (hallway):**
+> "I'm building a real-life RPG where you're the character."
 
-**45 seconds:**
-> "Right now people and communities have fragmented tools and intentions. I'm making a holonic gateway: one intake → one Genius Profile → then the system itself delivers the right quests/practices/collabs and builds a cooperation layer. Goal: communities can fork this with one button."
+**10 seconds:**
+> "I'm building a game that helps people figure out what they're best at and then grow into it."
+
+**30 seconds:**
+> "You know how video games have character creation and skill trees? I'm building that for real life. You take a quiz, discover your 'genius' — what makes you uniquely valuable — and then the app recommends small daily actions to level up. Complete actions, earn XP, see your life improve."
+
+**60 seconds:**
+> "Imagine a Duolingo for becoming your best self. You create a profile of your unique talents. You see a map of your life across 8 areas — money, health, happiness, relationships, etc. The app gives you ONE thing to do each day that's designed specifically for you. Do it, get XP, see progress. Over time, you unlock abilities, find your people, and even turn your genius into a business. It's already prototyped. I need help building the next version."
+
+**For developers:**
+> "I need help building a gamified self-development platform. Think: profile system, recommendation engine, XP/levels, and a modular architecture so different communities can fork it with their own branding. Stack is Next.js + Supabase. Want to build something meaningful?"
 
 ---
 
