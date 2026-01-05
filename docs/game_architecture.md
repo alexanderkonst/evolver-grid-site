@@ -24,6 +24,22 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
+## The Player Journey (5 Steps)
+
+The arc of transformation:
+
+```
+1. KNOW YOURSELF        → Self-Understanding (Profile, ZoG, Tests)
+2. MASTER YOURSELF      → Transformation (Practices across 5 vectors)
+3. MONETIZE YOUR GENIUS → Economic (Offers, Marketplace, Revenue)
+4. FIND YOUR PEOPLE     → Social (Matchmaking, Guilds)
+5. BUILD TOGETHER       → Venture Co-op (Collective wealth)
+```
+
+This mirrors life. The game makes it structured, measurable, and engaging.
+
+---
+
 ## Canonical Vectors (5 Development Dimensions)
 
 **Only these 5 names appear in UI:**
