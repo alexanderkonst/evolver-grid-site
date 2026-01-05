@@ -94,7 +94,7 @@
 ### Key Decisions Made
 - **Skill trees unlock at 5 actions** (not immediately)
 - **Personalized recommendations = big deal** (not same for everyone)
-- **Most users start with Wealth/Uniqueness** (economic vector)
+- **Most users start with Wealth/Genius** (economic vector)
 - **Step Banner** shows current step + upcoming in simple language
 
 ### Design Patterns Refined
@@ -105,21 +105,49 @@
 
 ---
 
+## Day 2 Evening — Sunday, Jan 5, 2025
+
+### What We Added
+
+| Item | Description |
+|------|-------------|
+| **Being/Doing Ontology** | Purpose = ZoG (being), Mission = Contribution (doing) |
+| **4 Quadrants Mapping** | Q1=Self-Understanding+Transformation, Q2=Social, Q3=Economic, Q4=Systemic (under the hood) |
+| **4 Core Loops** | Self-Understanding, Transformation, Economic (merged w/ Venture Co-op), Social |
+| **5 Vectors Locked** | Spirit, Mind, Emotions, Genius, Body |
+| **Digital Village Concept** | Buildings as capabilities, themeable for white-label, UI spectrum (text→VR) |
+| **Minimal-First Decision** | Stay black/white text buttons until journey is complete |
+
+### Key Decisions Made
+- **"Uniqueness" → "Genius"** everywhere (consistency)
+- **Spirit stays** (most universal despite some allergies)
+- **Economic + Venture Co-op = one loop** (Q3)
+- **Social = Q2** (not reducible to Emotions vector)
+- **Digital Village** = future game screen architecture
+
+---
+
 ## Status: Where We Are
 
 **✅ Complete:**
-- Customer Journey Map v5 (comprehensive)
+- Customer Journey Map v5
+- Game Architecture (loops, quadrants, village)
 - Gamification Mechanics doc
 - White-Label Strategy doc
-- All design questions answered
+- Being/Doing ontology
+- 5 Vectors locked
 
-**🔜 Next:**
-- Vector Sequences — Alexander to define growth paths per vector
-- First Actions library — one easy action per domain
-- Inner→Outer infographic — visual asset creation
+**🔜 Next Steps (Sequence):**
+1. Vector Sequences — Alexander defines growth paths
+2. Enriched Customer Journey — integrate sequences
+3. User Flows — screen-by-screen with actions
+4. Wireframes — minimal black/white
+5. Build modules
+6. Weave into journey
 
 ---
 
 *Session log continues on next work session.*
+
 
 
