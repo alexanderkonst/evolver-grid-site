@@ -319,5 +319,43 @@ Each module is a scene the game can send the player into:
 
 ---
 
+## Digital Village Concept (Future Game Screen)
+
+*Decision made: Jan 5, 2025*
+
+**Metaphor**: A village with buildings. Each building = a different capability.
+
+**Buildings (Universal Language):**
+| Building | Loop | What You Do There |
+|----------|------|-------------------|
+| **Profile Hall** | Self-Understanding | See yourself, take tests, mission discovery |
+| **Training Grounds** | Transformation | Practices, skill development (5 rooms for 5 vectors) |
+| **Guild Hall** | Social | Meet others, matchmaking, guilds |
+| **Marketplace** | Economic | Offers, asset mapping, monetization |
+| **Quest Board** | All | Browse available actions, see "My Next Move" |
+| **Tower** | All | Progress view, skill trees, stats |
+| **Co-op Building** | Economic | Venture cooperative, collective projects |
+
+**Themeable Villages (for White-Label):**
+- Ascension/spiritual village
+- Crypto/web3 village
+- Land-based/regenerative village
+- Venture studio village
+- Self-development village
+
+**UI Spectrum:**
+```
+SIMPLE                                              IMMERSIVE
+   │                                                    │
+   ▼                                                    ▼
+Text buttons → Cards → illustrated map → 3D isometric → full VR
+```
+
+**Current Decision**: Stay minimal (text buttons, black/white). The village metaphor works at ANY point on the spectrum and can evolve.
+
+**Future Path**: The architecture supports eventual 3D/VR/metaverse if desired.
+
+---
+
 *Game Architecture — Implementation Reference*
-*Last updated: 2025-01-03*
+*Last updated: 2025-01-05*
