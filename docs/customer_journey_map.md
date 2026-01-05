@@ -327,11 +327,33 @@ Body                           Health, Home
 **The simple explanation:**
 > "Each life result is driven by different parts of your development."
 
-**The Wealth example:**
-> "Want more money? Develop your genius, upgrade your thinking, learn to regulate your emotions, and release limiting beliefs. This makes you more valuable to people and companies."
+---
 
-**The Health example:**
-> "Want more energy? Develop your body habits, clear emotional stress, and align your daily rhythm."
+### All 8 Domains Explained
+
+**💰 Wealth** (Drivers: Uniqueness + Mind + Emotions)
+> "Want more money? Develop your genius, upgrade your thinking, learn to regulate your emotions, and release limiting beliefs. Intentionally focus on being more valuable and useful to people and companies."
+
+**❤️ Health** (Drivers: Body + Emotions + Spirit)
+> "Want more energy and vitality? Develop consistent body practices, clear emotional stress that drains you, and connect to what gives you meaning and purpose."
+
+**😊 Happiness** (Drivers: Spirit + Emotions + Mind)
+> "Want to feel more at peace and fulfilled? Cultivate your connection to something greater, learn to process and release emotions, and upgrade the quality of your thoughts."
+
+**💕 Love** (Drivers: Emotions + Spirit + Body)
+> "Want deeper relationships? Master your emotional awareness, develop presence and authenticity, and take care of your physical energy so you can show up fully for others."
+
+**🌍 Impact** (Drivers: Uniqueness + Mind + Spirit)
+> "Want to make a bigger difference? Express your unique gifts more boldly, sharpen your strategic thinking, and align your actions with your deeper values."
+
+**📈 Growth** (Drivers: Mind + Spirit + All Vectors)
+> "Want to keep evolving? Commit to learning, seek wisdom, and develop across all dimensions — growth is the integration of all vectors."
+
+**👥 Social** (Drivers: Emotions + Uniqueness + Mind)
+> "Want better social connections? Develop emotional intelligence, show up with your authentic genius, and cultivate the ability to communicate clearly."
+
+**🏠 Home** (Drivers: Body + Emotions + Spirit)
+> "Want a better living environment? Take consistent physical action to improve your space, address emotional blocks around comfort and safety, and infuse your home with meaning."
 
 ---
 
