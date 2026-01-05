@@ -125,6 +125,15 @@
 - **Social = Q2** (not reducible to Emotions vector)
 - **Digital Village** = future game screen architecture
 
+### Roast & Refinement (9pm)
+Critical review of what we built. Outcomes:
+- **Celebratory beats** added to Design Principles
+- **Simple MVP recommendation logic**: Lowest QoL → random unlocked action
+- **First action timing**: 1-3 min for first few only, progressive challenge after
+- **4 Buildings** (matches 4 loops), not 7
+- **QoL Zoom-In** marked as "Later" feature
+- Confidence confirmed: prototypes exist, pilots lined up, modules tested
+
 ---
 
 ## Status: Where We Are
@@ -136,6 +145,7 @@
 - White-Label Strategy doc
 - Being/Doing ontology
 - 5 Vectors locked
+- Roadmap refreshed
 
 **🔜 Next Steps (Sequence):**
 1. Vector Sequences — Alexander defines growth paths
@@ -148,6 +158,7 @@
 ---
 
 *Session log continues on next work session.*
+
 
 
 
