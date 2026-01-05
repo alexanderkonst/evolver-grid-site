@@ -82,9 +82,9 @@ User arrives at Zone of Genius module.
 ### 1.6 Transition: The Tamagotchi Moment
 
 **Core insight to communicate:**
-> "You've just met yourself. This profile IS you — and you can grow it."
+> "You've just met yourself. Now you can grow."
 
-The user realizes: *I am the Tamagotchi. I grow myself as my character.*
+The user realizes: *I am the Tamagotchi. I grow MYSELF as my character.*
 
 **CTA**: "Start growing →" or "Begin your evolution →"
 
@@ -133,23 +133,62 @@ Key insight to communicate:
 
 🎉 **DOPAMINE SPIKE**
 
-- **2.2.1** Visual snapshot (radar chart or grid)
-- **2.2.2** Lowest domains highlighted
-- **2.2.3** Show inner→outer connection
-  - "Your [X domain] is asking for attention"
-  - "This connects to your [Y vector] development"
+- **2.2.1** Visual snapshot (radar chart or grid, infographic available)
+- **2.2.2** Highest domains highlighted (celebrate wins)
+- **2.2.3** Lowest domains highlighted (growth opportunities)
 
-🔓 **UNLOCK**: "Now the system can recommend your path"
+### 2.3 Biggest Growth Opportunity
 
-### 2.3 Game World Entry
-
-- **2.3.1** Show "My Next Move" for first time
-  - ONE recommended action based on profile + QoL
+- **2.3.1** Identify lowest domain(s)
+  - If tie (e.g., two at stage 3), handle gracefully
   
-- **2.3.2** Explain the growth system briefly
-  - "Complete actions → Earn XP → Level up → Life improves"
-  
-- **2.3.3** First action available
+- **2.3.2** Frame as opportunity:
+  > "Your biggest growth opportunity is [Wealth]. This is what's holding you back — and where you'll see fastest results."
+
+- **2.3.3** CTA: "Let's zoom in →"
+
+### 2.4 Zoom-In: Precisify Your Position
+
+**Purpose**: Get more granular data so system can recommend precisely.
+
+- **2.4.1** Explain:
+  > "Let's zoom in and see exactly where you are, so the system can find the right support for you."
+
+- **2.4.2** Show substages within the lowest domain
+  - Each stage (1-10) breaks into 5-10 substages
+  - E.g., Stage 3 → 3.1, 3.2, 3.3... 3.9
+  - User selects precise position
+
+- **2.4.3** System now has precise data for recommendations
+
+🔓 **UNLOCK**: "Now the system can recommend your exact next step"
+
+### 2.5 Game World Entry
+
+- **2.5.1** Show "My Next Move" for first time
+  - ONE recommended action based on profile + QoL + zoom-in
+
+- **2.5.2** Explain 5 Vectors → 8 Domains mapping:
+
+```
+┌─────────────────────────────────────────┐
+│ INNER DEVELOPMENT (5 Vectors)           │
+│ Spirit · Mind · Emotions · Uniqueness · Body │
+│                 ↓                       │
+│ OUTER RESULTS (8 Life Domains)          │
+│ Wealth · Health · Happiness · Love ·    │
+│ Impact · Growth · Social · Home         │
+└─────────────────────────────────────────┘
+```
+
+- **2.5.3** Explain growth logic with example:
+  > "To improve Wealth, you might need to:
+  > - Express your genius more (Uniqueness)
+  > - Upgrade your thinking (Mind)
+  > - Release limiting beliefs about money (Emotions)
+  > The system will guide you."
+
+- **2.5.4** First action available
 
 ---
 
