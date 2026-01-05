@@ -323,18 +323,17 @@ Each module is a scene the game can send the player into:
 
 *Decision made: Jan 5, 2025*
 
-**Metaphor**: A village with buildings. Each building = a different capability.
+**Metaphor**: A village with buildings. Each building = one loop.
 
-**Buildings (Universal Language):**
+**4 Buildings (matches 4 Loops):**
 | Building | Loop | What You Do There |
 |----------|------|-------------------|
 | **Profile Hall** | Self-Understanding | See yourself, take tests, mission discovery |
 | **Training Grounds** | Transformation | Practices, skill development (5 rooms for 5 vectors) |
 | **Guild Hall** | Social | Meet others, matchmaking, guilds |
-| **Marketplace** | Economic | Offers, asset mapping, monetization |
-| **Quest Board** | All | Browse available actions, see "My Next Move" |
-| **Tower** | All | Progress view, skill trees, stats |
-| **Co-op Building** | Economic | Venture cooperative, collective projects |
+| **Marketplace** | Economic | Offers, asset mapping, monetization, co-op |
+
+*Additional buildings can be added as needed (e.g., Tower for stats, Quest Board for browsing).*
 
 **Themeable Villages (for White-Label):**
 - Ascension/spiritual village
@@ -351,9 +350,9 @@ SIMPLE                                              IMMERSIVE
 Text buttons → Cards → illustrated map → 3D isometric → full VR
 ```
 
-**Current Decision**: Stay minimal (text buttons, black/white). The village metaphor works at ANY point on the spectrum and can evolve.
+**Current Decision**: Stay minimal (text buttons, black/white). Village metaphor works at ANY point.
 
-**Future Path**: The architecture supports eventual 3D/VR/metaverse if desired.
+**Future Path**: Architecture supports 3D/VR/metaverse.
 
 ---
 
