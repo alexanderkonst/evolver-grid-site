@@ -24,19 +24,19 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
-## The Player Journey (5 Steps)
+## The Player Journey (5 Loops = 5 Buildings)
 
-The arc of transformation:
+The arc of transformation (implicit narrative, visible as progression):
 
-```
-1. KNOW YOURSELF        → Self-Understanding (Profile, ZoG, Tests)
-2. MASTER YOURSELF      → Transformation (Practices across 5 vectors)
-3. MONETIZE YOUR GENIUS → Economic (Offers, Marketplace, Revenue)
-4. FIND YOUR PEOPLE     → Social (Matchmaking, Guilds)
-5. BUILD TOGETHER       → Venture Co-op (Collective wealth)
-```
+| Step | Journey | Loop/Building | What Happens |
+|------|---------|---------------|---------------|
+| 1 | KNOW YOURSELF | Profile | ZoG, tests, assets, all self-data |
+| 2 | MASTER YOURSELF | Transformation | Practices, 5 vectors, QoL tracking |
+| 3 | MONETIZE YOUR GENIUS | Marketplace | Offers, buying/selling, revenue |
+| 4 | FIND YOUR PEOPLE | Matchmaking | Geniuses, teams, assets, missions, orgs |
+| 5 | BUILD TOGETHER | Venture Co-op | Collective wealth, studio services |
 
-This mirrors life. The game makes it structured, measurable, and engaging.
+**"My Next Move" = ACROSS ALL 5 LOOPS.** The unifying element.
 
 ---
 
@@ -130,30 +130,36 @@ This mirrors life. The game makes it structured, measurable, and engaging.
 
 ---
 
-## Four Core Loops
+## Five Core Loops (= 5 Buildings)
 
-### 1. Self-Understanding Loop (Q1 — Profile precision)
-*Know yourself deeper*
+### 1. Profile Loop — KNOW YOURSELF
+*Tell AI who you are*
 ```
-ZoG + Tests + Mission Discovery → Genius Profile → deeper mastery → better model
-```
-
-### 2. Transformation Loop (Q1 — Daily growth)
-*Real change through consistent practice*
-```
-Recommended practice → completion → XP → momentum → identity evolution
+ZoG + Tests + Mission Discovery + Assets → Complete Profile
 ```
 
-### 3. Economic Loop (Q3 — Genius monetization + Venture Co-op)
-*Turn genius into sustainable value exchange + collective wealth*
+### 2. Transformation Loop — MASTER YOURSELF
+*Gamified growth across 5 vectors*
 ```
-Genius Profile → Asset Mapping → Offer → Business → Revenue → Co-op → Reinvestment
+Practice → XP → Level Up → QoL improves
 ```
 
-### 4. Social Loop (Q2 — Connection)
-*Find your people, create together*
+### 3. Marketplace Loop — MONETIZE YOUR GENIUS
+*Turn genius into revenue*
 ```
-Matchmaking → Collabs → "Soul Fam" → Guilds → Community
+Offer Creation → Listing → Sales → Revenue
+```
+
+### 4. Matchmaking Loop — FIND YOUR PEOPLE
+*Connect with complementary geniuses*
+```
+Search → Match → Collaborate → Teams/Guilds
+```
+
+### 5. Venture Co-op Loop — BUILD TOGETHER
+*Collective wealth creation*
+```
+Join → Contribute → Revenue Share → Scale
 ```
 
 **Rewards are not cosmetic. They're functional:** XP + better matches + more opportunity.
@@ -346,19 +352,18 @@ Each module is a scene the game can send the player into:
 
 ## Digital Village Concept (Future Game Screen)
 
-*Decision made: Jan 5, 2025*
+*Decision made: Jan 5, 2025. Updated: Jan 6, 2025*
 
 **Metaphor**: A village with buildings. Each building = one loop.
 
-**4 Buildings (matches 4 Loops):**
+**5 Buildings (= 5 Loops = 5 Journey Steps):**
 | Building | Loop | What You Do There |
 |----------|------|-------------------|
-| **Profile Hall** | Self-Understanding | See yourself, take tests, mission discovery |
-| **Training Grounds** | Transformation | Practices, skill development (5 rooms for 5 vectors) |
-| **Guild Hall** | Social | Meet others, matchmaking, guilds |
-| **Marketplace** | Economic | Offers, asset mapping, monetization, co-op |
-
-*Additional buildings can be added as needed (e.g., Tower for stats, Quest Board for browsing).*
+| **Profile Hall** | Profile | ZoG, tests, assets, all self-data |
+| **Training Grounds** | Transformation | Practices, 5 vectors, QoL tracking |
+| **Marketplace** | Marketplace | Offers, buying/selling, revenue |
+| **Match Tower** | Matchmaking | Find geniuses, teams, assets, missions, orgs |
+| **Co-op Lodge** | Venture Co-op | Collective wealth, studio services |
 
 **Themeable Villages (for White-Label):**
 - Ascension/spiritual village

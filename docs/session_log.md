@@ -192,23 +192,28 @@ Critical review of what we built. Outcomes:
 ### What We Did NOT Do (Intentionally Parked)
 - Spirit vector sequence details
 - Mind/Emotions/Body sequences
-- User Flows (screens)
-- Wireframes
-- Code
+### Final Clarification (1am)
+- **5 Loops = 5 Buildings = 5 Journey Steps** (not 4)
+- Profile → Transformation → Marketplace → Matchmaking → Venture Co-op
+- Know → Master → Monetize → Find → Build
 
 ---
 
-## 📅 Tomorrow's Plan
+## 📅 Tomorrow's Plan (Jan 6)
 
-1. **User Flows** — translate customer journey to screens
-2. **Wireframes** — minimal black/white layouts
-3. **Build decision** — what module to build first?
+1. **Draft other vector sequences** (Spirit, Mind, Emotions, Body)
+2. **User Flows** — translate customer journey to screens
+3. **Map modules onto flows** — where each module fits
+4. **Design onboarding v2** — next iteration
+5. **Sequence recommended actions** — with leeway for AI
+6. **Scope module build** — what to build first
 
 ---
 
-*Day 2 complete. ~8 hours of deep work. Exceptional progress.*
+*Day 2 complete. ~9 hours of deep work. Exceptional progress.*
 
 *Next session: Jan 6, 2025*
+
 
 
 
