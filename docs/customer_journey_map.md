@@ -187,7 +187,7 @@ Key insight to communicate:
 ```
 ┌─────────────────────────────────────────┐
 │ SELF-DEVELOPMENT (5 Vectors)            │
-│ Spirit · Mind · Emotions · Uniqueness · Body │
+│ Spirit · Mind · Emotions · Genius · Body │
 │                 ↓                       │
 │ LIFE RESULTS (8 Domains)                │
 │ Wealth · Health · Happiness · Love ·    │
@@ -320,7 +320,7 @@ SELF-DEVELOPMENT         →     LIFE RESULTS
 Spirit                         Happiness, Growth
 Mind                           Impact, Wealth, Growth
 Emotions                       Love, Social, Happiness
-Uniqueness                     Impact, Wealth
+Genius                     Impact, Wealth
 Body                           Health, Home
 ```
 
@@ -331,7 +331,7 @@ Body                           Health, Home
 
 ### All 8 Domains Explained
 
-**💰 Wealth** (Drivers: Uniqueness + Mind + Emotions)
+**💰 Wealth** (Drivers: Genius + Mind + Emotions)
 > "Want more money? Develop your genius, upgrade your thinking, learn to regulate your emotions, and release limiting beliefs. Intentionally focus on being more valuable and useful to people and companies."
 
 **❤️ Health** (Drivers: Body + Emotions + Spirit)
@@ -343,13 +343,13 @@ Body                           Health, Home
 **💕 Love** (Drivers: Emotions + Spirit + Body)
 > "Want deeper relationships? Master your emotional awareness, develop presence and authenticity, and take care of your physical energy so you can show up fully for others."
 
-**🌍 Impact** (Drivers: Uniqueness + Mind + Spirit)
-> "Want to make a bigger difference? Express your unique gifts more boldly, sharpen your strategic thinking, and align your actions with your deeper values."
+**🌍 Impact** (Drivers: Genius + Mind + Spirit)
+> "Want to make a bigger difference? Express your genius more boldly, sharpen your strategic thinking, and align your actions with your deeper values."
 
 **📈 Growth** (Drivers: Mind + Spirit + All Vectors)
 > "Want to keep evolving? Commit to learning, seek wisdom, and develop across all dimensions — growth is the integration of all vectors."
 
-**👥 Social** (Drivers: Emotions + Uniqueness + Mind)
+**👥 Social** (Drivers: Emotions + Genius + Mind)
 > "Want better social connections? Develop emotional intelligence, show up with your authentic genius, and cultivate the ability to communicate clearly."
 
 **🏠 Home** (Drivers: Body + Emotions + Spirit)
@@ -396,7 +396,7 @@ Body                           Health, Home
 - **Modules are invisible to users** — they just experience flow
 - **Steps are numbered** for precise discussion and development
 - **Personalized recommendations** = big deal (not same for everyone)
-- **Most users** will likely start with Wealth/Uniqueness (economic vector)
+- **Most users** will likely start with Wealth/Genius (economic vector)
 
 ---
 
