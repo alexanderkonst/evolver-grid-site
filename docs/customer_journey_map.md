@@ -292,17 +292,75 @@ When user is ready (level threshold or explicit choice):
 
 ---
 
-## 🚧 Open Design Questions
+## ✅ Answered Design Questions
 
-1. **CTA after ZoG** — What's the sexiest transition to game world?
+### 1. What is "Onboarding"?
 
-2. **Visual identity generation** — Can we generate colors/images automatically?
+**Onboarding = ZoG + QoL + First Action**
 
-3. **Inner→Outer explanation** — How to explain 5 vectors → 8 domains simply?
+| Phase | Name | Duration | Result |
+|-------|------|----------|--------|
+| 1 | Zone of Genius | ~5 min | Profile created |
+| 2 | Quality of Life | ~5 min | Map created, recommendations active |
+| 3 | First Action | 1-3 min | First win, XP earned |
 
-4. **Skill tree visibility** — When does user first see skill trees?
+**Onboarding ends when**: User has completed first action and sees visible progress.
 
-5. **First recommended action** — What's the ideal first action after onboarding?
+---
+
+### 2. How to Explain 5 Vectors → 8 Domains Simply?
+
+**The one-liner:**
+> "Your inner development drives your outer results."
+
+**The visual (infographic):**
+```
+INNER WORK          →     OUTER RESULTS
+(what you develop)         (what improves)
+
+Spirit                     Happiness, Growth
+Mind                       Impact, Wealth, Growth
+Emotions                   Love, Social, Happiness
+Uniqueness                 Impact, Wealth
+Body                       Health, Home
+```
+
+**The example:**
+> "Want more money? Develop your uniqueness (express genius), upgrade your mind (better thinking), and clear your emotions (release limiting beliefs)."
+
+---
+
+### 3. When Does User First See Skill Trees?
+
+**After 5 completed actions.**
+
+| Actions | What's Visible |
+|---------|----------------|
+| 0 | Just "My Next Move" |
+| 1-4 | XP, level, streak |
+| 5+ | Skill trees unlock |
+| 10+ | Full navigation |
+
+**Why**: Early users need simplicity. Skill trees add complexity. Earn before reveal.
+
+---
+
+### 4. What's the Ideal First Action?
+
+**Depends on lowest QoL domain:**
+
+| Lowest Domain | First Action |
+|---------------|--------------|
+| Wealth | "Watch: How genius becomes income" (90 sec) |
+| Health | "3 deep breaths + body scan" (2 min) |
+| Happiness | "Gratitude journaling" (1 min) |
+| Love | "Appreciation message to someone" (2 min) |
+| Impact | "Clarify your contribution" (2 min prompt) |
+| Growth | "Set one learning intention" (1 min) |
+| Social | "Reach out to one person" (1 min) |
+| Home | "Improve one small thing in your space" (3 min) |
+
+**Principle**: First action is EASY, domain-relevant, and 1-3 minutes.
 
 ---
 
@@ -310,10 +368,20 @@ When user is ready (level threshold or explicit choice):
 
 - **Modules are invisible to users** — they just experience flow
 - **Steps are numbered** for precise discussion and development
-- **Branch points** (1.1.1 vs 1.1.3) represent user choices
+- **Personalized recommendations** = big deal (not same for everyone)
+- **Most users** will likely start with Wealth/Uniqueness (economic vector)
 
 ---
 
-*Customer Journey Map v4.0*
-*With numbered steps and ZoG flow branches*
+## Next Steps
+
+1. ✅ Customer Journey Map — mostly complete
+2. 🔜 Vector Sequences — Alexander to define growth paths per vector
+3. 🔜 First Actions library — one easy action per domain
+4. 🔜 Inner→Outer infographic — visual asset creation
+
+---
+
+*Customer Journey Map v5.0*
+*With answered design questions*
 *Updated: 2025-01-05*
