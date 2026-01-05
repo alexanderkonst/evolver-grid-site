@@ -79,7 +79,7 @@ User arrives at Zone of Genius module.
 
 🔓 **UNLOCK PREVIEW**: "Now let's grow this..."
 
-### 1.6 Transition: The Tamagotchi Moment
+### 1.6 Transition: Game World Unlock
 
 **Core insight to communicate:**
 > "You've just met yourself. Now you can grow."
@@ -90,22 +90,37 @@ The user realizes: *I am the Tamagotchi. I grow MYSELF as my character.*
 
 ---
 
-## Step Banner Pattern (Mobile Game Style)
+## Unlocks Per Phase
 
-Throughout onboarding and beyond, show a persistent banner:
+| Phase Complete | What Unlocks |
+|----------------|-------------|
+| **ZoG Done** | Game World + QoL (recommended) + Genius path (available) |
+| **QoL Done** | Recommendations active + All 5 vectors visible |
+| **First Action** | XP system + Progress tracking |
+| **5 Actions** | Skill trees visible |
+| **Level 3** | Monetization path teaser |
+
+*QoL is the recommended next step after ZoG, but user can explore other unlocks.*
+
+---
+
+## Step Banner Pattern (Persistent UI)
+
+Shows current step + upcoming opportunities:
 
 ```
 ┌─────────────────────────────────────────┐
-│ NEXT: [Current step name]               │
+│ NOW: Discover your Zone of Genius       │
+│ "Find out who you are at your best"    │
 │                                         │
-│ Coming up:                              │
-│ ○ Step 2: Map your life                 │
-│ ○ Step 3: Get your first recommendation │
-│ ○ Step 4: Complete your first action    │
+│ NEXT:                                   │
+│ ○ Map your life (recommended)           │
+│ ○ Get your first growth action          │
+│ ○ Start building your character         │
 └─────────────────────────────────────────┘
 ```
 
-This gives visibility into the sequence without overwhelming.
+**Banner content = Customer Journey Map in simple language.**
 
 ---
 
@@ -165,10 +180,9 @@ Key insight to communicate:
 
 ### 2.5 Game World Entry
 
-- **2.5.1** Show "My Next Move" for first time
-  - ONE recommended action based on profile + QoL + zoom-in
+**First: Show the Inner→Outer Infographic**
 
-- **2.5.2** Explain 5 Vectors → 8 Domains mapping:
+- **2.5.1** Display 5 Vectors → 8 Domains visual:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -181,14 +195,42 @@ Key insight to communicate:
 └─────────────────────────────────────────┘
 ```
 
-- **2.5.3** Explain growth logic with example:
+- **2.5.2** Explain growth logic with example:
   > "To improve Wealth, you might need to:
   > - Express your genius more (Uniqueness)
   > - Upgrade your thinking (Mind)
   > - Release limiting beliefs about money (Emotions)
-  > The system will guide you."
+  > There's no magic button. Growth = development."
 
-- **2.5.4** First action available
+**Then: Show My Next Move**
+
+- **2.5.3** Show "My Next Move" for first time
+  - ONE recommended action based on profile + QoL
+
+### 2.6 First Action Design (Easy Win)
+
+**Principle**: First action must be EASY. 1-3 minutes. Guaranteed completion.
+
+**Structure** (can vary):
+- 📚 Micro-learning (1-2 min read/video)
+- 🧘 Short practice (2-3 min)
+- 📝 Integration (1-2 journal prompts)
+
+**Examples**:
+- "Watch this 90-second video on [X]"
+- "Take 3 deep breaths and notice how you feel"
+- "Write one sentence: What do you want to grow?"
+
+🎉 **First Win → +XP → System unlocks → Visible progress begins**
+
+### 2.7 Zoom-In Purpose (Optional/TBD)
+
+**Why Zoom-In matters** (if implemented):
+- Fast visible progress: 2.3 → 2.7 in one week
+- E.g., "Earned first $50 from talents" = jump a substage
+- Keeps motivation high with frequent micro-wins
+
+*Note: 10×10 QoL = 100 positions. 10×10×10 = 1000 positions. Alexander exploring feasibility.*
 
 ---
 
