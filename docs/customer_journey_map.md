@@ -1,308 +1,219 @@
 # Customer Journey Map
 
-> The complete user journey — with dopamine moments marked
+> Numbered step-by-step journey — every action mapped
 
-*Three entry portals, one unified experience, designed for beneficial addiction.*
-
----
-
-## Three Entry Portals
-
-| Portal | Primary Audience | Value Proposition |
-|--------|-----------------|-------------------|
-| **Transformational Ecosystem** | Growth seekers | Transform yourself |
-| **Venture Cooperative** | Entrepreneurs | Monetize your genius |
-| **Conscious Community Portal** | Community members | Belong to something |
-
-All three lead to the **same unified onboarding** and **same core experience**.
+*Modules exist for us. For the user: one simple, engaging path.*
 
 ---
 
-## Onboarding Sequence (With Dopamine Design)
+## Numbering System
 
-### Step 1: Zone of Genius (~5 min)
-
-```
-Entry → Landing Page
-       │
-       ├── 🎯 HOOK: "Discover who you are at your best in 5 minutes"
-       │
-       └── CTA: "Start Discovery" →
-               │
-               ├── Step 0: Swipe Talents (Tinder-style)
-               │       🎮 MECHANIC: Gamified interaction, immediate feedback
-               │       🎰 VARIABLE: Some talents have "rare" badges
-               │
-               ├── Step 1: Select Top 10
-               │       📈 PROGRESS: "10/10 selected"
-               │
-               ├── Step 2: Narrow to Top 3
-               │       📈 PROGRESS: "Almost there..."
-               │
-               ├── Step 3: Rank 1-2-3
-               │       ⏰ ANTICIPATION: "Generating your profile..."
-               │
-               └── Step 4: AI Generates Genius Profile
-                       │
-                       ├── 🎉 SPIKE: Reveal moment — archetype title appears
-                       ├── 🎭 IDENTITY: "You are a [Archetype]"
-                       ├── 💎 INVESTMENT: Profile created (sunk cost)
-                       ├── 🔓 UNLOCK: "QoL Assessment unlocked"
-                       │
-                       └── CTA: "See where your life is asking for attention →"
-```
-
-### Step 2: Quality of Life Map (~5 min)
-
-```
-/quality-of-life-map/assessment
-       │
-       ├── 🎯 HOOK: "Unlock your exponential growth drivers"
-       │
-       ├── Assess 8 domains:
-       │       📈 PROGRESS: Progress bar "4/8 domains assessed"
-       │       🎮 MECHANIC: Quick selection, no friction
-       │
-       └── Complete →
-               │
-               ├── 🎉 SPIKE: Results reveal
-               ├── 📊 INSIGHT: "Your life is asking for attention in [X] and [Y]"
-               ├── 🔓 UNLOCK: "Recommendations activated"
-               ├── 🌊 OPEN LOOP: "Your first growth driver is ready"
-               │
-               └── CTA: "See my first move →"
-```
-
-### Step 3: First Action Recommendation
-
-```
-Portal Home (first time)
-       │
-       ├── 🎯 CLEAR NEXT: "My Next Move" — ONE action
-       ├── 👤 PERSONALIZED: Based on lowest QoL domain
-       ├── ⏰ DEFINED: Clear duration (e.g., "5 min")
-       │
-       └── [DO IT] →
-               │
-               ├── Complete action (in-app or IRL)
-               │
-               └── Mark Complete →
-                       │
-                       ├── 🎉 SPIKE: "+25 XP to [Vector]"
-                       ├── 🔥 STREAK: "Day 1 — streak started!"
-                       ├── 📈 PROGRESS: XP bar animates
-                       ├── 🔓 UNLOCK: Next action preview
-                       ├── 🌊 OPEN LOOP: "X more XP to Level 2"
-                       │
-                       └── "What's next?" or "Done for now"
-```
+Steps use hierarchical numbering:
+- **1.0** = Major phase
+- **1.1** = Step within phase
+- **1.1.1** = Sub-step or branch
 
 ---
 
-## Daily Return Experience
+## Phase 1: Zone of Genius Discovery
+
+### 1.0 Entry
+
+User arrives at Zone of Genius module.
+
+### 1.1 AI Model Check
+
+> "Do you have an AI model (ChatGPT, Claude, etc.) that knows you well?"
+
+- **1.1.1 → YES**: Show prompt for user to paste into their AI
+  - AI generates Zone of Genius description
+  - User confirms result
+  - **1.1.2** → Save to profile → Jump to **1.4**
+  
+- **1.1.3 → NO**: Proceed to talent assessment (**1.2**)
+
+### 1.2 Talent Assessment (81 talents test)
+
+- **1.2.1** Swipe talents (Tinder-style)
+  - 🎮 Gamified interaction
+  - 📈 Progress indicator
+  
+- **1.2.2** Select Top 10 from liked talents
+
+- **1.2.3** Narrow to Top 3 core talents
+
+- **1.2.4** Rank talents 1-2-3
+
+- **1.2.5** AI generates Genius Profile
+  - ⏰ Anticipation: "Generating your profile..."
+
+### 1.3 Reveal Moment #1: Genius Profile
+
+🎉 **DOPAMINE SPIKE**
+
+- **1.3.1** Archetype title revealed
+- **1.3.2** Core pattern description shown
+- **1.3.3** Top 3 talents displayed
+- **1.3.4** One-sentence genius statement
+
+💎 **INVESTMENT**: Profile created (sunk cost begins)
+
+### 1.4 Reveal Moment #2: Visual Identity
+
+� **DOPAMINE SPIKE**
+
+- **1.4.1** Personal colors generated (aura, essence)
+- **1.4.2** Visual representation (image generated for person)
+- **1.4.3** Profile card with visual identity
+
+🎭 **IDENTITY**: "This is YOU visualized"
+
+### 1.5 Reveal Moment #3: Genius Applications
+
+� **DOPAMINE SPIKE**
+
+- **1.5.1** Show where genius applies professionally
+  - Suggested roles, industries, offers
+- **1.5.2** Show where genius applies personally
+  - Relationships, hobbies, life areas
+
+🔓 **UNLOCK PREVIEW**: "Now let's see how to grow this..."
+
+### 1.6 Transition to Game World
+
+**CTA needed** — something better than "see where your life is asking for attention"
+
+Options to consider:
+- "Enter your growth journey →"
+- "Unlock your evolution path →"  
+- "See what's holding you back — and fix it →"
+- "Discover your exponential growth drivers →"
+
+---
+
+## Phase 2: Game World Unlock
+
+### 2.0 Concept
+
+The user now has a profile (who they are). 
+Now they unlock the *game world* (where they grow).
+
+Key insight to communicate:
+> "Your outer life is shaped by your inner development. Master yourself, upgrade your life."
+
+### 2.1 Quality of Life Assessment
+
+- **2.1.1** Explain the 8 domains (Wealth, Health, Happiness, Love, Impact, Growth, Social, Home)
+
+- **2.1.2** Assess each domain (slider or stage selection)
+  - 📈 Progress: "4/8 domains assessed"
+
+- **2.1.3** Complete assessment
+
+### 2.2 Reveal Moment #4: Life Snapshot
+
+🎉 **DOPAMINE SPIKE**
+
+- **2.2.1** Visual snapshot (radar chart or grid)
+- **2.2.2** Lowest domains highlighted
+- **2.2.3** Show inner→outer connection
+  - "Your [X domain] is asking for attention"
+  - "This connects to your [Y vector] development"
+
+🔓 **UNLOCK**: "Now the system can recommend your path"
+
+### 2.3 Game World Entry
+
+- **2.3.1** Show "My Next Move" for first time
+  - ONE recommended action based on profile + QoL
+  
+- **2.3.2** Explain the growth system briefly
+  - "Complete actions → Earn XP → Level up → Life improves"
+  
+- **2.3.3** First action available
+
+---
+
+## Phase 3: Daily Return Experience
+
+### 3.0 Home Screen Structure
 
 ```
-Person opens portal
-       │
-       ├── 🔥 STREAK: "Day 7 🔥" (prominent)
-       │
-       ├── ME Section
-       │       └── Archetype · Level · XP bar
-       │
-       ├── MY LIFE Section
-       │       ├── 8 QoL domains at a glance
-       │       └── "My life is asking for attention in: [X]"
-       │
-       └── MY NEXT MOVE Section
-               │
-               ├── 🎯 ONE action, dynamically chosen
-               ├── 👤 Personalized to profile + QoL
-               ├── 🎰 Occasionally: "⭐ Special recommendation"
-               │
-               ├── [DO IT] button
-               │
-               └── "Not this? Explore more →"
+┌─────────────────────────────────────────┐
+│              ME                         │
+│   Archetype · Level · Visual identity   │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│            MY LIFE                      │
+│   8 QoL domains at a glance             │
+│   Lowest domain highlighted             │
+└─────────────────────────────────────────┘
+       ↓
+┌─────────────────────────────────────────┐
+│         MY NEXT MOVE                    │
+│   ONE action, dynamically chosen        │
+│   [DO IT] button                        │
+│   "Not this? Explore more →"            │
+└─────────────────────────────────────────┘
 ```
 
----
+### 3.1 Action Completion
 
-## Completion Loop (Every Action)
+- **3.1.1** User completes action
+- **3.1.2** Mark complete
+- **3.1.3** XP awarded (to relevant vector)
+- **3.1.4** Progress visualization
+- **3.1.5** Next action revealed
 
-```
-Action Complete
-       │
-       ├── 🎉 Celebration: "Done!"
-       ├── ➕ XP: "+25 XP [Vector]" (number animates up)
-       ├── 📈 Progress: Bar fills visibly
-       │
-       ├── 🎰 Variable reward (20% chance):
-       │       ├── "🌟 Critical hit! +50 XP"
-       │       ├── "🎁 You unlocked a hidden practice"
-       │       └── "💎 Bonus: [small perk]"
-       │
-       ├── 🔥 Streak update: "Day X continues"
-       │
-       └── 🌊 Open loop:
-               ├── "X more XP to Level [N+1]"
-               └── "Next unlock: [preview]"
-```
+### 3.2 Rhythmic Return (Eudaimonic)
+
+Per eudaimonic principles:
+- Choice-first: Return when meaningful
+- Natural stopping points
+- Rest is part of the loop
 
 ---
 
-## Weekly Progress Review
+## Phase 4: Monetization Path (Unlock)
 
-```
-Every 7 days (or on demand):
-       │
-       ├── 📊 Summary:
-       │       ├── "This week you completed X actions"
-       │       ├── "You earned Y XP"
-       │       ├── "Your streak: Z days"
-       │
-       ├── 📈 QoL comparison:
-       │       └── "Wealth: 2.3 → 2.5 (+0.2)"
-       │
-       ├── 🎉 Milestone (if any):
-       │       └── "You reached Level 3!"
-       │
-       └── 🌊 What's next:
-               └── "This week's focus: [recommendation]"
-```
+### 4.0 Economic Path Unlock
+
+When user is ready (level threshold or explicit choice):
+
+- **4.0.1** Show genius monetization opportunity
+  - "Turn your genius into an offer"
+  
+- **4.0.2** Genius Offer creation ($111 module)
+
+- **4.0.3** Further modules unlock:
+  - Venture Cooperative path
+  - Destiny program ($3k)
 
 ---
 
-## The Profile (One Profile Per Person)
+## 🚧 Open Design Questions
 
-| Component | Description | Dopamine Element |
-|-----------|-------------|------------------|
-| **Genius Profile** | Archetype, talents, core pattern | 🎭 Identity anchor |
-| **Quality of Life** | 8 domains × decimal stages | 📈 Visible growth |
-| **Progress Data** | XP, level, streak, completions | 🔥💎 Investment |
-| **Personality Data** | MBTI, Enneagram, etc. | 👤 Personalization fuel |
-| **Chosen Missions** | What they're contributing to | 🎭 Purpose narrative |
+1. **CTA after ZoG** — What's the sexiest transition to game world?
 
----
+2. **Visual identity generation** — Can we generate colors/images automatically?
 
-## Action Types
+3. **Inner→Outer explanation** — How to explain 5 vectors → 8 domains simply?
 
-| Type | Example | Dopamine Element |
-|------|---------|------------------|
-| **Practice** | 10-min breathwork | 🎉 Completion spike |
-| **Profile Step** | Personality test | 💎 Investment |
-| **Microlearning** | 2-min video | 📈 Progress |
-| **Life Action** | Difficult conversation | 🎉 Real-world win |
-| **Monetization Step** | Draft offer headline | 🔓 Unlock next tier |
-| **Connection** | Message partner | 👥 Social reinforcement |
+4. **Skill tree visibility** — When does user first see skill trees?
+
+5. **First recommended action** — What's the ideal first action after onboarding?
 
 ---
 
-## Streak Design
+## Notes
 
-| Days | Status | Reward |
-|------|--------|--------|
-| 1 | 🔥 Started | — |
-| 3 | 🔥🔥 Warming up | Encouragement message |
-| 7 | 🔥🔥🔥 On fire | Badge unlock |
-| 14 | 🔥 Two weeks | Streak freeze token |
-| 30 | 🔥 One month | Special unlock |
-| 100 | 🏆 Century | Major achievement |
-
-**Streak freeze**: One-time use, can miss a day without breaking streak.
+- **Modules are invisible to users** — they just experience flow
+- **Steps are numbered** for precise discussion and development
+- **Branch points** (1.1.1 vs 1.1.3) represent user choices
 
 ---
 
-## Level Design
-
-| Level | XP Required | Unlock |
-|-------|-------------|--------|
-| 1 | 0 | Basic access |
-| 2 | 100 | — |
-| 3 | 300 | — |
-| 4 | 600 | New practice category |
-| 5 | 1000 | — |
-| 6 | 1500 | Profile badge |
-| 7 | 2100 | — |
-| 8 | 2800 | Premium content preview |
-| 9 | 3600 | — |
-| 10 | 4500 | Full unlock |
-
-*XP curve increases = longer time at higher levels (engagement depth)*
-
----
-
-## Freedom Mode (Explore)
-
-```
-"Explore more →" opens:
-       │
-       ├── Full action library
-       │       ├── Filter: Vector (Spirit, Mind, Emotions, Uniqueness, Body)
-       │       ├── Filter: Type (Practice, Learning, Life Action, etc.)
-       │       ├── Filter: Duration (5, 10, 15, 30, 60 min)
-       │       └── Filter: Energy (Activating, Calming, Balanced)
-       │
-       └── 🎮 MECHANIC: Open-world feel
-               └── Recommended path visible but not forced
-```
-
----
-
-## Monetization Integration
-
-| Free Actions | Paid Actions | Trigger |
-|--------------|--------------|---------|
-| ZoG Basic | ZoG Deep Dive ($X) | Complete ZoG Basic |
-| QoL Assessment | Coaching call ($X) | Low QoL score |
-| Practice from Library | Premium course | Level 5+ |
-| Microlearning | Genius Offer ($111) | Uniqueness focus |
-| Community connection | Destiny program ($3k) | Level 7+ |
-
-**Principle**: Paid offers appear naturally in the sequence, not as ads.
-
----
-
-## Guest vs Authenticated
-
-```
-IF not logged in:
-    ├── 🎮 Full functionality (no friction)
-    ├── 💎 INVESTMENT: Profile in localStorage
-    ├── 🌊 OPEN LOOP: "Save your progress — create account"
-    └── Risk: Data can be lost
-
-IF logged in:
-    ├── Profile in Supabase (persisted)
-    ├── Cross-device sync
-    └── 👥 Shareable profile for matchmaking
-```
-
----
-
-## Key Notation
-
-- **Gamified**: Yes (XP, levels, streaks, unlocks, variable rewards)
-- **Labeled as "game"**: No — it's a well-designed portal
-- **First-person**: "Me", "My Life", "My Next Move"
-- **Feeling**: Addictive in a good way
-
----
-
-## Dopamine Moment Summary
-
-| Journey Point | Spike Type |
-|---------------|------------|
-| ZoG complete | 🎉 Major reveal |
-| QoL complete | 🎉 Insights unlock |
-| First action complete | 🎉 First win + streak start |
-| Any action complete | 🎉 XP + progress |
-| Variable reward | 🎰 Surprise bonus (20%) |
-| Level up | 🎉 Major milestone |
-| Streak milestone | 🔥 Badge unlock |
-| Weekly review | 📈 Growth visible |
-| QoL improvement | 📈 Life change visible |
-
----
-
-*Customer Journey Map v3.0*
-*With Addiction Mechanics Design*
-*Updated: 2025-01-04*
+*Customer Journey Map v4.0*
+*With numbered steps and ZoG flow branches*
+*Updated: 2025-01-05*
