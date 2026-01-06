@@ -539,6 +539,43 @@ const GameHome = () => {
       alternates: recommendationSet.alternates?.map(action => action.title).filter(Boolean),
     };
   }, [recommendationSet]);
+  const recommendedAction = useMemo(() => {
+    if (questSuggestion) {
+      return {
+        title: questSuggestion.main.quest_title,
+        tag: questSuggestion.main.practice_type || "Practice",
+        durationLabel: formatDurationLabel(questSuggestion.main.approx_duration_minutes),
+        rationale: questSuggestion.main.why_it_is_a_good_next_move,
+        loop: "transformation",
+        alternates: questSuggestion.alternatives?.map(alt => alt.quest_title).filter(Boolean),
+      };
+    }
+
+    if (nextRecommendedUpgrade) {
+      return {
+        title: nextRecommendedUpgrade.title,
+        description: nextRecommendedUpgrade.description,
+        tag: "Upgrade",
+        rationale: "Advance your Showing Up path.",
+        loop: "transformation",
+      };
+    }
+
+    if (suggestedPractices.length > 0) {
+      const first = suggestedPractices[0];
+
+      return {
+        title: first.title,
+        description: first.teacher ? `with ${first.teacher}` : undefined,
+        tag: first.categoryId || "Practice",
+        durationLabel: first.durationLabel || formatDurationLabel(first.durationMinutes),
+        rationale: "Matches your current QoL focus.",
+        loop: "transformation",
+      };
+    }
+
+    return null;
+  }, [questSuggestion, nextRecommendedUpgrade, suggestedPractices]);
 
   const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
 
