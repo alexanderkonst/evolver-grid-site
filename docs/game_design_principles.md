@@ -121,6 +121,32 @@ Practices can be 5 min or 60 min — structure stays the same.
 
 ---
 
+## Psychological Foundations
+
+### The "Made for Me" Effect
+When something feels personal, the brain says "Someone SEES me."
+This triggers oxytocin (bonding) + dopamine (reward).
+
+**We are starved for being seen.** When the platform mirrors your uniqueness back, you return.
+
+### Why Clear Paths Matter
+- Overwhelm = paralysis (too many options → no action)
+- Clarity = confidence ("I know where I'm going")
+- One next move = action
+
+Most humans suffer "option blindness." Show them clear paths = existential relief.
+
+### Voice Lines (Use These)
+
+| Moment | What We Say |
+|--------|-------------|
+| Zone of Genius | "Here's what makes YOU uniquely valuable" |
+| QoL Assessment | "Here is YOUR life map" |
+| My Next Move | "Here's what YOU should do next" |
+| Game Entry | "This is YOUR game. This is YOUR story." |
+
+---
+
 ## Anti-Patterns (What to Avoid)
 
 ❌ Overwhelming with options
@@ -134,5 +160,5 @@ Practices can be 5 min or 60 min — structure stays the same.
 
 ---
 
-*Game Design Principles v2.0*
+*Game Design Principles v2.1*
 *Last updated: 2025-01-06*
