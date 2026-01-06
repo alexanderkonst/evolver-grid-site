@@ -28,6 +28,16 @@
 - **Prompt chunks:** use focused prompts per phase (e.g., “implement Phase 1 layout behind flag”) rather than a single mega prompt to reduce ambiguity and merge risk.
 - **Who/when:** record DRI and ETA for each phase in `docs/roadmap.md` to keep accountability visible alongside feature flag rollout steps.
 
+### Status check (after Daily Loop layout PR)
+- Phase 0: unified action shape and legacy mapping shipped; audit snapshot captured. DRI/ETA still missing in `docs/roadmap.md`; XP router alignment and owner/rollback notes still TODO.
+- Phase 1: Daily Loop layout renders behind `DAILY_LOOP_V2`; legacy cards remain available when the flag is off; placeholder recommendation flow hooked to existing suggestions. Still need error/skeleton states for My Next Move, CTA wiring to an action handler instead of `/library`, and a Freedom Mode link that preserves loop/vector tags.
+- Phase 2+: not started. Next focus: stand up `actionEngine` aggregator, cross-loop recommendation fixtures/tests, and the unified `completeAction` handler before plugging in vector sequences.
+
+## Phase 0 — Groundwork (1–2 days)
+[ ] DRI + ETA logged in `docs/roadmap.md`
+[x] Unified action shape agreed and mapped
+[x] Legacy → unified matrix drafted
+[x] Current shell and data flows audited
 ## Phase 0 — Groundwork (1–2 days)
 [ ] DRI + ETA logged in `docs/roadmap.md`
 [ ] Unified action shape agreed and mapped
@@ -49,6 +59,11 @@
   - Practices: `getSuggestedPractices` maps QoL snapshot to library items (`LIBRARY_ITEMS`); `markPracticeDone` posts completions.
   - Side Quest picker: uses `LIBRARY_ITEMS` filtered by duration/mode, then Supabase function `suggest-next-quest`; fallback picks random library item.
 - **Gaps vs. unified action shape:** Quest/practice/upgrade surfaces don’t expose `loop`, `vector`, or QoL tags; durations are numeric minutes; rationale for recommendations is free text. Side quest suggestions and practice completions record `practice_type` strings but no vector/QoL alignment. Completion paths for quests/practices/upgrades diverge (different tables and toasts), so aggregation will need adapters before the unified pipeline lands.
+
+## Phase 1 — UI Shell Swap (Daily Loop v2)
+[x] Layout renders behind `DAILY_LOOP_V2`
+[x] Legacy cards intact under flag-off
+[x] Placeholder recommendation flow working
 1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
 2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
 3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
