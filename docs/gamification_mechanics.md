@@ -42,6 +42,30 @@ Sense → Choose → Act → Integrate → Rest
 
 ---
 
+### The 1% Better Principle
+
+**Compound growth that accelerates:**
+
+```
+1% better every day
+    → 1% better every hour
+        → 1% better every minute
+            → continuous becoming
+```
+
+**How it manifests:**
+- Early stages: Daily actions, visible weekly progress
+- Intermediate: Multiple actions per day, visible daily progress
+- Advanced: Micro-improvements throughout the day, real-time awareness
+
+**Design implications:**
+- Actions can be as small as 1 minute
+- Progress visualization must handle micro-increments
+- The game accelerates as the player develops
+- Mastery = seamless integration into life
+
+---
+
 ## The 12 Mechanics
 
 ### 1. 🎰 Variable Rewards
