@@ -14,7 +14,16 @@
 - **Test-first wiring:** snapshots/fixtures for action candidates and recommendation outcomes before integrating live data.
 - **Ownership & rollback:** record DRIs, timelines, and rollback triggers so partial delivery has a safe path.
 
+## Execution & Tracking
+- **Work cadence:** ship one PR per phase (0–5). Keep legacy behavior available behind the feature flag until Phase 5 cleanup is complete.
+- **Status breadcrumbs:** each phase includes a mini checklist (`[ ]`) to track readiness; tick them in follow-up PRs.
+- **Prompt chunks:** use focused prompts per phase (e.g., “implement Phase 1 layout behind flag”) rather than a single mega prompt to reduce ambiguity and merge risk.
+- **Who/when:** record DRI and ETA for each phase in `docs/roadmap.md` to keep accountability visible alongside feature flag rollout steps.
+
 ## Phase 0 — Groundwork (1–2 days)
+[ ] DRI + ETA logged in `docs/roadmap.md`
+[ ] Unified action shape agreed and mapped
+[ ] Legacy → unified matrix drafted
 1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
 2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
 3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
@@ -23,6 +32,9 @@
 6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source.
 
 ## Phase 1 — UI Shell Swap (Daily Loop v2)
+[ ] Layout renders behind `DAILY_LOOP_V2`
+[ ] Legacy cards intact under flag-off
+[ ] Placeholder recommendation flow working
 1) **Create layout component** (`src/components/game/DailyLoopLayout.tsx`): sections for Me (profile snapshot + streak), My Life (QoL bottlenecks, recent wins), My Next Move (one primary action + rationale + quick actions), and Freedom Mode trigger.
 2) **States & errors:** design loading/skeleton, empty state (no recommendation), and error fallback with retry; ensure My Next Move always has a deterministic placeholder.
 3) **Wire into `GameHome`:** replace Main/Side/Upgrade rendering with the new layout while reusing data loaders. Keep legacy cards behind a `DAILY_LOOP_V2` feature flag.
@@ -30,23 +42,35 @@
 5) **Building mapping:** clarify how the layout maps to the “five buildings” metaphor—e.g., Me = Profile/Identity hub, My Life = Life Map/QoL observatory, My Next Move = Action deck; link the other two buildings (Marketplace, Matchmaking/Coop) via Freedom Mode pathways.
 
 ## Phase 2 — Unified Action Pipeline
+[ ] Aggregator normalizes all sources
+[ ] Rec engine returns primary + alternates
+[ ] Completion handler updates XP/streaks
 1) **Action aggregator** (`src/lib/actionEngine.ts`): normalize candidates from quests, practices, upgrades, and library into the unified shape; tag with vector, QoL mapping, effort, loop. Validate against the legacy → unified mapping matrix.
 2) **Recommendation strategy:** implement Daily Loop logic across all five loops (not just transformation): QoL bottleneck first, then vector growth sequence step, then streak-preserving alternates. Return one primary + two alternates. Action frequency should scale 1%–ish upward with player level while respecting non-overwhelm.
 3) **Completion handling:** single `completeAction` updates XP, streaks, and source-specific side effects (upgrade completion, practice done, main quest progression); emit toast and refresh recommendations.
 4) **Fixtures & tests:** add unit tests for aggregation and recommendation ordering; snapshot the expected My Next Move payloads.
 
 ## Phase 3 — Vector Growth Sequences Integration
+[ ] Sequence data ingested and versioned
+[ ] Steps exposed via unified actions
+[ ] Progress persisted and surfaced
 1) **Content ingestion**: load authored sequences as structured data (`src/modules/vector-sequences/*.ts` or JSON) with `id`, `vector`, `stage`, `duration`, `prerequisites`, `tags`, `version`.
 2) **Versioning & completeness:** allow optional `draft` flag; recommendations skip drafts and fall back to alternates when a sequence is incomplete.
 3) **Map to actions:** expose each sequence step through the unified action schema so recommendations can pull the next eligible step per vector.
 4) **Progress tracking:** persist per-vector step index in Supabase (new columns or companion table) and surface it in the Me section.
 
 ## Phase 4 — Onboarding & QoL Flow Polish
+[ ] Onboarding writes all required fields
+[ ] Celebrations show on completion/level-up
+[ ] Freedom Mode logs override picks
 1) **Onboarding refinements:** ensure Zone of Genius → QoL snapshot → portal entry writes required fields for the recommendation engine (vector affinities, QoL stages).
 2) **Celebratory beats:** add lightweight animations or badges in the Me section after completing an action or leveling up.
 3) **Freedom Mode:** implement a filtered library explorer that still tags selections with the unified action shape for tracking; log voluntary overrides.
 
 ## Phase 5 — Stabilization & Rollout
+[ ] Telemetry & latency budgets met in staging
+[ ] QA matrix passes on flag on/off
+[ ] Legacy cards removed post-flag
 1) **Telemetry & UX checks:** log selection vs. completion rates per action type and abandonment reasons to validate the non-overwhelm contract; set latency budgets (e.g., My Next Move render under 200ms from cached data, <500ms with fresh fetch; fallback shown within 1s on error).
 2) **QA matrix:** run unit tests for aggregation/recommendation ordering, integration tests for `GameHome` with `DAILY_LOOP_V2` on/off, Supabase migrations against a staging snapshot, and analytics event validation. Gate rollout with minimal success thresholds (activation on first session, completion of first action within 24h).
 3) **Clean-up:** remove legacy Main/Side/Upgrade cards and redundant helpers once the new loop is stable and metrics are healthy.
