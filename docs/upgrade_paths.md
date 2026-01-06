@@ -1,6 +1,6 @@
-# Vector Growth Sequences
+# Upgrade Paths
 
-> Skill trees with transformational upgrades — each step is a shift you can feel and name
+> Sequences of transformational upgrades on each vector
 
 *Updated: 2025-01-06*
 
@@ -12,7 +12,7 @@ Each step is an **upgrade**, not just a practice:
 - Something SHIFTS in the person
 - They can FEEL the difference
 - They can NAME the transformation
-- Unlock = visible progress in the skill tree
+- Unlock = visible progress
 
 **Terminology:**
 - Use "Immersive Experience" or "Activation" — not "meditation"
@@ -119,15 +119,15 @@ Each step is an **upgrade**, not just a practice:
 
 ---
 
-## Architecture Note
+## Legend
 
 - 🔥 = Immersive Experience / Activation
 - 📚 = Micro-learning
 - 📝 = Profile step / Self-assessment
-
-Each vector follows: **Baseline → Learn → Activate → Integrate → Master**
+- 💰 = Paid module
+- 🤝 = Connection / Matchmaking
 
 ---
 
-*Vector Sequences v2.0*
+*Upgrade Paths v2.0*
 *Updated: 2025-01-06*
