@@ -1,12 +1,21 @@
 # Growth Paths
 
-> Sequences of transformational upgrades on each growth path
+> Sequences of transformational upgrades — how you develop yourself
 
 *Updated: 2025-01-06*
 
 ---
 
-## Genius Growth Path (Showing Up) — MOST DEVELOPED
+## Key Distinction
+
+**Growth Paths** = personal transformation (you change)
+**Building Features** = game capabilities (you act)
+
+*See [Building Features](./building_features.md) for what you can DO in the game.*
+
+---
+
+## Genius Growth Path (Showing Up)
 
 | # | Upgrade | Type | The Shift | Unlocks After |
 |---|---------|------|-----------|---------------|
@@ -15,15 +24,9 @@
 | 3 | Upload Personality Tests | 📝 | Enrich profile with MBTI, Enneagram, etc. | Step 1 |
 | 4 | Micro: Genius, Purpose, Mission, Traits, Talents | 📚 | Clarity on all the distinctions | Step 1 |
 | 5 | Zone of Genius Activation | 🔥 | Immersive experience of your genius | Step 4 |
-| 6 | 1:1 Genius Session | 💰 | Individualized deep dive | Step 5 |
-| 7 | Multiple Intelligences Assessment | 📝 | 3-min MI self-assessment | — (anytime) |
-| 8 | Mission Discovery | 📝 | Deep purpose alignment | Step 5 |
-| 9 | Asset Mapping | 📝 | Map all your assets | Step 1 |
-| 10 | Unique Offering | 💰 | Articulate your genius offer | Steps 1, 4, 5 |
-| 11 | Genius Business | 💰 | Build your genius-based business | Step 10 |
-| 12 | Venture Co-op Entry | 💰 | Revenue sharing, studio services | Step 11 |
-| 13 | Co-Founder Matchmaking | 🤝 | Find complementary partners | Step 10 |
-| 14 | AI/VIB Coding Setup | 🛠️ | Tools and automations | Step 11 |
+| 6 | Multiple Intelligences Assessment | 📝 | 3-min MI self-assessment | — (anytime) |
+| 7 | Unique Offering | 💰 | Articulate your genius offer | Steps 1, 4, 5 |
+| 8 | Genius Business | 💰 | Build your genius-based business | Step 7 |
 
 ---
 
@@ -93,10 +96,8 @@
 - 📚 = Micro-learning
 - 📝 = Profile step / Self-assessment
 - 💰 = Paid module
-- 🤝 = Connection / Matchmaking
-- 🛠️ = Tool / Setup
 
 ---
 
-*Growth Paths v5.0*
+*Growth Paths v6.0*
 *Updated: 2025-01-06*

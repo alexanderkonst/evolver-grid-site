@@ -24,14 +24,29 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
+## Key Architectural Distinction
+
+| Growth Paths | Building Features |
+|--------------|-------------------|
+| Personal transformation | Game capabilities |
+| Sequential progression | Always available |
+| You change | You act |
+| Unlock through effort | Available on entry |
+| 5 paths (Genius, Spirit, Mind, Emotions, Body) | 5 buildings (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op) |
+
+**Growth Paths** = how you develop yourself → [growth_paths.md](./growth_paths.md)
+**Building Features** = what you can DO → [building_features.md](./building_features.md)
+
+---
+
 ## The Player Journey (5 Loops = 5 Buildings)
 
 The arc of transformation (implicit narrative, visible as progression):
 
 | Step | Journey | Loop/Building | What Happens |
-|------|---------|---------------|---------------|
+|------|---------|---------------|--------------|
 | 1 | KNOW YOURSELF | Profile | ZoG, tests, assets, all self-data |
-| 2 | MASTER YOURSELF | Transformation | Practices, 5 vectors, QoL tracking |
+| 2 | MASTER YOURSELF | Transformation | Practices, 5 growth paths, QoL tracking |
 | 3 | MONETIZE YOUR GENIUS | Marketplace | Offers, buying/selling, revenue |
 | 4 | FIND YOUR PEOPLE | Matchmaking | Geniuses, teams, assets, missions, orgs |
 | 5 | BUILD TOGETHER | Venture Co-op | Collective wealth, studio services |
@@ -40,7 +55,33 @@ The arc of transformation (implicit narrative, visible as progression):
 
 ---
 
-## Canonical Vectors (5 Development Dimensions)
+## The Core Insight
+
+> **Life results ← Self-development**
+
+This is the major unlock. QoL assessment reveals it. Then:
+
+```
+SAME START ─────────────────────────────► UNIQUE PATH
+     │                                         │
+     │ Genius Discovery (gateway)              │
+     ▼                                         │
+     │ QoL Assessment (unlock insight)         │
+     ▼                                         │
+     │ "Life results ← Self-development"       │
+     ▼                                         │
+     │ 5 Growth Paths revealed                 │
+     ▼                                         │
+     │ First actions (personalized)            │
+     ▼                                         │
+     └───► More actions ───► More divergence ──┘
+```
+
+**Starts the same, diverges as we learn about you.**
+
+---
+
+## 5 Growth Paths (Development Dimensions)
 
 **Only these 5 names appear in UI:**
 
