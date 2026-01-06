@@ -21,16 +21,19 @@
 - **Who/when:** record DRI and ETA for each phase in `docs/roadmap.md` to keep accountability visible alongside feature flag rollout steps.
 
 ## Phase 0 — Groundwork (1–2 days)
-[Status snapshot: mapping contract ✅; game shell audit ✅; action producer inventory ✅. Unified action shape + XP router wiring + DRI/ETA remain open. Completion ~50% based on 3/6 items landed.]
-[ ] DRI + ETA logged in `docs/roadmap.md`
+[Status snapshot: mapping contract ✅; game shell audit ✅; action producer inventory ✅. Unified action shape + XP router wiring + DRI/ETA remain open. Completion ~50% based on 3/6 items landed; see Phase 0 resolution plan below.]
+[ ] DRI + ETA logged in `docs/roadmap.md` (owner + rollback trigger included)
 [ ] Unified action shape agreed and mapped
-[x] Legacy → unified matrix drafted (see `docs/action_mapping.md`)
 [x] Audit current game shell (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; documented below.
 [x] Inventory action producers: upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; field gaps vs. unified schema noted below.
-[ ] Align XP router: confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
-[ ] Owner & rollout doc: assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
 [x] Legacy → unified mapping contract: see `docs/action_mapping.md` for canonical mapping matrix, defaults, validation rules, and aggregator test fixtures.
+[ ] Align XP router: confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
 
+### Phase 0 resolution plan (to clear conflicts and close the phase)
+- **Assign ownership & ETA:** log a named DRI plus a one-week ETA for Phase 0 in `docs/roadmap.md` so merge blockers tied to missing ownership can be cleared quickly.
+- **Lock the unified action shape:** confirm the canonical schema (fields + enums) against the mapping matrix and propagate to aggregator fixture definitions to avoid future merge conflicts over field naming.
+- **XP router alignment:** map the unified action payload to existing XP helpers so the completion handler can reuse `calculateQuestXp` bucketing and vector-specific `awardXp` updates (path → `xp_*` columns) without divergent logic.【F:src/pages/GameHome.tsx†L379-L424】【F:src/lib/xpSystem.ts†L29-L90】
+- **Completion payload audit:** ensure every source’s payload carries the identifiers required by the current Supabase writes and toast flows in `handleQuestComplete`, keeping legacy streak/XP updates intact while the new pipeline lands.【F:src/pages/GameHome.tsx†L379-L424】
 ### Phase 0 working notes (audit + inventories)
 
 **Current game shell audit (GameHome + Navigation + SkillTree)**

@@ -38,8 +38,8 @@
 | Body | ⬜ Not started |
 
 ### Daily Loop v2 Refactor Ownership (Phase 0)
-- **DRI:** _Unassigned_ — owner to be named in next working session.
-- **ETA:** _TBD_ — set once DRI is assigned; target to decide within Phase 0 (1–2 days) window.
+- **DRI:** Alexander (interim) — accountable for closing Phase 0 checkboxes and shepherding merge readiness; confirm/hand off if a different owner is appointed this week.
+- **ETA:** 2025-01-08 — aligns with the 1–2 day window for Phase 0 groundwork and unblocks downstream Phase 1 wiring.
 
 ---
 
