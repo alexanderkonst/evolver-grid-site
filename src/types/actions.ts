@@ -10,7 +10,7 @@ export type ActionType =
   | "practice"
   | "upgrade"
   | "library_item"
-  | "vector_sequence_step"
+  | "growth_path_step"
   | "onboarding"
   | "celebration";
 
@@ -23,7 +23,7 @@ export interface ActionPrerequisite {
 
 export interface ActionCompletionPayload {
   xp?: number;
-  vector?: string;
+  growthPath?: string;
   qolDomain?: string;
   sourceId?: string;
   notes?: string;
@@ -37,7 +37,7 @@ export interface UnifiedAction {
   loop: ActionLoop;
   title: string;
   description?: string;
-  vector?: string;
+  growthPath?: string;
   qolDomain?: string;
   duration?: ActionDuration;
   intensity?: "low" | "medium" | "high";
