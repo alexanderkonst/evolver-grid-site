@@ -8,6 +8,8 @@ import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
+import DailyLoopLayout from "@/components/game/DailyLoopLayout";
+import { FEATURE_FLAGS } from "@/config/featureFlags";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
@@ -16,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
+import { buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -90,7 +93,7 @@ const PATH_LABELS: Record<DevelopmentPath, string> = {
   mind: "Mind",
   emotions: "Emotions",
   spirit: "Spirit",
-  uniqueness: "Uniqueness"
+  uniqueness: "Genius"
 };
 
 const QUEST_DURATIONS = [5, 10, 15, 20, 30, 45, 60, 90, 120, 150];
@@ -100,6 +103,15 @@ const QUEST_MODES = [
   { id: "relaxing", label: "Relaxing / Calming" },
   { id: "balanced", label: "Balanced" },
 ];
+
+const formatDurationLabel = (minutes?: number | null) => {
+  if (!minutes && minutes !== 0) return undefined;
+  if (minutes <= 3) return "≈3 min";
+  if (minutes <= 10) return "~10 min";
+  if (minutes <= 25) return "~20–25 min";
+  if (minutes <= 45) return "~45 min";
+  return `${minutes} min`;
+};
 
 const GameHome = () => {
   const navigate = useNavigate();
@@ -502,6 +514,34 @@ const GameHome = () => {
     return progress;
   }, [completedUpgradeCodes, showingUpTree]);
 
+  const lowestDomains = getLowestDomains();
+
+  const recommendationSet = useMemo(() =>
+    buildRecommendationFromLegacy({
+      questSuggestion,
+      upgrade: nextRecommendedUpgrade,
+      practices: suggestedPractices,
+      lowestDomains,
+      totalCompletedActions: profile?.total_quests_completed,
+    }),
+  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed]);
+
+  const recommendedAction = useMemo(() => {
+    if (!recommendationSet) return null;
+
+    return {
+      title: recommendationSet.primary.title,
+      description: recommendationSet.primary.description,
+      tag: recommendationSet.primary.type,
+      durationLabel: formatDurationBucket(recommendationSet.primary.duration),
+      rationale: recommendationSet.rationale,
+      loop: recommendationSet.primary.loop,
+      alternates: recommendationSet.alternates?.map(action => action.title).filter(Boolean),
+    };
+  }, [recommendationSet]);
+
+  const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
+
   if (isLoading) {
     return (
       <div className="min-h-screen">
@@ -550,20 +590,20 @@ const GameHome = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
               {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
             </h1>
-            {profile && hasAnyData && (
-              <div className="flex items-center justify-center gap-4 text-sm text-slate-600 mt-3">
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-4 h-4 text-slate-700" />
-                  <span className="font-semibold">Level {profile.level} · {profile.xp_total} XP</span>
-                </div>
-                {profile.current_streak_days > 0 && (
+              {profile && hasAnyData && (
+                <div className="flex items-center justify-center gap-4 text-sm text-slate-600 mt-3">
                   <div className="flex items-center gap-2">
-                    <Flame className="w-4 h-4 text-orange-500" />
-                    <span>{profile.current_streak_days} day streak</span>
+                    <Trophy className="w-4 h-4 text-slate-700" />
+                    <span className="font-semibold">Level {profile.level} · {profile.xp_total} XP</span>
                   </div>
-                )}
-              </div>
-            )}
+                  {profile.current_streak_days > 0 && (
+                    <div className="flex items-center gap-2">
+                      <Flame className="w-4 h-4 text-orange-500" />
+                      <span>{profile.current_streak_days} day streak</span>
+                    </div>
+                  )}
+                </div>
+              )}
             {zogSnapshot?.archetype_title && (
               <p className="text-slate-500 text-sm mt-2">{zogSnapshot.archetype_title}</p>
             )}
@@ -589,17 +629,29 @@ const GameHome = () => {
 
           {/* MAIN GAME SECTIONS */}
           {hasAnyData && (
-            <div className="space-y-6">
+            isDailyLoopV2 ? (
+              <DailyLoopLayout
+                profileName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || null}
+                level={profile?.level}
+                xpTotal={profile?.xp_total}
+                streakDays={profile?.current_streak_days}
+                archetypeTitle={zogSnapshot?.archetype_title}
+                lowestDomains={lowestDomains}
+                recommendedAction={recommendedAction}
+                isLoadingAction={isLoadingQuest}
+              />
+            ) : (
+              <div className="space-y-6">
 
-              {/* ===== SECTION 1: YOUR NEXT MOVE ===== */}
-              <div className="rounded-3xl border-2 border-amber-200 bg-amber-50/50 p-6 sm:p-8 shadow-lg">
-                <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-amber-500" />
-                  YOUR NEXT MOVE
-                </h2>
+                {/* ===== SECTION 1: YOUR NEXT MOVE ===== */}
+                <div className="rounded-3xl border-2 border-amber-200 bg-amber-50/50 p-6 sm:p-8 shadow-lg">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-amber-500" />
+                    YOUR NEXT MOVE
+                  </h2>
 
-                {/* Main Quest (Storyline) Card - Always first */}
-                {(() => {
+                  {/* Main Quest (Storyline) Card - Always first */}
+                  {(() => {
                   const playerStats = buildPlayerStats(
                     profile,
                     completedUpgradeCodes.size,
@@ -991,8 +1043,8 @@ const GameHome = () => {
                   })}
                 </div>
               </div>
-
-            </div>
+              </div>
+            )
           )}
 
           {/* QUEST PICKER MODAL */}
