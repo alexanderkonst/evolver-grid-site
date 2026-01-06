@@ -1,29 +1,44 @@
 # Vector Growth Sequences
 
-> The recommended order of actions for growth in each vector
+> Skill trees with transformational upgrades — each step is a shift you can feel and name
 
-*Updated: 2025-01-05*
+*Updated: 2025-01-06*
 
 ---
 
-## Genius Vector (Showing Up) — MOST DEVELOPED
+## Design Principle
+
+Each step is an **upgrade**, not just a practice:
+- Something SHIFTS in the person
+- They can FEEL the difference
+- They can NAME the transformation
+- Unlock = visible progress in the skill tree
+
+**Terminology:**
+- Use "Immersive Experience" or "Activation" — not "meditation"
+- Use "Upgrade" or "Unlock" — not "exercise"
+
+---
+
+## Genius Vector (Showing Up)
 
 ### MVP Sequence
 
-| # | Action | Type | Description | Price |
-|---|--------|------|-------------|-------|
+| # | Upgrade | Type | Description | Price |
+|---|---------|------|-------------|-------|
 | 1 | Zone of Genius Test | 📝 | AI-assisted genius discovery (~1 min) | Free |
 | 2 | Apply Your Genius | 📝 | See how to apply ZoG in life | Free |
 | 3 | Upload Personality Tests | 📝 | MBTI, Enneagram, Human Design, etc. | Free |
 | 4 | Micro: Understanding Genius | 📚 | Clarity on genius, purpose, mission | Free |
 | 5 | Micro: Traits vs Talents | 📚 | Traits, talents, abilities, skills, gifts | Free |
-| 6 | Unique Offering | 💰 | Human-guided offer creation | ~$111 |
-| 7 | Genius Business | 💰 | Full business model with expert | ~$$$+ |
+| 6 | Multiple Intelligences Self-assessment | 📝 | 3-min MI assessment | Free |
+| 7 | Unique Offering | 💰 | Human-guided offer creation | ~$111 |
+| 8 | Genius Business | 💰 | Full business model with expert | ~$$$+ |
 
 ### Later (Roadmap)
 
-| Action | Type | Description |
-|--------|------|-------------|
+| Upgrade | Type | Description |
+|---------|------|-------------|
 | Venture Co-op Entry | 💰 | Revenue sharing, studio services |
 | Co-Founder Matchmaking | 🤝 | Find complementary partners |
 | AI/VIB Coding Setup | 🛠️ | Tools and automations |
@@ -32,96 +47,87 @@
 | Genius Mastery | 📚 | Advanced ZoG development |
 | Micro: Masculine/Feminine | 📚 | Aspect integration |
 | Micro: Essence & Typologies | 📚 | For purpose coaches |
-| Micro: Enneagram Deep | 📚 | Personality system |
-| Micro: Human Design Deep | 📚 | Personality system |
-| Micro: MBTI Deep | 📚 | Personality system |
 | 1:1 Genius Session | 💰 | Individualized deep dive |
 
 ---
 
 ## Spirit Vector (Waking Up)
 
-### Content Type: Practices (Library)
+### Upgrades = Shifts in Awareness
 
-| # | Action | Type | Description |
-|---|--------|------|-------------|
-| 1 | Breathwork intro | 🧘 | Basic breathing practice |
-| 2 | Meditation basics | 🧘 | Presence practice |
-| 3 | Activations | 🧘 | Energy practices |
-| ... | *Rich library exists* | 🧘 | Many practices available |
-
-*Spirit is practice-heavy from existing Library*
+| # | Upgrade | Type | The Shift |
+|---|---------|------|-----------|
+| 1 | Awareness Baseline | 📝 | Know where you are on the wake-up spectrum |
+| 2 | First Activation | 🔥 | Experience altered state (immersive, guided) |
+| 3 | State Recognition | 📚 | Learn to name states: witness, flow, presence |
+| 4 | Trigger Your Peak State | 🔥 | Reliably access a peak state on demand |
+| 5 | State vs Stage Clarity | 📚 | Understand vertical vs horizontal growth |
+| 6 | Extended Immersion | 🔥 | Longer activation, deeper state access |
+| 7 | Integration Practice | 🔥 | Bring peak state into daily life |
+| 8 | Advanced Activation Library | 🔥 | Access advanced immersive experiences |
 
 ---
 
 ## Mind Vector (Growing Up)
 
-### Content Type: Learning (Integral Theory modules)
+### Upgrades = Perspective Expansions
 
-| # | Action | Type | Description |
-|---|--------|------|-------------|
-| 1 | Intro to Integral | 📚 | Framework overview |
-| 2 | Stages of Development | 📚 | Vertical growth |
-| 3 | Quadrants | 📚 | Perspectives |
-| ... | *Plenitude of learning* | 📚 | Alexander's teaching modules |
-
-*Mind is learning-heavy*
+| # | Upgrade | Type | The Shift |
+|---|---------|------|-----------|
+| 1 | Developmental Baseline | 📝 | Know your current stage/center of gravity |
+| 2 | Micro: What is Development? | 📚 | Understand vertical growth |
+| 3 | See Your Stage | 📚 | Learn the characteristics of your stage |
+| 4 | Shadow of Your Stage | 📝 | Identify blind spots of your current stage |
+| 5 | Next Stage Preview | 📚 | Understand what's above you |
+| 6 | Perspective-Taking Activation | 🔥 | Immersive experience of other perspectives |
+| 7 | Integral Framework | 📚 | Quadrants, levels, lines, states, types |
+| 8 | Meta-Systematic Thinking | 📚 | Think in systems of systems |
 
 ---
 
 ## Emotions Vector (Cleaning Up)
 
-### Content Type: Practices (Releasing)
+### Upgrades = Emotional Capacity Expansions
 
-| # | Action | Type | Description |
-|---|--------|------|-------------|
-| 1 | Emotional awareness | 🧘 | Name what you feel |
-| 2 | Release breathwork | 🧘 | Letting go practices |
-| 3 | Shadow work intro | 🧘 | Meeting the shadow |
-| ... | *Many release practices* | 🧘 | Breathwork, meditations |
-
-*Emotions is practice-heavy (release focus)*
+| # | Upgrade | Type | The Shift |
+|---|---------|------|-----------|
+| 1 | Emotional Baseline | 📝 | Map your current emotional range |
+| 2 | Emotion Naming | 📝 | Expand vocabulary for what you feel |
+| 3 | Trigger Mapping | 📝 | Identify your top 5 triggers |
+| 4 | Release Activation | 🔥 | Immersive somatic/breathwork release |
+| 5 | Shadow Introduction | 📚 | Understand projection, repression, integration |
+| 6 | Shadow Encounter | 🔥 | Meet a shadow aspect (guided immersion) |
+| 7 | Integration Protocol | 🔥 | Bring shadow material into wholeness |
+| 8 | Emotional Sovereignty | 📚 | Mastery concept: feel without being consumed |
 
 ---
 
 ## Body Vector
 
-### Content Type: Practices (Physical)
+### Upgrades = Physical Capacity Expansions
 
-| # | Action | Type | Description |
-|---|--------|------|-------------|
-| 1 | Body scan | 🧘 | Awareness practice |
-| 2 | Movement intro | 🧘 | Basic movement |
-| ... | *To be developed* | 🧘 | Physical practices |
-
----
-
-## Architecture Insight
-
-**Genius vector is richest** because:
-- It's the economic engine
-- Most actionable for real-world results
-- Leads to monetization
-
-**Other vectors are practice/learning heavy**:
-- Spirit → Practices (presence, breathwork)
-- Mind → Learning (integral theory)
-- Emotions → Practices (release work)
-- Body → Practices (physical)
-
-**This is okay.** Genius is the entry point for most users (economic motivation). Other vectors support well-being.
+| # | Upgrade | Type | The Shift |
+|---|---------|------|-----------|
+| 1 | Body Baseline | 📝 | Assess current physical state (energy, mobility) |
+| 2 | Somatic Awareness | 🔥 | Immersive body attunement |
+| 3 | Energy Management | 📚 | Understand energy leaks and sources |
+| 4 | Stress Response Mapping | 📝 | Know your fight/flight/freeze patterns |
+| 5 | Nervous System Activation | 🔥 | Immersive experience to shift nervous system |
+| 6 | Recovery Protocol | 📚 | Sleep, restoration, recovery practices |
+| 7 | Physical Baseline Reset | 🔥 | Full body activation/reset |
+| 8 | Body-Mind Integration | 🔥 | Embody mind shifts physically |
 
 ---
 
-## Later: Additional Features
+## Architecture Note
 
-- Professional Guilds
-- Project Matchmaking
-- Organization Matchmaking
-- Resource Matchmaking
-- Ecosystem Connections
+- 🔥 = Immersive Experience / Activation
+- 📚 = Micro-learning
+- 📝 = Profile step / Self-assessment
+
+Each vector follows: **Baseline → Learn → Activate → Integrate → Master**
 
 ---
 
-*Vector Sequences v1.0*
-*Updated: 2025-01-05*
+*Vector Sequences v2.0*
+*Updated: 2025-01-06*
