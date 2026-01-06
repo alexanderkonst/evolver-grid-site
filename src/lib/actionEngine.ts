@@ -22,13 +22,18 @@ const durationToBucket = (minutes?: number | null): ActionDuration | undefined =
   return "lg";
 };
 
+const normalizeGrowthPath = (path?: string | null) => {
+  if (!path) return "genius";
+  return path === "uniqueness" ? "genius" : path;
+};
+
 const normalizeQuest = (quest: LegacyQuestSuggestion): UnifiedAction => ({
   id: `quest:${quest.quest_title.toLowerCase().replace(/\s+/g, "-")}`,
   type: "quest",
   loop: "transformation",
   title: quest.quest_title,
   duration: durationToBucket(quest.approx_duration_minutes),
-  vector: "uniqueness",
+  growthPath: "genius",
   source: "lib/mainQuest.ts",
   whyRecommended: quest.why_it_is_a_good_next_move,
   tags: quest.practice_type ? [quest.practice_type] : undefined,
@@ -41,10 +46,14 @@ const normalizeUpgrade = (upgrade: Upgrade): UnifiedAction => ({
   loop: "transformation",
   title: upgrade.title,
   description: upgrade.description,
-  vector: upgrade.path_slug,
+  growthPath: normalizeGrowthPath(upgrade.path_slug),
   duration: "md",
   source: "lib/upgradeSystem.ts",
-  completionPayload: { sourceId: upgrade.id, xp: upgrade.xp_reward, vector: upgrade.path_slug },
+  completionPayload: {
+    sourceId: upgrade.id,
+    xp: upgrade.xp_reward,
+    growthPath: normalizeGrowthPath(upgrade.path_slug),
+  },
   prerequisites: upgrade.prereqs?.map(prereq => ({ description: prereq, fulfilled: false })),
 });
 
@@ -54,12 +63,12 @@ const normalizePractice = (practice: LibraryItem): UnifiedAction => ({
   loop: "transformation",
   title: practice.title,
   description: practice.teacher ? `with ${practice.teacher}` : undefined,
-  vector: practice.primaryPath || "uniqueness",
+  growthPath: normalizeGrowthPath(practice.primaryPath),
   qolDomain: practice.primaryDomain,
   duration: durationToBucket(practice.durationMinutes),
   source: "lib/practiceSystem.ts",
   tags: [practice.categoryId, ...(practice.intents || [])].filter(Boolean) as string[],
-  completionPayload: { sourceId: practice.id, vector: practice.primaryPath },
+  completionPayload: { sourceId: practice.id, growthPath: normalizeGrowthPath(practice.primaryPath) },
 });
 
 interface RecommendationInputs {
