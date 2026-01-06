@@ -210,9 +210,34 @@ Critical review of what we built. Outcomes:
 
 ---
 
-*Day 2 complete. ~9 hours of deep work. Exceptional progress.*
+## Day 3 — Monday, Jan 6, 2025 (Afternoon)
 
-*Next session: Jan 6, 2025*
+**Location**: Network School, Forest City, Malaysia
+
+### What We've Done So Far
+
+| Item | Description |
+|------|-------------|
+| **1% Better Principle** | Added to gamification mechanics |
+| **Growth Paths v4** | Renamed from Vector Sequences, added ZoG Activation |
+| **Genius Sequence Updated** | Steps 1-14 with all items (no "Later" section) |
+| **Practice Anatomy** | LEARN → EXPERIENCE → INTEGRATE |
+| **Custom Practice Clarified** | Player picks params, AI creates combo |
+| **Design Principles Consolidated** | All principles now in `game_design_principles.md` |
+| **Refactor Plan Reviewed** | Gave feedback to Codex (5 loops, first action, 1% better) |
+
+### Key Clarifications
+- **Growth Paths** = sequences of upgrades on 5 vectors
+- **Loop Features** = tools in 5 buildings (Mission Discovery, Matchmaking, etc.)
+- These are different things — don't conflate
+
+### In Progress
+- Working through Growth Paths with Alexander
+
+---
+
+*Session continues...*
+
 
 
 

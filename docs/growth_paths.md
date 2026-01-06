@@ -6,39 +6,6 @@
 
 ---
 
-## Design Principles
-
-Each step is an **upgrade** with a real shift:
-- Something SHIFTS in the person
-- They can FEEL the difference
-- They can NAME the transformation
-- Unlock = visible progress
-
-**Terminology:**
-- "Immersive Experience" or "Activation" — not "meditation"
-- "Upgrade" or "Unlock" — not "exercise"
-
----
-
-## Practice Anatomy
-
-Every meaningful practice follows this structure:
-
-```
-LEARN → EXPERIENCE → INTEGRATE
-(see)    (live through)  (embody)
-```
-
-**Practice bundles:**
-- Morning Practice (learn + experience + integrate)
-- Evening Practice (reflect + release + integrate)
-- Ad-hoc Practice (quick activation)
-- Custom Practice (player-created combinations)
-
-Practices can be 5 min or 60 min — structure stays the same.
-
----
-
 ## Genius Vector (Showing Up)
 
 | # | Upgrade | Type | The Shift |
@@ -46,13 +13,17 @@ Practices can be 5 min or 60 min — structure stays the same.
 | 1 | Zone of Genius Test | 📝 | Know your unique genius (~1 min) |
 | 2 | Apply Your Genius | 📝 | See how your genius shows up in life |
 | 3 | Upload Personality Tests | 📝 | Enrich profile with MBTI, Enneagram, etc. |
-| 4 | Micro: Genius, Purpose, Mission | 📚 | Clarity on the distinctions |
-| 5 | Micro: Traits vs Talents | 📚 | Vocabulary for your strengths |
+| 4 | Micro: Genius, Purpose, Mission, Traits, Talents | 📚 | Clarity on all the distinctions |
+| 5 | Zone of Genius Activation | � | Immersive experience of your genius |
 | 6 | Multiple Intelligences Assessment | 📝 | 3-min MI self-assessment |
 | 7 | Unique Offering | 💰 | Articulate your genius offer |
 | 8 | Genius Business | 💰 | Build your genius-based business |
-
-**Later:** Venture Co-op, Co-Founder Matchmaking, Mission Discovery, Asset Mapping, 1:1 Sessions
+| 9 | Mission Discovery | 📝 | Deep purpose alignment |
+| 10 | Asset Mapping | 📝 | Map all your assets |
+| 11 | Venture Co-op Entry | 💰 | Revenue sharing, studio services |
+| 12 | Co-Founder Matchmaking | 🤝 | Find complementary partners |
+| 13 | AI/VIB Coding Setup | 🛠️ | Tools and automations |
+| 14 | 1:1 Genius Session | 💰 | Individualized deep dive |
 
 ---
 
@@ -123,8 +94,9 @@ Practices can be 5 min or 60 min — structure stays the same.
 - 📝 = Profile step / Self-assessment
 - 💰 = Paid module
 - 🤝 = Connection / Matchmaking
+- 🛠️ = Tool / Setup
 
 ---
 
-*Growth Paths v3.0*
+*Growth Paths v4.0*
 *Updated: 2025-01-06*
