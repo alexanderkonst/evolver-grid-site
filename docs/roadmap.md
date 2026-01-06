@@ -37,6 +37,10 @@
 | Genius | ⬜ Not started |
 | Body | ⬜ Not started |
 
+### Daily Loop v2 Refactor Ownership (Phase 0)
+- **DRI:** _Unassigned_ — owner to be named in next working session.
+- **ETA:** _TBD_ — set once DRI is assigned; target to decide within Phase 0 (1–2 days) window.
+
 ---
 
 ## 📋 Next Steps (Sequence)

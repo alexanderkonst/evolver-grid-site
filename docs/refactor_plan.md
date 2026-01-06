@@ -21,15 +21,29 @@
 - **Who/when:** record DRI and ETA for each phase in `docs/roadmap.md` to keep accountability visible alongside feature flag rollout steps.
 
 ## Phase 0 — Groundwork (1–2 days)
+[Status snapshot: mapping contract ✅; game shell audit ✅; action producer inventory ✅. Unified action shape + XP router wiring + DRI/ETA remain open. Completion ~50% based on 3/6 items landed.]
 [ ] DRI + ETA logged in `docs/roadmap.md`
 [ ] Unified action shape agreed and mapped
-[ ] Legacy → unified matrix drafted
-1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
-2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
-3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
-4) **Align XP router:** confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
-5) **Owner & rollout doc:** assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
-6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source.
+[x] Legacy → unified matrix drafted (see `docs/action_mapping.md`)
+[x] Audit current game shell (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; documented below.
+[x] Inventory action producers: upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; field gaps vs. unified schema noted below.
+[ ] Align XP router: confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
+[ ] Owner & rollout doc: assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
+[x] Legacy → unified mapping contract: see `docs/action_mapping.md` for canonical mapping matrix, defaults, validation rules, and aggregator test fixtures.
+
+### Phase 0 working notes (audit + inventories)
+
+**Current game shell audit (GameHome + Navigation + SkillTree)**
+- **Data loading & context:** `GameHome` fetches the player profile, QoL snapshot, ZoG snapshot, and upgrade catalog on mount; it parallelizes profile and uniqueness mastery upgrades, then computes player stats for main quest progression and auto-advancement. XP and streak updates are driven by `calculateQuestXp`/`calculateStreak` inside `handleQuestComplete`, which writes to Supabase and reloads profile data for freshness.【F:src/pages/GameHome.tsx†L285-L429】
+- **Side quest (practice) surface:** The “Side Quest” card triggers an edge function (`suggest-next-quest`) with curated practice candidates filtered by duration/mode and QoL context. Fallback picks a random library practice when the function fails. Completion inserts into `quests` with XP awarded per duration.【F:src/pages/GameHome.tsx†L285-L377】【F:src/pages/GameHome.tsx†L386-L424】
+- **Suggested upgrade surface:** The Suggested Upgrade card selects the first unlocked, incomplete upgrade from the uniqueness/mastery branch and routes CTAs (e.g., ZoG assessment, personality tests) via `handleUpgradeAction` navigation/open behavior. Unlock state is also visualized through `SkillTree` by mapping upgrade codes to node progress and prerequisite locks.【F:src/pages/GameHome.tsx†L215-L503】【F:src/pages/GameHome.tsx†L703-L724】
+- **Character snapshot:** “Who I Am and Where I Am” shows the latest ZoG archetype/top talents and QoL domain grid, highlighting lowest domains to inform recommendations. QoL stages drive practice suggestions via `getSuggestedPractices`.【F:src/pages/GameHome.tsx†L208-L279】【F:src/pages/GameHome.tsx†L741-L805】
+
+**Action producer inventory vs. unified schema**
+- **Upgrades (`lib/upgradeSystem.ts`):** Catalog rows expose `code`, `path_slug`, `branch`, `xp_reward`, optional `prereqs` and `unlock_effects`. Completion is idempotent, awards XP via `awardXp`, and records player unlocks. Gaps: no QoL domain, no explicit duration/mode; vector inferred from `path_slug` with async-mode default for unified schema.【F:src/lib/upgradeSystem.ts†L13-L182】
+- **Practices (`lib/practiceSystem.ts` + `modules/library/libraryContent.ts`):** Library items carry `primaryPath`/`primaryDomain`, duration minutes/labels, and intents. `markPracticeDone` delegates to a Supabase function that returns XP/level deltas; `getSuggestedPractices` filters by lowest QoL domain and shortest duration. Gaps: no explicit intensity/mode; why-recommended synthesized; prereqs absent.【F:src/lib/practiceSystem.ts†L7-L84】【F:src/modules/library/libraryContent.ts†L1-L115】
+- **Quests (`lib/mainQuest.ts`):** Main quest stages encode domain, CTA route, and completion hints; progression gates on profile setup, practice count, upgrade count, streak, and real-world output. For unified actions, `domain` → vector mapping is clear; missing duration/intensity requires defaults; completion payload must include stage id plus gating counters for validation.【F:src/lib/mainQuest.ts†L1-L194】
+- **Library items (modules):** Each item has `id`, `title`, `categoryId`, optional teacher, URL/youtubeId, duration, `primaryPath`/`secondaryPath`, and `primaryDomain`; can be normalized directly to unified actions with fallback vector from `primaryPath` and QoL from `primaryDomain` or vector inference. Intensities/modes need defaults per mapping matrix.【F:src/modules/library/libraryContent.ts†L22-L115】
 
 ## Phase 1 — UI Shell Swap (Daily Loop v2)
 [ ] Layout renders behind `DAILY_LOOP_V2`
