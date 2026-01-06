@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
+import { buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -515,6 +516,29 @@ const GameHome = () => {
 
   const lowestDomains = getLowestDomains();
 
+  const recommendationSet = useMemo(() =>
+    buildRecommendationFromLegacy({
+      questSuggestion,
+      upgrade: nextRecommendedUpgrade,
+      practices: suggestedPractices,
+      lowestDomains,
+      totalCompletedActions: profile?.total_quests_completed,
+    }),
+  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed]);
+
+  const recommendedAction = useMemo(() => {
+    if (!recommendationSet) return null;
+
+    return {
+      title: recommendationSet.primary.title,
+      description: recommendationSet.primary.description,
+      tag: recommendationSet.primary.type,
+      durationLabel: formatDurationBucket(recommendationSet.primary.duration),
+      rationale: recommendationSet.rationale,
+      loop: recommendationSet.primary.loop,
+      alternates: recommendationSet.alternates?.map(action => action.title).filter(Boolean),
+    };
+  }, [recommendationSet]);
   const recommendedAction = useMemo(() => {
     if (questSuggestion) {
       return {
