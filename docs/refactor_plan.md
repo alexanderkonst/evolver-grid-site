@@ -14,6 +14,14 @@
 - **Test-first wiring:** snapshots/fixtures for action candidates and recommendation outcomes before integrating live data.
 - **Ownership & rollback:** record DRIs, timelines, and rollback triggers so partial delivery has a safe path.
 
+## Testing & Validation Expectations
+- **Run what matches the change:**
+  - Documentation-only edits: no runtime checks required; still skim for broken links/typos.
+  - Type or logic changes: run `npm run lint` and `npm run build` locally; note current baseline lint failures (legacy `any` usage and React hook deps). Record the failing set in the PR and ensure new code does not add more.
+  - Supabase migrations/integration work: run lint + build plus the migration verification queries in staging.
+- **Feature-flag regression:** for any Daily Loop v2 code, manually verify `DAILY_LOOP_V2` on/off paths and snapshot recommendation fixtures before merging.
+- **Artifacts for reviewers:** include command output (pass/fail) in PR notes; if lint fails due to known debt, call it out with counts so reviewers can assess blast radius.
+
 ## Execution & Tracking
 - **Work cadence:** ship one PR per phase (0–5). Keep legacy behavior available behind the feature flag until Phase 5 cleanup is complete.
 - **Status breadcrumbs:** each phase includes a mini checklist (`[ ]`) to track readiness; tick them in follow-up PRs.
@@ -24,6 +32,23 @@
 [ ] DRI + ETA logged in `docs/roadmap.md`
 [ ] Unified action shape agreed and mapped
 [ ] Legacy → unified matrix drafted
+[ ] Current shell and data flows audited
+1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
+2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
+3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`. Ship this early so tests/fixtures can import a single contract.
+4) **Align XP router:** confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
+5) **Owner & rollout doc:** assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
+6) **Legacy → unified mapping contract:** maintain `docs/action_mapping.md` with a matrix for quests, practices, upgrades, library items, and vector sequences. Capture defaults (vector/QoL fallbacks, duration buckets, missing data handling) and sample payloads per source for fixtures.
+
+### Phase 0 Audit Snapshot (current build)
+- **Screen structure:** `GameHome` renders Navigation + guest banner, then three legacy surfaces: Main Quest (progress + complete CTA), Side Quest picker (duration/mode selects → Supabase `suggest-next-quest` edge function → practice suggestion + alternatives), and Upgrades/Practices cards (mastery path + library suggestions). SkillTree visualization is keyed to upgrade codes for the Showing Up tree.
+- **Data sources:**
+  - Profile, XP, streak, QoL/ZoG snapshots loaded from `game_profiles`, `qol_snapshots`, `zog_snapshots`. Streaks use `calculateStreak`; XP from quests uses `calculateQuestXp` and updates `game_profiles` totals and quest row in `quests` table.
+  - Upgrades: pulled from Supabase `upgradeSystem` (branch `mastery_of_genius`) with fallback hardcoded list; completion tracked via `getPlayerUpgrades` and `completeUpgrade` (auto-completes ZoG if snapshot exists).
+  - Main Quest: progress computed via `buildPlayerStats` and `advanceMainQuestIfEligible`; stage copy comes from `getMainQuestCopy` with stage calculations (`computeNextMainQuestStage`, `isStageComplete`).
+  - Practices: `getSuggestedPractices` maps QoL snapshot to library items (`LIBRARY_ITEMS`); `markPracticeDone` posts completions.
+  - Side Quest picker: uses `LIBRARY_ITEMS` filtered by duration/mode, then Supabase function `suggest-next-quest`; fallback picks random library item.
+- **Gaps vs. unified action shape:** Quest/practice/upgrade surfaces don’t expose `loop`, `vector`, or QoL tags; durations are numeric minutes; rationale for recommendations is free text. Side quest suggestions and practice completions record `practice_type` strings but no vector/QoL alignment. Completion paths for quests/practices/upgrades diverge (different tables and toasts), so aggregation will need adapters before the unified pipeline lands.
 1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
 2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
 3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
