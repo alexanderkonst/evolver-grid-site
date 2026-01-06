@@ -36,6 +36,13 @@
 - **Completion payload audit:** ensure every source’s payload carries the identifiers required by the current Supabase writes and toast flows in `handleQuestComplete`, keeping legacy streak/XP updates intact while the new pipeline lands.【F:src/pages/GameHome.tsx†L379-L424】
 - **Merge-handling checklist:** when reconciling with main, preserve the unified schema keys and fallback ladders defined in `docs/action_mapping.md`, keep the sample fixtures intact unless a source schema changes, and carry forward any upstream XP/timing guardrails into the Phase 0 tests instead of dropping them.
 - **Conflict-resolution playbook:** follow the `docs/action_mapping.md` checklist before opening the PR: resolve duplicate headings, keep canonical field names/default ladders, and re-run the sample fixture comparison so the branch is merge-ready without manual patching.
+
+### Post-rebase next steps (Draft PR guardrails)
+- **Reconfirm clean sync with `main`:** if you rebased with another tool (e.g., Antigravity/Claude), re-open `docs/action_mapping.md` and `docs/refactor_plan.md` to ensure there are no leftover conflict markers or duplicated sections.
+- **Verify canonical content:** check that the unified action matrix, default ladders, and sample fixtures are intact and appear only once; ensure the Phase 0 status snapshot still lists the three completed items and the open items (unified action shape, XP router, DRI/ETA).
+- **Draft PR prep:** prepare a draft PR titled for Phase 0 merge readiness with exactly five bullets summarizing (a) conflict guardrails kept, (b) mapping matrix intact, (c) Phase 0 status snapshot updated, (d) XP/completion payload audit notes retained, and (e) quick-verify steps (open both docs, confirm single matrix + checklist, confirm Phase 0 checkboxes).
+- **Quick verification before submit:** run a doc-only check—open both files locally or via web preview to confirm Markdown renders cleanly and links (e.g., to `docs/action_mapping.md`) are valid; no automated tests required.
+- **Push + open Draft PR:** once verified, push the rebased branch and open the Draft PR; keep the five bullets in the PR description and include a short note that no runtime code changed (docs only) to set reviewer expectations.
 ### Phase 0 working notes (audit + inventories)
 
 **Current game shell audit (GameHome + Navigation + SkillTree)**
