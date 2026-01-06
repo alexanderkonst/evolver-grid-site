@@ -53,6 +53,16 @@ The arc of transformation (implicit narrative, visible as progression):
 
 **"My Next Move" = ACROSS ALL 5 LOOPS.** The unifying element.
 
+### What You Do in Each Space
+
+| Space | What You DO | Question Answered |
+|-------|-------------|-------------------|
+| **Profile** | Discover yourself: take tests, map assets, refine genius | "Who am I?" |
+| **Transformation** | Grow yourself: complete practices, unlock upgrades, level up | "How do I grow?" |
+| **Marketplace** | Monetize yourself: create offers, sell services, earn revenue | "How do I earn?" |
+| **Matchmaking** | Connect yourself: find geniuses, teams, missions, orgs | "Who are my people?" |
+| **Venture Co-op** | Scale yourself: join collective ventures, build together | "What can we build?" |
+
 ---
 
 ## The Core Insight
