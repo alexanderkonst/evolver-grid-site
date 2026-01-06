@@ -214,29 +214,43 @@ Critical review of what we built. Outcomes:
 
 **Location**: Network School, Forest City, Malaysia
 
-### What We've Done So Far
+### What We've Accomplished
 
 | Item | Description |
 |------|-------------|
 | **1% Better Principle** | Added to gamification mechanics |
-| **Growth Paths v4** | Renamed from Vector Sequences, added ZoG Activation |
-| **Genius Sequence Updated** | Steps 1-14 with all items (no "Later" section) |
-| **Practice Anatomy** | LEARN → EXPERIENCE → INTEGRATE |
-| **Custom Practice Clarified** | Player picks params, AI creates combo |
-| **Design Principles Consolidated** | All principles now in `game_design_principles.md` |
-| **Refactor Plan Reviewed** | Gave feedback to Codex (5 loops, first action, 1% better) |
+| **Growth Paths v6** | Clean transformational upgrades with unlock logic |
+| **Game Spaces** | NEW doc: capabilities in 5 spaces (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op) |
+| **Key Distinction** | Growth Paths (you change) vs Game Spaces (you act) |
+| **Buildings → Spaces** | Universal terminology change |
+| **Core Insight Captured** | "Life results ← Self-development" |
+| **Journey Pattern** | Same start → personalized divergence |
+| **Language Principles** | Consistency + Universality added to design principles |
 
-### Key Clarifications
-- **Growth Paths** = sequences of upgrades on 5 vectors
-- **Loop Features** = tools in 5 buildings (Mission Discovery, Matchmaking, etc.)
-- These are different things — don't conflate
+### Key Architectural Clarity
+
+| Growth Paths | Game Spaces |
+|--------------|-------------|
+| Personal transformation | Game capabilities |
+| Sequential progression | Always available |
+| You change | You act |
+| Unlock through effort | Available on entry |
+
+**Matchmaking, Asset Mapping, etc.** = Features in Game Spaces (available from day 1)
+**Not** steps to unlock in a growth path.
 
 ### In Progress
-- Working through Growth Paths with Alexander
+- Alexander working on Growth Paths content
+
+### Next Steps
+1. Finish Growth Paths content (all 5 paths)
+2. User Flows (screens)
+3. Module scoping
 
 ---
 
-*Session continues...*
+*Session continues (~4pm)*
+
 
 
 
