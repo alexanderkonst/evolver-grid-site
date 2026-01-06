@@ -1,19 +1,39 @@
-# Roadmap: 30-Day Sprint
+# Roadmap: 26-Day Sprint
 
-> Jan 6 - Jan 30, 2025 | Network School, Forest City, Malaysia
+> Jan 4 - Jan 29, 2025 | Network School, Forest City, Malaysia
 
-*Last updated: 2025-01-06 (Day 3 Afternoon)*
+*Last updated: 2025-01-06 (Day 3, 4:45pm)*
+
+---
+
+## Sprint Reality Check
+
+| Metric | Value |
+|--------|-------|
+| **Sprint start** | Jan 4, 2025 |
+| **Sprint end** | Jan 29, 2025 (fly out Jan 30) |
+| **Total days** | 26 days |
+| **Days worked** | 2.5 (Jan 3 partial, Jan 4 half, Jan 5 full, Jan 6 half so far) |
+| **Days remaining** | 23 days |
+
+### Day-by-Day Reality
+- Jan 1: Flew in
+- Jan 2: Orienting, logistics (no work)
+- Jan 3: Started working (half day)
+- Jan 4: Birthday (half day)
+- Jan 5: Full day
+- Jan 6: Today (ongoing)
 
 ---
 
 ## Sprint Overview
 
-| Week | Focus | Status |
-|------|-------|--------|
-| Week 1 (Jan 6-12) | Architecture + Growth Paths + User Flows | 🟡 In progress |
-| Week 2 (Jan 13-19) | MVP Build | ⏳ |
-| Week 3 (Jan 20-26) | User Testing with Pilots | ⏳ |
-| Week 4 (Jan 27-30) | Visibility, Pitching, Pilots confirmed | ⏳ |
+| Week | Dates | Focus | Status |
+|------|-------|-------|--------|
+| Week 1 | Jan 4-10 | Architecture + Paths + Flows | 🟡 In progress |
+| Week 2 | Jan 11-17 | MVP Build | ⏳ |
+| Week 3 | Jan 18-24 | User Testing with Pilots | ⏳ |
+| Week 4 | Jan 25-29 | Visibility, Pitching, Pilots confirmed | ⏳ |
 
 ---
 
@@ -26,20 +46,16 @@
 - [x] Key Distinction: Growth Paths (you change) vs Game Spaces (you act)
 - [x] Core Insight: "Life results ← Self-development"
 - [x] Journey Pattern: Same start → personalized divergence
-- [x] Universal language: Buildings → Spaces, Vectors → Growth Paths
+- [x] Language Principles: Consistency + Universality
 
 ### Documentation
-- [x] `game_architecture.md` — core structure
-- [x] `game_design_principles.md` — single source for principles
-- [x] `growth_paths.md` — transformational upgrades
-- [x] `game_spaces.md` — capabilities per space
-- [x] `session_log.md` — daily progress
+- [x] `game_architecture.md`
+- [x] `game_design_principles.md`
+- [x] `growth_paths.md`
+- [x] `game_spaces.md`
+- [x] `pitch_deck_nuggets.md` (NEW)
 - [x] Customer Journey Map v5
-
-### Language Principles
-- [x] Consistency: same term for same concept everywhere
-- [x] Universality: works for spiritual, web3, corporate communities
-- [x] 1% Better: compound growth that accelerates
+- [x] Session log
 
 ---
 
@@ -73,18 +89,14 @@
 
 ---
 
-## Design Principles (Reference)
+## 🚀 End-of-Sprint Vision
 
-| # | Principle |
-|---|-----------|
-| 1 | One Next Move — Never overwhelm |
-| 2 | First action = 1-3 min easy win |
-| 3 | Every action = XP |
-| 4 | Celebratory beats at every transition |
-| 5 | 1% better: daily → hourly → minute-level growth |
-| 6 | Consistency + Universality in language |
-| 7 | Growth Paths (you change) vs Game Spaces (you act) |
+- MVP tested by 10-50 real users
+- 2-3 pilot communities identified (Preroda, etc.)
+- Network School visibility: Balaji, NS team pitched
+- Clear data on what works
+- Builder outreach: Adam Polo, Gian Andrea, Core Nexus, Symbiosis, Futura
 
 ---
 
-*30-Day Sprint in progress. Day 3 of 24.*
+*26-Day Sprint in progress. Day 3 of 26.*
