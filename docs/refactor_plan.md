@@ -29,7 +29,7 @@
 3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
 4) **Align XP router:** confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
 5) **Owner & rollout doc:** assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
-6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source.
+6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source. ✅ See `docs/action_mapping.md` for the canonical mapping matrix, defaults, validation rules, and aggregator test fixtures.
 
 ## Phase 1 — UI Shell Swap (Daily Loop v2)
 [ ] Layout renders behind `DAILY_LOOP_V2`
