@@ -26,25 +26,25 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ## Key Architectural Distinction
 
-| Growth Paths | Building Features |
-|--------------|-------------------|
+| Growth Paths | Game Spaces |
+|--------------|-------------|
 | Personal transformation | Game capabilities |
 | Sequential progression | Always available |
 | You change | You act |
 | Unlock through effort | Available on entry |
-| 5 paths (Genius, Spirit, Mind, Emotions, Body) | 5 buildings (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op) |
+| 5 paths (Genius, Spirit, Mind, Emotions, Body) | 5 spaces (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op) |
 
 **Growth Paths** = how you develop yourself → [growth_paths.md](./growth_paths.md)
-**Building Features** = what you can DO → [building_features.md](./building_features.md)
+**Game Spaces** = what you can DO → [game_spaces.md](./game_spaces.md)
 
 ---
 
-## The Player Journey (5 Loops = 5 Buildings)
+## The Player Journey (5 Loops = 5 Spaces)
 
 The arc of transformation (implicit narrative, visible as progression):
 
-| Step | Journey | Loop/Building | What Happens |
-|------|---------|---------------|--------------|
+| Step | Journey | Loop/Space | What Happens |
+|------|---------|------------|--------------|
 | 1 | KNOW YOURSELF | Profile | ZoG, tests, assets, all self-data |
 | 2 | MASTER YOURSELF | Transformation | Practices, 5 growth paths, QoL tracking |
 | 3 | MONETIZE YOUR GENIUS | Marketplace | Offers, buying/selling, revenue |
@@ -171,7 +171,7 @@ SAME START ───────────────────────
 
 ---
 
-## Five Core Loops (= 5 Buildings)
+## Five Core Loops (= 5 Spaces)
 
 ### 1. Profile Loop — KNOW YOURSELF
 *Tell AI who you are*
@@ -393,18 +393,19 @@ Each module is a scene the game can send the player into:
 
 ## Digital Village Concept (Future Game Screen)
 
+
 *Decision made: Jan 5, 2025. Updated: Jan 6, 2025*
 
-**Metaphor**: A village with buildings. Each building = one loop.
+**Metaphor**: A village with spaces. Each space = one loop.
 
-**5 Buildings (= 5 Loops = 5 Journey Steps):**
-| Building | Loop | What You Do There |
-|----------|------|-------------------|
-| **Profile Hall** | Profile | ZoG, tests, assets, all self-data |
-| **Training Grounds** | Transformation | Practices, 5 vectors, QoL tracking |
-| **Marketplace** | Marketplace | Offers, buying/selling, revenue |
-| **Match Tower** | Matchmaking | Find geniuses, teams, assets, missions, orgs |
-| **Co-op Lodge** | Venture Co-op | Collective wealth, studio services |
+**5 Spaces (= 5 Loops = 5 Journey Steps):**
+| Space | Loop | What You Do There |
+|-------|------|-------------------|
+| **Profile Space** | Profile | ZoG, tests, assets, all self-data |
+| **Transformation Space** | Transformation | Practices, 5 growth paths, QoL tracking |
+| **Marketplace Space** | Marketplace | Offers, buying/selling, revenue |
+| **Matchmaking Space** | Matchmaking | Find geniuses, teams, assets, missions, orgs |
+| **Venture Co-op Space** | Venture Co-op | Collective wealth, studio services |
 
 **Themeable Villages (for White-Label):**
 - Ascension/spiritual village
