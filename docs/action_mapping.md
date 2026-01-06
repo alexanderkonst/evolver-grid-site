@@ -32,6 +32,11 @@ This matrix documents how each current action producer maps into the unified act
 - **Locks/prereqs:** always normalize to `{ type: "upgrade"|"quest"|"practice", id/code, hint? }[]`. When source lacks prereq data, emit empty array and `lock_state: "unlocked"`.
 - **Validation:** reject actions missing `id`, `type`, `title`, or `duration`. Soft-warn (but keep) when `qol_domain` or `intensity/mode` is missing—aggregator will auto-fill. Deduplicate by `id` and prefer the most specific `vector` when merging duplicates.
 
+### Merge-resolution guardrails
+- **Canonical enums + field names:** when resolving conflicts with other branches, keep the unified schema keys as written here (`type`, `loop`, `vector`, `qol_domain`, `duration`, `intensity`, `why_recommended`, `completion_payload`, `prereq`). If an upstream change introduces alternative casing or naming, normalize it here instead of renaming the unified fields.
+- **Default precedence:** if another branch introduces new defaults (e.g., a different duration bucket or QoL inference), prefer the fallback order documented above and add the upstream rule as an additional note instead of replacing the existing ladder.
+- **Sample payloads as truth:** during conflict resolution, keep the sample fixtures below intact; adjust them only when a source schema change requires it. This keeps aggregator tests stable across merges.
+
 ## Mapping Matrix by Source (field-level)
 
 | Unified field | `upgradeSystem.ts` | `practiceSystem.ts` | `mainQuest.ts` | `modules/library/libraryContent.ts` | Validation & defaults |
