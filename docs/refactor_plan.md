@@ -35,6 +35,7 @@
 - **XP router alignment:** map the unified action payload to existing XP helpers so the completion handler can reuse `calculateQuestXp` bucketing and vector-specific `awardXp` updates (path → `xp_*` columns) without divergent logic.【F:src/pages/GameHome.tsx†L379-L424】【F:src/lib/xpSystem.ts†L29-L90】
 - **Completion payload audit:** ensure every source’s payload carries the identifiers required by the current Supabase writes and toast flows in `handleQuestComplete`, keeping legacy streak/XP updates intact while the new pipeline lands.【F:src/pages/GameHome.tsx†L379-L424】
 - **Merge-handling checklist:** when reconciling with main, preserve the unified schema keys and fallback ladders defined in `docs/action_mapping.md`, keep the sample fixtures intact unless a source schema changes, and carry forward any upstream XP/timing guardrails into the Phase 0 tests instead of dropping them.
+- **Conflict-resolution playbook:** follow the `docs/action_mapping.md` checklist before opening the PR: resolve duplicate headings, keep canonical field names/default ladders, and re-run the sample fixture comparison so the branch is merge-ready without manual patching.
 ### Phase 0 working notes (audit + inventories)
 
 **Current game shell audit (GameHome + Navigation + SkillTree)**

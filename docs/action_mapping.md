@@ -32,10 +32,17 @@ This matrix documents how each current action producer maps into the unified act
 - **Locks/prereqs:** always normalize to `{ type: "upgrade"|"quest"|"practice", id/code, hint? }[]`. When source lacks prereq data, emit empty array and `lock_state: "unlocked"`.
 - **Validation:** reject actions missing `id`, `type`, `title`, or `duration`. Soft-warn (but keep) when `qol_domain` or `intensity/mode` is missing—aggregator will auto-fill. Deduplicate by `id` and prefer the most specific `vector` when merging duplicates.
 
-### Merge-resolution guardrails
+### Merge-resolution guardrails (conflict-free canonical copy)
 - **Canonical enums + field names:** when resolving conflicts with other branches, keep the unified schema keys as written here (`type`, `loop`, `vector`, `qol_domain`, `duration`, `intensity`, `why_recommended`, `completion_payload`, `prereq`). If an upstream change introduces alternative casing or naming, normalize it here instead of renaming the unified fields.
 - **Default precedence:** if another branch introduces new defaults (e.g., a different duration bucket or QoL inference), prefer the fallback order documented above and add the upstream rule as an additional note instead of replacing the existing ladder.
 - **Sample payloads as truth:** during conflict resolution, keep the sample fixtures below intact; adjust them only when a source schema change requires it. This keeps aggregator tests stable across merges.
+
+### Conflict-resolution checklist (use when rebasing/merging with `main`)
+1. **Open both versions** of `docs/action_mapping.md` and **keep the unified field names + default ladders** from this copy. If upstream introduces new names, map them into the canonical fields in a short note rather than overwriting the canonical labels.
+2. **Compare sample fixtures** to upstream. If upstream added new fixtures, append them, but **do not remove the existing four reference payloads** so aggregator tests retain a stable baseline.
+3. **Re-run validation notes**: ensure the validation bullets above mention any new required fields introduced upstream (e.g., additional `loop` tags). Add new rules as additive notes, never as replacements.
+4. **Set `vector`/`duration` defaults explicitly** in the merged file if upstream omitted them. The fallback ladders above remain the authoritative order.
+5. **Save with normalized spacing**: avoid duplicate headings or blank lines left from conflict markers; ensure the matrix and the checklist each appear once.
 
 ## Mapping Matrix by Source (field-level)
 
