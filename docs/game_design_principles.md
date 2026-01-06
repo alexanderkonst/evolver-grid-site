@@ -55,6 +55,11 @@ A basic narrative arc (Main Quest) gives meaning to the journey. Gamify as much 
 ### 12. 1% Better Principle
 Compound growth that accelerates: 1% better every day → every hour → every minute. Actions can be as small as 1 minute.
 
+### 13. Language Principles
+- **Consistency**: Use the same term for the same concept everywhere. Don't mix terms.
+- **Universality**: Use language that works for any community (spiritual, web3, crypto, corporate).
+- Example: "Growth Paths" not "Vectors", "Immersive Experience" not "Meditation"
+
 ---
 
 ## Growth Path Principles
