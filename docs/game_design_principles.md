@@ -2,7 +2,7 @@
 
 > Reality RPG: Core principles that make the game actually work
 
-*This is a reference document for all game design decisions. Every feature should align with these principles.*
+*This is the SINGLE SOURCE for all design principles. Every feature should align with these.*
 
 ---
 
@@ -52,32 +52,67 @@ Home screen resolves to ONE action. Choice anxiety = death. Simplicity = engagem
 ### 11. Storyline + Gamification
 A basic narrative arc (Main Quest) gives meaning to the journey. Gamify as much as possible without feeling cheap.
 
----
-
-## The Four Loops
-
-Every game session should activate at least one of these:
-
-| Loop | Name | What Happens |
-|------|------|--------------|
-| 1 | **Character Creation** | Self-understanding through profiling (ZoG + QoL + Tests) |
-| 2 | **Character Transformation** | Real change through consistent practice |
-| 3 | **Genius Monetization** | Turn genius into sustainable value exchange |
-| 4 | **Multiplayer** | Find your people, create together |
+### 12. 1% Better Principle
+Compound growth that accelerates: 1% better every day → every hour → every minute. Actions can be as small as 1 minute.
 
 ---
 
-## Inner ↔ Outer Mapping
+## Growth Path Principles
+
+Each step is an **upgrade** with a real shift:
+- Something SHIFTS in the person
+- They can FEEL the difference
+- They can NAME the transformation
+- Unlock = visible progress
+
+**Terminology:**
+- Use "Immersive Experience" or "Activation" — not "meditation"
+- Use "Upgrade" or "Unlock" — not "exercise"
+
+---
+
+## Practice Anatomy
+
+Every meaningful practice follows this structure:
+
+```
+LEARN → EXPERIENCE → INTEGRATE
+(see)    (live through)  (embody)
+```
+
+**Practice bundles:**
+- Morning Practice
+- Evening Practice
+- Ad-hoc Practice
+- Custom Practice (player picks parameters, AI creates the combination)
+
+Practices can be 5 min or 60 min — structure stays the same.
+
+---
+
+## The Five Loops (= 5 Buildings)
+
+| Loop | Building | What Happens |
+|------|----------|--------------|
+| 1 | **Profile** | Self-understanding (ZoG + QoL + Tests + Assets) |
+| 2 | **Transformation** | Growth through practice (5 vectors) |
+| 3 | **Marketplace** | Monetization (offers, sales, revenue) |
+| 4 | **Matchmaking** | Connections (geniuses, teams, orgs) |
+| 5 | **Venture Co-op** | Collective building (co-op, tools) |
+
+---
+
+## Self-Development → Life Results
 
 | Inner (5 Vectors) | Outer (8 Domains) |
 |-------------------|-------------------|
 | Spirit | Happiness, Growth |
 | Mind | Impact, Growth |
 | Emotions | Love, Social Ties, Happiness |
-| Uniqueness | Impact, Wealth |
+| Genius | Impact, Wealth |
 | Body | Health, Home |
 
-*Inner development drives outer life improvement. This is the transformation engine.*
+*Self-development drives life results. This is the transformation engine.*
 
 ---
 
@@ -89,8 +124,10 @@ Every game session should activate at least one of these:
 ❌ Dead-end screens with no next action
 ❌ Guilt-inducing mechanics
 ❌ Complexity before earned
+❌ Calling things "meditation" instead of "activation"
+❌ Spreading design principles across multiple docs
 
 ---
 
-*Game Design Principles v1.0*
-*Last updated: 2025-01-03*
+*Game Design Principles v2.0*
+*Last updated: 2025-01-06*
