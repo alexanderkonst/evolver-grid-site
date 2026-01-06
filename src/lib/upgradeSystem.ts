@@ -145,11 +145,12 @@ export async function getUpgradesByBranch(
     return [];
   }
 
-  // Map database result to Upgrade type with proper typing
+  // Map database result to Upgrade type
+  // Note: prereqs and unlock_effects are not in DB schema yet, using defaults
   return (data || []).map(row => ({
     ...row,
-    prereqs: row.prereqs || [],
-    unlock_effects: row.unlock_effects as UnlockEffects | undefined,
+    prereqs: [] as string[],
+    unlock_effects: undefined as UnlockEffects | undefined,
   }));
 }
 
@@ -263,10 +264,11 @@ export async function getAllUpgrades(): Promise<Upgrade[]> {
     return [];
   }
 
+  // Note: prereqs and unlock_effects are not in DB schema yet, using defaults
   return (data || []).map(row => ({
     ...row,
-    prereqs: row.prereqs || [],
-    unlock_effects: row.unlock_effects as UnlockEffects | undefined,
+    prereqs: [] as string[],
+    unlock_effects: undefined as UnlockEffects | undefined,
   }));
 }
 

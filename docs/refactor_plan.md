@@ -49,6 +49,12 @@
   - Practices: `getSuggestedPractices` maps QoL snapshot to library items (`LIBRARY_ITEMS`); `markPracticeDone` posts completions.
   - Side Quest picker: uses `LIBRARY_ITEMS` filtered by duration/mode, then Supabase function `suggest-next-quest`; fallback picks random library item.
 - **Gaps vs. unified action shape:** Quest/practice/upgrade surfaces don’t expose `loop`, `vector`, or QoL tags; durations are numeric minutes; rationale for recommendations is free text. Side quest suggestions and practice completions record `practice_type` strings but no vector/QoL alignment. Completion paths for quests/practices/upgrades diverge (different tables and toasts), so aggregation will need adapters before the unified pipeline lands.
+1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
+2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
+3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
+4) **Align XP router:** confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
+5) **Owner & rollout doc:** assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
+6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source. ✅ See `docs/action_mapping.md` for the canonical mapping matrix, defaults, validation rules, and aggregator test fixtures.
 
 ## Phase 1 — UI Shell Swap (Daily Loop v2)
 [ ] Layout renders behind `DAILY_LOOP_V2`
