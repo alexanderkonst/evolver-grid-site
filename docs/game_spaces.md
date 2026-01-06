@@ -1,6 +1,6 @@
-# Building Features
+# Game Spaces
 
-> Capabilities available in each of the 5 game buildings
+> Capabilities available in each of the 5 game spaces
 
 *Updated: 2025-01-06*
 
@@ -8,19 +8,19 @@
 
 ## Key Distinction
 
-| Growth Paths | Building Features |
-|--------------|-------------------|
+| Growth Paths | Game Spaces |
+|--------------|-------------|
 | Personal transformation | Game capabilities |
 | Sequential progression | Always available |
 | You change | You act |
 | Unlock through effort | Available on entry (quality improves with profile depth) |
 
 **Growth Paths** = how you develop yourself
-**Building Features** = what you can do in the game
+**Game Spaces** = what you can do in the game
 
 ---
 
-## Profile Building
+## Profile Space
 
 *Self-understanding — know yourself deeper*
 
@@ -37,7 +37,7 @@
 
 ---
 
-## Transformation Building
+## Transformation Space
 
 *Growth through practice — develop across 5 growth paths*
 
@@ -51,7 +51,7 @@
 
 ---
 
-## Marketplace Building
+## Marketplace Space
 
 *Monetization — turn genius into revenue*
 
@@ -64,7 +64,7 @@
 
 ---
 
-## Matchmaking Building
+## Matchmaking Space
 
 *Connections — find your people*
 
@@ -82,7 +82,7 @@
 
 ---
 
-## Venture Co-op Building
+## Venture Co-op Space
 
 *Collective building — build together at scale*
 
@@ -117,5 +117,5 @@ SAME START ───────────────────────
 
 ---
 
-*Building Features v1.0*
+*Game Spaces v1.0*
 *Updated: 2025-01-06*

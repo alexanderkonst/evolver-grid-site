@@ -95,12 +95,12 @@ Practices can be 5 min or 60 min — structure stays the same.
 
 ---
 
-## The Five Loops (= 5 Buildings)
+## The Five Loops (= 5 Spaces)
 
-| Loop | Building | What Happens |
-|------|----------|--------------|
+| Loop | Space | What Happens |
+|------|-------|--------------|
 | 1 | **Profile** | Self-understanding (ZoG + QoL + Tests + Assets) |
-| 2 | **Transformation** | Growth through practice (5 vectors) |
+| 2 | **Transformation** | Growth through practice (5 growth paths) |
 | 3 | **Marketplace** | Monetization (offers, sales, revenue) |
 | 4 | **Matchmaking** | Connections (geniuses, teams, orgs) |
 | 5 | **Venture Co-op** | Collective building (co-op, tools) |

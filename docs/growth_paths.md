@@ -9,9 +9,9 @@
 ## Key Distinction
 
 **Growth Paths** = personal transformation (you change)
-**Building Features** = game capabilities (you act)
+**Game Spaces** = game capabilities (you act)
 
-*See [Building Features](./building_features.md) for what you can DO in the game.*
+*See [Game Spaces](./game_spaces.md) for what you can DO in the game.*
 
 ---
 
