@@ -38,6 +38,11 @@
 [x] Unified action shape agreed and mapped
 [x] Legacy → unified matrix drafted
 [x] Current shell and data flows audited
+## Phase 0 — Groundwork (1–2 days)
+[ ] DRI + ETA logged in `docs/roadmap.md`
+[ ] Unified action shape agreed and mapped
+[ ] Legacy → unified matrix drafted
+[ ] Current shell and data flows audited
 1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
 2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
 3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`. Ship this early so tests/fixtures can import a single contract.
@@ -59,6 +64,17 @@
 [x] Layout renders behind `DAILY_LOOP_V2`
 [x] Legacy cards intact under flag-off
 [x] Placeholder recommendation flow working
+1) **Audit current game shell** (`src/pages/GameHome.tsx`, `Navigation`, `SkillTree`): map which sections feed Main/Side/Upgrade cards and how XP/streaks are computed; document in the PR.
+2) **Inventory action producers:** upgrades (`lib/upgradeSystem.ts`), practices (`lib/practiceSystem.ts`), quests (`lib/mainQuest.ts`), and library items; note field gaps vs. unified schema.
+3) **Define unified action shape** (new `src/types/actions.ts`): `id`, `type`, `loop`, `title`, `vector`, `qol_domain`, `duration`, `intensity/mode`, `why_recommended`, `source`, `completion_payload`, `prereq/locks`.
+4) **Align XP router:** confirm XP per vector fields in `game_profiles` and `calculateQuestXp` can consume the unified action payload.
+5) **Owner & rollout doc:** assign DRI, deadlines, and rollback trigger in `docs/roadmap.md` (add small section).
+6) **Legacy → unified mapping contract:** add a short matrix in this doc (or `docs/action_mapping.md`) showing how quests, practices, upgrades, and library items populate the unified shape (default vector/QoL, duration buckets, missing data handling) with one sample payload per source. ✅ See `docs/action_mapping.md` for the canonical mapping matrix, defaults, validation rules, and aggregator test fixtures.
+
+## Phase 1 — UI Shell Swap (Daily Loop v2)
+[ ] Layout renders behind `DAILY_LOOP_V2`
+[ ] Legacy cards intact under flag-off
+[ ] Placeholder recommendation flow working
 1) **Create layout component** (`src/components/game/DailyLoopLayout.tsx`): sections for Me (profile snapshot + streak), My Life (QoL bottlenecks, recent wins), My Next Move (one primary action + rationale + quick actions), and Freedom Mode trigger.
 2) **States & errors:** design loading/skeleton, empty state (no recommendation), and error fallback with retry; ensure My Next Move always has a deterministic placeholder.
 3) **Wire into `GameHome`:** replace Main/Side/Upgrade rendering with the new layout while reusing data loaders. Keep legacy cards behind a `DAILY_LOOP_V2` feature flag.
