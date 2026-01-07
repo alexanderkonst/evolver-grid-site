@@ -128,6 +128,8 @@ const GameHome = () => {
   const [user, setUser] = useState<any>(null);
   const [celebration, setCelebration] = useState<{ title: string; detail?: string } | null>(null);
   const previousProfileRef = useRef<{ xp_total?: number; level?: number } | null>(null);
+  const loadStartRef = useRef<number | null>(null);
+  const lastLoadDurationRef = useRef<number | null>(null);
 
   // Upgrades state
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
@@ -173,6 +175,7 @@ const GameHome = () => {
 
   const loadGameData = async () => {
     try {
+      loadStartRef.current = performance.now();
       setIsLoading(true);
       setActionError(null);
       const id = await getOrCreateGameProfileId();
@@ -322,6 +325,9 @@ const GameHome = () => {
       });
     } finally {
       setIsLoading(false);
+      if (loadStartRef.current !== null) {
+        lastLoadDurationRef.current = Math.round(performance.now() - loadStartRef.current);
+      }
     }
   };
 
@@ -621,9 +627,29 @@ const GameHome = () => {
       duration: recommendationSet.primary.duration,
       mode: recommendationSet.primary.mode,
       selectedAt: new Date().toISOString(),
-      metadata: { rationale: recommendationSet.rationale, intent: "presented" },
+      metadata: {
+        rationale: recommendationSet.rationale,
+        intent: "presented",
+        loadDurationMs: lastLoadDurationRef.current,
+      },
     });
   }, [profileId, recommendationSet]);
+
+  useEffect(() => {
+    if (!profileId || !actionError) return;
+    logActionEvent({
+      actionId: "daily-loop:recommendation_error",
+      profileId,
+      source: "src/pages/GameHome.tsx",
+      loop: "profile",
+      selectedAt: new Date().toISOString(),
+      metadata: {
+        intent: "recommendation_error",
+        message: actionError,
+        loadDurationMs: lastLoadDurationRef.current,
+      },
+    });
+  }, [actionError, profileId]);
 
   const freedomModeUrl = useMemo(() => {
     const params = new URLSearchParams({ from: "daily-loop" });
