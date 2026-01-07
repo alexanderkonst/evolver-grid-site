@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame,
@@ -126,6 +126,8 @@ const GameHome = () => {
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [user, setUser] = useState<any>(null);
+  const [celebration, setCelebration] = useState<{ title: string; detail?: string } | null>(null);
+  const previousProfileRef = useRef<{ xp_total?: number; level?: number } | null>(null);
 
   // Upgrades state
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
@@ -163,6 +165,12 @@ const GameHome = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (!celebration) return;
+    const timeout = setTimeout(() => setCelebration(null), 6000);
+    return () => clearTimeout(timeout);
+  }, [celebration]);
+
   const loadGameData = async () => {
     try {
       setIsLoading(true);
@@ -185,6 +193,26 @@ const GameHome = () => {
       if (!profileData) return;
 
       setProfile(profileData);
+      const previousProfile = previousProfileRef.current;
+      if (previousProfile) {
+        const xpDelta = profileData.xp_total - (previousProfile.xp_total ?? 0);
+        const levelDelta = profileData.level - (previousProfile.level ?? 0);
+        if (levelDelta > 0) {
+          setCelebration({
+            title: "Level up!",
+            detail: `You reached level ${profileData.level}.`,
+          });
+        } else if (xpDelta > 0) {
+          setCelebration({
+            title: `+${xpDelta} XP`,
+            detail: "Momentum unlocked.",
+          });
+        }
+      }
+      previousProfileRef.current = {
+        xp_total: profileData.xp_total,
+        level: profileData.level,
+      };
 
       // Use database upgrades or fallback to hardcoded onboarding upgrades
       const fallbackUpgrades: Upgrade[] = [
@@ -773,6 +801,7 @@ const GameHome = () => {
                 streakDays={profile?.current_streak_days}
                 archetypeTitle={zogSnapshot?.archetype_title}
                 lowestDomains={lowestDomains}
+                celebration={celebration}
                 recommendedAction={recommendedAction}
                 isLoadingAction={isLoadingQuest}
                 actionError={actionError}
