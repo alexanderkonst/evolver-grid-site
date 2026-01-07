@@ -147,6 +147,43 @@
 
 ---
 
+## Screen 5.5: Core Insight — Self-Development → Life Results
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│    What you grow inside             │
+│    shows up in your life.           │
+│                                     │
+│  ┌──────────────────────────────┐   │
+│  │                              │   │
+│  │   SELF-DEVELOPMENT           │   │
+│  │   ─────────────────          │   │
+│  │   Spirit · Mind · Emotions   │   │
+│  │   Genius · Body              │   │
+│  │                              │   │
+│  │           ↓                  │   │
+│  │                              │   │
+│  │   LIFE RESULTS               │   │
+│  │   ─────────────              │   │
+│  │   Wealth · Health · Love     │   │
+│  │   Happiness · Impact         │   │
+│  │   Growth · Social · Home     │   │
+│  │                              │   │
+│  └──────────────────────────────┘   │
+│                                     │
+│    Want better results?             │
+│    Develop yourself.                │
+│                                     │
+│    ┌─────────────────────┐          │
+│    │    Enter →          │          │
+│    └─────────────────────┘          │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+---
+
 ## Screen 6: Game World (Daily Loop v2)
 
 ```
