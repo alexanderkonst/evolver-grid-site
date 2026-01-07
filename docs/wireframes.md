@@ -352,11 +352,11 @@
 │                                     │
 │  ┌── GROWTH PATHS ───────────────┐  │
 │  │                               │  │
-│  │  Spirit    Stage 4            │  │
-│  │  Mind      Stage 2            │  │
-│  │  Emotions  Stage 1            │  │
-│  │  Genius    Stage 6            │  │
-│  │  Body      Stage 1            │  │
+│  │  Spirit    ●●●●○○○○ Stage 4   │  │
+│  │  Mind      ●●○○○○○○ Stage 2   │  │
+│  │  Emotions  ●○○○○○○○ Stage 1   │  │
+│  │  Genius    ●●●●●●○○ Stage 6   │  │
+│  │  Body      ●○○○○○○○ Stage 1   │  │
 │  │                               │  │
 │  │  [View all paths →]           │  │
 │  └───────────────────────────────┘  │
