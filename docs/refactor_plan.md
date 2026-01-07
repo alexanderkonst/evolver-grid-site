@@ -90,7 +90,7 @@
 ## Phase 4 — Onboarding & QoL Flow Polish
 [ ] Onboarding writes all required fields
 [ ] Celebrations show on completion/level-up
-[ ] Freedom Mode logs override picks
+[x] Freedom Mode logs override picks
 1) **Onboarding refinements:** ensure Zone of Genius → QoL snapshot → portal entry writes required fields for the recommendation engine (growth path affinities, QoL stages).
 2) **Celebratory beats:** add lightweight animations or badges in the Me section after completing an action or leveling up.
 3) **Freedom Mode:** implement a filtered library explorer that still tags selections with the unified action shape for tracking; log voluntary overrides.
