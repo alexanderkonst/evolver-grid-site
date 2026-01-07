@@ -155,6 +155,7 @@ const Step4GenerateSnapshot = () => {
             .from('game_profiles')
             .update({
               last_zog_snapshot_id: snapshotData.id,
+              zone_of_genius_completed: true,
               xp_total: newXpTotal,
               level: newLevel,
               updated_at: new Date().toISOString(),
@@ -175,6 +176,7 @@ const Step4GenerateSnapshot = () => {
           .from('game_profiles')
           .update({
             last_zog_snapshot_id: snapshotData.id,
+            zone_of_genius_completed: true,
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);
