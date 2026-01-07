@@ -88,7 +88,7 @@
 **Phase 3 kickoff notes:** Added a minimal growth path steps scaffold in `src/modules/growth-paths/index.ts`, mapped it to unified actions, introduced a progress-based selector, and added a progress updater on completion.
 
 ## Phase 4 — Onboarding & QoL Flow Polish
-[ ] Onboarding writes all required fields
+[x] Onboarding writes all required fields
 [ ] Celebrations show on completion/level-up
 [x] Freedom Mode logs override picks
 1) **Onboarding refinements:** ensure Zone of Genius → QoL snapshot → portal entry writes required fields for the recommendation engine (growth path affinities, QoL stages).
