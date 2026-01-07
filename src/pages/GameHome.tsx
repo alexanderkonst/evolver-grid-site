@@ -1195,7 +1195,19 @@ const GameHome = () => {
                         {QUEST_DURATIONS.map(dur => (
                           <button
                             key={dur}
-                            onClick={() => setSelectedDuration(dur)}
+                            onClick={() => {
+                              setSelectedDuration(dur);
+                              if (profileId) {
+                                logActionEvent({
+                                  actionId: "side-quest-duration",
+                                  profileId,
+                                  source: "src/pages/GameHome.tsx",
+                                  loop: "transformation",
+                                  selectedAt: new Date().toISOString(),
+                                  metadata: { duration: dur },
+                                });
+                              }
+                            }}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedDuration === dur
                               ? 'bg-slate-900 text-white'
                               : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -1214,7 +1226,19 @@ const GameHome = () => {
                         {QUEST_MODES.map(mode => (
                           <button
                             key={mode.id}
-                            onClick={() => setSelectedMode(mode.id)}
+                            onClick={() => {
+                              setSelectedMode(mode.id);
+                              if (profileId) {
+                                logActionEvent({
+                                  actionId: "side-quest-mode",
+                                  profileId,
+                                  source: "src/pages/GameHome.tsx",
+                                  loop: "transformation",
+                                  selectedAt: new Date().toISOString(),
+                                  metadata: { mode: mode.id },
+                                });
+                              }
+                            }}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedMode === mode.id
                               ? 'bg-slate-900 text-white'
                               : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -1276,7 +1300,24 @@ const GameHome = () => {
                       })()}
 
                       {!questCompleted ? (
-                        <Button onClick={handleQuestComplete} className="w-full">
+                        <Button
+                          onClick={() => {
+                            if (profileId) {
+                              logActionEvent({
+                                actionId: `quest:${questSuggestion.main.quest_title.toLowerCase().replace(/\\s+/g, "-")}`,
+                                profileId,
+                                source: "src/pages/GameHome.tsx",
+                                loop: "transformation",
+                                growthPath: "genius",
+                                duration: formatDurationBucket(questSuggestion.main.approx_duration_minutes),
+                                selectedAt: new Date().toISOString(),
+                                metadata: { intent: "complete_side_quest" },
+                              });
+                            }
+                            handleQuestComplete();
+                          }}
+                          className="w-full"
+                        >
                           I completed this quest
                         </Button>
                       ) : (
@@ -1291,6 +1332,16 @@ const GameHome = () => {
                       variant="ghost"
                       className="w-full"
                       onClick={() => {
+                        if (profileId) {
+                          logActionEvent({
+                            actionId: "side-quest-picker",
+                            profileId,
+                            source: "src/pages/GameHome.tsx",
+                            loop: "transformation",
+                            selectedAt: new Date().toISOString(),
+                            metadata: { intent: "choose_different" },
+                          });
+                        }
                         setQuestSuggestion(null);
                         setSelectedDuration(null);
                         setSelectedMode(null);
