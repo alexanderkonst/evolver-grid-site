@@ -2,13 +2,32 @@
 
 > XP, Levels, Reveal Moments, Spaced Repetition, Explainers
 
-*Draft: 2025-01-07*
+*Updated: 2025-01-07 v2.0*
 
 ---
 
-## XP Scheme
+## XP Philosophy
 
-### XP by Action Type
+**The Question:** What unifies XP across all activities (transformation, collaboration, self-understanding)?
+
+**Proposal: Depth of Engagement**
+
+| Dimension | Low XP (5-15) | Medium XP (20-35) | High XP (50+) |
+|-----------|---------------|-------------------|---------------|
+| **Time** | <2 min | 2-15 min | 15+ min |
+| **Depth** | Passive (watch/read) | Active (reflect/do) | Immersive (transform) |
+| **Novelty** | Repeat | New | First-ever |
+
+*XP = Time × Depth × Novelty*
+
+**Examples:**
+- Watch 90s micro-learning (first time) = 2 min × Passive × First = 15 XP
+- Complete breathwork activation (repeat) = 10 min × Immersive × Repeat = 35 XP
+- Complete ZoG test (first) = 5 min × Active × First = 50 XP
+
+---
+
+## XP by Action Type
 
 | Action Type | XP | Rationale |
 |-------------|-----|-----------|
@@ -21,11 +40,29 @@
 | Reflection prompt | 10 | Low effort, high value |
 | Streak bonus (daily) | +5 | Consistency reward |
 
-### XP by Growth Path
+---
 
-Each action tags a Growth Path. XP goes to:
-1. **Total XP** (overall level)
-2. **Path XP** (path-specific progress)
+## Streak Logic
+
+### Grace Period
+
+| Scenario | Result |
+|----------|--------|
+| Complete action today | Streak continues (+1 day) |
+| Miss 1 day | Streak **pauses** (not broken) |
+| Miss 2+ days | Streak resets to 0 |
+
+**Freeze Token:** User earns 1 "streak freeze" per week that allows 1 additional missed day.
+
+### Streak Milestones
+
+| Days | Reward |
+|------|--------|
+| 3 | 🔥 Badge + 50 bonus XP |
+| 7 | 🔥🔥 Badge + 100 bonus XP |
+| 14 | 🔥🔥🔥 Badge + 200 bonus XP |
+| 30 | ⭐ Special badge + 500 bonus XP |
+| 100 | 🏆 Legend badge + 1000 bonus XP |
 
 ---
 
@@ -44,103 +81,88 @@ Each action tags a Growth Path. XP goes to:
 | 9 | 16000 | Elder |
 | 10 | 32000 | Architect |
 
-*Doubling pattern: each level requires 2x the previous.*
-
 ---
 
-## Reveal Moments
+## Reveal Moments — Concrete Specs
 
-### When They Happen
+### Genius Reveal (Peak)
 
-| Moment | Trigger | Effect |
-|--------|---------|--------|
-| Genius Reveal | After ZoG test | Confetti + sound + archetype title |
-| Life Snapshot | After QoL | Radar animation + celebration |
-| Level Up | Crossing threshold | Full-screen flash + sound + new title |
-| Streak Milestone | 3, 7, 14, 30 days | Badge + sound |
-| First Action | Completing first action ever | Special celebration |
-| Path Progress | Completing path step | Subtle glow + XP toast |
+| Element | Spec |
+|---------|------|
+| **Sound** | Rising chime (2s) → Bell flourish |
+| **Visual** | Screen darkens → Archetype title fades in (gold text) → Confetti burst (3s) → Profile card slides up |
+| **Text** | "You are [Archetype Name]" (large, centered) |
+| **Duration** | 5 seconds total |
 
-### Effect Components
+### Life Snapshot (High)
 
-| Component | Options |
-|-----------|---------|
-| **Sound** | Chime (short), Fanfare (level up), Whoosh (transition) |
-| **Visual** | Confetti, Glow, Flash, Pulse, Particle burst |
-| **Text** | Toast notification, Full-screen message, Badge |
-| **Duration** | Micro (0.5s), Short (1-2s), Full (3-5s) |
+| Element | Spec |
+|---------|------|
+| **Sound** | Soft whoosh → Completion chime |
+| **Visual** | Radar chart draws itself (animated, 2s) → Highest domain pulses green → Lowest domain pulses amber |
+| **Text** | "Your life map" (header) |
+| **Duration** | 3 seconds |
 
-### Intensity by Importance
+### Level Up (High)
 
-| Importance | Example | Intensity |
-|------------|---------|-----------|
-| Low | XP toast after action | Micro + toast only |
-| Medium | Streak milestone | Short + sound + badge |
-| High | Level up | Full + fanfare + full-screen |
-| Peak | Genius Reveal | Full + confetti + archetype animation |
+| Element | Spec |
+|---------|------|
+| **Sound** | Fanfare (triumphant, 2s) |
+| **Visual** | Full-screen flash (gold) → New title appears → Particle burst |
+| **Text** | "Level [N]! You are now a [Title]" |
+| **Duration** | 3 seconds |
+
+### First Action (High)
+
+| Element | Spec |
+|---------|------|
+| **Sound** | Victory chime |
+| **Visual** | XP counter animates up → Badge appears |
+| **Text** | "You did it! +[XP] XP" |
+| **Duration** | 2 seconds |
+
+### Path Progress (Low)
+
+| Element | Spec |
+|---------|------|
+| **Sound** | Soft ping |
+| **Visual** | Toast slides in from bottom right |
+| **Text** | "+[XP] XP · [Path Name]" |
+| **Duration** | 2 seconds |
+
+### Recommendation Fallback
+
+If recommendation engine fails:
+> "Finding your next move... Try a conscious breath."
+
+*Show conscious breath action as fallback.*
 
 ---
 
 ## Spaced Repetition
 
-### For Micro-learnings
-
-| Status | Trigger | Next Prompt |
-|--------|---------|-------------|
-| Unwatched | — | Recommend based on path |
-| Watched | After first view | "Rewatch in 3 days" |
-| Rewatched (1) | After 3 days | "Rewatch in 2 weeks" |
-| Rewatched (2) | After 2 weeks | "Rewatch in 1 month" |
-| Mastered | After 1 month | Optional review, no prompt |
-
-### UI Indicator
-
-| Status | Badge |
-|--------|-------|
-| Unwatched | ⬜ Empty |
-| Watched | ✅ Check |
-| Rewatched (1) | ✅✅ Double check |
-| Mastered | 🌟 Star |
+| Status | Next Prompt |
+|--------|-------------|
+| Unwatched | Recommend based on path |
+| Watched | Rewatch in 3 days |
+| Rewatched (1) | Rewatch in 2 weeks |
+| Rewatched (2) | Rewatch in 1 month |
+| Mastered | No prompt |
 
 ---
 
 ## Game Explainers
 
-*Short copy to onboard users to gamified experience*
+> **XP:** Experience Points. Earn by completing actions.
 
-### XP Explainer
-> **What's XP?**
-> Experience Points. You earn them by completing actions. The more you do, the more you grow.
+> **Levels:** Your progress. Level up by earning XP.
 
-### Level Explainer
-> **What are Levels?**
-> Your overall progress. Level up by earning XP. Each level unlocks new titles and capabilities.
+> **Streak:** Days in a row with an action. Miss one? Streak pauses, not breaks.
 
-### Streak Explainer
-> **What's a Streak?**
-> Days in a row you've completed at least one action. Keep it going for bonus XP and milestones.
+> **Growth Paths:** Spirit, Mind, Emotions, Genius, Body.
 
-### Growth Path Explainer
-> **What are Growth Paths?**
-> The 5 dimensions of your development: Spirit, Mind, Emotions, Genius, Body. Each path has its own upgrades.
-
-### My Next Move Explainer
-> **What's My Next Move?**
-> The one action the game recommends right now. Based on your profile, your life, and your progress. Always under 3 minutes to start.
+> **My Next Move:** One recommended action. Under 3 min to start.
 
 ---
 
-## First Session Flow
-
-1. Complete ZoG → **Genius Reveal** (Peak)
-2. Complete QoL → **Life Snapshot** (High)
-3. Enter Game World → "This is your game" (Medium)
-4. Complete First Action → **First Action Celebration** (High)
-5. See XP awarded → Toast (Low)
-6. See streak started → "1 day streak!" (Low)
-
-*Total dopamine hits in first session: 6*
-
----
-
-*Gamification Spec v1.0*
+*Gamification Spec v2.0*
