@@ -28,6 +28,7 @@ interface DailyLoopLayoutProps {
   actionError?: string | null;
   onPrimaryAction?: () => void;
   onRetryAction?: () => void;
+  onFreedomMode?: () => void;
   freedomModeUrl?: string;
 }
 
@@ -185,7 +186,7 @@ export const DailyLoopLayout = ({
                       <ArrowRight className="h-4 w-4" aria-hidden />
                     </BoldText>
                   </Button>
-                  <Button asChild variant="secondary" size="sm">
+                  <Button asChild variant="secondary" size="sm" onClick={onFreedomMode}>
                     <Link to={freedomModeUrl}>Freedom Mode</Link>
                   </Button>
                 </div>
