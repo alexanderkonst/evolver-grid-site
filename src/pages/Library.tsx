@@ -109,6 +109,7 @@ const Library = () => {
           completedAt: new Date().toISOString(),
           metadata: {
             intent: "mark_done",
+            result: "completed",
             origin: fromDailyLoop ? "daily_loop_freedom_mode" : fromGame ? "game" : "library",
           },
         });
