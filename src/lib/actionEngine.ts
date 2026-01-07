@@ -115,8 +115,7 @@ export const aggregateLegacyActions = (inputs: RecommendationInputs): Aggregated
   return { candidates, alternates };
 };
 
-export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[] =>
-  steps.map(step => ({
+const mapGrowthPathStep = (step: GrowthPathStep, stepIndex?: number): UnifiedAction => ({
     id: `sequence:${step.growthPath}:${step.id}`,
     type: "growth_path_step",
     loop: "transformation",
@@ -130,9 +129,13 @@ export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[]
       sourceId: step.id,
       xp: step.xp,
       growthPath: step.growthPath,
+      metadata: stepIndex === undefined ? { version: step.version } : { stepIndex, version: step.version },
     },
     locks: step.draft ? ["draft"] : undefined,
-  }));
+  });
+
+export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[] =>
+  steps.map(step => mapGrowthPathStep(step));
 
 export const buildGrowthPathActionsForProgress = (
   steps: GrowthPathStep[],
@@ -150,7 +153,7 @@ export const buildGrowthPathActionsForProgress = (
       const index = progress[growthPath as keyof GrowthPathProgress] ?? 0;
       const nextStep = availableSteps[index];
       return nextStep
-        ? buildGrowthPathActions([nextStep])[0]
+        ? mapGrowthPathStep(nextStep, index)
         : null;
     })
     .filter((action): action is UnifiedAction => Boolean(action));

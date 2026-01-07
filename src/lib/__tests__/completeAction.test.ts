@@ -16,6 +16,11 @@ vi.mock("@/lib/questCompletion", () => ({
   completeLegacyQuest: vi.fn(async () => ({ success: true, xpAwarded: 10 })),
 }));
 
+const updateGrowthPathProgress = vi.fn(async () => ({ success: true }));
+vi.mock("@/lib/growthPathProgress", () => ({
+  updateGrowthPathProgress: (...args: any[]) => updateGrowthPathProgress(...args),
+}));
+
 describe("completeAction", () => {
   it("awards XP for growth path steps via generic completion", async () => {
     const { completeAction } = await import("@/lib/completeAction");
@@ -27,12 +32,18 @@ describe("completeAction", () => {
         title: "Name your genius edge",
         growthPath: "genius",
         source: "fixtures",
-        completionPayload: { xp: 50 },
+        completionPayload: { xp: 50, metadata: { stepIndex: 0, version: "v1" } },
       },
       { profileId: "profile-1" }
     );
 
     expect(result.success).toBe(true);
     expect(result.xpAwarded).toBe(50);
+    expect(updateGrowthPathProgress).toHaveBeenCalledWith({
+      profileId: "profile-1",
+      growthPath: "genius",
+      stepIndex: 1,
+      version: "v1",
+    });
   });
 });

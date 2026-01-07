@@ -190,6 +190,7 @@ describe("actionEngine", () => {
     expect(actions[0].type).toBe("growth_path_step");
     expect(actions[0].growthPath).toBe("genius");
     expect(actions[0].completionPayload?.xp).toBe(25);
+    expect(actions[0].completionPayload?.metadata).toEqual({ version: "v1" });
   });
 
   it("selects next growth path step by progress and skips drafts", () => {
@@ -203,7 +204,11 @@ describe("actionEngine", () => {
       { genius: 1, spirit: 0 }
     );
 
-    expect(actions.some(action => action.title === "Genius 2")).toBe(true);
-    expect(actions.some(action => action.title === "Spirit 2")).toBe(true);
+    const geniusAction = actions.find(action => action.title === "Genius 2");
+    const spiritAction = actions.find(action => action.title === "Spirit 2");
+    expect(Boolean(geniusAction)).toBe(true);
+    expect(Boolean(spiritAction)).toBe(true);
+    expect(geniusAction?.completionPayload?.metadata).toEqual({ stepIndex: 1, version: "v1" });
+    expect(spiritAction?.completionPayload?.metadata).toEqual({ stepIndex: 0, version: "v1" });
   });
 });
