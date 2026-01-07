@@ -130,6 +130,7 @@ const GameHome = () => {
   const previousProfileRef = useRef<{ xp_total?: number; level?: number } | null>(null);
   const loadStartRef = useRef<number | null>(null);
   const lastLoadDurationRef = useRef<number | null>(null);
+  const noRecommendationLoggedRef = useRef(false);
 
   // Upgrades state
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
@@ -650,6 +651,23 @@ const GameHome = () => {
       },
     });
   }, [actionError, profileId]);
+
+  useEffect(() => {
+    if (!isDailyLoopV2 || !profileId || actionError || isLoading) return;
+    if (recommendationSet || noRecommendationLoggedRef.current) return;
+    noRecommendationLoggedRef.current = true;
+    logActionEvent({
+      actionId: "daily-loop:no_recommendation",
+      profileId,
+      source: "src/pages/GameHome.tsx",
+      loop: "profile",
+      selectedAt: new Date().toISOString(),
+      metadata: {
+        intent: "no_recommendation",
+        loadDurationMs: lastLoadDurationRef.current,
+      },
+    });
+  }, [actionError, isDailyLoopV2, isLoading, profileId, recommendationSet]);
 
   const freedomModeUrl = useMemo(() => {
     const params = new URLSearchParams({ from: "daily-loop" });
