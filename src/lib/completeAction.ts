@@ -2,6 +2,7 @@ import { completeUpgrade } from "@/lib/upgradeSystem";
 import { markPracticeDone } from "@/lib/practiceSystem";
 import { completeLegacyQuest } from "@/lib/questCompletion";
 import { awardXp } from "@/lib/xpSystem";
+import { updateGrowthPathProgress } from "@/lib/growthPathProgress";
 import { type UnifiedAction } from "@/types/actions";
 import type { CanonicalDomain } from "@/lib/mainQuest";
 
@@ -89,6 +90,21 @@ export const completeAction = async (
       };
     }
     case "growth_path_step":
+      {
+        const result = await applyGenericCompletion(action, context);
+        if (!result.success) return result;
+        const stepIndex = action.completionPayload?.metadata?.stepIndex;
+        const version = action.completionPayload?.metadata?.version;
+        if (typeof stepIndex === "number" && version && action.growthPath) {
+          await updateGrowthPathProgress({
+            profileId: context.profileId,
+            growthPath: action.growthPath,
+            stepIndex: stepIndex + 1,
+            version,
+          });
+        }
+        return result;
+      }
     case "library_item":
     case "onboarding":
     case "celebration":

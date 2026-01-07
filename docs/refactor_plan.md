@@ -85,7 +85,7 @@
 3) **Map to actions:** expose each sequence step through the unified action schema so recommendations can pull the next eligible step per growth path.
 4) **Progress tracking:** persist per-growth path step index in Supabase (new columns or companion table) and surface it in the Me section.
 
-**Phase 3 kickoff notes:** Added a minimal growth path steps scaffold in `src/modules/growth-paths/index.ts`, mapped it to unified actions, and introduced a progress-based selector for Daily Loop v2.
+**Phase 3 kickoff notes:** Added a minimal growth path steps scaffold in `src/modules/growth-paths/index.ts`, mapped it to unified actions, introduced a progress-based selector, and added a progress updater on completion.
 
 ## Phase 4 — Onboarding & QoL Flow Polish
 [ ] Onboarding writes all required fields
