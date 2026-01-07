@@ -663,6 +663,21 @@ const GameHome = () => {
     if (!recommendationSet) return;
     const primary = recommendationSet.primary;
 
+    if (profileId) {
+      logActionEvent({
+        actionId: primary.id,
+        profileId,
+        source: primary.source,
+        loop: primary.loop,
+        growthPath: primary.growthPath,
+        qolDomain: primary.qolDomain,
+        duration: primary.duration,
+        mode: primary.mode,
+        selectedAt: new Date().toISOString(),
+        metadata: { intent: "accept_recommendation", origin: "primary_cta" },
+      });
+    }
+
     if (primary.type === "upgrade" && nextRecommendedUpgrade) {
       handleUpgradeAction(nextRecommendedUpgrade);
       return;
