@@ -6,7 +6,6 @@ This matrix shows how each action producer fills the unified action shape define
 - **duration**: `xs` when time is explicitly ≤3 minutes, `sm` for 3–10 minutes, `md` for 10–25 minutes, `lg` otherwise.
 - **loop**: set per source (below); never left undefined.
 - **growthPath**: required for transformation-loop items; fallback to `"genius"` until authored data is complete.
-- **vector**: required for transformation-loop items; fallback to `"uniqueness"` until authored data is complete.
 - **qolDomain**: optional; map when the source provides it, otherwise omit.
 - **intensity/mode**: infer from source flags where present; otherwise leave undefined.
 - **whyRecommended**: aggregator sets the rationale (QoL bottleneck, sequence progression, streak preservation).

@@ -129,6 +129,7 @@ const GameHome = () => {
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
   const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
   const [nextRecommendedUpgrade, setNextRecommendedUpgrade] = useState<Upgrade | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
 
   // Quest state
   const [showQuestPicker, setShowQuestPicker] = useState(false);
@@ -162,6 +163,7 @@ const GameHome = () => {
   const loadGameData = async () => {
     try {
       setIsLoading(true);
+      setActionError(null);
       const id = await getOrCreateGameProfileId();
       setProfileId(id);
 
@@ -255,6 +257,7 @@ const GameHome = () => {
 
     } catch (err) {
       console.error("Failed to load game data:", err);
+      setActionError("We couldn't load your next move yet. Please retry.");
       toast({
         title: "Error loading data",
         description: "Please refresh the page to try again.",
@@ -530,17 +533,52 @@ const GameHome = () => {
     if (!recommendationSet) return null;
 
     return {
+      id: recommendationSet.primary.id,
       title: recommendationSet.primary.title,
       description: recommendationSet.primary.description,
       tag: recommendationSet.primary.type,
       durationLabel: formatDurationBucket(recommendationSet.primary.duration),
       rationale: recommendationSet.rationale,
       loop: recommendationSet.primary.loop,
+      growthPath: recommendationSet.primary.growthPath,
       alternates: recommendationSet.alternates?.map(action => action.title).filter(Boolean),
     };
   }, [recommendationSet]);
 
   const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
+
+  const freedomModeUrl = useMemo(() => {
+    const params = new URLSearchParams({ from: "daily-loop" });
+    if (recommendedAction?.loop) params.set("loop", recommendedAction.loop);
+    if (recommendedAction?.growthPath) params.set("growthPath", recommendedAction.growthPath);
+    if (recommendedAction?.id) params.set("actionId", recommendedAction.id);
+    return `/library?${params.toString()}`;
+  }, [recommendedAction?.growthPath, recommendedAction?.id, recommendedAction?.loop]);
+
+  const handlePrimaryAction = () => {
+    if (!recommendationSet) return;
+    const primary = recommendationSet.primary;
+
+    if (primary.type === "upgrade" && nextRecommendedUpgrade) {
+      handleUpgradeAction(nextRecommendedUpgrade);
+      return;
+    }
+
+    if (primary.type === "quest") {
+      setShowQuestPicker(true);
+      return;
+    }
+
+    if (primary.type === "practice") {
+      const practice = findPracticeByTitle(primary.title);
+      if (practice) {
+        navigate(`/library?practice=${practice.id}&from=daily-loop&loop=${primary.loop}&growthPath=${primary.growthPath}`);
+        return;
+      }
+    }
+
+    navigate(freedomModeUrl);
+  };
 
   if (isLoading) {
     return (
@@ -639,6 +677,10 @@ const GameHome = () => {
                 lowestDomains={lowestDomains}
                 recommendedAction={recommendedAction}
                 isLoadingAction={isLoadingQuest}
+                actionError={actionError}
+                onPrimaryAction={handlePrimaryAction}
+                onRetryAction={loadGameData}
+                freedomModeUrl={freedomModeUrl}
               />
             ) : (
               <div className="space-y-6">

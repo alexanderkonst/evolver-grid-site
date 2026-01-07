@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import BoldText from "@/components/BoldText";
 
 interface NextMoveAction {
+  id?: string;
   title: string;
   description?: string;
   tag?: string;
   durationLabel?: string;
   rationale?: string;
   loop?: string;
+  growthPath?: string;
   alternates?: string[];
 }
 
@@ -23,6 +25,10 @@ interface DailyLoopLayoutProps {
   lowestDomains?: string[];
   recommendedAction?: NextMoveAction | null;
   isLoadingAction?: boolean;
+  actionError?: string | null;
+  onPrimaryAction?: () => void;
+  onRetryAction?: () => void;
+  freedomModeUrl?: string;
 }
 
 const SectionCard = ({
@@ -52,6 +58,10 @@ export const DailyLoopLayout = ({
   lowestDomains = [],
   recommendedAction,
   isLoadingAction,
+  actionError,
+  onPrimaryAction,
+  onRetryAction,
+  freedomModeUrl = "/library?from=daily-loop",
 }: DailyLoopLayoutProps) => {
   return (
     <div className="space-y-6">
@@ -117,6 +127,16 @@ export const DailyLoopLayout = ({
                 <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
                 <p className="font-semibold">Finding your next move...</p>
               </div>
+            ) : actionError ? (
+              <div className="space-y-3">
+                <p className="text-lg font-semibold text-emerald-900">We hit a snag.</p>
+                <p className="text-sm text-emerald-800">{actionError}</p>
+                {onRetryAction && (
+                  <Button variant="secondary" size="sm" onClick={onRetryAction}>
+                    Try again
+                  </Button>
+                )}
+              </div>
             ) : recommendedAction ? (
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
@@ -154,16 +174,19 @@ export const DailyLoopLayout = ({
                   </div>
                 )}
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <Button asChild variant="default" size="sm">
-                    <Link to="/library">
-                      <BoldText className="flex items-center gap-2">
-                        Do it now
-                        <ArrowRight className="h-4 w-4" aria-hidden />
-                      </BoldText>
-                    </Link>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={onPrimaryAction}
+                    disabled={!onPrimaryAction}
+                  >
+                    <BoldText className="flex items-center gap-2">
+                      Do it now
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </BoldText>
                   </Button>
                   <Button asChild variant="secondary" size="sm">
-                    <Link to="/library">Freedom Mode</Link>
+                    <Link to={freedomModeUrl}>Freedom Mode</Link>
                   </Button>
                 </div>
               </div>
@@ -172,7 +195,7 @@ export const DailyLoopLayout = ({
                 <p className="text-lg font-semibold text-emerald-900">No recommendation yet.</p>
                 <p className="text-sm text-emerald-800">Open Freedom Mode to choose a quick win while we learn more about you.</p>
                 <Button asChild variant="secondary" size="sm">
-                  <Link to="/library">Open Freedom Mode</Link>
+                  <Link to={freedomModeUrl}>Open Freedom Mode</Link>
                 </Button>
               </div>
             )}
