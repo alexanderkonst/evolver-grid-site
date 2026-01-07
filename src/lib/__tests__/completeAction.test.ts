@@ -16,14 +16,20 @@ vi.mock("@/lib/questCompletion", () => ({
   completeLegacyQuest: vi.fn(async () => ({ success: true, xpAwarded: 10 })),
 }));
 
-const logActionEvent = vi.fn(async () => ({ success: true }));
+const logActionEvent = vi.fn();
 vi.mock("@/lib/actionEvents", () => ({
-  logActionEvent: (...args: any[]) => logActionEvent(...args),
+  logActionEvent: vi.fn().mockImplementation((arg) => {
+    logActionEvent(arg);
+    return Promise.resolve({ success: true });
+  }),
 }));
 
-const updateGrowthPathProgress = vi.fn(async () => ({ success: true }));
+const updateGrowthPathProgress = vi.fn();
 vi.mock("@/lib/growthPathProgress", () => ({
-  updateGrowthPathProgress: (...args: any[]) => updateGrowthPathProgress(...args),
+  updateGrowthPathProgress: vi.fn().mockImplementation((arg) => {
+    updateGrowthPathProgress(arg);
+    return Promise.resolve({ success: true });
+  }),
 }));
 
 describe("completeAction", () => {
@@ -33,7 +39,7 @@ describe("completeAction", () => {
       {
         id: "sequence:genius:step-1",
         type: "growth_path_step",
-        space: "transformation",
+        loop: "transformation",
         title: "Name your genius edge",
         growthPath: "genius",
         source: "fixtures",

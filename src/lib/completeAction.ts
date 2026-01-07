@@ -126,12 +126,12 @@ export const completeAction = async (
         if (!result.success) return result;
         const stepIndex = action.completionPayload?.metadata?.stepIndex;
         const version = action.completionPayload?.metadata?.version;
-        if (typeof stepIndex === "number" && version && action.growthPath) {
+        if (typeof stepIndex === "number" && typeof version === "string" && action.growthPath) {
           await updateGrowthPathProgress({
             profileId: context.profileId,
             growthPath: action.growthPath,
             stepIndex: stepIndex + 1,
-            version,
+            version: version,
           });
         }
         if (result.success) {
