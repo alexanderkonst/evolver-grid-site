@@ -1415,27 +1415,51 @@ const GameHome = () => {
                       </div>
                     )}
 
-                    <Button
-                      variant="ghost"
-                      className="w-full"
-                      onClick={() => {
-                        if (profileId) {
-                          logActionEvent({
-                            actionId: "side-quest-picker",
-                            profileId,
-                            source: "src/pages/GameHome.tsx",
-                            loop: "transformation",
-                            selectedAt: new Date().toISOString(),
-                            metadata: { intent: "choose_different" },
-                          });
-                        }
-                        setQuestSuggestion(null);
-                        setSelectedDuration(null);
-                        setSelectedMode(null);
-                      }}
-                    >
-                      Choose a different quest
-                    </Button>
+                    <div className="space-y-2">
+                      <Button
+                        variant="ghost"
+                        className="w-full"
+                        onClick={() => {
+                          if (profileId) {
+                            logActionEvent({
+                              actionId: "side-quest-picker",
+                              profileId,
+                              source: "src/pages/GameHome.tsx",
+                              loop: "transformation",
+                              selectedAt: new Date().toISOString(),
+                              metadata: { intent: "choose_different" },
+                            });
+                          }
+                          setQuestSuggestion(null);
+                          setSelectedDuration(null);
+                          setSelectedMode(null);
+                        }}
+                      >
+                        Choose a different quest
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="w-full text-slate-500"
+                        onClick={() => {
+                          if (profileId) {
+                            logActionEvent({
+                              actionId: "side-quest-skip",
+                              profileId,
+                              source: "src/pages/GameHome.tsx",
+                              loop: "transformation",
+                              selectedAt: new Date().toISOString(),
+                              metadata: { intent: "skip_side_quest" },
+                            });
+                          }
+                          setShowQuestPicker(false);
+                          setQuestSuggestion(null);
+                          setSelectedDuration(null);
+                          setSelectedMode(null);
+                        }}
+                      >
+                        Skip for now
+                      </Button>
+                    </div>
                   </div>
                 )}
               </div>
