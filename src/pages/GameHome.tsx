@@ -18,8 +18,9 @@ import { useToast } from "@/hooks/use-toast";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 import { buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
-import { growthPathSteps, type GrowthPathProgress } from "@/modules/growth-paths";
+import { growthPathSteps, GROWTH_PATH_VERSION, type GrowthPathProgress } from "@/modules/growth-paths";
 import { logActionEvent } from "@/lib/actionEvents";
+import { ensureGrowthPathProgress } from "@/lib/growthPathProgress";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -246,6 +247,12 @@ const GameHome = () => {
           return acc;
         }, {});
         setGrowthPathProgress(progressMap);
+      } else if (profileData?.id) {
+        await ensureGrowthPathProgress({
+          profileId: profileData.id,
+          growthPaths: Array.from(new Set(growthPathSteps.map(step => step.growthPath))),
+          version: GROWTH_PATH_VERSION,
+        });
       }
 
       // Auto-complete ZoG assessment if snapshot exists
