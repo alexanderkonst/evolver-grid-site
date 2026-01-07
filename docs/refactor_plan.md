@@ -66,9 +66,9 @@
 5) **Building mapping:** clarify how the layout maps to the “five buildings” metaphor—e.g., Me = Profile/Identity hub, My Life = Life Map/QoL observatory, My Next Move = Action deck; link the other two buildings (Marketplace, Matchmaking/Coop) via Freedom Mode pathways.
 
 ## Phase 2 — Unified Action Pipeline
-[ ] Aggregator normalizes all sources
-[ ] Rec engine returns primary + alternates
-[ ] Completion handler updates XP/streaks
+[x] Aggregator normalizes all sources
+[x] Rec engine returns primary + alternates
+[x] Completion handler updates XP/streaks
 1) **Action aggregator** (`src/lib/actionEngine.ts`): normalize candidates from quests, practices, upgrades, and library into the unified shape; tag with growthPath, QoL mapping, effort, loop. Validate against the legacy → unified mapping matrix.
 2) **Recommendation strategy:** implement Daily Loop logic across all five loops (not just transformation): QoL bottleneck first, then growth path sequence step, then streak-preserving alternates. Return one primary + two alternates. Action frequency should scale 1%–ish upward with player level while respecting non-overwhelm.
 3) **Completion handling:** single `completeAction` updates XP, streaks, and source-specific side effects (upgrade completion, practice done, main quest progression); emit toast and refresh recommendations.
@@ -78,8 +78,8 @@
 
 ## Phase 3 — Growth Path Sequences Integration
 [ ] Sequence data ingested and versioned
-[ ] Steps exposed via unified actions
-[ ] Progress persisted and surfaced
+[x] Steps exposed via unified actions
+[x] Progress persisted and surfaced
 1) **Content ingestion**: load authored sequences as structured data (`src/modules/growth-paths/*.ts` or JSON) with `id`, `growthPath`, `stage`, `duration`, `prerequisites`, `tags`, `version`.
 2) **Versioning & completeness:** allow optional `draft` flag; recommendations skip drafts and fall back to alternates when a sequence is incomplete.
 3) **Map to actions:** expose each sequence step through the unified action schema so recommendations can pull the next eligible step per growth path.
