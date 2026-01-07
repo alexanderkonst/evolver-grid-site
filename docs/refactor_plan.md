@@ -74,7 +74,7 @@
 3) **Completion handling:** single `completeAction` updates XP, streaks, and source-specific side effects (upgrade completion, practice done, main quest progression); emit toast and refresh recommendations.
 4) **Fixtures & tests:** add unit tests for aggregation and recommendation ordering; snapshot the expected My Next Move payloads.
 
-**Phase 2 kickoff notes:** Added legacy action aggregation helper + fixtures, and introduced `completeAction` with quest/practice/upgrade wiring. Remaining: full source coverage, rec strategy across loops, upgrade completion wiring beyond auto-completes, and tests (no test runner configured yet).
+**Phase 2 kickoff notes:** Added legacy action aggregation helper + fixtures, introduced `completeAction` with quest/practice/upgrade wiring, and added a Vitest runner with initial tests. Remaining: full source coverage, rec strategy across loops beyond legacy inputs, and upgrade completion wiring beyond auto-completes.
 
 ## Phase 3 — Growth Path Sequences Integration
 [ ] Sequence data ingested and versioned
