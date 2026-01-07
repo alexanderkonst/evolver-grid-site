@@ -1,111 +1,102 @@
-# Roadmap: Next Phase
+# Roadmap: 26-Day Sprint
 
-> What's next for the Member Portal
+> Jan 4 - Jan 29, 2025 | Network School, Forest City, Malaysia
 
-*Last updated: 2025-01-05 (Day 2 Evening)*
+*Last updated: 2025-01-06 (Day 3, 4:45pm)*
 
 ---
 
-## ✅ Completed
+## Sprint Reality Check
 
-### Documentation Foundation
-- [x] Manifesto
-- [x] Prime Radiant Spec (L0-L5)
-- [x] Game Architecture (4 loops, 4 quadrants, Digital Village)
-- [x] Game Design Principles
-- [x] Transformation Engine (5 vectors → 8 domains)
-- [x] Customer Journey Map v5
+| Metric | Value |
+|--------|-------|
+| **Sprint start** | Jan 4, 2025 |
+| **Sprint end** | Jan 29, 2025 (fly out Jan 30) |
+| **Total days** | 26 days |
+| **Days worked** | 2.5 (Jan 3 partial, Jan 4 half, Jan 5 full, Jan 6 half so far) |
+| **Days remaining** | 23 days |
+
+### Day-by-Day Reality
+- Jan 1: Flew in
+- Jan 2: Orienting, logistics (no work)
+- Jan 3: Started working (half day)
+- Jan 4: Birthday (half day)
+- Jan 5: Full day
+- Jan 6: Today (ongoing)
+
+---
+
+## Sprint Overview
+
+| Week | Dates | Focus | Status |
+|------|-------|-------|--------|
+| Week 1 | Jan 4-10 | Architecture + Paths + Flows | 🟡 In progress |
+| Week 2 | Jan 11-17 | MVP Build | ⏳ |
+| Week 3 | Jan 18-24 | User Testing with Pilots | ⏳ |
+| Week 4 | Jan 25-29 | Visibility, Pitching, Pilots confirmed | ⏳ |
+
+---
+
+## ✅ Completed (Days 1-3)
+
+### Architecture Clarity
 - [x] Being/Doing Ontology (Purpose = ZoG, Mission = Contribution)
-- [x] 5 Vectors locked (Spirit, Mind, Emotions, Genius, Body)
+- [x] 5 Growth Paths locked (Spirit, Mind, Emotions, Genius, Body)
+- [x] 5 Game Spaces locked (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op)
+- [x] Key Distinction: Growth Paths (you change) vs Game Spaces (you act)
+- [x] Core Insight: "Life results ← Self-development"
+- [x] Journey Pattern: Same start → personalized divergence
+- [x] Language Principles: Consistency + Universality
 
-### Key Decisions
-- [x] "Me", "My Life", "My Next Move" framing
-- [x] 4 Loops = 4 Buildings (Self-Understanding, Transformation, Economic, Social)
-- [x] Digital Village concept (minimal-first, spectrum to VR)
-- [x] Universal language (Self-Development → Life Results)
-
----
-
-## 🔄 In Progress
-
-### Vector Growth Sequences
-| Vector | Status |
-|--------|--------|
-| Spirit | ⬜ Not started |
-| Mind | ⬜ Not started |
-| Emotions | ⬜ Not started |
-| Genius | ⬜ Not started |
-| Body | ⬜ Not started |
+### Documentation
+- [x] `game_architecture.md`
+- [x] `game_design_principles.md`
+- [x] `growth_paths.md`
+- [x] `game_spaces.md`
+- [x] `pitch_deck_nuggets.md` (NEW)
+- [x] Customer Journey Map v5
+- [x] Session log
 
 ---
 
-## 📋 Next Steps (Sequence)
+## 🔄 In Progress (Day 3)
 
-### 1. Vector Sequences (Alexander)
-Define growth path for each of 5 vectors.
-
-### 2. Enriched Customer Journey
-Integrate sequences into journey map.
-
-### 3. User Flows
-Screen-by-screen with actions/transitions.
-
-### 4. Wireframes
-Minimal black/white layouts.
-
-### 5. Build Modules
-
-### 6. Weave into Journey
+### Growth Paths Content
+| Path | Status |
+|------|--------|
+| Genius | ✅ Complete (8 steps) |
+| Spirit | 🟡 Scaffold ready |
+| Mind | 🟡 Scaffold ready |
+| Emotions | 🟡 Scaffold ready |
+| Body | 🟡 Scaffold ready |
 
 ---
 
-## 🛠️ Implementation Notes
+## 📋 Next Steps (This Week)
 
-### MVP Recommendation Logic
-**Simple first**, complex later:
-```
-MVP: Lowest QoL domain → random unlocked action from that domain
-v2:  Add vector progress, time since last practice, user preferences
-```
-
-### First Action Timing
-- **First 1-3 actions**: 1-3 minutes, easy wins
-- **After that**: Progressive challenge, digestible chunks
-- NOT every action is 1-3 min
-
-### QoL Zoom-In (Later)
-- Current: 8 domains × 10 stages = 80 positions
-- Future: 8 × 10 × 10 = 800 positions (substages)
-- Enables fast visible progress
+1. **Growth Paths Content** — Finish all 5 paths
+2. **User Flows** — Screen-by-screen with actions/transitions
+3. **Wireframes** — Minimal black/white layouts
+4. **Module Scoping** — What to build first?
 
 ---
 
-## 🎉 Design Principles (Always Hold)
+## 🎯 Week 2 Target
 
-1. **One next move** — Never overwhelm
-2. **Self-development → Life results** — 5 vectors drive 8 domains
-3. **First-person** — "Me", "My Life", "My Next Move"
-4. **Freedom with guidance** — Open-world feel
-5. **Every action = XP** — Everything counts
-6. **Celebratory beats** — Reinforce motivation at every transition
+- MVP build: Onboarding → Profile → Transformation → First action
+- Tech: Next.js + Supabase
+- Working with Codex on refactor plan
 
 ---
 
-## 🔜 Later (After Core Loop Works)
+## 🚀 End-of-Sprint Vision
 
-### Frameworks to Document
-- [ ] Asset Mapping system
-- [ ] Mission Discovery
-- [ ] Matchmaking algorithms
-- [ ] Genius Monetization
-- [ ] Destiny Pack
-
-### Features to Build
-- [ ] QoL Zoom-In (substages)
-- [ ] Per-vector levels
-- [ ] Microlearning content layer
-- [ ] Monetization integration
+- MVP tested by 10-50 real users
+- 2-3 pilot communities identified (Preroda, etc.)
+- Network School visibility: Balaji, NS team pitched
+- Clear data on what works
+- Builder outreach: Adam Polo, Gian Andrea, Core Nexus, Symbiosis, Futura
 
 ---
 
-*See [Session Log](./session_log.md) for daily progress.*
+*26-Day Sprint in progress. Day 3 of 26.*
