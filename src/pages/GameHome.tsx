@@ -19,6 +19,7 @@ import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgr
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 import { buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
 import { growthPathSteps, type GrowthPathProgress } from "@/modules/growth-paths";
+import { logActionEvent } from "@/lib/actionEvents";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -551,6 +552,22 @@ const GameHome = () => {
     };
   }, [recommendationSet]);
 
+  useEffect(() => {
+    if (!profileId || !recommendationSet) return;
+    logActionEvent({
+      actionId: recommendationSet.primary.id,
+      profileId,
+      source: recommendationSet.primary.source,
+      loop: recommendationSet.primary.loop,
+      growthPath: recommendationSet.primary.growthPath,
+      qolDomain: recommendationSet.primary.qolDomain,
+      duration: recommendationSet.primary.duration,
+      mode: recommendationSet.primary.mode,
+      selectedAt: new Date().toISOString(),
+      metadata: { rationale: recommendationSet.rationale, intent: "presented" },
+    });
+  }, [profileId, recommendationSet]);
+
   const freedomModeUrl = useMemo(() => {
     const params = new URLSearchParams({ from: "daily-loop" });
     if (recommendedAction?.loop) params.set("loop", recommendedAction.loop);
@@ -582,6 +599,23 @@ const GameHome = () => {
     }
 
     navigate(freedomModeUrl);
+  };
+
+  const handleFreedomMode = () => {
+    if (!recommendationSet || !profileId) return;
+    const primary = recommendationSet.primary;
+    logActionEvent({
+      actionId: primary.id,
+      profileId,
+      source: primary.source,
+      loop: primary.loop,
+      growthPath: primary.growthPath,
+      qolDomain: primary.qolDomain,
+      duration: primary.duration,
+      mode: primary.mode,
+      selectedAt: new Date().toISOString(),
+      metadata: { intent: "freedom_mode" },
+    });
   };
 
   if (isLoading) {
@@ -684,6 +718,7 @@ const GameHome = () => {
                 actionError={actionError}
                 onPrimaryAction={handlePrimaryAction}
                 onRetryAction={loadGameData}
+                onFreedomMode={handleFreedomMode}
                 freedomModeUrl={freedomModeUrl}
               />
             ) : (

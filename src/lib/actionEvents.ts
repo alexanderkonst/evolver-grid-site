@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { type ActionDuration } from "@/types/actions";
 
-interface LogActionEventInput {
+export interface LogActionEventInput {
   actionId: string;
   profileId: string;
   source?: string;
@@ -64,7 +64,7 @@ export const logActionEvent = async (
       },
     };
 
-    const { error } = await supabase.from("action_events").insert(payload);
+  const { error } = await supabase.from("action_events").insert(payload);
     if (error) {
       return { success: false, error: error.message };
     }
