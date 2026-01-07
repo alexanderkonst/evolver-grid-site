@@ -113,8 +113,15 @@ export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): Rec
 
   const totalCompleted = inputs.totalCompletedActions ?? 0;
   const quickWinFirst = totalCompleted < 3;
+  const isQuickWin = (duration?: ActionDuration) => duration === "xs" || duration === "sm";
 
-  const sorted = candidates.sort((a, b) => {
+  const quickCandidates = quickWinFirst ? candidates.filter(action => isQuickWin(action.duration)) : [];
+  const quickAlternates = quickWinFirst ? alternates.filter(action => isQuickWin(action.duration)) : [];
+
+  const activeCandidates = quickCandidates.length > 0 ? quickCandidates : candidates;
+  const activeAlternates = quickAlternates.length > 0 ? quickAlternates : alternates;
+
+  const sorted = activeCandidates.sort((a, b) => {
     const durationScore = (duration?: ActionDuration) => {
       if (!duration) return 3;
       return ["xs", "sm", "md", "lg"].indexOf(duration);
@@ -129,7 +136,7 @@ export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): Rec
   });
 
   const [primary, ...rest] = sorted;
-  const remainingAlternates = [...alternates, ...rest].slice(0, 2);
+  const remainingAlternates = [...activeAlternates, ...rest].slice(0, 2);
 
   return {
     primary: {
