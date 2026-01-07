@@ -3,6 +3,7 @@ import { markPracticeDone } from "@/lib/practiceSystem";
 import { completeLegacyQuest } from "@/lib/questCompletion";
 import { awardXp } from "@/lib/xpSystem";
 import { updateGrowthPathProgress } from "@/lib/growthPathProgress";
+import { logActionEvent } from "@/lib/actionEvents";
 import { type UnifiedAction } from "@/types/actions";
 import type { CanonicalDomain } from "@/lib/mainQuest";
 
@@ -31,6 +32,24 @@ const applyGenericCompletion = async (
     return { success: false, error: result.error };
   }
   return { success: true, xpAwarded };
+};
+
+const recordCompletionEvent = async (
+  action: UnifiedAction,
+  context: CompleteActionContext
+): Promise<void> => {
+  await logActionEvent({
+    actionId: action.id,
+    profileId: context.profileId,
+    source: action.source,
+    loop: action.loop,
+    growthPath: action.growthPath,
+    qolDomain: action.qolDomain,
+    duration: action.duration,
+    mode: action.mode,
+    completedAt: new Date().toISOString(),
+    metadata: action.completionPayload?.metadata,
+  });
 };
 
 const durationBucketToMinutes = (duration?: UnifiedAction["duration"]) => {
@@ -65,6 +84,9 @@ export const completeAction = async (
       }
       const normalizedPath = normalizeDomain(action.growthPath);
       const result = await markPracticeDone(practiceId, normalizedPath);
+      if (result.success) {
+        await recordCompletionEvent(action, context);
+      }
       return { success: result.success, error: result.error };
     }
     case "upgrade": {
@@ -73,6 +95,9 @@ export const completeAction = async (
         return { success: false, error: "Missing upgrade code." };
       }
       const result = await completeUpgrade(context.profileId, upgradeCode);
+      if (result.success) {
+        await recordCompletionEvent(action, context);
+      }
       return { success: result.success, error: result.error };
     }
     case "quest": {
@@ -83,6 +108,9 @@ export const completeAction = async (
         durationMinutes: durationBucketToMinutes(action.duration),
       });
 
+      if (legacyResult.success) {
+        await recordCompletionEvent(action, context);
+      }
       return {
         success: legacyResult.success,
         xpAwarded: legacyResult.xpAwarded,
@@ -103,12 +131,21 @@ export const completeAction = async (
             version,
           });
         }
+        if (result.success) {
+          await recordCompletionEvent(action, context);
+        }
         return result;
       }
     case "library_item":
     case "onboarding":
     case "celebration":
-      return applyGenericCompletion(action, context);
+      {
+        const result = await applyGenericCompletion(action, context);
+        if (result.success) {
+          await recordCompletionEvent(action, context);
+        }
+        return result;
+      }
     default:
       return { success: false, error: "Unsupported action type." };
   }
