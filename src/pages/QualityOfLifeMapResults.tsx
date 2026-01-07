@@ -13,6 +13,7 @@ import jsPDF from "jspdf";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { logActionEvent } from "@/lib/actionEvents";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
@@ -118,6 +119,16 @@ const QualityOfLifeMapResults: FC = () => {
       }
 
       console.log("QoL snapshot saved successfully to database");
+      await logActionEvent({
+        actionId: `qol-snapshot:${newSnapshot.id}`,
+        profileId,
+        source: "src/pages/QualityOfLifeMapResults.tsx",
+        loop: "profile",
+        selectedAt: new Date().toISOString(),
+        metadata: {
+          intent: "qol_snapshot_saved",
+        },
+      });
     } catch (err) {
       console.error("Failed to save QoL snapshot to database:", err);
       // Don't show error toast to user - this is a background operation
