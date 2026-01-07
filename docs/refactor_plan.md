@@ -77,7 +77,7 @@
 **Phase 2 kickoff notes:** Added legacy action aggregation helper + fixtures, introduced `completeAction` with quest/practice/upgrade wiring plus generic XP fallback, added completion + selection event logging, and added a Vitest runner with initial tests. Remaining: full source coverage and rec strategy across loops beyond legacy inputs.
 
 ## Phase 3 — Growth Path Sequences Integration
-[ ] Sequence data ingested and versioned
+[x] Sequence data ingested and versioned
 [x] Steps exposed via unified actions
 [x] Progress persisted and surfaced
 1) **Content ingestion**: load authored sequences as structured data (`src/modules/growth-paths/*.ts` or JSON) with `id`, `growthPath`, `stage`, `duration`, `prerequisites`, `tags`, `version`.
