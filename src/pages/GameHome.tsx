@@ -472,6 +472,17 @@ const GameHome = () => {
   };
 
   const handleUpgradeAction = async (upgrade: Upgrade) => {
+    if (profileId) {
+      logActionEvent({
+        actionId: `upgrade:${upgrade.code}`,
+        profileId,
+        source: "src/pages/GameHome.tsx",
+        loop: "transformation",
+        growthPath: normalizeGrowthPath(upgrade.path_slug),
+        selectedAt: new Date().toISOString(),
+        metadata: { intent: "start_upgrade" },
+      });
+    }
     // Different actions based on upgrade code
     switch (upgrade.code) {
       case 'zog_intro_video_watched':
