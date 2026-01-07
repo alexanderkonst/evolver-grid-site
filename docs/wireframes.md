@@ -352,11 +352,11 @@
 │                                     │
 │  ┌── GROWTH PATHS ───────────────┐  │
 │  │                               │  │
-│  │  Spirit    ████░░░ 40%        │  │
-│  │  Mind      ██░░░░░ 20%        │  │
-│  │  Emotions  ░░░░░░░ 0%         │  │
-│  │  Genius    ██████░ 60%        │  │
-│  │  Body      █░░░░░░ 10%        │  │
+│  │  Spirit    Stage 4            │  │
+│  │  Mind      Stage 2            │  │
+│  │  Emotions  Stage 1            │  │
+│  │  Genius    Stage 6            │  │
+│  │  Body      Stage 1            │  │
 │  │                               │  │
 │  │  [View all paths →]           │  │
 │  └───────────────────────────────┘  │
@@ -381,7 +381,7 @@
 ├─────────────────────────────────────┤
 │                                     │
 │  Spirit: Waking Up                  │
-│  ████░░░░░░ 40% complete            │
+│  Stage 4 · Deepening                │
 │                                     │
 │  ──────────────────────────────     │
 │                                     │
