@@ -139,6 +139,7 @@ const GameHome = () => {
   const loadStartRef = useRef<number | null>(null);
   const lastLoadDurationRef = useRef<number | null>(null);
   const noRecommendationLoggedRef = useRef(false);
+  const dailyLoopViewLoggedRef = useRef(false);
 
   // Upgrades state
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
@@ -609,6 +610,19 @@ const GameHome = () => {
   const lowestDomains = getLowestDomains();
 
   const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
+
+  useEffect(() => {
+    if (!profileId || dailyLoopViewLoggedRef.current) return;
+    dailyLoopViewLoggedRef.current = true;
+    logActionEvent({
+      actionId: "daily-loop:view",
+      profileId,
+      source: "src/pages/GameHome.tsx",
+      loop: "profile",
+      selectedAt: new Date().toISOString(),
+      metadata: { intent: "view", dailyLoopV2: isDailyLoopV2 },
+    });
+  }, [isDailyLoopV2, profileId]);
 
   const recommendationSet = useMemo(() =>
     buildRecommendationFromLegacy({
