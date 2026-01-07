@@ -102,7 +102,7 @@
 1) **Telemetry & UX checks:** log selection vs. completion rates per action type and abandonment reasons to validate the non-overwhelm contract; set latency budgets (e.g., My Next Move render under 200ms from cached data, <500ms with fresh fetch; fallback shown within 1s on error).
 2) **QA matrix:** run unit tests for aggregation/recommendation ordering, integration tests for `GameHome` with `DAILY_LOOP_V2` on/off, Supabase migrations against a staging snapshot, and analytics event validation. Gate rollout with minimal success thresholds (activation on first session, completion of first action within 24h).
 3) **Clean-up:** remove legacy Main/Side/Upgrade cards and redundant helpers once the new loop is stable and metrics are healthy.
-4) **Docs & playbook:** update `docs/roadmap.md` and `docs/game_architecture.md` with the new flow and action engine once shipped.
+4) **Docs & playbook (done):** update `docs/roadmap.md` and `docs/game_architecture.md` with the new flow and action engine once shipped.
 ### QA checklist
 - [ ] `DAILY_LOOP_V2=on`: loads GameHome, shows recommended action, CTA navigates to correct target.
 - [ ] `DAILY_LOOP_V2=off`: legacy Main/Side/Upgrade cards still render and function.

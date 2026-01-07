@@ -85,7 +85,10 @@
 
 ### Codex Status
 - Phase 0-1: ✅ Merged
-- Phase 2+: Unified action pipeline (in progress)
+- Phase 2: Unified action pipeline ✅
+- Phase 3: Growth path sequences ✅
+- Phase 4: Onboarding + telemetry polish ✅
+- Phase 5: QA + rollout prep (in progress)
 
 ---
 

@@ -150,22 +150,23 @@ SAME START ───────────────────────
 - Genius Profile
 - Current state (active quests, XP, domain balances)
 
-### Output on Home ("Your Next Move")
-1. **Suggested Side Quest** — 1 practice card from Library
-2. **Suggested Upgrade** — 1 next node from relevant skill tree
-3. **Optional: Main Quest progress** — 1 compact progress line
+### Output on Home ("My Next Move")
+1. **One primary action** — unified action schema across quests, upgrades, practices, and growth path steps.
+2. **Two alternates** — optional fallbacks for non-overwhelm and user choice.
+3. **Context strip** — profile snapshot, QoL focus, and streak/level status.
+
+### Unified Action Pipeline (v2)
+Actions are normalized into a single schema with shared metadata (loop, growth path, QoL domain, duration, rationale) and routed through one completion handler. Telemetry is recorded via `action_events` for presented, accepted, completed, and override picks.
 
 ---
 
-## Recommendation Rules (v1)
+## Recommendation Rules (v2)
 
-1. Pick a **focus domain** (lowest XP or "life asks for attention" style)
-2. **Side Quest**: Choose a Library practice tagged to focus domain (with duration filter)
-3. **Upgrade**: Choose the next available node in that domain's tree (prereqs satisfied)
-4. **When Side Quest is marked done**:
-   - Add XP
-   - Update streak
-   - Save `last_completed_quest`
+1. Select a **focus domain** (lowest QoL domains) when available.
+2. Prefer **quick wins** for the first 1-3 actions (<=10 minutes).
+3. Surface **one primary action** across all loops (Profile, Transformation, Marketplace, Matchmaking, Co-op).
+4. Offer **two alternates** and a Freedom Mode escape hatch.
+5. Completion updates XP, streaks, and growth path progress through a single handler.
 
 ---
 
