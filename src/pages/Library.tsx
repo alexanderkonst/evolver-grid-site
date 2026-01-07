@@ -35,6 +35,7 @@ const toDurationBucket = (minutes?: number | null) => {
 const Library = () => {
   const [searchParams] = useSearchParams();
   const fromGame = searchParams.get('from') === 'game';
+  const fromDailyLoop = searchParams.get('from') === 'daily-loop';
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
   const [search, setSearch] = useState("");
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
@@ -68,6 +69,10 @@ const Library = () => {
   const handleSelectItem = (item: LibraryItem, metadata?: Record<string, unknown>) => {
     setSelectedItem(item);
     if (profileId) {
+      const mergedMetadata = {
+        ...metadata,
+        origin: fromDailyLoop ? "daily_loop_freedom_mode" : fromGame ? "game" : "library",
+      };
       logActionEvent({
         actionId: `library:${item.id}`,
         profileId,
@@ -77,7 +82,7 @@ const Library = () => {
         qolDomain: item.primaryDomain,
         duration: toDurationBucket(item.durationMinutes),
         selectedAt: new Date().toISOString(),
-        metadata,
+        metadata: mergedMetadata,
       });
     }
   };
@@ -102,7 +107,10 @@ const Library = () => {
           qolDomain: item.primaryDomain,
           duration: toDurationBucket(item.durationMinutes),
           completedAt: new Date().toISOString(),
-          metadata: { intent: "mark_done" },
+          metadata: {
+            intent: "mark_done",
+            origin: fromDailyLoop ? "daily_loop_freedom_mode" : fromGame ? "game" : "library",
+          },
         });
       }
       toast.success(result.message || "Practice logged. +10 XP");
