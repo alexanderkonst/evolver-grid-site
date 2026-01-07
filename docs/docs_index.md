@@ -2,7 +2,7 @@
 
 > Map of all docs and their purpose
 
-*Updated: 2025-01-07*
+*Updated: 2025-01-07 (30 docs)*
 
 ---
 
@@ -21,11 +21,12 @@
 
 | Doc | Purpose |
 |-----|---------|
+| [wireframes.md](./wireframes.md) | 24 screen designs |
 | [user_flows.md](./user_flows.md) | Screen-by-screen progression |
 | [onboarding_script.md](./onboarding_script.md) | Exact copy for each screen |
 | [first_actions.md](./first_actions.md) | 5 starter actions with specs |
 | [gamification_spec.md](./gamification_spec.md) | XP, levels, reveal moments, spaced repetition |
-| [customer_journey_map.md](./customer_journey_map.md) | Full numbered journey with dopamine points |
+| [customer_journey_map.md](./customer_journey_map.md) | Full journey with dopamine points |
 
 ---
 
@@ -77,9 +78,9 @@
 ## Quick Reference
 
 **Start here:** `game_architecture.md`
-**Build from:** `user_flows.md` + `onboarding_script.md`
+**Build from:** `wireframes.md` + `user_flows.md`
 **Track with:** `roadmap.md` + `inventory.md`
 
 ---
 
-*Docs Index v1.0*
+*Docs Index v1.1 — 30 docs*
