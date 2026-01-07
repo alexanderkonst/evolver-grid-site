@@ -298,7 +298,7 @@ Mission Chats (community of people on same mission)
 | **Spirit** | Waking Up | Consciousness levels, presence, awareness |
 | **Mind** | Growing Up | Developmental stages, perspective-taking |
 | **Emotions** | Cleaning Up | Shadow work, trauma integration |
-| **Uniqueness** | Showing Up | Authentic expression, mastery, creativity |
+| **Genius** | Showing Up | Authentic expression, mastery, creativity |
 | **Body** | — | Vitality, HRV, energy capacity |
 
 ### Skill Tree Mechanics
@@ -306,7 +306,7 @@ Mission Chats (community of people on same mission)
 - Each vector has a series of **upgrades** (steps)
 - Upgrades have **prerequisites** (must unlock previous steps)
 - Completing upgrades earns **XP**
-- Example flow for Uniqueness:
+- Example flow for Genius:
   1. Discover Zone of Genius → unlocks...
   2. Create Genius Offer → unlocks...
   3. Build Genius Business → unlocks...

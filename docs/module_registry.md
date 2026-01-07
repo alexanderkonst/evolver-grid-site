@@ -167,7 +167,7 @@ Version: v0.2
 Status: 🟡 Building
 
 **Description**
-5 developmental lines (Spirit, Mind, Emotions, Uniqueness, Body) with sequential upgrades. Each upgrade has prerequisites, unlocks next steps, and earns XP. Gamification layer over real personal development.
+5 developmental lines (Spirit, Mind, Emotions, Genius, Body) with sequential upgrades. Each upgrade has prerequisites, unlocks next steps, and earns XP. Gamification layer over real personal development.
 
 **Inputs**
 - User profile (ZoG, QoL)
