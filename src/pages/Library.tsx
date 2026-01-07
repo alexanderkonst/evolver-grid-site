@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -17,10 +17,20 @@ import libraryLogo from "@/assets/library-logo.png";
 import BoldText from "@/components/BoldText";
 import { markPracticeDone } from "@/lib/practiceSystem";
 import { CheckCircle2 } from "lucide-react";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { logActionEvent } from "@/lib/actionEvents";
 
 type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
 type LengthChoice = "any" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
+
+const toDurationBucket = (minutes?: number | null) => {
+  if (!minutes && minutes !== 0) return undefined;
+  if (minutes <= 3) return "xs";
+  if (minutes <= 10) return "sm";
+  if (minutes <= 25) return "md";
+  return "lg";
+};
 
 const Library = () => {
   const [searchParams] = useSearchParams();
@@ -30,6 +40,7 @@ const Library = () => {
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
   const [markingDone, setMarkingDone] = useState<string | null>(null);
+  const [profileId, setProfileId] = useState<string | null>(null);
   
   // Intent advisor state
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -42,6 +53,35 @@ const Library = () => {
     explanation: string;
   }> | null>(null);
 
+  useEffect(() => {
+    let isMounted = true;
+    getOrCreateGameProfileId()
+      .then(id => {
+        if (isMounted) setProfileId(id);
+      })
+      .catch(() => undefined);
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleSelectItem = (item: LibraryItem, metadata?: Record<string, unknown>) => {
+    setSelectedItem(item);
+    if (profileId) {
+      logActionEvent({
+        actionId: `library:${item.id}`,
+        profileId,
+        source: "src/pages/Library.tsx",
+        loop: "marketplace",
+        growthPath: item.primaryPath,
+        qolDomain: item.primaryDomain,
+        duration: toDurationBucket(item.durationMinutes),
+        selectedAt: new Date().toISOString(),
+        metadata,
+      });
+    }
+  };
+
   const handleMarkAsDone = async (item: LibraryItem, e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
@@ -52,6 +92,19 @@ const Library = () => {
     const result = await markPracticeDone(item.id, item.primaryPath);
 
     if (result.success) {
+      if (profileId) {
+        logActionEvent({
+          actionId: `library:${item.id}`,
+          profileId,
+          source: "src/pages/Library.tsx",
+          loop: "marketplace",
+          growthPath: item.primaryPath,
+          qolDomain: item.primaryDomain,
+          duration: toDurationBucket(item.durationMinutes),
+          completedAt: new Date().toISOString(),
+          metadata: { intent: "mark_done" },
+        });
+      }
       toast.success(result.message || "Practice logged. +10 XP");
     } else {
       toast.error(result.error || "Failed to log practice");
@@ -366,7 +419,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                     {advisorSuggestions.map(({ item, explanation }, idx) => (
                       <div key={idx} className="flex flex-col">
                         <button
-                          onClick={() => setSelectedItem(item)}
+                          onClick={() => handleSelectItem(item, { intent: "advisor_pick", explanation })}
                           className="flex flex-col rounded-xl border border-border bg-card text-left shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden group"
                         >
                           <div className="relative w-full aspect-video overflow-hidden">
@@ -482,7 +535,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                   className="flex flex-col rounded-xl border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden"
                 >
                   <button
-                    onClick={() => setSelectedItem(item)}
+                    onClick={() => handleSelectItem(item, { intent: "library_pick", category: activeCategory })}
                     className="flex flex-col text-left group"
                   >
                     <div className="relative w-full aspect-video overflow-hidden">
