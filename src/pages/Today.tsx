@@ -41,6 +41,7 @@ import {
     type UnlockEffects,
 } from "@/lib/upgradeSystem";
 import { completeAction } from "@/lib/completeAction";
+import { logActionEvent } from "@/lib/actionEvents";
 import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
 // Types
@@ -77,6 +78,11 @@ interface SideQuestRecommendation {
 export default function TodayPage() {
     const navigate = useNavigate();
     const { toast } = useToast();
+
+    const logSelection = (payload: Omit<Parameters<typeof logActionEvent>[0], "profileId">) => {
+        if (!profile?.id) return;
+        logActionEvent({ profileId: profile.id, ...payload });
+    };
 
     // State
     const [isLoading, setIsLoading] = useState(true);
@@ -234,6 +240,14 @@ export default function TodayPage() {
 
         try {
             setCompletingSideQuest(true);
+            logSelection({
+                actionId: `quest:${sideQuest.practice.id}`,
+                source: "src/pages/Today.tsx",
+                loop: "transformation",
+                growthPath: sideQuest.domain,
+                selectedAt: new Date().toISOString(),
+                metadata: { intent: "complete_side_quest" },
+            });
 
             const result = await completeSideQuest({
                 profileId: profile.id,
@@ -265,6 +279,14 @@ export default function TodayPage() {
 
         try {
             setCompletingUpgrade(true);
+            logSelection({
+                actionId: `upgrade:${nextUpgrade.code}`,
+                source: "src/pages/Today.tsx",
+                loop: "transformation",
+                growthPath: nextUpgrade.path_slug,
+                selectedAt: new Date().toISOString(),
+                metadata: { intent: "complete_upgrade" },
+            });
             await completeAction(
                 {
                     id: `upgrade:${nextUpgrade.code}`,
@@ -288,6 +310,13 @@ export default function TodayPage() {
 
     const handleOpenArtifactModal = () => {
         setShowArtifactModal(true);
+        logSelection({
+            actionId: "main-quest:artifact",
+            source: "src/pages/Today.tsx",
+            loop: "transformation",
+            selectedAt: new Date().toISOString(),
+            metadata: { intent: "open_artifact_modal" },
+        });
     };
 
     const handleSaveArtifact = async () => {
@@ -295,6 +324,13 @@ export default function TodayPage() {
 
         try {
             setSavingArtifact(true);
+            logSelection({
+                actionId: "main-quest:artifact",
+                source: "src/pages/Today.tsx",
+                loop: "transformation",
+                selectedAt: new Date().toISOString(),
+                metadata: { intent: "submit_artifact", artifactType },
+            });
 
             // Save artifact to main_quest_progress with required structure
             await markMainQuestProgress(profile.id, {
@@ -365,7 +401,19 @@ export default function TodayPage() {
                         <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
                         <h2 className="text-2xl font-bold text-slate-900 mb-2">Done for Today! 🎉</h2>
                         <p className="text-slate-600 mb-6">You've completed your daily actions. Great work!</p>
-                        <Button variant="outline" onClick={() => fetchSideQuestRecommendation()}>
+                        <Button
+                            variant="outline"
+                            onClick={() => {
+                                logSelection({
+                                    actionId: "side-quest-bonus",
+                                    source: "src/pages/Today.tsx",
+                                    loop: "transformation",
+                                    selectedAt: new Date().toISOString(),
+                                    metadata: { intent: "bonus_side_quest" },
+                                });
+                                fetchSideQuestRecommendation();
+                            }}
+                        >
                             <Gift className="w-4 h-4 mr-2" />
                             Bonus Side Quest
                         </Button>
@@ -416,7 +464,18 @@ export default function TodayPage() {
                             </Button>
                         ) : (
                             <Button
-                                onClick={() => mainQuestCopy.ctaRoute && navigate(mainQuestCopy.ctaRoute)}
+                                onClick={() => {
+                                    logSelection({
+                                        actionId: `main-quest:${mainQuestStage}`,
+                                        source: "src/pages/Today.tsx",
+                                        loop: "transformation",
+                                        selectedAt: new Date().toISOString(),
+                                        metadata: { intent: "main_quest_cta", route: mainQuestCopy.ctaRoute },
+                                    });
+                                    if (mainQuestCopy.ctaRoute) {
+                                        navigate(mainQuestCopy.ctaRoute);
+                                    }
+                                }}
                                 className="w-full bg-indigo-600 hover:bg-indigo-700"
                             >
                                 {mainQuestCopy.ctaLabel}
@@ -454,7 +513,16 @@ export default function TodayPage() {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    onClick={() => fetchSideQuestRecommendation()}
+                                    onClick={() => {
+                                        logSelection({
+                                            actionId: "side-quest-bonus",
+                                            source: "src/pages/Today.tsx",
+                                            loop: "transformation",
+                                            selectedAt: new Date().toISOString(),
+                                            metadata: { intent: "bonus_side_quest" },
+                                        });
+                                        fetchSideQuestRecommendation();
+                                    }}
                                     disabled={loadingSideQuest}
                                 >
                                     {loadingSideQuest ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
@@ -487,7 +555,20 @@ export default function TodayPage() {
                                 </Button>
                             </>
                         ) : (
-                            <Button onClick={() => fetchSideQuestRecommendation()} variant="outline" className="w-full">
+                            <Button
+                                onClick={() => {
+                                    logSelection({
+                                        actionId: "side-quest-recommendation",
+                                        source: "src/pages/Today.tsx",
+                                        loop: "transformation",
+                                        selectedAt: new Date().toISOString(),
+                                        metadata: { intent: "request_recommendation" },
+                                    });
+                                    fetchSideQuestRecommendation();
+                                }}
+                                variant="outline"
+                                className="w-full"
+                            >
                                 Get Practice Recommendation
                             </Button>
                         )}
@@ -554,7 +635,20 @@ export default function TodayPage() {
                         ) : (
                             <div className="text-center py-4">
                                 <p className="text-sm text-slate-500 mb-3">All upgrades complete!</p>
-                                <Button variant="outline" size="sm" onClick={() => navigate('/skills')}>
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => {
+                                        logSelection({
+                                            actionId: "skills:view",
+                                            source: "src/pages/Today.tsx",
+                                            loop: "transformation",
+                                            selectedAt: new Date().toISOString(),
+                                            metadata: { intent: "view_skill_trees" },
+                                        });
+                                        navigate('/skills');
+                                    }}
+                                >
                                     <BookOpen className="w-4 h-4 mr-2" />
                                     View Skill Trees
                                 </Button>
