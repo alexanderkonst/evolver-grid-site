@@ -140,4 +140,36 @@ describe("actionEngine", () => {
 
     expect(recommendation?.primary.title).toBe("Short Practice");
   });
+
+  it("prioritizes loop order when no QoL or quick-win bias applies", () => {
+    const extraActions: UnifiedAction[] = [
+      {
+        id: "matchmaking:connect",
+        type: "library_item",
+        loop: "matchmaking",
+        title: "Matchmaking Action",
+        source: "fixtures",
+        duration: "md",
+      },
+      {
+        id: "profile:checkin",
+        type: "celebration",
+        loop: "profile",
+        title: "Profile Check-in",
+        source: "fixtures",
+        duration: "md",
+      },
+    ];
+
+    const recommendation = buildRecommendationFromLegacy({
+      questSuggestion: null,
+      practices: [],
+      upgrade: null,
+      extraActions,
+      totalCompletedActions: 10,
+      lowestDomains: [],
+    });
+
+    expect(recommendation?.primary.id).toBe("profile:checkin");
+  });
 });
