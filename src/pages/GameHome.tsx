@@ -322,6 +322,17 @@ const GameHome = () => {
   const handleStartQuest = async () => {
     if (!selectedDuration || !selectedMode) return;
 
+    if (profileId) {
+      logActionEvent({
+        actionId: "side-quest-picker",
+        profileId,
+        source: "src/pages/GameHome.tsx",
+        loop: "transformation",
+        selectedAt: new Date().toISOString(),
+        metadata: { intent: "start_side_quest", duration: selectedDuration, mode: selectedMode },
+      });
+    }
+
     setIsLoadingQuest(true);
     setQuestSuggestion(null);
     setQuestCompleted(false);
@@ -824,7 +835,19 @@ const GameHome = () => {
                       Earn XP with a quick practice from the library.
                     </p>
                     <Button
-                      onClick={() => setShowQuestPicker(true)}
+                      onClick={() => {
+                        if (profileId) {
+                          logActionEvent({
+                            actionId: "side-quest-picker",
+                            profileId,
+                            source: "src/pages/GameHome.tsx",
+                            loop: "transformation",
+                            selectedAt: new Date().toISOString(),
+                            metadata: { intent: "open_picker" },
+                          });
+                        }
+                        setShowQuestPicker(true);
+                      }}
                       className="w-full"
                       size="sm"
                     >
@@ -864,7 +887,23 @@ const GameHome = () => {
                       <Compass className="w-4 h-4" />
                       <span className="text-sm">See all transformational journeys in the Library</span>
                     </div>
-                    <Button variant="ghost" size="sm" onClick={() => navigate('/library?from=game')}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        if (profileId) {
+                          logActionEvent({
+                            actionId: "library:browse",
+                            profileId,
+                            source: "src/pages/GameHome.tsx",
+                            loop: "marketplace",
+                            selectedAt: new Date().toISOString(),
+                            metadata: { intent: "browse_library" },
+                          });
+                        }
+                        navigate('/library?from=game');
+                      }}
+                    >
                       Browse Library →
                     </Button>
                   </div>
