@@ -741,7 +741,22 @@ const GameHome = () => {
                 <p className="text-base text-slate-600 mb-8 leading-relaxed">
                   First, discover your Zone of Genius. Then map your life across eight domains.
                 </p>
-                <Button size="lg" onClick={() => navigate("/zone-of-genius?fromGame=1")}>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    if (profileId) {
+                      logActionEvent({
+                        actionId: "onboarding:zog_start",
+                        profileId,
+                        source: "src/pages/GameHome.tsx",
+                        loop: "profile",
+                        selectedAt: new Date().toISOString(),
+                        metadata: { intent: "start_onboarding" },
+                      });
+                    }
+                    navigate("/zone-of-genius?fromGame=1");
+                  }}
+                >
                   <BoldText className="uppercase">Begin: Discover My Zone of Genius</BoldText>
                 </Button>
               </div>
