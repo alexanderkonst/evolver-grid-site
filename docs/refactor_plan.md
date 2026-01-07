@@ -103,6 +103,13 @@
 2) **QA matrix:** run unit tests for aggregation/recommendation ordering, integration tests for `GameHome` with `DAILY_LOOP_V2` on/off, Supabase migrations against a staging snapshot, and analytics event validation. Gate rollout with minimal success thresholds (activation on first session, completion of first action within 24h).
 3) **Clean-up:** remove legacy Main/Side/Upgrade cards and redundant helpers once the new loop is stable and metrics are healthy.
 4) **Docs & playbook:** update `docs/roadmap.md` and `docs/game_architecture.md` with the new flow and action engine once shipped.
+### QA checklist
+- [ ] `DAILY_LOOP_V2=on`: loads GameHome, shows recommended action, CTA navigates to correct target.
+- [ ] `DAILY_LOOP_V2=off`: legacy Main/Side/Upgrade cards still render and function.
+- [ ] `npm run test` passes for action engine + completion tests.
+- [ ] `npm run lint` matches baseline (no new failures).
+- [ ] `npm run build` succeeds.
+- [ ] Action telemetry events: presented, accept, freedom_mode_override, completed, and recommendation_error (if triggered).
 
 ## Migration & Ops Plan
 - **Supabase migrations:** add tables/columns for growth path progress and action logs; include reversible migrations and backfill scripts. Proposed tables:
