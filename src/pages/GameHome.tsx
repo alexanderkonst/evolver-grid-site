@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 import { buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
-import { growthPathSteps } from "@/modules/growth-paths";
+import { growthPathSteps, type GrowthPathProgress } from "@/modules/growth-paths";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -129,6 +129,7 @@ const GameHome = () => {
   const [masteryUpgrades, setMasteryUpgrades] = useState<Upgrade[]>([]);
   const [completedUpgradeCodes, setCompletedUpgradeCodes] = useState<Set<string>>(new Set());
   const [nextRecommendedUpgrade, setNextRecommendedUpgrade] = useState<Upgrade | null>(null);
+  const [growthPathProgress, setGrowthPathProgress] = useState<GrowthPathProgress>({});
   const [actionError, setActionError] = useState<string | null>(null);
 
   // Quest state
@@ -192,7 +193,7 @@ const GameHome = () => {
       ];
       setMasteryUpgrades(masteryData.length > 0 ? masteryData : fallbackUpgrades);
 
-      // Now parallelize snapshot fetches and player upgrades
+      // Now parallelize snapshot fetches, player upgrades, and vector progress
       const zogPromise = profileData.last_zog_snapshot_id
         ? supabase.from('zog_snapshots').select('*').eq('id', profileData.last_zog_snapshot_id).maybeSingle()
         : Promise.resolve({ data: null, error: null });
@@ -201,10 +202,14 @@ const GameHome = () => {
         ? supabase.from('qol_snapshots').select('*').eq('id', profileData.last_qol_snapshot_id).maybeSingle()
         : Promise.resolve({ data: null, error: null });
 
-      const [zogResult, qolResult, playerUpgradesData] = await Promise.all([
+      const [zogResult, qolResult, playerUpgradesData, vectorProgressResult] = await Promise.all([
         zogPromise,
         qolPromise,
         getPlayerUpgrades(id),
+        supabase
+          .from('vector_progress')
+          .select('vector, step_index')
+          .eq('profile_id', id),
       ]);
 
       // Process ZoG snapshot
@@ -233,6 +238,14 @@ const GameHome = () => {
       // Find next uncompleted upgrade
       const nextUpgrade = masteryData.find(u => !completedCodes.has(u.code));
       setNextRecommendedUpgrade(nextUpgrade || null);
+
+      if (!vectorProgressResult.error && vectorProgressResult.data) {
+        const progressMap = vectorProgressResult.data.reduce<GrowthPathProgress>((acc, row) => {
+          acc[row.vector as keyof GrowthPathProgress] = row.step_index ?? 0;
+          return acc;
+        }, {});
+        setGrowthPathProgress(progressMap);
+      }
 
       // Auto-complete ZoG assessment if snapshot exists
       if (profileData.last_zog_snapshot_id && !completedCodes.has('zog_assessment_completed')) {
@@ -510,8 +523,6 @@ const GameHome = () => {
   const lowestDomains = getLowestDomains();
 
   const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
-
-  const growthPathProgress = useMemo(() => ({}), [profileId]);
 
   const recommendationSet = useMemo(() =>
     buildRecommendationFromLegacy({
