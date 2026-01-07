@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, CreditCard, Loader2, Check, Edit2, X } from "lucide-react";
+import { ArrowLeft, User, CreditCard, Loader2, Check, Edit2, X, AlertTriangle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
@@ -341,6 +341,97 @@ const Profile = () => {
                                             )}
                                         </Button>
                                     </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                        {/* Danger Zone */}
+                        <Card className="border-red-200 bg-red-50">
+                            <CardHeader>
+                                <div className="flex items-center gap-3">
+                                    <AlertTriangle className="h-5 w-5 text-red-600" />
+                                    <div>
+                                        <CardTitle className="text-red-900">Danger Zone</CardTitle>
+                                        <CardDescription className="text-red-700">
+                                            Irreversible actions regarding your account data
+                                        </CardDescription>
+                                    </div>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="font-medium text-red-900">Reset Progress</p>
+                                        <p className="text-sm text-red-700">
+                                            Wipe all game progress (XP, levels, snapshots) and start over.
+                                        </p>
+                                    </div>
+                                    <Button
+                                        variant="destructive"
+                                        onClick={async () => {
+                                            if (!profile || !confirm("Are you sure? This will wipe ALL your progress, XP, and unlocked upgrades. This cannot be undone.")) return;
+
+                                            setIsLoading(true);
+                                            try {
+                                                // 1. Reset profile stats
+                                                const { error: profileError } = await supabase
+                                                    .from('game_profiles')
+                                                    .update({
+                                                        last_zog_snapshot_id: null,
+                                                        last_qol_snapshot_id: null,
+                                                        xp_total: 0,
+                                                        level: 1,
+                                                        current_streak_days: 0,
+                                                        longest_streak_days: 0,
+                                                        xp_body: 0,
+                                                        xp_mind: 0,
+                                                        xp_emotions: 0,
+                                                        xp_spirit: 0,
+                                                        xp_uniqueness: 0,
+                                                        practice_count: 0,
+                                                        zone_of_genius_completed: false,
+                                                        total_quests_completed: 0
+                                                    })
+                                                    .eq('id', profile.id);
+
+                                                if (profileError) throw profileError;
+
+                                                // 2. Delete player upgrades (if permissions allow)
+                                                // interactive error handling if table doesn't exist or blocks delete
+                                                const { error: upgradeError } = await supabase
+                                                    .from('player_upgrades')
+                                                    .delete()
+                                                    .eq('profile_id', profile.id);
+
+                                                if (upgradeError) console.warn("Could not clear upgrades:", upgradeError);
+
+                                                // 3. Clear vector progress (for growth paths)
+                                                const { error: vectorError } = await supabase
+                                                    .from('vector_progress')
+                                                    .delete()
+                                                    .eq('profile_id', profile.id);
+
+                                                if (vectorError) console.warn("Could not clear vector progress:", vectorError);
+
+                                                toast({
+                                                    title: "Progress Reset",
+                                                    description: "Your journey has been restarted.",
+                                                });
+
+                                                // Navigate home to restart onboarding
+                                                navigate('/game');
+                                            } catch (error) {
+                                                console.error("Reset failed:", error);
+                                                toast({
+                                                    title: "Error",
+                                                    description: "Failed to reset progress. Please try again.",
+                                                    variant: "destructive",
+                                                });
+                                                setIsLoading(false);
+                                            }
+                                        }}
+                                    >
+                                        Reset My Progress
+                                    </Button>
                                 </div>
                             </CardContent>
                         </Card>
