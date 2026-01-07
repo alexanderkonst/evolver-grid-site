@@ -2,7 +2,7 @@
 
 > Sequences of transformational upgrades — how you develop yourself
 
-*Updated: 2025-01-06*
+*Updated: 2025-01-07*
 
 ---
 
@@ -32,31 +32,45 @@
 
 ## Spirit Growth Path (Waking Up)
 
-| # | Upgrade | Type | The Shift | Unlocks After |
-|---|---------|------|-----------|---------------|
-| 1 | Consciousness Baseline | 📝 | Where am I on the awareness spectrum? | — |
-| 2 | First Activation | 🔥 | Experience an altered state | Step 1 |
-| 3 | Micro: States of Consciousness | 📚 | Learn to name what you experience | Step 2 |
-| 4 | State Access | 🔥 | Trigger a peak state reliably | Step 3 |
-| 5 | Micro: Waking Up vs Growing Up | 📚 | Horizontal vs vertical development | Step 3 |
-| 6 | Extended Activation | 🔥 | Deeper, longer immersive experience | Step 4 |
-| 7 | Daily Integration | 🔥 | Bring expanded state into ordinary life | Step 4 |
-| 8 | Advanced Activation Library | 🔥 | Access to advanced experiences | Step 6 |
+*Awareness + Sensitivity as meta-skills*
+
+| # | Upgrade | Type | The Shift | Duration |
+|---|---------|------|-----------|----------|
+| 1 | Micro: What is Spirit? | 📚 | Awareness + Sensitivity as the two graspable aspects of spirit; seeing them as meta-skills through everyday experience | 90s |
+| 2 | Spirit Baseline Assessment | 📝 | Where am I on the holonic map of awareness? Sensitivity? What's next? | 3 min |
+| 3 | Micro: Shifting Consciousness | � | Speed of shifting, degree of peak, sustainable development considerations | 90s |
+| 4 | Conscious Breath | � | Learn to take a conscious breath — the foundational skill | 2 min |
+| 5 | Heart Centering | 🔥 | Breath into the center of the heart — a technique to increase sensitivity (secular Vipassana/Sufi/Rosicrucian) | 5 min |
+| 6 | State Shifting Experience | � | Experience shifting awareness and sensitivity; develop sensitivity to the shifting itself (meta-skill on meta-skill) | 10 min |
+| 7 | Micro: States of Consciousness | � | Altered/expanded states, peak experiences, nervous system connection, brain wave activity | 90s |
+| 8 | Micro: Depth Perception | � | Perception of time and space → better decisions; this as a meta-skill | 90s |
+| 9 | Breathwork + Meditation | 🔥 | Full experience: breathwork followed by meditation | 20+ min |
+| 10 | Micro: Five Major States | � | Physical, Subtle, Causal, Non-dual, Isness/Suchness, Ground of Being, Non-dual + Void | 90s |
+
+**Later:** Advanced breathwork sessions, deeper state training
 
 ---
 
 ## Mind Growth Path (Growing Up)
 
-| # | Upgrade | Type | The Shift | Unlocks After |
-|---|---------|------|-----------|---------------|
-| 1 | Developmental Baseline | 📝 | Where is my center of gravity? | — |
-| 2 | Micro: What is Development? | 📚 | Understand vertical growth | Step 1 |
-| 3 | My Stage Portrait | 📚 | Deep dive into my current stage | Step 2 |
-| 4 | Stage Shadow | 📝 | Identify my stage's blind spots | Step 3 |
-| 5 | Next Stage Preview | 📚 | What's the next level? | Step 3 |
-| 6 | Perspective-Taking Activation | 🔥 | Experience other perspectives | Step 4 |
-| 7 | Integral Framework | 📚 | Quadrants, levels, lines, states, types | Step 5 |
-| 8 | Systems Thinking | 📚 | Think in interconnected wholes | Step 7 |
+*Development as lens polishing — seeing the lens you see through*
+
+| # | Upgrade | Type | The Shift | Duration |
+|---|---------|------|-----------|----------|
+| 1 | Micro: Why This Matters | 📚 | How developmental stages reflect in products, businesses, societies, politics, thoughts | 90s |
+| 2 | Micro: Mind Development | 📚 | Understanding growth as mind development | 90s |
+| 3 | Micro: Thinking About Thinking | 📚 | One of the best ways to learn about mind is to learn about thinking | 90s |
+| 4 | Micro: Essence of Mind | 📚 | Mind as a filtering lens of perception → worldview; development = polishing/studying the lens | 90s |
+| 5 | Micro: Cognitive Distortions | 📚 | Key distortions per Spiral Dynamics stage; extreme manifestations in human mind | 90s |
+| 6 | Distortion Discovery | � | Immersive experience connecting you to YOUR key distortions | 10 min |
+| 7 | Micro: Thinking Patterns | 📚 | Different thinking patterns per developmental stage; clear examples; developmental sequence as mind matures | 90s |
+| 8 | Micro: Blind Spots by Stage | 📚 | How each stage gets stuck; the conundrum it tries to resolve; how it finally resolves | 90s |
+| 9 | Micro: Perspectives | 📚 | Ego-centric → Ethnocentric → World-centric → Cosmo-centric; 1st/2nd/3rd/4th/5th person | 90s |
+| 10 | Micro: Quadrants | 📚 | I/We/It/Its — the four fundamental perspectives | 90s |
+| 11 | Micro: Lines (Multiple Intelligences) | 📚 | Cognitive, emotional, moral, interpersonal, etc. | 90s |
+| 12 | Micro: Types | 📚 | Horizontal variety at each level (masculine/feminine, Enneagram, etc.) | 90s |
+| 13 | Micro: Holistic Thinking | 📚 | Thinking in interconnected wholes | 90s |
+| 14 | Micro: Holonic Thinking | 📚 | Thinking in holons — the structure that repeats at every level | 90s |
 
 ---
 
@@ -93,11 +107,11 @@
 ## Legend
 
 - 🔥 = Immersive Experience / Activation
-- 📚 = Micro-learning
+- 📚 = Micro-learning (90s video infographic)
 - 📝 = Profile step / Self-assessment
 - 💰 = Paid module
 
 ---
 
-*Growth Paths v6.0*
-*Updated: 2025-01-06*
+*Growth Paths v7.0*
+*Updated: 2025-01-07*
