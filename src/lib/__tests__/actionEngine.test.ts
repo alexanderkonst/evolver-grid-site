@@ -78,4 +78,66 @@ describe("actionEngine", () => {
 
     expect(recommendation?.primary.id).toBe("profile:celebrate");
   });
+
+  it("keeps alternates to two items and excludes primary", () => {
+    const recommendation = buildRecommendationFromLegacy({
+      ...baseInputs,
+      questSuggestion: {
+        main: {
+          quest_title: "Primary Quest",
+          practice_type: "breathEnergy",
+          approx_duration_minutes: 10,
+        },
+        alternatives: [
+          { quest_title: "Alt Quest 1", practice_type: "breathEnergy", approx_duration_minutes: 10 },
+          { quest_title: "Alt Quest 2", practice_type: "activations", approx_duration_minutes: 10 },
+          { quest_title: "Alt Quest 3", practice_type: "activations", approx_duration_minutes: 10 },
+        ],
+      },
+      practices: [],
+      upgrade: null,
+      lowestDomains: [],
+      totalCompletedActions: 5,
+    });
+
+    expect(recommendation?.primary.title).toBe("Primary Quest");
+    expect(recommendation?.alternates?.length).toBe(2);
+    expect(recommendation?.alternates?.every(alt => alt.title !== "Primary Quest")).toBe(true);
+  });
+
+  it("prefers quick wins for new users", () => {
+    const recommendation = buildRecommendationFromLegacy({
+      ...baseInputs,
+      practices: [
+        {
+          id: "practice-long",
+          categoryId: "breathEnergy",
+          title: "Long Practice",
+          teacher: "Fixture Guide",
+          url: "https://example.com/long",
+          youtubeId: "fixture-long",
+          durationMinutes: 25,
+          primaryPath: "spirit",
+          primaryDomain: "growth",
+        },
+        {
+          id: "practice-short",
+          categoryId: "breathEnergy",
+          title: "Short Practice",
+          teacher: "Fixture Guide",
+          url: "https://example.com/short",
+          youtubeId: "fixture-short",
+          durationMinutes: 2,
+          primaryPath: "spirit",
+          primaryDomain: "growth",
+        },
+      ],
+      questSuggestion: null,
+      upgrade: null,
+      totalCompletedActions: 0,
+      lowestDomains: [],
+    });
+
+    expect(recommendation?.primary.title).toBe("Short Practice");
+  });
 });
