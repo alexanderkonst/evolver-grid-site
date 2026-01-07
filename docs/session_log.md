@@ -345,18 +345,22 @@ Critical review of what we built. Outcomes:
 
 | Item | Impact |
 |------|--------|
-| **Spirit Growth Path** | Fully developed (10 steps: awareness, sensitivity, conscious breath, heart centering, states) |
-| **Mind Growth Path** | Fully developed (14 steps: lens polishing, distortions, perspectives, integral framework) |
+| **Spirit Growth Path** | Fully developed (10 steps) |
+| **Mind Growth Path** | Fully developed (14 steps) |
 | **user_flows.md** | NEW: 15 screens from landing to daily loop |
 | **module_scope.md** | NEW: MVP priorities and build sequence |
 | **first_actions.md** | NEW: 5 starter actions with scripts and XP |
-| **Refactor Review** | Confirmed no conflict between docs and Codex work |
+| **onboarding_script.md** | NEW: Steve Jobs simple copy for all screens |
+| **inventory.md** | NEW: Single source for what exists/needs building |
+| **gamification_spec.md** | NEW: XP, levels, reveal moments, spaced repetition |
+| **docs_index.md** | NEW: Map of all 28 docs by category |
+| **Codex PR Fix** | Resolved merge conflict, PR now mergeable |
 
 ### Working Agreement
 
-- **Me (Gemini):** Documentation and architecture only
+- **Gemini:** Docs and architecture only
 - **Codex:** Code refactoring
-- **No code from me** until explicit permission
+- **No code from Gemini** until explicit permission
 
 ### In Progress
 
@@ -366,17 +370,18 @@ Critical review of what we built. Outcomes:
 
 | Metric | Value |
 |--------|-------|
-| Days worked | 3.5 |
+| Days worked | 4 |
 | Days remaining | 22 |
 | Architecture | ✅ Complete |
 | Growth Paths | Spirit ✅, Mind ✅, Genius ✅, Emotions 🟡, Body 🔜 |
 | User Flows | ✅ Complete |
-| Module Scope | ✅ Complete |
-| First Actions | ✅ Complete |
+| Gamification Spec | ✅ Complete |
+| Total Docs | 28 |
 
 ---
 
-*Session continues...*
+*Day 4 continues... (~2:40pm)*
+
 
 
 
