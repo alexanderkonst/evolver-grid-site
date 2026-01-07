@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Sparkles, Flame, Compass, Heart, Loader2, ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import BoldText from "@/components/BoldText";
 
 interface NextMoveAction {
@@ -123,9 +124,18 @@ export const DailyLoopLayout = ({
         <div className="space-y-4">
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 sm:p-5">
             {isLoadingAction ? (
-              <div className="flex items-center gap-3 text-emerald-700">
-                <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
-                <p className="font-semibold">Finding your next move...</p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-emerald-700">
+                  <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+                  <p className="font-semibold">Finding your next move...</p>
+                </div>
+                <Skeleton className="h-4 w-2/3 rounded-full bg-emerald-100" />
+                <Skeleton className="h-5 w-full rounded-full bg-emerald-100" />
+                <Skeleton className="h-4 w-4/5 rounded-full bg-emerald-100" />
+                <div className="flex gap-3">
+                  <Skeleton className="h-9 w-28 rounded-full bg-emerald-100" />
+                  <Skeleton className="h-9 w-32 rounded-full bg-emerald-100" />
+                </div>
               </div>
             ) : actionError ? (
               <div className="space-y-3">

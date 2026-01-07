@@ -17,8 +17,10 @@ import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules
 import { useToast } from "@/hooks/use-toast";
 import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
-import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
+import { getSuggestedPractices } from "@/lib/practiceSystem";
 import { buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
+import { completeAction } from "@/lib/completeAction";
+import { type UnifiedAction } from "@/types/actions";
 import {
   getMainQuestCopy,
   computeNextMainQuestStage,
@@ -111,6 +113,11 @@ const formatDurationLabel = (minutes?: number | null) => {
   if (minutes <= 25) return "~20–25 min";
   if (minutes <= 45) return "~45 min";
   return `${minutes} min`;
+};
+
+const normalizeGrowthPath = (path?: string | null) => {
+  if (!path) return undefined;
+  return path === "uniqueness" ? "genius" : path;
 };
 
 const GameHome = () => {
@@ -297,6 +304,11 @@ const GameHome = () => {
     return LIBRARY_ITEMS.find(item => item.title.toLowerCase() === title.toLowerCase());
   };
 
+  const findPracticeById = (id?: string | null): LibraryItem | undefined => {
+    if (!id) return undefined;
+    return LIBRARY_ITEMS.find(item => item.id === id);
+  };
+
   const handleStartQuest = async () => {
     if (!selectedDuration || !selectedMode) return;
 
@@ -444,8 +456,24 @@ const GameHome = () => {
   };
 
   const handleMarkPracticeDone = async (practice: LibraryItem) => {
+    if (!profileId) return;
     setMarkingPracticeDone(practice.id);
-    const result = await markPracticeDone(practice.id, practice.primaryPath);
+    const action: UnifiedAction = {
+      id: `practice:${practice.id}`,
+      type: "practice",
+      loop: "transformation",
+      title: practice.title,
+      description: practice.teacher ? `with ${practice.teacher}` : undefined,
+      growthPath: normalizeGrowthPath(practice.primaryPath),
+      qolDomain: practice.primaryDomain,
+      duration: practice.durationMinutes ? formatDurationBucket(practice.durationMinutes) : undefined,
+      source: "lib/practiceSystem.ts",
+      completionPayload: {
+        sourceId: practice.id,
+        growthPath: normalizeGrowthPath(practice.primaryPath),
+      },
+    };
+    const result = await completeAction(action, { profileId });
 
     if (result.success) {
       toast({ title: "+10 XP earned!", description: "Practice logged." });
@@ -570,9 +598,17 @@ const GameHome = () => {
     }
 
     if (primary.type === "practice") {
-      const practice = findPracticeByTitle(primary.title);
+      const practiceId = primary.completionPayload?.sourceId || primary.id?.replace("practice:", "");
+      const practice = findPracticeById(practiceId) ?? findPracticeByTitle(primary.title);
       if (practice) {
-        navigate(`/library?practice=${practice.id}&from=daily-loop&loop=${primary.loop}&growthPath=${primary.growthPath}`);
+        const params = new URLSearchParams({
+          practice: practice.id,
+          from: "daily-loop",
+        });
+        if (primary.loop) params.set("loop", primary.loop);
+        if (primary.growthPath) params.set("growthPath", primary.growthPath);
+        if (primary.id) params.set("actionId", primary.id);
+        navigate(`/library?${params.toString()}`);
         return;
       }
     }

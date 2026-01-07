@@ -50,7 +50,8 @@ const normalizeUpgrade = (upgrade: Upgrade): UnifiedAction => ({
   duration: "md",
   source: "lib/upgradeSystem.ts",
   completionPayload: {
-    sourceId: upgrade.id,
+    sourceId: upgrade.code,
+    metadata: { upgradeId: upgrade.id },
     xp: upgrade.xp_reward,
     growthPath: normalizeGrowthPath(upgrade.path_slug),
   },
@@ -71,7 +72,7 @@ const normalizePractice = (practice: LibraryItem): UnifiedAction => ({
   completionPayload: { sourceId: practice.id, growthPath: normalizeGrowthPath(practice.primaryPath) },
 });
 
-interface RecommendationInputs {
+export interface RecommendationInputs {
   questSuggestion?: LegacyQuestBundle | null;
   upgrade?: Upgrade | null;
   practices?: LibraryItem[];
@@ -79,16 +80,12 @@ interface RecommendationInputs {
   totalCompletedActions?: number;
 }
 
-const buildRationale = (action: UnifiedAction, lowestDomains?: string[]) => {
-  if (action.whyRecommended) return action.whyRecommended;
-  if (lowestDomains && lowestDomains.length > 0) {
-    return `Helps your ${lowestDomains.join(" & ")} focus.`;
-  }
-  if (action.type === "upgrade") return "Advance your Showing Up path.";
-  return "Quick win to keep momentum.";
-};
+interface AggregatedActions {
+  candidates: UnifiedAction[];
+  alternates: UnifiedAction[];
+}
 
-export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): RecommendationSet | null => {
+export const aggregateLegacyActions = (inputs: RecommendationInputs): AggregatedActions => {
   const candidates: UnifiedAction[] = [];
   const alternates: UnifiedAction[] = [];
 
@@ -108,6 +105,21 @@ export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): Rec
       candidates.push(normalizePractice(practice));
     });
   }
+
+  return { candidates, alternates };
+};
+
+const buildRationale = (action: UnifiedAction, lowestDomains?: string[]) => {
+  if (action.whyRecommended) return action.whyRecommended;
+  if (lowestDomains && lowestDomains.length > 0) {
+    return `Helps your ${lowestDomains.join(" & ")} focus.`;
+  }
+  if (action.type === "upgrade") return "Advance your Showing Up path.";
+  return "Quick win to keep momentum.";
+};
+
+export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): RecommendationSet | null => {
+  const { candidates, alternates } = aggregateLegacyActions(inputs);
 
   if (candidates.length === 0) return null;
 

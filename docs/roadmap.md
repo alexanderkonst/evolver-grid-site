@@ -37,6 +37,16 @@
 
 ---
 
+## Daily Loop Refactor Ownership
+
+| Item | Owner | ETA | Notes |
+|------|-------|-----|-------|
+| Daily Loop v2 refactor | Codex + Alexander | 2025-01-22 | Ships behind `DAILY_LOOP_V2` flag in phases 0–5 |
+
+**Rollback trigger:** if Daily Loop v2 error rate > 2% or action completion rate drops > 20% vs. legacy for 3 consecutive days, disable `DAILY_LOOP_V2` and revert to legacy cards while investigating.
+
+---
+
 ## ✅ Completed (Days 1-3)
 
 ### Architecture Clarity
