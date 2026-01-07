@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aggregateLegacyActions, buildGrowthPathActions, buildRecommendationFromLegacy, type RecommendationInputs } from "@/lib/actionEngine";
+import { aggregateLegacyActions, buildGrowthPathActions, buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, type RecommendationInputs } from "@/lib/actionEngine";
 import { type UnifiedAction } from "@/types/actions";
 
 const baseInputs: RecommendationInputs = {
@@ -189,5 +189,20 @@ describe("actionEngine", () => {
     expect(actions[0].type).toBe("growth_path_step");
     expect(actions[0].growthPath).toBe("genius");
     expect(actions[0].completionPayload?.xp).toBe(25);
+  });
+
+  it("selects next growth path step by progress and skips drafts", () => {
+    const actions = buildGrowthPathActionsForProgress(
+      [
+        { id: "g-1", title: "Genius 1", growthPath: "genius", durationMinutes: 5, xp: 10, version: "v1" },
+        { id: "g-2", title: "Genius 2", growthPath: "genius", durationMinutes: 5, xp: 10, version: "v1" },
+        { id: "s-1", title: "Spirit 1", growthPath: "spirit", durationMinutes: 5, xp: 10, version: "v1", draft: true },
+        { id: "s-2", title: "Spirit 2", growthPath: "spirit", durationMinutes: 5, xp: 10, version: "v1" },
+      ],
+      { genius: 1, spirit: 0 }
+    );
+
+    expect(actions.some(action => action.title === "Genius 2")).toBe(true);
+    expect(actions.some(action => action.title === "Spirit 2")).toBe(true);
   });
 });

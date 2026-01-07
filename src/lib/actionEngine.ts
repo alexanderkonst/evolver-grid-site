@@ -1,7 +1,7 @@
 import { type LibraryItem } from "@/modules/library/libraryContent";
 import { type Upgrade } from "@/lib/upgradeSystem";
 import { type UnifiedAction, type RecommendationSet, type ActionDuration, type ActionLoop } from "@/types/actions";
-import { type GrowthPathStep } from "@/modules/growth-paths";
+import { type GrowthPathStep, type GrowthPathProgress } from "@/modules/growth-paths";
 
 type LegacyQuestSuggestion = {
   quest_title: string;
@@ -133,6 +133,28 @@ export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[]
     },
     locks: step.draft ? ["draft"] : undefined,
   }));
+
+export const buildGrowthPathActionsForProgress = (
+  steps: GrowthPathStep[],
+  progress: GrowthPathProgress
+): UnifiedAction[] => {
+  const stepsByPath = steps.reduce<Record<string, GrowthPathStep[]>>((acc, step) => {
+    if (!acc[step.growthPath]) acc[step.growthPath] = [];
+    acc[step.growthPath].push(step);
+    return acc;
+  }, {});
+
+  return Object.entries(stepsByPath)
+    .map(([growthPath, pathSteps]) => {
+      const availableSteps = pathSteps.filter(step => !step.draft);
+      const index = progress[growthPath as keyof GrowthPathProgress] ?? 0;
+      const nextStep = availableSteps[index];
+      return nextStep
+        ? buildGrowthPathActions([nextStep])[0]
+        : null;
+    })
+    .filter((action): action is UnifiedAction => Boolean(action));
+};
 
 const normalizeQolDomain = (value?: string | null) => {
   if (!value) return undefined;
