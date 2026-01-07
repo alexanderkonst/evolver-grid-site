@@ -67,6 +67,7 @@ export const DailyLoopLayout = ({
   actionError,
   onPrimaryAction,
   onRetryAction,
+  onFreedomMode,
   freedomModeUrl = "/library?from=daily-loop",
 }: DailyLoopLayoutProps) => {
   return (
@@ -196,14 +197,13 @@ export const DailyLoopLayout = ({
                     size="sm"
                     onClick={onPrimaryAction}
                     disabled={!onPrimaryAction}
+                    className="flex items-center gap-2"
                   >
-                    <BoldText className="flex items-center gap-2">
-                      Do it now
-                      <ArrowRight className="h-4 w-4" aria-hidden />
-                    </BoldText>
+                    <BoldText>Do it now</BoldText>
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Button>
-                  <Button asChild variant="secondary" size="sm" onClick={onFreedomMode}>
-                    <Link to={freedomModeUrl}>Freedom Mode</Link>
+                  <Button asChild variant="secondary" size="sm">
+                    <Link to={freedomModeUrl} onClick={onFreedomMode}>Freedom Mode</Link>
                   </Button>
                 </div>
               </div>
