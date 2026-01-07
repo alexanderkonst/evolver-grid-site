@@ -1377,6 +1377,44 @@ const GameHome = () => {
                       )}
                     </div>
 
+                    {questSuggestion.alternatives?.length > 0 && (
+                      <div className="rounded-2xl border border-slate-200 bg-white p-4 space-y-3">
+                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Alternatives</p>
+                        <div className="space-y-2">
+                          {questSuggestion.alternatives.map((alt, idx) => (
+                            <button
+                              key={`${alt.quest_title}-${idx}`}
+                              onClick={() => {
+                                if (profileId) {
+                                  logActionEvent({
+                                    actionId: `quest:${alt.quest_title.toLowerCase().replace(/\s+/g, "-")}`,
+                                    profileId,
+                                    source: "src/pages/GameHome.tsx",
+                                    loop: "transformation",
+                                    growthPath: "genius",
+                                    duration: formatDurationBucket(alt.approx_duration_minutes),
+                                    selectedAt: new Date().toISOString(),
+                                    metadata: { intent: "select_alternative" },
+                                  });
+                                }
+                                setQuestSuggestion({
+                                  main: alt,
+                                  alternatives: questSuggestion.alternatives.filter((_, altIndex) => altIndex !== idx),
+                                });
+                                setQuestCompleted(false);
+                              }}
+                              className="w-full text-left rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 hover:border-slate-300 hover:bg-slate-100 transition-colors"
+                            >
+                              <div className="font-semibold text-slate-900">{alt.quest_title}</div>
+                              <div className="text-xs text-slate-500">
+                                {alt.practice_type} · ~{alt.approx_duration_minutes || 10} min
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     <Button
                       variant="ghost"
                       className="w-full"
