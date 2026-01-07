@@ -115,6 +115,14 @@ const formatDurationLabel = (minutes?: number | null) => {
   return `${minutes} min`;
 };
 
+const toDurationBucket = (minutes?: number | null) => {
+  if (!minutes && minutes !== 0) return undefined;
+  if (minutes <= 3) return "xs";
+  if (minutes <= 10) return "sm";
+  if (minutes <= 25) return "md";
+  return "lg";
+};
+
 const GameHome = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -505,6 +513,19 @@ const GameHome = () => {
     const result = await markPracticeDone(practice.id, practice.primaryPath);
 
     if (result.success) {
+      if (profileId) {
+        logActionEvent({
+          actionId: `practice:${practice.id}`,
+          profileId,
+          source: "src/pages/GameHome.tsx",
+          loop: "transformation",
+          growthPath: practice.primaryPath,
+          qolDomain: practice.primaryDomain,
+          duration: toDurationBucket(practice.durationMinutes),
+          completedAt: new Date().toISOString(),
+          metadata: { intent: "mark_done", result: "completed", origin: "suggested_practice" },
+        });
+      }
       toast({ title: "+10 XP earned!", description: "Practice logged." });
       await loadGameData();
     } else {
