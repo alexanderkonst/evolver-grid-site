@@ -15,7 +15,7 @@ type LegacyQuestBundle = {
   alternatives?: LegacyQuestSuggestion[];
 };
 
-const durationToBucket = (minutes?: number | null): ActionDuration | undefined => {
+export const durationToBucket = (minutes?: number | null): ActionDuration | undefined => {
   if (minutes === null || minutes === undefined) return undefined;
   if (minutes <= 3) return "xs";
   if (minutes <= 10) return "sm";
@@ -23,7 +23,7 @@ const durationToBucket = (minutes?: number | null): ActionDuration | undefined =
   return "lg";
 };
 
-const normalizeGrowthPath = (path?: string | null) => {
+export const normalizeGrowthPath = (path?: string | null) => {
   if (!path) return "genius";
   return path === "uniqueness" ? "genius" : path;
 };
@@ -116,23 +116,23 @@ export const aggregateLegacyActions = (inputs: RecommendationInputs): Aggregated
 };
 
 const mapGrowthPathStep = (step: GrowthPathStep, stepIndex?: number): UnifiedAction => ({
-    id: `sequence:${step.growthPath}:${step.id}`,
-    type: "growth_path_step",
-    loop: "transformation",
-    title: step.title,
-    description: step.description,
+  id: `sequence:${step.growthPath}:${step.id}`,
+  type: "growth_path_step",
+  loop: "transformation",
+  title: step.title,
+  description: step.description,
+  growthPath: step.growthPath,
+  duration: durationToBucket(step.durationMinutes),
+  source: "src/modules/growth-paths",
+  tags: step.tags,
+  completionPayload: {
+    sourceId: step.id,
+    xp: step.xp,
     growthPath: step.growthPath,
-    duration: durationToBucket(step.durationMinutes),
-    source: "src/modules/growth-paths",
-    tags: step.tags,
-    completionPayload: {
-      sourceId: step.id,
-      xp: step.xp,
-      growthPath: step.growthPath,
-      metadata: stepIndex === undefined ? { version: step.version } : { stepIndex, version: step.version },
-    },
-    locks: step.draft ? ["draft"] : undefined,
-  });
+    metadata: stepIndex === undefined ? { version: step.version } : { stepIndex, version: step.version },
+  },
+  locks: step.draft ? ["draft"] : undefined,
+});
 
 export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[] =>
   steps.map(step => mapGrowthPathStep(step));
