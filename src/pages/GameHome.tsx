@@ -712,7 +712,7 @@ const GameHome = () => {
       duration: primary.duration,
       mode: primary.mode,
       selectedAt: new Date().toISOString(),
-      metadata: { intent: "freedom_mode" },
+      metadata: { intent: "freedom_mode_override" },
     });
   };
 
