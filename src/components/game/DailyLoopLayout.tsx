@@ -23,6 +23,10 @@ interface DailyLoopLayoutProps {
   streakDays?: number;
   archetypeTitle?: string | null;
   lowestDomains?: string[];
+  celebration?: {
+    title: string;
+    detail?: string;
+  } | null;
   recommendedAction?: NextMoveAction | null;
   isLoadingAction?: boolean;
   actionError?: string | null;
@@ -57,6 +61,7 @@ export const DailyLoopLayout = ({
   streakDays,
   archetypeTitle,
   lowestDomains = [],
+  celebration,
   recommendedAction,
   isLoadingAction,
   actionError,
@@ -95,6 +100,17 @@ export const DailyLoopLayout = ({
             )}
           </div>
         </div>
+        {celebration && (
+          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900 shadow-sm animate-pulse">
+            <Sparkles className="h-5 w-5 text-amber-500" aria-hidden />
+            <div>
+              <p className="text-sm font-semibold">{celebration.title}</p>
+              {celebration.detail && (
+                <p className="text-xs text-amber-800">{celebration.detail}</p>
+              )}
+            </div>
+          </div>
+        )}
       </SectionCard>
 
       <SectionCard
