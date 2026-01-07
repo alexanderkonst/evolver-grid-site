@@ -48,7 +48,10 @@ const recordCompletionEvent = async (
     duration: action.duration,
     mode: action.mode,
     completedAt: new Date().toISOString(),
-    metadata: action.completionPayload?.metadata,
+    metadata: {
+      intent: "completed",
+      ...(action.completionPayload?.metadata ?? {}),
+    },
   });
 };
 
