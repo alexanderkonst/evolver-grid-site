@@ -1,14 +1,18 @@
+export type GrowthPathKey = "spirit" | "mind" | "emotions" | "body" | "genius";
+
 export type GrowthPathStep = {
   id: string;
   title: string;
   description?: string;
-  growthPath: "spirit" | "mind" | "emotions" | "body" | "genius";
+  growthPath: GrowthPathKey;
   durationMinutes?: number;
   xp?: number;
   tags?: string[];
   version: string;
   draft?: boolean;
 };
+
+export type GrowthPathProgress = Partial<Record<GrowthPathKey, number>>;
 
 export const growthPathSteps: GrowthPathStep[] = [
   {

@@ -17,7 +17,7 @@ import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules
 import { useToast } from "@/hooks/use-toast";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
-import { buildGrowthPathActions, buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
+import { buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
 import { growthPathSteps } from "@/modules/growth-paths";
 import {
   getMainQuestCopy,
@@ -511,16 +511,18 @@ const GameHome = () => {
 
   const isDailyLoopV2 = FEATURE_FLAGS.DAILY_LOOP_V2;
 
+  const growthPathProgress = useMemo(() => ({}), [profileId]);
+
   const recommendationSet = useMemo(() =>
     buildRecommendationFromLegacy({
       questSuggestion,
       upgrade: nextRecommendedUpgrade,
       practices: suggestedPractices,
-      extraActions: isDailyLoopV2 ? buildGrowthPathActions(growthPathSteps).filter(step => !step.locks?.includes("draft")) : [],
+      extraActions: isDailyLoopV2 ? buildGrowthPathActionsForProgress(growthPathSteps, growthPathProgress) : [],
       lowestDomains,
       totalCompletedActions: profile?.total_quests_completed,
     }),
-  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, isDailyLoopV2]);
+  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, isDailyLoopV2, growthPathProgress]);
 
   const recommendedAction = useMemo(() => {
     if (!recommendationSet) return null;
