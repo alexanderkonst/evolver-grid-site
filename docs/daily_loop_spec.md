@@ -78,7 +78,7 @@ The system chooses "My Next Move" based on:
 ### Simple v1 Algorithm:
 ```
 1. Find lowest QoL domain
-2. Map to primary vector (e.g., Wealth → Uniqueness)
+2. Map to primary vector (e.g., Wealth → Genius)
 3. Find next unlocked action in that vector's sequence
 4. Show as "My Next Move"
 ```
@@ -114,7 +114,7 @@ Back to home — new "My Next Move" appears
 | Spirit | xp_spirit | Happiness, Growth |
 | Mind | xp_mind | Impact, Growth, Wealth |
 | Emotions | xp_emotions | Love, Social, Happiness |
-| Uniqueness | xp_uniqueness | Impact, Wealth |
+| Genius | xp_genius | Impact, Wealth |
 | Body | xp_body | Health, Home |
 
 ---
@@ -125,7 +125,7 @@ When player clicks "Explore more →":
 
 ```
 Show full action library, filterable by:
-   ├── Vector (Spirit, Mind, Emotions, Uniqueness, Body)
+   ├── Vector (Spirit, Mind, Emotions, Genius, Body)
    ├── Action Type (Practice, Learning, Life Action, etc.)
    ├── Duration (5, 10, 15, 30, 60 min)
    └── Energy (Activating, Calming, Balanced)
@@ -140,7 +140,7 @@ Like open-world games: guided recommendation, but freedom to wander.
 Each vector needs a **growth sequence** — the recommended order of actions:
 
 ```
-Example: Uniqueness Vector
+Example: Genius Vector
 
 Level 1: Zone of Genius basic (swipe talents)
 Level 2: Personality tests upload
