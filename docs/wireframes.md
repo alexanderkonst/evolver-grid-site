@@ -300,6 +300,147 @@
 
 ---
 
+## Screen 9: Profile Space
+
+```
+┌─────────────────────────────────────┐
+│  ← Back              Profile        │
+├─────────────────────────────────────┤
+│                                     │
+│  [Avatar]                           │
+│  The Synthesizer                    │
+│  Level 2 · Explorer                 │
+│                                     │
+│  ──────────────────────────────     │
+│                                     │
+│  ┌── SELF-UNDERSTANDING ─────────┐  │
+│  │                               │  │
+│  │  ✅ Zone of Genius            │  │
+│  │  ✅ Quality of Life           │  │
+│  │  ○  Personality Tests         │  │
+│  │  ○  Asset Mapping             │  │
+│  │  ○  Mission Discovery         │  │
+│  │                               │  │
+│  └───────────────────────────────┘  │
+│                                     │
+│  ┌── MY LIFE MAP ────────────────┐  │
+│  │  [Mini radar chart]           │  │
+│  │  Tap to expand                │  │
+│  └───────────────────────────────┘  │
+│                                     │
+├─────────────────────────────────────┤
+│ [Profile] [Transform] [Explore]     │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Screen 10: Transformation Space
+
+```
+┌─────────────────────────────────────┐
+│  ← Back          Transformation     │
+├─────────────────────────────────────┤
+│                                     │
+│  ┌── MY NEXT MOVE ───────────────┐  │
+│  │  Conscious Breath             │  │
+│  │  1 min · Spirit · +20 XP      │  │
+│  │  [Start →]                    │  │
+│  └───────────────────────────────┘  │
+│                                     │
+│  ──────────────────────────────     │
+│                                     │
+│  ┌── GROWTH PATHS ───────────────┐  │
+│  │                               │  │
+│  │  Spirit    ████░░░ 40%        │  │
+│  │  Mind      ██░░░░░ 20%        │  │
+│  │  Emotions  ░░░░░░░ 0%         │  │
+│  │  Genius    ██████░ 60%        │  │
+│  │  Body      █░░░░░░ 10%        │  │
+│  │                               │  │
+│  │  [View all paths →]           │  │
+│  └───────────────────────────────┘  │
+│                                     │
+│  ┌── RECENT ─────────────────────┐  │
+│  │  ✓ Conscious Breath (today)   │  │
+│  │  ✓ Name 3 Emotions (yest.)    │  │
+│  └───────────────────────────────┘  │
+│                                     │
+├─────────────────────────────────────┤
+│ [Profile] [Transform] [Explore]     │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Screen 11: Growth Path Detail (Spirit)
+
+```
+┌─────────────────────────────────────┐
+│  ← Back              Spirit Path    │
+├─────────────────────────────────────┤
+│                                     │
+│  Spirit: Waking Up                  │
+│  ████░░░░░░ 40% complete            │
+│                                     │
+│  ──────────────────────────────     │
+│                                     │
+│  Step 1: What is Spirit? ✅         │
+│  ──────────────                     │
+│  Micro-learning · 90s · Watched     │
+│                                     │
+│  Step 2: Spirit Baseline ✅         │
+│  ──────────────                     │
+│  Self-assessment · 3 min            │
+│                                     │
+│  Step 3: Shifting States ●          │
+│  ──────────────                     │
+│  Micro-learning · 90s               │
+│  [Start →]                          │
+│                                     │
+│  Step 4: Conscious Breath ○         │
+│  ──────────────                     │
+│  Activation · 5 min · Locked        │
+│                                     │
+│  Step 5: Heart Centering ○          │
+│  ──────────────                     │
+│  Immersive · 10 min · Locked        │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Screen 12: Level Up Celebration
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│         ✨ ✨ ✨                     │
+│                                     │
+│        LEVEL UP!                    │
+│                                     │
+│    ╔═══════════════════════════╗    │
+│    ║                           ║    │
+│    ║      Level 3              ║    │
+│    ║      SEEKER               ║    │
+│    ║                           ║    │
+│    ╚═══════════════════════════╝    │
+│                                     │
+│    You've reached 250 XP!           │
+│                                     │
+│    Keep going. Your path            │
+│    is unfolding.                    │
+│                                     │
+│    ┌─────────────────────┐          │
+│    │    Continue →       │          │
+│    └─────────────────────┘          │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+---
+
 ## Skip Logic (Proposal)
 
 | Step | Can Skip? | If Skipped |
@@ -314,4 +455,25 @@
 
 ---
 
-*Wireframes v1.0*
+## Screen Summary
+
+| # | Screen | Purpose |
+|---|--------|---------|
+| 1 | Landing | Entry |
+| 2 | Talent Swipe | ZoG test |
+| 3 | Genius Reveal | Dopamine #1 |
+| 4 | QoL Assessment | Life mapping |
+| 5 | Life Snapshot | Dopamine #2 |
+| 5.5 | Core Insight | Self-Dev → Life Results |
+| 6 | Game World | Daily hub |
+| 7 | First Action | Conscious breath |
+| 8 | Action Complete | XP + streak |
+| 9 | Profile Space | Self-understanding |
+| 10 | Transformation Space | Growth paths |
+| 11 | Growth Path Detail | Step-by-step |
+| 12 | Level Up | Celebration |
+
+---
+
+*Wireframes v1.2 — 13 screens*
+
