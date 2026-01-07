@@ -1,6 +1,7 @@
 import { type LibraryItem } from "@/modules/library/libraryContent";
 import { type Upgrade } from "@/lib/upgradeSystem";
 import { type UnifiedAction, type RecommendationSet, type ActionDuration, type ActionLoop } from "@/types/actions";
+import { type GrowthPathStep } from "@/modules/growth-paths";
 
 type LegacyQuestSuggestion = {
   quest_title: string;
@@ -113,6 +114,25 @@ export const aggregateLegacyActions = (inputs: RecommendationInputs): Aggregated
 
   return { candidates, alternates };
 };
+
+export const buildGrowthPathActions = (steps: GrowthPathStep[]): UnifiedAction[] =>
+  steps.map(step => ({
+    id: `sequence:${step.growthPath}:${step.id}`,
+    type: "growth_path_step",
+    loop: "transformation",
+    title: step.title,
+    description: step.description,
+    growthPath: step.growthPath,
+    duration: durationToBucket(step.durationMinutes),
+    source: "src/modules/growth-paths",
+    tags: step.tags,
+    completionPayload: {
+      sourceId: step.id,
+      xp: step.xp,
+      growthPath: step.growthPath,
+    },
+    locks: step.draft ? ["draft"] : undefined,
+  }));
 
 const normalizeQolDomain = (value?: string | null) => {
   if (!value) return undefined;

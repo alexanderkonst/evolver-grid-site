@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aggregateLegacyActions, buildRecommendationFromLegacy, type RecommendationInputs } from "@/lib/actionEngine";
+import { aggregateLegacyActions, buildGrowthPathActions, buildRecommendationFromLegacy, type RecommendationInputs } from "@/lib/actionEngine";
 import { type UnifiedAction } from "@/types/actions";
 
 const baseInputs: RecommendationInputs = {
@@ -171,5 +171,23 @@ describe("actionEngine", () => {
     });
 
     expect(recommendation?.primary.id).toBe("profile:checkin");
+  });
+
+  it("maps growth path steps into unified actions", () => {
+    const actions = buildGrowthPathActions([
+      {
+        id: "genius-step-1",
+        title: "Name your genius edge",
+        description: "One sentence clarity.",
+        growthPath: "genius",
+        durationMinutes: 5,
+        xp: 25,
+        version: "v1",
+      },
+    ]);
+
+    expect(actions[0].type).toBe("growth_path_step");
+    expect(actions[0].growthPath).toBe("genius");
+    expect(actions[0].completionPayload?.xp).toBe(25);
   });
 });
