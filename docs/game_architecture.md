@@ -24,7 +24,74 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
-## Canonical Vectors (5 Development Dimensions)
+## Key Architectural Distinction
+
+| Growth Paths | Game Spaces |
+|--------------|-------------|
+| Personal transformation | Game capabilities |
+| Sequential progression | Always available |
+| You change | You act |
+| Unlock through effort | Available on entry |
+| 5 paths (Genius, Spirit, Mind, Emotions, Body) | 5 spaces (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op) |
+
+**Growth Paths** = how you develop yourself → [growth_paths.md](./growth_paths.md)
+**Game Spaces** = what you can DO → [game_spaces.md](./game_spaces.md)
+
+---
+
+## The Player Journey (5 Loops = 5 Spaces)
+
+The arc of transformation (implicit narrative, visible as progression):
+
+| Step | Journey | Loop/Space | What Happens |
+|------|---------|------------|--------------|
+| 1 | KNOW YOURSELF | Profile | ZoG, tests, assets, all self-data |
+| 2 | MASTER YOURSELF | Transformation | Practices, 5 growth paths, QoL tracking |
+| 3 | MONETIZE YOUR GENIUS | Marketplace | Offers, buying/selling, revenue |
+| 4 | FIND YOUR PEOPLE | Matchmaking | Geniuses, teams, assets, missions, orgs |
+| 5 | BUILD TOGETHER | Venture Co-op | Collective wealth, studio services |
+
+**"My Next Move" = ACROSS ALL 5 LOOPS.** The unifying element.
+
+### What You Do in Each Space
+
+| Space | What You DO | Question Answered |
+|-------|-------------|-------------------|
+| **Profile** | Discover yourself: take tests, map assets, refine genius | "Who am I?" |
+| **Transformation** | Grow yourself: complete practices, unlock upgrades, level up | "How do I grow?" |
+| **Marketplace** | Monetize yourself: create offers, sell services, earn revenue | "How do I earn?" |
+| **Matchmaking** | Connect yourself: find geniuses, teams, missions, orgs | "Who are my people?" |
+| **Venture Co-op** | Scale yourself: join collective ventures, build together | "What can we build?" |
+
+---
+
+## The Core Insight
+
+> **Life results ← Self-development**
+
+This is the major unlock. QoL assessment reveals it. Then:
+
+```
+SAME START ─────────────────────────────► UNIQUE PATH
+     │                                         │
+     │ Genius Discovery (gateway)              │
+     ▼                                         │
+     │ QoL Assessment (unlock insight)         │
+     ▼                                         │
+     │ "Life results ← Self-development"       │
+     ▼                                         │
+     │ 5 Growth Paths revealed                 │
+     ▼                                         │
+     │ First actions (personalized)            │
+     ▼                                         │
+     └───► More actions ───► More divergence ──┘
+```
+
+**Starts the same, diverges as we learn about you.**
+
+---
+
+## 5 Growth Paths (Development Dimensions)
 
 **Only these 5 names appear in UI:**
 
@@ -114,30 +181,36 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 ---
 
-## Four Core Loops
+## Five Core Loops (= 5 Spaces)
 
-### 1. Self-Understanding Loop (Q1 — Profile precision)
-*Know yourself deeper*
+### 1. Profile Loop — KNOW YOURSELF
+*Tell AI who you are*
 ```
-ZoG + Tests + Mission Discovery → Genius Profile → deeper mastery → better model
-```
-
-### 2. Transformation Loop (Q1 — Daily growth)
-*Real change through consistent practice*
-```
-Recommended practice → completion → XP → momentum → identity evolution
+ZoG + Tests + Mission Discovery + Assets → Complete Profile
 ```
 
-### 3. Economic Loop (Q3 — Genius monetization + Venture Co-op)
-*Turn genius into sustainable value exchange + collective wealth*
+### 2. Transformation Loop — MASTER YOURSELF
+*Gamified growth across 5 vectors*
 ```
-Genius Profile → Asset Mapping → Offer → Business → Revenue → Co-op → Reinvestment
+Practice → XP → Level Up → QoL improves
 ```
 
-### 4. Social Loop (Q2 — Connection)
-*Find your people, create together*
+### 3. Marketplace Loop — MONETIZE YOUR GENIUS
+*Turn genius into revenue*
 ```
-Matchmaking → Collabs → "Soul Fam" → Guilds → Community
+Offer Creation → Listing → Sales → Revenue
+```
+
+### 4. Matchmaking Loop — FIND YOUR PEOPLE
+*Connect with complementary geniuses*
+```
+Search → Match → Collaborate → Teams/Guilds
+```
+
+### 5. Venture Co-op Loop — BUILD TOGETHER
+*Collective wealth creation*
+```
+Join → Contribute → Revenue Share → Scale
 ```
 
 **Rewards are not cosmetic. They're functional:** XP + better matches + more opportunity.
@@ -309,31 +382,40 @@ Each module is a scene the game can send the player into:
 
 ---
 
-## Elevator Pitches
+## Pitches (Simple Enough for a 13-Year-Old)
 
-**15 seconds:**
-> "I'm building a game entry into human mission: Genius Profile becomes the engine — it gives quests, upgrades, matchmaking, and cooperation economy."
+**One-liner (hallway):**
+> "I'm building a real-life RPG where you're the character."
 
-**45 seconds:**
-> "Right now people and communities have fragmented tools and intentions. I'm making a holonic gateway: one intake → one Genius Profile → then the system itself delivers the right quests/practices/collabs and builds a cooperation layer. Goal: communities can fork this with one button."
+**10 seconds:**
+> "I'm building a game that helps people figure out what they're best at and then grow into it."
+
+**30 seconds:**
+> "You know how video games have character creation and skill trees? I'm building that for real life. You take a quiz, discover your 'genius' — what makes you uniquely valuable — and then the app recommends small daily actions to level up. Complete actions, earn XP, see your life improve."
+
+**60 seconds:**
+> "Imagine a Duolingo for becoming your best self. You create a profile of your unique talents. You see a map of your life across 8 areas — money, health, happiness, relationships, etc. The app gives you ONE thing to do each day that's designed specifically for you. Do it, get XP, see progress. Over time, you unlock abilities, find your people, and even turn your genius into a business. It's already prototyped. I need help building the next version."
+
+**For developers:**
+> "I need help building a gamified self-development platform. Think: profile system, recommendation engine, XP/levels, and a modular architecture so different communities can fork it with their own branding. Stack is Next.js + Supabase. Want to build something meaningful?"
 
 ---
 
 ## Digital Village Concept (Future Game Screen)
 
-*Decision made: Jan 5, 2025*
 
-**Metaphor**: A village with buildings. Each building = one loop.
+*Decision made: Jan 5, 2025. Updated: Jan 6, 2025*
 
-**4 Buildings (matches 4 Loops):**
-| Building | Loop | What You Do There |
-|----------|------|-------------------|
-| **Profile Hall** | Self-Understanding | See yourself, take tests, mission discovery |
-| **Training Grounds** | Transformation | Practices, skill development (5 rooms for 5 vectors) |
-| **Guild Hall** | Social | Meet others, matchmaking, guilds |
-| **Marketplace** | Economic | Offers, asset mapping, monetization, co-op |
+**Metaphor**: A village with spaces. Each space = one loop.
 
-*Additional buildings can be added as needed (e.g., Tower for stats, Quest Board for browsing).*
+**5 Spaces (= 5 Loops = 5 Journey Steps):**
+| Space | Loop | What You Do There |
+|-------|------|-------------------|
+| **Profile Space** | Profile | ZoG, tests, assets, all self-data |
+| **Transformation Space** | Transformation | Practices, 5 growth paths, QoL tracking |
+| **Marketplace Space** | Marketplace | Offers, buying/selling, revenue |
+| **Matchmaking Space** | Matchmaking | Find geniuses, teams, assets, missions, orgs |
+| **Venture Co-op Space** | Venture Co-op | Collective wealth, studio services |
 
 **Themeable Villages (for White-Label):**
 - Ascension/spiritual village
