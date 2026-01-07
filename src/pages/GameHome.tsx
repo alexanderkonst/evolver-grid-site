@@ -15,8 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
-import { calculateQuestXp, calculateStreak } from "@/lib/xpSystem";
-import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades, completeUpgrade } from "@/lib/upgradeSystem";
+import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
 import { buildRecommendationFromLegacy, formatDurationBucket } from "@/lib/actionEngine";
 import {
@@ -236,7 +235,15 @@ const GameHome = () => {
 
       // Auto-complete ZoG assessment if snapshot exists
       if (profileData.last_zog_snapshot_id && !completedCodes.has('zog_assessment_completed')) {
-        await completeUpgrade(id, 'zog_assessment_completed');
+        const autoUpgradeAction: UnifiedAction = {
+          id: "upgrade:zog_assessment_completed",
+          type: "upgrade",
+          loop: "transformation",
+          title: "Zone of Genius Assessment",
+          source: "lib/upgradeSystem.ts",
+          completionPayload: { sourceId: "zog_assessment_completed" },
+        };
+        await completeAction(autoUpgradeAction, { profileId: id });
         completedCodes.add('zog_assessment_completed');
         setCompletedUpgradeCodes(new Set<string>(completedCodes));
       }
@@ -396,46 +403,28 @@ const GameHome = () => {
 
     try {
       const durationMinutes = questSuggestion.main.approx_duration_minutes || 10;
-      const xpAwarded = calculateQuestXp(durationMinutes);
-
-      await supabase.from('quests').insert({
-        profile_id: profileId,
+      const questAction: UnifiedAction = {
+        id: `quest:${questSuggestion.main.quest_title.toLowerCase().replace(/\s+/g, "-")}`,
+        type: "quest",
+        loop: "transformation",
         title: questSuggestion.main.quest_title,
-        practice_type: questSuggestion.main.practice_type,
-        duration_minutes: durationMinutes,
-        xp_awarded: xpAwarded,
-      });
+        duration: formatDurationBucket(durationMinutes),
+        growthPath: "genius",
+        source: "lib/mainQuest.ts",
+        tags: questSuggestion.main.practice_type ? [questSuggestion.main.practice_type] : undefined,
+      };
 
-      const { data: currentProfile } = await supabase
-        .from('game_profiles')
-        .select('*')
-        .eq('id', profileId)
-        .single();
-
-      if (currentProfile) {
-        const newXpTotal = currentProfile.xp_total + xpAwarded;
-        const newLevel = Math.floor(newXpTotal / 100) + 1;
-        const streakCalc = calculateStreak(
-          currentProfile.last_quest_completed_at,
-          currentProfile.current_streak_days
-        );
-
-        await supabase
-          .from('game_profiles')
-          .update({
-            total_quests_completed: currentProfile.total_quests_completed + 1,
-            last_quest_title: questSuggestion.main.quest_title,
-            last_quest_completed_at: new Date().toISOString(),
-            xp_total: newXpTotal,
-            level: newLevel,
-            current_streak_days: streakCalc.newStreak,
-            longest_streak_days: Math.max(currentProfile.longest_streak_days, streakCalc.newStreak),
-          })
-          .eq('id', profileId);
+      const result = await completeAction(questAction, { profileId });
+      if (!result.success) {
+        throw new Error(result.error || "Failed to save side quest.");
       }
 
       setQuestCompleted(true);
-      toast({ title: `+${xpAwarded} XP earned!`, description: "Side quest completed." });
+      if (result.xpAwarded) {
+        toast({ title: `+${result.xpAwarded} XP earned!`, description: "Side quest completed." });
+      } else {
+        toast({ title: "Side quest completed.", description: "Nice work." });
+      }
       await loadGameData();
     } catch (error) {
       console.error('Error completing quest:', error);

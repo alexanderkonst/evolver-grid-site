@@ -29,12 +29,12 @@
 - **Who/when:** record DRI and ETA for each phase in `docs/roadmap.md` to keep accountability visible alongside feature flag rollout steps.
 
 ### Status check (after Daily Loop layout PR)
-- Phase 0: unified action shape and legacy mapping shipped; audit snapshot captured. DRI/ETA still missing in `docs/roadmap.md`; XP router alignment and owner/rollback notes still TODO.
-- Phase 1: Daily Loop layout renders behind `DAILY_LOOP_V2`; legacy cards remain available when the flag is off; placeholder recommendation flow hooked to existing suggestions. Still need error/skeleton states for My Next Move, CTA wiring to an action handler instead of `/library`, and a Freedom Mode link that preserves loop/growth path tags.
-- Phase 2+: not started. Next focus: stand up `actionEngine` aggregator, cross-loop recommendation fixtures/tests, and the unified `completeAction` handler before plugging in growth paths.
+- Phase 0: unified action shape and legacy mapping shipped; audit snapshot captured. DRI/ETA and rollback trigger now in `docs/roadmap.md`; XP router alignment reviewed — XP columns use `xp_uniqueness`, so unified actions must map `genius` → `uniqueness` before awarding XP.
+- Phase 1: Daily Loop layout renders behind `DAILY_LOOP_V2`; legacy cards remain available when the flag is off; placeholder recommendation flow hooked to existing suggestions. My Next Move loading skeleton/error state, CTA handling, and Freedom Mode tagging are wired.
+- Phase 2+: started. Legacy aggregation helper + fixtures added, and `completeAction` introduced; rec strategy and tests still pending.
 
 ## Phase 0 — Groundwork (1–2 days)
-[ ] DRI + ETA logged in `docs/roadmap.md`
+[x] DRI + ETA logged in `docs/roadmap.md`
 [x] Unified action shape agreed and mapped
 [x] Legacy → unified matrix drafted
 [x] Current shell and data flows audited
@@ -73,6 +73,8 @@
 2) **Recommendation strategy:** implement Daily Loop logic across all five loops (not just transformation): QoL bottleneck first, then growth path sequence step, then streak-preserving alternates. Return one primary + two alternates. Action frequency should scale 1%–ish upward with player level while respecting non-overwhelm.
 3) **Completion handling:** single `completeAction` updates XP, streaks, and source-specific side effects (upgrade completion, practice done, main quest progression); emit toast and refresh recommendations.
 4) **Fixtures & tests:** add unit tests for aggregation and recommendation ordering; snapshot the expected My Next Move payloads.
+
+**Phase 2 kickoff notes:** Added legacy action aggregation helper + fixtures, and introduced `completeAction` with quest/practice/upgrade wiring. Remaining: full source coverage, rec strategy across loops, upgrade completion wiring beyond auto-completes, and tests (no test runner configured yet).
 
 ## Phase 3 — Growth Path Sequences Integration
 [ ] Sequence data ingested and versioned
