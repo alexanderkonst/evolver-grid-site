@@ -668,7 +668,23 @@ const GameHome = () => {
                 </div>
               </div>
               <Button size="sm" asChild>
-                <Link to="/auth">Log in</Link>
+                <Link
+                  to="/auth"
+                  onClick={() => {
+                    if (profileId) {
+                      logActionEvent({
+                        actionId: "guest-login",
+                        profileId,
+                        source: "src/pages/GameHome.tsx",
+                        loop: "profile",
+                        selectedAt: new Date().toISOString(),
+                        metadata: { intent: "guest_login" },
+                      });
+                    }
+                  }}
+                >
+                  Log in
+                </Link>
               </Button>
             </div>
           </div>
@@ -772,6 +788,14 @@ const GameHome = () => {
 
                   const handleMarkDone = async () => {
                     if (profileId && isFinalStage) {
+                      logActionEvent({
+                        actionId: `main-quest:${computedStage}`,
+                        profileId,
+                        source: "src/pages/GameHome.tsx",
+                        loop: "transformation",
+                        selectedAt: new Date().toISOString(),
+                        metadata: { intent: "main_quest_complete" },
+                      });
                       await markRealWorldOutputDone(profileId);
                       toast({ title: "🎉 Congratulations!", description: "You've completed the Main Quest storyline!" });
                       await loadGameData();
@@ -824,7 +848,21 @@ const GameHome = () => {
                         </Button>
                       ) : (
                         <Button
-                          onClick={() => questCopy.ctaRoute && navigate(questCopy.ctaRoute)}
+                          onClick={() => {
+                            if (profileId) {
+                              logActionEvent({
+                                actionId: `main-quest:${computedStage}`,
+                                profileId,
+                                source: "src/pages/GameHome.tsx",
+                                loop: "transformation",
+                                selectedAt: new Date().toISOString(),
+                                metadata: { intent: "main_quest_cta", route: questCopy.ctaRoute },
+                              });
+                            }
+                            if (questCopy.ctaRoute) {
+                              navigate(questCopy.ctaRoute);
+                            }
+                          }}
                           className="w-full bg-indigo-600 hover:bg-indigo-700"
                           size="sm"
                         >
