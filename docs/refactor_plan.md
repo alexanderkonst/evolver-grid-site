@@ -109,7 +109,7 @@
 - [x] `npm run test` passes for action engine + completion tests.
 - [ ] `npm run lint` matches baseline (no new failures).
 - [x] `npm run build` succeeds.
-- [ ] Action telemetry events: presented, accept, freedom_mode_override, completed, and recommendation_error (if triggered).
+- [ ] Action telemetry events: presented, accept, freedom_mode_override, completed, recommendation_error (if triggered), and no_recommendation.
 Note: current lint includes existing `no-explicit-any` debt and a local parse error in untracked `src/modules/mission-discovery/data/pillars.ts`.
 
 ## Migration & Ops Plan
