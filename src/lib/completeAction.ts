@@ -1,6 +1,7 @@
 import { completeUpgrade } from "@/lib/upgradeSystem";
 import { markPracticeDone } from "@/lib/practiceSystem";
 import { completeLegacyQuest } from "@/lib/questCompletion";
+import { awardXp } from "@/lib/xpSystem";
 import { type UnifiedAction } from "@/types/actions";
 import type { CanonicalDomain } from "@/lib/mainQuest";
 
@@ -13,6 +14,23 @@ export interface CompleteActionResult {
   xpAwarded?: number;
   error?: string;
 }
+
+const applyGenericCompletion = async (
+  action: UnifiedAction,
+  context: CompleteActionContext
+): Promise<CompleteActionResult> => {
+  const xpAwarded = action.completionPayload?.xp;
+  if (!xpAwarded) {
+    return { success: true };
+  }
+
+  const normalizedPath = normalizeDomain(action.growthPath);
+  const result = await awardXp(context.profileId, xpAwarded, normalizedPath);
+  if (!result.success) {
+    return { success: false, error: result.error };
+  }
+  return { success: true, xpAwarded };
+};
 
 const durationBucketToMinutes = (duration?: UnifiedAction["duration"]) => {
   switch (duration) {
@@ -70,6 +88,11 @@ export const completeAction = async (
         error: legacyResult.error,
       };
     }
+    case "growth_path_step":
+    case "library_item":
+    case "onboarding":
+    case "celebration":
+      return applyGenericCompletion(action, context);
     default:
       return { success: false, error: "Unsupported action type." };
   }
