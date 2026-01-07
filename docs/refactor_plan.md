@@ -110,6 +110,7 @@
 - [ ] `npm run lint` matches baseline (no new failures).
 - [x] `npm run build` succeeds.
 - [ ] Action telemetry events: presented, accept, freedom_mode_override, completed, and recommendation_error (if triggered).
+Note: current lint includes existing `no-explicit-any` debt and a local parse error in untracked `src/modules/mission-discovery/data/pillars.ts`.
 
 ## Migration & Ops Plan
 - **Supabase migrations:** add tables/columns for growth path progress and action logs; include reversible migrations and backfill scripts. Proposed tables:
