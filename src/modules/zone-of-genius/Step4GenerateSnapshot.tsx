@@ -8,6 +8,7 @@ import { Download, ExternalLink, Loader2, ArrowLeft } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { logActionEvent } from "@/lib/actionEvents";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -181,6 +182,16 @@ const Step4GenerateSnapshot = () => {
 
       console.log("✅ ZoG snapshot saved and game_profiles updated successfully!");
       toast.success("Your Zone of Genius has been saved!");
+      await logActionEvent({
+        actionId: `zog-snapshot:${snapshotData.id}`,
+        profileId,
+        source: "src/modules/zone-of-genius/Step4GenerateSnapshot.tsx",
+        loop: "profile",
+        selectedAt: new Date().toISOString(),
+        metadata: {
+          intent: "zog_snapshot_saved",
+        },
+      });
     } catch (err) {
       console.error("❌ Failed to save snapshot to database:", err);
       toast.error("Failed to save your snapshot. Your progress is still shown, but may not persist.");
