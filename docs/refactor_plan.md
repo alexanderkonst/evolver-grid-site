@@ -106,9 +106,9 @@
 ### QA checklist
 - [ ] `DAILY_LOOP_V2=on`: loads GameHome, shows recommended action, CTA navigates to correct target.
 - [ ] `DAILY_LOOP_V2=off`: legacy Main/Side/Upgrade cards still render and function.
-- [ ] `npm run test` passes for action engine + completion tests.
+- [x] `npm run test` passes for action engine + completion tests.
 - [ ] `npm run lint` matches baseline (no new failures).
-- [ ] `npm run build` succeeds.
+- [x] `npm run build` succeeds.
 - [ ] Action telemetry events: presented, accept, freedom_mode_override, completed, and recommendation_error (if triggered).
 
 ## Migration & Ops Plan
