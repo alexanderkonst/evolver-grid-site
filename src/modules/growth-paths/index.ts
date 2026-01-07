@@ -5,6 +5,7 @@ export type GrowthPathStep = {
   title: string;
   description?: string;
   growthPath: GrowthPathKey;
+  order: number;
   durationMinutes?: number;
   xp?: number;
   tags?: string[];
@@ -20,6 +21,7 @@ export const growthPathSteps: GrowthPathStep[] = [
     title: "Name your genius edge",
     description: "Write one sentence on what you do better than most people.",
     growthPath: "genius",
+    order: 1,
     durationMinutes: 5,
     xp: 25,
     tags: ["clarity"],
@@ -30,6 +32,7 @@ export const growthPathSteps: GrowthPathStep[] = [
     title: "2-minute grounding breath",
     description: "Box-breathe for four rounds to reset your baseline.",
     growthPath: "spirit",
+    order: 1,
     durationMinutes: 2,
     xp: 10,
     tags: ["breathwork"],

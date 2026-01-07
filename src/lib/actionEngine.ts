@@ -146,7 +146,7 @@ export const buildGrowthPathActionsForProgress = (
 
   return Object.entries(stepsByPath)
     .map(([growthPath, pathSteps]) => {
-      const availableSteps = pathSteps.filter(step => !step.draft);
+      const availableSteps = pathSteps.filter(step => !step.draft).sort((a, b) => a.order - b.order);
       const index = progress[growthPath as keyof GrowthPathProgress] ?? 0;
       const nextStep = availableSteps[index];
       return nextStep

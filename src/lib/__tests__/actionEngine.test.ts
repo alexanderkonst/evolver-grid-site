@@ -180,6 +180,7 @@ describe("actionEngine", () => {
         title: "Name your genius edge",
         description: "One sentence clarity.",
         growthPath: "genius",
+        order: 1,
         durationMinutes: 5,
         xp: 25,
         version: "v1",
@@ -194,10 +195,10 @@ describe("actionEngine", () => {
   it("selects next growth path step by progress and skips drafts", () => {
     const actions = buildGrowthPathActionsForProgress(
       [
-        { id: "g-1", title: "Genius 1", growthPath: "genius", durationMinutes: 5, xp: 10, version: "v1" },
-        { id: "g-2", title: "Genius 2", growthPath: "genius", durationMinutes: 5, xp: 10, version: "v1" },
-        { id: "s-1", title: "Spirit 1", growthPath: "spirit", durationMinutes: 5, xp: 10, version: "v1", draft: true },
-        { id: "s-2", title: "Spirit 2", growthPath: "spirit", durationMinutes: 5, xp: 10, version: "v1" },
+        { id: "g-1", title: "Genius 1", growthPath: "genius", order: 1, durationMinutes: 5, xp: 10, version: "v1" },
+        { id: "g-2", title: "Genius 2", growthPath: "genius", order: 2, durationMinutes: 5, xp: 10, version: "v1" },
+        { id: "s-1", title: "Spirit 1", growthPath: "spirit", order: 1, durationMinutes: 5, xp: 10, version: "v1", draft: true },
+        { id: "s-2", title: "Spirit 2", growthPath: "spirit", order: 2, durationMinutes: 5, xp: 10, version: "v1" },
       ],
       { genius: 1, spirit: 0 }
     );
