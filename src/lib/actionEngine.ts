@@ -1,6 +1,6 @@
 import { type LibraryItem } from "@/modules/library/libraryContent";
 import { type Upgrade } from "@/lib/upgradeSystem";
-import { type UnifiedAction, type RecommendationSet, type ActionDuration } from "@/types/actions";
+import { type UnifiedAction, type RecommendationSet, type ActionDuration, type ActionLoop } from "@/types/actions";
 
 type LegacyQuestSuggestion = {
   quest_title: string;
@@ -50,7 +50,8 @@ const normalizeUpgrade = (upgrade: Upgrade): UnifiedAction => ({
   duration: "md",
   source: "lib/upgradeSystem.ts",
   completionPayload: {
-    sourceId: upgrade.id,
+    sourceId: upgrade.code,
+    metadata: { upgradeId: upgrade.id },
     xp: upgrade.xp_reward,
     growthPath: normalizeGrowthPath(upgrade.path_slug),
   },
@@ -71,24 +72,21 @@ const normalizePractice = (practice: LibraryItem): UnifiedAction => ({
   completionPayload: { sourceId: practice.id, growthPath: normalizeGrowthPath(practice.primaryPath) },
 });
 
-interface RecommendationInputs {
+export interface RecommendationInputs {
   questSuggestion?: LegacyQuestBundle | null;
   upgrade?: Upgrade | null;
   practices?: LibraryItem[];
+  extraActions?: UnifiedAction[];
   lowestDomains?: string[];
   totalCompletedActions?: number;
 }
 
-const buildRationale = (action: UnifiedAction, lowestDomains?: string[]) => {
-  if (action.whyRecommended) return action.whyRecommended;
-  if (lowestDomains && lowestDomains.length > 0) {
-    return `Helps your ${lowestDomains.join(" & ")} focus.`;
-  }
-  if (action.type === "upgrade") return "Advance your Showing Up path.";
-  return "Quick win to keep momentum.";
-};
+interface AggregatedActions {
+  candidates: UnifiedAction[];
+  alternates: UnifiedAction[];
+}
 
-export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): RecommendationSet | null => {
+export const aggregateLegacyActions = (inputs: RecommendationInputs): AggregatedActions => {
   const candidates: UnifiedAction[] = [];
   const alternates: UnifiedAction[] = [];
 
@@ -109,6 +107,68 @@ export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): Rec
     });
   }
 
+  if (inputs.extraActions && inputs.extraActions.length > 0) {
+    candidates.push(...inputs.extraActions);
+  }
+
+  return { candidates, alternates };
+};
+
+const normalizeQolDomain = (value?: string | null) => {
+  if (!value) return undefined;
+  const normalized = value.toLowerCase().replace(/\s+/g, "_");
+  const mapping: Record<string, string> = {
+    love: "love_relationships",
+    relationships: "love_relationships",
+    love_relationships: "love_relationships",
+    social: "social_ties",
+    social_ties: "social_ties",
+  };
+  return mapping[normalized] || normalized;
+};
+
+const matchesQolFocus = (action: UnifiedAction, lowestDomains?: string[]) => {
+  if (!action.qolDomain || !lowestDomains || lowestDomains.length === 0) return false;
+  const actionDomain = normalizeQolDomain(action.qolDomain);
+  if (!actionDomain) return false;
+  return lowestDomains.some(domain => normalizeQolDomain(domain) === actionDomain);
+};
+
+const loopPriority: Record<ActionLoop, number> = {
+  profile: 0,
+  transformation: 1,
+  marketplace: 2,
+  matchmaking: 3,
+  coop: 4,
+};
+
+const typePriority: Record<UnifiedAction["type"], number> = {
+  quest: 0,
+  upgrade: 1,
+  practice: 2,
+  growth_path_step: 3,
+  library_item: 4,
+  onboarding: 5,
+  celebration: 6,
+};
+
+const durationPriority = (duration?: ActionDuration) => {
+  if (!duration) return 3;
+  return ["xs", "sm", "md", "lg"].indexOf(duration);
+};
+
+const buildRationale = (action: UnifiedAction, lowestDomains?: string[]) => {
+  if (action.whyRecommended) return action.whyRecommended;
+  if (lowestDomains && lowestDomains.length > 0) {
+    return `Helps your ${lowestDomains.join(" & ")} focus.`;
+  }
+  if (action.type === "upgrade") return "Advance your Showing Up path.";
+  return "Quick win to keep momentum.";
+};
+
+export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): RecommendationSet | null => {
+  const { candidates, alternates } = aggregateLegacyActions(inputs);
+
   if (candidates.length === 0) return null;
 
   const totalCompleted = inputs.totalCompletedActions ?? 0;
@@ -122,17 +182,23 @@ export const buildRecommendationFromLegacy = (inputs: RecommendationInputs): Rec
   const activeAlternates = quickAlternates.length > 0 ? quickAlternates : alternates;
 
   const sorted = activeCandidates.sort((a, b) => {
-    const durationScore = (duration?: ActionDuration) => {
-      if (!duration) return 3;
-      return ["xs", "sm", "md", "lg"].indexOf(duration);
-    };
+    const aQol = matchesQolFocus(a, inputs.lowestDomains);
+    const bQol = matchesQolFocus(b, inputs.lowestDomains);
+    if (aQol !== bQol) return aQol ? -1 : 1;
 
-    const quickWinBias = quickWinFirst ? durationScore(a.duration) - durationScore(b.duration) : 0;
-    if (quickWinBias !== 0) return quickWinBias;
+    if (quickWinFirst) {
+      const aQuick = isQuickWin(a.duration);
+      const bQuick = isQuickWin(b.duration);
+      if (aQuick !== bQuick) return aQuick ? -1 : 1;
+    }
 
-    if (a.type === "quest" && b.type !== "quest") return -1;
-    if (b.type === "quest" && a.type !== "quest") return 1;
-    return durationScore(a.duration) - durationScore(b.duration);
+    const loopDiff = (loopPriority[a.loop] ?? 9) - (loopPriority[b.loop] ?? 9);
+    if (loopDiff !== 0) return loopDiff;
+
+    const typeDiff = (typePriority[a.type] ?? 9) - (typePriority[b.type] ?? 9);
+    if (typeDiff !== 0) return typeDiff;
+
+    return durationPriority(a.duration) - durationPriority(b.duration);
   });
 
   const [primary, ...rest] = sorted;

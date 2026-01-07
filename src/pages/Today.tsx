@@ -32,10 +32,15 @@ import {
 import { advanceMainQuestIfEligible, markMainQuestProgress } from "@/lib/mainQuestApi";
 import { completeSideQuest, getRecentQuestRuns, type QuestRun } from "@/lib/questRunsApi";
 import {
-    getPlayerUpgrades, completeUpgrade,
-    isUpgradeUnlocked, getRecommendedUpgradeByDomain, getUpgradeTitlesByCode,
-    type Upgrade, type ProfileXp, type UnlockEffects
+    getPlayerUpgrades,
+    isUpgradeUnlocked,
+    getRecommendedUpgradeByDomain,
+    getUpgradeTitlesByCode,
+    type Upgrade,
+    type ProfileXp,
+    type UnlockEffects,
 } from "@/lib/upgradeSystem";
+import { completeAction } from "@/lib/completeAction";
 import { LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
 // Types
@@ -260,7 +265,17 @@ export default function TodayPage() {
 
         try {
             setCompletingUpgrade(true);
-            await completeUpgrade(profile.id, nextUpgrade.code);
+            await completeAction(
+                {
+                    id: `upgrade:${nextUpgrade.code}`,
+                    type: "upgrade",
+                    loop: "transformation",
+                    title: nextUpgrade.title,
+                    source: "lib/upgradeSystem.ts",
+                    completionPayload: { sourceId: nextUpgrade.code },
+                },
+                { profileId: profile.id }
+            );
             toast({ title: "Upgrade Complete!", description: `+${nextUpgrade.xp_reward || 25} XP` });
             await loadTodayData();
         } catch (err: any) {

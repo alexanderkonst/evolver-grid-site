@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Upload, Loader2, Check, AlertCircle, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { completeUpgrade } from "@/lib/upgradeSystem";
+import { completeAction } from "@/lib/completeAction";
 import { useToast } from "@/hooks/use-toast";
 
 interface PersonalityTestUploadModalProps {
@@ -128,7 +128,17 @@ const PersonalityTestUploadModal = ({
             if (updateError) throw updateError;
             
             // Complete the upgrade if this is the first test (or any test)
-            await completeUpgrade(profileId, 'personality_tests_completed');
+            await completeAction(
+              {
+                id: "upgrade:personality_tests_completed",
+                type: "upgrade",
+                loop: "transformation",
+                title: "Complete Personality Tests",
+                source: "lib/upgradeSystem.ts",
+                completionPayload: { sourceId: "personality_tests_completed" },
+              },
+              { profileId }
+            );
             
             setSaved(true);
             onSuccess?.(results);
