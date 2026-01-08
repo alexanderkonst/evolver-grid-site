@@ -422,9 +422,70 @@ Day 4 morning + afternoon delivered:
 
 *Half-day marker. ~3pm.*
 
+---
 
+## Day 5 — Wednesday, Jan 8, 2026
 
+**Location**: The Network School (1 month of residency)
 
+### What We Built
+
+| Item | Impact |
+|------|--------|
+| **Asset Extraction Fix** | 3-level taxonomy now extracted (type → subtype → category) |
+| **ProfileSpace Assets** | Expandable saved assets section with count badge |
+| **GameShell Sidebar** | Desktop collapse toggle + subcategory styling (smaller font, indent) |
+| **Skill Trees → Growth Paths** | Complete migration, all routes updated to GrowthPathsPage |
+| **TransformationSpace** | Removed duplicate Skill Trees card |
+| **matchmaking_engine.md** | NEW: 7 matching layers, resonance formula, entity structure |
+| **customer_journey_progression.md** | NEW: Full unlock sequence and conditions |
+| **customer_journey_map.md v6** | Updated: Pruned obsolete sections, aligned with progression |
+| **holonic_vision.md** | NEW: Stakeholder positioning including 5 holonic levels and community flavors |
+
+### Key Decisions Made
+
+- **Skill Trees deprecated** — GrowthPathsPage is now single source of truth
+- **Progressive unlock** — ZoG → QoL → Game World, not all at once
+- **Matchmaking design first** — Document architecture before code
+- **Two-action pattern** — "Continue Genius Discovery" OR "Continue Transformation"
+
+### Commits
+
+| Commit | Description |
+|--------|-------------|
+| `448852b` | Asset extraction taxonomy + ProfileSpace display |
+| `4f234a2` | Matchmaking engine documentation |
+| `acadd23` | Customer journey progression + GameShell UI |
+| `bddbd73` | Skill Trees → Growth Paths migration |
+| `c2b3601` | Customer journey map v6.0 |
+
+### Sprint Status
+
+| Metric | Value |
+|--------|-------|
+| Days worked | 5 |
+| Days remaining | 21 |
+| Architecture | ✅ Complete |
+| Growth Paths | ✅ All 5 implemented |
+| Matchmaking Design | ✅ Documented |
+| Customer Journey | ✅ v6.0 complete |
+| Asset System | ✅ Working |
+
+### Tomorrow's Plan (Day 6)
+
+1. **Two-action recommendation UI** — Shimmer/glow on current actions
+2. **Growth Path → QoL mapping** — Show in first video of each path
+3. **Genius Discovery continuation** — Articulate → Make Useful → Monetize
+
+### Velocity Note
+
+5 days in: Member portal shell complete with 6 spaces, full onboarding flow, 5 growth paths with upgrades, asset mapping with AI extraction, mission discovery with connection system, matchmaking design framework.
+
+**Speed is appropriate.** Following what wants to emerge.
+
+---
+
+*Day 5 complete. ~10pm.*
 
 
 
