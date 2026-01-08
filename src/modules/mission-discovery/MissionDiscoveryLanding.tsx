@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/integrations/supabase/client";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -103,6 +104,28 @@ const getPillarColor = (pillarId?: string) => {
     return colors[pillarId || ''] || 'bg-slate-100 text-slate-700';
 };
 
+const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null> => {
+    try {
+        const { data, error } = await supabase.functions.invoke("match-missions", {
+            body: { text, limit: 6 },
+        });
+        if (error || !data?.matches) return null;
+        const matches = (data.matches as Array<{ mission_id: string; score: number }>).map((match) => {
+            const mission = MISSIONS.find(m => m.id === match.mission_id);
+            if (!mission) return null;
+            return {
+                mission,
+                score: match.score,
+                context: buildMissionContext(mission),
+            } as MatchResult;
+        }).filter(Boolean) as MatchResult[];
+        return matches.length > 0 ? matches : null;
+    } catch (err) {
+        console.error("Mission match error:", err);
+        return null;
+    }
+};
+
 const MissionDiscoveryLanding = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -125,6 +148,13 @@ const MissionDiscoveryLanding = () => {
         setIsMatching(true);
         const textToMatch = step === "paste-response" ? aiResponse : manualMission;
         setMatches(null);
+
+        const embeddingMatches = await fetchEmbeddingMatches(textToMatch);
+        if (embeddingMatches) {
+            setIsMatching(false);
+            setMatches(embeddingMatches);
+            return;
+        }
 
         const tokens = tokenize(textToMatch);
         const tokenSet = new Set(tokens);
