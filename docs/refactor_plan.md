@@ -104,8 +104,8 @@
 3) **Clean-up:** remove legacy Main/Side/Upgrade cards and redundant helpers once the new loop is stable and metrics are healthy.
 4) **Docs & playbook (done):** update `docs/roadmap.md` and `docs/game_architecture.md` with the new flow and action engine once shipped.
 ### QA checklist
-- [ ] `DAILY_LOOP_V2=on`: loads GameHome, shows recommended action, CTA navigates to correct target.
-- [ ] `DAILY_LOOP_V2=off`: legacy Main/Side/Upgrade cards still render and function.
+- [x] `DAILY_LOOP_V2=on`: loads GameHome, shows recommended action, CTA navigates to correct target.
+- [x] `DAILY_LOOP_V2=off`: legacy Main/Side/Upgrade cards still render and function.
 - [x] `npm run test` passes for action engine + completion tests.
 - [ ] `npm run lint` matches baseline (no new failures).
 - [x] `npm run build` succeeds.
