@@ -87,25 +87,20 @@ const AssetMappingLanding = () => {
         navigate(`/asset-mapping/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
     };
 
-    // Parse JSON response and extract assets
+    // Parse response and extract assets - handles JSON, markdown, and various formats
     const handleMatchAssets = async () => {
         setIsMatching(true);
         const extracted: MatchedAsset[] = [];
 
         try {
-            // Try to extract JSON from the response
-            // Look for JSON array pattern: [ ... ]
+            // First, try JSON parsing
             const jsonMatch = aiResponse.match(/\[\s*\{[\s\S]*?\}\s*\]/);
 
             if (jsonMatch) {
-                // Parse the JSON
                 const assets = JSON.parse(jsonMatch[0]);
-
                 for (const asset of assets) {
-                    // Normalize category to our taxonomy
                     const rawCategory = (asset.category || '').toLowerCase();
                     const typeTitle = CATEGORY_MAP[rawCategory] || asset.category || 'Unknown';
-
                     extracted.push({
                         typeTitle,
                         subTypeTitle: asset.subcategory || undefined,
@@ -116,44 +111,77 @@ const AssetMappingLanding = () => {
                     });
                 }
             } else {
-                // Fallback: Try line-by-line parsing for non-JSON format
-                const lines = aiResponse.split('\n');
-                let currentCategory = '';
+                // Parse markdown format: **Category:** X, **Asset:** Y, **Description:** Z
+                // Split by asset blocks (each starts with * **Category:** or numbered)
+                const assetBlocks = aiResponse.split(/(?=\*\s*\*\*Category:\*\*|\n\d+\)\s*\*\*Category:\*\*)/);
 
-                for (const line of lines) {
-                    const trimmed = line.trim();
-                    if (!trimmed) continue;
+                for (const block of assetBlocks) {
+                    if (!block.trim()) continue;
 
-                    // Check if this is a category header
-                    for (const [key, value] of Object.entries(CATEGORY_MAP)) {
-                        if (trimmed.toLowerCase().includes(key)) {
-                            currentCategory = value;
-                            break;
+                    // Extract fields using regex
+                    const categoryMatch = block.match(/\*\*Category:\*\*\s*([^\n*]+)/i);
+                    const assetMatch = block.match(/\*\*Asset:\*\*\s*([^\n]+)/i);
+                    const descMatch = block.match(/\*\*Description:\*\*\s*([^\n]+)/i);
+                    const valueMatch = block.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
+
+                    if (assetMatch) {
+                        // Determine category
+                        let typeTitle = 'Unknown';
+                        if (categoryMatch) {
+                            const rawCat = categoryMatch[1].trim().toLowerCase();
+                            typeTitle = CATEGORY_MAP[rawCat] || categoryMatch[1].trim();
                         }
-                    }
 
-                    // Check for numbered items (1., 2., -, •)
-                    const itemMatch = trimmed.match(/^[\d\-•*]+[\.\)]\s*\*?\*?(.+?)\*?\*?(?:\s*[–—-]\s*(.+))?$/);
-                    if (itemMatch && currentCategory) {
                         extracted.push({
-                            typeTitle: currentCategory,
-                            title: itemMatch[1].replace(/\*+/g, '').trim(),
-                            description: itemMatch[2]?.trim() || undefined,
+                            typeTitle,
+                            title: assetMatch[1].trim(),
+                            description: descMatch ? descMatch[1].trim() : undefined,
+                            leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
                         });
+                    }
+                }
+
+                // If still no matches, try section-based parsing (## 1) Expertise, etc.)
+                if (extracted.length === 0) {
+                    const sections = aiResponse.split(/(?=##\s*\d+\)\s*)/);
+
+                    for (const section of sections) {
+                        const sectionHeader = section.match(/##\s*\d+\)\s*(\w+)/);
+                        if (!sectionHeader) continue;
+
+                        const rawCat = sectionHeader[1].toLowerCase();
+                        const typeTitle = CATEGORY_MAP[rawCat] || sectionHeader[1];
+
+                        // Find all bullet items in this section
+                        const items = section.split(/(?=\*\s+\*\*)/);
+
+                        for (const item of items) {
+                            const assetMatch = item.match(/\*\*Asset:\*\*\s*([^\n]+)/i);
+                            const descMatch = item.match(/\*\*Description:\*\*\s*([^\n]+)/i);
+                            const valueMatch = item.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
+
+                            if (assetMatch) {
+                                extracted.push({
+                                    typeTitle,
+                                    title: assetMatch[1].trim(),
+                                    description: descMatch ? descMatch[1].trim() : undefined,
+                                    leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
+                                });
+                            }
+                        }
                     }
                 }
             }
         } catch (e) {
             console.error('Error parsing AI response:', e);
-            // Fallback to simple keyword extraction
         }
 
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 300));
         setIsMatching(false);
 
-        // Sort by leverage score if available
+        // Sort by leverage score if available, otherwise keep original order
         const sorted = extracted.sort((a, b) => (b.leverageScore || 0) - (a.leverageScore || 0));
-        setMatchedAssets(sorted.slice(0, 20)); // Cap at 20 for display
+        setMatchedAssets(sorted.slice(0, 50)); // Cap at 50 for display
         setStep("matched");
     };
 
@@ -282,8 +310,8 @@ const AssetMappingLanding = () => {
                                             </div>
                                             {asset.leverageScore && (
                                                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
-                                                        asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
-                                                            'bg-slate-100 text-slate-600'
+                                                    asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
+                                                        'bg-slate-100 text-slate-600'
                                                     }`}>
                                                     ⚡ {asset.leverageScore}/10
                                                 </span>

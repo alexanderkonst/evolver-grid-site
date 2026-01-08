@@ -27,6 +27,7 @@ import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
+import GrowthPathsPage from "./pages/GrowthPathsPage";
 import GameMap from "./pages/GameMap";
 import CharacterHub from "./pages/CharacterHub";
 import CharacterSnapshot from "./pages/CharacterSnapshot";
@@ -104,6 +105,7 @@ const App = () => (
             <Route path="/character" element={<Today />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />
+            <Route path="/growth-paths" element={<GrowthPathsPage />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
             <Route path="/quality-of-life-map" element={<QolLayout />}>
