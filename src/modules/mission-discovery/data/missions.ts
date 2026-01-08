@@ -3460,476 +3460,476 @@ export const MISSIONS: Mission[] = [
 {
         id: 'cul-fa-01-c-01-o-01-m-01',
         outcomeId: 'cul-fa-01-c-01-o-01',
-        title: 'Develop integrative teacher training programs',
+        title: 'Train Integrative Teachers',
         statement: 'Develop integrative teacher training programs for holistic and developmental teaching approaches.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-01-o-01-m-02',
         outcomeId: 'cul-fa-01-c-01-o-01',
-        title: 'Create developmentally-informed instructional design',
+        title: 'Design Developmental Instruction',
         statement: 'Create developmentally-informed instructional design blueprints and lesson plans tailored to student maturity levels.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-01-o-01-m-03',
         outcomeId: 'cul-fa-01-c-01-o-01',
-        title: 'Launch public awareness campaigns on development',
+        title: 'Promote Development Awareness',
         statement: 'Launch public awareness campaigns on stages of development and community/parent education on child development.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-01-o-02-m-01',
         outcomeId: 'cul-fa-01-c-01-o-02',
-        title: 'Conduct research on developmental differences',
+        title: 'Research Developmental Differences',
         statement: 'Conduct research on developmental differences in learners and map learning abilities over time.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-01-o-02-m-02',
         outcomeId: 'cul-fa-01-c-01-o-02',
-        title: 'Design school cultures celebrating diversity',
+        title: 'Build Cognitive Diversity Cultures',
         statement: 'Design school cultures celebrating cognitive diversity with perspective-taking classes and cross-level peer mentoring.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-01-o-02-m-03',
         outcomeId: 'cul-fa-01-c-01-o-02',
-        title: 'Include developmental perspectives in policy',
+        title: 'Embed Development in Policy',
         statement: 'Include developmental perspectives in policy standards and lobby for integral education approaches.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-01-m-01',
         outcomeId: 'cul-fa-01-c-02-o-01',
-        title: 'Create systems thinking simulations',
+        title: 'Build Systems Simulations',
         statement: 'Create systems thinking simulations, VR games, and augmented reality experiences modeling interconnected systems.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-01-m-02',
         outcomeId: 'cul-fa-01-c-02-o-01',
-        title: 'Develop integral literacy benchmarks',
+        title: 'Define Integral Literacy Benchmarks',
         statement: 'Develop integral literacy benchmarks and assessments measuring holistic perspective and systemic thinking skills.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-01-m-03',
         outcomeId: 'cul-fa-01-c-02-o-01',
-        title: 'Produce modular interconnected lesson plans',
+        title: 'Design Interconnected Lesson Plans',
         statement: 'Produce modular interconnected lesson plans with cross-subject assignment integration bridging content across disciplines.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-02-m-01',
         outcomeId: 'cul-fa-01-c-02-o-02',
-        title: 'Support cross-disciplinary research',
+        title: 'Support Cross-Disciplinary Research',
         statement: 'Support cross-disciplinary conferences, journals, and integral transdisciplinary grants.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-02-m-02',
         outcomeId: 'cul-fa-01-c-02-o-02',
-        title: 'Fund research investigating field intersections',
+        title: 'Fund Field-Intersection Research',
         statement: 'Fund research investigating field intersections with shared databases for idea cross-pollination.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-02-o-02-m-03',
         outcomeId: 'cul-fa-01-c-02-o-02',
-        title: 'Design technology for knowledge mapping',
+        title: 'Build Knowledge Mapping Tech',
         statement: 'Design technology for knowledge ecosystem mapping and researchers collaboration graphs.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-01-m-01',
         outcomeId: 'cul-fa-01-c-03-o-01',
-        title: 'Develop personalized learning frameworks',
+        title: 'Design Personalized Learning',
         statement: 'Develop personalized learning frameworks with integral learner profiling systems and talent assessment tools.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-01-m-02',
         outcomeId: 'cul-fa-01-c-03-o-01',
-        title: 'Create integral maps of talents and interests',
+        title: 'Map Talents and Interests',
         statement: 'Create integral maps of talents, skills, and interests with AI-driven adaptive learning platforms.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-01-m-03',
         outcomeId: 'cul-fa-01-c-03-o-01',
-        title: 'Integral vocation match workshops',
+        title: 'Run Vocation Match Workshops',
         statement: 'Design integral vocation match workshops connecting learners with career pathways.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-02-m-01',
         outcomeId: 'cul-fa-01-c-03-o-02',
-        title: 'Create incubators for integral education',
+        title: 'Launch Integral Education Incubators',
         statement: 'Create and fund incubators for integral education innovation with accelerators launching new models.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-02-m-02',
         outcomeId: 'cul-fa-01-c-03-o-02',
-        title: 'Host events spotlighting education diversity',
+        title: 'Showcase Education Diversity',
         statement: 'Host events spotlighting diversity of integral education models including annual global conferences.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-03-o-02-m-03',
         outcomeId: 'cul-fa-01-c-03-o-02',
-        title: 'Offer innovation grants and resources',
+        title: 'Fund Education Innovation',
         statement: 'Offer innovation grants and resources with public repositories detailing best practices.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-01-c-04-o-01-m-01',
         outcomeId: 'cul-fa-01-c-04-o-01',
-        title: 'Design benchmarks for holistic well-being',
+        title: 'Set Holistic Well-being Benchmarks',
         statement: 'Design comprehensive benchmarks for holistic well-being development with integral well-being assessment tools.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-02-c-01-o-01-m-01',
         outcomeId: 'cul-fa-02-c-01-o-01',
-        title: 'Fund solutions-based journalism',
+        title: 'Fund Solutions Journalism',
         statement: 'Fund solutions-based reporting initiatives and develop media literacy programs countering divisiveness.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-02-c-01-o-01-m-02',
         outcomeId: 'cul-fa-02-c-01-o-01',
-        title: 'Create constructive journalism guidelines',
+        title: 'Publish Constructive Journalism Guidelines',
         statement: 'Create guidelines for constructive journalism with constructive dialogue platforms.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-02-c-01-o-02-m-01',
         outcomeId: 'cul-fa-02-c-01-o-02',
-        title: 'Mentor conscious journalists',
+        title: 'Mentor Conscious Journalists',
         statement: 'Mentor next generation of conscious journalists with development hubs and crowdfunding support.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-01-o-01-m-01',
         outcomeId: 'cul-fa-03-c-01-o-01',
-        title: 'Advocate for mindfulness in public health',
+        title: 'Advance Mindfulness in Public Health',
         statement: 'Lobby for inclusion of mindfulness in public health budgets and establish mindfulness impact bonds.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-01-o-01-m-02',
         outcomeId: 'cul-fa-03-c-01-o-01',
-        title: 'Create donor collaboratives for mindfulness',
+        title: 'Build Mindfulness Donor Collaboratives',
         statement: 'Create donor collaboratives for mindfulness and quantify ROI of mindfulness initiatives.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-01-o-02-m-01',
         outcomeId: 'cul-fa-03-c-01-o-02',
-        title: 'Introduce mindfulness rituals in meetings',
+        title: 'Embed Mindfulness in Meetings',
         statement: 'Introduce mindfulness rituals in meeting protocols with collective mindfulness tools.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-01-o-02-m-02',
         outcomeId: 'cul-fa-03-c-01-o-02',
-        title: 'Organize group meditation events',
+        title: 'Coordinate Group Meditation',
         statement: 'Promote group meditation events and organize synchronized global meditations with trained facilitators.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-02-o-01-m-01',
         outcomeId: 'cul-fa-03-c-02-o-01',
-        title: 'Facilitate dialogue across divides',
+        title: 'Bridge Divides Through Dialogue',
         statement: 'Facilitate dialogue circles across political and cultural divides with empathy-building training.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-02-o-01-m-02',
         outcomeId: 'cul-fa-03-c-02-o-01',
-        title: 'Storytelling initiatives for diverse experiences',
+        title: 'Share Diverse Stories',
         statement: 'Launch storytelling initiatives sharing diverse experiences and create shared community service projects.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-02-o-02-m-01',
         outcomeId: 'cul-fa-03-c-02-o-02',
-        title: 'Develop secular rituals for connection',
+        title: 'Create Secular Connection Rituals',
         statement: 'Develop secular rituals for connection with compassionate communication (NVC) practices.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-02-o-02-m-02',
         outcomeId: 'cul-fa-03-c-02-o-02',
-        title: 'Design spaces encouraging interaction',
+        title: 'Design Spaces for Connection',
         statement: 'Design public spaces encouraging interaction and normalize check-ins in diverse settings.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-03-o-01-m-01',
         outcomeId: 'cul-fa-03-c-03-o-01',
-        title: 'Advocate for attention hygiene',
+        title: 'Promote Attention Hygiene',
         statement: 'Advocate for attention hygiene campaigns and research effects of distraction on public health.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-03-o-01-m-02',
         outcomeId: 'cul-fa-03-c-03-o-01',
-        title: 'Integrate presence into wellness',
+        title: 'Integrate Presence into Wellness',
         statement: 'Integrate presence into medical guidelines and workplace wellness programs.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-03-o-02-m-01',
         outcomeId: 'cul-fa-03-c-03-o-02',
-        title: 'Promote device-free zones',
+        title: 'Create Device-Free Zones',
         statement: 'Launch device-free zones and times campaigns with deep listening practices.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-03-c-03-o-02-m-02',
         outcomeId: 'cul-fa-03-c-03-o-02',
-        title: 'Create digital presence etiquette',
+        title: 'Set Digital Presence Etiquette',
         statement: 'Create cultural etiquette guides for digital presence and presence pledges for organizations.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-01-o-01-m-01',
         outcomeId: 'cul-fa-04-c-01-o-01',
-        title: 'Launch story of unity campaign',
+        title: 'Launch Unity Narrative',
         statement: 'Launch "Story of Unity" campaign challenging separation and promote books/films on interconnection.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-01-o-01-m-02',
         outcomeId: 'cul-fa-04-c-01-o-01',
-        title: 'Workshops shifting from fear to trust',
+        title: 'Shift Fear to Trust',
         statement: 'Conduct workshops shifting from fear to trust and support World Values Day.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-01-o-02-m-01',
         outcomeId: 'cul-fa-04-c-01-o-02',
-        title: 'Create content celebrating universality',
+        title: 'Create Universality Content',
         statement: 'Create content celebrating universality with awards for unity-promoting media.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-01-o-02-m-02',
         outcomeId: 'cul-fa-04-c-01-o-02',
-        title: 'Amplify voices of unity leaders',
+        title: 'Amplify Unity Leaders',
         statement: 'Amplify voices of unity leaders in mainstream outlets with fact-checking for divisive bias.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-02-o-01-m-01',
         outcomeId: 'cul-fa-04-c-02-o-01',
-        title: 'Develop secular ethics curriculum',
+        title: 'Build Secular Ethics Curriculum',
         statement: 'Develop secular ethics curriculum with teacher training in ethical facilitation.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-02-o-01-m-02',
         outcomeId: 'cul-fa-04-c-02-o-01',
-        title: 'Integration of ethics into STEM',
+        title: 'Integrate Ethics into STEM',
         statement: 'Integrate ethics into STEM education with gamified ethics scenarios practice.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-02-o-02-m-01',
         outcomeId: 'cul-fa-04-c-02-o-02',
-        title: 'Develop ethical futures framework',
+        title: 'Build Ethical Futures Framework',
         statement: 'Develop "Ethical Futures" framework for leaders with corporate ethics advisory boards.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-02-o-02-m-02',
         outcomeId: 'cul-fa-04-c-02-o-02',
-        title: 'Training in long-termism',
+        title: 'Train for Long-Term Ethics',
         statement: 'Conduct training programs in long-termism and conferences on ethical technology.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-03-o-01-m-01',
         outcomeId: 'cul-fa-04-c-03-o-01',
-        title: 'Create heroes of humanity directory',
+        title: 'Catalog Ethical Role Models',
         statement: 'Create "Heroes of Humanity" directory and produce documentary series on everyday ethics.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-03-o-01-m-02',
         outcomeId: 'cul-fa-04-c-03-o-01',
-        title: 'Ethical leadership recognition',
+        title: 'Recognize Ethical Leadership',
         statement: 'Launch social media campaigns highlighting integrity and ethical leadership awards.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-03-o-02-m-01',
         outcomeId: 'cul-fa-04-c-03-o-02',
-        title: 'Scale purpose learning programs',
+        title: 'Scale Purpose Learning',
         statement: 'Scale "Purpose Learning" programs with mentorship matching for life purpose.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-03-o-02-m-02',
         outcomeId: 'cul-fa-04-c-03-o-02',
-        title: 'Campaigns on intentional living',
+        title: 'Promote Intentional Living',
         statement: 'Launch public campaigns on "Intentional Living" and workshops on finding one\'s "Why".',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-04-o-01-m-01',
         outcomeId: 'cul-fa-04-c-04-o-01',
-        title: 'Create community elder corps',
+        title: 'Build Community Elder Corps',
         statement: 'Create community "Elder Corps" with integration of senior centers and schools.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-04-o-01-m-02',
         outcomeId: 'cul-fa-04-c-04-o-01',
-        title: 'Intergenerational connection platforms',
+        title: 'Create Intergenerational Platforms',
         statement: 'Develop digital platforms for intergenerational connection and incentivize mentorship credits.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-04-o-02-m-01',
         outcomeId: 'cul-fa-04-c-04-o-02',
-        title: 'Advocate for voice of future',
+        title: 'Advocate for Future Voices',
         statement: 'Advocate for "Voice of the Future" in governance with investigative journalism on long-term ethics.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-04-o-02-m-02',
         outcomeId: 'cul-fa-04-c-04-o-02',
-        title: 'Campaigns for 7th generation stewardship',
+        title: 'Promote Seventh-Generation Stewardship',
         statement: 'Launch campaigns for "7th Generation" stewardship principles.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-05-o-01-m-01',
         outcomeId: 'cul-fa-04-c-05-o-01',
-        title: 'Map and support rites providers',
+        title: 'Map Rites Providers',
         statement: 'Map and support existing rites of passage providers with integration into education.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-05-o-01-m-02',
         outcomeId: 'cul-fa-04-c-05-o-01',
-        title: 'Create secular coming-of-age ceremonies',
+        title: 'Create Secular Coming-of-Age',
         statement: 'Create secular coming-of-age ceremonies with online rites of passage courses.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-05-o-02-m-01',
         outcomeId: 'cul-fa-04-c-05-o-02',
-        title: 'Retreat centers for passage',
+        title: 'Establish Passage Retreats',
         statement: 'Establish retreat centers for intergenerational passage and train elders as passage guides.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-04-c-05-o-02-m-02',
         outcomeId: 'cul-fa-04-c-05-o-02',
-        title: 'Policy support for nature-based rites',
+        title: 'Advocate Nature-Based Rites Policy',
         statement: 'Advocate for legal/policy support for nature-based rites of passage.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-01-o-01-m-01',
         outcomeId: 'cul-fa-05-c-01-o-01',
-        title: 'Reform arts grants for social impact',
+        title: 'Reform Arts Grants',
         statement: 'Reform arts grants to value social impact over commercial viability and create integral art investment funds.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-01-o-01-m-02',
         outcomeId: 'cul-fa-05-c-01-o-01',
-        title: 'Metrics for transformative art',
+        title: 'Measure Transformative Art',
         statement: 'Develop metrics for measuring the "transformative power" of art.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-01-o-02-m-01',
         outcomeId: 'cul-fa-05-c-01-o-02',
-        title: 'Curate evolutionary art exhibitions',
+        title: 'Curate Evolutionary Art',
         statement: 'Curate annual "Evolutionary Art" exhibitions with online galleries for integral artists.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-01-o-02-m-02',
         outcomeId: 'cul-fa-05-c-01-o-02',
-        title: 'Art criticism on consciousness',
+        title: 'Develop Consciousness Art Criticism',
         statement: 'Develop art criticism focused on evolution of consciousness.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-02-o-01-m-01',
         outcomeId: 'cul-fa-05-c-02-o-01',
-        title: 'Community art centers',
+        title: 'Build Community Art Centers',
         statement: 'Establish free community art centers in every neighborhood with subsidized art supplies.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-02-o-01-m-02',
         outcomeId: 'cul-fa-05-c-02-o-01',
-        title: 'Digital tools democratizing art',
+        title: 'Democratize Art Tools',
         statement: 'Develop digital tools democratizing art creation for all.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-02-o-02-m-01',
         outcomeId: 'cul-fa-05-c-02-o-02',
-        title: 'Percent-for-art mandates',
+        title: 'Advance Percent-for-Art Mandates',
         statement: 'Advocate for percent-for-art mandates in all construction.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-02-o-02-m-02',
         outcomeId: 'cul-fa-05-c-02-o-02',
-        title: 'Street art festivals',
+        title: 'Organize Street Art Festivals',
         statement: 'Organize street art festivals for community beautification and art in public institutions.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-03-o-01-m-01',
         outcomeId: 'cul-fa-05-c-03-o-01',
-        title: 'Support revival of sacred arts',
+        title: 'Revive Sacred Arts',
         statement: 'Support revival of traditional sacred arts and create "post-secular" sacred spaces.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-03-o-01-m-02',
         outcomeId: 'cul-fa-05-c-03-o-01',
-        title: 'Exhibitions on spiritual art',
+        title: 'Curate Spiritual Art Exhibitions',
         statement: 'Curate exhibitions on "The Spiritual in Art".',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-03-o-02-m-01',
         outcomeId: 'cul-fa-05-c-03-o-02',
-        title: 'Commission sacred space architects',
+        title: 'Commission Sacred Space Architects',
         statement: 'Commission visionary architects for sacred spaces and crowdfund community temples.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-03-o-02-m-02',
         outcomeId: 'cul-fa-05-c-03-o-02',
-        title: 'Repurpose spaces as secular sacred',
+        title: 'Repurpose Secular Sacred Spaces',
         statement: 'Repurpose abandoned churches as secular sacred spaces.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-04-o-01-m-01',
         outcomeId: 'cul-fa-05-c-04-o-01',
-        title: 'Advocate for STEAM education',
+        title: 'Advance STEAM Education',
         statement: 'Advocate for STEAM (A for Arts) education with teacher training in arts integration.',
         status: 'proposed'
     },
 {
         id: 'cul-fa-05-c-04-o-01-m-02',
         outcomeId: 'cul-fa-05-c-04-o-01',
-        title: 'Measure arts impact on cognition',
+        title: 'Measure Arts Impact',
         statement: 'Research and measure impact of arts on cognitive development.',
         status: 'proposed'
     }
