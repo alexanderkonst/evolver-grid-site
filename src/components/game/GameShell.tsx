@@ -60,7 +60,7 @@ const SPACES: NavItem[] = [
         description: "Master yourself",
         modules: [
             { id: "library", label: "Practice Library", path: "/library" },
-            { id: "paths", label: "Growth Paths", path: "/skills" },
+            { id: "paths", label: "Growth Paths", path: "/growth-paths" },
             { id: "tests", label: "Personality Tests", path: "/resources/personality-tests" }
         ]
     },
@@ -83,7 +83,7 @@ const SPACES: NavItem[] = [
     },
     {
         id: "coop",
-        label: "Venture Co-op",
+        label: "Startup Co-op",
         icon: <Building2 className="w-5 h-5" />,
         path: "/game/coop",
         description: "Build together"
