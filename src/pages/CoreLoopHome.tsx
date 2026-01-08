@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
 import MeSection from "@/components/game/MeSection";
-import MyLifeSection, { DOMAIN_LABELS } from "@/components/game/MyLifeSection";
+import MyLifeSection from "@/components/game/MyLifeSection";
 import MyNextMoveSection from "@/components/game/MyNextMoveSection";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -15,6 +16,9 @@ interface QolDomain {
     label: string;
     score: number;
 }
+
+// Onboarding stages
+type OnboardingStage = 'zog' | 'qol' | 'profile' | 'explore' | 'complete';
 
 const CoreLoopHome = () => {
     const navigate = useNavigate();
@@ -29,6 +33,11 @@ const CoreLoopHome = () => {
     const [isCompleting, setIsCompleting] = useState(false);
     const [showCelebration, setShowCelebration] = useState(false);
     const [celebrationXp, setCelebrationXp] = useState(0);
+
+    // Onboarding state
+    const [onboardingStage, setOnboardingStage] = useState<OnboardingStage>('complete');
+    const [hasZoG, setHasZoG] = useState(false);
+    const [hasQoL, setHasQoL] = useState(false);
 
     useEffect(() => {
         loadData();
@@ -47,13 +56,32 @@ const CoreLoopHome = () => {
             // Load game profile
             const { data: profile } = await supabase
                 .from('game_profiles')
-                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id')
+                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count')
                 .eq('id', profileId)
                 .single();
 
             if (profile) {
                 setLevel(profile.level || 1);
                 setXpTotal(profile.xp_total || 0);
+
+                // Check onboarding state
+                const zogComplete = !!profile.last_zog_snapshot_id;
+                const qolComplete = !!profile.last_qol_snapshot_id;
+                const hasFirstAction = (profile.practice_count || 0) > 0;
+
+                setHasZoG(zogComplete);
+                setHasQoL(qolComplete);
+
+                // Determine onboarding stage
+                if (!zogComplete) {
+                    setOnboardingStage('zog');
+                } else if (!qolComplete) {
+                    setOnboardingStage('qol');
+                } else if (!hasFirstAction) {
+                    setOnboardingStage('explore'); // Ready for first action
+                } else {
+                    setOnboardingStage('complete');
+                }
 
                 // Load ZoG archetype
                 if (profile.last_zog_snapshot_id) {
@@ -117,13 +145,14 @@ const CoreLoopHome = () => {
             const vectorColumn = `xp_${action.vector}`;
             const { data: currentProfile } = await supabase
                 .from('game_profiles')
-                .select('xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness')
+                .select('xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, practice_count')
                 .eq('id', profileId)
                 .single();
 
             if (currentProfile) {
                 const newXpTotal = (currentProfile.xp_total || 0) + action.xp;
                 const newVectorXp = ((currentProfile as any)[vectorColumn] || 0) + action.xp;
+                const newPracticeCount = (currentProfile.practice_count || 0) + 1;
 
                 // Simple level calculation
                 const newLevel = Math.floor(newXpTotal / 500) + 1;
@@ -134,7 +163,7 @@ const CoreLoopHome = () => {
                         xp_total: newXpTotal,
                         [vectorColumn]: newVectorXp,
                         level: newLevel,
-                        practice_count: (currentProfile as any).practice_count + 1 || 1
+                        practice_count: newPracticeCount
                     })
                     .eq('id', profileId);
 
@@ -145,6 +174,7 @@ const CoreLoopHome = () => {
                 // Update local state
                 setXpTotal(newXpTotal);
                 setLevel(newLevel);
+                setOnboardingStage('complete'); // First action done!
 
                 // Get next action
                 const sorted = [...qolScores].sort((a, b) => a.score - b.score);
@@ -179,6 +209,136 @@ const CoreLoopHome = () => {
         );
     }
 
+    // Onboarding: Need Zone of Genius
+    if (onboardingStage === 'zog') {
+        return (
+            <GameShell>
+                <div className="p-6 lg:p-8 max-w-xl mx-auto">
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
+                            <Sparkles className="w-8 h-8 text-amber-600" />
+                        </div>
+                        <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome to Your Journey</h1>
+                        <p className="text-slate-600">Let's start by discovering who you are at your best.</p>
+                    </div>
+
+                    <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6 mb-6">
+                        <h2 className="font-semibold text-slate-900 mb-2">Step 1: Discover Your Zone of Genius</h2>
+                        <p className="text-sm text-slate-600 mb-4">
+                            In just 5 minutes, you'll uncover your unique archetype and core talents.
+                            This becomes the foundation for everything else.
+                        </p>
+                        <Button asChild className="w-full" size="lg">
+                            <Link to="/zone-of-genius">
+                                Start Discovery
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                            </Link>
+                        </Button>
+                    </div>
+
+                    {/* Progress indicator */}
+                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+                        <span className="w-3 h-3 rounded-full bg-amber-500" />
+                        <span className="w-3 h-3 rounded-full bg-slate-200" />
+                        <span className="w-3 h-3 rounded-full bg-slate-200" />
+                        <span className="w-3 h-3 rounded-full bg-slate-200" />
+                    </div>
+                </div>
+            </GameShell>
+        );
+    }
+
+    // Onboarding: Need Quality of Life
+    if (onboardingStage === 'qol') {
+        return (
+            <GameShell>
+                <div className="p-6 lg:p-8 max-w-xl mx-auto">
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
+                            <BarChart3 className="w-8 h-8 text-blue-600" />
+                        </div>
+                        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+                            Great, {archetypeTitle ? `${archetypeTitle}!` : 'Genius Discovered!'}
+                        </h1>
+                        <p className="text-slate-600">Now let's see where your life is asking for attention.</p>
+                    </div>
+
+                    <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6 mb-6">
+                        <h2 className="font-semibold text-slate-900 mb-2">Step 2: Map Your Quality of Life</h2>
+                        <p className="text-sm text-slate-600 mb-4">
+                            Assess 8 life domains in 5 minutes. This reveals your growth drivers
+                            and helps us recommend your next moves.
+                        </p>
+                        <Button asChild className="w-full" size="lg">
+                            <Link to="/quality-of-life-map/assessment">
+                                Start Assessment
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                            </Link>
+                        </Button>
+                    </div>
+
+                    {/* Progress indicator */}
+                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+                        <span className="w-3 h-3 rounded-full bg-green-500" />
+                        <span className="w-3 h-3 rounded-full bg-blue-500" />
+                        <span className="w-3 h-3 rounded-full bg-slate-200" />
+                        <span className="w-3 h-3 rounded-full bg-slate-200" />
+                    </div>
+                </div>
+            </GameShell>
+        );
+    }
+
+    // Onboarding: Ready for first action (explore)
+    if (onboardingStage === 'explore') {
+        return (
+            <GameShell>
+                <div className="p-4 lg:p-6 max-w-2xl mx-auto">
+                    {/* Show ME section */}
+                    <MeSection
+                        archetypeTitle={archetypeTitle || undefined}
+                        level={level}
+                        xpTotal={xpTotal}
+                    />
+
+                    {/* Show MY LIFE section */}
+                    {qolScores.length > 0 && (
+                        <MyLifeSection qolScores={qolScores} />
+                    )}
+
+                    {/* First Action Card */}
+                    <div className="rounded-xl border-2 border-green-200 bg-green-50 p-5 mb-4">
+                        <div className="flex items-center gap-2 mb-3">
+                            <Compass className="w-5 h-5 text-green-600" />
+                            <span className="text-sm font-medium text-green-700">Your First Move</span>
+                        </div>
+                        <h2 className="font-semibold text-slate-900 mb-2">Ready to Begin Your Journey?</h2>
+                        <p className="text-sm text-slate-600 mb-4">
+                            Complete your first action to activate your daily rhythm.
+                            Each action earns XP and moves you closer to your goals.
+                        </p>
+                    </div>
+
+                    {/* MY NEXT MOVE Section */}
+                    <MyNextMoveSection
+                        action={recommendedAction}
+                        onComplete={handleActionComplete}
+                        isCompleting={isCompleting}
+                    />
+
+                    {/* Progress indicator */}
+                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500 mt-6">
+                        <span className="w-3 h-3 rounded-full bg-green-500" />
+                        <span className="w-3 h-3 rounded-full bg-green-500" />
+                        <span className="w-3 h-3 rounded-full bg-green-500" />
+                        <span className="w-3 h-3 rounded-full bg-amber-500 animate-pulse" />
+                    </div>
+                </div>
+            </GameShell>
+        );
+    }
+
+    // Full Core Loop (onboarding complete)
     return (
         <GameShell>
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
