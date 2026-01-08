@@ -6,7 +6,10 @@ import {
     BrainCircuit,
     Map,
     Target,
-    ArrowRight
+    ArrowRight,
+    Boxes,
+    ChevronDown,
+    ChevronUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
@@ -16,6 +19,8 @@ import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
 import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
+import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
+import { ASSET_SUB_TYPES } from "@/modules/asset-mapping/data/assetSubtypes";
 
 interface ModuleCard {
     id: string;
@@ -26,32 +31,15 @@ interface ModuleCard {
     status: "available" | "completed" | "coming-soon";
 }
 
-const PROFILE_MODULES: ModuleCard[] = [
-    {
-        id: "zone-of-genius",
-        title: "Zone of Genius",
-        description: "Discover your unique genius and how you create value",
-        icon: <Sparkles className="w-6 h-6" />,
-        path: "/zone-of-genius?from=game&return=/game/profile",
-        status: "available"
-    },
-    {
-        id: "quality-of-life",
-        title: "Quality of Life Map",
-        description: "Assess your life across 8 domains",
-        icon: <Map className="w-6 h-6" />,
-        path: "/quality-of-life-map/assessment?from=game&return=/game/profile",
-        status: "available"
-    },
-    {
-        id: "asset-mapping",
-        title: "Asset Mapping",
-        description: "Map your skills, tools, and resources",
-        icon: <User className="w-6 h-6" />,
-        path: "/asset-mapping?from=game&return=/game/profile",
-        status: "available"
-    }
-];
+interface SavedAsset {
+    typeId: string;
+    subTypeId?: string;
+    categoryId?: string;
+    title: string;
+    description?: string;
+    savedAt: string;
+    source: string;
+}
 
 type MissionCommitment = {
     mission_id: string;
@@ -66,12 +54,29 @@ type MissionCommitment = {
 
 const ProfileSpace = () => {
     const [missionCommitment, setMissionCommitment] = useState<MissionCommitment | null>(null);
+    const [savedAssets, setSavedAssets] = useState<SavedAsset[]>([]);
+    const [showAssets, setShowAssets] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
-        const loadMission = async () => {
+
+        const loadData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user || !isMounted) return;
+
+            // Load assets from localStorage
+            const assetsKey = `user_assets_${user.id}`;
+            const storedAssets = localStorage.getItem(assetsKey);
+            if (storedAssets) {
+                try {
+                    const parsed = JSON.parse(storedAssets);
+                    if (isMounted) setSavedAssets(parsed);
+                } catch (err) {
+                    console.error("Failed to parse assets:", err);
+                }
+            }
+
+            // Load mission commitment
             const { data: participant } = await supabase
                 .from("mission_participants")
                 .select("mission_id, mission_title, pillar_id, focus_area_id, challenge_id, outcome_id, created_at")
@@ -127,11 +132,49 @@ const ProfileSpace = () => {
                 console.error("Failed to parse mission commitment:", err);
             }
         };
-        loadMission();
+
+        loadData();
         return () => {
             isMounted = false;
         };
     }, []);
+
+    const getAssetTypeName = (typeId: string) => {
+        return ASSET_TYPES.find(t => t.id === typeId)?.title || typeId;
+    };
+
+    const getAssetSubTypeName = (subTypeId: string) => {
+        return ASSET_SUB_TYPES.find(s => s.id === subTypeId)?.title || subTypeId;
+    };
+
+    const PROFILE_MODULES: ModuleCard[] = [
+        {
+            id: "zone-of-genius",
+            title: "Zone of Genius",
+            description: "Discover your unique genius and how you create value",
+            icon: <Sparkles className="w-6 h-6" />,
+            path: "/zone-of-genius?from=game&return=/game/profile",
+            status: "available"
+        },
+        {
+            id: "quality-of-life",
+            title: "Quality of Life Map",
+            description: "Assess your life across 8 domains",
+            icon: <Map className="w-6 h-6" />,
+            path: "/quality-of-life-map/assessment?from=game&return=/game/profile",
+            status: "available"
+        },
+        {
+            id: "asset-mapping",
+            title: "Asset Mapping",
+            description: savedAssets.length > 0
+                ? `${savedAssets.length} assets mapped`
+                : "Map your skills, tools, and resources",
+            icon: <Boxes className="w-6 h-6" />,
+            path: "/asset-mapping?from=game&return=/game/profile",
+            status: "available"
+        }
+    ];
 
     return (
         <GameShell>
@@ -194,7 +237,7 @@ const ProfileSpace = () => {
                 </div>
 
                 {/* Module Grid */}
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2 mb-8">
                     {PROFILE_MODULES.map((module) => (
                         <div
                             key={module.id}
@@ -215,19 +258,73 @@ const ProfileSpace = () => {
                                         Coming Soon
                                     </span>
                                 )}
+                                {module.id === "asset-mapping" && savedAssets.length > 0 && (
+                                    <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                                        ✓ {savedAssets.length}
+                                    </span>
+                                )}
                             </div>
                             <h3 className="font-semibold text-slate-900 mb-1">{module.title}</h3>
                             <p className="text-sm text-slate-600 mb-4">{module.description}</p>
                             {module.status !== "coming-soon" && (
                                 <Button asChild variant="outline" size="sm" className="w-full">
                                     <Link to={module.path}>
-                                        Start <ArrowRight className="w-4 h-4 ml-2" />
+                                        {module.id === "asset-mapping" && savedAssets.length > 0 ? "Add More" : "Start"}
+                                        <ArrowRight className="w-4 h-4 ml-2" />
                                     </Link>
                                 </Button>
                             )}
                         </div>
                     ))}
                 </div>
+
+                {/* Saved Assets Section */}
+                {savedAssets.length > 0 && (
+                    <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+                        <button
+                            onClick={() => setShowAssets(!showAssets)}
+                            className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors"
+                        >
+                            <div className="flex items-center gap-3">
+                                <Boxes className="w-5 h-5 text-slate-600" />
+                                <span className="font-semibold text-slate-900">
+                                    Your Assets ({savedAssets.length})
+                                </span>
+                            </div>
+                            {showAssets ? (
+                                <ChevronUp className="w-5 h-5 text-slate-400" />
+                            ) : (
+                                <ChevronDown className="w-5 h-5 text-slate-400" />
+                            )}
+                        </button>
+
+                        {showAssets && (
+                            <div className="border-t border-slate-100 max-h-96 overflow-y-auto">
+                                {savedAssets.map((asset, i) => (
+                                    <div
+                                        key={i}
+                                        className="p-4 border-b border-slate-100 last:border-b-0 hover:bg-slate-50"
+                                    >
+                                        <div className="flex flex-wrap items-center gap-1 mb-1">
+                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                                                {getAssetTypeName(asset.typeId)}
+                                            </span>
+                                            {asset.subTypeId && (
+                                                <span className="text-xs text-slate-400">
+                                                    → {getAssetSubTypeName(asset.subTypeId)}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="font-medium text-slate-900">{asset.title}</p>
+                                        {asset.description && (
+                                            <p className="text-sm text-slate-600 mt-1">{asset.description}</p>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </GameShell>
     );
