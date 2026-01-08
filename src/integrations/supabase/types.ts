@@ -385,6 +385,39 @@ export type Database = {
         }
         Relationships: []
       }
+      mission_search: {
+        Row: {
+          challenge_id: string | null
+          focus_area_id: string | null
+          mission_id: string
+          mission_statement: string
+          mission_title: string
+          outcome_id: string | null
+          pillar_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          challenge_id?: string | null
+          focus_area_id?: string | null
+          mission_id: string
+          mission_statement: string
+          mission_title: string
+          outcome_id?: string | null
+          pillar_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          challenge_id?: string | null
+          focus_area_id?: string | null
+          mission_id?: string
+          mission_statement?: string
+          mission_title?: string
+          outcome_id?: string | null
+          pillar_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       multiple_intelligences_assessments: {
         Row: {
           created_at: string
