@@ -6,7 +6,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-01",
         outcomeId: "meta-fa-01-c-01-o-01",
-        title: "Framework Synthesizer",
+        title: "Synthesize Frameworks",
         statement: "Synthesize existing frameworks and methods, identifying best practices, gaps, and areas for integration.",
         existingProjects: [
             "Integral Theory (integrallife.com)",
@@ -18,7 +18,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-02",
         outcomeId: "meta-fa-01-c-01-o-01",
-        title: "Methods Co-creator",
+        title: "Co-create Methods",
         statement: "Co-create a unified, user-friendly set of frameworks and methods with diverse experts, stakeholders, and end-users.",
         existingProjects: [
             "Conscious Capitalism (consciouscapitalism.org)",
@@ -30,7 +30,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-03",
         outcomeId: "meta-fa-01-c-01-o-01",
-        title: "Campaign Leader",
+        title: "Lead Campaigns",
         statement: "Launch a global campaign to promote adoption, recognition, and continuous improvement of the unified frameworks.",
         existingProjects: [
             "SDG Action Campaign (sdgactioncampaign.org)",
@@ -44,7 +44,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-04",
         outcomeId: "meta-fa-01-c-01-o-02",
-        title: "Curriculum Architect",
+        title: "Architect Curricula",
         statement: "Develop a comprehensive, modular, and adaptive training curriculum and certification program for practitioners.",
         existingProjects: [
             "U.Lab (ulab.edx.org)",
@@ -56,7 +56,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-05",
         outcomeId: "meta-fa-01-c-01-o-02",
-        title: "Network Builder",
+        title: "Build Networks",
         statement: "Establish a global network of training centers, online platforms, and peer-to-peer learning communities.",
         existingProjects: [
             "UNDP Accelerator Labs",
@@ -68,7 +68,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-06",
         outcomeId: "meta-fa-01-c-01-o-02",
-        title: "Mentorship Specialist",
+        title: "Specialize in Mentorships",
         statement: "Create a mentorship and coaching program connecting experienced and aspiring practitioners.",
         existingProjects: [
             "Dalai Lama Fellows",
@@ -95,7 +95,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-08",
         outcomeId: "meta-fa-01-c-02-o-01",
-        title: "Feedback Facilitator",
+        title: "Facilitate Feedbacks",
         statement: "Create a user-friendly feedback mechanism for organizations and practitioners to share experiences.",
         existingProjects: [
             "Feedback Labs",
@@ -122,7 +122,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-10",
         outcomeId: "meta-fa-01-c-02-o-02",
-        title: "Pilot Coordinator",
+        title: "Coordinate Pilots",
         statement: "Launch diverse and ambitious pilot projects and case studies to test the application of frameworks.",
         existingProjects: [
             "MIT Solve",
@@ -134,7 +134,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-11",
         outcomeId: "meta-fa-01-c-02-o-02",
-        title: "Knowledge Curator",
+        title: "Curate Knowledges",
         statement: "Establish a global knowledge sharing platform to disseminate insights from pilot projects.",
         existingProjects: [
             "Apolitical",
@@ -148,7 +148,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-12",
         outcomeId: "meta-fa-01-c-03-o-01",
-        title: "Outreach Strategist",
+        title: "Strategize Outreachs",
         statement: "Develop a multi-stakeholder communication and outreach strategy to raise awareness.",
         existingProjects: [
             "Sustainable Brands",
@@ -176,7 +176,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-14",
         outcomeId: "meta-fa-01-c-03-o-02",
-        title: "Alliance Builder",
+        title: "Build Alliances",
         statement: "Create a global alliance and support network of organizations committed to applying the frameworks.",
         existingProjects: [
             "Catalyst 2030",
@@ -189,7 +189,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa01-15",
         outcomeId: "meta-fa-01-c-03-o-02",
-        title: "Resource Developer",
+        title: "Develop Resources",
         statement: "Develop sector-specific resources, guides, and tools to support effective integration.",
         existingProjects: [
             "SDG Compass",
@@ -232,7 +232,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-03",
         outcomeId: "meta-fa-02-c-01-o-02",
-        title: "Integration Architect",
+        title: "Architect Integrations",
         statement: "Establish a framework for ecosystems to align their goals with the shared purpose.",
         existingProjects: [
             "One Planet Living",
@@ -245,7 +245,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-04",
         outcomeId: "meta-fa-02-c-01-o-02",
-        title: "Showcase Curator",
+        title: "Curate Showcases",
         statement: "Create an interactive platform for initiatives to showcase their alignment with shared values.",
         existingProjects: [
             "SDG Good Practices",
@@ -260,7 +260,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-05",
         outcomeId: "meta-fa-02-c-02-o-01",
-        title: "Channel Analyst",
+        title: "Analyze Channels",
         statement: "Identify, assess, and learn from existing communication channels, determining gaps and opportunities.",
         existingProjects: [
             "NetHope",
@@ -273,7 +273,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-06",
         outcomeId: "meta-fa-02-c-02-o-01",
-        title: "Platform Designer",
+        title: "Design Platforms",
         statement: "Design and implement accessible communication channels that cater to diverse needs.",
         existingProjects: [
             "Element",
@@ -318,7 +318,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-09",
         outcomeId: "meta-fa-02-c-03-o-01",
-        title: "Complexity Educator",
+        title: "Educate Complexitys",
         statement: "Develop a training curriculum on navigating diversity and complexity.",
         existingProjects: [
             "Harvard Program on Negotiation",
@@ -331,7 +331,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-10",
         outcomeId: "meta-fa-02-c-03-o-01",
-        title: "Training Facilitator",
+        title: "Facilitate Training",
         statement: "Deliver training through workshops, online courses, and peer learning circles.",
         existingProjects: [
             "+Acumen",
@@ -346,7 +346,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-11",
         outcomeId: "meta-fa-02-c-03-o-02",
-        title: "Solution Analyst",
+        title: "Analyze Solutions",
         statement: "Identify and document inspiring case studies of successful solutions and synergies.",
         existingProjects: [
             "Drawdown Solutions",
@@ -359,7 +359,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa02-12",
         outcomeId: "meta-fa-02-c-03-o-02",
-        title: "Storyteller",
+        title: "Tell Stories",
         statement: "Create an engaging multimedia platform to showcase success stories and facilitate replication.",
         existingProjects: [
             "The Solutions Project",
@@ -377,14 +377,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa03-01",
         outcomeId: "meta-fa-03-c-01-o-01",
-        title: "Program Designer",
+        title: "Design Programs",
         statement: "Design and deliver a portfolio of accessible, context-specific leadership development programs.",
         existingProjects: []
     },
     {
         id: "mis-fa03-02",
         outcomeId: "meta-fa-03-c-01-o-01",
-        title: "Platform Builder",
+        title: "Build Platforms",
         statement: "Establish a global network and platform to connect, support, and empower emerging leaders.",
         existingProjects: []
     },
@@ -409,7 +409,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa03-05",
         outcomeId: "meta-fa-03-c-02-o-01",
-        title: "Framework Developer",
+        title: "Develop Frameworks",
         statement: "Develop a comprehensive framework for assessing and prioritizing organizational capacity building needs.",
         existingProjects: []
     },
@@ -425,7 +425,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa03-07",
         outcomeId: "meta-fa-03-c-02-o-02",
-        title: "Culture Weaver",
+        title: "Weave Cultures",
         statement: "Foster a culture of continuous learning, adaptation, collaboration, and co-evolution among organizations.",
         existingProjects: []
     },
@@ -480,7 +480,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa04-02",
         outcomeId: "meta-fa-04-c-01-o-01",
-        title: "Tool Builder",
+        title: "Build Tools",
         statement: "Develop user-friendly tools and resources to support implementation of the measurement framework.",
         existingProjects: []
     },
@@ -489,7 +489,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa04-03",
         outcomeId: "meta-fa-04-c-01-o-02",
-        title: "Data Architect",
+        title: "Architect Datas",
         statement: "Establish a robust, shared data infrastructure for collecting and analyzing ecosystem impact data.",
         existingProjects: []
     },
@@ -512,7 +512,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa04-06",
         outcomeId: "meta-fa-04-c-02-o-01",
-        title: "Community Builder",
+        title: "Build Communitys",
         statement: "Establish a network of learning communities to facilitate peer exchange and collective sense-making.",
         existingProjects: []
     },
@@ -521,7 +521,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa04-07",
         outcomeId: "meta-fa-04-c-02-o-02",
-        title: "Knowledge Architect",
+        title: "Architect Knowledges",
         statement: "Create a comprehensive, open-access knowledge base and learning portal for the ecosystem.",
         existingProjects: []
     },
@@ -544,7 +544,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa04-10",
         outcomeId: "meta-fa-04-c-03-o-01",
-        title: "Capacity Builder",
+        title: "Build Capacitys",
         statement: "Build the capacity of organizations to implement effective feedback loops and accountability mechanisms.",
         existingProjects: []
     },
@@ -569,14 +569,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa05-01",
         outcomeId: "meta-fa-05-c-01-o-01",
-        title: "Fundraising Strategist",
+        title: "Strategize Fundraising",
         statement: "Implement a data-driven fundraising strategy targeting diverse funders.",
         existingProjects: []
     },
     {
         id: "mis-fa05-02",
         outcomeId: "meta-fa-05-c-01-o-01",
-        title: "Infrastructure Builder",
+        title: "Build Infrastructures",
         statement: "Establish infrastructure to support organizations in diversifying funding.",
         existingProjects: []
     },
@@ -585,14 +585,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa05-03",
         outcomeId: "meta-fa-05-c-01-o-02",
-        title: "Endowment Creator",
+        title: "Create Endowments",
         statement: "Create an ecosystem-wide endowment and pooled funding mechanism.",
         existingProjects: []
     },
     {
         id: "mis-fa05-04",
         outcomeId: "meta-fa-05-c-01-o-02",
-        title: "Funding Advocate",
+        title: "Advocate for Funding",
         statement: "Advocate for equitable, trust-based funding practices.",
         existingProjects: []
     },
@@ -601,14 +601,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa05-05",
         outcomeId: "meta-fa-05-c-02-o-01",
-        title: "Resource Educator",
+        title: "Educate Resources",
         statement: "Deliver capacity-building on financial management and equity-centered decision-making.",
         existingProjects: []
     },
     {
         id: "mis-fa05-06",
         outcomeId: "meta-fa-05-c-02-o-01",
-        title: "Expert Connector",
+        title: "Connect Experts",
         statement: "Establish a network of experts to provide targeted support.",
         existingProjects: []
     },
@@ -617,7 +617,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa05-07",
         outcomeId: "meta-fa-05-c-02-o-02",
-        title: "Equity Analyst",
+        title: "Analyze Equitys",
         statement: "Develop principles and metrics for equitable resource allocation.",
         existingProjects: []
     },
@@ -640,7 +640,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa05-10",
         outcomeId: "meta-fa-05-c-03-o-01",
-        title: "Hub Creator",
+        title: "Create Hubs",
         statement: "Establish collaboration hubs and resource-sharing platforms.",
         existingProjects: []
     },
@@ -665,14 +665,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa06-01",
         outcomeId: "meta-fa-06-c-01-o-01",
-        title: "Principle Developer",
+        title: "Develop Principles",
         statement: "Develop and promote principles and metrics for authentic community engagement.",
         existingProjects: []
     },
     {
         id: "mis-fa06-02",
         outcomeId: "meta-fa-06-c-01-o-01",
-        title: "Capacity Trainer",
+        title: "Train Capacitys",
         statement: "Build capacity of organizations to implement equitable engagement practices.",
         existingProjects: []
     },
@@ -688,7 +688,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa06-04",
         outcomeId: "meta-fa-06-c-01-o-02",
-        title: "Community Advocate",
+        title: "Advocate for Communitys",
         statement: "Advocate for policies that prioritize community leadership.",
         existingProjects: []
     },
@@ -697,14 +697,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa06-05",
         outcomeId: "meta-fa-06-c-02-o-01",
-        title: "Network Weaver",
+        title: "Weave Networks",
         statement: "Establish thematic and regional collaboration networks.",
         existingProjects: []
     },
     {
         id: "mis-fa06-06",
         outcomeId: "meta-fa-06-c-02-o-01",
-        title: "Partnership Trainer",
+        title: "Train Partnerships",
         statement: "Deliver capacity-building programs on effective collaboration.",
         existingProjects: []
     },
@@ -729,7 +729,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa06-09",
         outcomeId: "meta-fa-06-c-03-o-01",
-        title: "Model Designer",
+        title: "Design Models",
         statement: "Design participatory governance models ensuring proportional representation.",
         existingProjects: []
     },
@@ -752,7 +752,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa06-12",
         outcomeId: "meta-fa-06-c-03-o-02",
-        title: "Power Advocate",
+        title: "Advocate for Powers",
         statement: "Advocate for transformative power-shifting approaches.",
         existingProjects: []
     },
@@ -761,7 +761,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa07-01",
         outcomeId: "meta-fa-07-c-01-o-01",
-        title: "Process Designer",
+        title: "Design Process",
         statement: "Design a transparent process for selecting governance body members.",
         existingProjects: []
     },
@@ -793,14 +793,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa07-05",
         outcomeId: "meta-fa-07-c-02-o-01",
-        title: "Coordination Strategist",
+        title: "Strategize Coordinations",
         statement: "Develop and implement a comprehensive ecosystem coordination strategy.",
         existingProjects: []
     },
     {
         id: "mis-fa07-06",
         outcomeId: "meta-fa-07-c-02-o-01",
-        title: "Hub Builder",
+        title: "Build Hubs",
         statement: "Create thematic and regional coordination hubs.",
         existingProjects: []
     },
@@ -816,7 +816,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa07-08",
         outcomeId: "meta-fa-07-c-02-o-02",
-        title: "Trust Builder",
+        title: "Build Trusts",
         statement: "Foster a culture of collaboration, trust, and mutual accountability.",
         existingProjects: []
     },
@@ -832,7 +832,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa07-10",
         outcomeId: "meta-fa-07-c-03-o-01",
-        title: "Adaptation Facilitator",
+        title: "Facilitate Adaptations",
         statement: "Foster a culture of experimentation and adaptive management.",
         existingProjects: []
     },
@@ -889,7 +889,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa08-05",
         outcomeId: "meta-fa-08-c-02-o-01",
-        title: "Mobilization Strategist",
+        title: "Strategize Mobilizations",
         statement: "Develop and implement a comprehensive ecosystem engagement strategy.",
         existingProjects: []
     },
@@ -912,7 +912,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa08-08",
         outcomeId: "meta-fa-08-c-02-o-02",
-        title: "Champion Builder",
+        title: "Build Champions",
         statement: "Develop a mentorship and capacity-building program for ecosystem champions.",
         existingProjects: []
     },
@@ -928,7 +928,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-fa08-10",
         outcomeId: "meta-fa-08-c-03-o-01",
-        title: "Partner Builder",
+        title: "Build Partners",
         statement: "Build partnerships with key decision-makers to amplify the ecosystem's voice.",
         existingProjects: []
     },
@@ -954,21 +954,21 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa01-01",
         outcomeId: "infra-fa-01-c-01-o-01",
-        title: "Toolkit Architect",
+        title: "Architect Toolkits",
         statement: "Develop an open-source toolkit and database of integrative infrastructure design best practices and case studies.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-02",
         outcomeId: "infra-fa-01-c-01-o-01",
-        title: "Policy Integrator",
+        title: "Integrate Policys",
         statement: "Integrate integrative design principles into curricula, standards, and policies through partnerships.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-03",
         outcomeId: "infra-fa-01-c-01-o-01",
-        title: "Design Advocate",
+        title: "Advocate for Designs",
         statement: "Launch a global awareness campaign showcasing the benefits and successful examples of integrative infrastructure design.",
         existingProjects: []
     },
@@ -977,21 +977,21 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa01-04",
         outcomeId: "infra-fa-01-c-01-o-02",
-        title: "Curriculum Designer",
+        title: "Design Curriculums",
         statement: "Create a modular, adaptable training program and certification scheme for integrative infrastructure design.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-05",
         outcomeId: "infra-fa-01-c-01-o-02",
-        title: "Network Builder",
+        title: "Build Networks",
         statement: "Develop a global network of training centers and online learning platforms.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-06",
         outcomeId: "infra-fa-01-c-01-o-02",
-        title: "Mentor Connector",
+        title: "Connect Mentors",
         statement: "Establish a mentorship program connecting experienced integrative design practitioners with aspiring professionals.",
         existingProjects: []
     },
@@ -1000,21 +1000,21 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa01-07",
         outcomeId: "infra-fa-01-c-02-o-01",
-        title: "Model Researcher",
+        title: "Research Models",
         statement: "Identify best practices, technologies, and governance models for decentralized infrastructure management.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-08",
         outcomeId: "infra-fa-01-c-02-o-01",
-        title: "Platform Creator",
+        title: "Create Platforms",
         statement: "Develop a toolkit and platform to support communities in designing, implementing, and managing decentralized infrastructure.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa01-09",
         outcomeId: "infra-fa-01-c-02-o-01",
-        title: "Fund Manager",
+        title: "Manage Funds",
         statement: "Launch a global fund and accelerator program to support community-led decentralized infrastructure projects.",
         existingProjects: []
     },
@@ -1023,7 +1023,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa01-10",
         outcomeId: "infra-fa-01-c-02-o-02",
-        title: "Knowledge Weaver",
+        title: "Weave Knowledges",
         statement: "Create an online platform for sharing experiences, challenges, solutions, and resources related to decentralized infrastructure.",
         existingProjects: []
     },
@@ -1083,7 +1083,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa02-06",
         outcomeId: "infra-fa-02-c-01-o-02",
-        title: "Digital Connector",
+        title: "Connect Digitals",
         statement: "Establish a digital platform and mobile app to connect people with integral learning centers.",
         existingProjects: []
     },
@@ -1092,7 +1092,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa02-07",
         outcomeId: "infra-fa-02-c-02-o-01",
-        title: "Media Architect",
+        title: "Architect Medias",
         statement: "Create a global, multilingual integral media platform featuring diverse content formats.",
         existingProjects: []
     },
@@ -1129,7 +1129,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa02-12",
         outcomeId: "infra-fa-02-c-02-o-02",
-        title: "Content Translator",
+        title: "Translate Contents",
         statement: "Develop a platform for curating, translating, and adapting integral resources for diverse audiences.",
         existingProjects: []
     },
@@ -1138,7 +1138,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa03-01",
         outcomeId: "infra-fa-03-c-01-o-01",
-        title: "Co-creation Guide",
+        title: "Guide Co-creations",
         statement: "Develop a toolkit and methodology for community-led infrastructure design and development.",
         existingProjects: []
     },
@@ -1161,7 +1161,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa03-04",
         outcomeId: "infra-fa-03-c-01-o-02",
-        title: "Ambassador Trainer",
+        title: "Train Ambassadors",
         statement: "Develop a training program and certification for community infrastructure ambassadors and facilitators.",
         existingProjects: []
     },
@@ -1198,7 +1198,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa03-09",
         outcomeId: "infra-fa-03-c-02-o-01",
-        title: "Incentive Architect",
+        title: "Architect Incentives",
         statement: "Implement a reward system to incentivize knowledge sharing and collaboration on the platform.",
         existingProjects: []
     },
@@ -1230,7 +1230,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa04-01",
         outcomeId: "infra-fa-04-c-01-o-01",
-        title: "Design Researcher",
+        title: "Research Designs",
         statement: "Conduct research to identify key principles, best practices, and case studies of intersubjective/interobjective design.",
         existingProjects: []
     },
@@ -1253,14 +1253,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa04-04",
         outcomeId: "infra-fa-04-c-01-o-02",
-        title: "Toolkit Maker",
+        title: "Make Toolkits",
         statement: "Develop a toolkit and resources to support the application of intersubjective and interobjective design principles.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa04-05",
         outcomeId: "infra-fa-04-c-01-o-02",
-        title: "Pilot Leader",
+        title: "Lead Pilots",
         statement: "Create a network of pilot projects and living laboratories to test and demonstrate effectiveness.",
         existingProjects: []
     },
@@ -1276,14 +1276,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa04-07",
         outcomeId: "infra-fa-04-c-02-o-01",
-        title: "Metrics Researcher",
+        title: "Research Metrics",
         statement: "Conduct research to identify key indicators and metrics for assessing the health and evolution of social systems.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa04-08",
         outcomeId: "infra-fa-04-c-02-o-01",
-        title: "Tools Developer",
+        title: "Develop Tools",
         statement: "Develop tools and platforms for collecting, analyzing, and visualizing data on integrative metrics.",
         existingProjects: []
     },
@@ -1322,7 +1322,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa05-01",
         outcomeId: "infra-fa-05-c-01-o-01",
-        title: "Health Architect",
+        title: "Architect Healths",
         statement: "Develop a comprehensive framework for integrative health and well-being.",
         existingProjects: []
     },
@@ -1382,7 +1382,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa05-09",
         outcomeId: "infra-fa-05-c-02-o-01",
-        title: "Equity Advocate",
+        title: "Advocate for Equitys",
         statement: "Launch a global campaign to advocate for equitable access to integrative health and well-being services.",
         existingProjects: []
     },
@@ -1391,7 +1391,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa05-10",
         outcomeId: "infra-fa-05-c-02-o-02",
-        title: "Center Designer",
+        title: "Design Centers",
         statement: "Develop a replicable model and toolkit for establishing community-based integrative health centers.",
         existingProjects: []
     },
@@ -1405,7 +1405,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa05-12",
         outcomeId: "infra-fa-05-c-02-o-02",
-        title: "Center Mentor",
+        title: "Mentor Centers",
         statement: "Launch a mentorship program connecting established centers with emerging ones.",
         existingProjects: []
     },
@@ -1421,7 +1421,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa06-02",
         outcomeId: "infra-fa-06-c-01-o-01",
-        title: "Tech Researcher",
+        title: "Research Techs",
         statement: "Create a multidisciplinary research network to explore integral approaches to emerging technologies.",
         existingProjects: []
     },
@@ -1460,7 +1460,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa06-07",
         outcomeId: "infra-fa-06-c-02-o-01",
-        title: "Opp Mapper",
+        title: "Map Opps",
         statement: "Conduct a mapping and analysis of convergent technology opportunities and challenges.",
         existingProjects: []
     },
@@ -1474,7 +1474,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa06-09",
         outcomeId: "infra-fa-06-c-02-o-01",
-        title: "Prize Manager",
+        title: "Manage Prizes",
         statement: "Launch a global challenge and incentive program to catalyze convergent technology solutions.",
         existingProjects: []
     },
@@ -1483,14 +1483,14 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa06-10",
         outcomeId: "infra-fa-06-c-02-o-02",
-        title: "Hub Architect",
+        title: "Architect Hubs",
         statement: "Develop a model and framework for establishing convergent technology research and innovation hubs.",
         existingProjects: []
     },
     {
         id: "mis-infra-fa06-11",
         outcomeId: "infra-fa-06-c-02-o-02",
-        title: "Hub Connector",
+        title: "Connect Hubs",
         statement: "Create a global network and support system for convergent technology research and innovation hubs.",
         existingProjects: []
     },
@@ -1506,7 +1506,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa07-01",
         outcomeId: "infra-fa-07-c-01-o-01",
-        title: "Finance Architect",
+        title: "Architect Finances",
         statement: "Develop a comprehensive framework and standards for integral financing.",
         existingProjects: []
     },
@@ -1529,7 +1529,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa07-04",
         outcomeId: "infra-fa-07-c-01-o-02",
-        title: "Project Connector",
+        title: "Connect Projects",
         statement: "Develop a global platform for connecting integral infrastructure projects with integral financing sources.",
         existingProjects: []
     },
@@ -1589,7 +1589,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa07-12",
         outcomeId: "infra-fa-07-c-02-o-02",
-        title: "Investor Educator",
+        title: "Educate Investors",
         statement: "Launch an education and certification program for integral infrastructure investors and funders.",
         existingProjects: []
     },
@@ -1658,7 +1658,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa08-09",
         outcomeId: "infra-fa-08-c-02-o-01",
-        title: "Resilience Trainer",
+        title: "Train Resiliences",
         statement: "Launch a global training program for resilient infrastructure professionals and practitioners.",
         existingProjects: []
     },
@@ -1851,7 +1851,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "mis-infra-fa10-10",
         outcomeId: "infra-fa-10-c-02-o-02",
-        title: "Tool Maker",
+        title: "Make Tools",
         statement: "Develop tools for real-time monitoring and optimization of infrastructure based on integrative metrics.",
         existingProjects: []
     },
@@ -2657,7 +2657,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "env-fa-01-c-02-o-02-m-02",
         outcomeId: "env-fa-01-c-02-o-02",
-        title: "Planning Guide",
+        title: "Guide Planning",
         statement: "Develop a guide and resources for creating and implementing community-driven environmental stewardship plans.",
         status: "proposing",
         pillarId: "environment",
@@ -2756,7 +2756,7 @@ export const MISSIONS: Mission[] = [
     {
         id: "env-fa-02-c-02-o-01-m-01",
         outcomeId: "env-fa-02-c-02-o-01",
-        title: "Regenerative Guide",
+        title: "Guide Regeneratives",
         statement: "Disseminate a guide and resources for implementing regenerative land management practices.",
         status: "proposing",
         pillarId: "environment",
