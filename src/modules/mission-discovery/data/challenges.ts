@@ -552,8 +552,8 @@ export const KEY_CHALLENGES: MissionKeyChallenge[] = [
     {
         id: 'cul-fa-02-c-01',
         focusAreaId: 'cul-fa-02',
-        title: 'Lack of solutions-based narratives',
-        description: 'Media focuses on problems and conflict rather than solutions and unity.'
+        title: 'Shift from sensationalist to constructive narratives',
+        description: 'Media often focuses on problems and conflict rather than solutions and constructive stories.'
     },
     // Culture: Collective Mindfulness
     {
