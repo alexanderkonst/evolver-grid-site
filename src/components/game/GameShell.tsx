@@ -11,7 +11,9 @@ import {
     Menu,
     X,
     ChevronDown,
-    ChevronRight
+    ChevronRight,
+    PanelLeftClose,
+    PanelLeft
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -100,6 +102,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [desktopSidebarOpen, setDesktopSidebarOpen] = useState(true);
     const [expandedSpaces, setExpandedSpaces] = useState<Set<string>>(new Set());
 
     useEffect(() => {
@@ -154,18 +157,27 @@ export const GameShell = ({ children }: GameShellProps) => {
             <aside
                 className={`
           fixed lg:static inset-y-0 left-0 z-40
-          w-64 bg-slate-900 border-r border-slate-800
-          transform transition-transform duration-200 ease-in-out
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-          lg:transform-none
+          ${desktopSidebarOpen ? 'w-64' : 'lg:w-0 lg:overflow-hidden'}
+          bg-slate-900 border-r border-slate-800
+          transform transition-all duration-200 ease-in-out
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          ${desktopSidebarOpen ? "lg:translate-x-0" : "lg:-translate-x-full"}
           flex flex-col
         `}
             >
                 {/* Logo */}
-                <div className="h-14 lg:h-16 flex items-center px-4 border-b border-slate-800">
+                <div className="h-14 lg:h-16 flex items-center justify-between px-4 border-b border-slate-800">
                     <Link to="/" className="font-bold text-lg text-white">
                         Game of Life
                     </Link>
+                    {/* Desktop collapse button */}
+                    <button
+                        onClick={() => setDesktopSidebarOpen(false)}
+                        className="hidden lg:block p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-colors"
+                        title="Collapse sidebar"
+                    >
+                        <PanelLeftClose className="w-4 h-4" />
+                    </button>
                 </div>
 
                 {/* Navigation */}
@@ -207,19 +219,19 @@ export const GameShell = ({ children }: GameShellProps) => {
                                     )}
                                 </div>
 
-                                {/* Modules dropdown */}
+                                {/* Modules dropdown - smaller font, indent */}
                                 {item.modules && expandedSpaces.has(item.id) && (
-                                    <div className="ml-8 mt-1 space-y-0.5">
+                                    <div className="ml-10 mt-1 space-y-0.5 border-l border-slate-700 pl-3">
                                         {item.modules.map((module) => (
                                             <Link
                                                 key={module.id}
                                                 to={module.path}
                                                 onClick={() => setSidebarOpen(false)}
                                                 className={`
-                                                    block px-3 py-1.5 rounded-md text-sm
+                                                    block px-2 py-1 rounded-md text-xs font-normal
                                                     ${location.pathname.startsWith(module.path)
-                                                        ? "text-white bg-slate-700"
-                                                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                                                        ? "text-white bg-slate-700/50"
+                                                        : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
                                                     }
                                                 `}
                                             >
@@ -269,8 +281,19 @@ export const GameShell = ({ children }: GameShellProps) => {
                 />
             )}
 
+            {/* Desktop sidebar expand button (when collapsed) */}
+            {!desktopSidebarOpen && (
+                <button
+                    onClick={() => setDesktopSidebarOpen(true)}
+                    className="hidden lg:flex fixed top-4 left-4 z-50 items-center justify-center w-10 h-10 bg-slate-900 text-slate-400 hover:text-white rounded-lg shadow-lg border border-slate-700 transition-colors"
+                    title="Expand sidebar"
+                >
+                    <PanelLeft className="w-5 h-5" />
+                </button>
+            )}
+
             {/* Main Content */}
-            <main className="flex-1 lg:pl-0 pt-14 lg:pt-0">
+            <main className={`flex-1 pt-14 lg:pt-0 transition-all duration-200 ${!desktopSidebarOpen ? 'lg:pl-0' : ''}`}>
                 <div className="min-h-screen">
                     {children}
                 </div>
