@@ -55,6 +55,8 @@ import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscovery
 // Asset Mapping
 import AssetMappingLanding from "./modules/asset-mapping/AssetMappingLanding";
 import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
+// Marketplace
+import CreatorPage from "./pages/CreatorPage";
 
 const queryClient = new QueryClient();
 
@@ -120,6 +122,8 @@ const App = () => (
             {/* Asset Mapping */}
             <Route path="/asset-mapping" element={<AssetMappingLanding />} />
             <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
+            {/* Public Creator Pages */}
+            <Route path="/p/:slug" element={<CreatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

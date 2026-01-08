@@ -88,6 +88,23 @@ const TransformationSpace = () => {
                         </Button>
                     </div>
 
+                    {/* Personality Upgrade */}
+                    <div className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
+                        <div className="flex items-start justify-between mb-3">
+                            <div className="p-2 rounded-lg bg-purple-100">
+                                <Award className="w-6 h-6 text-purple-600" />
+                            </div>
+                            <span className="text-xs text-purple-600 font-medium bg-purple-50 px-2 py-1 rounded-full">Upgrade</span>
+                        </div>
+                        <h3 className="font-semibold text-slate-900 mb-1">Personality Tests</h3>
+                        <p className="text-sm text-slate-600 mb-4">MBTI, Enneagram, and other frameworks</p>
+                        <Button asChild variant="outline" size="sm" className="w-full">
+                            <Link to="/resources/personality-tests?from=transformation">
+                                Take Tests <ArrowRight className="w-4 h-4 ml-2" />
+                            </Link>
+                        </Button>
+                    </div>
+
                     {/* Daily Loop */}
                     <div className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
                         <div className="flex items-start justify-between mb-3">

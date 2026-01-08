@@ -36,14 +36,6 @@ const PROFILE_MODULES: ModuleCard[] = [
         status: "available"
     },
     {
-        id: "personality-tests",
-        title: "Personality Tests",
-        description: "MBTI, Enneagram, and other frameworks",
-        icon: <BrainCircuit className="w-6 h-6" />,
-        path: "/resources/personality-tests?from=game&return=/game/profile",
-        status: "available"
-    },
-    {
         id: "quality-of-life",
         title: "Quality of Life Map",
         description: "Assess your life across 8 domains",
