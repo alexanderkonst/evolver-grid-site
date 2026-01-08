@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
-import AnimatedBackground from "@/components/AnimatedBackground";
+// AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
@@ -42,6 +42,15 @@ import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3
 import Step3OrderTalents from "./modules/zone-of-genius/Step3OrderTalents";
 import Step4GenerateSnapshot from "./modules/zone-of-genius/Step4GenerateSnapshot";
 import NotFound from "./pages/NotFound";
+// Space pages for the Game Shell
+import ProfileSpace from "./pages/spaces/ProfileSpace";
+import TransformationSpace from "./pages/spaces/TransformationSpace";
+import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
+import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
+import CoopSpace from "./pages/spaces/CoopSpace";
+// Mission Discovery
+import MissionDiscoveryLanding from "./modules/mission-discovery/MissionDiscoveryLanding";
+import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscoveryWizard";
 
 const queryClient = new QueryClient();
 
@@ -50,7 +59,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <AnimatedBackground />
+      {/* AnimatedBackground removed for minimal SaaS design */}
       <CustomCursor />
       <BrowserRouter>
         <PageTransition>
@@ -71,10 +80,16 @@ const App = () => (
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
+            {/* Game Routes */}
             <Route path="/game" element={<GameHome />} />
-            <Route path="/today" element={<Today />} />
+            <Route path="/game/profile" element={<ProfileSpace />} />
+            <Route path="/game/transformation" element={<TransformationSpace />} />
+            <Route path="/game/marketplace" element={<MarketplaceSpace />} />
+            <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
+            <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<SkillTrees />} />
+            <Route path="/today" element={<Today />} />
             <Route path="/character" element={<Today />} />
             <Route path="/map" element={<GameMap />} />
             <Route path="/skills" element={<SkillTrees />} />
@@ -94,6 +109,9 @@ const App = () => (
               <Route path="step-4" element={<Step4GenerateSnapshot />} />
             </Route>
             <Route path="/m/:slug" element={<ModuleDetail />} />
+            {/* Mission Discovery */}
+            <Route path="/mission-discovery" element={<MissionDiscoveryLanding />} />
+            <Route path="/mission-discovery/wizard" element={<MissionDiscoveryWizard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

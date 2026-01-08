@@ -5,7 +5,7 @@ import {
   AlertCircle, Lock, Download, FileText, Target, Zap, Compass, Heart
 } from "lucide-react";
 import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
-import Navigation from "@/components/Navigation";
+import GameShell from "@/components/game/GameShell";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
@@ -778,18 +778,16 @@ const GameHome = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen">
-        <Navigation />
-        <div className="pt-24 flex items-center justify-center min-h-[60vh]">
+      <GameShell>
+        <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
         </div>
-      </div>
+      </GameShell>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <GameShell>
 
       {/* Guest Banner */}
       {!user && (
@@ -1620,7 +1618,7 @@ const GameHome = () => {
 
         </div>
       </div>
-    </div>
+    </GameShell>
   );
 };
 
