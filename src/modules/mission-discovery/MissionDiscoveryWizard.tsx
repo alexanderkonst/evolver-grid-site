@@ -314,12 +314,12 @@ const MissionDiscoveryWizard = () => {
                             onChange={(e) => setEmailFrequency(e.target.value as typeof emailFrequency)}
                             className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         >
-                            <option value="daily">Daily digest</option>
-                            <option value="weekly">Weekly digest</option>
-                            <option value="monthly">Monthly digest</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
                         </select>
                         <p className="text-xs text-slate-500 mt-2">
-                            We'll group new participants and send a summary at your preferred frequency.
+                            You'll be notified about new people who commit to the same mission.
                         </p>
                     </div>
 

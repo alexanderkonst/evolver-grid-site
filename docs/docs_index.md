@@ -60,6 +60,7 @@
 | [daily_loop_spec.md](./daily_loop_spec.md) | Daily loop technical spec |
 | [gamification_mechanics.md](./gamification_mechanics.md) | Mechanics reference |
 | [transformation_engine.md](./transformation_engine.md) | 5 vectors → 8 domains |
+| [telemetry_playbook.md](./telemetry_playbook.md) | Telemetry query playbook |
 
 ---
 
