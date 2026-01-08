@@ -4,12 +4,14 @@ This document is the single entry point for all AI prompts used in the app. If y
 
 ## Source of Truth
 
-**Frontend prompts** live in `src/prompts/`:
+**Frontend prompts** live in `src/prompts/`, split by intent:
 
-- `src/prompts/assetMappingPrompt.ts`
-- `src/prompts/missionDiscoveryPrompt.ts`
-- `src/prompts/zoneOfGeniusPrompt.ts`
-- `src/prompts/geniusOfferPrompts.ts`
+- User-run prompts: `src/prompts/user/`
+  - `src/prompts/user/missionDiscoveryPrompt.ts`
+  - `src/prompts/user/zoneOfGeniusPrompt.ts`
+  - `src/prompts/user/geniusOfferPrompts.ts`
+- Extraction/system prompts: `src/prompts/extraction/`
+  - `src/prompts/extraction/assetMappingPrompt.ts`
 
 These are re-exported from `src/prompts/index.ts` and imported by UI screens.
 
@@ -25,6 +27,11 @@ This keeps mission-matching copy in version control alongside the function that 
 2. Keep outputs strict (JSON when required) and explicitly name required fields.
 3. Avoid changing output structure unless the parsing code is updated in the same PR.
 4. If you update the mission-matching prompt, redeploy the `match-missions` edge function.
+
+## Source of Truth (No Duplication)
+
+The **code prompts are the source of truth**. This doc is an index and guidelines only.
+If you update a prompt, update only the source file; this doc should not repeat prompt text.
 
 ## Conventions
 
