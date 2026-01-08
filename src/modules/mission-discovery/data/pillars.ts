@@ -1,4 +1,3 @@
-/// <reference path="../types.ts" />
 import { MissionPillar } from "../types";
 
 export const PILLARS: MissionPillar[] = [
@@ -38,4 +37,3 @@ export const PILLARS: MissionPillar[] = [
     color: "bg-purple-500"
   }
 ];
-

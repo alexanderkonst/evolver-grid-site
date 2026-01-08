@@ -1,4 +1,3 @@
-/// <reference path="../types.ts" />
 import { MissionFocusArea } from "../types";
 
 export const FOCUS_AREAS: MissionFocusArea[] = [
