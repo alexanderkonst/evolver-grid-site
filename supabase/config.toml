@@ -35,3 +35,15 @@ verify_jwt = false
 
 [functions.create-portal-session]
 verify_jwt = true
+
+[functions.match-missions]
+verify_jwt = false
+
+[functions.match-assets]
+verify_jwt = false
+
+[functions.sync-mission-data]
+verify_jwt = false
+
+[functions.send-mission-notifications]
+verify_jwt = false
