@@ -11,6 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
 import { supabase } from "@/integrations/supabase/client";
+import { MISSIONS } from "@/modules/mission-discovery/data/missions";
+import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
+import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
+import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
+import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 
 interface ModuleCard {
     id: string;
@@ -75,6 +80,52 @@ const ProfileSpace = () => {
         const loadMission = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user || !isMounted) return;
+            const { data: participant } = await supabase
+                .from("mission_participants")
+                .select("mission_id, mission_title, pillar_id, focus_area_id, challenge_id, outcome_id, created_at")
+                .eq("user_id", user.id)
+                .order("created_at", { ascending: false })
+                .limit(1)
+                .maybeSingle();
+
+            if (participant?.mission_id) {
+                const mission = MISSIONS.find(m => m.id === participant.mission_id);
+                const outcome = participant.outcome_id
+                    ? DESIRED_OUTCOMES.find(o => o.id === participant.outcome_id)
+                    : mission
+                        ? DESIRED_OUTCOMES.find(o => o.id === mission.outcomeId)
+                        : undefined;
+                const challenge = participant.challenge_id
+                    ? KEY_CHALLENGES.find(c => c.id === participant.challenge_id)
+                    : outcome
+                        ? KEY_CHALLENGES.find(c => c.id === outcome.challengeId)
+                        : undefined;
+                const focusArea = participant.focus_area_id
+                    ? FOCUS_AREAS.find(f => f.id === participant.focus_area_id)
+                    : challenge
+                        ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId)
+                        : undefined;
+                const pillar = participant.pillar_id
+                    ? PILLARS.find(p => p.id === participant.pillar_id)
+                    : focusArea
+                        ? PILLARS.find(p => p.id === focusArea.pillarId)
+                        : undefined;
+
+                if (isMounted) {
+                    setMissionCommitment({
+                        mission_id: participant.mission_id,
+                        mission_title: participant.mission_title,
+                        mission_statement: mission?.statement || mission?.title || participant.mission_title,
+                        pillar: pillar?.title,
+                        focus_area: focusArea?.title,
+                        challenge: challenge?.title,
+                        outcome: outcome?.title,
+                        committed_at: participant.created_at || undefined,
+                    });
+                }
+                return;
+            }
+
             const stored = localStorage.getItem(`mission_commitment_${user.id}`);
             if (!stored) return;
             try {
