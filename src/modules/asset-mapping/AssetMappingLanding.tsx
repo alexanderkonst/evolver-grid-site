@@ -3,10 +3,10 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
 import { ASSET_CATEGORIES } from "./data/assetCategories";
-
 const AI_PROMPT = `Based on everything you know about me from our conversations, please map my assets across these 6 categories:
 
 **CATEGORIES:**
@@ -47,6 +47,7 @@ type MatchedAsset = {
     typeTitle: string;
     subTypeTitle?: string;
     categoryTitle?: string;
+    categoryId?: string;
     title: string;
     description?: string;
     leverageScore?: number;
@@ -64,6 +65,30 @@ const CATEGORY_MAP: Record<string, string> = {
     'ip': 'Intellectual Property',
     'intellectual property': 'Intellectual Property',
     'influence': 'Influence'
+};
+
+// AI matching function
+const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> => {
+    try {
+        const { data, error } = await supabase.functions.invoke("match-assets", {
+            body: { text, limit: 8 },
+        });
+        if (error || !data?.matches) return null;
+        const matches = (data.matches as Array<{ asset_id: string; score: number; type?: string; subType?: string; title?: string }>)
+            .map((match) => ({
+                typeTitle: match.type || 'Unknown',
+                subTypeTitle: match.subType,
+                categoryTitle: match.title,
+                categoryId: match.asset_id,
+                title: match.title || 'Unknown Asset',
+                leverageScore: Math.round(match.score * 10),
+            }))
+            .filter(m => m.typeTitle !== 'Unknown');
+        return matches.length > 0 ? matches : null;
+    } catch (err) {
+        console.error("Asset match error:", err);
+        return null;
+    }
 };
 
 const AssetMappingLanding = () => {
@@ -87,13 +112,23 @@ const AssetMappingLanding = () => {
         navigate(`/asset-mapping/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
     };
 
-    // Parse response and extract assets - handles JSON, markdown, and various formats
+    // Parse response and extract assets - tries AI matching first, then falls back to parsing
     const handleMatchAssets = async () => {
         setIsMatching(true);
+
+        // First, try AI matching via edge function
+        const aiMatches = await fetchAssetMatches(aiResponse);
+        if (aiMatches && aiMatches.length > 0) {
+            setIsMatching(false);
+            setMatchedAssets(aiMatches);
+            setStep("matched");
+            return;
+        }
+
+        // Fallback: Parse the response manually
         const extracted: MatchedAsset[] = [];
 
         try {
-            // First, try JSON parsing
             const jsonMatch = aiResponse.match(/\[\s*\{[\s\S]*?\}\s*\]/);
 
             if (jsonMatch) {
@@ -111,27 +146,22 @@ const AssetMappingLanding = () => {
                     });
                 }
             } else {
-                // Parse markdown format: **Category:** X, **Asset:** Y, **Description:** Z
-                // Split by asset blocks (each starts with * **Category:** or numbered)
+                // Parse markdown format
                 const assetBlocks = aiResponse.split(/(?=\*\s*\*\*Category:\*\*|\n\d+\)\s*\*\*Category:\*\*)/);
 
                 for (const block of assetBlocks) {
                     if (!block.trim()) continue;
-
-                    // Extract fields using regex
                     const categoryMatch = block.match(/\*\*Category:\*\*\s*([^\n*]+)/i);
                     const assetMatch = block.match(/\*\*Asset:\*\*\s*([^\n]+)/i);
                     const descMatch = block.match(/\*\*Description:\*\*\s*([^\n]+)/i);
                     const valueMatch = block.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
 
                     if (assetMatch) {
-                        // Determine category
                         let typeTitle = 'Unknown';
                         if (categoryMatch) {
                             const rawCat = categoryMatch[1].trim().toLowerCase();
                             typeTitle = CATEGORY_MAP[rawCat] || categoryMatch[1].trim();
                         }
-
                         extracted.push({
                             typeTitle,
                             title: assetMatch[1].trim(),
@@ -140,48 +170,14 @@ const AssetMappingLanding = () => {
                         });
                     }
                 }
-
-                // If still no matches, try section-based parsing (## 1) Expertise, etc.)
-                if (extracted.length === 0) {
-                    const sections = aiResponse.split(/(?=##\s*\d+\)\s*)/);
-
-                    for (const section of sections) {
-                        const sectionHeader = section.match(/##\s*\d+\)\s*(\w+)/);
-                        if (!sectionHeader) continue;
-
-                        const rawCat = sectionHeader[1].toLowerCase();
-                        const typeTitle = CATEGORY_MAP[rawCat] || sectionHeader[1];
-
-                        // Find all bullet items in this section
-                        const items = section.split(/(?=\*\s+\*\*)/);
-
-                        for (const item of items) {
-                            const assetMatch = item.match(/\*\*Asset:\*\*\s*([^\n]+)/i);
-                            const descMatch = item.match(/\*\*Description:\*\*\s*([^\n]+)/i);
-                            const valueMatch = item.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
-
-                            if (assetMatch) {
-                                extracted.push({
-                                    typeTitle,
-                                    title: assetMatch[1].trim(),
-                                    description: descMatch ? descMatch[1].trim() : undefined,
-                                    leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
-                                });
-                            }
-                        }
-                    }
-                }
             }
         } catch (e) {
             console.error('Error parsing AI response:', e);
         }
 
-        await new Promise(resolve => setTimeout(resolve, 300));
         setIsMatching(false);
-
-        // Sort by leverage score if available, otherwise keep original order
         const sorted = extracted.sort((a, b) => (b.leverageScore || 0) - (a.leverageScore || 0));
-        setMatchedAssets(sorted.slice(0, 50)); // Cap at 50 for display
+        setMatchedAssets(sorted.slice(0, 50));
         setStep("matched");
     };
 
