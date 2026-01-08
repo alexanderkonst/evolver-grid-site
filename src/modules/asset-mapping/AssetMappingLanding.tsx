@@ -7,40 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
 import { ASSET_CATEGORIES } from "./data/assetCategories";
-const AI_PROMPT = `Based on everything you know about me from our conversations, please map my assets across these 6 categories:
-
-**CATEGORIES:**
-1. **Expertise** — Professional skills and knowledge I've demonstrated
-2. **Life Experiences** — Significant experiences that shaped me
-3. **Networks** — Communities, organizations, and people I'm connected to
-4. **Material Resources** — Physical, digital, or financial resources I have access to
-5. **Intellectual Property** — Frameworks, content, methodologies, or creative works I've developed
-6. **Influence** — Platforms, recognition, or credibility I've built
-
-**OUTPUT FORMAT:**
-Please return the assets as a JSON array with this schema:
-\`\`\`json
-[
-  {
-    "category": "Expertise|Experiences|Networks|Resources|IP|Influence",
-    "subcategory": "e.g. Business & Economics, Cultural Immersion, etc.",
-    "name": "Asset name",
-    "description": "Brief description (1 sentence)",
-    "leverage_score": 1-10,
-    "leverage_reason": "Why this asset is high/low leverage"
-  }
-]
-\`\`\`
-
-**LEVERAGE SCORING:**
-Rate each asset 1-10 based on:
-- **Revenue potential** — How quickly could this generate income?
-- **Strategic compounding** — Does this asset multiply the value of other assets?
-- **Uniqueness** — How rare is this in the market?
-
-Be comprehensive — include everything you've learned about my skills, resources, connections, and interests. Sort the final list by leverage_score (highest first).
-
-I'm using this to map my assets in a personal development tool for potential collaborations and projects.`;
+import { ASSET_MAPPING_PROMPT } from "@/prompts";
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
 type MatchedAsset = {
@@ -103,7 +70,7 @@ const AssetMappingLanding = () => {
     const [matchedAssets, setMatchedAssets] = useState<MatchedAsset[]>([]);
 
     const handleCopyPrompt = async () => {
-        await navigator.clipboard.writeText(AI_PROMPT);
+        await navigator.clipboard.writeText(ASSET_MAPPING_PROMPT);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -136,13 +103,14 @@ const AssetMappingLanding = () => {
                 for (const asset of assets) {
                     const rawCategory = (asset.category || '').toLowerCase();
                     const typeTitle = CATEGORY_MAP[rawCategory] || asset.category || 'Unknown';
+                    const name = asset.name || asset.asset || asset.title || 'Unnamed Asset';
                     extracted.push({
                         typeTitle,
                         subTypeTitle: asset.subcategory || undefined,
-                        title: asset.name || 'Unnamed Asset',
-                        description: asset.description || undefined,
-                        leverageScore: asset.leverage_score || undefined,
-                        leverageReason: asset.leverage_reason || undefined,
+                        title: name,
+                        description: asset.description || asset.details || asset.summary || undefined,
+                        leverageScore: asset.leverage_score || asset.leverageScore || undefined,
+                        leverageReason: asset.leverage_reason || asset.leverageReason || undefined,
                     });
                 }
             } else {
@@ -152,8 +120,8 @@ const AssetMappingLanding = () => {
                 for (const block of assetBlocks) {
                     if (!block.trim()) continue;
                     const categoryMatch = block.match(/\*\*Category:\*\*\s*([^\n*]+)/i);
-                    const assetMatch = block.match(/\*\*Asset:\*\*\s*([^\n]+)/i);
-                    const descMatch = block.match(/\*\*Description:\*\*\s*([^\n]+)/i);
+                    const assetMatch = block.match(/\*\*(?:Asset|Name|Title):\*\*\s*([^\n]+)/i);
+                    const descMatch = block.match(/\*\*(?:Description|Details|Summary):\*\*\s*([^\n]+)/i);
                     const valueMatch = block.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
 
                     if (assetMatch) {
@@ -168,6 +136,37 @@ const AssetMappingLanding = () => {
                             description: descMatch ? descMatch[1].trim() : undefined,
                             leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
                         });
+                    }
+                }
+
+                // If still no matches, try section-based parsing (## 1) Expertise, etc.)
+                if (extracted.length === 0) {
+                    const sections = aiResponse.split(/(?=##\s*\d+\)\s*)/);
+
+                    for (const section of sections) {
+                        const sectionHeader = section.match(/##\s*\d+\)\s*(\w+)/);
+                        if (!sectionHeader) continue;
+
+                        const rawCat = sectionHeader[1].toLowerCase();
+                        const typeTitle = CATEGORY_MAP[rawCat] || sectionHeader[1];
+
+                        // Find all bullet items in this section
+                        const items = section.split(/(?=\*\s+\*\*)/);
+
+                        for (const item of items) {
+                            const assetMatch = item.match(/\*\*(?:Asset|Name|Title):\*\*\s*([^\n]+)/i);
+                            const descMatch = item.match(/\*\*(?:Description|Details|Summary):\*\*\s*([^\n]+)/i);
+                            const valueMatch = item.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
+
+                            if (assetMatch) {
+                                extracted.push({
+                                    typeTitle,
+                                    title: assetMatch[1].trim(),
+                                    description: descMatch ? descMatch[1].trim() : undefined,
+                                    leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
+                                });
+                            }
+                        }
                     }
                 }
             }
@@ -237,7 +236,7 @@ const AssetMappingLanding = () => {
                                 </Button>
                             </div>
                             <pre className="text-xs text-slate-600 whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
-                                {AI_PROMPT}
+                                {ASSET_MAPPING_PROMPT}
                             </pre>
                         </div>
 

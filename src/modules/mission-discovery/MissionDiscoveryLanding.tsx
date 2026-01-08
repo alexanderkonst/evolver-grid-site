@@ -18,6 +18,7 @@ import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
 import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 import type { Mission } from "@/modules/mission-discovery/types";
+import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
 
 /**
  * Mission Discovery Landing Page
@@ -28,24 +29,6 @@ import type { Mission } from "@/modules/mission-discovery/types";
  * 
  * Also handles: "Do you have an AI that knows your mission?"
  */
-
-const AI_PROMPT = `Based on everything you know about me from our conversations, please summarize my life mission or contribution to the world.
-
-Please organize my mission(s) in a HOLONIC structure:
-
-1. **Higher-Level Organizing Mission** (1 paragraph)
-   What is my overarching mission or purpose? This is the "meta-mission" that encompasses everything I care about.
-
-2. **Key Nested Missions** (2-4 bullets)
-   What are the distinct key missions that nest within this higher-level mission? Each should be specific enough to stand on its own, yet clearly part of the larger whole.
-
-For each mission, be specific about:
-- The domain (environment, governance, education, health, technology, consciousness, etc.)
-- The change I want to create
-- The unique perspective or skills I bring
-
-Note: I'm using your response to match myself to a mission taxonomy in a personal development tool. Missions can always be refined — this is a starting point, not a final commitment.`;
-
 
 type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
 type MatchContext = {
@@ -139,7 +122,7 @@ const MissionDiscoveryLanding = () => {
     const [matches, setMatches] = useState<MatchResult[] | null>(null);
 
     const handleCopyPrompt = async () => {
-        await navigator.clipboard.writeText(AI_PROMPT);
+        await navigator.clipboard.writeText(MISSION_DISCOVERY_PROMPT);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -353,7 +336,7 @@ const MissionDiscoveryLanding = () => {
                                 </Button>
                             </div>
                             <pre className="text-xs text-slate-600 whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
-                                {AI_PROMPT}
+                                {MISSION_DISCOVERY_PROMPT}
                             </pre>
                         </div>
 
