@@ -322,6 +322,69 @@ export type Database = {
         }
         Relationships: []
       }
+      mission_participants: {
+        Row: {
+          challenge_id: string | null
+          created_at: string
+          email: string
+          email_frequency: string
+          first_name: string | null
+          focus_area_id: string | null
+          id: string
+          intro_text: string | null
+          mission_id: string
+          mission_title: string
+          notified_at: string | null
+          notify_level: string
+          outcome_id: string | null
+          pillar_id: string | null
+          share_consent: boolean
+          user_id: string
+          wants_to_integrate: boolean
+          wants_to_lead: boolean
+        }
+        Insert: {
+          challenge_id?: string | null
+          created_at?: string
+          email: string
+          email_frequency?: string
+          first_name?: string | null
+          focus_area_id?: string | null
+          id?: string
+          intro_text?: string | null
+          mission_id: string
+          mission_title: string
+          notified_at?: string | null
+          notify_level?: string
+          outcome_id?: string | null
+          pillar_id?: string | null
+          share_consent?: boolean
+          user_id: string
+          wants_to_integrate?: boolean
+          wants_to_lead?: boolean
+        }
+        Update: {
+          challenge_id?: string | null
+          created_at?: string
+          email?: string
+          email_frequency?: string
+          first_name?: string | null
+          focus_area_id?: string | null
+          id?: string
+          intro_text?: string | null
+          mission_id?: string
+          mission_title?: string
+          notified_at?: string | null
+          notify_level?: string
+          outcome_id?: string | null
+          pillar_id?: string | null
+          share_consent?: boolean
+          user_id?: string
+          wants_to_integrate?: boolean
+          wants_to_lead?: boolean
+        }
+        Relationships: []
+      }
       multiple_intelligences_assessments: {
         Row: {
           created_at: string
