@@ -1,4 +1,3 @@
-/// <reference path="../types.ts" />
 import { MissionKeyChallenge } from "../types";
 
 export const KEY_CHALLENGES: MissionKeyChallenge[] = [

@@ -1,4 +1,3 @@
-/// <reference path="../types.ts" />
 import { Mission } from "../types";
 
 export const MISSIONS: Mission[] = [
@@ -5076,4 +5075,3 @@ export const MISSIONS: Mission[] = [
         status: 'proposed'
     }
 ];
-
