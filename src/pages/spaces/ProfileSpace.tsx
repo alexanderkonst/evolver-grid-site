@@ -31,14 +31,6 @@ const PROFILE_MODULES: ModuleCard[] = [
         status: "available"
     },
     {
-        id: "mission-discovery",
-        title: "Mission Discovery",
-        description: "Find your contribution to the planet",
-        icon: <Target className="w-6 h-6" />,
-        path: "/mission-discovery?from=game&return=/game/profile",
-        status: "available"
-    },
-    {
         id: "personality-tests",
         title: "Personality Tests",
         description: "MBTI, Enneagram, and other frameworks",
