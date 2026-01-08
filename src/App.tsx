@@ -49,6 +49,8 @@ import TransformationSpace from "./pages/spaces/TransformationSpace";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
 import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
 import CoopSpace from "./pages/spaces/CoopSpace";
+// Core Loop
+import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery
 import MissionDiscoveryLanding from "./modules/mission-discovery/MissionDiscoveryLanding";
 import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscoveryWizard";
@@ -89,6 +91,7 @@ const App = () => (
             <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
             {/* Game Routes */}
             <Route path="/game" element={<GameHome />} />
+            <Route path="/game/next-move" element={<CoreLoopHome />} />
             <Route path="/game/profile" element={<ProfileSpace />} />
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
