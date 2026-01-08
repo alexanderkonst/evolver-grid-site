@@ -29,3 +29,9 @@ You are operating autonomously on this repository.
 - Do not ask follow-up questions unless blocked.
 - Proceed end-to-end by default.
 - Report completion only when the task is fully merged into `main`, or when blocked with a clear explanation.
+
+## Prompt Governance
+- The source of truth for prompts is `src/prompts/`.
+- User-run prompts live in `src/prompts/user/`; extraction/system prompts live in `src/prompts/extraction/`.
+- `docs/prompt_registry.md` is an index and guidelines only; do not duplicate prompt text there.
+- If a prompt output schema changes, update parsing logic in the same change.
