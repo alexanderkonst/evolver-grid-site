@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,6 +53,7 @@ const MissionDiscoveryWizard = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/game/profile";
+    const missionIdParam = searchParams.get("missionId");
 
     // Selection state
     const [selectedPillarId, setSelectedPillarId] = useState<string | undefined>();
@@ -67,6 +68,8 @@ const MissionDiscoveryWizard = () => {
     const [shareConsent, setShareConsent] = useState(false);
     const [wantsToLead, setWantsToLead] = useState(false);
     const [wantsToIntegrate, setWantsToIntegrate] = useState(false);
+    const preselectAppliedRef = useRef(false);
+    const [notifyLevel, setNotifyLevel] = useState<'mission' | 'outcome' | 'challenge' | 'pillar'>('mission');
 
     // Filtered data based on selections
     const focusAreas = useMemo(() =>
@@ -93,6 +96,23 @@ const MissionDiscoveryWizard = () => {
         selectedMissionId ? MISSIONS.find(m => m.id === selectedMissionId) : undefined,
         [selectedMissionId]
     );
+
+    useEffect(() => {
+        if (!missionIdParam || preselectAppliedRef.current) return;
+        const mission = MISSIONS.find(m => m.id === missionIdParam);
+        if (!mission) return;
+        const outcome = DESIRED_OUTCOMES.find(o => o.id === mission.outcomeId);
+        const challenge = outcome ? KEY_CHALLENGES.find(c => c.id === outcome.challengeId) : undefined;
+        const focusArea = challenge ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId) : undefined;
+        const pillar = focusArea ? PILLARS.find(p => p.id === focusArea.pillarId) : undefined;
+
+        if (pillar?.id) setSelectedPillarId(pillar.id);
+        if (focusArea?.id) setSelectedFocusAreaId(focusArea.id);
+        if (challenge?.id) setSelectedChallengeId(challenge.id);
+        if (outcome?.id) setSelectedOutcomeId(outcome.id);
+        setSelectedMissionId(mission.id);
+        preselectAppliedRef.current = true;
+    }, [missionIdParam]);
 
     // Handle selection changes - clear downstream selections
     const handlePillarSelect = (id: string) => {
@@ -269,6 +289,26 @@ const MissionDiscoveryWizard = () => {
                         </div>
                     </div>
 
+                    {/* Notification Preferences */}
+                    <div className="bg-slate-50 rounded-xl p-6 mb-6">
+                        <label className="block text-sm font-medium text-slate-900 mb-2">
+                            Notify me when someone new commits to...
+                        </label>
+                        <select
+                            value={notifyLevel}
+                            onChange={(e) => setNotifyLevel(e.target.value as typeof notifyLevel)}
+                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        >
+                            <option value="mission">This exact mission only (fewest emails)</option>
+                            <option value="outcome">Same desired outcome</option>
+                            <option value="challenge">Same key challenge</option>
+                            <option value="pillar">Same pillar (most emails)</option>
+                        </select>
+                        <p className="text-xs text-slate-500 mt-2">
+                            Higher levels = more connections, more emails
+                        </p>
+                    </div>
+
                     <div className="space-y-3">
                         <Button
                             className="w-full"
@@ -277,9 +317,15 @@ const MissionDiscoveryWizard = () => {
                                 const userId = localStorage.getItem('sb-user-id') || 'anonymous';
                                 localStorage.setItem(`mission_connection_${userId}`, JSON.stringify({
                                     missionId: selectedMission.id,
+                                    missionTitle: selectedMission.title,
+                                    outcomeId: selectedOutcomeId,
+                                    challengeId: selectedChallengeId,
+                                    focusAreaId: selectedFocusAreaId,
+                                    pillarId: selectedPillarId,
                                     shareConsent,
                                     wantsToLead,
                                     wantsToIntegrate,
+                                    notifyLevel,
                                     savedAt: new Date().toISOString(),
                                 }));
                                 toast({
