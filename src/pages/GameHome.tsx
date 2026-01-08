@@ -8,10 +8,6 @@ import {
   Trophy,
   Flame,
   AlertCircle,
-  Lock,
-  Download,
-  FileText,
-  Target,
 } from "lucide-react";
 import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
 import GameShell from "@/components/game/GameShell";
@@ -20,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
-import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
@@ -36,12 +31,8 @@ import { growthPathSteps, GROWTH_PATH_VERSION, type GrowthPathProgress } from "@
 import { logActionEvent } from "@/lib/actionEvents";
 import { ensureGrowthPathProgress } from "@/lib/growthPathProgress";
 import { completeAction } from "@/lib/completeAction";
-import { type UnifiedAction, type ActionDuration } from "@/types/actions";
-import {
-  buildPlayerStats,
-  type MainQuestStage,
-  type PlayerStats,
-} from "@/lib/mainQuest";
+import { type UnifiedAction } from "@/types/actions";
+import { buildPlayerStats } from "@/lib/mainQuest";
 import { advanceMainQuestIfEligible } from "@/lib/mainQuestApi";
 
 // Types
@@ -105,14 +96,6 @@ const QUEST_MODES = [
   { id: "relaxing", label: "Relaxing / Calming" },
   { id: "balanced", label: "Balanced" },
 ];
-
-const toDurationBucket = (minutes?: number | null) => {
-  if (!minutes && minutes !== 0) return undefined;
-  if (minutes <= 3) return "xs";
-  if (minutes <= 10) return "sm";
-  if (minutes <= 25) return "md";
-  return "lg";
-};
 
 const GameHome = () => {
   const navigate = useNavigate();
@@ -347,13 +330,6 @@ const GameHome = () => {
     ];
     const minValue = Math.min(...domainStages.map(d => d.value));
     return domainStages.filter(d => d.value === minValue).slice(0, 2).map(d => d.name);
-  };
-
-  const getDomainStageInfo = (domainId: string, stageValue: number) => {
-    const domain = DOMAINS.find(d => d.id === domainId);
-    if (!domain) return { name: domainId, title: `Stage ${stageValue}` };
-    const stage = domain.stages.find(s => s.id === stageValue);
-    return { name: domain.name, title: stage?.title || `Stage ${stageValue}` };
   };
 
   const findPracticeByTitle = (title: string): LibraryItem | undefined => {
@@ -808,480 +784,25 @@ const GameHome = () => {
 
           {/* MAIN GAME SECTIONS */}
           {hasAnyData && (
-            isDailyLoopV2 ? (
-              <DailyLoopLayout
-                profileName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || null}
-                level={profile?.level}
-                xpTotal={profile?.xp_total}
-                streakDays={profile?.current_streak_days}
-                archetypeTitle={zogSnapshot?.archetype_title}
-                lowestDomains={lowestDomains}
-                celebration={celebration}
-                recommendedAction={recommendedAction}
-                isLoadingAction={isLoadingQuest}
-                actionError={actionError}
-                onPrimaryAction={handlePrimaryAction}
-                onRetryAction={loadGameData}
-                onFreedomMode={handleFreedomMode}
-                freedomModeUrl={freedomModeUrl}
-              />
-            ) : (
-              <div className="space-y-6">
-
-                {/* ===== SECTION 1: YOUR NEXT MOVE ===== */}
-                <div className="rounded-3xl border-2 border-amber-200 bg-amber-50/50 p-6 sm:p-8 shadow-lg">
-                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-amber-500" />
-                    YOUR NEXT MOVE
-                  </h2>
-
-                  {/* Main Quest (Storyline) Card - Always first */}
-                  {(() => {
-                    const playerStats = buildPlayerStats(
-                      profile,
-                      completedUpgradeCodes.size,
-                      !!zogSnapshot
-                    );
-
-                    // Compute current stage based on player stats
-                    const computedStage = computeNextMainQuestStage(profile, playerStats);
-                    const questCopy = getMainQuestCopy(computedStage);
-                    const stageComplete = isStageComplete(computedStage, profile, playerStats);
-                    const progress = calculateMainQuestProgress(computedStage);
-                    const stageNum = getStageNumber(computedStage);
-                    const totalStages = getTotalStages();
-                    const isFinalStage = computedStage === 'mq_5_real_world_output';
-
-                    const handleMarkDone = async () => {
-                      if (profileId && isFinalStage) {
-                        logActionEvent({
-                          actionId: `main-quest:${computedStage}`,
-                          profileId,
-                          source: "src/pages/GameHome.tsx",
-                          loop: "transformation",
-                          selectedAt: new Date().toISOString(),
-                          metadata: { intent: "main_quest_complete" },
-                        });
-                        await markRealWorldOutputDone(profileId);
-                        toast({ title: "🎉 Congratulations!", description: "You've completed the Main Quest storyline!" });
-                        await loadGameData();
-                      }
-                    };
-
-                    return (
-                      <div className="rounded-2xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 p-5 mb-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
-                              <Sparkles className="w-4 h-4 text-white" />
-                            </div>
-                            <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Main Quest (Storyline)</span>
-                          </div>
-                          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
-                            Stage {stageNum} of {totalStages}
-                          </span>
-                        </div>
-
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">{questCopy.title}</h3>
-                        <p className="text-sm text-slate-600 mb-2">{questCopy.objective}</p>
-                        <p className="text-xs text-slate-400 mb-4">💡 {questCopy.completionHint}</p>
-
-                        {/* Progress strip */}
-                        <div className="flex gap-1 mb-4">
-                          {Array.from({ length: totalStages }).map((_, i) => (
-                            <div
-                              key={i}
-                              className={`h-2 flex-1 rounded-full transition-all ${i < stageNum ? 'bg-indigo-500' :
-                                i === stageNum - 1 ? 'bg-indigo-300' :
-                                  'bg-slate-200'
-                                }`}
-                            />
-                          ))}
-                        </div>
-
-                        {stageComplete ? (
-                          <div className="flex items-center gap-2 text-emerald-600">
-                            <CheckCircle2 className="w-4 h-4" />
-                            <span className="text-sm font-medium">Stage Complete! Advancing...</span>
-                          </div>
-                        ) : isFinalStage ? (
-                          <Button
-                            onClick={handleMarkDone}
-                            className="w-full bg-indigo-600 hover:bg-indigo-700"
-                            size="sm"
-                          >
-                            {questCopy.ctaLabel} ✓
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => {
-                              if (profileId) {
-                                logActionEvent({
-                                  actionId: `main-quest:${computedStage}`,
-                                  profileId,
-                                  source: "src/pages/GameHome.tsx",
-                                  loop: "transformation",
-                                  selectedAt: new Date().toISOString(),
-                                  metadata: { intent: "main_quest_cta", route: questCopy.ctaRoute },
-                                });
-                              }
-                              if (questCopy.ctaRoute) {
-                                navigate(questCopy.ctaRoute);
-                              }
-                            }}
-                            className="w-full bg-indigo-600 hover:bg-indigo-700"
-                            size="sm"
-                          >
-                            {questCopy.ctaLabel} →
-                          </Button>
-                        )}
-                      </div>
-                    );
-                  })()}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Side Quest Card */}
-                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Target className="w-4 h-4 text-emerald-600" />
-                        <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Side Quest (Practice)</span>
-                      </div>
-                      <p className="text-sm text-slate-600 mb-4">
-                        Earn XP with a quick practice from the library.
-                      </p>
-                      <Button
-                        onClick={() => {
-                          if (profileId) {
-                            logActionEvent({
-                              actionId: "side-quest-picker",
-                              profileId,
-                              source: "src/pages/GameHome.tsx",
-                              loop: "transformation",
-                              selectedAt: new Date().toISOString(),
-                              metadata: { intent: "open_picker" },
-                            });
-                          }
-                          setShowQuestPicker(true);
-                        }}
-                        className="w-full"
-                        size="sm"
-                      >
-                        Start Side Quest →
-                      </Button>
-                    </div>
-
-                    {/* Suggested Upgrade Card */}
-                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Zap className="w-4 h-4 text-purple-600" />
-                        <span className="text-xs font-semibold text-purple-600 uppercase tracking-wider">Suggested Upgrade</span>
-                      </div>
-                      {nextRecommendedUpgrade ? (
-                        <>
-                          <p className="text-sm font-semibold text-slate-900 mb-1">{nextRecommendedUpgrade.title}</p>
-                          <p className="text-xs text-slate-500 mb-3">+{nextRecommendedUpgrade.xp_reward} XP</p>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full"
-                            onClick={() => handleUpgradeAction(nextRecommendedUpgrade)}
-                          >
-                            Start Upgrade →
-                          </Button>
-                        </>
-                      ) : (
-                        <p className="text-sm text-slate-500">All upgrades completed!</p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Explore Option */}
-                  <div className="mt-4 pt-4 border-t border-amber-200">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <Compass className="w-4 h-4" />
-                        <span className="text-sm">See all transformational journeys in the Library</span>
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          if (profileId) {
-                            logActionEvent({
-                              actionId: "library:browse",
-                              profileId,
-                              source: "src/pages/GameHome.tsx",
-                              loop: "marketplace",
-                              selectedAt: new Date().toISOString(),
-                              metadata: { intent: "browse_library" },
-                            });
-                          }
-                          navigate('/library?from=game');
-                        }}
-                      >
-                        Browse Library →
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* ===== SECTION 2: CHARACTER SNAPSHOT ===== */}
-                <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-slate-600" />
-                    WHO I AM AND WHERE I AM
-                  </h2>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Character Identity */}
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">My Character</p>
-                      {zogSnapshot ? (
-                        <>
-                          <p className="text-xl font-bold text-slate-900 mb-2">{zogSnapshot.archetype_title}</p>
-                          <p className="text-sm text-slate-600 mb-3 line-clamp-3">{zogSnapshot.core_pattern}</p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {zogSnapshot.top_three_talents.map((talent, idx) => (
-                              <span key={idx} className="inline-flex rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
-                                {talent.replace(/^Talent\s+/i, '')}
-                              </span>
-                            ))}
-                          </div>
-                        </>
-                      ) : (
-                        <Button size="sm" onClick={() => navigate('/zone-of-genius/assessment')}>
-                          Discover My Zone of Genius
-                        </Button>
-                      )}
-                    </div>
-
-                    {/* World State */}
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">My World</p>
-                      {currentQolSnapshot ? (
-                        (() => {
-                          const domainEntries = [
-                            { key: 'wealth_stage', id: 'wealth' },
-                            { key: 'health_stage', id: 'health' },
-                            { key: 'happiness_stage', id: 'happiness' },
-                            { key: 'love_relationships_stage', id: 'love' },
-                            { key: 'impact_stage', id: 'impact' },
-                            { key: 'growth_stage', id: 'growth' },
-                            { key: 'social_ties_stage', id: 'socialTies' },
-                            { key: 'home_stage', id: 'home' },
-                          ];
-                          const values = domainEntries.map(({ key }) => currentQolSnapshot[key as keyof QolSnapshot] as number);
-                          const minValue = Math.min(...values);
-                          const maxValue = Math.max(...values);
-
-                          return (
-                            <>
-                              <div className="grid grid-cols-2 gap-2 mb-3">
-                                {domainEntries.map(({ key, id }) => {
-                                  const stageValue = currentQolSnapshot[key as keyof QolSnapshot] as number;
-                                  const info = getDomainStageInfo(id, stageValue);
-                                  const isLowest = stageValue === minValue && minValue !== maxValue;
-                                  const isHighest = stageValue === maxValue && minValue !== maxValue;
-
-                                  return (
-                                    <div
-                                      key={id}
-                                      className={`rounded-lg p-2.5 transition-all ${isLowest ? 'bg-red-50 border border-red-200' :
-                                        isHighest ? 'bg-emerald-50 border border-emerald-200' :
-                                          'bg-slate-100 border border-transparent'
-                                        }`}
-                                    >
-                                      <div className="flex items-center justify-between mb-0.5">
-                                        <p className="text-xs font-semibold text-slate-800">{info.name}</p>
-                                        <p className="text-xs text-slate-500">{stageValue}/10</p>
-                                      </div>
-                                      <p className={`text-[10px] leading-tight ${isLowest ? 'text-red-600' : isHighest ? 'text-emerald-600' : 'text-slate-500'}`}>
-                                        {info.title}
-                                      </p>
-                                      {isLowest && (
-                                        <span className="text-[9px] text-red-500 font-medium">↓ needs attention</span>
-                                      )}
-                                      {isHighest && (
-                                        <span className="text-[9px] text-emerald-600 font-medium">✓ strength</span>
-                                      )}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </>
-                          );
-                        })()
-                      ) : (
-                        <Button size="sm" onClick={() => navigate('/quality-of-life-map/assessment')}>
-                          Map My Life
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* View Full Snapshot Button - at bottom */}
-                  <div className="mt-6 pt-4 border-t border-slate-200">
-                    <Button className="w-full" onClick={() => navigate('/game/snapshot')}>
-                      <FileText className="w-4 h-4 mr-2" />
-                      View Full Snapshot
-                    </Button>
-                  </div>
-                </div>
-
-                {/* ===== SECTION 3: EXPLORE UPGRADES ===== */}
-                <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <Compass className="w-5 h-5 text-slate-600" />
-                    EXPLORE THE UPGRADES
-                  </h2>
-
-                  {/* Infographic Image */}
-                  <div className="mb-6">
-                    <img
-                      src="https://i.imgur.com/t4mDGOf.jpeg"
-                      alt="Five development paths: Waking Up, Growing Up, Cleaning Up, Showing Up, and Body"
-                      className="w-full rounded-xl border border-slate-200"
-                    />
-                  </div>
-
-                  {/* Path Progress - sorted by XP, stacked vertically */}
-                  <div className="space-y-3">
-                    {(() => {
-                      const pathXpMap: Record<DevelopmentPath, keyof GameProfile> = {
-                        body: 'xp_body',
-                        mind: 'xp_mind',
-                        emotions: 'xp_emotions',
-                        spirit: 'xp_spirit',
-                        uniqueness: 'xp_uniqueness'
-                      };
-
-                      // Sort paths by XP (highest first)
-                      const sortedPaths = (Object.entries(PATH_LABELS) as [DevelopmentPath, string][])
-                        .map(([pathSlug, pathName]) => ({
-                          pathSlug,
-                          pathName,
-                          xpValue: (profile?.[pathXpMap[pathSlug]] as number) || 0
-                        }))
-                        .sort((a, b) => b.xpValue - a.xpValue);
-
-                      const maxXp = Math.max(...sortedPaths.map(p => p.xpValue), 100);
-
-                      return sortedPaths.map(({ pathSlug, pathName, xpValue }) => {
-                        // Count upgrades for this path (currently only uniqueness has upgrades)
-                        const upgradeCount = pathSlug === 'uniqueness'
-                          ? Array.from(completedUpgradeCodes).filter(code =>
-                            masteryUpgrades.some(u => u.code === code)
-                          ).length
-                          : 0;
-                        const totalUpgrades = pathSlug === 'uniqueness' ? masteryUpgrades.length : 0;
-
-                        return (
-                          <div
-                            key={pathSlug}
-                            className="rounded-xl border border-slate-200 bg-slate-50 p-4 hover:border-slate-300 transition-colors cursor-pointer"
-                            onClick={() => navigate(`/game/path/${pathSlug}`)}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <p className="font-semibold text-slate-900">{pathName}</p>
-                              <div className="flex items-center gap-3">
-                                {totalUpgrades > 0 && (
-                                  <span className="text-xs text-slate-500">
-                                    {upgradeCount}/{totalUpgrades} upgrades
-                                  </span>
-                                )}
-                                <span className="text-xs font-medium text-slate-700 bg-slate-200 rounded-full px-2 py-0.5">
-                                  {xpValue} XP
-                                </span>
-                              </div>
-                            </div>
-                            <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-slate-700 rounded-full transition-all"
-                                style={{ width: `${Math.min((xpValue / maxXp) * 100, 100)}%` }}
-                              />
-                            </div>
-                          </div>
-                        );
-                      });
-                    })()}
-                  </div>
-                </div>
-
-                {/* ===== SHOWING UP UPGRADES ===== */}
-                <div id="upgrades-section" className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
-                  <h2 className="text-lg font-bold text-slate-900 mb-4">SHOWING UP SKILL TREE</h2>
-
-                  {/* Visual Skill Tree */}
-                  {showingUpTree && (
-                    <div className="relative w-full aspect-[4/3] max-w-xl mx-auto rounded-xl border border-slate-200 overflow-hidden bg-slate-50 mb-6">
-                      <SkillTree
-                        tree={showingUpTree}
-                        progress={skillTreeProgress}
-                        onNodeClick={(node) => {
-                          // Find upgrade matching this node and trigger its action
-                          const nodeToCodeMap: Record<string, string> = {
-                            'su-zone-of-genius': 'zog_assessment_completed',
-                            'su-values-clarity': 'personality_tests_completed',
-                            'su-offer-creation': 'genius_offer_draft',
-                            'su-visibility': 'first_practice_done',
-                          };
-                          const upgradeCode = nodeToCodeMap[node.id];
-                          const upgrade = masteryUpgrades.find(u => u.code === upgradeCode);
-                          if (upgrade) handleUpgradeAction(upgrade);
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  {/* Upgrade List */}
-                  <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Upgrades Progress</h3>
-                  <div className="space-y-3">
-                    {masteryUpgrades.map((upgrade, index) => {
-                      const isCompleted = completedUpgradeCodes.has(upgrade.code);
-                      // Allow clicking personality tests and ZoG assessment even when completed (to update)
-                      const isAlwaysClickable = upgrade.code === 'personality_tests_completed' || upgrade.code === 'zog_assessment_completed';
-                      const stepNumber = index + 1;
-                      return (
-                        <div
-                          key={upgrade.code}
-                          className={`rounded-xl border p-4 ${isCompleted ? 'border-emerald-200 bg-emerald-50' : 'border-slate-200 bg-slate-50'}`}
-                        >
-                          <div className="flex items-start gap-4">
-                            {/* Big Step Number */}
-                            <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold ${isCompleted
-                              ? 'bg-emerald-600 text-white'
-                              : 'bg-slate-200 text-slate-600'
-                              }`}>
-                              {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : stepNumber}
-                            </div>
-
-                            <div className="flex-1 flex items-center justify-between">
-                              <div>
-                                <p className={`font-semibold ${isCompleted ? 'text-emerald-800' : 'text-slate-900'}`}>
-                                  {upgrade.title}
-                                </p>
-                                <p className="text-xs text-slate-500">+{upgrade.xp_reward} XP</p>
-                              </div>
-                              {isCompleted && isAlwaysClickable ? (
-                                <Button size="sm" variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-100" onClick={() => handleUpgradeAction(upgrade)}>
-                                  Update
-                                </Button>
-                              ) : !isCompleted ? (
-                                <Button size="sm" variant="outline" onClick={() => handleUpgradeAction(upgrade)}>
-                                  Start
-                                </Button>
-                              ) : null}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            )
+            <DailyLoopLayout
+              profileName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || null}
+              level={profile?.level}
+              xpTotal={profile?.xp_total}
+              streakDays={profile?.current_streak_days}
+              archetypeTitle={zogSnapshot?.archetype_title}
+              lowestDomains={lowestDomains}
+              celebration={celebration}
+              recommendedAction={recommendedAction}
+              isLoadingAction={isLoadingQuest}
+              actionError={actionError}
+              onPrimaryAction={handlePrimaryAction}
+              onRetryAction={loadGameData}
+              onFreedomMode={handleFreedomMode}
+              freedomModeUrl={freedomModeUrl}
+            />
           )}
 
+          {/* QUEST PICKER MODAL */}
           {/* QUEST PICKER MODAL */}
           {showQuestPicker && (
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
