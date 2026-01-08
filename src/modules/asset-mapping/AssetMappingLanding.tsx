@@ -49,6 +49,21 @@ type MatchedAsset = {
     categoryTitle?: string;
     title: string;
     description?: string;
+    leverageScore?: number;
+    leverageReason?: string;
+};
+
+// Map category strings to our taxonomy
+const CATEGORY_MAP: Record<string, string> = {
+    'expertise': 'Expertise',
+    'experiences': 'Life Experiences',
+    'life experiences': 'Life Experiences',
+    'networks': 'Networks',
+    'resources': 'Material Resources',
+    'material resources': 'Material Resources',
+    'ip': 'Intellectual Property',
+    'intellectual property': 'Intellectual Property',
+    'influence': 'Influence'
 };
 
 const AssetMappingLanding = () => {
@@ -72,52 +87,73 @@ const AssetMappingLanding = () => {
         navigate(`/asset-mapping/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
     };
 
-    // Simple keyword matching for asset extraction
+    // Parse JSON response and extract assets
     const handleMatchAssets = async () => {
         setIsMatching(true);
-
-        // Parse the AI response and try to match to our taxonomy
-        const lines = aiResponse.split('\n').filter(l => l.trim());
         const extracted: MatchedAsset[] = [];
 
-        // Look for type keywords in the response
-        for (const type of ASSET_TYPES) {
-            const typeRegex = new RegExp(type.title, 'gi');
-            if (typeRegex.test(aiResponse)) {
-                // Found this type mentioned - try to extract specific assets
-                const subTypes = ASSET_SUB_TYPES.filter(s => s.typeId === type.id);
+        try {
+            // Try to extract JSON from the response
+            // Look for JSON array pattern: [ ... ]
+            const jsonMatch = aiResponse.match(/\[\s*\{[\s\S]*?\}\s*\]/);
 
-                for (const subType of subTypes) {
-                    if (aiResponse.toLowerCase().includes(subType.title.toLowerCase())) {
-                        const categories = ASSET_CATEGORIES.filter(c => c.subTypeId === subType.id);
+            if (jsonMatch) {
+                // Parse the JSON
+                const assets = JSON.parse(jsonMatch[0]);
 
-                        for (const category of categories) {
-                            if (aiResponse.toLowerCase().includes(category.title.toLowerCase())) {
-                                extracted.push({
-                                    typeTitle: type.title,
-                                    subTypeTitle: subType.title,
-                                    categoryTitle: category.title,
-                                    title: category.title,
-                                });
-                            }
+                for (const asset of assets) {
+                    // Normalize category to our taxonomy
+                    const rawCategory = (asset.category || '').toLowerCase();
+                    const typeTitle = CATEGORY_MAP[rawCategory] || asset.category || 'Unknown';
+
+                    extracted.push({
+                        typeTitle,
+                        subTypeTitle: asset.subcategory || undefined,
+                        title: asset.name || 'Unnamed Asset',
+                        description: asset.description || undefined,
+                        leverageScore: asset.leverage_score || undefined,
+                        leverageReason: asset.leverage_reason || undefined,
+                    });
+                }
+            } else {
+                // Fallback: Try line-by-line parsing for non-JSON format
+                const lines = aiResponse.split('\n');
+                let currentCategory = '';
+
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (!trimmed) continue;
+
+                    // Check if this is a category header
+                    for (const [key, value] of Object.entries(CATEGORY_MAP)) {
+                        if (trimmed.toLowerCase().includes(key)) {
+                            currentCategory = value;
+                            break;
                         }
+                    }
 
-                        // If no category matched, add the subtype
-                        if (!categories.some(c => aiResponse.toLowerCase().includes(c.title.toLowerCase()))) {
-                            extracted.push({
-                                typeTitle: type.title,
-                                subTypeTitle: subType.title,
-                                title: subType.title,
-                            });
-                        }
+                    // Check for numbered items (1., 2., -, •)
+                    const itemMatch = trimmed.match(/^[\d\-•*]+[\.\)]\s*\*?\*?(.+?)\*?\*?(?:\s*[–—-]\s*(.+))?$/);
+                    if (itemMatch && currentCategory) {
+                        extracted.push({
+                            typeTitle: currentCategory,
+                            title: itemMatch[1].replace(/\*+/g, '').trim(),
+                            description: itemMatch[2]?.trim() || undefined,
+                        });
                     }
                 }
             }
+        } catch (e) {
+            console.error('Error parsing AI response:', e);
+            // Fallback to simple keyword extraction
         }
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 500));
         setIsMatching(false);
-        setMatchedAssets(extracted.slice(0, 12)); // Cap at 12 for display
+
+        // Sort by leverage score if available
+        const sorted = extracted.sort((a, b) => (b.leverageScore || 0) - (a.leverageScore || 0));
+        setMatchedAssets(sorted.slice(0, 20)); // Cap at 20 for display
         setStep("matched");
     };
 
@@ -230,20 +266,36 @@ const AssetMappingLanding = () => {
                         </div>
 
                         {matchedAssets.length > 0 && (
-                            <div className="space-y-2">
+                            <div className="space-y-3 max-h-96 overflow-y-auto">
                                 {matchedAssets.map((asset, i) => (
-                                    <div key={i} className="p-3 rounded-lg border border-slate-200 bg-white">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                                                {asset.typeTitle}
-                                            </span>
-                                            {asset.subTypeTitle && (
-                                                <span className="text-xs text-slate-400">
-                                                    → {asset.subTypeTitle}
+                                    <div key={i} className="p-4 rounded-lg border border-slate-200 bg-white">
+                                        <div className="flex items-start justify-between gap-2 mb-2">
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                                                    {asset.typeTitle}
+                                                </span>
+                                                {asset.subTypeTitle && (
+                                                    <span className="text-xs text-slate-400">
+                                                        → {asset.subTypeTitle}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            {asset.leverageScore && (
+                                                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
+                                                        asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
+                                                            'bg-slate-100 text-slate-600'
+                                                    }`}>
+                                                    ⚡ {asset.leverageScore}/10
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="font-medium text-slate-900">{asset.title}</p>
+                                        <p className="font-semibold text-slate-900">{asset.title}</p>
+                                        {asset.description && (
+                                            <p className="text-sm text-slate-600 mt-1">{asset.description}</p>
+                                        )}
+                                        {asset.leverageReason && (
+                                            <p className="text-xs text-slate-500 mt-2 italic">{asset.leverageReason}</p>
+                                        )}
                                     </div>
                                 ))}
                             </div>

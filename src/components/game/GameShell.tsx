@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     Compass,
@@ -9,11 +9,18 @@ import {
     Building2,
     LogOut,
     Menu,
-    X
+    X,
+    ChevronDown,
+    ChevronRight
 } from "lucide-react";
-import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+
+interface ModuleItem {
+    id: string;
+    label: string;
+    path: string;
+}
 
 interface NavItem {
     id: string;
@@ -21,6 +28,7 @@ interface NavItem {
     icon: ReactNode;
     path: string;
     description: string;
+    modules?: ModuleItem[];
 }
 
 const SPACES: NavItem[] = [
@@ -28,7 +36,7 @@ const SPACES: NavItem[] = [
         id: "next-move",
         label: "My Next Move",
         icon: <Compass className="w-5 h-5" />,
-        path: "/game",
+        path: "/game/next-move",
         description: "Your daily focus"
     },
     {
@@ -36,21 +44,35 @@ const SPACES: NavItem[] = [
         label: "Profile",
         icon: <User className="w-5 h-5" />,
         path: "/game/profile",
-        description: "Know yourself"
+        description: "Know yourself",
+        modules: [
+            { id: "zog", label: "Zone of Genius", path: "/zone-of-genius" },
+            { id: "qol", label: "Quality of Life", path: "/quality-of-life-map/assessment" },
+            { id: "assets", label: "Asset Mapping", path: "/asset-mapping" },
+            { id: "mission", label: "Mission Discovery", path: "/mission-discovery" }
+        ]
     },
     {
         id: "transformation",
         label: "Transformation",
         icon: <Sparkles className="w-5 h-5" />,
         path: "/game/transformation",
-        description: "Master yourself"
+        description: "Master yourself",
+        modules: [
+            { id: "library", label: "Practice Library", path: "/library" },
+            { id: "paths", label: "Growth Paths", path: "/skills" },
+            { id: "tests", label: "Personality Tests", path: "/resources/personality-tests" }
+        ]
     },
     {
         id: "marketplace",
         label: "Marketplace",
         icon: <Store className="w-5 h-5" />,
         path: "/game/marketplace",
-        description: "Monetize your genius"
+        description: "Monetize your genius",
+        modules: [
+            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" }
+        ]
     },
     {
         id: "matchmaking",
@@ -77,6 +99,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [expandedSpaces, setExpandedSpaces] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         supabase.auth.getUser().then(({ data: { user } }) => {
@@ -96,10 +119,20 @@ export const GameShell = ({ children }: GameShellProps) => {
     };
 
     const isActive = (path: string) => {
-        if (path === "/game") {
-            return location.pathname === "/game";
+        if (path === "/game/next-move" || path === "/game") {
+            return location.pathname === "/game" || location.pathname === "/game/next-move";
         }
         return location.pathname.startsWith(path);
+    };
+
+    const toggleExpanded = (spaceId: string) => {
+        const newExpanded = new Set(expandedSpaces);
+        if (newExpanded.has(spaceId)) {
+            newExpanded.delete(spaceId);
+        } else {
+            newExpanded.add(spaceId);
+        }
+        setExpandedSpaces(newExpanded);
     };
 
     return (
@@ -138,27 +171,63 @@ export const GameShell = ({ children }: GameShellProps) => {
                 <nav className="flex-1 overflow-y-auto py-4 px-2">
                     <div className="space-y-1">
                         {SPACES.map((item) => (
-                            <Link
-                                key={item.id}
-                                to={item.path}
-                                onClick={() => setSidebarOpen(false)}
-                                className={`
-                  flex items-center gap-3 px-3 py-2.5 rounded-lg
-                  transition-colors duration-150
-                  ${isActive(item.path)
-                                        ? "bg-slate-700 text-white"
-                                        : "text-slate-400 hover:bg-slate-800 hover:text-white"
-                                    }
-                `}
-                            >
-                                {item.icon}
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium truncate">{item.label}</p>
-                                    <p className={`text-xs truncate ${isActive(item.path) ? "text-slate-300" : "text-slate-500"}`}>
-                                        {item.description}
-                                    </p>
+                            <div key={item.id}>
+                                <div className="flex items-center">
+                                    <Link
+                                        to={item.path}
+                                        onClick={() => setSidebarOpen(false)}
+                                        className={`
+                                            flex-1 flex items-center gap-3 px-3 py-2.5 rounded-lg
+                                            transition-colors duration-150
+                                            ${isActive(item.path)
+                                                ? "bg-slate-700 text-white"
+                                                : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                                            }
+                                        `}
+                                    >
+                                        {item.icon}
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-sm font-medium truncate">{item.label}</p>
+                                            <p className={`text-xs truncate ${isActive(item.path) ? "text-slate-300" : "text-slate-500"}`}>
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                    {item.modules && item.modules.length > 0 && (
+                                        <button
+                                            onClick={() => toggleExpanded(item.id)}
+                                            className="p-2 text-slate-400 hover:text-white"
+                                        >
+                                            {expandedSpaces.has(item.id)
+                                                ? <ChevronDown className="w-4 h-4" />
+                                                : <ChevronRight className="w-4 h-4" />
+                                            }
+                                        </button>
+                                    )}
                                 </div>
-                            </Link>
+
+                                {/* Modules dropdown */}
+                                {item.modules && expandedSpaces.has(item.id) && (
+                                    <div className="ml-8 mt-1 space-y-0.5">
+                                        {item.modules.map((module) => (
+                                            <Link
+                                                key={module.id}
+                                                to={module.path}
+                                                onClick={() => setSidebarOpen(false)}
+                                                className={`
+                                                    block px-3 py-1.5 rounded-md text-sm
+                                                    ${location.pathname.startsWith(module.path)
+                                                        ? "text-white bg-slate-700"
+                                                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                                                    }
+                                                `}
+                                            >
+                                                {module.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </nav>
