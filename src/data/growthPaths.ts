@@ -12,6 +12,7 @@ import { Sparkles, Crown, Droplet, Sun, Dumbbell } from "lucide-react";
  */
 
 export type UpgradeType = 'assessment' | 'micro' | 'activation' | 'paid';
+export type ContentStatus = 'available' | 'coming-soon' | 'module';
 
 export interface Upgrade {
     id: string;
@@ -23,6 +24,10 @@ export interface Upgrade {
     unlocksAfter?: string[];
     xpReward: number;
     link?: string;
+    /** Whether content exists: 'available' = in library, 'module' = separate module, 'coming-soon' = planned */
+    contentStatus?: ContentStatus;
+    /** Library item IDs that can fulfill this upgrade */
+    libraryItems?: string[];
 }
 
 export interface GrowthPath {
@@ -71,6 +76,7 @@ export const growthPaths: GrowthPath[] = [
                 duration: "1 min",
                 xpReward: 50,
                 link: "/zone-of-genius/entry",
+                contentStatus: "module",
             },
             {
                 id: "g-2-apply-genius",
@@ -80,6 +86,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "See how your genius shows up in life",
                 unlocksAfter: ["g-1-zog-test"],
                 xpReward: 75,
+                contentStatus: "coming-soon",
             },
             {
                 id: "g-3-personality-tests",
@@ -90,6 +97,7 @@ export const growthPaths: GrowthPath[] = [
                 unlocksAfter: ["g-1-zog-test"],
                 xpReward: 50,
                 link: "/resources/personality-tests",
+                contentStatus: "module",
             },
             {
                 id: "g-4-micro-distinctions",
@@ -100,6 +108,7 @@ export const growthPaths: GrowthPath[] = [
                 duration: "90s",
                 unlocksAfter: ["g-1-zog-test"],
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "g-5-genius-activation",
@@ -109,6 +118,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Immersive experience of your genius",
                 unlocksAfter: ["g-4-micro-distinctions"],
                 xpReward: 150,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["soul-activation-christopher"],
             },
             {
                 id: "g-6-mi-assessment",
@@ -119,6 +131,7 @@ export const growthPaths: GrowthPath[] = [
                 duration: "3 min",
                 xpReward: 75,
                 link: "/intelligences",
+                contentStatus: "module",
             },
             {
                 id: "g-7-unique-offering",
@@ -129,6 +142,7 @@ export const growthPaths: GrowthPath[] = [
                 unlocksAfter: ["g-1-zog-test", "g-4-micro-distinctions", "g-5-genius-activation"],
                 xpReward: 300,
                 link: "/genius-offer",
+                contentStatus: "module",
             },
             {
                 id: "g-8-genius-business",
@@ -138,6 +152,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Build your genius-based business",
                 unlocksAfter: ["g-7-unique-offering"],
                 xpReward: 500,
+                contentStatus: "coming-soon",
             },
         ],
     },
@@ -160,6 +175,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Awareness + Sensitivity as the two graspable aspects of spirit; seeing them as meta-skills through everyday experience",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "s-2-baseline",
@@ -169,6 +185,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Where am I on the holonic map of awareness? Sensitivity? What's next?",
                 duration: "3 min",
                 xpReward: 50,
+                contentStatus: "coming-soon",
             },
             {
                 id: "s-3-shifting-consciousness",
@@ -178,6 +195,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Speed of shifting, degree of peak, sustainable development considerations",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "s-4-conscious-breath",
@@ -187,24 +205,33 @@ export const growthPaths: GrowthPath[] = [
                 description: "Learn to take a conscious breath — the foundational skill",
                 duration: "2 min",
                 xpReward: 50,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["use-breath-relax-energize", "heart-coherence-breathing"],
             },
             {
                 id: "s-5-heart-centering",
                 order: 5,
                 name: "Heart Centering",
                 type: "activation",
-                description: "Breath into the center of the heart — a technique to increase sensitivity (secular Vipassana/Sufi/Rosicrucian)",
+                description: "Breath into the center of the heart — a technique to increase sensitivity",
                 duration: "5 min",
                 xpReward: 100,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["heart-coherence-breathing", "heart-coherence-stress-relief", "heart-meditation-drunvalo"],
             },
             {
                 id: "s-6-state-shifting",
                 order: 6,
                 name: "State Shifting Experience",
                 type: "activation",
-                description: "Experience shifting awareness and sensitivity; develop sensitivity to the shifting itself (meta-skill on meta-skill)",
+                description: "Experience shifting awareness and sensitivity; develop sensitivity to the shifting itself",
                 duration: "10 min",
                 xpReward: 150,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["unity-breath", "feel-high-naturally"],
             },
             {
                 id: "s-7-micro-states",
@@ -214,6 +241,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Altered/expanded states, peak experiences, nervous system connection, brain wave activity",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "s-8-depth-perception",
@@ -223,6 +251,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Perception of time and space → better decisions; this as a meta-skill",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "s-9-breathwork-meditation",
@@ -232,6 +261,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Full experience: breathwork followed by meditation",
                 duration: "20+ min",
                 xpReward: 200,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["soul-activation-christopher", "clarity-focus-20min"],
             },
             {
                 id: "s-10-five-states",
@@ -241,6 +273,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Physical, Subtle, Causal, Non-dual, Isness/Suchness, Ground of Being, Non-dual + Void",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
         ],
     },
@@ -263,6 +296,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "How developmental stages reflect in products, businesses, societies, politics, thoughts",
                 duration: "90s",
                 xpReward: 30,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["bashar-reality-wisdom-1", "bashar-reality-wisdom-2"],
             },
             {
                 id: "m-2-mind-development",
@@ -272,6 +308,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Understanding growth as mind development",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-3-thinking-about-thinking",
@@ -281,6 +318,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "One of the best ways to learn about mind is to learn about thinking",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-4-essence-of-mind",
@@ -290,6 +328,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Mind as a filtering lens of perception → worldview; development = polishing/studying the lens",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-5-cognitive-distortions",
@@ -299,6 +338,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Key distortions per Spiral Dynamics stage; extreme manifestations in human mind",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-6-distortion-discovery",
@@ -308,6 +348,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Immersive experience connecting you to YOUR key distortions",
                 duration: "10 min",
                 xpReward: 150,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-7-thinking-patterns",
@@ -317,6 +358,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Different thinking patterns per developmental stage; clear examples; developmental sequence as mind matures",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-8-blind-spots",
@@ -326,6 +368,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "How each stage gets stuck; the conundrum it tries to resolve; how it finally resolves",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-9-perspectives",
@@ -335,6 +378,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Ego-centric → Ethnocentric → World-centric → Cosmo-centric; 1st/2nd/3rd/4th/5th person",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-10-quadrants",
@@ -344,6 +388,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "I/We/It/Its — the four fundamental perspectives",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-11-lines",
@@ -353,6 +398,8 @@ export const growthPaths: GrowthPath[] = [
                 description: "Cognitive, emotional, moral, interpersonal, etc.",
                 duration: "90s",
                 xpReward: 30,
+                link: "/intelligences",
+                contentStatus: "module",
             },
             {
                 id: "m-12-types",
@@ -362,6 +409,8 @@ export const growthPaths: GrowthPath[] = [
                 description: "Horizontal variety at each level (masculine/feminine, Enneagram, etc.)",
                 duration: "90s",
                 xpReward: 30,
+                link: "/resources/personality-tests",
+                contentStatus: "module",
             },
             {
                 id: "m-13-holistic",
@@ -371,6 +420,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Thinking in interconnected wholes",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "m-14-holonic",
@@ -380,6 +430,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Thinking in holons — the structure that repeats at every level",
                 duration: "90s",
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
         ],
     },
@@ -401,6 +452,7 @@ export const growthPaths: GrowthPath[] = [
                 type: "assessment",
                 description: "What's my current emotional range?",
                 xpReward: 50,
+                contentStatus: "coming-soon",
             },
             {
                 id: "e-2-vocabulary",
@@ -410,6 +462,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Expand what I can name and feel",
                 unlocksAfter: ["e-1-baseline"],
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "e-3-trigger-map",
@@ -419,6 +472,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Identify my top triggers",
                 unlocksAfter: ["e-2-vocabulary"],
                 xpReward: 75,
+                contentStatus: "coming-soon",
             },
             {
                 id: "e-4-release",
@@ -428,6 +482,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Somatic/breathwork release",
                 unlocksAfter: ["e-3-trigger-map"],
                 xpReward: 150,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["deep-release", "vagus-nerve-reset-anxiety"],
             },
             {
                 id: "e-5-shadow-basics",
@@ -437,6 +494,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Projection, repression, integration",
                 unlocksAfter: ["e-3-trigger-map"],
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "e-6-shadow-encounter",
@@ -446,6 +504,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Meet a shadow aspect (guided)",
                 unlocksAfter: ["e-5-shadow-basics"],
                 xpReward: 200,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["black-panther-journey"],
             },
             {
                 id: "e-7-integration",
@@ -455,6 +516,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Bring shadow into wholeness",
                 unlocksAfter: ["e-6-shadow-encounter"],
                 xpReward: 300,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["heart-meditation-drunvalo"],
             },
             {
                 id: "e-8-sovereignty",
@@ -464,6 +528,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Feel without being consumed",
                 unlocksAfter: ["e-7-integration"],
                 xpReward: 50,
+                contentStatus: "coming-soon",
             },
         ],
     },
@@ -485,6 +550,7 @@ export const growthPaths: GrowthPath[] = [
                 type: "assessment",
                 description: "Current energy, mobility, capacity",
                 xpReward: 50,
+                contentStatus: "coming-soon",
             },
             {
                 id: "b-2-somatic-awareness",
@@ -494,6 +560,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Attune to body signals",
                 unlocksAfter: ["b-1-baseline"],
                 xpReward: 100,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["regulate-nervous-system-8min", "feel-better"],
             },
             {
                 id: "b-3-energy-audit",
@@ -503,6 +572,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Where do I leak/gain energy?",
                 unlocksAfter: ["b-2-somatic-awareness"],
                 xpReward: 75,
+                contentStatus: "coming-soon",
             },
             {
                 id: "b-4-stress-response",
@@ -512,6 +582,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Fight/flight/freeze patterns",
                 unlocksAfter: ["b-2-somatic-awareness"],
                 xpReward: 75,
+                contentStatus: "coming-soon",
             },
             {
                 id: "b-5-nervous-system",
@@ -521,6 +592,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Shift nervous system state",
                 unlocksAfter: ["b-4-stress-response"],
                 xpReward: 150,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["vagus-nerve-reset-anxiety", "regulate-nervous-system-8min"],
             },
             {
                 id: "b-6-recovery",
@@ -530,6 +604,7 @@ export const growthPaths: GrowthPath[] = [
                 description: "Sleep, restoration, recovery",
                 unlocksAfter: ["b-3-energy-audit"],
                 xpReward: 30,
+                contentStatus: "coming-soon",
             },
             {
                 id: "b-7-reset",
@@ -539,6 +614,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Complete activation/reset",
                 unlocksAfter: ["b-5-nervous-system"],
                 xpReward: 200,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["chakra-activation", "boost-life-force-energy"],
             },
             {
                 id: "b-8-integration",
@@ -548,6 +626,9 @@ export const growthPaths: GrowthPath[] = [
                 description: "Embody mental/emotional shifts",
                 unlocksAfter: ["b-7-reset"],
                 xpReward: 300,
+                link: "/library?from=game",
+                contentStatus: "available",
+                libraryItems: ["rewire-brain-15min", "clarity-focus-20min"],
             },
         ],
     },
@@ -572,4 +653,21 @@ export const getPathIcon = (iconType: GrowthPath['iconType']) => {
         case 'dumbbell': return Dumbbell;
         default: return Sparkles;
     }
+};
+
+// Count upgrades by content status
+export const getContentStats = () => {
+    let available = 0;
+    let module = 0;
+    let comingSoon = 0;
+
+    for (const path of growthPaths) {
+        for (const upgrade of path.upgrades) {
+            if (upgrade.contentStatus === 'available') available++;
+            else if (upgrade.contentStatus === 'module') module++;
+            else comingSoon++;
+        }
+    }
+
+    return { available, module, comingSoon, total: available + module + comingSoon };
 };

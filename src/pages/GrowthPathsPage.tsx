@@ -157,6 +157,20 @@ const UpgradeCard = ({
     const isLocked = !isFirst && !isCompleted; // TODO: Check prerequisites
     const typeIcon = TYPE_ICONS[upgrade.type];
 
+    // Content status badge
+    const getStatusBadge = () => {
+        if (!upgrade.contentStatus || upgrade.contentStatus === 'coming-soon') {
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-400">Coming Soon</span>;
+        }
+        if (upgrade.contentStatus === 'available') {
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">Ready</span>;
+        }
+        if (upgrade.contentStatus === 'module') {
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-600">Module</span>;
+        }
+        return null;
+    };
+
     const content = (
         <div
             className={`
@@ -194,11 +208,12 @@ const UpgradeCard = ({
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-lg">{typeIcon}</span>
                         <h3 className={`font-medium ${isLocked ? 'text-slate-400' : 'text-slate-900'}`}>
                             {upgrade.name}
                         </h3>
+                        {!isLocked && getStatusBadge()}
                     </div>
                     <p className={`text-sm ${isLocked ? 'text-slate-400' : 'text-slate-600'}`}>
                         {upgrade.description}
@@ -213,16 +228,16 @@ const UpgradeCard = ({
                     </div>
                 </div>
 
-                {/* Arrow */}
-                {!isLocked && !isCompleted && (
+                {/* Arrow for actionable items */}
+                {!isLocked && !isCompleted && upgrade.contentStatus !== 'coming-soon' && (
                     <ChevronRight className="w-5 h-5 text-slate-400 shrink-0" />
                 )}
             </div>
         </div>
     );
 
-    // Wrap in Link if there's a link and not locked
-    if (upgrade.link && !isLocked) {
+    // Wrap in Link if there's a link and not locked and content is available
+    if (upgrade.link && !isLocked && upgrade.contentStatus !== 'coming-soon') {
         return (
             <Link to={upgrade.link} className="block">
                 {content}
