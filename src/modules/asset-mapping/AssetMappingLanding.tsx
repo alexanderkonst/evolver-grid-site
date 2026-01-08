@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
@@ -33,6 +34,8 @@ const CATEGORY_MAP: Record<string, string> = {
     'intellectual property': 'Intellectual Property',
     'influence': 'Influence'
 };
+
+const normalizeText = (value?: string) => value?.trim().toLowerCase() || "";
 
 // AI matching function
 const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> => {
@@ -67,7 +70,9 @@ const AssetMappingLanding = () => {
     const [aiResponse, setAiResponse] = useState("");
     const [copied, setCopied] = useState(false);
     const [isMatching, setIsMatching] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const [matchedAssets, setMatchedAssets] = useState<MatchedAsset[]>([]);
+    const { toast } = useToast();
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ASSET_MAPPING_PROMPT);
@@ -77,6 +82,83 @@ const AssetMappingLanding = () => {
 
     const handleGoToWizard = () => {
         navigate(`/asset-mapping/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
+    };
+
+    const handleSaveAssets = async () => {
+        if (matchedAssets.length === 0) return;
+        setIsSaving(true);
+
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                toast({ title: "Please sign in", variant: "destructive" });
+                return;
+            }
+
+            const key = `user_assets_${user.id}`;
+            const existing = JSON.parse(localStorage.getItem(key) || "[]");
+            const existingTitles = new Set(
+                existing.map((asset: { title?: string }) => normalizeText(asset.title))
+            );
+
+            let savedCount = 0;
+            let skippedCount = 0;
+
+            for (const asset of matchedAssets) {
+                const type = ASSET_TYPES.find(
+                    (item) => normalizeText(item.title) === normalizeText(asset.typeTitle)
+                );
+                if (!type) {
+                    skippedCount += 1;
+                    continue;
+                }
+
+                const subType = asset.subTypeTitle
+                    ? ASSET_SUB_TYPES.find(
+                        (item) => normalizeText(item.title) === normalizeText(asset.subTypeTitle)
+                    )
+                    : ASSET_SUB_TYPES.find((item) => item.typeId === type.id);
+
+                const category = asset.categoryTitle
+                    ? ASSET_CATEGORIES.find(
+                        (item) => normalizeText(item.title) === normalizeText(asset.categoryTitle)
+                    )
+                    : subType
+                        ? ASSET_CATEGORIES.find((item) => item.subTypeId === subType.id)
+                        : undefined;
+
+                const title = asset.title.trim();
+                const normalizedTitle = normalizeText(title);
+                if (!normalizedTitle || existingTitles.has(normalizedTitle)) {
+                    skippedCount += 1;
+                    continue;
+                }
+
+                existing.push({
+                    typeId: type.id,
+                    subTypeId: subType?.id,
+                    categoryId: category?.id,
+                    title,
+                    description: asset.description?.trim() || undefined,
+                    savedAt: new Date().toISOString(),
+                    source: "ai",
+                });
+                existingTitles.add(normalizedTitle);
+                savedCount += 1;
+            }
+
+            localStorage.setItem(key, JSON.stringify(existing));
+
+            toast({
+                title: "Assets saved",
+                description: `Saved ${savedCount} assets${skippedCount ? `, skipped ${skippedCount}` : ""}.`,
+            });
+        } catch (err) {
+            console.error(err);
+            toast({ title: "Something went wrong", variant: "destructive" });
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     // Parse response and extract assets - tries AI matching first, then falls back to parsing
@@ -326,6 +408,11 @@ const AssetMappingLanding = () => {
 
                         <div className="flex flex-wrap gap-3">
                             <Button variant="outline" onClick={() => setStep("has-ai")}>Back</Button>
+                            {matchedAssets.length > 0 && (
+                                <Button variant="secondary" onClick={handleSaveAssets} disabled={isSaving}>
+                                    {isSaving ? "Saving..." : "Save to Profile"}
+                                </Button>
+                            )}
                             <Button onClick={handleGoToWizard}>
                                 {matchedAssets.length > 0 ? "Add More in Wizard" : "Open Wizard"}
                                 <ArrowRight className="w-4 h-4 ml-2" />
