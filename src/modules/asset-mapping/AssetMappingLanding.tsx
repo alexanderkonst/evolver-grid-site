@@ -15,7 +15,6 @@ const AI_PROMPT = `Based on everything you know about me from our conversations,
 4. **Material Resources** — Physical, digital, or financial resources I have access to
 5. **Intellectual Property** — Frameworks, content, methodologies, or creative works I've developed
 6. **Influence** — Platforms, recognition, or credibility I've built
-7. **Passions & Interests** — Topics that energize me beyond professional obligation
 
 For each asset, provide:
 - Category (from the list above)

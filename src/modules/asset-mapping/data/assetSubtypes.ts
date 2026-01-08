@@ -45,11 +45,4 @@ export const ASSET_SUB_TYPES: AssetSubType[] = [
     { id: 'media-reach', typeId: 'influence', title: 'Media Reach' },
     { id: 'industry-recognition', typeId: 'influence', title: 'Industry Recognition' },
     { id: 'community-impact', typeId: 'influence', title: 'Community Impact' },
-
-    // Passions & Interests (NEW subcategories)
-    { id: 'creative-pursuits', typeId: 'passions', title: 'Creative Pursuits' },
-    { id: 'physical-activities', typeId: 'passions', title: 'Physical Activities' },
-    { id: 'intellectual-interests', typeId: 'passions', title: 'Intellectual Interests' },
-    { id: 'social-causes', typeId: 'passions', title: 'Social Causes' },
-    { id: 'spiritual-practices', typeId: 'passions', title: 'Spiritual Practices' },
 ];

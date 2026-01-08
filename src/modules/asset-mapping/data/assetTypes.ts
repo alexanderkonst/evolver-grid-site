@@ -1,5 +1,5 @@
-// Asset Types - Top level of the holonic taxonomy
-export type AssetTypeId = 'expertise' | 'experiences' | 'networks' | 'resources' | 'ip' | 'influence' | 'passions';
+// Asset Types - Top level of the holonic taxonomy (6 types)
+export type AssetTypeId = 'expertise' | 'experiences' | 'networks' | 'resources' | 'ip' | 'influence';
 
 export interface AssetType {
     id: AssetTypeId;
@@ -44,11 +44,5 @@ export const ASSET_TYPES: AssetType[] = [
         title: 'Influence',
         description: 'Platforms, recognition, or credibility you\'ve built',
         icon: '📢'
-    },
-    {
-        id: 'passions',
-        title: 'Passions & Interests',
-        description: 'Topics that energize you beyond professional obligation',
-        icon: '❤️'
     }
 ];
