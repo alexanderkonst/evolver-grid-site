@@ -186,34 +186,5 @@ export const ASSET_CATEGORIES: AssetCategory[] = [
     { id: 'policy-influence', subTypeId: 'community-impact', title: 'Policy Influence' },
     { id: 'social-movements', subTypeId: 'community-impact', title: 'Social Movements' },
     { id: 'philanthropy-impact', subTypeId: 'community-impact', title: 'Philanthropy' },
-
-    // Passions & Interests > Creative Pursuits (NEW)
-    { id: 'hobbies-crafts', subTypeId: 'creative-pursuits', title: 'Hobbies & Crafts' },
-    { id: 'artistic-interests', subTypeId: 'creative-pursuits', title: 'Artistic Interests' },
-    { id: 'diy-making', subTypeId: 'creative-pursuits', title: 'DIY & Making' },
-    { id: 'design-aesthetics', subTypeId: 'creative-pursuits', title: 'Design & Aesthetics' },
-
-    // Passions & Interests > Physical Activities (NEW)
-    { id: 'sports-fitness', subTypeId: 'physical-activities', title: 'Sports & Fitness' },
-    { id: 'outdoor-recreation', subTypeId: 'physical-activities', title: 'Outdoor Recreation' },
-    { id: 'movement-practices', subTypeId: 'physical-activities', title: 'Movement Practices' },
-    { id: 'competitive-sports', subTypeId: 'physical-activities', title: 'Competitive Sports' },
-
-    // Passions & Interests > Intellectual Interests (NEW)
-    { id: 'reading-learning', subTypeId: 'intellectual-interests', title: 'Reading & Learning' },
-    { id: 'research-inquiry', subTypeId: 'intellectual-interests', title: 'Research & Inquiry' },
-    { id: 'puzzles-games', subTypeId: 'intellectual-interests', title: 'Puzzles & Games' },
-    { id: 'big-ideas', subTypeId: 'intellectual-interests', title: 'Big Ideas & Theories' },
-
-    // Passions & Interests > Social Causes (NEW)
-    { id: 'activism-advocacy', subTypeId: 'social-causes', title: 'Activism & Advocacy' },
-    { id: 'environmental-causes', subTypeId: 'social-causes', title: 'Environmental Causes' },
-    { id: 'social-justice', subTypeId: 'social-causes', title: 'Social Justice' },
-    { id: 'community-service', subTypeId: 'social-causes', title: 'Community Service' },
-
-    // Passions & Interests > Spiritual Practices (NEW)
-    { id: 'meditation-mindfulness', subTypeId: 'spiritual-practices', title: 'Meditation & Mindfulness' },
-    { id: 'religious-practice', subTypeId: 'spiritual-practices', title: 'Religious Practice' },
-    { id: 'contemplative-arts', subTypeId: 'spiritual-practices', title: 'Contemplative Arts' },
-    { id: 'healing-modalities', subTypeId: 'spiritual-practices', title: 'Healing Modalities' },
 ];
+
