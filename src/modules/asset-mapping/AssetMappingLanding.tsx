@@ -183,13 +183,20 @@ const AssetMappingLanding = () => {
             if (jsonMatch) {
                 const assets = JSON.parse(jsonMatch[0]);
                 for (const asset of assets) {
-                    const rawType = (asset.type || asset.category || '').toLowerCase();
-                    const typeTitle = CATEGORY_MAP[rawType] || asset.type || asset.category || 'Unknown';
+                    // Map the 3-level taxonomy: type → subtype → category
+                    // type: "Expertise", "Life Experiences", "Networks", etc.
+                    // subtype: "Business & Economics", "Cultural Immersion", etc.
+                    // category: "Entrepreneurship", "Language Acquisition", etc.
+                    const rawType = (asset.type || '').trim();
+                    const typeTitle = CATEGORY_MAP[rawType.toLowerCase()] || rawType || 'Unknown';
+                    const subTypeTitle = (asset.subtype || asset.subcategory || '').trim() || undefined;
+                    const categoryTitle = (asset.category || '').trim() || undefined;
                     const name = asset.name || asset.asset || asset.title || 'Unnamed Asset';
+
                     extracted.push({
                         typeTitle,
-                        subTypeTitle: asset.subtype || asset.subcategory || undefined,
-                        categoryTitle: asset.category || undefined,
+                        subTypeTitle,
+                        categoryTitle,
                         title: name,
                         description: asset.description || asset.details || asset.summary || undefined,
                         leverageScore: asset.leverage_score || asset.leverageScore || undefined,
@@ -376,13 +383,18 @@ const AssetMappingLanding = () => {
                                 {matchedAssets.map((asset, i) => (
                                     <div key={i} className="p-4 rounded-lg border border-slate-200 bg-white">
                                         <div className="flex items-start justify-between gap-2 mb-2">
-                                            <div className="flex flex-wrap items-center gap-2">
+                                            <div className="flex flex-wrap items-center gap-1">
                                                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
                                                     {asset.typeTitle}
                                                 </span>
                                                 {asset.subTypeTitle && (
                                                     <span className="text-xs text-slate-400">
                                                         → {asset.subTypeTitle}
+                                                    </span>
+                                                )}
+                                                {asset.categoryTitle && (
+                                                    <span className="text-xs text-slate-400">
+                                                        → {asset.categoryTitle}
                                                     </span>
                                                 )}
                                             </div>
