@@ -158,9 +158,9 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY not configured");
     }
 
-    // Build asset list for AI
-    const assetList = ASSET_CATEGORIES.map((a, i) =>
-      `${i + 1}. [${a.id}] ${a.type} > ${a.subType} > ${a.title}`
+    // Build asset category list for AI
+    const categoryList = ASSET_CATEGORIES.map((a) =>
+      `- ${a.type} > ${a.subType} > ${a.title}`
     ).join("\n");
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -174,11 +174,32 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are an asset matching assistant. Given a user's description of their assets, skills, or resources, rank the provided asset categories by relevance. Return ONLY a JSON array of asset IDs in order of relevance, with a score from 0-1. Format: [{"asset_id": "id", "score": 0.95}, ...]`
+            content: `You are an asset extraction assistant. Given a user's description of their assets, skills, or resources, extract each distinct asset and categorize it.
+
+For EACH asset mentioned, return a structured object with:
+- "category": The best matching category from the provided list (use the format "Type > SubType > Title")
+- "name": A concise asset name (3-6 words). If input has "Asset: X", use X. Otherwise derive from first clause.
+- "description": 1-2 sentences describing what this asset is or does.
+- "why_value": 1 sentence explaining why this asset is valuable or how it can be leveraged.
+
+Rules:
+- Never return empty name or description fields.
+- Each asset must have all 4 fields.
+- Return ONLY a JSON array, no markdown.
+
+Example output:
+[
+  {
+    "category": "Material Resources > Digital Assets > Digital Content Libraries",
+    "name": "Content + distribution channels",
+    "description": "Multi-channel distribution strategy for short-form and long-form content across YouTube, Instagram, X, Telegram, WhatsApp, FB.",
+    "why_value": "Built-in go-to-market rails for funnels, launches, and community onboarding."
+  }
+]`
           },
           {
             role: "user",
-            content: `User describes their assets: "${text}"\n\nAvailable asset categories:\n${assetList}\n\nReturn the top ${limit} most relevant asset categories as JSON array with asset_id and score.`
+            content: `Extract and categorize the assets from this text:\n\n"${text}"\n\nAvailable categories:\n${categoryList}\n\nReturn up to ${limit} extracted assets as a JSON array.`
           }
         ],
         temperature: 0.3,
@@ -208,7 +229,7 @@ serve(async (req) => {
     const content = aiResult.choices?.[0]?.message?.content || "[]";
 
     // Parse the AI response - extract JSON from potential markdown
-    let matches: Array<{ asset_id: string; score: number }> = [];
+    let matches: Array<{ category: string; name: string; description: string; why_value: string }> = [];
     try {
       const jsonMatch = content.match(/\[[\s\S]*\]/);
       if (jsonMatch) {
@@ -219,20 +240,18 @@ serve(async (req) => {
       matches = [];
     }
 
-    // Enrich matches with category metadata
-    const enrichedMatches = matches.map(m => {
-      const cat = ASSET_CATEGORIES.find(c => c.id === m.asset_id);
-      return {
-        asset_id: m.asset_id,
-        score: m.score,
-        type: cat?.type,
-        subType: cat?.subType,
-        title: cat?.title,
-      };
-    }).filter(m => m.type); // Only return valid matches
+    // Validate and filter matches - ensure all required fields are present
+    const validatedMatches = matches
+      .filter(m => m.category && m.name && m.description && m.why_value)
+      .map(m => ({
+        category: m.category,
+        name: m.name,
+        description: m.description,
+        why_value: m.why_value,
+      }));
 
     return new Response(
-      JSON.stringify({ matches: enrichedMatches }),
+      JSON.stringify({ matches: validatedMatches }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
 
