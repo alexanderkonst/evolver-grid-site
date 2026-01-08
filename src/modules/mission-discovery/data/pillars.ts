@@ -4,28 +4,28 @@ import { MissionPillar } from "../types";
 export const PILLARS: MissionPillar[] = [
   {
     id: "meta",
-    title: "Mapping of the Meta-Pillar",
+    title: "Meta",
     description: "The architecture of the movement itself.",
     icon: "layers",
     color: "bg-slate-50 text-slate-900"
   },
   {
     id: "infrastructure",
-    title: "Mapping of the Infrastructure Pillar",
+    title: "Infrastructure",
     description: "The physical and digital systems supporting the new paradigm.",
     icon: "building",
     color: "bg-slate-50 text-slate-900"
   },
   {
     id: "governance",
-    title: "Mapping of the Governance Pillar",
+    title: "Governance",
     description: "Holistic, adaptive, and inclusive governance systems.",
     icon: "scale",
     color: "bg-slate-50 text-slate-900"
   },
   {
     id: "environment",
-    title: "Mapping of the Environment Pillar",
+    title: "Environment",
     description: "Safeguard the planet's life support systems and restore its ecosystems.",
     icon: "leaf",
     color: "bg-emerald-50 text-emerald-900"
@@ -38,3 +38,4 @@ export const PILLARS: MissionPillar[] = [
     color: "bg-purple-500"
   }
 ];
+
