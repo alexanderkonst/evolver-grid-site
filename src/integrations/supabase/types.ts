@@ -97,6 +97,7 @@ export type Database = {
           created_at: string
           current_streak_days: number
           first_name: string | null
+          genius_stage: string | null
           id: string
           last_name: string | null
           last_practice_at: string | null
@@ -129,6 +130,7 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           first_name?: string | null
+          genius_stage?: string | null
           id?: string
           last_name?: string | null
           last_practice_at?: string | null
@@ -161,6 +163,7 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           first_name?: string | null
+          genius_stage?: string | null
           id?: string
           last_name?: string | null
           last_practice_at?: string | null
