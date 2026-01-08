@@ -47,10 +47,18 @@ Note: I'm using your response to match myself to a mission taxonomy in a persona
 
 
 type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
+type MatchContext = {
+    pillar?: string;
+    focusArea?: string;
+    challenge?: string;
+    outcome?: string;
+    pillarId?: string;
+};
 type MatchResult = {
     mission: Mission;
     score: number;
-    context?: string;
+    context: MatchContext;
+    matchedKeywords?: string[];
 };
 
 const STOP_WORDS = new Set([
@@ -74,8 +82,25 @@ const buildMissionContext = (mission: Mission) => {
     const focusArea = challenge ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId) : undefined;
     const pillar = focusArea ? PILLARS.find(p => p.id === focusArea.pillarId) : undefined;
 
-    const labels = [pillar?.title, focusArea?.title, challenge?.title, outcome?.title].filter(Boolean);
-    return labels.length > 0 ? labels.join(" · ") : undefined;
+    return {
+        pillar: pillar?.title,
+        focusArea: focusArea?.title,
+        challenge: challenge?.title,
+        outcome: outcome?.title,
+        pillarId: pillar?.id,
+    };
+};
+
+// Get pillar color for UI
+const getPillarColor = (pillarId?: string) => {
+    const colors: Record<string, string> = {
+        'meta': 'bg-purple-100 text-purple-700',
+        'infra': 'bg-blue-100 text-blue-700',
+        'gov': 'bg-amber-100 text-amber-700',
+        'env': 'bg-emerald-100 text-emerald-700',
+        'culture': 'bg-pink-100 text-pink-700',
+    };
+    return colors[pillarId || ''] || 'bg-slate-100 text-slate-700';
 };
 
 const MissionDiscoveryLanding = () => {
@@ -152,13 +177,33 @@ const MissionDiscoveryLanding = () => {
                         </div>
                         <div className="space-y-3">
                             {matches.map(match => (
-                                <div key={match.mission.id} className="rounded-xl border border-slate-200 bg-white p-4">
+                                <div key={match.mission.id} className="rounded-xl border border-slate-200 bg-white p-4 hover:border-slate-300 transition-colors">
                                     <div className="flex items-start justify-between gap-3">
-                                        <div>
+                                        <div className="flex-1">
+                                            {/* Pillar + Focus Area pills */}
+                                            <div className="flex flex-wrap gap-2 mb-2">
+                                                {match.context.pillar && (
+                                                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${getPillarColor(match.context.pillarId)}`}>
+                                                        {match.context.pillar}
+                                                    </span>
+                                                )}
+                                                {match.context.focusArea && (
+                                                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                                                        {match.context.focusArea}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            {/* Title */}
                                             <h3 className="text-base font-semibold text-slate-900">{match.mission.title}</h3>
-                                            <p className="text-sm text-slate-600 mt-1">{match.mission.statement}</p>
-                                            {match.context && (
-                                                <p className="text-xs text-slate-500 mt-2">{match.context}</p>
+                                            {/* Statement (only if different from title) */}
+                                            {match.mission.statement !== match.mission.title && (
+                                                <p className="text-sm text-slate-600 mt-1">{match.mission.statement}</p>
+                                            )}
+                                            {/* Challenge + Outcome context */}
+                                            {(match.context.challenge || match.context.outcome) && (
+                                                <p className="text-xs text-slate-500 mt-2">
+                                                    {[match.context.challenge, match.context.outcome].filter(Boolean).join(' → ')}
+                                                </p>
                                             )}
                                         </div>
                                         <Button size="sm" variant="outline" onClick={() => handleOpenWizardForMission(match.mission)}>
