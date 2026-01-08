@@ -108,7 +108,7 @@ const ProfileSpace = () => {
                         <div>
                             <div className="flex items-center gap-2 mb-2 text-sm text-slate-500">
                                 <Target className="w-4 h-4 text-blue-600" />
-                                <span>Mission</span>
+                                <span>Primary Mission</span>
                             </div>
                             {missionCommitment ? (
                                 <>

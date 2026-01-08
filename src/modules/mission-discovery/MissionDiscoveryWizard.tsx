@@ -248,6 +248,28 @@ const MissionDiscoveryWizard = () => {
                         </p>
                     </div>
 
+                    {/* Optional Sub-Missions Prompt */}
+                    <div className="bg-blue-50 rounded-xl p-6 mb-6 border border-blue-100">
+                        <h3 className="font-semibold text-slate-900 mb-2">Does your mission have modular parts?</h3>
+                        <p className="text-sm text-slate-600 mb-4">
+                            Some people find their mission has distinct sub-missions that contribute to the whole.
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                            <button
+                                className="px-4 py-2 text-sm rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors"
+                                onClick={() => {/* Sub-missions handled - just continue */ }}
+                            >
+                                No, this captures it
+                            </button>
+                            <button
+                                className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                                onClick={() => navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&addSubMission=true`)}
+                            >
+                                Yes, add related sub-missions →
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="bg-slate-50 rounded-xl p-6 mb-6">
                         <h3 className="font-semibold text-slate-900 mb-4">Connect with others on this mission</h3>
 
