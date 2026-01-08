@@ -229,7 +229,7 @@ const CoreLoopHome = () => {
                             This becomes the foundation for everything else.
                         </p>
                         <Button asChild className="w-full" size="lg">
-                            <Link to="/zone-of-genius">
+                            <Link to="/zone-of-genius/entry">
                                 Start Discovery
                                 <ArrowRight className="w-4 h-4 ml-2" />
                             </Link>
