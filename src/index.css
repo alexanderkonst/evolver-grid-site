@@ -10,7 +10,8 @@ All colors MUST be HSL.
   :root {
     /* Light paper texture theme inspired by Founder Collective */
     --background: 30 15% 96%;
-    --foreground: 210 70% 15%; /* Dark marine blue */
+    --foreground: 210 70% 15%;
+    /* Dark marine blue */
 
     --card: 0 0% 100%;
     --card-foreground: 210 70% 15%;
@@ -18,7 +19,8 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 210 70% 15%; /* Marine dark blue for buttons */
+    --primary: 210 70% 15%;
+    /* Marine dark blue for buttons */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 30 15% 92%;
@@ -60,7 +62,12 @@ All colors MUST be HSL.
     background-size: auto;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
 
@@ -98,10 +105,13 @@ All colors MUST be HSL.
 
   /* Destiny Landing Page Animations */
   @keyframes orb-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: scale(1);
       opacity: 1;
     }
+
     50% {
       transform: scale(1.05);
       opacity: 0.9;
@@ -109,9 +119,12 @@ All colors MUST be HSL.
   }
 
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-10px);
     }
@@ -122,6 +135,7 @@ All colors MUST be HSL.
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -171,7 +185,7 @@ All colors MUST be HSL.
     .pb-safe {
       padding-bottom: env(safe-area-inset-bottom);
     }
-    
+
     .pb-safe-4 {
       padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     }
@@ -187,4 +201,45 @@ All colors MUST be HSL.
     print-color-adjust: exact !important;
     color-adjust: exact !important;
   }
+}
+
+/* Shimmer animation for recommended action cards */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2), 0 0 40px rgba(99, 102, 241, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3), 0 0 60px rgba(99, 102, 241, 0.15);
+  }
+}
+
+.shimmer-card {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.shimmer-card .shimmer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
 }
