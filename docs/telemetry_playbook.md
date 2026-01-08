@@ -84,3 +84,21 @@ where action_id = 'daily-loop:view'
   and selected_at >= now() - interval '7 days'
 group by 1;
 ```
+
+## Mission Participants (Admin)
+
+Admin page: `/admin/mission-participants`
+
+```sql
+-- Latest mission commitments
+select
+  created_at,
+  mission_title,
+  email,
+  share_consent,
+  notify_level,
+  email_frequency
+from mission_participants
+order by created_at desc
+limit 50;
+```
