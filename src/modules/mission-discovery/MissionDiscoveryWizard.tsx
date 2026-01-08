@@ -19,10 +19,10 @@ interface SelectionColumnProps {
 }
 
 const SelectionColumn = ({ title, description, items, selectedId, onSelect, disabled }: SelectionColumnProps) => (
-    <div className={`bg-slate-50 rounded-xl p-4 ${disabled ? "opacity-50" : ""}`}>
-        <h3 className="font-semibold text-slate-900 mb-1">{title}</h3>
-        <p className="text-xs text-slate-500 mb-3">{description}</p>
-        <div className="space-y-2 max-h-64 overflow-y-auto">
+    <div className={`bg-slate-50 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""}`}>
+        <h3 className="font-semibold text-slate-900 mb-1 text-sm sm:text-base">{title}</h3>
+        <p className="text-xs text-slate-500 mb-3 line-clamp-2">{description}</p>
+        <div className="space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
             {items.length === 0 && (
                 <p className="text-sm text-slate-400 italic">Select from previous column first</p>
             )}
@@ -32,13 +32,13 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
                     onClick={() => !disabled && onSelect(item.id)}
                     disabled={disabled}
                     className={`
-            w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors
-            ${selectedId === item.id
+              w-full text-left px-3 py-3 rounded-lg text-sm transition-colors min-h-[44px]
+              ${selectedId === item.id
                             ? "bg-blue-500 text-white"
                             : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
                         }
-            ${disabled ? "cursor-not-allowed" : "cursor-pointer"}
-          `}
+              ${disabled ? "cursor-not-allowed" : "cursor-pointer"}
+            `}
                 >
                     {item.title}
                 </button>
@@ -135,20 +135,20 @@ const MissionDiscoveryWizard = () => {
         <div className="min-h-screen bg-white">
             {/* Header */}
             <div className="border-b border-slate-200 bg-white sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                            <Button variant="ghost" size="sm" onClick={() => navigate(returnPath)}>
-                                <ArrowLeft className="w-4 h-4 mr-2" />
-                                Back
+                <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                            <Button variant="ghost" size="sm" onClick={() => navigate(returnPath)} className="shrink-0">
+                                <ArrowLeft className="w-4 h-4 sm:mr-2" />
+                                <span className="hidden sm:inline">Back</span>
                             </Button>
                             <div>
-                                <h1 className="text-xl font-bold text-slate-900">Mission Discovery Tool</h1>
-                                <p className="text-sm text-slate-500">Find your contribution to the planet</p>
+                                <h1 className="text-lg sm:text-xl font-bold text-slate-900">Mission Discovery</h1>
+                                <p className="text-xs sm:text-sm text-slate-500 hidden sm:block">Find your contribution to the planet</p>
                             </div>
                         </div>
                         {selectedMission && (
-                            <Button onClick={handleSaveMission} disabled={isSaving}>
+                            <Button onClick={handleSaveMission} disabled={isSaving} className="w-full sm:w-auto">
                                 {isSaving ? "Saving..." : "Save Mission"}
                                 <Check className="w-4 h-4 ml-2" />
                             </Button>
