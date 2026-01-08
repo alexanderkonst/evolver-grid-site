@@ -1,4 +1,3 @@
-/// <reference path="../types.ts" />
 import { MissionDesiredOutcome } from "../types";
 
 export const DESIRED_OUTCOMES: MissionDesiredOutcome[] = [
