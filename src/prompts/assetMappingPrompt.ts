@@ -23,6 +23,9 @@ Return **only** a JSON array with this schema and **include "name" and "descript
 ]
 \`\`\`
 
+**DE-DUPLICATION:**
+Merge near-duplicates into a single asset. Prefer the most specific wording and fold similar items into the description.
+
 **LEVERAGE SCORING:**
 Rate each asset 1-10 based on:
 - **Revenue potential** — How quickly could this generate income?
