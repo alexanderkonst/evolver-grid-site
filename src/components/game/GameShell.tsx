@@ -71,7 +71,8 @@ const SPACES: NavItem[] = [
         path: "/game/marketplace",
         description: "Monetize your genius",
         modules: [
-            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" }
+            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" },
+            { id: "my-page", label: "My Public Page", path: "/my-page" }
         ]
     },
     {
