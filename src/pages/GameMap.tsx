@@ -135,7 +135,7 @@ const GameMap = () => {
                     <div className="mb-8">
                         <GameDodecahedron
                             progress={pathProgress}
-                            onPathClick={(pathId) => navigate(`/skills?path=${pathId}`)}
+                            onPathClick={(pathId) => navigate(`/growth-paths?path=${pathId}`)}
                         />
                     </div>
 
@@ -280,10 +280,10 @@ const GameMap = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => navigate("/skills")}
+                                onClick={() => navigate("/growth-paths")}
                                 className="border-slate-700 text-slate-300"
                             >
-                                All Skill Trees
+                                All Growth Paths
                             </Button>
                         </div>
                     </div>

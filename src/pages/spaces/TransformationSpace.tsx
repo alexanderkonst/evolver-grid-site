@@ -66,24 +66,8 @@ const TransformationSpace = () => {
                         <h3 className="font-semibold text-slate-900 mb-1">5 Growth Paths</h3>
                         <p className="text-sm text-slate-600 mb-4">Spirit, Mind, Emotions, Genius, Body</p>
                         <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link to="/skills">
+                            <Link to="/growth-paths">
                                 View Paths <ArrowRight className="w-4 h-4 ml-2" />
-                            </Link>
-                        </Button>
-                    </div>
-
-                    {/* Skill Trees */}
-                    <div className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
-                        <div className="flex items-start justify-between mb-3">
-                            <div className="p-2 rounded-lg bg-slate-100">
-                                <Award className="w-6 h-6" />
-                            </div>
-                        </div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Skill Trees</h3>
-                        <p className="text-sm text-slate-600 mb-4">Unlock upgrades as you progress</p>
-                        <Button asChild variant="outline" size="sm" className="w-full">
-                            <Link to="/game/path/uniqueness">
-                                Explore <ArrowRight className="w-4 h-4 ml-2" />
                             </Link>
                         </Button>
                     </div>
