@@ -61,6 +61,7 @@ import AssetMappingLanding from "./modules/asset-mapping/AssetMappingLanding";
 import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
 // Marketplace
 import CreatorPage from "./pages/CreatorPage";
+import PublicPageEditor from "./pages/PublicPageEditor";
 
 const queryClient = new QueryClient();
 
@@ -131,6 +132,7 @@ const App = () => (
             <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
             {/* Public Creator Pages */}
             <Route path="/p/:slug" element={<CreatorPage />} />
+            <Route path="/my-page" element={<PublicPageEditor />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass } from "lucide-react";
+import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass, Flame, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
 import MeSection from "@/components/game/MeSection";
@@ -33,6 +33,11 @@ const CoreLoopHome = () => {
     const [isCompleting, setIsCompleting] = useState(false);
     const [showCelebration, setShowCelebration] = useState(false);
     const [celebrationXp, setCelebrationXp] = useState(0);
+
+    // Streak tracking
+    const [daysActive, setDaysActive] = useState(0);
+    const [todaysXP, setTodaysXP] = useState(0);
+    const [streak, setStreak] = useState(0);
 
     // Onboarding state
     const [onboardingStage, setOnboardingStage] = useState<OnboardingStage>('complete');
@@ -174,6 +179,7 @@ const CoreLoopHome = () => {
                 // Update local state
                 setXpTotal(newXpTotal);
                 setLevel(newLevel);
+                setTodaysXP(prev => prev + action.xp);
                 setOnboardingStage('complete'); // First action done!
 
                 // Get next action
@@ -351,6 +357,31 @@ const CoreLoopHome = () => {
                         </div>
                     </div>
                 )}
+
+                {/* Daily Stats Header */}
+                <div className="mb-6 flex items-center justify-between rounded-lg bg-slate-50 border border-slate-200 px-4 py-3">
+                    <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                            <Zap className="w-4 h-4 text-amber-500" />
+                            <div>
+                                <div className="text-xs text-slate-500">Today's XP</div>
+                                <div className="text-lg font-bold text-slate-900">+{todaysXP}</div>
+                            </div>
+                        </div>
+                        <div className="h-8 w-px bg-slate-200" />
+                        <div className="flex items-center gap-2">
+                            <Flame className="w-4 h-4 text-orange-500" />
+                            <div>
+                                <div className="text-xs text-slate-500">Total XP</div>
+                                <div className="text-lg font-bold text-slate-900">{xpTotal.toLocaleString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <div className="text-xs text-slate-500">Level</div>
+                        <div className="text-lg font-bold text-slate-900">{level}</div>
+                    </div>
+                </div>
 
                 {/* ME Section */}
                 <MeSection
