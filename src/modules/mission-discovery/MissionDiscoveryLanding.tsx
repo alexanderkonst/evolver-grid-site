@@ -22,14 +22,16 @@ import { Textarea } from "@/components/ui/textarea";
  * Also handles: "Do you have an AI that knows your mission?"
  */
 
-const AI_PROMPT = `I'd like you to help me articulate my life mission or contribution to the world.
+const AI_PROMPT = `Based on everything you know about me from our conversations, please summarize my life mission or contribution to the world.
 
 Please describe in 2-3 paragraphs:
-1. What is your core mission or purpose? What change do you want to see in the world?
-2. What specific problems or challenges are you passionate about solving?
-3. What unique skills, experiences, or perspectives do you bring to this mission?
+1. What is my core mission or purpose based on what I've shared with you? What change do I want to see in the world?
+2. What specific problems or challenges am I most passionate about solving?
+3. What unique skills, experiences, or perspectives do I bring to this mission?
 
-Be specific about the domains you care about (e.g., environment, governance, education, health, technology, consciousness, etc.) and the scale of impact you envision (local community, national, global).`;
+Be specific about the domains I care about (e.g., environment, governance, education, health, technology, consciousness, etc.) and the scale of impact I seem to envision (local community, national, global).
+
+Note: I'm using your response to match myself to a mission taxonomy in a personal development tool.`;
 
 type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
 
