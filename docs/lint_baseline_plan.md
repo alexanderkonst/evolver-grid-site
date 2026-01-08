@@ -7,6 +7,14 @@ Goal: get lint to a stable, reproducible baseline without blocking feature work.
 - React hooks dependencies (`react-hooks/exhaustive-deps`).
 - `@typescript-eslint/no-empty-object-type` in UI components.
 - `@typescript-eslint/no-require-imports` in `tailwind.config.ts`.
+- `@typescript-eslint/triple-slash-reference` in mission-discovery data files.
+
+## Baseline Snapshot (2026-01-08)
+- Total: 90 problems (72 errors, 18 warnings).
+- Top offenders:
+  - `@typescript-eslint/no-explicit-any` (majority of errors).
+  - `@typescript-eslint/triple-slash-reference` (mission-discovery data files).
+  - `react-hooks/exhaustive-deps` (warnings in hooks/pages).
 
 ## Plan (3 passes)
 1) **Inventory + baseline**
