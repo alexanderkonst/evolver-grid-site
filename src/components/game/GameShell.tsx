@@ -46,7 +46,7 @@ const SPACES: NavItem[] = [
         path: "/game/profile",
         description: "Know yourself",
         modules: [
-            { id: "zog", label: "Zone of Genius", path: "/zone-of-genius" },
+            { id: "zog", label: "Zone of Genius", path: "/zone-of-genius/entry" },
             { id: "qol", label: "Quality of Life", path: "/quality-of-life-map/assessment" },
             { id: "assets", label: "Asset Mapping", path: "/asset-mapping" },
             { id: "mission", label: "Mission Discovery", path: "/mission-discovery" }
