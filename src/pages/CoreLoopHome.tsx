@@ -6,6 +6,7 @@ import GameShell from "@/components/game/GameShell";
 import MeSection from "@/components/game/MeSection";
 import MyLifeSection from "@/components/game/MyLifeSection";
 import MyNextMoveSection from "@/components/game/MyNextMoveSection";
+import NextActionsPanel from "@/components/game/NextActionsPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { getRecommendedAction, type Action } from "@/data/actions";
@@ -43,6 +44,19 @@ const CoreLoopHome = () => {
     const [onboardingStage, setOnboardingStage] = useState<OnboardingStage>('complete');
     const [hasZoG, setHasZoG] = useState(false);
     const [hasQoL, setHasQoL] = useState(false);
+
+    // Genius Discovery stages: entry → articulate → useful → monetize
+    type GeniusStage = 'entry' | 'articulate' | 'useful' | 'monetize' | 'complete';
+    const [geniusStage, setGeniusStage] = useState<GeniusStage>('entry');
+    const [practiceCount, setPracticeCount] = useState(0);
+
+    // Completed steps for display
+    const [completedSteps, setCompletedSteps] = useState<{
+        id: string;
+        title: string;
+        completedAt: string;
+        xpEarned: number;
+    }[]>([]);
 
     useEffect(() => {
         loadData();
@@ -395,11 +409,60 @@ const CoreLoopHome = () => {
                     <MyLifeSection qolScores={qolScores} />
                 )}
 
-                {/* MY NEXT MOVE Section */}
-                <MyNextMoveSection
-                    action={recommendedAction}
-                    onComplete={handleActionComplete}
-                    isCompleting={isCompleting}
+                {/* MY NEXT MOVE Section — Two Action Options */}
+                <NextActionsPanel
+                    completedSteps={completedSteps}
+                    nextActions={[
+                        // Primary action: Continue Genius Discovery or Transformation
+                        geniusStage === 'entry' ? {
+                            id: 'genius-articulate',
+                            type: 'genius' as const,
+                            title: 'Articulate Your Genius',
+                            description: 'Define how your unique talents combine into a powerful offering',
+                            route: '/zone-of-genius',
+                            ctaLabel: 'Continue Discovery',
+                            icon: 'sparkles' as const,
+                            priority: 'primary' as const,
+                        } : geniusStage === 'articulate' ? {
+                            id: 'genius-useful',
+                            type: 'genius' as const,
+                            title: 'Make Your Genius Useful',
+                            description: 'Turn your genius into something people actually want',
+                            route: '/game/profile',
+                            ctaLabel: 'Make It Useful',
+                            icon: 'sparkles' as const,
+                            priority: 'primary' as const,
+                        } : {
+                            id: 'transformation-practice',
+                            type: 'transformation' as const,
+                            title: recommendedAction?.title || 'Daily Practice',
+                            description: recommendedAction?.description || 'Your recommended practice based on your growth priorities',
+                            route: '/game/transformation',
+                            ctaLabel: 'Start Practice',
+                            icon: 'trending' as const,
+                            priority: 'primary' as const,
+                        },
+                        // Secondary action: The other path
+                        geniusStage !== 'complete' ? {
+                            id: 'transformation-alt',
+                            type: 'transformation' as const,
+                            title: recommendedAction?.title || 'Continue Transformation',
+                            description: `Grow in ${qolScores.sort((a, b) => a.score - b.score)[0]?.label || 'your lowest domain'}`,
+                            route: '/game/transformation',
+                            ctaLabel: 'Explore Growth Paths',
+                            icon: 'trending' as const,
+                            priority: 'secondary' as const,
+                        } : {
+                            id: 'genius-monetize',
+                            type: 'genius' as const,
+                            title: 'Monetize Your Genius',
+                            description: 'Work with a coach to create your genius offer',
+                            route: '/game/marketplace',
+                            ctaLabel: 'Learn More',
+                            icon: 'sparkles' as const,
+                            priority: 'secondary' as const,
+                        },
+                    ]}
                 />
             </div>
         </GameShell>
