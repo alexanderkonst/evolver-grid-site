@@ -2,6 +2,8 @@ import { useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -117,18 +119,66 @@ const MissionDiscoveryWizard = () => {
         setSelectedMissionId(id);
     };
 
+    const { toast } = useToast();
+
     const handleSaveMission = async () => {
-        if (!selectedMission) return;
+        if (!selectedMission || !selectedPillarId || !selectedFocusAreaId || !selectedChallengeId || !selectedOutcomeId) return;
         setIsSaving(true);
 
-        // TODO: Save to database
-        console.log("Saving mission:", selectedMission);
+        try {
+            // Get current user
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                toast({
+                    title: "Please sign in",
+                    description: "You need to be signed in to commit to a mission.",
+                    variant: "destructive",
+                });
+                setIsSaving(false);
+                return;
+            }
 
-        // Simulate save
-        await new Promise(resolve => setTimeout(resolve, 500));
+            // Build mission context for clear articulation
+            const pillar = PILLARS.find(p => p.id === selectedPillarId);
+            const focusArea = FOCUS_AREAS.find(fa => fa.id === selectedFocusAreaId);
+            const challenge = KEY_CHALLENGES.find(c => c.id === selectedChallengeId);
+            const outcome = DESIRED_OUTCOMES.find(o => o.id === selectedOutcomeId);
 
-        setIsSaving(false);
-        navigate(returnPath);
+            const missionCommitment = {
+                mission_id: selectedMission.id,
+                pillar: pillar?.title,
+                focus_area: focusArea?.title,
+                challenge: challenge?.title,
+                outcome: outcome?.title,
+                mission_title: selectedMission.title,
+                mission_statement: selectedMission.statement,
+                committed_at: new Date().toISOString(),
+            };
+
+            // Save to localStorage until DB migration is added
+            // Key format: mission_commitment_{userId}
+            localStorage.setItem(
+                `mission_commitment_${user.id}`,
+                JSON.stringify(missionCommitment)
+            );
+
+            // Show success toast with clear articulation
+            toast({
+                title: "🎯 Mission Committed!",
+                description: `You're now committed to: ${selectedMission.title}`,
+            });
+
+            setIsSaving(false);
+            navigate(returnPath);
+        } catch (err) {
+            console.error("Error:", err);
+            toast({
+                title: "Something went wrong",
+                description: "Please try again.",
+                variant: "destructive",
+            });
+            setIsSaving(false);
+        }
     };
 
     return (
@@ -149,7 +199,7 @@ const MissionDiscoveryWizard = () => {
                         </div>
                         {selectedMission && (
                             <Button onClick={handleSaveMission} disabled={isSaving} className="w-full sm:w-auto">
-                                {isSaving ? "Saving..." : "Save Mission"}
+                                {isSaving ? "Committing..." : "Commit to this Mission"}
                                 <Check className="w-4 h-4 ml-2" />
                             </Button>
                         )}

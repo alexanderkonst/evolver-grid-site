@@ -1074,7 +1074,7 @@ export const DESIRED_OUTCOMES: MissionDesiredOutcome[] = [
     {
         id: 'cul-fa-02-c-01-o-01',
         challengeId: 'cul-fa-02-c-01',
-        title: '80% of journalism focused on solutions and innovations',
+        title: 'Develop journalism focused on solutions and innovations',
         description: 'Shifting the media landscape from problem-fixation to possibility-oriented reporting.'
     },
     {
