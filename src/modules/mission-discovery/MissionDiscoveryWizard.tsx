@@ -69,7 +69,8 @@ const MissionDiscoveryWizard = () => {
     const [wantsToLead, setWantsToLead] = useState(false);
     const [wantsToIntegrate, setWantsToIntegrate] = useState(false);
     const preselectAppliedRef = useRef(false);
-    const [notifyLevel, setNotifyLevel] = useState<'mission' | 'outcome' | 'challenge' | 'pillar'>('mission');
+    const [notifyLevel, setNotifyLevel] = useState<'mission' | 'outcome' | 'challenge' | 'focus'>('mission');
+    const [emailFrequency, setEmailFrequency] = useState<'daily' | 'weekly' | 'monthly'>('weekly');
 
     // Filtered data based on selections
     const focusAreas = useMemo(() =>
@@ -297,15 +298,28 @@ const MissionDiscoveryWizard = () => {
                         <select
                             value={notifyLevel}
                             onChange={(e) => setNotifyLevel(e.target.value as typeof notifyLevel)}
-                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 mb-4"
                         >
-                            <option value="mission">This exact mission only (fewest emails)</option>
+                            <option value="mission">This exact mission only</option>
                             <option value="outcome">Same desired outcome</option>
                             <option value="challenge">Same key challenge</option>
-                            <option value="pillar">Same pillar (most emails)</option>
+                            <option value="focus">Same focus area (most emails)</option>
+                        </select>
+
+                        <label className="block text-sm font-medium text-slate-900 mb-2">
+                            How often?
+                        </label>
+                        <select
+                            value={emailFrequency}
+                            onChange={(e) => setEmailFrequency(e.target.value as typeof emailFrequency)}
+                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        >
+                            <option value="daily">Daily digest</option>
+                            <option value="weekly">Weekly digest</option>
+                            <option value="monthly">Monthly digest</option>
                         </select>
                         <p className="text-xs text-slate-500 mt-2">
-                            Higher levels = more connections, more emails
+                            We'll group new participants and send a summary at your preferred frequency.
                         </p>
                     </div>
 
@@ -326,6 +340,7 @@ const MissionDiscoveryWizard = () => {
                                     wantsToLead,
                                     wantsToIntegrate,
                                     notifyLevel,
+                                    emailFrequency,
                                     savedAt: new Date().toISOString(),
                                 }));
                                 toast({

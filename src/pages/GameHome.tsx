@@ -1,42 +1,48 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
-  ArrowLeft, Sparkles, Loader2, CheckCircle2, ExternalLink, Trophy, Flame,
-  AlertCircle, Lock, Download, FileText, Target, Zap, Compass, Heart
+  ArrowLeft,
+  Sparkles,
+  Loader2,
+  CheckCircle2,
+  Trophy,
+  Flame,
+  AlertCircle,
+  Lock,
+  Download,
+  FileText,
+  Target,
 } from "lucide-react";
 import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
 import GameShell from "@/components/game/GameShell";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
-import { FEATURE_FLAGS } from "@/config/featureFlags";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
-import { LIBRARY_ITEMS, type LibraryItem, type DevelopmentPath } from "@/modules/library/libraryContent";
+import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
-import { getSuggestedPractices, markPracticeDone } from "@/lib/practiceSystem";
-import { buildGrowthPathActionsForProgress, buildRecommendationFromLegacy, formatDurationBucket, durationToBucket, normalizeGrowthPath } from "@/lib/actionEngine";
+import { getSuggestedPractices } from "@/lib/practiceSystem";
+import {
+  buildGrowthPathActionsForProgress,
+  buildRecommendationFromLegacy,
+  durationToBucket,
+  formatDurationBucket,
+  normalizeGrowthPath,
+} from "@/lib/actionEngine";
 import { growthPathSteps, GROWTH_PATH_VERSION, type GrowthPathProgress } from "@/modules/growth-paths";
 import { logActionEvent } from "@/lib/actionEvents";
 import { ensureGrowthPathProgress } from "@/lib/growthPathProgress";
 import { completeAction } from "@/lib/completeAction";
 import { type UnifiedAction, type ActionDuration } from "@/types/actions";
 import {
-  getMainQuestCopy,
-  computeNextMainQuestStage,
-  isStageComplete,
-  calculateMainQuestProgress,
   buildPlayerStats,
-  getStageNumber,
-  getTotalStages,
   type MainQuestStage,
-  type PlayerStats
+  type PlayerStats,
 } from "@/lib/mainQuest";
-import { advanceMainQuestIfEligible, markRealWorldOutputDone } from "@/lib/mainQuestApi";
-import SkillTree from "@/components/SkillTree";
-import { skillTrees } from "@/data/skillTrees";
+import { advanceMainQuestIfEligible } from "@/lib/mainQuestApi";
 
 // Types
 interface GameProfile {
@@ -92,14 +98,6 @@ interface QuestSuggestion {
   why_it_is_a_good_next_move: string;
 }
 
-const PATH_LABELS: Record<DevelopmentPath, string> = {
-  body: "Body",
-  mind: "Mind",
-  emotions: "Emotions",
-  spirit: "Spirit",
-  uniqueness: "Genius"
-};
-
 const QUEST_DURATIONS = [5, 10, 15, 20, 30, 45, 60, 90, 120, 150];
 
 const QUEST_MODES = [
@@ -107,20 +105,6 @@ const QUEST_MODES = [
   { id: "relaxing", label: "Relaxing / Calming" },
   { id: "balanced", label: "Balanced" },
 ];
-
-const formatDurationLabel = (minutes?: number | null) => {
-  if (!minutes && minutes !== 0) return undefined;
-  if (minutes <= 3) return "≈3 min";
-  if (minutes <= 10) return "~10 min";
-  if (minutes <= 25) return "~20–25 min";
-  if (minutes <= 45) return "~45 min";
-  return `${minutes} min`;
-};
-
-const normalizeGrowthPath = (path?: string | null) => {
-  if (!path) return "genius";
-  return path === "uniqueness" ? "genius" : path;
-};
 
 const toDurationBucket = (minutes?: number | null) => {
   if (!minutes && minutes !== 0) return undefined;
@@ -168,7 +152,6 @@ const GameHome = () => {
 
   // Suggested practices
   const [suggestedPractices, setSuggestedPractices] = useState<LibraryItem[]>([]);
-  const [markingPracticeDone, setMarkingPracticeDone] = useState<string | null>(null);
 
   useEffect(() => {
     loadGameData();
@@ -516,32 +499,6 @@ const GameHome = () => {
     }
   };
 
-  const handleMarkPracticeDone = async (practice: LibraryItem) => {
-    setMarkingPracticeDone(practice.id);
-    const result = await markPracticeDone(practice.id, practice.primaryPath);
-
-    if (result.success) {
-      if (profileId) {
-        logActionEvent({
-          actionId: `practice:${practice.id}`,
-          profileId,
-          source: "src/pages/GameHome.tsx",
-          loop: "transformation",
-          growthPath: practice.primaryPath,
-          qolDomain: practice.primaryDomain,
-          duration: durationToBucket(practice.durationMinutes),
-          completedAt: new Date().toISOString(),
-          metadata: { intent: "mark_done", result: "completed", origin: "suggested_practice" },
-        });
-      }
-      toast({ title: "+10 XP earned!", description: "Practice logged." });
-      await loadGameData();
-    } else {
-      toast({ title: "Error", description: result.error, variant: "destructive" });
-    }
-    setMarkingPracticeDone(null);
-  };
-
   const handleUpgradeAction = async (upgrade: Upgrade) => {
     if (profileId) {
       logActionEvent({
@@ -575,48 +532,7 @@ const GameHome = () => {
     }
   };
 
-  // Get the Showing Up skill tree for visualization
-  const showingUpTree = skillTrees.find(t => t.id === 'showing-up');
-
-  // Map upgrade codes to skill tree node IDs
-  const skillTreeProgress = useMemo(() => {
-    const codeToNodeMap: Record<string, string> = {
-      'zog_assessment_completed': 'su-zone-of-genius',
-      'personality_tests_completed': 'su-values-clarity',
-      'genius_offer_draft': 'su-offer-creation',
-      'first_practice_done': 'su-visibility',
-    };
-
-    const progress: Record<string, "locked" | "available" | "in_progress" | "completed"> = {};
-
-    if (!showingUpTree) return progress;
-
-    // First pass: mark completed nodes
-    showingUpTree.nodes.forEach(node => {
-      const upgradeCode = Object.entries(codeToNodeMap).find(([_, nodeId]) => nodeId === node.id)?.[0];
-      if (upgradeCode && completedUpgradeCodes.has(upgradeCode)) {
-        progress[node.id] = 'completed';
-      }
-    });
-
-    // Second pass: determine available/locked based on prerequisites
-    showingUpTree.nodes.forEach(node => {
-      if (progress[node.id] === 'completed') return;
-
-      if (node.prerequisites.length === 0) {
-        progress[node.id] = 'available';
-      } else {
-        const allPrereqsCompleted = node.prerequisites.every(p => progress[p] === 'completed');
-        progress[node.id] = allPrereqsCompleted ? 'available' : 'locked';
-      }
-    });
-
-    return progress;
-  }, [completedUpgradeCodes, showingUpTree]);
-
   const lowestDomains = getLowestDomains();
-
-  const isDailyLoopV2 = true; // Force enabled per user request
 
   useEffect(() => {
     if (!profileId || dailyLoopViewLoggedRef.current) return;
@@ -627,20 +543,20 @@ const GameHome = () => {
       source: "src/pages/GameHome.tsx",
       loop: "profile",
       selectedAt: new Date().toISOString(),
-      metadata: { intent: "view", dailyLoopV2: isDailyLoopV2 },
+      metadata: { intent: "view", dailyLoopV2: true },
     });
-  }, [isDailyLoopV2, profileId]);
+  }, [profileId]);
 
   const recommendationSet = useMemo(() =>
     buildRecommendationFromLegacy({
       questSuggestion,
       upgrade: nextRecommendedUpgrade,
       practices: suggestedPractices,
-      extraActions: isDailyLoopV2 ? buildGrowthPathActionsForProgress(growthPathSteps, growthPathProgress) : [],
+      extraActions: buildGrowthPathActionsForProgress(growthPathSteps, growthPathProgress),
       lowestDomains,
       totalCompletedActions: profile?.total_quests_completed,
     }),
-    [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, isDailyLoopV2, growthPathProgress]);
+  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, growthPathProgress]);
 
   const recommendedAction = useMemo(() => {
     if (!recommendationSet) return null;
@@ -695,7 +611,7 @@ const GameHome = () => {
   }, [actionError, profileId]);
 
   useEffect(() => {
-    if (!isDailyLoopV2 || !profileId || actionError || isLoading) return;
+    if (!profileId || actionError || isLoading) return;
     if (recommendationSet || noRecommendationLoggedRef.current) return;
     noRecommendationLoggedRef.current = true;
     logActionEvent({
@@ -709,7 +625,7 @@ const GameHome = () => {
         loadDurationMs: lastLoadDurationRef.current,
       },
     });
-  }, [actionError, isDailyLoopV2, isLoading, profileId, recommendationSet]);
+  }, [actionError, isLoading, profileId, recommendationSet]);
 
   const freedomModeUrl = useMemo(() => {
     const params = new URLSearchParams({ from: "daily-loop" });
