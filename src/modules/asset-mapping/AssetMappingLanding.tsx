@@ -183,12 +183,13 @@ const AssetMappingLanding = () => {
             if (jsonMatch) {
                 const assets = JSON.parse(jsonMatch[0]);
                 for (const asset of assets) {
-                    const rawCategory = (asset.category || '').toLowerCase();
-                    const typeTitle = CATEGORY_MAP[rawCategory] || asset.category || 'Unknown';
+                    const rawType = (asset.type || asset.category || '').toLowerCase();
+                    const typeTitle = CATEGORY_MAP[rawType] || asset.type || asset.category || 'Unknown';
                     const name = asset.name || asset.asset || asset.title || 'Unnamed Asset';
                     extracted.push({
                         typeTitle,
-                        subTypeTitle: asset.subcategory || undefined,
+                        subTypeTitle: asset.subtype || asset.subcategory || undefined,
+                        categoryTitle: asset.category || undefined,
                         title: name,
                         description: asset.description || asset.details || asset.summary || undefined,
                         leverageScore: asset.leverage_score || asset.leverageScore || undefined,
