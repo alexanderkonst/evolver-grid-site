@@ -164,6 +164,15 @@ const MissionDiscoveryWizard = () => {
                 setIsSaving(false);
                 return;
             }
+            if (!user.email) {
+                toast({
+                    title: "Missing email",
+                    description: "Please add an email address to save your mission.",
+                    variant: "destructive",
+                });
+                setIsSaving(false);
+                return;
+            }
 
             // Build mission context for clear articulation
             const pillar = PILLARS.find(p => p.id === selectedPillarId);
@@ -182,8 +191,38 @@ const MissionDiscoveryWizard = () => {
                 committed_at: new Date().toISOString(),
             };
 
-            // Save to localStorage until DB migration is added
-            // Key format: mission_commitment_{userId}
+            const baseParticipant = {
+                user_id: user.id,
+                email: user.email,
+                first_name: user.user_metadata?.first_name || null,
+                mission_id: selectedMission.id,
+                mission_title: selectedMission.title,
+                outcome_id: selectedOutcomeId,
+                challenge_id: selectedChallengeId,
+                focus_area_id: selectedFocusAreaId,
+                pillar_id: selectedPillarId,
+            };
+
+            const { data: existingParticipant } = await supabase
+                .from("mission_participants")
+                .select("id")
+                .eq("user_id", user.id)
+                .eq("mission_id", selectedMission.id)
+                .maybeSingle();
+
+            if (existingParticipant?.id) {
+                const { error: updateError } = await supabase
+                    .from("mission_participants")
+                    .update(baseParticipant)
+                    .eq("id", existingParticipant.id);
+                if (updateError) throw updateError;
+            } else {
+                const { error: insertError } = await supabase
+                    .from("mission_participants")
+                    .insert(baseParticipant);
+                if (insertError) throw insertError;
+            }
+
             localStorage.setItem(
                 `mission_commitment_${user.id}`,
                 JSON.stringify(missionCommitment)
@@ -348,29 +387,59 @@ const MissionDiscoveryWizard = () => {
                     <div className="space-y-3">
                         <Button
                             className="w-full"
-                            onClick={() => {
-                                // Save preferences to localStorage
-                                const userId = localStorage.getItem('sb-user-id') || 'anonymous';
-                                localStorage.setItem(`mission_connection_${userId}`, JSON.stringify({
-                                    missionId: selectedMission.id,
-                                    missionTitle: selectedMission.title,
-                                    outcomeId: selectedOutcomeId,
-                                    challengeId: selectedChallengeId,
-                                    focusAreaId: selectedFocusAreaId,
-                                    pillarId: selectedPillarId,
-                                    shareConsent,
-                                    wantsToLead,
-                                    wantsToIntegrate,
-                                    notifyLevel,
-                                    emailFrequency,
-                                    savedAt: new Date().toISOString(),
-                                }));
-                                toast({
-                                    title: "Preferences saved!",
-                                    description: shareConsent ? "We'll connect you with others soon." : "You can update these anytime.",
-                                });
-                                navigate(returnPath);
-                            }}
+                                onClick={async () => {
+                                    const { data: { user } } = await supabase.auth.getUser();
+                                    if (!user) {
+                                        toast({
+                                            title: "Please sign in",
+                                            description: "You need to be signed in to save mission preferences.",
+                                            variant: "destructive",
+                                        });
+                                        return;
+                                    }
+
+                                    const { error: updateError } = await supabase
+                                        .from("mission_participants")
+                                        .update({
+                                            share_consent: shareConsent,
+                                            wants_to_lead: wantsToLead,
+                                            wants_to_integrate: wantsToIntegrate,
+                                            notify_level: notifyLevel,
+                                            email_frequency: emailFrequency,
+                                        })
+                                        .eq("user_id", user.id)
+                                        .eq("mission_id", selectedMission.id);
+
+                                    if (updateError) {
+                                        toast({
+                                            title: "Something went wrong",
+                                            description: "Please try again.",
+                                            variant: "destructive",
+                                        });
+                                        return;
+                                    }
+
+                                    localStorage.setItem(`mission_connection_${user.id}`, JSON.stringify({
+                                        missionId: selectedMission.id,
+                                        missionTitle: selectedMission.title,
+                                        outcomeId: selectedOutcomeId,
+                                        challengeId: selectedChallengeId,
+                                        focusAreaId: selectedFocusAreaId,
+                                        pillarId: selectedPillarId,
+                                        shareConsent,
+                                        wantsToLead,
+                                        wantsToIntegrate,
+                                        notifyLevel,
+                                        emailFrequency,
+                                        savedAt: new Date().toISOString(),
+                                    }));
+
+                                    toast({
+                                        title: "Preferences saved!",
+                                        description: shareConsent ? "We'll connect you with others soon." : "You can update these anytime.",
+                                    });
+                                    navigate(returnPath);
+                                }}
                         >
                             <ArrowRight className="w-4 h-4 mr-2" />
                             Continue
