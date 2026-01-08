@@ -4,7 +4,7 @@
  * Shows up to 3 actions:
  * 1. Main Quest (Storyline) — current step
  * 2. Side Quest (Practice) — AI-recommended practice
- * 3. Upgrade (Skill Tree) — next available node
+ * 3. Upgrade (Growth Path) — next available node
  * 
  * If all done: Done for Today state with optional bonus practice
  */
@@ -574,7 +574,7 @@ export default function TodayPage() {
                         )}
                     </div>
 
-                    {/* 3. Upgrade (Skill Tree) */}
+                    {/* 3. Upgrade (Growth Path) */}
                     <div className={`rounded-2xl border-2 p-5 ${!upgradeUnlockStatus.unlocked
                         ? 'border-slate-300 bg-slate-50'
                         : 'border-slate-200 bg-white'
@@ -589,7 +589,7 @@ export default function TodayPage() {
                             </div>
                             <span className={`text-xs font-semibold uppercase tracking-wider ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-purple-600'
                                 }`}>
-                                Upgrade (Skill Tree)
+                                Upgrade (Growth Path)
                             </span>
                             {!upgradeUnlockStatus.unlocked && (
                                 <span className="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">
@@ -640,17 +640,17 @@ export default function TodayPage() {
                                     size="sm"
                                     onClick={() => {
                                         logSelection({
-                                            actionId: "skills:view",
+                                            actionId: "growth-paths:view",
                                             source: "src/pages/Today.tsx",
                                             loop: "transformation",
                                             selectedAt: new Date().toISOString(),
-                                            metadata: { intent: "view_skill_trees" },
+                                            metadata: { intent: "view_growth_paths" },
                                         });
-                                        navigate('/skills');
+                                        navigate('/growth-paths');
                                     }}
                                 >
                                     <BookOpen className="w-4 h-4 mr-2" />
-                                    View Skill Trees
+                                    View Growth Paths
                                 </Button>
                             </div>
                         )}

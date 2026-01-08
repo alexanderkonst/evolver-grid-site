@@ -101,11 +101,11 @@ const App = () => (
             <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
             <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
-            <Route path="/game/path/:pathId" element={<SkillTrees />} />
+            <Route path="/game/path/:pathId" element={<GrowthPathsPage />} />
             <Route path="/today" element={<Today />} />
             <Route path="/character" element={<Today />} />
             <Route path="/map" element={<GameMap />} />
-            <Route path="/skills" element={<SkillTrees />} />
+            <Route path="/skills" element={<GrowthPathsPage />} />
             <Route path="/growth-paths" element={<GrowthPathsPage />} />
             <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
             <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
