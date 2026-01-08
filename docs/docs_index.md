@@ -2,7 +2,7 @@
 
 > Map of all docs and their purpose
 
-*Updated: 2025-01-07 (30 docs)*
+*Updated: 2025-01-07 (31 docs)*
 
 ---
 
@@ -62,6 +62,7 @@
 | [lint_baseline_plan.md](./lint_baseline_plan.md) | Lint baseline cleanup plan |
 | [transformation_engine.md](./transformation_engine.md) | 5 vectors → 8 domains |
 | [telemetry_playbook.md](./telemetry_playbook.md) | Telemetry query playbook |
+| [prompt_registry.md](./prompt_registry.md) | AI prompt registry + update workflow |
 
 ---
 
@@ -85,4 +86,4 @@
 
 ---
 
-*Docs Index v1.1 — 30 docs*
+*Docs Index v1.1 — 31 docs*

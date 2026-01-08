@@ -11,17 +11,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
 import { User } from "@supabase/supabase-js";
-
-const AI_PROMPT_FULL = `Please answer based on everything you know about me:
-
-1. What is my zone of genius? Describe it in depth.
-2. What patterns do you see in where I create the most value for others?
-3. What offers, products, or services have I sold before, and to what kinds of clients? Please describe concrete examples and outcomes.`;
-
-const AI_PROMPT_SHORT = `Please answer based on everything you know about me:
-
-1. What is my zone of genius? Describe it in depth.
-2. What patterns do you see in where I create the most value for others?`;
+import { GENIUS_OFFER_PROMPT_FULL, GENIUS_OFFER_PROMPT_SHORT } from "@/prompts";
 
 type WizardStep = 
   | "auth"
@@ -565,14 +555,14 @@ const GeniusOfferIntake = () => {
               
               <div className="p-4 bg-secondary/30 rounded-xl border border-border relative">
                 <pre className="text-sm whitespace-pre-wrap text-muted-foreground">
-                  {progress.ai_knows_offers ? AI_PROMPT_FULL : AI_PROMPT_SHORT}
+                  {progress.ai_knows_offers ? GENIUS_OFFER_PROMPT_FULL : GENIUS_OFFER_PROMPT_SHORT}
                 </pre>
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   className="absolute top-2 right-2"
-                  onClick={() => copyPrompt(progress.ai_knows_offers ? AI_PROMPT_FULL : AI_PROMPT_SHORT)}
+                  onClick={() => copyPrompt(progress.ai_knows_offers ? GENIUS_OFFER_PROMPT_FULL : GENIUS_OFFER_PROMPT_SHORT)}
                 >
                   {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
