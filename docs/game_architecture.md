@@ -43,7 +43,7 @@ One intake → one Genius Profile → everything else is quests, upgrades, and m
 
 The arc of transformation (implicit narrative, visible as progression):
 
-| Step | Journey | Loop/Space | What Happens |
+| Step | Journey | Space | What Happens |
 |------|---------|------------|--------------|
 | 1 | KNOW YOURSELF | Profile | ZoG, tests, assets, all self-data |
 | 2 | MASTER YOURSELF | Transformation | Practices, 5 growth paths, QoL tracking |
