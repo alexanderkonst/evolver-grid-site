@@ -117,6 +117,11 @@ const formatDurationLabel = (minutes?: number | null) => {
   return `${minutes} min`;
 };
 
+const normalizeGrowthPath = (path?: string | null) => {
+  if (!path) return "genius";
+  return path === "uniqueness" ? "genius" : path;
+};
+
 const toDurationBucket = (minutes?: number | null) => {
   if (!minutes && minutes !== 0) return undefined;
   if (minutes <= 3) return "xs";
