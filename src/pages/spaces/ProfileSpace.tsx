@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
     User,
@@ -9,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ModuleCard {
     id: string;
@@ -62,7 +64,40 @@ const PROFILE_MODULES: ModuleCard[] = [
     }
 ];
 
+type MissionCommitment = {
+    mission_id: string;
+    mission_title: string;
+    mission_statement: string;
+    pillar?: string;
+    focus_area?: string;
+    challenge?: string;
+    outcome?: string;
+    committed_at?: string;
+};
+
 const ProfileSpace = () => {
+    const [missionCommitment, setMissionCommitment] = useState<MissionCommitment | null>(null);
+
+    useEffect(() => {
+        let isMounted = true;
+        const loadMission = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user || !isMounted) return;
+            const stored = localStorage.getItem(`mission_commitment_${user.id}`);
+            if (!stored) return;
+            try {
+                const parsed = JSON.parse(stored) as MissionCommitment;
+                if (isMounted) setMissionCommitment(parsed);
+            } catch (err) {
+                console.error("Failed to parse mission commitment:", err);
+            }
+        };
+        loadMission();
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     return (
         <GameShell>
             <div className="p-6 lg:p-8 max-w-4xl mx-auto">
@@ -73,6 +108,54 @@ const ProfileSpace = () => {
                         <h1 className="text-2xl font-bold text-slate-900">Profile Space</h1>
                     </div>
                     <p className="text-slate-600">Know yourself. Build your character.</p>
+                </div>
+
+                {/* Mission Snapshot */}
+                <div className="mb-8 rounded-xl border border-slate-200 bg-white p-5">
+                    <div className="flex items-start justify-between gap-4">
+                        <div>
+                            <div className="flex items-center gap-2 mb-2 text-sm text-slate-500">
+                                <Target className="w-4 h-4 text-blue-600" />
+                                <span>Mission</span>
+                            </div>
+                            {missionCommitment ? (
+                                <>
+                                    <h2 className="text-lg font-semibold text-slate-900 mb-1">
+                                        {missionCommitment.mission_title}
+                                    </h2>
+                                    <p className="text-sm text-slate-600 mb-3">
+                                        {missionCommitment.mission_statement}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+                                        {missionCommitment.pillar && (
+                                            <span className="rounded-full bg-slate-100 px-2 py-1">{missionCommitment.pillar}</span>
+                                        )}
+                                        {missionCommitment.focus_area && (
+                                            <span className="rounded-full bg-slate-100 px-2 py-1">{missionCommitment.focus_area}</span>
+                                        )}
+                                        {missionCommitment.challenge && (
+                                            <span className="rounded-full bg-slate-100 px-2 py-1">{missionCommitment.challenge}</span>
+                                        )}
+                                        {missionCommitment.outcome && (
+                                            <span className="rounded-full bg-slate-100 px-2 py-1">{missionCommitment.outcome}</span>
+                                        )}
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="text-lg font-semibold text-slate-900 mb-1">Set your mission</h2>
+                                    <p className="text-sm text-slate-600">
+                                        Choose the mission that best matches your contribution to the planet.
+                                    </p>
+                                </>
+                            )}
+                        </div>
+                        <Button asChild variant="outline" size="sm" className="shrink-0">
+                            <Link to="/mission-discovery?from=game&return=/game/profile">
+                                {missionCommitment ? "Edit" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
 
                 {/* Module Grid */}
