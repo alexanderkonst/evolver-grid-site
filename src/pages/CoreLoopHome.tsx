@@ -42,7 +42,7 @@ const CoreLoopHome = () => {
                 return;
             }
 
-            const profileId = await getOrCreateGameProfileId(user.id);
+            const profileId = await getOrCreateGameProfileId();
 
             // Load game profile
             const { data: profile } = await supabase
@@ -58,7 +58,7 @@ const CoreLoopHome = () => {
                 // Load ZoG archetype
                 if (profile.last_zog_snapshot_id) {
                     const { data: zog } = await supabase
-                        .from('zone_of_genius_snapshots')
+                        .from('zog_snapshots')
                         .select('archetype_title')
                         .eq('id', profile.last_zog_snapshot_id)
                         .single();
@@ -70,7 +70,7 @@ const CoreLoopHome = () => {
                 // Load QoL scores
                 if (profile.last_qol_snapshot_id) {
                     const { data: qol } = await supabase
-                        .from('quality_of_life_snapshots')
+                        .from('qol_snapshots')
                         .select('wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage')
                         .eq('id', profile.last_qol_snapshot_id)
                         .single();
@@ -111,7 +111,7 @@ const CoreLoopHome = () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
 
-            const profileId = await getOrCreateGameProfileId(user.id);
+            const profileId = await getOrCreateGameProfileId();
 
             // Award XP
             const vectorColumn = `xp_${action.vector}`;
