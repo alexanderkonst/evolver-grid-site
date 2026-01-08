@@ -11,6 +11,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { MISSIONS } from "@/modules/mission-discovery/data/missions";
+import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
+import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
+import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
+import { PILLARS } from "@/modules/mission-discovery/data/pillars";
+import type { Mission } from "@/modules/mission-discovery/types";
 
 /**
  * Mission Discovery Landing Page
@@ -41,6 +47,36 @@ Note: I'm using your response to match myself to a mission taxonomy in a persona
 
 
 type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
+type MatchResult = {
+    mission: Mission;
+    score: number;
+    context?: string;
+};
+
+const STOP_WORDS = new Set([
+    "the", "and", "for", "with", "that", "this", "from", "into", "your", "you",
+    "are", "was", "were", "our", "their", "them", "they", "his", "her", "she",
+    "him", "its", "about", "over", "under", "here", "there", "then", "than",
+    "what", "when", "where", "which", "who", "whom", "why", "how", "a", "an",
+    "to", "of", "in", "on", "at", "by", "as", "or", "be", "is"
+]);
+
+const tokenize = (text: string) =>
+    text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .split(/\s+/)
+        .filter(token => token.length > 2 && !STOP_WORDS.has(token));
+
+const buildMissionContext = (mission: Mission) => {
+    const outcome = DESIRED_OUTCOMES.find(o => o.id === mission.outcomeId);
+    const challenge = outcome ? KEY_CHALLENGES.find(c => c.id === outcome.challengeId) : undefined;
+    const focusArea = challenge ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId) : undefined;
+    const pillar = focusArea ? PILLARS.find(p => p.id === focusArea.pillarId) : undefined;
+
+    const labels = [pillar?.title, focusArea?.title, challenge?.title, outcome?.title].filter(Boolean);
+    return labels.length > 0 ? labels.join(" · ") : undefined;
+};
 
 const MissionDiscoveryLanding = () => {
     const navigate = useNavigate();
@@ -52,6 +88,7 @@ const MissionDiscoveryLanding = () => {
     const [manualMission, setManualMission] = useState("");
     const [isMatching, setIsMatching] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [matches, setMatches] = useState<MatchResult[] | null>(null);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(AI_PROMPT);
@@ -62,21 +99,36 @@ const MissionDiscoveryLanding = () => {
     const handleMatchMission = async () => {
         setIsMatching(true);
         const textToMatch = step === "paste-response" ? aiResponse : manualMission;
+        setMatches(null);
 
-        // TODO: Implement semantic matching with mission database
-        console.log("Matching mission text:", textToMatch);
+        const tokens = tokenize(textToMatch);
+        const tokenSet = new Set(tokens);
+        const scored = MISSIONS.map((mission) => {
+            const corpus = `${mission.title} ${mission.statement}`;
+            const missionTokens = tokenize(corpus);
+            const overlap = missionTokens.reduce((count, token) => count + (tokenSet.has(token) ? 1 : 0), 0);
+            return {
+                mission,
+                score: overlap,
+                context: buildMissionContext(mission),
+            };
+        })
+            .filter(result => result.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 6);
 
-        // For now, go to wizard with the text as context
-        // Later: Use embeddings to find closest missions
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsMatching(false);
 
-        // Navigate to wizard - in future, show matched missions first
-        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
+        setMatches(scored.length > 0 ? scored : []);
     };
 
     const handleGoToWizard = () => {
         navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
+    };
+
+    const handleOpenWizardForMission = (mission: Mission) => {
+        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}`);
     };
 
     return (
@@ -91,8 +143,54 @@ const MissionDiscoveryLanding = () => {
                     <p className="text-slate-600">Find your contribution to the planet</p>
                 </div>
 
+                {/* Step: Matches */}
+                {matches && matches.length > 0 && (
+                    <div className="space-y-6">
+                        <div className="text-center">
+                            <h2 className="text-xl font-semibold text-slate-900">Top mission matches</h2>
+                            <p className="text-sm text-slate-600">Pick one to jump into the wizard with it pre-selected.</p>
+                        </div>
+                        <div className="space-y-3">
+                            {matches.map(match => (
+                                <div key={match.mission.id} className="rounded-xl border border-slate-200 bg-white p-4">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h3 className="text-base font-semibold text-slate-900">{match.mission.title}</h3>
+                                            <p className="text-sm text-slate-600 mt-1">{match.mission.statement}</p>
+                                            {match.context && (
+                                                <p className="text-xs text-slate-500 mt-2">{match.context}</p>
+                                            )}
+                                        </div>
+                                        <Button size="sm" variant="outline" onClick={() => handleOpenWizardForMission(match.mission)}>
+                                            Choose
+                                            <ArrowRight className="w-4 h-4 ml-2" />
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                            <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
+                            <Button onClick={handleGoToWizard}>Open full wizard</Button>
+                        </div>
+                    </div>
+                )}
+
+                {matches && matches.length === 0 && (
+                    <div className="space-y-6">
+                        <div className="text-center">
+                            <h2 className="text-xl font-semibold text-slate-900">No strong matches yet</h2>
+                            <p className="text-sm text-slate-600">Try adding more detail or use the full wizard.</p>
+                        </div>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
+                            <Button onClick={handleGoToWizard}>Open full wizard</Button>
+                        </div>
+                    </div>
+                )}
+
                 {/* Step: Clarity Check */}
-                {step === "clarity-check" && (
+                {step === "clarity-check" && !matches && (
                     <div className="space-y-4">
                         <p className="text-center text-slate-700 mb-6">
                             Do you already have clarity on your mission or purpose?
@@ -125,7 +223,7 @@ const MissionDiscoveryLanding = () => {
                 )}
 
                 {/* Step: Has AI */}
-                {step === "has-ai" && (
+                {step === "has-ai" && !matches && (
                     <div className="space-y-4">
                         <p className="text-center text-slate-700 mb-6">
                             Do you have an AI model (ChatGPT, Claude, etc.) that you've discussed your mission with?
@@ -161,7 +259,7 @@ const MissionDiscoveryLanding = () => {
                 )}
 
                 {/* Step: Paste AI Response */}
-                {step === "paste-response" && (
+                {step === "paste-response" && !matches && (
                     <div className="space-y-6">
                         <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                             <div className="flex items-start justify-between mb-2">
@@ -216,7 +314,7 @@ const MissionDiscoveryLanding = () => {
                 )}
 
                 {/* Step: Type Manually */}
-                {step === "type-manually" && (
+                {step === "type-manually" && !matches && (
                     <div className="space-y-6">
                         <div>
                             <label className="block text-sm font-medium text-slate-700 mb-2">
