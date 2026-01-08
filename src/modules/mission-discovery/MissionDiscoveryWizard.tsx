@@ -62,6 +62,12 @@ const MissionDiscoveryWizard = () => {
     const [selectedMissionId, setSelectedMissionId] = useState<string | undefined>();
     const [isSaving, setIsSaving] = useState(false);
 
+    // Post-commit state
+    const [hasCommitted, setHasCommitted] = useState(false);
+    const [shareConsent, setShareConsent] = useState(false);
+    const [wantsToLead, setWantsToLead] = useState(false);
+    const [wantsToIntegrate, setWantsToIntegrate] = useState(false);
+
     // Filtered data based on selections
     const focusAreas = useMemo(() =>
         selectedPillarId ? FOCUS_AREAS.filter(fa => fa.pillarId === selectedPillarId) : [],
@@ -169,7 +175,7 @@ const MissionDiscoveryWizard = () => {
             });
 
             setIsSaving(false);
-            navigate(returnPath);
+            setHasCommitted(true); // Show connection options instead of navigating
         } catch (err) {
             console.error("Error:", err);
             toast({
@@ -207,118 +213,205 @@ const MissionDiscoveryWizard = () => {
                 </div>
             </div>
 
-            {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 py-6">
-                {/* Top Row: 4 Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <SelectionColumn
-                        title="Select a Pillar"
-                        description="Choose one of the pillars to explore"
-                        items={PILLARS.map(p => ({ id: p.id, title: p.title }))}
-                        selectedId={selectedPillarId}
-                        onSelect={handlePillarSelect}
-                    />
-                    <SelectionColumn
-                        title="Select a Focus Area"
-                        description={selectedPillarId ? `Choose a focus area within the ${PILLARS.find(p => p.id === selectedPillarId)?.title}` : "First select a pillar"}
-                        items={focusAreas.map(fa => ({ id: fa.id, title: fa.title }))}
-                        selectedId={selectedFocusAreaId}
-                        onSelect={handleFocusAreaSelect}
-                        disabled={!selectedPillarId}
-                    />
-                    <SelectionColumn
-                        title="Select a Challenge"
-                        description="Choose a key challenge within the selected focus area"
-                        items={challenges.map(c => ({ id: c.id, title: c.title }))}
-                        selectedId={selectedChallengeId}
-                        onSelect={handleChallengeSelect}
-                        disabled={!selectedFocusAreaId}
-                    />
-                    <SelectionColumn
-                        title="Select a Desired Outcome"
-                        description="Choose an Integral Development Goal (IDG)"
-                        items={outcomes.map(o => ({ id: o.id, title: o.title }))}
-                        selectedId={selectedOutcomeId}
-                        onSelect={handleOutcomeSelect}
-                        disabled={!selectedChallengeId}
-                    />
-                </div>
+            {/* Success Screen with Connection Options */}
+            {hasCommitted && selectedMission ? (
+                <div className="max-w-2xl mx-auto px-4 py-12">
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-4">
+                            <Check className="w-8 h-8 text-emerald-600" />
+                        </div>
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Mission Committed!</h2>
+                        <p className="text-slate-600 mb-4">{selectedMission.title}</p>
+                        <p className="text-sm text-slate-500 max-w-md mx-auto">
+                            {selectedMission.statement}
+                        </p>
+                    </div>
 
-                {/* Bottom Row: Mission Selection + Details */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    {/* Mission List */}
-                    <div className="bg-slate-50 rounded-xl p-4">
-                        <h3 className="font-semibold text-slate-900 mb-1">Select a Mission</h3>
-                        <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
-                        <div className="space-y-2 max-h-80 overflow-y-auto">
-                            {missions.length === 0 && (
-                                <p className="text-sm text-slate-400 italic">Complete selections above first</p>
-                            )}
-                            {missions.map((mission) => (
-                                <button
-                                    key={mission.id}
-                                    onClick={() => handleMissionSelect(mission.id)}
-                                    className={`
-                    w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
-                    ${selectedMissionId === mission.id
-                                            ? "bg-blue-500 text-white"
-                                            : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
-                                        }
-                  `}
-                                >
-                                    {mission.title}
-                                </button>
-                            ))}
+                    <div className="bg-slate-50 rounded-xl p-6 mb-6">
+                        <h3 className="font-semibold text-slate-900 mb-4">Connect with others on this mission</h3>
+
+                        <div className="space-y-4">
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={shareConsent}
+                                    onChange={(e) => setShareConsent(e.target.checked)}
+                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                />
+                                <span className="text-sm text-slate-700">
+                                    Share my details with others on this mission so we can connect
+                                </span>
+                            </label>
+
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={wantsToLead}
+                                    onChange={(e) => setWantsToLead(e.target.checked)}
+                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                />
+                                <span className="text-sm text-slate-700">
+                                    I'd like to help lead this mission
+                                </span>
+                            </label>
+
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={wantsToIntegrate}
+                                    onChange={(e) => setWantsToIntegrate(e.target.checked)}
+                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                />
+                                <span className="text-sm text-slate-700">
+                                    I feel my role is to integrate everyone working on this mission
+                                </span>
+                            </label>
                         </div>
                     </div>
 
-                    {/* Mission Details */}
-                    <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
-                        <h3 className="font-semibold text-slate-900 mb-4">Mission Details</h3>
-                        {selectedMission ? (
-                            <div className="space-y-4">
-                                <div>
-                                    <p className="text-slate-700 leading-relaxed">{selectedMission.statement}</p>
-                                </div>
+                    <div className="space-y-3">
+                        <Button
+                            className="w-full"
+                            onClick={() => {
+                                // Save preferences to localStorage
+                                const userId = localStorage.getItem('sb-user-id') || 'anonymous';
+                                localStorage.setItem(`mission_connection_${userId}`, JSON.stringify({
+                                    missionId: selectedMission.id,
+                                    shareConsent,
+                                    wantsToLead,
+                                    wantsToIntegrate,
+                                    savedAt: new Date().toISOString(),
+                                }));
+                                toast({
+                                    title: "Preferences saved!",
+                                    description: shareConsent ? "We'll connect you with others soon." : "You can update these anytime.",
+                                });
+                                navigate(returnPath);
+                            }}
+                        >
+                            <ArrowRight className="w-4 h-4 mr-2" />
+                            Continue
+                        </Button>
 
-                                {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
-                                    <div>
-                                        <h4 className="font-semibold text-slate-900 mb-2">Existing Projects</h4>
-                                        <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                                            {selectedMission.existingProjects.map((project, idx) => (
-                                                <li key={idx}>{project}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                <div>
-                                    <h4 className="font-semibold text-slate-900 mb-2">Mission Chat</h4>
-                                    {selectedMission.chatLink ? (
-                                        <a
-                                            href={selectedMission.chatLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-600 hover:underline text-sm"
-                                        >
-                                            Join the conversation →
-                                        </a>
-                                    ) : (
-                                        <p className="text-sm text-slate-400">No chat link available</p>
-                                    )}
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="flex items-center justify-center h-48 text-slate-400">
-                                <div className="text-center">
-                                    <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                                    <p>Select a mission to see details</p>
-                                </div>
-                            </div>
-                        )}
+                        <p className="text-xs text-center text-slate-400">
+                            You can always come back and change your mission or update these preferences.
+                        </p>
                     </div>
                 </div>
-            </div>
+            ) : (
+                /* Main Wizard Content */
+                <div className="max-w-7xl mx-auto px-4 py-6">
+                    {/* Top Row: 4 Columns */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <SelectionColumn
+                            title="Select a Pillar"
+                            description="Choose one of the pillars to explore"
+                            items={PILLARS.map(p => ({ id: p.id, title: p.title }))}
+                            selectedId={selectedPillarId}
+                            onSelect={handlePillarSelect}
+                        />
+                        <SelectionColumn
+                            title="Select a Focus Area"
+                            description={selectedPillarId ? `Choose a focus area within the ${PILLARS.find(p => p.id === selectedPillarId)?.title}` : "First select a pillar"}
+                            items={focusAreas.map(fa => ({ id: fa.id, title: fa.title }))}
+                            selectedId={selectedFocusAreaId}
+                            onSelect={handleFocusAreaSelect}
+                            disabled={!selectedPillarId}
+                        />
+                        <SelectionColumn
+                            title="Select a Challenge"
+                            description="Choose a key challenge within the selected focus area"
+                            items={challenges.map(c => ({ id: c.id, title: c.title }))}
+                            selectedId={selectedChallengeId}
+                            onSelect={handleChallengeSelect}
+                            disabled={!selectedFocusAreaId}
+                        />
+                        <SelectionColumn
+                            title="Select a Desired Outcome"
+                            description="Choose an Integral Development Goal (IDG)"
+                            items={outcomes.map(o => ({ id: o.id, title: o.title }))}
+                            selectedId={selectedOutcomeId}
+                            onSelect={handleOutcomeSelect}
+                            disabled={!selectedChallengeId}
+                        />
+                    </div>
+
+                    {/* Bottom Row: Mission Selection + Details */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        {/* Mission List */}
+                        <div className="bg-slate-50 rounded-xl p-4">
+                            <h3 className="font-semibold text-slate-900 mb-1">Select a Mission</h3>
+                            <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
+                            <div className="space-y-2 max-h-80 overflow-y-auto">
+                                {missions.length === 0 && (
+                                    <p className="text-sm text-slate-400 italic">Complete selections above first</p>
+                                )}
+                                {missions.map((mission) => (
+                                    <button
+                                        key={mission.id}
+                                        onClick={() => handleMissionSelect(mission.id)}
+                                        className={`
+                    w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
+                    ${selectedMissionId === mission.id
+                                                ? "bg-blue-500 text-white"
+                                                : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
+                                            }
+                  `}
+                                    >
+                                        {mission.title}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Mission Details */}
+                        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
+                            <h3 className="font-semibold text-slate-900 mb-4">Mission Details</h3>
+                            {selectedMission ? (
+                                <div className="space-y-4">
+                                    <div>
+                                        <p className="text-slate-700 leading-relaxed">{selectedMission.statement}</p>
+                                    </div>
+
+                                    {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
+                                        <div>
+                                            <h4 className="font-semibold text-slate-900 mb-2">Existing Projects</h4>
+                                            <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                                {selectedMission.existingProjects.map((project, idx) => (
+                                                    <li key={idx}>{project}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    <div>
+                                        <h4 className="font-semibold text-slate-900 mb-2">Mission Chat</h4>
+                                        {selectedMission.chatLink ? (
+                                            <a
+                                                href={selectedMission.chatLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-blue-600 hover:underline text-sm"
+                                            >
+                                                Join the conversation →
+                                            </a>
+                                        ) : (
+                                            <p className="text-sm text-slate-400">No chat link available</p>
+                                        )}
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex items-center justify-center h-48 text-slate-400">
+                                    <div className="text-center">
+                                        <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                        <p>Select a mission to see details</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
