@@ -75,13 +75,49 @@ const CoreLoopHome = () => {
             // Load game profile
             const { data: profile } = await supabase
                 .from('game_profiles')
-                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count')
+                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count, genius_stage')
                 .eq('id', profileId)
                 .single();
 
             if (profile) {
                 setLevel(profile.level || 1);
                 setXpTotal(profile.xp_total || 0);
+                setPracticeCount(profile.practice_count || 0);
+
+                // Set genius stage from database (with safe fallback)
+                const validStages = ['entry', 'articulate', 'useful', 'monetize', 'complete'] as const;
+                const storedStage = (profile as any).genius_stage;
+                if (storedStage && validStages.includes(storedStage)) {
+                    setGeniusStage(storedStage as typeof geniusStage);
+                }
+
+                // Build completed steps from profile data
+                const steps: typeof completedSteps = [];
+                if (profile.last_zog_snapshot_id) {
+                    steps.push({
+                        id: 'zog-complete',
+                        title: 'Zone of Genius Discovery',
+                        completedAt: new Date().toISOString(),
+                        xpEarned: 50
+                    });
+                }
+                if (profile.last_qol_snapshot_id) {
+                    steps.push({
+                        id: 'qol-complete',
+                        title: 'Quality of Life Mapping',
+                        completedAt: new Date().toISOString(),
+                        xpEarned: 50
+                    });
+                }
+                if ((profile.practice_count || 0) > 0) {
+                    steps.push({
+                        id: 'first-action',
+                        title: 'First Transformation',
+                        completedAt: new Date().toISOString(),
+                        xpEarned: 25
+                    });
+                }
+                setCompletedSteps(steps);
 
                 // Check onboarding state
                 const zogComplete = !!profile.last_zog_snapshot_id;
