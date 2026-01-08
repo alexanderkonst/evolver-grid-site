@@ -24,14 +24,21 @@ import { Textarea } from "@/components/ui/textarea";
 
 const AI_PROMPT = `Based on everything you know about me from our conversations, please summarize my life mission or contribution to the world.
 
-Please describe in 2-3 paragraphs:
-1. What is my core mission or purpose based on what I've shared with you? What change do I want to see in the world?
-2. What specific problems or challenges am I most passionate about solving?
-3. What unique skills, experiences, or perspectives do I bring to this mission?
+Please organize my mission(s) in a HOLONIC structure:
 
-Be specific about the domains I care about (e.g., environment, governance, education, health, technology, consciousness, etc.) and the scale of impact I seem to envision (local community, national, global).
+1. **Higher-Level Organizing Mission** (1 paragraph)
+   What is my overarching mission or purpose? This is the "meta-mission" that encompasses everything I care about.
 
-Note: I'm using your response to match myself to a mission taxonomy in a personal development tool.`;
+2. **Key Nested Missions** (2-4 bullets)
+   What are the distinct key missions that nest within this higher-level mission? Each should be specific enough to stand on its own, yet clearly part of the larger whole.
+
+For each mission, be specific about:
+- The domain (environment, governance, education, health, technology, consciousness, etc.)
+- The change I want to create
+- The unique perspective or skills I bring
+
+Note: I'm using your response to match myself to a mission taxonomy in a personal development tool. Missions can always be refined — this is a starting point, not a final commitment.`;
+
 
 type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
 
