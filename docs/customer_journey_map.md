@@ -94,13 +94,12 @@ The user realizes: *I am the Tamagotchi. I grow MYSELF as my character.*
 
 | Phase Complete | What Unlocks |
 |----------------|-------------|
-| **ZoG Done** | Game World + QoL (recommended) + Genius path (available) |
-| **QoL Done** | Recommendations active + All 5 vectors visible |
+| **ZoG Done** | QoL assessment (required next step) |
+| **QoL Done** | Game World + Transformation Space + Profile Space |
 | **First Action** | XP system + Progress tracking |
-| **5 Actions** | Skill trees visible |
-| **Level 3** | Monetization path teaser |
+| **Genius Offer** | Matchmaking Space + Startup Co-op + Marketplace Shop |
 
-*QoL is the recommended next step after ZoG, but user can explore other unlocks.*
+*See `customer_journey_progression.md` for detailed unlock conditions.*
 
 ---
 
@@ -360,18 +359,18 @@ Home                           Body + Emotions + Spirit
 
 ---
 
-### 3. When Does User First See Skill Trees?
+### 3. When Does User First See Growth Paths?
 
-**After 5 completed actions.**
+**After completing QoL assessment.**
 
-| Actions | What's Visible |
+| Milestone | What's Visible |
 |---------|----------------|
-| 0 | Just "My Next Move" |
-| 1-4 | XP, level, streak |
-| 5+ | Skill trees unlock |
-| 10+ | Full navigation |
+| ZoG Done | QoL Assessment only |
+| QoL Done | Game World, Transformation Space, Profile Space |
+| First Action | XP, level, streak |
+| Genius Offer Created | Matchmaking, Startup Co-op, Marketplace Shop |
 
-**Why**: Early users need simplicity. Skill trees add complexity. Earn before reveal.
+**Why**: Progressive unlock creates investment and reduces overwhelm.
 
 ---
 
@@ -405,13 +404,15 @@ Home                           Body + Emotions + Spirit
 
 ## Next Steps
 
-1. ✅ Customer Journey Map — mostly complete
-2. 🔜 Vector Sequences — Alexander to define growth paths per vector
-3. 🔜 First Actions library — one easy action per domain
-4. 🔜 Inner→Outer infographic — visual asset creation
+1. ✅ Customer Journey Map — complete
+2. ✅ Growth Paths — implemented with upgrades
+3. ✅ First Actions — library content available
+4. 🔜 Growth Path → QoL domain mapping — show in first video of each path
+5. 🔜 Two-action recommendation system — continue genius discovery OR transformation
+6. 🔜 Genius Discovery continuation — articulate → make useful → monetize
 
 ---
 
-*Customer Journey Map v5.0*
-*With answered design questions*
-*Updated: 2025-01-05*
+*Customer Journey Map v6.0*
+*Aligned with customer_journey_progression.md*
+*Updated: 2026-01-08*
