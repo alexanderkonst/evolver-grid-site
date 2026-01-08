@@ -56,8 +56,8 @@ const PROFILE_MODULES: ModuleCard[] = [
         title: "Asset Mapping",
         description: "Map your skills, tools, and resources",
         icon: <User className="w-6 h-6" />,
-        path: "/asset-mapping",
-        status: "coming-soon"
+        path: "/asset-mapping?from=game&return=/game/profile",
+        status: "available"
     }
 ];
 

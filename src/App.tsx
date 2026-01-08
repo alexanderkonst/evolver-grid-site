@@ -52,6 +52,9 @@ import CoopSpace from "./pages/spaces/CoopSpace";
 // Mission Discovery
 import MissionDiscoveryLanding from "./modules/mission-discovery/MissionDiscoveryLanding";
 import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscoveryWizard";
+// Asset Mapping
+import AssetMappingLanding from "./modules/asset-mapping/AssetMappingLanding";
+import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +117,9 @@ const App = () => (
             {/* Mission Discovery */}
             <Route path="/mission-discovery" element={<MissionDiscoveryLanding />} />
             <Route path="/mission-discovery/wizard" element={<MissionDiscoveryWizard />} />
+            {/* Asset Mapping */}
+            <Route path="/asset-mapping" element={<AssetMappingLanding />} />
+            <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
