@@ -52,6 +52,32 @@ Some guy managed to get knighted by the King through absurd social engineering. 
 
 ---
 
+## The Playlist Lead Magnet
+
+**Day 1:** QR code + sign: "Dope Deep Work Playlist"
+
+- Color 1 (e.g., blue)
+- Ask people before giving QR: "Want a dope deep work playlist?"
+- Hand them the QR → they scan → they get value
+- That's it. No ask. Just give.
+
+**Day 2:** Different color sign (e.g., orange)
+
+- Same spot, same guy
+- New QR: "NS 2.0 Member Portal — Prototype"
+- People already recognize you as "playlist guy"
+- Reciprocity activated: they got value, now they want to give back
+- They scan → join → provide feedback → feel good
+
+**Why It Works:**
+- First give, then ask (reciprocity)
+- Two touches before the sell
+- Color change signals "new thing"
+- Consent-based (you ask before giving)
+- If they listened to the playlist and loved it → warm lead
+
+---
+
 ## Future Hacks
 
 (Add more as they emerge)
