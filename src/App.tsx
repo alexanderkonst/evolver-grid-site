@@ -19,6 +19,7 @@ import GeniusOffer from "./pages/GeniusOffer";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminGeniusOffers from "./pages/AdminGeniusOffers";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
+import AdminMissionSync from "./pages/AdminMissionSync";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import Today from "./pages/Today";
@@ -90,6 +91,7 @@ const App = () => (
             <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
             <Route path="/genius-admin" element={<AdminGeniusOffers />} />
             <Route path="/admin/mission-participants" element={<AdminMissionParticipants />} />
+            <Route path="/admin/mission-sync" element={<AdminMissionSync />} />
             <Route path="/intelligences" element={<MultipleIntelligences />} />
             <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
             {/* Game Routes */}
