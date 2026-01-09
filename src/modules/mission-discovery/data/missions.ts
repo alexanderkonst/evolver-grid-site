@@ -1692,8 +1692,8 @@ export const MISSIONS: Mission[] = [
 {
         id: "mis-infra-fa10-13",
         outcomeId: "infra-fa-10-c-02-o-02",
-        title: "Stealth Mode",
-        statement: "To be defined.",
+        title: "Define Monitoring Roadmap",
+        statement: "Define a phased roadmap for piloting real-time monitoring and optimization systems across infrastructure projects.",
         existingProjects: []
     },
 {
