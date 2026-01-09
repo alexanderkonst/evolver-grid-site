@@ -850,847 +850,847 @@ export const MISSIONS: Mission[] = [
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-01",
+        id: "infrastructure-fa01-01",
         outcomeId: "infrastructure-fa-01-c-01-o-01",
         title: "Build Toolkits",
         statement: "Develop an open-source toolkit and database of integrative infrastructure design best practices and case studies.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-02",
+        id: "infrastructure-fa01-02",
         outcomeId: "infrastructure-fa-01-c-01-o-01",
         title: "Integrate Policies",
         statement: "Integrate integrative design principles into curricula, standards, and policies through partnerships.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-03",
+        id: "infrastructure-fa01-03",
         outcomeId: "infrastructure-fa-01-c-01-o-01",
         title: "Promote Integrative Design",
         statement: "Launch a global awareness campaign showcasing the benefits and successful examples of integrative infrastructure design.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-04",
+        id: "infrastructure-fa01-04",
         outcomeId: "infrastructure-fa-01-c-01-o-02",
         title: "Design Curriculum",
         statement: "Create a modular, adaptable training program and certification scheme for integrative infrastructure design.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-05",
+        id: "infrastructure-fa01-05",
         outcomeId: "infrastructure-fa-01-c-01-o-02",
         title: "Build Networks",
         statement: "Develop a global network of training centers and online learning platforms.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-06",
+        id: "infrastructure-fa01-06",
         outcomeId: "infrastructure-fa-01-c-01-o-02",
         title: "Connect Mentors",
         statement: "Establish a mentorship program connecting experienced integrative design practitioners with aspiring professionals.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-07",
+        id: "infrastructure-fa01-07",
         outcomeId: "infrastructure-fa-01-c-02-o-01",
         title: "Research Models",
         statement: "Identify best practices, technologies, and governance models for decentralized infrastructure management.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-08",
+        id: "infrastructure-fa01-08",
         outcomeId: "infrastructure-fa-01-c-02-o-01",
         title: "Create Platforms",
         statement: "Develop a toolkit and platform to support communities in designing, implementing, and managing decentralized infrastructure.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-09",
+        id: "infrastructure-fa01-09",
         outcomeId: "infrastructure-fa-01-c-02-o-01",
         title: "Launch Infrastructure Fund",
         statement: "Launch a global fund and accelerator program to support community-led decentralized infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-10",
+        id: "infrastructure-fa01-10",
         outcomeId: "infrastructure-fa-01-c-02-o-02",
         title: "Share Knowledge Platform",
         statement: "Create an online platform for sharing experiences, challenges, solutions, and resources related to decentralized infrastructure.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-11",
+        id: "infrastructure-fa01-11",
         outcomeId: "infrastructure-fa-01-c-02-o-02",
         title: "Host Knowledge Events",
         statement: "Organize conferences, workshops, and exchanges to facilitate knowledge sharing and collaboration.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa01-12",
+        id: "infrastructure-fa01-12",
         outcomeId: "infrastructure-fa-01-c-02-o-02",
         title: "Curate Case Studies",
         statement: "Develop a repository of case studies, best practices, and lessons learned from decentralized infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-01",
+        id: "infrastructure-fa02-01",
         outcomeId: "infrastructure-fa-02-c-01-o-01",
         title: "Design Hub Model",
         statement: "Develop a replicable model, curriculum, and guidelines for creating and operating integral learning centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-02",
+        id: "infrastructure-fa02-02",
         outcomeId: "infrastructure-fa-02-c-01-o-01",
         title: "Identify Learning Centers",
         statement: "Launch an initiative to identify, support, and connect existing and potential integral learning centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-03",
+        id: "infrastructure-fa02-03",
         outcomeId: "infrastructure-fa-02-c-01-o-01",
         title: "Fund Learning Centers",
         statement: "Create a grant program and investment fund to support the establishment of new integral learning centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-04",
+        id: "infrastructure-fa02-04",
         outcomeId: "infrastructure-fa-02-c-01-o-02",
         title: "Lead Outreach",
         statement: "Develop and implement an outreach and engagement strategy to attract diverse participants.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-05",
+        id: "infrastructure-fa02-05",
         outcomeId: "infrastructure-fa-02-c-01-o-02",
         title: "Build Ambassador Network",
         statement: "Create a network of ambassadors, influencers, and partners to promote integral learning centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-06",
+        id: "infrastructure-fa02-06",
         outcomeId: "infrastructure-fa-02-c-01-o-02",
         title: "Build Digital Connections",
         statement: "Establish a digital platform and mobile app to connect people with integral learning centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-07",
+        id: "infrastructure-fa02-07",
         outcomeId: "infrastructure-fa-02-c-02-o-01",
         title: "Build Media Platform",
         statement: "Create a global, multilingual integral media platform featuring diverse content formats.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-08",
+        id: "infrastructure-fa02-08",
         outcomeId: "infrastructure-fa-02-c-02-o-01",
         title: "Media Partner",
         statement: "Develop partnerships with mainstream media outlets to produce and distribute integral-themed content.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-09",
+        id: "infrastructure-fa02-09",
         outcomeId: "infrastructure-fa-02-c-02-o-01",
         title: "Amplify Social Media",
         statement: "Launch a social media campaign and influencer network to amplify integral voices and perspectives.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-10",
+        id: "infrastructure-fa02-10",
         outcomeId: "infrastructure-fa-02-c-02-o-02",
         title: "Build Integral Library",
         statement: "Establish an open-source knowledge base and library of integral resources.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-11",
+        id: "infrastructure-fa02-11",
         outcomeId: "infrastructure-fa-02-c-02-o-02",
         title: "Validate Integral Resources",
         statement: "Create a network of integral education and research institutions to produce and validate integral resources.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa02-12",
+        id: "infrastructure-fa02-12",
         outcomeId: "infrastructure-fa-02-c-02-o-02",
         title: "Translate Resources",
         statement: "Develop a platform for curating, translating, and adapting integral resources for diverse audiences.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-01",
+        id: "infrastructure-fa03-01",
         outcomeId: "infrastructure-fa-03-c-01-o-01",
         title: "Guide Co-creation",
         statement: "Develop a toolkit and methodology for community-led infrastructure design and development.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-02",
+        id: "infrastructure-fa03-02",
         outcomeId: "infrastructure-fa-03-c-01-o-01",
         title: "Identify Communities",
         statement: "Launch an initiative to identify, support, and connect communities interested in co-creating infrastructures.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-03",
+        id: "infrastructure-fa03-03",
         outcomeId: "infrastructure-fa-03-c-01-o-01",
         title: "Resource Hub",
         statement: "Create a grant program and resource hub to support community-driven infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-04",
+        id: "infrastructure-fa03-04",
         outcomeId: "infrastructure-fa-03-c-01-o-02",
         title: "Train Ambassadors",
         statement: "Develop a training program and certification for community infrastructure ambassadors and facilitators.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-05",
+        id: "infrastructure-fa03-05",
         outcomeId: "infrastructure-fa-03-c-01-o-02",
         title: "Ambassador Hub",
         statement: "Create a platform for connecting ambassadors, facilitators, and communities to share knowledge.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-06",
+        id: "infrastructure-fa03-06",
         outcomeId: "infrastructure-fa-03-c-01-o-02",
         title: "Mentor Matcher",
         statement: "Launch a mentorship program pairing experienced ambassadors and facilitators with emerging ones.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-07",
+        id: "infrastructure-fa03-07",
         outcomeId: "infrastructure-fa-03-c-02-o-01",
         title: "Exchange Platform",
         statement: "Develop a user-friendly, multilingual platform for sharing case studies, best practices, and lessons learned.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-08",
+        id: "infrastructure-fa03-08",
         outcomeId: "infrastructure-fa-03-c-02-o-01",
         title: "Content Partner",
         statement: "Establish partnerships to source and validate content for the platform.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-09",
+        id: "infrastructure-fa03-09",
         outcomeId: "infrastructure-fa-03-c-02-o-01",
         title: "Design Incentives",
         statement: "Implement a reward system to incentivize knowledge sharing and collaboration on the platform.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-10",
+        id: "infrastructure-fa03-10",
         outcomeId: "infrastructure-fa-03-c-02-o-02",
         title: "Match Cross-Cultural Partners",
         statement: "Create a matchmaking platform to connect communities with complementary skills, resources, and experiences.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-11",
+        id: "infrastructure-fa03-11",
         outcomeId: "infrastructure-fa-03-c-02-o-02",
         title: "Collaboration Framework",
         statement: "Develop a framework for effective cross-cultural collaboration on infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa03-12",
+        id: "infrastructure-fa03-12",
         outcomeId: "infrastructure-fa-03-c-02-o-02",
         title: "Host Exchanges",
         statement: "Launch events and workshops to foster cross-cultural learning and collaboration.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-01",
+        id: "infrastructure-fa04-01",
         outcomeId: "infrastructure-fa-04-c-01-o-01",
         title: "Research Design Principles",
         statement: "Conduct research to identify key principles, best practices, and case studies of intersubjective/interobjective design.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-02",
+        id: "infrastructure-fa04-02",
         outcomeId: "infrastructure-fa-04-c-01-o-01",
         title: "Co-create Framework",
         statement: "Co-create a framework and guidelines for intersubjective and interobjective infrastructure design.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-03",
+        id: "infrastructure-fa04-03",
         outcomeId: "infrastructure-fa-04-c-01-o-01",
         title: "Drive Awareness",
         statement: "Launch a campaign to promote awareness and adoption of the framework among professionals.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-04",
+        id: "infrastructure-fa04-04",
         outcomeId: "infrastructure-fa-04-c-01-o-02",
         title: "Build Toolkits",
         statement: "Develop a toolkit and resources to support the application of intersubjective and interobjective design principles.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-05",
+        id: "infrastructure-fa04-05",
         outcomeId: "infrastructure-fa-04-c-01-o-02",
         title: "Lead Pilots",
         statement: "Create a network of pilot projects and living laboratories to test and demonstrate effectiveness.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-06",
+        id: "infrastructure-fa04-06",
         outcomeId: "infrastructure-fa-04-c-01-o-02",
         title: "Integration Partner",
         statement: "Establish partnerships to integrate intersubjective and interobjective design principles into projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-07",
+        id: "infrastructure-fa04-07",
         outcomeId: "infrastructure-fa-04-c-02-o-01",
         title: "Research Metrics",
         statement: "Conduct research to identify key indicators and metrics for assessing the health and evolution of social systems.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-08",
+        id: "infrastructure-fa04-08",
         outcomeId: "infrastructure-fa-04-c-02-o-01",
         title: "Develop Tools",
         statement: "Develop tools and platforms for collecting, analyzing, and visualizing data on integrative metrics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-09",
+        id: "infrastructure-fa04-09",
         outcomeId: "infrastructure-fa-04-c-02-o-01",
         title: "Metrics Alliance",
         statement: "Create a global network of organizations and institutions committed to using integrative metrics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-10",
+        id: "infrastructure-fa04-10",
         outcomeId: "infrastructure-fa-04-c-02-o-02",
         title: "Define Methodology",
         statement: "Develop a framework and methodology for assessing and comparing the evolution of social systems.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-11",
+        id: "infrastructure-fa04-11",
         outcomeId: "infrastructure-fa-04-c-02-o-02",
         title: "Build Data Platform",
         statement: "Launch a platform for collecting, aggregating, and visualizing data from integrative metrics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa04-12",
+        id: "infrastructure-fa04-12",
         outcomeId: "infrastructure-fa-04-c-02-o-02",
         title: "Publish Annual Report",
         statement: "Publish an annual report on the state and evolution of social systems and institutions worldwide.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-01",
+        id: "infrastructure-fa05-01",
         outcomeId: "infrastructure-fa-05-c-01-o-01",
         title: "Design Health Framework",
         statement: "Develop a comprehensive framework for integrative health and well-being.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-02",
+        id: "infrastructure-fa05-02",
         outcomeId: "infrastructure-fa-05-c-01-o-01",
         title: "Community Toolkit",
         statement: "Create a toolkit and resources to support communities in implementing integrative health frameworks.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-03",
+        id: "infrastructure-fa05-03",
         outcomeId: "infrastructure-fa-05-c-01-o-01",
         title: "Wellness Network",
         statement: "Launch a global network of communities and organizations committed to integrative health.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-04",
+        id: "infrastructure-fa05-04",
         outcomeId: "infrastructure-fa-05-c-01-o-02",
         title: "Training Lead",
         statement: "Develop a multidisciplinary training program and certification in integrative health and well-being.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-05",
+        id: "infrastructure-fa05-05",
         outcomeId: "infrastructure-fa-05-c-01-o-02",
         title: "Curriculum Partner",
         statement: "Establish partnerships to integrate integrative health and well-being into curricula and standards.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-06",
+        id: "infrastructure-fa05-06",
         outcomeId: "infrastructure-fa-05-c-01-o-02",
         title: "Best Practices Hub",
         statement: "Create a global platform for sharing best practices, research, and resources in integrative health.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-07",
+        id: "infrastructure-fa05-07",
         outcomeId: "infrastructure-fa-05-c-02-o-01",
         title: "Design Service Models",
         statement: "Develop low-cost, scalable models for delivering integrative health services in underserved communities.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-08",
+        id: "infrastructure-fa05-08",
         outcomeId: "infrastructure-fa-05-c-02-o-01",
         title: "Health Fund",
         statement: "Create a global fund and partnership network to support integrative health programs in underserved communities.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-09",
+        id: "infrastructure-fa05-09",
         outcomeId: "infrastructure-fa-05-c-02-o-01",
         title: "Advocate for Equity",
         statement: "Launch a global campaign to advocate for equitable access to integrative health and well-being services.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-10",
+        id: "infrastructure-fa05-10",
         outcomeId: "infrastructure-fa-05-c-02-o-02",
         title: "Design Centers",
         statement: "Develop a replicable model and toolkit for establishing community-based integrative health centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-11",
+        id: "infrastructure-fa05-11",
         outcomeId: "infrastructure-fa-05-c-02-o-02",
         title: "Center Support",
         statement: "Create a global network and support system for community-based integrative health centers.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa05-12",
+        id: "infrastructure-fa05-12",
         outcomeId: "infrastructure-fa-05-c-02-o-02",
         title: "Mentor Centers",
         statement: "Launch a mentorship program connecting established centers with emerging ones.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-01",
+        id: "infrastructure-fa06-01",
         outcomeId: "infrastructure-fa-06-c-01-o-01",
         title: "Convene Summit",
         statement: "Convene a global summit to develop a shared vision and principles for integral tech development.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-02",
+        id: "infrastructure-fa06-02",
         outcomeId: "infrastructure-fa-06-c-01-o-01",
         title: "Research Emerging Tech",
         statement: "Create a multidisciplinary research network to explore integral approaches to emerging technologies.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-03",
+        id: "infrastructure-fa06-03",
         outcomeId: "infrastructure-fa-06-c-01-o-01",
         title: "Governance Tools",
         statement: "Develop tools, guidelines, and best practices for implementing the integral framework in emerging technologies.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-04",
+        id: "infrastructure-fa06-04",
         outcomeId: "infrastructure-fa-06-c-01-o-02",
         title: "Certify Tech Ethics",
         statement: "Develop an assessment and certification program for evaluating technology companies' alignment with integral ethics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-05",
+        id: "infrastructure-fa06-05",
         outcomeId: "infrastructure-fa-06-c-01-o-02",
         title: "Ethics Platform",
         statement: "Create a global platform for sharing best practices and resources on integral approaches to technology.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-06",
+        id: "infrastructure-fa06-06",
         outcomeId: "infrastructure-fa-06-c-01-o-02",
         title: "Promote Tech Ethics",
         statement: "Launch a global campaign to promote the adoption of integral principles and ethics in the technology sector.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-07",
+        id: "infrastructure-fa06-07",
         outcomeId: "infrastructure-fa-06-c-02-o-01",
         title: "Map Opportunities",
         statement: "Conduct a mapping and analysis of convergent technology opportunities and challenges.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-08",
+        id: "infrastructure-fa06-08",
         outcomeId: "infrastructure-fa-06-c-02-o-01",
         title: "Scale Solutions",
         statement: "Develop a platform and ecosystem for identifying, supporting, and scaling convergent technology solutions.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-09",
+        id: "infrastructure-fa06-09",
         outcomeId: "infrastructure-fa-06-c-02-o-01",
         title: "Run Challenge Prizes",
         statement: "Launch a global challenge and incentive program to catalyze convergent technology solutions.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-10",
+        id: "infrastructure-fa06-10",
         outcomeId: "infrastructure-fa-06-c-02-o-02",
         title: "Design Innovation Hubs",
         statement: "Develop a model and framework for establishing convergent technology research and innovation hubs.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-11",
+        id: "infrastructure-fa06-11",
         outcomeId: "infrastructure-fa-06-c-02-o-02",
         title: "Connect Hubs",
         statement: "Create a global network and support system for convergent technology research and innovation hubs.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa06-12",
+        id: "infrastructure-fa06-12",
         outcomeId: "infrastructure-fa-06-c-02-o-02",
         title: "Fund Learning Centers",
         statement: "Launch a global fund and partnership program to support convergent technology hubs.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-01",
+        id: "infrastructure-fa07-01",
         outcomeId: "infrastructure-fa-07-c-01-o-01",
         title: "Design Financing Framework",
         statement: "Develop a comprehensive framework and standards for integral financing.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-02",
+        id: "infrastructure-fa07-02",
         outcomeId: "infrastructure-fa-07-c-01-o-01",
         title: "Bank Alliance",
         statement: "Create a global alliance of financial institutions committed to integral financing.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-03",
+        id: "infrastructure-fa07-03",
         outcomeId: "infrastructure-fa-07-c-01-o-01",
         title: "Promote Financing Standards",
         statement: "Launch a global campaign to promote the adoption of integral financing frameworks and standards.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-04",
+        id: "infrastructure-fa07-04",
         outcomeId: "infrastructure-fa-07-c-01-o-02",
         title: "Connect Projects",
         statement: "Develop a global platform for connecting integral infrastructure projects with integral financing sources.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-05",
+        id: "infrastructure-fa07-05",
         outcomeId: "infrastructure-fa-07-c-01-o-02",
         title: "Infra Fund",
         statement: "Create a global fund dedicated to financing integral infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-06",
+        id: "infrastructure-fa07-06",
         outcomeId: "infrastructure-fa-07-c-01-o-02",
         title: "Expert Network",
         statement: "Establish a global network of integral financing experts to support integral infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-07",
+        id: "infrastructure-fa07-07",
         outcomeId: "infrastructure-fa-07-c-02-o-01",
         title: "Set Selection Criteria",
         statement: "Develop criteria for selecting integral infrastructure projects to receive funding.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-08",
+        id: "infrastructure-fa07-08",
         outcomeId: "infrastructure-fa-07-c-02-o-01",
         title: "Pool Funding",
         statement: "Establish partnerships to create a pooled fund for integral infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-09",
+        id: "infrastructure-fa07-09",
         outcomeId: "infrastructure-fa-07-c-02-o-01",
         title: "Host Competition",
         statement: "Launch a global competition to identify and support high-potential integral infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-10",
+        id: "infrastructure-fa07-10",
         outcomeId: "infrastructure-fa-07-c-02-o-02",
         title: "Build Funder Platform",
         statement: "Develop a platform for connecting integral infrastructure investors and funders.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-11",
+        id: "infrastructure-fa07-11",
         outcomeId: "infrastructure-fa-07-c-02-o-02",
         title: "Build Opportunity Database",
         statement: "Create a global database of integral infrastructure investment opportunities and best practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa07-12",
+        id: "infrastructure-fa07-12",
         outcomeId: "infrastructure-fa-07-c-02-o-02",
         title: "Educate Investors",
         statement: "Launch an education and certification program for integral infrastructure investors and funders.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-01",
+        id: "infrastructure-fa08-01",
         outcomeId: "infrastructure-fa-08-c-01-o-01",
         title: "Define Regenerative Principles",
         statement: "Develop regenerative and resilient design principles and standards for infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-02",
+        id: "infrastructure-fa08-02",
         outcomeId: "infrastructure-fa-08-c-01-o-01",
         title: "Regen Alliance",
         statement: "Create a global alliance of infrastructure organizations committed to regenerative and resilient design.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-03",
+        id: "infrastructure-fa08-03",
         outcomeId: "infrastructure-fa-08-c-01-o-01",
         title: "Promote Regenerative Design",
         statement: "Launch a global campaign to promote the adoption of regenerative and resilient design principles.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-04",
+        id: "infrastructure-fa08-04",
         outcomeId: "infrastructure-fa-08-c-01-o-02",
         title: "Restoration Platform",
         statement: "Develop a global platform for connecting regenerative infrastructure projects with funding and support.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-05",
+        id: "infrastructure-fa08-05",
         outcomeId: "infrastructure-fa-08-c-01-o-02",
         title: "Restoration Fund",
         statement: "Create a global fund dedicated to financing regenerative infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-06",
+        id: "infrastructure-fa08-06",
         outcomeId: "infrastructure-fa-08-c-01-o-02",
         title: "Restoration Experts",
         statement: "Establish a global network of regenerative infrastructure experts to support projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-07",
+        id: "infrastructure-fa08-07",
         outcomeId: "infrastructure-fa-08-c-02-o-01",
         title: "Define Resilience Framework",
         statement: "Develop a framework and toolkit for building adaptive capacity and resilience through infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-08",
+        id: "infrastructure-fa08-08",
         outcomeId: "infrastructure-fa-08-c-02-o-01",
         title: "Share Resilience Knowledge",
         statement: "Create a global knowledge-sharing platform for communities implementing resilient infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-09",
+        id: "infrastructure-fa08-09",
         outcomeId: "infrastructure-fa-08-c-02-o-01",
         title: "Train Resilience Practitioners",
         statement: "Launch a global training program for resilient infrastructure professionals and practitioners.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-10",
+        id: "infrastructure-fa08-10",
         outcomeId: "infrastructure-fa-08-c-02-o-02",
         title: "Build Resilience Rating",
         statement: "Develop a resilience rating system for infrastructure projects, considering environmental, social, and economic factors.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-11",
+        id: "infrastructure-fa08-11",
         outcomeId: "infrastructure-fa-08-c-02-o-02",
         title: "Rating Alliance",
         statement: "Create a global alliance of infrastructure organizations committed to implementing the resilience rating system.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa08-12",
+        id: "infrastructure-fa08-12",
         outcomeId: "infrastructure-fa-08-c-02-o-02",
         title: "Promote Rating System",
         statement: "Launch a global campaign to promote the adoption of the resilience rating system.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-01",
+        id: "infrastructure-fa09-01",
         outcomeId: "infrastructure-fa-09-c-01-o-01",
         title: "Define Mobility Framework",
         statement: "Develop a framework for sustainable and inclusive mobility in cities.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-02",
+        id: "infrastructure-fa09-02",
         outcomeId: "infrastructure-fa-09-c-01-o-01",
         title: "City Network",
         statement: "Create a global network of cities committed to sustainable and inclusive mobility.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-03",
+        id: "infrastructure-fa09-03",
         outcomeId: "infrastructure-fa-09-c-01-o-01",
         title: "Mobility Campaign",
         statement: "Launch a campaign to promote sustainable and inclusive mobility practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-04",
+        id: "infrastructure-fa09-04",
         outcomeId: "infrastructure-fa-09-c-01-o-02",
         title: "Solution Platform",
         statement: "Develop a platform for sharing sustainable mobility solutions and best practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-05",
+        id: "infrastructure-fa09-05",
         outcomeId: "infrastructure-fa-09-c-01-o-02",
         title: "Mobility Fund",
         statement: "Create a fund to support sustainable mobility projects in underserved communities.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-06",
+        id: "infrastructure-fa09-06",
         outcomeId: "infrastructure-fa-09-c-01-o-02",
         title: "Provide Technical Assistance",
         statement: "Establish a network of sustainable mobility experts to provide technical assistance.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-07",
+        id: "infrastructure-fa09-07",
         outcomeId: "infrastructure-fa-09-c-02-o-01",
         title: "Define Digital Framework",
         statement: "Develop a framework for inclusive and resilient digital infrastructure.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-08",
+        id: "infrastructure-fa09-08",
         outcomeId: "infrastructure-fa-09-c-02-o-01",
         title: "Digital Alliance",
         statement: "Create an alliance committed to implementing inclusive and resilient digital infrastructure frameworks.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-09",
+        id: "infrastructure-fa09-09",
         outcomeId: "infrastructure-fa-09-c-02-o-01",
         title: "Digital Campaign",
         statement: "Launch a campaign to promote inclusive and resilient digital infrastructure practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-10",
+        id: "infrastructure-fa09-10",
         outcomeId: "infrastructure-fa-09-c-02-o-02",
         title: "Internet Platform",
         statement: "Develop a platform for sharing affordable and reliable internet access solutions.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-11",
+        id: "infrastructure-fa09-11",
         outcomeId: "infrastructure-fa-09-c-02-o-02",
         title: "Access Fund",
         statement: "Create a fund to support internet access projects in underserved communities.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa09-12",
+        id: "infrastructure-fa09-12",
         outcomeId: "infrastructure-fa-09-c-02-o-02",
         title: "Inclusion Experts",
         statement: "Establish a network of digital inclusion experts to provide technical assistance.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-01",
+        id: "infrastructure-fa10-01",
         outcomeId: "infrastructure-fa-10-c-01-o-01",
         title: "Define Impact Framework",
         statement: "Develop a framework for assessing the integral impact of infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-02",
+        id: "infrastructure-fa10-02",
         outcomeId: "infrastructure-fa-10-c-01-o-01",
         title: "Impact Alliance",
         statement: "Create an alliance of organizations committed to integral impact assessment frameworks.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-03",
+        id: "infrastructure-fa10-03",
         outcomeId: "infrastructure-fa-10-c-01-o-01",
         title: "Impact Campaign",
         statement: "Launch a campaign to promote integral impact assessment practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-04",
+        id: "infrastructure-fa10-04",
         outcomeId: "infrastructure-fa-10-c-01-o-02",
         title: "Certify Impact Assessors",
         statement: "Develop a training and certification program for integral impact assessment professionals.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-05",
+        id: "infrastructure-fa10-05",
         outcomeId: "infrastructure-fa-10-c-01-o-02",
         title: "Methods Platform",
         statement: "Create a platform for sharing integral impact assessment methodologies and best practices.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-06",
+        id: "infrastructure-fa10-06",
         outcomeId: "infrastructure-fa-10-c-01-o-02",
         title: "Mentor Network",
         statement: "Establish a network of integral impact assessment experts to provide mentorship.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-07",
+        id: "infrastructure-fa10-07",
         outcomeId: "infrastructure-fa-10-c-02-o-01",
         title: "Define Adaptive Framework",
         statement: "Develop a framework for adaptive management of infrastructure projects based on integrative metrics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-08",
+        id: "infrastructure-fa10-08",
         outcomeId: "infrastructure-fa-10-c-02-o-01",
         title: "Adaptive Alliance",
         statement: "Create an alliance of organizations committed to adaptive management frameworks.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-09",
+        id: "infrastructure-fa10-09",
         outcomeId: "infrastructure-fa-10-c-02-o-01",
         title: "Adaptive Campaign",
         statement: "Launch a campaign to promote adaptive management practices in infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-10",
+        id: "infrastructure-fa10-10",
         outcomeId: "infrastructure-fa-10-c-02-o-02",
         title: "Build Monitoring Tools",
         statement: "Develop tools for real-time monitoring and optimization of infrastructure based on integrative metrics.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-11",
+        id: "infrastructure-fa10-11",
         outcomeId: "infrastructure-fa-10-c-02-o-02",
         title: "Build Monitoring Platform",
         statement: "Create a platform for sharing real-time monitoring and optimization solutions for infrastructure projects.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-12",
+        id: "infrastructure-fa10-12",
         outcomeId: "infrastructure-fa-10-c-02-o-02",
         title: "Build Monitoring Network",
         statement: "Establish a network of infrastructure monitoring and optimization experts to provide technical assistance.",
         existingProjects: []
     },
 {
-        id: "mis-infra-fa10-13",
+        id: "infrastructure-fa10-13",
         outcomeId: "infrastructure-fa-10-c-02-o-02",
         title: "Define Monitoring Roadmap",
         statement: "Define a phased roadmap for piloting real-time monitoring and optimization systems across infrastructure projects.",
