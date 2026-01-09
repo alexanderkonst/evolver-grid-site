@@ -24,6 +24,8 @@ This regenerates `public/mission-manifest.json`, which is used to confirm your l
 
 If you prefer, open `/admin/mission-sync` and click **Download mission summary file** to grab the updated `mission-manifest.json`, then replace the file in your repo.
 
+If the GitHub raw file is not reachable (private repo), set `VITE_MISSION_MANIFEST_URL` to a hosted `mission-manifest.json` from your main deployment so the safety check can compare against it.
+
 3) Open `/admin/mission-sync` and click **Check and Sync Missions**.
 
 The admin page will:
