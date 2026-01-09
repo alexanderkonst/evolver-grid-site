@@ -325,6 +325,111 @@ export type Database = {
         }
         Relationships: []
       }
+      mission_challenges: {
+        Row: {
+          created_at: string
+          description: string
+          focus_area_id: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          focus_area_id: string
+          id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          focus_area_id?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mission_challenges_focus_area_id_fkey"
+            columns: ["focus_area_id"]
+            isOneToOne: false
+            referencedRelation: "mission_focus_areas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mission_focus_areas: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          pillar_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id: string
+          pillar_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          pillar_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mission_focus_areas_pillar_id_fkey"
+            columns: ["pillar_id"]
+            isOneToOne: false
+            referencedRelation: "mission_pillars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mission_outcomes: {
+        Row: {
+          challenge_id: string
+          created_at: string
+          description: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          challenge_id: string
+          created_at?: string
+          description: string
+          id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          challenge_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mission_outcomes_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "mission_challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mission_participants: {
         Row: {
           challenge_id: string | null
@@ -388,9 +493,40 @@ export type Database = {
         }
         Relationships: []
       }
+      mission_pillars: {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string
+          icon: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description: string
+          icon?: string | null
+          id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string
+          icon?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mission_search: {
         Row: {
           challenge_id: string | null
+          existing_projects: Json | null
           focus_area_id: string | null
           mission_id: string
           mission_statement: string
@@ -401,6 +537,7 @@ export type Database = {
         }
         Insert: {
           challenge_id?: string | null
+          existing_projects?: Json | null
           focus_area_id?: string | null
           mission_id: string
           mission_statement: string
@@ -411,6 +548,7 @@ export type Database = {
         }
         Update: {
           challenge_id?: string | null
+          existing_projects?: Json | null
           focus_area_id?: string | null
           mission_id?: string
           mission_statement?: string
@@ -419,7 +557,36 @@ export type Database = {
           pillar_id?: string | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "fk_mission_search_challenge"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "mission_challenges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_mission_search_focus_area"
+            columns: ["focus_area_id"]
+            isOneToOne: false
+            referencedRelation: "mission_focus_areas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_mission_search_outcome"
+            columns: ["outcome_id"]
+            isOneToOne: false
+            referencedRelation: "mission_outcomes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_mission_search_pillar"
+            columns: ["pillar_id"]
+            isOneToOne: false
+            referencedRelation: "mission_pillars"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       multiple_intelligences_assessments: {
         Row: {
