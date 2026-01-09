@@ -25,6 +25,7 @@ export default function AdminMissionSync() {
   const [localManifest, setLocalManifest] = useState<MissionManifest | null>(null);
   const [remoteManifest, setRemoteManifest] = useState<MissionManifest | null>(null);
   const [manifestError, setManifestError] = useState<string | null>(null);
+  const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const sourceCounts = getMissionCounts();
@@ -126,6 +127,16 @@ export default function AdminMissionSync() {
     }
   };
 
+  const handleCopyCommand = async () => {
+    try {
+      await navigator.clipboard.writeText("npm run update:mission-manifest");
+      setCopyStatus("Copied.");
+      setTimeout(() => setCopyStatus(null), 2000);
+    } catch (err) {
+      setCopyStatus("Copy failed.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -180,6 +191,32 @@ export default function AdminMissionSync() {
                   </div>
                 ))}
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">How to update missions</CardTitle>
+            <CardDescription>
+              One place to follow the full update flow. Use these steps every time.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            <ol className="list-decimal list-inside space-y-2">
+              <li>Edit mission files in <span className="font-mono">src/modules/mission-discovery/data/</span>.</li>
+              <li>Refresh the mission summary file using the command below.</li>
+              <li>Click <span className="font-medium">Check and Sync Missions</span> to push changes to the database.</li>
+            </ol>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-mono">npm run update:mission-manifest</span>
+              <Button variant="outline" size="sm" onClick={handleCopyCommand}>
+                Copy command
+              </Button>
+              {copyStatus && <span className="text-xs text-muted-foreground">{copyStatus}</span>}
+            </div>
+            <div className="text-muted-foreground">
+              This command updates <span className="font-mono">public/mission-manifest.json</span>, which the safety check uses.
             </div>
           </CardContent>
         </Card>
