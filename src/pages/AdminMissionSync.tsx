@@ -29,52 +29,51 @@ export default function AdminMissionSync() {
 
   const sourceCounts = getMissionCounts();
 
+  const loadManifests = async () => {
+    const localRes = await fetch("/mission-manifest.json", { cache: "no-store" });
+    if (!localRes.ok) {
+      throw new Error(`Local summary fetch failed (${localRes.status})`);
+    }
+    const localData = (await localRes.json()) as MissionManifest;
+
+    const remoteRes = await fetch(
+      "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/public/mission-manifest.json",
+      { cache: "no-store" }
+    );
+    if (!remoteRes.ok) {
+      throw new Error(`Main summary fetch failed (${remoteRes.status})`);
+    }
+    const remoteData = (await remoteRes.json()) as MissionManifest;
+
+    setLocalManifest(localData);
+    setRemoteManifest(remoteData);
+    setManifestError(null);
+    return { local: localData, remote: remoteData };
+  };
+
   useEffect(() => {
     let isMounted = true;
 
-    const loadManifests = async () => {
+    const safeLoad = async () => {
       try {
-        const localRes = await fetch("/mission-manifest.json");
-        if (!localRes.ok) {
-          throw new Error(`Local manifest fetch failed (${localRes.status})`);
-        }
-        const localData = (await localRes.json()) as MissionManifest;
-
-        const remoteRes = await fetch(
-          "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/public/mission-manifest.json",
-          { cache: "no-store" }
-        );
-        if (!remoteRes.ok) {
-          throw new Error(`Remote manifest fetch failed (${remoteRes.status})`);
-        }
-        const remoteData = (await remoteRes.json()) as MissionManifest;
-
-        if (isMounted) {
-          setLocalManifest(localData);
-          setRemoteManifest(remoteData);
-          setManifestError(null);
-        }
+        await loadManifests();
       } catch (err) {
         if (isMounted) {
-          setManifestError(err instanceof Error ? err.message : "Failed to load mission manifest");
+          setManifestError(err instanceof Error ? err.message : "Failed to load mission summary");
         }
       }
     };
 
-    loadManifests();
+    safeLoad();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
-  const manifestMismatch = useMemo(() => {
-    if (!localManifest || !remoteManifest) {
-      return false;
-    }
-
-    const localCounts = localManifest.counts;
-    const remoteCounts = remoteManifest.counts;
+  const computeMismatch = (local: MissionManifest, remote: MissionManifest) => {
+    const localCounts = local.counts;
+    const remoteCounts = remote.counts;
 
     const derivedCounts = {
       pillars: sourceCounts.pillars,
@@ -97,9 +96,16 @@ export default function AdminMissionSync() {
     });
 
     return countsMismatch || remoteMismatch;
+  };
+
+  const manifestMismatch = useMemo(() => {
+    if (!localManifest || !remoteManifest) {
+      return false;
+    }
+    return computeMismatch(localManifest, remoteManifest);
   }, [localManifest, remoteManifest, sourceCounts]);
 
-  const syncDisabled = loading || manifestMismatch || !!manifestError;
+  const syncDisabled = loading;
 
   const handleSync = async () => {
     setLoading(true);
@@ -107,6 +113,10 @@ export default function AdminMissionSync() {
     setResult(null);
 
     try {
+      const manifests = await loadManifests();
+      if (manifests && computeMismatch(manifests.local, manifests.remote)) {
+        throw new Error("Safety check failed. Update the mission summary and try again.");
+      }
       const syncResult = await syncMissionData();
       setResult(syncResult);
     } catch (err) {
@@ -195,20 +205,20 @@ export default function AdminMissionSync() {
                   Syncing...
                 </>
               ) : (
-                "Sync All Data to Database"
+                "Check and Sync Missions"
               )}
             </Button>
 
             <Card className="bg-muted/40">
               <CardHeader>
-                <CardTitle className="text-base">Manifest Check</CardTitle>
+                <CardTitle className="text-base">Safety Check</CardTitle>
                 <CardDescription>
-                  Confirms the local dataset matches the latest main branch before syncing.
+                  This makes sure your local mission list matches the latest main branch.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 {manifestError && (
-                  <div className="text-destructive">Manifest error: {manifestError}</div>
+                  <div className="text-destructive">Safety check error: {manifestError}</div>
                 )}
                 {!manifestError && !localManifest && (
                   <div className="text-muted-foreground">Loading manifest data...</div>
@@ -216,20 +226,23 @@ export default function AdminMissionSync() {
                 {localManifest && remoteManifest && (
                   <>
                     <div className="flex justify-between">
-                      <span>Local manifest version</span>
+                      <span>Your current mission summary</span>
                       <span className="font-mono">{localManifest.version}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Remote manifest version</span>
+                      <span>Latest mission summary on main</span>
                       <span className="font-mono">{remoteManifest.version}</span>
                     </div>
                     {manifestMismatch ? (
                       <div className="text-destructive">
-                        Manifest mismatch detected. Update the local data to match main before syncing.
+                        Summary mismatch. Update the summary file, then try again.
                       </div>
                     ) : (
-                      <div className="text-emerald-700">Manifest matches main. Safe to sync.</div>
+                      <div className="text-emerald-700">All good. Safe to sync.</div>
                     )}
+                    <div className="text-muted-foreground">
+                      If you edited mission files, run <span className="font-mono">npm run update:mission-manifest</span>.
+                    </div>
                   </>
                 )}
               </CardContent>
