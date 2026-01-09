@@ -522,6 +522,178 @@ export const KEY_CHALLENGES: MissionKeyChallenge[] = [
         description: "Cultivating a deep connection with nature and inspiring conscious action."
     }
     ,
+    // Economy - FA-01
+    {
+        id: "eco-fa-01-c-01",
+        focusAreaId: "eco-fa-01",
+        title: "Purpose-First Culture",
+        description: "Shifting corporate culture from profit-first to purpose-first."
+    },
+    {
+        id: "eco-fa-01-c-02",
+        focusAreaId: "eco-fa-01",
+        title: "Accountability & Transparency",
+        description: "Increasing accountability and transparency."
+    },
+    {
+        id: "eco-fa-01-c-03",
+        focusAreaId: "eco-fa-01",
+        title: "Ethics Literacy",
+        description: "Enhancing business ethics literacy."
+    },
+    {
+        id: "eco-fa-01-c-04",
+        focusAreaId: "eco-fa-01",
+        title: "Inclusive Decision-Making",
+        description: "Adoption of inclusive decision-making."
+    },
+    // Economy - FA-02
+    {
+        id: "eco-fa-02-c-01",
+        focusAreaId: "eco-fa-02",
+        title: "Equitable Access",
+        description: "Overcoming systemic barriers to equitable access."
+    },
+    {
+        id: "eco-fa-02-c-02",
+        focusAreaId: "eco-fa-02",
+        title: "Bias in Allocation",
+        description: "Correcting biases in resource allocation."
+    },
+    {
+        id: "eco-fa-02-c-03",
+        focusAreaId: "eco-fa-02",
+        title: "Sustainable Resource Management",
+        description: "Ensuring sustainable resource management practices."
+    },
+    {
+        id: "eco-fa-02-c-04",
+        focusAreaId: "eco-fa-02",
+        title: "Wealth Inequality",
+        description: "Reducing wealth inequality."
+    },
+    {
+        id: "eco-fa-02-c-05",
+        focusAreaId: "eco-fa-02",
+        title: "Equitable Tech Access",
+        description: "Ensuring equitable tech access."
+    },
+    {
+        id: "eco-fa-02-c-06",
+        focusAreaId: "eco-fa-02",
+        title: "Ethical Innovation",
+        description: "Embedding ethical considerations in innovation."
+    },
+    {
+        id: "eco-fa-02-c-07",
+        focusAreaId: "eco-fa-02",
+        title: "Tech for Global Challenges",
+        description: "Utilizing technology to tackle complex global issues."
+    },
+    {
+        id: "eco-fa-02-c-08",
+        focusAreaId: "eco-fa-02",
+        title: "Ethical AI",
+        description: "Ensuring ethical development and deployment of artificial intelligence."
+    },
+    // Economy - FA-03
+    {
+        id: "eco-fa-03-c-01",
+        focusAreaId: "eco-fa-03",
+        title: "Trust in Shared Economies",
+        description: "Building trust and security in shared economies."
+    },
+    {
+        id: "eco-fa-03-c-02",
+        focusAreaId: "eco-fa-03",
+        title: "Supportive Regulation",
+        description: "Crafting supportive regulatory frameworks."
+    },
+    {
+        id: "eco-fa-03-c-03",
+        focusAreaId: "eco-fa-03",
+        title: "Access Over Ownership",
+        description: "Cultivating a culture of sharing over ownership."
+    },
+    {
+        id: "eco-fa-03-c-04",
+        focusAreaId: "eco-fa-03",
+        title: "Circular Economy Adoption",
+        description: "Increasing the adoption of circular economy practices."
+    },
+    {
+        id: "eco-fa-03-c-05",
+        focusAreaId: "eco-fa-03",
+        title: "Income & Wealth Gaps",
+        description: "Bridging income and wealth gaps."
+    },
+    {
+        id: "eco-fa-03-c-06",
+        focusAreaId: "eco-fa-03",
+        title: "Opportunity Access",
+        description: "Expanding access to opportunities for all."
+    },
+    {
+        id: "eco-fa-03-c-07",
+        focusAreaId: "eco-fa-03",
+        title: "SME-Friendly Trade",
+        description: "Encouraging economic policies for competitive equity."
+    },
+    {
+        id: "eco-fa-03-c-08",
+        focusAreaId: "eco-fa-03",
+        title: "Cultural Identity Preservation",
+        description: "Preserving cultural identities amidst globalization."
+    },
+    {
+        id: "eco-fa-03-c-09",
+        focusAreaId: "eco-fa-03",
+        title: "Local-Global Balance",
+        description: "Balancing local needs with global economic policies."
+    },
+    {
+        id: "eco-fa-03-c-10",
+        focusAreaId: "eco-fa-03",
+        title: "Autonomy-Interdependence",
+        description: "Navigating the autonomy-interdependence trade-off."
+    },
+    {
+        id: "eco-fa-03-c-11",
+        focusAreaId: "eco-fa-03",
+        title: "Economic Literacy Gaps",
+        description: "Overcoming economic literacy gaps."
+    },
+    {
+        id: "eco-fa-03-c-12",
+        focusAreaId: "eco-fa-03",
+        title: "Holistic Economic Impact",
+        description: "Promoting a holistic view of economic impact."
+    },
+    {
+        id: "eco-fa-03-c-13",
+        focusAreaId: "eco-fa-03",
+        title: "Ethics in Education",
+        description: "Integrating ethical and sustainable principles into curricula."
+    },
+    {
+        id: "eco-fa-03-c-14",
+        focusAreaId: "eco-fa-03",
+        title: "Ecological Impact Blindness",
+        description: "Market blindness towards ecological impacts."
+    },
+    {
+        id: "eco-fa-03-c-15",
+        focusAreaId: "eco-fa-03",
+        title: "Short-Term Planning",
+        description: "Short-termism in business and economic planning."
+    },
+    {
+        id: "eco-fa-03-c-16",
+        focusAreaId: "eco-fa-03",
+        title: "Overconsumption & Waste",
+        description: "Overconsumption and waste."
+    }
+    ,
     // Culture: Integral Education & Learning
     {
         id: 'cul-fa-01-c-01',
