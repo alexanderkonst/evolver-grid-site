@@ -1,4 +1,4 @@
-# Zone of Genius Technology Stack
+Yeah before I explain this# Zone of Genius Technology Stack
 
 > "The signal of somebody's uniqueness already exists. Each step maintains that signal-to-noise ratio as it refracts into form."
 
@@ -141,6 +141,70 @@ Offer the assessment → provides the signal that AI can then work with.
 | Genius Offer Builder | Excalibur |
 | Public Page / Marketplace | Destiny |
 | Genius Growth Path | All three (upgrades per step) |
+
+---
+
+## Unlock Sequence
+
+```
+ZoG Assessment → ZoG Complete
+        ↓
+Genius Offer Builder (auto, magic button) → Unique Offering
+        ↓
+Public Page unlocked (basic tier)
+        ↓
+Genius Business Coaching (human-in-loop, paid) → MVGB
+        ↓
+Venture Co-op Marketplace (curated tier)
+```
+
+### Automation Notes
+
+| Step | Automatable? | Notes |
+|------|--------------|-------|
+| Articulate genius | ✅ Yes | AI + prompt + samples = high accuracy |
+| Make it useful | ✅ Yes | Magic button, some noise acceptable |
+| Monetize genius | ❌ No | Human-in-loop required (venture builder expertise) |
+
+### Marketplace Tiers
+
+| Tier | Who | Access |
+|------|-----|--------|
+| **Basic** | Anyone with Unique Offering | Public page visible, not in curated marketplace |
+| **Curated** | Venture Co-op members OR verified ZoG businesses | Marketplace featured, trusted badge |
+
+---
+
+## Terminology: Energetic Naming Principle
+
+> **Design Principle:** Avoid brand names as primary labels. Use energetic essence descriptions.
+
+**Why:**
+- Brand names are containers with different meanings per person
+- Language creates false shared understanding
+- Energetic descriptions capture the essence without boxing it
+
+**Examples:**
+
+| ❌ Brand Name | ✅ Energetic Essence |
+|--------------|---------------------|
+| Apple Seed | "Articulate your genius" |
+| Excalibur | "Make your genius useful" |
+| Destiny | "Monetize your genius" |
+
+**Inspiration:** Soviet abbreviations — pointing to shared meaning without assuming it.
+
+---
+
+## Minimal Viable Genius Business (MVGB)
+
+Definition: The smallest possible business structure that allows someone to monetize their Zone of Genius with paying clients.
+
+Components:
+- Unique Offering (from Excalibur)
+- One productized service
+- One way to collect payment
+- One ideal client who pays
 
 ---
 
