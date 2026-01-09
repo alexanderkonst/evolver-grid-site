@@ -1,11 +1,11 @@
 {
   "version": "2026-01-09",
-  "generatedAt": "2026-01-09T00:00:00Z",
+  "generatedAt": "2026-01-09T03:44:57.764Z",
   "counts": {
     "pillars": 6,
     "focusAreas": 40,
-    "challenges": 106,
-    "outcomes": 179,
+    "challenges": 123,
+    "outcomes": 211,
     "missions": 583
   },
   "missionsByPillar": {
