@@ -1026,6 +1026,215 @@ export const DESIRED_OUTCOMES: MissionDesiredOutcome[] = [
         description: "By 2035, conscious environmental action is a cultural norm across all societies."
     }
     ,
+    // Economy - FA-01 - C-01
+    {
+        id: "eco-fa-01-c-01-o-01",
+        challengeId: "eco-fa-01-c-01",
+        title: "4P Adoption",
+        description: "90% of large corporations adopt certified 4P models (Purpose, People, Planet, Profit), or equivalent, as measured by independent third-party assessments."
+    },
+    {
+        id: "eco-fa-01-c-01-o-02",
+        challengeId: "eco-fa-01-c-01",
+        title: "Ethical Leadership Requirement",
+        description: "Make an ethical leadership program mandatory for company executives."
+    },
+    // Economy - FA-01 - C-02
+    {
+        id: "eco-fa-01-c-02-o-01",
+        challengeId: "eco-fa-01-c-02",
+        title: "Transparency Scores",
+        description: "Attain top voluntary transparency scores among Global 500."
+    },
+    // Economy - FA-01 - C-03
+    {
+        id: "eco-fa-01-c-03-o-01",
+        challengeId: "eco-fa-01-c-03",
+        title: "Ethics Education Adoption",
+        description: "Achieve 90% voluntary adoption of ethics education for corporate executives and boards by 2035."
+    },
+    {
+        id: "eco-fa-01-c-03-o-02",
+        challengeId: "eco-fa-01-c-03",
+        title: "Social Impact Metrics",
+        description: "Mainstream multi-stakeholder social impact metrics into investor relations and fiscal analyses."
+    },
+    // Economy - FA-01 - C-04
+    {
+        id: "eco-fa-01-c-04-o-01",
+        challengeId: "eco-fa-01-c-04",
+        title: "Inclusive Governance Adoption",
+        description: "80% of large companies engage employees and stakeholders in ethical governance."
+    },
+    // Economy - FA-02 - C-01
+    {
+        id: "eco-fa-02-c-01-o-01",
+        challengeId: "eco-fa-02-c-01",
+        title: "Universal Basic Needs",
+        description: "Securing basic necessities for all, universal basic income to eliminate extreme poverty."
+    },
+    // Economy - FA-02 - C-02
+    {
+        id: "eco-fa-02-c-02-o-01",
+        challengeId: "eco-fa-02-c-02",
+        title: "Equitable AI Allocation",
+        description: "Equitable resource allocation through voluntary AI adoption and accountability mechanisms."
+    },
+    // Economy - FA-02 - C-03
+    {
+        id: "eco-fa-02-c-03-o-01",
+        challengeId: "eco-fa-02-c-03",
+        title: "Science-Based Consumption Caps",
+        description: "Mainstream science-based consumption caps to protect ecosystems, forests, fresh water, and top-soil reserves."
+    },
+    // Economy - FA-02 - C-04
+    {
+        id: "eco-fa-02-c-04-o-01",
+        challengeId: "eco-fa-02-c-04",
+        title: "Wealth Gap Reduction",
+        description: "Reduce the wealth gap between the top 1% and bottom 50% by 30%."
+    },
+    // Economy - FA-02 - C-05
+    {
+        id: "eco-fa-02-c-05-o-01",
+        challengeId: "eco-fa-02-c-05",
+        title: "Universal Tech Access",
+        description: "Bridge digital divides globally, enable universal affordable access to basic technology and high-speed connectivity."
+    },
+    // Economy - FA-02 - C-06
+    {
+        id: "eco-fa-02-c-06-o-01",
+        challengeId: "eco-fa-02-c-06",
+        title: "Ethical Innovation Adoption",
+        description: "Universally adopt ethical innovation framework, achieve voluntary mainstream adoption of value-sensitive design."
+    },
+    // Economy - FA-02 - C-07
+    {
+        id: "eco-fa-02-c-07-o-01",
+        challengeId: "eco-fa-02-c-07",
+        title: "Tech Collaboration for SDGs",
+        description: "Collaboratively address key issues with technology, achieve over 50% of SDG targets via cross-sector tech collaboration."
+    },
+    // Economy - FA-02 - C-08
+    {
+        id: "eco-fa-02-c-08-o-01",
+        challengeId: "eco-fa-02-c-08",
+        title: "Ethical AI Framework",
+        description: "Establish a globally recognized ethical framework for AI development and deployment, adopted by 80% of major AI companies and research institutions."
+    },
+    // Economy - FA-03 - C-01
+    {
+        id: "eco-fa-03-c-01-o-01",
+        challengeId: "eco-fa-03-c-01",
+        title: "Decentralized Governance Standards",
+        description: "Global digital governance standards to ensure data integrity, attain industry-wide adoption of decentralized governance standards."
+    },
+    // Economy - FA-03 - C-02
+    {
+        id: "eco-fa-03-c-02-o-01",
+        challengeId: "eco-fa-03-c-02",
+        title: "Supportive Regulatory Frameworks",
+        description: "Develop international frameworks supporting decentralized collaborative models and encouraging responsible innovation."
+    },
+    // Economy - FA-03 - C-03
+    {
+        id: "eco-fa-03-c-03-o-01",
+        challengeId: "eco-fa-03-c-03",
+        title: "Access Over Ownership",
+        description: "Achieve mainstream adoption of access over ownership models."
+    },
+    // Economy - FA-03 - C-04
+    {
+        id: "eco-fa-03-c-04-o-01",
+        challengeId: "eco-fa-03-c-04",
+        title: "Corporate Circular Adoption",
+        description: "Achieve a 50% increase in the use of circular economy business models among large corporations."
+    },
+    // Economy - FA-03 - C-05
+    {
+        id: "eco-fa-03-c-05-o-01",
+        challengeId: "eco-fa-03-c-05",
+        title: "Income Gap Reduction",
+        description: "Reduce the income gap between the top 10% and the bottom 40% of the global population by 30%."
+    },
+    // Economy - FA-03 - C-06
+    {
+        id: "eco-fa-03-c-06-o-01",
+        challengeId: "eco-fa-03-c-06",
+        title: "Education & Digital Skills Access",
+        description: "Achieve universal and equitable access to education and digital skills."
+    },
+    // Economy - FA-03 - C-07
+    {
+        id: "eco-fa-03-c-07-o-01",
+        challengeId: "eco-fa-03-c-07",
+        title: "SME Growth in Trade",
+        description: "Support small enterprises in trade policies by implementing policies enabling SME growth targets."
+    },
+    // Economy - FA-03 - C-08
+    {
+        id: "eco-fa-03-c-08-o-01",
+        challengeId: "eco-fa-03-c-08",
+        title: "Heritage Vitality",
+        description: "Maintain heritage vitality indicators globally amidst globalization."
+    },
+    // Economy - FA-03 - C-09
+    {
+        id: "eco-fa-03-c-09-o-01",
+        challengeId: "eco-fa-03-c-09",
+        title: "Localized Subsidiarity",
+        description: "Support autonomy balanced with sustainability, ensure localized subsidiarity is aligned with global sustainability principles."
+    },
+    // Economy - FA-03 - C-10
+    {
+        id: "eco-fa-03-c-10-o-01",
+        challengeId: "eco-fa-03-c-10",
+        title: "Balanced Governance Models",
+        description: "Adopt governance models navigating the autonomy-interdependence trade-offs, achieve an optimal balance of decentralized governance and central coordination."
+    },
+    // Economy - FA-03 - C-11
+    {
+        id: "eco-fa-03-c-11-o-01",
+        challengeId: "eco-fa-03-c-11",
+        title: "Economic Literacy",
+        description: "Achieve universal baseline global economic literacy."
+    },
+    // Economy - FA-03 - C-12
+    {
+        id: "eco-fa-03-c-12-o-01",
+        challengeId: "eco-fa-03-c-12",
+        title: "Integral Economics",
+        description: "Mainstream integral economic education and understanding."
+    },
+    // Economy - FA-03 - C-13
+    {
+        id: "eco-fa-03-c-13-o-01",
+        challengeId: "eco-fa-03-c-13",
+        title: "Ethics & Sustainability Education",
+        description: "Make ethics and sustainability education core priorities, establish a core focus on ethics, justice, and ecology in economic education."
+    },
+    // Economy - FA-03 - C-14
+    {
+        id: "eco-fa-03-c-14-o-01",
+        challengeId: "eco-fa-03-c-14",
+        title: "Ecological Impact Labeling",
+        description: "70% of traded goods and services globally are covered by science-based ecological impact labeling."
+    },
+    // Economy - FA-03 - C-15
+    {
+        id: "eco-fa-03-c-15-o-01",
+        challengeId: "eco-fa-03-c-15",
+        title: "Long-Term Strategies",
+        description: "60% of Fortune 500 companies publicly commit to and adopt long-term sustainability strategies aligned with global environmental goals."
+    },
+    // Economy - FA-03 - C-16
+    {
+        id: "eco-fa-03-c-16-o-01",
+        challengeId: "eco-fa-03-c-16",
+        title: "Waste Reduction",
+        description: "50% reduction in global solid waste generation through the widespread adoption of circular economy practices."
+    }
+    ,
     // Culture: Integral Education & Learning
     {
         id: 'cul-fa-01-c-01-o-01',

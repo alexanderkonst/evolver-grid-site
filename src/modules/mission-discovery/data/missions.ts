@@ -3458,6 +3458,914 @@ export const MISSIONS: Mission[] = [
         chatLink: ""
     },
 {
+        id: "eco-fa-01-c-01-o-01-m-01",
+        outcomeId: "eco-fa-01-c-01-o-01",
+        title: "Design 4P Certification",
+        statement: "Develop a comprehensive 4P certification framework, including standards, metrics, and assessment tools, in collaboration with leading business schools, think tanks, and sustainability organizations.",
+        existingProjects: [
+            "bcorporation.net",
+            "globalreporting.org/standards",
+            "iris.thegiin.org",
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-01-m-02",
+        outcomeId: "eco-fa-01-c-01-o-01",
+        title: "Launch 4P Awareness Campaign",
+        statement: "Launch a global campaign to raise awareness about the benefits of 4P models among corporate leaders, investors, and consumers, featuring case studies and thought leadership content, reaching 100 million people.",
+        existingProjects: [
+            "ey.com/purpose/the-business-case-for-purpose",
+            "imperative21.co",
+            "consciouscapitalism.org",
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-01-m-03",
+        outcomeId: "eco-fa-01-c-01-o-01",
+        title: "Incentivize 4P Adoption",
+        statement: "Engage policymakers and regulators to create incentives for corporations adopting 4P models, such as tax benefits and streamlined reporting requirements, in at least 20 major economies.",
+        existingProjects: [
+            "benefitcorp.net/policymakers/state-by-state-status",
+            "gov.uk/government/publications/social-value-act-information-and-resources/social-value-act-information-and-resources",
+            "unep.org/explore-topics/resource-efficiency/what-we-do/sustainable-public-procurement",
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-01-m-04",
+        outcomeId: "eco-fa-01-c-01-o-01",
+        title: "Build 4P Peer Network",
+        statement: "Establish a global network of 4P model adopters, facilitating peer learning and best practice sharing, with 500 member corporations.",
+        existingProjects: [
+            "wbcsd.org",
+            "ceres.org",
+            "bteam.org",
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-02-m-01",
+        outcomeId: "eco-fa-01-c-01-o-02",
+        title: "Design Ethical Leadership Curriculum",
+        statement: "Partner with leading business schools and executive education providers to design a cutting-edge ethical leadership curriculum, covering values-based decision making, stakeholder engagement, and responsible innovation.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-02-m-02",
+        outcomeId: "eco-fa-01-c-01-o-02",
+        title: "Expand Ethical Leadership Curriculum",
+        statement: "Partner with leading business schools and executive education providers to design a cutting-edge ethical leadership curriculum, covering values-based decision making, stakeholder engagement, and responsible innovation.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-02-m-03",
+        outcomeId: "eco-fa-01-c-01-o-02",
+        title: "Mandate Ethical Leadership Training",
+        statement: "Advocate for the inclusion of ethical leadership training as a mandatory requirement for executive positions in corporate governance codes and stock exchange listing rules.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-02-m-04",
+        outcomeId: "eco-fa-01-c-01-o-02",
+        title: "Build Ethics Training Platform",
+        statement: "Create an online platform for delivering ethical leadership programs, featuring interactive modules, simulations, and virtual coaching, accessible to executives worldwide.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-01-o-02-m-05",
+        outcomeId: "eco-fa-01-c-01-o-02",
+        title: "Celebrate Ethical Leaders",
+        statement: "Establish a global recognition program for outstanding ethical leaders, with an annual awards ceremony and media coverage.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-02-o-01-m-01",
+        outcomeId: "eco-fa-01-c-02-o-01",
+        title: "Design Transparency Index",
+        statement: "Develop a comprehensive transparency index that assesses disclosure practices across governance, environmental impact, and social responsibility.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-02-o-01-m-02",
+        outcomeId: "eco-fa-01-c-02-o-01",
+        title: "Mobilize Transparency Campaign",
+        statement: "Launch a multi-stakeholder campaign to advocate for the adoption of the transparency index in investment decisions and consumer choice.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-02-o-01-m-03",
+        outcomeId: "eco-fa-01-c-02-o-01",
+        title: "Provide Transparency Support",
+        statement: "Provide technical assistance to corporations seeking to improve transparency practices through partnerships with consultancies and NGOs.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-02-o-01-m-04",
+        outcomeId: "eco-fa-01-c-02-o-01",
+        title: "Celebrate Transparency Leaders",
+        statement: "Celebrate top performers on the transparency index through an annual awards program and media campaign.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-01-m-01",
+        outcomeId: "eco-fa-01-c-03-o-01",
+        title: "Convene Ethics Task Force",
+        statement: "Convene a global task force to design a comprehensive ethics education curriculum for executives and board members.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-01-m-02",
+        outcomeId: "eco-fa-01-c-03-o-01",
+        title: "Build Ethics Education Programs",
+        statement: "Develop online and in-person ethics education programs accessible and tailored to executives and board members.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-01-m-03",
+        outcomeId: "eco-fa-01-c-03-o-01",
+        title: "Run Ethics Education Campaign",
+        statement: "Launch a global awareness campaign to highlight the importance of ethics education for corporate governance.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-01-m-04",
+        outcomeId: "eco-fa-01-c-03-o-01",
+        title: "Promote Ethics Education Standards",
+        statement: "Advocate for the inclusion of ethics education as a voluntary best practice in corporate governance codes.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-02-m-01",
+        outcomeId: "eco-fa-01-c-03-o-02",
+        title: "Define Social Impact Metrics",
+        statement: "Convene a global working group to develop a standardized set of multi-stakeholder social impact metrics.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-02-m-02",
+        outcomeId: "eco-fa-01-c-03-o-02",
+        title: "Pilot Impact Metrics Integration",
+        statement: "Pilot the integration of social impact metrics into investor relations and fiscal analysis in leading corporations.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-02-m-03",
+        outcomeId: "eco-fa-01-c-03-o-02",
+        title: "Train Impact Reporting Teams",
+        statement: "Launch a capacity-building program for investor relations professionals and financial analysts on social impact metrics.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-03-o-02-m-04",
+        outcomeId: "eco-fa-01-c-03-o-02",
+        title: "Standardize Impact Reporting",
+        statement: "Advocate for the inclusion of social impact metrics as a core component of corporate reporting and investor analysis.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-04-o-01-m-01",
+        outcomeId: "eco-fa-01-c-04-o-01",
+        title: "Define Inclusive Governance Framework",
+        statement: "Develop a framework for inclusive and ethical governance outlining best practices, tools, and metrics.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-04-o-01-m-02",
+        outcomeId: "eco-fa-01-c-04-o-01",
+        title: "Grow Inclusive Governance Community",
+        statement: "Build a global community of practice for inclusive and ethical governance with peer learning and support.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-04-o-01-m-03",
+        outcomeId: "eco-fa-01-c-04-o-01",
+        title: "Integrate Inclusive Governance Education",
+        statement: "Integrate inclusive and ethical governance into business education and executive training.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-01-c-04-o-01-m-04",
+        outcomeId: "eco-fa-01-c-04-o-01",
+        title: "Reform Governance Reporting",
+        statement: "Drive systemic change in corporate reporting by including inclusive and ethical governance metrics in standards.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-01-o-01-m-01",
+        outcomeId: "eco-fa-02-c-01-o-01",
+        title: "Design UBI Framework",
+        statement: "Develop a comprehensive framework for implementing universal basic income, tailored to regional needs and contexts.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-01-o-01-m-02",
+        outcomeId: "eco-fa-02-c-01-o-01",
+        title: "Build UBI Coalition",
+        statement: "Build a global coalition of governments, NGOs, and private sector partners to pilot and scale UBI programs.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-01-o-01-m-03",
+        outcomeId: "eco-fa-02-c-01-o-01",
+        title: "Advocate UBI Adoption",
+        statement: "Advocate for the integration of UBI into national and international poverty alleviation strategies.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-02-o-01-m-01",
+        outcomeId: "eco-fa-02-c-02-o-01",
+        title: "Define Ethical AI Allocation Standards",
+        statement: "Develop ethical principles and standards for AI-based resource allocation decisions.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-02-o-01-m-02",
+        outcomeId: "eco-fa-02-c-02-o-01",
+        title: "Build AI Allocation Toolkit",
+        statement: "Create a toolkit and training program for organizations to implement AI-based resource allocation systems with transparency and accountability.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-02-o-01-m-03",
+        outcomeId: "eco-fa-02-c-02-o-01",
+        title: "Create AI Allocation Oversight",
+        statement: "Establish an independent oversight body to monitor the impact of AI-based resource allocation systems.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-03-o-01-m-01",
+        outcomeId: "eco-fa-02-c-03-o-01",
+        title: "Set Consumption Caps",
+        statement: "Convene a global scientific task force to develop science-based consumption caps for key natural resources.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-03-o-01-m-02",
+        outcomeId: "eco-fa-02-c-03-o-01",
+        title: "Run Consumption Awareness Campaign",
+        statement: "Launch a global awareness campaign about sustainable resource management and consumption caps.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-03-o-01-m-03",
+        outcomeId: "eco-fa-02-c-03-o-01",
+        title: "Create Consumption Incentives",
+        statement: "Develop policy recommendations and market mechanisms to incentivize adoption of consumption caps.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-03-o-01-m-04",
+        outcomeId: "eco-fa-02-c-03-o-01",
+        title: "Monitor Consumption Caps",
+        statement: "Establish a global monitoring and reporting system to track progress on consumption caps.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-04-o-01-m-01",
+        outcomeId: "eco-fa-02-c-04-o-01",
+        title: "Design Wealth Equity Policy",
+        statement: "Develop a comprehensive policy framework to address wealth inequality, including redistribution measures and financial inclusion.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-04-o-01-m-02",
+        outcomeId: "eco-fa-02-c-04-o-01",
+        title: "Build Wealth Equity Coalition",
+        statement: "Build a global coalition of stakeholders to mobilize resources and coordinate actions on wealth inequality.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-04-o-01-m-03",
+        outcomeId: "eco-fa-02-c-04-o-01",
+        title: "Run Wealth Equity Campaign",
+        statement: "Launch a public awareness and engagement campaign to build support for wealth inequality reduction measures.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-04-o-01-m-04",
+        outcomeId: "eco-fa-02-c-04-o-01",
+        title: "Invest in Equity Innovation",
+        statement: "Invest in research and capacity-building to develop and scale solutions for reducing wealth inequality.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-04-o-01-m-05",
+        outcomeId: "eco-fa-02-c-04-o-01",
+        title: "Advance Integral Technology Innovation",
+        statement: "Innovation and integral technology.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-05-o-01-m-01",
+        outcomeId: "eco-fa-02-c-05-o-01",
+        title: "Build Tech Access Partnership",
+        statement: "Develop a global partnership framework to mobilize resources and commitments toward bridging digital divides.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-05-o-01-m-02",
+        outcomeId: "eco-fa-02-c-05-o-01",
+        title: "Expand Connectivity Infrastructure",
+        statement: "Implement targeted infrastructure development programs to expand affordable high-speed connectivity in underserved areas.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-05-o-01-m-03",
+        outcomeId: "eco-fa-02-c-05-o-01",
+        title: "Launch Digital Literacy Programs",
+        statement: "Launch digital literacy and skills initiatives focused on marginalized populations.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-05-o-01-m-04",
+        outcomeId: "eco-fa-02-c-05-o-01",
+        title: "Advocate Access Policies",
+        statement: "Advocate for policies and regulations that promote competition, innovation, and investment in affordable technologies.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-06-o-01-m-01",
+        outcomeId: "eco-fa-02-c-06-o-01",
+        title: "Define Ethical Innovation Framework",
+        statement: "Convene a multi-stakeholder task force to develop an ethical innovation framework with principles and assessment tools.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-06-o-01-m-02",
+        outcomeId: "eco-fa-02-c-06-o-01",
+        title: "Integrate Ethical Innovation Practices",
+        statement: "Integrate the ethical innovation framework into policies and practices of leading technology companies and institutions.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-06-o-01-m-03",
+        outcomeId: "eco-fa-02-c-06-o-01",
+        title: "Create Ethical Innovation Oversight",
+        statement: "Establish an independent advisory body to provide guidance and oversight for ethical innovation implementation.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-06-o-01-m-04",
+        outcomeId: "eco-fa-02-c-06-o-01",
+        title: "Promote Ethical Innovation Awareness",
+        statement: "Launch a global awareness and education campaign to promote ethical innovation and value-sensitive design.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-07-o-01-m-01",
+        outcomeId: "eco-fa-02-c-07-o-01",
+        title: "Build SDG Tech Collaboration Platform",
+        statement: "Establish a global platform for cross-sector collaboration on technology-driven solutions to SDG targets.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-07-o-01-m-02",
+        outcomeId: "eco-fa-02-c-07-o-01",
+        title: "Fund SDG Tech Challenges",
+        statement: "Launch challenge grants and innovation funds to catalyze technology solutions for specific SDG targets.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-07-o-01-m-03",
+        outcomeId: "eco-fa-02-c-07-o-01",
+        title: "Track SDG Tech Initiatives",
+        statement: "Create a mapping and tracking system to identify and monitor technology initiatives contributing to SDG targets.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-07-o-01-m-04",
+        outcomeId: "eco-fa-02-c-07-o-01",
+        title: "Advocate SDG Tech Policy",
+        statement: "Advocate for policies and investments that enable cross-sector technology collaboration for the SDGs.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-08-o-01-m-01",
+        outcomeId: "eco-fa-02-c-08-o-01",
+        title: "Define Ethical AI Framework",
+        statement: "Convene a multi-stakeholder task force to develop a comprehensive ethical framework for AI development and deployment.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-08-o-01-m-02",
+        outcomeId: "eco-fa-02-c-08-o-01",
+        title: "Campaign for Ethical AI",
+        statement: "Launch a global campaign to build awareness and support for the ethical AI framework among key stakeholders.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-08-o-01-m-03",
+        outcomeId: "eco-fa-02-c-08-o-01",
+        title: "Certify Ethical AI Systems",
+        statement: "Establish a voluntary certification and labeling scheme for AI systems that adhere to the ethical framework.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-02-c-08-o-01-m-04",
+        outcomeId: "eco-fa-02-c-08-o-01",
+        title: "Integrate Ethical AI Standards",
+        statement: "Integrate the ethical AI framework into policies, regulations, and international standards governing AI development and deployment.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-01-o-01-m-01",
+        outcomeId: "eco-fa-03-c-01-o-01",
+        title: "Define Digital Governance Standards",
+        statement: "Convene a multi-stakeholder task force to develop global digital governance standards for decentralized platforms.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-01-o-01-m-02",
+        outcomeId: "eco-fa-03-c-01-o-01",
+        title: "Build Governance Awareness Campaign",
+        statement: "Launch a global awareness campaign to build understanding and support for decentralized governance standards.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-01-o-01-m-03",
+        outcomeId: "eco-fa-03-c-01-o-01",
+        title: "Certify Shared Platforms",
+        statement: "Establish a voluntary certification and labeling scheme for decentralized platforms that adhere to global digital governance standards.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-01-o-01-m-04",
+        outcomeId: "eco-fa-03-c-01-o-01",
+        title: "Build Interoperable Infrastructure",
+        statement: "Collaborate with technology companies and standards bodies to develop interoperable, secure decentralized infrastructure.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-02-o-01-m-01",
+        outcomeId: "eco-fa-03-c-02-o-01",
+        title: "Define Regulatory Principles",
+        statement: "Engage international organizations to develop guiding principles for regulating decentralized collaborative models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-02-o-01-m-02",
+        outcomeId: "eco-fa-03-c-02-o-01",
+        title: "Build Regulatory Network",
+        statement: "Establish a global network of policymakers and regulators to coordinate approaches across jurisdictions.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-02-o-01-m-03",
+        outcomeId: "eco-fa-03-c-02-o-01",
+        title: "Run Regulatory Sandboxes",
+        statement: "Launch pilot projects and regulatory sandboxes to test approaches for decentralized collaborative models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-02-o-01-m-04",
+        outcomeId: "eco-fa-03-c-02-o-01",
+        title: "Advocate Regulatory Adoption",
+        statement: "Advocate for the adoption of international frameworks and standards supporting decentralized collaborative models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-03-o-01-m-01",
+        outcomeId: "eco-fa-03-c-03-o-01",
+        title: "Promote Access Over Ownership",
+        statement: "Launch a global public awareness campaign to promote access over ownership models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-03-o-01-m-02",
+        outcomeId: "eco-fa-03-c-03-o-01",
+        title: "Build Access Toolkit",
+        statement: "Develop a toolkit and resource hub for businesses to adopt access over ownership models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-03-o-01-m-03",
+        outcomeId: "eco-fa-03-c-03-o-01",
+        title: "Grow Sharing Ambassadors",
+        statement: "Establish a global network of shared economy ambassadors to advocate for access over ownership models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-03-o-01-m-04",
+        outcomeId: "eco-fa-03-c-03-o-01",
+        title: "Integrate Sharing Education",
+        statement: "Partner with educational institutions to integrate access over ownership principles into curriculum and professional development.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-04-o-01-m-01",
+        outcomeId: "eco-fa-03-c-04-o-01",
+        title: "Define Circular Economy Standards",
+        statement: "Develop industry-specific guidelines and standards for implementing circular economy practices.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-04-o-01-m-02",
+        outcomeId: "eco-fa-03-c-04-o-01",
+        title: "Celebrate Circular Leaders",
+        statement: "Launch a global challenge and awards program to recognize corporations that adopt circular economy models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-04-o-01-m-03",
+        outcomeId: "eco-fa-03-c-04-o-01",
+        title: "Build Circular Innovation Platform",
+        statement: "Establish a global platform for circular economy innovation and collaboration.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-04-o-01-m-04",
+        outcomeId: "eco-fa-03-c-04-o-01",
+        title: "Advocate Circular Policy Incentives",
+        statement: "Advocate for policy incentives and regulations that support circular economy adoption among corporations.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-04-o-01-m-05",
+        outcomeId: "eco-fa-03-c-04-o-01",
+        title: "Promote Inclusive Growth",
+        statement: "Inclusive Growth.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-05-o-01-m-01",
+        outcomeId: "eco-fa-03-c-05-o-01",
+        title: "Advocate Progressive Taxation",
+        statement: "Advocate for progressive taxation policies and wealth redistribution mechanisms at national and global levels.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-05-o-01-m-02",
+        outcomeId: "eco-fa-03-c-05-o-01",
+        title: "Promote Inclusive Business Practices",
+        statement: "Launch a global initiative to promote inclusive business practices such as living wages and employee ownership.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-05-o-01-m-03",
+        outcomeId: "eco-fa-03-c-05-o-01",
+        title: "Create Inclusive Growth Fund",
+        statement: "Establish a global fund for inclusive growth to invest in infrastructure, education, and entrepreneurship for the bottom 40%.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-05-o-01-m-04",
+        outcomeId: "eco-fa-03-c-05-o-01",
+        title: "Build Income Gap Dashboard",
+        statement: "Develop a data platform and dashboard to track income and wealth distribution across regions.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-06-o-01-m-01",
+        outcomeId: "eco-fa-03-c-06-o-01",
+        title: "Expand Education Access",
+        statement: "Launch a global initiative to provide free or low-cost access to quality education and digital skills training.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-06-o-01-m-02",
+        outcomeId: "eco-fa-03-c-06-o-01",
+        title: "Build Digital Inclusion Network",
+        statement: "Establish a global network of digital inclusion champions to advocate for policies and investments.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-06-o-01-m-03",
+        outcomeId: "eco-fa-03-c-06-o-01",
+        title: "Define Inclusive Education Standards",
+        statement: "Develop global standards and guidelines for inclusive and equitable education and digital skills training.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-06-o-01-m-04",
+        outcomeId: "eco-fa-03-c-06-o-01",
+        title: "Create Opportunity Scholarships",
+        statement: "Create a global scholarship and fellowship program for disadvantaged learners in high-demand fields.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-07-o-01-m-01",
+        outcomeId: "eco-fa-03-c-07-o-01",
+        title: "Define SME Trade Framework",
+        statement: "Develop a global framework for SME-friendly trade policies with simplified customs and targeted support.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-07-o-01-m-02",
+        outcomeId: "eco-fa-03-c-07-o-01",
+        title: "Build SME Growth Fund",
+        statement: "Establish a global SME growth fund to provide access to finance, technology, and market intelligence.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-07-o-01-m-03",
+        outcomeId: "eco-fa-03-c-07-o-01",
+        title: "Promote SME Trade Benefits",
+        statement: "Launch a global campaign to promote the benefits of inclusive trade policies and showcase SME success stories.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-07-o-01-m-04",
+        outcomeId: "eco-fa-03-c-07-o-01",
+        title: "Balance Global and Local",
+        statement: "Global and Local Balance.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-08-o-01-m-01",
+        outcomeId: "eco-fa-03-c-08-o-01",
+        title: "Define Heritage Vitality Indicators",
+        statement: "Develop a global framework for assessing and monitoring heritage vitality indicators.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-08-o-01-m-02",
+        outcomeId: "eco-fa-03-c-08-o-01",
+        title: "Fund Heritage Initiatives",
+        statement: "Launch a global grant program to support local initiatives that preserve and promote cultural heritage.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-08-o-01-m-03",
+        outcomeId: "eco-fa-03-c-08-o-01",
+        title: "Embed Heritage in Policy",
+        statement: "Advocate for integrating cultural heritage considerations into global trade, investment, and development policies.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-09-o-01-m-01",
+        outcomeId: "eco-fa-03-c-09-o-01",
+        title: "Define Subsidiarity Principles",
+        statement: "Develop global principles and guidelines for localized subsidiarity aligned with sustainability goals.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-09-o-01-m-02",
+        outcomeId: "eco-fa-03-c-09-o-01",
+        title: "Build Sustainability Champions Network",
+        statement: "Establish a global network of local sustainability champions to share knowledge and best practices.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-09-o-01-m-03",
+        outcomeId: "eco-fa-03-c-09-o-01",
+        title: "Launch Local Capacity Program",
+        statement: "Launch a global capacity-building program to help local authorities implement sustainable development strategies.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-09-o-01-m-04",
+        outcomeId: "eco-fa-03-c-09-o-01",
+        title: "Reform Global Economic Governance",
+        statement: "Advocate for reforms that give greater voice to local stakeholders in global economic governance structures.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-10-o-01-m-01",
+        outcomeId: "eco-fa-03-c-10-o-01",
+        title: "Define Balanced Governance Guidelines",
+        statement: "Develop and promote evidence-based guidelines for balanced autonomy-interdependence governance models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-10-o-01-m-02",
+        outcomeId: "eco-fa-03-c-10-o-01",
+        title: "Pilot Balanced Governance Models",
+        statement: "Pilot and scale innovative governance models that balance autonomy and interdependence.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-10-o-01-m-03",
+        outcomeId: "eco-fa-03-c-10-o-01",
+        title: "Advance Economic Consciousness",
+        statement: "Economic Education and Consciousness.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-11-o-01-m-01",
+        outcomeId: "eco-fa-03-c-11-o-01",
+        title: "Run Economic Literacy Campaign",
+        statement: "Launch a global economic literacy campaign with engaging content and diverse partnerships.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-11-o-01-m-02",
+        outcomeId: "eco-fa-03-c-11-o-01",
+        title: "Integrate Economic Literacy Education",
+        statement: "Integrate economic literacy into formal education systems through curriculum development and teacher training.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-12-o-01-m-01",
+        outcomeId: "eco-fa-03-c-12-o-01",
+        title: "Convene Integral Economics Dialogue",
+        statement: "Foster a global dialogue on integral economics through conferences and a network of champions.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-12-o-01-m-02",
+        outcomeId: "eco-fa-03-c-12-o-01",
+        title: "Build Integral Economics Curriculum",
+        statement: "Develop and promote an integral economics curriculum framework with resources and partnerships.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-13-o-01-m-01",
+        outcomeId: "eco-fa-03-c-13-o-01",
+        title: "Define Ethics & Sustainability Standards",
+        statement: "Develop a global framework for integrating ethics and sustainability into economic education standards.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-13-o-01-m-02",
+        outcomeId: "eco-fa-03-c-13-o-01",
+        title: "Support Ethics Integration",
+        statement: "Support integration of ethics and sustainability into economic education practice through resources and professional development.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-13-o-01-m-03",
+        outcomeId: "eco-fa-03-c-13-o-01",
+        title: "Design Sustainability Incentives",
+        statement: "Sustainability Incentives.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-14-o-01-m-01",
+        outcomeId: "eco-fa-03-c-14-o-01",
+        title: "Define Ecological Impact Labels",
+        statement: "Develop a standardized, science-based ecological impact labeling system for goods and services.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-14-o-01-m-02",
+        outcomeId: "eco-fa-03-c-14-o-01",
+        title: "Promote Impact Label Adoption",
+        statement: "Implement a global campaign to promote ecological impact labeling and educate consumers.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-14-o-01-m-03",
+        outcomeId: "eco-fa-03-c-14-o-01",
+        title: "Monitor Impact Label Coverage",
+        statement: "Establish a monitoring and reporting mechanism to track ecological impact labeling coverage and effectiveness.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-15-o-01-m-01",
+        outcomeId: "eco-fa-03-c-15-o-01",
+        title: "Drive Fortune 500 Commitments",
+        statement: "Launch a global initiative to engage Fortune 500 companies in long-term sustainability strategies aligned with global goals.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-15-o-01-m-02",
+        outcomeId: "eco-fa-03-c-15-o-01",
+        title: "Support Sustainability Integration",
+        statement: "Provide guidance and resources to integrate sustainability into core business strategy and operations.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-15-o-01-m-03",
+        outcomeId: "eco-fa-03-c-15-o-01",
+        title: "Build Long-Term Strategy Platform",
+        statement: "Establish a platform for companies to share best practices and report progress on long-term sustainability goals.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-16-o-01-m-01",
+        outcomeId: "eco-fa-03-c-16-o-01",
+        title: "Build Circular Economy Roadmap",
+        statement: "Develop a global roadmap for transitioning to a circular economy with targets for reducing waste and increasing recycling.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-16-o-01-m-02",
+        outcomeId: "eco-fa-03-c-16-o-01",
+        title: "Create Circular Economy Hubs",
+        statement: "Establish a global network of circular economy hubs to provide technical assistance and knowledge sharing.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-16-o-01-m-03",
+        outcomeId: "eco-fa-03-c-16-o-01",
+        title: "Pilot Circular Economy Projects",
+        statement: "Implement pilot projects in key industries to demonstrate sustainable production and consumption models.",
+        existingProjects: [
+        ]
+    },
+{
+        id: "eco-fa-03-c-16-o-01-m-04",
+        outcomeId: "eco-fa-03-c-16-o-01",
+        title: "Run Waste Reduction Campaign",
+        statement: "Launch a global awareness campaign to promote sustainable consumption habits and waste reduction.",
+        existingProjects: [
+        ]
+    },
+{
         id: 'cul-fa-01-c-01-o-01-m-01',
         outcomeId: 'cul-fa-01-c-01-o-01',
         title: 'Train Integrative Teachers',
