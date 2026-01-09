@@ -10,7 +10,7 @@ Enable any community to run their own instance of the platform with their brandi
 
 ### 1. Visual Identity
 
-| Element | Example (Prírodă) | Storage |
+| Element | Example (Priroda) | Storage |
 |---------|-------------------|---------|
 | **Logo** | prírodă-logo.svg | `communities.logo_url` |
 | **Primary Color** | #2E7D32 (green) | `communities.brand_primary` |
@@ -20,7 +20,7 @@ Enable any community to run their own instance of the platform with their brandi
 
 ### 2. Naming Convention
 
-| Platform Default | Prírodă Override | Field |
+| Platform Default | Priroda Override | Field |
 |------------------|------------------|-------|
 | Transformation Space | Академия Развития | `spaces.transformation_name` |
 | Profile Space | Личный Кабинет | `spaces.profile_name` |
@@ -42,7 +42,7 @@ Enable any community to run their own instance of the platform with their brandi
 CREATE TABLE communities (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug TEXT UNIQUE NOT NULL,           -- 'priroda'
-  name TEXT NOT NULL,                   -- 'Prírodă'
+  name TEXT NOT NULL,                   -- 'Priroda'
   
   -- Branding
   logo_url TEXT,
@@ -94,7 +94,7 @@ const injectBranding = (community: Community) => {
 
 ---
 
-## Demo Prep: Prírodă
+## Demo Prep: Priroda
 
 1. Create `communities` record with slug `priroda`
 2. Upload their logo
