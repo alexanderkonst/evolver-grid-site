@@ -22,6 +22,8 @@ npm run update:mission-manifest
 
 This regenerates `public/mission-manifest.json`, which is used to confirm your local dataset matches `main`.
 
+If you prefer, open `/admin/mission-sync` and click **Download mission summary file** to grab the updated `mission-manifest.json`, then replace the file in your repo.
+
 3) Open `/admin/mission-sync` and click **Check and Sync Missions**.
 
 The admin page will:
