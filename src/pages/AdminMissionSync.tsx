@@ -25,6 +25,7 @@ export default function AdminMissionSync() {
   const [localManifest, setLocalManifest] = useState<MissionManifest | null>(null);
   const [remoteManifest, setRemoteManifest] = useState<MissionManifest | null>(null);
   const [manifestError, setManifestError] = useState<string | null>(null);
+  const [manifestWarning, setManifestWarning] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const [downloadStatus, setDownloadStatus] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -32,20 +33,34 @@ export default function AdminMissionSync() {
   const sourceCounts = getMissionCounts();
 
   const loadManifests = async () => {
-    const localRes = await fetch("/mission-manifest.json", { cache: "no-store" });
-    if (!localRes.ok) {
-      throw new Error(`Local summary fetch failed (${localRes.status})`);
-    }
-    const localData = (await localRes.json()) as MissionManifest;
+    const fetchManifest = async (url: string, label: string) => {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`${label} summary fetch failed (${res.status})`);
+      }
+      return (await res.json()) as MissionManifest;
+    };
 
-    const remoteRes = await fetch(
-      "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/public/mission-manifest.json",
-      { cache: "no-store" }
-    );
-    if (!remoteRes.ok) {
-      throw new Error(`Main summary fetch failed (${remoteRes.status})`);
+    const localData = await fetchManifest("/mission-manifest.json", "Local");
+    const remoteUrl =
+      import.meta.env.VITE_MISSION_MANIFEST_URL ||
+      "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/public/mission-manifest.json";
+
+    let remoteData: MissionManifest;
+    try {
+      remoteData = await fetchManifest(remoteUrl, "Main");
+      setManifestWarning(null);
+    } catch (err) {
+      const fallbackUrl = `${window.location.origin}/mission-manifest.json`;
+      if (!import.meta.env.VITE_MISSION_MANIFEST_URL && fallbackUrl !== remoteUrl) {
+        remoteData = await fetchManifest(fallbackUrl, "Site");
+        setManifestWarning(
+          "Main summary fetch failed. Using the site manifest instead. Set VITE_MISSION_MANIFEST_URL to compare against main."
+        );
+      } else {
+        throw err;
+      }
     }
-    const remoteData = (await remoteRes.json()) as MissionManifest;
 
     setLocalManifest(localData);
     setRemoteManifest(remoteData);
@@ -62,6 +77,7 @@ export default function AdminMissionSync() {
       } catch (err) {
         if (isMounted) {
           setManifestError(err instanceof Error ? err.message : "Failed to load mission summary");
+          setManifestWarning(null);
         }
       }
     };
@@ -293,6 +309,9 @@ export default function AdminMissionSync() {
               <CardContent className="space-y-3 text-sm">
                 {manifestError && (
                   <div className="text-destructive">Safety check error: {manifestError}</div>
+                )}
+                {manifestWarning && (
+                  <div className="text-amber-700">{manifestWarning}</div>
                 )}
                 {!manifestError && !localManifest && (
                   <div className="text-muted-foreground">Loading manifest data...</div>
