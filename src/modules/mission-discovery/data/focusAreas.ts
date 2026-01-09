@@ -196,6 +196,25 @@ export const FOCUS_AREAS: MissionFocusArea[] = [
     title: "Holistic Environmental Education and Awareness",
     description: "Integrating environmental education across all sectors."
   },
+  // Economy Focus Areas
+  {
+    id: "eco-fa-01",
+    pillarId: "economy",
+    title: "Conscious Business Models",
+    description: "Shifting enterprises toward purpose, ethics, and stakeholder value."
+  },
+  {
+    id: "eco-fa-02",
+    pillarId: "economy",
+    title: "Equitable Resource Distribution",
+    description: "Reducing inequality and expanding access to essential resources."
+  },
+  {
+    id: "eco-fa-03",
+    pillarId: "economy",
+    title: "Collaborative Consumption",
+    description: "Enabling shared, circular, and inclusive economic systems."
+  },
   // Culture & Consciousness
   {
     id: "cul-fa-01",
