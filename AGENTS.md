@@ -2,6 +2,34 @@
 
 You are operating autonomously on this repository.
 
+---
+
+## Multi-AI Team
+
+| Agent | Role | What They Do |
+|-------|------|--------------|
+| **Human** | Lead Architect | Vision, strategy, final decisions |
+| **Gemini** | CTO / Architect | Writes specs, reviews work, coordinates |
+| **Claude Code** | Senior Dev | Complex logic, refactoring (future) |
+| **Codex** | Lead Engineer | Implements features, writes code |
+
+---
+
+## Task System (ai_tasks/)
+
+1. **Gemini** writes task specs as `ai_tasks/PENDING_*.md`
+2. **You** complete each task as described
+3. **Rename** the file from `PENDING_` to `DONE_`
+4. **Commit** with descriptive message
+
+Each task file contains:
+- Context — Why this matters
+- Files to Read — What to study first  
+- What to Build — Code snippets and instructions
+- Success Criteria — How to know it's done
+
+---
+
 ## Default Workflow (Always)
 - For every task, create or use a dedicated branch (one branch per task).
 - Implement the requested changes in full, even if the scope is large.
