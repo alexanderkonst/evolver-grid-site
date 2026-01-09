@@ -1,0 +1,19 @@
+{
+  "version": "2026-01-09",
+  "generatedAt": "2026-01-09T00:00:00Z",
+  "counts": {
+    "pillars": 6,
+    "focusAreas": 40,
+    "challenges": 106,
+    "outcomes": 179,
+    "missions": 583
+  },
+  "missionsByPillar": {
+    "meta": 99,
+    "infrastructure": 121,
+    "governance": 87,
+    "environment": 96,
+    "economy": 112,
+    "culture": 68
+  }
+}
