@@ -56,6 +56,8 @@ Some guy managed to get knighted by the King through absurd social engineering. 
 
 (Add more as they emerge)
 
+- [ ] **Hackathon Jan 24** — Network School hackathon. Demo the platform, connect with vibe coders, get visibility
 - [ ] Demo day with live onboarding of 10 people
 - [ ] "This platform helped me find my genius" testimonial video
 - [ ] Partner with Jackson for legitimacy
+- [ ] QR code cafeteria takeover — camp there for a day
