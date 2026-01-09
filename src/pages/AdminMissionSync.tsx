@@ -26,6 +26,7 @@ export default function AdminMissionSync() {
   const [remoteManifest, setRemoteManifest] = useState<MissionManifest | null>(null);
   const [manifestError, setManifestError] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
+  const [downloadStatus, setDownloadStatus] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const sourceCounts = getMissionCounts();
@@ -137,6 +138,36 @@ export default function AdminMissionSync() {
     }
   };
 
+  const handleDownloadManifest = () => {
+    const now = new Date();
+    const manifest = {
+      version: now.toISOString().slice(0, 10),
+      generatedAt: now.toISOString(),
+      counts: {
+        pillars: sourceCounts.pillars,
+        focusAreas: sourceCounts.focusAreas,
+        challenges: sourceCounts.challenges,
+        outcomes: sourceCounts.outcomes,
+        missions: sourceCounts.total,
+      },
+      missionsByPillar: sourceCounts.byPillar,
+    };
+
+    const blob = new Blob([JSON.stringify(manifest, null, 2) + "\n"], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "mission-manifest.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setDownloadStatus("Downloaded.");
+    setTimeout(() => setDownloadStatus(null), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -215,8 +246,14 @@ export default function AdminMissionSync() {
               </Button>
               {copyStatus && <span className="text-xs text-muted-foreground">{copyStatus}</span>}
             </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Button variant="outline" size="sm" onClick={handleDownloadManifest}>
+                Download mission summary file
+              </Button>
+              {downloadStatus && <span className="text-xs text-muted-foreground">{downloadStatus}</span>}
+            </div>
             <div className="text-muted-foreground">
-              This command updates <span className="font-mono">public/mission-manifest.json</span>, which the safety check uses.
+              Use either the command or the download button to refresh <span className="font-mono">public/mission-manifest.json</span>.
             </div>
           </CardContent>
         </Card>
