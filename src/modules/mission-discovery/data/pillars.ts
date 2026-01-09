@@ -30,6 +30,13 @@ export const PILLARS: MissionPillar[] = [
     color: "bg-emerald-50 text-emerald-900"
   },
   {
+    id: "economy",
+    title: "Economy",
+    description: "Building an equitable, regenerative, and purpose-driven economy.",
+    icon: "coins",
+    color: "bg-amber-50 text-amber-900"
+  },
+  {
     id: "culture",
     title: "Culture & Consciousness",
     description: "Cultivating a global culture of mindfulness, shared values, and integral education.",
