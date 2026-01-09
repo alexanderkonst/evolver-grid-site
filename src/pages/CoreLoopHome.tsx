@@ -21,6 +21,15 @@ interface QolDomain {
 // Onboarding stages
 type OnboardingStage = 'zog' | 'qol' | 'profile' | 'explore' | 'complete';
 
+// Genius Discovery stages: entry → articulate → useful → monetize
+type GeniusStage = 'entry' | 'articulate' | 'useful' | 'monetize' | 'complete';
+
+const getNextStage = (current: GeniusStage): GeniusStage => {
+    const sequence: GeniusStage[] = ['entry', 'articulate', 'useful', 'monetize', 'complete'];
+    const currentIndex = sequence.indexOf(current);
+    return sequence[Math.min(currentIndex + 1, sequence.length - 1)];
+};
+
 const CoreLoopHome = () => {
     const navigate = useNavigate();
     const { toast } = useToast();
@@ -45,8 +54,6 @@ const CoreLoopHome = () => {
     const [hasZoG, setHasZoG] = useState(false);
     const [hasQoL, setHasQoL] = useState(false);
 
-    // Genius Discovery stages: entry → articulate → useful → monetize
-    type GeniusStage = 'entry' | 'articulate' | 'useful' | 'monetize' | 'complete';
     const [geniusStage, setGeniusStage] = useState<GeniusStage>('entry');
     const [practiceCount, setPracticeCount] = useState(0);
 
@@ -253,6 +260,15 @@ const CoreLoopHome = () => {
         } finally {
             setIsCompleting(false);
         }
+    };
+
+    const updateGeniusStage = async (newStage: GeniusStage) => {
+        const profileId = await getOrCreateGameProfileId();
+        await supabase
+            .from('game_profiles')
+            .update({ genius_stage: newStage })
+            .eq('id', profileId);
+        setGeniusStage(newStage);
     };
 
     if (isLoading) {
@@ -499,6 +515,12 @@ const CoreLoopHome = () => {
                             priority: 'secondary' as const,
                         },
                     ]}
+                    onActionClick={(action) => {
+                        navigate(action.route);
+                        if (action.type === 'genius') {
+                            updateGeniusStage(getNextStage(geniusStage));
+                        }
+                    }}
                 />
             </div>
         </GameShell>
