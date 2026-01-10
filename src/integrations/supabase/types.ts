@@ -91,66 +91,27 @@ export type Database = {
         }
         Relationships: []
       }
-      events: {
-        Row: {
-          id: string
-          community_id: string | null
-          title: string
-          description: string | null
-          photo_url: string | null
-          event_date: string
-          event_time: string
-          location: string | null
-          created_by: string | null
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          community_id?: string | null
-          title: string
-          description?: string | null
-          photo_url?: string | null
-          event_date: string
-          event_time: string
-          location?: string | null
-          created_by?: string | null
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          community_id?: string | null
-          title?: string
-          description?: string | null
-          photo_url?: string | null
-          event_date?: string
-          event_time?: string
-          location?: string | null
-          created_by?: string | null
-          created_at?: string
-        }
-        Relationships: []
-      }
       event_rsvps: {
         Row: {
-          id: string
+          created_at: string | null
           event_id: string | null
+          id: string
+          status: string | null
           user_id: string | null
-          status: string
-          created_at: string
         }
         Insert: {
-          id?: string
+          created_at?: string | null
           event_id?: string | null
+          id?: string
+          status?: string | null
           user_id?: string | null
-          status?: string
-          created_at?: string
         }
         Update: {
-          id?: string
+          created_at?: string | null
           event_id?: string | null
+          id?: string
+          status?: string | null
           user_id?: string | null
-          status?: string
-          created_at?: string
         }
         Relationships: [
           {
@@ -159,8 +120,47 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "events"
             referencedColumns: ["id"]
-          }
+          },
         ]
+      }
+      events: {
+        Row: {
+          community_id: string | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          event_date: string
+          event_time: string
+          id: string
+          location: string | null
+          photo_url: string | null
+          title: string
+        }
+        Insert: {
+          community_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          event_date: string
+          event_time: string
+          id?: string
+          location?: string | null
+          photo_url?: string | null
+          title: string
+        }
+        Update: {
+          community_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          event_date?: string
+          event_time?: string
+          id?: string
+          location?: string | null
+          photo_url?: string | null
+          title?: string
+        }
+        Relationships: []
       }
       game_profiles: {
         Row: {
@@ -976,52 +976,52 @@ export type Database = {
       }
       zog_snapshots: {
         Row: {
+          ai_response_raw: string | null
+          appleseed_data: Json | null
+          appleseed_generated_at: string | null
           archetype_title: string
           core_pattern: string
           created_at: string
+          excalibur_data: Json | null
+          excalibur_generated_at: string | null
           id: string
           mastery_action: string | null
           profile_id: string | null
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded: boolean
-          appleseed_data: Json | null
-          excalibur_data: Json | null
-          appleseed_generated_at: string | null
-          excalibur_generated_at: string | null
-          ai_response_raw: string | null
         }
         Insert: {
+          ai_response_raw?: string | null
+          appleseed_data?: Json | null
+          appleseed_generated_at?: string | null
           archetype_title: string
           core_pattern: string
           created_at?: string
+          excalibur_data?: Json | null
+          excalibur_generated_at?: string | null
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded?: boolean
-          appleseed_data?: Json | null
-          excalibur_data?: Json | null
-          appleseed_generated_at?: string | null
-          excalibur_generated_at?: string | null
-          ai_response_raw?: string | null
         }
         Update: {
+          ai_response_raw?: string | null
+          appleseed_data?: Json | null
+          appleseed_generated_at?: string | null
           archetype_title?: string
           core_pattern?: string
           created_at?: string
+          excalibur_data?: Json | null
+          excalibur_generated_at?: string | null
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
           top_ten_talents?: Json
           top_three_talents?: Json
           xp_awarded?: boolean
-          appleseed_data?: Json | null
-          excalibur_data?: Json | null
-          appleseed_generated_at?: string | null
-          excalibur_generated_at?: string | null
-          ai_response_raw?: string | null
         }
         Relationships: [
           {
