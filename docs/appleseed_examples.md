@@ -325,6 +325,125 @@ Though she sits atop a potent mesh of humans and insight, she may delay firing i
 
 ---
 
+## Example 4: Tylor
+
+### Part 1 — Raw Signal (Input)
+
+**Soul Purpose:** Create and support regenerative systems for humans to reconnect with self, the land, ancestors, and the wild, in service of a thriving future.
+
+**Zone of Genius:** My zone of genius is Crafting Visions and Conceptualizing Innovative Solutions to envision and strategize what is required to Build a Better World, and then Taking Leadership for implementation and to bring it to life.
+
+**Missions:**
+- Build A Better World from the outside in (regenerative environments) and inside out (heart-centered humans building resilient, caring communities and capacities)
+- Integrate healing and business
+- Co-create high-performance collaborative team leadership dynamics that generate systems for a thriving future
+
+**Enneagram:** 3 - The Achiever, 2 Wing - The Helper
+**MB:** ENFP
+
+**Role Challenges/Shadows:**
+- Overcommitment
+- Energetic Alignment is Situational
+- Challenge Essentializing Time/Energy Boundaries in my own world
+- Approaching 60d timeline on cashflow, growing anxiety about sustenance
+- Many irons in fire, many projects without teams
+- Energetic alignment fully charged for creative dynamic group process, rarely persists with same fervor into follow-through phase
+- Will need accountabilibuddies for focus and commitments
+
+**Other Projects (10+):**
+1. Vajra Academy land project in Ubud with Kita & Andrew
+2. Bhisama Group Development & Construction Mgmt Company
+3. InflectionPoint Design & Dev Group (7yrs in biz)
+4. Vocational Vision BIPOC youth workforce training program
+5. Infinite Vine Tarot Deck with Natalia
+6. Family ADU in Denver
+7. From the Ashes - Divination, Podcast, Medicine Art
+8. Zangala Foundation - Supporting Dagara Tribe in Burkina Faso
+9. Saraswati Temple Arts Team
+10. Yawanawa Hape branding/marketing
+
+---
+
+### Part 2 — Appleseed Output (Amplified)
+
+**TYLOR'S APPLESEED** v1.2
+
+#### The One Phrase
+
+Tylor is a Temple Builder of Futures who listens to the land, aligns teams with clarity, and turns vision into places we can touch.
+
+#### Unique Vibrational Key
+
+✦ Temple Systems Builder ✦
+"He who hears the memory of the land and translates it into form, gathering teams to build what was once only felt."
+
+#### 1) Zone of Genius — Three Lenses
+
+- **Level 1 — Talents as Actions:** Map · Anchor · Ground · Ignite · Build
+- **Level 2 — Prime Driver:** Forge Sacred Form
+- **Level 3 — Compound Archetype:** Mythic Builder — Land Listener × Team Firekeeper
+
+#### 2) What He's Most Appreciated & Paid For
+
+- ✦ Vision-to-Structure Alchemy → A land steward carries a dream with no map → Tylor listens to the soil, sketches the essence, and delivers a plan that both elders and investors nod at.
+- ✦ Constellation Ignition → A team burns with purpose but spins → He names roles and rhythm, and traction begins.
+- ✦ System Translation → A potent offering drifts as talk → He extracts its core, builds its bones, and sequences it into reality.
+
+#### 3) Mastery Stages
+
+1. Stone Whisperer — Maps invisible cities as a child, speaks to trees, dreams of structures.
+2. Builder's Blood — Apprentices in the trades. Learns density, weight, and consequence.
+3. Initiation by Collapse — Overextends. Crashes. Silence. The land becomes teacher.
+4. The Vow — Vision returns as promise to land and people.
+5. Team Firekeeper — Aligns people like stars. Projects pulse with coherence.
+6. Constellation Weaver — Holds teams and land in one field. Things that shouldn't work—work.
+7. Temple Architect — Crafts ecosystems of stone and soul that outlast trends.
+
+#### 4) Professional Activities
+
+- Vision-to-Blueprint Mapping → For land stewards & aligned founders → To manifest sacred infrastructure from essence
+- Team Constellation Design → For purpose-rich collectives → To create roles, rhythm, and shared clarity
+- Project Stewardship & Execution → For regenerative builders → To guide from sacred conception to grounded build
+- Craft-to-Calling Journeys → For youth & initiatory programs → To awaken skill and contribution through making
+
+#### 5) Roles & Environments
+
+- **As Creator:** Land Listener — channels what the land wants built.
+- **As Team Contributor:** Firekeeper — sustains group momentum through honest rhythm.
+- **As Founder:** Temple Architect — seeds structures that hold legacy, not trend.
+- **Environment:** Sketches pinned to trees. Builders at table and site. Drums beside funding decks. Deadlines tracked with seasons. Tools: compass, machete, AutoCAD, cacao. Atmosphere: ancient yet emerging.
+
+#### 6) Best Complementary Partner
+
+- Skills-wise: The Tracker — who sequences the steps before anyone asks.
+- Genius-wise: The One Who Breathes Through Deadlines — steady under pressure.
+- Archetype-wise: Sacred Sequencer × Field Holder
+- Synergy: The unseen gets built. The sacred gets finished. Teams complete what they start.
+
+#### 7) Monetization Avenues
+
+- Lead Land Listening Retreats → For stewards ready to unlock the true plan
+- Steward Regenerative Build Projects → For aligned collectives creating homes, temples, and centers
+- Offer Constellation Maps → For founders needing clear roles and rhythm
+- Facilitate Firekeeper Labs → For projects stalled in potential
+- Bring Craft-to-Calling Journeys to Youth → For programs bridging skill, soul, and structure
+
+#### 8) Life Scene
+
+Dawn on the land. Elders, builders, youth, and funders sit in circle. Tylor steps forward, places a stone, and says: "Here is where the future remembers." Silence. Then movement. The build begins.
+
+#### 9) Visual Codes
+
+- Spiral Compass — Inner knowing guiding outer action
+- Torch Circle — Teams lit from within
+- Blueprint in the Dirt — Vision drawn where the structure will rise
+
+#### 10) Elevator Pitch
+
+I turn sacred land visions into buildable systems — by listening to place, mapping essence, and guiding teams to completion.
+
+---
+
 ## Signal Amplification Pattern Analysis
 
 ### What the transformation DOES:
