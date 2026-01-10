@@ -59,14 +59,20 @@ const CharacterHub = () => {
                 // soul_colors will be added after migration
                 setSoulColors((profileData as any).soul_colors || null);
 
-                // Get ZoG snapshot
+                // Get ZoG snapshot with Appleseed/Excalibur data
                 if (profileData.last_zog_snapshot_id) {
                     const { data: zogData } = await supabase
                         .from("zog_snapshots")
-                        .select("archetype_title, core_pattern, top_three_talents")
+                        .select("archetype_title, core_pattern, top_three_talents, appleseed_data, excalibur_data")
                         .eq("id", profileData.last_zog_snapshot_id)
                         .single();
                     setZogSnapshot(zogData);
+                    if (zogData?.appleseed_data) {
+                        setAppleseed(zogData.appleseed_data as AppleseedData);
+                    }
+                    if (zogData?.excalibur_data) {
+                        setExcalibur(zogData.excalibur_data as ExcaliburData);
+                    }
                 }
 
                 // Get QoL snapshot
