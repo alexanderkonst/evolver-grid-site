@@ -835,27 +835,6 @@ export type Database = {
         }
         Relationships: []
       }
-      visibility_settings: {
-        Row: {
-          data_type: string
-          id: string
-          user_id: string
-          visibility: string
-        }
-        Insert: {
-          data_type: string
-          id?: string
-          user_id?: string
-          visibility?: string
-        }
-        Update: {
-          data_type?: string
-          id?: string
-          user_id?: string
-          visibility?: string
-        }
-        Relationships: []
-      }
       vector_progress: {
         Row: {
           created_at: string
@@ -896,6 +875,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      visibility_settings: {
+        Row: {
+          created_at: string
+          data_type: string
+          id: string
+          updated_at: string
+          user_id: string
+          visibility: string
+        }
+        Insert: {
+          created_at?: string
+          data_type: string
+          id?: string
+          updated_at?: string
+          user_id: string
+          visibility?: string
+        }
+        Update: {
+          created_at?: string
+          data_type?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+          visibility?: string
+        }
+        Relationships: []
       }
       zog_snapshots: {
         Row: {
