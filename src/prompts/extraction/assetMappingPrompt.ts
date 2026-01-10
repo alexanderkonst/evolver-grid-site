@@ -75,4 +75,15 @@ Rate each asset 1-10 based on:
 
 Be comprehensive — include everything you've learned about my skills, resources, connections, and interests. Sort the final list by leverage_score (highest first).
 
+**IMPORTANT LANGUAGE REQUIREMENTS:**
+- Use universally understandable language that anyone can grasp
+- Avoid technical jargon, academic terms, or specialized vocabulary
+- Write descriptions as if explaining to a curious 15-year-old
+
+**RESPONSE FORMAT:**
+- Return ONLY the JSON array as specified above
+- Do NOT add any follow-up suggestions, options, or offers to provide more
+- Do NOT ask if I want additional analysis, visual representations, or variations
+- End your response after the JSON array closes
+
 I'm using this to map my assets in a personal development tool for potential collaborations and projects.`;
