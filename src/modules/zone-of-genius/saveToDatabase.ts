@@ -73,7 +73,7 @@ export const saveAppleseed = async (
     const { error } = await supabase
       .from("zog_snapshots")
       .update({
-        appleseed_data: appleseed as unknown as Record<string, unknown>,
+        appleseed_data: JSON.parse(JSON.stringify(appleseed)),
         appleseed_generated_at: new Date().toISOString(),
         ai_response_raw: aiResponseRaw || null,
         // Also update archetype from Appleseed
@@ -130,7 +130,7 @@ export const saveExcalibur = async (
     const { error } = await supabase
       .from("zog_snapshots")
       .update({
-        excalibur_data: excalibur as unknown as Record<string, unknown>,
+        excalibur_data: JSON.parse(JSON.stringify(excalibur)),
         excalibur_generated_at: new Date().toISOString(),
       })
       .eq("id", snapshot.id);
@@ -174,8 +174,8 @@ export const loadSavedData = async (): Promise<{
     }
 
     return {
-      appleseed: snapshot.appleseed_data as AppleseedData | null,
-      excalibur: snapshot.excalibur_data as ExcaliburData | null,
+      appleseed: snapshot.appleseed_data as unknown as AppleseedData | null,
+      excalibur: snapshot.excalibur_data as unknown as ExcaliburData | null,
       snapshotId: snapshot.id,
     };
   } catch (err) {

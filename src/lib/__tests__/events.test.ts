@@ -23,12 +23,12 @@ const createChainedMock = () => ({
   maybeSingle: mockSupabaseMaybeSingle,
 });
 
-const mockFrom = vi.fn(() => createChainedMock());
+const mockFrom = vi.fn((_table: string) => createChainedMock());
 const mockGetUser = vi.fn();
 
 vi.mock("@/integrations/supabase/client", () => ({
   supabase: {
-    from: vi.fn().mockImplementation((table) => {
+    from: vi.fn().mockImplementation((table: string) => {
       mockFrom(table);
       return createChainedMock();
     }),
