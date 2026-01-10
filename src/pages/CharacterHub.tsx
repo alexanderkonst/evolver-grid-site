@@ -68,10 +68,10 @@ const CharacterHub = () => {
                         .single();
                     setZogSnapshot(zogData);
                     if (zogData?.appleseed_data) {
-                        setAppleseed(zogData.appleseed_data as AppleseedData);
+                        setAppleseed(zogData.appleseed_data as unknown as AppleseedData);
                     }
                     if (zogData?.excalibur_data) {
-                        setExcalibur(zogData.excalibur_data as ExcaliburData);
+                        setExcalibur(zogData.excalibur_data as unknown as ExcaliburData);
                     }
                 }
 
