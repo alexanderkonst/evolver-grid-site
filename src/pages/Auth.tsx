@@ -91,6 +91,29 @@ const Auth = () => {
     }
   };
 
+  const handleTestLogin = async () => {
+    setLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: "test@evolvergrid.test",
+        password: "testpassword123",
+      });
+
+      if (error) throw error;
+
+      navigate("/game");
+    } catch (error: any) {
+      toast({
+        title: "Test login failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
@@ -253,6 +276,17 @@ const Auth = () => {
                   <Button type="submit" className="w-full" disabled={loading}>
                     {loading ? "Logging in..." : "Log In"}
                   </Button>
+                  {import.meta.env.DEV && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={handleTestLogin}
+                      className="w-full"
+                      disabled={loading}
+                    >
+                      Test Login (Dev Only)
+                    </Button>
+                  )}
                 </form>
               </TabsContent>
 
@@ -323,4 +357,3 @@ const Auth = () => {
 };
 
 export default Auth;
-
