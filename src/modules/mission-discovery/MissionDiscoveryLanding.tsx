@@ -7,7 +7,8 @@ import {
     ListChecks,
     Clipboard,
     Check,
-    HelpCircle
+    HelpCircle,
+    BookOpen
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,11 +23,11 @@ import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
 
 /**
  * Mission Discovery Landing Page
- * 
+ *
  * Flow options:
  * 1. "I have clarity" → AI paste OR type manually → Match to missions
  * 2. "I need to discover" → Go to wizard
- * 
+ *
  * Also handles: "Do you have an AI that knows your mission?"
  */
 
@@ -165,8 +166,14 @@ const MissionDiscoveryLanding = () => {
         navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
     };
 
-    const handleOpenWizardForMission = (mission: Mission) => {
-        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}`);
+    // Direct commit - goes to wizard with directCommit flag
+    const handleCommitMission = (mission: Mission) => {
+        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}&directCommit=true`);
+    };
+
+    // Learn more - opens wizard in read-only mode
+    const handleLearnMore = (mission: Mission) => {
+        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}&readOnly=true`);
     };
 
     return (
@@ -186,42 +193,55 @@ const MissionDiscoveryLanding = () => {
                     <div className="space-y-6">
                         <div className="text-center">
                             <h2 className="text-xl font-semibold text-slate-900">Top mission matches</h2>
-                            <p className="text-sm text-slate-600">Pick one to jump into the wizard with it pre-selected.</p>
+                            <p className="text-sm text-slate-600">Choose a mission that resonates with you.</p>
                         </div>
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                             {matches.map(match => (
-                                <div key={match.mission.id} className="rounded-xl border border-slate-200 bg-white p-4 hover:border-slate-300 transition-colors">
-                                    <div className="flex items-start justify-between gap-3">
-                                        <div className="flex-1">
-                                            {/* Pillar + Focus Area pills */}
-                                            <div className="flex flex-wrap gap-2 mb-2">
-                                                {match.context.pillar && (
-                                                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${getPillarColor(match.context.pillarId)}`}>
-                                                        {match.context.pillar}
-                                                    </span>
-                                                )}
-                                                {match.context.focusArea && (
-                                                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-slate-100 text-slate-600">
-                                                        {match.context.focusArea}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            {/* Title */}
-                                            <h3 className="text-base font-semibold text-slate-900">{match.mission.title}</h3>
-                                            {/* Statement (only if different from title) */}
-                                            {match.mission.statement !== match.mission.title && (
-                                                <p className="text-sm text-slate-600 mt-1">{match.mission.statement}</p>
+                                <div key={match.mission.id} className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
+                                    <div className="mb-4">
+                                        {/* Pillar + Focus Area pills */}
+                                        <div className="flex flex-wrap gap-2 mb-3">
+                                            {match.context.pillar && (
+                                                <span className={`text-xs font-medium px-2 py-1 rounded-full ${getPillarColor(match.context.pillarId)}`}>
+                                                    {match.context.pillar}
+                                                </span>
                                             )}
-                                            {/* Challenge + Outcome context */}
-                                            {(match.context.challenge || match.context.outcome) && (
-                                                <p className="text-xs text-slate-500 mt-2">
-                                                    {[match.context.challenge, match.context.outcome].filter(Boolean).join(' → ')}
-                                                </p>
+                                            {match.context.focusArea && (
+                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                                                    {match.context.focusArea}
+                                                </span>
                                             )}
                                         </div>
-                                        <Button size="sm" variant="outline" onClick={() => handleOpenWizardForMission(match.mission)}>
-                                            Choose
-                                            <ArrowRight className="w-4 h-4 ml-2" />
+                                        {/* Title */}
+                                        <h3 className="text-lg font-semibold text-slate-900 mb-1">{match.mission.title}</h3>
+                                        {/* Statement (only if different from title) */}
+                                        {match.mission.statement !== match.mission.title && (
+                                            <p className="text-sm text-slate-600">{match.mission.statement}</p>
+                                        )}
+                                        {/* Challenge + Outcome context */}
+                                        {(match.context.challenge || match.context.outcome) && (
+                                            <p className="text-xs text-slate-500 mt-2">
+                                                {[match.context.challenge, match.context.outcome].filter(Boolean).join(' → ')}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* Two buttons */}
+                                    <div className="flex flex-wrap gap-3">
+                                        <Button
+                                            onClick={() => handleCommitMission(match.mission)}
+                                            className="flex-1 ring-2 ring-emerald-400/50 ring-offset-2 bg-emerald-600 hover:bg-emerald-700"
+                                        >
+                                            <Check className="w-4 h-4 mr-2" />
+                                            Commit and Add to my profile
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => handleLearnMore(match.mission)}
+                                            className="flex-1"
+                                        >
+                                            <BookOpen className="w-4 h-4 mr-2" />
+                                            Learn more about this mission
                                         </Button>
                                     </div>
                                 </div>
