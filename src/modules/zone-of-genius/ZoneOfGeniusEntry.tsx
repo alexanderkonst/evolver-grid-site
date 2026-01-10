@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,11 @@ import GameShell from "@/components/game/GameShell";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
+import { saveAppleseed, saveExcalibur, loadSavedData } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
+import { useToast } from "@/hooks/use-toast";
 
 type Step =
     | "choice"
@@ -22,6 +24,7 @@ type Step =
 
 const ZoneOfGeniusEntry = () => {
     const navigate = useNavigate();
+    const { toast } = useToast();
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/game/profile";
 
@@ -30,10 +33,28 @@ const ZoneOfGeniusEntry = () => {
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
 
     // Generated data
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
+
+    // Load saved data on mount
+    useEffect(() => {
+        const loadExisting = async () => {
+            const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
+            if (savedAppleseed) {
+                setAppleseed(savedAppleseed);
+                if (savedExcalibur) {
+                    setExcalibur(savedExcalibur);
+                    setStep("excalibur-result");
+                } else {
+                    setStep("appleseed-result");
+                }
+            }
+        };
+        loadExisting();
+    }, []);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
@@ -66,10 +87,34 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
-    const handleSaveAppleseed = () => {
-        // TODO: Save appleseed to database
-        // For now, just show success and offer Excalibur
-        console.log('Saving appleseed:', appleseed);
+    const handleSaveAppleseed = async () => {
+        if (!appleseed) return;
+
+        setIsSaving(true);
+        try {
+            const result = await saveAppleseed(appleseed, aiResponse);
+            if (result.success) {
+                toast({
+                    title: "Appleseed Saved!",
+                    description: "Your Zone of Genius profile has been saved.",
+                });
+            } else {
+                toast({
+                    title: "Save Failed",
+                    description: result.error || "Could not save your Appleseed.",
+                    variant: "destructive",
+                });
+            }
+        } catch (err) {
+            console.error("Error saving Appleseed:", err);
+            toast({
+                title: "Error",
+                description: "Something went wrong while saving.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const handleGenerateExcalibur = async () => {
@@ -92,11 +137,36 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
-    const handleSaveExcalibur = () => {
-        // TODO: Save excalibur to database
-        console.log('Saving excalibur:', excalibur);
-        // Navigate back to profile
-        navigate(returnPath);
+    const handleSaveExcalibur = async () => {
+        if (!excalibur) return;
+
+        setIsSaving(true);
+        try {
+            const result = await saveExcalibur(excalibur);
+            if (result.success) {
+                toast({
+                    title: "Excalibur Saved!",
+                    description: "Your Genius Offer has been saved.",
+                });
+                // Navigate back to profile after short delay
+                setTimeout(() => navigate(returnPath), 1000);
+            } else {
+                toast({
+                    title: "Save Failed",
+                    description: result.error || "Could not save your Excalibur.",
+                    variant: "destructive",
+                });
+            }
+        } catch (err) {
+            console.error("Error saving Excalibur:", err);
+            toast({
+                title: "Error",
+                description: "Something went wrong while saving.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     // Step: Generating Appleseed (Ritual Loading)

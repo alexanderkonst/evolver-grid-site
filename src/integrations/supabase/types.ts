@@ -985,6 +985,11 @@ export type Database = {
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded: boolean
+          appleseed_data: Json | null
+          excalibur_data: Json | null
+          appleseed_generated_at: string | null
+          excalibur_generated_at: string | null
+          ai_response_raw: string | null
         }
         Insert: {
           archetype_title: string
@@ -996,6 +1001,11 @@ export type Database = {
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded?: boolean
+          appleseed_data?: Json | null
+          excalibur_data?: Json | null
+          appleseed_generated_at?: string | null
+          excalibur_generated_at?: string | null
+          ai_response_raw?: string | null
         }
         Update: {
           archetype_title?: string
@@ -1007,6 +1017,11 @@ export type Database = {
           top_ten_talents?: Json
           top_three_talents?: Json
           xp_awarded?: boolean
+          appleseed_data?: Json | null
+          excalibur_data?: Json | null
+          appleseed_generated_at?: string | null
+          excalibur_generated_at?: string | null
+          ai_response_raw?: string | null
         }
         Relationships: [
           {
