@@ -14,6 +14,8 @@ import {
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import VisibilityToggle, { VisibilityValue } from "@/components/VisibilityToggle";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -52,10 +54,22 @@ type MissionCommitment = {
     committed_at?: string;
 };
 
+type VisibilityKey = "zog" | "qol" | "assets";
+
+const DEFAULT_VISIBILITY_SETTINGS: Record<VisibilityKey, VisibilityValue> = {
+    zog: "community",
+    qol: "private",
+    assets: "private",
+};
+
 const ProfileSpace = () => {
+    const { toast } = useToast();
     const [missionCommitment, setMissionCommitment] = useState<MissionCommitment | null>(null);
     const [savedAssets, setSavedAssets] = useState<SavedAsset[]>([]);
     const [showAssets, setShowAssets] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
+    const [visibilitySettings, setVisibilitySettings] = useState(DEFAULT_VISIBILITY_SETTINGS);
+    const [savingVisibilityKey, setSavingVisibilityKey] = useState<VisibilityKey | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -63,6 +77,7 @@ const ProfileSpace = () => {
         const loadData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user || !isMounted) return;
+            if (isMounted) setUserId(user.id);
 
             // Load assets from localStorage
             const assetsKey = `user_assets_${user.id}`;
@@ -74,6 +89,26 @@ const ProfileSpace = () => {
                 } catch (err) {
                     console.error("Failed to parse assets:", err);
                 }
+            }
+
+            const { data: visibilityRows, error: visibilityError } = await supabase
+                .from("visibility_settings")
+                .select("data_type, visibility")
+                .eq("user_id", user.id);
+
+            if (visibilityError) {
+                console.error("Failed to load visibility settings:", visibilityError);
+            } else {
+                const nextSettings = { ...DEFAULT_VISIBILITY_SETTINGS };
+                visibilityRows?.forEach((row) => {
+                    if (!(row.data_type in nextSettings)) return;
+                    const dataType = row.data_type as VisibilityKey;
+                    if (dataType === "qol") return;
+                    if (["private", "community", "public"].includes(row.visibility)) {
+                        nextSettings[dataType] = row.visibility as VisibilityValue;
+                    }
+                });
+                if (isMounted) setVisibilitySettings(nextSettings);
             }
 
             // Load mission commitment
@@ -139,6 +174,35 @@ const ProfileSpace = () => {
         };
     }, []);
 
+    const handleVisibilityChange = async (dataType: VisibilityKey, value: VisibilityValue) => {
+        const previousValue = visibilitySettings[dataType];
+        setVisibilitySettings((prev) => ({ ...prev, [dataType]: value }));
+
+        if (!userId) return;
+
+        setSavingVisibilityKey(dataType);
+        const { error } = await supabase
+            .from("visibility_settings")
+            .upsert(
+                {
+                    user_id: userId,
+                    data_type: dataType,
+                    visibility: value,
+                },
+                { onConflict: "user_id,data_type" }
+            );
+        setSavingVisibilityKey(null);
+
+        if (error) {
+            setVisibilitySettings((prev) => ({ ...prev, [dataType]: previousValue }));
+            toast({
+                title: "Failed to save visibility",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
+    };
+
     const getAssetTypeName = (typeId: string) => {
         return ASSET_TYPES.find(t => t.id === typeId)?.title || typeId;
     };
@@ -175,6 +239,12 @@ const ProfileSpace = () => {
             status: "available"
         }
     ];
+
+    const moduleVisibilityMap: Record<string, { key: VisibilityKey; disabled?: boolean }> = {
+        "zone-of-genius": { key: "zog" },
+        "quality-of-life": { key: "qol", disabled: true },
+        "asset-mapping": { key: "assets" },
+    };
 
     return (
         <GameShell>
@@ -253,16 +323,31 @@ const ProfileSpace = () => {
                                 <div className="p-2 rounded-lg bg-slate-100">
                                     {module.icon}
                                 </div>
-                                {module.status === "coming-soon" && (
-                                    <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">
-                                        Coming Soon
-                                    </span>
-                                )}
-                                {module.id === "asset-mapping" && savedAssets.length > 0 && (
-                                    <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
-                                        ✓ {savedAssets.length}
-                                    </span>
-                                )}
+                                <div className="flex flex-col items-end gap-2">
+                                    {module.status === "coming-soon" && (
+                                        <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                                            Coming Soon
+                                        </span>
+                                    )}
+                                    {module.id === "asset-mapping" && savedAssets.length > 0 && (
+                                        <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                                            ✓ {savedAssets.length}
+                                        </span>
+                                    )}
+                                    {moduleVisibilityMap[module.id] && (
+                                        <VisibilityToggle
+                                            value={visibilitySettings[moduleVisibilityMap[module.id].key]}
+                                            onChange={(value) =>
+                                                handleVisibilityChange(moduleVisibilityMap[module.id].key, value)
+                                            }
+                                            disabled={
+                                                moduleVisibilityMap[module.id].disabled ||
+                                                savingVisibilityKey === moduleVisibilityMap[module.id].key ||
+                                                !userId
+                                            }
+                                        />
+                                    )}
+                                </div>
                             </div>
                             <h3 className="font-semibold text-slate-900 mb-1">{module.title}</h3>
                             <p className="text-sm text-slate-600 mb-4">{module.description}</p>
