@@ -1,4 +1,4 @@
-Yeah before I explain this# Zone of Genius Technology Stack
+# Zone of Genius Technology Stack
 
 > "The signal of somebody's uniqueness already exists. Each step maintains that signal-to-noise ratio as it refracts into form."
 
@@ -9,6 +9,32 @@ Yeah before I explain this# Zone of Genius Technology Stack
 **Core Premise:** Every human has a soul-level essence that is paradoxically unique AND one with Source. As this essence moves into grosser realms, it becomes role, function, personality — the form through which light refracts.
 
 **The Dodecahedron:** Light shines through the prism and refracts through 12 aspects/perspectives. This is not metaphor — it's architecture.
+
+---
+
+## The 12 Perspectives (Dodecahedron of Genius)
+
+| # | Perspective | What It Reveals | Density |
+|---|-------------|-----------------|----------|
+| 1 | **Bullseye Sentence** | Essence in one breath | ⭐⭐⭐⭐⭐ |
+| 2 | **Unique Vibrational Key** | Archetype name + tagline | ⭐⭐⭐⭐⭐ |
+| 3 | **Zone of Genius — Three Lenses** | Actions → Prime Driver → Archetype | ⭐⭐⭐⭐⭐ |
+| 4 | **What You're Appreciated & Paid For** | Effect → Scene → Outcome | ⭐⭐⭐⭐ |
+| 5 | **Mastery Stages** | 7 evolutionary stages | ⭐⭐⭐⭐ |
+| 6 | **Professional Activities** | LinkedIn-searchable roles | ⭐⭐⭐ |
+| 7 | **Optimal Roles & Environments** | Creator/Team/Founder + vibe | ⭐⭐⭐⭐ |
+| 8 | **Best Complementary Partner** | Who to seek | ⭐⭐⭐⭐ |
+| 9 | **Monetization Avenues** | How to monetize | ⭐⭐⭐⭐⭐ |
+| 10 | **Life Scene** | Sensory embodiment in flow | ⭐⭐⭐⭐ |
+| 11 | **Visual Codes** | Symbolic anchors | ⭐⭐⭐ |
+| 12 | **Elevator Pitch** | Final synthesis for the world | ⭐⭐⭐⭐⭐ |
+
+**Top 5 for Appleseed → Excalibur flow:**
+1. Bullseye Sentence
+2. Zone of Genius — Three Lenses
+3. Monetization Avenues
+4. Best Complementary Partner
+5. Elevator Pitch
 
 ---
 
