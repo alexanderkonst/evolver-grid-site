@@ -51,7 +51,9 @@ import ProfileSpace from "./pages/spaces/ProfileSpace";
 import TransformationSpace from "./pages/spaces/TransformationSpace";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
 import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
+import EventsSpace from "./pages/spaces/EventsSpace";
 import CoopSpace from "./pages/spaces/CoopSpace";
+import EventDetail from "./pages/EventDetail";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery
@@ -101,7 +103,9 @@ const App = () => (
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
+            <Route path="/game/events" element={<EventsSpace />} />
             <Route path="/game/coop" element={<CoopSpace />} />
+            <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<GrowthPathsPage />} />
             <Route path="/today" element={<Today />} />

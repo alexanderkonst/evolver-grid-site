@@ -6,6 +6,7 @@ import {
     Sparkles,
     Store,
     Users,
+    CalendarDays,
     Building2,
     LogOut,
     Menu,
@@ -83,6 +84,13 @@ const SPACES: NavItem[] = [
         icon: <Users className="w-5 h-5" />,
         path: "/game/matchmaking",
         description: "Find your people"
+    },
+    {
+        id: "events",
+        label: "Events",
+        icon: <CalendarDays className="w-5 h-5" />,
+        path: "/game/events",
+        description: "Community gatherings"
     },
     {
         id: "coop",
