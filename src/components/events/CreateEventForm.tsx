@@ -47,11 +47,18 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
     }
 
     try {
+      // Ensure time has seconds for PostgreSQL TIME type
+      const formattedTime = formData.event_time.includes(':')
+        ? (formData.event_time.split(':').length === 2
+          ? `${formData.event_time}:00`
+          : formData.event_time)
+        : formData.event_time;
+
       const event = await createEvent({
         title: formData.title,
         description: formData.description || null,
         event_date: formData.event_date,
-        event_time: formData.event_time,
+        event_time: formattedTime,
         location: formData.location || null,
         photo_url: formData.photo_url || null,
       });

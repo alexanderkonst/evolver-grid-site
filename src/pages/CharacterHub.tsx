@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { useRecommendations } from "@/hooks/use-recommendations";
+import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
+import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
+import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -22,6 +26,8 @@ const CharacterHub = () => {
     const [soulColors, setSoulColors] = useState<string[] | null>(null);
     const [generatingColors, setGeneratingColors] = useState(false);
     const [upgradeCount, setUpgradeCount] = useState(0);
+    const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
+    const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
     // Get personalized recommendations
     const recommendations = useRecommendations(profile?.id || null);
