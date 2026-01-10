@@ -835,6 +835,27 @@ export type Database = {
         }
         Relationships: []
       }
+      visibility_settings: {
+        Row: {
+          data_type: string
+          id: string
+          user_id: string
+          visibility: string
+        }
+        Insert: {
+          data_type: string
+          id?: string
+          user_id?: string
+          visibility?: string
+        }
+        Update: {
+          data_type?: string
+          id?: string
+          user_id?: string
+          visibility?: string
+        }
+        Relationships: []
+      }
       vector_progress: {
         Row: {
           created_at: string

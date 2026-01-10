@@ -180,6 +180,53 @@ const EventDetail = () => {
         return `https://calendar.google.com/calendar/render?${params.toString()}`;
     };
 
+    const getOutlookCalendarUrl = () => {
+        if (!event) return "#";
+
+        const startDate = parseISO(`${event.event_date}T${event.event_time}`);
+        const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000);
+
+        const params = new URLSearchParams({
+            path: "/calendar/action/compose",
+            rru: "addevent",
+            subject: event.title,
+            body: event.description || "",
+            location: event.location || "",
+            startdt: startDate.toISOString(),
+            enddt: endDate.toISOString()
+        });
+
+        return `https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`;
+    };
+
+    const downloadIcsFile = () => {
+        if (!event) return;
+
+        const startDate = parseISO(`${event.event_date}T${event.event_time}`);
+        const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000);
+
+        const formatForIcs = (date: Date) =>
+            date.toISOString().replace(/-|:|\.\d{3}/g, "").slice(0, -1);
+
+        const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${formatForIcs(startDate)}
+DTEND:${formatForIcs(endDate)}
+SUMMARY:${event.title}
+DESCRIPTION:${event.description || ""}
+LOCATION:${event.location || ""}
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([icsContent], { type: "text/calendar" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${event.title.replace(/[^a-z0-9]/gi, "_")}.ics`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 0);
+    };
+
     const formatEventDate = (dateStr: string) => {
         try {
             return format(parseISO(dateStr), "EEEE, MMMM d, yyyy");
@@ -322,16 +369,36 @@ const EventDetail = () => {
                 </div>
 
                 {/* Add to Calendar */}
-                <a
-                    href={getGoogleCalendarUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-8 transition-colors"
-                >
-                    <CalendarDays className="w-4 h-4" />
-                    <span>Add to Google Calendar</span>
-                    <ExternalLink className="w-3 h-3" />
-                </a>
+                <div className="flex flex-wrap gap-3 mb-8">
+                    <a
+                        href={getGoogleCalendarUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:border-slate-300 hover:text-slate-900 transition-colors"
+                    >
+                        <CalendarDays className="w-4 h-4" />
+                        <span>Google Calendar</span>
+                        <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <a
+                        href={getOutlookCalendarUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:border-slate-300 hover:text-slate-900 transition-colors"
+                    >
+                        <CalendarDays className="w-4 h-4" />
+                        <span>Outlook</span>
+                        <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <button
+                        type="button"
+                        onClick={downloadIcsFile}
+                        className="inline-flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:border-slate-300 hover:text-slate-900 transition-colors"
+                    >
+                        <CalendarDays className="w-4 h-4" />
+                        <span>Apple Calendar (.ics)</span>
+                    </button>
+                </div>
 
                 {/* Description */}
                 {event.description && (
