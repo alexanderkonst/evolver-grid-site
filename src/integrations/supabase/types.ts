@@ -91,6 +91,77 @@ export type Database = {
         }
         Relationships: []
       }
+      events: {
+        Row: {
+          id: string
+          community_id: string | null
+          title: string
+          description: string | null
+          photo_url: string | null
+          event_date: string
+          event_time: string
+          location: string | null
+          created_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          community_id?: string | null
+          title: string
+          description?: string | null
+          photo_url?: string | null
+          event_date: string
+          event_time: string
+          location?: string | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          community_id?: string | null
+          title?: string
+          description?: string | null
+          photo_url?: string | null
+          event_date?: string
+          event_time?: string
+          location?: string | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
+      event_rsvps: {
+        Row: {
+          id: string
+          event_id: string | null
+          user_id: string | null
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          event_id?: string | null
+          user_id?: string | null
+          status?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          event_id?: string | null
+          user_id?: string | null
+          status?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_rsvps_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       game_profiles: {
         Row: {
           ai_upgrade_access: boolean | null
