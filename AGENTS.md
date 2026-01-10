@@ -30,6 +30,21 @@ Each task file contains:
 
 ---
 
+## Dependency Check (ВАЖНО!)
+
+**Before starting a task:**
+1. Check task file for "Dependencies" section
+2. If dependencies listed, verify `DONE_[dependency].md` exists
+3. If dependency not done → WAIT, do not proceed
+
+**Example:**
+```
+Dependencies: PENDING_events_database.md
+```
+→ Only start if `DONE_events_database.md` exists
+
+---
+
 ## Default Workflow (Always)
 - For every task, create or use a dedicated branch (one branch per task).
 - Implement the requested changes in full, even if the scope is large.
