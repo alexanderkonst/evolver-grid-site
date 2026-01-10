@@ -345,7 +345,7 @@ const CharacterHub = () => {
                                 isLocked={!zogSnapshot}
                                 unlockHint="Start"
                                 size="sm"
-                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : "/zone-of-genius/assessment")}
+                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : "/zone-of-genius/entry")}
                             />
 
                             {/* Quality of Life */}
