@@ -30,7 +30,7 @@ Each task file contains:
 
 ---
 
-## Dependency Check (ВАЖНО!)
+## Dependency Check (IMPORTANT!)
 
 **Before starting a task:**
 1. Check task file for "Dependencies" section
