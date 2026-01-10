@@ -1,4 +1,4 @@
-# Task: Create Events Database Schema
+# Task: Events Space (Full Feature)
 
 **Assigned to:** Claude CLI  
 **Priority:** High  
@@ -8,7 +8,7 @@
 
 ## Context
 
-We're adding an Events Space to the platform. This task creates the database tables needed.
+Build the complete Events Space: database schema + frontend UI. This is a full feature task.
 
 ---
 
@@ -92,16 +92,57 @@ CREATE POLICY "Users can update own RSVP"
 
 ---
 
+## Part 2: Frontend UI
+
+### 5. Create `src/pages/spaces/EventsSpace.tsx`
+
+List view showing all events as cards with: photo, title, date/time, location.
+
+### 6. Create `src/pages/EventDetail.tsx`
+
+Single event page with:
+- Large photo
+- Title, date, time, location, full description
+- RSVP button (saves to event_rsvps)
+- Add to Calendar (Google Calendar URL)
+- Count of people going
+
+### 7. Modify `src/components/game/GameShell.tsx`
+
+Add Events to GAME_SPACES array (after matchmaking, before coop):
+
+```tsx
+{
+    id: "events",
+    label: "Events",
+    icon: <CalendarDays className="w-5 h-5" />,
+    path: "/game/events",
+    description: "Community gatherings"
+}
+```
+
+### 8. Modify `src/App.tsx`
+
+Add routes:
+```tsx
+<Route path="/game/events" element={<EventsSpace />} />
+<Route path="/events/:id" element={<EventDetail />} />
+```
+
+---
+
 ## Success Criteria
 
-- [ ] Migration file created at correct path
-- [ ] Both tables have correct schema
-- [ ] Indexes created for performance
-- [ ] RLS policies allow read for all, write for authenticated
-- [ ] No SQL errors
+- [ ] Migration file created with both tables
+- [ ] RLS policies in place
+- [ ] EventsSpace shows list of upcoming events
+- [ ] Clicking event navigates to detail page
+- [ ] RSVP button works
+- [ ] Events appears in sidebar navigation
+- [ ] No TypeScript or SQL errors
 
 ---
 
 ## When Done
 
-Rename this file to `DONE_events_database.md`
+Rename this file to `DONE_events_space.md`
