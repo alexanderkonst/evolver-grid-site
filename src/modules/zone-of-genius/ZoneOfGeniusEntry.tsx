@@ -1,12 +1,24 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import GameShell from "@/components/game/GameShell";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
+import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
+import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
+import AppleseedDisplay from "./AppleseedDisplay";
+import AppleseedRitualLoading from "./AppleseedRitualLoading";
+import ExcaliburDisplay from "./ExcaliburDisplay";
 
-type Step = "choice" | "ai-prompt" | "paste-response";
+type Step =
+    | "choice"
+    | "ai-prompt"
+    | "paste-response"
+    | "generating-appleseed"
+    | "appleseed-result"
+    | "generating-excalibur"
+    | "excalibur-result";
 
 const ZoneOfGeniusEntry = () => {
     const navigate = useNavigate();
@@ -17,6 +29,11 @@ const ZoneOfGeniusEntry = () => {
     const [aiResponse, setAiResponse] = useState("");
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    // Generated data
+    const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
+    const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
@@ -28,27 +45,135 @@ const ZoneOfGeniusEntry = () => {
         navigate(`/zone-of-genius/assessment?return=${encodeURIComponent(returnPath)}`);
     };
 
-    const handleProcessAiResponse = async () => {
+    const handleGenerateAppleseed = async () => {
         if (!aiResponse.trim()) return;
 
         setIsProcessing(true);
-
-        // TODO: Parse the AI response and create a ZoG snapshot
-        // For now, we'll just save the raw response and redirect
-        // This would need to be integrated with the snapshot generation
+        setError(null);
+        setStep("generating-appleseed");
 
         try {
-            // Store the AI response in session/local storage for the generation step
-            sessionStorage.setItem('zog_ai_response', aiResponse);
-
-            // Navigate to snapshot generation with AI flag
-            navigate(`/zone-of-genius/assessment/step-4?from=ai&return=${encodeURIComponent(returnPath)}`);
-        } catch (error) {
-            console.error('Error processing AI response:', error);
+            // Generate Appleseed from raw AI response
+            const result = await generateAppleseed(aiResponse);
+            setAppleseed(result);
+            setStep("appleseed-result");
+        } catch (err) {
+            console.error('Error generating Appleseed:', err);
+            setError('Failed to generate your Appleseed. Please try again.');
+            setStep("paste-response");
         } finally {
             setIsProcessing(false);
         }
     };
+
+    const handleSaveAppleseed = () => {
+        // TODO: Save appleseed to database
+        // For now, just show success and offer Excalibur
+        console.log('Saving appleseed:', appleseed);
+    };
+
+    const handleGenerateExcalibur = async () => {
+        if (!appleseed) return;
+
+        setIsProcessing(true);
+        setError(null);
+        setStep("generating-excalibur");
+
+        try {
+            const result = await generateExcalibur(appleseed);
+            setExcalibur(result);
+            setStep("excalibur-result");
+        } catch (err) {
+            console.error('Error generating Excalibur:', err);
+            setError('Failed to generate your Excalibur. Please try again.');
+            setStep("appleseed-result");
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    const handleSaveExcalibur = () => {
+        // TODO: Save excalibur to database
+        console.log('Saving excalibur:', excalibur);
+        // Navigate back to profile
+        navigate(returnPath);
+    };
+
+    // Step: Generating Appleseed (Ritual Loading)
+    if (step === "generating-appleseed") {
+        return (
+            <GameShell>
+                <AppleseedRitualLoading minDuration={4000} />
+            </GameShell>
+        );
+    }
+
+    // Step: Appleseed Result
+    if (step === "appleseed-result" && appleseed) {
+        return (
+            <GameShell>
+                <div className="pb-8">
+                    <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
+
+                    {/* Excalibur CTA */}
+                    <div className="max-w-3xl mx-auto px-4 lg:px-8 mt-8">
+                        <div className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-200 text-center">
+                            <Sword className="w-10 h-10 text-violet-500 mx-auto mb-3" />
+                            <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                                Now that you know WHO you are...
+                            </h3>
+                            <p className="text-slate-600 mb-4">
+                                Want to discover WHAT you can offer the world?
+                            </p>
+                            <Button
+                                onClick={handleGenerateExcalibur}
+                                disabled={isProcessing}
+                                className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                            >
+                                <Sword className="w-4 h-4 mr-2" />
+                                Forge My Excalibur
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </GameShell>
+        );
+    }
+
+    // Step: Generating Excalibur
+    if (step === "generating-excalibur") {
+        return (
+            <GameShell>
+                <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
+                    <div className="relative w-32 h-32 mb-8">
+                        <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                        <div className="absolute inset-4 border-2 border-violet-300 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                        <div className="absolute inset-8 border-2 border-violet-400 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                        <div className="absolute inset-12 bg-gradient-to-br from-violet-200 to-purple-200 rounded-full animate-pulse flex items-center justify-center">
+                            <Sword className="w-6 h-6 text-violet-600" />
+                        </div>
+                    </div>
+                    <p className="text-lg text-slate-600 animate-pulse">
+                        Forging your Excalibur...
+                    </p>
+                    <p className="mt-4 text-sm text-slate-400">
+                        One sword, one path forward...
+                    </p>
+                </div>
+            </GameShell>
+        );
+    }
+
+    // Step: Excalibur Result
+    if (step === "excalibur-result" && excalibur) {
+        return (
+            <GameShell>
+                <div className="pb-8">
+                    <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
+                </div>
+            </GameShell>
+        );
+    }
 
     return (
         <GameShell>
@@ -61,6 +186,13 @@ const ZoneOfGeniusEntry = () => {
                     <h1 className="text-2xl font-bold text-slate-900">Zone of Genius</h1>
                     <p className="text-slate-600 mt-1">Discover who you are at your best</p>
                 </div>
+
+                {/* Error message */}
+                {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                        {error}
+                    </div>
+                )}
 
                 {/* Step: Choice */}
                 {step === "choice" && (
@@ -205,13 +337,13 @@ const ZoneOfGeniusEntry = () => {
                         />
 
                         <Button
-                            className="w-full"
+                            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
                             size="lg"
-                            onClick={handleProcessAiResponse}
+                            onClick={handleGenerateAppleseed}
                             disabled={!aiResponse.trim() || isProcessing}
                         >
-                            {isProcessing ? "Processing..." : "Generate My Snapshot"}
-                            <ArrowRight className="w-4 h-4 ml-2" />
+                            {isProcessing ? "Generating..." : "Generate My Appleseed"}
+                            <Sparkles className="w-4 h-4 ml-2" />
                         </Button>
                     </div>
                 )}
