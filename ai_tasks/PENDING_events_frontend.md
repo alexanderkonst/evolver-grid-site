@@ -2,7 +2,8 @@
 
 **Assigned to:** Codex  
 **Priority:** High  
-**Created:** 2026-01-10
+**Created:** 2026-01-10  
+**Dependencies:** PENDING_events_database.md
 
 ---
 
