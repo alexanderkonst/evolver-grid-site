@@ -183,6 +183,8 @@ export type Database = {
           main_quest_status: string
           main_quest_updated_at: string
           multiple_intelligences_completed: boolean | null
+          onboarding_completed: boolean
+          onboarding_step: number
           personality_tests: Json | null
           practice_count: number
           total_quests_completed: number
@@ -216,6 +218,8 @@ export type Database = {
           main_quest_status?: string
           main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
+          onboarding_completed?: boolean
+          onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
           total_quests_completed?: number
@@ -249,6 +253,8 @@ export type Database = {
           main_quest_status?: string
           main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
+          onboarding_completed?: boolean
+          onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
           total_quests_completed?: number
