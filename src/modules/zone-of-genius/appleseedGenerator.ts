@@ -235,15 +235,13 @@ export interface AppleseedData {
 }
 
 // ---------------------------------------------------------------------------
-// GENERATION FUNCTION (Placeholder for Lovable AI integration)
+// GENERATION FUNCTION (Lovable AI integration)
 // ---------------------------------------------------------------------------
 
+import { supabase } from "@/integrations/supabase/client";
+
 /**
- * Generate an Appleseed from raw signal.
- * 
- * TODO: LOVABLE AI INTEGRATION
- * This function should call Lovable's built-in AI model.
- * When implementing in Lovable, this is where the AI call goes.
+ * Generate an Appleseed from raw signal using Lovable AI.
  * 
  * @param rawSignal - The user's pasted AI response about their genius
  * @returns Promise<AppleseedData> - The generated Appleseed
@@ -251,26 +249,22 @@ export interface AppleseedData {
 export const generateAppleseed = async (rawSignal: string): Promise<AppleseedData> => {
     const prompt = buildAppleseedPrompt(rawSignal);
 
-    // =========================================================================
-    // 🔮 LOVABLE AI INTEGRATION POINT
-    // =========================================================================
-    // 
-    // Lovable: Please integrate your built-in AI model here.
-    // 
-    // The prompt is ready in the 'prompt' variable.
-    // Call your AI with this prompt and parse the JSON response.
-    // 
-    // Expected: AI returns a JSON object matching AppleseedData interface.
-    // 
-    // Example integration pattern:
-    // const response = await lovableAI.generate({ prompt, type: 'json' });
-    // const appleseed = JSON.parse(response);
-    // return appleseed;
-    // 
-    // =========================================================================
+    const { data, error } = await supabase.functions.invoke('generate-appleseed', {
+        body: { prompt, rawSignal }
+    });
 
-    // TEMPORARY: Return mock data until Lovable integrates AI
-    console.log('Appleseed prompt ready:', prompt.substring(0, 200) + '...');
+    if (error) {
+        console.error('Appleseed generation error:', error);
+        throw new Error(error.message || 'Failed to generate Appleseed');
+    }
 
-    throw new Error('AI integration pending. Please integrate Lovable AI model here.');
+    if (data?.error) {
+        throw new Error(data.error);
+    }
+
+    if (!data?.appleseed) {
+        throw new Error('No appleseed data in response');
+    }
+
+    return data.appleseed as AppleseedData;
 };
