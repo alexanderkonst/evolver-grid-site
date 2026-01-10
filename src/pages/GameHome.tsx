@@ -497,7 +497,7 @@ const GameHome = () => {
         navigate('/resources/personality-tests');
         break;
       case 'zog_assessment_completed':
-        navigate('/zone-of-genius/assessment');
+        navigate('/zone-of-genius/entry');
         break;
       case 'appleseed_received':
       case 'excalibur_received':

@@ -13,7 +13,7 @@ const ZoneOfGeniusLandingPage = () => {
   }, []);
 
   const handleStartAssessment = () => {
-    navigate("/zone-of-genius/assessment");
+    navigate("/zone-of-genius/entry");
   };
 
   return (
