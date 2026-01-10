@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Sparkles, Check } from "lucide-react";
+import { ArrowLeft, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,7 +9,7 @@ import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
-import type { MissionPillar, MissionFocusArea, MissionKeyChallenge, MissionDesiredOutcome, Mission } from "@/modules/mission-discovery/types";
+import CommitFlow from "@/modules/mission-discovery/components/CommitFlow";
 
 interface SelectionColumnProps {
     title: string;
@@ -18,10 +18,11 @@ interface SelectionColumnProps {
     selectedId?: string;
     onSelect: (id: string) => void;
     disabled?: boolean;
+    readOnly?: boolean;
 }
 
-const SelectionColumn = ({ title, description, items, selectedId, onSelect, disabled }: SelectionColumnProps) => (
-    <div className={`bg-slate-50 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""}`}>
+const SelectionColumn = ({ title, description, items, selectedId, onSelect, disabled, readOnly }: SelectionColumnProps) => (
+    <div className={`bg-slate-50 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""} ${readOnly ? "pointer-events-none" : ""}`}>
         <h3 className="font-semibold text-slate-900 mb-1 text-sm sm:text-base">{title}</h3>
         <p className="text-xs text-slate-500 mb-3 line-clamp-2">{description}</p>
         <div className="space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
@@ -31,15 +32,15 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
             {items.map((item) => (
                 <button
                     key={item.id}
-                    onClick={() => !disabled && onSelect(item.id)}
-                    disabled={disabled}
+                    onClick={() => !disabled && !readOnly && onSelect(item.id)}
+                    disabled={disabled || readOnly}
                     className={`
               w-full text-left px-3 py-3 rounded-lg text-sm transition-colors min-h-[44px]
               ${selectedId === item.id
                             ? "bg-blue-500 text-white"
                             : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
                         }
-              ${disabled ? "cursor-not-allowed" : "cursor-pointer"}
+              ${(disabled || readOnly) ? "cursor-not-allowed" : "cursor-pointer"}
             `}
                 >
                     {item.title}
@@ -54,6 +55,8 @@ const MissionDiscoveryWizard = () => {
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/game/profile";
     const missionIdParam = searchParams.get("missionId");
+    const readOnlyParam = searchParams.get("readOnly") === "true";
+    const directCommitParam = searchParams.get("directCommit") === "true";
 
     // Selection state
     const [selectedPillarId, setSelectedPillarId] = useState<string | undefined>();
@@ -63,14 +66,10 @@ const MissionDiscoveryWizard = () => {
     const [selectedMissionId, setSelectedMissionId] = useState<string | undefined>();
     const [isSaving, setIsSaving] = useState(false);
 
-    // Post-commit state
+    // Mode state
+    const [isReadOnly, setIsReadOnly] = useState(readOnlyParam);
     const [hasCommitted, setHasCommitted] = useState(false);
-    const [shareConsent, setShareConsent] = useState(false);
-    const [wantsToLead, setWantsToLead] = useState(false);
-    const [wantsToIntegrate, setWantsToIntegrate] = useState(false);
     const preselectAppliedRef = useRef(false);
-    const [notifyLevel, setNotifyLevel] = useState<'mission' | 'outcome' | 'challenge' | 'focus'>('mission');
-    const [emailFrequency, setEmailFrequency] = useState<'daily' | 'weekly' | 'monthly'>('weekly');
 
     // Filtered data based on selections
     const focusAreas = useMemo(() =>
@@ -98,6 +97,25 @@ const MissionDiscoveryWizard = () => {
         [selectedMissionId]
     );
 
+    // Build mission context for CommitFlow
+    const missionContext = useMemo(() => {
+        const pillar = selectedPillarId ? PILLARS.find(p => p.id === selectedPillarId) : undefined;
+        const focusArea = selectedFocusAreaId ? FOCUS_AREAS.find(fa => fa.id === selectedFocusAreaId) : undefined;
+        const challenge = selectedChallengeId ? KEY_CHALLENGES.find(c => c.id === selectedChallengeId) : undefined;
+        const outcome = selectedOutcomeId ? DESIRED_OUTCOMES.find(o => o.id === selectedOutcomeId) : undefined;
+
+        return {
+            pillarId: selectedPillarId,
+            focusAreaId: selectedFocusAreaId,
+            challengeId: selectedChallengeId,
+            outcomeId: selectedOutcomeId,
+            pillar: pillar?.title,
+            focusArea: focusArea?.title,
+            challenge: challenge?.title,
+            outcome: outcome?.title,
+        };
+    }, [selectedPillarId, selectedFocusAreaId, selectedChallengeId, selectedOutcomeId]);
+
     useEffect(() => {
         if (!missionIdParam || preselectAppliedRef.current) return;
         const mission = MISSIONS.find(m => m.id === missionIdParam);
@@ -113,7 +131,13 @@ const MissionDiscoveryWizard = () => {
         if (outcome?.id) setSelectedOutcomeId(outcome.id);
         setSelectedMissionId(mission.id);
         preselectAppliedRef.current = true;
-    }, [missionIdParam]);
+
+        // If directCommit, immediately commit the mission
+        if (directCommitParam) {
+            // Delay to allow state to settle
+            setTimeout(() => handleSaveMission(), 100);
+        }
+    }, [missionIdParam, directCommitParam]);
 
     // Handle selection changes - clear downstream selections
     const handlePillarSelect = (id: string) => {
@@ -153,7 +177,6 @@ const MissionDiscoveryWizard = () => {
         setIsSaving(true);
 
         try {
-            // Get current user
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
                 toast({
@@ -174,7 +197,7 @@ const MissionDiscoveryWizard = () => {
                 return;
             }
 
-            // Build mission context for clear articulation
+            // Build mission commitment
             const pillar = PILLARS.find(p => p.id === selectedPillarId);
             const focusArea = FOCUS_AREAS.find(fa => fa.id === selectedFocusAreaId);
             const challenge = KEY_CHALLENGES.find(c => c.id === selectedChallengeId);
@@ -228,14 +251,8 @@ const MissionDiscoveryWizard = () => {
                 JSON.stringify(missionCommitment)
             );
 
-            // Show success toast with clear articulation
-            toast({
-                title: "🎯 Mission Committed!",
-                description: `You're now committed to: ${selectedMission.title}`,
-            });
-
             setIsSaving(false);
-            setHasCommitted(true); // Show connection options instead of navigating
+            setHasCommitted(true);
         } catch (err) {
             console.error("Error:", err);
             toast({
@@ -247,6 +264,29 @@ const MissionDiscoveryWizard = () => {
         }
     };
 
+    const handleBack = () => {
+        // Go back to mission list, not to game
+        navigate(`/mission-discovery?return=${encodeURIComponent(returnPath)}`);
+    };
+
+    const handleAddSubMissions = () => {
+        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&addSubMission=true`);
+    };
+
+    // Show CommitFlow after successful commit
+    if (hasCommitted && selectedMission) {
+        return (
+            <div className="min-h-screen bg-white">
+                <CommitFlow
+                    mission={selectedMission}
+                    missionContext={missionContext}
+                    returnPath={returnPath}
+                    onAddSubMissions={handleAddSubMissions}
+                />
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-white">
             {/* Header */}
@@ -254,18 +294,31 @@ const MissionDiscoveryWizard = () => {
                 <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div className="flex items-center gap-3 sm:gap-4">
-                            <Button variant="ghost" size="sm" onClick={() => navigate(returnPath)} className="shrink-0">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={handleBack}
+                                className="shrink-0 ring-2 ring-slate-300/50 ring-offset-1"
+                            >
                                 <ArrowLeft className="w-4 h-4 sm:mr-2" />
-                                <span className="hidden sm:inline">Back</span>
+                                <span className="hidden sm:inline">Back to mission list</span>
                             </Button>
                             <div>
-                                <h1 className="text-lg sm:text-xl font-bold text-slate-900">Mission Discovery</h1>
-                                <p className="text-xs sm:text-sm text-slate-500 hidden sm:block">Find your contribution to the planet</p>
+                                <h1 className="text-lg sm:text-xl font-bold text-slate-900">
+                                    {isReadOnly ? "Mission Details" : "Mission Discovery"}
+                                </h1>
+                                <p className="text-xs sm:text-sm text-slate-500 hidden sm:block">
+                                    {isReadOnly ? "Review mission before committing" : "Find your contribution to the planet"}
+                                </p>
                             </div>
                         </div>
                         {selectedMission && (
-                            <Button onClick={handleSaveMission} disabled={isSaving} className="w-full sm:w-auto">
-                                {isSaving ? "Committing..." : "Commit to this Mission"}
+                            <Button
+                                onClick={handleSaveMission}
+                                disabled={isSaving}
+                                className="w-full sm:w-auto ring-2 ring-emerald-400/50 ring-offset-2 bg-emerald-600 hover:bg-emerald-700"
+                            >
+                                {isSaving ? "Committing..." : "Commit and Add to my profile"}
                                 <Check className="w-4 h-4 ml-2" />
                             </Button>
                         )}
@@ -273,297 +326,131 @@ const MissionDiscoveryWizard = () => {
                 </div>
             </div>
 
-            {/* Success Screen with Connection Options */}
-            {hasCommitted && selectedMission ? (
-                <div className="max-w-2xl mx-auto px-4 py-12">
-                    <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-4">
-                            <Check className="w-8 h-8 text-emerald-600" />
-                        </div>
-                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Mission Committed!</h2>
-                        <p className="text-slate-600 mb-4">{selectedMission.title}</p>
-                        <p className="text-sm text-slate-500 max-w-md mx-auto">
-                            {selectedMission.statement}
-                        </p>
+            {/* Main Wizard Content */}
+            <div className="max-w-7xl mx-auto px-4 py-6">
+                {/* Read-only overlay info */}
+                {isReadOnly && (
+                    <div className="mb-4 p-3 bg-blue-50 border border-blue-100 rounded-lg text-sm text-blue-700">
+                        You are viewing this mission in read-only mode. Use the buttons above to commit or go back.
                     </div>
+                )}
 
-                    {/* Optional Sub-Missions Prompt */}
-                    <div className="bg-blue-50 rounded-xl p-6 mb-6 border border-blue-100">
-                        <h3 className="font-semibold text-slate-900 mb-2">Does your mission have modular parts?</h3>
-                        <p className="text-sm text-slate-600 mb-4">
-                            Some people find their mission has distinct sub-missions that contribute to the whole.
-                        </p>
-                        <div className="flex flex-wrap gap-3">
-                            <button
-                                className="px-4 py-2 text-sm rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors"
-                                onClick={() => {/* Sub-missions handled - just continue */ }}
-                            >
-                                No, this captures it
-                            </button>
-                            <button
-                                className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                                onClick={() => navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&addSubMission=true`)}
-                            >
-                                Yes, add related sub-missions →
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-50 rounded-xl p-6 mb-6">
-                        <h3 className="font-semibold text-slate-900 mb-4">Connect with others on this mission</h3>
-
-                        <div className="space-y-4">
-                            <label className="flex items-start gap-3 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={shareConsent}
-                                    onChange={(e) => setShareConsent(e.target.checked)}
-                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-                                />
-                                <span className="text-sm text-slate-700">
-                                    Share my details with others on this mission so we can connect
-                                </span>
-                            </label>
-
-                            <label className="flex items-start gap-3 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={wantsToLead}
-                                    onChange={(e) => setWantsToLead(e.target.checked)}
-                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-                                />
-                                <span className="text-sm text-slate-700">
-                                    I'd like to help lead this mission
-                                </span>
-                            </label>
-
-                            <label className="flex items-start gap-3 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={wantsToIntegrate}
-                                    onChange={(e) => setWantsToIntegrate(e.target.checked)}
-                                    className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-                                />
-                                <span className="text-sm text-slate-700">
-                                    I feel my role is to integrate everyone working on this mission
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    {/* Notification Preferences */}
-                    <div className="bg-slate-50 rounded-xl p-6 mb-6">
-                        <label className="block text-sm font-medium text-slate-900 mb-2">
-                            Notify me when someone new commits to...
-                        </label>
-                        <select
-                            value={notifyLevel}
-                            onChange={(e) => setNotifyLevel(e.target.value as typeof notifyLevel)}
-                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 mb-4"
-                        >
-                            <option value="mission">This exact mission only</option>
-                            <option value="outcome">Same desired outcome</option>
-                            <option value="challenge">Same key challenge</option>
-                            <option value="focus">Same focus area (most emails)</option>
-                        </select>
-
-                        <label className="block text-sm font-medium text-slate-900 mb-2">
-                            How often?
-                        </label>
-                        <select
-                            value={emailFrequency}
-                            onChange={(e) => setEmailFrequency(e.target.value as typeof emailFrequency)}
-                            className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                        >
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
-                        <p className="text-xs text-slate-500 mt-2">
-                            You'll be notified about new people who commit to the same mission.
-                        </p>
-                    </div>
-
-                    <div className="space-y-3">
-                        <Button
-                            className="w-full"
-                                onClick={async () => {
-                                    const { data: { user } } = await supabase.auth.getUser();
-                                    if (!user) {
-                                        toast({
-                                            title: "Please sign in",
-                                            description: "You need to be signed in to save mission preferences.",
-                                            variant: "destructive",
-                                        });
-                                        return;
-                                    }
-
-                                    const { error: updateError } = await supabase
-                                        .from("mission_participants")
-                                        .update({
-                                            share_consent: shareConsent,
-                                            wants_to_lead: wantsToLead,
-                                            wants_to_integrate: wantsToIntegrate,
-                                            notify_level: notifyLevel,
-                                            email_frequency: emailFrequency,
-                                        })
-                                        .eq("user_id", user.id)
-                                        .eq("mission_id", selectedMission.id);
-
-                                    if (updateError) {
-                                        toast({
-                                            title: "Something went wrong",
-                                            description: "Please try again.",
-                                            variant: "destructive",
-                                        });
-                                        return;
-                                    }
-
-                                    localStorage.setItem(`mission_connection_${user.id}`, JSON.stringify({
-                                        missionId: selectedMission.id,
-                                        missionTitle: selectedMission.title,
-                                        outcomeId: selectedOutcomeId,
-                                        challengeId: selectedChallengeId,
-                                        focusAreaId: selectedFocusAreaId,
-                                        pillarId: selectedPillarId,
-                                        shareConsent,
-                                        wantsToLead,
-                                        wantsToIntegrate,
-                                        notifyLevel,
-                                        emailFrequency,
-                                        savedAt: new Date().toISOString(),
-                                    }));
-
-                                    toast({
-                                        title: "Preferences saved!",
-                                        description: shareConsent ? "We'll connect you with others soon." : "You can update these anytime.",
-                                    });
-                                    navigate(returnPath);
-                                }}
-                        >
-                            <ArrowRight className="w-4 h-4 mr-2" />
-                            Continue
-                        </Button>
-
-                        <p className="text-xs text-center text-slate-400">
-                            You can always come back and change your mission or update these preferences.
-                        </p>
-                    </div>
+                {/* Top Row: 4 Columns */}
+                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 ${isReadOnly ? "opacity-75" : ""}`}>
+                    <SelectionColumn
+                        title="Select a Pillar"
+                        description="Choose one of the pillars to explore"
+                        items={PILLARS.map(p => ({ id: p.id, title: p.title }))}
+                        selectedId={selectedPillarId}
+                        onSelect={handlePillarSelect}
+                        readOnly={isReadOnly}
+                    />
+                    <SelectionColumn
+                        title="Select a Focus Area"
+                        description={selectedPillarId ? `Choose a focus area within the ${PILLARS.find(p => p.id === selectedPillarId)?.title}` : "First select a pillar"}
+                        items={focusAreas.map(fa => ({ id: fa.id, title: fa.title }))}
+                        selectedId={selectedFocusAreaId}
+                        onSelect={handleFocusAreaSelect}
+                        disabled={!selectedPillarId}
+                        readOnly={isReadOnly}
+                    />
+                    <SelectionColumn
+                        title="Select a Challenge"
+                        description="Choose a key challenge within the selected focus area"
+                        items={challenges.map(c => ({ id: c.id, title: c.title }))}
+                        selectedId={selectedChallengeId}
+                        onSelect={handleChallengeSelect}
+                        disabled={!selectedFocusAreaId}
+                        readOnly={isReadOnly}
+                    />
+                    <SelectionColumn
+                        title="Select a Desired Outcome"
+                        description="Choose an Integral Development Goal (IDG)"
+                        items={outcomes.map(o => ({ id: o.id, title: o.title }))}
+                        selectedId={selectedOutcomeId}
+                        onSelect={handleOutcomeSelect}
+                        disabled={!selectedChallengeId}
+                        readOnly={isReadOnly}
+                    />
                 </div>
-            ) : (
-                /* Main Wizard Content */
-                <div className="max-w-7xl mx-auto px-4 py-6">
-                    {/* Top Row: 4 Columns */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                        <SelectionColumn
-                            title="Select a Pillar"
-                            description="Choose one of the pillars to explore"
-                            items={PILLARS.map(p => ({ id: p.id, title: p.title }))}
-                            selectedId={selectedPillarId}
-                            onSelect={handlePillarSelect}
-                        />
-                        <SelectionColumn
-                            title="Select a Focus Area"
-                            description={selectedPillarId ? `Choose a focus area within the ${PILLARS.find(p => p.id === selectedPillarId)?.title}` : "First select a pillar"}
-                            items={focusAreas.map(fa => ({ id: fa.id, title: fa.title }))}
-                            selectedId={selectedFocusAreaId}
-                            onSelect={handleFocusAreaSelect}
-                            disabled={!selectedPillarId}
-                        />
-                        <SelectionColumn
-                            title="Select a Challenge"
-                            description="Choose a key challenge within the selected focus area"
-                            items={challenges.map(c => ({ id: c.id, title: c.title }))}
-                            selectedId={selectedChallengeId}
-                            onSelect={handleChallengeSelect}
-                            disabled={!selectedFocusAreaId}
-                        />
-                        <SelectionColumn
-                            title="Select a Desired Outcome"
-                            description="Choose an Integral Development Goal (IDG)"
-                            items={outcomes.map(o => ({ id: o.id, title: o.title }))}
-                            selectedId={selectedOutcomeId}
-                            onSelect={handleOutcomeSelect}
-                            disabled={!selectedChallengeId}
-                        />
-                    </div>
 
-                    {/* Bottom Row: Mission Selection + Details */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                        {/* Mission List */}
-                        <div className="bg-slate-50 rounded-xl p-4">
-                            <h3 className="font-semibold text-slate-900 mb-1">Select a Mission</h3>
-                            <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
-                            <div className="space-y-2 max-h-80 overflow-y-auto">
-                                {missions.length === 0 && (
-                                    <p className="text-sm text-slate-400 italic">Complete selections above first</p>
-                                )}
-                                {missions.map((mission) => (
-                                    <button
-                                        key={mission.id}
-                                        onClick={() => handleMissionSelect(mission.id)}
-                                        className={`
+                {/* Bottom Row: Mission Selection + Details */}
+                <div className={`grid grid-cols-1 lg:grid-cols-3 gap-4 ${isReadOnly ? "opacity-75" : ""}`}>
+                    {/* Mission List */}
+                    <div className={`bg-slate-50 rounded-xl p-4 ${isReadOnly ? "pointer-events-none" : ""}`}>
+                        <h3 className="font-semibold text-slate-900 mb-1">Select a Mission</h3>
+                        <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
+                        <div className="space-y-2 max-h-80 overflow-y-auto">
+                            {missions.length === 0 && (
+                                <p className="text-sm text-slate-400 italic">Complete selections above first</p>
+                            )}
+                            {missions.map((mission) => (
+                                <button
+                                    key={mission.id}
+                                    onClick={() => !isReadOnly && handleMissionSelect(mission.id)}
+                                    disabled={isReadOnly}
+                                    className={`
                     w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
                     ${selectedMissionId === mission.id
-                                                ? "bg-blue-500 text-white"
-                                                : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
-                                            }
+                                            ? "bg-blue-500 text-white"
+                                            : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
+                                        }
+                    ${isReadOnly ? "cursor-not-allowed" : "cursor-pointer"}
                   `}
-                                    >
-                                        {mission.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Mission Details */}
-                        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
-                            <h3 className="font-semibold text-slate-900 mb-4">Mission Details</h3>
-                            {selectedMission ? (
-                                <div className="space-y-4">
-                                    <div>
-                                        <p className="text-slate-700 leading-relaxed">{selectedMission.statement}</p>
-                                    </div>
-
-                                    {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
-                                        <div>
-                                            <h4 className="font-semibold text-slate-900 mb-2">Existing Projects</h4>
-                                            <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                                                {selectedMission.existingProjects.map((project, idx) => (
-                                                    <li key={idx}>{project}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-
-                                    <div>
-                                        <h4 className="font-semibold text-slate-900 mb-2">Mission Chat</h4>
-                                        {selectedMission.chatLink ? (
-                                            <a
-                                                href={selectedMission.chatLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-blue-600 hover:underline text-sm"
-                                            >
-                                                Join the conversation →
-                                            </a>
-                                        ) : (
-                                            <p className="text-sm text-slate-400">No chat link available</p>
-                                        )}
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="flex items-center justify-center h-48 text-slate-400">
-                                    <div className="text-center">
-                                        <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                                        <p>Select a mission to see details</p>
-                                    </div>
-                                </div>
-                            )}
+                                >
+                                    {mission.title}
+                                </button>
+                            ))}
                         </div>
                     </div>
+
+                    {/* Mission Details */}
+                    <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
+                        <h3 className="font-semibold text-slate-900 mb-4">Mission Details</h3>
+                        {selectedMission ? (
+                            <div className="space-y-4">
+                                <div>
+                                    <p className="text-slate-700 leading-relaxed">{selectedMission.statement}</p>
+                                </div>
+
+                                {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
+                                    <div>
+                                        <h4 className="font-semibold text-slate-900 mb-2">Existing Projects</h4>
+                                        <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                            {selectedMission.existingProjects.map((project, idx) => (
+                                                <li key={idx}>{project}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <h4 className="font-semibold text-slate-900 mb-2">Mission Chat</h4>
+                                    {selectedMission.chatLink ? (
+                                        <a
+                                            href={selectedMission.chatLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-600 hover:underline text-sm"
+                                        >
+                                            Join the conversation →
+                                        </a>
+                                    ) : (
+                                        <p className="text-sm text-slate-400">No chat link available</p>
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="flex items-center justify-center h-48 text-slate-400">
+                                <div className="text-center">
+                                    <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                    <p>Select a mission to see details</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
