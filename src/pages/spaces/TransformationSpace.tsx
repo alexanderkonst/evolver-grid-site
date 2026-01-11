@@ -7,11 +7,11 @@ import {
     ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 const TransformationSpace = () => {
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-6 lg:p-8 max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -106,7 +106,7 @@ const TransformationSpace = () => {
                     </div>
                 </div>
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

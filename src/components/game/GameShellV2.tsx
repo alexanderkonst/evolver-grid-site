@@ -1,8 +1,7 @@
 import { ReactNode, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Menu, X } from "lucide-react";
+import { ArrowLeft, PanelLeftClose, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
 import SpacesRail, { SPACES } from "./SpacesRail";
@@ -34,8 +33,14 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
 
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
-    const [sectionsPanelOpen, setSectionsPanelOpen] = useState(true);
-    const [mobileView, setMobileView] = useState<"spaces" | "sections" | "content">("spaces");
+    const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('sectionsPanelOpen');
+            return saved !== null ? JSON.parse(saved) : true;
+        }
+        return true;
+    });
+    const [mobileView, setMobileView] = useState<"navigation" | "content">("navigation");
 
     // Determine active space from URL
     useEffect(() => {
@@ -111,10 +116,29 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         }
     }, [profile?.onboarding_stage, location.pathname, navigate]);
 
-    // Show minimal shell during onboarding (bypass for test page)
-    const isTestPage = location.pathname === "/game/test-nav";
-    const showSidebar = isTestPage || !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
-    if (!showSidebar) {
+    // Persist sections panel state to localStorage
+    useEffect(() => {
+        localStorage.setItem('sectionsPanelOpen', JSON.stringify(sectionsPanelOpen));
+    }, [sectionsPanelOpen]);
+
+    // Keyboard shortcut: Cmd/Ctrl + B to toggle sections panel
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'b') {
+                e.preventDefault();
+                setSectionsPanelOpen(prev => !prev);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    // Show sidebar by default, hide only during early onboarding
+    // Early onboarding stages: "new", "zog_started" - user hasn't completed basic setup
+    const earlyOnboardingStages = ["new", "zog_started"];
+    const hideNavigation = profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage);
+
+    if (hideNavigation) {
         return (
             <div className="min-h-screen bg-white">
                 {children}
@@ -132,7 +156,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
         setActiveSpaceId(spaceId);
-        setMobileView("sections");
+        // Mobile view stays on navigation - both panels visible
     };
 
     const handleSectionSelect = (path: string) => {
@@ -140,12 +164,12 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         setMobileView("content");
     };
 
-    const handleBackToSections = () => {
-        setMobileView("sections");
+    const handleBackToNavigation = () => {
+        setMobileView("navigation");
     };
 
-    const handleBackToSpaces = () => {
-        setMobileView("spaces");
+    const toggleSectionsPanel = () => {
+        setSectionsPanelOpen(prev => !prev);
     };
 
     return (
@@ -160,13 +184,30 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                     className="h-screen sticky top-0"
                 />
 
-                {/* Panel 2: Sections */}
-                {sectionsPanelOpen && (
+                {/* Panel 2: Sections with transition */}
+                <div
+                    className={cn(
+                        "transition-all duration-200 ease-out h-screen sticky top-0 overflow-hidden",
+                        sectionsPanelOpen ? "w-[240px]" : "w-0"
+                    )}
+                >
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
                         onSectionSelect={handleSectionSelect}
-                        className="h-screen sticky top-0"
+                        onClose={toggleSectionsPanel}
+                        className="h-full w-[240px]"
                     />
+                </div>
+
+                {/* Expand button when Panel 2 is collapsed */}
+                {!sectionsPanelOpen && (
+                    <button
+                        onClick={toggleSectionsPanel}
+                        className="h-screen sticky top-0 w-8 bg-slate-800 hover:bg-slate-700 flex items-center justify-center border-r border-slate-700 transition-colors"
+                        title="Expand sidebar (⌘B)"
+                    >
+                        <PanelLeft className="w-4 h-4 text-slate-400" />
+                    </button>
                 )}
 
                 {/* Panel 3: Content */}
@@ -176,50 +217,64 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
             </div>
 
             {/* === MOBILE LAYOUT === */}
-            <div className="lg:hidden flex flex-col w-full min-h-screen">
-                {/* Mobile: Spaces + Sections View */}
-                {mobileView !== "content" && (
-                    <div className="flex h-screen">
-                        {/* Panel 1: Spaces Rail */}
-                        <SpacesRail
-                            activeSpaceId={activeSpaceId}
-                            onSpaceSelect={handleSpaceSelect}
-                            unlockStatus={unlockStatus}
-                        />
+            <div className="lg:hidden relative w-full min-h-screen overflow-hidden">
+                {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
+                <div
+                    className={cn(
+                        "absolute inset-0 flex transition-transform duration-300 ease-out",
+                        mobileView === "navigation" ? "translate-x-0" : "-translate-x-full"
+                    )}
+                    style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
+                >
+                    {/* Panel 1: Spaces Rail */}
+                    <SpacesRail
+                        activeSpaceId={activeSpaceId}
+                        onSpaceSelect={handleSpaceSelect}
+                        unlockStatus={unlockStatus}
+                    />
 
-                        {/* Panel 2: Sections */}
-                        <div className="flex-1 bg-slate-800">
-                            <SectionsPanel
-                                activeSpaceId={activeSpaceId}
-                                onSectionSelect={handleSectionSelect}
-                                className="w-full h-full"
-                            />
-                        </div>
+                    {/* Panel 2: Sections */}
+                    <div className="flex-1 bg-slate-800">
+                        <SectionsPanel
+                            activeSpaceId={activeSpaceId}
+                            onSectionSelect={handleSectionSelect}
+                            className="w-full h-full"
+                        />
                     </div>
-                )}
+                </div>
 
                 {/* Mobile: Content View with Back Button */}
-                {mobileView === "content" && (
-                    <div className="flex flex-col min-h-screen">
-                        {/* Mobile Header */}
-                        <header className="h-14 bg-slate-900 flex items-center px-4 gap-3 sticky top-0 z-50">
-                            <button
-                                onClick={handleBackToSections}
-                                className="p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
-                            >
-                                <ArrowLeft className="w-5 h-5" />
-                            </button>
-                            <span className="text-white font-medium flex-1 truncate">
-                                {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
-                            </span>
-                        </header>
+                <div
+                    className={cn(
+                        "absolute inset-0 flex flex-col transition-transform duration-300 ease-out",
+                        mobileView === "content" ? "translate-x-0" : "translate-x-full"
+                    )}
+                >
+                    {/* Mobile Header with safe area */}
+                    <header
+                        className="bg-slate-900 flex items-center px-4 gap-3 sticky top-0 z-50"
+                        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
+                    >
+                        <button
+                            onClick={handleBackToNavigation}
+                            className="p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
+                            aria-label="Back to navigation"
+                        >
+                            <ArrowLeft className="w-5 h-5" />
+                        </button>
+                        <span className="text-white font-medium flex-1 truncate">
+                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
+                        </span>
+                    </header>
 
-                        {/* Content */}
-                        <main className="flex-1 bg-slate-50">
-                            {children}
-                        </main>
-                    </div>
-                )}
+                    {/* Content with safe area bottom */}
+                    <main
+                        className="flex-1 bg-slate-50 overflow-auto"
+                        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+                    >
+                        {children}
+                    </main>
+                </div>
             </div>
         </div>
     );
