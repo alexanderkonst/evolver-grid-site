@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GameShell from "@/components/game/GameShell";
 import { supabase } from "@/integrations/supabase/client";
 
 interface OnboardingFlowProps {
@@ -99,6 +98,8 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   };
 
   const handleSkip = async () => {
+    const stageUpdated = await updateStage("unlocked");
+    if (!stageUpdated) return;
     const success = await persistStep(MAX_STEP, true);
     if (success) {
       onComplete();
@@ -106,6 +107,8 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   };
 
   const handleFinish = async () => {
+    const stageUpdated = await updateStage("unlocked");
+    if (!stageUpdated) return;
     const success = await persistStep(MAX_STEP, true);
     if (success) {
       onComplete();
@@ -136,8 +139,8 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   const CurrentIcon = current.icon;
 
   return (
-    <GameShell>
-      <div className="min-h-[70vh] px-4 py-16">
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-[70vh] px-4 py-16 w-full">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -170,7 +173,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
 
           {step === 0 && (
             <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={() => goToStep(1)} disabled={saving}>
+              <Button className="w-full" size="lg" onClick={() => handleStartZog("ai")} disabled={saving}>
                 Start
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -236,7 +239,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
           )}
         </div>
       </div>
-    </GameShell>
+    </div>
   );
 };
 

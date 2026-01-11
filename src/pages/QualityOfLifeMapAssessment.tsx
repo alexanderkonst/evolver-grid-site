@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 
 const QualityOfLifeMapAssessment = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnTo = searchParams.get("return");
   const { answers, setAnswer } = useQolAssessment();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -35,7 +37,8 @@ const QualityOfLifeMapAssessment = () => {
 
   const handleNext = () => {
     if (isLastDomain) {
-      navigate("/quality-of-life-map/results");
+      const returnParam = returnTo ? `?return=${encodeURIComponent(returnTo)}` : "";
+      navigate(`/quality-of-life-map/results${returnParam}`);
     } else {
       setCurrentIndex(currentIndex + 1);
     }

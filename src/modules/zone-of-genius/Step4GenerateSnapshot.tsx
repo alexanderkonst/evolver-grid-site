@@ -187,6 +187,9 @@ const Step4GenerateSnapshot = () => {
 
       console.log("✅ ZoG snapshot saved and game_profiles updated successfully!");
       toast.success("Your Zone of Genius has been saved!");
+      if (returnTo === "/start") {
+        setTimeout(() => navigate("/quality-of-life-map/assessment?return=/start"), 800);
+      }
       await logActionEvent({
         actionId: `zog-snapshot:${snapshotData.id}`,
         profileId,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, LogOut, ChevronDown, User, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
@@ -25,6 +25,15 @@ const Navigation = () => {
   const [user, setUser] = useState<any>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Hide navigation on game and onboarding routes
+  const hideOnRoutes = ['/game', '/start', '/zone-of-genius', '/quality-of-life-map'];
+  const shouldHide = hideOnRoutes.some(route => location.pathname.startsWith(route));
+
+  if (shouldHide) {
+    return null;
+  }
 
   useEffect(() => {
     const handleScroll = () => {

@@ -133,6 +133,9 @@ const ZoneOfGeniusEntry = () => {
                         description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_zog_complete")}!`,
                     });
                 }
+                if (returnPath === "/start") {
+                    setTimeout(() => navigate("/quality-of-life-map/assessment?return=/start"), 600);
+                }
             } else {
                 toast({
                     title: "Save Failed",

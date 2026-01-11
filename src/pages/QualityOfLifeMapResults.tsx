@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
@@ -19,6 +19,8 @@ import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnTo = searchParams.get("return");
   const { answers, reset, isComplete } = useQolAssessment();
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const { toast } = useToast();
@@ -87,7 +89,8 @@ const QualityOfLifeMapResults: FC = () => {
             .from('game_profiles')
             .update({
               last_qol_snapshot_id: newSnapshot.id,
-              onboarding_stage: "qol_complete",
+              onboarding_stage: returnTo === "/start" ? "unlocked" : "qol_complete",
+              onboarding_completed: returnTo === "/start",
               updated_at: new Date().toISOString(),
             })
             .eq('id', profileId);
@@ -109,6 +112,9 @@ const QualityOfLifeMapResults: FC = () => {
               description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
             });
           }
+          if (returnTo === "/start") {
+            setTimeout(() => navigate("/game"), 800);
+          }
         }
       } else {
         // Just update the reference without awarding XP again
@@ -116,10 +122,14 @@ const QualityOfLifeMapResults: FC = () => {
           .from('game_profiles')
           .update({
             last_qol_snapshot_id: newSnapshot.id,
-            onboarding_stage: "qol_complete",
+            onboarding_stage: returnTo === "/start" ? "unlocked" : "qol_complete",
+            onboarding_completed: returnTo === "/start",
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);
+        if (returnTo === "/start") {
+          setTimeout(() => navigate("/game"), 800);
+        }
       }
 
       console.log("QoL snapshot saved successfully to database");
