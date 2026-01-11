@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import AddToCalendarButton from "@/components/events/AddToCalendarButton";
-import RsvpButton from "@/components/events/RsvpButton";
 import { useEvent, useEventRsvp } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -46,7 +45,6 @@ const EventDetail = () => {
     loading: rsvpLoading,
     updating,
     updateRsvp,
-    removeRsvp,
   } = useEventRsvp(id);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showOriginalTime, setShowOriginalTime] = useState(false);
@@ -60,7 +58,7 @@ const EventDetail = () => {
     checkAuth();
   }, []);
 
-  const handleRsvp = async (status: "going" | "maybe" | "not_going") => {
+  const handleRsvp = async () => {
     if (!isAuthenticated) {
       toast({
         title: "Sign in required",
@@ -72,19 +70,15 @@ const EventDetail = () => {
 
     try {
       const previousStatus = currentStatus;
-      const shouldClearReminder = status === "not_going";
-      await updateRsvp(status, {
-        email: shouldClearReminder ? "" : reminderEmail,
-        wantsReminder: shouldClearReminder ? false : wantsReminder,
-      });
+      await updateRsvp("going");
       refetch();
       toast({
-        title: "RSVP updated",
-        description: `You're ${status === "going" ? "going" : status === "maybe" ? "maybe going" : "not going"} to this event`,
+        title: "RSVP confirmed",
+        description: "You're attending this event.",
       });
 
       const wasAttending = previousStatus === "going" || previousStatus === "maybe";
-      const isAttending = status === "going" || status === "maybe";
+      const isAttending = true;
       if (isAttending && !wasAttending) {
         const profileId = await getOrCreateGameProfileId();
         const xpResult = await awardXp(profileId, 25, "spirit");
@@ -162,22 +156,6 @@ const EventDetail = () => {
     }
   };
 
-  const handleRemoveRsvp = async () => {
-    try {
-      await removeRsvp();
-      refetch();
-      toast({
-        title: "RSVP removed",
-        description: "Your RSVP has been removed",
-      });
-    } catch (err) {
-      toast({
-        title: "Error",
-        description: "Failed to remove RSVP",
-        variant: "destructive",
-      });
-    }
-  };
 
   // Loading State
   if (loading) {
@@ -220,7 +198,7 @@ const EventDetail = () => {
   const goingCount = goingAttendees.length;
   const maxAvatars = 5;
   const extraCount = Math.max(0, goingCount - maxAvatars);
-  const hasRsvp = currentStatus === "going" || currentStatus === "maybe";
+  const hasRsvp = currentStatus === "going";
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -257,14 +235,14 @@ const EventDetail = () => {
           <div className="p-6 border-b border-slate-100">
             <h1 className="text-2xl font-bold text-slate-900 mb-4">{event.title}</h1>
 
-            {/* RSVP Buttons */}
-            <RsvpButton
-              currentStatus={currentStatus}
-              onRsvp={handleRsvp}
-              onRemove={handleRemoveRsvp}
-              loading={updating}
-              disabled={rsvpLoading || !isAuthenticated}
-            />
+            {/* RSVP Button */}
+            <Button
+              onClick={handleRsvp}
+              disabled={rsvpLoading || updating || !isAuthenticated || currentStatus === "going"}
+              className={currentStatus === "going" ? "bg-emerald-500 hover:bg-emerald-500" : ""}
+            >
+              {currentStatus === "going" ? "Attending" : "RSVP"}
+            </Button>
             {!isAuthenticated && (
               <p className="text-xs text-slate-500 mt-2">Sign in to RSVP</p>
             )}
