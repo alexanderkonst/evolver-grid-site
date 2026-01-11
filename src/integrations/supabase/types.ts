@@ -239,6 +239,10 @@ export type Database = {
           xp_total: number
           xp_uniqueness: number
           zone_of_genius_completed: boolean | null
+          visibility: string | null
+          show_location: boolean | null
+          show_mission: boolean | null
+          show_offer: boolean | null
         }
         Insert: {
           ai_upgrade_access?: boolean | null
@@ -277,6 +281,10 @@ export type Database = {
           xp_total?: number
           xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
+          visibility?: string | null
+          show_location?: boolean | null
+          show_mission?: boolean | null
+          show_offer?: boolean | null
         }
         Update: {
           ai_upgrade_access?: boolean | null
@@ -315,6 +323,10 @@ export type Database = {
           xp_total?: number
           xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
+          visibility?: string | null
+          show_location?: boolean | null
+          show_mission?: boolean | null
+          show_offer?: boolean | null
         }
         Relationships: [
           {

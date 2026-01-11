@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import dodecahedronImage from "@/assets/dodecahedron.jpg";
 
 interface MeSectionProps {
     archetypeTitle?: string;
@@ -25,7 +26,13 @@ const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: M
     const progressPercent = Math.min(100, (xpInCurrentLevel / xpNeededForNext) * 100);
 
     return (
-        <div className="rounded-xl border border-slate-200 bg-white p-5 mb-4">
+        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 mb-4">
+            <img
+                src={dodecahedronImage}
+                alt=""
+                className="pointer-events-none absolute -right-10 -top-10 w-44 opacity-10"
+                aria-hidden="true"
+            />
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-full bg-amber-100 overflow-hidden flex items-center justify-center">
                     {avatarUrl ? (

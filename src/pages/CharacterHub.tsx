@@ -14,10 +14,12 @@ import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import LinkedInUpload from "@/components/profile/LinkedInUpload";
+import PrivacySection from "@/components/profile/PrivacySection";
 import GeniusGrowthPath from "@/modules/genius-path/GeniusGrowthPath";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import MyLifeSection from "@/components/game/MyLifeSection";
+import dodecahedronImage from "@/assets/dodecahedron.jpg";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -35,6 +37,12 @@ const CharacterHub = () => {
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [linkedinPdfPath, setLinkedinPdfPath] = useState<string | null>(null);
     const [qolScores, setQolScores] = useState<Array<{ key: string; label: string; score: number }>>([]);
+    const [privacySettings, setPrivacySettings] = useState({
+        visibility: "full" as "hidden" | "minimal" | "medium" | "full",
+        show_location: true,
+        show_mission: true,
+        show_offer: true,
+    });
 
     // Get personalized recommendations
     const recommendations = useRecommendations(profile?.id || null);
@@ -67,6 +75,14 @@ const CharacterHub = () => {
                 setSoulColors((profileData as any).soul_colors || null);
                 setAvatarUrl((profileData as any).avatar_url || null);
                 setLinkedinPdfPath((profileData as any).linkedin_pdf_url || null);
+
+                // Load privacy settings
+                setPrivacySettings({
+                    visibility: (profileData as any).visibility || "full",
+                    show_location: (profileData as any).show_location ?? true,
+                    show_mission: (profileData as any).show_mission ?? true,
+                    show_offer: (profileData as any).show_offer ?? true,
+                });
 
                 // Get ZoG snapshot with Appleseed/Excalibur data
                 if (profileData.last_zog_snapshot_id) {
@@ -208,7 +224,13 @@ const CharacterHub = () => {
                     </button>
 
                     {/* Player Header */}
-                    <div className="text-center mb-6">
+                    <div className="relative text-center mb-6">
+                        <img
+                            src={dodecahedronImage}
+                            alt=""
+                            className="pointer-events-none absolute -right-4 -top-6 w-24 opacity-10"
+                            aria-hidden="true"
+                        />
                         {user && profile && (
                             <div className="flex justify-center mb-4">
                                 <ProfilePictureUpload
@@ -319,6 +341,20 @@ const CharacterHub = () => {
                                 userId={user.id}
                                 pdfPath={linkedinPdfPath}
                                 onUpdate={setLinkedinPdfPath}
+                            />
+                        </div>
+                    )}
+
+                    {/* 🔒 PRIVACY SETTINGS */}
+                    {user && (
+                        <div className="mb-8">
+                            <PrivacySection
+                                userId={user.id}
+                                visibility={privacySettings.visibility}
+                                showLocation={privacySettings.show_location}
+                                showMission={privacySettings.show_mission}
+                                showOffer={privacySettings.show_offer}
+                                onUpdate={(updates) => setPrivacySettings(prev => ({ ...prev, ...updates }))}
                             />
                         </div>
                     )}

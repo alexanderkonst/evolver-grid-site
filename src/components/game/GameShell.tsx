@@ -90,10 +90,10 @@ const SPACES: NavItem[] = [
     },
     {
         id: "events",
-        label: "Events",
+        label: "Gatherings",
         icon: <CalendarDays className="w-5 h-5" />,
         path: "/game/events",
-        description: "Community gatherings"
+        description: "Gatherings and Experiences"
     },
     {
         id: "coop",

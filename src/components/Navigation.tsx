@@ -87,7 +87,7 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { to: "/game", label: "game of life", isScroll: false, isPrimary: true },
+    { to: "/game/next-move", label: "game of life", isScroll: false, isPrimary: true },
     { to: "/#modules", label: "tools", isScroll: true },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
@@ -170,13 +170,13 @@ const Navigation = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
                       <DropdownMenuItem asChild>
-                        <Link to="/profile" className="flex items-center cursor-pointer">
+                        <Link to="/game/profile" className="flex items-center cursor-pointer">
                           <User className="h-4 w-4 mr-2" />
                           Profile
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link to="/game" className="flex items-center cursor-pointer">
+                        <Link to="/game/next-move" className="flex items-center cursor-pointer">
                           <Gamepad2 className="h-4 w-4 mr-2" />
                           Game of Life
                         </Link>
@@ -271,7 +271,7 @@ const Navigation = () => {
                   <p className="text-sm font-medium text-foreground">{getDisplayName()}</p>
                   <p className="text-xs text-muted-foreground">{user.email}</p>
                   <Link
-                    to="/profile"
+                    to="/game/profile"
                     className="flex items-center py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
@@ -279,7 +279,7 @@ const Navigation = () => {
                     Profile
                   </Link>
                   <Link
-                    to="/game"
+                    to="/game/next-move"
                     className="flex items-center py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
