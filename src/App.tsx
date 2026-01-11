@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
@@ -26,7 +26,6 @@ import Today from "./pages/Today";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
-import Profile from "./pages/Profile";
 import SkillTrees from "./pages/SkillTrees";
 import GrowthPathsPage from "./pages/GrowthPathsPage";
 import GameMap from "./pages/GameMap";
@@ -49,7 +48,6 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
-import ProfileSpace from "./pages/spaces/ProfileSpace";
 import TransformationSpace from "./pages/spaces/TransformationSpace";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
 import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
@@ -87,7 +85,7 @@ const App = () => (
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/reset-password" element={<ResetPassword />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
             <Route path="/mens-circle" element={<MensCircle />} />
@@ -103,7 +101,7 @@ const App = () => (
             {/* Game Routes */}
             <Route path="/game" element={<GameHome />} />
             <Route path="/game/next-move" element={<CoreLoopHome />} />
-            <Route path="/game/profile" element={<ProfileSpace />} />
+            <Route path="/game/profile" element={<CharacterHub />} />
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/matchmaking" element={<MatchmakingSpace />} />

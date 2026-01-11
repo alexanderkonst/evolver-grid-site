@@ -190,6 +190,20 @@ All colors MUST be HSL.
       padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     }
   }
+
+  @supports (padding-top: env(safe-area-inset-top)) {
+    .pt-safe {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .pt-safe-14 {
+      padding-top: calc(3.5rem + env(safe-area-inset-top));
+    }
+
+    .h-safe-14 {
+      height: calc(3.5rem + env(safe-area-inset-top));
+    }
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
