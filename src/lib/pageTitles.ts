@@ -16,6 +16,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/game/transformation"), title: "Transformation" },
   { match: (path) => path.startsWith("/game/marketplace"), title: "Marketplace" },
   { match: (path) => path.startsWith("/game/teams"), title: "Teams" },
+  { match: (path) => path.startsWith("/game/matches"), title: "Matches" },
   { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
   { match: (path) => path.startsWith("/game/coop"), title: "Startup Co-op" },
   { match: (path) => path.startsWith("/mission-discovery"), title: "Mission Discovery" },
