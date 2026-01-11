@@ -17,7 +17,7 @@ interface MatchCardProps {
 
 const MatchCard = ({ user, matchReason, onPass, onConnect }: MatchCardProps) => {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-md mx-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex flex-col items-center text-center gap-4">
         <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
           {user.avatarUrl ? (
@@ -32,13 +32,13 @@ const MatchCard = ({ user, matchReason, onPass, onConnect }: MatchCardProps) => 
           </h2>
           <p className="text-slate-700 mt-1">✦ {user.archetype} ✦</p>
           {user.tagline && (
-            <p className="text-sm text-slate-500 mt-2 italic">"{user.tagline}"</p>
+            <p className="text-sm text-slate-500 mt-2 italic break-words">"{user.tagline}"</p>
           )}
         </div>
 
         <div className="w-full border-t border-slate-100 pt-4">
           <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">Why you match</p>
-          <p className="text-sm text-slate-700">{matchReason}</p>
+          <p className="text-sm text-slate-700 break-words">{matchReason}</p>
         </div>
 
         <div className="flex w-full gap-3 pt-4">
