@@ -75,6 +75,7 @@ import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
 import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
 import ToolsRedirect from "./pages/ToolsRedirect";
+import TestNavigation from "./pages/TestNavigation";
 
 const queryClient = new QueryClient();
 
@@ -139,6 +140,7 @@ const App = () => (
             <Route path="/events/community/:communityId" element={<CommunityEvents />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<GrowthPathsPage />} />
+            <Route path="/game/test-nav" element={<TestNavigation />} />
             <Route path="/today" element={<Today />} />
             <Route path="/character" element={<Today />} />
             <Route path="/map" element={<GameMap />} />
