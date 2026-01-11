@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { awardXp } from "@/lib/xpSystem";
+import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 
 const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
   const dateTime = new Date(`${dateStr}T${timeStr}`);
@@ -86,12 +87,19 @@ const EventDetail = () => {
       const isAttending = status === "going" || status === "maybe";
       if (isAttending && !wasAttending) {
         const profileId = await getOrCreateGameProfileId();
-        const xpResult = await awardXp(profileId, 10, "spirit");
+        const xpResult = await awardXp(profileId, 25, "spirit");
         if (xpResult.success) {
           toast({
-            title: "🎉 +10 XP (Spirit)",
+            title: "🎉 +25 XP (Spirit)",
             description: "Thanks for committing to your community.",
           });
+          const bonusResult = await awardFirstTimeBonus(profileId, "first_event_rsvp", 25, 2, "spirit");
+          if (bonusResult.awarded) {
+            toast({
+              title: "🎉 FIRST TIME BONUS!",
+              description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_event_rsvp")}!`,
+            });
+          }
         }
       }
     } catch (err) {

@@ -8,6 +8,7 @@ import {
     Users,
     CalendarDays,
     Building2,
+    Lock,
     LogOut,
     Menu,
     X,
@@ -19,6 +20,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { useToast } from "@/hooks/use-toast";
 
 interface ModuleItem {
     id: string;
@@ -114,6 +116,7 @@ interface GameShellProps {
 export const GameShell = ({ children }: GameShellProps) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { toast } = useToast();
     const [user, setUser] = useState<any>(null);
     const [profile, setProfile] = useState<{
         first_name: string | null;
@@ -121,6 +124,7 @@ export const GameShell = ({ children }: GameShellProps) => {
         avatar_url: string | null;
         onboarding_stage?: string | null;
     } | null>(null);
+    const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [desktopSidebarOpen, setDesktopSidebarOpen] = useState(true);
     const [expandedSpaces, setExpandedSpaces] = useState<Set<string>>(new Set());
@@ -132,6 +136,13 @@ export const GameShell = ({ children }: GameShellProps) => {
             .eq("user_id", userId)
             .maybeSingle();
         setProfile(data || null);
+
+        const { data: offerData } = await supabase
+            .from("genius_offer_requests")
+            .select("status")
+            .eq("user_id", userId)
+            .maybeSingle();
+        setHasGeniusOffer(offerData?.status === "completed");
     };
 
     const loadProfileById = async (profileId: string) => {
@@ -141,6 +152,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             .eq("id", profileId)
             .maybeSingle();
         setProfile(data || null);
+        setHasGeniusOffer(false);
     };
 
     useEffect(() => {
@@ -178,6 +190,18 @@ export const GameShell = ({ children }: GameShellProps) => {
     };
 
     const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
+
+    const unlockStatus = {
+        matchmaking: profile?.onboarding_stage === "unlocked",
+        marketplace: hasGeniusOffer,
+        coop: hasGeniusOffer,
+    };
+
+    const unlockHints = {
+        matchmaking: "Complete onboarding to unlock Matchmaking.",
+        marketplace: "Create your Genius Offer to unlock Marketplace.",
+        coop: "Create your Genius Offer to unlock Startup Co-op.",
+    };
 
     useEffect(() => {
         if (!profile?.onboarding_stage) return;
@@ -258,42 +282,76 @@ export const GameShell = ({ children }: GameShellProps) => {
                     <div className="space-y-1">
                         {SPACES.map((item) => (
                             <div key={item.id}>
-                                <div className="flex items-center">
-                                    <Link
-                                        to={item.path}
-                                        onClick={() => setSidebarOpen(false)}
-                                        className={`
+                                {(() => {
+                                    const isUnlocked = unlockStatus[item.id as keyof typeof unlockStatus] ?? true;
+                                    const hint = unlockHints[item.id as keyof typeof unlockHints];
+                                    const showModules = isUnlocked && item.modules && item.modules.length > 0;
+                                    const linkClasses = `
                                             flex-1 flex items-center gap-3 px-3 py-2.5 rounded-lg
                                             transition-colors duration-150
-                                            ${isActive(item.path)
+                                            ${!isUnlocked
+                                            ? "text-slate-600 bg-slate-900/40 cursor-not-allowed"
+                                            : isActive(item.path)
                                                 ? "bg-slate-700 text-white"
                                                 : "text-slate-400 hover:bg-slate-800 hover:text-white"
-                                            }
-                                        `}
-                                    >
-                                        {item.icon}
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-sm font-medium truncate">{item.label}</p>
-                                            <p className={`text-xs truncate ${isActive(item.path) ? "text-slate-300" : "text-slate-500"}`}>
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </Link>
-                                    {item.modules && item.modules.length > 0 && (
-                                        <button
-                                            onClick={() => toggleExpanded(item.id)}
-                                            className="p-2 text-slate-400 hover:text-white"
-                                        >
-                                            {expandedSpaces.has(item.id)
-                                                ? <ChevronDown className="w-4 h-4" />
-                                                : <ChevronRight className="w-4 h-4" />
-                                            }
-                                        </button>
-                                    )}
-                                </div>
+                                        }
+                                        `;
 
+                                    const content = (
+                                        <>
+                                            {item.icon}
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm font-medium truncate">{item.label}</p>
+                                                <p className={`text-xs truncate ${isActive(item.path) ? "text-slate-300" : "text-slate-500"}`}>
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                            {!isUnlocked && <Lock className="w-4 h-4 text-slate-500" />}
+                                        </>
+                                    );
+
+                                    return (
+                                        <div className="flex items-center">
+                                            {isUnlocked ? (
+                                                <Link
+                                                    to={item.path}
+                                                    onClick={() => setSidebarOpen(false)}
+                                                    className={linkClasses}
+                                                >
+                                                    {content}
+                                                </Link>
+                                            ) : (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        toast({
+                                                            title: "Locked",
+                                                            description: hint || "Complete the required steps to unlock this space.",
+                                                        });
+                                                    }}
+                                                    className={linkClasses}
+                                                    title={hint}
+                                                    aria-disabled="true"
+                                                >
+                                                    {content}
+                                                </button>
+                                            )}
+                                            {showModules && (
+                                                <button
+                                                    onClick={() => toggleExpanded(item.id)}
+                                                    className="p-2 text-slate-400 hover:text-white"
+                                                >
+                                                    {expandedSpaces.has(item.id)
+                                                        ? <ChevronDown className="w-4 h-4" />
+                                                        : <ChevronRight className="w-4 h-4" />
+                                                    }
+                                                </button>
+                                            )}
+                                        </div>
+                                    );
+                                })()}
                                 {/* Modules dropdown - smaller font, indent */}
-                                {item.modules && expandedSpaces.has(item.id) && (
+                                {item.modules && expandedSpaces.has(item.id) && (unlockStatus[item.id as keyof typeof unlockStatus] ?? true) && (
                                     <div className="ml-10 mt-1 space-y-0.5 border-l border-slate-700 pl-3">
                                         {item.modules.map((module) => (
                                             <Link
@@ -303,9 +361,9 @@ export const GameShell = ({ children }: GameShellProps) => {
                                                 className={`
                                                     block px-2 py-1 rounded-md text-xs font-normal
                                                     ${location.pathname.startsWith(module.path)
-                                                        ? "text-white bg-slate-700/50"
-                                                        : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
-                                                    }
+                                                    ? "text-white bg-slate-700/50"
+                                                    : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
+                                                }
                                                 `}
                                             >
                                                 {module.label}

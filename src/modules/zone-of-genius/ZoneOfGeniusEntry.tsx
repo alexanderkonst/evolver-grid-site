@@ -12,6 +12,7 @@ import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import { useToast } from "@/hooks/use-toast";
+import { getFirstTimeActionLabel } from "@/lib/xpService";
 
 type Step =
     | "choice"
@@ -126,6 +127,12 @@ const ZoneOfGeniusEntry = () => {
                         description: "Your profile leveled up.",
                     });
                 }
+                if (result.firstTimeBonus) {
+                    toast({
+                        title: "🎉 FIRST TIME BONUS!",
+                        description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_zog_complete")}!`,
+                    });
+                }
             } else {
                 toast({
                     title: "Save Failed",
@@ -185,6 +192,12 @@ const ZoneOfGeniusEntry = () => {
                     toast({
                         title: `🎉 +${result.xpAwarded} XP (Genius)`,
                         description: "Your profile leveled up.",
+                    });
+                }
+                if (result.firstTimeBonus) {
+                    toast({
+                        title: "🎉 FIRST TIME BONUS!",
+                        description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_genius_offer")}!`,
                     });
                 }
                 // Navigate back to profile after short delay

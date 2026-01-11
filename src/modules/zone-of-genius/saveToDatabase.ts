@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { awardXp } from "@/lib/xpSystem";
+import { awardFirstTimeBonus } from "@/lib/xpService";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 
@@ -71,7 +72,7 @@ const getOrCreateSnapshot = async (
 export const saveAppleseed = async (
   appleseed: AppleseedData,
   aiResponseRaw?: string
-): Promise<{ success: boolean; snapshotId?: string; xpAwarded?: number; error?: string }> => {
+): Promise<{ success: boolean; snapshotId?: string; xpAwarded?: number; firstTimeBonus?: number; error?: string }> => {
   try {
     const profileId = await getProfileId();
     if (!profileId) {
@@ -108,15 +109,20 @@ export const saveAppleseed = async (
       .eq("id", profileId);
 
     let xpAwarded = 0;
+    let firstTimeBonus = 0;
     if (!snapshot.xp_awarded) {
       const xpResult = await awardXp(profileId, 100, "uniqueness");
       if (xpResult.success) {
         xpAwarded = 100;
         await supabase.from("zog_snapshots").update({ xp_awarded: true }).eq("id", snapshot.id);
+        const bonusResult = await awardFirstTimeBonus(profileId, "first_zog_complete", 100, 2, "uniqueness");
+        if (bonusResult.awarded) {
+          firstTimeBonus = bonusResult.xp;
+        }
       }
     }
 
-    return { success: true, snapshotId: snapshot.id, xpAwarded };
+    return { success: true, snapshotId: snapshot.id, xpAwarded, firstTimeBonus };
   } catch (err) {
     console.error("Error saving Appleseed:", err);
     return {
@@ -131,7 +137,7 @@ export const saveAppleseed = async (
  */
 export const saveExcalibur = async (
   excalibur: ExcaliburData
-): Promise<{ success: boolean; xpAwarded?: number; error?: string }> => {
+): Promise<{ success: boolean; xpAwarded?: number; firstTimeBonus?: number; error?: string }> => {
   try {
     const profileId = await getProfileId();
     if (!profileId) {
@@ -163,14 +169,19 @@ export const saveExcalibur = async (
     if (error) throw error;
 
     let xpAwarded = 0;
+    let firstTimeBonus = 0;
     if (!snapshot.excalibur_generated_at) {
       const xpResult = await awardXp(profileId, 200, "uniqueness");
       if (xpResult.success) {
         xpAwarded = 200;
+        const bonusResult = await awardFirstTimeBonus(profileId, "first_genius_offer", 200, 2, "uniqueness");
+        if (bonusResult.awarded) {
+          firstTimeBonus = bonusResult.xp;
+        }
       }
     }
 
-    return { success: true, xpAwarded };
+    return { success: true, xpAwarded, firstTimeBonus };
   } catch (err) {
     console.error("Error saving Excalibur:", err);
     return {

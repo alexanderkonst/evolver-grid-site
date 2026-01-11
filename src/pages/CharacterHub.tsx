@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { useRecommendations } from "@/hooks/use-recommendations";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
@@ -64,6 +65,59 @@ const CharacterHub = () => {
         loadCharacterData();
     }, []);
 
+    const populateProfileData = async (profileData: any) => {
+        setProfile(profileData);
+        setSoulColors((profileData as any).soul_colors || null);
+        setAvatarUrl((profileData as any).avatar_url || null);
+        setLinkedinPdfPath((profileData as any).linkedin_pdf_url || null);
+
+        setPrivacySettings({
+            visibility: (profileData as any).visibility || "full",
+            show_location: (profileData as any).show_location ?? true,
+            show_mission: (profileData as any).show_mission ?? true,
+            show_offer: (profileData as any).show_offer ?? true,
+        });
+
+        if (profileData.last_zog_snapshot_id) {
+            const { data: zogData } = await supabase
+                .from("zog_snapshots")
+                .select("archetype_title, core_pattern, top_three_talents, appleseed_data, excalibur_data")
+                .eq("id", profileData.last_zog_snapshot_id)
+                .single();
+            setZogSnapshot(zogData);
+            if (zogData?.appleseed_data) {
+                setAppleseed(zogData.appleseed_data as unknown as AppleseedData);
+            }
+            if (zogData?.excalibur_data) {
+                setExcalibur(zogData.excalibur_data as unknown as ExcaliburData);
+            }
+        }
+
+        if (profileData.last_qol_snapshot_id) {
+            const { data: qolData } = await supabase
+                .from("qol_snapshots")
+                .select("*")
+                .eq("id", profileData.last_qol_snapshot_id)
+                .single();
+            setQolSnapshot(qolData);
+            if (qolData) {
+                setQolScores([
+                    { key: "health_stage", label: "Health", score: qolData.health_stage || 5 },
+                    { key: "wealth_stage", label: "Wealth", score: qolData.wealth_stage || 5 },
+                    { key: "happiness_stage", label: "Happiness", score: qolData.happiness_stage || 5 },
+                    { key: "love_relationships_stage", label: "Love", score: qolData.love_relationships_stage || 5 },
+                    { key: "impact_stage", label: "Impact", score: qolData.impact_stage || 5 },
+                    { key: "growth_stage", label: "Growth", score: qolData.growth_stage || 5 },
+                    { key: "social_ties_stage", label: "Social", score: qolData.social_ties_stage || 5 },
+                    { key: "home_stage", label: "Home", score: qolData.home_stage || 5 },
+                ]);
+            }
+        }
+
+        const upgrades = await getPlayerUpgrades(profileData.id);
+        setUpgradeCount(upgrades.length);
+    };
+
     const loadCharacterData = async () => {
         setLoading(true);
         try {
@@ -71,6 +125,22 @@ const CharacterHub = () => {
             setUser(user);
 
             if (!user) {
+                const profileId = await getOrCreateGameProfileId().catch(() => null);
+                if (!profileId) {
+                    setLoading(false);
+                    return;
+                }
+
+                const { data: profileData } = await supabase
+                    .from("game_profiles")
+                    .select("*")
+                    .eq("id", profileId)
+                    .maybeSingle();
+
+                if (profileData) {
+                    await populateProfileData(profileData);
+                }
+
                 setLoading(false);
                 return;
             }
@@ -83,61 +153,7 @@ const CharacterHub = () => {
                 .maybeSingle();
 
             if (profileData) {
-                setProfile(profileData);
-                // soul_colors will be added after migration
-                setSoulColors((profileData as any).soul_colors || null);
-                setAvatarUrl((profileData as any).avatar_url || null);
-                setLinkedinPdfPath((profileData as any).linkedin_pdf_url || null);
-
-                // Load privacy settings
-                setPrivacySettings({
-                    visibility: (profileData as any).visibility || "full",
-                    show_location: (profileData as any).show_location ?? true,
-                    show_mission: (profileData as any).show_mission ?? true,
-                    show_offer: (profileData as any).show_offer ?? true,
-                });
-
-                // Get ZoG snapshot with Appleseed/Excalibur data
-                if (profileData.last_zog_snapshot_id) {
-                    const { data: zogData } = await supabase
-                        .from("zog_snapshots")
-                        .select("archetype_title, core_pattern, top_three_talents, appleseed_data, excalibur_data")
-                        .eq("id", profileData.last_zog_snapshot_id)
-                        .single();
-                    setZogSnapshot(zogData);
-                    if (zogData?.appleseed_data) {
-                        setAppleseed(zogData.appleseed_data as unknown as AppleseedData);
-                    }
-                    if (zogData?.excalibur_data) {
-                        setExcalibur(zogData.excalibur_data as unknown as ExcaliburData);
-                    }
-                }
-
-                // Get QoL snapshot
-                if (profileData.last_qol_snapshot_id) {
-                    const { data: qolData } = await supabase
-                        .from("qol_snapshots")
-                        .select("*")
-                        .eq("id", profileData.last_qol_snapshot_id)
-                        .single();
-                    setQolSnapshot(qolData);
-                    if (qolData) {
-                        setQolScores([
-                            { key: "health_stage", label: "Health", score: qolData.health_stage || 5 },
-                            { key: "wealth_stage", label: "Wealth", score: qolData.wealth_stage || 5 },
-                            { key: "happiness_stage", label: "Happiness", score: qolData.happiness_stage || 5 },
-                            { key: "love_relationships_stage", label: "Love", score: qolData.love_relationships_stage || 5 },
-                            { key: "impact_stage", label: "Impact", score: qolData.impact_stage || 5 },
-                            { key: "growth_stage", label: "Growth", score: qolData.growth_stage || 5 },
-                            { key: "social_ties_stage", label: "Social", score: qolData.social_ties_stage || 5 },
-                            { key: "home_stage", label: "Home", score: qolData.home_stage || 5 },
-                        ]);
-                    }
-                }
-
-                // Get player's completed upgrades count
-                const upgrades = await getPlayerUpgrades(profileData.id);
-                setUpgradeCount(upgrades.length);
+                await populateProfileData(profileData);
             }
 
             const { data: participant } = await supabase
@@ -244,7 +260,7 @@ const CharacterHub = () => {
         );
     }
 
-    if (!user) {
+    if (!user && !profile) {
         return (
             <div className="min-h-screen flex flex-col bg-background">
                 <Navigation />
@@ -307,6 +323,22 @@ const CharacterHub = () => {
                             <p className="text-slate-400 text-xs mt-1">{zogSnapshot.archetype_title}</p>
                         )}
                     </div>
+
+                    {!user && (
+                        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left mb-6">
+                            <p className="text-xs text-amber-300 font-medium mb-1">Anonymous Mode</p>
+                            <p className="text-sm text-slate-200 mb-3">
+                                You’re exploring without signing in. Sign in to save and sync your progress.
+                            </p>
+                            <Button
+                                size="sm"
+                                className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                onClick={() => navigate("/auth")}
+                            >
+                                Sign In
+                            </Button>
+                        </div>
+                    )}
 
                     {/* Soul Dodecahedron */}
                     <div className="flex flex-col items-center mb-8">
