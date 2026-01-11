@@ -39,6 +39,28 @@ const ZoneOfGeniusEntry = () => {
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
+    const navBar = (
+        <div className="flex items-center justify-between gap-2 px-4 lg:px-8 pt-4">
+            <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate(returnPath)}
+                className="text-slate-600 hover:text-slate-900"
+            >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
+            </Button>
+            <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate("/game/profile")}
+                className="text-slate-600 hover:text-slate-900"
+            >
+                Profile
+            </Button>
+        </div>
+    );
+
     // Load saved data on mount
     useEffect(() => {
         const loadExisting = async () => {
@@ -190,6 +212,7 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-appleseed") {
         return (
             <GameShell>
+                {navBar}
                 <AppleseedRitualLoading minDuration={4000} />
             </GameShell>
         );
@@ -200,6 +223,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShell>
                 <div className="pb-8">
+                    {navBar}
                     <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
 
                     {/* Excalibur CTA */}
@@ -216,10 +240,16 @@ const ZoneOfGeniusEntry = () => {
                                 onClick={handleGenerateExcalibur}
                                 disabled={isProcessing}
                                 className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                                type="button"
                             >
                                 <Sword className="w-4 h-4 mr-2" />
                                 Create My Unique Offer
                             </Button>
+                            {error && (
+                                <div className="mt-4 text-sm text-red-600">
+                                    {error}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -231,6 +261,7 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-excalibur") {
         return (
             <GameShell>
+                {navBar}
                 <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
                         <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
@@ -256,6 +287,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShell>
                 <div className="pb-8">
+                    {navBar}
                     <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
                 </div>
             </GameShell>
@@ -265,6 +297,7 @@ const ZoneOfGeniusEntry = () => {
     return (
         <GameShell>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
+                {navBar}
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-100 mb-4">
