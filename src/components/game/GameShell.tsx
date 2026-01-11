@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 interface ModuleItem {
     id: string;
@@ -112,7 +113,12 @@ export const GameShell = ({ children }: GameShellProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
-    const [profile, setProfile] = useState<{ first_name: string | null; last_name: string | null; avatar_url: string | null } | null>(null);
+    const [profile, setProfile] = useState<{
+        first_name: string | null;
+        last_name: string | null;
+        avatar_url: string | null;
+        onboarding_stage?: string | null;
+    } | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [desktopSidebarOpen, setDesktopSidebarOpen] = useState(true);
     const [expandedSpaces, setExpandedSpaces] = useState<Set<string>>(new Set());
@@ -120,19 +126,33 @@ export const GameShell = ({ children }: GameShellProps) => {
     const loadProfile = async (userId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url")
+            .select("first_name, last_name, avatar_url, onboarding_stage")
             .eq("user_id", userId)
             .maybeSingle();
         setProfile(data || null);
     };
 
+    const loadProfileById = async (profileId: string) => {
+        const { data } = await supabase
+            .from("game_profiles")
+            .select("first_name, last_name, avatar_url, onboarding_stage")
+            .eq("id", profileId)
+            .maybeSingle();
+        setProfile(data || null);
+    };
+
     useEffect(() => {
-        supabase.auth.getUser().then(({ data: { user } }) => {
+        supabase.auth.getUser().then(async ({ data: { user } }) => {
             setUser(user);
             if (user) {
                 loadProfile(user.id);
             } else {
-                setProfile(null);
+                try {
+                    const profileId = await getOrCreateGameProfileId();
+                    await loadProfileById(profileId);
+                } catch (err) {
+                    setProfile(null);
+                }
             }
         });
 
@@ -141,7 +161,9 @@ export const GameShell = ({ children }: GameShellProps) => {
             if (session?.user) {
                 loadProfile(session.user.id);
             } else {
-                setProfile(null);
+                getOrCreateGameProfileId()
+                    .then((profileId) => loadProfileById(profileId))
+                    .catch(() => setProfile(null));
             }
         });
 
@@ -152,6 +174,24 @@ export const GameShell = ({ children }: GameShellProps) => {
         await supabase.auth.signOut();
         navigate("/");
     };
+
+    const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
+
+    useEffect(() => {
+        if (!profile?.onboarding_stage) return;
+        const needsOnboarding = ["new", "zog_started", "zog_complete"].includes(profile.onboarding_stage);
+        if (needsOnboarding && location.pathname.startsWith("/game")) {
+            navigate("/start");
+        }
+    }, [profile?.onboarding_stage, location.pathname, navigate]);
+
+    if (!showSidebar) {
+        return (
+            <div className="min-h-screen bg-white">
+                {children}
+            </div>
+        );
+    }
 
     const isActive = (path: string) => {
         if (path === "/game/next-move" || path === "/game") {

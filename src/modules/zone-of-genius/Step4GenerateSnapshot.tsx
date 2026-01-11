@@ -148,7 +148,7 @@ const Step4GenerateSnapshot = () => {
           .single();
 
         if (profileData) {
-          const newXpTotal = profileData.xp_total + 50;
+          const newXpTotal = profileData.xp_total + 100;
           const newLevel = Math.floor(newXpTotal / 100) + 1;
 
           await supabase
@@ -156,6 +156,7 @@ const Step4GenerateSnapshot = () => {
             .update({
               last_zog_snapshot_id: snapshotData.id,
               zone_of_genius_completed: true,
+              onboarding_stage: "zog_complete",
               xp_total: newXpTotal,
               level: newLevel,
               updated_at: new Date().toISOString(),
@@ -168,7 +169,7 @@ const Step4GenerateSnapshot = () => {
             .update({ xp_awarded: true })
             .eq('id', snapshotData.id);
 
-          console.log(`✅ Awarded 50 XP for ZoG completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
+          console.log(`✅ Awarded 100 XP for ZoG completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
         }
       } else {
         // Just update the reference without awarding XP again
@@ -177,6 +178,7 @@ const Step4GenerateSnapshot = () => {
           .update({
             last_zog_snapshot_id: snapshotData.id,
             zone_of_genius_completed: true,
+            onboarding_stage: "zog_complete",
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);

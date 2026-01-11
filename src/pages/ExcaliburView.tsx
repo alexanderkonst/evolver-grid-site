@@ -36,13 +36,13 @@ const ExcaliburView = () => {
       <GameShell>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sword className="w-10 h-10 text-violet-400 mb-3" />
-          <h1 className="text-2xl font-semibold text-slate-900 mb-2">No Excalibur yet</h1>
+          <h1 className="text-2xl font-semibold text-slate-900 mb-2">No unique offer yet</h1>
           <p className="text-slate-600 mb-6">
-            Craft your unique offering to view your Excalibur here.
+            Craft your unique offer to view it here.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
-              Create Excalibur
+              Create Offer
             </Button>
             <Button variant="outline" onClick={() => navigate("/game/profile")}>
               <ArrowLeft className="w-4 h-4 mr-2" />

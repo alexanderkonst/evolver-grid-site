@@ -56,6 +56,7 @@ import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
+import OnboardingStart from "./pages/OnboardingStart";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery
@@ -85,6 +86,7 @@ const App = () => (
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/reset-password" element={<ResetPassword />} />
+            <Route path="/start" element={<OnboardingStart />} />
             <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />

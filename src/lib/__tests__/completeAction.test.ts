@@ -16,6 +16,21 @@ vi.mock("@/lib/questCompletion", () => ({
   completeLegacyQuest: vi.fn(async () => ({ success: true, xpAwarded: 10 })),
 }));
 
+vi.mock("@/integrations/supabase/client", () => ({
+  supabase: {
+    from: () => ({
+      select: () => ({
+        eq: () => ({
+          maybeSingle: async () => ({ data: { onboarding_stage: "qol_complete" } }),
+        }),
+      }),
+      update: () => ({
+        eq: async () => ({ error: null }),
+      }),
+    }),
+  },
+}));
+
 const logActionEvent = vi.fn();
 vi.mock("@/lib/actionEvents", () => ({
   logActionEvent: vi.fn().mockImplementation((arg) => {
