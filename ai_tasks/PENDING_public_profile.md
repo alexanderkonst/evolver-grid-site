@@ -1,6 +1,6 @@
 # Task: Public Profile Page
 
-**Assigned to:** Claude CLI  
+**Assigned to:** Codex  
 **Priority:** High  
 **Created:** 2026-01-11
 
