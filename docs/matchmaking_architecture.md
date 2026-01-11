@@ -6,9 +6,23 @@
 
 ---
 
+## Match Types Ranked by Value
+
+| Rank | Match Type | WOW Factor | Description |
+|------|------------|------------|-------------|
+| 1 | **Co-founder Match** | 🔥🔥🔥🔥🔥 | "Finally found who I want to build with" |
+| 2 | **Perfect Client** | 🔥🔥🔥🔥 | "Someone actually wants what I offer" |
+| 3 | **Team for Mission** | 🔥🔥🔥🔥 | "Ready team for my mission" |
+| 4 | **Mentor/Advisor** | 🔥🔥🔥 | "Someone who walked this path" |
+| 5 | **Accountability Partner** | 🔥🔥🔥 | "Peer at same stage who holds me" |
+| 6 | **Local Community** | 🔥🔥 | "Nearby people I resonate with" |
+| 7 | **Relevant Event** | 🔥 | "Event I actually need" |
+
+---
+
 ## Matchmaking Dimensions
 
-### 1. Human ↔ Human
+### Human ↔ Human
 
 | Match Type | Description | Optimization Goal |
 |------------|-------------|-------------------|
@@ -18,15 +32,14 @@
 | **Geographic Proximity** | Same location/timezone | Local community building |
 | **Stage Synchrony** | Similar journey stage | Peer support & accountability |
 
-### 2. Human ↔ Mission
+### Human ↔ Mission
 
 | Match Type | Description | Optimization Goal |
 |------------|-------------|-------------------|
 | **Genius Fit** | Which missions need their genius? | Deploy genius where needed |
-| **Capacity Match** | Time/energy available | Right commitment level |
 | **Role Fit** | Lead, support, advise? | Right position in team |
 
-### 3. Human ↔ Event
+### Human ↔ Event
 
 | Match Type | Description | Optimization Goal |
 |------------|-------------|-------------------|
@@ -34,13 +47,30 @@
 | **Community Membership** | User's communities | Community events first |
 | **Geographic** | Location-based | Local events priority |
 
-### 4. Human ↔ Offer (Marketplace)
+---
 
-| Match Type | Description | Optimization Goal |
-|------------|-------------|-------------------|
-| **Need Detection** | User's gaps/challenges | Suggest relevant offers |
-| **Budget Fit** | Pricing alignment | Affordable solutions |
-| **Trust Layer** | Recommended by network | Social proof |
+## How AI-Powered Matching Works
+
+### Simple Explanation (for a 12-year-old)
+
+Imagine every person as a **point in multi-dimensional space**. Each point has coordinates:
+- Archetype (Architect, Mirror, Firekeeper...)
+- Mission (Climate, Education, Health...)
+- Location (Malaysia, USA, Mexico...)
+- Capabilities (Coach, Builder, Investor...)
+- Needs (Team, Funding, Clarity...)
+
+The AI takes your point and finds **nearest points along relevant dimensions**.
+
+**Want a collaborator?** → Search proximity by Mission + complementarity by Archetype.
+**Want a client?** → Find those whose Need = your Offer.
+**Want a mentor?** → Find those further along the same trajectory.
+
+### Technical Implementation
+
+1. **Profile → Embedding**: Convert profile into numerical vector
+2. **Vector Comparison**: Calculate cosine distance between vectors
+3. **Top-N Nearest**: Return highest-scoring matches
 
 ---
 
@@ -58,63 +88,86 @@
 
 ---
 
-## Simple Starting Point (V1)
+## UX Design: Tinder-Style Match Page
+
+### Core Principle
+
+**Absurd simplicity.** One match at a time. Swipe to explore.
+
+### Default View
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│        [Avatar - Large]                     │
+│                                             │
+│        Karime Kuri                          │
+│        ✦ Sacred Mirror                      │
+│                                             │
+│        MATCH REASON:                        │
+│        Same mission: Regenerative Living    │
+│        Complementary archetype              │
+│                                             │
+│    [← Pass]              [Connect →]        │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+### Filter Option
+
+User can select:
+- **All matches** (AI recommendation - default)
+- **Co-founders**
+- **Team members**
+- **Accountability partners**
+- **Local community**
+
+### Swipe Actions
+
+- **→ Right / Connect**: Send connection request
+- **← Left / Pass**: Skip, show next
+- **↑ Up / Super**: High-interest flag
+
+---
+
+## V1 Implementation Plan
 
 ### Phase 1: Profile Completeness
 Before matching, ensure rich profiles:
-- [ ] Appleseed generated
-- [ ] Excalibur generated
+- [x] Appleseed generated
+- [x] Excalibur generated
 - [ ] LinkedIn uploaded (optional but encouraged)
-- [ ] QoL snapshot done
-- [ ] Mission selected
+- [x] QoL snapshot done
+- [x] Mission selected
 
 ### Phase 2: Basic Matching Rules
 
-**Mission Match:**
-```
-IF user.mission == other.mission AND user.id != other.id
-THEN suggest connection
-```
+```typescript
+// Same mission match
+if (user.mission === other.mission && user.id !== other.id) {
+  suggestConnection();
+}
 
-**Genius Complementarity:**
-```
-IF user.archetype complements other.archetype
-AND same mission or community
-THEN suggest collaboration
-```
-
-**Offer ↔ Need:**
-```
-IF user.excalibur.icp matches other.profile
-THEN show in marketplace
+// Complementary archetype
+if (complementaryArchetypes(user.archetype, other.archetype)) {
+  suggestCollaboration();
+}
 ```
 
 ### Phase 3: AI-Powered Matching
-- Use embeddings for semantic similarity
-- Consider interaction history
-- Real-time recommendations
+
+Use embeddings for semantic similarity across all profile dimensions.
 
 ---
 
-## UX Entry Points
+## Parked Ideas (Future)
 
-| Location | Match Type |
-|----------|------------|
-| **Today / Home** | "People working on same mission" |
-| **Profile View** | "Your potential collaborators" |
-| **Marketplace** | "Offers for you" |
-| **Events** | "Events you might like" |
-| **Missions** | "People on this mission" |
-
----
-
-## Next Steps
-
-1. Define matching algorithm for V1
-2. Create `matchmaking_scores` table
-3. Build edge function to compute matches
-4. UI components to display recommendations
+- Compatibility scores between specific users
+- "5 people who need your offer" recommendation
+- Offer ↔ Need marketplace matching
 
 ---
 
 *Document created: Day 8*
+*Last updated: Day 8*
+
