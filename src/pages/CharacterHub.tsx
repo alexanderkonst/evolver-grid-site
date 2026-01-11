@@ -20,6 +20,12 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import MyLifeSection from "@/components/game/MyLifeSection";
 import dodecahedronImage from "@/assets/dodecahedron.jpg";
+import ShareZoG from "@/components/sharing/ShareZoG";
+import { MISSIONS } from "@/modules/mission-discovery/data/missions";
+import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
+import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
+import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
+import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -43,6 +49,13 @@ const CharacterHub = () => {
         show_mission: true,
         show_offer: true,
     });
+    const [missionCommitment, setMissionCommitment] = useState<{
+        mission_title: string;
+        mission_statement: string;
+        intro_text?: string | null;
+        pillar?: string;
+        focus_area?: string;
+    } | null>(null);
 
     // Get personalized recommendations
     const recommendations = useRecommendations(profile?.id || null);
@@ -125,6 +138,48 @@ const CharacterHub = () => {
                 // Get player's completed upgrades count
                 const upgrades = await getPlayerUpgrades(profileData.id);
                 setUpgradeCount(upgrades.length);
+            }
+
+            const { data: participant } = await supabase
+                .from("mission_participants")
+                .select("mission_id, mission_title, pillar_id, focus_area_id, challenge_id, outcome_id, intro_text, created_at")
+                .eq("user_id", user.id)
+                .order("created_at", { ascending: false })
+                .limit(1)
+                .maybeSingle();
+
+            if (participant?.mission_id) {
+                const mission = MISSIONS.find(m => m.id === participant.mission_id);
+                const outcome = participant.outcome_id
+                    ? DESIRED_OUTCOMES.find(o => o.id === participant.outcome_id)
+                    : mission
+                        ? DESIRED_OUTCOMES.find(o => o.id === mission.outcomeId)
+                        : undefined;
+                const challenge = participant.challenge_id
+                    ? KEY_CHALLENGES.find(c => c.id === participant.challenge_id)
+                    : outcome
+                        ? KEY_CHALLENGES.find(c => c.id === outcome.challengeId)
+                        : undefined;
+                const focusArea = participant.focus_area_id
+                    ? FOCUS_AREAS.find(f => f.id === participant.focus_area_id)
+                    : challenge
+                        ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId)
+                        : undefined;
+                const pillar = participant.pillar_id
+                    ? PILLARS.find(p => p.id === participant.pillar_id)
+                    : focusArea
+                        ? PILLARS.find(p => p.id === focusArea.pillarId)
+                        : undefined;
+
+                setMissionCommitment({
+                    mission_title: participant.mission_title,
+                    mission_statement: mission?.statement || mission?.title || participant.mission_title,
+                    intro_text: participant.intro_text || null,
+                    pillar: pillar?.title,
+                    focus_area: focusArea?.title,
+                });
+            } else {
+                setMissionCommitment(null);
             }
 
             // Get Genius Offer status
@@ -291,7 +346,15 @@ const CharacterHub = () => {
                     <div className="mb-8 space-y-4">
                         <GeniusGrowthPath appleseed={appleseed} excalibur={excalibur} />
                         {appleseed ? (
-                            <AppleseedSummaryCard appleseed={appleseed} />
+                            <div className="space-y-4">
+                                <AppleseedSummaryCard appleseed={appleseed} />
+                                <ShareZoG
+                                    archetypeName={appleseed.vibrationalKey.name}
+                                    tagline={appleseed.vibrationalKey.tagline}
+                                    primeDriver={appleseed.threeLenses.primeDriver}
+                                    profileUrl={user?.id && typeof window !== "undefined" ? `${window.location.origin}/profile/${user.id}` : undefined}
+                                />
+                            </div>
                         ) : (
                             <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left">
                                 <p className="text-xs text-amber-300 font-medium mb-1">Your Zone of Genius</p>
@@ -325,6 +388,47 @@ const CharacterHub = () => {
                                 </Button>
                             </div>
                         ) : null}
+                    </div>
+
+                    {/* 🎯 MY MISSION */}
+                    <div className="mb-8">
+                        <div className="rounded-2xl border border-slate-700/40 bg-slate-900/40 p-5 text-left">
+                            <div className="flex items-center justify-between gap-3 mb-3">
+                                <div>
+                                    <p className="text-xs text-amber-300 font-medium mb-1">My Mission</p>
+                                    <h3 className="text-base font-semibold text-slate-100">
+                                        {missionCommitment?.mission_title || "Choose your mission"}
+                                    </h3>
+                                </div>
+                                <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    className="bg-amber-500 text-slate-900 hover:bg-amber-600"
+                                    onClick={() => navigate("/game/mission")}
+                                >
+                                    {missionCommitment ? "Edit" : "Select"}
+                                </Button>
+                            </div>
+                            {missionCommitment ? (
+                                <div className="space-y-2 text-sm text-slate-300">
+                                    <p>{missionCommitment.mission_statement}</p>
+                                    {(missionCommitment.pillar || missionCommitment.focus_area) && (
+                                        <p className="text-xs text-slate-400">
+                                            {missionCommitment.pillar ? `Pillar: ${missionCommitment.pillar}` : ""}
+                                            {missionCommitment.pillar && missionCommitment.focus_area ? " · " : ""}
+                                            {missionCommitment.focus_area ? `Focus: ${missionCommitment.focus_area}` : ""}
+                                        </p>
+                                    )}
+                                    {missionCommitment.intro_text && (
+                                        <p className="text-slate-300 italic">\"{missionCommitment.intro_text}\"</p>
+                                    )}
+                                </div>
+                            ) : (
+                                <p className="text-sm text-slate-300">
+                                    Set your mission to unlock clearer matchmaking and community alignment.
+                                </p>
+                            )}
+                        </div>
                     </div>
 
                     {/* 📊 MY LIFE */}

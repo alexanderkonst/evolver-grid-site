@@ -6,16 +6,22 @@ import { Button } from "@/components/ui/button";
 import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
+import { supabase } from "@/integrations/supabase/client";
 
 const AppleseedView = () => {
   const navigate = useNavigate();
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [profileUrl, setProfileUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const load = async () => {
       const { appleseed: savedAppleseed } = await loadSavedData();
       setAppleseed(savedAppleseed);
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setProfileUrl(`${window.location.origin}/profile/${user.id}`);
+      }
       setLoading(false);
     };
     load();
@@ -62,7 +68,7 @@ const AppleseedView = () => {
           Back to Profile
         </Button>
       </div>
-      <AppleseedDisplay appleseed={appleseed} />
+      <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
     </GameShell>
   );
 };

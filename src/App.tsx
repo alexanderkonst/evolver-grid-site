@@ -57,6 +57,8 @@ import EventDetail from "./pages/EventDetail";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
 import PeopleDirectory from "./pages/PeopleDirectory";
+import MissionSelection from "./pages/MissionSelection";
+import PublicProfile from "./pages/PublicProfile";
 import OnboardingStart from "./pages/OnboardingStart";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
@@ -89,6 +91,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route path="/start" element={<OnboardingStart />} />
+            <Route path="/profile/:userId" element={<PublicProfile />} />
             <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
@@ -110,6 +113,7 @@ const App = () => (
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
             <Route path="/connections" element={<Connections />} />
+            <Route path="/game/mission" element={<MissionSelection />} />
             <Route path="/community/people" element={<PeopleDirectory />} />
             <Route path="/game/events" element={<EventsSpace />} />
             <Route path="/game/coop" element={<CoopSpace />} />

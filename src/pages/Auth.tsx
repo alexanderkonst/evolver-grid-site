@@ -23,7 +23,7 @@ const Auth = () => {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
 
-  const redirectTo = searchParams.get("redirect") || "/game";
+  const redirectTo = searchParams.get("redirect") || "/start";
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ const Auth = () => {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/game`,
+          emailRedirectTo: `${window.location.origin}/start`,
           data: {
             first_name: firstName.trim(),
             last_name: lastName.trim(),
@@ -102,7 +102,7 @@ const Auth = () => {
 
       if (error) throw error;
 
-      navigate("/game");
+      navigate("/start");
     } catch (error: any) {
       toast({
         title: "Test login failed",

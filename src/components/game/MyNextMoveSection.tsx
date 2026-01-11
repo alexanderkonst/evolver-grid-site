@@ -37,7 +37,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
                 <div className="text-center py-8 text-slate-500">
                     <p>Complete your Zone of Genius and Quality of Life assessments to get personalized recommendations.</p>
                     <Button asChild className="mt-4">
-                        <Link to="/zone-of-genius">Start Zone of Genius</Link>
+                        <Link to="/start">Start Zone of Genius</Link>
                     </Button>
                 </div>
             </div>
