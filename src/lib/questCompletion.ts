@@ -61,7 +61,6 @@ export const completeLegacyQuest = async (
 
     return { success: true, xpAwarded };
   } catch (error) {
-    console.error("Error completing quest:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Failed to complete quest.",

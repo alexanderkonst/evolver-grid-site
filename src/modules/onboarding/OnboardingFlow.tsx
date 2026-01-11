@@ -72,7 +72,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
       .eq("id", profileId);
     setSaving(false);
     if (error) {
-      console.error("Failed to update onboarding state:", error);
       return false;
     }
     return true;
@@ -84,7 +83,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
       .update({ onboarding_stage: nextStage })
       .eq("id", profileId);
     if (error) {
-      console.error("Failed to update onboarding stage:", error);
       return false;
     }
     return true;

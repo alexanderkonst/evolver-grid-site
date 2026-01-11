@@ -254,7 +254,6 @@ const MissionDiscoveryWizard = () => {
             setIsSaving(false);
             setHasCommitted(true);
         } catch (err) {
-            console.error("Error:", err);
             toast({
                 title: "Something went wrong",
                 description: "Please try again.",

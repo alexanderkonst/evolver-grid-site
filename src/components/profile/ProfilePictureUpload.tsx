@@ -107,7 +107,6 @@ const ProfilePictureUpload = ({
       onUpload?.(publicUrl);
       toast({ title: "Profile picture updated" });
     } catch (error: any) {
-      console.error("Avatar upload error:", error);
       toast({
         title: "Upload failed",
         description: error.message || "Unable to upload avatar.",

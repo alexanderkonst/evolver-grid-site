@@ -85,7 +85,6 @@ export async function awardXp(
 
     return { success: true, newXp: newXpTotal, newLevel };
   } catch (error) {
-    console.error('Error awarding XP:', error);
     return { success: false, newXp: 0, newLevel: 1, error };
   }
 }

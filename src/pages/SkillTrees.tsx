@@ -152,7 +152,6 @@ const SkillTrees = () => {
                             tree={activeTree}
                             progress={mockProgress}
                             onNodeClick={(node) => {
-                                console.log("Node clicked:", node);
                                 // TODO: Open practice modal or navigate to quest
                             }}
                         />

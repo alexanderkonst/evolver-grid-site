@@ -103,7 +103,6 @@ const ZoneOfGeniusEntry = () => {
             setAppleseed(result);
             setStep("appleseed-result");
         } catch (err) {
-            console.error('Error generating Appleseed:', err);
             setError('Failed to generate your Appleseed. Please try again.');
             setStep("paste-response");
         } finally {
@@ -146,7 +145,6 @@ const ZoneOfGeniusEntry = () => {
                 });
             }
         } catch (err) {
-            console.error("Error saving Appleseed:", err);
             toast({
                 title: "Error",
                 description: "Something went wrong while saving.",
@@ -169,7 +167,6 @@ const ZoneOfGeniusEntry = () => {
             setExcalibur(result);
             setStep("excalibur-result");
         } catch (err) {
-            console.error('Error generating Excalibur:', err);
             setError('Failed to generate your Excalibur. Please try again.');
             toast({
                 title: "Generation Failed",
@@ -215,7 +212,6 @@ const ZoneOfGeniusEntry = () => {
                 });
             }
         } catch (err) {
-            console.error("Error saving Excalibur:", err);
             toast({
                 title: "Error",
                 description: "Something went wrong while saving.",

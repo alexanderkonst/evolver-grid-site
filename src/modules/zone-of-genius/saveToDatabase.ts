@@ -124,7 +124,6 @@ export const saveAppleseed = async (
 
     return { success: true, snapshotId: snapshot.id, xpAwarded, firstTimeBonus };
   } catch (err) {
-    console.error("Error saving Appleseed:", err);
     return {
       success: false,
       error: err instanceof Error ? err.message : "Failed to save Appleseed",
@@ -183,7 +182,6 @@ export const saveExcalibur = async (
 
     return { success: true, xpAwarded, firstTimeBonus };
   } catch (err) {
-    console.error("Error saving Excalibur:", err);
     return {
       success: false,
       error: err instanceof Error ? err.message : "Failed to save Excalibur",
@@ -223,7 +221,6 @@ export const loadSavedData = async (): Promise<{
       snapshotId: snapshot.id,
     };
   } catch (err) {
-    console.error("Error loading saved data:", err);
     return { appleseed: null, excalibur: null, snapshotId: null };
   }
 };

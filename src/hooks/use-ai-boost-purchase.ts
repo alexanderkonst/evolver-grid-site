@@ -77,10 +77,8 @@ export const useAIBoostPurchase = () => {
         setHasPurchased(true);
         return true;
       }
-      console.error('Error recording purchase:', error);
       return false;
     } catch (error) {
-      console.error('Error recording purchase:', error);
       return false;
     }
   };

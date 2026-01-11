@@ -57,7 +57,6 @@ export async function syncMissionData(): Promise<SyncResult> {
   });
 
   if (error) {
-    console.error("Failed to sync mission data:", error);
     throw error;
   }
 
@@ -90,7 +89,6 @@ export async function matchMissions(text: string, limit = 5) {
   });
 
   if (error) {
-    console.error("Failed to match missions:", error);
     throw error;
   }
 

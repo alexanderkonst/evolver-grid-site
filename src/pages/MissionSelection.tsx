@@ -135,7 +135,6 @@ const MissionSelection = () => {
       toast({ title: "Mission saved" });
       navigate("/game/profile");
     } catch (err: any) {
-      console.error("Failed to save mission:", err);
       toast({
         title: "Save failed",
         description: err.message || "Unable to save your mission.",

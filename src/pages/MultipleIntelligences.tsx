@@ -110,7 +110,6 @@ const MultipleIntelligences = () => {
         }, { onConflict: "user_id" });
 
       if (miError) {
-        console.error("Error saving to multiple_intelligences_results:", miError);
       }
 
       // Save to legacy table for backwards compatibility
@@ -147,7 +146,6 @@ const MultipleIntelligences = () => {
 
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Error saving assessment:", error);
       toast({ title: "Something went wrong. Please try again.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);

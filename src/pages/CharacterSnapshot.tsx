@@ -143,7 +143,6 @@ const CharacterSnapshot: React.FC = () => {
         }
       }
     } catch (error) {
-      console.error('Error loading character data:', error);
     } finally {
       setLoading(false);
     }

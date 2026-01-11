@@ -121,7 +121,6 @@ export function useRecommendations(profileId: string | null): Recommendations {
                     loading: false,
                 });
             } catch (error) {
-                console.error("Error fetching recommendations:", error);
                 setRecommendations({ quest: null, upgrade: null, loading: false });
             }
         };

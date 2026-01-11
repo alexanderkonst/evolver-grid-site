@@ -37,7 +37,6 @@ const WaitlistModal = ({ isOpen, onClose, moduleName }: WaitlistModalProps) => {
       setEmail("");
       onClose();
     } catch (error) {
-      console.error("Error joining waitlist:", error);
       toast.error("Failed to join waitlist. Please try again.");
     } finally {
       setIsSubmitting(false);

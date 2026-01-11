@@ -87,7 +87,6 @@ const ProfileSpace = () => {
                     const parsed = JSON.parse(storedAssets);
                     if (isMounted) setSavedAssets(parsed);
                 } catch (err) {
-                    console.error("Failed to parse assets:", err);
                 }
             }
 
@@ -97,7 +96,6 @@ const ProfileSpace = () => {
                 .eq("user_id", user.id);
 
             if (visibilityError) {
-                console.error("Failed to load visibility settings:", visibilityError);
             } else {
                 const nextSettings = { ...DEFAULT_VISIBILITY_SETTINGS };
                 visibilityRows?.forEach((row) => {
@@ -164,7 +162,6 @@ const ProfileSpace = () => {
                 const parsed = JSON.parse(stored) as MissionCommitment;
                 if (isMounted) setMissionCommitment(parsed);
             } catch (err) {
-                console.error("Failed to parse mission commitment:", err);
             }
         };
 

@@ -38,7 +38,6 @@ export const awardFirstTimeBonus = async (
     .maybeSingle();
 
   if (error) {
-    console.error("Failed to load first-time actions:", error);
     return { awarded: false, xp: 0 };
   }
 
@@ -62,7 +61,6 @@ export const awardFirstTimeBonus = async (
     .eq("id", profileId);
 
   if (updateError) {
-    console.error("Failed to update first-time actions:", updateError);
   }
 
   return { awarded: true, xp: bonusXp };
