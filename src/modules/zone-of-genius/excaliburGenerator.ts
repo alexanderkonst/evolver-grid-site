@@ -13,6 +13,7 @@
  */
 
 import { AppleseedData } from './appleseedGenerator';
+import { supabase } from "@/integrations/supabase/client";
 
 // ---------------------------------------------------------------------------
 // EXCALIBUR PHILOSOPHY
@@ -302,26 +303,22 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 export const generateExcalibur = async (appleseed: AppleseedData): Promise<ExcaliburData> => {
     const prompt = buildExcaliburPrompt(appleseed);
 
-    // =========================================================================
-    // 🗡️ LOVABLE AI INTEGRATION POINT
-    // =========================================================================
-    // 
-    // Lovable: Please integrate your built-in AI model here.
-    // 
-    // The prompt is ready in the 'prompt' variable.
-    // Call your AI with this prompt and parse the JSON response.
-    // 
-    // Expected: AI returns a JSON object matching ExcaliburData interface.
-    // 
-    // Example integration pattern:
-    // const response = await lovableAI.generate({ prompt, type: 'json' });
-    // const excalibur = JSON.parse(response);
-    // return excalibur;
-    // 
-    // =========================================================================
+    const { data, error } = await supabase.functions.invoke("generate-excalibur", {
+        body: { prompt, appleseed },
+    });
 
-    // TEMPORARY: Return mock data until Lovable integrates AI
-    console.log('Excalibur prompt ready:', prompt.substring(0, 200) + '...');
+    if (error) {
+        console.error("Excalibur generation error:", error);
+        throw new Error(error.message || "Failed to generate Excalibur");
+    }
 
-    throw new Error('AI integration pending. Please integrate Lovable AI model here.');
+    if (data?.error) {
+        throw new Error(data.error);
+    }
+
+    if (!data?.excalibur) {
+        throw new Error("No excalibur data in response");
+    }
+
+    return data.excalibur as ExcaliburData;
 };

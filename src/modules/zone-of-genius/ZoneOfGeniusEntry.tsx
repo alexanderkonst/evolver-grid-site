@@ -137,6 +137,11 @@ const ZoneOfGeniusEntry = () => {
         } catch (err) {
             console.error('Error generating Excalibur:', err);
             setError('Failed to generate your Excalibur. Please try again.');
+            toast({
+                title: "Generation Failed",
+                description: err instanceof Error ? err.message : "Please try again.",
+                variant: "destructive",
+            });
             setStep("appleseed-result");
         } finally {
             setIsProcessing(false);
