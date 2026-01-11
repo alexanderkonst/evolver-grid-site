@@ -16,6 +16,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
+import { shouldUnlockAfterQol } from "@/lib/onboardingRouting";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
@@ -85,12 +86,13 @@ const QualityOfLifeMapResults: FC = () => {
       if (!newSnapshot.xp_awarded) {
         const xpResult = await awardXp(profileId, 100, "mind");
         if (xpResult.success) {
+          const shouldUnlock = shouldUnlockAfterQol(returnTo);
           await supabase
             .from('game_profiles')
             .update({
               last_qol_snapshot_id: newSnapshot.id,
-              onboarding_stage: returnTo === "/start" ? "unlocked" : "qol_complete",
-              onboarding_completed: returnTo === "/start",
+              onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
+              onboarding_completed: shouldUnlock,
               updated_at: new Date().toISOString(),
             })
             .eq('id', profileId);
@@ -112,22 +114,23 @@ const QualityOfLifeMapResults: FC = () => {
               description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
             });
           }
-          if (returnTo === "/start") {
+          if (shouldUnlock) {
             setTimeout(() => navigate("/game"), 800);
           }
         }
       } else {
         // Just update the reference without awarding XP again
+        const shouldUnlock = shouldUnlockAfterQol(returnTo);
         await supabase
           .from('game_profiles')
           .update({
             last_qol_snapshot_id: newSnapshot.id,
-            onboarding_stage: returnTo === "/start" ? "unlocked" : "qol_complete",
-            onboarding_completed: returnTo === "/start",
+            onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
+            onboarding_completed: shouldUnlock,
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);
-        if (returnTo === "/start") {
+        if (shouldUnlock) {
           setTimeout(() => navigate("/game"), 800);
         }
       }

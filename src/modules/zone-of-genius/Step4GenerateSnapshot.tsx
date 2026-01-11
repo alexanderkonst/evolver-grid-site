@@ -9,6 +9,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
+import { getPostZogRedirect } from "@/lib/onboardingRouting";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -187,8 +188,9 @@ const Step4GenerateSnapshot = () => {
 
       console.log("✅ ZoG snapshot saved and game_profiles updated successfully!");
       toast.success("Your Zone of Genius has been saved!");
-      if (returnTo === "/start") {
-        setTimeout(() => navigate("/quality-of-life-map/assessment?return=/start"), 800);
+      const redirectPath = getPostZogRedirect(returnTo);
+      if (redirectPath) {
+        setTimeout(() => navigate(redirectPath), 800);
       }
       await logActionEvent({
         actionId: `zog-snapshot:${snapshotData.id}`,
