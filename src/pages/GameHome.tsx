@@ -34,6 +34,7 @@ import { completeAction } from "@/lib/completeAction";
 import { type UnifiedAction } from "@/types/actions";
 import { buildPlayerStats } from "@/lib/mainQuest";
 import { advanceMainQuestIfEligible } from "@/lib/mainQuestApi";
+import { type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 
 // Types
 interface GameProfile {
@@ -42,6 +43,7 @@ interface GameProfile {
   last_name: string | null;
   last_zog_snapshot_id: string | null;
   last_qol_snapshot_id: string | null;
+  qol_priorities?: string[] | null;
   total_quests_completed: number;
   last_quest_title: string | null;
   xp_total: number;
@@ -320,6 +322,21 @@ const GameHome = () => {
   const hasAnyData = profile?.last_zog_snapshot_id || profile?.last_qol_snapshot_id;
 
   const getLowestDomains = (): string[] => {
+    if (profile?.qol_priorities && profile.qol_priorities.length > 0) {
+      const labelMap: Record<DomainId, string> = {
+        wealth: "Wealth",
+        health: "Health",
+        happiness: "Happiness",
+        love: "Love",
+        impact: "Impact",
+        growth: "Growth",
+        socialTies: "Social",
+        home: "Home",
+      };
+      return profile.qol_priorities
+        .map((id) => labelMap[id as DomainId])
+        .filter(Boolean);
+    }
     if (!currentQolSnapshot) return [];
     const domainStages = [
       { name: "Wealth", value: currentQolSnapshot.wealth_stage },

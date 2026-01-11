@@ -24,6 +24,7 @@
 | `20260112_add_onboarding_stage.sql` | Progressive onboarding stage tracking | ⏳ Pending |
 | `20260112_add_profile_username.sql` | Public profile username | ⏳ Pending |
 | `20260112_add_first_time_actions.sql` | First-time XP action tracking | ⏳ Pending |
+| `20260113_add_qol_priorities.sql` | QoL priority ordering | ⏳ Pending |
 
 ---
 

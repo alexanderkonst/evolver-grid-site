@@ -16,7 +16,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
-import { shouldUnlockAfterQol } from "@/lib/onboardingRouting";
+import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
@@ -82,11 +82,13 @@ const QualityOfLifeMapResults: FC = () => {
 
       if (snapshotError) throw snapshotError;
 
+      const shouldUnlock = shouldUnlockAfterQol(returnTo);
+      const nextPath = shouldUnlock ? buildQolPrioritiesPath(returnTo) : null;
+
       // Award XP for completing QoL (only if not already awarded)
       if (!newSnapshot.xp_awarded) {
         const xpResult = await awardXp(profileId, 100, "mind");
         if (xpResult.success) {
-          const shouldUnlock = shouldUnlockAfterQol(returnTo);
           await supabase
             .from('game_profiles')
             .update({
@@ -114,13 +116,12 @@ const QualityOfLifeMapResults: FC = () => {
               description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
             });
           }
-          if (shouldUnlock) {
-            setTimeout(() => navigate("/game"), 800);
+          if (nextPath) {
+            setTimeout(() => navigate(nextPath), 800);
           }
         }
       } else {
         // Just update the reference without awarding XP again
-        const shouldUnlock = shouldUnlockAfterQol(returnTo);
         await supabase
           .from('game_profiles')
           .update({
@@ -130,8 +131,8 @@ const QualityOfLifeMapResults: FC = () => {
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);
-        if (shouldUnlock) {
-          setTimeout(() => navigate("/game"), 800);
+        if (nextPath) {
+          setTimeout(() => navigate(nextPath), 800);
         }
       }
 
@@ -232,6 +233,10 @@ const QualityOfLifeMapResults: FC = () => {
   const handleRetake = () => {
     reset();
     navigate("/quality-of-life-map/assessment");
+  };
+
+  const handlePriorities = () => {
+    navigate(buildQolPrioritiesPath(returnTo));
   };
 
   const handleDownloadPdf = async () => {
@@ -508,6 +513,16 @@ const QualityOfLifeMapResults: FC = () => {
                 }}
               >
                 {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
+              </Button>
+              <Button
+                onClick={handlePriorities}
+                className="text-lg px-8"
+                style={{
+                  backgroundColor: '#FFD54F',
+                  color: '#1a2332',
+                }}
+              >
+                Set Growth Priorities
               </Button>
               <Button
                 onClick={handleRetake}
