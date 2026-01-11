@@ -1,0 +1,59 @@
+import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+interface MatchCardProps {
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    avatarUrl?: string | null;
+    archetype: string;
+    tagline?: string | null;
+  };
+  matchReason: string;
+  onPass: () => void;
+  onConnect: () => void;
+}
+
+const MatchCard = ({ user, matchReason, onPass, onConnect }: MatchCardProps) => {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-col items-center text-center gap-4">
+        <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
+          {user.avatarUrl ? (
+            <img src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} className="w-full h-full object-cover" />
+          ) : (
+            <Sparkles className="w-10 h-10 text-amber-500" />
+          )}
+        </div>
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-900">
+            {user.firstName} {user.lastName}
+          </h2>
+          <p className="text-slate-700 mt-1">✦ {user.archetype} ✦</p>
+          {user.tagline && (
+            <p className="text-sm text-slate-500 mt-2 italic">"{user.tagline}"</p>
+          )}
+        </div>
+
+        <div className="w-full border-t border-slate-100 pt-4">
+          <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">Why you match</p>
+          <p className="text-sm text-slate-700">{matchReason}</p>
+        </div>
+
+        <div className="flex w-full gap-3 pt-4">
+          <Button variant="outline" className="flex-1" onClick={onPass}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Pass
+          </Button>
+          <Button className="flex-1" onClick={onConnect}>
+            Connect
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MatchCard;

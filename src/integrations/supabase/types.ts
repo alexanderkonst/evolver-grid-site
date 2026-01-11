@@ -129,6 +129,36 @@ export type Database = {
           },
         ]
       }
+      connections: {
+        Row: {
+          created_at: string | null
+          id: string
+          message: string | null
+          receiver_id: string | null
+          requester_id: string | null
+          responded_at: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message?: string | null
+          receiver_id?: string | null
+          requester_id?: string | null
+          responded_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message?: string | null
+          receiver_id?: string | null
+          requester_id?: string | null
+          responded_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           community_id: string | null
