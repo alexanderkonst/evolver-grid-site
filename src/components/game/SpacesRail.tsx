@@ -111,15 +111,16 @@ const SpacesRail = ({
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
 
+                    const handleSpaceClick = () => {
+                        if (isLocked) return;
+                        onSpaceSelect?.(space.id);
+                        navigate(space.path);
+                    };
+
                     return (
                         <button
                             key={space.id}
-                            onClick={() => {
-                                if (!isLocked) {
-                                    onSpaceSelect?.(space.id);
-                                    navigate(space.path);
-                                }
-                            }}
+                            onClick={handleSpaceClick}
                             disabled={isLocked}
                             className={cn(
                                 "w-12 h-12 rounded-xl flex items-center justify-center transition-all relative group",
