@@ -40,7 +40,7 @@ const SPACES: NavItem[] = [
         label: "My Next Move",
         icon: <Compass className="w-5 h-5" />,
         path: "/game/next-move",
-        description: "Your daily focus"
+        description: "Recommended Action"
     },
     {
         id: "profile",
@@ -109,17 +109,37 @@ export const GameShell = ({ children }: GameShellProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
+    const [profile, setProfile] = useState<{ first_name: string | null; last_name: string | null; avatar_url: string | null } | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [desktopSidebarOpen, setDesktopSidebarOpen] = useState(true);
     const [expandedSpaces, setExpandedSpaces] = useState<Set<string>>(new Set());
 
+    const loadProfile = async (userId: string) => {
+        const { data } = await supabase
+            .from("game_profiles")
+            .select("first_name, last_name, avatar_url")
+            .eq("user_id", userId)
+            .maybeSingle();
+        setProfile(data || null);
+    };
+
     useEffect(() => {
         supabase.auth.getUser().then(({ data: { user } }) => {
             setUser(user);
+            if (user) {
+                loadProfile(user.id);
+            } else {
+                setProfile(null);
+            }
         });
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
             setUser(session?.user ?? null);
+            if (session?.user) {
+                loadProfile(session.user.id);
+            } else {
+                setProfile(null);
+            }
         });
 
         return () => subscription.unsubscribe();
@@ -256,8 +276,28 @@ export const GameShell = ({ children }: GameShellProps) => {
                 {/* User Section */}
                 <div className="border-t border-slate-800 p-4">
                     {user ? (
-                        <div className="space-y-2">
-                            <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center overflow-hidden">
+                                    {profile?.avatar_url ? (
+                                        <img
+                                            src={profile.avatar_url}
+                                            alt="Profile avatar"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <span className="text-xs font-semibold">
+                                            {(profile?.first_name?.[0] || user.email?.[0] || "U").toUpperCase()}
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-sm text-white truncate">
+                                        {profile?.first_name || user.email?.split("@")[0] || "Player"}
+                                    </p>
+                                    <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                                </div>
+                            </div>
                             <Button
                                 variant="ghost"
                                 size="sm"

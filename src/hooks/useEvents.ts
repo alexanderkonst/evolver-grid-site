@@ -141,6 +141,8 @@ export const useEvent = (eventId: string | undefined) => {
 // RSVP hook for a specific event
 export const useEventRsvp = (eventId: string | undefined) => {
   const [currentStatus, setCurrentStatus] = useState<RsvpStatus | null>(null);
+  const [reminderEmail, setReminderEmail] = useState<string>("");
+  const [wantsReminder, setWantsReminder] = useState(false);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
@@ -160,13 +162,15 @@ export const useEventRsvp = (eventId: string | undefined) => {
 
       const { data, error } = await supabase
         .from("event_rsvps")
-        .select("status")
+        .select("status, email, wants_reminder")
         .eq("event_id", eventId)
         .eq("user_id", user.id)
         .maybeSingle();
 
       if (error) throw error;
       setCurrentStatus(data?.status as RsvpStatus | null);
+      setReminderEmail(data?.email || "");
+      setWantsReminder(Boolean(data?.wants_reminder));
     } catch (err) {
       console.error("Error fetching RSVP status:", err);
     } finally {
@@ -179,7 +183,10 @@ export const useEventRsvp = (eventId: string | undefined) => {
   }, [fetchRsvpStatus]);
 
   // Update RSVP status
-  const updateRsvp = async (status: RsvpStatus) => {
+  const updateRsvp = async (
+    status: RsvpStatus,
+    options?: { email?: string; wantsReminder?: boolean }
+  ) => {
     if (!eventId) return;
 
     setUpdating(true);
@@ -187,19 +194,37 @@ export const useEventRsvp = (eventId: string | undefined) => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
+      const payload: {
+        event_id: string;
+        user_id: string;
+        status: RsvpStatus;
+        email?: string | null;
+        wants_reminder?: boolean;
+      } = {
+        event_id: eventId,
+        user_id: user.id,
+        status,
+      };
+
+      if (options?.email !== undefined) {
+        payload.email = options.email || null;
+      }
+      if (options?.wantsReminder !== undefined) {
+        payload.wants_reminder = options.wantsReminder;
+      }
+
       const { error } = await supabase
         .from("event_rsvps")
-        .upsert(
-          {
-            event_id: eventId,
-            user_id: user.id,
-            status,
-          },
-          { onConflict: "event_id,user_id" }
-        );
+        .upsert(payload, { onConflict: "event_id,user_id" });
 
       if (error) throw error;
       setCurrentStatus(status);
+      if (options?.email !== undefined) {
+        setReminderEmail(options.email || "");
+      }
+      if (options?.wantsReminder !== undefined) {
+        setWantsReminder(Boolean(options.wantsReminder));
+      }
     } catch (err) {
       console.error("Error updating RSVP:", err);
       throw err;
@@ -233,7 +258,17 @@ export const useEventRsvp = (eventId: string | undefined) => {
     }
   };
 
-  return { currentStatus, loading, updating, updateRsvp, removeRsvp };
+  return {
+    currentStatus,
+    reminderEmail,
+    wantsReminder,
+    setReminderEmail,
+    setWantsReminder,
+    loading,
+    updating,
+    updateRsvp,
+    removeRsvp,
+  };
 };
 
 // Create event hook

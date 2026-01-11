@@ -12,6 +12,8 @@ import { getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { useRecommendations } from "@/hooks/use-recommendations";
 import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
+import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
+import GeniusGrowthPath from "@/modules/genius-path/GeniusGrowthPath";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
@@ -28,6 +30,7 @@ const CharacterHub = () => {
     const [upgradeCount, setUpgradeCount] = useState(0);
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
     // Get personalized recommendations
     const recommendations = useRecommendations(profile?.id || null);
@@ -58,6 +61,7 @@ const CharacterHub = () => {
                 setProfile(profileData);
                 // soul_colors will be added after migration
                 setSoulColors((profileData as any).soul_colors || null);
+                setAvatarUrl((profileData as any).avatar_url || null);
 
                 // Get ZoG snapshot with Appleseed/Excalibur data
                 if (profileData.last_zog_snapshot_id) {
@@ -188,6 +192,17 @@ const CharacterHub = () => {
 
                     {/* Player Header */}
                     <div className="text-center mb-6">
+                        {user && profile && (
+                            <div className="flex justify-center mb-4">
+                                <ProfilePictureUpload
+                                    userId={user.id}
+                                    avatarUrl={avatarUrl || undefined}
+                                    displayName={`${profile.first_name || ""} ${profile.last_name || ""}`.trim() || user.email}
+                                    size={120}
+                                    onUpload={(url) => setAvatarUrl(url)}
+                                />
+                            </div>
+                        )}
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
                             {profile?.first_name || user?.email?.split("@")[0] || "Player"}
                         </h1>
@@ -231,6 +246,46 @@ const CharacterHub = () => {
                         )}
 
                         <p className="text-slate-400 text-xs mt-3">Tap to explore your paths</p>
+                    </div>
+
+                    {/* 🌱 GENIUS GROWTH PATH */}
+                    <div className="mb-8 space-y-4">
+                        <GeniusGrowthPath appleseed={appleseed} excalibur={excalibur} />
+                        {appleseed ? (
+                            <AppleseedSummaryCard appleseed={appleseed} />
+                        ) : (
+                            <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left">
+                                <p className="text-xs text-amber-300 font-medium mb-1">Your Zone of Genius</p>
+                                <p className="text-sm text-slate-200 mb-3">
+                                    Generate your Appleseed to unlock your genius profile.
+                                </p>
+                                <Button
+                                    size="sm"
+                                    className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                    onClick={() => navigate("/zone-of-genius/entry")}
+                                >
+                                    Generate Appleseed
+                                </Button>
+                            </div>
+                        )}
+                        {excalibur ? (
+                            <ExcaliburSummaryCard excalibur={excalibur} />
+                        ) : (
+                            <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-5 text-left">
+                                <p className="text-xs text-violet-300 font-medium mb-1">Your Excalibur</p>
+                                <p className="text-sm text-slate-200 mb-3">
+                                    Craft your unique offering once your Appleseed is ready.
+                                </p>
+                                <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    className="bg-violet-500 text-white hover:bg-violet-600"
+                                    onClick={() => navigate("/zone-of-genius/entry")}
+                                >
+                                    Create Excalibur
+                                </Button>
+                            </div>
+                        )}
                     </div>
 
                     {/* ✨ SUGGESTED FOR YOU */}

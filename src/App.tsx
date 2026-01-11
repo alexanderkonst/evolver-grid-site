@@ -54,6 +54,7 @@ import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
 import EventsSpace from "./pages/spaces/EventsSpace";
 import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
+import CommunityEvents from "./pages/CommunityEvents";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery
@@ -106,6 +107,7 @@ const App = () => (
             <Route path="/game/events" element={<EventsSpace />} />
             <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/events/:id" element={<EventDetail />} />
+            <Route path="/events/community/:communityId" element={<CommunityEvents />} />
             <Route path="/game/snapshot" element={<CharacterSnapshot />} />
             <Route path="/game/path/:pathId" element={<GrowthPathsPage />} />
             <Route path="/today" element={<Today />} />

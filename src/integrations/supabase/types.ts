@@ -94,24 +94,30 @@ export type Database = {
       event_rsvps: {
         Row: {
           created_at: string | null
+          email: string | null
           event_id: string | null
           id: string
           status: string | null
           user_id: string | null
+          wants_reminder: boolean | null
         }
         Insert: {
           created_at?: string | null
+          email?: string | null
           event_id?: string | null
           id?: string
           status?: string | null
           user_id?: string | null
+          wants_reminder?: boolean | null
         }
         Update: {
           created_at?: string | null
+          email?: string | null
           event_id?: string | null
           id?: string
           status?: string | null
           user_id?: string | null
+          wants_reminder?: boolean | null
         }
         Relationships: [
           {
@@ -135,6 +141,7 @@ export type Database = {
           location: string | null
           photo_url: string | null
           title: string
+          timezone: string | null
         }
         Insert: {
           community_id?: string | null
@@ -147,6 +154,7 @@ export type Database = {
           location?: string | null
           photo_url?: string | null
           title: string
+          timezone?: string | null
         }
         Update: {
           community_id?: string | null
@@ -159,12 +167,14 @@ export type Database = {
           location?: string | null
           photo_url?: string | null
           title?: string
+          timezone?: string | null
         }
         Relationships: []
       }
       game_profiles: {
         Row: {
           ai_upgrade_access: boolean | null
+          avatar_url: string | null
           created_at: string
           current_streak_days: number
           first_name: string | null
@@ -200,6 +210,7 @@ export type Database = {
         }
         Insert: {
           ai_upgrade_access?: boolean | null
+          avatar_url?: string | null
           created_at?: string
           current_streak_days?: number
           first_name?: string | null
@@ -235,6 +246,7 @@ export type Database = {
         }
         Update: {
           ai_upgrade_access?: boolean | null
+          avatar_url?: string | null
           created_at?: string
           current_streak_days?: number
           first_name?: string | null

@@ -1,28 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Loader2 } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import AddToCalendarButton from "@/components/events/AddToCalendarButton";
 import RsvpButton from "@/components/events/RsvpButton";
 import { useEvent, useEventRsvp } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-const formatDate = (dateStr: string) => {
-  const date = new Date(dateStr + "T00:00:00");
-  return date.toLocaleDateString("en-US", {
+const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
+  const dateTime = new Date(`${dateStr}T${timeStr}`);
+  const date = dateTime.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone,
   });
-};
-
-const formatTime = (timeStr: string) => {
-  const [hours, minutes] = timeStr.split(":");
-  const hour = parseInt(hours, 10);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const hour12 = hour % 12 || 12;
-  return `${hour12}:${minutes} ${ampm}`;
+  const time = dateTime.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone,
+  });
+  return { date, time };
 };
 
 const EventDetail = () => {
@@ -30,8 +34,20 @@ const EventDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { event, attendees, loading, error, refetch } = useEvent(id);
-  const { currentStatus, loading: rsvpLoading, updating, updateRsvp, removeRsvp } = useEventRsvp(id);
+  const {
+    currentStatus,
+    reminderEmail,
+    wantsReminder,
+    setReminderEmail,
+    setWantsReminder,
+    loading: rsvpLoading,
+    updating,
+    updateRsvp,
+    removeRsvp,
+  } = useEventRsvp(id);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showOriginalTime, setShowOriginalTime] = useState(false);
+  const [sendingReminder, setSendingReminder] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -52,7 +68,11 @@ const EventDetail = () => {
     }
 
     try {
-      await updateRsvp(status);
+      const shouldClearReminder = status === "not_going";
+      await updateRsvp(status, {
+        email: shouldClearReminder ? "" : reminderEmail,
+        wantsReminder: shouldClearReminder ? false : wantsReminder,
+      });
       refetch();
       toast({
         title: "RSVP updated",
@@ -64,6 +84,57 @@ const EventDetail = () => {
         description: "Failed to update RSVP",
         variant: "destructive",
       });
+    }
+  };
+
+  const handleSaveReminder = async () => {
+    if (!event || !currentStatus) return;
+
+    if (wantsReminder && !reminderEmail) {
+      toast({
+        title: "Email required",
+        description: "Add an email address to receive reminders.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSendingReminder(true);
+    try {
+      await updateRsvp(currentStatus, {
+        email: reminderEmail,
+        wantsReminder,
+      });
+
+      if (wantsReminder && reminderEmail) {
+        await supabase.functions.invoke("send-rsvp-confirmation", {
+          body: {
+            email: reminderEmail,
+            event: {
+              title: event.title,
+              description: event.description,
+              date: event.event_date,
+              time: event.event_time,
+              location: event.location,
+              timezone: event.timezone || "UTC",
+            },
+          },
+        });
+      }
+
+      toast({
+        title: "Reminder updated",
+        description: wantsReminder ? "We'll send you a confirmation email." : "Reminder disabled.",
+      });
+      refetch();
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Failed to save reminder settings.",
+        variant: "destructive",
+      });
+    } finally {
+      setSendingReminder(false);
     }
   };
 
@@ -110,7 +181,22 @@ const EventDetail = () => {
     );
   }
 
-  const goingCount = attendees.filter((a) => a.status === "going").length;
+  const userTimezone = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
+  const eventTimezone = event.timezone || "UTC";
+  const localDateTime = useMemo(
+    () => formatDateTime(event.event_date, event.event_time, userTimezone),
+    [event.event_date, event.event_time, userTimezone]
+  );
+  const originalDateTime = useMemo(
+    () => formatDateTime(event.event_date, event.event_time, eventTimezone),
+    [event.event_date, event.event_time, eventTimezone]
+  );
+
+  const goingAttendees = attendees.filter((a) => a.status === "going");
+  const goingCount = goingAttendees.length;
+  const maxAvatars = 5;
+  const extraCount = Math.max(0, goingCount - maxAvatars);
+  const hasRsvp = currentStatus === "going" || currentStatus === "maybe";
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -166,11 +252,24 @@ const EventDetail = () => {
             <div className="flex items-start gap-3">
               <CalendarDays className="w-5 h-5 text-amber-500 mt-0.5" />
               <div>
-                <p className="font-medium text-slate-900">{formatDate(event.event_date)}</p>
+                <p className="font-medium text-slate-900">{localDateTime.date}</p>
                 <p className="text-slate-600 flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {formatTime(event.event_time)}
+                  {localDateTime.time}
+                  <span className="text-xs text-slate-400">Your time</span>
                 </p>
+                <button
+                  type="button"
+                  className="text-xs text-amber-600 hover:text-amber-700 mt-1"
+                  onClick={() => setShowOriginalTime((prev) => !prev)}
+                >
+                  {showOriginalTime ? "Hide original time" : "Show original time"}
+                </button>
+                {showOriginalTime && (
+                  <p className="text-xs text-slate-500 mt-1">
+                    {originalDateTime.date} · {originalDateTime.time} ({eventTimezone})
+                  </p>
+                )}
               </div>
             </div>
 
@@ -190,6 +289,58 @@ const EventDetail = () => {
               </p>
             </div>
 
+            {/* RSVP Reminder */}
+            {hasRsvp && (
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-slate-500" />
+                  <p className="text-sm font-medium text-slate-700">Email reminder</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="rsvp-email">Email address</Label>
+                  <Input
+                    id="rsvp-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={reminderEmail}
+                    onChange={(e) => setReminderEmail(e.target.value)}
+                    disabled={sendingReminder}
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="rsvp-reminder"
+                    checked={wantsReminder}
+                    onCheckedChange={(checked) => setWantsReminder(Boolean(checked))}
+                    disabled={sendingReminder}
+                  />
+                  <Label htmlFor="rsvp-reminder" className="text-sm text-slate-600">
+                    Send me a reminder
+                  </Label>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={handleSaveReminder}
+                  disabled={sendingReminder}
+                >
+                  {sendingReminder ? "Saving..." : "Save reminder"}
+                </Button>
+              </div>
+            )}
+
+            {/* Add to Calendar */}
+            {hasRsvp && (
+              <AddToCalendarButton
+                title={event.title}
+                description={event.description || ""}
+                date={event.event_date}
+                time={event.event_time}
+                location={event.location || ""}
+                timezone={event.timezone || "UTC"}
+              />
+            )}
+
             {/* Description */}
             {event.description && (
               <div className="pt-4 border-t border-slate-100">
@@ -204,9 +355,7 @@ const EventDetail = () => {
             <div className="p-6 bg-slate-50 border-t border-slate-100">
               <h3 className="font-medium text-slate-900 mb-3">Who's coming</h3>
               <div className="flex flex-wrap gap-2">
-                {attendees
-                  .filter((a) => a.status === "going")
-                  .map((attendee, idx) => (
+                {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
                     <div
                       key={attendee.user_id}
                       className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center text-white text-xs font-medium"
@@ -214,10 +363,10 @@ const EventDetail = () => {
                     >
                       {idx + 1}
                     </div>
-                  ))}
-                {attendees.filter((a) => a.status === "maybe").length > 0 && (
-                  <span className="text-sm text-slate-500 self-center ml-2">
-                    +{attendees.filter((a) => a.status === "maybe").length} maybe
+                ))}
+                {extraCount > 0 && (
+                  <span className="text-xs text-slate-500 self-center">
+                    +{extraCount} more
                   </span>
                 )}
               </div>

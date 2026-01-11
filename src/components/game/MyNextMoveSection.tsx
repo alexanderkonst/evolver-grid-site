@@ -81,7 +81,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
                     </span>
                     <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full ${VECTOR_COLORS[action.vector]}`}>
                         <Zap className="w-3 h-3" />
-                        +{action.xp} XP {VECTOR_LABELS[action.vector]}
+                        +{action.xp} XP · {VECTOR_LABELS[action.vector]}
                     </span>
                 </div>
 
