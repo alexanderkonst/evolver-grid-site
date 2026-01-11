@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { CalendarDays, Loader2 } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
 import CreateEventForm from "@/components/events/CreateEventForm";
 import { useEvents } from "@/hooks/useEvents";
@@ -53,7 +53,7 @@ const EventsSpace = () => {
   }, [filterMode, filteredEvents, events]);
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-start justify-between mb-8">
@@ -184,7 +184,7 @@ const EventsSpace = () => {
           </>
         )}
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 
