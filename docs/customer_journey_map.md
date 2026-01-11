@@ -6,6 +6,24 @@
 
 ---
 
+## Core Principle: Self-First, Then Others
+
+**Logic**: Clarity about self → Clarity about life → Clarity about action → Clarity about people
+
+| Phase | Guiding Question | What User Gets |
+|-------|------------------|----------------|
+| **1. Zone of Genius** | *What am I naturally best at?* | Genius articulated |
+| **2. Unique Offer** | *How do I bring most value to others?* | Offer crystallized |
+| **3. Quality of Life** | *Where am I now? Where do I want to go?* | Life mapped + priorities |
+| **4. Growth Recipe** | *How do I get there?* | 5 Growth Paths ranked |
+| **5. Daily Loop** | *What's my next step?* | First action unlocked |
+| **6. Matchmaking** | *Who are my people?* | Top match revealed |
+| **7. Mission** | *What's mine to do in this world?* | Purpose clarified |
+
+**Key insight**: Growth → Results (not reverse). QoL results are OUTPUT of inner development.
+
+---
+
 ## Numbering System
 
 Steps use hierarchical numbering:
