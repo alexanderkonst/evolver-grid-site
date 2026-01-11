@@ -19,6 +19,20 @@ interface CreateEventFormProps {
   onSuccess?: () => void;
 }
 
+const COMMON_TIMEZONES = [
+  "UTC",
+  "America/Los_Angeles",
+  "America/Denver",
+  "America/Chicago",
+  "America/New_York",
+  "Europe/London",
+  "Europe/Paris",
+  "Europe/Berlin",
+  "Asia/Singapore",
+  "Asia/Tokyo",
+  "Australia/Sydney",
+];
+
 const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -32,6 +46,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
     event_time: "",
     location: "",
     photo_url: "",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,6 +76,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
         event_time: formattedTime,
         location: formData.location || null,
         photo_url: formData.photo_url || null,
+        timezone: formData.timezone || "UTC",
       });
 
       toast({
@@ -76,6 +92,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
         event_time: "",
         location: "",
         photo_url: "",
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
       });
 
       if (onSuccess) {
@@ -162,6 +179,26 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
                 required
               />
             </div>
+          </div>
+
+          {/* Timezone */}
+          <div className="space-y-2">
+            <Label htmlFor="timezone" className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-slate-400" />
+              Timezone
+            </Label>
+            <select
+              id="timezone"
+              value={formData.timezone}
+              onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            >
+              {Array.from(new Set([formData.timezone, ...COMMON_TIMEZONES])).map((tz) => (
+                <option key={tz} value={tz}>
+                  {tz}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Location */}
