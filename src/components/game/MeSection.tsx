@@ -27,12 +27,6 @@ const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: M
 
     return (
         <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 mb-4">
-            <img
-                src={dodecahedronImage}
-                alt=""
-                className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 w-36 opacity-30"
-                aria-hidden="true"
-            />
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-full bg-amber-100 overflow-hidden flex items-center justify-center">
                     {avatarUrl ? (
