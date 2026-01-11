@@ -3,6 +3,11 @@ export const buildQolResultsPath = (returnTo: string | null): string => {
   return `/quality-of-life-map/results${returnParam}`;
 };
 
+export const buildQolPrioritiesPath = (returnTo: string | null): string => {
+  const returnParam = returnTo ? `?return=${encodeURIComponent(returnTo)}` : "";
+  return `/quality-of-life-map/priorities${returnParam}`;
+};
+
 export const shouldUnlockAfterQol = (returnTo: string | null): boolean => {
   return returnTo === "/start";
 };

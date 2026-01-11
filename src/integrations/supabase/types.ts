@@ -230,6 +230,7 @@ export type Database = {
           onboarding_step: number
           personality_tests: Json | null
           practice_count: number
+          qol_priorities: string[] | null
           show_location: boolean | null
           show_mission: boolean | null
           show_offer: boolean | null
@@ -273,6 +274,7 @@ export type Database = {
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
+          qol_priorities?: string[] | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
@@ -316,6 +318,7 @@ export type Database = {
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
+          qol_priorities?: string[] | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
