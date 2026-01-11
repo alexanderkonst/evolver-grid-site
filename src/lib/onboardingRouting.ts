@@ -8,6 +8,14 @@ export const buildQolPrioritiesPath = (returnTo: string | null): string => {
   return `/quality-of-life-map/priorities${returnParam}`;
 };
 
+export const buildQolGrowthRecipePath = (returnTo: string | null, domain?: string | null): string => {
+  const params = new URLSearchParams();
+  if (returnTo) params.set("return", returnTo);
+  if (domain) params.set("domain", domain);
+  const query = params.toString();
+  return `/quality-of-life-map/growth-recipe${query ? `?${query}` : ""}`;
+};
+
 export const shouldUnlockAfterQol = (returnTo: string | null): boolean => {
   return returnTo === "/start";
 };

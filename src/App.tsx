@@ -38,6 +38,7 @@ import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 import QualityOfLifeMapResults from "./pages/QualityOfLifeMapResults";
 import QualityOfLifePriorities from "./pages/QualityOfLifePriorities";
+import QualityOfLifeGrowthRecipe from "./pages/QualityOfLifeGrowthRecipe";
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
 import ZoneOfGeniusLandingPage from "./modules/zone-of-genius/ZoneOfGeniusLandingPage";
 import ZoneOfGeniusAssessmentLayout from "./modules/zone-of-genius/ZoneOfGeniusAssessmentLayout";
@@ -153,6 +154,7 @@ const App = () => (
               <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
               <Route path="results" element={<QualityOfLifeMapResults />} />
               <Route path="priorities" element={<QualityOfLifePriorities />} />
+              <Route path="growth-recipe" element={<QualityOfLifeGrowthRecipe />} />
             </Route>
             <Route path="/zone-of-genius" element={<ZoneOfGeniusLandingPage />} />
             <Route path="/zone-of-genius/appleseed" element={<AppleseedView />} />
