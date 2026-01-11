@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     Compass,
     User,
@@ -78,6 +78,7 @@ const SpacesRail = ({
     className,
 }: SpacesRailProps) => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const isActive = (path: string) => {
         if (activeSpaceId) {
@@ -114,8 +115,9 @@ const SpacesRail = ({
                         <button
                             key={space.id}
                             onClick={() => {
-                                if (!isLocked && onSpaceSelect) {
-                                    onSpaceSelect(space.id);
+                                if (!isLocked) {
+                                    onSpaceSelect?.(space.id);
+                                    navigate(space.path);
                                 }
                             }}
                             disabled={isLocked}
