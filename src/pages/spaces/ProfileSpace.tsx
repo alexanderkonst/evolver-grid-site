@@ -12,7 +12,7 @@ import {
     ChevronUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import VisibilityToggle, { VisibilityValue } from "@/components/VisibilityToggle";
@@ -244,7 +244,7 @@ const ProfileSpace = () => {
     };
 
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-6 lg:p-8 max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -408,7 +408,7 @@ const ProfileSpace = () => {
                     </div>
                 )}
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

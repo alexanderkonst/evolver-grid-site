@@ -144,10 +144,10 @@ describe("actionEngine", () => {
   it("prioritizes loop order when no QoL or quick-win bias applies", () => {
     const extraActions: UnifiedAction[] = [
       {
-        id: "matchmaking:connect",
+        id: "teams:connect",
         type: "library_item",
-        loop: "matchmaking",
-        title: "Matchmaking Action",
+        loop: "teams",
+        title: "Teams Action",
         source: "fixtures",
         duration: "md",
       },

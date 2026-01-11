@@ -184,13 +184,13 @@ export const GameShell = ({ children }: GameShellProps) => {
     const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
 
     const unlockStatus = {
-        matchmaking: profile?.onboarding_stage === "unlocked",
+        teams: profile?.onboarding_stage === "unlocked",
         marketplace: hasGeniusOffer,
         coop: hasGeniusOffer,
     };
 
     const unlockHints = {
-        matchmaking: "Complete onboarding to unlock Matchmaking.",
+        teams: "Complete onboarding to unlock Teams.",
         marketplace: "Create your Genius Offer to unlock Marketplace.",
         coop: "Create your Genius Offer to unlock Startup Co-op.",
     };

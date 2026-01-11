@@ -8,7 +8,7 @@ import {
     User
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 // Featured guides/creators with public pages
 const FEATURED_GUIDES = [
@@ -40,7 +40,7 @@ const FEATURED_GUIDES = [
 
 const MarketplaceSpace = () => {
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-6 lg:p-8 max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -118,7 +118,7 @@ const MarketplaceSpace = () => {
                     </div>
                 </div>
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

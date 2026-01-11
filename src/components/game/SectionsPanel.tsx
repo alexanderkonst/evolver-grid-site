@@ -144,7 +144,8 @@ const SectionsPanel = ({
                 {onClose && (
                     <button
                         onClick={onClose}
-                        className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors lg:hidden"
+                        className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                        title="Hide sidebar (⌘B)"
                     >
                         <X className="w-4 h-4" />
                     </button>
