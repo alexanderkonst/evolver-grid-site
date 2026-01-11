@@ -47,3 +47,6 @@ verify_jwt = false
 
 [functions.send-mission-notifications]
 verify_jwt = false
+
+[functions.send-rsvp-confirmation]
+verify_jwt = false
