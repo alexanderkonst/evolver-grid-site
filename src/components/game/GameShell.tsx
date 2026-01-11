@@ -235,6 +235,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-slate-100 rounded-lg"
+                    aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
                 >
                     {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
@@ -264,6 +265,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                         onClick={() => setDesktopSidebarOpen(false)}
                         className="hidden lg:block p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-colors"
                         title="Collapse sidebar"
+                        aria-label="Collapse sidebar"
                     >
                         <PanelLeftClose className="w-4 h-4" />
                     </button>
@@ -430,6 +432,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                     onClick={() => setDesktopSidebarOpen(true)}
                     className="hidden lg:flex fixed top-4 left-4 z-50 items-center justify-center w-10 h-10 bg-slate-900 text-slate-400 hover:text-white rounded-lg shadow-lg border border-slate-700 transition-colors"
                     title="Expand sidebar"
+                    aria-label="Expand sidebar"
                 >
                     <PanelLeft className="w-5 h-5" />
                 </button>
