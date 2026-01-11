@@ -1,6 +1,6 @@
 # Task: People Directory with Filters
 
-**Assigned to:** Claude CLI  
+**Assigned to:** Codex  
 **Priority:** Medium  
 **Created:** 2026-01-11
 
