@@ -101,7 +101,7 @@ The system tracks where user is in the cycle internally. We recommend actions ac
 ## 4. CONNECT Path (Mission & Matching)
 
 ### Mission Discovery
-- Connect, Collab, Braid, Contribute, Serve
+- Connect, Collaborate, Contribute, Serve
 - Core question: *"What's mine to do in this world?"*
 - Helps user reconnect with what they truly want to do
 
@@ -115,7 +115,7 @@ The system tracks where user is in the cycle internally. We recommend actions ac
 | **Complementary Genius** | People with most complementary genius |
 | **Similar Mission** | People on a similar mission/path |
 
-**Show**: Top 3 matches OR Top 1 per category
+**Show**: Top 1 match per category (with refresh button)
 
 **Filters** (toggles):
 - Same location
