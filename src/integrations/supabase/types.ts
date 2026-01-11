@@ -201,6 +201,38 @@ export type Database = {
         }
         Relationships: []
       }
+      first_time_actions: {
+        Row: {
+          action_id: string
+          completed_at: string
+          id: string
+          profile_id: string
+          xp_bonus_awarded: number
+        }
+        Insert: {
+          action_id: string
+          completed_at?: string
+          id?: string
+          profile_id: string
+          xp_bonus_awarded?: number
+        }
+        Update: {
+          action_id?: string
+          completed_at?: string
+          id?: string
+          profile_id?: string
+          xp_bonus_awarded?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "first_time_actions_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       game_profiles: {
         Row: {
           ai_upgrade_access: boolean | null
@@ -208,6 +240,7 @@ export type Database = {
           created_at: string
           current_streak_days: number
           first_name: string | null
+          first_time_actions: Json | null
           genius_stage: string | null
           id: string
           last_name: string | null
@@ -219,6 +252,7 @@ export type Database = {
           level: number
           linkedin_extracted_at: string | null
           linkedin_pdf_url: string | null
+          location: string | null
           longest_streak_days: number
           main_quest_progress: Json | null
           main_quest_stage: string
@@ -230,13 +264,16 @@ export type Database = {
           onboarding_step: number
           personality_tests: Json | null
           practice_count: number
-          qol_priorities: string[] | null
+          qol_priorities: Json | null
+          qol_priority_order: Json | null
           show_location: boolean | null
           show_mission: boolean | null
           show_offer: boolean | null
+          spoken_languages: string[] | null
           total_quests_completed: number
           updated_at: string
           user_id: string | null
+          username: string | null
           visibility: string | null
           xp_body: number
           xp_emotions: number
@@ -252,6 +289,7 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           first_name?: string | null
+          first_time_actions?: Json | null
           genius_stage?: string | null
           id?: string
           last_name?: string | null
@@ -263,6 +301,7 @@ export type Database = {
           level?: number
           linkedin_extracted_at?: string | null
           linkedin_pdf_url?: string | null
+          location?: string | null
           longest_streak_days?: number
           main_quest_progress?: Json | null
           main_quest_stage?: string
@@ -274,13 +313,16 @@ export type Database = {
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
-          qol_priorities?: string[] | null
+          qol_priorities?: Json | null
+          qol_priority_order?: Json | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
+          spoken_languages?: string[] | null
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
+          username?: string | null
           visibility?: string | null
           xp_body?: number
           xp_emotions?: number
@@ -296,6 +338,7 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           first_name?: string | null
+          first_time_actions?: Json | null
           genius_stage?: string | null
           id?: string
           last_name?: string | null
@@ -307,6 +350,7 @@ export type Database = {
           level?: number
           linkedin_extracted_at?: string | null
           linkedin_pdf_url?: string | null
+          location?: string | null
           longest_streak_days?: number
           main_quest_progress?: Json | null
           main_quest_stage?: string
@@ -318,13 +362,16 @@ export type Database = {
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
-          qol_priorities?: string[] | null
+          qol_priorities?: Json | null
+          qol_priority_order?: Json | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
+          spoken_languages?: string[] | null
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
+          username?: string | null
           visibility?: string | null
           xp_body?: number
           xp_emotions?: number

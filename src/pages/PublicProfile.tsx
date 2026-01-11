@@ -134,13 +134,14 @@ const PublicProfile = () => {
     if (image) {
       setMeta("og:image", image, "property");
     }
-  }, [appleseed?.vibrationalKey?.tagline, fullName, loading, mission?.mission_title, profile]);
+  }, [appleseed?.vibrationalKey?.tagline, loading, mission?.mission_title, profile]);
 
-  const visibility = resolveVisibility(profile?.visibility ?? null);
   const fullName = useMemo(() => {
     const parts = [profile?.first_name, profile?.last_name].filter(Boolean);
     return parts.length > 0 ? parts.join(" ") : "Community Member";
   }, [profile?.first_name, profile?.last_name]);
+
+  const visibility = resolveVisibility(profile?.visibility ?? null);
 
   if (loading) {
     return (
