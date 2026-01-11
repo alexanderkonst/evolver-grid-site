@@ -50,3 +50,12 @@ verify_jwt = false
 
 [functions.send-rsvp-confirmation]
 verify_jwt = false
+
+[functions.generate-appleseed]
+verify_jwt = true
+
+[functions.generate-excalibur]
+verify_jwt = true
+
+[functions.create-test-user]
+verify_jwt = false
