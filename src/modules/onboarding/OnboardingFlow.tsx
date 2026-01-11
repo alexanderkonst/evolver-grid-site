@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, Compass, ClipboardList, Map, CheckCircle2, User }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import GameShell from "@/components/game/GameShell";
+import OnboardingShell from "@/components/onboarding/OnboardingShell";
 import { supabase } from "@/integrations/supabase/client";
 
 interface OnboardingFlowProps {
@@ -43,7 +43,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
       },
       {
         title: "Complete your Zone of Genius",
-        description: "Generate your Appleseed or finish the assessment to unlock your profile.",
+        description: "Generate your genius profile or finish the assessment to unlock your profile.",
         icon: ClipboardList,
       },
       {
@@ -52,7 +52,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
         icon: Map,
       },
       {
-        title: "Your Appleseed is ready",
+        title: "Your Zone of Genius is ready",
         description: "Choose what you want to explore next.",
         icon: CheckCircle2,
       },
@@ -121,7 +121,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   const CurrentIcon = current.icon;
 
   return (
-    <GameShell>
+    <OnboardingShell>
       <div className="min-h-[70vh] px-4 py-16">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
           <div className="flex items-start justify-between gap-4">
@@ -278,7 +278,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
             <div className="mt-8 space-y-4">
               <div className="grid gap-3 sm:grid-cols-2">
                 <Button variant="outline" onClick={() => navigate("/zone-of-genius/entry?return=/game/next-move")}>
-                  Forge my Excalibur
+                  Create My Unique Offer
                 </Button>
                 <Button variant="outline" onClick={() => navigate("/quality-of-life-map/assessment?return=/game/next-move")}>
                   Rate my Quality of Life
@@ -295,7 +295,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
           )}
         </div>
       </div>
-    </GameShell>
+    </OnboardingShell>
   );
 };
 
