@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Users, Loader2 } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import MatchCard from "@/components/matchmaking/MatchCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -244,7 +244,7 @@ const TeamsSpace = () => {
     };
 
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-6 lg:p-8 max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -339,7 +339,7 @@ const TeamsSpace = () => {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-        </GameShell>
+        </GameShellV2>
     );
 };
 
