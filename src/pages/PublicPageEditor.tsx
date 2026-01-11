@@ -73,7 +73,6 @@ const PublicPageEditor = () => {
                 setDisplayName(user.email?.split("@")[0] || "");
             }
         } catch (error) {
-            console.error("Error loading profile:", error);
         } finally {
             setIsLoading(false);
         }
@@ -134,7 +133,6 @@ const PublicPageEditor = () => {
                     : "Your page settings have been saved.",
             });
         } catch (error) {
-            console.error("Error saving:", error);
             toast({
                 title: "Error",
                 description: "Could not save your page. Please try again.",

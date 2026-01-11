@@ -121,7 +121,6 @@ export async function completeUpgrade(
 
     return { success: true };
   } catch (error) {
-    console.error('Error completing upgrade:', error);
     return { success: false, error };
   }
 }
@@ -141,7 +140,6 @@ export async function getUpgradesByBranch(
     .order('sort_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching upgrades:', error);
     return [];
   }
 
@@ -171,7 +169,6 @@ export async function getPlayerUpgrades(
     .eq('profile_id', profileId);
 
   if (error) {
-    console.error('Error fetching player upgrades:', error);
     return [];
   }
 
@@ -200,7 +197,6 @@ export async function isUpgradeCompleted(
     .maybeSingle();
 
   if (error) {
-    console.error('Error checking upgrade completion:', error);
     return false;
   }
 
@@ -238,7 +234,6 @@ export async function getUpgradeTitlesByCode(
     .in('code', codes);
 
   if (error) {
-    console.error('Error fetching upgrade titles:', error);
     return {};
   }
 
@@ -260,7 +255,6 @@ export async function getAllUpgrades(): Promise<Upgrade[]> {
     .order('sort_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching all upgrades:', error);
     return [];
   }
 

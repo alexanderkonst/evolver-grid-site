@@ -56,7 +56,6 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
             .filter(m => m.typeTitle !== 'Unknown');
         return matches.length > 0 ? matches : null;
     } catch (err) {
-        console.error("Asset match error:", err);
         return null;
     }
 };
@@ -154,7 +153,6 @@ const AssetMappingLanding = () => {
                 description: `Saved ${savedCount} assets${skippedCount ? `, skipped ${skippedCount}` : ""}.`,
             });
         } catch (err) {
-            console.error(err);
             toast({ title: "Something went wrong", variant: "destructive" });
         } finally {
             setIsSaving(false);
@@ -261,7 +259,6 @@ const AssetMappingLanding = () => {
                 }
             }
         } catch (e) {
-            console.error('Error parsing AI response:', e);
         }
 
         setIsMatching(false);

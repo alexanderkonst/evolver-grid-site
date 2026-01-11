@@ -192,7 +192,6 @@ const CoreLoopHome = () => {
                 }
             }
         } catch (error) {
-            console.error('Error loading data:', error);
         } finally {
             setIsLoading(false);
         }
@@ -254,7 +253,6 @@ const CoreLoopHome = () => {
                 setTimeout(() => setShowCelebration(false), 3000);
             }
         } catch (error) {
-            console.error('Error completing action:', error);
             toast({
                 title: "Error",
                 description: "Could not complete action. Please try again.",

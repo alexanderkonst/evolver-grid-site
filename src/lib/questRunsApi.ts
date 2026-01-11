@@ -66,7 +66,6 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
             .single();
 
         if (insertError) {
-            console.error('Error inserting quest run:', insertError);
             return { success: false, xpAwarded: 0, newStreak: 0, error: insertError.message };
         }
 
@@ -78,7 +77,6 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
             .single();
 
         if (profileError || !profile) {
-            console.error('Error fetching profile:', profileError);
             return { success: false, xpAwarded: 0, newStreak: 0, error: 'Profile not found' };
         }
 
@@ -125,7 +123,6 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
             .eq('id', profileId);
 
         if (updateError) {
-            console.error('Error updating profile:', updateError);
         }
 
         // 5. Get completed upgrades count for Main Quest advancement
@@ -157,7 +154,6 @@ export async function completeSideQuest(params: CompleteQuestParams): Promise<{
             questRun: questRun as QuestRun,
         };
     } catch (error: any) {
-        console.error('Error completing side quest:', error);
         return { success: false, xpAwarded: 0, newStreak: 0, error: error.message };
     }
 }
@@ -177,7 +173,6 @@ export async function getRecentQuestRuns(
         .limit(limit);
 
     if (error) {
-        console.error('Error fetching quest runs:', error);
         return [];
     }
 
@@ -194,7 +189,6 @@ export async function getQuestRunCount(profileId: string): Promise<number> {
         .eq('profile_id', profileId);
 
     if (error) {
-        console.error('Error counting quest runs:', error);
         return 0;
     }
 

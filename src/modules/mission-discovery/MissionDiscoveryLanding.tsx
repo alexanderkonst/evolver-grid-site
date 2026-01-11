@@ -105,7 +105,6 @@ const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null
         }).filter(Boolean) as MatchResult[];
         return matches.length > 0 ? matches : null;
     } catch (err) {
-        console.error("Mission match error:", err);
         return null;
     }
 };

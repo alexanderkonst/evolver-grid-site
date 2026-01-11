@@ -55,7 +55,6 @@ const AdminMissionParticipants = () => {
       if (error) throw error;
       setParticipants((data || []) as MissionParticipant[]);
     } catch (error) {
-      console.error("Failed to load mission participants:", error);
       toast({
         title: "Error loading participants",
         description: "Please retry.",
@@ -84,7 +83,6 @@ const AdminMissionParticipants = () => {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Auth check error:", error);
         setLoading(false);
       } finally {
         setAuthLoading(false);

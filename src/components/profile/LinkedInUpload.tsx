@@ -47,7 +47,6 @@ const LinkedInUpload = ({ userId, pdfPath, onUpdate }: LinkedInUploadProps) => {
       onUpdate(filePath);
       toast({ title: "LinkedIn profile uploaded" });
     } catch (error: any) {
-      console.error("LinkedIn upload error:", error);
       toast({
         title: "Upload failed",
         description: error.message || "Unable to upload LinkedIn PDF.",
@@ -87,7 +86,6 @@ const LinkedInUpload = ({ userId, pdfPath, onUpdate }: LinkedInUploadProps) => {
       onUpdate(null);
       toast({ title: "LinkedIn profile removed" });
     } catch (error: any) {
-      console.error("LinkedIn delete error:", error);
       toast({
         title: "Delete failed",
         description: error.message || "Unable to remove LinkedIn PDF.",

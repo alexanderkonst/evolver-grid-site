@@ -35,7 +35,6 @@ const QualityOfLifeMapResults: FC = () => {
     getOrCreateGameProfileId()
       .then(id => setProfileId(id))
       .catch(err => {
-        console.error("Failed to get game profile ID:", err);
         // Don't block the UI, just log the error
       });
   }, []);
@@ -54,7 +53,6 @@ const QualityOfLifeMapResults: FC = () => {
 
   const saveSnapshotToDatabase = async () => {
     if (!profileId) {
-      console.warn("No profile ID available, skipping database save");
       return;
     }
 
@@ -136,7 +134,6 @@ const QualityOfLifeMapResults: FC = () => {
         }
       }
 
-      console.log("QoL snapshot saved successfully to database");
       await logActionEvent({
         actionId: `qol-snapshot:${newSnapshot.id}`,
         profileId,
@@ -148,7 +145,6 @@ const QualityOfLifeMapResults: FC = () => {
         },
       });
     } catch (err) {
-      console.error("Failed to save QoL snapshot to database:", err);
       // Don't show error toast to user - this is a background operation
     }
   };
@@ -323,7 +319,6 @@ const QualityOfLifeMapResults: FC = () => {
         description: "Your snapshot has been saved successfully.",
       });
     } catch (error) {
-      console.error("PDF generation error:", error);
       toast({
         title: "Download Failed",
         description: "Could not generate PDF. Please try again.",
@@ -368,7 +363,6 @@ const QualityOfLifeMapResults: FC = () => {
       }
       
     } catch (error: any) {
-      console.error("Guidance generation error:", error);
       const errorMessage = error.message || "Could not generate guidance. Please try again.";
       toast({
         title: "Generation Failed",

@@ -88,7 +88,6 @@ export function usePathJourneys(pathSlug: string, branch: string) {
 
             setNodes(journeyNodes);
         } catch (error) {
-            console.error("Error loading journeys:", error);
         } finally {
             setLoading(false);
         }
@@ -147,7 +146,6 @@ export function useAllPathsProgress() {
                 "body": { completed: 0, total: 7 },
             });
         } catch (error) {
-            console.error("Error loading path progress:", error);
         } finally {
             setLoading(false);
         }

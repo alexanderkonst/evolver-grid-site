@@ -190,7 +190,6 @@ export default function TodayPage() {
             await fetchSideQuestRecommendation();
 
         } catch (err) {
-            console.error("Error loading today data:", err);
             toast({ title: "Error", description: "Failed to load data", variant: "destructive" });
         } finally {
             setIsLoading(false);
@@ -224,7 +223,6 @@ export default function TodayPage() {
             if (error) throw error;
             setSideQuest(data);
         } catch (err) {
-            console.error("Error fetching side quest:", err);
         } finally {
             setLoadingSideQuest(false);
         }
@@ -267,7 +265,6 @@ export default function TodayPage() {
                 throw new Error(result.error);
             }
         } catch (err: any) {
-            console.error("Error completing side quest:", err);
             toast({ title: "Error", description: err.message, variant: "destructive" });
         } finally {
             setCompletingSideQuest(false);
@@ -301,7 +298,6 @@ export default function TodayPage() {
             toast({ title: "Upgrade Complete!", description: `+${nextUpgrade.xp_reward || 25} XP` });
             await loadTodayData();
         } catch (err: any) {
-            console.error("Error completing upgrade:", err);
             toast({ title: "Error", description: err.message, variant: "destructive" });
         } finally {
             setCompletingUpgrade(false);
@@ -359,7 +355,6 @@ export default function TodayPage() {
             setArtifactNote('');
             await loadTodayData();
         } catch (err: any) {
-            console.error("Error saving artifact:", err);
             toast({ title: "Error", description: err.message, variant: "destructive" });
         } finally {
             setSavingArtifact(false);

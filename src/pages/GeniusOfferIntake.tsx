@@ -258,7 +258,6 @@ const GeniusOfferIntake = () => {
 
       setCurrentStep("submit");
     } catch (error) {
-      console.error("Error submitting:", error);
       toast({ title: "Something went wrong. Please try again.", variant: "destructive" });
     } finally {
       setSaving(false);

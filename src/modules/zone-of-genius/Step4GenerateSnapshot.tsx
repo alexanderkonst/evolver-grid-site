@@ -41,7 +41,6 @@ const Step4GenerateSnapshot = () => {
         setIsLoadingProfile(false);
       })
       .catch(err => {
-        console.error("Failed to get game profile ID:", err);
         setIsLoadingProfile(false);
         // Don't block the UI, just log the error
       });
@@ -89,7 +88,6 @@ const Step4GenerateSnapshot = () => {
       // Save snapshot to database
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
-      console.error("Snapshot generation error:", err);
       toast.error("Failed to generate snapshot. Please try again.");
     } finally {
       setIsGenerating(false);
@@ -98,7 +96,6 @@ const Step4GenerateSnapshot = () => {
 
   const saveSnapshotToDatabase = async (snapshotText: string) => {
     if (!profileId) {
-      console.error("CRITICAL: No profile ID available when trying to save ZoG snapshot");
       toast.error("Failed to save your snapshot. Please reload and try again.");
       return;
     }
@@ -110,7 +107,6 @@ const Step4GenerateSnapshot = () => {
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
 
-      console.log("Saving ZoG snapshot to database...", {
         profileId,
         archetypeTitle: parsed.archetypeTitle,
         hasDescription: !!parsed.description,
@@ -134,11 +130,9 @@ const Step4GenerateSnapshot = () => {
         .single();
 
       if (snapshotError) {
-        console.error("Error inserting ZoG snapshot:", snapshotError);
         throw snapshotError;
       }
 
-      console.log("ZoG snapshot inserted successfully:", snapshotData.id);
 
       // Award XP for completing ZoG (only if not already awarded)
       if (!snapshotData.xp_awarded) {
@@ -170,7 +164,6 @@ const Step4GenerateSnapshot = () => {
             .update({ xp_awarded: true })
             .eq('id', snapshotData.id);
 
-          console.log(`✅ Awarded 100 XP for ZoG completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
           toast.success("🎉 +100 XP (Genius)");
         }
       } else {
@@ -186,7 +179,6 @@ const Step4GenerateSnapshot = () => {
           .eq('id', profileId);
       }
 
-      console.log("✅ ZoG snapshot saved and game_profiles updated successfully!");
       toast.success("Your Zone of Genius has been saved!");
       const redirectPath = getPostZogRedirect(returnTo);
       if (redirectPath) {
@@ -203,7 +195,6 @@ const Step4GenerateSnapshot = () => {
         },
       });
     } catch (err) {
-      console.error("❌ Failed to save snapshot to database:", err);
       toast.error("Failed to save your snapshot. Your progress is still shown, but may not persist.");
     }
   };
@@ -355,7 +346,6 @@ GENERAL STYLE RULES:
       
       toast.success("PDF downloaded successfully!");
     } catch (err) {
-      console.error("PDF generation error:", err);
       toast.error("Failed to generate PDF. Please try again.");
     } finally {
       setIsDownloading(false);

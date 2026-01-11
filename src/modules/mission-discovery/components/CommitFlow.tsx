@@ -74,7 +74,6 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                 .eq("mission_id", mission.id);
 
             if (updateError) {
-                console.error("Update error:", updateError);
             }
 
             localStorage.setItem(`mission_connection_${user.id}`, JSON.stringify({
@@ -102,7 +101,6 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                 navigate(returnPath);
             }
         } catch (err) {
-            console.error("Error:", err);
             toast({
                 title: "Something went wrong",
                 description: "Please try again.",

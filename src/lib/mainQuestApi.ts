@@ -32,7 +32,6 @@ export async function getMainQuestState(profileId: string): Promise<MainQuestSta
         .maybeSingle();
 
     if (error || !data) {
-        console.error('Error fetching main quest state:', error);
         return null;
     }
 
@@ -61,7 +60,6 @@ export async function setMainQuestStage(
         .eq('id', profileId);
 
     if (error) {
-        console.error('Error setting main quest stage:', error);
         return false;
     }
     return true;
@@ -84,7 +82,6 @@ export async function markMainQuestProgress(
         .single();
 
     if (fetchError) {
-        console.error('Error fetching main quest progress:', fetchError);
         return false;
     }
 
@@ -101,7 +98,6 @@ export async function markMainQuestProgress(
         .eq('id', profileId);
 
     if (error) {
-        console.error('Error marking main quest progress:', error);
         return false;
     }
     return true;

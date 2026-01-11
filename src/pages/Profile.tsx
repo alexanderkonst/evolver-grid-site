@@ -533,7 +533,6 @@ const Profile = () => {
                                                     .delete()
                                                     .eq('profile_id', profile.id);
 
-                                                if (upgradeError) console.warn("Could not clear upgrades:", upgradeError);
 
                                                 // 3. Clear vector progress (for growth paths)
                                                 const { error: vectorError } = await supabase
@@ -541,7 +540,6 @@ const Profile = () => {
                                                     .delete()
                                                     .eq('profile_id', profile.id);
 
-                                                if (vectorError) console.warn("Could not clear vector progress:", vectorError);
 
                                                 toast({
                                                     title: "Progress Reset",
@@ -551,7 +549,6 @@ const Profile = () => {
                                                 // Navigate home to restart onboarding
                                                 navigate('/game');
                                             } catch (error) {
-                                                console.error("Reset failed:", error);
                                                 toast({
                                                     title: "Error",
                                                     description: "Failed to reset progress. Please try again.",

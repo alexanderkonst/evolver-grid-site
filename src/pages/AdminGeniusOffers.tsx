@@ -98,7 +98,6 @@ const AdminGeniusOffers = () => {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Auth check error:", error);
         setLoading(false);
       } finally {
         setAuthLoading(false);
@@ -133,7 +132,6 @@ const AdminGeniusOffers = () => {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Error fetching requests:", error);
       toast({ title: "Failed to load requests", variant: "destructive" });
     } else {
       setRequests(data || []);

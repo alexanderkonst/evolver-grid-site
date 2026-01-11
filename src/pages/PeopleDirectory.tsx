@@ -173,7 +173,6 @@ const PeopleDirectory = () => {
           setLoading(false);
         }
       } catch (err: any) {
-        console.error("Failed to load people directory:", err);
         if (isMounted) {
           setError(err.message || "Unable to load directory.");
           setLoading(false);

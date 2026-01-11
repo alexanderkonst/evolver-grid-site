@@ -104,7 +104,6 @@ const AssetMappingWizard = () => {
 
             setStep('done');
         } catch (err) {
-            console.error(err);
             toast({ title: "Something went wrong", variant: "destructive" });
         } finally {
             setIsSaving(false);

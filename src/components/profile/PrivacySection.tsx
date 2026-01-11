@@ -55,7 +55,6 @@ const PrivacySection = ({
 
       toast({ title: "Visibility updated" });
     } catch (error: any) {
-      console.error("Error updating visibility:", error);
       onUpdate({ visibility: previousValue });
       toast({
         title: "Update failed",
@@ -90,7 +89,6 @@ const PrivacySection = ({
 
       toast({ title: "Settings updated" });
     } catch (error: any) {
-      console.error(`Error updating ${field}:`, error);
       onUpdate({ [field]: previousValue });
       toast({
         title: "Update failed",

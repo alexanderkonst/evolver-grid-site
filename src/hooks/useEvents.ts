@@ -50,7 +50,6 @@ export const useEvents = () => {
 
       setEvents(eventsWithCounts);
     } catch (err) {
-      console.error("Error fetching events:", err);
       setError(err instanceof Error ? err.message : "Failed to load events");
     } finally {
       setLoading(false);
@@ -112,7 +111,6 @@ export const useEvent = (eventId: string | undefined) => {
       if (rsvpError) throw rsvpError;
       setAttendees(rsvpData || []);
     } catch (err) {
-      console.error("Error fetching event:", err);
       setError(err instanceof Error ? err.message : "Failed to load event");
     } finally {
       setLoading(false);
@@ -172,7 +170,6 @@ export const useEventRsvp = (eventId: string | undefined) => {
       setReminderEmail(data?.email || "");
       setWantsReminder(Boolean(data?.wants_reminder));
     } catch (err) {
-      console.error("Error fetching RSVP status:", err);
     } finally {
       setLoading(false);
     }
@@ -226,7 +223,6 @@ export const useEventRsvp = (eventId: string | undefined) => {
         setWantsReminder(Boolean(options.wantsReminder));
       }
     } catch (err) {
-      console.error("Error updating RSVP:", err);
       throw err;
     } finally {
       setUpdating(false);
@@ -251,7 +247,6 @@ export const useEventRsvp = (eventId: string | undefined) => {
       if (error) throw error;
       setCurrentStatus(null);
     } catch (err) {
-      console.error("Error removing RSVP:", err);
       throw err;
     } finally {
       setUpdating(false);
@@ -296,7 +291,6 @@ export const useCreateEvent = () => {
       if (insertError) throw insertError;
       return data;
     } catch (err) {
-      console.error("Error creating event:", err);
       const message = err instanceof Error ? err.message : "Failed to create event";
       setError(message);
       throw err;

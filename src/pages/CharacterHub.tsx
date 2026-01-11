@@ -207,7 +207,6 @@ const CharacterHub = () => {
             setGeniusOffer(offerData);
 
         } catch (error) {
-            console.error("Error loading character data:", error);
         } finally {
             setLoading(false);
         }
@@ -231,7 +230,6 @@ const CharacterHub = () => {
                 setSoulColors(data.colors);
             }
         } catch (error) {
-            console.error("Error generating soul colors:", error);
         } finally {
             setGeneratingColors(false);
         }

@@ -310,7 +310,6 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
 
       setAdvisorSuggestions(matchedSuggestions);
     } catch (err) {
-      console.error("Advisor error:", err);
       setAdvisorError("Could not generate suggestions. Please try again.");
       toast.error("Failed to generate suggestions");
     } finally {

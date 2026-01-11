@@ -18,7 +18,6 @@ import { supabase } from "@/integrations/supabase/client";
  * ```tsx
  * useEffect(() => {
  *   getOrCreateGameProfileId().then(profileId => {
- *     console.log('Profile ID:', profileId);
  *   });
  * }, []);
  * ```
@@ -41,7 +40,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       .maybeSingle();
 
     if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error('Failed to fetch game profile:', fetchError);
       throw fetchError;
     }
 
@@ -103,7 +101,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       .single();
 
     if (error) {
-      console.error('Failed to create game profile:', error);
       throw error;
     }
 
@@ -128,7 +125,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     .single();
 
   if (error) {
-    console.error('Failed to create game profile:', error);
     throw error;
   }
 

@@ -28,7 +28,6 @@ export const useAIUpgradeAccess = (user: User | null) => {
           setHasAccess(true);
         }
       } catch (err) {
-        console.error('Error checking access:', err);
         setError('Failed to load profile');
       } finally {
         setIsLoading(false);
@@ -55,7 +54,6 @@ export const useAIUpgradeAccess = (user: User | null) => {
       });
 
       if (invokeError) {
-        console.error('Error invoking promo function:', invokeError);
         return { success: false, error: 'Failed to validate promo code' };
       }
 
@@ -70,7 +68,6 @@ export const useAIUpgradeAccess = (user: User | null) => {
 
       return { success: false, error: 'Invalid promo code' };
     } catch (err) {
-      console.error('Error validating promo code:', err);
       return { success: false, error: 'Failed to validate promo code' };
     }
   };

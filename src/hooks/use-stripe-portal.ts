@@ -39,7 +39,6 @@ export function useStripePortal() {
                 throw new Error("No portal URL returned");
             }
         } catch (error: any) {
-            console.error("Error opening portal:", error);
             toast({
                 title: "Error",
                 description: error.message || "Failed to open subscription management.",

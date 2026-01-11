@@ -87,7 +87,6 @@ const PersonalityTestUploadModal = ({
 
             setResults(data.results);
         } catch (err: any) {
-            console.error("Analysis error:", err);
             setError(err.message || "Failed to analyze image");
         } finally {
             setAnalyzing(false);
@@ -153,7 +152,6 @@ const PersonalityTestUploadModal = ({
                 handleClose();
             }, 1500);
         } catch (err: any) {
-            console.error("Save error:", err);
             setError(err.message || "Failed to save results");
         } finally {
             setSaving(false);

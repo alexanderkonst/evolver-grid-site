@@ -14,7 +14,6 @@ export async function markPracticeDone(
     });
 
     if (error) {
-      console.error('Error marking practice done:', error);
       return {
         success: false,
         error: error.message || 'Failed to log practice',
@@ -28,7 +27,6 @@ export async function markPracticeDone(
       message: data.message,
     };
   } catch (error) {
-    console.error('Error marking practice done:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Failed to log practice',

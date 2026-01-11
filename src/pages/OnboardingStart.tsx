@@ -29,14 +29,12 @@ const OnboardingStart = () => {
           .maybeSingle();
 
         if (error) {
-          console.error("Failed to load onboarding profile:", error);
         } else if (profileData) {
           setInitialStep(profileData.onboarding_step ?? 0);
           setHasZog(!!profileData.last_zog_snapshot_id);
           setHasQol(!!profileData.last_qol_snapshot_id);
         }
       } catch (err) {
-        console.error("Failed to load onboarding:", err);
       } finally {
         if (isMounted) setLoading(false);
       }

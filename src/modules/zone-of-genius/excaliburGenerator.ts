@@ -308,7 +308,6 @@ export const generateExcalibur = async (appleseed: AppleseedData): Promise<Excal
     });
 
     if (error) {
-        console.error("Excalibur generation error:", error);
         throw new Error(error.message || "Failed to generate Excalibur");
     }
 

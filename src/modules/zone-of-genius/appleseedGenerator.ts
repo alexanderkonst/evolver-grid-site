@@ -254,7 +254,6 @@ export const generateAppleseed = async (rawSignal: string): Promise<AppleseedDat
     });
 
     if (error) {
-        console.error('Appleseed generation error:', error);
         throw new Error(error.message || 'Failed to generate Appleseed');
     }
 

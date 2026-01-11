@@ -74,7 +74,6 @@ const ResourcesPersonalityTests = () => {
         }
       }
     } catch (error) {
-      console.error('Error loading existing tests:', error);
     } finally {
       setLoading(false);
     }

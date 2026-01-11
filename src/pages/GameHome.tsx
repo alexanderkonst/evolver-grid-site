@@ -304,7 +304,6 @@ const GameHome = () => {
       await advanceMainQuestIfEligible(id, profileForStats, playerStats);
 
     } catch (err) {
-      console.error("Failed to load game data:", err);
       setActionError("We couldn't load your next move yet. Please retry.");
       toast({
         title: "Error loading data",
@@ -430,7 +429,6 @@ const GameHome = () => {
         throw new Error('Invalid response format');
       }
     } catch (error) {
-      console.error('Error fetching quest:', error);
 
       // Fallback: pick a random practice from the library
       const matchingPractices = LIBRARY_ITEMS.filter(item => {
@@ -490,7 +488,6 @@ const GameHome = () => {
       }
       await loadGameData();
     } catch (error) {
-      console.error('Error completing quest:', error);
       toast({ title: "Error", description: "Failed to save side quest.", variant: "destructive" });
     }
   };
