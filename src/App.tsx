@@ -58,6 +58,7 @@ import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
+import Matchmaking from "./pages/Matchmaking";
 import PeopleDirectory from "./pages/PeopleDirectory";
 import MissionSelection from "./pages/MissionSelection";
 import PublicProfile from "./pages/PublicProfile";
@@ -128,6 +129,7 @@ const App = () => (
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/teams" element={<TeamsSpace />} />
+            <Route path="/game/matches" element={<Matchmaking />} />
             <Route path="/connections" element={<Connections />} />
             <Route path="/game/mission" element={<MissionSelection />} />
             <Route path="/community/people" element={<PeopleDirectory />} />

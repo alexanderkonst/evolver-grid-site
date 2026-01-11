@@ -163,9 +163,9 @@ const Connections = () => {
   return (
     <GameShell>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-        <Link to="/game/matchmaking" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6">
+        <Link to="/game/matches" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6">
           <ArrowLeft className="w-4 h-4" />
-          Back to Matchmaking
+          Back to Matches
         </Link>
 
         <div className="flex items-center gap-3 mb-6">
