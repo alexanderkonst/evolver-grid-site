@@ -1,10 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Sparkles, Compass, ClipboardList, Map, CheckCircle2, User } from "lucide-react";
+import { ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import OnboardingShell from "@/components/onboarding/OnboardingShell";
+import GameShell from "@/components/game/GameShell";
 import { supabase } from "@/integrations/supabase/client";
 
 interface OnboardingFlowProps {
@@ -19,41 +17,45 @@ const MAX_STEP = 5;
 
 const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: OnboardingFlowProps) => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(Math.min(initialStep ?? 0, MAX_STEP));
+  const startingStep = useMemo(() => {
+    if (hasQol) return MAX_STEP;
+    if (hasZog) return 3;
+    return Math.min(initialStep ?? 0, MAX_STEP);
+  }, [hasQol, hasZog, initialStep]);
+
+  const [step, setStep] = useState(startingStep);
   const [saving, setSaving] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [location, setLocation] = useState("");
 
   const steps = useMemo(
     () => [
       {
-        title: "Welcome to Evolver Grid",
-        description: "We will guide you through a short setup so you can start with clarity.",
+        title: "Discover who you really are.",
+        description: "3 minutes. Free.",
         icon: Sparkles,
       },
       {
-        title: "Quick profile",
-        description: "Tell us your name so the journey feels personal from the first step.",
-        icon: User,
-      },
-      {
-        title: "Choose your path",
-        description: "Use AI to generate your Zone of Genius or take the guided assessment.",
+        title: "Your Zone of Genius",
+        description: "Where you're naturally valuable.",
         icon: Compass,
       },
       {
-        title: "Complete your Zone of Genius",
-        description: "Generate your genius profile or finish the assessment to unlock your profile.",
-        icon: ClipboardList,
+        title: "Do you have an AI that knows you well?",
+        description: "Choose the path that fits you best.",
+        icon: Bot,
       },
       {
-        title: "Rate your Quality of Life",
-        description: "Capture a baseline across 8 life domains in a few minutes.",
+        title: "You've met yourself.",
+        description: "Now you can grow.",
+        icon: CheckCircle2,
+      },
+      {
+        title: "Map your life.",
+        description: "8 areas. 2 minutes.",
         icon: Map,
       },
       {
-        title: "Your Zone of Genius is ready",
-        description: "Choose what you want to explore next.",
+        title: "This is your game.",
+        description: "This is your story.",
         icon: CheckCircle2,
       },
     ],
@@ -77,14 +79,13 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     return true;
   };
 
-  const saveQuickProfile = async () => {
-    if (!firstName.trim()) return true;
+  const updateStage = async (nextStage: string) => {
     const { error } = await supabase
       .from("game_profiles")
-      .update({ first_name: firstName.trim() })
+      .update({ onboarding_stage: nextStage })
       .eq("id", profileId);
     if (error) {
-      console.error("Failed to save quick profile:", error);
+      console.error("Failed to update onboarding stage:", error);
       return false;
     }
     return true;
@@ -95,12 +96,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     if (success) {
       setStep(nextStep);
     }
-  };
-
-  const handleQuickProfileContinue = async () => {
-    const profileSaved = await saveQuickProfile();
-    if (!profileSaved) return;
-    await goToStep(2);
   };
 
   const handleSkip = async () => {
@@ -117,11 +112,31 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     }
   };
 
+  const handleStartZog = async (path: "ai" | "manual") => {
+    const stageUpdated = await updateStage("zog_started");
+    if (!stageUpdated) return;
+    const success = await persistStep(3);
+    if (!success) return;
+    setStep(3);
+    if (path === "ai") {
+      navigate("/zone-of-genius/entry?return=/start");
+    } else {
+      navigate("/zone-of-genius/assessment?return=/start");
+    }
+  };
+
+  const handleStartQol = async () => {
+    const success = await persistStep(5);
+    if (!success) return;
+    setStep(5);
+    navigate("/quality-of-life-map/assessment?return=/start");
+  };
+
   const current = steps[step];
   const CurrentIcon = current.icon;
 
   return (
-    <OnboardingShell>
+    <GameShell>
       <div className="min-h-[70vh] px-4 py-16">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
           <div className="flex items-start justify-between gap-4">
@@ -155,47 +170,19 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
 
           {step === 0 && (
             <div className="mt-8 space-y-4">
-              <p className="text-sm text-slate-600">
-                In a few short steps you will set up your profile, generate your Appleseed, and see what to do next.
-              </p>
               <Button className="w-full" size="lg" onClick={() => goToStep(1)} disabled={saving}>
-                Begin
+                Start
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           )}
 
           {step === 1 && (
-            <div className="mt-8 space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="first-name">First name</Label>
-                  <Input
-                    id="first-name"
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                    placeholder="Your name"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="location">Where are you based? (optional)</Label>
-                  <Input
-                    id="location"
-                    value={location}
-                    onChange={(event) => setLocation(event.target.value)}
-                    placeholder="City, country"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <Button variant="outline" onClick={() => goToStep(2)} disabled={saving}>
-                  Skip
-                </Button>
-                <Button onClick={handleQuickProfileContinue} disabled={saving}>
-                  Continue
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+            <div className="mt-8 space-y-4">
+              <Button className="w-full" size="lg" onClick={() => goToStep(2)} disabled={saving}>
+                Find mine
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           )}
 
@@ -204,98 +191,52 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
               <Button
                 className="w-full"
                 size="lg"
-                onClick={async () => {
-                  const success = await persistStep(3);
-                  if (!success) return;
-                  setStep(3);
-                  navigate("/zone-of-genius/entry?return=/game/next-move");
-                }}
+                onClick={() => handleStartZog("ai")}
                 disabled={saving}
               >
-                AI already knows me
+                Yes
               </Button>
               <Button
                 className="w-full"
                 variant="outline"
                 size="lg"
-                onClick={async () => {
-                  const success = await persistStep(3);
-                  if (!success) return;
-                  setStep(3);
-                  navigate("/zone-of-genius/assessment?return=/game/next-move");
-                }}
+                onClick={() => handleStartZog("manual")}
                 disabled={saving}
               >
-                I will do the guided assessment
-              </Button>
-              <Button variant="ghost" className="w-full" onClick={() => goToStep(3)} disabled={saving}>
-                Decide later
+                No
               </Button>
             </div>
           )}
 
           {step === 3 && (
             <div className="mt-8 space-y-4">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                {hasZog
-                  ? "Great job, your Zone of Genius is already saved."
-                  : "Complete your Zone of Genius to unlock your profile insights."}
-              </div>
-              {!hasZog && (
-                <Button className="w-full" size="lg" onClick={() => navigate("/zone-of-genius/entry?return=/game/next-move")}>
-                  Go to Zone of Genius
-                </Button>
-              )}
-              <Button variant="outline" className="w-full" size="lg" onClick={() => goToStep(4)} disabled={saving}>
-                Continue
+              <Button className="w-full" size="lg" onClick={() => goToStep(4)} disabled={saving}>
+                Start growing
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           )}
 
           {step === 4 && (
             <div className="mt-8 space-y-4">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                {hasQol
-                  ? "Your Quality of Life snapshot is already saved."
-                  : "Capture your baseline across eight domains so we can track your growth."}
-              </div>
-              {!hasQol && (
-                <Button
-                  className="w-full"
-                  size="lg"
-                  onClick={() => navigate("/quality-of-life-map/assessment?return=/game/next-move")}
-                >
-                  Start QoL snapshot
-                </Button>
-              )}
-              <Button variant="outline" className="w-full" size="lg" onClick={() => goToStep(5)} disabled={saving}>
-                Continue
+              <Button className="w-full" size="lg" onClick={handleStartQol} disabled={saving}>
+                Begin
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           )}
 
           {step === 5 && (
             <div className="mt-8 space-y-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Button variant="outline" onClick={() => navigate("/zone-of-genius/entry?return=/game/next-move")}>
-                  Create My Unique Offer
-                </Button>
-                <Button variant="outline" onClick={() => navigate("/quality-of-life-map/assessment?return=/game/next-move")}>
-                  Rate my Quality of Life
-                </Button>
-                <Button variant="outline" onClick={() => navigate("/game/next-move")}>
-                  Explore the platform
-                </Button>
-              </div>
               <Button className="w-full" size="lg" onClick={handleFinish} disabled={saving}>
-                Finish onboarding
+                Begin
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           )}
         </div>
       </div>
-    </OnboardingShell>
+    </GameShell>
   );
 };
 

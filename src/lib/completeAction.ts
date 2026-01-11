@@ -6,6 +6,7 @@ import { updateGrowthPathProgress } from "@/lib/growthPathProgress";
 import { logActionEvent } from "@/lib/actionEvents";
 import { type UnifiedAction } from "@/types/actions";
 import type { CanonicalDomain } from "@/lib/mainQuest";
+import { supabase } from "@/integrations/supabase/client";
 
 interface CompleteActionContext {
   profileId: string;
@@ -133,6 +134,23 @@ export const completeAction = async (
             stepIndex: stepIndex + 1,
             version: version,
           });
+        }
+        if (stepIndex === 0) {
+          const { data: profileData } = await supabase
+            .from("game_profiles")
+            .select("onboarding_stage")
+            .eq("id", context.profileId)
+            .maybeSingle();
+          if (profileData?.onboarding_stage !== "unlocked") {
+            const milestoneXp = await awardXp(context.profileId, 25, normalizeDomain(action.growthPath));
+            if (!milestoneXp.success) {
+              return { success: false, error: milestoneXp.error };
+            }
+            await supabase
+              .from("game_profiles")
+              .update({ onboarding_stage: "unlocked", updated_at: new Date().toISOString() })
+              .eq("id", context.profileId);
+          }
         }
         if (result.success) {
           await recordCompletionEvent(action, context);

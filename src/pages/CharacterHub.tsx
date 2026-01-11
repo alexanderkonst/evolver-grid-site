@@ -296,24 +296,24 @@ const CharacterHub = () => {
                             <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left">
                                 <p className="text-xs text-amber-300 font-medium mb-1">Your Zone of Genius</p>
                                 <p className="text-sm text-slate-200 mb-3">
-                                    Generate your Appleseed to unlock your genius profile.
+                                    Generate your Zone of Genius to unlock your profile.
                                 </p>
                                 <Button
                                     size="sm"
                                     className="bg-amber-500 hover:bg-amber-600 text-slate-900"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
-                                    Generate Appleseed
+                                    Start Zone of Genius
                                 </Button>
                             </div>
                         )}
                         {excalibur ? (
                             <ExcaliburSummaryCard excalibur={excalibur} />
-                        ) : (
+                        ) : appleseed ? (
                             <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-5 text-left">
-                                <p className="text-xs text-violet-300 font-medium mb-1">Your Excalibur</p>
+                                <p className="text-xs text-violet-300 font-medium mb-1">Your Unique Offer</p>
                                 <p className="text-sm text-slate-200 mb-3">
-                                    Craft your unique offering once your Appleseed is ready.
+                                    Craft your unique offer once your Zone of Genius is ready.
                                 </p>
                                 <Button
                                     size="sm"
@@ -321,10 +321,10 @@ const CharacterHub = () => {
                                     className="bg-violet-500 text-white hover:bg-violet-600"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
-                                    Create Excalibur
+                                    Create Offer
                                 </Button>
                             </div>
-                        )}
+                        ) : null}
                     </div>
 
                     {/* 📊 MY LIFE */}

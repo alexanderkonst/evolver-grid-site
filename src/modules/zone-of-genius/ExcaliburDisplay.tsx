@@ -33,7 +33,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
                 </div>
 
                 <h1 className="text-2xl lg:text-3xl font-bold text-slate-900">
-                    Your Excalibur
+                    Your Unique Offer
                 </h1>
 
                 <p className="text-sm text-slate-500">
@@ -211,7 +211,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
                         className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
                     >
                         <Sword className="w-5 h-5 mr-2" />
-                        Save My Excalibur
+                        Save My Offer
                     </Button>
                 </div>
             )}

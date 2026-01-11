@@ -36,9 +36,9 @@ const AppleseedView = () => {
       <GameShell>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sparkles className="w-10 h-10 text-amber-400 mb-3" />
-          <h1 className="text-2xl font-semibold text-slate-900 mb-2">No Appleseed yet</h1>
+          <h1 className="text-2xl font-semibold text-slate-900 mb-2">No genius profile yet</h1>
           <p className="text-slate-600 mb-6">
-            Generate your Zone of Genius to view your Appleseed here.
+            Generate your Zone of Genius to view your profile here.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button onClick={() => navigate("/zone-of-genius/entry")}>

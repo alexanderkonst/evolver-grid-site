@@ -32,16 +32,25 @@ const AppleseedSummaryCard = ({ appleseed }: AppleseedSummaryCardProps) => {
           </div>
         </div>
 
-        {/* View Full Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate("/zone-of-genius/appleseed")}
-          className="mt-4 w-full text-amber-700 hover:text-amber-800 hover:bg-amber-100"
-        >
-          View Full Appleseed
-          <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/zone-of-genius/appleseed")}
+            className="flex-1 text-amber-700 hover:text-amber-800 hover:bg-amber-100"
+          >
+            View Full Profile
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate("/zone-of-genius/entry")}
+            className="flex-1 border-amber-200 text-amber-700 hover:bg-amber-100"
+          >
+            Edit
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

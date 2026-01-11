@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
   Sparkles,
@@ -34,7 +34,6 @@ import { completeAction } from "@/lib/completeAction";
 import { type UnifiedAction } from "@/types/actions";
 import { buildPlayerStats } from "@/lib/mainQuest";
 import { advanceMainQuestIfEligible } from "@/lib/mainQuestApi";
-import OnboardingFlow from "@/modules/onboarding/OnboardingFlow";
 
 // Types
 interface GameProfile {
@@ -63,6 +62,7 @@ interface GameProfile {
   main_quest_updated_at: string | null;
   onboarding_completed?: boolean | null;
   onboarding_step?: number | null;
+  onboarding_stage?: string | null;
 }
 
 interface ZogSnapshot {
@@ -681,16 +681,8 @@ const GameHome = () => {
     );
   }
 
-  if (profile && profileId && !profile.onboarding_completed) {
-    return (
-      <OnboardingFlow
-        profileId={profileId}
-        initialStep={profile.onboarding_step}
-        hasZog={!!profile.last_zog_snapshot_id}
-        hasQol={!!profile.last_qol_snapshot_id}
-        onComplete={loadGameData}
-      />
-    );
+  if (profile?.onboarding_stage && !["qol_complete", "unlocked"].includes(profile.onboarding_stage)) {
+    return <Navigate to="/start" replace />;
   }
 
   return (

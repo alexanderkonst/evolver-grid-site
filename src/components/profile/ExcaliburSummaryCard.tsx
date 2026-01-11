@@ -22,7 +22,7 @@ const ExcaliburSummaryCard = ({ excalibur }: ExcaliburSummaryCardProps) => {
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-violet-600 font-medium mb-1">Your Excalibur</p>
+            <p className="text-xs text-violet-600 font-medium mb-1">Your Unique Offer</p>
             <h3 className="text-base font-semibold text-slate-900 mb-1 line-clamp-2">
               {excalibur.sword.offer}
             </h3>
@@ -32,16 +32,25 @@ const ExcaliburSummaryCard = ({ excalibur }: ExcaliburSummaryCardProps) => {
           </div>
         </div>
 
-        {/* View Full Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate("/zone-of-genius/excalibur")}
-          className="mt-4 w-full text-violet-700 hover:text-violet-800 hover:bg-violet-100"
-        >
-          View Full Excalibur
-          <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/zone-of-genius/excalibur")}
+            className="flex-1 text-violet-700 hover:text-violet-800 hover:bg-violet-100"
+          >
+            View Offer
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate("/zone-of-genius/entry")}
+            className="flex-1 border-violet-200 text-violet-700 hover:bg-violet-100"
+          >
+            Edit
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
