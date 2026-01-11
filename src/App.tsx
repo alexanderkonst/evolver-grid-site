@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
@@ -71,8 +72,45 @@ import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
 // Marketplace
 import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
+import ToolsRedirect from "./pages/ToolsRedirect";
 
 const queryClient = new QueryClient();
+
+const titleMap: Array<{ match: (path: string) => boolean; title: string }> = [
+  { match: (path) => path === "/", title: "Home" },
+  { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
+  { match: (path) => path === "/contact", title: "Contact" },
+  { match: (path) => path === "/start", title: "Onboarding" },
+  { match: (path) => path.startsWith("/zone-of-genius"), title: "Zone of Genius" },
+  { match: (path) => path.startsWith("/quality-of-life-map"), title: "Quality of Life" },
+  { match: (path) => path === "/game", title: "Game" },
+  { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },
+  { match: (path) => path.startsWith("/game/profile"), title: "Profile" },
+  { match: (path) => path.startsWith("/game/transformation"), title: "Transformation" },
+  { match: (path) => path.startsWith("/game/marketplace"), title: "Marketplace" },
+  { match: (path) => path.startsWith("/game/matchmaking"), title: "Matchmaking" },
+  { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
+  { match: (path) => path.startsWith("/game/coop"), title: "Startup Co-op" },
+  { match: (path) => path.startsWith("/mission-discovery"), title: "Mission Discovery" },
+  { match: (path) => path.startsWith("/asset-mapping"), title: "Asset Mapping" },
+  { match: (path) => path.startsWith("/resources/personality-tests"), title: "Personality Tests" },
+  { match: (path) => path.startsWith("/resources/zog-intro-video"), title: "ZoG Intro" },
+  { match: (path) => path.startsWith("/genius-offer"), title: "Genius Offer" },
+  { match: (path) => path.startsWith("/intelligences"), title: "Multiple Intelligences" },
+  { match: (path) => path.startsWith("/map"), title: "Game Map" },
+];
+
+const TitleManager = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const match = titleMap.find((entry) => entry.match(location.pathname));
+    const pageTitle = match ? match.title : "Explore";
+    document.title = `Evolver | ${pageTitle}`;
+  }, [location.pathname]);
+
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -82,12 +120,14 @@ const App = () => (
       {/* AnimatedBackground removed for minimal SaaS design */}
       <CustomCursor />
       <BrowserRouter>
+        <TitleManager />
         <PageTransition>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/library" element={<Library />} />
             <Route path="/library/:category" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
+            <Route path="/tools" element={<ToolsRedirect />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route path="/start" element={<OnboardingStart />} />

@@ -189,7 +189,7 @@ export const GameShell = ({ children }: GameShellProps) => {
         navigate("/");
     };
 
-    const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
+    const showSidebar = profile?.onboarding_stage && ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
 
     const unlockStatus = {
         matchmaking: profile?.onboarding_stage === "unlocked",
@@ -205,7 +205,7 @@ export const GameShell = ({ children }: GameShellProps) => {
 
     useEffect(() => {
         if (!profile?.onboarding_stage) return;
-        const needsOnboarding = ["new", "zog_started", "zog_complete"].includes(profile.onboarding_stage);
+        const needsOnboarding = ["new", "zog_started"].includes(profile.onboarding_stage);
         if (needsOnboarding && location.pathname.startsWith("/game")) {
             navigate("/start");
         }
@@ -361,9 +361,9 @@ export const GameShell = ({ children }: GameShellProps) => {
                                                 className={`
                                                     block px-2 py-1 rounded-md text-xs font-normal
                                                     ${location.pathname.startsWith(module.path)
-                                                    ? "text-white bg-slate-700/50"
-                                                    : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
-                                                }
+                                                        ? "text-white bg-slate-700/50"
+                                                        : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
+                                                    }
                                                 `}
                                             >
                                                 {module.label}

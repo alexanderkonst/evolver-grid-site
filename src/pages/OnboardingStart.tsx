@@ -62,7 +62,7 @@ const OnboardingStart = () => {
       initialStep={initialStep}
       hasZog={hasZog}
       hasQol={hasQol}
-      onComplete={() => navigate("/game/next-move")}
+      onComplete={() => navigate("/game")}
     />
   );
 };
