@@ -36,7 +36,7 @@ const ExcaliburSummaryCard = ({ excalibur }: ExcaliburSummaryCardProps) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => navigate("/zone-of-genius/entry")}
+          onClick={() => navigate("/zone-of-genius/excalibur")}
           className="mt-4 w-full text-violet-700 hover:text-violet-800 hover:bg-violet-100"
         >
           View Full Excalibur

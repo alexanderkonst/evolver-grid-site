@@ -6,6 +6,7 @@ import EventCard from "@/components/events/EventCard";
 import CreateEventForm from "@/components/events/CreateEventForm";
 import { useEvents } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
 
 const EventsSpace = () => {
   const navigate = useNavigate();

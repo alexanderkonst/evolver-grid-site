@@ -34,6 +34,7 @@ import { completeAction } from "@/lib/completeAction";
 import { type UnifiedAction } from "@/types/actions";
 import { buildPlayerStats } from "@/lib/mainQuest";
 import { advanceMainQuestIfEligible } from "@/lib/mainQuestApi";
+import OnboardingFlow from "@/modules/onboarding/OnboardingFlow";
 
 // Types
 interface GameProfile {
@@ -60,6 +61,8 @@ interface GameProfile {
   main_quest_status: string | null;
   main_quest_progress: any;
   main_quest_updated_at: string | null;
+  onboarding_completed?: boolean | null;
+  onboarding_step?: number | null;
 }
 
 interface ZogSnapshot {
@@ -675,6 +678,18 @@ const GameHome = () => {
           <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
         </div>
       </GameShell>
+    );
+  }
+
+  if (profile && profileId && !profile.onboarding_completed) {
+    return (
+      <OnboardingFlow
+        profileId={profileId}
+        initialStep={profile.onboarding_step}
+        hasZog={!!profile.last_zog_snapshot_id}
+        hasQol={!!profile.last_qol_snapshot_id}
+        onComplete={loadGameData}
+      />
     );
   }
 
