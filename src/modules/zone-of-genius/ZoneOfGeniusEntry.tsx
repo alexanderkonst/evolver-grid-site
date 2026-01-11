@@ -13,6 +13,7 @@ import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
+import { getPostZogRedirect } from "@/lib/onboardingRouting";
 
 type Step =
     | "choice"
@@ -133,8 +134,9 @@ const ZoneOfGeniusEntry = () => {
                         description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_zog_complete")}!`,
                     });
                 }
-                if (returnPath === "/start") {
-                    setTimeout(() => navigate("/quality-of-life-map/assessment?return=/start"), 600);
+                const redirectPath = getPostZogRedirect(returnPath);
+                if (redirectPath) {
+                    setTimeout(() => navigate(redirectPath), 600);
                 }
             } else {
                 toast({

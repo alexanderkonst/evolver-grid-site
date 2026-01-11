@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { cn } from "@/lib/utils";
+import { buildQolResultsPath } from "@/lib/onboardingRouting";
 
 const QualityOfLifeMapAssessment = () => {
   const navigate = useNavigate();
@@ -37,8 +38,7 @@ const QualityOfLifeMapAssessment = () => {
 
   const handleNext = () => {
     if (isLastDomain) {
-      const returnParam = returnTo ? `?return=${encodeURIComponent(returnTo)}` : "";
-      navigate(`/quality-of-life-map/results${returnParam}`);
+      navigate(buildQolResultsPath(returnTo));
     } else {
       setCurrentIndex(currentIndex + 1);
     }
