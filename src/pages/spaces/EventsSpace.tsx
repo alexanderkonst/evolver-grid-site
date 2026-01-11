@@ -158,7 +158,7 @@ const EventsSpace = () => {
                 {Object.entries(eventsByLocation).map(([location, grouped]) => (
                   <div key={location}>
                     <h3 className="text-sm font-semibold text-slate-700 mb-3">{location}</h3>
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                       {grouped.map((event) => (
                         <EventCard
                           key={event.id}
