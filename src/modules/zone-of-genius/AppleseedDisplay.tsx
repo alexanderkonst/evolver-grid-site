@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ShareZoG from "@/components/sharing/ShareZoG";
 import { AppleseedData } from "./appleseedGenerator";
 
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
     onSave?: () => void;
+    profileUrl?: string;
 }
 
 interface CollapsibleSectionProps {
@@ -39,7 +41,7 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }: Collapsibl
     );
 };
 
-const AppleseedDisplay = ({ appleseed, onSave }: AppleseedDisplayProps) => {
+const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayProps) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopyPitch = async () => {
@@ -237,6 +239,12 @@ const AppleseedDisplay = ({ appleseed, onSave }: AppleseedDisplayProps) => {
                     </Button>
                 </div>
             )}
+            <ShareZoG
+                archetypeName={appleseed.vibrationalKey.name}
+                tagline={appleseed.vibrationalKey.tagline}
+                primeDriver={appleseed.threeLenses.primeDriver}
+                profileUrl={profileUrl}
+            />
         </div>
     );
 };

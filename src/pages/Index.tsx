@@ -82,7 +82,7 @@ const Index = () => {
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
           <div
-            onClick={() => window.location.href = '/game'}
+            onClick={() => window.location.href = '/start'}
             className="rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
           >
             <div className="text-center">
