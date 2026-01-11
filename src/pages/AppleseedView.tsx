@@ -5,19 +5,22 @@ import GameShell from "@/components/game/GameShell";
 import { Button } from "@/components/ui/button";
 import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
 import { supabase } from "@/integrations/supabase/client";
 
 const AppleseedView = () => {
   const navigate = useNavigate();
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
+  const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
   const [loading, setLoading] = useState(true);
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const load = async () => {
-      const { appleseed: savedAppleseed } = await loadSavedData();
+      const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
       setAppleseed(savedAppleseed);
+      setExcalibur(savedExcalibur);
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         setProfileUrl(`${window.location.origin}/profile/${user.id}`);
@@ -69,6 +72,19 @@ const AppleseedView = () => {
         </Button>
       </div>
       <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
+      {!excalibur && (
+        <div className="px-4 pb-10">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 p-6 text-center">
+            <h2 className="text-lg font-semibold text-slate-900 mb-2">Your Unique Offer</h2>
+            <p className="text-slate-600 mb-4">
+              You know who you are. Now discover what you can offer.
+            </p>
+            <Button onClick={() => navigate("/zone-of-genius/entry")}>
+              Create My Unique Offer →
+            </Button>
+          </div>
+        </div>
+      )}
     </GameShell>
   );
 };

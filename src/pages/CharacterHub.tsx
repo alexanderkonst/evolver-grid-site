@@ -376,7 +376,7 @@ const CharacterHub = () => {
                             <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-5 text-left">
                                 <p className="text-xs text-violet-300 font-medium mb-1">Your Unique Offer</p>
                                 <p className="text-sm text-slate-200 mb-3">
-                                    Craft your unique offer once your Zone of Genius is ready.
+                                    You know WHO you are. Now discover WHAT you can offer.
                                 </p>
                                 <Button
                                     size="sm"
@@ -384,7 +384,7 @@ const CharacterHub = () => {
                                     className="bg-violet-500 text-white hover:bg-violet-600"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
-                                    Create Offer
+                                    Create My Unique Offer →
                                 </Button>
                             </div>
                         ) : null}

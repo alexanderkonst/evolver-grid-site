@@ -107,6 +107,10 @@ const QualityOfLifeMapResults: FC = () => {
             .eq('id', newSnapshot.id);
 
           console.log(`✅ Awarded 50 XP for QoL completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
+          toast({
+            title: "🎉 +50 XP (Mind)",
+            description: "Quality of Life snapshot saved.",
+          });
         }
       } else {
         // Just update the reference without awarding XP again

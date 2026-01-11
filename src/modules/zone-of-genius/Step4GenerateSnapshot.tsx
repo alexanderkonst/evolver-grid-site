@@ -170,6 +170,7 @@ const Step4GenerateSnapshot = () => {
             .eq('id', snapshotData.id);
 
           console.log(`✅ Awarded 100 XP for ZoG completion! New XP: ${newXpTotal}, Level: ${newLevel}`);
+          toast.success("🎉 +100 XP (Genius)");
         }
       } else {
         // Just update the reference without awarding XP again

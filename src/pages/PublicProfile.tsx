@@ -7,6 +7,7 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
 interface PublicProfileData {
+  user_id?: string | null;
   first_name: string | null;
   last_name: string | null;
   avatar_url: string | null;
@@ -31,7 +32,7 @@ const resolveVisibility = (value: string | null) => {
 };
 
 const PublicProfile = () => {
-  const { userId } = useParams();
+  const { userId, username } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<PublicProfileData | null>(null);
@@ -43,16 +44,22 @@ const PublicProfile = () => {
     let isMounted = true;
 
     const loadProfile = async () => {
-      if (!userId) return;
+      if (!userId && !username) return;
       setLoading(true);
 
-      const { data: profileData } = await supabase
+      let profileQuery = supabase
         .from("game_profiles")
         .select(
-          "first_name, last_name, avatar_url, location, visibility, show_location, show_mission, show_offer, last_zog_snapshot_id"
-        )
-        .eq("user_id", userId)
-        .maybeSingle();
+          "user_id, first_name, last_name, avatar_url, location, visibility, show_location, show_mission, show_offer, last_zog_snapshot_id"
+        );
+
+      if (username) {
+        profileQuery = profileQuery.eq("username", username);
+      } else if (userId) {
+        profileQuery = profileQuery.eq("user_id", userId);
+      }
+
+      const { data: profileData } = await profileQuery.maybeSingle();
 
       if (!profileData) {
         if (isMounted) {
@@ -74,10 +81,12 @@ const PublicProfile = () => {
         zogData = data || null;
       }
 
+      const resolvedUserId = (profileData as { user_id?: string | null })?.user_id || userId || "";
+
       const { data: missionData } = await supabase
         .from("mission_participants")
         .select("mission_title, intro_text")
-        .eq("user_id", userId)
+        .eq("user_id", resolvedUserId)
         .eq("share_consent", true)
         .order("created_at", { ascending: false })
         .limit(1)
@@ -97,7 +106,35 @@ const PublicProfile = () => {
     return () => {
       isMounted = false;
     };
-  }, [userId]);
+  }, [userId, username]);
+
+  useEffect(() => {
+    if (!profile || loading) return;
+    const title = `${fullName} | Evolver Grid`;
+    const description =
+      appleseed?.vibrationalKey?.tagline ||
+      mission?.mission_title ||
+      "Discover your Zone of Genius.";
+    const image = profile.avatar_url || "";
+
+    document.title = title;
+
+    const setMeta = (key: string, value: string, attr: "name" | "property") => {
+      let tag = document.querySelector(`meta[${attr}=\"${key}\"]`) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attr, key);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", value);
+    };
+
+    setMeta("og:title", title, "property");
+    setMeta("og:description", description, "property");
+    if (image) {
+      setMeta("og:image", image, "property");
+    }
+  }, [appleseed?.vibrationalKey?.tagline, fullName, loading, mission?.mission_title, profile]);
 
   const visibility = resolveVisibility(profile?.visibility ?? null);
   const fullName = useMemo(() => {

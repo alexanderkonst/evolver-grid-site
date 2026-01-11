@@ -92,6 +92,7 @@ const App = () => (
             <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route path="/start" element={<OnboardingStart />} />
             <Route path="/profile/:userId" element={<PublicProfile />} />
+            <Route path="/u/:username" element={<PublicProfile />} />
             <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
             <Route path="/ai-upgrade" element={<AIUpgrade />} />
             <Route path="/destiny" element={<Destiny />} />
