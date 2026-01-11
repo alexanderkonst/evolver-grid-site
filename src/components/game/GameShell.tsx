@@ -86,7 +86,7 @@ const SPACES: NavItem[] = [
     },
     {
         id: "events",
-        label: "Gatherings",
+        label: "Events",
         icon: <CalendarDays className="w-5 h-5" />,
         path: "/game/events",
         description: "Gatherings and Experiences"
@@ -235,11 +235,11 @@ export const GameShell = ({ children }: GameShellProps) => {
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-slate-100 rounded-lg"
                 >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-        <span className="font-bold text-slate-900">Evolver</span>
-        <div className="w-9" /> {/* Spacer */}
-    </div>
+                    {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+                <span className="font-bold text-slate-900">Evolver</span>
+                <div className="w-9" /> {/* Spacer */}
+            </div>
 
             {/* Sidebar */}
             <aside

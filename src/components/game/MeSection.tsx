@@ -30,7 +30,7 @@ const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: M
             <img
                 src={dodecahedronImage}
                 alt=""
-                className="pointer-events-none absolute -right-10 -top-10 w-44 opacity-10"
+                className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 w-36 opacity-30"
                 aria-hidden="true"
             />
             <div className="flex items-center gap-3 mb-3">
