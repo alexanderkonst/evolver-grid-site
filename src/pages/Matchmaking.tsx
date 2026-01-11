@@ -16,7 +16,7 @@ interface MatchCandidate {
   location: string | null;
   showLocation: boolean;
   spokenLanguages: string[];
-  matchReason: string;
+  matchReason?: string;
   complementary: boolean;
 }
 
@@ -232,7 +232,7 @@ const Matchmaking = () => {
             complementary,
           };
         })
-        .filter((row): row is CandidateWithReasons => !!row);
+        .filter(Boolean) as CandidateWithReasons[];
 
       const similarGenius = [...candidates]
         .sort((a, b) => b.similarityScore - a.similarityScore)

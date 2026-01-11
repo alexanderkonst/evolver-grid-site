@@ -107,13 +107,6 @@ const Step4GenerateSnapshot = () => {
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
 
-        profileId,
-        archetypeTitle: parsed.archetypeTitle,
-        hasDescription: !!parsed.description,
-        top3Count: top3TalentNames.length,
-        top10Count: top10TalentNames.length,
-      });
-
       // Insert snapshot
       const { data: snapshotData, error: snapshotError } = await supabase
         .from('zog_snapshots')

@@ -127,7 +127,8 @@ const QualityOfLifeGrowthRecipe = () => {
         .select("qol_priorities")
         .eq("id", profileId)
         .maybeSingle();
-      const firstPriority = (data?.qol_priorities || []).find((entry: string) => isDomainId(entry));
+      const priorities = Array.isArray(data?.qol_priorities) ? data.qol_priorities : [];
+      const firstPriority = priorities.find((entry: unknown) => typeof entry === 'string' && isDomainId(entry));
       setSelectedDomain(firstPriority || "growth");
       setLoading(false);
     };
