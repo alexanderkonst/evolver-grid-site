@@ -185,6 +185,7 @@ const loopPriority: Record<ActionLoop, number> = {
   marketplace: 2,
   teams: 3,
   coop: 4,
+  matchmaking: 5,
 };
 
 const typePriority: Record<UnifiedAction["type"], number> = {

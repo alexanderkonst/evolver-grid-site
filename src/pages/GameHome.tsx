@@ -43,7 +43,7 @@ interface GameProfile {
   last_name: string | null;
   last_zog_snapshot_id: string | null;
   last_qol_snapshot_id: string | null;
-  qol_priorities?: string[] | null;
+  qol_priorities?: unknown | null;
   total_quests_completed: number;
   last_quest_title: string | null;
   xp_total: number;
@@ -321,7 +321,8 @@ const GameHome = () => {
   const hasAnyData = profile?.last_zog_snapshot_id || profile?.last_qol_snapshot_id;
 
   const getLowestDomains = (): string[] => {
-    if (profile?.qol_priorities && profile.qol_priorities.length > 0) {
+    const priorities = Array.isArray(profile?.qol_priorities) ? profile.qol_priorities : [];
+    if (priorities.length > 0) {
       const labelMap: Record<DomainId, string> = {
         wealth: "Wealth",
         health: "Health",
@@ -332,9 +333,9 @@ const GameHome = () => {
         socialTies: "Social",
         home: "Home",
       };
-      return profile.qol_priorities
-        .map((id) => labelMap[id as DomainId])
-        .filter(Boolean);
+      return priorities
+        .map((id: unknown) => typeof id === 'string' ? labelMap[id as DomainId] : null)
+        .filter((v): v is string => !!v);
     }
     if (!currentQolSnapshot) return [];
     const domainStages = [

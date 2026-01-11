@@ -3,7 +3,8 @@ export type ActionLoop =
   | "transformation"
   | "marketplace"
   | "teams"
-  | "coop";
+  | "coop"
+  | "matchmaking";
 
 export type ActionType =
   | "quest"
