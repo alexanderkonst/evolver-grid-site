@@ -36,7 +36,7 @@ const AppleseedSummaryCard = ({ appleseed }: AppleseedSummaryCardProps) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => navigate("/zone-of-genius/entry")}
+          onClick={() => navigate("/zone-of-genius/appleseed")}
           className="mt-4 w-full text-amber-700 hover:text-amber-800 hover:bg-amber-100"
         >
           View Full Appleseed

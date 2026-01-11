@@ -4,12 +4,28 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useNavigate } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
+import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
+import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
+import { AppleseedData } from "./appleseedGenerator";
+import { ExcaliburData } from "./excaliburGenerator";
+import { loadSavedData } from "./saveToDatabase";
 
 const ZoneOfGeniusLandingPage = () => {
   const navigate = useNavigate();
+  const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
+  const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const loadSaved = async () => {
+      const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
+      setAppleseed(savedAppleseed);
+      setExcalibur(savedExcalibur);
+    };
+    loadSaved();
   }, []);
 
   const handleStartAssessment = () => {
@@ -22,6 +38,16 @@ const ZoneOfGeniusLandingPage = () => {
 
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl space-y-20">
+
+          {(appleseed || excalibur) && (
+            <section className="max-w-3xl mx-auto space-y-4">
+              <h2 className="text-xl font-semibold text-center text-primary">Your Saved Genius Outputs</h2>
+              <div className="space-y-4">
+                {appleseed && <AppleseedSummaryCard appleseed={appleseed} />}
+                {excalibur && <ExcaliburSummaryCard excalibur={excalibur} />}
+              </div>
+            </section>
+          )}
 
           {/* Hero Section */}
           <section className="text-center space-y-6">

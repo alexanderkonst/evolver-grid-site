@@ -45,6 +45,8 @@ import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3
 import Step3OrderTalents from "./modules/zone-of-genius/Step3OrderTalents";
 import Step4GenerateSnapshot from "./modules/zone-of-genius/Step4GenerateSnapshot";
 import ZoneOfGeniusEntry from "./modules/zone-of-genius/ZoneOfGeniusEntry";
+import AppleseedView from "./pages/AppleseedView";
+import ExcaliburView from "./pages/ExcaliburView";
 import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
 import ProfileSpace from "./pages/spaces/ProfileSpace";
@@ -122,6 +124,8 @@ const App = () => (
               <Route path="results" element={<QualityOfLifeMapResults />} />
             </Route>
             <Route path="/zone-of-genius" element={<ZoneOfGeniusLandingPage />} />
+            <Route path="/zone-of-genius/appleseed" element={<AppleseedView />} />
+            <Route path="/zone-of-genius/excalibur" element={<ExcaliburView />} />
             <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
             <Route path="/zone-of-genius/assessment" element={<ZoneOfGeniusAssessmentLayout />}>
               <Route index element={<Step0SwipeTalents />} />
