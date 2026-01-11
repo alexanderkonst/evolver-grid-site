@@ -15,17 +15,19 @@ Results in life (Quality of Life) are the *output* of inner development. You can
 
 ---
 
-## Primary Spaces & Life Questions
+## Game Spaces & Life Questions
 
-Each space addresses a fundamental human question:
+Each space (as defined in `game_spaces.md`) addresses a fundamental human question:
 
 | Space | Core Question (EN) | Core Question (RU) | One Word |
 |-------|-------------------|-------------------|----------|
-| **Genius** | How do I earn well doing what I love? | Как хорошо зарабатывать, делая то, что люблю? | **THRIVE** |
-| **Growth** | How do I level up? | Как выйти на следующий уровень? | **GROW** |
-| **Community** | Who are my people? | Кто близкие мне по духу люди? | **CONNECT** |
-| **Mission** | What's mine to do in this world? | Что мне делать в этом мире? | **SERVE** |
 | **Profile** | Who am I? What do I know? What can I do? | Кто я? Что знаю? Что умею? | **KNOW** |
+| **Transformation** | How do I level up? How do I grow? | Как выйти на следующий уровень? | **GROW** |
+| **Marketplace** | How do I earn well doing what I love? | Как хорошо зарабатывать, делая то, что люблю? | **THRIVE** |
+| **Matchmaking** | Who are my people? | Кто близкие мне по духу люди? | **CONNECT** |
+| **Venture Co-op** | What's mine to do? How do we build together? | Что мне делать в этом мире? | **SERVE** |
+
+> **Note**: For detailed step-by-step user journey, see `customer_journey_map.md` (source of truth for sequence).
 
 ---
 
@@ -98,7 +100,7 @@ The system tracks where user is in the cycle internally. We recommend actions ac
 
 ---
 
-## 4. CONNECT Path (Mission & Matching)
+## 4. Matchmaking Space (Connect & Collaborate)
 
 ### Mission Discovery
 - Connect, Collaborate, Contribute, Serve
@@ -123,7 +125,7 @@ The system tracks where user is in the cycle internally. We recommend actions ac
 
 ---
 
-## 5. PROFILE Space (Know Yourself)
+## 5. Profile Space (Know Yourself)
 
 ### Core Questions
 - *Who am I?*
