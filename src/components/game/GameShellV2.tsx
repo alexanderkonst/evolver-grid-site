@@ -111,8 +111,9 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         }
     }, [profile?.onboarding_stage, location.pathname, navigate]);
 
-    // Show minimal shell during onboarding
-    const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
+    // Show minimal shell during onboarding (bypass for test page)
+    const isTestPage = location.pathname === "/game/test-nav";
+    const showSidebar = isTestPage || !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
     if (!showSidebar) {
         return (
             <div className="min-h-screen bg-white">
@@ -148,9 +149,9 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 flex">
+        <div className="min-h-screen bg-slate-50">
             {/* === DESKTOP LAYOUT === */}
-            <div className="hidden lg:flex h-screen">
+            <div className="hidden lg:flex min-h-screen">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -167,6 +168,11 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                         className="h-screen sticky top-0"
                     />
                 )}
+
+                {/* Panel 3: Content */}
+                <main className="flex-1 bg-slate-50 min-h-screen overflow-auto">
+                    {children}
+                </main>
             </div>
 
             {/* === MOBILE LAYOUT === */}
@@ -215,11 +221,6 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                     </div>
                 )}
             </div>
-
-            {/* === DESKTOP CONTENT === */}
-            <main className="hidden lg:block flex-1 bg-slate-50 min-h-screen">
-                {children}
-            </main>
         </div>
     );
 };

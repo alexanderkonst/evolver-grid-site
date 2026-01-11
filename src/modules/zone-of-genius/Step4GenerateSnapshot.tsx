@@ -51,7 +51,7 @@ const Step4GenerateSnapshot = () => {
       navigate("/zone-of-genius/assessment/step-3");
       return;
     }
-    
+
     // Only auto-generate once profileId is loaded
     if (!snapshotMarkdown && !isLoadingProfile && profileId) {
       handleGenerate();
@@ -65,7 +65,7 @@ const Step4GenerateSnapshot = () => {
     setIsGenerating(true);
     try {
       const prompt = buildPrompt();
-      
+
       const { data, error } = await supabase.functions.invoke("generate-zog-snapshot", {
         body: { prompt },
       });
@@ -84,7 +84,7 @@ const Step4GenerateSnapshot = () => {
       const generatedText = data?.generatedText || "";
       setSnapshotMarkdown(generatedText);
       toast.success("Your Zone of Genius Snapshot is ready!");
-      
+
       // Save snapshot to database
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
@@ -102,17 +102,10 @@ const Step4GenerateSnapshot = () => {
 
     try {
       const parsed = parseSnapshotSections(snapshotText);
-      
+
       // Prepare talent arrays
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
-
-        profileId,
-        archetypeTitle: parsed.archetypeTitle,
-        hasDescription: !!parsed.description,
-        top3Count: top3TalentNames.length,
-        top10Count: top10TalentNames.length,
-      });
 
       // Insert snapshot
       const { data: snapshotData, error: snapshotError } = await supabase
@@ -205,7 +198,7 @@ const Step4GenerateSnapshot = () => {
       name: t.name,
       description: t.description
     }));
-    
+
     const top3List = top3Talents.map(t => ({
       id: t.id,
       name: t.name,
@@ -277,37 +270,37 @@ GENERAL STYLE RULES:
 
   function parseSnapshotSections(text: string) {
     const sections: Record<string, string> = {};
-    
+
     // Extract sections by looking for labels
     const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Your Zone of Genius Description:|$)/s);
     sections.archetypeTitle = archetypeMatch?.[1]?.trim() || "";
-    
+
     const descriptionMatch = text.match(/Your Zone of Genius Description.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
     sections.description = descriptionMatch?.[1]?.trim() || "";
-    
+
     const superpowersMatch = text.match(/Superpowers in Action.*?:\s*(.+?)(?=\n\n|Your Edge:|$)/s);
     sections.superpowers = superpowersMatch?.[1]?.trim() || "";
-    
+
     const edgeMatch = text.match(/Your Edge.*?:\s*(.+?)(?=\n\n|Where This Genius Thrives:|$)/s);
     sections.edge = edgeMatch?.[1]?.trim() || "";
-    
+
     const thrivesMatch = text.match(/Where This Genius Thrives.*?:\s*(.+?)(?=\n\n|Mastery Action:|$)/s);
     sections.thrives = thrivesMatch?.[1]?.trim() || "";
-    
+
     const masteryMatch = text.match(/Mastery Action:\s*[-–]?\s*(.+?)$/s);
     sections.masteryAction = masteryMatch?.[1]?.trim() || "";
-    
+
     return sections;
   }
 
   const handleDownloadPDF = async () => {
     if (!snapshotRef.current) return;
-    
+
     setIsDownloading(true);
     try {
       // Temporarily show the hidden PDF content
       snapshotRef.current.classList.remove('hidden');
-      
+
       const canvas = await html2canvas(snapshotRef.current, {
         scale: 1.5,
         useCORS: true,
@@ -343,7 +336,7 @@ GENERAL STYLE RULES:
       }
 
       pdf.save('Zone-of-Genius-Snapshot.pdf');
-      
+
       toast.success("PDF downloaded successfully!");
     } catch (err) {
       toast.error("Failed to generate PDF. Please try again.");
@@ -370,10 +363,10 @@ GENERAL STYLE RULES:
     }).filter(Boolean);
   };
 
-  const currentDate = new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 
   return (
@@ -418,17 +411,17 @@ GENERAL STYLE RULES:
                 <p className="text-xs text-slate-400 mb-6">
                   Generated on: {currentDate}
                 </p>
-                
+
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
                   {parsedSnapshot.archetypeTitle}
                 </h2>
-                
+
                 <div className="prose prose-sm sm:prose-base max-w-none mb-6">
                   <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     {parsedSnapshot.description}
                   </p>
                 </div>
-                
+
                 <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-slate-200">
                   {top3Talents.map(talent => (
                     <span
@@ -525,7 +518,7 @@ GENERAL STYLE RULES:
                   If This Hit Home
                 </h3>
                 <p className="text-xs text-slate-700 mb-3">
-                  If this description feels uncannily accurate and you want help turning it into concrete career moves, 
+                  If this description feels uncannily accurate and you want help turning it into concrete career moves,
                   Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
                 </p>
                 <p className="text-xs font-semibold text-slate-900 mb-3">
@@ -547,10 +540,10 @@ GENERAL STYLE RULES:
           {/* Footer / continuity line */}
           <div className="mt-16 pt-8 border-t border-slate-200 text-center space-y-6">
             <p className="text-sm text-slate-600 max-w-2xl mx-auto">
-              This isn't a final verdict. It's your current character card in the game of your life. 
+              This isn't a final verdict. It's your current character card in the game of your life.
               You can always come back, reassess, and level up.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {returnTo === "genius-offer" ? (
                 <button
@@ -590,7 +583,7 @@ GENERAL STYLE RULES:
                 <p className="text-xs text-slate-400 mb-4">
                   Generated on: {currentDate}
                 </p>
-                
+
                 {/* Top 3 talents prominently at top */}
                 <div className="flex flex-wrap justify-center gap-3 mb-6">
                   {top3Talents.map(talent => (
@@ -602,11 +595,11 @@ GENERAL STYLE RULES:
                     </span>
                   ))}
                 </div>
-                
+
                 <h1 className="text-3xl font-bold text-slate-900 mb-3">
                   {parsedSnapshot.archetypeTitle}
                 </h1>
-                
+
                 <div className="max-w-2xl mx-auto">
                   <p className="text-base text-slate-700 leading-relaxed">
                     {parsedSnapshot.description}
@@ -652,8 +645,8 @@ GENERAL STYLE RULES:
                     Ready to Turn Insight into Action?
                   </h3>
                   <p className="text-sm text-slate-700 mb-2">
-                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear, 
-                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to 
+                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
+                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
                     transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
                   </p>
                   <p className="text-sm font-semibold text-slate-900">
