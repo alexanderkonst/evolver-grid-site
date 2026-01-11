@@ -9,7 +9,7 @@ import {
   Flame,
   AlertCircle,
 } from "lucide-react";
-import gameOfLifeLogo from "@/assets/game-of-life-logo.png";
+import dodecahedronImage from "@/assets/dodecahedron.jpg";
 import GameShell from "@/components/game/GameShell";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -535,7 +535,7 @@ const GameHome = () => {
       lowestDomains,
       totalCompletedActions: profile?.total_quests_completed,
     }),
-  [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, growthPathProgress]);
+    [questSuggestion, nextRecommendedUpgrade, suggestedPractices, lowestDomains, profile?.total_quests_completed, growthPathProgress]);
 
   const recommendedAction = useMemo(() => {
     if (!recommendationSet) return null;
@@ -733,7 +733,7 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-10">
-            <img src={gameOfLifeLogo} alt="Game of Life" className="w-32 mx-auto mb-4" />
+            <img src={dodecahedronImage} alt="Dodecahedron" className="w-28 sm:w-32 mx-auto mb-4 drop-shadow-lg" />
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
               {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
             </h1>
