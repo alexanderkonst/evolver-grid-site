@@ -4,7 +4,6 @@ import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass, Flame,
 import { Button } from "@/components/ui/button";
 import GameShell from "@/components/game/GameShell";
 import MeSection from "@/components/game/MeSection";
-import MyLifeSection from "@/components/game/MyLifeSection";
 import MyNextMoveSection from "@/components/game/MyNextMoveSection";
 import NextActionsPanel from "@/components/game/NextActionsPanel";
 import { supabase } from "@/integrations/supabase/client";
@@ -38,6 +37,8 @@ const CoreLoopHome = () => {
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
     const [level, setLevel] = useState(1);
     const [xpTotal, setXpTotal] = useState(0);
+    const [displayName, setDisplayName] = useState<string | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [qolScores, setQolScores] = useState<QolDomain[]>([]);
     const [recommendedAction, setRecommendedAction] = useState<Action | null>(null);
     const [isCompleting, setIsCompleting] = useState(false);
@@ -82,13 +83,15 @@ const CoreLoopHome = () => {
             // Load game profile
             const { data: profile } = await supabase
                 .from('game_profiles')
-                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count, genius_stage')
+                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count, genius_stage, first_name, avatar_url')
                 .eq('id', profileId)
                 .single();
 
             if (profile) {
                 setLevel(profile.level || 1);
                 setXpTotal(profile.xp_total || 0);
+                setDisplayName(profile.first_name || user.email?.split("@")[0] || "Player");
+                setAvatarUrl((profile as any).avatar_url || null);
                 setPracticeCount(profile.practice_count || 0);
 
                 // Set genius stage from database (with safe fallback)
@@ -349,13 +352,6 @@ const CoreLoopHome = () => {
                         </Button>
                     </div>
 
-                    {/* Progress indicator */}
-                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
-                        <span className="w-3 h-3 rounded-full bg-green-500" />
-                        <span className="w-3 h-3 rounded-full bg-blue-500" />
-                        <span className="w-3 h-3 rounded-full bg-slate-200" />
-                        <span className="w-3 h-3 rounded-full bg-slate-200" />
-                    </div>
                 </div>
             </GameShell>
         );
@@ -371,12 +367,9 @@ const CoreLoopHome = () => {
                         archetypeTitle={archetypeTitle || undefined}
                         level={level}
                         xpTotal={xpTotal}
+                        displayName={displayName || undefined}
+                        avatarUrl={avatarUrl}
                     />
-
-                    {/* Show MY LIFE section */}
-                    {qolScores.length > 0 && (
-                        <MyLifeSection qolScores={qolScores} />
-                    )}
 
                     {/* First Action Card */}
                     <div className="rounded-xl border-2 border-green-200 bg-green-50 p-5 mb-4">
@@ -398,13 +391,6 @@ const CoreLoopHome = () => {
                         isCompleting={isCompleting}
                     />
 
-                    {/* Progress indicator */}
-                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500 mt-6">
-                        <span className="w-3 h-3 rounded-full bg-green-500" />
-                        <span className="w-3 h-3 rounded-full bg-green-500" />
-                        <span className="w-3 h-3 rounded-full bg-green-500" />
-                        <span className="w-3 h-3 rounded-full bg-amber-500 animate-pulse" />
-                    </div>
                 </div>
             </GameShell>
         );
@@ -454,12 +440,9 @@ const CoreLoopHome = () => {
                     archetypeTitle={archetypeTitle || undefined}
                     level={level}
                     xpTotal={xpTotal}
+                    displayName={displayName || undefined}
+                    avatarUrl={avatarUrl}
                 />
-
-                {/* MY LIFE Section */}
-                {qolScores.length > 0 && (
-                    <MyLifeSection qolScores={qolScores} />
-                )}
 
                 {/* MY NEXT MOVE Section — Two Action Options */}
                 <NextActionsPanel
