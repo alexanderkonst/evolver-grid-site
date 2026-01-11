@@ -30,7 +30,7 @@ interface MatchCandidate {
     complementary: boolean;
 }
 
-const MatchmakingSpace = () => {
+const TeamsSpace = () => {
     const { toast } = useToast();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -250,7 +250,7 @@ const MatchmakingSpace = () => {
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
                         <Users className="w-6 h-6 text-slate-700" />
-                        <h1 className="text-2xl font-bold text-slate-900">Matchmaking Space</h1>
+                        <h1 className="text-2xl font-bold text-slate-900">Teams</h1>
                     </div>
                     <p className="text-slate-600">Find your people. Connect with complementary geniuses.</p>
                 </div>
@@ -343,4 +343,4 @@ const MatchmakingSpace = () => {
     );
 };
 
-export default MatchmakingSpace;
+export default TeamsSpace;

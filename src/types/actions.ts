@@ -2,7 +2,7 @@ export type ActionLoop =
   | "profile"
   | "transformation"
   | "marketplace"
-  | "matchmaking"
+  | "teams"
   | "coop";
 
 export type ActionType =
