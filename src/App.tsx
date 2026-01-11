@@ -52,7 +52,7 @@ import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
 import TransformationSpace from "./pages/spaces/TransformationSpace";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
-import MatchmakingSpace from "./pages/spaces/MatchmakingSpace";
+import TeamsSpace from "./pages/spaces/TeamsSpace";
 import EventsSpace from "./pages/spaces/EventsSpace";
 import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
@@ -127,7 +127,7 @@ const App = () => (
             <Route path="/game/profile" element={<CharacterHub />} />
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
-            <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
+            <Route path="/game/teams" element={<TeamsSpace />} />
             <Route path="/connections" element={<Connections />} />
             <Route path="/game/mission" element={<MissionSelection />} />
             <Route path="/community/people" element={<PeopleDirectory />} />

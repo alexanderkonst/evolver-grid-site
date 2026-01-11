@@ -183,7 +183,7 @@ const loopPriority: Record<ActionLoop, number> = {
   profile: 0,
   transformation: 1,
   marketplace: 2,
-  matchmaking: 3,
+  teams: 3,
   coop: 4,
 };
 
