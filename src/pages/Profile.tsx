@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
@@ -16,6 +17,7 @@ interface UserProfile {
     id: string;
     first_name: string | null;
     last_name: string | null;
+    spoken_languages: string[] | null;
 }
 
 interface Purchase {
@@ -36,10 +38,25 @@ const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [editFirstName, setEditFirstName] = useState("");
     const [editLastName, setEditLastName] = useState("");
+    const [editLanguages, setEditLanguages] = useState<string[]>([]);
+    const [customLanguage, setCustomLanguage] = useState("");
     const [isSaving, setIsSaving] = useState(false);
 
     // Stripe portal hook
     const { openPortal, isLoading: isPortalLoading } = useStripePortal();
+
+    const COMMON_LANGUAGES = [
+        "English",
+        "Russian",
+        "Spanish",
+        "German",
+        "French",
+        "Chinese",
+        "Portuguese",
+        "Japanese",
+        "Korean",
+        "Arabic",
+    ];
 
     useEffect(() => {
         loadUserData();
@@ -60,7 +77,7 @@ const Profile = () => {
         // Fetch profile
         const { data: profileData } = await supabase
             .from("game_profiles")
-            .select("id, first_name, last_name")
+            .select("id, first_name, last_name, spoken_languages")
             .eq("user_id", user.id)
             .maybeSingle();
 
@@ -68,6 +85,7 @@ const Profile = () => {
             setProfile(profileData);
             setEditFirstName(profileData.first_name || "");
             setEditLastName(profileData.last_name || "");
+            setEditLanguages(Array.isArray(profileData.spoken_languages) ? profileData.spoken_languages : []);
         }
 
         // Fetch purchases
@@ -87,6 +105,11 @@ const Profile = () => {
     const handleSaveProfile = async () => {
         if (!profile) return;
 
+        const normalizedLanguages = editLanguages
+            .map((language) => normalizeLanguage(language))
+            .filter(Boolean)
+            .filter((language, index, list) => list.findIndex((value) => normalizeKey(value) === normalizeKey(language)) === index);
+
         setIsSaving(true);
 
         const { error } = await supabase
@@ -94,6 +117,7 @@ const Profile = () => {
             .update({
                 first_name: editFirstName.trim() || null,
                 last_name: editLastName.trim() || null,
+                spoken_languages: normalizedLanguages,
             })
             .eq("id", profile.id);
 
@@ -108,6 +132,7 @@ const Profile = () => {
                 ...profile,
                 first_name: editFirstName.trim() || null,
                 last_name: editLastName.trim() || null,
+                spoken_languages: normalizedLanguages,
             });
             setIsEditing(false);
             toast({
@@ -122,8 +147,42 @@ const Profile = () => {
     const handleCancelEdit = () => {
         setEditFirstName(profile?.first_name || "");
         setEditLastName(profile?.last_name || "");
+        setEditLanguages(Array.isArray(profile?.spoken_languages) ? profile?.spoken_languages : []);
+        setCustomLanguage("");
         setIsEditing(false);
     };
+
+    const normalizeLanguage = (value: string) => value.trim().replace(/\s+/g, " ");
+    const normalizeKey = (value: string) => normalizeLanguage(value).toLowerCase();
+
+    const toggleLanguage = (language: string) => {
+        setEditLanguages((prev) => {
+            const exists = prev.some((item) => normalizeKey(item) === normalizeKey(language));
+            if (exists) {
+                return prev.filter((item) => normalizeKey(item) !== normalizeKey(language));
+            }
+            return [...prev, language];
+        });
+    };
+
+    const addCustomLanguage = () => {
+        const normalized = normalizeLanguage(customLanguage);
+        if (!normalized) return;
+        setEditLanguages((prev) => {
+            const exists = prev.some((item) => normalizeKey(item) === normalizeKey(normalized));
+            if (exists) return prev;
+            return [...prev, normalized];
+        });
+        setCustomLanguage("");
+    };
+
+    const removeLanguage = (language: string) => {
+        setEditLanguages((prev) => prev.filter((item) => normalizeKey(item) !== normalizeKey(language)));
+    };
+
+    const customLanguages = editLanguages.filter(
+        (language) => !COMMON_LANGUAGES.some((common) => normalizeKey(common) === normalizeKey(language))
+    );
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString("en-US", {
@@ -235,6 +294,64 @@ const Profile = () => {
                                                 Email cannot be changed
                                             </p>
                                         </div>
+                                        <div className="space-y-3">
+                                            <Label>Languages</Label>
+                                            <div className="flex flex-wrap gap-2">
+                                                {COMMON_LANGUAGES.map((language) => {
+                                                    const isSelected = editLanguages.some(
+                                                        (item) => normalizeKey(item) === normalizeKey(language)
+                                                    );
+                                                    return (
+                                                        <button
+                                                            key={language}
+                                                            type="button"
+                                                            onClick={() => toggleLanguage(language)}
+                                                            className={`rounded-full border px-3 py-1 text-sm transition ${
+                                                                isSelected
+                                                                    ? "border-amber-300 bg-amber-50 text-amber-900"
+                                                                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                                                            }`}
+                                                            aria-pressed={isSelected}
+                                                        >
+                                                            {language}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                            {customLanguages.length > 0 && (
+                                                <div className="flex flex-wrap gap-2">
+                                                    {customLanguages.map((language) => (
+                                                        <Badge key={language} variant="secondary" className="gap-2">
+                                                            <span>{language}</span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => removeLanguage(language)}
+                                                                className="text-xs text-muted-foreground hover:text-foreground"
+                                                                aria-label={`Remove ${language}`}
+                                                            >
+                                                                ×
+                                                            </button>
+                                                        </Badge>
+                                                    ))}
+                                                </div>
+                                            )}
+                                            <div className="flex flex-col gap-2 sm:flex-row">
+                                                <Input
+                                                    value={customLanguage}
+                                                    onChange={(e) => setCustomLanguage(e.target.value)}
+                                                    placeholder="Add a language"
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === "Enter") {
+                                                            e.preventDefault();
+                                                            addCustomLanguage();
+                                                        }
+                                                    }}
+                                                />
+                                                <Button type="button" variant="outline" onClick={addCustomLanguage}>
+                                                    Add
+                                                </Button>
+                                            </div>
+                                        </div>
                                         <div className="flex gap-2 pt-2">
                                             <Button onClick={handleSaveProfile} disabled={isSaving}>
                                                 {isSaving ? (
@@ -270,6 +387,20 @@ const Profile = () => {
                                         <div>
                                             <p className="text-sm text-muted-foreground">Email</p>
                                             <p className="font-medium">{user?.email}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground">Languages</p>
+                                            {profile?.spoken_languages && profile.spoken_languages.length > 0 ? (
+                                                <div className="mt-2 flex flex-wrap gap-2">
+                                                    {profile.spoken_languages.map((language) => (
+                                                        <Badge key={language} variant="secondary">
+                                                            {language}
+                                                        </Badge>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <p className="font-medium">—</p>
+                                            )}
                                         </div>
                                     </div>
                                 )}
