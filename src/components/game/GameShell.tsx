@@ -180,7 +180,7 @@ export const GameShell = ({ children }: GameShellProps) => {
         navigate("/");
     };
 
-    const showSidebar = profile?.onboarding_stage && ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
+    const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
 
     const unlockStatus = {
         matchmaking: profile?.onboarding_stage === "unlocked",
