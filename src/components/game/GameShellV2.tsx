@@ -173,7 +173,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-[#f0f8ff]">
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-screen">
                 {/* Panel 1: Spaces Rail */}
@@ -211,7 +211,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                 )}
 
                 {/* Panel 3: Content */}
-                <main className="flex-1 bg-slate-50 min-h-screen overflow-auto">
+                <main className="flex-1 bg-[#f0f8ff] min-h-screen overflow-auto">
                     {children}
                 </main>
             </div>
@@ -234,7 +234,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                     />
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 bg-slate-800">
+                    <div className="flex-1 bg-gradient-to-b from-slate-800 to-slate-700">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}
@@ -269,7 +269,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-slate-50 overflow-auto"
+                        className="flex-1 bg-[#f0f8ff] overflow-auto"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         {children}
