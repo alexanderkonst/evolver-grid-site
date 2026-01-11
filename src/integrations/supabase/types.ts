@@ -181,14 +181,14 @@ export type Database = {
           genius_stage: string | null
           id: string
           last_name: string | null
-          linkedin_extracted_at: string | null
-          linkedin_pdf_url: string | null
           last_practice_at: string | null
           last_qol_snapshot_id: string | null
           last_quest_completed_at: string | null
           last_quest_title: string | null
           last_zog_snapshot_id: string | null
           level: number
+          linkedin_extracted_at: string | null
+          linkedin_pdf_url: string | null
           longest_streak_days: number
           main_quest_progress: Json | null
           main_quest_stage: string
@@ -219,14 +219,14 @@ export type Database = {
           genius_stage?: string | null
           id?: string
           last_name?: string | null
-          linkedin_extracted_at?: string | null
-          linkedin_pdf_url?: string | null
           last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
           level?: number
+          linkedin_extracted_at?: string | null
+          linkedin_pdf_url?: string | null
           longest_streak_days?: number
           main_quest_progress?: Json | null
           main_quest_stage?: string
@@ -257,14 +257,14 @@ export type Database = {
           genius_stage?: string | null
           id?: string
           last_name?: string | null
-          linkedin_extracted_at?: string | null
-          linkedin_pdf_url?: string | null
           last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
           last_quest_completed_at?: string | null
           last_quest_title?: string | null
           last_zog_snapshot_id?: string | null
           level?: number
+          linkedin_extracted_at?: string | null
+          linkedin_pdf_url?: string | null
           longest_streak_days?: number
           main_quest_progress?: Json | null
           main_quest_stage?: string
