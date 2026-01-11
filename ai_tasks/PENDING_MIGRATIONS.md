@@ -22,6 +22,7 @@
 | `20260111_add_profile_avatar.sql` | Profile picture URL | ⏳ Pending |
 | `20260111_add_rsvp_email.sql` | RSVP email field | ⏳ Pending |
 | `20260112_add_onboarding_stage.sql` | Progressive onboarding stage tracking | ⏳ Pending |
+| `20260112_add_profile_username.sql` | Public profile username | ⏳ Pending |
 
 ---
 

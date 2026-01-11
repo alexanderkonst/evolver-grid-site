@@ -98,6 +98,12 @@ const ZoneOfGeniusEntry = () => {
                     title: "Zone of Genius Saved!",
                     description: "Your genius profile has been saved.",
                 });
+                if (result.xpAwarded) {
+                    toast({
+                        title: `🎉 +${result.xpAwarded} XP (Genius)`,
+                        description: "Your profile leveled up.",
+                    });
+                }
             } else {
                 toast({
                     title: "Save Failed",
@@ -148,6 +154,12 @@ const ZoneOfGeniusEntry = () => {
                     title: "Unique Offer Saved!",
                     description: "Your genius offer has been saved.",
                 });
+                if (result.xpAwarded) {
+                    toast({
+                        title: `🎉 +${result.xpAwarded} XP (Genius)`,
+                        description: "Your profile leveled up.",
+                    });
+                }
                 // Navigate back to profile after short delay
                 setTimeout(() => navigate(returnPath), 1000);
             } else {

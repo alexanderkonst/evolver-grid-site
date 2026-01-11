@@ -45,6 +45,20 @@ const ZoneOfGeniusLandingPage = () => {
               <div className="space-y-4">
                 {appleseed && <AppleseedSummaryCard appleseed={appleseed} />}
                 {excalibur && <ExcaliburSummaryCard excalibur={excalibur} />}
+                {appleseed && !excalibur && (
+                  <div className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-200 text-center">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Your Unique Offer</h3>
+                    <p className="text-slate-600 mb-4">
+                      You know who you are. Now discover what you can offer.
+                    </p>
+                    <button
+                      onClick={() => navigate("/zone-of-genius/entry")}
+                      className="px-4 py-2 rounded-full bg-violet-600 text-white font-semibold hover:bg-violet-700"
+                    >
+                      Create My Unique Offer →
+                    </button>
+                  </div>
+                )}
               </div>
             </section>
           )}

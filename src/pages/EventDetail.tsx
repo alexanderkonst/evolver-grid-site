@@ -10,6 +10,8 @@ import RsvpButton from "@/components/events/RsvpButton";
 import { useEvent, useEventRsvp } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { awardXp } from "@/lib/xpSystem";
 
 const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
   const dateTime = new Date(`${dateStr}T${timeStr}`);
@@ -68,6 +70,7 @@ const EventDetail = () => {
     }
 
     try {
+      const previousStatus = currentStatus;
       const shouldClearReminder = status === "not_going";
       await updateRsvp(status, {
         email: shouldClearReminder ? "" : reminderEmail,
@@ -78,6 +81,19 @@ const EventDetail = () => {
         title: "RSVP updated",
         description: `You're ${status === "going" ? "going" : status === "maybe" ? "maybe going" : "not going"} to this event`,
       });
+
+      const wasAttending = previousStatus === "going" || previousStatus === "maybe";
+      const isAttending = status === "going" || status === "maybe";
+      if (isAttending && !wasAttending) {
+        const profileId = await getOrCreateGameProfileId();
+        const xpResult = await awardXp(profileId, 10, "spirit");
+        if (xpResult.success) {
+          toast({
+            title: "🎉 +10 XP (Spirit)",
+            description: "Thanks for committing to your community.",
+          });
+        }
+      }
     } catch (err) {
       toast({
         title: "Error",

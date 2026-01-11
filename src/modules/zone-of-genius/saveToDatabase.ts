@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { awardXp } from "@/lib/xpSystem";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 
@@ -22,18 +23,24 @@ const getProfileId = async (): Promise<string | null> => {
  * Get or create a ZoG snapshot for the user
  * Returns the snapshot ID
  */
-const getOrCreateSnapshot = async (profileId: string): Promise<string> => {
+const getOrCreateSnapshot = async (
+  profileId: string
+): Promise<{ id: string; xp_awarded: boolean | null; excalibur_generated_at: string | null }> => {
   // Check if snapshot exists
   const { data: existing } = await supabase
     .from("zog_snapshots")
-    .select("id")
+    .select("id, xp_awarded, excalibur_generated_at")
     .eq("profile_id", profileId)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
   if (existing) {
-    return existing.id;
+    return {
+      id: existing.id,
+      xp_awarded: existing.xp_awarded,
+      excalibur_generated_at: existing.excalibur_generated_at,
+    };
   }
 
   // Create minimal snapshot (will be filled by Appleseed)
@@ -47,11 +54,15 @@ const getOrCreateSnapshot = async (profileId: string): Promise<string> => {
       top_three_talents: [],
       xp_awarded: false,
     })
-    .select("id")
+    .select("id, xp_awarded, excalibur_generated_at")
     .single();
 
   if (error) throw error;
-  return newSnapshot.id;
+  return {
+    id: newSnapshot.id,
+    xp_awarded: newSnapshot.xp_awarded,
+    excalibur_generated_at: newSnapshot.excalibur_generated_at,
+  };
 };
 
 /**
@@ -60,14 +71,14 @@ const getOrCreateSnapshot = async (profileId: string): Promise<string> => {
 export const saveAppleseed = async (
   appleseed: AppleseedData,
   aiResponseRaw?: string
-): Promise<{ success: boolean; snapshotId?: string; error?: string }> => {
+): Promise<{ success: boolean; snapshotId?: string; xpAwarded?: number; error?: string }> => {
   try {
     const profileId = await getProfileId();
     if (!profileId) {
       return { success: false, error: "User not authenticated or profile not found" };
     }
 
-    const snapshotId = await getOrCreateSnapshot(profileId);
+    const snapshot = await getOrCreateSnapshot(profileId);
 
     // Update snapshot with Appleseed data
     const { error } = await supabase
@@ -81,17 +92,31 @@ export const saveAppleseed = async (
         core_pattern: appleseed.bullseyeSentence,
         top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
       })
-      .eq("id", snapshotId);
+      .eq("id", snapshot.id);
 
     if (error) throw error;
 
     // Update game_profile to point to this snapshot
     await supabase
       .from("game_profiles")
-      .update({ last_zog_snapshot_id: snapshotId })
+      .update({
+        last_zog_snapshot_id: snapshot.id,
+        zone_of_genius_completed: true,
+        onboarding_stage: "zog_complete",
+        updated_at: new Date().toISOString(),
+      })
       .eq("id", profileId);
 
-    return { success: true, snapshotId };
+    let xpAwarded = 0;
+    if (!snapshot.xp_awarded) {
+      const xpResult = await awardXp(profileId, 100, "uniqueness");
+      if (xpResult.success) {
+        xpAwarded = 100;
+        await supabase.from("zog_snapshots").update({ xp_awarded: true }).eq("id", snapshot.id);
+      }
+    }
+
+    return { success: true, snapshotId: snapshot.id, xpAwarded };
   } catch (err) {
     console.error("Error saving Appleseed:", err);
     return {
@@ -106,7 +131,7 @@ export const saveAppleseed = async (
  */
 export const saveExcalibur = async (
   excalibur: ExcaliburData
-): Promise<{ success: boolean; error?: string }> => {
+): Promise<{ success: boolean; xpAwarded?: number; error?: string }> => {
   try {
     const profileId = await getProfileId();
     if (!profileId) {
@@ -116,7 +141,7 @@ export const saveExcalibur = async (
     // Get latest snapshot
     const { data: snapshot } = await supabase
       .from("zog_snapshots")
-      .select("id")
+      .select("id, excalibur_generated_at")
       .eq("profile_id", profileId)
       .order("created_at", { ascending: false })
       .limit(1)
@@ -137,7 +162,15 @@ export const saveExcalibur = async (
 
     if (error) throw error;
 
-    return { success: true };
+    let xpAwarded = 0;
+    if (!snapshot.excalibur_generated_at) {
+      const xpResult = await awardXp(profileId, 200, "uniqueness");
+      if (xpResult.success) {
+        xpAwarded = 200;
+      }
+    }
+
+    return { success: true, xpAwarded };
   } catch (err) {
     console.error("Error saving Excalibur:", err);
     return {
