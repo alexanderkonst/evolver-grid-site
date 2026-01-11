@@ -91,6 +91,36 @@ export type Database = {
         }
         Relationships: []
       }
+      connections: {
+        Row: {
+          created_at: string | null
+          id: string
+          message: string | null
+          receiver_id: string
+          requester_id: string
+          responded_at: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message?: string | null
+          receiver_id: string
+          requester_id: string
+          responded_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message?: string | null
+          receiver_id?: string
+          requester_id?: string
+          responded_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       event_rsvps: {
         Row: {
           created_at: string | null
@@ -128,36 +158,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      connections: {
-        Row: {
-          created_at: string | null
-          id: string
-          message: string | null
-          receiver_id: string | null
-          requester_id: string | null
-          responded_at: string | null
-          status: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          message?: string | null
-          receiver_id?: string | null
-          requester_id?: string | null
-          responded_at?: string | null
-          status?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          message?: string | null
-          receiver_id?: string | null
-          requester_id?: string | null
-          responded_at?: string | null
-          status?: string | null
-        }
-        Relationships: []
       }
       events: {
         Row: {
@@ -226,12 +226,17 @@ export type Database = {
           main_quest_updated_at: string
           multiple_intelligences_completed: boolean | null
           onboarding_completed: boolean
+          onboarding_stage: string | null
           onboarding_step: number
           personality_tests: Json | null
           practice_count: number
+          show_location: boolean | null
+          show_mission: boolean | null
+          show_offer: boolean | null
           total_quests_completed: number
           updated_at: string
           user_id: string | null
+          visibility: string | null
           xp_body: number
           xp_emotions: number
           xp_mind: number
@@ -239,10 +244,6 @@ export type Database = {
           xp_total: number
           xp_uniqueness: number
           zone_of_genius_completed: boolean | null
-          visibility: string | null
-          show_location: boolean | null
-          show_mission: boolean | null
-          show_offer: boolean | null
         }
         Insert: {
           ai_upgrade_access?: boolean | null
@@ -268,12 +269,17 @@ export type Database = {
           main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
+          onboarding_stage?: string | null
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
+          show_location?: boolean | null
+          show_mission?: boolean | null
+          show_offer?: boolean | null
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
+          visibility?: string | null
           xp_body?: number
           xp_emotions?: number
           xp_mind?: number
@@ -281,10 +287,6 @@ export type Database = {
           xp_total?: number
           xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
-          visibility?: string | null
-          show_location?: boolean | null
-          show_mission?: boolean | null
-          show_offer?: boolean | null
         }
         Update: {
           ai_upgrade_access?: boolean | null
@@ -310,12 +312,17 @@ export type Database = {
           main_quest_updated_at?: string
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
+          onboarding_stage?: string | null
           onboarding_step?: number
           personality_tests?: Json | null
           practice_count?: number
+          show_location?: boolean | null
+          show_mission?: boolean | null
+          show_offer?: boolean | null
           total_quests_completed?: number
           updated_at?: string
           user_id?: string | null
+          visibility?: string | null
           xp_body?: number
           xp_emotions?: number
           xp_mind?: number
@@ -323,10 +330,6 @@ export type Database = {
           xp_total?: number
           xp_uniqueness?: number
           zone_of_genius_completed?: boolean | null
-          visibility?: string | null
-          show_location?: boolean | null
-          show_mission?: boolean | null
-          show_offer?: boolean | null
         }
         Relationships: [
           {
