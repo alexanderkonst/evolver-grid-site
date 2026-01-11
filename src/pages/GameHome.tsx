@@ -732,7 +732,7 @@ const GameHome = () => {
         </div>
       )}
 
-      <div className="pt-24 px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
           <Link to="/" className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />

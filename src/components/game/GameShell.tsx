@@ -173,7 +173,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     return (
         <div className="min-h-screen bg-white flex">
             {/* Mobile Header */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white border-b border-slate-200 z-50 flex items-center justify-between px-4">
+            <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-slate-200 z-50 flex items-center justify-between px-4 pt-safe">
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-slate-100 rounded-lg"
@@ -197,7 +197,7 @@ export const GameShell = ({ children }: GameShellProps) => {
         `}
             >
                 {/* Logo */}
-                <div className="h-14 lg:h-16 flex items-center justify-between px-4 border-b border-slate-800">
+                <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-slate-800">
                     <Link to="/" className="font-bold text-lg text-white">
                         Game of Life
                     </Link>
@@ -344,7 +344,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             )}
 
             {/* Main Content */}
-            <main className={`flex-1 pt-14 lg:pt-0 transition-all duration-200 ${!desktopSidebarOpen ? 'lg:pl-0' : ''}`}>
+            <main className={`flex-1 pt-safe-14 lg:pt-0 transition-all duration-200 ${!desktopSidebarOpen ? 'lg:pl-0' : ''}`}>
                 <div className="min-h-screen">
                     {children}
                 </div>
