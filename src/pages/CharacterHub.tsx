@@ -13,9 +13,11 @@ import { useRecommendations } from "@/hooks/use-recommendations";
 import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
+import LinkedInUpload from "@/components/profile/LinkedInUpload";
 import GeniusGrowthPath from "@/modules/genius-path/GeniusGrowthPath";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import MyLifeSection from "@/components/game/MyLifeSection";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -31,6 +33,8 @@ const CharacterHub = () => {
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [linkedinPdfPath, setLinkedinPdfPath] = useState<string | null>(null);
+    const [qolScores, setQolScores] = useState<Array<{ key: string; label: string; score: number }>>([]);
 
     // Get personalized recommendations
     const recommendations = useRecommendations(profile?.id || null);
@@ -62,6 +66,7 @@ const CharacterHub = () => {
                 // soul_colors will be added after migration
                 setSoulColors((profileData as any).soul_colors || null);
                 setAvatarUrl((profileData as any).avatar_url || null);
+                setLinkedinPdfPath((profileData as any).linkedin_pdf_url || null);
 
                 // Get ZoG snapshot with Appleseed/Excalibur data
                 if (profileData.last_zog_snapshot_id) {
@@ -87,6 +92,18 @@ const CharacterHub = () => {
                         .eq("id", profileData.last_qol_snapshot_id)
                         .single();
                     setQolSnapshot(qolData);
+                    if (qolData) {
+                        setQolScores([
+                            { key: "health_stage", label: "Health", score: qolData.health_stage || 5 },
+                            { key: "wealth_stage", label: "Wealth", score: qolData.wealth_stage || 5 },
+                            { key: "happiness_stage", label: "Happiness", score: qolData.happiness_stage || 5 },
+                            { key: "love_relationships_stage", label: "Love", score: qolData.love_relationships_stage || 5 },
+                            { key: "impact_stage", label: "Impact", score: qolData.impact_stage || 5 },
+                            { key: "growth_stage", label: "Growth", score: qolData.growth_stage || 5 },
+                            { key: "social_ties_stage", label: "Social", score: qolData.social_ties_stage || 5 },
+                            { key: "home_stage", label: "Home", score: qolData.home_stage || 5 },
+                        ]);
+                    }
                 }
 
                 // Get player's completed upgrades count
@@ -287,6 +304,24 @@ const CharacterHub = () => {
                             </div>
                         )}
                     </div>
+
+                    {/* 📊 MY LIFE */}
+                    {qolScores.length > 0 && (
+                        <div className="mb-8">
+                            <MyLifeSection qolScores={qolScores} />
+                        </div>
+                    )}
+
+                    {/* 📄 LINKEDIN PROFILE */}
+                    {user && (
+                        <div className="mb-8">
+                            <LinkedInUpload
+                                userId={user.id}
+                                pdfPath={linkedinPdfPath}
+                                onUpdate={setLinkedinPdfPath}
+                            />
+                        </div>
+                    )}
 
                     {/* ✨ SUGGESTED FOR YOU */}
                     <div className="mb-6">

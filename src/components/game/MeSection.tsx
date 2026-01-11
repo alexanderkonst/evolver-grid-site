@@ -5,6 +5,8 @@ interface MeSectionProps {
     level: number;
     xpTotal: number;
     xpToNextLevel?: number;
+    displayName?: string;
+    avatarUrl?: string | null;
 }
 
 // XP needed per level (simple curve)
@@ -15,7 +17,7 @@ const getXpForLevel = (level: number) => {
     return XP_PER_LEVEL[XP_PER_LEVEL.length - 1] + (level - XP_PER_LEVEL.length + 1) * 5000;
 };
 
-const MeSection = ({ archetypeTitle, level, xpTotal }: MeSectionProps) => {
+const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: MeSectionProps) => {
     const xpForCurrentLevel = getXpForLevel(level - 1);
     const xpForNextLevel = getXpForLevel(level);
     const xpInCurrentLevel = xpTotal - xpForCurrentLevel;
@@ -25,10 +27,17 @@ const MeSection = ({ archetypeTitle, level, xpTotal }: MeSectionProps) => {
     return (
         <div className="rounded-xl border border-slate-200 bg-white p-5 mb-4">
             <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-full bg-amber-100">
-                    <Sparkles className="w-5 h-5 text-amber-600" />
+                <div className="w-12 h-12 rounded-full bg-amber-100 overflow-hidden flex items-center justify-center">
+                    {avatarUrl ? (
+                        <img src={avatarUrl} alt="Profile avatar" className="w-full h-full object-cover" />
+                    ) : (
+                        <Sparkles className="w-5 h-5 text-amber-600" />
+                    )}
                 </div>
                 <div>
+                    {displayName && (
+                        <p className="text-sm text-slate-500">{displayName}</p>
+                    )}
                     <h2 className="font-semibold text-slate-900">
                         {archetypeTitle || "Discover Your Archetype"}
                     </h2>
@@ -44,9 +53,9 @@ const MeSection = ({ archetypeTitle, level, xpTotal }: MeSectionProps) => {
                     <span>{xpInCurrentLevel.toLocaleString()} / {xpNeededForNext.toLocaleString()} XP</span>
                     <span>Level {level + 1}</span>
                 </div>
-                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full transition-all duration-500"
+                        className="h-full bg-amber-500 rounded-full transition-all duration-500"
                         style={{ width: `${progressPercent}%` }}
                     />
                 </div>
