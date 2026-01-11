@@ -95,13 +95,13 @@ const ZoneOfGeniusEntry = () => {
             const result = await saveAppleseed(appleseed, aiResponse);
             if (result.success) {
                 toast({
-                    title: "Appleseed Saved!",
-                    description: "Your Zone of Genius profile has been saved.",
+                    title: "Zone of Genius Saved!",
+                    description: "Your genius profile has been saved.",
                 });
             } else {
                 toast({
                     title: "Save Failed",
-                    description: result.error || "Could not save your Appleseed.",
+                    description: result.error || "Could not save your profile.",
                     variant: "destructive",
                 });
             }
@@ -145,15 +145,15 @@ const ZoneOfGeniusEntry = () => {
             const result = await saveExcalibur(excalibur);
             if (result.success) {
                 toast({
-                    title: "Excalibur Saved!",
-                    description: "Your Genius Offer has been saved.",
+                    title: "Unique Offer Saved!",
+                    description: "Your genius offer has been saved.",
                 });
                 // Navigate back to profile after short delay
                 setTimeout(() => navigate(returnPath), 1000);
             } else {
                 toast({
                     title: "Save Failed",
-                    description: result.error || "Could not save your Excalibur.",
+                    description: result.error || "Could not save your offer.",
                     variant: "destructive",
                 });
             }
@@ -201,7 +201,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
                             >
                                 <Sword className="w-4 h-4 mr-2" />
-                                Forge My Excalibur
+                                Create My Unique Offer
                             </Button>
                         </div>
                     </div>
@@ -224,10 +224,10 @@ const ZoneOfGeniusEntry = () => {
                         </div>
                     </div>
                     <p className="text-lg text-slate-600 animate-pulse">
-                        Forging your Excalibur...
+                        Creating your unique offer...
                     </p>
                     <p className="mt-4 text-sm text-slate-400">
-                        One sword, one path forward...
+                        One clear offer, one path forward...
                     </p>
                 </div>
             </GameShell>
@@ -412,7 +412,7 @@ const ZoneOfGeniusEntry = () => {
                             onClick={handleGenerateAppleseed}
                             disabled={!aiResponse.trim() || isProcessing}
                         >
-                            {isProcessing ? "Generating..." : "Generate My Appleseed"}
+                            {isProcessing ? "Generating..." : "Discover My Zone of Genius"}
                             <Sparkles className="w-4 h-4 ml-2" />
                         </Button>
                     </div>

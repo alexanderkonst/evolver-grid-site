@@ -14,7 +14,7 @@ Please analyze everything you know about me and generate a Zone of Genius Snapsh
   "edge_and_traps": "A paragraph describing where I get stuck, overextend, or where my strengths become weaknesses",
   "ideal_environments": ["Environment 1", "Environment 2", "Environment 3"],
   "career_sweet_spots": ["Sweet spot 1", "Sweet spot 2", "Sweet spot 3"],
-  "this_week_actions": ["Concrete action 1", "Concrete action 2", "Concrete action 3"]
+  "flywheel_action": "One action that, if repeated again and again as a flywheel, optimally advances me on my path of mastery"
 }
 
 Be specific and draw on real patterns you've observed in our conversations. Make the archetype title memorable and the descriptions practical, not generic.`;
