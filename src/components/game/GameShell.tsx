@@ -86,6 +86,7 @@ const SPACES: NavItem[] = [
         path: "/game/matchmaking",
         description: "Find your people",
         modules: [
+            { id: "people", label: "People Directory", path: "/community/people" },
             { id: "connections", label: "Connections", path: "/connections" }
         ]
     },

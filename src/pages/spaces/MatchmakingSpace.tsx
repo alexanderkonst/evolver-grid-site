@@ -91,7 +91,7 @@ const MatchmakingSpace = () => {
 
             const { data: profileRows } = await supabase
                 .from("game_profiles")
-                .select("user_id, first_name, last_name, avatar_url, last_zog_snapshot_id")
+                .select("user_id, first_name, last_name, avatar_url, last_zog_snapshot_id, visibility")
                 .in("user_id", participantIds);
 
             const snapshotIds = (profileRows || [])
@@ -140,6 +140,7 @@ const MatchmakingSpace = () => {
 
             const nextMatches: MatchCandidate[] = (profileRows || [])
                 .filter((row) => row.user_id && row.last_zog_snapshot_id)
+                .filter((row) => row.visibility !== "hidden")
                 .filter((row) => row.user_id && !connectedIds.has(row.user_id))
                 .map((row) => {
                     const snapshot = row.last_zog_snapshot_id

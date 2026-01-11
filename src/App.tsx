@@ -56,6 +56,7 @@ import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
+import PeopleDirectory from "./pages/PeopleDirectory";
 import OnboardingStart from "./pages/OnboardingStart";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
@@ -83,6 +84,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/library/:category" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/auth/reset-password" element={<ResetPassword />} />
@@ -108,6 +110,7 @@ const App = () => (
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/matchmaking" element={<MatchmakingSpace />} />
             <Route path="/connections" element={<Connections />} />
+            <Route path="/community/people" element={<PeopleDirectory />} />
             <Route path="/game/events" element={<EventsSpace />} />
             <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/events/:id" element={<EventDetail />} />

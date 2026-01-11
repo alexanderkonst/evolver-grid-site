@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
@@ -32,11 +32,51 @@ const toDurationBucket = (minutes?: number | null) => {
   return "lg";
 };
 
+const CATEGORY_SLUG_MAP: Record<string, LibraryCategoryId | "all"> = {
+  all: "all",
+  breathwork: "breathEnergy",
+  "breath-energy": "breathEnergy",
+  "breath-energy-practices": "breathEnergy",
+  money: "moneyAbundance",
+  abundance: "moneyAbundance",
+  "money-abundance": "moneyAbundance",
+  reality: "realityWisdom",
+  "reality-wisdom": "realityWisdom",
+  "reality-hacking": "realityWisdom",
+  spiritual: "spiritualGuidance",
+  "spiritual-guidance": "spiritualGuidance",
+  "spiritual-beings": "spiritualGuidance",
+  activations: "activations",
+  "heart-light-activations": "activations",
+  animals: "animalSpirits",
+  "animal-spirits": "animalSpirits",
+};
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+
+const getCategoryFromParam = (value?: string | null): LibraryCategoryId | "all" | null => {
+  if (!value) return null;
+  const normalized = value.toLowerCase();
+  if (CATEGORY_SLUG_MAP[normalized]) {
+    return CATEGORY_SLUG_MAP[normalized];
+  }
+  const categoryById = LIBRARY_CATEGORIES.find((category) => category.id.toLowerCase() === normalized);
+  if (categoryById) return categoryById.id;
+  const categoryBySlug = LIBRARY_CATEGORIES.find((category) => slugify(category.name) === normalized);
+  return categoryBySlug ? categoryBySlug.id : null;
+};
+
 const Library = () => {
+  const { category } = useParams();
   const [searchParams] = useSearchParams();
   const fromGame = searchParams.get('from') === 'game';
   const fromDailyLoop = searchParams.get('from') === 'daily-loop';
-  const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("breathEnergy");
+  const initialCategory = getCategoryFromParam(category) ?? "breathEnergy";
+  const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">(initialCategory);
   const [search, setSearch] = useState("");
   const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
@@ -65,6 +105,13 @@ const Library = () => {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    const nextCategory = getCategoryFromParam(category);
+    if (nextCategory) {
+      setActiveCategory(nextCategory);
+    }
+  }, [category]);
 
   const handleSelectItem = (item: LibraryItem, metadata?: Record<string, unknown>) => {
     setSelectedItem(item);
