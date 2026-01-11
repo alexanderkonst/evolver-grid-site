@@ -53,9 +53,7 @@ const SPACES: NavItem[] = [
         description: "Know yourself",
         modules: [
             { id: "zog", label: "Zone of Genius", path: "/zone-of-genius/entry" },
-            { id: "qol", label: "Quality of Life", path: "/quality-of-life-map/assessment" },
-            { id: "mission-selection", label: "My Mission", path: "/game/mission" },
-            { id: "assets", label: "Asset Mapping", path: "/asset-mapping" },
+            { id: "qol", label: "Quality of Life", path: "/quality-of-life-map/assessment" }
         ]
     },
     {
@@ -66,8 +64,7 @@ const SPACES: NavItem[] = [
         description: "Master yourself",
         modules: [
             { id: "library", label: "Practice Library", path: "/library" },
-            { id: "paths", label: "Growth Paths", path: "/growth-paths" },
-            { id: "tests", label: "Personality Tests", path: "/resources/personality-tests" }
+            { id: "paths", label: "Growth Paths", path: "/growth-paths" }
         ]
     },
     {
@@ -75,11 +72,7 @@ const SPACES: NavItem[] = [
         label: "Marketplace",
         icon: <Store className="w-5 h-5" />,
         path: "/game/marketplace",
-        description: "Monetize your genius",
-        modules: [
-            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" },
-            { id: "my-page", label: "My Public Page", path: "/my-page" }
-        ]
+        description: "Monetize your genius"
     },
     {
         id: "matchmaking",
@@ -88,8 +81,7 @@ const SPACES: NavItem[] = [
         path: "/game/matchmaking",
         description: "Find your people",
         modules: [
-            { id: "people", label: "People Directory", path: "/community/people" },
-            { id: "connections", label: "Connections", path: "/connections" }
+            { id: "people", label: "People Directory", path: "/community/people" }
         ]
     },
     {
@@ -243,11 +235,11 @@ export const GameShell = ({ children }: GameShellProps) => {
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-slate-100 rounded-lg"
                 >
-                    {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                </button>
-                <span className="font-bold text-slate-900">Game of Life</span>
-                <div className="w-9" /> {/* Spacer */}
-            </div>
+            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+        <span className="font-bold text-slate-900">Evolver</span>
+        <div className="w-9" /> {/* Spacer */}
+    </div>
 
             {/* Sidebar */}
             <aside
@@ -264,7 +256,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 {/* Logo */}
                 <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-slate-800">
                     <Link to="/" className="font-bold text-lg text-white">
-                        Game of Life
+                        Evolver
                     </Link>
                     {/* Desktop collapse button */}
                     <button
