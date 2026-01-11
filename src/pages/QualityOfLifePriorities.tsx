@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { buildQolGrowthRecipePath } from "@/lib/onboardingRouting";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS, type Domain, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 
@@ -81,8 +82,7 @@ const QualityOfLifePriorities = () => {
         description: `Focused on ${topThree.map((id) => QOL_LABELS[id]).join(", ")}.`,
       });
 
-      const destination = returnTo === "/start" ? "/game" : returnTo || "/game";
-      navigate(destination);
+      navigate(buildQolGrowthRecipePath(returnTo, topThree[0]));
     } catch (err: any) {
       toast({
         title: "Unable to save",
