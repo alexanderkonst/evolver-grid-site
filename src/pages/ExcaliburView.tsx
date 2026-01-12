@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, Sword } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import ExcaliburDisplay from "@/modules/zone-of-genius/ExcaliburDisplay";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
@@ -23,17 +23,17 @@ const ExcaliburView = () => {
 
   if (loading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="min-h-[60vh] flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-violet-500" />
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   if (!excalibur) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sword className="w-10 h-10 text-violet-400 mb-3" />
           <h1 className="text-2xl font-semibold text-slate-900 mb-2">No unique offer yet</h1>
@@ -50,12 +50,12 @@ const ExcaliburView = () => {
             </Button>
           </div>
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="px-4 pt-6">
         <Button variant="ghost" onClick={() => navigate("/game/profile")}>
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -63,7 +63,7 @@ const ExcaliburView = () => {
         </Button>
       </div>
       <ExcaliburDisplay excalibur={excalibur} />
-    </GameShell>
+    </GameShellV2>
   );
 };
 

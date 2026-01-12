@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2, MapPin, Target, Users } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -286,7 +286,7 @@ const PeopleDirectory = () => {
   ]);
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8">
@@ -482,7 +482,7 @@ const PeopleDirectory = () => {
           )}
         </div>
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 

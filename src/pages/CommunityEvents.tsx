@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { CalendarDays, ArrowLeft, Loader2 } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
 import { useEvents } from "@/hooks/useEvents";
 
@@ -16,7 +16,7 @@ const CommunityEvents = () => {
   }, [communityId, events]);
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
         <Link
           to="/game/events"
@@ -72,7 +72,7 @@ const CommunityEvents = () => {
           </div>
         )}
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 

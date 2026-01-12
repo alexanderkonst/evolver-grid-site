@@ -10,7 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import dodecahedronImage from "@/assets/dodecahedron.jpg";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
@@ -688,11 +688,11 @@ const GameHome = () => {
 
   if (isLoading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
@@ -701,7 +701,7 @@ const GameHome = () => {
   }
 
   return (
-    <GameShell>
+    <GameShellV2>
 
       {/* Guest Banner */}
       {!user && (
@@ -1077,7 +1077,7 @@ const GameHome = () => {
 
         </div>
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 

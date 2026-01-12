@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass, Flame, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import MeSection from "@/components/game/MeSection";
 import MyNextMoveSection from "@/components/game/MyNextMoveSection";
 import NextActionsPanel from "@/components/game/NextActionsPanel";
@@ -274,18 +274,18 @@ const CoreLoopHome = () => {
 
     if (isLoading) {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
                     <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Onboarding: Need Zone of Genius
     if (onboardingStage === 'zog') {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="p-6 lg:p-8 max-w-xl mx-auto">
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
@@ -317,14 +317,14 @@ const CoreLoopHome = () => {
                         <span className="w-3 h-3 rounded-full bg-slate-200" />
                     </div>
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Onboarding: Need Quality of Life
     if (onboardingStage === 'qol') {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="p-6 lg:p-8 max-w-xl mx-auto">
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
@@ -351,14 +351,14 @@ const CoreLoopHome = () => {
                     </div>
 
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Onboarding: Ready for first action (explore)
     if (onboardingStage === 'explore') {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                     {/* Show ME section */}
                     <MeSection
@@ -390,13 +390,13 @@ const CoreLoopHome = () => {
                     />
 
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Full Core Loop (onboarding complete)
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                 {/* Celebration Toast */}
                 {showCelebration && (
@@ -504,7 +504,7 @@ const CoreLoopHome = () => {
                     }}
                 />
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

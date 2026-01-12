@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, UserPlus } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -103,22 +103,22 @@ const Connections = () => {
 
   if (!userId && !loading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="p-6 lg:p-8 max-w-3xl mx-auto text-center">
           <h1 className="text-2xl font-semibold text-slate-900 mb-3">Sign in to view connections</h1>
           <Button onClick={() => navigate("/auth")}>Sign in</Button>
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   if (loading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="min-h-[60vh] flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
@@ -161,7 +161,7 @@ const Connections = () => {
   };
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
         <Link to="/game/matches" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6">
           <ArrowLeft className="w-4 h-4" />
@@ -202,7 +202,7 @@ const Connections = () => {
           </section>
         </div>
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 

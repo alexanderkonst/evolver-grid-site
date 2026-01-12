@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Lock, ChevronRight, ArrowLeft } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { growthPaths, getPathIcon, TYPE_ICONS, TYPE_LABELS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
 
 const GrowthPathsPage = () => {
@@ -12,7 +12,7 @@ const GrowthPathsPage = () => {
         const Icon = getPathIcon(selectedPath.iconType);
 
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="p-4 lg:p-6 max-w-3xl mx-auto">
                     {/* Back button */}
                     <button
@@ -55,13 +55,13 @@ const GrowthPathsPage = () => {
                         ))}
                     </div>
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Path selection view
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-4 lg:p-6 max-w-3xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -137,7 +137,7 @@ const GrowthPathsPage = () => {
                     </div>
                 </div>
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

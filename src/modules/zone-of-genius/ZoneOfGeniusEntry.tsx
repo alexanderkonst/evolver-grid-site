@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
@@ -225,17 +225,17 @@ const ZoneOfGeniusEntry = () => {
     // Step: Generating Appleseed (Ritual Loading)
     if (step === "generating-appleseed") {
         return (
-            <GameShell>
+            <GameShellV2>
                 {navBar}
                 <AppleseedRitualLoading minDuration={4000} />
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Step: Appleseed Result
     if (step === "appleseed-result" && appleseed) {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="pb-8">
                     {navBar}
                     <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
@@ -267,14 +267,14 @@ const ZoneOfGeniusEntry = () => {
                         </div>
                     </div>
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Step: Generating Excalibur
     if (step === "generating-excalibur") {
         return (
-            <GameShell>
+            <GameShellV2>
                 {navBar}
                 <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
@@ -292,24 +292,24 @@ const ZoneOfGeniusEntry = () => {
                         One clear offer, one path forward...
                     </p>
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     // Step: Excalibur Result
     if (step === "excalibur-result" && excalibur) {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="pb-8">
                     {navBar}
                     <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
                 {navBar}
                 {/* Header */}
@@ -482,7 +482,7 @@ const ZoneOfGeniusEntry = () => {
                     </div>
                 )}
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 
