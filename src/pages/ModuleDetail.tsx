@@ -30,7 +30,7 @@ const ModuleDetail = () => {
 
   if (!module) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-dvh">
         <Navigation />
         <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-4xl text-center">
@@ -50,7 +50,7 @@ const ModuleDetail = () => {
   const relatedModules = getRelatedModules(module.id, module.related_modules);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
       
       {/* Back Button - Left Aligned */}

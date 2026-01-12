@@ -206,7 +206,7 @@ const Profile = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen">
+            <div className="min-h-dvh">
                 <Navigation />
                 <div className="pt-24 flex items-center justify-center min-h-[60vh]">
                     <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
@@ -216,7 +216,7 @@ const Profile = () => {
     }
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-dvh flex flex-col">
             <Navigation />
 
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">

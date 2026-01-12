@@ -33,7 +33,7 @@ const ZoneOfGeniusLandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <Navigation />
 
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">

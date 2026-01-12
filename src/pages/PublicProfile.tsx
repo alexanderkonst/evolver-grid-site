@@ -145,7 +145,7 @@ const PublicProfile = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-dvh flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
       </div>
     );
@@ -153,7 +153,7 @@ const PublicProfile = () => {
 
   if (!profile || visibility === "hidden") {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="min-h-dvh flex items-center justify-center px-4">
         <div className="max-w-md text-center space-y-4">
           <h1 className="text-2xl font-semibold text-slate-900">Profile Private</h1>
           <p className="text-sm text-slate-500">This profile is not available right now.</p>
@@ -171,7 +171,7 @@ const PublicProfile = () => {
   const canShowOffer = visibility === "full" && (profile.show_offer ?? true) && excalibur;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-dvh bg-slate-50">
       <div className="px-4 py-6 max-w-4xl mx-auto">
         <Button variant="ghost" onClick={() => navigate(-1)}>
           <ArrowLeft className="w-4 h-4 mr-2" />

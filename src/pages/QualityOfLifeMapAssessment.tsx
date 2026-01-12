@@ -45,7 +45,7 @@ const QualityOfLifeMapAssessment = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
       
       {/* Back Button */}
@@ -60,7 +60,7 @@ const QualityOfLifeMapAssessment = () => {
 
       {/* Assessment Content */}
       <section 
-        className="py-24 px-6 min-h-screen"
+        className="py-24 px-6 min-h-dvh"
         style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
       >
         <div className="container mx-auto max-w-4xl">

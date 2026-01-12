@@ -275,7 +275,7 @@ const MissionDiscoveryWizard = () => {
     // Show CommitFlow after successful commit
     if (hasCommitted && selectedMission) {
         return (
-            <div className="min-h-screen bg-white">
+            <div className="min-h-dvh bg-white">
                 <CommitFlow
                     mission={selectedMission}
                     missionContext={missionContext}
@@ -287,7 +287,7 @@ const MissionDiscoveryWizard = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-dvh bg-white">
             {/* Header */}
             <div className="border-b border-slate-200 bg-white sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">

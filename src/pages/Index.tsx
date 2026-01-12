@@ -22,7 +22,7 @@ const Index = () => {
   const filteredModules = getModulesByCategory(selectedCategory);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <Navigation />
 
       {/* Hero Section */}

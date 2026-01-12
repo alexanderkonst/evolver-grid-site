@@ -205,7 +205,7 @@ export const GameShell = ({ children }: GameShellProps) => {
 
     if (!showSidebar) {
         return (
-            <div className="min-h-screen bg-white">
+            <div className="min-h-dvh bg-white">
                 {children}
             </div>
         );
@@ -229,7 +229,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-white flex">
+        <div className="min-h-dvh bg-white flex">
             {/* Mobile Header */}
             <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-slate-200 z-50 flex items-center justify-between px-4 pt-safe">
                 <button
@@ -440,7 +440,7 @@ export const GameShell = ({ children }: GameShellProps) => {
 
             {/* Main Content */}
             <main className={`flex-1 pt-safe-14 lg:pt-0 transition-all duration-200 ${!desktopSidebarOpen ? 'lg:pl-0' : ''}`}>
-                <div className="min-h-screen">
+                <div className="min-h-dvh">
                     {children}
                 </div>
             </main>

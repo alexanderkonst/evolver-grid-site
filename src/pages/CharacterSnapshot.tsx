@@ -169,7 +169,7 @@ const CharacterSnapshot: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-dvh flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
@@ -205,7 +205,7 @@ const CharacterSnapshot: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
 
       <main className="container max-w-4xl mx-auto px-4 py-8 pt-24">

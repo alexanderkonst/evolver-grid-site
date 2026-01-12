@@ -55,7 +55,7 @@ const SkillTrees = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-dvh flex flex-col bg-background">
             <Navigation />
 
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">

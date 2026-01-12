@@ -131,7 +131,7 @@ const QualityOfLifePriorities = () => {
 
   if (!isComplete) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-dvh">
         <Navigation />
         <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
           <div className="container mx-auto max-w-4xl">
@@ -142,7 +142,7 @@ const QualityOfLifePriorities = () => {
           </div>
         </div>
         <section
-          className="py-24 px-6 min-h-screen flex items-center justify-center"
+          className="py-24 px-6 min-h-dvh flex items-center justify-center"
           style={{ backgroundColor: "hsl(220, 30%, 12%)" }}
         >
           <div className="container mx-auto max-w-2xl text-center">
@@ -169,7 +169,7 @@ const QualityOfLifePriorities = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
 
       <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
@@ -184,7 +184,7 @@ const QualityOfLifePriorities = () => {
         </div>
       </div>
 
-      <section className="py-20 px-6 min-h-screen" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
+      <section className="py-20 px-6 min-h-dvh" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
         <div className="container mx-auto max-w-4xl">
           {step === "next" && (
             <>

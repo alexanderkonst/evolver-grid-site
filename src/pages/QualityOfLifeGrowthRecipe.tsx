@@ -146,7 +146,7 @@ const QualityOfLifeGrowthRecipe = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
 
       <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
@@ -158,7 +158,7 @@ const QualityOfLifeGrowthRecipe = () => {
         </div>
       </div>
 
-      <section className="py-20 px-6 min-h-screen" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
+      <section className="py-20 px-6 min-h-dvh" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
         <div className="container mx-auto max-w-4xl">
           {loading && (
             <div className="text-center text-white/70">Loading growth recipe...</div>

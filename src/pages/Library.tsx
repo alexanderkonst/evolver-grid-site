@@ -349,7 +349,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
   });
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <Navigation />
       
       <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">

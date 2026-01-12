@@ -364,14 +364,14 @@ export default function TodayPage() {
     // Loading state
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+            <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
                 <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="min-h-dvh bg-gradient-to-br from-slate-50 to-slate-100">
             <div className="max-w-2xl mx-auto px-4 py-8">
 
                 {/* Header */}

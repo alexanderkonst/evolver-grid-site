@@ -107,7 +107,7 @@ const GameMap = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-950">
+        <div className="min-h-dvh flex flex-col bg-slate-950">
             <Navigation />
 
             <main className="flex-grow pt-20 pb-20 px-4">

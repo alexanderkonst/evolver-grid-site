@@ -684,7 +684,7 @@ const AIUpgrade = () => {
   // Loading state
   if (isLoading || promoLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A2342] mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
@@ -696,7 +696,7 @@ const AIUpgrade = () => {
   // Auth gate - user not logged in
   if (!user) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-dvh bg-white">
         {/* Navigation */}
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
           <div className="container mx-auto px-6 py-4">
@@ -710,7 +710,7 @@ const AIUpgrade = () => {
           </div>
         </nav>
 
-        <div className="pt-32 pb-20 px-6 flex items-center justify-center min-h-screen">
+        <div className="pt-32 pb-20 px-6 flex items-center justify-center min-h-dvh">
           <div className="text-center max-w-md mx-auto">
             <div 
               className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -747,7 +747,7 @@ const AIUpgrade = () => {
   if (hasAccess) {
     return (
       <div 
-        className="min-h-screen bg-cover bg-center bg-no-repeat"
+        className="min-h-dvh bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: 'url(/images/paper-texture.png)',
           backgroundColor: '#0A2342'
@@ -767,7 +767,7 @@ const AIUpgrade = () => {
         </nav>
 
         {/* Main Content - Centered Card */}
-        <div className="min-h-screen flex items-center justify-center px-4 py-24">
+        <div className="min-h-dvh flex items-center justify-center px-4 py-24">
           <div 
             className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 sm:p-10"
           >
@@ -839,7 +839,7 @@ const AIUpgrade = () => {
 
   // Locked state - user is logged in but hasn't purchased
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-dvh bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
         <div className="container mx-auto px-6 py-4">

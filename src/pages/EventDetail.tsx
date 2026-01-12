@@ -160,7 +160,7 @@ const EventDetail = () => {
   // Loading State
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
       </div>
     );
@@ -169,7 +169,7 @@ const EventDetail = () => {
   // Error State
   if (error || !event) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-white flex items-center justify-center">
         <div className="text-center p-6">
           <CalendarDays className="w-12 h-12 text-slate-300 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-slate-900 mb-2">Event Not Found</h2>
@@ -201,7 +201,7 @@ const EventDetail = () => {
   const hasRsvp = currentStatus === "going";
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-dvh bg-slate-50">
       {/* Hero Image */}
       <div className="h-48 sm:h-64 bg-gradient-to-br from-amber-100 to-orange-100 relative">
         {event.photo_url ? (

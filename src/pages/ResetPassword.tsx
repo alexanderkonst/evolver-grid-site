@@ -92,7 +92,7 @@ const ResetPassword = () => {
 
     if (success) {
         return (
-            <div className="min-h-screen flex flex-col bg-background">
+            <div className="min-h-dvh flex flex-col bg-background">
                 <Navigation />
                 <main className="flex-grow flex items-center justify-center px-4 py-24">
                     <Card className="w-full max-w-md">
@@ -113,7 +113,7 @@ const ResetPassword = () => {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-dvh flex flex-col bg-background">
             <Navigation />
             <main className="flex-grow flex items-center justify-center px-4 py-24">
                 <Card className="w-full max-w-md">
