@@ -7,7 +7,7 @@ import BoldText from "@/components/BoldText";
 
 const ContactNew = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <Navigation />
       
       <main className="flex-1 px-4 pt-24 pb-16">

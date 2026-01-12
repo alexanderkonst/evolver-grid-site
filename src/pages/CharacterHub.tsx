@@ -252,7 +252,7 @@ const CharacterHub = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-background">
+            <div className="min-h-dvh flex items-center justify-center bg-background">
                 <Loader2 className="w-8 h-8 animate-spin text-amber-400" />
             </div>
         );
@@ -260,7 +260,7 @@ const CharacterHub = () => {
 
     if (!user && !profile) {
         return (
-            <div className="min-h-screen flex flex-col bg-background">
+            <div className="min-h-dvh flex flex-col bg-background">
                 <Navigation />
                 <main className="flex-grow flex items-center justify-center px-4">
                     <div className="text-center">
@@ -278,7 +278,7 @@ const CharacterHub = () => {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-dvh flex flex-col bg-background">
             <Navigation />
 
             <main className="flex-grow pt-20 pb-20 px-4">

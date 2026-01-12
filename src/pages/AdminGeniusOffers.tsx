@@ -171,7 +171,7 @@ const AdminGeniusOffers = () => {
   // Loading state
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-dvh bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
       </div>
     );
@@ -180,7 +180,7 @@ const AdminGeniusOffers = () => {
   // Not logged in
   if (!user) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-dvh bg-background text-foreground">
         <Navigation />
         <div className="pt-32 pb-20 px-4">
           <div className="max-w-md mx-auto text-center space-y-6">
@@ -203,7 +203,7 @@ const AdminGeniusOffers = () => {
   // Not admin
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-dvh bg-background text-foreground">
         <Navigation />
         <div className="pt-32 pb-20 px-4">
           <div className="max-w-md mx-auto text-center space-y-6">
@@ -226,7 +226,7 @@ const AdminGeniusOffers = () => {
 
   // Admin view
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <Navigation />
 
       <div className="pt-24 px-4">

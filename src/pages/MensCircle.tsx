@@ -243,7 +243,7 @@ const MensCircle = () => {
   if (!isAuthenticated) {
     return (
       <div
-        className="min-h-screen flex flex-col items-center justify-center px-6 relative"
+        className="min-h-dvh flex flex-col items-center justify-center px-6 relative"
         style={{ backgroundColor: "#041a2f" }}
       >
         <style dangerouslySetInnerHTML={{ __html: animationStyles }} />
@@ -300,7 +300,7 @@ const MensCircle = () => {
   // Main Landing Page (after password)
   return (
     <div
-      className="min-h-screen font-serif relative overflow-hidden"
+      className="min-h-dvh font-serif relative overflow-hidden"
       style={{ backgroundColor: "#041a2f", color: "#E0E4EA" }}
     >
       <style dangerouslySetInnerHTML={{ __html: animationStyles }} />

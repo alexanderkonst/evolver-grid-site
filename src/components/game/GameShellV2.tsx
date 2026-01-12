@@ -140,7 +140,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
 
     if (hideNavigation) {
         return (
-            <div className="min-h-screen bg-white">
+            <div className="min-h-dvh bg-white">
                 {children}
             </div>
         );
@@ -173,21 +173,21 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#f0f8ff]">
+        <div className="min-h-dvh bg-[#f0f8ff]">
             {/* === DESKTOP LAYOUT === */}
-            <div className="hidden lg:flex min-h-screen">
+            <div className="hidden lg:flex min-h-dvh">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
-                    className="h-screen sticky top-0"
+                    className="h-dvh sticky top-0"
                 />
 
                 {/* Panel 2: Sections with transition */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-screen sticky top-0 overflow-hidden",
+                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden",
                         sectionsPanelOpen ? "w-[240px]" : "w-0"
                     )}
                 >
@@ -203,7 +203,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-screen sticky top-0 w-8 bg-slate-800 hover:bg-slate-700 flex items-center justify-center border-r border-slate-700 transition-colors"
+                        className="h-dvh sticky top-0 w-8 bg-slate-800 hover:bg-slate-700 flex items-center justify-center border-r border-slate-700 transition-colors"
                         title="Expand sidebar (⌘B)"
                     >
                         <PanelLeft className="w-4 h-4 text-slate-400" />
@@ -211,13 +211,13 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                 )}
 
                 {/* Panel 3: Content */}
-                <main className="flex-1 bg-[#f0f8ff] min-h-screen overflow-auto">
+                <main className="flex-1 bg-[#f0f8ff] min-h-dvh overflow-auto">
                     {children}
                 </main>
             </div>
 
             {/* === MOBILE LAYOUT === */}
-            <div className="lg:hidden relative w-full min-h-screen overflow-hidden">
+            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(

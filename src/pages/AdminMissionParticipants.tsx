@@ -111,7 +111,7 @@ const AdminMissionParticipants = () => {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-dvh flex items-center justify-center">
         <Loader2 className="w-6 h-6 animate-spin text-slate-500" />
       </div>
     );
@@ -119,7 +119,7 @@ const AdminMissionParticipants = () => {
 
   if (!user || !isAdmin) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-dvh bg-background">
         <Navigation />
         <div className="max-w-3xl mx-auto px-4 pt-28 pb-20 text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-2">Admin access required</h1>
@@ -132,7 +132,7 @@ const AdminMissionParticipants = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
       <Navigation />
       <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
         <div className="flex items-center justify-between mb-6">

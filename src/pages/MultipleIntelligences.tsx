@@ -154,7 +154,7 @@ const MultipleIntelligences = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-dvh bg-background flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
       </div>
     );
@@ -162,7 +162,7 @@ const MultipleIntelligences = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-dvh bg-background text-foreground">
         <Navigation />
         <ScrollToTop />
         <div className="pt-32 pb-20 px-4">
@@ -207,7 +207,7 @@ const MultipleIntelligences = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-dvh bg-background text-foreground">
       <Navigation />
       <ScrollToTop />
 

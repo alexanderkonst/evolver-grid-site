@@ -6,7 +6,7 @@ const ToolsRedirect = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-slate-600">
+    <div className="min-h-dvh flex items-center justify-center bg-white text-slate-600">
       Redirecting to tools...
     </div>
   );

@@ -73,7 +73,7 @@ const CreatorPage = () => {
 
     if (!creator) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-dvh bg-white flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold text-slate-900 mb-2">Page Not Found</h1>
                     <p className="text-slate-600">This creator page doesn't exist yet.</p>
@@ -83,7 +83,7 @@ const CreatorPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-dvh bg-white">
             {/* Header with brand color */}
             <div
                 className="h-32"

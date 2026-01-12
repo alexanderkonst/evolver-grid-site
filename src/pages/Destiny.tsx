@@ -34,7 +34,7 @@ const Destiny = () => {
   const finalCtaAnimation = useScrollAnimation(0.2);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <Navigation />
       
       {/* Back Button - Left Aligned */}
@@ -78,7 +78,7 @@ const Destiny = () => {
       {/* Hero Section - Deep Charcoal/Midnight Indigo */}
       <section 
         id="hero" 
-        className="min-h-screen flex items-center justify-center pt-32 pb-20 px-6"
+        className="min-h-dvh flex items-center justify-center pt-32 pb-20 px-6"
         style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
       >
         <div className="container mx-auto max-w-4xl text-center">

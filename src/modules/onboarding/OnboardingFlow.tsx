@@ -137,7 +137,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   const CurrentIcon = current.icon;
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-dvh bg-white flex items-center justify-center">
       <div className="min-h-[70vh] px-4 py-16 w-full">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
           <div className="flex items-start justify-between gap-4">

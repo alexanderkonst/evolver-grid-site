@@ -66,7 +66,7 @@ const MensCircleThankYou = () => {
 
     return (
         <div
-            className="min-h-screen font-serif"
+            className="min-h-dvh font-serif"
             style={{ backgroundColor: "#041a2f", color: "#E0E4EA" }}
         >
             <Navigation />
