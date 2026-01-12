@@ -11,11 +11,22 @@ interface MatchCardProps {
     tagline?: string | null;
   };
   matchReason: string;
+  matchLabel?: string;
+  secondaryReason?: string;
+  secondaryLabel?: string;
   onPass: () => void;
   onConnect: () => void;
 }
 
-const MatchCard = ({ user, matchReason, onPass, onConnect }: MatchCardProps) => {
+const MatchCard = ({
+  user,
+  matchReason,
+  matchLabel,
+  secondaryReason,
+  secondaryLabel,
+  onPass,
+  onConnect,
+}: MatchCardProps) => {
   return (
     <div className="w-full max-w-md mx-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex flex-col items-center text-center gap-4">
@@ -37,9 +48,20 @@ const MatchCard = ({ user, matchReason, onPass, onConnect }: MatchCardProps) => 
         </div>
 
         <div className="w-full border-t border-slate-100 pt-4">
-          <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">Why you match</p>
+          <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
+            {matchLabel || "Why you match"}
+          </p>
           <p className="text-sm text-slate-700 break-words">{matchReason}</p>
         </div>
+
+        {secondaryReason && (
+          <div className="w-full border-t border-slate-100 pt-4">
+            <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
+              {secondaryLabel || "Also relevant"}
+            </p>
+            <p className="text-sm text-slate-700 break-words">{secondaryReason}</p>
+          </div>
+        )}
 
         <div className="flex w-full gap-3 pt-4">
           <Button variant="outline" className="flex-1" onClick={onPass}>
