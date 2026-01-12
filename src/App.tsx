@@ -31,7 +31,9 @@ import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import SkillTrees from "./pages/SkillTrees";
 import GrowthPathsPage from "./pages/GrowthPathsPage";
 import GameMap from "./pages/GameMap";
-import CharacterHub from "./pages/CharacterHub";
+import ProfileMissionSection from "./pages/spaces/sections/ProfileMissionSection";
+import ProfileAssetsSection from "./pages/spaces/sections/ProfileAssetsSection";
+import ProfileOverview from "./pages/spaces/sections/ProfileOverview";
 import CharacterSnapshot from "./pages/CharacterSnapshot";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
@@ -128,7 +130,9 @@ const App = () => (
             {/* Game Routes */}
             <Route path="/game" element={<GameHome />} />
             <Route path="/game/next-move" element={<CoreLoopHome />} />
-            <Route path="/game/profile" element={<CharacterHub />} />
+            <Route path="/game/profile" element={<ProfileOverview />} />
+            <Route path="/game/profile/mission" element={<ProfileMissionSection />} />
+            <Route path="/game/profile/assets" element={<ProfileAssetsSection />} />
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/teams" element={<TeamsSpace />} />
