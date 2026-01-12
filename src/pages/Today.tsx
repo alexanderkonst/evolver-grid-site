@@ -431,7 +431,7 @@ export default function TodayPage() {
                                         : <Sparkles className="w-4 h-4 text-white" />
                                     }
                                 </div>
-                                <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                                <span className="text-xs font-semibold uppercase  text-indigo-600">
                                     Main Quest
                                 </span>
                             </div>
@@ -492,7 +492,7 @@ export default function TodayPage() {
                                     : <Target className="w-4 h-4 text-white" />
                                 }
                             </div>
-                            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600">
+                            <span className="text-xs font-semibold uppercase  text-emerald-600">
                                 Side Quest (Practice)
                             </span>
                         </div>
@@ -582,7 +582,7 @@ export default function TodayPage() {
                                     : <Zap className="w-4 h-4 text-white" />
                                 }
                             </div>
-                            <span className={`text-xs font-semibold uppercase tracking-wider ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-purple-600'
+                            <span className={`text-xs font-semibold uppercase  ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-purple-600'
                                 }`}>
                                 Upgrade (Growth Path)
                             </span>
@@ -656,7 +656,7 @@ export default function TodayPage() {
                 {/* Logbook Preview */}
                 {todayQuestRuns.length > 0 && (
                     <div className="mt-8">
-                        <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                        <h3 className="text-sm font-semibold text-slate-500 uppercase  mb-3">
                             Today's Log
                         </h3>
                         <div className="space-y-2">

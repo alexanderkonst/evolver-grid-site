@@ -361,7 +361,7 @@ const GeniusOfferIntake = () => {
       <div className="pt-24 pb-20 px-4">
         <div className="max-w-xl mx-auto">
           {/* Step indicator */}
-          <p className="text-xs text-center text-muted-foreground mb-8 uppercase tracking-wide">
+          <p className="text-xs text-center text-muted-foreground mb-8 uppercase ">
             Step {getStepNumber()} of {getTotalSteps()}
           </p>
 

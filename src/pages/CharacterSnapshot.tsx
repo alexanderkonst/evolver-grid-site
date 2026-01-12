@@ -258,15 +258,15 @@ const CharacterSnapshot: React.FC = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Archetype</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-1">Archetype</p>
                     <p className="text-xl font-semibold">{zogSnapshot.archetype_title}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Core Pattern</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-1">Core Pattern</p>
                     <p className="text-sm leading-relaxed">{zogSnapshot.core_pattern}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Top 3 Talents</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-2">Top 3 Talents</p>
                     <div className="flex flex-wrap gap-2">
                       {zogSnapshot.top_three_talents.map((id) => (
                         <span key={id} className="px-3 py-1 bg-amber-500/10 text-amber-700 dark:text-amber-300 rounded-full text-sm">
@@ -276,7 +276,7 @@ const CharacterSnapshot: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Top 10 Talents</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-2">Top 10 Talents</p>
                     <div className="flex flex-wrap gap-2">
                       {zogSnapshot.top_ten_talents.map((id) => (
                         <span key={id} className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs">
@@ -287,7 +287,7 @@ const CharacterSnapshot: React.FC = () => {
                   </div>
                   {zogSnapshot.mastery_action && (
                     <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                      <p className="text-xs uppercase tracking-wider text-amber-700 mb-1">🔁 Mastery Action</p>
+                      <p className="text-xs uppercase  text-amber-700 mb-1">🔁 Mastery Action</p>
                       <p className="text-sm font-medium text-amber-900">{zogSnapshot.mastery_action}</p>
                     </div>
                   )}
@@ -383,7 +383,7 @@ const CharacterSnapshot: React.FC = () => {
                 <CardContent className="space-y-4">
                   {personalityTests.enneagram && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Enneagram</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-1">Enneagram</p>
                       <p className="font-semibold mb-3">
                         Type {personalityTests.enneagram.primary_type}: {personalityTests.enneagram.primary_name}
                       </p>
@@ -410,7 +410,7 @@ const CharacterSnapshot: React.FC = () => {
                   )}
                   {personalityTests['16personalities'] && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">16 Personalities (MBTI)</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-1">16 Personalities (MBTI)</p>
                       <p className="font-semibold">
                         {personalityTests['16personalities'].type_code} – {personalityTests['16personalities'].type_name}
                       </p>
@@ -432,30 +432,30 @@ const CharacterSnapshot: React.FC = () => {
                   )}
                   {personalityTests.human_design && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Human Design</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-2">Human Design</p>
                       <p className="font-semibold text-lg mb-3">{personalityTests.human_design.type}</p>
                       <div className="grid grid-cols-2 gap-2">
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Strategy</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">Strategy</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.strategy}</p>
                         </div>
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Authority</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">Authority</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.authority}</p>
                         </div>
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Profile</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">Profile</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.profile}</p>
                         </div>
                         {personalityTests.human_design.definition && (
                           <div className="p-2 rounded bg-background border">
-                            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Definition</p>
+                            <p className="text-[10px] uppercase  text-muted-foreground">Definition</p>
                             <p className="text-sm font-medium">{personalityTests.human_design.definition}</p>
                           </div>
                         )}
                         {personalityTests.human_design.incarnation_cross && (
                           <div className="p-2 rounded bg-background border col-span-2">
-                            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Incarnation Cross</p>
+                            <p className="text-[10px] uppercase  text-muted-foreground">Incarnation Cross</p>
                             <p className="text-sm font-medium">{personalityTests.human_design.incarnation_cross}</p>
                           </div>
                         )}

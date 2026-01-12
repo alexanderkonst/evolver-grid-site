@@ -117,7 +117,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* What This Is Section */}
           <section className="space-y-8">
             <div className="text-center space-y-3">
-              <p className="text-xs uppercase tracking-wider text-primary/70">
+              <p className="text-xs uppercase  text-primary/70">
                 What the Zone of Genius Snapshot is
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
@@ -197,7 +197,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* How It Works Section */}
           <section className="space-y-8">
             <div className="text-center space-y-3">
-              <p className="text-xs uppercase tracking-wider text-primary/70">
+              <p className="text-xs uppercase  text-primary/70">
                 How it works
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
@@ -242,7 +242,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* Social Proof Section */}
           <section className="space-y-8">
             <div className="text-center">
-              <p className="text-xs uppercase tracking-wider text-primary/70 mb-4">
+              <p className="text-xs uppercase  text-primary/70 mb-4">
                 What people say after seeing their snapshot
               </p>
             </div>
@@ -288,7 +288,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* Why This Exists Section */}
           <section className="space-y-6 max-w-3xl mx-auto">
             <div className="text-center space-y-3">
-              <p className="text-xs uppercase tracking-wider text-primary/70">
+              <p className="text-xs uppercase  text-primary/70">
                 Why this exists
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
@@ -362,7 +362,7 @@ const ZoneOfGeniusLandingPage = () => {
           {/* Optional Session Section */}
           <section className="space-y-6 max-w-3xl mx-auto">
             <div className="text-center space-y-3">
-              <p className="text-xs uppercase tracking-wider text-primary/70">
+              <p className="text-xs uppercase  text-primary/70">
                 After your snapshot
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">

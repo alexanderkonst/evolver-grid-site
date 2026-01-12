@@ -97,7 +97,7 @@ export default function NextActionsPanel({
 
             {/* Two Next Actions */}
             <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
+                <h3 className="text-sm font-semibold text-slate-500 uppercase ">
                     Your Next Move
                 </h3>
 
@@ -122,7 +122,7 @@ export default function NextActionsPanel({
                                         <TrendingUp className="w-4 h-4 text-white" />
                                     )}
                                 </div>
-                                <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                                <span className="text-xs font-semibold uppercase  text-indigo-600">
                                     {primaryAction.type === 'genius' ? 'Genius Discovery' : 'Growth Path'}
                                 </span>
                             </div>
@@ -175,7 +175,7 @@ export default function NextActionsPanel({
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                                    <span className="text-xs font-medium text-slate-500 uppercase ">
                                         {secondaryAction.type === 'genius' ? 'Genius Discovery' : 'Growth Path'}
                                     </span>
                                 </div>

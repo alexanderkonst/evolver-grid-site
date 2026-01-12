@@ -180,7 +180,7 @@ export const DailyLoopLayout = ({
                 )}
                 {recommendedAction.alternates && recommendedAction.alternates.length > 0 && (
                   <div className="pt-2">
-                    <p className="text-xs font-semibold text-emerald-800 uppercase tracking-wide">Alternatives</p>
+                    <p className="text-xs font-semibold text-emerald-800 uppercase ">Alternatives</p>
                     <ul className="mt-1 space-y-1 text-sm text-emerald-800">
                       {recommendedAction.alternates.map((alt) => (
                         <li key={alt} className="flex items-center gap-2">

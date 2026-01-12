@@ -41,7 +41,7 @@ const GeniusLayerMatching = () => {
 
                     {/* Hero Section */}
                     <section className="text-center space-y-6">
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl text-primary leading-tight uppercase tracking-wide">
+                        <h1 className="text-2xl sm:text-3xl lg:text-4xl text-primary leading-tight uppercase ">
                             <BionicText>GENIUS-LAYER MATCHING FOR FOUNDER ECOSYSTEMS</BionicText>
                         </h1>
 
@@ -77,7 +77,7 @@ const GeniusLayerMatching = () => {
 
                     {/* Problem Section */}
                     <section className="text-center space-y-4">
-                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                             <BionicText>MATCHING ON IDEAS ISN'T ENOUGH</BionicText>
                         </h2>
 
@@ -88,7 +88,7 @@ const GeniusLayerMatching = () => {
 
                     {/* Solution Section */}
                     <section className="text-center space-y-4">
-                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                             <BionicText>ADD A "GENIUS LAYER" TO YOUR MATCHING</BionicText>
                         </h2>
 
@@ -99,7 +99,7 @@ const GeniusLayerMatching = () => {
 
                     {/* Why It Matters Section */}
                     <section className="text-center space-y-6">
-                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                             <BionicText>WHY THIS MATTERS NOW</BionicText>
                         </h2>
 
@@ -120,7 +120,7 @@ const GeniusLayerMatching = () => {
                     {/* How The Pilot Works Section */}
                     <section id="how-pilot-works" className="space-y-8">
                         <div className="text-center space-y-3">
-                            <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                                 <BionicText>RUN A FAST, 3-WAY A/B PILOT</BionicText>
                             </h2>
                             <p className="text-muted-foreground">
@@ -200,10 +200,10 @@ const GeniusLayerMatching = () => {
                     {/* Who It's For Section */}
                     <section className="text-center space-y-6">
                         <div>
-                            <p className="text-xs uppercase tracking-wider text-primary/70 mb-2">
+                            <p className="text-xs uppercase  text-primary/70 mb-2">
                                 Designed for serious ecosystem builders
                             </p>
-                            <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                            <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                                 <BionicText>VENTURE STUDIOS, FOUNDER ECOSYSTEMS, ACCELERATORS</BionicText>
                             </h2>
                         </div>
@@ -224,7 +224,7 @@ const GeniusLayerMatching = () => {
 
                     {/* FAQ Section */}
                     <section className="space-y-8">
-                        <h2 className="text-xl sm:text-2xl text-center text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-center text-primary uppercase ">
                             <BionicText>FAQ</BionicText>
                         </h2>
 
@@ -257,7 +257,7 @@ const GeniusLayerMatching = () => {
 
                     {/* Final CTA Section */}
                     <section className="text-center space-y-6 py-10 px-6 rounded-3xl border-2 border-primary/30 bg-primary/5">
-                        <h2 className="text-xl sm:text-2xl text-primary uppercase tracking-wide">
+                        <h2 className="text-xl sm:text-2xl text-primary uppercase ">
                             <BionicText>RUN A GENIUS-LAYER PILOT WITH ALEKSANDR TODAY</BionicText>
                         </h2>
 

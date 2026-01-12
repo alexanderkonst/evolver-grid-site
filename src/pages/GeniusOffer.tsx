@@ -169,7 +169,7 @@ const GeniusOffer = () => {
       {/* Testimonials */}
       <section className="py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs uppercase tracking-wider text-primary/70 text-center mb-4">
+          <p className="text-xs uppercase  text-primary/70 text-center mb-4">
             What people say about this work
           </p>
           
