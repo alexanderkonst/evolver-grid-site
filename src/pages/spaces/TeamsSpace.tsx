@@ -399,10 +399,11 @@ const TeamsSpace = () => {
             setConnectModalOpen(false);
             setSelectedMatch(null);
             setMatches((prev) => prev.filter((match) => match.id !== selectedMatch.id));
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Could not send request.";
             toast({
                 title: "Error",
-                description: err.message || "Could not send request.",
+                description: message,
                 variant: "destructive",
             });
         } finally {
