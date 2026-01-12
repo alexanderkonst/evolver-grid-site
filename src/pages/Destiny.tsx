@@ -48,7 +48,7 @@ const Destiny = () => {
       </div>
       
       {/* Sticky Top Nav */}
-      <nav className="fixed top-20 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
+      <nav className="fixed top-20 left-0 right-0 z-overlay bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-3 sm:gap-6 py-4 overflow-x-auto scrollbar-hide">
             {[
@@ -253,14 +253,14 @@ const Destiny = () => {
           <div className="relative space-y-12">
             {/* Connecting Line */}
             <div 
-              className="absolute left-8 top-16 bottom-16 w-0.5 -z-10"
+              className="absolute left-8 top-16 bottom-16 w-0.5 z-underlay"
               style={{ backgroundColor: 'hsl(var(--destiny-gold))' }}
             />
 
             {/* Step 1 */}
             <div className="flex gap-6 items-start">
               <div 
-                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-above"
                 style={{ backgroundColor: 'hsl(var(--destiny-gold))', color: 'hsl(var(--destiny-dark))' }}
               >
                 1
@@ -279,7 +279,7 @@ const Destiny = () => {
             {/* Step 2 */}
             <div className="flex gap-6 items-start">
               <div 
-                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-above"
                 style={{ backgroundColor: 'hsl(var(--destiny-gold))', color: 'hsl(var(--destiny-dark))' }}
               >
                 2
@@ -298,7 +298,7 @@ const Destiny = () => {
             {/* Step 3 */}
             <div className="flex gap-6 items-start">
               <div 
-                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-above"
                 style={{ backgroundColor: 'hsl(var(--destiny-gold))', color: 'hsl(var(--destiny-dark))' }}
               >
                 3
@@ -317,7 +317,7 @@ const Destiny = () => {
             {/* Step 4 */}
             <div className="flex gap-6 items-start">
               <div 
-                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-300 hover:scale-110 hover:shadow-lg z-above"
                 style={{ backgroundColor: 'hsl(var(--destiny-gold))', color: 'hsl(var(--destiny-dark))' }}
               >
                 4
@@ -520,7 +520,7 @@ const Destiny = () => {
       <ScrollToTop />
 
       {/* Sticky Mobile CTA */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-50">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-modal">
         <button
           onClick={() => window.open('https://www.calendly.com/konstantinov', '_blank')}
           className="w-full py-3 rounded-full font-bold transition-all text-sm shadow-[0_0_20px_rgba(45,100,165,0.4)]"

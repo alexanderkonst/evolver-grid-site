@@ -144,7 +144,7 @@ const SpacesRail = ({
                             )}
 
                             {/* Tooltip */}
-                            <div className="absolute left-full ml-3 px-3 py-1.5 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-lg">
+                            <div className="absolute left-full ml-3 px-3 py-1.5 bg-slate-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-modal shadow-lg">
                                 {space.label}
                             </div>
                         </button>

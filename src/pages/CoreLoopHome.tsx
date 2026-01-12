@@ -400,7 +400,7 @@ const CoreLoopHome = () => {
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                 {/* Celebration Toast */}
                 {showCelebration && (
-                    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-bounce">
+                    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-modal animate-bounce">
                         <div className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full shadow-lg">
                             <CheckCircle2 className="w-5 h-5" />
                             <span className="font-semibold">+{celebrationXp} XP!</span>

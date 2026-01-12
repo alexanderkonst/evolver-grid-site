@@ -148,7 +148,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                         key={path.id}
                         onClick={() => handlePathClick(path.id)}
                         className={cn(
-                            "absolute transform -translate-x-1/2 -translate-y-1/2 z-10",
+                            "absolute transform -translate-x-1/2 -translate-y-1/2 z-above",
                             "flex flex-col items-center gap-1 p-2 rounded-xl",
                             "transition-all duration-300 hover:scale-110",
                             "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900"

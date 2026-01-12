@@ -646,7 +646,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
       {/* Video Modal */}
       {selectedItem && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4"
+          className="fixed inset-0 z-modal flex items-center justify-center bg-black/80 px-4"
           onClick={() => {
             if (profileId) {
               logActionEvent({

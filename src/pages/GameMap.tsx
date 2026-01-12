@@ -182,7 +182,7 @@ const GameMap = () => {
 
                     {/* Quest Filter Modal */}
                     {showQuestFilter && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-modal flex items-end sm:items-center justify-center p-4">
                             <Card className="bg-slate-900 border-slate-700 w-full max-w-md animate-in slide-in-from-bottom-4">
                                 <CardContent className="p-6">
                                     <h2 className="text-lg font-semibold text-white mb-4">

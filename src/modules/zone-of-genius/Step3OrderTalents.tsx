@@ -164,7 +164,7 @@ const Step3OrderTalents = () => {
         </button>
       </div>
 
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg z-10">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg z-above">
         <div className="flex items-center justify-between gap-3 mb-3">
           <button
             onClick={handleBack}

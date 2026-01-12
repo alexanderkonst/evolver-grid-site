@@ -86,7 +86,7 @@ const CharacterTile = ({
 
             {/* Lock overlay */}
             {isLocked && (
-                <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-slate-900/50 backdrop-blur-sm z-10">
+                <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-slate-900/50 backdrop-blur-sm z-above">
                     <div className="flex flex-col items-center gap-1">
                         <Lock className="w-5 h-5 text-slate-400" />
                         {unlockHint && (

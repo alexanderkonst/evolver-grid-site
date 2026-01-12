@@ -229,7 +229,7 @@ const EventDetail = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-10 pb-12">
+      <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-above pb-12">
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           {/* Title & RSVP */}
           <div className="p-6 border-b border-slate-100">

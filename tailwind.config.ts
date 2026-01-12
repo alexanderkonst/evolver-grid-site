@@ -73,6 +73,19 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      zIndex: {
+        underlay: "-10",
+        base: "0",
+        above: "10",
+        sticky: "20",
+        fixed: "30",
+        overlay: "40",
+        modal: "50",
+        popover: "60",
+        toast: "70",
+        tooltip: "80",
+        cursor: "90",
+      },
       keyframes: {
         "accordion-down": {
           from: {

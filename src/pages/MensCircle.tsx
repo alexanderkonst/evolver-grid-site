@@ -65,7 +65,7 @@ const FloatingStars = () => {
   }));
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-10 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-above overflow-hidden">
       {stars.map((star) => (
         <div
           key={star.id}
@@ -156,7 +156,7 @@ const StickyMobileCTA = ({ onClick }: { onClick: () => void }) => {
   if (!isVisible || isAtPayment) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#041a2f]/95 backdrop-blur-sm border-t border-white/10 p-4 pb-safe-4">
+    <div className="fixed bottom-0 left-0 right-0 z-modal md:hidden bg-[#041a2f]/95 backdrop-blur-sm border-t border-white/10 p-4 pb-safe-4">
       <Button
         onClick={onClick}
         className="w-full py-4 text-base font-serif rounded-full btn-premium min-h-[48px]"
@@ -307,7 +307,7 @@ const MensCircle = () => {
       <FloatingStars />
 
       <div
-        className="pointer-events-none fixed inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-base"
         style={{
           backgroundColor: 'rgba(100, 200, 255, 0.08)',
         }}

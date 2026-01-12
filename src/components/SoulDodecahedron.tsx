@@ -67,7 +67,7 @@ const SoulDodecahedron = ({
             {/* The dodecahedron image */}
             <button
                 onClick={onClick}
-                className="relative z-10 rounded-full overflow-hidden transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/30"
+                className="relative z-above rounded-full overflow-hidden transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/30"
                 style={{
                     width: container - 30,
                     height: container - 30,

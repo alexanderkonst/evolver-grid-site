@@ -440,7 +440,7 @@ const ZoneOfGeniusLandingPage = () => {
       <ScrollToTop />
 
       {/* Sticky Mobile CTA */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-50">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-modal">
         <button
           onClick={handleStartAssessment}
           className="w-full py-3 rounded-full font-semibold transition-all text-sm shadow-[0_0_20px_rgba(26,54,93,0.5)]"

@@ -827,7 +827,7 @@ const GameHome = () => {
           {/* QUEST PICKER MODAL */}
           {/* QUEST PICKER MODAL */}
           {showQuestPicker && (
-            <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 bg-black/50 z-modal flex items-center justify-center p-4">
               <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-slate-900">Choose Your Side Quest</h2>
