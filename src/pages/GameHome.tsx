@@ -988,7 +988,7 @@ const GameHome = () => {
 
                     {questSuggestion.alternatives?.length > 0 && (
                       <div className="rounded-2xl border border-slate-200 bg-white p-4 space-y-3">
-                        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Alternatives</p>
+                        <p className="text-xs font-semibold text-slate-500 uppercase ">Alternatives</p>
                         <div className="space-y-2">
                           {questSuggestion.alternatives.map((alt, idx) => (
                             <button

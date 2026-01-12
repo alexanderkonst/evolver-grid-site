@@ -108,7 +108,7 @@ const BionicText = ({ children, className = "" }: { children: string; className?
 
 // Section Header Component
 const SectionHeader = ({ children }: { children: string }) => (
-  <h3 className="text-xl md:text-3xl text-center mb-6 md:mb-8 uppercase tracking-wide">
+  <h3 className="text-xl md:text-3xl text-center mb-6 md:mb-8 uppercase ">
     <BionicText>{children}</BionicText>
   </h3>
 );
@@ -321,7 +321,7 @@ const MensCircle = () => {
             alt="Men's Circle"
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
-          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase tracking-wide px-2" style={{ textShadow: '0 0 15px rgba(218, 165, 32, 0.4), 0 0 30px rgba(218, 165, 32, 0.2)' }}>
+          <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase  px-2" style={{ textShadow: '0 0 15px rgba(218, 165, 32, 0.4), 0 0 30px rgba(218, 165, 32, 0.2)' }}>
             <BionicText>Мужской Круг с Каннабисом</BionicText>
           </h1>
           <h2 className="text-base md:text-xl lg:text-2xl leading-relaxed opacity-90 max-w-3xl mx-auto px-2">

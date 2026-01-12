@@ -373,7 +373,7 @@ GENERAL STYLE RULES:
     <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
       {/* Step indicator */}
       <div className="flex items-center justify-center mb-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+        <p className="text-xs font-medium uppercase  text-slate-500">
           STEP 5 OF 5 · LIFELINE SNAPSHOT
         </p>
       </div>
@@ -405,7 +405,7 @@ GENERAL STYLE RULES:
             <div className="space-y-6">
               {/* Character Card */}
               <article className="rounded-3xl border-2 border-slate-900/10 bg-white p-8 sm:p-10 shadow-lg">
-                <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">
+                <p className="text-xs uppercase  text-slate-500 mb-1">
                   Zone of Genius Character Card
                 </p>
                 <p className="text-xs text-slate-400 mb-6">
@@ -577,7 +577,7 @@ GENERAL STYLE RULES:
             <div className="bg-white p-12" style={{ width: '800px' }}>
               {/* PDF Header */}
               <div className="text-center mb-8 pb-6 border-b-2 border-slate-200">
-                <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">
+                <p className="text-xs uppercase  text-slate-500 mb-2">
                   Zone of Genius Character Card
                 </p>
                 <p className="text-xs text-slate-400 mb-4">

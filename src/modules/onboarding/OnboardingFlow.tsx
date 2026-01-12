@@ -142,7 +142,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-500">Onboarding</p>
+              <p className="text-xs uppercase  text-slate-500">Onboarding</p>
               <h1 className="text-2xl font-bold text-slate-900 mt-2">{current.title}</h1>
               <p className="text-slate-600 mt-3">{current.description}</p>
             </div>

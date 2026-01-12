@@ -93,7 +93,7 @@ const Destiny = () => {
           </div>
 
           {/* Offer Name Overline */}
-          <p className="text-sm uppercase tracking-widest mb-6 text-white/60">
+          <p className="text-sm uppercase  mb-6 text-white/60">
             <BoldText>DESTINY: YOUR UNIQUE GENIUS BUSINESS</BoldText>
           </p>
 

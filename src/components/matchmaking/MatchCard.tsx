@@ -48,7 +48,7 @@ const MatchCard = ({
         </div>
 
         <div className="w-full border-t border-slate-100 pt-4">
-          <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
+          <p className="text-xs uppercase  text-slate-400 mb-2">
             {matchLabel || "Why you match"}
           </p>
           <p className="text-sm text-slate-700 break-words">{matchReason}</p>
@@ -56,7 +56,7 @@ const MatchCard = ({
 
         {secondaryReason && (
           <div className="w-full border-t border-slate-100 pt-4">
-            <p className="text-xs uppercase tracking-wide text-slate-400 mb-2">
+            <p className="text-xs uppercase  text-slate-400 mb-2">
               {secondaryLabel || "Also relevant"}
             </p>
             <p className="text-sm text-slate-700 break-words">{secondaryReason}</p>

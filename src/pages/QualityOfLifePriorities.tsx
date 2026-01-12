@@ -121,7 +121,7 @@ const QualityOfLifePriorities = () => {
           </p>
         </div>
         {highlight && (
-          <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-amber-700">
+          <p className="mt-3 text-xs font-semibold uppercase  text-amber-700">
             Biggest growth potential
           </p>
         )}
@@ -250,7 +250,7 @@ const QualityOfLifePriorities = () => {
                           <p className="text-xs text-amber-200">Focus priority #{index + 1}</p>
                         )}
                       </div>
-                      <span className="text-xs uppercase tracking-wide text-white/60">
+                      <span className="text-xs uppercase  text-white/60">
                         {QOL_LABELS[domainId]}
                       </span>
                     </div>

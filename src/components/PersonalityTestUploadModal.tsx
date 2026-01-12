@@ -285,7 +285,7 @@ const PersonalityTestUploadModal = ({
                     {/* Example section */}
                     {!results && (
                         <div className="p-3 rounded-lg bg-muted/50 border border-border">
-                            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">What to upload</p>
+                            <p className="text-xs uppercase  text-muted-foreground mb-2">What to upload</p>
                             <p className="text-sm text-foreground mb-3">
                                 {testType === 'enneagram' && (
                                     <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
