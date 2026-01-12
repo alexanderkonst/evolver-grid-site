@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
@@ -32,17 +32,17 @@ const AppleseedView = () => {
 
   if (loading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="min-h-[60vh] flex items-center justify-center">
           <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   if (!appleseed) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sparkles className="w-10 h-10 text-amber-400 mb-3" />
           <h1 className="text-2xl font-semibold text-slate-900 mb-2">No genius profile yet</h1>
@@ -59,12 +59,12 @@ const AppleseedView = () => {
             </Button>
           </div>
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="px-4 pt-6">
         <Button variant="ghost" onClick={() => navigate("/game/profile")}>
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -85,7 +85,7 @@ const AppleseedView = () => {
           </div>
         </div>
       )}
-    </GameShell>
+    </GameShellV2>
   );
 };
 

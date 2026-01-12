@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -145,16 +145,16 @@ const PublicPageEditor = () => {
 
     if (isLoading) {
         return (
-            <GameShell>
+            <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
                     <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
                 </div>
-            </GameShell>
+            </GameShellV2>
         );
     }
 
     return (
-        <GameShell>
+        <GameShellV2>
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
@@ -312,7 +312,7 @@ const PublicPageEditor = () => {
                     </p>
                 </div>
             </div>
-        </GameShell>
+        </GameShellV2>
     );
 };
 

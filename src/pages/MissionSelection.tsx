@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2, Target } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -147,16 +147,16 @@ const MissionSelection = () => {
 
   if (loading) {
     return (
-      <GameShell>
+      <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
           <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
         </div>
-      </GameShell>
+      </GameShellV2>
     );
   }
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="flex items-center gap-3 text-slate-900">
@@ -229,7 +229,7 @@ const MissionSelection = () => {
           </div>
         </div>
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 

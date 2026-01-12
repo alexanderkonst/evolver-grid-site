@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Loader2, MapPin, Users, Languages } from "lucide-react";
-import GameShell from "@/components/game/GameShell";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { supabase } from "@/integrations/supabase/client";
@@ -324,7 +324,7 @@ const Matchmaking = () => {
   );
 
   return (
-    <GameShell>
+    <GameShellV2>
       <div className="p-6 lg:p-8 max-w-5xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
@@ -447,7 +447,7 @@ const Matchmaking = () => {
           </div>
         )}
       </div>
-    </GameShell>
+    </GameShellV2>
   );
 };
 
