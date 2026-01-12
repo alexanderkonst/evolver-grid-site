@@ -252,7 +252,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                 >
                     {/* Mobile Header with safe area */}
                     <header
-                        className="bg-slate-900 flex items-center px-4 gap-3 sticky top-0 z-50"
+                        className="bg-slate-900 flex items-center px-4 gap-3 sticky top-0 z-modal"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button

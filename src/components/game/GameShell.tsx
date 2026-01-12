@@ -231,7 +231,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     return (
         <div className="min-h-dvh bg-white flex">
             {/* Mobile Header */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-slate-200 z-50 flex items-center justify-between px-4 pt-safe">
+            <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-slate-200 z-modal flex items-center justify-between px-4 pt-safe">
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-slate-100 rounded-lg"
@@ -246,7 +246,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             {/* Sidebar */}
             <aside
                 className={`
-          fixed lg:static inset-y-0 left-0 z-40
+          fixed lg:static inset-y-0 left-0 z-overlay
           ${desktopSidebarOpen ? 'w-64' : 'lg:w-0 lg:overflow-hidden'}
           bg-slate-900 border-r border-slate-800
           transform transition-all duration-200 ease-in-out
@@ -421,7 +421,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             {/* Mobile Overlay */}
             {sidebarOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+                    className="fixed inset-0 bg-black/50 z-fixed lg:hidden"
                     onClick={() => setSidebarOpen(false)}
                 />
             )}
@@ -430,7 +430,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             {!desktopSidebarOpen && (
                 <button
                     onClick={() => setDesktopSidebarOpen(true)}
-                    className="hidden lg:flex fixed top-4 left-4 z-50 items-center justify-center w-10 h-10 bg-slate-900 text-slate-400 hover:text-white rounded-lg shadow-lg border border-slate-700 transition-colors"
+                    className="hidden lg:flex fixed top-4 left-4 z-modal items-center justify-center w-10 h-10 bg-slate-900 text-slate-400 hover:text-white rounded-lg shadow-lg border border-slate-700 transition-colors"
                     title="Expand sidebar"
                     aria-label="Expand sidebar"
                 >

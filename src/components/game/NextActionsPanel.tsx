@@ -113,7 +113,7 @@ export default function NextActionsPanel({
                         {/* Shimmer overlay */}
                         <div className="shimmer-overlay" />
 
-                        <div className="relative z-10">
+                        <div className="relative z-above">
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                                     {primaryAction.icon === 'sparkles' ? (

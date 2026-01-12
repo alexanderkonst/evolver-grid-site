@@ -131,7 +131,7 @@ const AssetMappingWizard = () => {
     return (
         <div className="min-h-dvh bg-white">
             {/* Header */}
-            <div className="border-b border-slate-200 bg-white sticky top-0 z-10">
+            <div className="border-b border-slate-200 bg-white sticky top-0 z-above">
                 <div className="max-w-2xl mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">

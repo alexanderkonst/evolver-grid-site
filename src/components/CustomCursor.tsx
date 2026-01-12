@@ -31,7 +31,7 @@ const CustomCursor = () => {
 
   return (
     <div
-      className="fixed pointer-events-none z-[9998] transition-transform duration-150 ease-out"
+      className="fixed pointer-events-none z-cursor transition-transform duration-150 ease-out"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

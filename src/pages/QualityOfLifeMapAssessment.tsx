@@ -171,7 +171,7 @@ const QualityOfLifeMapAssessment = () => {
           </div>
 
           {/* Mobile Bottom Bar */}
-          <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-[hsl(220,30%,12%)] border-t border-white/20 p-4 shadow-lg z-10">
+          <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-[hsl(220,30%,12%)] border-t border-white/20 p-4 shadow-lg z-above">
             <div className="flex items-center justify-between gap-3 mb-3">
               {currentIndex > 0 && (
                 <button

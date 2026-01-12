@@ -43,7 +43,7 @@ const SkillNode = ({ node, status, color, onClick }: SkillNodeProps) => {
 
     return (
         <div
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10"
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 z-above"
             style={{
                 left: `${node.position.x}%`,
                 top: `${node.position.y}%`,
@@ -54,7 +54,7 @@ const SkillNode = ({ node, status, color, onClick }: SkillNodeProps) => {
                 className={cn(
                     "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-56 p-3 rounded-lg",
                     "bg-popover border border-border shadow-xl",
-                    "transition-all duration-200 z-20",
+                    "transition-all duration-200 z-sticky",
                     isHovered ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 )}
             >
