@@ -34,6 +34,8 @@ const SPACE_SECTIONS: SpaceSections = {
     profile: {
         title: "Profile",
         sections: [
+            { id: "overview", label: "Overview", path: "/game/profile" },
+            { id: "mission", label: "My Mission", path: "/game/profile/mission" },
             {
                 id: "zog",
                 label: "Zone of Genius",
@@ -52,13 +54,13 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "results", label: "Results", path: "/quality-of-life-map/results" },
                 ],
             },
-            { id: "assets", label: "Assets", path: "/asset-mapping" },
-            { id: "settings", label: "Settings", path: "/game/profile" },
+            { id: "assets", label: "Assets", path: "/game/profile/assets" },
         ],
     },
     transformation: {
         title: "Transformation",
         sections: [
+            { id: "overview", label: "Overview", path: "/game/transformation" },
             { id: "library", label: "Practice Library", path: "/library" },
             {
                 id: "paths",
@@ -72,13 +74,15 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "genius", label: "Uniqueness", path: "/game/path/genius" },
                 ],
             },
+            { id: "tests", label: "Personality Tests", path: "/resources/personality-tests" },
         ],
     },
     marketplace: {
         title: "Marketplace",
         sections: [
-            { id: "browse", label: "Browse", path: "/game/marketplace" },
-            { id: "my-offers", label: "My Offers", path: "/game/marketplace" },
+            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" },
+            { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
+            { id: "browse", label: "Browse Guides", path: "/game/marketplace/browse" },
         ],
     },
     teams: {
@@ -93,6 +97,8 @@ const SPACE_SECTIONS: SpaceSections = {
         title: "Events",
         sections: [
             { id: "browse", label: "Browse Events", path: "/game/events" },
+            { id: "my-rsvps", label: "My RSVPs", path: "/game/events/my-rsvps" },
+            { id: "create", label: "Create Event", path: "/game/events/create" },
         ],
     },
     coop: {
