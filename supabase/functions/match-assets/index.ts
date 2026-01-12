@@ -176,6 +176,18 @@ serve(async (req) => {
             role: "system",
             content: `You are an asset extraction assistant. Given a user's description of their assets, skills, or resources, extract each distinct asset and categorize it.
 
+When identifying assets, prioritize those that:
+- Enable immediate collaboration or exchange
+- Can be monetized or provide clear value to others
+- Are most "liquid" (easy to share, access, or leverage)
+
+Specifically look for:
+- Communities/audiences (size, profile, what they need)
+- Products/services (who is the ideal customer?)
+- Skills that can be immediately applied
+- Connections to key people or networks
+- Distribution channels (newsletters, podcasts, social reach)
+
 For EACH asset mentioned, return a structured object with:
 - "category": The best matching category from the provided list (use the format "Type > SubType > Title")
 - "name": A concise asset name (3-6 words). If input has "Asset: X", use X. Otherwise derive from first clause.
