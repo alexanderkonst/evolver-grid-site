@@ -116,7 +116,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
             {/* Step 1: Celebration */}
             {currentStep === "celebration" && (
                 <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 mb-6 animate-pulse">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500 mb-6 animate-pulse">
                         <PartyPopper className="w-10 h-10 text-white" />
                     </div>
                     <h2 className="text-3xl font-bold text-slate-900 mb-3">You committed to this mission!</h2>

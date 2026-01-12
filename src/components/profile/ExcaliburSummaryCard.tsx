@@ -12,11 +12,11 @@ const ExcaliburSummaryCard = ({ excalibur }: ExcaliburSummaryCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 overflow-hidden">
+    <Card className="border-violet-200 bg-violet-50 overflow-hidden">
       <CardContent className="p-5">
         <div className="flex items-start gap-4">
           {/* Icon */}
-          <div className="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 flex items-center justify-center">
+          <div className="shrink-0 w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
             <Sword className="w-6 h-6 text-violet-600" />
           </div>
 

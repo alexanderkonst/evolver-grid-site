@@ -87,8 +87,7 @@ const Destiny = () => {
             <div 
               className="w-32 h-32 rounded-full orb-pulse"
               style={{
-                background: 'radial-gradient(circle, hsl(var(--destiny-gold)) 0%, hsl(var(--destiny-gold-dark)) 30%, transparent 70%)',
-                boxShadow: '0 0 80px hsla(var(--destiny-gold), 0.4)'
+                backgroundColor: 'hsl(var(--destiny-gold))',
               }}
             />
           </div>

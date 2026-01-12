@@ -30,8 +30,8 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
       className="cursor-pointer hover:shadow-md transition-shadow border-slate-200 bg-white"
       onClick={onClick}
     >
-      {/* Photo or gradient placeholder */}
-      <div className="h-32 bg-gradient-to-br from-amber-100 to-orange-100 rounded-t-lg overflow-hidden">
+      {/* Photo placeholder */}
+      <div className="h-32 bg-amber-100 rounded-t-lg overflow-hidden">
         {event.photo_url ? (
           <img
             src={event.photo_url}

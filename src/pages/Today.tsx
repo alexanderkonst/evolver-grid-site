@@ -364,14 +364,14 @@ export default function TodayPage() {
     // Loading state
     if (isLoading) {
         return (
-            <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+            <div className="min-h-dvh flex items-center justify-center bg-slate-50">
                 <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-dvh bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="min-h-dvh bg-slate-50">
             <div className="max-w-2xl mx-auto px-4 py-8">
 
                 {/* Header */}
@@ -420,7 +420,7 @@ export default function TodayPage() {
                     {/* 1. Main Quest (Storyline) */}
                     <div className={`rounded-2xl border-2 p-5 ${mainQuestComplete || artifactSubmitted
                         ? 'border-emerald-200 bg-emerald-50'
-                        : 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50'
+                        : 'border-indigo-200 bg-indigo-50'
                         }`}>
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-2">

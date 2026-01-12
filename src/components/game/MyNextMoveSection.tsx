@@ -64,7 +64,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
             <h2 className="font-semibold text-slate-900 mb-4">My Next Move</h2>
 
             {/* Action Card */}
-            <div className="rounded-xl border-2 border-slate-100 bg-gradient-to-br from-slate-50 to-white p-5 mb-4">
+            <div className="rounded-xl border-2 border-slate-100 bg-slate-50 p-5 mb-4">
                 <div className="flex items-start gap-3 mb-3">
                     <span className="text-3xl">{action.emoji || '🎯'}</span>
                     <div className="flex-1">

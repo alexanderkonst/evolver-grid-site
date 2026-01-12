@@ -52,20 +52,10 @@ const SkillTree = ({ tree, progress = {}, onNodeClick }: SkillTreeProps) => {
 
     return (
         <div className="relative w-full h-full min-h-[500px]">
-            {/* Background gradient */}
-            <div
-                className={`absolute inset-0 bg-gradient-to-t ${tree.bgGradient} rounded-xl`}
-            />
+            <div className="absolute inset-0 bg-slate-900/10 rounded-xl" />
 
             {/* Connection lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <defs>
-                    <linearGradient id={`line-gradient-${tree.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor={tree.color} stopOpacity="0.3" />
-                        <stop offset="50%" stopColor={tree.color} stopOpacity="0.6" />
-                        <stop offset="100%" stopColor={tree.color} stopOpacity="0.3" />
-                    </linearGradient>
-                </defs>
                 {connections.map(({ from, to }, index) => {
                     const fromStatus = nodeStatuses[from.id];
                     const toStatus = nodeStatuses[to.id];

@@ -22,27 +22,14 @@ const SoulDodecahedron = ({
 }: SoulDodecahedronProps) => {
     const { container, glow } = SIZE_MAP[size];
 
-    // Generate gradient from soul colors
-    const glowGradient = useMemo(() => {
+    const glowColor = useMemo(() => {
         if (!soulColors || soulColors.length === 0) {
-            // Default ethereal glow when no colors
-            return "radial-gradient(circle, rgba(155, 93, 229, 0.4) 0%, rgba(155, 93, 229, 0.1) 50%, transparent 70%)";
+            return "rgba(245, 158, 11, 0.35)";
         }
-
-        // Create a multi-color radial gradient
-        const colorStops = soulColors.map((color, index) => {
-            const opacity = 0.5 - (index * 0.1);
-            const position = (index / soulColors.length) * 100;
-            return `${color}${Math.floor(opacity * 255).toString(16).padStart(2, '0')} ${position}%`;
-        }).join(", ");
-
-        return `radial-gradient(circle, ${colorStops}, transparent 100%)`;
+        return soulColors[0];
     }, [soulColors]);
 
-    // Create animated ring colors
-    const ringColors = soulColors && soulColors.length >= 2
-        ? `linear-gradient(45deg, ${soulColors[0]}, ${soulColors[1] || soulColors[0]}, ${soulColors[2] || soulColors[0]})`
-        : "linear-gradient(45deg, #9b5de5, #f5a623, #4361ee)";
+    const ringColor = soulColors?.[0] ?? "#f59e0b";
 
     return (
         <div
@@ -53,7 +40,8 @@ const SoulDodecahedron = ({
             <div
                 className="absolute inset-0 rounded-full animate-pulse"
                 style={{
-                    background: glowGradient,
+                    backgroundColor: glowColor,
+                    opacity: 0.25,
                     filter: `blur(${glow}px)`,
                     animationDuration: "3s",
                 }}
@@ -65,7 +53,7 @@ const SoulDodecahedron = ({
                 style={{
                     width: container - 10,
                     height: container - 10,
-                    background: ringColors,
+                    backgroundColor: ringColor,
                     padding: "3px",
                     animationDuration: "15s",
                 }}
@@ -95,9 +83,8 @@ const SoulDodecahedron = ({
                 <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                        background: soulColors && soulColors.length > 0
-                            ? `radial-gradient(circle, ${soulColors[0]}20 0%, transparent 70%)`
-                            : "radial-gradient(circle, rgba(255, 213, 79, 0.1) 0%, transparent 70%)",
+                        backgroundColor: soulColors?.[0] ?? "rgba(245, 158, 11, 0.2)",
+                        opacity: 0.12,
                     }}
                 />
             </button>

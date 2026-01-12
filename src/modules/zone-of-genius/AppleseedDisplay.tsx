@@ -54,12 +54,12 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
         <div className="max-w-3xl mx-auto p-4 lg:p-8 space-y-8">
             {/* Hero: Vibrational Key */}
             <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 mb-4 animate-pulse">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4 animate-pulse">
                     <Sparkles className="w-8 h-8 text-amber-600" />
                 </div>
 
                 <div className="space-y-2">
-                    <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                    <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 text-amber-600">
                         ✦ {appleseed.vibrationalKey.name} ✦
                     </h1>
                     <p className="text-lg text-slate-600 italic">
@@ -68,7 +68,7 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                 </div>
 
                 {/* Bullseye Sentence */}
-                <div className="mt-6 p-6 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl border border-slate-200">
+                <div className="mt-6 p-6 bg-slate-50 rounded-2xl border border-slate-200">
                     <p className="text-lg text-slate-800 leading-relaxed">
                         {appleseed.bullseyeSentence}
                     </p>
@@ -207,7 +207,7 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                 </CollapsibleSection>
 
                 {/* Elevator Pitch */}
-                <div className="p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border border-amber-200">
+                <div className="p-6 bg-amber-50 rounded-2xl border border-amber-200">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <h3 className="font-semibold text-slate-900 mb-2">Elevator Pitch</h3>
@@ -233,7 +233,7 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                     <Button
                         onClick={onSave}
                         size="lg"
-                        className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                        className="w-full bg-amber-500 hover:from-amber-600 hover:to-orange-600"
                     >
                         Save to My Profile
                     </Button>

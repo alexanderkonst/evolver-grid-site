@@ -242,7 +242,7 @@ const ZoneOfGeniusEntry = () => {
 
                     {/* Excalibur CTA */}
                     <div className="max-w-3xl mx-auto px-4 lg:px-8 mt-8">
-                        <div className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-200 text-center">
+                        <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 text-center">
                             <Sword className="w-10 h-10 text-violet-500 mx-auto mb-3" />
                             <h3 className="text-lg font-semibold text-slate-900 mb-2">
                                 Now that you know WHO you are...
@@ -253,7 +253,7 @@ const ZoneOfGeniusEntry = () => {
                             <Button
                                 onClick={handleGenerateExcalibur}
                                 disabled={isProcessing}
-                                className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                                className="bg-violet-500 hover:from-violet-600 hover:to-purple-600"
                                 type="button"
                             >
                                 <Sword className="w-4 h-4 mr-2" />
@@ -281,7 +281,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
                         <div className="absolute inset-4 border-2 border-violet-300 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
                         <div className="absolute inset-8 border-2 border-violet-400 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
-                        <div className="absolute inset-12 bg-gradient-to-br from-violet-200 to-purple-200 rounded-full animate-pulse flex items-center justify-center">
+                        <div className="absolute inset-12 bg-violet-200 rounded-full animate-pulse flex items-center justify-center">
                             <Sword className="w-6 h-6 text-violet-600" />
                         </div>
                     </div>
@@ -471,7 +471,7 @@ const ZoneOfGeniusEntry = () => {
                         />
 
                         <Button
-                            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                            className="w-full bg-amber-500 hover:from-amber-600 hover:to-orange-600"
                             size="lg"
                             onClick={handleGenerateAppleseed}
                             disabled={!aiResponse.trim() || isProcessing}

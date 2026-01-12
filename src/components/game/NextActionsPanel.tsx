@@ -106,7 +106,7 @@ export default function NextActionsPanel({
                     <div
                         className={cn(
                             "relative rounded-xl border-2 p-5 overflow-hidden",
-                            "border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50",
+                            "border-indigo-200 bg-indigo-50",
                             "shimmer-card"
                         )}
                     >

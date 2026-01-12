@@ -234,7 +234,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                     />
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 bg-gradient-to-b from-slate-800 to-slate-700">
+                    <div className="flex-1 bg-slate-800">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}

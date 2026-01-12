@@ -105,7 +105,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
     return (
         <div className="relative w-full aspect-square max-w-lg mx-auto">
             {/* Background glow */}
-            <div className="absolute inset-0 bg-gradient-radial from-slate-800/50 via-slate-900/80 to-slate-950 rounded-full" />
+            <div className="absolute inset-0 bg-slate-900/80 rounded-full" />
 
             {/* Connection lines from center to each path */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">

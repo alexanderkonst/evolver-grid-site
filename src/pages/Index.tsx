@@ -83,7 +83,7 @@ const Index = () => {
         <div className="container mx-auto max-w-4xl">
           <div
             onClick={() => window.location.href = '/start'}
-            className="rounded-3xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
+            className="rounded-3xl border-2 border-slate-300 bg-slate-50 p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
           >
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
