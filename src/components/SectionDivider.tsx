@@ -12,7 +12,7 @@ const SectionDivider = ({ className = "" }: SectionDividerProps) => {
       <div className="container mx-auto max-w-4xl">
         <div className="relative h-px bg-border/30 overflow-hidden">
           <div
-            className={`absolute inset-0 bg-gradient-to-r from-transparent via-accent to-transparent transition-transform duration-1000 ease-out ${
+            className={`absolute inset-0 bg-accent/60 transition-transform duration-1000 ease-out ${
               isVisible ? "translate-x-0" : "-translate-x-full"
             }`}
           />

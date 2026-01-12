@@ -97,7 +97,7 @@ const SpacesRail = ({
             {/* Logo */}
             <Link
                 to="/game"
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mb-4 hover:scale-105 transition-transform"
+                className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center mb-4 hover:scale-105 transition-transform"
             >
                 <span className="text-white font-bold text-lg">E</span>
             </Link>

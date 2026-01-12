@@ -379,7 +379,7 @@ GENERAL STYLE RULES:
       </div>
 
       {/* Hero: unlock moment */}
-      <section className="rounded-3xl bg-gradient-to-b from-slate-50 to-white px-6 py-12 sm:px-12 sm:py-16 text-center border border-slate-200 shadow-sm mb-12">
+      <section className="rounded-3xl bg-slate-50 px-6 py-12 sm:px-12 sm:py-16 text-center border border-slate-200 shadow-sm mb-12">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
           You Just Unlocked Your Zone of Genius
         </h1>

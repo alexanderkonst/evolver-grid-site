@@ -54,7 +54,7 @@ const AppleseedRitualLoading = ({
                 <div className="absolute inset-8 border-2 border-amber-400 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
 
                 {/* Center glow */}
-                <div className="absolute inset-12 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full animate-pulse flex items-center justify-center">
+                <div className="absolute inset-12 bg-amber-200 rounded-full animate-pulse flex items-center justify-center">
                     <Sparkles className="w-6 h-6 text-amber-600" />
                 </div>
 
@@ -83,7 +83,7 @@ const AppleseedRitualLoading = ({
             {/* Progress bar */}
             <div className="w-64 h-1 bg-slate-200 rounded-full overflow-hidden">
                 <div
-                    className="h-full bg-gradient-to-r from-amber-400 to-orange-400 transition-all duration-100 ease-out"
+                    className="h-full bg-amber-400 transition-all duration-100 ease-out"
                     style={{ width: `${progress}%` }}
                 />
             </div>

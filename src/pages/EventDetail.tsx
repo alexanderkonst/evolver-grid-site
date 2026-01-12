@@ -203,7 +203,7 @@ const EventDetail = () => {
   return (
     <div className="min-h-dvh bg-slate-50">
       {/* Hero Image */}
-      <div className="h-48 sm:h-64 bg-gradient-to-br from-amber-100 to-orange-100 relative">
+      <div className="h-48 sm:h-64 bg-amber-100 relative">
         {event.photo_url ? (
           <img
             src={event.photo_url}
@@ -360,7 +360,7 @@ const EventDetail = () => {
                 {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
                     <div
                       key={attendee.user_id}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center text-white text-xs font-medium"
+                      className="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-white text-xs font-medium"
                       title={`User ${idx + 1}`}
                     >
                       {idx + 1}

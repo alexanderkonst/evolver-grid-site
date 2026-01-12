@@ -75,8 +75,7 @@ const ModuleDetail = () => {
             <div 
               className="w-24 h-24 rounded-full orb-pulse"
               style={{
-                background: 'radial-gradient(circle, hsl(var(--destiny-gold)) 0%, hsl(var(--destiny-gold-dark)) 30%, transparent 70%)',
-                boxShadow: '0 0 60px hsla(var(--destiny-gold), 0.3)'
+                backgroundColor: 'hsl(var(--destiny-gold))',
               }}
             />
           </div>

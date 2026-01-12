@@ -12,11 +12,11 @@ const AppleseedSummaryCard = ({ appleseed }: AppleseedSummaryCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 overflow-hidden">
+    <Card className="border-amber-200 bg-amber-50 overflow-hidden">
       <CardContent className="p-5">
         <div className="flex items-start gap-4">
           {/* Icon */}
-          <div className="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+          <div className="shrink-0 w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
             <Sparkles className="w-6 h-6 text-amber-600" />
           </div>
 

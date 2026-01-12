@@ -28,7 +28,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
         <div className="max-w-3xl mx-auto p-4 lg:p-8 space-y-8">
             {/* Hero: The Sword */}
             <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-violet-100 to-purple-200 mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-violet-100 mb-4">
                     <Sword className="w-8 h-8 text-violet-600" />
                 </div>
 
@@ -42,7 +42,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
             </div>
 
             {/* The Offer (Hero Card) */}
-            <div className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-200 space-y-4">
+            <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 space-y-4">
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                         <p className="text-sm text-violet-600 font-medium mb-2">Your Offer</p>
@@ -131,7 +131,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
                     </div>
                 </div>
 
-                <div className="p-4 bg-gradient-to-r from-violet-100 to-purple-100 rounded-lg">
+                <div className="p-4 bg-violet-100 rounded-lg">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="text-sm text-violet-700 font-medium mb-1">Your Hook</p>
@@ -170,7 +170,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
             </div>
 
             {/* Convergence */}
-            <div className="p-5 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl text-white space-y-3">
+            <div className="p-5 bg-slate-900 rounded-xl text-white space-y-3">
                 <h3 className="font-semibold">The Bigger Arc</h3>
                 <p className="text-slate-300">{excalibur.convergence.biggerArc}</p>
                 <div className="flex items-center gap-2 text-violet-300">
@@ -180,7 +180,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
             </div>
 
             {/* Immediate Next Step (CTA) */}
-            <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-200">
+            <div className="p-6 bg-emerald-50 rounded-2xl border border-green-200">
                 <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
                     <Zap className="w-5 h-5 text-green-600" />
                     Your Immediate Next Step
@@ -208,7 +208,7 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
                     <Button
                         onClick={onSave}
                         size="lg"
-                        className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                        className="w-full bg-violet-500 hover:from-violet-600 hover:to-purple-600"
                     >
                         <Sword className="w-5 h-5 mr-2" />
                         Save My Offer

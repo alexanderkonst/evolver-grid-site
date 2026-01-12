@@ -74,7 +74,7 @@ const AppleseedView = () => {
       <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
       {!excalibur && (
         <div className="px-4 pb-10">
-          <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 p-6 text-center">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-violet-50 p-6 text-center">
             <h2 className="text-lg font-semibold text-slate-900 mb-2">Your Unique Offer</h2>
             <p className="text-slate-600 mb-4">
               You know who you are. Now discover what you can offer.

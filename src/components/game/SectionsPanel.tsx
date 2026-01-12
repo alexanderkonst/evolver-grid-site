@@ -134,7 +134,7 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[240px] bg-gradient-to-b from-slate-800 to-slate-700 flex flex-col border-r border-slate-700",
+                "w-[240px] bg-slate-800 flex flex-col border-r border-slate-700",
                 className
             )}
         >

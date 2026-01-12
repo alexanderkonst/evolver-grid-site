@@ -46,7 +46,7 @@ const animationStyles = `
     position: absolute;
     width: 3px;
     height: 3px;
-    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(100,200,255,0.3) 100%);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 50%;
     animation: twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
     animation-delay: var(--twinkle-delay, 0s);
@@ -309,7 +309,7 @@ const MensCircle = () => {
       <div
         className="pointer-events-none fixed inset-0 z-0"
         style={{
-          background: 'radial-gradient(ellipse at center top, rgba(100, 200, 255, 0.08) 0%, transparent 50%)',
+          backgroundColor: 'rgba(100, 200, 255, 0.08)',
         }}
       />
 
@@ -382,7 +382,7 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%)' }}>
+            <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ backgroundColor: '#D4AF37' }}>
               <img
                 src={mcLion}
                 alt="For Whom"
