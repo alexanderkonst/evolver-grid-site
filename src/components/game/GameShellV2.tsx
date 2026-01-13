@@ -42,12 +42,33 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">("navigation");
 
+    const getSpaceFromPath = (pathname: string): string | undefined => {
+        const match = pathname.match(/^\/game\/([^/]+)/);
+        if (!match) return undefined;
+        const space = match[1];
+        const spaceMap: Record<string, string> = {
+            "next-move": "next-move",
+            profile: "profile",
+            transformation: "transformation",
+            marketplace: "marketplace",
+            teams: "teams",
+            events: "events",
+            coop: "coop",
+        };
+        return spaceMap[space] || space;
+    };
+
     // Determine active space from URL
     useEffect(() => {
-        const path = location.pathname;
-        const space = SPACES.find(s => path.startsWith(s.path) || path === s.path);
-        if (space) {
-            setActiveSpaceId(space.id);
+        const currentSpace = getSpaceFromPath(location.pathname);
+        if (currentSpace) {
+            setActiveSpaceId(currentSpace);
+            return;
+        }
+
+        const fallback = SPACES.find((s) => location.pathname.startsWith(s.path) || location.pathname === s.path);
+        if (fallback) {
+            setActiveSpaceId(fallback.id);
         }
     }, [location.pathname]);
 
