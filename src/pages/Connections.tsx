@@ -5,6 +5,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import EmptyState from "@/components/ui/EmptyState";
 import SkeletonCard from "@/components/ui/SkeletonCard";
+import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 interface ConnectionRow {
@@ -25,6 +26,7 @@ interface ProfileSummary {
 
 const Connections = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [connections, setConnections] = useState<ConnectionRow[]>([]);
@@ -93,15 +95,30 @@ const Connections = () => {
   const handleRespond = async (row: ConnectionRow, status: "accepted" | "declined") => {
     if (!row.id) return;
     setUpdating(row.id);
-    await supabase
-      .from("connections")
-      .update({ status, responded_at: new Date().toISOString() })
-      .eq("id", row.id);
+    try {
+      const { error } = await supabase
+        .from("connections")
+        .update({ status, responded_at: new Date().toISOString() })
+        .eq("id", row.id);
 
-    setConnections((prev) =>
-      prev.map((item) => (item.id === row.id ? { ...item, status } : item))
-    );
-    setUpdating(null);
+      if (error) throw error;
+
+      setConnections((prev) =>
+        prev.map((item) => (item.id === row.id ? { ...item, status } : item))
+      );
+
+      toast({
+        title: status === "accepted" ? "Connection accepted" : "Request declined",
+      });
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: err instanceof Error ? err.message : "Failed to update request.",
+        variant: "destructive",
+      });
+    } finally {
+      setUpdating(null);
+    }
   };
 
   if (!userId && !loading) {
