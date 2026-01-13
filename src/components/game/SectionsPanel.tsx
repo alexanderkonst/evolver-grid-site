@@ -199,22 +199,22 @@ const SectionsPanel = ({
                                     }
                                 }}
                             >
-                                {hasSubSections && (
-                                    <span className="w-4 h-4 flex items-center justify-center">
-                                        {isExpanded ? (
+                                <span className="w-4 h-4 flex items-center justify-center">
+                                    {hasSubSections ? (
+                                        isExpanded ? (
                                             <ChevronDown className="w-3 h-3" />
                                         ) : (
                                             <ChevronRight className="w-3 h-3" />
-                                        )}
-                                    </span>
-                                )}
+                                        )
+                                    ) : null}
+                                </span>
                                 {section.icon}
                                 <span className="text-sm flex-1">{section.label}</span>
                             </div>
 
                             {/* Sub-sections with indent */}
                             {hasSubSections && isExpanded && (
-                                <div className="ml-4 border-l border-slate-700">
+                                <div className="ml-8 border-l border-slate-700">
                                     {section.subSections!.map((sub) => {
                                         const subActive = isActive(sub.path);
                                         return (
