@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Boxes, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
+import EmptyState from "@/components/ui/EmptyState";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
 import { ASSET_SUB_TYPES } from "@/modules/asset-mapping/data/assetSubtypes";
@@ -18,6 +19,7 @@ interface SavedAsset {
 }
 
 const ProfileAssetsSection = () => {
+    const navigate = useNavigate();
     const [savedAssets, setSavedAssets] = useState<SavedAsset[]>([]);
     const [showAssets, setShowAssets] = useState(false);
 
@@ -91,8 +93,16 @@ const ProfileAssetsSection = () => {
                     {showAssets && (
                         <div className="border-t border-slate-100 max-h-96 overflow-y-auto">
                             {savedAssets.length === 0 ? (
-                                <div className="p-4 text-sm text-slate-600">
-                                    No assets saved yet. Add your first asset to get started.
+                                <div className="p-4">
+                                    <EmptyState
+                                        icon={<Boxes className="w-6 h-6 text-slate-500" />}
+                                        title="No assets saved"
+                                        description="Map your assets to start building your library."
+                                        action={{
+                                            label: "Map Your Assets",
+                                            onClick: () => navigate("/asset-mapping"),
+                                        }}
+                                    />
                                 </div>
                             ) : (
                                 savedAssets.map((asset, i) => (
