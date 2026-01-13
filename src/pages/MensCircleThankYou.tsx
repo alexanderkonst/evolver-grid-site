@@ -83,6 +83,7 @@ const MensCircleThankYou = () => {
                     <img
                         src="https://i.imgur.com/NGSxNw8.png"
                         alt="Men's Circle"
+                        loading="lazy"
                         className="w-48 h-48 mx-auto object-contain"
                     />
 

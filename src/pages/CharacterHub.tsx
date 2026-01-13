@@ -297,6 +297,7 @@ const CharacterHub = () => {
                         <img
                             src={dodecahedronImage}
                             alt=""
+                            loading="lazy"
                             className="pointer-events-none absolute -right-4 -top-6 w-24 opacity-10"
                             aria-hidden="true"
                         />

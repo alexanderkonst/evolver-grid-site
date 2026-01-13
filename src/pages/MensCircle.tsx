@@ -256,7 +256,7 @@ const MensCircle = () => {
           <span>Назад</span>
         </button>
         <div className="max-w-md w-full text-center space-y-8">
-          <img
+          <img loading="lazy"
             src={mensCircleLogo}
             alt="Men's Circle"
             className="w-64 h-64 mx-auto mb-6 object-contain logo-glow"
@@ -316,7 +316,7 @@ const MensCircle = () => {
       {/* Hero Section */}
       <section className="pt-12 md:pt-20 pb-12 md:pb-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-8">
-          <img
+          <img loading="lazy"
             src={mensCircleLogo}
             alt="Men's Circle"
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
@@ -383,7 +383,7 @@ const MensCircle = () => {
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
             <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ backgroundColor: '#D4AF37' }}>
-              <img
+              <img loading="lazy"
                 src={mcLion}
                 alt="For Whom"
                 className="w-full h-full object-cover rounded-full"
@@ -421,7 +421,7 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <img
+            <img loading="lazy"
               src={mcDodecahedron}
               alt="What Is This"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
@@ -451,7 +451,7 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <img
+            <img loading="lazy"
               src={mcMerkaba}
               alt="How Meeting Goes"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
@@ -502,7 +502,7 @@ const MensCircle = () => {
           {/* Shamanic Photo - Above Header */}
           <div className="text-center mb-2">
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
-              <img
+              <img loading="lazy"
                 src={mcAlexShamanic}
                 alt="Aleksandr - Shamanic"
                 className="w-full h-full object-cover object-center"
@@ -537,7 +537,7 @@ const MensCircle = () => {
           {/* Professional Photo - At End */}
           <div className="text-center pt-4">
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
-              <img
+              <img loading="lazy"
                 src={mcAlexProfessional}
                 alt="Aleksandr - Professional"
                 className="w-full h-full object-cover object-center"
@@ -554,7 +554,7 @@ const MensCircle = () => {
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white/5">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-2 md:mb-4">
-            <img
+            <img loading="lazy"
               src={mcCannabis}
               alt="Safety and Rules"
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
@@ -611,7 +611,7 @@ const MensCircle = () => {
       <section id="join-section" className="py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           <div className="text-center mb-4 md:mb-8">
-            <img
+            <img loading="lazy"
               src={mcCrossStar}
               alt="Men's Circle"
               className="w-32 h-32 md:w-56 md:h-56 mx-auto object-contain"
