@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 // AnimatedBackground removed for minimal SaaS design
@@ -55,16 +55,11 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
-import TransformationSpace from "./pages/spaces/TransformationSpace";
 import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
 import TransformationGrowthPaths from "./pages/spaces/transformation/GrowthPaths";
 import PathSection from "./pages/spaces/transformation/PathSection";
 import TransformationPracticeLibrary from "./pages/spaces/transformation/PracticeLibrary";
 import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
-import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
-import TeamsSpace from "./pages/spaces/TeamsSpace";
-import EventsSpace from "./pages/spaces/EventsSpace";
-import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/events/CreateEvent";
 import CommunityEvents from "./pages/CommunityEvents";
@@ -88,6 +83,18 @@ import PublicPageEditor from "./pages/PublicPageEditor";
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 
+const PageLoader = () => (
+  <div className="h-screen flex items-center justify-center bg-slate-900">
+    <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full" />
+  </div>
+);
+
+const TransformationSpace = lazy(() => import("./pages/spaces/TransformationSpace"));
+const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace"));
+const TeamsSpace = lazy(() => import("./pages/spaces/TeamsSpace"));
+const EventsSpace = lazy(() => import("./pages/spaces/EventsSpace"));
+const CoopSpace = lazy(() => import("./pages/spaces/CoopSpace"));
+
 const queryClient = new QueryClient();
 
 const TitleManager = () => {
@@ -110,8 +117,9 @@ const App = () => (
       <BrowserRouter>
         <TitleManager />
         <ErrorBoundary>
-          <PageTransition>
-            <Routes>
+          <Suspense fallback={<PageLoader />}>
+            <PageTransition>
+              <Routes>
               <Route path="/" element={<Index />} />
             <Route path="/library" element={<Library />} />
             <Route path="/library/:category" element={<Library />} />
@@ -197,9 +205,10 @@ const App = () => (
             <Route path="/p/:slug" element={<CreatorPage />} />
             <Route path="/my-page" element={<PublicPageEditor />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </PageTransition>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </PageTransition>
+          </Suspense>
         </ErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
