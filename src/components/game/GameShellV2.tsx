@@ -76,27 +76,43 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     const loadProfile = async (userId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage")
+            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id")
             .eq("user_id", userId)
             .maybeSingle();
         setProfile(data || null);
 
-        const { data: offerData } = await supabase
-            .from("genius_offer_requests")
-            .select("status")
-            .eq("user_id", userId)
-            .maybeSingle();
-        setHasGeniusOffer(offerData?.status === "completed");
+        // Check if user has Excalibur (genius offer) in zog_snapshots
+        if (data?.last_zog_snapshot_id) {
+            const { data: snapshotData } = await supabase
+                .from("zog_snapshots")
+                .select("excalibur_data")
+                .eq("id", data.last_zog_snapshot_id)
+                .maybeSingle();
+            setHasGeniusOffer(!!snapshotData?.excalibur_data);
+        } else {
+            setHasGeniusOffer(false);
+        }
     };
 
     const loadProfileById = async (profileId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage")
+            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id")
             .eq("id", profileId)
             .maybeSingle();
         setProfile(data || null);
-        setHasGeniusOffer(false);
+
+        // Check if user has Excalibur in zog_snapshots
+        if (data?.last_zog_snapshot_id) {
+            const { data: snapshotData } = await supabase
+                .from("zog_snapshots")
+                .select("excalibur_data")
+                .eq("id", data.last_zog_snapshot_id)
+                .maybeSingle();
+            setHasGeniusOffer(!!snapshotData?.excalibur_data);
+        } else {
+            setHasGeniusOffer(false);
+        }
     };
 
     useEffect(() => {
@@ -167,9 +183,14 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         );
     }
 
-    // Unlock status
+    // Unlock status - progressive feature reveal
+    // Teams: available after ZoG complete (user knows their genius)
+    // Marketplace/Coop: available after Excalibur (user has their offer)
+    const completedStages = ["zog_complete", "offer_complete", "qol_complete", "recipe_complete", "unlocked"];
+    const teamsUnlocked = profile?.onboarding_stage && completedStages.includes(profile.onboarding_stage);
+
     const unlockStatus: Record<string, boolean> = {
-        teams: profile?.onboarding_stage === "unlocked",
+        teams: teamsUnlocked || false,
         marketplace: hasGeniusOffer,
         coop: hasGeniusOffer,
     };

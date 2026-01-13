@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes } from "lucide-react";
+import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -9,6 +9,12 @@ import { ASSET_TYPES } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
 import { ASSET_CATEGORIES } from "./data/assetCategories";
 import { ASSET_MAPPING_PROMPT } from "@/prompts";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
 type MatchedAsset = {
@@ -70,6 +76,7 @@ const AssetMappingLanding = () => {
     const [copied, setCopied] = useState(false);
     const [isMatching, setIsMatching] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
+    const [hasSaved, setHasSaved] = useState(false);
     const [matchedAssets, setMatchedAssets] = useState<MatchedAsset[]>([]);
     const { toast } = useToast();
 
@@ -148,6 +155,7 @@ const AssetMappingLanding = () => {
 
             localStorage.setItem(key, JSON.stringify(existing));
 
+            setHasSaved(true);
             toast({
                 title: "Assets saved",
                 description: `Saved ${savedCount} assets${skippedCount ? `, skipped ${skippedCount}` : ""}.`,
@@ -396,12 +404,21 @@ const AssetMappingLanding = () => {
                                                 )}
                                             </div>
                                             {asset.leverageScore && (
-                                                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
-                                                    asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
-                                                        'bg-slate-100 text-slate-600'
-                                                    }`}>
-                                                    ⚡ {asset.leverageScore}/10
-                                                </span>
+                                                <TooltipProvider>
+                                                    <Tooltip>
+                                                        <TooltipTrigger asChild>
+                                                            <span className={`text-xs px-2 py-0.5 rounded-full font-medium cursor-help ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
+                                                                asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
+                                                                    'bg-slate-100 text-slate-600'
+                                                                }`}>
+                                                                ⚡ {asset.leverageScore}/10
+                                                            </span>
+                                                        </TooltipTrigger>
+                                                        <TooltipContent side="left" className="max-w-[200px]">
+                                                            <p className="text-xs"><strong>Asset Strength</strong><br />How developed and leveraged this asset currently is (1-10)</p>
+                                                        </TooltipContent>
+                                                    </Tooltip>
+                                                </TooltipProvider>
                                             )}
                                         </div>
                                         <p className="font-semibold text-slate-900">{asset.title}</p>
@@ -419,13 +436,19 @@ const AssetMappingLanding = () => {
                         <div className="flex flex-wrap gap-3">
                             <Button variant="outline" onClick={() => setStep("has-ai")}>Back</Button>
                             {matchedAssets.length > 0 && (
-                                <Button variant="secondary" onClick={handleSaveAssets} disabled={isSaving}>
-                                    {isSaving ? "Saving..." : "Save to Profile"}
-                                </Button>
+                                hasSaved ? (
+                                    <Button onClick={() => navigate(returnPath)} className="flex-1">
+                                        Return to Profile
+                                        <ArrowRight className="w-4 h-4 ml-2" />
+                                    </Button>
+                                ) : (
+                                    <Button onClick={handleSaveAssets} disabled={isSaving} className="flex-1">
+                                        {isSaving ? "Saving..." : "Save to Profile"}
+                                    </Button>
+                                )
                             )}
-                            <Button onClick={handleGoToWizard}>
-                                {matchedAssets.length > 0 ? "Add More in Wizard" : "Open Wizard"}
-                                <ArrowRight className="w-4 h-4 ml-2" />
+                            <Button variant="ghost" onClick={handleGoToWizard} className="text-slate-500">
+                                Add more manually
                             </Button>
                         </div>
                     </div>
