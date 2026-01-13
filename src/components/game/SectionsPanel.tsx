@@ -140,7 +140,7 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[240px] bg-slate-800 flex flex-col border-r border-slate-700",
+                "w-[260px] bg-slate-800 flex flex-col border-r border-slate-700",
                 className
             )}
         >
@@ -156,14 +156,6 @@ const SectionsPanel = ({
                         <X className="w-4 h-4" />
                     </button>
                 )}
-            </div>
-
-            {/* Search (optional) */}
-            <div className="px-3 py-2 border-b border-slate-700">
-                <div className="flex items-center gap-2 px-3 py-2 bg-slate-900/50 rounded-lg">
-                    <Search className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm text-slate-500">Search</span>
-                </div>
             </div>
 
             {/* Sections */}
@@ -201,7 +193,7 @@ const SectionsPanel = ({
                                     </span>
                                 )}
                                 {section.icon}
-                                <span className="text-sm flex-1 truncate">{section.label}</span>
+                                <span className="text-sm flex-1">{section.label}</span>
                             </div>
 
                             {/* Sub-sections with indent */}
@@ -220,7 +212,7 @@ const SectionsPanel = ({
                                                 )}
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
-                                                <span className="text-sm truncate">{sub.label}</span>
+                                                <span className="text-sm">{sub.label}</span>
                                             </div>
                                         );
                                     })}

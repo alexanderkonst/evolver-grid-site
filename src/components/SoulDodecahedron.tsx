@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import dodecahedronImage from "@/assets/dodecahedron.jpg";
+import dodecahedronImage from "@/assets/mc-dodecahedron.png";
 
 interface SoulDodecahedronProps {
     soulColors?: string[];

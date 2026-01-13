@@ -9,7 +9,7 @@ import {
   Flame,
   AlertCircle,
 } from "lucide-react";
-import dodecahedronImage from "@/assets/dodecahedron.jpg";
+import dodecahedronImage from "@/assets/mc-dodecahedron.png";
 import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -741,10 +741,6 @@ const GameHome = () => {
 
       <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
-          <Link to="/" className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK TO HOME</BoldText>
-          </Link>
 
           {/* Header */}
           <div className="text-center mb-10">

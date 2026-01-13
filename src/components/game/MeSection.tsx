@@ -1,5 +1,5 @@
 import { Sparkles } from "lucide-react";
-import dodecahedronImage from "@/assets/dodecahedron.jpg";
+import dodecahedronImage from "@/assets/mc-dodecahedron.png";
 
 interface MeSectionProps {
     archetypeTitle?: string;
