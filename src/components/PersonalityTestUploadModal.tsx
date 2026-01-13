@@ -276,153 +276,155 @@ const PersonalityTestUploadModal = ({
     return (
         <Dialog open={open} onOpenChange={handleClose}>
             <DialogContent className="max-w-md bg-card border-border">
-                <DialogHeader>
-                    <DialogTitle className="text-foreground">
-                        Upload Your {testName} Results
-                    </DialogTitle>
-                </DialogHeader>
+                <ErrorBoundary>
+                    <DialogHeader>
+                        <DialogTitle className="text-foreground">
+                            Upload Your {testName} Results
+                        </DialogTitle>
+                    </DialogHeader>
 
-                <div className="space-y-4">
-                    {/* Example section */}
-                    {!results && (
-                        <div className="p-3 rounded-lg bg-muted/50 border border-border">
-                            <p className="text-xs uppercase  text-muted-foreground mb-2">What to upload</p>
-                            <p className="text-sm text-foreground mb-3">
-                                {testType === 'enneagram' && (
-                                    <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
-                                )}
-                                {testType === '16personalities' && (
-                                    <>Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.</>
-                                )}
-                                {testType === 'human_design' && (
-                                    <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from humdes.com).</>
-                                )}
-                            </p>
-                            <div className="rounded-lg overflow-hidden border border-border">
-                                <img 
-                                    src={
-                                        testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
-                                        testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
-                                        'https://i.imgur.com/oHYAq89.jpeg'
-                                    }
-                                    alt={`Example ${testType} result`}
-                                    className="w-full h-auto max-h-32 object-cover object-top"
-                                />
-                                <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Upload zone or preview */}
-                    {!results ? (
-                        <div
-                            onDrop={handleDrop}
-                            onDragOver={(e) => e.preventDefault()}
-                            className="relative border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer"
-                        >
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            {preview ? (
-                                <div className="space-y-2">
-                                    <img
-                                        src={preview}
-                                        alt="Preview"
-                                        className="max-h-48 mx-auto rounded"
+                    <div className="space-y-4">
+                        {/* Example section */}
+                        {!results && (
+                            <div className="p-3 rounded-lg bg-muted/50 border border-border">
+                                <p className="text-xs uppercase  text-muted-foreground mb-2">What to upload</p>
+                                <p className="text-sm text-foreground mb-3">
+                                    {testType === 'enneagram' && (
+                                        <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
+                                    )}
+                                    {testType === '16personalities' && (
+                                        <>Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.</>
+                                    )}
+                                    {testType === 'human_design' && (
+                                        <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from humdes.com).</>
+                                    )}
+                                </p>
+                                <div className="rounded-lg overflow-hidden border border-border">
+                                    <img 
+                                        src={
+                                            testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
+                                            testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
+                                            'https://i.imgur.com/oHYAq89.jpeg'
+                                        }
+                                        alt={`Example ${testType} result`}
+                                        className="w-full h-auto max-h-32 object-cover object-top"
                                     />
-                                    <p className="text-sm text-muted-foreground">Click or drop to change</p>
+                                    <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
                                 </div>
+                            </div>
+                        )}
+
+                        {/* Upload zone or preview */}
+                        {!results ? (
+                            <div
+                                onDrop={handleDrop}
+                                onDragOver={(e) => e.preventDefault()}
+                                className="relative border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer"
+                            >
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                />
+                                {preview ? (
+                                    <div className="space-y-2">
+                                        <img
+                                            src={preview}
+                                            alt="Preview"
+                                            className="max-h-48 mx-auto rounded"
+                                        />
+                                        <p className="text-sm text-muted-foreground">Click or drop to change</p>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-2">
+                                        <Upload className="w-10 h-10 mx-auto text-muted-foreground" />
+                                        <p className="text-foreground">Drop screenshot here</p>
+                                        <p className="text-xs text-muted-foreground">or click to browse</p>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="space-y-3">
+                                <div className="flex items-center gap-2 text-emerald-600">
+                                    <Check className="w-5 h-5" />
+                                    <span className="font-medium">Results Extracted</span>
+                                </div>
+                                {renderResults()}
+                            </div>
+                        )}
+
+                        {/* Error display */}
+                        {error && (
+                            <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 text-destructive">
+                                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                                <span className="text-sm">{error}</span>
+                            </div>
+                        )}
+
+                        {/* Actions */}
+                        <div className="flex gap-2">
+                            {!results ? (
+                                <>
+                                    <Button
+                                        variant="outline"
+                                        onClick={handleClose}
+                                        className="flex-1"
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        onClick={handleAnalyze}
+                                        disabled={!file || analyzing}
+                                        className="flex-1"
+                                    >
+                                        {analyzing ? (
+                                            <>
+                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                Analyzing...
+                                            </>
+                                        ) : (
+                                            "Analyze →"
+                                        )}
+                                    </Button>
+                                </>
                             ) : (
-                                <div className="space-y-2">
-                                    <Upload className="w-10 h-10 mx-auto text-muted-foreground" />
-                                    <p className="text-foreground">Drop screenshot here</p>
-                                    <p className="text-xs text-muted-foreground">or click to browse</p>
-                                </div>
+                                <>
+                                    <Button
+                                        variant="outline"
+                                        onClick={() => {
+                                            setResults(null);
+                                            setFile(null);
+                                            setPreview(null);
+                                        }}
+                                        className="flex-1"
+                                    >
+                                        Try Again
+                                    </Button>
+                                    <Button
+                                        onClick={handleSave}
+                                        disabled={saved || saving}
+                                        className="flex-1"
+                                    >
+                                        {saving ? (
+                                            <>
+                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                Saving...
+                                            </>
+                                        ) : saved ? (
+                                            <>
+                                                <Check className="w-4 h-4 mr-2" />
+                                                Saved!
+                                            </>
+                                        ) : (
+                                            "Save to Profile"
+                                        )}
+                                    </Button>
+                                </>
                             )}
                         </div>
-                    ) : (
-                        <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-emerald-600">
-                                <Check className="w-5 h-5" />
-                                <span className="font-medium">Results Extracted</span>
-                            </div>
-                            {renderResults()}
-                        </div>
-                    )}
-
-                    {/* Error display */}
-                    {error && (
-                        <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 text-destructive">
-                            <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                            <span className="text-sm">{error}</span>
-                        </div>
-                    )}
-
-                    {/* Actions */}
-                    <div className="flex gap-2">
-                        {!results ? (
-                            <>
-                                <Button
-                                    variant="outline"
-                                    onClick={handleClose}
-                                    className="flex-1"
-                                >
-                                    Cancel
-                                </Button>
-                                <Button
-                                    onClick={handleAnalyze}
-                                    disabled={!file || analyzing}
-                                    className="flex-1"
-                                >
-                                    {analyzing ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                            Analyzing...
-                                        </>
-                                    ) : (
-                                        "Analyze →"
-                                    )}
-                                </Button>
-                            </>
-                        ) : (
-                            <>
-                                <Button
-                                    variant="outline"
-                                    onClick={() => {
-                                        setResults(null);
-                                        setFile(null);
-                                        setPreview(null);
-                                    }}
-                                    className="flex-1"
-                                >
-                                    Try Again
-                                </Button>
-                                <Button
-                                    onClick={handleSave}
-                                    disabled={saved || saving}
-                                    className="flex-1"
-                                >
-                                    {saving ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                            Saving...
-                                        </>
-                                    ) : saved ? (
-                                        <>
-                                            <Check className="w-4 h-4 mr-2" />
-                                            Saved!
-                                        </>
-                                    ) : (
-                                        "Save to Profile"
-                                    )}
-                                </Button>
-                            </>
-                        )}
                     </div>
-                </div>
+                </ErrorBoundary>
             </DialogContent>
         </Dialog>
     );
