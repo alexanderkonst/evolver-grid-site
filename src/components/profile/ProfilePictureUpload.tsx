@@ -129,7 +129,15 @@ const ProfilePictureUpload = ({
           style={{ width: size, height: size }}
         >
           {avatarUrl ? (
-            <img src={avatarUrl} alt="Profile avatar" className="w-full h-full object-cover" />
+            <img
+              src={avatarUrl}
+              alt="Profile avatar"
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder.svg";
+              }}
+              className="w-full h-full object-cover"
+            />
           ) : (
             <span className="text-lg font-semibold">{initials}</span>
           )}

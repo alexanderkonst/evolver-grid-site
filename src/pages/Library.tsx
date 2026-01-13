@@ -365,7 +365,8 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           <div className="flex justify-center mb-6">
             <img 
               src={libraryLogo} 
-              alt="Library Logo" 
+              alt="Library Logo"
+              loading="lazy"
               className="h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 object-contain"
             />
           </div>
@@ -481,6 +482,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                             <img
                               src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
                               alt={item.title}
+                              loading="lazy"
                               className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
@@ -597,6 +599,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
                       <img
                         src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
                         alt={item.title}
+                        loading="lazy"
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />

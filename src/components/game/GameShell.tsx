@@ -380,6 +380,10 @@ export const GameShell = ({ children }: GameShellProps) => {
                                         <img
                                             src={profile.avatar_url}
                                             alt="Profile avatar"
+                                            loading="lazy"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "/placeholder.svg";
+                                            }}
                                             className="w-full h-full object-cover"
                                         />
                                     ) : (

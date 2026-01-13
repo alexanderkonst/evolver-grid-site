@@ -84,6 +84,7 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
           <img
             src={module.thumbnail_image}
             alt={module.title}
+            loading="lazy"
             className={`w-full h-full object-cover transition-all duration-700 ease-out ${isComingSoon ? 'opacity-20 grayscale' : 'group-hover:scale-110 group-hover:brightness-110'
               }`}
           />
@@ -95,6 +96,7 @@ const ModuleTile = ({ module, index = 0 }: ModuleTileProps) => {
             <img
               src={customImageSrc}
               alt={module.title}
+              loading="lazy"
               className={`h-16 w-16 object-contain ${isComingSoon ? 'opacity-40 grayscale' : ''
                 }`}
             />

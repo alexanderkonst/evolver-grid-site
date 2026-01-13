@@ -113,7 +113,7 @@ const Navigation = () => {
               to="/"
               className="flex items-center transition-all duration-300 logo-glow hover:logo-glow-hover"
             >
-              <img src={logo} alt="Aleksandr Konstantinov" className="h-16 w-auto" />
+              <img src={logo} alt="Aleksandr Konstantinov" loading="lazy" className="h-16 w-auto" />
             </Link>
 
             {/* Desktop Navigation */}

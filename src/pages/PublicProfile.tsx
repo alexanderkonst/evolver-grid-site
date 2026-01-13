@@ -183,7 +183,15 @@ const PublicProfile = () => {
           <div className="flex flex-col items-center text-center">
             <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
               {profile.avatar_url ? (
-                <img src={profile.avatar_url} alt={fullName} className="w-full h-full object-cover" />
+                <img
+                  src={profile.avatar_url}
+                  alt={fullName}
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
+                  className="w-full h-full object-cover"
+                />
               ) : (
                 <span className="text-2xl font-semibold text-slate-500">
                   {fullName
