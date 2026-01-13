@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Target, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
@@ -9,6 +8,7 @@ import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
 import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
+import Panel3Actions from "@/components/game/Panel3Actions";
 
 type MissionCommitment = {
     mission_id: string;
@@ -22,6 +22,7 @@ type MissionCommitment = {
 };
 
 const ProfileMissionSection = () => {
+    const navigate = useNavigate();
     const [missionCommitment, setMissionCommitment] = useState<MissionCommitment | null>(null);
 
     useEffect(() => {
@@ -94,13 +95,20 @@ const ProfileMissionSection = () => {
 
     return (
         <GameShellV2>
-            <div className="p-6 lg:p-8 max-w-3xl mx-auto">
-                <div className="mb-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Target className="w-6 h-6 text-blue-600" />
-                        <h1 className="text-2xl font-bold text-slate-900">Mission Snapshot</h1>
+            <div className="p-6 pb-24 lg:p-8 lg:pb-8 max-w-3xl mx-auto">
+                <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                        <div className="flex items-center gap-3 mb-2">
+                            <Target className="w-6 h-6 text-blue-600" />
+                            <h1 className="text-2xl font-bold text-slate-900">Mission Snapshot</h1>
+                        </div>
+                        <p className="text-slate-600">Keep your mission front and center.</p>
                     </div>
-                    <p className="text-slate-600">Keep your mission front and center.</p>
+                    <Panel3Actions
+                        primaryLabel={missionCommitment ? "Edit Mission" : "Start Mission"}
+                        primaryAction={() => navigate("/mission-discovery")}
+                        primaryIcon={<ArrowRight className="w-4 h-4" />}
+                    />
                 </div>
 
                 <div className="rounded-xl border border-slate-200 bg-white p-5">
@@ -142,11 +150,6 @@ const ProfileMissionSection = () => {
                                 </>
                             )}
                         </div>
-                        <Button asChild variant="outline" size="sm" className="shrink-0">
-                            <Link to="/mission-discovery">
-                                {missionCommitment ? "Edit" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
-                            </Link>
-                        </Button>
                     </div>
                 </div>
             </div>

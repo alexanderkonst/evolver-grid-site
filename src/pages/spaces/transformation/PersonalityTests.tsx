@@ -1,22 +1,31 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Award, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
+import Panel3Actions from "@/components/game/Panel3Actions";
 
 /**
  * Personality Tests section - MBTI, Enneagram, etc.
  */
 const PersonalityTests = () => {
+    const navigate = useNavigate();
+
     return (
         <GameShellV2>
-            <div className="p-6 lg:p-8 max-w-2xl mx-auto">
+            <div className="p-6 pb-24 lg:p-8 lg:pb-8 max-w-2xl mx-auto">
                 {/* Header */}
-                <div className="mb-8">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Award className="w-6 h-6 text-purple-600" />
-                        <h1 className="text-2xl font-bold text-slate-900">Personality Tests</h1>
+                <div className="mb-8 flex items-start justify-between gap-4">
+                    <div>
+                        <div className="flex items-center gap-3 mb-2">
+                            <Award className="w-6 h-6 text-purple-600" />
+                            <h1 className="text-2xl font-bold text-slate-900">Personality Tests</h1>
+                        </div>
+                        <p className="text-slate-600">MBTI, Enneagram, and other frameworks</p>
                     </div>
-                    <p className="text-slate-600">MBTI, Enneagram, and other frameworks</p>
+                    <Panel3Actions
+                        primaryLabel="Take Tests"
+                        primaryAction={() => navigate("/resources/personality-tests?from=transformation")}
+                        primaryIcon={<ArrowRight className="w-4 h-4" />}
+                    />
                 </div>
 
                 {/* Main Card */}
@@ -27,11 +36,6 @@ const PersonalityTests = () => {
                     <p className="text-slate-600 mb-6">
                         Take personality tests to deepen your self-understanding.
                     </p>
-                    <Button asChild size="lg" className="w-full">
-                        <Link to="/resources/personality-tests?from=transformation">
-                            Take Tests <ArrowRight className="w-4 h-4 ml-2" />
-                        </Link>
-                    </Button>
                 </div>
             </div>
         </GameShellV2>
