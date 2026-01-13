@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { completeAction } from "@/lib/completeAction";
 import { useToast } from "@/hooks/use-toast";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface PersonalityTestUploadModalProps {
     open: boolean;

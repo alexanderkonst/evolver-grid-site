@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 type FilterMode = "all" | "mission" | "local" | "cofounders";
 type MatchMode = "genius" | "assets";
@@ -413,139 +414,143 @@ const TeamsSpace = () => {
 
     return (
         <GameShellV2>
-            <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-                {/* Header */}
-                <div className="mb-8">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Users className="w-6 h-6 text-slate-700" />
-                        <h1 className="text-2xl font-bold text-slate-900">Teams</h1>
-                    </div>
-                    <p className="text-slate-600">Find your people. Connect with complementary geniuses.</p>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <div className="inline-flex items-center rounded-full bg-slate-100 p-1 text-xs">
-                            <button
-                                type="button"
-                                onClick={() => setMatchMode("genius")}
-                                className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "genius"
-                                    ? "bg-white text-slate-800 shadow-sm"
-                                    : "text-slate-500"
-                                    }`}
-                            >
-                                Genius Match
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setMatchMode("assets")}
-                                className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "assets"
-                                    ? "bg-white text-slate-800 shadow-sm"
-                                    : "text-slate-500"
-                                    }`}
-                            >
-                                Match by Assets
-                            </button>
+            <ErrorBoundary>
+                <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <div className="flex items-center gap-3 mb-2">
+                            <Users className="w-6 h-6 text-slate-700" />
+                            <h1 className="text-2xl font-bold text-slate-900">Teams</h1>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <label htmlFor="match-filter" className="text-xs text-slate-500">
-                                Filter
-                            </label>
-                            <select
-                                id="match-filter"
-                                value={filterMode}
-                                onChange={(e) => setFilterMode(e.target.value as FilterMode)}
-                                className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm"
-                            >
-                                <option value="all">All Matches</option>
-                                <option value="mission">Same Mission</option>
-                                <option value="local">Near Me</option>
-                                <option value="cofounders">Co-founders</option>
-                            </select>
+                        <p className="text-slate-600">Find your people. Connect with complementary geniuses.</p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <div className="flex flex-wrap items-center gap-3">
+                            <div className="inline-flex items-center rounded-full bg-slate-100 p-1 text-xs">
+                                <button
+                                    type="button"
+                                    onClick={() => setMatchMode("genius")}
+                                    className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "genius"
+                                        ? "bg-white text-slate-800 shadow-sm"
+                                        : "text-slate-500"
+                                        }`}
+                                >
+                                    Genius Match
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setMatchMode("assets")}
+                                    className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "assets"
+                                        ? "bg-white text-slate-800 shadow-sm"
+                                        : "text-slate-500"
+                                        }`}
+                                >
+                                    Match by Assets
+                                </button>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <label htmlFor="match-filter" className="text-xs text-slate-500">
+                                    Filter
+                                </label>
+                                <select
+                                    id="match-filter"
+                                    value={filterMode}
+                                    onChange={(e) => setFilterMode(e.target.value as FilterMode)}
+                                    className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm"
+                                >
+                                    <option value="all">All Matches</option>
+                                    <option value="mission">Same Mission</option>
+                                    <option value="local">Near Me</option>
+                                    <option value="cofounders">Co-founders</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <Button variant="outline" onClick={() => navigate("/connections")}>
-                        View Connections
-                    </Button>
-                </div>
-
-                {loading && (
-                    <div className="flex items-center justify-center py-12">
-                        <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
-                    </div>
-                )}
-
-                {!loading && error && (
-                    <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
-                        <p className="text-red-600">{error}</p>
-                    </div>
-                )}
-
-                {!loading && !error && !currentMatch && (
-                    <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
-                        <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                        <h2 className="text-xl font-semibold text-slate-700 mb-2">No matches yet</h2>
-                        <p className="text-slate-500 max-w-md mx-auto">
-                            {filterMode === "cofounders"
-                                ? "No complementary matches right now. Try a different filter."
-                                : "We will surface new matches as your community grows."}
-                        </p>
-                    </div>
-                )}
-
-                {!loading && !error && matchMode === "assets" && currentUserAssets.length === 0 && (
-                    <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-700 mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                            <p className="font-semibold text-amber-800">Add assets to unlock smarter matches.</p>
-                            <p>Map what you can offer so we can pair you by collaboration potential.</p>
-                        </div>
-                        <Button variant="outline" onClick={() => navigate("/asset-mapping")}>
-                            Map Assets
+                        <Button variant="outline" onClick={() => navigate("/connections")}>
+                            View Connections
                         </Button>
                     </div>
-                )}
 
-                {!loading && !error && currentMatch && (
-                    <MatchCard
-                        user={currentMatch}
-                        matchReason={primaryReason}
-                        matchLabel={primaryLabel}
-                        secondaryReason={secondaryReason || undefined}
-                        secondaryLabel={secondaryReason ? secondaryLabel : undefined}
-                        onPass={handlePass}
-                        onConnect={handleConnect}
-                    />
-                )}
-            </div>
+                    {loading && (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+                        </div>
+                    )}
 
-            <Dialog open={connectModalOpen} onOpenChange={setConnectModalOpen}>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>
-                            {selectedMatch ? `Connect with ${selectedMatch.firstName}` : "Connect"}
-                        </DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-3">
-                        <label htmlFor="connect-message" className="text-sm text-slate-600">
-                            Add a message (optional)
-                        </label>
-                        <Textarea
-                            id="connect-message"
-                            value={connectMessage}
-                            onChange={(e) => setConnectMessage(e.target.value)}
-                            placeholder="Introduce yourself..."
+                    {!loading && error && (
+                        <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
+                            <p className="text-red-600">{error}</p>
+                        </div>
+                    )}
+
+                    {!loading && !error && !currentMatch && (
+                        <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
+                            <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                            <h2 className="text-xl font-semibold text-slate-700 mb-2">No matches yet</h2>
+                            <p className="text-slate-500 max-w-md mx-auto">
+                                {filterMode === "cofounders"
+                                    ? "No complementary matches right now. Try a different filter."
+                                    : "We will surface new matches as your community grows."}
+                            </p>
+                        </div>
+                    )}
+
+                    {!loading && !error && matchMode === "assets" && currentUserAssets.length === 0 && (
+                        <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-700 mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p className="font-semibold text-amber-800">Add assets to unlock smarter matches.</p>
+                                <p>Map what you can offer so we can pair you by collaboration potential.</p>
+                            </div>
+                            <Button variant="outline" onClick={() => navigate("/asset-mapping")}>
+                                Map Assets
+                            </Button>
+                        </div>
+                    )}
+
+                    {!loading && !error && currentMatch && (
+                        <MatchCard
+                            user={currentMatch}
+                            matchReason={primaryReason}
+                            matchLabel={primaryLabel}
+                            secondaryReason={secondaryReason || undefined}
+                            secondaryLabel={secondaryReason ? secondaryLabel : undefined}
+                            onPass={handlePass}
+                            onConnect={handleConnect}
                         />
-                    </div>
-                    <DialogFooter className="gap-2">
-                        <Button variant="outline" onClick={() => setConnectModalOpen(false)} disabled={sending}>
-                            Cancel
-                        </Button>
-                        <Button onClick={handleSendRequest} disabled={sending}>
-                            {sending ? "Sending..." : "Send Request"}
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+                    )}
+                </div>
+
+                <Dialog open={connectModalOpen} onOpenChange={setConnectModalOpen}>
+                    <ErrorBoundary>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>
+                                    {selectedMatch ? `Connect with ${selectedMatch.firstName}` : "Connect"}
+                                </DialogTitle>
+                            </DialogHeader>
+                            <div className="space-y-3">
+                                <label htmlFor="connect-message" className="text-sm text-slate-600">
+                                    Add a message (optional)
+                                </label>
+                                <Textarea
+                                    id="connect-message"
+                                    value={connectMessage}
+                                    onChange={(e) => setConnectMessage(e.target.value)}
+                                    placeholder="Introduce yourself..."
+                                />
+                            </div>
+                            <DialogFooter className="gap-2">
+                                <Button variant="outline" onClick={() => setConnectModalOpen(false)} disabled={sending}>
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleSendRequest} disabled={sending}>
+                                    {sending ? "Sending..." : "Send Request"}
+                                </Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </ErrorBoundary>
+                </Dialog>
+            </ErrorBoundary>
         </GameShellV2>
     );
 };
