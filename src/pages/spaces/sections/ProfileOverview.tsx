@@ -3,10 +3,9 @@ import { User, Target, Sparkles, Map, Boxes, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 
-const ProfileOverview = () => {
+const ProfileOverviewContent = () => {
     return (
-        <GameShellV2>
-            <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+        <div className="p-6 lg:p-8 max-w-4xl mx-auto">
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
                         <User className="w-6 h-6 text-slate-700" />
@@ -99,9 +98,17 @@ const ProfileOverview = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
+    );
+};
+
+const ProfileOverview = () => {
+    return (
+        <GameShellV2>
+            <ProfileOverviewContent />
         </GameShellV2>
     );
 };
 
 export default ProfileOverview;
+export { ProfileOverviewContent };
