@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CalendarDays, Loader2 } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
+import EmptyState from "@/components/ui/EmptyState";
 import CreateEventForm from "@/components/events/CreateEventForm";
 import { useEvents } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
@@ -139,16 +140,20 @@ const EventsSpace = () => {
 
           {/* Empty State */}
           {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-              <CalendarDays className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                No Upcoming Events
-              </h3>
-              <p className="text-slate-600">
-                {isAuthenticated
-                  ? "Be the first to create an event for the community!"
-                  : "Check back later for upcoming community events."}
-              </p>
+            <div className="rounded-xl border border-slate-200 bg-white p-8">
+              <EmptyState
+                icon={<CalendarDays className="w-6 h-6 text-slate-500" />}
+                title="No events yet"
+                description={
+                  isAuthenticated
+                    ? "Be the first to create an event for the community."
+                    : "Check back later for upcoming community gatherings."
+                }
+                action={{
+                  label: "Browse Events",
+                  onClick: () => navigate("/game/events"),
+                }}
+              />
             </div>
           )}
 
