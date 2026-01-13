@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import BoldText from "@/components/BoldText";
+import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step1SelectTop10Talents = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { yesTalentIds, selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
+  const basePath = getZogAssessmentBasePath(location.pathname);
   const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
   const [randomizedTalents, setRandomizedTalents] = useState<any[]>([]);
@@ -50,11 +53,11 @@ const Step1SelectTop10Talents = () => {
 
   const handleContinue = () => {
     setSelectedTop10TalentIds(localSelected);
-    navigate("/zone-of-genius/assessment/step-2");
+    navigate(getZogStepPath(basePath, 2));
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius/assessment/step-0");
+    navigate(getZogStepPath(basePath, 0));
   };
 
   const canContinue = localSelected.length === maxSelectable;

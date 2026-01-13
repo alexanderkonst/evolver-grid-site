@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,9 +10,11 @@ import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
+import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
   const {
@@ -46,9 +48,11 @@ const Step4GenerateSnapshot = () => {
       });
   }, []);
 
+  const basePath = getZogAssessmentBasePath(location.pathname);
+
   useEffect(() => {
     if (orderedTalentIds.length === 0) {
-      navigate("/zone-of-genius/assessment/step-3");
+      navigate(getZogStepPath(basePath, 3));
       return;
     }
 
@@ -56,7 +60,7 @@ const Step4GenerateSnapshot = () => {
     if (!snapshotMarkdown && !isLoadingProfile && profileId) {
       handleGenerate();
     }
-  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId]);
+  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId, basePath]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -346,13 +350,13 @@ GENERAL STYLE RULES:
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius/assessment/step-3");
+    navigate(getZogStepPath(basePath, 3));
   };
 
   const handleStartNew = () => {
     if (confirm("Are you sure you want to start a new assessment? Your current progress will be lost.")) {
       resetAssessment();
-      navigate("/zone-of-genius/assessment/step-0");
+      navigate(getZogStepPath(basePath, 0));
     }
   };
 

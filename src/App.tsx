@@ -62,6 +62,7 @@ import TransformationPracticeLibrary from "./pages/spaces/transformation/Practic
 import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
 import TransformationQolAssessment from "./pages/spaces/transformation/TransformationQolAssessment";
 import TransformationQolResults from "./pages/spaces/transformation/TransformationQolResults";
+import TransformationGeniusAssessment from "./pages/spaces/transformation/TransformationGeniusAssessment";
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/events/CreateEvent";
 import MyRsvps from "./pages/events/MyRsvps";
@@ -161,6 +162,13 @@ const App = () => (
             <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
             <Route path="/game/transformation/qol-assessment" element={<TransformationQolAssessment />} />
             <Route path="/game/transformation/qol-results" element={<TransformationQolResults />} />
+            <Route path="/game/transformation/genius-assessment" element={<TransformationGeniusAssessment />}>
+              <Route path="step-0" element={<Step0SwipeTalents />} />
+              <Route path="step-1" element={<Step1SelectTop10Talents />} />
+              <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />
+              <Route path="step-3" element={<Step3OrderTalents />} />
+              <Route path="step-4" element={<Step4GenerateSnapshot />} />
+            </Route>
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
             <Route path="/game/teams" element={<TeamsSpace />} />

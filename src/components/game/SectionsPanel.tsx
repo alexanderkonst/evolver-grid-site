@@ -84,6 +84,15 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "qol-results", label: "Results", path: "/game/transformation/qol-results" },
                 ],
             },
+            {
+                id: "zog-assessment",
+                label: "Zone of Genius",
+                path: "/game/transformation/genius-assessment/step-0",
+                subSections: [
+                    { id: "zog-assessment", label: "Assessment", path: "/game/transformation/genius-assessment/step-0" },
+                    { id: "zog-snapshot", label: "Snapshot", path: "/game/transformation/genius-assessment/step-4" },
+                ],
+            },
         ],
     },
     marketplace: {
