@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { CalendarDays, MapPin, Users } from "lucide-react";
+import { CalendarDays, Lock, MapPin, UserCheck, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EventWithRsvpCount } from "@/hooks/useEvents";
 
@@ -25,7 +25,28 @@ const formatTime = (timeStr: string) => {
   return `${hour12}:${minutes} ${ampm}`;
 };
 
+const VISIBILITY_BADGES = {
+  community: {
+    label: "Community",
+    icon: Users,
+    className: "bg-blue-50 text-blue-700",
+  },
+  private: {
+    label: "Private",
+    icon: Lock,
+    className: "bg-slate-100 text-slate-700",
+  },
+  team: {
+    label: "Team",
+    icon: UserCheck,
+    className: "bg-emerald-50 text-emerald-700",
+  },
+} as const;
+
 const EventCard = ({ event, onClick }: EventCardProps) => {
+  const visibility = event.visibility ?? "public";
+  const badge = VISIBILITY_BADGES[visibility as keyof typeof VISIBILITY_BADGES];
+
   return (
     <Card
       className="cursor-pointer hover:shadow-md transition-shadow border-slate-200 bg-white"
@@ -48,6 +69,14 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
       </div>
 
       <CardContent className="p-4">
+        {badge && (
+          <div className="mb-2">
+            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${badge.className}`}>
+              <badge.icon className="w-3 h-3" />
+              {badge.label}
+            </span>
+          </div>
+        )}
         <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">
           {event.title}
         </h3>
@@ -89,7 +118,8 @@ const areEqual = (prev: EventCardProps, next: EventCardProps) => (
   prev.event.event_time === next.event.event_time &&
   prev.event.location === next.event.location &&
   prev.event.photo_url === next.event.photo_url &&
-  prev.event.rsvp_count === next.event.rsvp_count
+  prev.event.rsvp_count === next.event.rsvp_count &&
+  prev.event.visibility === next.event.visibility
 );
 
 export default memo(EventCard, areEqual);
