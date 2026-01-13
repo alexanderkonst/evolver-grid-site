@@ -9,6 +9,7 @@ import {
     CalendarDays,
     Building2,
     Lock,
+    ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -58,7 +59,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "coop",
-        label: "Startup Co-op",
+        label: "Co-op",
         icon: <Building2 className="w-5 h-5 flex-shrink-0" />,
         path: "/game/coop",
     },
@@ -69,6 +70,10 @@ interface SpacesRailProps {
     onSpaceSelect?: (spaceId: string) => void;
     unlockStatus?: Record<string, boolean>;
     className?: string;
+    // Optional user data props
+    userName?: string;
+    userAvatarUrl?: string;
+    userLevel?: number;
 }
 
 const SpacesRail = ({
@@ -76,6 +81,9 @@ const SpacesRail = ({
     onSpaceSelect,
     unlockStatus = {},
     className,
+    userName,
+    userAvatarUrl,
+    userLevel,
 }: SpacesRailProps) => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -87,27 +95,65 @@ const SpacesRail = ({
         return location.pathname.startsWith(path);
     };
 
+    const displayName = userName || 'Guest';
+    const avatarUrl = userAvatarUrl;
+
+
     return (
         <div
             className={cn(
                 // Mobile: narrow with icons only, Desktop: wider with labels
-                "w-[72px] md:w-[200px] bg-slate-900 flex flex-col py-4 border-r border-slate-800",
+                "w-[72px] md:w-[240px] bg-slate-900 flex flex-col border-r border-slate-800",
                 className
             )}
         >
-            {/* Logo */}
-            <Link
-                to="/game"
-                className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center mx-auto md:mx-4 mb-4 hover:scale-105 transition-transform"
-            >
-                <span className="text-white font-bold text-lg">E</span>
-            </Link>
+            {/* User Profile + Community Header */}
+            <div className="p-3 md:p-4 border-b border-slate-800">
+                {/* Community */}
+                <Link
+                    to="/game"
+                    className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
+                >
+                    <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-bold text-sm">E</span>
+                    </div>
+                    <div className="hidden md:block overflow-hidden">
+                        <p className="text-white font-semibold text-sm truncate">Evolver Grid</p>
+                        <p className="text-slate-500 text-xs truncate">Community</p>
+                    </div>
+                    <ChevronDown className="hidden md:block w-4 h-4 text-slate-500 ml-auto flex-shrink-0" />
+                </Link>
 
-            {/* Divider */}
-            <div className="w-8 md:w-auto h-px bg-slate-700 mb-4 mx-auto md:mx-4" />
+                {/* Divider between community and profile */}
+                <div className="hidden md:block h-px bg-slate-800 mb-3" />
 
-            {/* Spaces */}
-            <nav className="flex-1 flex flex-col gap-1 px-2 md:px-3">
+                {/* User Profile */}
+                <Link
+                    to="/game/profile"
+                    className="flex items-center gap-2 hover:bg-slate-800/50 rounded-lg p-1.5 -m-1.5 transition-colors"
+                >
+                    {avatarUrl ? (
+                        <img
+                            src={avatarUrl}
+                            alt={displayName}
+                            className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                        />
+                    ) : (
+                        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+                            <User className="w-4 h-4 text-slate-400" />
+                        </div>
+                    )}
+                    <div className="hidden md:block overflow-hidden flex-1 min-w-0">
+                        <p className="text-white font-medium text-sm truncate">{displayName}</p>
+                        <p className="text-slate-500 text-xs truncate">
+                            {userLevel ? `Level ${userLevel}` : 'Member'}
+                        </p>
+                    </div>
+                </Link>
+            </div>
+
+            {/* Spaces Navigation */}
+            <nav className="flex-1 flex flex-col gap-1 p-2 md:p-3 overflow-y-auto">
                 {SPACES.map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -141,8 +187,8 @@ const SpacesRail = ({
                                 space.icon
                             )}
 
-                            {/* Label - hidden on mobile, shown on desktop */}
-                            <span className="hidden md:block text-sm font-medium whitespace-nowrap">
+                            {/* Label - hidden on mobile, shown on desktop with truncation */}
+                            <span className="hidden md:block text-sm font-medium truncate">
                                 {space.label}
                             </span>
 
@@ -154,11 +200,6 @@ const SpacesRail = ({
                     );
                 })}
             </nav>
-
-            {/* User avatar placeholder */}
-            <div className="mt-4 w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center mx-auto md:mx-4">
-                <User className="w-5 h-5 text-slate-400" />
-            </div>
         </div>
     );
 };
@@ -166,4 +207,3 @@ const SpacesRail = ({
 export default SpacesRail;
 export { SPACES };
 export type { SpaceItem };
-

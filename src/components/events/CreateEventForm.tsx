@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { useCreateEvent } from "@/hooks/useEvents";
 import { useToast } from "@/hooks/use-toast";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface CreateEventFormProps {
   onSuccess?: () => void;
@@ -119,143 +120,145 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Create New Event</DialogTitle>
-        </DialogHeader>
+        <ErrorBoundary>
+          <DialogHeader>
+            <DialogTitle>Create New Event</DialogTitle>
+          </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          {/* Title */}
-          <div className="space-y-2">
-            <Label htmlFor="title">Title *</Label>
-            <Input
-              id="title"
-              placeholder="Event title"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              required
-            />
-          </div>
-
-          {/* Description */}
-          <div className="space-y-2">
-            <Label htmlFor="description" className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-slate-400" />
-              Description
-            </Label>
-            <Textarea
-              id="description"
-              placeholder="What's this event about?"
-              value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              rows={3}
-            />
-          </div>
-
-          {/* Date & Time */}
-          <div className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            {/* Title */}
             <div className="space-y-2">
-              <Label htmlFor="date" className="flex items-center gap-2">
-                <CalendarDays className="w-4 h-4 text-slate-400" />
-                Date *
-              </Label>
+              <Label htmlFor="title">Title *</Label>
               <Input
-                id="date"
-                type="date"
-                value={formData.event_date}
-                onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
+                id="title"
+                placeholder="Event title"
+                value={formData.title}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 required
               />
             </div>
+
+            {/* Description */}
             <div className="space-y-2">
-              <Label htmlFor="time" className="flex items-center gap-2">
+              <Label htmlFor="description" className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-slate-400" />
+                Description
+              </Label>
+              <Textarea
+                id="description"
+                placeholder="What's this event about?"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                rows={3}
+              />
+            </div>
+
+            {/* Date & Time */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="date" className="flex items-center gap-2">
+                  <CalendarDays className="w-4 h-4 text-slate-400" />
+                  Date *
+                </Label>
+                <Input
+                  id="date"
+                  type="date"
+                  value={formData.event_date}
+                  onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="time" className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-slate-400" />
+                  Time *
+                </Label>
+                <Input
+                  id="time"
+                  type="time"
+                  value={formData.event_time}
+                  onChange={(e) => setFormData({ ...formData, event_time: e.target.value })}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Timezone */}
+            <div className="space-y-2">
+              <Label htmlFor="timezone" className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-slate-400" />
-                Time *
+                Timezone
+              </Label>
+              <select
+                id="timezone"
+                value={formData.timezone}
+                onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                {Array.from(new Set([formData.timezone, ...COMMON_TIMEZONES])).map((tz) => (
+                  <option key={tz} value={tz}>
+                    {tz}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Location */}
+            <div className="space-y-2">
+              <Label htmlFor="location" className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-slate-400" />
+                Location
               </Label>
               <Input
-                id="time"
-                type="time"
-                value={formData.event_time}
-                onChange={(e) => setFormData({ ...formData, event_time: e.target.value })}
-                required
+                id="location"
+                placeholder="Where will it take place?"
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               />
             </div>
-          </div>
 
-          {/* Timezone */}
-          <div className="space-y-2">
-            <Label htmlFor="timezone" className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-slate-400" />
-              Timezone
-            </Label>
-            <select
-              id="timezone"
-              value={formData.timezone}
-              onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            >
-              {Array.from(new Set([formData.timezone, ...COMMON_TIMEZONES])).map((tz) => (
-                <option key={tz} value={tz}>
-                  {tz}
-                </option>
-              ))}
-            </select>
-          </div>
+            {/* Photo URL */}
+            <div className="space-y-2">
+              <Label htmlFor="photo" className="flex items-center gap-2">
+                <Image className="w-4 h-4 text-slate-400" />
+                Photo URL
+              </Label>
+              <Input
+                id="photo"
+                type="url"
+                placeholder="https://..."
+                value={formData.photo_url}
+                onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
+              />
+            </div>
 
-          {/* Location */}
-          <div className="space-y-2">
-            <Label htmlFor="location" className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-slate-400" />
-              Location
-            </Label>
-            <Input
-              id="location"
-              placeholder="Where will it take place?"
-              value={formData.location}
-              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-            />
-          </div>
-
-          {/* Photo URL */}
-          <div className="space-y-2">
-            <Label htmlFor="photo" className="flex items-center gap-2">
-              <Image className="w-4 h-4 text-slate-400" />
-              Photo URL
-            </Label>
-            <Input
-              id="photo"
-              type="url"
-              placeholder="https://..."
-              value={formData.photo_url}
-              onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
-            />
-          </div>
-
-          {/* Submit */}
-          <div className="flex justify-end gap-2 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-              disabled={loading}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              disabled={loading}
-              className="bg-amber-500 hover:bg-amber-600"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Creating...
-                </>
-              ) : (
-                "Create Event"
-              )}
-            </Button>
-          </div>
-        </form>
+            {/* Submit */}
+            <div className="flex justify-end gap-2 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+                disabled={loading}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="bg-amber-500 hover:bg-amber-600"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Creating...
+                  </>
+                ) : (
+                  "Create Event"
+                )}
+              </Button>
+            </div>
+          </form>
+        </ErrorBoundary>
       </DialogContent>
     </Dialog>
   );

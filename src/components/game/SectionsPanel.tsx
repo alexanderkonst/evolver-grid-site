@@ -146,7 +146,7 @@ const SectionsPanel = ({
         >
             {/* Header */}
             <div className="h-14 px-4 flex items-center justify-between border-b border-slate-700">
-                <h2 className="text-white font-semibold truncate">{spaceData.title}</h2>
+                <h2 className="text-white font-semibold">{spaceData.title}</h2>
                 {onClose && (
                     <button
                         onClick={onClose}

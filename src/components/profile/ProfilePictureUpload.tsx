@@ -3,6 +3,7 @@ import { Camera, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface ProfilePictureUploadProps {
   userId: string;
@@ -121,36 +122,38 @@ const ProfilePictureUpload = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div
-        className="relative rounded-full overflow-hidden bg-slate-800 text-white flex items-center justify-center"
-        style={{ width: size, height: size }}
-      >
-        {avatarUrl ? (
-          <img src={avatarUrl} alt="Profile avatar" className="w-full h-full object-cover" />
-        ) : (
-          <span className="text-lg font-semibold">{initials}</span>
-        )}
-        <button
-          type="button"
-          onClick={() => inputRef.current?.click()}
-          className="absolute bottom-2 right-2 rounded-full bg-white/90 text-slate-700 p-2 shadow hover:bg-white"
-          aria-label="Upload profile picture"
+    <ErrorBoundary>
+      <div className="flex flex-col items-center gap-3">
+        <div
+          className="relative rounded-full overflow-hidden bg-slate-800 text-white flex items-center justify-center"
+          style={{ width: size, height: size }}
         >
-          {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-        </button>
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="Profile avatar" className="w-full h-full object-cover" />
+          ) : (
+            <span className="text-lg font-semibold">{initials}</span>
+          )}
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            className="absolute bottom-2 right-2 rounded-full bg-white/90 text-slate-700 p-2 shadow hover:bg-white"
+            aria-label="Upload profile picture"
+          >
+            {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+          </button>
+        </div>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+        <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()} disabled={uploading}>
+          {uploading ? "Uploading..." : "Change photo"}
+        </Button>
       </div>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        className="hidden"
-      />
-      <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()} disabled={uploading}>
-        {uploading ? "Uploading..." : "Change photo"}
-      </Button>
-    </div>
+    </ErrorBoundary>
   );
 };
 
