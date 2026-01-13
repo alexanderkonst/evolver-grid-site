@@ -102,7 +102,12 @@ const SkillTrees = () => {
                                     }}
                                 >
                                     {tree.iconImage ? (
-                                        <img src={tree.iconImage} alt={tree.name} className="w-6 h-6 rounded-full object-cover" />
+                                        <img
+                                            src={tree.iconImage}
+                                            alt={tree.name}
+                                            loading="lazy"
+                                            className="w-6 h-6 rounded-full object-cover"
+                                        />
                                     ) : (
                                         <TreeIcon className="w-4 h-4" />
                                     )}
@@ -120,6 +125,7 @@ const SkillTrees = () => {
                                 <img
                                     src={activeTree.iconImage}
                                     alt={activeTree.name}
+                                    loading="lazy"
                                     className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-lg"
                                     style={{ boxShadow: `0 0 30px ${activeTree.color}40` }}
                                 />
