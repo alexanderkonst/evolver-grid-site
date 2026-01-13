@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import BoldText from "@/components/BoldText";
+import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step3OrderTalents = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { top3CoreTalentIds, orderedTalentIds, setOrderedTalentIds } = useZoneOfGenius();
+  const basePath = getZogAssessmentBasePath(location.pathname);
   const [localOrdered, setLocalOrdered] = useState<number[]>(
     orderedTalentIds.length > 0 ? orderedTalentIds : top3CoreTalentIds
   );
@@ -16,13 +19,13 @@ const Step3OrderTalents = () => {
 
   useEffect(() => {
     if (top3CoreTalentIds.length === 0) {
-      navigate("/zone-of-genius/assessment/step-2");
+      navigate(getZogStepPath(basePath, 2));
       return;
     }
     if (orderedTalentIds.length === 0) {
       setLocalOrdered(top3CoreTalentIds);
     }
-  }, [top3CoreTalentIds, orderedTalentIds, navigate]);
+  }, [top3CoreTalentIds, orderedTalentIds, navigate, basePath]);
 
   const orderedTalents = localOrdered.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
 
@@ -42,11 +45,11 @@ const Step3OrderTalents = () => {
 
   const handleContinue = () => {
     setOrderedTalentIds(localOrdered);
-    navigate("/zone-of-genius/assessment/step-4");
+    navigate(getZogStepPath(basePath, 4));
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius/assessment/step-2");
+    navigate(getZogStepPath(basePath, 2));
   };
 
   const handleDragStart = (index: number) => {

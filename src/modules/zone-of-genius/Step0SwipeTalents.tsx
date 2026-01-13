@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
 import { TALENTS } from './talents';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ThumbsUp, ThumbsDown, ArrowLeft } from 'lucide-react';
+import { getZogAssessmentBasePath, getZogStepPath } from './zogRoutes';
 
 const Step0SwipeTalents = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { setYesTalentIds } = useZoneOfGenius();
+  const basePath = getZogAssessmentBasePath(location.pathname);
   
   // Randomize talent order once on mount
   const shuffledTalents = useMemo(() => {
@@ -102,7 +105,7 @@ const Step0SwipeTalents = () => {
 
   const handleContinue = () => {
     setYesTalentIds(yesTalents);
-    navigate('/zone-of-genius/assessment/step-1');
+    navigate(getZogStepPath(basePath, 1));
   };
 
   const handleRescan = () => {

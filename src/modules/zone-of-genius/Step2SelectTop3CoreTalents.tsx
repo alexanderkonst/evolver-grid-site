@@ -1,23 +1,26 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step2SelectTop3CoreTalents = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { selectedTop10TalentIds, top3CoreTalentIds, setTop3CoreTalentIds } = useZoneOfGenius();
+  const basePath = getZogAssessmentBasePath(location.pathname);
   const [localSelected, setLocalSelected] = useState<number[]>(top3CoreTalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
 
   useEffect(() => {
     if (selectedTop10TalentIds.length === 0) {
-      navigate("/zone-of-genius/assessment/step-1");
+      navigate(getZogStepPath(basePath, 1));
       return;
     }
     setLocalSelected(top3CoreTalentIds);
-  }, [selectedTop10TalentIds, top3CoreTalentIds, navigate]);
+  }, [selectedTop10TalentIds, top3CoreTalentIds, navigate, basePath]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
 
@@ -38,11 +41,11 @@ const Step2SelectTop3CoreTalents = () => {
 
   const handleContinue = () => {
     setTop3CoreTalentIds(localSelected);
-    navigate("/zone-of-genius/assessment/step-3");
+    navigate(getZogStepPath(basePath, 3));
   };
 
   const handleBack = () => {
-    navigate("/zone-of-genius/assessment/step-1");
+    navigate(getZogStepPath(basePath, 1));
   };
 
   const canContinue = localSelected.length === 3;
