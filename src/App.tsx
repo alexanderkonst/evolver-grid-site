@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import CustomCursor from "@/components/CustomCursor";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { getPageTitle } from "@/lib/pageTitles";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
@@ -102,9 +103,10 @@ const App = () => (
       <CustomCursor />
       <BrowserRouter>
         <TitleManager />
-        <PageTransition>
-          <Routes>
-            <Route path="/" element={<Index />} />
+        <ErrorBoundary>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Index />} />
             <Route path="/library" element={<Library />} />
             <Route path="/library/:category" element={<Library />} />
             <Route path="/contact" element={<ContactNew />} />
@@ -183,9 +185,10 @@ const App = () => (
             <Route path="/p/:slug" element={<CreatorPage />} />
             <Route path="/my-page" element={<PublicPageEditor />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </PageTransition>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageTransition>
+        </ErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
