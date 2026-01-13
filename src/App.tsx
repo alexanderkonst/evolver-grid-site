@@ -82,6 +82,7 @@ import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
+import BrowseGuides from "./pages/marketplace/BrowseGuides";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-slate-900">
@@ -156,6 +157,7 @@ const App = () => (
             <Route path="/game/transformation/library" element={<TransformationPracticeLibrary />} />
             <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
+            <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
             <Route path="/game/teams" element={<TeamsSpace />} />
             <Route path="/game/matches" element={<Matchmaking />} />
             <Route path="/connections" element={<Connections />} />
