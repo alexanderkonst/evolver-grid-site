@@ -75,6 +75,15 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             { id: "library", label: "Practice Library", path: "/game/transformation/library" },
             { id: "tests", label: "Personality Tests", path: "/game/transformation/tests" },
+            {
+                id: "qol-map",
+                label: "Quality of Life Map",
+                path: "/game/transformation/qol-assessment",
+                subSections: [
+                    { id: "qol-assessment", label: "Assessment", path: "/game/transformation/qol-assessment" },
+                    { id: "qol-results", label: "Results", path: "/game/transformation/qol-results" },
+                ],
+            },
         ],
     },
     marketplace: {

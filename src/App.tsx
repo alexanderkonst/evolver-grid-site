@@ -60,6 +60,8 @@ import TransformationGrowthPaths from "./pages/spaces/transformation/GrowthPaths
 import PathSection from "./pages/spaces/transformation/PathSection";
 import TransformationPracticeLibrary from "./pages/spaces/transformation/PracticeLibrary";
 import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
+import TransformationQolAssessment from "./pages/spaces/transformation/TransformationQolAssessment";
+import TransformationQolResults from "./pages/spaces/transformation/TransformationQolResults";
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/events/CreateEvent";
 import MyRsvps from "./pages/events/MyRsvps";
@@ -157,6 +159,8 @@ const App = () => (
             <Route path="/game/transformation/path/:pathId" element={<PathSection />} />
             <Route path="/game/transformation/library" element={<TransformationPracticeLibrary />} />
             <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
+            <Route path="/game/transformation/qol-assessment" element={<TransformationQolAssessment />} />
+            <Route path="/game/transformation/qol-results" element={<TransformationQolResults />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
             <Route path="/game/teams" element={<TeamsSpace />} />
