@@ -60,21 +60,21 @@ const SPACE_SECTIONS: SpaceSections = {
     transformation: {
         title: "Transformation",
         sections: [
-            { id: "overview", label: "Overview", path: "/game/transformation" },
-            { id: "library", label: "Practice Library", path: "/library" },
+            { id: "today", label: "Today's Practice", path: "/game/transformation/today" },
             {
                 id: "paths",
                 label: "Growth Paths",
-                path: "/growth-paths",
+                path: "/game/transformation/paths",
                 subSections: [
                     { id: "body", label: "Body", path: "/game/path/body" },
-                    { id: "mind", label: "Mind", path: "/game/path/mind" },
                     { id: "emotions", label: "Emotions", path: "/game/path/emotions" },
+                    { id: "mind", label: "Mind", path: "/game/path/mind" },
+                    { id: "genius", label: "Genius", path: "/game/path/genius" },
                     { id: "spirit", label: "Spirit", path: "/game/path/spirit" },
-                    { id: "genius", label: "Uniqueness", path: "/game/path/genius" },
                 ],
             },
-            { id: "tests", label: "Personality Tests", path: "/resources/personality-tests" },
+            { id: "library", label: "Practice Library", path: "/game/transformation/library" },
+            { id: "tests", label: "Personality Tests", path: "/game/transformation/tests" },
         ],
     },
     marketplace: {

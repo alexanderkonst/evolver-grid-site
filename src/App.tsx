@@ -56,6 +56,10 @@ import ExcaliburView from "./pages/ExcaliburView";
 import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
 import TransformationSpace from "./pages/spaces/TransformationSpace";
+import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
+import TransformationGrowthPaths from "./pages/spaces/transformation/GrowthPaths";
+import TransformationPracticeLibrary from "./pages/spaces/transformation/PracticeLibrary";
+import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
 import TeamsSpace from "./pages/spaces/TeamsSpace";
 import EventsSpace from "./pages/spaces/EventsSpace";
@@ -136,6 +140,10 @@ const App = () => (
             <Route path="/game/profile/mission" element={<ProfileMissionSection />} />
             <Route path="/game/profile/assets" element={<ProfileAssetsSection />} />
             <Route path="/game/transformation" element={<TransformationSpace />} />
+            <Route path="/game/transformation/today" element={<TodaysPractice />} />
+            <Route path="/game/transformation/paths" element={<TransformationGrowthPaths />} />
+            <Route path="/game/transformation/library" element={<TransformationPracticeLibrary />} />
+            <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
             <Route path="/game/teams" element={<TeamsSpace />} />
             <Route path="/game/matches" element={<Matchmaking />} />
