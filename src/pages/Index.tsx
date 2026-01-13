@@ -38,6 +38,7 @@ const Index = () => {
               <img
                 src={profilePhoto}
                 alt="Aleksandr Konstantinov"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>

@@ -76,6 +76,7 @@ const SoulDodecahedron = ({
                 <img
                     src={dodecahedronImage}
                     alt="Your Soul Essence"
+                    loading="lazy"
                     className="w-full h-full object-cover"
                 />
 

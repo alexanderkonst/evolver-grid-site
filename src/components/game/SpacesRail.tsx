@@ -136,6 +136,10 @@ const SpacesRail = ({
                         <img
                             src={avatarUrl}
                             alt={displayName}
+                            loading="lazy"
+                            onError={(e) => {
+                                e.currentTarget.src = "/placeholder.svg";
+                            }}
                             className="w-8 h-8 rounded-full object-cover flex-shrink-0"
                         />
                     ) : (
