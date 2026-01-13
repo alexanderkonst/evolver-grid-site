@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, UserPlus } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
+import EmptyState from "@/components/ui/EmptyState";
 import { supabase } from "@/integrations/supabase/client";
 
 interface ConnectionRow {
@@ -86,6 +87,7 @@ const Connections = () => {
     () => connections.filter((row) => row.status === "accepted"),
     [connections]
   );
+  const hasConnections = incoming.length > 0 || outgoing.length > 0 || accepted.length > 0;
 
   const handleRespond = async (row: ConnectionRow, status: "accepted" | "declined") => {
     if (!row.id) return;
@@ -173,34 +175,48 @@ const Connections = () => {
           <h1 className="text-2xl font-bold text-slate-900">Connections</h1>
         </div>
 
-        <div className="space-y-8">
-          <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-slate-600">Pending requests</h2>
-            {incoming.length === 0 ? (
-              <p className="text-sm text-slate-500">No incoming requests.</p>
-            ) : (
-              incoming.map((row) => renderRow(row, true))
-            )}
-          </section>
+        {!hasConnections ? (
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <EmptyState
+              icon={<UserPlus className="w-6 h-6 text-slate-500" />}
+              title="No connections yet"
+              description="Start connecting with people to build your network."
+              action={{
+                label: "Find People",
+                onClick: () => navigate("/community/people"),
+              }}
+            />
+          </div>
+        ) : (
+          <div className="space-y-8">
+            <section className="space-y-3">
+              <h2 className="text-sm font-semibold text-slate-600">Pending requests</h2>
+              {incoming.length === 0 ? (
+                <p className="text-sm text-slate-500">No incoming requests.</p>
+              ) : (
+                incoming.map((row) => renderRow(row, true))
+              )}
+            </section>
 
-          <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-slate-600">Sent requests</h2>
-            {outgoing.length === 0 ? (
-              <p className="text-sm text-slate-500">No sent requests.</p>
-            ) : (
-              outgoing.map((row) => renderRow(row, false))
-            )}
-          </section>
+            <section className="space-y-3">
+              <h2 className="text-sm font-semibold text-slate-600">Sent requests</h2>
+              {outgoing.length === 0 ? (
+                <p className="text-sm text-slate-500">No sent requests.</p>
+              ) : (
+                outgoing.map((row) => renderRow(row, false))
+              )}
+            </section>
 
-          <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-slate-600">Active connections</h2>
-            {accepted.length === 0 ? (
-              <p className="text-sm text-slate-500">No accepted connections yet.</p>
-            ) : (
-              accepted.map((row) => renderRow(row, false))
-            )}
-          </section>
-        </div>
+            <section className="space-y-3">
+              <h2 className="text-sm font-semibold text-slate-600">Active connections</h2>
+              {accepted.length === 0 ? (
+                <p className="text-sm text-slate-500">No accepted connections yet.</p>
+              ) : (
+                accepted.map((row) => renderRow(row, false))
+              )}
+            </section>
+          </div>
+        )}
       </div>
     </GameShellV2>
   );
