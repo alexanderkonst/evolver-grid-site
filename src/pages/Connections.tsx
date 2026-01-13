@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2, UserPlus } from "lucide-react";
+import { ArrowLeft, UserPlus } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import EmptyState from "@/components/ui/EmptyState";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 import { supabase } from "@/integrations/supabase/client";
 
 interface ConnectionRow {
@@ -117,8 +118,10 @@ const Connections = () => {
   if (loading) {
     return (
       <GameShellV2>
-        <div className="min-h-[60vh] flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+        <div className="p-6 lg:p-8 max-w-4xl mx-auto space-y-4">
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <SkeletonCard key={idx} className="h-20" />
+          ))}
         </div>
       </GameShellV2>
     );
