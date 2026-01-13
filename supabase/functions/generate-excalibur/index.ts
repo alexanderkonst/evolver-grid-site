@@ -20,6 +20,9 @@ GUIDING TENETS:
 4. Immediate Usability — User knows exactly: what to do, when, with whom.
 5. Absurd Focus — One offer, one audience, one transformation.
 6. Delight Standard — Must feel inevitable, obvious, elegant.
+7. Plain Language Rule — Every poetic term must have a plain-language twin.
+8. 13-Year-Old Test — If a smart 13-year-old wouldn't understand it, add a simpler version.
+9. Practical Anchor — Every description must connect to what the person actually DOES.
 
 TEST OF SHARPNESS:
 1. Is it one sword or a bundle of sticks?
@@ -117,6 +120,15 @@ Excalibur:
 - Channel: Warm intros from regenerative investors + From The Ashes platform
 - Hook: "Stop letting your land project live only in ceremonies — make it a buildable blueprint."
 - Next Step: Reach out to 3 people with stuck land projects within 30 days
+
+EXAMPLE 4: PLAIN LANGUAGE DEMO
+AppleSeed: Coherent Alchemist
+- coreVibration: "Coherent Alchemist"
+- coreVibration_plain: "I turn chaos into harmony"
+- primeDriver: "Align · Transform · Integrate"
+- primeDriver_plain: "I help people and systems find their natural order"
+- archetype: "Temple Builder of Futures"
+- archetype_plain: "I create structures where people can grow"
 `;
 
 const EXCALIBUR_ROASTING = `
@@ -138,8 +150,11 @@ Return a JSON object with this exact structure:
 {
   "essenceAnchor": {
     "coreVibration": "string - from AppleSeed",
+    "coreVibration_plain": "string - simple explanation",
     "primeDriver": "string - 3-word formula",
-    "archetype": "string - compound archetype"
+    "primeDriver_plain": "string - what I do",
+    "archetype": "string - compound archetype",
+    "archetype_plain": "string - simple explanation"
   },
   "sword": {
     "offer": "string - ONE sentence, absurdly clear",
@@ -270,7 +285,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: "You are an Excalibur Generator that outputs ONLY valid JSON. No markdown, no code blocks, no explanation."
+            content: "You are an Excalibur Generator that outputs ONLY valid JSON. No markdown, no code blocks. IMPORTANT: For every poetic term, also provide a plain-language explanation that a 13-year-old could understand."
           },
           { role: "user", content: finalPrompt }
         ],
