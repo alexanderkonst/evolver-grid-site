@@ -58,6 +58,7 @@ import NotFound from "./pages/NotFound";
 import TransformationSpace from "./pages/spaces/TransformationSpace";
 import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
 import TransformationGrowthPaths from "./pages/spaces/transformation/GrowthPaths";
+import PathSection from "./pages/spaces/transformation/PathSection";
 import TransformationPracticeLibrary from "./pages/spaces/transformation/PracticeLibrary";
 import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
 import MarketplaceSpace from "./pages/spaces/MarketplaceSpace";
@@ -142,6 +143,7 @@ const App = () => (
             <Route path="/game/transformation" element={<TransformationSpace />} />
             <Route path="/game/transformation/today" element={<TodaysPractice />} />
             <Route path="/game/transformation/paths" element={<TransformationGrowthPaths />} />
+            <Route path="/game/transformation/path/:pathId" element={<PathSection />} />
             <Route path="/game/transformation/library" element={<TransformationPracticeLibrary />} />
             <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
             <Route path="/game/marketplace" element={<MarketplaceSpace />} />
