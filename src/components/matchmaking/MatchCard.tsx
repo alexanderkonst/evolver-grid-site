@@ -32,7 +32,15 @@ const MatchCard = ({
       <div className="flex flex-col items-center text-center gap-4">
         <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
           {user.avatarUrl ? (
-            <img src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} className="w-full h-full object-cover" />
+            <img
+              src={user.avatarUrl}
+              alt={`${user.firstName} ${user.lastName}`}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder.svg";
+              }}
+              className="w-full h-full object-cover"
+            />
           ) : (
             <Sparkles className="w-10 h-10 text-amber-500" />
           )}

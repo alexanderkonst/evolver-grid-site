@@ -30,7 +30,15 @@ const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: M
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-full bg-amber-100 overflow-hidden flex items-center justify-center">
                     {avatarUrl ? (
-                        <img src={avatarUrl} alt="Profile avatar" className="w-full h-full object-cover" />
+                        <img
+                            src={avatarUrl}
+                            alt="Profile avatar"
+                            loading="lazy"
+                            onError={(e) => {
+                                e.currentTarget.src = "/placeholder.svg";
+                            }}
+                            className="w-full h-full object-cover"
+                        />
                     ) : (
                         <Sparkles className="w-5 h-5 text-amber-600" />
                     )}

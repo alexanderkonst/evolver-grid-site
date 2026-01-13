@@ -744,7 +744,12 @@ const GameHome = () => {
 
           {/* Header */}
           <div className="text-center mb-10">
-            <img src={dodecahedronImage} alt="Dodecahedron" className="w-28 sm:w-32 mx-auto mb-4 drop-shadow-lg" />
+            <img
+              src={dodecahedronImage}
+              alt="Dodecahedron"
+              loading="lazy"
+              className="w-28 sm:w-32 mx-auto mb-4 drop-shadow-lg"
+            />
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
               {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
             </h1>

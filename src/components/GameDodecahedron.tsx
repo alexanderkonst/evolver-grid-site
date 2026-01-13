@@ -132,6 +132,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                 <img
                     src={gameMapCenter}
                     alt="Game of Life Center"
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full animate-pulse"
                     style={{ animationDuration: "4s" }}
                 />
@@ -192,6 +193,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                                     <img
                                         src={path.icon}
                                         alt={path.name}
+                                        loading="lazy"
                                         className="w-14 h-14 sm:w-18 sm:h-18 rounded-full object-cover"
                                         style={{ width: '56px', height: '56px' }}
                                     />

@@ -300,15 +300,16 @@ const PersonalityTestUploadModal = ({
                                     )}
                                 </p>
                                 <div className="rounded-lg overflow-hidden border border-border">
-                                    <img 
-                                        src={
-                                            testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
-                                            testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
-                                            'https://i.imgur.com/oHYAq89.jpeg'
-                                        }
-                                        alt={`Example ${testType} result`}
-                                        className="w-full h-auto max-h-32 object-cover object-top"
-                                    />
+                                <img 
+                                    src={
+                                        testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
+                                        testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
+                                        'https://i.imgur.com/oHYAq89.jpeg'
+                                    }
+                                    alt={`Example ${testType} result`}
+                                    loading="lazy"
+                                    className="w-full h-auto max-h-32 object-cover object-top"
+                                />
                                     <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
                                 </div>
                             </div>
@@ -329,11 +330,12 @@ const PersonalityTestUploadModal = ({
                                 />
                                 {preview ? (
                                     <div className="space-y-2">
-                                        <img
-                                            src={preview}
-                                            alt="Preview"
-                                            className="max-h-48 mx-auto rounded"
-                                        />
+                                    <img
+                                        src={preview}
+                                        alt="Preview"
+                                        loading="lazy"
+                                        className="max-h-48 mx-auto rounded"
+                                    />
                                         <p className="text-sm text-muted-foreground">Click or drop to change</p>
                                     </div>
                                 ) : (

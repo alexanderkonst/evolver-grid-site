@@ -436,6 +436,10 @@ const PeopleDirectory = () => {
                         <img
                           src={person.avatarUrl}
                           alt={person.name}
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.src = "/placeholder.svg";
+                          }}
                           className="w-full h-full object-cover"
                         />
                       ) : (
