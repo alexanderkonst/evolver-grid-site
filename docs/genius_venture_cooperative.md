@@ -21,7 +21,7 @@ The people who succeed either:
 3. Have already built the "hypothesis machine" through years of painful experience
 4. Possess rare drive + work ethic to grind through thousands of discovery calls
 
-**Reality check:** Even I (Alexander) have this knowledge but lack the grinding work ethic. Most program participants won't have it either.
+**Reality check:** Most program participants won't have it, if not all of them.
 
 ---
 
