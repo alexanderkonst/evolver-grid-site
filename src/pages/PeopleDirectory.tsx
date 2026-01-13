@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2, MapPin, Target, Users } from "lucide-react";
+import { MapPin, Target, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 import {
   Select,
   SelectContent,
@@ -400,8 +401,10 @@ const PeopleDirectory = () => {
           </div>
 
           {loading && (
-            <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <SkeletonCard key={idx} className="h-40" />
+              ))}
             </div>
           )}
 
