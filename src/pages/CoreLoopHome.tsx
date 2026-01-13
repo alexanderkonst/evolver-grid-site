@@ -369,19 +369,6 @@ const CoreLoopHome = () => {
                         avatarUrl={avatarUrl}
                     />
 
-                    {/* First Action Card */}
-                    <div className="rounded-xl border-2 border-green-200 bg-green-50 p-5 mb-4">
-                        <div className="flex items-center gap-2 mb-3">
-                            <Compass className="w-5 h-5 text-green-600" />
-                            <span className="text-sm font-medium text-green-700">Your First Move</span>
-                        </div>
-                        <h2 className="font-semibold text-slate-900 mb-2">Ready to Begin Your Journey?</h2>
-                        <p className="text-sm text-slate-600 mb-4">
-                            Complete your first action to activate your daily rhythm.
-                            Each action earns XP and moves you closer to your goals.
-                        </p>
-                    </div>
-
                     {/* MY NEXT MOVE Section */}
                     <MyNextMoveSection
                         action={recommendedAction}
