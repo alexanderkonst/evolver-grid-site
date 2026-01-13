@@ -17,6 +17,7 @@ import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 
 const QualityOfLifeMapResults: FC = () => {
   const navigate = useNavigate();
@@ -530,6 +531,16 @@ const QualityOfLifeMapResults: FC = () => {
                 Retake Assessment
               </Button>
             </div>
+
+          {isGuidanceLoading && (
+            <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+              <div className="space-y-4">
+                <SkeletonCard className="h-6 bg-white/20" />
+                <SkeletonCard className="h-24 bg-white/20" />
+                <SkeletonCard className="h-24 bg-white/20" />
+              </div>
+            </div>
+          )}
 
           {/* Top Growth Opportunities */}
           <div className="mb-12">
