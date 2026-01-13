@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -136,6 +136,22 @@ const SectionsPanel = ({
     };
 
     const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + "/");
+
+    useEffect(() => {
+        const nextExpanded: Record<string, boolean> = {};
+
+        spaceData.sections.forEach((section) => {
+            if (!section.subSections) return;
+            const hasActiveChild = section.subSections.some((sub) => isActive(sub.path));
+            if (hasActiveChild) {
+                nextExpanded[section.id] = true;
+            }
+        });
+
+        if (Object.keys(nextExpanded).length > 0) {
+            setExpandedSections((prev) => ({ ...prev, ...nextExpanded }));
+        }
+    }, [location.pathname, spaceData]);
 
     return (
         <div
