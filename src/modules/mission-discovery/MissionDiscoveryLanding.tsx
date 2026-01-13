@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
     ArrowRight,
@@ -8,7 +8,9 @@ import {
     Clipboard,
     Check,
     HelpCircle,
-    BookOpen
+    BookOpen,
+    Sword,
+    Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,6 +22,7 @@ import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 import type { Mission } from "@/modules/mission-discovery/types";
 import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 /**
  * Mission Discovery Landing Page
@@ -120,6 +123,84 @@ const MissionDiscoveryLanding = () => {
     const [isMatching, setIsMatching] = useState(false);
     const [copied, setCopied] = useState(false);
     const [matches, setMatches] = useState<MatchResult[] | null>(null);
+
+    // Excalibur state
+    const [excaliburData, setExcaliburData] = useState<any>(null);
+    const [isLoadingExcalibur, setIsLoadingExcalibur] = useState(true);
+    const [isMatchingFromExcalibur, setIsMatchingFromExcalibur] = useState(false);
+
+    // Load Excalibur on mount
+    useEffect(() => {
+        const loadExcalibur = async () => {
+            try {
+                const profileId = await getOrCreateGameProfileId();
+                const { data: profile } = await supabase
+                    .from('game_profiles')
+                    .select('last_zog_snapshot_id')
+                    .eq('id', profileId)
+                    .single();
+
+                if (profile?.last_zog_snapshot_id) {
+                    const { data: zog } = await supabase
+                        .from('zog_snapshots')
+                        .select('excalibur_data')
+                        .eq('id', profile.last_zog_snapshot_id)
+                        .single();
+
+                    if (zog?.excalibur_data) {
+                        setExcaliburData(zog.excalibur_data);
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to load excalibur:', err);
+            } finally {
+                setIsLoadingExcalibur(false);
+            }
+        };
+        loadExcalibur();
+    }, []);
+
+    // Match missions from Excalibur
+    const handleMatchFromExcalibur = async () => {
+        if (!excaliburData) return;
+        setIsMatchingFromExcalibur(true);
+        setMatches(null);
+
+        try {
+            // Send Excalibur + first 200 missions to AI
+            const missionsForMatching = MISSIONS.slice(0, 200).map(m => ({
+                id: m.id,
+                title: m.title,
+                statement: m.statement
+            }));
+
+            const { data, error } = await supabase.functions.invoke('match-mission-to-excalibur', {
+                body: { excalibur: excaliburData, missions: missionsForMatching }
+            });
+
+            if (error) throw error;
+
+            if (data?.matches && Array.isArray(data.matches)) {
+                const results: MatchResult[] = data.matches.map((match: any) => {
+                    const mission = MISSIONS.find(m => m.id === match.missionId);
+                    if (!mission) return null;
+                    return {
+                        mission,
+                        score: match.resonanceScore || 5,
+                        context: buildMissionContext(mission),
+                        matchedKeywords: [match.reason]
+                    };
+                }).filter(Boolean) as MatchResult[];
+
+                setMatches(results.length > 0 ? results : []);
+            }
+        } catch (err) {
+            console.error('Excalibur matching failed:', err);
+            setMatches([]);
+        } finally {
+            setIsMatchingFromExcalibur(false);
+        }
+    };
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(MISSION_DISCOVERY_PROMPT);
@@ -274,6 +355,31 @@ const MissionDiscoveryLanding = () => {
                         </p>
 
                         <div className="grid gap-4 sm:grid-cols-2">
+                            {/* Option: Suggest from Excalibur */}
+                            {excaliburData && (
+                                <button
+                                    onClick={handleMatchFromExcalibur}
+                                    disabled={isMatchingFromExcalibur}
+                                    className="p-6 rounded-xl border-2 border-amber-300 bg-amber-50 hover:border-amber-500 transition-colors text-left group sm:col-span-2"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        {isMatchingFromExcalibur ? (
+                                            <Loader2 className="w-6 h-6 text-amber-600 animate-spin" />
+                                        ) : (
+                                            <Sword className="w-6 h-6 text-amber-600" />
+                                        )}
+                                        <div>
+                                            <h3 className="font-semibold text-slate-900 mb-1">
+                                                {isMatchingFromExcalibur ? 'Finding your missions...' : 'Suggest from my Excalibur'}
+                                            </h3>
+                                            <p className="text-sm text-slate-600">
+                                                AI will match your Unique Offer to the most aligned missions
+                                            </p>
+                                        </div>
+                                    </div>
+                                </button>
+                            )}
+
                             <button
                                 onClick={() => setStep("has-ai")}
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left group"
