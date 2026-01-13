@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Users, Loader2 } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -362,18 +362,18 @@ const TeamsSpace = () => {
     const primaryLabel = matchMode === "assets" ? "Asset opportunity" : "Genius alignment";
     const secondaryLabel = matchMode === "assets" ? "Genius alignment" : "Asset opportunity";
 
-    const handlePass = () => {
+    const handlePass = useCallback(() => {
         setCurrentIndex((prev) => Math.min(prev + 1, filteredMatches.length));
-    };
+    }, [filteredMatches.length]);
 
-    const handleConnect = () => {
+    const handleConnect = useCallback(() => {
         if (!currentMatch) return;
         setSelectedMatch(currentMatch);
         setConnectMessage("");
         setConnectModalOpen(true);
-    };
+    }, [currentMatch]);
 
-    const handleSendRequest = async () => {
+    const handleSendRequest = useCallback(async () => {
         if (!selectedMatch) return;
         setSending(true);
         try {
@@ -410,7 +410,7 @@ const TeamsSpace = () => {
         } finally {
             setSending(false);
         }
-    };
+    }, [connectMessage, selectedMatch]);
 
     return (
         <GameShellV2>

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -86,4 +87,15 @@ const MatchCard = ({
   );
 };
 
-export default MatchCard;
+const areEqual = (prev: MatchCardProps, next: MatchCardProps) => (
+  prev.user.id === next.user.id &&
+  prev.user.avatarUrl === next.user.avatarUrl &&
+  prev.user.archetype === next.user.archetype &&
+  prev.user.tagline === next.user.tagline &&
+  prev.matchReason === next.matchReason &&
+  prev.matchLabel === next.matchLabel &&
+  prev.secondaryReason === next.secondaryReason &&
+  prev.secondaryLabel === next.secondaryLabel
+);
+
+export default memo(MatchCard, areEqual);

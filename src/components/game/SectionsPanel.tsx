@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, memo, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -242,5 +242,12 @@ const SectionsPanel = ({
     );
 };
 
-export default SectionsPanel;
+const areEqual = (prev: SectionsPanelProps, next: SectionsPanelProps) => (
+    prev.activeSpaceId === next.activeSpaceId &&
+    prev.onSectionSelect === next.onSectionSelect &&
+    prev.onClose === next.onClose &&
+    prev.className === next.className
+);
+
+export default memo(SectionsPanel, areEqual);
 export { SPACE_SECTIONS };
