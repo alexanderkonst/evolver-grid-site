@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import gameMapCenter from "@/assets/dodecahedron.jpg";
+import gameMapCenter from "@/assets/mc-dodecahedron.png";
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DOMAINS, DomainSlug } from "@/lib/domains";

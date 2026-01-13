@@ -20,7 +20,7 @@ import GeniusGrowthPath from "@/modules/genius-path/GeniusGrowthPath";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import MyLifeSection from "@/components/game/MyLifeSection";
-import dodecahedronImage from "@/assets/dodecahedron.jpg";
+import dodecahedronImage from "@/assets/mc-dodecahedron.png";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
