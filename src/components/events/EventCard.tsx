@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { CalendarDays, MapPin, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EventWithRsvpCount } from "@/hooks/useEvents";
@@ -81,4 +82,14 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
   );
 };
 
-export default EventCard;
+const areEqual = (prev: EventCardProps, next: EventCardProps) => (
+  prev.event.id === next.event.id &&
+  prev.event.title === next.event.title &&
+  prev.event.event_date === next.event.event_date &&
+  prev.event.event_time === next.event.event_time &&
+  prev.event.location === next.event.location &&
+  prev.event.photo_url === next.event.photo_url &&
+  prev.event.rsvp_count === next.event.rsvp_count
+);
+
+export default memo(EventCard, areEqual);

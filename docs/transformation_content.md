@@ -47,16 +47,16 @@ Each content unit follows the Flywheel:
 ### Foundational Training (Meta-Module)
 | # | Title | Status | Video |
 |---|-------|--------|-------|
-| 1.1 | Growth Brings Results | ✅ | ⬜ |
-| 1.2 | Dormant Potential | ✅ | ⬜ |
-| 1.3 | Growth Acceleration Cycle | ✅ | ⬜ |
-| 1.4 | The Five Paths of Growth | ✅ | ⬜ |
-| 1.5 | Body Path Defined | ✅ | ⬜ |
-| 1.6 | Emotions Path Defined | ✅ | ⬜ |
-| 1.7 | Mind Path Defined | ✅ | ⬜ |
-| 1.8 | Genius Path Defined | ✅ | ⬜ |
-| 1.9 | Spirit Path Defined | ✅ | ⬜ |
-| 1.10 | Balanced Growth | ✅ | ⬜ |
+| 1.1 | Growth Brings Results | ✅ Written | ⬜ |
+| 1.2 | Dormant Potential | ✅ Written | ⬜ |
+| 1.3 | Growth Acceleration Cycle | ✅ Written | ⬜ |
+| 1.4 | The Five Paths of Growth | ✅ Written | ⬜ |
+| 1.5 | Body Path Defined | ✅ Written | ⬜ |
+| 1.6 | Emotions Path Defined | ✅ Written | ⬜ |
+| 1.7 | Mind Path Defined | ✅ Written | ⬜ |
+| 1.8 | Genius Path Defined | ✅ Written | ⬜ |
+| 1.9 | Spirit Path Defined | ✅ Written | ⬜ |
+| 1.10 | Balanced Growth | ✅ Written | ⬜ |
 
 ### Spirit Path
 | # | Title | Status | Video |
