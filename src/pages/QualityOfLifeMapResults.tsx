@@ -19,7 +19,13 @@ import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 
-const QualityOfLifeMapResults: FC = () => {
+interface QualityOfLifeMapResultsProps {
+  renderMode?: "standalone" | "embedded";
+}
+
+const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
+  renderMode = "standalone",
+}) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
@@ -150,13 +156,48 @@ const QualityOfLifeMapResults: FC = () => {
     }
   };
 
+  const startAssessmentPath =
+    renderMode === "embedded" ? "/game/transformation/qol-assessment" : "/quality-of-life-map/assessment";
+
   // If assessment not complete, show prompt to complete it
   if (!isComplete) {
+    const content = (
+      <section
+        className="py-24 px-6 min-h-dvh flex items-center justify-center"
+        style={{ backgroundColor: "hsl(220, 30%, 12%)" }}
+      >
+        <div className="container mx-auto max-w-2xl text-center">
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
+            <BoldText>PLEASE COMPLETE THE ASSESSMENT FIRST</BoldText>
+          </h1>
+
+          <p className="text-lg text-white/70 mb-8">
+            You need to complete all 8 domains in the Quality of Life Map assessment before viewing your results.
+          </p>
+
+          <Button
+            onClick={() => navigate(startAssessmentPath)}
+            className="text-lg px-8"
+            style={{
+              backgroundColor: "hsl(var(--destiny-gold))",
+              color: "hsl(var(--destiny-dark))",
+            }}
+          >
+            Start Assessment
+          </Button>
+        </div>
+      </section>
+    );
+
+    if (renderMode === "embedded") {
+      return <div className="py-8">{content}</div>;
+    }
+
     return (
       <div className="min-h-dvh">
         <Navigation />
-        
-        <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
+
+        <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
           <div className="container mx-auto max-w-4xl">
             <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -165,31 +206,7 @@ const QualityOfLifeMapResults: FC = () => {
           </div>
         </div>
 
-        <section 
-          className="py-24 px-6 min-h-dvh flex items-center justify-center"
-          style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
-        >
-          <div className="container mx-auto max-w-2xl text-center">
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
-              <BoldText>PLEASE COMPLETE THE ASSESSMENT FIRST</BoldText>
-            </h1>
-            
-            <p className="text-lg text-white/70 mb-8">
-              You need to complete all 8 domains in the Quality of Life Map assessment before viewing your results.
-            </p>
-            
-            <Button
-              onClick={() => navigate("/quality-of-life-map/assessment")}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: 'hsl(var(--destiny-gold))',
-                color: 'hsl(var(--destiny-dark))',
-              }}
-            >
-              Start Assessment
-            </Button>
-          </div>
-        </section>
+        {content}
       </div>
     );
   }
@@ -375,26 +392,12 @@ const QualityOfLifeMapResults: FC = () => {
     }
   };
 
-  return (
-    <div className="min-h-dvh">
-      <Navigation />
-      
-      {/* Back Button */}
-      <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
-        <div className="container mx-auto max-w-4xl">
-          <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
-        </div>
-      </div>
-
-      {/* Results Content */}
-      <section 
-        className="py-24 px-6"
-        style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
-      >
-        <div className="container mx-auto max-w-4xl">
+  const resultsContent = (
+    <section 
+      className="py-24 px-6"
+      style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
+    >
+      <div className="container mx-auto max-w-4xl">
           {/* Snapshot Content - wrapped for PDF export */}
           <div ref={snapshotRef} style={{ padding: '40px 20px', backgroundColor: '#1a2332' }}>
             {/* Main Heading */}
@@ -678,8 +681,30 @@ const QualityOfLifeMapResults: FC = () => {
               </div>
             </div>
           )}
+      </div>
+    </section>
+  );
+
+  if (renderMode === "embedded") {
+    return <div className="py-8">{resultsContent}</div>;
+  }
+
+  return (
+    <div className="min-h-dvh">
+      <Navigation />
+      
+      {/* Back Button */}
+      <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
+        <div className="container mx-auto max-w-4xl">
+          <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            <BoldText>BACK</BoldText>
+          </Link>
         </div>
-      </section>
+      </div>
+
+      {/* Results Content */}
+      {resultsContent}
     </div>
   );
 };
