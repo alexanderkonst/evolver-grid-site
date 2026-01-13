@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     Compass,
@@ -208,6 +208,19 @@ const SpacesRail = ({
     );
 };
 
-export default SpacesRail;
+const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
+    if (prev.activeSpaceId !== next.activeSpaceId) return false;
+    if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
+    if (prev.className !== next.className) return false;
+    const prevKeys = Object.keys(prev.unlockStatus || {});
+    const nextKeys = Object.keys(next.unlockStatus || {});
+    if (prevKeys.length !== nextKeys.length) return false;
+    for (const key of prevKeys) {
+        if (prev.unlockStatus?.[key] !== next.unlockStatus?.[key]) return false;
+    }
+    return true;
+};
+
+export default memo(SpacesRail, areEqual);
 export { SPACES };
 export type { SpaceItem };
