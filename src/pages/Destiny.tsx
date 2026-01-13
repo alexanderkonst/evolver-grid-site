@@ -447,6 +447,7 @@ const Destiny = () => {
               <img 
                 src={profilePhoto} 
                 alt="Aleksandr Konstantinov"
+                loading="lazy"
                 className="w-48 h-48 rounded-full object-cover"
                 style={{ 
                   border: '3px solid hsl(var(--destiny-gold))',
