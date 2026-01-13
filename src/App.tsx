@@ -66,6 +66,7 @@ import TeamsSpace from "./pages/spaces/TeamsSpace";
 import EventsSpace from "./pages/spaces/EventsSpace";
 import CoopSpace from "./pages/spaces/CoopSpace";
 import EventDetail from "./pages/EventDetail";
+import CreateEvent from "./pages/events/CreateEvent";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
 import Matchmaking from "./pages/Matchmaking";
@@ -153,6 +154,7 @@ const App = () => (
             <Route path="/game/mission" element={<MissionSelection />} />
             <Route path="/community/people" element={<PeopleDirectory />} />
             <Route path="/game/events" element={<EventsSpace />} />
+            <Route path="/game/events/create" element={<CreateEvent />} />
             <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/events/community/:communityId" element={<CommunityEvents />} />
