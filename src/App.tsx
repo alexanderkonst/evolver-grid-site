@@ -62,6 +62,7 @@ import TransformationPracticeLibrary from "./pages/spaces/transformation/Practic
 import TransformationPersonalityTests from "./pages/spaces/transformation/PersonalityTests";
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/events/CreateEvent";
+import MyRsvps from "./pages/events/MyRsvps";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
 import Matchmaking from "./pages/Matchmaking";
@@ -165,6 +166,7 @@ const App = () => (
             <Route path="/community/people" element={<PeopleDirectory />} />
             <Route path="/game/events" element={<EventsSpace />} />
             <Route path="/game/events/create" element={<CreateEvent />} />
+            <Route path="/game/events/my-rsvps" element={<MyRsvps />} />
             <Route path="/game/coop" element={<CoopSpace />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/events/community/:communityId" element={<CommunityEvents />} />
