@@ -22,13 +22,46 @@ export const useEvents = () => {
 
     try {
       const today = new Date().toISOString().split("T")[0];
+      const { data: { user } } = await supabase.auth.getUser();
+      const userId = user?.id ?? null;
+      let rsvpEventIds: string[] = [];
+
+      if (userId) {
+        const { data: rsvpData, error: rsvpError } = await supabase
+          .from("event_rsvps")
+          .select("event_id")
+          .eq("user_id", userId);
+
+        if (rsvpError) throw rsvpError;
+        rsvpEventIds = (rsvpData || []).map((row) => row.event_id);
+      }
 
       // Fetch events
-      const { data: eventsData, error: eventsError } = await supabase
+      let eventsQuery = supabase
         .from("events")
         .select("*")
         .gte("event_date", today)
         .order("event_date", { ascending: true });
+
+      if (!userId) {
+        eventsQuery = eventsQuery.or("visibility.is.null,visibility.eq.public");
+      } else {
+        const filters = [
+          "visibility.is.null",
+          "visibility.eq.public",
+          "visibility.eq.community",
+          `created_by.eq.${userId}`,
+        ];
+
+        if (rsvpEventIds.length > 0) {
+          const idList = rsvpEventIds.map((id) => `"${id}"`).join(",");
+          filters.push(`id.in.(${idList})`);
+        }
+
+        eventsQuery = eventsQuery.or(filters.join(","));
+      }
+
+      const { data: eventsData, error: eventsError } = await eventsQuery;
 
       if (eventsError) throw eventsError;
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Users, Loader2, Mail } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock, Globe, Lock, MapPin, UserCheck, Users, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -199,6 +199,14 @@ const EventDetail = () => {
   const maxAvatars = 5;
   const extraCount = Math.max(0, goingCount - maxAvatars);
   const hasRsvp = currentStatus === "going";
+  const visibility = event.visibility ?? "public";
+  const visibilityConfig = {
+    public: { label: "Public", icon: Globe, className: "bg-slate-100 text-slate-700" },
+    community: { label: "Community", icon: Users, className: "bg-blue-50 text-blue-700" },
+    private: { label: "Private", icon: Lock, className: "bg-slate-100 text-slate-700" },
+    team: { label: "Team", icon: UserCheck, className: "bg-emerald-50 text-emerald-700" },
+  } as const;
+  const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
 
   return (
     <div className="min-h-dvh bg-slate-50">
@@ -235,6 +243,14 @@ const EventDetail = () => {
           {/* Title & RSVP */}
           <div className="p-6 border-b border-slate-100">
             <h1 className="text-2xl font-bold text-slate-900 mb-4">{event.title}</h1>
+            {visibilityBadge && (
+              <div className="mb-4">
+                <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${visibilityBadge.className}`}>
+                  <visibilityBadge.icon className="w-4 h-4" />
+                  {visibilityBadge.label}
+                </span>
+              </div>
+            )}
 
             {/* RSVP Button */}
             <Button

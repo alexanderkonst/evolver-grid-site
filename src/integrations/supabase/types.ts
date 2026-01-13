@@ -172,6 +172,7 @@ export type Database = {
           photo_url: string | null
           timezone: string | null
           title: string
+          visibility: string | null
         }
         Insert: {
           community_id?: string | null
@@ -185,6 +186,7 @@ export type Database = {
           photo_url?: string | null
           timezone?: string | null
           title: string
+          visibility?: string | null
         }
         Update: {
           community_id?: string | null
@@ -198,6 +200,7 @@ export type Database = {
           photo_url?: string | null
           timezone?: string | null
           title?: string
+          visibility?: string | null
         }
         Relationships: []
       }

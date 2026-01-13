@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CalendarDays, MapPin, Clock, Image, FileText, Loader2 } from "lucide-react";
+import { CalendarDays, MapPin, Clock, Image, FileText, Globe, Lock, UserCheck, Users, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -48,6 +49,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
     location: "",
     photo_url: "",
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+    visibility: "public",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,6 +80,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
         location: formData.location || null,
         photo_url: formData.photo_url || null,
         timezone: formData.timezone || "UTC",
+        visibility: formData.visibility,
       });
 
       toast({
@@ -94,6 +97,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
         location: "",
         photo_url: "",
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+        visibility: "public",
       });
 
       if (onSuccess) {
@@ -230,6 +234,47 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
                 value={formData.photo_url}
                 onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-slate-400" />
+                Visibility
+              </Label>
+              <Select
+                value={formData.visibility}
+                onValueChange={(value) => setFormData({ ...formData, visibility: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Who can see this?" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="public">
+                    <span className="flex items-center gap-2">
+                      <Globe className="w-4 h-4" />
+                      Public — Anyone
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="community">
+                    <span className="flex items-center gap-2">
+                      <Users className="w-4 h-4" />
+                      Community — Members only
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="private">
+                    <span className="flex items-center gap-2">
+                      <Lock className="w-4 h-4" />
+                      Private — Invite only
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="team">
+                    <span className="flex items-center gap-2">
+                      <UserCheck className="w-4 h-4" />
+                      Team — My team only
+                    </span>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Submit */}

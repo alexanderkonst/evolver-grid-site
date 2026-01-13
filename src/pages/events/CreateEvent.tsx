@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CalendarDays, Clock, FileText, Image, MapPin, Users } from "lucide-react";
+import { CalendarDays, Clock, FileText, Globe, Image, Lock, MapPin, UserCheck, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCreateEvent } from "@/hooks/useEvents";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -24,6 +25,7 @@ const CreateEvent = () => {
     location: "",
     community_id: "",
     photo_url: "",
+    visibility: "public",
   });
 
   useEffect(() => {
@@ -81,6 +83,7 @@ const CreateEvent = () => {
         location: formData.location || null,
         community_id: formData.community_id || null,
         photo_url: formData.photo_url || null,
+        visibility: formData.visibility,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
       });
 
@@ -202,6 +205,47 @@ const CreateEvent = () => {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-slate-400" />
+              Visibility
+            </Label>
+            <Select
+              value={formData.visibility}
+              onValueChange={(value) => setFormData((prev) => ({ ...prev, visibility: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Who can see this?" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="public">
+                  <span className="flex items-center gap-2">
+                    <Globe className="w-4 h-4" />
+                    Public — Anyone
+                  </span>
+                </SelectItem>
+                <SelectItem value="community">
+                  <span className="flex items-center gap-2">
+                    <Users className="w-4 h-4" />
+                    Community — Members only
+                  </span>
+                </SelectItem>
+                <SelectItem value="private">
+                  <span className="flex items-center gap-2">
+                    <Lock className="w-4 h-4" />
+                    Private — Invite only
+                  </span>
+                </SelectItem>
+                <SelectItem value="team">
+                  <span className="flex items-center gap-2">
+                    <UserCheck className="w-4 h-4" />
+                    Team — My team only
+                  </span>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">
