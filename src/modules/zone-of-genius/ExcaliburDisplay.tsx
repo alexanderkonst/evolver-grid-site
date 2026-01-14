@@ -37,6 +37,40 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
                 {excalibur.sword.offer}
             </RevelatoryHero>
 
+            {/* Essence Anchor */}
+            <div className="p-5 bg-white rounded-2xl border border-slate-200 space-y-4">
+                <h3 className="font-semibold text-slate-900">Essence Anchor</h3>
+                <div className="grid gap-4 md:grid-cols-3">
+                    <div>
+                        <p className="text-sm text-slate-500 mb-1">Core Vibration</p>
+                        <p className="text-slate-900 font-medium">{excalibur.essenceAnchor.coreVibration}</p>
+                        {excalibur.essenceAnchor.coreVibration_plain && (
+                            <p className="text-xs italic text-slate-500 mt-1">
+                                {excalibur.essenceAnchor.coreVibration_plain}
+                            </p>
+                        )}
+                    </div>
+                    <div>
+                        <p className="text-sm text-slate-500 mb-1">Prime Driver</p>
+                        <p className="text-slate-900 font-medium">{excalibur.essenceAnchor.primeDriver}</p>
+                        {excalibur.essenceAnchor.primeDriver_plain && (
+                            <p className="text-xs italic text-slate-500 mt-1">
+                                {excalibur.essenceAnchor.primeDriver_plain}
+                            </p>
+                        )}
+                    </div>
+                    <div>
+                        <p className="text-sm text-slate-500 mb-1">Archetype</p>
+                        <p className="text-slate-900 font-medium">{excalibur.essenceAnchor.archetype}</p>
+                        {excalibur.essenceAnchor.archetype_plain && (
+                            <p className="text-xs italic text-slate-500 mt-1">
+                                {excalibur.essenceAnchor.archetype_plain}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </div>
+
             {/* The Offer (Hero Card) */}
             <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 space-y-4">
                 <div className="flex items-start justify-between gap-4">
