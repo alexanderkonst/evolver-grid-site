@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2, Sword } from "lucide-react";
+import { Loader2, Sword } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import ExcaliburDisplay from "@/modules/zone-of-genius/ExcaliburDisplay";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
+import BackButton from "@/components/BackButton";
 
 const ExcaliburView = () => {
   const navigate = useNavigate();
@@ -44,10 +45,7 @@ const ExcaliburView = () => {
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
               Create Offer
             </Button>
-            <Button variant="outline" onClick={() => navigate("/game/profile")}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Profile
-            </Button>
+            <BackButton to="/game/profile" />
           </div>
         </div>
       </GameShellV2>
@@ -57,10 +55,7 @@ const ExcaliburView = () => {
   return (
     <GameShellV2>
       <div className="px-4 pt-6">
-        <Button variant="ghost" onClick={() => navigate("/game/profile")}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Profile
-        </Button>
+        <BackButton to="/game/profile" />
       </div>
       <ExcaliburDisplay excalibur={excalibur} />
     </GameShellV2>

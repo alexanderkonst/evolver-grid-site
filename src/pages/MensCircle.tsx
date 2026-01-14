@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Clock, Users, Shield, Heart, Sparkles, MessageCircle, Send } from "lucide-react";
+import { Clock, Users, Shield, Heart, Sparkles, MessageCircle, Send } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import BackButton from "@/components/BackButton";
 import mensCircleLogo from "@/assets/mens-circle-icon.png";
 import mcLion from "@/assets/mc-lion.jpg";
 import mcMerkaba from "@/assets/mc-merkaba.png";
@@ -247,14 +248,11 @@ const MensCircle = () => {
         style={{ backgroundColor: "#041a2f" }}
       >
         <style dangerouslySetInnerHTML={{ __html: animationStyles }} />
-        <button
-          onClick={() => navigate("/")}
-          className="absolute top-6 left-6 flex items-center gap-2 text-sm opacity-70 hover:opacity-100 transition-opacity"
-          style={{ color: "#E0E4EA" }}
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Назад</span>
-        </button>
+        <BackButton
+          to="/"
+          label="Назад"
+          className="absolute top-6 left-6 text-sm opacity-70 hover:opacity-100 transition-opacity text-[#E0E4EA] hover:text-white"
+        />
         <div className="max-w-md w-full text-center space-y-8">
           <img loading="lazy"
             src={mensCircleLogo}

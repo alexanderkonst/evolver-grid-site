@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, CreditCard, Loader2, Check, Edit2, X, AlertTriangle } from "lucide-react";
+import { User, CreditCard, Loader2, Check, Edit2, X, AlertTriangle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
+import BackButton from "@/components/BackButton";
 
 interface UserProfile {
     id: string;
@@ -221,14 +222,9 @@ const Profile = () => {
 
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
                 <div className="container mx-auto max-w-3xl">
-                    {/* Back link */}
-                    <button
-                        onClick={() => navigate(-1)}
-                        className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        <BoldText>BACK</BoldText>
-                    </button>
+                    <div className="mb-6">
+                        <BackButton />
+                    </div>
 
                     {/* Page Header */}
                     <div className="mb-8">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
@@ -8,6 +8,7 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import BackButton from "@/components/BackButton";
 
 const AppleseedView = () => {
   const navigate = useNavigate();
@@ -53,10 +54,7 @@ const AppleseedView = () => {
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
               Start Zone of Genius
             </Button>
-            <Button variant="outline" onClick={() => navigate("/game/profile")}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Profile
-            </Button>
+            <BackButton to="/game/profile" />
           </div>
         </div>
       </GameShellV2>
@@ -66,10 +64,7 @@ const AppleseedView = () => {
   return (
     <GameShellV2>
       <div className="px-4 pt-6">
-        <Button variant="ghost" onClick={() => navigate("/game/profile")}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Profile
-        </Button>
+        <BackButton to="/game/profile" />
       </div>
       <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
       {!excalibur && (

@@ -15,6 +15,10 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-secondary/50",
         link: "text-primary underline-offset-4 hover:underline",
+        // Wabi-sabi variants
+        "wabi-primary": "bg-gradient-to-r from-[#8460ea] to-[#29549f] text-white hover:from-[#7350da] hover:to-[#1e4374] shadow-lg shadow-[#8460ea]/20",
+        "wabi-secondary": "bg-[#e7e9e5] text-[#2c3150] border border-[#a4a3d0]/30 hover:bg-[#dcdde2] hover:border-[#a4a3d0]/50",
+        "wabi-ghost": "text-[#2c3150] hover:bg-[#a4a3d0]/10 hover:text-[#29549f]",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -32,7 +36,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
@@ -40,7 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const { ref: magneticRef, position } = useMagnetic(0.15);
     const Comp = asChild ? Slot : "button";
-    
+
     const combinedRef = React.useCallback(
       (node: HTMLButtonElement) => {
         (magneticRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
@@ -52,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       },
       [ref, magneticRef]
     );
-    
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}

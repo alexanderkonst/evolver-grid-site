@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Copy, Link2, Linkedin, Facebook, Send, Twitter } from "lucide-react";
+import { Share2, Copy, Linkedin, Facebook, Send, Twitter, Instagram, Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -7,6 +7,8 @@ interface ShareZoGProps {
   archetypeName: string;
   tagline: string;
   primeDriver: string;
+  talents?: string[];
+  archetype?: string;
   profileUrl?: string;
 }
 
@@ -14,17 +16,32 @@ const buildShareText = (params: {
   archetypeName: string;
   tagline: string;
   primeDriver: string;
-  profileUrl: string;
+  talents?: string[];
+  archetype?: string;
 }) => {
-  const { archetypeName, tagline, primeDriver, profileUrl } = params;
-  return `✦ I just discovered my Zone of Genius ✦\n\nI'm the "${archetypeName}"\n"${tagline}"\n\nMy Prime Driver: ${primeDriver}\n\nDiscover your genius: ${profileUrl}\n\n#ZoneOfGenius #EvolverGrid`;
+  const { archetypeName, tagline, primeDriver, talents, archetype } = params;
+
+  let text = `My genius is to be a ${archetypeName}.\n"${tagline}"\n\n`;
+
+  if (talents && talents.length > 0) {
+    text += `My top talents: ${talents.join(" • ")}\n`;
+  }
+  text += `My prime driver: ${primeDriver}\n`;
+  if (archetype) {
+    text += `My archetype: ${archetype}\n`;
+  }
+  text += `\nDiscover yours for free at www.alexandrkonstantinov.com`;
+
+  return text;
 };
 
-const ShareZoG = ({ archetypeName, tagline, primeDriver, profileUrl }: ShareZoGProps) => {
+const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, profileUrl }: ShareZoGProps) => {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   const resolvedProfileUrl =
-    profileUrl || (typeof window !== "undefined" ? `${window.location.origin}/game/profile` : "");
+    profileUrl || "https://www.alexandrkonstantinov.com";
 
   const shareText = useMemo(
     () =>
@@ -32,9 +49,10 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, profileUrl }: ShareZoGP
         archetypeName,
         tagline,
         primeDriver,
-        profileUrl: resolvedProfileUrl,
+        talents,
+        archetype,
       }),
-    [archetypeName, primeDriver, resolvedProfileUrl, tagline]
+    [archetypeName, primeDriver, tagline, talents, archetype]
   );
 
   const encodedProfileUrl = encodeURIComponent(resolvedProfileUrl);
@@ -47,19 +65,24 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, profileUrl }: ShareZoGP
       href: `https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`,
     },
     {
+      label: "X (Twitter)",
+      icon: Twitter,
+      href: `https://twitter.com/intent/tweet?text=${encodedText}`,
+    },
+    {
       label: "Facebook",
       icon: Facebook,
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedProfileUrl}&quote=${encodedText}`,
     },
     {
-      label: "Twitter/X",
-      icon: Twitter,
-      href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedProfileUrl}`,
-    },
-    {
       label: "Telegram",
       icon: Send,
       href: `https://t.me/share/url?url=${encodedProfileUrl}&text=${encodedText}`,
+    },
+    {
+      label: "Instagram",
+      icon: Instagram,
+      href: `https://www.instagram.com/`, // Instagram doesn't support direct share URLs, opens app
     },
   ];
 
@@ -67,50 +90,75 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, profileUrl }: ShareZoGP
     try {
       await navigator.clipboard.writeText(shareText);
       setCopied(true);
-      toast({ title: "Share text copied" });
+      toast({ title: "Copied to clipboard!" });
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast({
         title: "Copy failed",
-        description: "Unable to copy share text.",
         variant: "destructive",
       });
     }
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-          <Link2 className="w-5 h-5 text-slate-600" />
-        </div>
-        <div>
-          <h3 className="font-semibold text-slate-900">Share Your Genius</h3>
-          <p className="text-sm text-slate-500">Invite others to discover their Zone of Genius.</p>
-        </div>
-      </div>
+    <div className="relative">
+      {/* Main Share Button */}
+      <Button
+        variant="wabi-secondary"
+        size="lg"
+        className="w-full justify-center gap-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <Share2 className="w-5 h-5" />
+        <span>Let the world know about my genius</span>
+        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </Button>
 
-      <div className="grid gap-2 sm:grid-cols-2">
-        {shareLinks.map((link) => (
-          <Button
-            key={link.label}
-            variant="outline"
-            className="justify-start"
-            asChild
-          >
-            <a href={link.href} target="_blank" rel="noopener noreferrer">
-              <link.icon className="w-4 h-4 mr-2" />
-              {link.label}
+      {/* Subtitle */}
+      <p className="text-center text-xs text-[#a4a3d0] mt-2">
+        And invite others to discover theirs
+      </p>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-2 p-3 bg-white rounded-xl border border-[#a4a3d0]/30 shadow-lg z-20 space-y-2">
+          {shareLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
+              onClick={() => setIsOpen(false)}
+            >
+              <link.icon className="w-5 h-5 text-[#8460ea]" />
+              <span className="text-sm font-medium">{link.label}</span>
             </a>
-          </Button>
-        ))}
-        <Button variant="outline" className="justify-start" onClick={handleCopy}>
-          <Copy className="w-4 h-4 mr-2" />
-          {copied ? "Copied" : "Copy Text"}
-        </Button>
-      </div>
+          ))}
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150] w-full"
+          >
+            {copied ? (
+              <Check className="w-5 h-5 text-green-500" />
+            ) : (
+              <Copy className="w-5 h-5 text-[#8460ea]" />
+            )}
+            <span className="text-sm font-medium">{copied ? "Copied!" : "Copy Text"}</span>
+          </button>
+        </div>
+      )}
+
+      {/* Click outside to close */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-10"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </div>
   );
 };
 
 export default ShareZoG;
+

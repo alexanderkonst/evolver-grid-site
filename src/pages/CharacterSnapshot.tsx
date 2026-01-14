@@ -6,9 +6,10 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Sparkles, Target, Brain, Heart, User, Loader2, RefreshCw } from 'lucide-react';
+import { Sparkles, Target, Brain, Heart, User, Loader2, RefreshCw } from 'lucide-react';
 import { TALENTS } from '@/modules/zone-of-genius/talents';
 import { DOMAINS } from '@/modules/quality-of-life-map/qolConfig';
+import BackButton from '@/components/BackButton';
 
 interface ZogSnapshot {
   archetype_title: string;
@@ -209,10 +210,11 @@ const CharacterSnapshot: React.FC = () => {
       <Navigation />
 
       <main className="container max-w-4xl mx-auto px-4 py-8 pt-24">
-        <Link to="/game" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
-          <ArrowLeft className="w-4 h-4" />
-          Back to Game
-        </Link>
+        <BackButton
+          to="/game"
+          label="Back to Game"
+          className="text-muted-foreground hover:text-foreground mb-6"
+        />
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">

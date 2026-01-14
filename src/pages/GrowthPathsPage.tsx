@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Check, Lock, ChevronRight, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { growthPaths, getPathIcon, TYPE_ICONS, TYPE_LABELS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
+import { Button } from "@/components/ui/button";
 
 const GrowthPathsPage = () => {
     const [selectedPath, setSelectedPath] = useState<GrowthPath | null>(null);
@@ -15,13 +16,15 @@ const GrowthPathsPage = () => {
             <GameShellV2>
                 <div className="p-4 lg:p-6 max-w-3xl mx-auto">
                     {/* Back button */}
-                    <button
+                    <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={() => setSelectedPath(null)}
-                        className="flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6"
+                        className="text-slate-600 hover:text-slate-900 mb-6"
                     >
-                        <ArrowLeft className="w-4 h-4" />
-                        <span className="text-sm">All Paths</span>
-                    </button>
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back
+                    </Button>
 
                     {/* Path header */}
                     <div className="mb-8">

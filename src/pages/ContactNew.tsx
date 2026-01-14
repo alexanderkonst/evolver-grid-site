@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Mail, ArrowLeft } from "lucide-react";
+import { Mail } from "lucide-react";
 import BoldText from "@/components/BoldText";
+import BackButton from "@/components/BackButton";
 
 const ContactNew = () => {
   return (
@@ -14,10 +15,11 @@ const ContactNew = () => {
         <div className="container mx-auto max-w-2xl">
           {/* Back Button */}
           <div className="mb-6">
-            <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>BACK</BoldText>
-            </Link>
+            <BackButton
+              to="/"
+              label={<BoldText>BACK</BoldText>}
+              className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+            />
           </div>
         </div>
 

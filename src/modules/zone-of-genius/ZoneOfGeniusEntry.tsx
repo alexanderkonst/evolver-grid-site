@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -43,6 +43,7 @@ const ZoneOfGeniusEntry = () => {
     // Generated data
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
+    const hasSavedAppleseed = useRef(false);
 
     // Removed navBar for cleaner onboarding flow
 
@@ -74,6 +75,35 @@ const ZoneOfGeniusEntry = () => {
             isMounted = false;
         };
     }, []);
+
+    // Auto-save appleseed when result is shown
+    useEffect(() => {
+        if (step === "appleseed-result" && appleseed && !hasSavedAppleseed.current) {
+            hasSavedAppleseed.current = true;
+
+            // Auto-save in background
+            (async () => {
+                try {
+                    const result = await saveAppleseed(appleseed, aiResponse);
+                    if (result.success) {
+                        toast({
+                            title: "✨ Genius Saved!",
+                            description: "Your Zone of Genius has been saved to your profile.",
+                        });
+                        if (result.xpAwarded) {
+                            toast({
+                                title: `🎉 +${result.xpAwarded} XP`,
+                                description: "Genius articulated!",
+                            });
+                        }
+                    }
+                } catch {
+                    // Silent fail for auto-save
+                    console.error('Auto-save failed');
+                }
+            })();
+        }
+    }, [step, appleseed, aiResponse, toast]);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
@@ -220,8 +250,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Generating Appleseed (Ritual Loading)
     if (step === "generating-appleseed") {
         return (
-            <GameShellV2>
-
+            <GameShellV2 hideNavigation>
                 <AppleseedRitualLoading minDuration={4000} />
             </GameShellV2>
         );
@@ -230,44 +259,12 @@ const ZoneOfGeniusEntry = () => {
     // Step: Appleseed Result
     if (step === "appleseed-result" && appleseed) {
         return (
-            <GameShellV2>
-                <div className="pb-8">
-
-                    <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
-                    <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
-                        <InviteFriendPrompt
-                            profileId={profileId}
-                            source="src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx"
-                        />
-                    </div>
-
-                    {/* Excalibur CTA */}
-                    <div className="max-w-3xl mx-auto px-4 lg:px-8 mt-8">
-                        <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 text-center">
-                            <Sword className="w-10 h-10 text-violet-500 mx-auto mb-3" />
-                            <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                Now that you know WHO you are...
-                            </h3>
-                            <p className="text-slate-600 mb-4">
-                                Want to discover WHAT you can offer the world?
-                            </p>
-                            <Button
-                                onClick={handleGenerateExcalibur}
-                                disabled={isProcessing}
-                                className="bg-violet-500 hover:from-violet-600 hover:to-purple-600"
-                                type="button"
-                            >
-                                <Sword className="w-4 h-4 mr-2" />
-                                Create My Unique Offer
-                            </Button>
-                            {error && (
-                                <div className="mt-4 text-sm text-red-600">
-                                    {error}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
+            <GameShellV2 hideNavigation>
+                <AppleseedDisplay
+                    appleseed={appleseed}
+                    onSaveToProfile={handleSaveAppleseed}
+                    isSaving={isSaving}
+                />
             </GameShellV2>
         );
     }
@@ -275,7 +272,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Generating Excalibur
     if (step === "generating-excalibur") {
         return (
-            <GameShellV2>
+            <GameShellV2 hideNavigation>
 
                 <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
@@ -300,23 +297,18 @@ const ZoneOfGeniusEntry = () => {
     // Step: Excalibur Result
     if (step === "excalibur-result" && excalibur) {
         return (
-            <GameShellV2>
-                <div className="pb-8">
-
-                    <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
-                    <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
-                        <InviteFriendPrompt
-                            profileId={profileId}
-                            source="src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx"
-                        />
-                    </div>
-                </div>
+            <GameShellV2 hideNavigation>
+                <ExcaliburDisplay
+                    excalibur={excalibur}
+                    onSaveToProfile={handleSaveExcalibur}
+                    isSaving={isSaving}
+                />
             </GameShellV2>
         );
     }
 
     return (
-        <GameShellV2>
+        <GameShellV2 hideNavigation>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
 
                 {/* Header */}
