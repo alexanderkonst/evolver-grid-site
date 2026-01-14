@@ -152,7 +152,7 @@ export default function NextActionsPanel({
                 {primaryAction && secondaryAction && (
                     <div className="flex items-center gap-3 px-4">
                         <div className="flex-1 h-px bg-slate-200" />
-                        <span className="text-xs text-slate-400 uppercase">or</span>
+                        <span className="text-xs text-slate-500 uppercase">or</span>
                         <div className="flex-1 h-px bg-slate-200" />
                     </div>
                 )}

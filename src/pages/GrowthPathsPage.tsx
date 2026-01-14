@@ -99,18 +99,18 @@ const GrowthPathsPage = () => {
                                             <h2 className="font-semibold text-slate-900">
                                                 {path.name}
                                             </h2>
-                                            <span className="text-xs text-slate-400 font-normal">
+                                            <span className="text-xs text-slate-500 font-normal">
                                                 ({path.subtitle})
                                             </span>
                                         </div>
                                         <p className="text-sm text-slate-500 mt-0.5">
                                             {path.tagline}
                                         </p>
-                                        <p className="text-xs text-slate-400 mt-1">
+                                        <p className="text-xs text-slate-500 mt-1">
                                             {path.upgrades.length} upgrades
                                         </p>
                                     </div>
-                                    <ChevronRight className="w-5 h-5 text-slate-400 shrink-0" />
+                                    <ChevronRight className="w-5 h-5 text-slate-500 shrink-0" />
                                 </div>
                             </button>
                         );
@@ -163,7 +163,7 @@ const UpgradeCard = ({
     // Content status badge
     const getStatusBadge = () => {
         if (!upgrade.contentStatus || upgrade.contentStatus === 'coming-soon') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-400">Coming Soon</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">Coming Soon</span>;
         }
         if (upgrade.contentStatus === 'available') {
             return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">Ready</span>;
@@ -194,7 +194,7 @@ const UpgradeCard = ({
                         ${isCompleted
                             ? 'bg-green-500 text-white'
                             : isLocked
-                                ? 'bg-slate-200 text-slate-400'
+                                ? 'bg-slate-200 text-slate-500'
                                 : 'text-white'
                         }
                     `}
@@ -213,17 +213,17 @@ const UpgradeCard = ({
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-lg">{typeIcon}</span>
-                        <h3 className={`font-medium ${isLocked ? 'text-slate-400' : 'text-slate-900'}`}>
+                        <h3 className={`font-medium ${isLocked ? 'text-slate-500' : 'text-slate-900'}`}>
                             {upgrade.name}
                         </h3>
                         {!isLocked && getStatusBadge()}
                     </div>
-                    <p className={`text-sm ${isLocked ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <p className={`text-sm ${isLocked ? 'text-slate-500' : 'text-slate-600'}`}>
                         {upgrade.description}
                     </p>
                     <div className="flex items-center gap-3 mt-2">
                         {upgrade.duration && (
-                            <span className="text-xs text-slate-400">{upgrade.duration}</span>
+                            <span className="text-xs text-slate-500">{upgrade.duration}</span>
                         )}
                         <span className="text-xs font-medium" style={{ color: pathColor }}>
                             +{upgrade.xpReward} XP
@@ -233,7 +233,7 @@ const UpgradeCard = ({
 
                 {/* Arrow for actionable items */}
                 {!isLocked && !isCompleted && upgrade.contentStatus !== 'coming-soon' && (
-                    <ChevronRight className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronRight className="w-5 h-5 text-slate-500 shrink-0" />
                 )}
             </div>
         </div>

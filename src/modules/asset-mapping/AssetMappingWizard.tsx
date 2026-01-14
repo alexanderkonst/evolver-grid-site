@@ -294,7 +294,7 @@ const AssetMappingWizard = () => {
                                 <ul className="space-y-1">
                                     {addedAssets.map((asset, i) => (
                                         <li key={i} className="text-sm text-slate-600">
-                                            • {asset.title} <span className="text-slate-400">({asset.type})</span>
+                                            • {asset.title} <span className="text-slate-500">({asset.type})</span>
                                         </li>
                                     ))}
                                 </ul>

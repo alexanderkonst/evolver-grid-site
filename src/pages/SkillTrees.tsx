@@ -72,7 +72,7 @@ const SkillTrees = () => {
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
                             <BoldText>SKILL TREES</BoldText>
                         </h1>
-                        <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base px-2">
+                        <p className="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base px-2">
                             Five paths of development. Each skill unlocks as you complete practices and quests.
                         </p>
                     </div>
@@ -169,7 +169,7 @@ const SkillTrees = () => {
                     </div>
 
                     {/* Legend */}
-                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs text-slate-400">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs text-slate-500">
                         <div className="flex items-center gap-2">
                             <div className="w-4 h-4 rounded-full bg-muted/30 border border-muted/50" />
                             <span>Locked</span>

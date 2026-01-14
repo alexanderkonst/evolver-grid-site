@@ -138,7 +138,7 @@ const PrivacySection = ({
                 <p className="text-xs text-slate-500">{option.description}</p>
               </div>
               {saving === "visibility" && visibility === option.value && (
-                <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+                <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
               )}
             </div>
           ))}
@@ -163,7 +163,7 @@ const PrivacySection = ({
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_location" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
             )}
             <Switch
               checked={showLocation}
@@ -184,7 +184,7 @@ const PrivacySection = ({
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_mission" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
             )}
             <Switch
               checked={showMission}
@@ -205,7 +205,7 @@ const PrivacySection = ({
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_offer" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
             )}
             <Switch
               checked={showOffer}

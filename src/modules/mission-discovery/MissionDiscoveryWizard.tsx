@@ -27,7 +27,7 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
         <p className="text-xs text-slate-500 mb-3 line-clamp-2">{description}</p>
         <div className="space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
             {items.length === 0 && (
-                <p className="text-sm text-slate-400 italic">Select from previous column first</p>
+                <p className="text-sm text-slate-500 italic">Select from previous column first</p>
             )}
             {items.map((item) => (
                 <button
@@ -381,7 +381,7 @@ const MissionDiscoveryWizard = () => {
                         <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
                         <div className="space-y-2 max-h-80 overflow-y-auto">
                             {missions.length === 0 && (
-                                <p className="text-sm text-slate-400 italic">Complete selections above first</p>
+                                <p className="text-sm text-slate-500 italic">Complete selections above first</p>
                             )}
                             {missions.map((mission) => (
                                 <button
@@ -435,12 +435,12 @@ const MissionDiscoveryWizard = () => {
                                             Join the conversation →
                                         </a>
                                     ) : (
-                                        <p className="text-sm text-slate-400">No chat link available</p>
+                                        <p className="text-sm text-slate-500">No chat link available</p>
                                     )}
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex items-center justify-center h-48 text-slate-400">
+                            <div className="flex items-center justify-center h-48 text-slate-500">
                                 <div className="text-center">
                                     <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
                                     <p>Select a mission to see details</p>

@@ -304,7 +304,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         </Button>
                     </div>
 
-                    <p className="text-xs text-center text-slate-400 mt-4">
+                    <p className="text-xs text-center text-slate-500 mt-4">
                         You can always come back and add sub-missions later.
                     </p>
                 </div>

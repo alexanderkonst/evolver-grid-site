@@ -689,7 +689,7 @@ const GameHome = () => {
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+          <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
         </div>
       </GameShellV2>
     );
@@ -833,7 +833,7 @@ const GameHome = () => {
                       setSelectedMode(null);
                       setQuestSuggestion(null);
                     }}
-                    className="text-slate-400 hover:text-slate-600"
+                    className="text-slate-500 hover:text-slate-700"
                   >
                     ✕
                   </button>

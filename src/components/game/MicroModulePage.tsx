@@ -105,7 +105,7 @@ const CollapsibleSection = ({
         >
           <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-600">
             <span>{title}</span>
-            <span className="text-xs font-medium text-slate-400">({duration})</span>
+            <span className="text-xs font-medium text-slate-500">({duration})</span>
           </div>
           {isOpen ? (
             <ChevronUp className="h-5 w-5 text-slate-500" />
@@ -180,7 +180,7 @@ const MicroModulePage = ({
             <PathIcon className="h-4 w-4" />
             {pathConfig.label}
           </span>
-          <span className="text-slate-400">•</span>
+          <span className="text-slate-500">•</span>
           <span className="text-slate-500">{moduleId}</span>
         </div>
         <h1 className="text-2xl font-semibold text-slate-900 lg:text-3xl">{title}</h1>

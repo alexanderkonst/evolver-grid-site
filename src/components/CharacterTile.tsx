@@ -115,7 +115,7 @@ const CharacterTile = ({
 
             {/* Subtitle or custom children */}
             {subtitle && !children && (
-                <div className="text-[10px] text-slate-400 text-center leading-tight">
+                <div className="text-[10px] text-slate-500 text-center leading-tight">
                     {subtitle}
                 </div>
             )}

@@ -399,7 +399,7 @@ const MissionDiscoveryLanding = () => {
                             </button>
                         </div>
 
-                        <p className="text-center text-xs text-slate-400 mt-6">
+                        <p className="text-center text-xs text-slate-500 mt-6">
                             You can add more missions later — start with the one you're most excited about!
                         </p>
                     </div>

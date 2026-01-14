@@ -418,7 +418,7 @@ GENERAL STYLE RULES:
                 <p className="text-xs uppercase  text-slate-500 mb-1">
                   Zone of Genius Character Card
                 </p>
-                <p className="text-xs text-slate-400 mb-6">
+                <p className="text-xs text-slate-500 mb-6">
                   Generated on: {currentDate}
                 </p>
 
@@ -590,7 +590,7 @@ GENERAL STYLE RULES:
                 <p className="text-xs uppercase  text-slate-500 mb-2">
                   Zone of Genius Character Card
                 </p>
-                <p className="text-xs text-slate-400 mb-4">
+                <p className="text-xs text-slate-500 mb-4">
                   Generated on: {currentDate}
                 </p>
 
