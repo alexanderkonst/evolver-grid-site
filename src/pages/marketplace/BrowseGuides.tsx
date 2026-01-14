@@ -72,7 +72,7 @@ const BrowseGuides = () => {
 
         {!loading && !error && sortedOffers.length === 0 && (
           <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-            <Sparkles className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+            <Sparkles className="w-10 h-10 text-slate-500 mx-auto mb-3" />
             <h2 className="text-lg font-semibold text-slate-900 mb-2">No public offers yet</h2>
             <p className="text-slate-600">Check back soon for new guides.</p>
           </div>

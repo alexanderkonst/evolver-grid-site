@@ -172,7 +172,7 @@ const EventDetail = () => {
     return (
       <div className="min-h-dvh bg-white flex items-center justify-center">
         <div className="text-center p-6">
-          <CalendarDays className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+          <CalendarDays className="w-12 h-12 text-slate-500 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-slate-900 mb-2">Event Not Found</h2>
           <p className="text-slate-600 mb-4">{error || "This event doesn't exist or has been removed."}</p>
           <BackButton to="/game/events" />
