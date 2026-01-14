@@ -139,6 +139,8 @@ const App = () => (
                 <Route path="/u/:username" element={<PublicProfile />} />
                 <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
                 <Route path="/settings" element={<Profile />} />
+                <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
+                <Route path="/marketplace/browse" element={<Navigate to="/game/marketplace/browse" replace />} />
                 <Route path="/marketplace/create-page" element={<PublicPageEditor />} />
                 <Route path="/ai-upgrade" element={<AIUpgrade />} />
                 <Route path="/destiny" element={<Destiny />} />
@@ -184,6 +186,7 @@ const App = () => (
                 <Route path="/game/events/create" element={<CreateEvent />} />
                 <Route path="/game/events/my-rsvps" element={<MyRsvps />} />
                 <Route path="/game/coop" element={<CoopSpace />} />
+                <Route path="/events" element={<Navigate to="/game/events" replace />} />
                 <Route path="/events/:id" element={<EventDetail />} />
                 <Route path="/events/community/:communityId" element={<CommunityEvents />} />
                 <Route path="/game/snapshot" element={<CharacterSnapshot />} />
