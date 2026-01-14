@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
 import ProgressIndicator from "@/components/ProgressIndicator";
+import OnboardingProgress from "@/components/OnboardingProgress";
 
 interface ZoneOfGeniusAssessmentLayoutProps {
   renderMode?: "standalone" | "embedded";
@@ -29,6 +30,11 @@ const ZoneOfGeniusAssessmentLayout = ({
         Discover Your Zone of Genius Now:
       </h1>
       <ProgressIndicator current={activeStep} total={steps.length} className="text-slate-500" />
+      <OnboardingProgress
+        current={activeStep}
+        total={steps.length}
+        className="mt-4 mb-0 max-w-lg"
+      />
 
       {/* Step Indicator */}
       <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm">
