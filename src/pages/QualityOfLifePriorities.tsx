@@ -37,20 +37,30 @@ const QualityOfLifePriorities = () => {
   const { toast } = useToast();
 
   const [step, setStep] = useState<"next" | "priorities">("next");
-  const [domainOrder, setDomainOrder] = useState<DomainId[]>(DOMAINS.map((domain) => domain.id));
-  const [draggedId, setDraggedId] = useState<DomainId | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
+  // Sort domains by score ascending (lowest first - biggest growth potential)
   const domainScores = useMemo(() => {
     return DOMAINS.map((domain) => {
       const stageValue = answers[domain.id] ?? 1;
       return { domain, stageValue };
-    });
+    }).sort((a, b) => a.stageValue - b.stageValue);
   }, [answers]);
 
+  // Initialize domain order sorted by score (lowest first)
+  const [domainOrder, setDomainOrder] = useState<DomainId[]>(() =>
+    domainScores.map(({ domain }) => domain.id)
+  );
+
+  const [draggedId, setDraggedId] = useState<DomainId | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Update order when scores change
+  useMemo(() => {
+    setDomainOrder(domainScores.map(({ domain }) => domain.id));
+  }, [domainScores]);
+
   const highlightIds = useMemo(() => {
-    const sorted = [...domainScores].sort((a, b) => a.stageValue - b.stageValue);
-    return new Set(sorted.slice(0, 3).map((entry) => entry.domain.id));
+    return new Set(domainScores.slice(0, 3).map((entry) => entry.domain.id));
   }, [domainScores]);
 
   const handleDragStart = (id: DomainId) => {
@@ -98,17 +108,22 @@ const QualityOfLifePriorities = () => {
     const stage = domain.stages.find((entry) => entry.id === stageValue);
     const nextStage = domain.stages.find((entry) => entry.id === stageValue + 1);
     const highlight = highlightIds.has(domain.id);
+    const maxStage = Math.max(...domain.stages.map(s => s.id));
 
     return (
       <div
         key={domain.id}
-        className={`rounded-xl border p-5 transition-colors ${
-          highlight ? "border-amber-300 bg-amber-50/90" : "border-white/10 bg-white/5"
-        }`}
+        className={`rounded-xl border p-5 transition-colors ${highlight ? "border-amber-300 bg-amber-50/90" : "border-white/10 bg-white/5"
+          }`}
       >
-        <div className="flex items-center gap-3 mb-3">
-          <Sparkles className="h-5 w-5 text-amber-400" />
-          <h3 className="text-lg font-semibold text-white">{domain.name}</h3>
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <div className="flex items-center gap-3">
+            <Sparkles className="h-5 w-5 text-amber-400" />
+            <h3 className="text-lg font-semibold text-white">{domain.name}</h3>
+          </div>
+          <div className={`px-3 py-1 rounded-full text-sm font-bold ${highlight ? "bg-amber-500 text-slate-900" : "bg-white/10 text-white/70"}`}>
+            {stageValue}/{maxStage}
+          </div>
         </div>
         <div className="space-y-2 text-sm text-white/70">
           <p>
@@ -121,8 +136,8 @@ const QualityOfLifePriorities = () => {
           </p>
         </div>
         {highlight && (
-          <p className="mt-3 text-xs font-semibold uppercase  text-amber-700">
-            Biggest growth potential
+          <p className="mt-3 text-xs font-semibold uppercase text-amber-700">
+            🎯 High growth potential — lowest areas often hold the biggest breakthroughs
           </p>
         )}
       </div>
@@ -223,14 +238,20 @@ const QualityOfLifePriorities = () => {
                 <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-3 text-white">
                   <BoldText>RANK YOUR PRIORITIES</BoldText>
                 </h1>
-                <p className="text-white/70">
-                  Drag to reorder. Your top 3 will guide your Daily Loop.
+                <p className="text-white/70 mb-2">
+                  Sorted by current score — lowest first. Drag to reorder if you prefer a different focus.
+                </p>
+                <p className="text-white/50 text-sm">
+                  💡 In systems thinking, the lowest area is often the bottleneck — fix it and everything rises.
                 </p>
               </div>
 
               <div className="space-y-3">
                 {domainOrder.map((domainId, index) => {
                   const domain = DOMAINS.find((item) => item.id === domainId);
+                  const scoreEntry = domainScores.find(s => s.domain.id === domainId);
+                  const score = scoreEntry?.stageValue ?? 0;
+                  const maxStage = domain ? Math.max(...domain.stages.map(s => s.id)) : 10;
                   const isTop = index < 3;
                   return (
                     <div
@@ -239,20 +260,21 @@ const QualityOfLifePriorities = () => {
                       onDragStart={() => handleDragStart(domainId)}
                       onDragOver={(event) => event.preventDefault()}
                       onDrop={() => handleDrop(domainId)}
-                      className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-white transition ${
-                        isTop ? "border-amber-300 bg-amber-500/10" : "border-white/10 bg-white/5"
-                      }`}
+                      className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-white transition cursor-grab active:cursor-grabbing ${isTop ? "border-amber-300 bg-amber-500/10" : "border-white/10 bg-white/5"
+                        }`}
                     >
                       <GripVertical className="h-5 w-5 text-white/50" />
                       <div className="flex-1">
-                        <p className="font-semibold">{domain?.name || domainId}</p>
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold">{domain?.name || domainId}</p>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-amber-500 text-slate-900" : "bg-white/10 text-white/60"}`}>
+                            {score}/{maxStage}
+                          </span>
+                        </div>
                         {isTop && (
                           <p className="text-xs text-amber-200">Focus priority #{index + 1}</p>
                         )}
                       </div>
-                      <span className="text-xs uppercase  text-white/60">
-                        {QOL_LABELS[domainId]}
-                      </span>
                     </div>
                   );
                 })}

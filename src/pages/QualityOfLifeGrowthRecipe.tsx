@@ -112,13 +112,13 @@ const QualityOfLifeGrowthRecipe = () => {
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
   const domainParam = searchParams.get("domain");
-  const [selectedDomain, setSelectedDomain] = useState<DomainId | null>(
-    isDomainId(domainParam) ? domainParam : null
+  const [topThreeDomains, setTopThreeDomains] = useState<DomainId[]>(
+    isDomainId(domainParam) ? [domainParam] : []
   );
-  const [loading, setLoading] = useState(!selectedDomain);
+  const [loading, setLoading] = useState(topThreeDomains.length === 0);
 
   useEffect(() => {
-    if (selectedDomain) return;
+    if (topThreeDomains.length > 0) return;
     const loadProfile = async () => {
       setLoading(true);
       const profileId = await getOrCreateGameProfileId();
@@ -128,22 +128,22 @@ const QualityOfLifeGrowthRecipe = () => {
         .eq("id", profileId)
         .maybeSingle();
       const priorities = Array.isArray(data?.qol_priorities) ? data.qol_priorities : [];
-      const firstPriority = priorities.find((entry: unknown) => typeof entry === 'string' && isDomainId(entry));
-      setSelectedDomain(firstPriority || "growth");
+      const validPriorities = priorities
+        .filter((entry: unknown) => typeof entry === 'string' && isDomainId(entry))
+        .slice(0, 3) as DomainId[];
+      setTopThreeDomains(validPriorities.length > 0 ? validPriorities : ["growth"]);
       setLoading(false);
     };
     loadProfile();
-  }, [selectedDomain]);
+  }, [topThreeDomains.length]);
 
-  const recipe = useMemo(() => {
-    if (!selectedDomain) return null;
-    return DOMAIN_RECIPES[selectedDomain];
-  }, [selectedDomain]);
+  // Get top 3 domain labels for header
+  const topThreeLabels = topThreeDomains
+    .map(id => DOMAIN_RECIPES[id]?.domainLabel)
+    .filter(Boolean);
 
-  const handleContinue = () => {
-    const destination = returnTo === "/start" ? "/game" : returnTo || "/game";
-    navigate(destination);
-  };
+  // Get the primary recipe (first priority) for the path order
+  const primaryRecipe = topThreeDomains[0] ? DOMAIN_RECIPES[topThreeDomains[0]] : null;
 
   return (
     <div className="min-h-dvh">
@@ -164,48 +164,74 @@ const QualityOfLifeGrowthRecipe = () => {
             <div className="text-center text-white/70">Loading growth recipe...</div>
           )}
 
-          {!loading && recipe && (
+          {!loading && primaryRecipe && (
             <>
               <div className="text-center mb-10">
                 <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-3 text-white">
                   <BoldText>GROWTH RECIPE</BoldText>
                 </h1>
-                <p className="text-white/70">
-                  To grow in <span className="text-white font-semibold">{recipe.domainLabel}</span>, develop these five paths in this order.
+                <p className="text-white/70 mb-4">
+                  Your top {topThreeLabels.length} priorities: <span className="text-white font-semibold">{topThreeLabels.join(", ")}</span>
+                </p>
+                <p className="text-white/50 text-sm">
+                  Here's the optimal development sequence for your primary focus: <span className="text-amber-400 font-semibold">{primaryRecipe.domainLabel}</span>
                 </p>
               </div>
 
               <div className="space-y-4">
-                {recipe.paths.map((path, index) => (
-                  <div
-                    key={path.id}
-                    className={`rounded-2xl border p-5 transition-colors ${
-                      index === 0
+                {primaryRecipe.paths.map((path, index) => {
+                  // Create combined description based on top 3 foci
+                  const relatedDescriptions = topThreeDomains
+                    .slice(1) // skip primary
+                    .map(domainId => {
+                      const recipe = DOMAIN_RECIPES[domainId];
+                      const matchingPath = recipe?.paths.find(p => p.id === path.id);
+                      return matchingPath?.description;
+                    })
+                    .filter(Boolean);
+
+                  const isTopThree = index < 3;
+
+                  return (
+                    <div
+                      key={path.id}
+                      className={`rounded-2xl border p-5 transition-colors ${isTopThree
                         ? "border-amber-300 bg-amber-500/10"
                         : "border-white/10 bg-white/5"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4 mb-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-slate-900 font-bold">
-                        {index + 1}
+                        }`}
+                    >
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className={`flex h-10 w-10 items-center justify-center rounded-full font-bold ${isTopThree ? "bg-amber-500 text-slate-900" : "bg-white/20 text-white/70"
+                          }`}>
+                          {index + 1}
+                        </div>
+                        <h3 className="text-lg font-semibold text-white">{path.label}</h3>
+                        {isTopThree && <span className="text-xs bg-amber-500/30 text-amber-200 px-2 py-0.5 rounded-full">Primary focus</span>}
                       </div>
-                      <h3 className="text-lg font-semibold text-white">{path.label}</h3>
+                      <p className="text-sm text-white/70 mb-2">{path.description}</p>
+                      {relatedDescriptions.length > 0 && isTopThree && (
+                        <p className="text-xs text-white/50 italic">
+                          Also helps with: {relatedDescriptions.slice(0, 2).join(" • ")}
+                        </p>
+                      )}
                     </div>
-                    <p className="text-sm text-white/70">{path.description}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="flex justify-center mt-12">
                 <Button
-                  onClick={handleContinue}
+                  onClick={() => {
+                    const destination = returnTo === "/start" ? "/game" : returnTo || "/game";
+                    navigate(destination);
+                  }}
                   className="text-lg px-8"
                   style={{
                     backgroundColor: "hsl(var(--destiny-gold))",
                     color: "hsl(var(--destiny-dark))",
                   }}
                 >
-                  Continue to Daily Loop
+                  Continue Improving My Quality of Life
                 </Button>
               </div>
             </>

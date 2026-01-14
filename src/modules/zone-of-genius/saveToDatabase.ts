@@ -1,23 +1,19 @@
 import { supabase } from "@/integrations/supabase/client";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus } from "@/lib/xpService";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 
 /**
- * Get the user's game profile ID
+ * Get the user's game profile ID (supports both authenticated and guest users)
  */
 const getProfileId = async (): Promise<string | null> => {
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return null;
-
-  const { data: profile } = await supabase
-    .from("game_profiles")
-    .select("id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  return profile?.id || null;
+  try {
+    return await getOrCreateGameProfileId();
+  } catch {
+    return null;
+  }
 };
 
 /**

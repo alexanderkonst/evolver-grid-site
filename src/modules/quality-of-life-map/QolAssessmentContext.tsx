@@ -1,5 +1,7 @@
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from "react";
 import { DOMAINS, DomainId } from "./qolConfig";
+import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 export type Answers = Record<DomainId, number | null>;
 
@@ -8,6 +10,7 @@ interface QolAssessmentContextValue {
   setAnswer: (domainId: DomainId, stageId: number) => void;
   reset: () => void;
   isComplete: boolean;
+  isLoading: boolean;
 }
 
 const QolAssessmentContext = createContext<QolAssessmentContextValue | undefined>(undefined);
@@ -22,6 +25,49 @@ const createInitialAnswers = (): Answers => {
 
 export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<Answers>(createInitialAnswers());
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load saved QoL data from database on mount
+  useEffect(() => {
+    const loadFromDatabase = async () => {
+      try {
+        const profileId = await getOrCreateGameProfileId();
+
+        // Get the profile's last QoL snapshot
+        const { data: profile } = await supabase
+          .from("game_profiles")
+          .select("last_qol_snapshot_id")
+          .eq("id", profileId)
+          .maybeSingle();
+
+        if (profile?.last_qol_snapshot_id) {
+          const { data: snapshot } = await supabase
+            .from("qol_snapshots")
+            .select("wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage")
+            .eq("id", profile.last_qol_snapshot_id)
+            .maybeSingle();
+
+          if (snapshot) {
+            setAnswers({
+              wealth: snapshot.wealth_stage,
+              health: snapshot.health_stage,
+              happiness: snapshot.happiness_stage,
+              love: snapshot.love_relationships_stage,
+              impact: snapshot.impact_stage,
+              growth: snapshot.growth_stage,
+              socialTies: snapshot.social_ties_stage,
+              home: snapshot.home_stage,
+            });
+          }
+        }
+      } catch {
+        // Silently fail - will use empty answers
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadFromDatabase();
+  }, []);
 
   const setAnswer = (domainId: DomainId, stageId: number) => {
     setAnswers((prev) => ({
@@ -43,6 +89,7 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
     setAnswer,
     reset,
     isComplete,
+    isLoading,
   };
 
   return (
@@ -59,3 +106,4 @@ export function useQolAssessment() {
   }
   return context;
 }
+
