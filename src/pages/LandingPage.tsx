@@ -218,27 +218,6 @@ const LandingPage = () => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [nextSlide, prevSlide]);
 
-    // Scroll wheel navigation
-    useEffect(() => {
-        let scrollTimeout: NodeJS.Timeout | null = null;
-        const handleWheel = (e: WheelEvent) => {
-            if (scrollTimeout) return;
-
-            if (Math.abs(e.deltaY) > 30) {
-                if (e.deltaY > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                scrollTimeout = setTimeout(() => {
-                    scrollTimeout = null;
-                }, 800);
-            }
-        };
-        window.addEventListener("wheel", handleWheel, { passive: true });
-        return () => window.removeEventListener("wheel", handleWheel);
-    }, [nextSlide, prevSlide]);
-
     // Touch swipe
     useEffect(() => {
         let touchStartX = 0;
@@ -264,7 +243,7 @@ const LandingPage = () => {
     const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
 
     return (
-        <div className="min-h-dvh font-['Inter',sans-serif] overflow-hidden relative cursor-default">
+        <div className="min-h-dvh font-['Playfair_Display',serif] overflow-hidden relative cursor-default">
             {/* Gradient Background */}
             <div
                 className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} transition-all duration-700 ease-out ${isTransitioning ? "blur-sm scale-105" : ""}`}
@@ -276,7 +255,7 @@ const LandingPage = () => {
 
             {/* Grain texture overlay */}
             <div
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay"
                 style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                 }}
@@ -325,8 +304,11 @@ const LandingPage = () => {
                     )}
 
                     <h1
-                        className={`font-bold leading-[1.1] mb-10 whitespace-pre-line animate-fade-in-up ${isDarkSlide ? "text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
-                        style={{ animationDelay: "0.2s" }}
+                        className={`font-bold leading-[1.1] mb-10 whitespace-pre-line animate-fade-in-up ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
+                        style={{
+                            animationDelay: "0.2s",
+                            textShadow: isDarkSlide ? "0 0 80px rgba(255,255,255,0.4), 0 0 120px rgba(132,96,234,0.3)" : "0 0 60px rgba(41,84,159,0.15)"
+                        }}
                     >
                         {slide.headline}
                     </h1>
@@ -409,8 +391,8 @@ const LandingPage = () => {
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`h-2 rounded-full cursor-pointer transition-all duration-300 hover:scale-125 ${i === currentSlide
-                                ? "w-6 bg-[#29549f]"
-                                : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/50" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/50"}`
+                            ? "w-6 bg-[#29549f]"
+                            : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/50" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/50"}`
                             }`}
                         title={menuItems[i]}
                     />
@@ -422,8 +404,8 @@ const LandingPage = () => {
                 <button
                     onClick={prevSlide}
                     className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
-                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     ←
@@ -431,8 +413,8 @@ const LandingPage = () => {
                 <button
                     onClick={nextSlide}
                     className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
-                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     →
@@ -443,8 +425,8 @@ const LandingPage = () => {
             <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className={`fixed top-8 right-8 w-11 h-11 backdrop-blur-md rounded-xl text-xl z-[200] transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
-                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                    ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                    : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                     }`}
             >
                 ☰
@@ -460,8 +442,8 @@ const LandingPage = () => {
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`block w-full p-3 mb-2 rounded-xl text-left text-sm cursor-pointer transition-all ${i === currentSlide
-                                ? "bg-[#29549f]/10 text-[#29549f] font-medium"
-                                : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
+                            ? "bg-[#29549f]/10 text-[#29549f] font-medium"
+                            : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
                             }`}
                     >
                         {item}
@@ -495,7 +477,7 @@ const LandingPage = () => {
         
         @keyframes breathe {
           0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
+          50% { transform: scale(1.2); }
         }
         .animate-breathe {
           animation: breathe 3s ease-in-out infinite;
