@@ -96,6 +96,18 @@ The final output should:
 `;
 
 // ---------------------------------------------------------------------------
+// LANGUAGE GUIDELINES (Plain meaning)
+// ---------------------------------------------------------------------------
+
+export const LANGUAGE_GUIDELINES = `
+LANGUAGE GUIDELINES:
+- For every abstract term, provide a simple explanation
+- archetype_title should be poetic but archetype_meaning should be in everyday language
+- Use words a 13-year-old would understand in the "meaning" fields
+- Connect every concept to a real-world action or result
+`;
+
+// ---------------------------------------------------------------------------
 // OUTPUT FORMAT
 // ---------------------------------------------------------------------------
 
@@ -105,12 +117,15 @@ Return a JSON object with this exact structure:
   "bullseyeSentence": "string - one phrase essence",
   "vibrationalKey": {
     "name": "string - e.g. Architect of Integration Codes",
-    "tagline": "string - e.g. He who sees what wants to be whole..."
+    "tagline": "string - e.g. He who sees what wants to be whole...",
+    "tagline_simple": "string - one sentence anyone can understand"
   },
   "threeLenses": {
     "actions": ["string", "string", "string", "string", "string"],
     "primeDriver": "string - 3 words",
-    "archetype": "string - compound archetype"
+    "primeDriver_meaning": "string - what I actually do in plain words",
+    "archetype": "string - compound archetype",
+    "archetype_meaning": "string - what this means in everyday language"
   },
   "appreciatedFor": [
     {
@@ -170,6 +185,8 @@ ${CALIBRATION_EXAMPLES}
 
 ${ROASTING_INSTRUCTIONS}
 
+${LANGUAGE_GUIDELINES}
+
 ---
 
 Now, generate an Appleseed for this person based on the following input:
@@ -192,11 +209,14 @@ export interface AppleseedData {
     vibrationalKey: {
         name: string;
         tagline: string;
+        tagline_simple: string;
     };
     threeLenses: {
         actions: string[];
         primeDriver: string;
+        primeDriver_meaning: string;
         archetype: string;
+        archetype_meaning: string;
     };
     appreciatedFor: Array<{
         effect: string;
