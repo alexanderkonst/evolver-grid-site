@@ -64,6 +64,14 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                 {appleseed.bullseyeSentence}
             </RevelatoryHero>
 
+            {/* Share Your Genius - Prominent placement for viral loop */}
+            <ShareZoG
+                archetypeName={appleseed.vibrationalKey.name}
+                tagline={appleseed.vibrationalKey.tagline}
+                primeDriver={appleseed.threeLenses.primeDriver}
+                profileUrl={profileUrl}
+            />
+
             {/* Collapsible Sections */}
             <div className="space-y-3">
                 {/* Three Lenses */}
@@ -238,12 +246,7 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                     </Button>
                 </div>
             )}
-            <ShareZoG
-                archetypeName={appleseed.vibrationalKey.name}
-                tagline={appleseed.vibrationalKey.tagline}
-                primeDriver={appleseed.threeLenses.primeDriver}
-                profileUrl={profileUrl}
-            />
+
         </div>
     );
 };
