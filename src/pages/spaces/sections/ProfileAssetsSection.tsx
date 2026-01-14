@@ -88,9 +88,9 @@ const ProfileAssetsSection = () => {
                             </span>
                         </div>
                         {showAssets ? (
-                            <ChevronUp className="w-5 h-5 text-slate-400" />
+                            <ChevronUp className="w-5 h-5 text-slate-500" />
                         ) : (
-                            <ChevronDown className="w-5 h-5 text-slate-400" />
+                            <ChevronDown className="w-5 h-5 text-slate-500" />
                         )}
                     </button>
 
@@ -119,7 +119,7 @@ const ProfileAssetsSection = () => {
                                                 {getAssetTypeName(asset.typeId)}
                                             </span>
                                             {asset.subTypeId && (
-                                                <span className="text-xs text-slate-400">
+                                                <span className="text-xs text-slate-500">
                                                     → {getAssetSubTypeName(asset.subTypeId)}
                                                 </span>
                                             )}

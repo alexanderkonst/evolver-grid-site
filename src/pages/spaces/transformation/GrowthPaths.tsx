@@ -43,7 +43,7 @@ const GrowthPaths = () => {
                                     <h3 className="font-semibold text-slate-900">{path.label}</h3>
                                     <p className="text-sm text-slate-500">{path.description}</p>
                                 </div>
-                                <ArrowRight className="w-4 h-4 text-slate-400" />
+                                <ArrowRight className="w-4 h-4 text-slate-500" />
                             </div>
                         </Link>
                     ))}

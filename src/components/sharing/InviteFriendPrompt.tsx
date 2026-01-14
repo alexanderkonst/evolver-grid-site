@@ -108,7 +108,7 @@ const InviteFriendPrompt = ({
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="text-slate-400 hover:text-slate-600"
+          className="text-slate-500 hover:text-slate-700"
           aria-label="Dismiss invite"
         >
           <X className="w-4 h-4" />

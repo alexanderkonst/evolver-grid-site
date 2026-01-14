@@ -599,7 +599,7 @@ export default function TodayPage() {
                                     }`}>
                                     {nextUpgrade.title}
                                 </h3>
-                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-400' : 'text-slate-600'
+                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-slate-600'
                                     }`}>
                                     {nextUpgrade.description || 'Unlock this upgrade to level up.'}
                                 </p>
@@ -681,7 +681,7 @@ export default function TodayPage() {
                     <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold text-slate-900">Capture Your Output</h2>
-                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-400 hover:text-slate-600">
+                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-500 hover:text-slate-700">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
@@ -714,7 +714,7 @@ export default function TodayPage() {
                                     Link (optional)
                                 </label>
                                 <div className="relative">
-                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                                     <Input
                                         className="pl-10"
                                         placeholder="https://..."

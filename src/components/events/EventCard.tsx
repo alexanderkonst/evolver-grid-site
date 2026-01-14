@@ -84,7 +84,7 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
         <div className="space-y-1.5 text-sm text-slate-600">
           {/* Date & Time */}
           <div className="flex items-center gap-2">
-            <CalendarDays className="w-4 h-4 text-slate-400" />
+            <CalendarDays className="w-4 h-4 text-slate-500" />
             <span>
               {formatDate(event.event_date)} at {formatTime(event.event_time)}
             </span>
@@ -93,14 +93,14 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
           {/* Location */}
           {event.location && (
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-slate-400" />
+              <MapPin className="w-4 h-4 text-slate-500" />
               <span className="truncate">{event.location}</span>
             </div>
           )}
 
           {/* RSVP Count */}
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-slate-400" />
+            <Users className="w-4 h-4 text-slate-500" />
             <span>
               {event.rsvp_count} {event.rsvp_count === 1 ? "person" : "people"} going
             </span>

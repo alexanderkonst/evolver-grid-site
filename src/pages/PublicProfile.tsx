@@ -153,7 +153,7 @@ const PublicProfile = () => {
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+        <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
       </div>
     );
   }
@@ -251,7 +251,7 @@ const PublicProfile = () => {
 
           {mission?.intro_text && (
             <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 text-center">
-              <p className="text-sm uppercase tracking-wide text-slate-400">Bio</p>
+              <p className="text-sm uppercase tracking-wide text-slate-500">Bio</p>
               <p className="mt-2 text-slate-700">{mission.intro_text}</p>
             </div>
           )}

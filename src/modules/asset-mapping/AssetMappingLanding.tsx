@@ -393,12 +393,12 @@ const AssetMappingLanding = () => {
                                                     {asset.typeTitle}
                                                 </span>
                                                 {asset.subTypeTitle && (
-                                                    <span className="text-xs text-slate-400">
+                                                    <span className="text-xs text-slate-500">
                                                         → {asset.subTypeTitle}
                                                     </span>
                                                 )}
                                                 {asset.categoryTitle && (
-                                                    <span className="text-xs text-slate-400">
+                                                    <span className="text-xs text-slate-500">
                                                         → {asset.categoryTitle}
                                                     </span>
                                                 )}

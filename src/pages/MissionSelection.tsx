@@ -149,7 +149,7 @@ const MissionSelection = () => {
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
+          <Loader2 className="w-6 h-6 animate-spin text-slate-500" />
         </div>
       </GameShellV2>
     );

@@ -106,7 +106,7 @@ const CreateEvent = () => {
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
           <div className="flex flex-col items-center gap-3 mb-6">
-            <Users className="w-10 h-10 text-slate-400" />
+            <Users className="w-10 h-10 text-slate-500" />
             <h1 className="text-2xl font-semibold text-slate-900">Sign in to create events</h1>
             <p className="text-slate-600">
               You need an account to publish events for the community.
@@ -148,7 +148,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="description" className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-slate-400" />
+              <FileText className="w-4 h-4 text-slate-500" />
               Description
             </Label>
             <Textarea
@@ -162,7 +162,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="datetime" className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-slate-400" />
+              <Clock className="w-4 h-4 text-slate-500" />
               Date & time *
             </Label>
             <Input
@@ -176,7 +176,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="location" className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-slate-400" />
+              <MapPin className="w-4 h-4 text-slate-500" />
               Location
             </Label>
             <Input
@@ -189,7 +189,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="community" className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-slate-400" />
+              <Users className="w-4 h-4 text-slate-500" />
               Community
             </Label>
             <select
@@ -209,7 +209,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-slate-400" />
+              <Users className="w-4 h-4 text-slate-500" />
               Visibility
             </Label>
             <Select
@@ -250,7 +250,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="photo" className="flex items-center gap-2">
-              <Image className="w-4 h-4 text-slate-400" />
+              <Image className="w-4 h-4 text-slate-500" />
               Image URL
             </Label>
             <Input

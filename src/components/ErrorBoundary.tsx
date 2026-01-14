@@ -27,7 +27,7 @@ class ErrorBoundary extends Component<Props, State> {
         this.props.fallback || (
           <div className="flex flex-col items-center justify-center p-8 text-center">
             <h2 className="text-xl font-bold text-white mb-2">Something went wrong</h2>
-            <p className="text-slate-400 mb-4">Please refresh the page</p>
+            <p className="text-slate-600 mb-4">Please refresh the page</p>
             <button
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-amber-500 text-white rounded-lg"

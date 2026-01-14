@@ -286,7 +286,7 @@ const ZoneOfGeniusEntry = () => {
                     <p className="text-lg text-slate-600 animate-pulse">
                         Creating your unique offer...
                     </p>
-                    <p className="mt-4 text-sm text-slate-400">
+                    <p className="mt-4 text-sm text-slate-500">
                         One clear offer, one path forward...
                     </p>
                 </div>
