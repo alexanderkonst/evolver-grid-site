@@ -10,6 +10,7 @@ import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { getPageTitle } from "@/lib/pageTitles";
 import Index from "./pages/Index";
+import LandingPage from "./pages/LandingPage";
 import Contact from "./pages/Contact";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
@@ -126,7 +127,7 @@ const App = () => (
           <Suspense fallback={<PageLoader />}>
             <PageTransition>
               <Routes>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/library" element={<Library />} />
                 <Route path="/library/:category" element={<Library />} />
                 <Route path="/contact" element={<ContactNew />} />
