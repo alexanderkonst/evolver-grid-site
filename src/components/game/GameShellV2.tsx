@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
+import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 
 interface GameShellV2Props {
     children: ReactNode;
@@ -45,6 +46,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         return true;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">("navigation");
+    const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         const match = pathname.match(/^\/game\/([^/]+)/);
@@ -168,6 +170,14 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'b') {
                 e.preventDefault();
                 setSectionsPanelOpen(prev => !prev);
+                return;
+            }
+            if (e.key === "?") {
+                const target = e.target as HTMLElement | null;
+                const isEditable = target?.matches("input, textarea, [contenteditable='true']");
+                if (isEditable) return;
+                e.preventDefault();
+                setShortcutsOpen(true);
             }
         };
         window.addEventListener('keydown', handleKeyDown);
@@ -341,6 +351,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                     </main>
                 </div>
             </div>
+            <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
         </div>
     );
 };
