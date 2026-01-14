@@ -1,9 +1,10 @@
 import { useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, Plus } from "lucide-react";
+import { ArrowRight, Check, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import BackButton from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES, AssetTypeId } from "./data/assetTypes";
@@ -135,10 +136,10 @@ const AssetMappingWizard = () => {
                 <div className="max-w-2xl mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <Button variant="ghost" size="sm" onClick={() => navigate(returnPath)}>
-                                <ArrowLeft className="w-4 h-4 mr-2" />
-                                Back
-                            </Button>
+                            <BackButton
+                                to={returnPath}
+                                label="Back"
+                            />
                             <div>
                                 <h1 className="text-lg font-bold text-slate-900">Asset Mapping</h1>
                                 <p className="text-xs text-slate-500">Map your resources for collaboration</p>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SkillTree from "@/components/SkillTree";
 import BoldText from "@/components/BoldText";
+import BackButton from "@/components/BackButton";
 import { skillTrees } from "@/data/skillTrees";
 import { cn } from "@/lib/utils";
 import { normalizeDomainSlug, DomainSlug } from "@/lib/domains";
@@ -61,13 +61,11 @@ const SkillTrees = () => {
             <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
                 <div className="container mx-auto max-w-6xl">
                     {/* Back link */}
-                    <button
-                        onClick={() => navigate("/game")}
-                        className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        <BoldText>BACK TO CHARACTER</BoldText>
-                    </button>
+                    <BackButton
+                        to="/game"
+                        label={<BoldText>BACK TO CHARACTER</BoldText>}
+                        className="text-muted-foreground hover:text-foreground transition-colors mb-6 font-semibold"
+                    />
 
                     {/* Page Header */}
                     <div className="text-center mb-6 sm:mb-8">

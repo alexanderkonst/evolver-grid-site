@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
+import BackButton from "@/components/BackButton";
 
 type MissionParticipant = {
   id: string;
@@ -136,12 +137,10 @@ const AdminMissionParticipants = () => {
       <Navigation />
       <div className="max-w-6xl mx-auto px-4 pt-24 pb-16">
         <div className="flex items-center justify-between mb-6">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </Link>
-          </Button>
+          <BackButton
+            to="/"
+            label="Back"
+          />
           <Button size="sm" onClick={fetchParticipants}>Refresh</Button>
         </div>
 

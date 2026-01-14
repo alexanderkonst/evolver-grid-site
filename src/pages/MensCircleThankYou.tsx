@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Send, CheckCircle } from "lucide-react";
+import { Calendar, Send, CheckCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import BackButton from "@/components/BackButton";
 // Logo is loaded from Imgur URL
 
 const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
@@ -238,13 +238,11 @@ const MensCircleThankYou = () => {
 
                     {/* Back Link */}
                     <div className="pt-12">
-                        <Link
+                        <BackButton
                             to="/mens-circle"
-                            className="inline-flex items-center gap-2 text-sm opacity-70 hover:opacity-100 transition-opacity"
-                        >
-                            <ArrowLeft className="w-4 h-4" />
-                            <BionicText>Вернуться на страницу Мужского круга</BionicText>
-                        </Link>
+                            label={<BionicText>Вернуться на страницу Мужского круга</BionicText>}
+                            className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+                        />
                     </div>
                 </div>
             </main>

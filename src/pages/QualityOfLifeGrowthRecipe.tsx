@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { type DomainId } from "@/modules/quality-of-life-map/qolConfig";
@@ -151,10 +151,11 @@ const QualityOfLifeGrowthRecipe = () => {
 
       <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
         <div className="container mx-auto max-w-4xl">
-          <Link to="/quality-of-life-map/priorities" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
+          <BackButton
+            to="/quality-of-life-map/priorities"
+            label={<BoldText>BACK</BoldText>}
+            className="text-white/60 hover:text-white transition-colors font-semibold"
+          />
         </div>
       </div>
 

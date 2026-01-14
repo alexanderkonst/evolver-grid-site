@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import { ArrowRight, CheckCircle2, ArrowLeft } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import profilePhoto from "@/assets/profile-photo.png";
+import BackButton from "@/components/BackButton";
 
 const Destiny = () => {
   const sectionIds = ['hero', 'is-this-you', 'how-it-works', 'about', 'start'];
@@ -40,10 +40,11 @@ const Destiny = () => {
       {/* Back Button - Left Aligned */}
       <div className="pt-24 pb-4 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
-          <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
+          <BackButton
+            to="/"
+            label={<BoldText>BACK</BoldText>}
+            className="text-white/60 hover:text-white transition-colors font-semibold"
+          />
         </div>
       </div>
       

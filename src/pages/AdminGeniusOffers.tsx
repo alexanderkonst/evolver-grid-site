@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Eye, Loader2 } from "lucide-react";
+import { Eye, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
+import BackButton from "@/components/BackButton";
 import {
   Dialog,
   DialogContent,
@@ -213,10 +214,11 @@ const AdminGeniusOffers = () => {
             <p className="text-muted-foreground">
               You don&apos;t have permission to access this page.
             </p>
-            <Button variant="outline" onClick={() => navigate("/")}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
+            <BackButton
+              to="/"
+              label="Back to Home"
+              variant="outline"
+            />
           </div>
         </div>
         <Footer />
@@ -231,10 +233,11 @@ const AdminGeniusOffers = () => {
 
       <div className="pt-24 px-4">
         <div className="container mx-auto max-w-5xl">
-          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
+          <BackButton
+            to="/"
+            label={<BoldText>BACK</BoldText>}
+            className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+          />
         </div>
       </div>
 

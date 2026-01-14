@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Sparkles, Target, Heart, TrendingUp, Zap, Gift, Loader2 } from "lucide-react";
+import { Sparkles, Target, Heart, TrendingUp, Zap, Gift, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import CharacterTile from "@/components/CharacterTile";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 import { supabase } from "@/integrations/supabase/client";
 import { getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { useRecommendations } from "@/hooks/use-recommendations";
@@ -284,13 +285,11 @@ const CharacterHub = () => {
             <main className="flex-grow pt-20 pb-20 px-4">
                 <div className="container mx-auto max-w-lg">
                     {/* Back link */}
-                    <button
-                        onClick={() => navigate("/")}
-                        className="inline-flex items-center text-slate-400 hover:text-white transition-colors mb-4"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        <span className="text-sm">Home</span>
-                    </button>
+                    <BackButton
+                        to="/"
+                        label="Home"
+                        className="text-slate-400 hover:text-white transition-colors mb-4"
+                    />
 
                     {/* Player Header */}
                     <div className="relative text-center mb-6">
