@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import ProgressIndicator from "@/components/ProgressIndicator";
 
 interface OnboardingFlowProps {
   profileId: string;
@@ -157,7 +158,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between text-xs text-slate-500">
-                <span>Step {step + 1} of {steps.length}</span>
+                <ProgressIndicator current={step + 1} total={steps.length} className="text-slate-500" />
                 <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
               </div>
               <div className="mt-2 h-2 w-full rounded-full bg-slate-100">
