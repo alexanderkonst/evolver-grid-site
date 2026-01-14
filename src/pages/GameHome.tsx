@@ -5,8 +5,6 @@ import {
   Sparkles,
   Loader2,
   CheckCircle2,
-  Trophy,
-  Flame,
   AlertCircle,
 } from "lucide-react";
 import dodecahedronImage from "@/assets/mc-dodecahedron.png";
@@ -14,6 +12,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
+import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
@@ -754,17 +753,13 @@ const GameHome = () => {
               {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
             </h1>
             {profile && hasAnyData && (
-              <div className="flex items-center justify-center gap-4 text-sm text-slate-600 mt-3">
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-4 h-4 text-slate-700" />
-                  <span className="font-semibold">Level {profile.level} · {profile.xp_total} XP</span>
-                </div>
-                {profile.current_streak_days > 0 && (
-                  <div className="flex items-center gap-2">
-                    <Flame className="w-4 h-4 text-orange-500" />
-                    <span>{profile.current_streak_days} day streak</span>
-                  </div>
-                )}
+              <div className="mt-4 flex justify-center">
+                <PlayerStatsBadge
+                  level={profile.level}
+                  xpTotal={profile.xp_total}
+                  streakDays={profile.current_streak_days}
+                  size="lg"
+                />
               </div>
             )}
             {zogSnapshot?.archetype_title && (

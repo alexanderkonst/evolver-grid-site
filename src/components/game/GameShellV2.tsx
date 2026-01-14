@@ -6,6 +6,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
+import PlayerStatsBadge from "./PlayerStatsBadge";
 
 interface GameShellV2Props {
     children: ReactNode;
@@ -28,6 +29,9 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         last_name: string | null;
         avatar_url: string | null;
         onboarding_stage?: string | null;
+        level?: number | null;
+        xp_total?: number | null;
+        current_streak_days?: number | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
 
@@ -76,7 +80,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     const loadProfile = async (userId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id")
+            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
             .eq("user_id", userId)
             .maybeSingle();
         setProfile(data || null);
@@ -97,7 +101,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     const loadProfileById = async (profileId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id")
+            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
             .eq("id", profileId)
             .maybeSingle();
         setProfile(data || null);
@@ -254,6 +258,16 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
 
                 {/* Panel 3: Content */}
                 <main className="flex-1 bg-[#f0f8ff] min-h-dvh overflow-auto">
+                    {profile && (
+                        <div className="sticky top-0 z-10 flex justify-end bg-[#f0f8ff]/80 px-4 pt-4 backdrop-blur">
+                            <PlayerStatsBadge
+                                level={profile.level}
+                                xpTotal={profile.xp_total}
+                                streakDays={profile.current_streak_days}
+                                size="sm"
+                            />
+                        </div>
+                    )}
                     {children}
                 </main>
             </div>
@@ -307,6 +321,15 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                         <span className="text-white font-medium flex-1 truncate">
                             {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
                         </span>
+                        {profile && (
+                            <PlayerStatsBadge
+                                level={profile.level}
+                                xpTotal={profile.xp_total}
+                                streakDays={profile.current_streak_days}
+                                size="sm"
+                                className="text-white [&>span]:bg-white/10 [&>span]:text-white"
+                            />
+                        )}
                     </header>
 
                     {/* Content with safe area bottom */}
