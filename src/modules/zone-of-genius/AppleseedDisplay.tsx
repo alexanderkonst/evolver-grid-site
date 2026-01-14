@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareZoG from "@/components/sharing/ShareZoG";
+import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "./appleseedGenerator";
 
 interface AppleseedDisplayProps {
@@ -52,28 +53,15 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
 
     return (
         <div className="max-w-3xl mx-auto p-4 lg:p-8 space-y-8">
-            {/* Hero: Vibrational Key */}
-            <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4 animate-pulse">
-                    <Sparkles className="w-8 h-8 text-amber-600" />
-                </div>
-
-                <div className="space-y-2">
-                    <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 text-amber-600">
-                        ✦ {appleseed.vibrationalKey.name} ✦
-                    </h1>
-                    <p className="text-lg text-slate-600 italic">
-                        "{appleseed.vibrationalKey.tagline}"
-                    </p>
-                </div>
-
-                {/* Bullseye Sentence */}
-                <div className="mt-6 p-6 bg-slate-50 rounded-2xl border border-slate-200">
-                    <p className="text-lg text-slate-800 leading-relaxed">
-                        {appleseed.bullseyeSentence}
-                    </p>
-                </div>
-            </div>
+            {/* Epic Revelatory Hero */}
+            <RevelatoryHero
+                type="appleseed"
+                title={appleseed.vibrationalKey.name}
+                subtitle={appleseed.vibrationalKey.tagline}
+                tagline="Your Zone of Genius"
+            >
+                {appleseed.bullseyeSentence}
+            </RevelatoryHero>
 
             {/* Collapsible Sections */}
             <div className="space-y-3">

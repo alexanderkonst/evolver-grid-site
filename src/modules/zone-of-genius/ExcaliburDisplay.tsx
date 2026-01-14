@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Sword, ChevronDown, ChevronUp, Copy, Check, Zap, Users, DollarSign, Radio, Target, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { ExcaliburData } from "./excaliburGenerator";
 
 interface ExcaliburDisplayProps {
@@ -26,20 +27,15 @@ const ExcaliburDisplay = ({ excalibur, onSave }: ExcaliburDisplayProps) => {
 
     return (
         <div className="max-w-3xl mx-auto p-4 lg:p-8 space-y-8">
-            {/* Hero: The Sword */}
-            <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-violet-100 mb-4">
-                    <Sword className="w-8 h-8 text-violet-600" />
-                </div>
-
-                <h1 className="text-2xl lg:text-3xl font-bold text-slate-900">
-                    Your Unique Offer
-                </h1>
-
-                <p className="text-sm text-slate-500">
-                    One sword. One offer. One path forward.
-                </p>
-            </div>
+            {/* Epic Revelatory Hero */}
+            <RevelatoryHero
+                type="excalibur"
+                title="Your Unique Offer"
+                subtitle={excalibur.sword.promise}
+                tagline="One sword. One offer. One path forward."
+            >
+                {excalibur.sword.offer}
+            </RevelatoryHero>
 
             {/* The Offer (Hero Card) */}
             <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 space-y-4">
