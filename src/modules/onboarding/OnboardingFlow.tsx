@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import ProgressIndicator from "@/components/ProgressIndicator";
+import OnboardingProgress from "@/components/OnboardingProgress";
 
 interface OnboardingFlowProps {
   profileId: string;
@@ -161,12 +162,14 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
                 <ProgressIndicator current={step + 1} total={steps.length} className="text-slate-500" />
                 <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
               </div>
-              <div className="mt-2 h-2 w-full rounded-full bg-slate-100">
-                <div
-                  className="h-2 rounded-full bg-amber-500 transition-all"
-                  style={{ width: `${((step + 1) / steps.length) * 100}%` }}
-                />
-              </div>
+              <OnboardingProgress
+                current={step + 1}
+                total={steps.length}
+                className="mt-2 mb-0 max-w-full"
+                labelClassName="sr-only"
+                trackClassName="bg-slate-100"
+                barClassName="from-amber-400 to-amber-500"
+              />
             </div>
           </div>
 
