@@ -707,7 +707,7 @@ const GameHome = () => {
       {!user && (
         <div className="bg-amber-50 border-b border-amber-200">
           <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between gap-4 max-w-4xl mx-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-4xl mx-auto">
               <div className="flex items-center gap-3">
                 <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
                 <div>
@@ -715,7 +715,7 @@ const GameHome = () => {
                   <p className="text-xs text-amber-700">Log in to save progress across devices.</p>
                 </div>
               </div>
-              <Button size="sm" asChild>
+              <Button size="sm" asChild className="w-full sm:w-auto">
                 <Link
                   to="/auth"
                   onClick={() => {
