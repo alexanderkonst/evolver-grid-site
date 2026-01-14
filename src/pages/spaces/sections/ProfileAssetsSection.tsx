@@ -101,7 +101,7 @@ const ProfileAssetsSection = () => {
                                     <EmptyState
                                         icon={<Boxes className="w-6 h-6 text-slate-500" />}
                                         title="No assets saved"
-                                        description="Map your assets to start building your library."
+                                        description="Start mapping your resources to build your library."
                                         action={{
                                             label: "Map Your Assets",
                                             onClick: () => navigate("/asset-mapping"),
