@@ -1,15 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 /**
  * Wabi-sabi + Apple aesthetic landing page
- * Soft pastels, bokeh-style depth, ultra-minimal, high-trust institutional feel
+ * Premium enhancements: grain, particles, glow, animations, progress bar, scroll support
  */
 
 const LandingPage = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
     const [hasInteracted, setHasInteracted] = useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
     const navigate = useNavigate();
     const totalSlides = 9;
 
@@ -27,7 +29,7 @@ const LandingPage = () => {
                 { icon: "∞", label: "Connect", desc: "Your complementary people" },
             ],
             cta: "For individuals. For communities. For Network States.",
-            footer: "→ Navigate to explore",
+            footer: null,
             gradient: "from-[#8460ea] via-[#a4a3d0] to-[#a7cbd4]",
         },
         // Slide 1: Individual
@@ -153,21 +155,49 @@ const LandingPage = () => {
         "Get Started",
     ];
 
-    const nextSlide = useCallback(() => {
+    const changeSlide = useCallback((newSlide: number) => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
         setHasInteracted(true);
-        setCurrentSlide((prev) => (prev >= totalSlides - 1 ? 0 : prev + 1));
-    }, []);
+
+        // Clear auto-advance on any interaction
+        if (autoAdvanceRef.current) {
+            clearTimeout(autoAdvanceRef.current);
+            autoAdvanceRef.current = null;
+        }
+
+        setTimeout(() => {
+            setCurrentSlide(newSlide);
+            setTimeout(() => setIsTransitioning(false), 100);
+        }, 150);
+    }, [isTransitioning]);
+
+    const nextSlide = useCallback(() => {
+        changeSlide(currentSlide >= totalSlides - 1 ? 0 : currentSlide + 1);
+    }, [currentSlide, changeSlide]);
 
     const prevSlide = useCallback(() => {
-        setHasInteracted(true);
-        setCurrentSlide((prev) => (prev <= 0 ? totalSlides - 1 : prev - 1));
-    }, []);
+        changeSlide(currentSlide <= 0 ? totalSlides - 1 : currentSlide - 1);
+    }, [currentSlide, changeSlide]);
 
     const goToSlide = (n: number) => {
-        setHasInteracted(true);
-        setCurrentSlide(n);
+        changeSlide(n);
         setMenuOpen(false);
     };
+
+    // Auto-advance on hero slide (first 5 seconds)
+    useEffect(() => {
+        if (currentSlide === 0 && !hasInteracted) {
+            autoAdvanceRef.current = setTimeout(() => {
+                nextSlide();
+            }, 5000);
+        }
+        return () => {
+            if (autoAdvanceRef.current) {
+                clearTimeout(autoAdvanceRef.current);
+            }
+        };
+    }, [currentSlide, hasInteracted, nextSlide]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -186,6 +216,27 @@ const LandingPage = () => {
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [nextSlide, prevSlide]);
+
+    // Scroll wheel navigation
+    useEffect(() => {
+        let scrollTimeout: NodeJS.Timeout | null = null;
+        const handleWheel = (e: WheelEvent) => {
+            if (scrollTimeout) return;
+
+            if (Math.abs(e.deltaY) > 30) {
+                if (e.deltaY > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                scrollTimeout = setTimeout(() => {
+                    scrollTimeout = null;
+                }, 800);
+            }
+        };
+        window.addEventListener("wheel", handleWheel, { passive: true });
+        return () => window.removeEventListener("wheel", handleWheel);
     }, [nextSlide, prevSlide]);
 
     // Touch swipe
@@ -209,81 +260,120 @@ const LandingPage = () => {
     }, [nextSlide, prevSlide]);
 
     const slide = slides[currentSlide];
-
-    // Determine if this is a dark slide (Network States, Venture Studios)
     const isDarkSlide = currentSlide === 3 || currentSlide === 4;
+    const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
 
     return (
-        <div className="min-h-dvh font-['Inter',sans-serif] overflow-hidden relative">
-            {/* Gradient Background with soft bokeh-like blur */}
+        <div className="min-h-dvh font-['Inter',sans-serif] overflow-hidden relative cursor-default">
+            {/* Gradient Background */}
             <div
-                className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} transition-all duration-700 ease-out`}
+                className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} transition-all duration-700 ease-out ${isTransitioning ? "blur-sm scale-105" : ""}`}
             />
 
-            {/* Soft overlay for wabi-sabi texture feel */}
+            {/* Soft bokeh overlays */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.4)_0%,transparent_70%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.2)_0%,transparent_50%)]" />
+
+            {/* Grain texture overlay */}
+            <div
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                }}
+            />
+
+            {/* Floating particles */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(12)].map((_, i) => (
+                    <div
+                        key={i}
+                        className={`absolute rounded-full ${isDarkSlide ? "bg-white/10" : "bg-[#8460ea]/10"}`}
+                        style={{
+                            width: `${4 + Math.random() * 8}px`,
+                            height: `${4 + Math.random() * 8}px`,
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animation: `float-${i % 3} ${15 + Math.random() * 20}s ease-in-out infinite`,
+                            animationDelay: `${Math.random() * 10}s`,
+                        }}
+                    />
+                ))}
+            </div>
 
             {/* Slide Content */}
             <div
                 key={currentSlide}
-                className="relative min-h-dvh flex flex-col justify-center items-center px-6 md:px-16 py-16 text-center animate-fade-in"
+                className={`relative min-h-dvh flex flex-col justify-center items-center px-6 md:px-16 py-16 text-center transition-all duration-300 ${isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}
             >
                 <div className="max-w-[1000px] w-full">
                     {slide.audienceTag && (
-                        <div className={`text-xs font-semibold tracking-[0.2em] uppercase mb-8 ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"
-                            }`}>
+                        <div
+                            className={`text-xs font-semibold tracking-[0.2em] uppercase mb-8 animate-fade-in-up ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}
+                            style={{ animationDelay: "0.1s" }}
+                        >
                             {slide.audienceTag}
                         </div>
                     )}
 
                     {slide.problem && (
-                        <div className={`text-base md:text-lg font-light tracking-wide mb-8 ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"
-                            }`}>
+                        <div
+                            className={`text-base md:text-lg font-light tracking-wide mb-8 animate-fade-in-up ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}
+                            style={{ animationDelay: "0.15s" }}
+                        >
                             {slide.problem}
                         </div>
                     )}
 
                     <h1
-                        className={`font-bold leading-[1.1] mb-10 whitespace-pre-line ${isDarkSlide ? "text-white" : "text-[#2c3150]"
-                            } ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"
-                            }`}
+                        className={`font-bold leading-[1.1] mb-10 whitespace-pre-line animate-fade-in-up ${isDarkSlide ? "text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
+                        style={{ animationDelay: "0.2s" }}
                     >
                         {slide.headline}
                     </h1>
 
-                    <p className={`text-lg md:text-xl font-light mb-14 ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"
-                        }`}>
+                    <p
+                        className={`text-lg md:text-xl font-light mb-14 animate-fade-in-up ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}
+                        style={{ animationDelay: "0.25s" }}
+                    >
                         {slide.tagline}
                     </p>
 
                     {slide.things && (
                         <div className="flex justify-center gap-8 md:gap-16 mb-14 flex-wrap">
                             {slide.things.map((thing, i) => (
-                                <div key={i} className="text-center min-w-[130px] md:min-w-[160px]">
-                                    <div className={`text-3xl md:text-4xl mb-3 ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"
-                                        }`}>{thing.icon}</div>
-                                    <div className={`text-sm md:text-base font-semibold mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"
-                                        }`}>{thing.label}</div>
-                                    <div className={`text-xs md:text-sm ${isDarkSlide ? "text-white/50" : "text-[#2c3150]/50"
-                                        }`}>{thing.desc}</div>
+                                <div
+                                    key={i}
+                                    className="text-center min-w-[130px] md:min-w-[160px] animate-fade-in-up"
+                                    style={{ animationDelay: `${0.3 + i * 0.1}s` }}
+                                >
+                                    <div className={`text-3xl md:text-4xl mb-3 animate-breathe ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"}`}>
+                                        {thing.icon}
+                                    </div>
+                                    <div className={`text-sm md:text-base font-semibold mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"}`}>
+                                        {thing.label}
+                                    </div>
+                                    <div className={`text-xs md:text-sm ${isDarkSlide ? "text-white/50" : "text-[#2c3150]/50"}`}>
+                                        {thing.desc}
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     )}
 
                     {slide.cta && (
-                        <p className={`text-base md:text-lg font-medium tracking-wide ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"
-                            }`}>
+                        <p
+                            className={`text-base md:text-lg font-medium tracking-wide animate-fade-in-up ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}
+                            style={{ animationDelay: "0.5s" }}
+                        >
                             {slide.cta}
                         </p>
                     )}
 
                     {slide.isCTA && (
-                        <div className="mt-8">
+                        <div className="mt-8 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
                             <button
                                 onClick={() => navigate("/start")}
-                                className="inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-0.5 hover:shadow-[0_20px_60px_rgba(41,84,159,0.3)]"
+                                className="inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95"
                             >
                                 Enter the Portal
                             </button>
@@ -297,69 +387,70 @@ const LandingPage = () => {
                         </div>
                     )}
                 </div>
+            </div>
 
-                {slide.footer && (
-                    <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 text-xs tracking-[0.15em] uppercase ${isDarkSlide ? "text-white/30" : "text-[#2c3150]/30"
-                        }`}>
-                        {slide.footer}
-                    </div>
-                )}
+            {/* Progress Bar */}
+            <div className="fixed top-0 left-0 right-0 h-[2px] bg-black/5 z-50">
+                <div
+                    className="h-full bg-[#29549f] transition-all duration-500 ease-out"
+                    style={{ width: `${progressPercent}%` }}
+                />
             </div>
 
             {/* Slide Counter */}
-            <div className={`fixed bottom-10 left-8 text-xs z-50 ${isDarkSlide ? "text-white/40" : "text-[#2c3150]/40"
-                }`}>
+            <div className={`fixed bottom-10 left-8 text-xs z-50 ${isDarkSlide ? "text-white/40" : "text-[#2c3150]/40"}`}>
                 {currentSlide + 1} / {totalSlides}
             </div>
 
-            {/* Dots Navigation */}
-            <div className="fixed bottom-10 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-50">
+            {/* Dots Navigation with hover preview */}
+            <div className="fixed bottom-10 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-50 group">
                 {Array.from({ length: totalSlides }).map((_, i) => (
                     <div
                         key={i}
                         onClick={() => goToSlide(i)}
-                        className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${i === currentSlide
-                            ? "w-6 bg-[#29549f]"
-                            : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/40" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/40"}`
+                        className={`h-2 rounded-full cursor-pointer transition-all duration-300 hover:scale-125 ${i === currentSlide
+                                ? "w-6 bg-[#29549f]"
+                                : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/50" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/50"}`
                             }`}
+                        title={menuItems[i]}
                     />
                 ))}
             </div>
 
-            {/* Nav Buttons - Glassmorphism */}
+            {/* Nav Buttons */}
             <div className="fixed bottom-8 right-8 flex gap-3 z-50">
                 <button
                     onClick={prevSlide}
-                    className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border ${isDarkSlide
-                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                    className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
+                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     ←
                 </button>
                 <button
                     onClick={nextSlide}
-                    className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border ${isDarkSlide
-                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                    className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
+                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     →
                 </button>
             </div>
 
-            {/* Menu Toggle - Glassmorphism */}
+            {/* Menu Toggle */}
             <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className={`fixed top-8 right-8 w-11 h-11 backdrop-blur-md rounded-xl text-xl z-[200] transition-all border ${isDarkSlide
-                    ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                    : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                className={`fixed top-8 right-8 w-11 h-11 backdrop-blur-md rounded-xl text-xl z-[200] transition-all border hover:scale-105 active:scale-95 ${isDarkSlide
+                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                     }`}
             >
                 ☰
             </button>
 
-            {/* Menu Drawer - Glassmorphism */}
+            {/* Menu Drawer */}
             <div
                 className={`fixed top-0 h-full w-[280px] backdrop-blur-xl bg-white/80 border-l border-white/40 pt-20 px-6 z-[150] transition-all duration-300 overflow-y-auto ${menuOpen ? "right-0" : "-right-[300px]"
                     }`}
@@ -369,8 +460,8 @@ const LandingPage = () => {
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`block w-full p-3 mb-2 rounded-xl text-left text-sm cursor-pointer transition-all ${i === currentSlide
-                            ? "bg-[#29549f]/10 text-[#29549f] font-medium"
-                            : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
+                                ? "bg-[#29549f]/10 text-[#29549f] font-medium"
+                                : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
                             }`}
                     >
                         {item}
@@ -387,12 +478,42 @@ const LandingPage = () => {
             )}
 
             <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes fade-in-up {
+          from { 
+            opacity: 0; 
+            transform: translateY(16px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          }
         }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out forwards;
+          opacity: 0;
+        }
+        
+        @keyframes breathe {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .animate-breathe {
+          animation: breathe 3s ease-in-out infinite;
+        }
+        
+        @keyframes float-0 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(30px, -30px); }
+          66% { transform: translate(-20px, 20px); }
+        }
+        @keyframes float-1 {
+          0%, 100% { transform: translate(0, 0); }
+          33% { transform: translate(-25px, 25px); }
+          66% { transform: translate(15px, -15px); }
+        }
+        @keyframes float-2 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(20px, 30px); }
         }
       `}</style>
         </div>
