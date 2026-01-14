@@ -1,9 +1,45 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { User, Target, Sparkles, Map, Boxes, ArrowRight, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
+import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
+import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 const ProfileOverviewContent = () => {
+    const [stats, setStats] = useState<{
+        level: number;
+        xp_total: number;
+        current_streak_days: number;
+    } | null>(null);
+
+    useEffect(() => {
+        let isMounted = true;
+        const loadStats = async () => {
+            try {
+                const profileId = await getOrCreateGameProfileId();
+                const { data } = await supabase
+                    .from("game_profiles")
+                    .select("level, xp_total, current_streak_days")
+                    .eq("id", profileId)
+                    .maybeSingle();
+                if (!isMounted || !data) return;
+                setStats({
+                    level: data.level ?? 0,
+                    xp_total: data.xp_total ?? 0,
+                    current_streak_days: data.current_streak_days ?? 0,
+                });
+            } catch {
+                // Ignore profile stats failures.
+            }
+        };
+        loadStats();
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     return (
         <div className="p-6 lg:p-8 max-w-4xl mx-auto">
             <div className="mb-8">
@@ -12,6 +48,16 @@ const ProfileOverviewContent = () => {
                     <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
                 </div>
                 <p className="text-slate-600">Know yourself. Build your character.</p>
+                {stats && (
+                    <div className="mt-4">
+                        <PlayerStatsBadge
+                            level={stats.level}
+                            xpTotal={stats.xp_total}
+                            streakDays={stats.current_streak_days}
+                            size="sm"
+                        />
+                    </div>
+                )}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
