@@ -4,7 +4,29 @@ import { useNavigate } from "react-router-dom";
 /**
  * Wabi-sabi + Apple aesthetic landing page
  * Premium enhancements: grain, particles, glow, animations, progress bar, scroll support
+ * Bionic font: first 50% of each word is bold
  */
+
+// Bionic text: bold first 50% of each word for faster reading
+const BionicText = ({ children, className = "" }: { children: string; className?: string }) => {
+    const words = children.split(/(\s+)/);
+    return (
+        <span className={className}>
+            {words.map((word, i) => {
+                if (/^\s+$/.test(word)) return word; // preserve whitespace
+                const boldLength = Math.ceil(word.length * 0.5);
+                const boldPart = word.slice(0, boldLength);
+                const normalPart = word.slice(boldLength);
+                return (
+                    <span key={i}>
+                        <span className="font-bold">{boldPart}</span>
+                        <span className="font-normal">{normalPart}</span>
+                    </span>
+                );
+            })}
+        </span>
+    );
+};
 
 const LandingPage = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
