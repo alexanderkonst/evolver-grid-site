@@ -13,6 +13,7 @@ import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
+import PowerfulWelcome from "@/components/game/PowerfulWelcome";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
@@ -741,31 +742,18 @@ const GameHome = () => {
       <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
 
-          {/* Header */}
-          <div className="text-center mb-10">
-            <img
-              src={dodecahedronImage}
-              alt="Dodecahedron"
-              loading="lazy"
-              className="w-28 sm:w-32 mx-auto mb-4 drop-shadow-lg"
+          {/* Epic Welcome Header */}
+          {hasAnyData && (
+            <PowerfulWelcome
+              firstName={profile?.first_name}
+              archetypeTitle={zogSnapshot?.archetype_title}
+              corePattern={zogSnapshot?.core_pattern}
+              level={profile?.level}
+              xpTotal={profile?.xp_total}
+              streakDays={profile?.current_streak_days}
+              totalActions={profile?.total_quests_completed}
             />
-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
-              {hasAnyData ? `Welcome back${profile?.first_name ? `, ${profile.first_name}` : ''}` : "Welcome, Player One"}
-            </h1>
-            {profile && hasAnyData && (
-              <div className="mt-4 flex justify-center">
-                <PlayerStatsBadge
-                  level={profile.level}
-                  xpTotal={profile.xp_total}
-                  streakDays={profile.current_streak_days}
-                  size="lg"
-                />
-              </div>
-            )}
-            {zogSnapshot?.archetype_title && (
-              <p className="text-slate-500 text-sm mt-2">{zogSnapshot.archetype_title}</p>
-            )}
-          </div>
+          )}
 
           {/* ONBOARDING */}
           {!hasAnyData && (
