@@ -58,6 +58,7 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                 type="appleseed"
                 title={appleseed.vibrationalKey.name}
                 subtitle={appleseed.vibrationalKey.tagline}
+                subtitlePlain={appleseed.vibrationalKey.tagline_simple}
                 tagline="Your Zone of Genius"
             >
                 {appleseed.bullseyeSentence}
@@ -77,10 +78,20 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
                         <div>
                             <p className="text-sm text-slate-500 mb-1">Prime Driver</p>
                             <p className="text-slate-900 font-medium">{appleseed.threeLenses.primeDriver}</p>
+                            {appleseed.threeLenses.primeDriver_meaning && (
+                                <p className="text-xs italic text-slate-500 mt-1">
+                                    {appleseed.threeLenses.primeDriver_meaning}
+                                </p>
+                            )}
                         </div>
                         <div>
                             <p className="text-sm text-slate-500 mb-1">Compound Archetype</p>
                             <p className="text-slate-900 font-medium">{appleseed.threeLenses.archetype}</p>
+                            {appleseed.threeLenses.archetype_meaning && (
+                                <p className="text-xs italic text-slate-500 mt-1">
+                                    {appleseed.threeLenses.archetype_meaning}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </CollapsibleSection>

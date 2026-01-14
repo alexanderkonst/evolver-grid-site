@@ -5,6 +5,7 @@ interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
     title: string;
     subtitle?: string;
+    subtitlePlain?: string;
     tagline?: string;
     children?: ReactNode;
 }
@@ -13,7 +14,7 @@ interface RevelatoryHeroProps {
  * Epic revelatory hero section for ZoG results
  * Makes the moment of seeing your genius feel special
  */
-const RevelatoryHero = ({ type, title, subtitle, tagline, children }: RevelatoryHeroProps) => {
+const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, children }: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
     const palette = isAppleseed
@@ -90,6 +91,11 @@ const RevelatoryHero = ({ type, title, subtitle, tagline, children }: Revelatory
                 {subtitle && (
                     <p className={`text-lg sm:text-xl ${palette.textSecondary} italic max-w-xl mx-auto mb-6`}>
                         "{subtitle}"
+                    </p>
+                )}
+                {subtitlePlain && (
+                    <p className={`text-sm sm:text-base ${palette.textSecondary} italic max-w-xl mx-auto`}>
+                        ({subtitlePlain})
                     </p>
                 )}
 
