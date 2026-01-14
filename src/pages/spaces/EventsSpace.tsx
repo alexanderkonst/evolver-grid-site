@@ -149,13 +149,17 @@ const EventsSpace = () => {
                 title="No events yet"
                 description={
                   isAuthenticated
-                    ? "Be the first to create an event for the community."
-                    : "Check back later for upcoming community gatherings."
+                    ? "Check back soon or create your own community gathering."
+                    : "Check back soon for upcoming community gatherings."
                 }
-                action={{
-                  label: "Browse Events",
-                  onClick: () => navigate("/game/events"),
-                }}
+                action={
+                  isAuthenticated
+                    ? {
+                        label: "Create Event",
+                        onClick: () => navigate("/game/events/create"),
+                      }
+                    : undefined
+                }
               />
             </div>
           )}

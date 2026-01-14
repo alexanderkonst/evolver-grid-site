@@ -3,6 +3,7 @@ import { Loader2, MapPin, Users, Languages } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import EmptyState from "@/components/ui/EmptyState";
 import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
@@ -399,12 +400,12 @@ const Matchmaking = () => {
         )}
 
         {!loading && !error && !hasAnyMatches && (
-          <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
-            <Users className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-slate-700 mb-2">No matches yet</h2>
-            <p className="text-slate-500 max-w-md mx-auto">
-              Complete your Zone of Genius snapshot and mission to unlock matches.
-            </p>
+          <div className="rounded-xl border border-slate-200 bg-white p-8">
+            <EmptyState
+              icon={<Users className="w-6 h-6 text-slate-500" />}
+              title="No matches yet"
+              description="Complete your Zone of Genius to find your people."
+            />
           </div>
         )}
 
