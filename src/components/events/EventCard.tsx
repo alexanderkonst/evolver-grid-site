@@ -59,6 +59,7 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
             src={event.photo_url}
             alt={event.title}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
           />
         ) : (

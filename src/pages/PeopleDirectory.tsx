@@ -440,6 +440,7 @@ const PeopleDirectory = () => {
                           src={person.avatarUrl}
                           alt={person.name}
                           loading="lazy"
+                          decoding="async"
                           onError={(e) => {
                             e.currentTarget.src = "/placeholder.svg";
                           }}

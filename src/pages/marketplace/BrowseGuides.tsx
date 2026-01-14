@@ -92,6 +92,7 @@ const BrowseGuides = () => {
                         src={offer.avatar_url}
                         alt={offer.display_name || "Guide"}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           e.currentTarget.src = "/placeholder.svg";
                         }}
