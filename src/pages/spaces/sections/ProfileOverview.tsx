@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { User, Target, Sparkles, Map, Boxes, ArrowRight } from "lucide-react";
+import { User, Target, Sparkles, Map, Boxes, ArrowRight, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 
@@ -85,6 +85,26 @@ const ProfileOverviewContent = () => {
                         </div>
                         <Button asChild variant="outline" size="sm">
                             <Link to="/game/profile/assets">
+                                Open <ArrowRight className="w-4 h-4 ml-2" />
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Settings with Reset */}
+                <div className="rounded-xl border border-red-200 bg-red-50 p-5">
+                    <div className="flex items-start justify-between gap-3">
+                        <div>
+                            <div className="flex items-center gap-2 text-red-700 mb-2">
+                                <Settings className="w-5 h-5" />
+                                <h3 className="font-semibold">Account Settings</h3>
+                            </div>
+                            <p className="text-sm text-red-600">
+                                Manage account, billing, or reset your progress.
+                            </p>
+                        </div>
+                        <Button asChild variant="outline" size="sm" className="border-red-300 text-red-700 hover:bg-red-100">
+                            <Link to="/settings">
                                 Open <ArrowRight className="w-4 h-4 ml-2" />
                             </Link>
                         </Button>
