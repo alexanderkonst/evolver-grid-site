@@ -744,15 +744,27 @@ const GameHome = () => {
 
           {/* Epic Welcome Header */}
           {hasAnyData && (
-            <PowerfulWelcome
-              firstName={profile?.first_name}
-              archetypeTitle={zogSnapshot?.archetype_title}
-              corePattern={zogSnapshot?.core_pattern}
-              level={profile?.level}
-              xpTotal={profile?.xp_total}
-              streakDays={profile?.current_streak_days}
-              totalActions={profile?.total_quests_completed}
-            />
+            <>
+              <PowerfulWelcome
+                firstName={profile?.first_name}
+                archetypeTitle={zogSnapshot?.archetype_title}
+                corePattern={zogSnapshot?.core_pattern}
+                level={profile?.level}
+                xpTotal={profile?.xp_total}
+                streakDays={profile?.current_streak_days}
+                totalActions={profile?.total_quests_completed}
+              />
+              {profile && (
+                <div className="mb-10 flex justify-center">
+                  <PlayerStatsBadge
+                    level={profile.level}
+                    xpTotal={profile.xp_total}
+                    streakDays={profile.current_streak_days}
+                    size="lg"
+                  />
+                </div>
+              )}
+            </>
           )}
 
           {/* ONBOARDING */}
