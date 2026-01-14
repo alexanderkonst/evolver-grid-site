@@ -39,6 +39,7 @@ const PublicProfile = () => {
   const [mission, setMission] = useState<MissionRow | null>(null);
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
   const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
+  const [topTalents, setTopTalents] = useState<string[]>([]);
 
   useEffect(() => {
     let isMounted = true;
@@ -71,11 +72,15 @@ const PublicProfile = () => {
 
       const visibility = resolveVisibility(profileData.visibility);
 
-      let zogData: { appleseed_data: unknown | null; excalibur_data: unknown | null } | null = null;
+      let zogData: {
+        appleseed_data: unknown | null;
+        excalibur_data: unknown | null;
+        top_three_talents: string[] | null;
+      } | null = null;
       if (profileData.last_zog_snapshot_id) {
         const { data } = await supabase
           .from("zog_snapshots")
-          .select("appleseed_data, excalibur_data")
+          .select("appleseed_data, excalibur_data, top_three_talents")
           .eq("id", profileData.last_zog_snapshot_id)
           .maybeSingle();
         zogData = data || null;
@@ -97,6 +102,7 @@ const PublicProfile = () => {
         setMission(missionData ? (missionData as MissionRow) : null);
         setAppleseed(zogData?.appleseed_data ? (zogData.appleseed_data as unknown as AppleseedData) : null);
         setExcalibur(zogData?.excalibur_data ? (zogData.excalibur_data as unknown as ExcaliburData) : null);
+        setTopTalents(zogData?.top_three_talents || []);
         setLoading(false);
       }
     };
@@ -110,9 +116,9 @@ const PublicProfile = () => {
 
   useEffect(() => {
     if (!profile || loading) return;
-    const title = `${fullName} | Evolver Grid`;
+    const title = `${fullName} | Planetary OS`;
     const description =
-      appleseed?.vibrationalKey?.tagline ||
+      appleseed?.vibrationalKey?.name ||
       mission?.mission_title ||
       "Discover your Zone of Genius.";
     const image = profile.avatar_url || "";
@@ -169,9 +175,11 @@ const PublicProfile = () => {
   const canShowLocation = visibility !== "minimal" && (profile.show_location ?? true) && profile.location;
   const canShowMission = visibility !== "minimal" && (profile.show_mission ?? true) && mission;
   const canShowOffer = visibility === "full" && (profile.show_offer ?? true) && excalibur;
+  const archetypeTitle = appleseed?.threeLenses?.archetype || appleseed?.vibrationalKey?.name;
+  const coreVibration = excalibur?.essenceAnchor?.coreVibration || null;
 
   return (
-    <div className="min-h-dvh bg-slate-50">
+    <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-slate-900">
       <div className="px-4 py-6 max-w-4xl mx-auto">
         <Button variant="ghost" onClick={() => navigate(-1)}>
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -179,7 +187,7 @@ const PublicProfile = () => {
         </Button>
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
-        <div className="rounded-3xl bg-white p-6 sm:p-8 shadow-sm">
+        <div className="rounded-3xl bg-white/80 backdrop-blur p-6 sm:p-10 shadow-lg border border-white/60">
           <div className="flex flex-col items-center text-center">
             <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
               {profile.avatar_url ? (
@@ -203,12 +211,19 @@ const PublicProfile = () => {
                 </span>
               )}
             </div>
-            <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900 mt-4">{fullName}</h1>
-            {appleseed && (
-              <div className="mt-2 text-slate-600">
-                <p className="text-sm">✦ {appleseed.vibrationalKey.name} ✦</p>
-                <p className="text-sm italic mt-1">"{appleseed.vibrationalKey.tagline}"</p>
-              </div>
+            <h1 className="text-3xl sm:text-4xl font-['Fraunces',serif] font-semibold mt-5">{fullName}</h1>
+            {archetypeTitle && (
+              <p className="mt-3 text-lg font-medium text-slate-700">✦ {archetypeTitle} ✦</p>
+            )}
+            {appleseed?.vibrationalKey?.tagline && (
+              <p className="mt-2 text-sm italic text-slate-500 max-w-xl">
+                "{appleseed.vibrationalKey.tagline}"
+              </p>
+            )}
+            {coreVibration && (
+              <p className="mt-3 text-sm font-medium text-slate-600">
+                Core Vibration: <span className="text-slate-800">{coreVibration}</span>
+              </p>
             )}
             <div className="mt-4 space-y-2 text-sm text-slate-500">
               {canShowLocation && (
@@ -225,6 +240,26 @@ const PublicProfile = () => {
               )}
             </div>
           </div>
+
+          {topTalents.length > 0 && (
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              {topTalents.map((talent) => (
+                <span
+                  key={talent}
+                  className="rounded-full bg-amber-100 px-4 py-1 text-xs font-semibold text-amber-900"
+                >
+                  {talent}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {mission?.intro_text && (
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 text-center">
+              <p className="text-sm uppercase tracking-wide text-slate-400">Bio</p>
+              <p className="mt-2 text-slate-700">{mission.intro_text}</p>
+            </div>
+          )}
 
           {canShowOffer && excalibur && (
             <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
