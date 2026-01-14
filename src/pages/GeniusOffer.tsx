@@ -4,8 +4,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BoldText from "@/components/BoldText";
+import BackButton from "@/components/BackButton";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowLeft, ExternalLink } from "lucide-react";
+import { Check, ExternalLink } from "lucide-react";
 
 const GeniusOffer = () => {
   useEffect(() => {
@@ -43,10 +44,11 @@ const GeniusOffer = () => {
       {/* Back Button */}
       <div className="pt-24 px-4">
         <div className="container mx-auto max-w-3xl">
-          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
+          <BackButton
+            to="/"
+            label={<BoldText>BACK</BoldText>}
+            className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+          />
         </div>
       </div>
 

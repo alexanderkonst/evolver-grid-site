@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Upload, Check, Loader2, ArrowRight } from "lucide-react";
+import { ExternalLink, Upload, Check, Loader2, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import BoldText from "@/components/BoldText";
 import PersonalityTestUploadModal from "@/components/PersonalityTestUploadModal";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import BackButton from "@/components/BackButton";
 
 type TestType = "enneagram" | "16personalities" | "human_design";
 
@@ -112,10 +113,7 @@ const ResourcesPersonalityTests = () => {
         <div className="max-w-4xl mx-auto">
           {/* Back Button */}
           <div className="mb-6">
-            <Link to="/game" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>BACK TO GAME</BoldText>
-            </Link>
+            <BackButton to="/game" />
           </div>
 
           <Card className="p-8 mb-6">

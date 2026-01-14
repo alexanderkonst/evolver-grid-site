@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Loader2, MapPin, Target } from "lucide-react";
+import { Loader2, MapPin, Target } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import BackButton from "@/components/BackButton";
 
 interface PublicProfileData {
   user_id?: string | null;
@@ -163,10 +164,7 @@ const PublicProfile = () => {
         <div className="max-w-md text-center space-y-4">
           <h1 className="text-2xl font-semibold text-slate-900">Profile Private</h1>
           <p className="text-sm text-slate-500">This profile is not available right now.</p>
-          <Button variant="outline" onClick={() => navigate(-1)}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </Button>
+          <BackButton />
         </div>
       </div>
     );
@@ -181,10 +179,7 @@ const PublicProfile = () => {
   return (
     <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-slate-900">
       <div className="px-4 py-6 max-w-4xl mx-auto">
-        <Button variant="ghost" onClick={() => navigate(-1)}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
-        </Button>
+        <BackButton />
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <div className="rounded-3xl bg-white/80 backdrop-blur p-6 sm:p-10 shadow-lg border border-white/60">

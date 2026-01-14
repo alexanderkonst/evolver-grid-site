@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import EmptyState from "@/components/ui/EmptyState";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import BackButton from "@/components/BackButton";
 
 interface ConnectionRow {
   id: string;
@@ -185,10 +186,7 @@ const Connections = () => {
   return (
     <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-        <Link to="/game/matches" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6">
-          <ArrowLeft className="w-4 h-4" />
-          Back to Matches
-        </Link>
+        <BackButton to="/game/matches" className="mb-6" />
 
         <div className="flex items-center gap-3 mb-6">
           <UserPlus className="w-6 h-6 text-slate-700" />

@@ -11,6 +11,8 @@ import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 
 interface GameShellV2Props {
     children: ReactNode;
+    /** Force hide navigation panels (for onboarding flows) */
+    hideNavigation?: boolean;
 }
 
 /**
@@ -19,7 +21,7 @@ interface GameShellV2Props {
  * Panel 2: SectionsPanel (sections list)  
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children }: GameShellV2Props) => {
+export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: GameShellV2Props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -184,15 +186,22 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    // Show sidebar by default, hide only during early onboarding
+    // Show sidebar by default, hide only during early onboarding or when explicitly requested
     // Early onboarding stages: "new", "zog_started" - user hasn't completed basic setup
     const earlyOnboardingStages = ["new", "zog_started"];
-    const hideNavigation = profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage);
+    const hideNavigation = forceHideNavigation || (profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage));
 
     if (hideNavigation) {
         return (
-            <div className="min-h-dvh bg-white">
-                {children}
+            <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
+                {/* Wabi-sabi Bokeh Overlay */}
+                <div className="fixed inset-0 pointer-events-none z-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(200,183,216,0.08)_0%,transparent_50%)]" />
+                </div>
+                <div className="relative z-10">
+                    {children}
+                </div>
             </div>
         );
     }
@@ -229,7 +238,12 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
     };
 
     return (
-        <div className="min-h-dvh bg-[#f0f8ff]">
+        <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
+            {/* Wabi-sabi Bokeh Overlay */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(200,183,216,0.08)_0%,transparent_50%)]" />
+            </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
                 {/* Panel 1: Spaces Rail */}
@@ -267,9 +281,9 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
                 )}
 
                 {/* Panel 3: Content */}
-                <main className="flex-1 bg-[#f0f8ff] min-h-dvh overflow-auto">
+                <main className="flex-1 bg-transparent min-h-dvh overflow-auto relative z-10">
                     {profile && (
-                        <div className="sticky top-0 z-10 flex justify-end bg-[#f0f8ff]/80 px-4 pt-4 backdrop-blur">
+                        <div className="sticky top-0 z-10 flex justify-end bg-gradient-to-b from-[#e7e9e5]/95 to-transparent px-4 pt-4 pb-2">
                             <PlayerStatsBadge
                                 level={profile.level}
                                 xpTotal={profile.xp_total}
@@ -344,7 +358,7 @@ export const GameShellV2 = ({ children }: GameShellV2Props) => {
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-[#f0f8ff] overflow-auto"
+                        className="flex-1 bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5] overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         {children}

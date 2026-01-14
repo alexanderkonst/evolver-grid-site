@@ -136,7 +136,7 @@ const App = () => (
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/auth/reset-password" element={<ResetPassword />} />
                 <Route path="/spark" element={<GeniusSpark />} />
-                <Route path="/start" element={<OnboardingStart />} />
+                <Route path="/start" element={<Navigate to="/game" replace />} />
                 <Route path="/profile/:userId" element={<PublicProfile />} />
                 <Route path="/u/:username" element={<PublicProfile />} />
                 <Route path="/profile" element={<Navigate to="/game/profile" replace />} />

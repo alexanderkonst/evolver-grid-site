@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { CalendarDays, ArrowLeft, Loader2 } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
+import { CalendarDays, Loader2 } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
 import EmptyState from "@/components/ui/EmptyState";
 import { useEvents } from "@/hooks/useEvents";
+import BackButton from "@/components/BackButton";
 
 const CommunityEvents = () => {
   const { communityId } = useParams<{ communityId: string }>();
@@ -19,13 +20,7 @@ const CommunityEvents = () => {
   return (
     <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-        <Link
-          to="/game/events"
-          className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Events
-        </Link>
+        <BackButton to="/game/events" className="mb-6" />
 
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">

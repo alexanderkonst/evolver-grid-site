@@ -10,25 +10,25 @@ const corsHeaders = {
 // ---------------------------------------------------------------------------
 
 const EXCALIBUR_PHILOSOPHY = `
-EXCALIBUR OS — Core Principle:
-One sword, not many. The power comes from absurd simplicity, singular focus, and undeniable sharpness.
+GENIUS BUSINESS OS — Core Principle:
+Transform your Zone of Genius into a clear, actionable business that serves your ideal clients.
 
 GUIDING TENETS:
-1. Simplicity is Sacred — If it can't be said in one breath, it's not Excalibur.
-2. Essence Over Form — The sword cuts at the level of truth, not decoration.
-3. Survival Unlock First — It must pierce survival fog immediately.
-4. Immediate Usability — User knows exactly: what to do, when, with whom.
+1. Simplicity is Sacred — If it can't be said in one breath, refine it.
+2. Essence Over Form — The offering cuts at the level of truth, not decoration.
+3. Transformation Focus — Clear Point A to Point B journey for clients.
+4. Immediate Usability — User knows exactly: what to offer, to whom, how.
 5. Absurd Focus — One offer, one audience, one transformation.
 6. Delight Standard — Must feel inevitable, obvious, elegant.
 7. Plain Language Rule — Every poetic term must have a plain-language twin.
 8. 13-Year-Old Test — If a smart 13-year-old wouldn't understand it, add a simpler version.
 9. Practical Anchor — Every description must connect to what the person actually DOES.
 
-TEST OF SHARPNESS:
-1. Is it one sword or a bundle of sticks?
-2. Does it cut survival fog immediately?
-3. Would someone pay for it today?
-4. Does the user walk away saying: "This is mine. Let's go."?
+TEST OF CLARITY:
+1. Is the 3-word business name memorable and clear?
+2. Does the tagline pass the Product Hunt test (7 words max, "Uber for X" clarity)?
+3. Is the transformational promise crystal clear (Point A → Point B)?
+4. Would someone understand your offer in 5 seconds?
 `;
 
 const LAYERS_OF_MONETIZATION = `
@@ -44,41 +44,40 @@ Seven layers that convert essence into offer:
 `;
 
 const EXCALIBUR_TEMPLATE = `
-The Excalibur contains 7 sections:
+The Genius Business contains these sections:
 
-1. Essence Anchor (from AppleSeed)
-   - Core Vibration
+1. Business Identity (NEW - synthesized from AppleSeed)
+   - Business Name (exactly 3 words - memorable, clear)
+   - Tagline (7 words max - Product Hunt style, "Uber for X" clarity)
+
+2. Essence Anchor (from AppleSeed)
+   - Genius Apple Seed (the core vibration/essence)
    - Prime Driver (3-word formula)
    - Compound Archetype
 
-2. Excalibur (The Sword)
-   - Excalibur Offer (1 sentence — absurdly clear)
+3. Your Offer (The Sword)
+   - Offer (1 sentence — absurdly clear, merges what you do + for whom + outcome)
    - Form: Session / Sprint / Container / Tool
-   - Promise (what transformation)
    - Deliverable (what they walk away with)
 
-3. Value (Survival Unlock)
+4. Ideal Client (Who This Is For)
    - Who benefits most? (specific profile)
-   - What survival-block does this cut?
+   - What problem/block does this solve?
    - Immediate Aha (their internal realization)
 
-4. Exchange (Energy Flow)
-   - Pricing (specific numbers)
-   - Optional Pathways (rev-share, equity, gift)
+5. Transformational Promise
+   - From State (Point A - where they start)
+   - To State (Point B - where they end up)
+   - The Journey (what happens in between)
 
-5. Channel (Connection Flow)
+6. Channels (How to Reach Them)
    - Primary Channel (where clients come from)
    - Secondary Channel
    - Message / Hook (1 sentence)
 
-6. Convergence Point
-   - How this offer fits the bigger arc
-   - Next portal (venture / moonshot)
-
-7. Immediate Next Step
-   - Action (specific)
-   - When (timeframe)
-   - With Whom (specific people or profiles)
+7. The Bigger Arc (Vision)
+   - How this offer fits your bigger purpose
+   - The moonshot this bridges toward
 `;
 
 const EXCALIBUR_EXAMPLES = `
@@ -148,42 +147,41 @@ The final output should:
 const EXCALIBUR_OUTPUT_FORMAT = `
 Return a JSON object with this exact structure:
 {
+  "businessIdentity": {
+    "name": "string - exactly 3 words, memorable business name",
+    "tagline": "string - 7 words max, Product Hunt style (e.g., 'Executive coaching for burnt-out founders')"
+  },
   "essenceAnchor": {
-    "coreVibration": "string - from AppleSeed",
-    "coreVibration_plain": "string - simple explanation",
+    "geniusAppleSeed": "string - the core vibration/essence",
+    "geniusAppleSeed_plain": "string - simple explanation",
     "primeDriver": "string - 3-word formula",
     "primeDriver_plain": "string - what I do",
     "archetype": "string - compound archetype",
     "archetype_plain": "string - simple explanation"
   },
-  "sword": {
-    "offer": "string - ONE sentence, absurdly clear",
+  "offer": {
+    "statement": "string - ONE sentence combining: what you do + for whom + outcome",
     "form": "string - Session / Sprint / Container / Tool",
-    "promise": "string - what transformation",
     "deliverable": "string - what they walk away with"
   },
-  "value": {
-    "whoBenefitsMost": "string - specific profile",
-    "survivalBlock": "string - what this cuts",
-    "immediateAha": "string - their internal realization"
+  "idealClient": {
+    "profile": "string - specific description of who benefits most",
+    "problem": "string - what block/struggle this solves",
+    "aha": "string - their internal realization moment"
   },
-  "exchange": {
-    "pricing": "string - specific numbers",
-    "optionalPathways": "string - rev-share, equity, gift options"
+  "transformationalPromise": {
+    "fromState": "string - Point A, where they start",
+    "toState": "string - Point B, where they end up",
+    "journey": "string - what happens in between"
   },
-  "channel": {
-    "primary": "string - where clients come from",
+  "channels": {
+    "primary": "string - main channel where clients come from",
     "secondary": "string - backup channel",
-    "messageHook": "string - 1 sentence hook"
+    "hook": "string - 1 sentence message/hook"
   },
-  "convergence": {
-    "biggerArc": "string - how this fits",
-    "nextPortal": "string - venture / moonshot"
-  },
-  "immediateNextStep": {
-    "action": "string - specific action",
-    "when": "string - timeframe",
-    "withWhom": "string - specific people or profiles"
+  "biggerArc": {
+    "vision": "string - how this fits the bigger purpose",
+    "moonshot": "string - the venture/moonshot this bridges toward"
   }
 }
 `;
@@ -285,7 +283,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: "You are an Excalibur Generator that outputs ONLY valid JSON. No markdown, no code blocks. IMPORTANT: For every poetic term, also provide a plain-language explanation that a 13-year-old could understand."
+            content: "You are a Genius Business Generator that outputs ONLY valid JSON. No markdown, no code blocks. You MUST include: 1) A memorable 3-word business name, 2) A Product Hunt style tagline (7 words max), 3) Clear Point A to Point B transformational promise. For every poetic term, also provide a plain-language explanation."
           },
           { role: "user", content: finalPrompt }
         ],

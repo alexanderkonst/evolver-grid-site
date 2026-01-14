@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, GripVertical, Sparkles } from "lucide-react";
+import { ArrowRight, GripVertical, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -150,10 +151,11 @@ const QualityOfLifePriorities = () => {
         <Navigation />
         <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
           <div className="container mx-auto max-w-4xl">
-            <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>BACK</BoldText>
-            </Link>
+            <BackButton
+              to="/"
+              label={<BoldText>BACK</BoldText>}
+              className="text-white/60 hover:text-white transition-colors font-semibold"
+            />
           </div>
         </div>
         <section
@@ -189,13 +191,10 @@ const QualityOfLifePriorities = () => {
 
       <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "hsl(220, 30%, 12%)" }}>
         <div className="container mx-auto max-w-4xl">
-          <button
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center text-white/60 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </button>
+          <BackButton
+            label={<BoldText>BACK</BoldText>}
+            className="text-white/60 hover:text-white transition-colors font-semibold"
+          />
         </div>
       </div>
 

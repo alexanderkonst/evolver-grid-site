@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, CalendarDays, Clock, Globe, Lock, MapPin, UserCheck, Users, Loader2, Mail } from "lucide-react";
+import { CalendarDays, Clock, Globe, Lock, MapPin, UserCheck, Users, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
+import BackButton from "@/components/BackButton";
 
 const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
   const dateTime = new Date(`${dateStr}T${timeStr}`);
@@ -174,10 +175,7 @@ const EventDetail = () => {
           <CalendarDays className="w-12 h-12 text-slate-300 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-slate-900 mb-2">Event Not Found</h2>
           <p className="text-slate-600 mb-4">{error || "This event doesn't exist or has been removed."}</p>
-          <Button variant="outline" onClick={() => navigate("/game/events")}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Events
-          </Button>
+          <BackButton to="/game/events" />
         </div>
       </div>
     );
@@ -226,15 +224,10 @@ const EventDetail = () => {
         )}
 
         {/* Back Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate("/game/events")}
+        <BackButton
+          to="/game/events"
           className="absolute top-4 left-4 bg-white/80 hover:bg-white"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
-        </Button>
+        />
       </div>
 
       {/* Content */}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams, useParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowLeft } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import {
   LIBRARY_CATEGORIES,
   LIBRARY_ITEMS,
@@ -356,10 +356,11 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
         <div className="container mx-auto max-w-6xl">
           {/* Back Button */}
           <div className="mb-6">
-            <Link to={fromGame ? "/game" : "/"} className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>{fromGame ? "BACK TO GAME" : "BACK"}</BoldText>
-            </Link>
+            <BackButton
+              to={fromGame ? "/game" : "/"}
+              label={<BoldText>{fromGame ? "BACK TO GAME" : "BACK"}</BoldText>}
+              className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+            />
           </div>
 
           <div className="flex justify-center mb-6">
