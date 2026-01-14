@@ -318,28 +318,28 @@ const LandingPage = () => {
 
                     {slide.problem && (
                         <div
-                            className={`text-base md:text-lg font-light tracking-wide mb-8 animate-fade-in-up ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}
+                            className={`text-base md:text-lg tracking-wide mb-8 animate-fade-in-up ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}
                             style={{ animationDelay: "0.15s" }}
                         >
-                            {slide.problem}
+                            <BionicText>{slide.problem}</BionicText>
                         </div>
                     )}
 
                     <h1
-                        className={`font-bold leading-[1.1] mb-10 whitespace-pre-line animate-fade-in-up ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
+                        className={`leading-[1.1] mb-10 whitespace-pre-line animate-fade-in-up uppercase tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
                         style={{
                             animationDelay: "0.2s",
                             textShadow: isDarkSlide ? "0 0 80px rgba(255,255,255,0.4), 0 0 120px rgba(132,96,234,0.3)" : "0 0 60px rgba(41,84,159,0.15)"
                         }}
                     >
-                        {slide.headline}
+                        <BionicText>{slide.headline}</BionicText>
                     </h1>
 
                     <p
-                        className={`text-lg md:text-xl font-light mb-14 animate-fade-in-up ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}
+                        className={`text-lg md:text-xl mb-14 animate-fade-in-up ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}
                         style={{ animationDelay: "0.25s" }}
                     >
-                        {slide.tagline}
+                        <BionicText>{slide.tagline}</BionicText>
                     </p>
 
                     {slide.things && (
@@ -353,11 +353,11 @@ const LandingPage = () => {
                                     <div className={`text-3xl md:text-4xl mb-3 animate-breathe ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"}`}>
                                         {thing.icon}
                                     </div>
-                                    <div className={`text-sm md:text-base font-semibold mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"}`}>
-                                        {thing.label}
+                                    <div className={`text-sm md:text-base mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"}`}>
+                                        <BionicText>{thing.label}</BionicText>
                                     </div>
                                     <div className={`text-xs md:text-sm ${isDarkSlide ? "text-white/50" : "text-[#2c3150]/50"}`}>
-                                        {thing.desc}
+                                        <BionicText>{thing.desc}</BionicText>
                                     </div>
                                 </div>
                             ))}
@@ -366,10 +366,10 @@ const LandingPage = () => {
 
                     {slide.cta && (
                         <p
-                            className={`text-base md:text-lg font-medium tracking-wide animate-fade-in-up ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}
+                            className={`text-base md:text-lg tracking-wide animate-fade-in-up ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}
                             style={{ animationDelay: "0.5s" }}
                         >
-                            {slide.cta}
+                            <BionicText>{slide.cta}</BionicText>
                         </p>
                     )}
 
