@@ -97,6 +97,10 @@ const Matchmaking = () => {
   const [sameLocationOnly, setSameLocationOnly] = useState(false);
   const [sameLanguageOnly, setSameLanguageOnly] = useState(false);
 
+  const Skeleton = ({ className }: { className?: string }) => (
+    <div className={`animate-pulse bg-slate-200 rounded ${className || ""}`} />
+  );
+
   useEffect(() => {
     const loadMatches = async () => {
       setLoading(true);
@@ -380,8 +384,10 @@ const Matchmaking = () => {
         </div>
 
         {loading && (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+          <div className="grid gap-4 md:grid-cols-2">
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <Skeleton key={idx} className="h-32 w-full" />
+            ))}
           </div>
         )}
 
