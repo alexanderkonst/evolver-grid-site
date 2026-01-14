@@ -1,9 +1,8 @@
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
+import BackButton from "@/components/BackButton";
 
 const ResourcesZogIntroVideo = () => {
   return (
@@ -14,10 +13,11 @@ const ResourcesZogIntroVideo = () => {
         <div className="max-w-4xl mx-auto">
           {/* Back Button */}
           <div className="mb-6">
-            <Link to="/game" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              <BoldText>BACK TO GAME</BoldText>
-            </Link>
+            <BackButton
+              to="/game"
+              label={<BoldText>BACK TO GAME</BoldText>}
+              className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+            />
           </div>
 
           <Card className="p-8">

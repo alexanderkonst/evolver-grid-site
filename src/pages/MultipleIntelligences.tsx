@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, GripVertical, ArrowUp, ArrowDown, Check, Loader2 } from "lucide-react";
+import { GripVertical, ArrowUp, ArrowDown, Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
+import BackButton from "@/components/BackButton";
 
 interface Intelligence {
   id: string;
@@ -194,10 +195,11 @@ const MultipleIntelligences = () => {
                 <BoldText>CONTINUE TO GENIUS OFFER CREATION</BoldText>
               </Button>
             ) : (
-              <Button onClick={() => navigate("/game")} className="mt-4">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Game
-              </Button>
+              <BackButton
+                to="/game"
+                label="Back to Game"
+                className="mt-4"
+              />
             )}
           </div>
         </div>
@@ -214,10 +216,11 @@ const MultipleIntelligences = () => {
       {/* Back Button */}
       <div className="pt-24 px-4">
         <div className="container mx-auto max-w-2xl">
-          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
-          </Link>
+          <BackButton
+            to="/"
+            label={<BoldText>BACK</BoldText>}
+            className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+          />
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
+import BackButton from "@/components/BackButton";
 import { User } from "@supabase/supabase-js";
 import { GENIUS_OFFER_PROMPT_FULL, GENIUS_OFFER_PROMPT_SHORT } from "@/prompts";
 
@@ -342,10 +343,11 @@ const GeniusOfferIntake = () => {
               >
                 <BoldText>MESSAGE ME ON TELEGRAM</BoldText>
               </Button>
-              <Button variant="outline" onClick={() => navigate("/game")}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Profile
-              </Button>
+              <BackButton
+                to="/game"
+                label="Back to Profile"
+                variant="outline"
+              />
             </div>
           </div>
         </div>

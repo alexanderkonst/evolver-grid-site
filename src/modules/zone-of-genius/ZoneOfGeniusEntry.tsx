@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, ArrowLeft, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
+import { ArrowRight, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import GameShellV2 from "@/components/game/GameShellV2";

@@ -1,14 +1,14 @@
 import React from "react";
-import { Outlet, useLocation, Link } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
 import ProgressIndicator from "@/components/ProgressIndicator";
 import OnboardingProgress from "@/components/OnboardingProgress";
+import BackButton from "@/components/BackButton";
 
 interface ZoneOfGeniusAssessmentLayoutProps {
   renderMode?: "standalone" | "embedded";
@@ -89,10 +89,11 @@ const ZoneOfGeniusAssessmentLayout = ({
           <div className="container mx-auto max-w-6xl">
             {/* Back/Exit Link */}
             <div className="mb-6">
-              <Link to="/zone-of-genius" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                <BoldText>EXIT TO OVERVIEW</BoldText>
-              </Link>
+              <BackButton
+                to="/zone-of-genius"
+                label={<BoldText>EXIT TO OVERVIEW</BoldText>}
+                className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+              />
             </div>
 
             {stepIndicator}

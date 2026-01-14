@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import {
-  ArrowLeft,
   Sparkles,
   Loader2,
   CheckCircle2,
