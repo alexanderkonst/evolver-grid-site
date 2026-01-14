@@ -192,11 +192,14 @@ export interface AppleseedData {
     vibrationalKey: {
         name: string;
         tagline: string;
+        tagline_simple?: string;
     };
     threeLenses: {
         actions: string[];
         primeDriver: string;
+        primeDriver_meaning?: string;
         archetype: string;
+        archetype_meaning?: string;
     };
     appreciatedFor: Array<{
         effect: string;
