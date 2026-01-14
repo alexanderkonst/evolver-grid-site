@@ -7,7 +7,7 @@ import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
-import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
 const AppleseedView = () => {
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ const AppleseedView = () => {
       const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
       setAppleseed(savedAppleseed);
       setExcalibur(savedExcalibur);
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        setProfileUrl(`${window.location.origin}/profile/${user.id}`);
+      const profileId = await getOrCreateGameProfileId().catch(() => null);
+      if (profileId) {
+        setProfileUrl(`${window.location.origin}/profile/${profileId}`);
       }
       setLoading(false);
     };
