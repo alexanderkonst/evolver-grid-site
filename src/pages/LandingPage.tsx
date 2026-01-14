@@ -265,18 +265,32 @@ const LandingPage = () => {
                             ))}
                         </div>
                     )}
+                    {currentSlide === 0 && (
+                        <button
+                            onClick={() => navigate("/spark")}
+                            className="mb-6 text-sm text-[#29549f]/80 hover:text-[#29549f] transition-colors underline underline-offset-4"
+                        >
+                            Try in 60 seconds →
+                        </button>
+                    )}
 
                     {slide.cta && (
-                        <p className={`text-base md:text-lg font-medium tracking-wide animate-fade-in ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
-                            {slide.cta}
-                        </p>
+                        <div className="mt-8 space-y-3 animate-fade-in">
+                            <p className={`text-base md:text-lg font-medium tracking-wide ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
+                                {slide.cta}
+                            </p>
+                            <button onClick={() => navigate("/start")}
+                                className={`inline-block px-8 py-3 text-sm font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-95 ${isDarkSlide ? "bg-white/20 text-white hover:bg-white/30 hover:shadow-[0_15px_40px_rgba(255,255,255,0.2)]" : "bg-[#29549f] text-white hover:bg-[#1e4374] hover:shadow-[0_15px_40px_rgba(41,84,159,0.3)]"}`}>
+                                Get started
+                            </button>
+                        </div>
                     )}
 
                     {slide.isCTA && (
                         <div className="mt-6 animate-fade-in">
                             <button onClick={() => navigate("/start")}
                                 className="inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                                Enter the Portal
+                                Get started
                             </button>
                             <br />
                             <button onClick={() => navigate("/contact")} className="inline-block mt-5 text-sm text-[#2c3150]/60 hover:text-[#29549f] transition-colors">
