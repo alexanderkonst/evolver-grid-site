@@ -13,6 +13,7 @@ const ProfileOverviewContent = () => {
         xp_total: number;
         current_streak_days: number;
     } | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         let isMounted = true;
@@ -32,6 +33,8 @@ const ProfileOverviewContent = () => {
                 });
             } catch {
                 // Ignore profile stats failures.
+            } finally {
+                if (isMounted) setIsLoading(false);
             }
         };
         loadStats();
@@ -39,6 +42,10 @@ const ProfileOverviewContent = () => {
             isMounted = false;
         };
     }, []);
+
+    const Skeleton = ({ className }: { className?: string }) => (
+        <div className={`animate-pulse rounded bg-slate-200 ${className || ""}`} />
+    );
 
     return (
         <div className="p-6 lg:p-8 max-w-4xl mx-auto">
@@ -48,19 +55,34 @@ const ProfileOverviewContent = () => {
                     <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
                 </div>
                 <p className="text-slate-600">Know yourself. Build your character.</p>
-                {stats && (
+                {isLoading ? (
                     <div className="mt-4">
-                        <PlayerStatsBadge
-                            level={stats.level}
-                            xpTotal={stats.xp_total}
-                            streakDays={stats.current_streak_days}
-                            size="sm"
-                        />
+                        <Skeleton className="h-6 w-40" />
                     </div>
+                ) : (
+                    stats && (
+                        <div className="mt-4">
+                            <PlayerStatsBadge
+                                level={stats.level}
+                                xpTotal={stats.xp_total}
+                                streakDays={stats.current_streak_days}
+                                size="sm"
+                            />
+                        </div>
+                    )
                 )}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
+                {isLoading && (
+                    <>
+                        <Skeleton className="h-32 w-full" />
+                        <Skeleton className="h-32 w-full" />
+                        <Skeleton className="h-32 w-full" />
+                        <Skeleton className="h-32 w-full" />
+                    </>
+                )}
+                {!isLoading && (
                 <div className="rounded-xl border border-slate-200 bg-white p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -79,7 +101,9 @@ const ProfileOverviewContent = () => {
                         </Button>
                     </div>
                 </div>
+                )}
 
+                {!isLoading && (
                 <div className="rounded-xl border border-slate-200 bg-white p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -98,7 +122,9 @@ const ProfileOverviewContent = () => {
                         </Button>
                     </div>
                 </div>
+                )}
 
+                {!isLoading && (
                 <div className="rounded-xl border border-slate-200 bg-white p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -117,7 +143,9 @@ const ProfileOverviewContent = () => {
                         </Button>
                     </div>
                 </div>
+                )}
 
+                {!isLoading && (
                 <div className="rounded-xl border border-slate-200 bg-white p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -136,8 +164,10 @@ const ProfileOverviewContent = () => {
                         </Button>
                     </div>
                 </div>
+                )}
 
                 {/* Settings with Reset */}
+                {!isLoading && (
                 <div className="rounded-xl border border-red-200 bg-red-50 p-5">
                     <div className="flex items-start justify-between gap-3">
                         <div>
@@ -156,6 +186,7 @@ const ProfileOverviewContent = () => {
                         </Button>
                     </div>
                 </div>
+                )}
             </div>
         </div>
     );
