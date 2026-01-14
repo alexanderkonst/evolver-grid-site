@@ -834,7 +834,111 @@ Yesterday's content drafts pending approval:
 |------|-------------|
 | **Genius Venture Cooperative** | `docs/genius_venture_cooperative.md` — complete venture studio design |
 
+
 ---
 
-*Session in progress...*
+## Day 10–12 — Jan 13-14, 2026 (Bridging Days)
+
+Content work continued. 61/61 micro-modules completed. Training transcripts analyzed and aligned.
+
+---
+
+## Day 13 — Monday, Jan 13, 2026
+
+**Location**: Network School, Forest City, Malaysia  
+**Time**: Full day session
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Landing Page v1** | 9-slide presentation covering all audiences (individuals, communities, Network States, venture studios, etc.) |
+| **Wabi-sabi + Apple Aesthetic** | Pastel gradients, bokeh overlays, grain texture, floating particles |
+| **Slide Navigation** | Keyboard (arrows), touch swipe, dots, menu drawer |
+| **Premium Effects** | Auto-advance on hero, blur transitions, breathing icon animations |
+| **Bionic Font** | First 50% of each word bolded (later removed) |
+| **ALL CAPS Headlines** | User preference for headlines |
+| **Playfair Display Font** | Initial font choice (later replaced) |
+
+### Key Decisions
+
+- Landing page targets 7 distinct audiences with tailored messaging
+- CTA leads to `/start` (onboarding)
+- Footer removed from hero slide to fix overlap
+- Scroll-wheel navigation removed (Mac issues)
+
+### Codex Tasks Created (7)
+
+- `PENDING_fix_broken_links.md`
+- `PENDING_fix_mobile_experience.md`
+- `PENDING_simple_public_profile.md`
+- `PENDING_guest_auth_fallback.md`
+- `PENDING_excalibur_plain_language.md`
+- `PENDING_appleseed_plain_language.md`
+- `PENDING_zog_display_plain_language.md`
+
+---
+
+*Day 13 complete. Landing page shipped.*
+
+---
+
+## Day 14 — Tuesday, Jan 14, 2026
+
+**Location**: Network School, Forest City, Malaysia  
+**Time**: Morning–afternoon session
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Font Change** | Replaced Playfair Display with **Fraunces (headlines) + Inter (body)** |
+| **Removed BionicText** | User didn't like the bionic reading effect |
+| **PowerfulWelcome.tsx** | Epic first-screen component after login with gradient, archetype display, progress ring, stats |
+| **RevelatoryHero.tsx** | Epic ZoG reveal component (amber for Appleseed, violet for Excalibur) with glow effects, particles |
+| **Matchmaking Header** | Added epic violet gradient header to Matchmaking page |
+| **Session Handoff Doc** | `docs/session_handoff_2026_01_14.md` for conversation continuity |
+
+### Components Created
+
+| Component | Purpose | Location |
+|-----------|---------|----------|
+| `PowerfulWelcome` | First screen after login — feel powerful | `src/components/game/PowerfulWelcome.tsx` |
+| `RevelatoryHero` | ZoG results — feel revelatory | `src/components/game/RevelatoryHero.tsx` |
+
+### Files Modified
+
+- `index.html` — Fraunces + Inter font imports
+- `LandingPage.tsx` — Font update, remove BionicText
+- `GameHome.tsx` — Integrated PowerfulWelcome
+- `AppleseedDisplay.tsx` — Integrated RevelatoryHero
+- `ExcaliburDisplay.tsx` — Integrated RevelatoryHero
+- `Matchmaking.tsx` — Epic gradient header
+
+### Phase 1 Claude Tasks Completed
+
+- [x] First screen after login — PowerfulWelcome
+- [x] ZoG results revelatory — RevelatoryHero
+- [x] Matchmaking end-to-end — Epic header + existing matching logic
+- [ ] First 5-min training video (content task, not code)
+
+### Design Decisions
+
+1. **Fraunces** for headlines (organic, wabi-sabi feel)
+2. **Inter** for body (clean, readable)
+3. **No BionicText** (user didn't like it)
+4. **ALL CAPS headlines** maintained
+5. **Gradient palette** matching landing page aesthetic
+
+### Codex Tasks Status
+
+All 7 PENDING tasks created Day 13 were deleted by user (likely assigned to Codex separately).
+
+### Builds
+
+All builds passing ✅
+
+---
+
+*Day 14 in progress. 3/4 Phase 1 Claude tasks complete.*
 
