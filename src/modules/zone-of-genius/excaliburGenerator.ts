@@ -210,8 +210,11 @@ Return a JSON object with this exact structure:
 export interface ExcaliburData {
     essenceAnchor: {
         coreVibration: string;
+        coreVibration_plain?: string;
         primeDriver: string;
+        primeDriver_plain?: string;
         archetype: string;
+        archetype_plain?: string;
     };
     sword: {
         offer: string;
