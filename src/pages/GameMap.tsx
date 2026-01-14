@@ -8,6 +8,7 @@ import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
 
 interface ActiveQuest {
@@ -32,7 +33,6 @@ const TIME_OPTIONS = [
 
 const GameMap = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<any>(null);
     const [playerName, setPlayerName] = useState<string>("");
     const [playerLevel, setPlayerLevel] = useState<number>(1);
     const [playerXP, setPlayerXP] = useState<number>(0);
@@ -47,45 +47,40 @@ const GameMap = () => {
     }, []);
 
     const loadPlayerData = async () => {
-        const { data: { user } } = await supabase.auth.getUser();
-        setUser(user);
+        const profileId = await getOrCreateGameProfileId();
+        const { data: profile } = await supabase
+            .from("game_profiles")
+            .select("first_name, xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, last_quest_title")
+            .eq("id", profileId)
+            .maybeSingle();
 
-        if (user) {
-            // Fetch profile data
-            const { data: profile } = await supabase
-                .from("game_profiles")
-                .select("first_name, xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, last_quest_title")
-                .eq("user_id", user.id)
-                .maybeSingle();
+        if (profile) {
+            setPlayerName(profile.first_name || "Player");
+            setPlayerLevel(profile.level || 1);
+            setPlayerXP(profile.xp_total || 0);
 
-            if (profile) {
-                setPlayerName(profile.first_name || user.email?.split("@")[0] || "Player");
-                setPlayerLevel(profile.level || 1);
-                setPlayerXP(profile.xp_total || 0);
+            // Calculate path progress (simplified - based on XP ratios)
+            const totalPathXP = (profile.xp_body || 0) + (profile.xp_mind || 0) +
+                (profile.xp_emotions || 0) + (profile.xp_spirit || 0) +
+                (profile.xp_uniqueness || 0);
 
-                // Calculate path progress (simplified - based on XP ratios)
-                const totalPathXP = (profile.xp_body || 0) + (profile.xp_mind || 0) +
-                    (profile.xp_emotions || 0) + (profile.xp_spirit || 0) +
-                    (profile.xp_uniqueness || 0);
+            if (totalPathXP > 0) {
+                setPathProgress({
+                    "body": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
+                    "mind": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
+                    "emotions": Math.min(100, ((profile.xp_emotions || 0) / 500) * 100),
+                    "spirit": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
+                    "uniqueness": Math.min(100, ((profile.xp_uniqueness || 0) / 500) * 100),
+                });
+            }
 
-                if (totalPathXP > 0) {
-                    setPathProgress({
-                        "body": Math.min(100, ((profile.xp_body || 0) / 500) * 100),
-                        "mind": Math.min(100, ((profile.xp_mind || 0) / 500) * 100),
-                        "emotions": Math.min(100, ((profile.xp_emotions || 0) / 500) * 100),
-                        "spirit": Math.min(100, ((profile.xp_spirit || 0) / 500) * 100),
-                        "uniqueness": Math.min(100, ((profile.xp_uniqueness || 0) / 500) * 100),
-                    });
-                }
-
-                if (profile.last_quest_title) {
-                    setActiveQuest({
-                        title: profile.last_quest_title,
-                        practiceType: "Practice",
-                        durationMinutes: 10,
-                        pathId: "spirit",
-                    });
-                }
+            if (profile.last_quest_title) {
+                setActiveQuest({
+                    title: profile.last_quest_title,
+                    practiceType: "Practice",
+                    durationMinutes: 10,
+                    pathId: "spirit",
+                });
             }
         }
     };

@@ -57,7 +57,7 @@ const PublicProfile = () => {
       if (username) {
         profileQuery = profileQuery.eq("username", username);
       } else if (userId) {
-        profileQuery = profileQuery.eq("user_id", userId);
+        profileQuery = profileQuery.or(`user_id.eq.${userId},id.eq.${userId}`);
       }
 
       const { data: profileData } = await profileQuery.maybeSingle();

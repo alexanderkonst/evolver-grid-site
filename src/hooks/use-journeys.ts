@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { getUpgradesByBranch, getPlayerUpgrades, type Upgrade } from "@/lib/upgradeSystem";
 
 export interface JourneyNode {
@@ -41,21 +42,11 @@ export function usePathJourneys(pathSlug: string, branch: string) {
             const upgrades = await getUpgradesByBranch(pathSlug, branch);
 
             // Get user's profile and completed upgrades
-            const { data: { user } } = await supabase.auth.getUser();
             let completed = new Set<string>();
 
-            if (user) {
-                const { data: profile } = await supabase
-                    .from("game_profiles")
-                    .select("id")
-                    .eq("user_id", user.id)
-                    .maybeSingle();
-
-                if (profile) {
-                    const playerUpgrades = await getPlayerUpgrades(profile.id);
-                    completed = new Set(playerUpgrades.map(pu => pu.code));
-                }
-            }
+            const profileId = await getOrCreateGameProfileId();
+            const playerUpgrades = await getPlayerUpgrades(profileId);
+            completed = new Set(playerUpgrades.map(pu => pu.code));
             setCompletedCodes(completed);
 
             // Convert upgrades to journey nodes with calculated positions
@@ -109,25 +100,10 @@ export function useAllPathsProgress() {
 
     const loadProgress = async () => {
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-                setLoading(false);
-                return;
-            }
-
-            const { data: profile } = await supabase
-                .from("game_profiles")
-                .select("id")
-                .eq("user_id", user.id)
-                .maybeSingle();
-
-            if (!profile) {
-                setLoading(false);
-                return;
-            }
+            const profileId = await getOrCreateGameProfileId();
 
             // Get all path progress based on completed upgrades
-            const playerUpgrades = await getPlayerUpgrades(profile.id);
+            const playerUpgrades = await getPlayerUpgrades(profileId);
             const completedCodes = new Set(playerUpgrades.map(pu => pu.code));
 
             // For now, we're loading uniqueness path - can expand later
