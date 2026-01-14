@@ -942,3 +942,118 @@ All builds passing ✅
 
 *Day 14 in progress. 3/4 Phase 1 Claude tasks complete.*
 
+---
+
+## Day 14 (Evening Session) — Tuesday, Jan 14, 2026
+
+**Location**: Network School, Forest City, Malaysia
+**Time**: ~21:00 – 00:00 local time
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Drip-Feed Onboarding Phase 1** | Hide panels during ZoG flow, auto-save genius with toast, simplified AppleseedDisplay |
+| **Genius Business Restructure** | Complete rewrite of Excalibur → Genius Business with new data structure |
+| **Share Button Dropdown** | Unified share button with dropdown socials (LinkedIn, X, Facebook, Telegram, Instagram, Copy) |
+| **New Share Text Format** | "My genius is to be a [name]" + talents + prime driver + archetype + www link |
+| **Deploy Fixes** | Resolved git staging issues and merged to main |
+
+### Data Structure Changes
+
+| Before | After |
+|--------|-------|
+| `coreVibration` | `geniusAppleSeed` |
+| `promise` | `transformationalPromise` (fromState → toState) |
+| `sword.offer` | `offer.statement` (merged sentence) |
+| `exchange` / `pricing` | **Removed** |
+| `immediateNextStep` | **Removed** |
+| — | `businessIdentity.name` (3-word) |
+| — | `businessIdentity.tagline` (7 words max, PH style) |
+
+### Components Modified
+
+| Component | Changes |
+|-----------|---------|
+| `ShareZoG.tsx` | Dropdown button with share icon, new text format, removed #EvolverGrid |
+| `AppleseedDisplay.tsx` | Simplified: RevelatoryHero + Share + Save button only |
+| `ExcaliburDisplay.tsx` | Complete rewrite: 3-word name + tagline hero, transformational promise A→B |
+| `ZoneOfGeniusEntry.tsx` | hideNavigation prop, auto-save useEffect, removed InviteFriendPrompt |
+| `GameShellV2.tsx` | Added hideNavigation prop, Wabi-sabi gradient background |
+
+### Edge Function Updates
+
+| File | Changes |
+|------|---------|
+| `generate-excalibur/index.ts` | New PHILOSOPHY, TEMPLATE, OUTPUT_FORMAT for Genius Business structure |
+
+### Philosophy Changes
+
+- Removed: "One sword, one offer, one path forward"
+- Added: "Genius Business OS" with clarity tests
+- Added: 3-word business name + Product Hunt tagline generation
+- Added: Transformational Promise with Point A → Point B
+
+### Git Issues Resolved
+
+- Fixed "nothing to commit" issue (changes were not staged)
+- Merged feature branch `task/color-contrast-check` to `main`
+- Deployed 33 files to production
+
+### Builds
+
+All builds passing ✅
+
+---
+
+## Recommended Tasks for Day 15
+
+### High Priority (Core Onboarding Flow)
+
+1. **Signup Modal** — Trigger signup when guest clicks "Save to My Profile"
+2. **Panel Unlock Logic** — Show Panel 1 & 2 after ZoG save, only Profile unlocked
+3. **XP Badge Relocation** — Move Level/XP to Panel 1 next to Guest/Member name
+4. **Excalibur CTA Placement** — Show "Create My Unique Offer" in Profile after save
+
+### Genius Business Modular Pages
+
+5. **Navigation Update** — Add "Genius Business" section in Panel 2 under Profile
+6. **Create 5 Module Pages** — Audience, Promise, Channels, Vision, Overview
+7. **Sub-navigation** — Implement sub-tabs for Genius Business modules
+
+### Wabi-sabi Design Phase 3
+
+8. **Card Components** — Update all cards with Wabi-sabi borders/backgrounds
+9. **Form Components** — Textarea, Select, Checkbox styling
+10. **Loading States** — Bokeh shimmer effect
+
+### Share & Viral Loop
+
+11. **Share for Genius Business** — Same dropdown pattern as ZoG
+12. **Referral Tracking** — Store inviter_id on signup
+
+### Quality of Life Integration
+
+13. **QoL → Panel Unlock** — Unlock more tabs after QoL completion
+14. **QoL Compact Display** — One-screen layout like new AppleseedDisplay
+
+### Database & Backend
+
+15. **apply_genius_unlocked field** — Add to game_profiles for paywall tracking
+16. **Stripe Product** — Create $11 "Apply Your Genius" unlock product
+
+### UX Polish
+
+17. **Toast Notifications** — Consistent styling with Wabi-sabi
+18. **Mobile Responsive** — Test all new components on mobile
+19. **Scroll Position** — Ensure pages open at top, not bottom
+
+### Testing & Verification
+
+20. **E2E Test Flow** — Guest → ZoG → Save → Signup → Profile
+
+---
+
+*Day 14 complete. Genius Business restructure shipped!*
+
+
