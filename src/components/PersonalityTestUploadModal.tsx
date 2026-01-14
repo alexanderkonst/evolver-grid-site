@@ -308,6 +308,7 @@ const PersonalityTestUploadModal = ({
                                     }
                                     alt={`Example ${testType} result`}
                                     loading="lazy"
+                                    decoding="async"
                                     className="w-full h-auto max-h-32 object-cover object-top"
                                 />
                                     <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
@@ -334,6 +335,7 @@ const PersonalityTestUploadModal = ({
                                         src={preview}
                                         alt="Preview"
                                         loading="lazy"
+                                        decoding="async"
                                         className="max-h-48 mx-auto rounded"
                                     />
                                         <p className="text-sm text-muted-foreground">Click or drop to change</p>

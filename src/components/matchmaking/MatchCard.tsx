@@ -37,6 +37,7 @@ const MatchCard = ({
               src={user.avatarUrl}
               alt={`${user.firstName} ${user.lastName}`}
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.currentTarget.src = "/placeholder.svg";
               }}
