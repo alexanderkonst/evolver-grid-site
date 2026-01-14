@@ -11,6 +11,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
+import InviteFriendPrompt from "@/components/sharing/InviteFriendPrompt";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -403,6 +404,11 @@ GENERAL STYLE RULES:
         </div>
       ) : parsedSnapshot ? (
         <>
+          <InviteFriendPrompt
+            profileId={profileId}
+            source="src/modules/zone-of-genius/Step4GenerateSnapshot.tsx"
+            className="mb-8"
+          />
           {/* Main Layout: Two columns */}
           <div className="grid gap-8 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
             {/* LEFT COLUMN */}

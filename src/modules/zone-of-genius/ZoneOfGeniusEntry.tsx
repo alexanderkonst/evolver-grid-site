@@ -14,6 +14,8 @@ import ExcaliburDisplay from "./ExcaliburDisplay";
 import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import InviteFriendPrompt from "@/components/sharing/InviteFriendPrompt";
 
 type Step =
     | "choice"
@@ -36,6 +38,7 @@ const ZoneOfGeniusEntry = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [isSaving, setIsSaving] = useState(false);
+    const [profileId, setProfileId] = useState<string | null>(null);
 
     // Generated data
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
@@ -78,6 +81,18 @@ const ZoneOfGeniusEntry = () => {
             }
         };
         loadExisting();
+    }, []);
+
+    useEffect(() => {
+        let isMounted = true;
+        getOrCreateGameProfileId()
+            .then((id) => {
+                if (isMounted) setProfileId(id);
+            })
+            .catch(() => undefined);
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const handleCopyPrompt = async () => {
@@ -239,6 +254,12 @@ const ZoneOfGeniusEntry = () => {
                 <div className="pb-8">
                     {navBar}
                     <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
+                    <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
+                        <InviteFriendPrompt
+                            profileId={profileId}
+                            source="src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx"
+                        />
+                    </div>
 
                     {/* Excalibur CTA */}
                     <div className="max-w-3xl mx-auto px-4 lg:px-8 mt-8">
@@ -303,6 +324,12 @@ const ZoneOfGeniusEntry = () => {
                 <div className="pb-8">
                     {navBar}
                     <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
+                    <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
+                        <InviteFriendPrompt
+                            profileId={profileId}
+                            source="src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx"
+                        />
+                    </div>
                 </div>
             </GameShellV2>
         );
