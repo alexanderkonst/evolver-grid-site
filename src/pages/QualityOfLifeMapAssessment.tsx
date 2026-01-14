@@ -8,6 +8,7 @@ import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentCon
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { cn } from "@/lib/utils";
 import { buildQolResultsPath } from "@/lib/onboardingRouting";
+import ProgressIndicator from "@/components/ProgressIndicator";
 
 interface QualityOfLifeMapAssessmentProps {
   renderMode?: "standalone" | "embedded";
@@ -62,9 +63,11 @@ const QualityOfLifeMapAssessment = ({
       <div className="container mx-auto max-w-4xl">
         {/* Progress Indicator */}
         <div className="text-center mb-8">
-          <p className="text-sm text-white/60 mb-2">
-            Domain {currentIndex + 1} of {DOMAINS.length}
-          </p>
+          <ProgressIndicator
+            current={currentIndex + 1}
+            total={DOMAINS.length}
+            className="text-white/70"
+          />
           <div className="flex gap-2 justify-center">
             {DOMAINS.map((_, idx) => (
               <div
