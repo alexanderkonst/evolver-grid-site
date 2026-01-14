@@ -66,9 +66,9 @@ const buildSimilarity = (current: AppleseedData, candidate: AppleseedData) => {
   const score = Math.min(
     100,
     (archetypeMatch ? 45 : 0) +
-      (primeDriverMatch ? 25 : 0) +
-      (corePatternMatch ? 15 : 0) +
-      sharedActions.length * 5
+    (primeDriverMatch ? 25 : 0) +
+    (corePatternMatch ? 15 : 0) +
+    sharedActions.length * 5
   );
 
   return {
@@ -254,14 +254,14 @@ const Matchmaking = () => {
 
       const similarMission = currentMission?.mission_id
         ? candidates
-            .filter((candidate) => missionParticipants.has(candidate.id))
-            .sort((a, b) => b.similarityScore - a.similarityScore)
-            .slice(0, 3)
-            .map(({ matchReasons, ...candidate }) => ({
-              ...candidate,
-              similarityScore: Math.max(candidate.similarityScore, 50),
-              matchReason: matchReasons.mission,
-            }))
+          .filter((candidate) => missionParticipants.has(candidate.id))
+          .sort((a, b) => b.similarityScore - a.similarityScore)
+          .slice(0, 3)
+          .map(({ matchReasons, ...candidate }) => ({
+            ...candidate,
+            similarityScore: Math.max(candidate.similarityScore, 50),
+            matchReason: matchReasons.mission,
+          }))
         : [];
 
       setGroups({
@@ -326,12 +326,22 @@ const Matchmaking = () => {
   return (
     <GameShellV2>
       <div className="p-6 lg:p-8 max-w-5xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">Matches</h1>
+        {/* Epic Header */}
+        <div className="relative overflow-hidden rounded-3xl mb-8">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#a78bfa]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
+          <div className="relative px-6 py-10 sm:px-10 sm:py-12 text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 mb-4">
+              <Users className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="font-['Fraunces',serif] text-2xl sm:text-3xl font-semibold text-white mb-2"
+              style={{ textShadow: "0 0 40px rgba(255,255,255,0.3)" }}>
+              Your Genius Matches
+            </h1>
+            <p className="text-white/70 max-w-md mx-auto">
+              People in the network whose Zone of Genius complements yours
+            </p>
           </div>
-          <p className="text-slate-600">Top connections based on your Zone of Genius and mission.</p>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-4 mb-6">
