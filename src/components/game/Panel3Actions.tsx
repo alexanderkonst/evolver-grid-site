@@ -29,11 +29,15 @@ const Panel3Actions = ({
     <>
       <div className="hidden sm:flex items-center gap-2">
         {hasSecondary && (
-          <Button variant="outline" size="sm" onClick={secondaryAction}>
+          <Button
+            variant="outline"
+            className="h-12 rounded-xl px-6 font-semibold"
+            onClick={secondaryAction}
+          >
             {secondaryLabel}
           </Button>
         )}
-        <Button size="sm" onClick={primaryAction}>
+        <Button className="h-12 rounded-xl px-6 font-semibold" onClick={primaryAction}>
           {primaryIcon && <span className="mr-2 inline-flex">{primaryIcon}</span>}
           {primaryLabel}
         </Button>
@@ -46,12 +50,16 @@ const Panel3Actions = ({
         )}
       >
         <div className="flex flex-col gap-2">
-          <Button className="w-full" onClick={primaryAction}>
+          <Button className="w-full h-12 rounded-xl px-6 font-semibold" onClick={primaryAction}>
             {primaryIcon && <span className="mr-2 inline-flex">{primaryIcon}</span>}
             {primaryLabel}
           </Button>
           {hasSecondary && (
-            <Button variant="outline" className="w-full" onClick={secondaryAction}>
+            <Button
+              variant="outline"
+              className="w-full h-12 rounded-xl px-6 font-semibold"
+              onClick={secondaryAction}
+            >
               {secondaryLabel}
             </Button>
           )}
