@@ -298,10 +298,12 @@ const LandingPage = () => {
                     )}
                 </div>
 
-                <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-[0.15em] uppercase ${isDarkSlide ? "text-white/30" : "text-[#2c3150]/30"
-                    }`}>
-                    {slide.footer || "Planetary OS"}
-                </div>
+                {slide.footer && (
+                    <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 text-xs tracking-[0.15em] uppercase ${isDarkSlide ? "text-white/30" : "text-[#2c3150]/30"
+                        }`}>
+                        {slide.footer}
+                    </div>
+                )}
             </div>
 
             {/* Slide Counter */}
@@ -311,14 +313,14 @@ const LandingPage = () => {
             </div>
 
             {/* Dots Navigation */}
-            <div className="fixed bottom-12 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-50">
+            <div className="fixed bottom-10 left-1/2 -translate-x-1/2 hidden md:flex gap-2 z-50">
                 {Array.from({ length: totalSlides }).map((_, i) => (
                     <div
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${i === currentSlide
-                                ? "w-6 bg-[#29549f]"
-                                : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/40" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/40"}`
+                            ? "w-6 bg-[#29549f]"
+                            : `w-2 ${isDarkSlide ? "bg-white/20 hover:bg-white/40" : "bg-[#2c3150]/20 hover:bg-[#2c3150]/40"}`
                             }`}
                     />
                 ))}
@@ -329,8 +331,8 @@ const LandingPage = () => {
                 <button
                     onClick={prevSlide}
                     className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border ${isDarkSlide
-                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     ←
@@ -338,8 +340,8 @@ const LandingPage = () => {
                 <button
                     onClick={nextSlide}
                     className={`w-11 h-11 backdrop-blur-md rounded-xl text-lg transition-all border ${isDarkSlide
-                            ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                            : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                         } ${!hasInteracted ? "animate-pulse" : ""}`}
                 >
                     →
@@ -350,8 +352,8 @@ const LandingPage = () => {
             <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className={`fixed top-8 right-8 w-11 h-11 backdrop-blur-md rounded-xl text-xl z-[200] transition-all border ${isDarkSlide
-                        ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
-                        : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
+                    ? "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white"
+                    : "bg-white/40 border-white/60 text-[#2c3150]/70 hover:bg-white/60 hover:text-[#29549f]"
                     }`}
             >
                 ☰
@@ -367,8 +369,8 @@ const LandingPage = () => {
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`block w-full p-3 mb-2 rounded-xl text-left text-sm cursor-pointer transition-all ${i === currentSlide
-                                ? "bg-[#29549f]/10 text-[#29549f] font-medium"
-                                : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
+                            ? "bg-[#29549f]/10 text-[#29549f] font-medium"
+                            : "text-[#2c3150]/70 hover:bg-[#29549f]/5 hover:text-[#29549f]"
                             }`}
                     >
                         {item}
