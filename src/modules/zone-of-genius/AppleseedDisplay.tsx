@@ -53,16 +53,18 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
 
     return (
         <div className="max-w-3xl mx-auto p-4 lg:p-8 space-y-8">
-            {/* Epic Revelatory Hero */}
+            {/* Epic Revelatory Hero - New unified format */}
             <RevelatoryHero
                 type="appleseed"
                 title={appleseed.vibrationalKey.name}
-                subtitle={appleseed.vibrationalKey.tagline}
-                subtitlePlain={appleseed.vibrationalKey.tagline_simple}
-                tagline="Your Zone of Genius"
-            >
-                {appleseed.bullseyeSentence}
-            </RevelatoryHero>
+                tagline="Your genius is to be a"
+                actionStatement={appleseed.bullseyeSentence}
+                threeLenses={{
+                    actions: appleseed.threeLenses.actions,
+                    primeDriver: appleseed.threeLenses.primeDriver,
+                    archetype: appleseed.threeLenses.archetype,
+                }}
+            />
 
             {/* Share Your Genius - Prominent placement for viral loop */}
             <ShareZoG
@@ -74,35 +76,6 @@ const AppleseedDisplay = ({ appleseed, onSave, profileUrl }: AppleseedDisplayPro
 
             {/* Collapsible Sections */}
             <div className="space-y-3">
-                {/* Three Lenses */}
-                <CollapsibleSection title="Zone of Genius — Three Lenses" defaultOpen>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="text-sm text-slate-500 mb-1">Talents as Actions</p>
-                            <p className="text-slate-900 font-medium">
-                                {appleseed.threeLenses.actions.join(" • ")}
-                            </p>
-                        </div>
-                        <div>
-                            <p className="text-sm text-slate-500 mb-1">Prime Driver</p>
-                            <p className="text-slate-900 font-medium">{appleseed.threeLenses.primeDriver}</p>
-                            {appleseed.threeLenses.primeDriver_meaning && (
-                                <p className="text-xs italic text-slate-500 mt-1">
-                                    {appleseed.threeLenses.primeDriver_meaning}
-                                </p>
-                            )}
-                        </div>
-                        <div>
-                            <p className="text-sm text-slate-500 mb-1">Compound Archetype</p>
-                            <p className="text-slate-900 font-medium">{appleseed.threeLenses.archetype}</p>
-                            {appleseed.threeLenses.archetype_meaning && (
-                                <p className="text-xs italic text-slate-500 mt-1">
-                                    {appleseed.threeLenses.archetype_meaning}
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                </CollapsibleSection>
 
                 {/* Appreciated For */}
                 <CollapsibleSection title="What You're Appreciated & Paid For">

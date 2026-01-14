@@ -52,6 +52,7 @@ import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3
 import Step3OrderTalents from "./modules/zone-of-genius/Step3OrderTalents";
 import Step4GenerateSnapshot from "./modules/zone-of-genius/Step4GenerateSnapshot";
 import ZoneOfGeniusEntry from "./modules/zone-of-genius/ZoneOfGeniusEntry";
+import GeniusSpark from "./modules/zone-of-genius/GeniusSpark";
 import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import NotFound from "./pages/NotFound";
@@ -134,6 +135,7 @@ const App = () => (
                 <Route path="/tools" element={<ToolsRedirect />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/auth/reset-password" element={<ResetPassword />} />
+                <Route path="/spark" element={<GeniusSpark />} />
                 <Route path="/start" element={<OnboardingStart />} />
                 <Route path="/profile/:userId" element={<PublicProfile />} />
                 <Route path="/u/:username" element={<PublicProfile />} />
