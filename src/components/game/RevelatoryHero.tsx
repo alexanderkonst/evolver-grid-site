@@ -1,20 +1,38 @@
 import { ReactNode } from "react";
 import { Sparkles, Sword } from "lucide-react";
 
+interface ThreeLensesData {
+    actions?: string[];
+    primeDriver?: string;
+    archetype?: string;
+}
+
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
     title: string;
-    subtitle?: string;
-    subtitlePlain?: string;
+    actionStatement?: string; // "You architect coherent nested living optimal systems from complexity"
+    threeLenses?: ThreeLensesData;
     tagline?: string;
     children?: ReactNode;
+    // Legacy props for backward compatibility
+    subtitle?: string;
+    subtitlePlain?: string;
 }
 
 /**
  * Epic revelatory hero section for ZoG results
- * Makes the moment of seeing your genius feel special
+ * New format: "Your genius is to be a [Archetype]" + actionable statement + Three Lenses
  */
-const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, children }: RevelatoryHeroProps) => {
+const RevelatoryHero = ({
+    type,
+    title,
+    actionStatement,
+    threeLenses,
+    tagline,
+    children,
+    subtitle,
+    subtitlePlain
+}: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
     const palette = isAppleseed
@@ -25,7 +43,9 @@ const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, childre
             iconColor: "text-amber-200",
             textPrimary: "text-white",
             textSecondary: "text-amber-100/80",
+            textMuted: "text-amber-100/60",
             glowColor: "rgba(251,191,36,0.3)",
+            divider: "bg-amber-200/30",
         }
         : {
             gradient: "from-[#7c3aed] via-[#6d28d9] to-[#5b21b6]",
@@ -34,7 +54,9 @@ const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, childre
             iconColor: "text-violet-200",
             textPrimary: "text-white",
             textSecondary: "text-violet-100/80",
+            textMuted: "text-violet-100/60",
             glowColor: "rgba(139,92,246,0.3)",
+            divider: "bg-violet-200/30",
         };
 
     const IconComponent = palette.icon;
@@ -68,39 +90,76 @@ const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, childre
             {/* Content */}
             <div className="relative px-6 py-12 sm:px-10 sm:py-16 text-center">
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${palette.iconBg} mb-6 animate-pulse`}>
-                    <IconComponent className={`w-10 h-10 ${palette.iconColor}`} />
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${palette.iconBg} mb-6`}>
+                    <IconComponent className={`w-8 h-8 ${palette.iconColor}`} />
                 </div>
 
                 {/* Tagline */}
                 {tagline && (
-                    <p className={`text-sm uppercase tracking-widest ${palette.textSecondary} mb-4`}>
+                    <p className={`text-xs uppercase tracking-[0.2em] ${palette.textMuted} mb-3`}>
                         {tagline}
                     </p>
                 )}
 
-                {/* Main Title */}
+                {/* Main Title - Archetype Name */}
                 <h1
-                    className={`font-['Fraunces',serif] text-3xl sm:text-4xl md:text-5xl font-semibold ${palette.textPrimary} mb-4 leading-tight`}
+                    className={`font-['Fraunces',serif] text-2xl sm:text-3xl md:text-4xl font-semibold ${palette.textPrimary} mb-6 leading-tight`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
                     ✦ {title} ✦
                 </h1>
 
-                {/* Subtitle */}
-                {subtitle && (
+                {/* Action Statement - the core "You [verb]..." statement */}
+                {actionStatement && (
+                    <p className={`text-lg sm:text-xl ${palette.textSecondary} max-w-xl mx-auto mb-8 leading-relaxed`}>
+                        "{actionStatement}"
+                    </p>
+                )}
+
+                {/* Legacy subtitle support */}
+                {!actionStatement && subtitle && (
                     <p className={`text-lg sm:text-xl ${palette.textSecondary} italic max-w-xl mx-auto mb-6`}>
                         "{subtitle}"
                     </p>
                 )}
-                {subtitlePlain && (
-                    <p className={`text-sm sm:text-base ${palette.textSecondary} italic max-w-xl mx-auto`}>
-                        ({subtitlePlain})
-                    </p>
+
+                {/* Three Lenses - Integrated into main card */}
+                {threeLenses && (
+                    <div className="mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 max-w-lg mx-auto text-left">
+                        {/* Top Talents */}
+                        {threeLenses.actions && threeLenses.actions.length > 0 && (
+                            <div className="mb-4">
+                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Top Talents</p>
+                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                                    {threeLenses.actions.join(" • ")}
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Prime Driver */}
+                        {threeLenses.primeDriver && (
+                            <div className="mb-4">
+                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Prime Driver</p>
+                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                                    {threeLenses.primeDriver}
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Archetype */}
+                        {threeLenses.archetype && (
+                            <div>
+                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Archetype</p>
+                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                                    {threeLenses.archetype}
+                                </p>
+                            </div>
+                        )}
+                    </div>
                 )}
 
-                {/* Children (optional bullseye/pitch text) */}
-                {children && (
+                {/* Children (optional extra content) */}
+                {children && !threeLenses && (
                     <div className="mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 max-w-2xl mx-auto">
                         <div className={`text-lg ${palette.textPrimary} leading-relaxed`}>
                             {children}
@@ -120,3 +179,4 @@ const RevelatoryHero = ({ type, title, subtitle, subtitlePlain, tagline, childre
 };
 
 export default RevelatoryHero;
+

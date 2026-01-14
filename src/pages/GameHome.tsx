@@ -791,7 +791,7 @@ const GameHome = () => {
                         metadata: { intent: "start_onboarding" },
                       });
                     }
-                    navigate("/zone-of-genius?fromGame=1");
+                    navigate("/zone-of-genius/entry");
                   }}
                 >
                   <BoldText className="uppercase">Begin: Discover My Zone of Genius</BoldText>

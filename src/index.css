@@ -46,6 +46,40 @@ All colors MUST be HSL.
     --destiny-light: 30 25% 94%;
     --destiny-gold: 45 100% 65%;
     --destiny-gold-dark: 45 100% 50%;
+
+    /* ========================================
+       WABI-SABI DESIGN SYSTEM
+       Apple-style + soft-focus aesthetic
+       ======================================== */
+    
+    /* Core Pastels (Dominant) */
+    --wabi-lavender: #a4a3d0;
+    --wabi-lavender-alt: #aba4cd;
+    --wabi-lilac: #c8b7d8;
+    --wabi-lilac-alt: #c2b9e1;
+    --wabi-blush: #cea4ae;
+    --wabi-blush-alt: #cba8ad;
+    --wabi-orchid: #cdaed2;
+    --wabi-orchid-alt: #d0b8d0;
+    --wabi-aqua: #a7cbd4;
+    --wabi-aqua-alt: #a7ccce;
+    --wabi-sage: #b1c9b6;
+    --wabi-champagne: #cec9b0;
+    --wabi-pearl: #e7e9e5;
+    --wabi-pearl-alt: #dcdde2;
+
+    /* Depth Accents */
+    --depth-royal: #29549f;
+    --depth-cornflower: #6894d0;
+    --depth-navy: #1e4374;
+    --depth-charcoal: #2c3150;
+    --depth-charcoal-alt: #342c48;
+    --depth-violet: #8460ea;
+
+    /* Semantic Colors */
+    --wabi-text-primary: #2c3150;
+    --wabi-text-secondary: rgba(44, 49, 80, 0.7);
+    --wabi-text-muted: rgba(44, 49, 80, 0.5);
   }
 }
 

@@ -124,7 +124,7 @@ const LandingPage = () => {
         },
         {
             audienceTag: null,
-            problem: "The prototype is live.",
+            problem: null,
             headline: "READY TO SEE\nYOUR GENIUS?",
             tagline: "15 minutes. Free. Forever yours.",
             things: null,

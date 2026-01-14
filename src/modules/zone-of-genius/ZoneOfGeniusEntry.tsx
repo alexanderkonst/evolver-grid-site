@@ -44,27 +44,7 @@ const ZoneOfGeniusEntry = () => {
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
-    const navBar = (
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 lg:px-8 pt-4">
-            <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate(returnPath)}
-                className="text-slate-600 hover:text-slate-900 w-full sm:w-auto"
-            >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-            </Button>
-            <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/game/profile")}
-                className="text-slate-600 hover:text-slate-900 w-full sm:w-auto"
-            >
-                Profile
-            </Button>
-        </div>
-    );
+    // Removed navBar for cleaner onboarding flow
 
     // Load saved data on mount
     useEffect(() => {
@@ -241,7 +221,7 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-appleseed") {
         return (
             <GameShellV2>
-                {navBar}
+
                 <AppleseedRitualLoading minDuration={4000} />
             </GameShellV2>
         );
@@ -252,7 +232,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShellV2>
                 <div className="pb-8">
-                    {navBar}
+
                     <AppleseedDisplay appleseed={appleseed} onSave={handleSaveAppleseed} />
                     <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
                         <InviteFriendPrompt
@@ -296,7 +276,7 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-excalibur") {
         return (
             <GameShellV2>
-                {navBar}
+
                 <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
                         <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
@@ -322,7 +302,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShellV2>
                 <div className="pb-8">
-                    {navBar}
+
                     <ExcaliburDisplay excalibur={excalibur} onSave={handleSaveExcalibur} />
                     <div className="mt-6 max-w-3xl mx-auto px-4 lg:px-8">
                         <InviteFriendPrompt
@@ -338,7 +318,7 @@ const ZoneOfGeniusEntry = () => {
     return (
         <GameShellV2>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
-                {navBar}
+
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-100 mb-4">
@@ -362,10 +342,6 @@ const ZoneOfGeniusEntry = () => {
                             <h2 className="text-lg font-semibold text-slate-900 mb-2">
                                 Do you have an AI that knows you?
                             </h2>
-                            <p className="text-sm text-slate-600">
-                                If you've been using ChatGPT, Claude, or another AI and it knows your background and work,
-                                we can skip the assessment and generate your profile directly.
-                            </p>
                         </div>
 
                         <div className="space-y-3">
@@ -376,12 +352,7 @@ const ZoneOfGeniusEntry = () => {
                                 <div className="p-2 rounded-full bg-amber-100 shrink-0">
                                     <Bot className="w-5 h-5 text-amber-600" />
                                 </div>
-                                <div>
-                                    <p className="font-semibold text-slate-900">Yes, my AI knows me</p>
-                                    <p className="text-sm text-slate-500 mt-1">
-                                        I'll give you a prompt to run. Takes ~2 minutes.
-                                    </p>
-                                </div>
+                                <p className="font-semibold text-slate-900">Yes, my AI knows me</p>
                             </button>
 
                             <button
@@ -391,12 +362,7 @@ const ZoneOfGeniusEntry = () => {
                                 <div className="p-2 rounded-full bg-blue-100 shrink-0">
                                     <ClipboardList className="w-5 h-5 text-blue-600" />
                                 </div>
-                                <div>
-                                    <p className="font-semibold text-slate-900">No, I'll do the assessment</p>
-                                    <p className="text-sm text-slate-500 mt-1">
-                                        Select your talents step by step. Takes ~5 minutes.
-                                    </p>
-                                </div>
+                                <p className="font-semibold text-slate-900">No, I'll do the assessment</p>
                             </button>
                         </div>
                     </div>
@@ -405,33 +371,20 @@ const ZoneOfGeniusEntry = () => {
                 {/* Step: AI Prompt */}
                 {step === "ai-prompt" && (
                     <div className="space-y-6">
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setStep("choice")}
-                            className="mb-2"
-                        >
-                            <ArrowLeft className="w-4 h-4 mr-2" />
-                            Back
-                        </Button>
-
                         <div className="text-center">
-                            <h2 className="text-lg font-semibold text-slate-900 mb-2">
-                                Copy this prompt to your AI
+                            <h2 className="text-lg font-semibold text-slate-900">
+                                Copy this prompt into your AI
                             </h2>
-                            <p className="text-sm text-slate-600">
-                                Paste it into ChatGPT, Claude, or your preferred AI assistant.
-                            </p>
                         </div>
 
-                        <div className="relative rounded-xl border border-slate-200 bg-slate-50 p-4">
-                            <pre className="text-sm text-slate-700 whitespace-pre-wrap font-mono leading-relaxed max-h-64 overflow-y-auto">
+                        <div className="relative rounded-xl border border-slate-200 bg-slate-50">
+                            <pre className="text-sm text-slate-700 whitespace-pre-wrap font-mono leading-relaxed max-h-64 overflow-y-auto p-4 pr-20">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-2 right-2"
+                                className="absolute top-3 right-3 bg-white shadow-sm"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
@@ -462,7 +415,7 @@ const ZoneOfGeniusEntry = () => {
                                 onClick={handleStartManualAssessment}
                                 className="text-sm text-slate-500 hover:text-slate-700"
                             >
-                                Or do the assessment manually →
+                                Nevermind, I'll do the assessment →
                             </button>
                         </div>
                     </div>
@@ -471,23 +424,10 @@ const ZoneOfGeniusEntry = () => {
                 {/* Step: Paste Response */}
                 {step === "paste-response" && (
                     <div className="space-y-6">
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setStep("ai-prompt")}
-                            className="mb-2"
-                        >
-                            <ArrowLeft className="w-4 h-4 mr-2" />
-                            Back
-                        </Button>
-
                         <div className="text-center">
-                            <h2 className="text-lg font-semibold text-slate-900 mb-2">
+                            <h2 className="text-lg font-semibold text-slate-900">
                                 Paste your AI's response
                             </h2>
-                            <p className="text-sm text-slate-600">
-                                Copy the entire response from your AI and paste it below.
-                            </p>
                         </div>
 
                         <Textarea
