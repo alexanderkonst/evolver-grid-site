@@ -45,12 +45,12 @@ const ZoneOfGeniusEntry = () => {
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
 
     const navBar = (
-        <div className="flex items-center justify-between gap-2 px-4 lg:px-8 pt-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 lg:px-8 pt-4">
             <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => navigate(returnPath)}
-                className="text-slate-600 hover:text-slate-900"
+                className="text-slate-600 hover:text-slate-900 w-full sm:w-auto"
             >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
@@ -59,7 +59,7 @@ const ZoneOfGeniusEntry = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => navigate("/game/profile")}
-                className="text-slate-600 hover:text-slate-900"
+                className="text-slate-600 hover:text-slate-900 w-full sm:w-auto"
             >
                 Profile
             </Button>
