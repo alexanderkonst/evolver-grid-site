@@ -266,6 +266,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
                     className="h-dvh sticky top-0"
+                    userName={profile?.first_name || undefined}
+                    userAvatarUrl={profile?.avatar_url || undefined}
+                    userLevel={profile?.level || undefined}
+                    userXp={profile?.xp_total || undefined}
                 />
 
                 {/* Panel 2: Sections with transition */}
