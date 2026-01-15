@@ -1,16 +1,8 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Target, ArrowLeft, ArrowRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-
-interface TransformationalPromiseData {
-    fromState: string;
-    toState: string;
-    journey: string;
-}
+import { useExcaliburData } from "@/hooks/useExcaliburData";
 
 /**
  * GeniusBusinessPromise - Transformational Promise module
@@ -18,30 +10,8 @@ interface TransformationalPromiseData {
  */
 const GeniusBusinessPromise = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<TransformationalPromiseData | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const profileId = await getOrCreateGameProfileId();
-                if (!profileId) return;
-
-                const { data: profile } = await supabase
-                    .from("game_profiles")
-                    .select("excalibur_data")
-                    .eq("id", profileId)
-                    .single();
-
-                if (profile?.excalibur_data?.transformationalPromise) {
-                    setData(profile.excalibur_data.transformationalPromise as TransformationalPromiseData);
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadData();
-    }, []);
+    const { loading, excaliburData } = useExcaliburData();
+    const data = excaliburData?.transformationalPromise;
 
     if (loading) {
         return (
@@ -97,15 +67,17 @@ const GeniusBusinessPromise = () => {
                         </div>
 
                         {/* The Journey */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                            <div className="flex items-start gap-3">
-                                <Target className="w-5 h-5 text-[#8460ea] mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-[#a4a3d0] mb-1">The Journey</p>
-                                    <p className="text-[#2c3150]">{data.journey}</p>
+                        {data.journey && (
+                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                                <div className="flex items-start gap-3">
+                                    <Target className="w-5 h-5 text-[#8460ea] mt-0.5" />
+                                    <div>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">The Journey</p>
+                                        <p className="text-[#2c3150]">{data.journey}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 ) : (
                     <div className="text-center py-12">
