@@ -165,22 +165,7 @@ const ZoneOfGeniusEntry = () => {
             const result = await saveAppleseed(appleseed, aiResponse);
             if (result.success) {
                 setIsSaved(true);
-                toast({
-                    title: "Zone of Genius Saved!",
-                    description: "Your genius profile has been saved.",
-                });
-                if (result.xpAwarded) {
-                    toast({
-                        title: `🎉 +${result.xpAwarded} XP (Genius)`,
-                        description: "Your profile leveled up.",
-                    });
-                }
-                if (result.firstTimeBonus) {
-                    toast({
-                        title: "🎉 FIRST TIME BONUS!",
-                        description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_zog_complete")}!`,
-                    });
-                }
+                // No toast - user proceeds to signup silently
                 const redirectPath = getPostZogRedirect(returnPath);
                 if (redirectPath && returnPath !== "/game/profile") {
                     setTimeout(() => navigate(redirectPath), 600);
