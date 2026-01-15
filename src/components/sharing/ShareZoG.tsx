@@ -111,7 +111,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
   };
 
   return (
-    <div className="relative">
+    <div className="relative max-w-md mx-auto">
       {/* Main Share Button */}
       <Button
         variant="wabi-secondary"
