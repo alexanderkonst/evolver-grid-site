@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Briefcase, Copy, Check, Users, Radio, ArrowRight, Sparkles, User } from "lucide-react";
+import { Briefcase, Copy, Check, Users, ArrowRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import { ExcaliburData } from "./excaliburGenerator";
@@ -12,135 +12,112 @@ interface ExcaliburDisplayProps {
 }
 
 /**
- * GeniusBusinessDisplay - Shows the Genius Business (formerly Excalibur)
- * Compact one-screen layout with new structure
+ * GeniusBusinessDisplay - My Unique Genius Business
+ * Compact one-screen layout: USP, Who, Promise
+ * Form, Deliverable, Channels, BiggerArc → moved to profile section
  */
 const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
-        await navigator.clipboard.writeText(excalibur.offer.statement);
+        // Get first sentence of offer statement
+        const firstSentence = excalibur.offer.statement.split('.')[0] + '.';
+        await navigator.clipboard.writeText(firstSentence);
         setCopiedOffer(true);
         setTimeout(() => setCopiedOffer(false), 2000);
     };
 
+    // Get first sentence of offer statement for USP
+    const getFirstSentence = (text: string) => {
+        const sentences = text.match(/[^.!?]+[.!?]+/g);
+        return sentences ? sentences[0].trim() : text;
+    };
+
+    // Get first phrase of profile (before comma or full text if short)
+    const getFirstPhrase = (text: string) => {
+        const parts = text.split(',');
+        return parts[0].trim();
+    };
+
+    // Create "I [action]" header from tagline
+    const getActionHeader = () => {
+        const tagline = excalibur.businessIdentity.tagline;
+        // Capitalize first letter and ensure it starts with "I "
+        const cleaned = tagline.replace(/^["']|["']$/g, '').trim();
+        // If starts with lowercase verb, add "I "
+        if (/^[a-z]/.test(cleaned)) {
+            return "I " + cleaned;
+        }
+        return "I " + cleaned.toLowerCase();
+    };
+
     return (
-        <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-            {/* Hero: Business Name + Tagline */}
-            <div className="text-center space-y-4 py-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] mb-4">
-                    <Briefcase className="w-8 h-8 text-white" />
+        <div className="max-w-2xl mx-auto px-4 py-2 space-y-3">
+            {/* Hero: Action Statement as Header */}
+            <div className="text-center space-y-2 py-4">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] mb-3">
+                    <Briefcase className="w-7 h-7 text-white" />
                 </div>
 
-                <p className="text-sm text-[#a4a3d0] uppercase tracking-wide">My Genius Business</p>
+                <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">My Unique Genius Business</p>
 
-                {/* 3-Word Business Name */}
-                <h1 className="text-3xl lg:text-4xl font-bold text-[#2c3150]">
-                    {excalibur.businessIdentity.name}
+                {/* Action Statement with "I" - Main Header */}
+                <h1 className="text-xl lg:text-2xl font-bold text-[#2c3150] leading-tight">
+                    {getActionHeader()}
                 </h1>
-
-                {/* Product Hunt Tagline */}
-                <p className="text-lg text-[#8460ea] font-medium italic">
-                    "{excalibur.businessIdentity.tagline}"
-                </p>
             </div>
 
-            {/* Essence Anchor (Genius Apple Seed) */}
-            <div className="p-4 bg-gradient-to-br from-[#a4a3d0]/10 to-[#c8b7d8]/10 rounded-2xl border border-[#a4a3d0]/30">
-                <div className="flex items-center gap-2 mb-3">
-                    <Sparkles className="w-4 h-4 text-[#8460ea]" />
-                    <p className="text-sm font-medium text-[#2c3150]">Genius Apple Seed</p>
-                </div>
-                <p className="text-[#2c3150]">{excalibur.essenceAnchor.geniusAppleSeed}</p>
-                <div className="mt-3 flex flex-wrap gap-2 text-sm text-[#a4a3d0]">
-                    <span>Driver: {excalibur.essenceAnchor.primeDriver}</span>
-                    <span>•</span>
-                    <span>{excalibur.essenceAnchor.archetype}</span>
-                </div>
-            </div>
-
-            {/* Your Offer */}
-            <div className="p-5 bg-white rounded-2xl border border-[#a4a3d0]/30 shadow-sm">
-                <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                        <p className="text-sm text-[#8460ea] font-medium mb-2">Your Offer</p>
-                        <p className="text-lg text-[#2c3150] leading-relaxed">
-                            {excalibur.offer.statement}
-                        </p>
-                    </div>
-                    <Button
-                        variant="wabi-ghost"
-                        size="sm"
-                        onClick={handleCopyOffer}
-                        className="shrink-0"
-                    >
-                        {copiedOffer ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    </Button>
-                </div>
-                <div className="flex gap-6 mt-4 pt-4 border-t border-[#a4a3d0]/20 text-sm">
-                    <div>
-                        <p className="text-[#a4a3d0]">Form</p>
-                        <p className="text-[#2c3150] font-medium">{excalibur.offer.form}</p>
-                    </div>
-                    <div>
-                        <p className="text-[#a4a3d0]">Deliverable</p>
-                        <p className="text-[#2c3150] font-medium">{excalibur.offer.deliverable}</p>
+            {/* Compact Box with all sections */}
+            <div className="p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm space-y-4">
+                {/* My Unique Selling Proposition (first sentence only) */}
+                <div>
+                    <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                            <p className="text-xs text-[#8460ea] font-medium uppercase tracking-wide mb-1">My Unique Selling Proposition</p>
+                            <p className="text-base text-[#2c3150] leading-relaxed">
+                                {getFirstSentence(excalibur.offer.statement)}
+                            </p>
+                        </div>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleCopyOffer}
+                            className="shrink-0 h-8 w-8 p-0"
+                        >
+                            {copiedOffer ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4 text-[#a4a3d0]" />}
+                        </Button>
                     </div>
                 </div>
-            </div>
 
-            {/* Ideal Client */}
-            <div className="p-4 bg-white rounded-xl border border-[#a4a3d0]/30">
-                <div className="flex items-center gap-2 mb-3">
-                    <Users className="w-4 h-4 text-[#8460ea]" />
-                    <p className="text-sm font-medium text-[#2c3150]">Who This Is For</p>
-                </div>
-                <p className="text-[#2c3150] mb-2">{excalibur.idealClient.profile}</p>
-                <p className="text-sm text-[#a4a3d0]">Problem: {excalibur.idealClient.problem}</p>
-                <div className="mt-3 p-3 bg-[#a4a3d0]/10 rounded-lg border-l-4 border-[#8460ea]">
-                    <p className="text-sm text-[#a4a3d0]">Their Aha moment:</p>
-                    <p className="text-[#2c3150] italic">"{excalibur.idealClient.aha}"</p>
-                </div>
-            </div>
+                {/* Divider */}
+                <div className="border-t border-[#a4a3d0]/20" />
 
-            {/* Transformational Promise */}
-            <div className="p-4 bg-gradient-to-r from-[#8460ea]/10 to-[#29549f]/10 rounded-xl border border-[#8460ea]/30">
-                <p className="text-sm font-medium text-[#8460ea] mb-3">Transformational Promise</p>
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <div className="flex-1 p-3 bg-white/80 rounded-lg">
-                        <p className="text-xs text-[#a4a3d0]">Point A</p>
-                        <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
+                {/* Who This Is For (first phrase only) */}
+                <div>
+                    <div className="flex items-center gap-2 mb-1">
+                        <Users className="w-4 h-4 text-[#8460ea]" />
+                        <p className="text-xs font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-[#8460ea] shrink-0" />
-                    <div className="flex-1 p-3 bg-white/80 rounded-lg">
-                        <p className="text-xs text-[#a4a3d0]">Point B</p>
-                        <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.toState}</p>
+                    <p className="text-base text-[#2c3150]">{getFirstPhrase(excalibur.idealClient.profile)}</p>
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-[#a4a3d0]/20" />
+
+                {/* Transformational Promise (A → B only) */}
+                <div>
+                    <p className="text-xs font-medium text-[#8460ea] uppercase tracking-wide mb-2">Transformational Promise</p>
+                    <div className="flex items-center gap-2">
+                        <div className="flex-1 p-2 bg-white/80 rounded-lg">
+                            <p className="text-[10px] text-[#a4a3d0] uppercase">From</p>
+                            <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-[#8460ea] shrink-0" />
+                        <div className="flex-1 p-2 bg-white/80 rounded-lg">
+                            <p className="text-[10px] text-[#a4a3d0] uppercase">To</p>
+                            <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.toState}</p>
+                        </div>
                     </div>
-                </div>
-                <p className="text-sm text-[#2c3150] mt-3">{excalibur.transformationalPromise.journey}</p>
-            </div>
-
-            {/* Channels */}
-            <div className="p-4 bg-white rounded-xl border border-[#a4a3d0]/30">
-                <div className="flex items-center gap-2 mb-3">
-                    <Radio className="w-4 h-4 text-[#8460ea]" />
-                    <p className="text-sm font-medium text-[#2c3150]">How to Reach Them</p>
-                </div>
-                <div className="flex flex-wrap gap-2 text-sm">
-                    <span className="text-[#2c3150]">{excalibur.channels.primary}</span>
-                    <span className="text-[#a4a3d0]">•</span>
-                    <span className="text-[#a4a3d0]">{excalibur.channels.secondary}</span>
-                </div>
-                <p className="mt-2 text-[#8460ea] italic">"{excalibur.channels.hook}"</p>
-            </div>
-
-            {/* Bigger Arc */}
-            <div className="p-4 bg-[#2c3150] rounded-xl text-white">
-                <p className="text-sm font-medium text-[#a4a3d0] mb-2">The Bigger Arc</p>
-                <p className="text-white/90">{excalibur.biggerArc.vision}</p>
-                <div className="flex items-center gap-2 mt-3 text-[#8460ea]">
-                    <ArrowRight className="w-4 h-4" />
-                    <span className="text-sm">{excalibur.biggerArc.moonshot}</span>
                 </div>
             </div>
 
@@ -152,7 +129,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                 profileId={profileId}
             />
 
-            {/* Save Button */}
+            {/* Save and Go to My Profile Button */}
             {onSaveToProfile && (
                 <Button
                     variant="wabi-primary"
@@ -162,7 +139,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                     disabled={isSaving}
                 >
                     <User className="w-5 h-5 mr-2" />
-                    {isSaving ? "Saving..." : "Save to My Profile"}
+                    {isSaving ? "Saving..." : "Save and Go to My Profile"}
                 </Button>
             )}
         </div>

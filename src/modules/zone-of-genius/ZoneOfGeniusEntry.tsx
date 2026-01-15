@@ -282,7 +282,6 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-excalibur") {
         return (
             <GameShellV2 hideNavigation>
-
                 <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
                         <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
@@ -298,6 +297,26 @@ const ZoneOfGeniusEntry = () => {
                     <p className="mt-4 text-sm text-slate-500">
                         One clear offer, one path forward...
                     </p>
+
+                    {/* Progress Bar */}
+                    <div className="w-full max-w-xs mt-6">
+                        <div className="h-2 bg-violet-100 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-gradient-to-r from-[#8460ea] to-[#29549f] rounded-full animate-pulse"
+                                style={{
+                                    animation: 'progress-bar 3s ease-in-out infinite',
+                                    width: '100%',
+                                }}
+                            />
+                        </div>
+                        <style>{`
+                            @keyframes progress-bar {
+                                0% { width: 10%; }
+                                50% { width: 80%; }
+                                100% { width: 10%; }
+                            }
+                        `}</style>
+                    </div>
                 </div>
             </GameShellV2>
         );
