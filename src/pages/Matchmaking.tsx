@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Loader2, MapPin, Users, Languages } from "lucide-react";
+import { MapPin, Users, Languages } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";

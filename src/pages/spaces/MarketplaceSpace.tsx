@@ -4,8 +4,7 @@ import {
     Sparkles,
     ExternalLink,
     Plus,
-    ArrowRight,
-    User
+    ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";

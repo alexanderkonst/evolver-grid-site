@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { buildQolGrowthRecipePath } from "@/lib/onboardingRouting";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS, type Domain, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 const QOL_LABELS: Record<DomainId, string> = {

@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
-import dodecahedronImage from "@/assets/mc-dodecahedron.png";
 import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";

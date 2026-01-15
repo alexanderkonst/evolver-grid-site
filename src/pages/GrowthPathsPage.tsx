@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Lock, ChevronRight, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { growthPaths, getPathIcon, TYPE_ICONS, TYPE_LABELS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
+import { growthPaths, getPathIcon, TYPE_ICONS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
 import { Button } from "@/components/ui/button";
 
 const GrowthPathsPage = () => {
