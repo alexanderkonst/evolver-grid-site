@@ -29,7 +29,7 @@ const MatchCard = ({
   onConnect,
 }: MatchCardProps) => {
   return (
-    <div className="w-full max-w-md mx-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-md mx-auto rounded-3xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6 shadow-[0_8px_24px_rgba(164,163,208,0.18)] transition-shadow hover:shadow-[0_12px_32px_rgba(132,96,234,0.22)]">
       <div className="flex flex-col items-center text-center gap-4">
         <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
           {user.avatarUrl ? (
