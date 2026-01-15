@@ -82,14 +82,8 @@ const SignupModal = ({
                 description: "Your genius is now saved forever.",
             });
 
-            // Migrate any guest data from localStorage to database
-            const migration = await migrateGuestDataToProfile();
-            if (migration.migratedAppleseed) {
-                toast({
-                    title: "🎉 Genius Saved!",
-                    description: "Your Zone of Genius has been saved to your profile",
-                });
-            }
+            // Migrate any guest data from localStorage to database (silent)
+            await migrateGuestDataToProfile();
 
             onOpenChange(false);
 
