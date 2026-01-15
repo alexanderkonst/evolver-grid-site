@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
+import { User, Briefcase } from "lucide-react";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "./appleseedGenerator";
@@ -9,15 +9,17 @@ interface AppleseedDisplayProps {
     profileUrl?: string;
     profileId?: string;
     onSaveToProfile?: () => void;
+    onCreateBusiness?: () => void;
     isSaving?: boolean;
+    isSaved?: boolean;
 }
 
 /**
  * AppleseedDisplay - Simplified for drip-feed onboarding
- * Shows: RevelatoryHero + ShareButton + Save to Profile
+ * Shows: RevelatoryHero + ShareButton + Save to Profile + Create Business CTA
  * Fits on one screen
  */
-const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, isSaving }: AppleseedDisplayProps) => {
+const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, onCreateBusiness, isSaving, isSaved }: AppleseedDisplayProps) => {
     return (
         <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
             {/* Epic Revelatory Hero - The core genius reveal */}
@@ -45,7 +47,7 @@ const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, i
             />
 
             {/* Save to My Profile - Triggers signup for guests */}
-            {onSaveToProfile && (
+            {onSaveToProfile && !isSaved && (
                 <Button
                     variant="wabi-primary"
                     size="lg"
@@ -57,9 +59,28 @@ const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, i
                     {isSaving ? "Saving..." : "Save to My Profile"}
                 </Button>
             )}
+
+            {/* Create Genius Business CTA - Shows after save */}
+            {isSaved && onCreateBusiness && (
+                <div className="space-y-3">
+                    <div className="text-center">
+                        <p className="text-sm text-[#a4a3d0]">
+                            ✨ Saved! Ready for the next step?
+                        </p>
+                    </div>
+                    <Button
+                        variant="wabi-secondary"
+                        size="lg"
+                        className="w-full"
+                        onClick={onCreateBusiness}
+                    >
+                        <Briefcase className="w-5 h-5 mr-2" />
+                        Create Your Genius Business
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
 
 export default AppleseedDisplay;
-

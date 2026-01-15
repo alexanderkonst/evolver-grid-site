@@ -16,10 +16,12 @@ const buildShareText = ({
   overallStage,
   growthDomains,
   strengthDomains,
+  profileUrl,
 }: {
   overallStage: string;
   growthDomains: Array<{ domain: { name: string } }>;
   strengthDomains: Array<{ domain: { name: string } }>;
+  profileUrl: string;
 }) => {
   const growth = growthDomains.map(({ domain }) => domain.name).join(" • ");
   const strengths = strengthDomains.map(({ domain }) => domain.name).join(" • ");
@@ -31,7 +33,7 @@ const buildShareText = ({
   if (strengths) {
     text += `Strengths: ${strengths}\n`;
   }
-  text += "\nDiscover yours for free at www.alexandrkonstantinov.com";
+  text += `\nDiscover yours for free at ${profileUrl}`;
 
   return text;
 };
@@ -57,8 +59,9 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
         overallStage,
         growthDomains,
         strengthDomains,
+        profileUrl: shareUrl,
       }),
-    [overallStage, growthDomains, strengthDomains],
+    [overallStage, growthDomains, strengthDomains, shareUrl],
   );
 
   const encodedProfileUrl = encodeURIComponent(shareUrl);
