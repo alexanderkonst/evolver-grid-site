@@ -70,6 +70,7 @@ const SPACE_SECTIONS: SpaceSections = {
                 ],
             },
             { id: "assets", label: "Assets", path: "/game/profile/assets" },
+            { id: "settings", label: "Settings", path: "/game/profile/settings" },
         ],
     },
     transformation: {
@@ -189,7 +190,7 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[260px] bg-slate-800 flex flex-col border-r border-slate-700",
+                "w-[220px] bg-slate-700/90 flex flex-col border-r border-slate-600",
                 className
             )}
         >
