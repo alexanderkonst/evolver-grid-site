@@ -90,28 +90,28 @@ const ProfileOverviewContent = () => {
             <div className="grid grid-cols-2 gap-3">
                 <Link
                     to="/zone-of-genius/entry"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Sparkles className="w-5 h-5 text-[#8460ea]" />
                     <span className="text-sm font-medium text-[#2c3150]">Zone of Genius</span>
                 </Link>
                 <Link
                     to="/game/profile/genius-business"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Briefcase className="w-5 h-5 text-[#8460ea]" />
                     <span className="text-sm font-medium text-[#2c3150]">Genius Business</span>
                 </Link>
                 <Link
                     to="/quality-of-life-map/assessment"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Map className="w-5 h-5 text-[#8460ea]" />
                     <span className="text-sm font-medium text-[#2c3150]">Quality of Life</span>
                 </Link>
                 <Link
                     to="/game/profile/mission"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Target className="w-5 h-5 text-[#8460ea]" />
                     <span className="text-sm font-medium text-[#2c3150]">My Mission</span>

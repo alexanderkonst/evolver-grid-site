@@ -392,20 +392,24 @@ const ZoneOfGeniusEntry = () => {
                                 onClick={() => setStep("ai-prompt")}
                                 className="w-full p-4 rounded-xl border-2 border-slate-200 hover:border-amber-300 bg-white transition-all text-left flex items-start gap-4"
                             >
-                                <div className="p-2 rounded-full bg-amber-100 shrink-0">
-                                    <Bot className="w-5 h-5 text-amber-600" />
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-full bg-amber-100 shrink-0">
+                                        <Bot className="w-5 h-5 text-amber-600" />
+                                    </div>
+                                    <p className="font-semibold text-slate-900">Yes, my AI knows me</p>
                                 </div>
-                                <p className="font-semibold text-slate-900">Yes, my AI knows me</p>
                             </button>
 
                             <button
                                 onClick={handleStartManualAssessment}
                                 className="w-full p-4 rounded-xl border-2 border-slate-200 hover:border-blue-300 bg-white transition-all text-left flex items-start gap-4"
                             >
-                                <div className="p-2 rounded-full bg-blue-100 shrink-0">
-                                    <ClipboardList className="w-5 h-5 text-blue-600" />
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-full bg-blue-100 shrink-0">
+                                        <ClipboardList className="w-5 h-5 text-blue-600" />
+                                    </div>
+                                    <p className="font-semibold text-slate-900">No, I'll do the assessment</p>
                                 </div>
-                                <p className="font-semibold text-slate-900">No, I'll do the assessment</p>
                             </button>
                         </div>
                     </div>
@@ -427,7 +431,7 @@ const ZoneOfGeniusEntry = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-3 right-3 bg-white shadow-sm"
+                                className="absolute top-3 right-3 bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200 shadow-sm"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
