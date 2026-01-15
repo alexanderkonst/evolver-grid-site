@@ -74,6 +74,7 @@ interface SpacesRailProps {
     userName?: string;
     userAvatarUrl?: string;
     userLevel?: number;
+    userXp?: number;
 }
 
 const SpacesRail = ({
@@ -84,6 +85,7 @@ const SpacesRail = ({
     userName,
     userAvatarUrl,
     userLevel,
+    userXp,
 }: SpacesRailProps) => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -149,9 +151,16 @@ const SpacesRail = ({
                     )}
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
                         <p className="text-white font-medium text-sm truncate">{displayName}</p>
-                        <p className="text-slate-500 text-xs truncate">
-                            {userLevel ? `Level ${userLevel}` : 'Member'}
-                        </p>
+                        <div className="flex items-center gap-2 text-xs">
+                            <span className="text-[#8460ea]">
+                                {userLevel ? `Lv ${userLevel}` : 'Member'}
+                            </span>
+                            {userXp !== undefined && (
+                                <span className="text-[#a4a3d0]">
+                                    {userXp} XP
+                                </span>
+                            )}
+                        </div>
                     </div>
                 </Link>
             </div>
