@@ -694,9 +694,15 @@ const GameHome = () => {
     );
   }
 
-  if (profile?.onboarding_stage && !["qol_complete", "unlocked"].includes(profile.onboarding_stage)) {
+  // Redirect to /start only for early stages (new, zog_started)
+  // Allow: zog_complete (show Reveal Business), qol_complete, unlocked
+  const earlyStages = ["new", "zog_started"];
+  if (profile?.onboarding_stage && earlyStages.includes(profile.onboarding_stage)) {
     return <Navigate to="/start" replace />;
   }
+
+  // Check if user just completed ZoG and needs to see Reveal Business CTA
+  const isZogCompleteStage = profile?.onboarding_stage === "zog_complete";
 
   return (
     <GameShellV2 hideNavigation={!hasAnyData}>
@@ -729,8 +735,8 @@ const GameHome = () => {
             </>
           )}
 
-          {/* ONBOARDING */}
-          {!hasAnyData && (
+          {/* ONBOARDING - New users */}
+          {!hasAnyData && !isZogCompleteStage && (
             <div className="max-w-2xl mx-auto">
               <div className="rounded-3xl border-2 border-slate-200 bg-white p-8 sm:p-12 text-center shadow-lg">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-slate-100 flex items-center justify-center">
@@ -757,6 +763,34 @@ const GameHome = () => {
                   }}
                 >
                   <BoldText className="uppercase">Begin: Discover My Zone of Genius</BoldText>
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* ZOG COMPLETE - Ready to Reveal Business */}
+          {isZogCompleteStage && (
+            <div className="max-w-2xl mx-auto">
+              <div className="rounded-3xl border-2 border-[#8460ea]/30 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] p-8 sm:p-12 text-center shadow-lg">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8460ea]/10 flex items-center justify-center">
+                  <Sparkles className="w-8 h-8 text-[#8460ea]" />
+                </div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">Your Genius is Saved!</h2>
+                {zogSnapshot?.archetype_title && (
+                  <p className="text-lg text-[#8460ea] font-medium mb-4">
+                    ✦ {zogSnapshot.archetype_title} ✦
+                  </p>
+                )}
+                <p className="text-base text-slate-600 mb-8 leading-relaxed">
+                  Ready to discover how to monetize it?
+                </p>
+                <Button
+                  size="lg"
+                  className="w-full max-w-md shadow-[0_0_30px_rgba(132,96,234,0.4)] hover:shadow-[0_0_40px_rgba(132,96,234,0.6)] transition-all"
+                  onClick={() => navigate("/zone-of-genius/entry?step=generating-excalibur")}
+                >
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  <BoldText>Reveal My Genius Business</BoldText>
                 </Button>
               </div>
             </div>
