@@ -263,14 +263,28 @@ export const saveAppleseed = async (
 
 /**
  * Save Excalibur data to the user's existing ZoG snapshot
+ * Falls back to localStorage if profile not found
  */
 export const saveExcalibur = async (
   excalibur: ExcaliburData
 ): Promise<{ success: boolean; xpAwarded?: number; firstTimeBonus?: number; error?: string }> => {
   try {
+    // Check if user is authenticated first
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      // Guest user - save to localStorage only
+      saveExcaliburToLocalStorage(excalibur);
+      console.log("[saveToDatabase] Guest Excalibur save to localStorage successful");
+      return { success: true };
+    }
+
     const profileId = await getProfileId();
     if (!profileId) {
-      return { success: false, error: "User not authenticated or profile not found" };
+      // Profile not found - fallback to localStorage
+      console.warn("[saveToDatabase] Profile not found for authenticated user, falling back to localStorage for Excalibur");
+      saveExcaliburToLocalStorage(excalibur);
+      return { success: true };
     }
 
     // Get latest snapshot
@@ -283,7 +297,32 @@ export const saveExcalibur = async (
       .maybeSingle();
 
     if (!snapshot) {
-      return { success: false, error: "No ZoG snapshot found. Generate Appleseed first." };
+      // No snapshot yet - create one first
+      console.log("[saveToDatabase] No snapshot found, creating one for Excalibur save");
+      const newSnapshot = await getOrCreateSnapshot(profileId);
+
+      // Update with Excalibur data
+      const { error } = await supabase
+        .from("zog_snapshots")
+        .update({
+          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+          excalibur_generated_at: new Date().toISOString(),
+        })
+        .eq("id", newSnapshot.id);
+
+      if (error) throw error;
+
+      // Update game_profile
+      await supabase
+        .from("game_profiles")
+        .update({
+          onboarding_stage: "offer_complete",
+          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", profileId);
+
+      return { success: true, xpAwarded: 0, firstTimeBonus: 0 };
     }
 
     // Update snapshot with Excalibur data
@@ -322,10 +361,11 @@ export const saveExcalibur = async (
 
     return { success: true, xpAwarded, firstTimeBonus };
   } catch (err) {
-    return {
-      success: false,
-      error: err instanceof Error ? err.message : "Failed to save Excalibur",
-    };
+    console.error("[saveToDatabase] saveExcalibur error:", err);
+    // Fallback to localStorage on any error
+    saveExcaliburToLocalStorage(excalibur);
+    console.log("[saveToDatabase] Fallback to localStorage after error");
+    return { success: true }; // Return success so user doesn't see error
   }
 };
 

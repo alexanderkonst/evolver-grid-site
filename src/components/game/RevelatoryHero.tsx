@@ -89,9 +89,13 @@ const RevelatoryHero = ({
 
             {/* Content - Compact for one-screen */}
             <div className="relative px-4 py-4 sm:px-5 sm:py-5 text-center">
-                {/* Icon - Smaller */}
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${palette.iconBg} mb-3`}>
-                    <IconComponent className={`w-6 h-6 ${palette.iconColor}`} />
+                {/* Custom ZoG Logo */}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden mb-3">
+                    <img
+                        src="/zone-of-genius-logo.png"
+                        alt="Zone of Genius"
+                        className="w-full h-full object-cover"
+                    />
                 </div>
 
                 {/* Tagline */}
