@@ -37,6 +37,7 @@ import GeniusBusinessAudience from "./pages/spaces/profile/GeniusBusinessAudienc
 import GeniusBusinessPromise from "./pages/spaces/profile/GeniusBusinessPromise";
 import GeniusBusinessChannels from "./pages/spaces/profile/GeniusBusinessChannels";
 import GeniusBusinessVision from "./pages/spaces/profile/GeniusBusinessVision";
+import ZoneOfGeniusOverview from "./pages/spaces/profile/ZoneOfGeniusOverview";
 import CharacterSnapshot from "./pages/CharacterSnapshot";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
@@ -170,6 +171,8 @@ const App = () => (
                 <Route path="/game/profile/genius-business/promise" element={<GeniusBusinessPromise />} />
                 <Route path="/game/profile/genius-business/channels" element={<GeniusBusinessChannels />} />
                 <Route path="/game/profile/genius-business/vision" element={<GeniusBusinessVision />} />
+                <Route path="/game/profile/zone-of-genius" element={<ZoneOfGeniusOverview />} />
+                <Route path="/game/profile/zone-of-genius/*" element={<ZoneOfGeniusOverview />} />
                 <Route path="/game/transformation" element={<TransformationSpace />} />
                 <Route path="/game/transformation/today" element={<TodaysPractice />} />
                 <Route path="/game/transformation/paths" element={<TransformationGrowthPaths />} />
