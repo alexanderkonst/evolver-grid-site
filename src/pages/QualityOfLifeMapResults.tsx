@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
+import ShareQol from "@/components/sharing/ShareQol";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
@@ -17,7 +18,6 @@ import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
-import SkeletonCard from "@/components/ui/SkeletonCard";
 
 interface QualityOfLifeMapResultsProps {
   renderMode?: "standalone" | "embedded";
@@ -33,9 +33,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const { toast } = useToast();
 
-  const [guidanceLines, setGuidanceLines] = useState<string[] | null>(null);
-  const [isGuidanceLoading, setIsGuidanceLoading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
+  const [isGuest, setIsGuest] = useState(true);
 
   // Get or create profile ID on mount
   useEffect(() => {
@@ -44,6 +43,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       .catch(err => {
         // Don't block the UI, just log the error
       });
+  }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession()
+      .then(({ data }) => setIsGuest(!data.session))
+      .catch(() => setIsGuest(true));
   }, []);
 
   // Scroll to top on mount
@@ -368,94 +373,35 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     }
   };
 
-  const handleGenerateGuidance = async () => {
-    try {
-      setIsGuidanceLoading(true);
-
-      const domainData = domainResults.map(({ domain, stageValue, stage }) => {
-        const nextStage = stageValue < 10
-          ? domain.stages.find(s => s.id === stageValue + 1)
-          : null;
-
-        return {
-          name: domain.name,
-          stageValue,
-          currentStageTitle: stage?.title || "",
-          currentStageDescription: stage?.description || "",
-          nextStageTitle: nextStage?.title || "",
-          nextStageDescription: nextStage?.description || "",
-        };
-      });
-
-      const { data, error } = await supabase.functions.invoke('generate-qol-guidance', {
-        body: { domains: domainData }
-      });
-
-      if (error) throw error;
-
-      if (data?.guidance && Array.isArray(data.guidance)) {
-        setGuidanceLines(data.guidance);
-        toast({
-          title: "Guidance Generated",
-          description: "Your personalized next-step guidance is ready. Scroll down to see it!",
-        });
-      } else {
-        throw new Error("Invalid response format");
-      }
-
-    } catch (error: any) {
-      const errorMessage = error.message || "Could not generate guidance. Please try again.";
-      toast({
-        title: "Generation Failed",
-        description: errorMessage,
-        variant: "destructive",
-      });
-    } finally {
-      setIsGuidanceLoading(false);
-    }
-  };
-
   const resultsContent = (
     <section
-      className="py-24 px-6"
+      className="py-16 px-4 sm:px-6"
       style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}
     >
-      <div className="container mx-auto max-w-4xl">
-        {/* Snapshot Content - wrapped for PDF export */}
-        <div ref={snapshotRef} style={{ padding: '40px 20px', backgroundColor: '#1a2332' }}>
-          {/* Main Heading */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-white">
+      <div className="container mx-auto max-w-2xl">
+        <div
+          ref={snapshotRef}
+          className="rounded-2xl border border-white/10 bg-[#1a2332] p-6 sm:p-8 space-y-6"
+        >
+          <div className="text-center space-y-4">
+            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white">
               <BoldText>YOUR QUALITY OF LIFE MAP SNAPSHOT</BoldText>
             </h1>
-
-            {/* Overall Level */}
-            <div className="inline-block px-8 py-4 rounded-lg" style={{ backgroundColor: 'rgba(255, 213, 79, 0.1)', border: '2px solid #FFD54F' }}>
-              <p className="text-2xl font-bold text-white">
-                Overall Development Level: <span style={{ color: '#FFD54F' }}>Stage {overallStageRounded}</span>
-              </p>
+            <div
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold"
+              style={{ backgroundColor: 'rgba(255, 213, 79, 0.1)', border: '1px solid #FFD54F', color: '#FFD54F' }}
+            >
+              Overall Level: Stage {overallStageRounded}
             </div>
           </div>
 
-          {/* Radar Chart - Visual Map (Display only, not in PDF) */}
-          <div className="mb-16 p-8 rounded-lg pdf-exclude" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
-            <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
-              <BoldText>VISUAL MAP</BoldText>
-            </h2>
-            <div style={{ width: '100%', height: '400px' }}>
+          <div className="rounded-xl p-4 pdf-exclude" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            <div style={{ width: '100%', height: '240px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={radarData}>
                   <PolarGrid stroke="rgba(255, 255, 255, 0.2)" />
-                  <PolarAngleAxis
-                    dataKey="domain"
-                    tick={{ fill: '#ffffff', fontSize: 14 }}
-                  />
-                  <PolarRadiusAxis
-                    angle={90}
-                    domain={[0, 10]}
-                    tick={{ fill: '#ffffff', fontSize: 12 }}
-                    tickCount={11}
-                  />
+                  <PolarAngleAxis dataKey="domain" tick={{ fill: '#ffffff', fontSize: 12 }} />
+                  <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: '#ffffff', fontSize: 10 }} tickCount={11} />
                   <Radar
                     name="Development Level"
                     dataKey="value"
@@ -467,243 +413,85 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 </RadarChart>
               </ResponsiveContainer>
             </div>
-            <div className="text-center mt-6 text-sm text-white/60">
+            <div className="text-center mt-3 text-xs text-white/60">
               Scale: 0-10 (10 = highest development)
             </div>
           </div>
 
-          {/* Bar Chart - For PDF only (hidden from display) */}
-          <div className="mb-16 p-8 rounded-lg pdf-only" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', display: 'none' }}>
-            <h2 className="text-2xl font-serif font-bold mb-8 text-white text-center">
-              <BoldText>VISUAL MAP</BoldText>
-            </h2>
-            <div className="space-y-4" style={{ maxWidth: '700px', margin: '0 auto' }}>
-              {radarData.map((item) => (
-                <div key={item.domain} className="flex items-center gap-4">
-                  <div
-                    className="text-sm font-semibold text-white text-right"
-                    style={{ width: '120px', flexShrink: 0 }}
-                  >
-                    {item.domain}
-                  </div>
-                  <div
-                    className="flex-1 h-8 rounded-full relative"
-                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-                  >
-                    <div
-                      className="h-full rounded-full flex items-center justify-end pr-3"
-                      style={{
-                        width: `${(item.value / 10) * 100}%`,
-                        backgroundColor: '#FFD54F',
-                        minWidth: item.value > 0 ? '40px' : '0',
-                      }}
-                    >
-                      <span className="text-sm font-bold" style={{ color: '#1a2332' }}>
-                        {item.value}
-                      </span>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wide text-white/60 mb-3">Top Growth</p>
+              <div className="space-y-2">
+                {growthDomains.map(({ domain, stageValue, stage }) => (
+                  <div key={domain.id} className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-white">{domain.name}</p>
+                      <p className="text-xs text-white/60">{stage?.title}</p>
                     </div>
+                    <span className="text-sm font-semibold text-[#FFD54F]">{stageValue}</span>
                   </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-6 text-sm text-white/60">
-              Scale: 0-10 (10 = highest development)
-            </div>
-          </div>
-
-          {/* Action Buttons - Right after Visual Map */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 pdf-exclude">
-            <Button
-              onClick={handleDownloadPdf}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-              }}
-            >
-              Download Snapshot as PDF
-            </Button>
-            <Button
-              onClick={handleGenerateGuidance}
-              disabled={isGuidanceLoading}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-                boxShadow: '0 0 20px rgba(255, 213, 79, 0.6), 0 0 40px rgba(255, 213, 79, 0.4)',
-              }}
-            >
-              {isGuidanceLoading ? "Generating..." : "Generate Next-Step Guidance"}
-            </Button>
-            <Button
-              onClick={handlePriorities}
-              className="text-lg px-8"
-              style={{
-                backgroundColor: '#FFD54F',
-                color: '#1a2332',
-              }}
-            >
-              Set Growth Priorities
-            </Button>
-            <Button
-              onClick={handleRetake}
-              variant="outline"
-              className="text-lg px-8"
-              style={{
-                borderColor: '#FFD54F',
-                color: '#FFD54F',
-              }}
-            >
-              Retake Assessment
-            </Button>
-          </div>
-
-          {isGuidanceLoading && (
-            <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
-              <div className="space-y-4">
-                <SkeletonCard className="h-6 bg-white/20" />
-                <SkeletonCard className="h-24 bg-white/20" />
-                <SkeletonCard className="h-24 bg-white/20" />
+                ))}
               </div>
             </div>
-          )}
-
-          {/* Top Growth Opportunities */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
-              <BoldText>TOP GROWTH OPPORTUNITIES</BoldText>
-            </h2>
-            <div className="grid gap-4">
-              {growthDomains.map(({ domain, stageValue, stage }) => (
-                <div
-                  key={domain.id}
-                  className="p-6 rounded-lg border-2"
-                  style={{
-                    backgroundColor: '#f5ece1',
-                    borderColor: 'rgba(255, 213, 79, 0.3)'
-                  }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'rgba(255, 213, 79, 0.2)', color: '#FFD54F' }}
-                    >
-                      {stageValue}
+            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wide text-white/60 mb-3">Strengths</p>
+              <div className="space-y-2">
+                {strengthDomains.map(({ domain, stageValue, stage }) => (
+                  <div key={domain.id} className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-white">{domain.name}</p>
+                      <p className="text-xs text-white/60">{stage?.title}</p>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2" style={{ color: '#0a3a52' }}>
-                        <BoldText>{domain.name.toUpperCase()}</BoldText>
-                      </h3>
-                      <p className="text-lg font-semibold mb-1" style={{ color: 'rgba(10, 58, 82, 0.8)' }}>
-                        {stage?.title}
-                      </p>
-                      <p style={{ color: 'rgba(10, 58, 82, 0.7)' }}>
-                        {stage?.description}
-                      </p>
-                    </div>
+                    <span className="text-sm font-semibold text-[#FFD54F]">{stageValue}</span>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Your Strengths */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
-              <BoldText>YOUR STRENGTHS</BoldText>
-            </h2>
-            <div className="grid gap-4">
-              {strengthDomains.map(({ domain, stageValue, stage }) => (
-                <div
-                  key={domain.id}
-                  className="p-6 rounded-lg border-2"
-                  style={{
-                    backgroundColor: '#f5ece1',
-                    borderColor: 'rgba(255, 213, 79, 0.3)'
-                  }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: '#FFD54F', color: '#1a2332' }}
-                    >
-                      {stageValue}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2" style={{ color: '#0a3a52' }}>
-                        <BoldText>{domain.name.toUpperCase()}</BoldText>
-                      </h3>
-                      <p className="text-lg font-semibold mb-1" style={{ color: 'rgba(10, 58, 82, 0.8)' }}>
-                        {stage?.title}
-                      </p>
-                      <p style={{ color: 'rgba(10, 58, 82, 0.7)' }}>
-                        {stage?.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* All Domains */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
-              <BoldText>ALL DOMAINS</BoldText>
-            </h2>
-            <div className="grid gap-4">
-              {domainResults.map(({ domain, stageValue, stage }) => (
-                <div
-                  key={domain.id}
-                  className="p-6 rounded-lg"
-                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.2)' }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
-                      style={{ backgroundColor: 'rgba(255, 213, 79, 0.2)', color: '#FFD54F' }}
-                    >
-                      {stageValue}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        <BoldText>{domain.name.toUpperCase()}</BoldText>
-                      </h3>
-                      <p className="text-lg font-semibold text-white/80 mb-1">
-                        {stage?.title}
-                      </p>
-                      <p className="text-white/70">
-                        {stage?.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Guidance Section */}
-        {guidanceLines && (
-          <div className="mb-12 p-8 rounded-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
-            <h2 className="text-3xl font-serif font-bold mb-6 text-white text-center">
-              <BoldText>NEXT-STEP GUIDANCE</BoldText>
-            </h2>
-            <div className="space-y-6">
-              {guidanceLines.map((block, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-lg"
-                  style={{ backgroundColor: '#f5ece1' }}
-                >
-                  <div style={{ color: '#0a3a52' }} className="whitespace-pre-line leading-relaxed">
-                    {block}
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="mt-6 space-y-4">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Button
+              onClick={handlePriorities}
+              className="text-base"
+              style={{ backgroundColor: '#FFD54F', color: '#1a2332' }}
+            >
+              Set Growth Priorities
+            </Button>
+            <Button
+              onClick={handleDownloadPdf}
+              className="text-base"
+              style={{ backgroundColor: '#FFD54F', color: '#1a2332' }}
+            >
+              Download Snapshot
+            </Button>
+            <Button
+              onClick={handleRetake}
+              variant="outline"
+              className="text-base"
+              style={{ borderColor: '#FFD54F', color: '#FFD54F' }}
+            >
+              Retake Assessment
+            </Button>
+            {isGuest && (
+              <Button
+                variant="outline"
+                className="text-base"
+                style={{ borderColor: '#FFD54F', color: '#FFD54F' }}
+                onClick={() => navigate("/auth?redirect=/quality-of-life-map/results")}
+              >
+                Save to My Profile
+              </Button>
+            )}
           </div>
-        )}
+          <ShareQol
+            overallStage={overallStageRounded}
+            growthDomains={growthDomains}
+            strengthDomains={strengthDomains}
+            profileId={profileId ?? undefined}
+          />
+        </div>
       </div>
     </section>
   );
