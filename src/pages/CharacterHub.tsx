@@ -382,6 +382,7 @@ const CharacterHub = () => {
                                     archetypeName={appleseed.vibrationalKey.name}
                                     tagline={appleseed.vibrationalKey.tagline}
                                     primeDriver={appleseed.threeLenses.primeDriver}
+                                    profileId={profile?.id}
                                     profileUrl={user?.id && typeof window !== "undefined" ? `${window.location.origin}/profile/${user.id}` : undefined}
                                 />
                             </div>

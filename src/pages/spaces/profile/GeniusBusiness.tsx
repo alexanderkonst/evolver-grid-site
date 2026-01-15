@@ -32,12 +32,14 @@ const GeniusBusiness = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
+    const [profileId, setProfileId] = useState<string | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                const profileId = await getOrCreateGameProfileId();
-                if (!profileId) return;
+                const resolvedProfileId = await getOrCreateGameProfileId();
+                if (!resolvedProfileId) return;
+                setProfileId(resolvedProfileId);
 
                 const { data } = await supabase
                     .from("game_profiles")
@@ -149,6 +151,7 @@ const GeniusBusiness = () => {
                     archetypeName={excaliburData.businessIdentity.name}
                     tagline={excaliburData.businessIdentity.tagline}
                     primeDriver={excaliburData.essenceAnchor?.primeDriver || ""}
+                    profileId={profileId ?? undefined}
                 />
             </div>
         </GameShellV2>

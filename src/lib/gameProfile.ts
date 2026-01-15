@@ -1,5 +1,29 @@
 import { supabase } from "@/integrations/supabase/client";
 
+const REFERRAL_STORAGE_KEY = "invited_by_profile_id";
+
+const isUuid = (value: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+
+const getReferralId = () => {
+  if (typeof window === "undefined" || !window.localStorage) {
+    return null;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const refParam = params.get("ref");
+  if (refParam && isUuid(refParam)) {
+    window.localStorage.setItem(REFERRAL_STORAGE_KEY, refParam);
+    return refParam;
+  }
+
+  const stored = window.localStorage.getItem(REFERRAL_STORAGE_KEY);
+  return stored && isUuid(stored) ? stored : null;
+};
+
+export const captureReferralIdFromUrl = () => {
+  getReferralId();
+};
+
 /**
  * Gets or creates a game profile ID, with support for both authenticated users and anonymous guests.
  * 
@@ -28,6 +52,8 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     throw new Error('getOrCreateGameProfileId can only be called in browser/client context');
   }
 
+  const referralId = getReferralId();
+
   // Check if user is logged in
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -35,7 +61,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     // User is authenticated - find or create profile linked to user_id
     const { data: existingProfile, error: fetchError } = await supabase
       .from('game_profiles')
-      .select('id, first_name, last_name')
+      .select('id, first_name, last_name, invited_by')
       .eq('user_id', user.id)
       .maybeSingle();
 
@@ -59,6 +85,13 @@ export async function getOrCreateGameProfileId(): Promise<string> {
           })
           .eq('id', existingProfile.id);
       }
+      if (!existingProfile.invited_by && referralId) {
+        await supabase
+          .from('game_profiles')
+          .update({ invited_by: referralId })
+          .eq('id', existingProfile.id)
+          .is('invited_by', null);
+      }
       return existingProfile.id;
     }
 
@@ -68,7 +101,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       // Try to attach the anonymous profile to this user
       const { data: anonymousProfile } = await supabase
         .from('game_profiles')
-        .select('id, user_id')
+        .select('id, user_id, invited_by')
         .eq('id', anonymousId)
         .maybeSingle();
 
@@ -80,6 +113,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
             user_id: user.id,
             first_name: metaFirstName,
             last_name: metaLastName,
+            invited_by: anonymousProfile.invited_by || referralId,
           })
           .eq('id', anonymousId);
 
@@ -96,6 +130,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
         user_id: user.id,
         first_name: metaFirstName,
         last_name: metaLastName,
+        invited_by: referralId,
       })
       .select('id')
       .single();
@@ -114,13 +149,20 @@ export async function getOrCreateGameProfileId(): Promise<string> {
   // User is not authenticated - use device-based anonymous profile
   const existingId = window.localStorage.getItem("game_profile_id");
   if (existingId) {
+    if (referralId) {
+      await supabase
+        .from('game_profiles')
+        .update({ invited_by: referralId })
+        .eq('id', existingId)
+        .is('invited_by', null);
+    }
     return existingId;
   }
 
   // Create a new anonymous profile
   const { data, error } = await supabase
     .from('game_profiles')
-    .insert({})
+    .insert({ invited_by: referralId })
     .select('id')
     .single();
 

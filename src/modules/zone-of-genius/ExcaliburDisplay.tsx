@@ -6,6 +6,7 @@ import { ExcaliburData } from "./excaliburGenerator";
 
 interface ExcaliburDisplayProps {
     excalibur: ExcaliburData;
+    profileId?: string;
     onSaveToProfile?: () => void;
     isSaving?: boolean;
 }
@@ -14,7 +15,7 @@ interface ExcaliburDisplayProps {
  * GeniusBusinessDisplay - Shows the Genius Business (formerly Excalibur)
  * Compact one-screen layout with new structure
  */
-const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
+const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
@@ -148,6 +149,7 @@ const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDis
                 archetypeName={excalibur.businessIdentity.name}
                 tagline={excalibur.businessIdentity.tagline}
                 primeDriver={excalibur.essenceAnchor.primeDriver}
+                profileId={profileId}
             />
 
             {/* Save Button */}

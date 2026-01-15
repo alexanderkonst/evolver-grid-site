@@ -5,6 +5,121 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 
+// LocalStorage keys for guest data
+const GUEST_APPLESEED_KEY = "guest_appleseed_data";
+const GUEST_AI_RESPONSE_KEY = "guest_ai_response";
+const GUEST_EXCALIBUR_KEY = "guest_excalibur_data";
+
+/**
+ * Save Appleseed data to localStorage (for guests before signup)
+ */
+export const saveAppleseedToLocalStorage = (appleseed: AppleseedData, aiResponse?: string): void => {
+  try {
+    localStorage.setItem(GUEST_APPLESEED_KEY, JSON.stringify(appleseed));
+    if (aiResponse) {
+      localStorage.setItem(GUEST_AI_RESPONSE_KEY, aiResponse);
+    }
+  } catch (e) {
+    console.error("Failed to save appleseed to localStorage:", e);
+  }
+};
+
+/**
+ * Load Appleseed data from localStorage (for guests)
+ */
+export const loadAppleseedFromLocalStorage = (): { appleseed: AppleseedData | null; aiResponse: string | null } => {
+  try {
+    const appleseedStr = localStorage.getItem(GUEST_APPLESEED_KEY);
+    const aiResponse = localStorage.getItem(GUEST_AI_RESPONSE_KEY);
+    return {
+      appleseed: appleseedStr ? JSON.parse(appleseedStr) : null,
+      aiResponse,
+    };
+  } catch {
+    return { appleseed: null, aiResponse: null };
+  }
+};
+
+/**
+ * Save Excalibur data to localStorage (for guests)
+ */
+export const saveExcaliburToLocalStorage = (excalibur: ExcaliburData): void => {
+  try {
+    localStorage.setItem(GUEST_EXCALIBUR_KEY, JSON.stringify(excalibur));
+  } catch (e) {
+    console.error("Failed to save excalibur to localStorage:", e);
+  }
+};
+
+/**
+ * Load Excalibur data from localStorage
+ */
+export const loadExcaliburFromLocalStorage = (): ExcaliburData | null => {
+  try {
+    const str = localStorage.getItem(GUEST_EXCALIBUR_KEY);
+    return str ? JSON.parse(str) : null;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Clear all guest data from localStorage (after successful migration)
+ */
+export const clearGuestData = (): void => {
+  localStorage.removeItem(GUEST_APPLESEED_KEY);
+  localStorage.removeItem(GUEST_AI_RESPONSE_KEY);
+  localStorage.removeItem(GUEST_EXCALIBUR_KEY);
+  localStorage.removeItem("inviter_id");
+};
+
+/**
+ * Migrate guest data from localStorage to database after signup
+ * Returns true if migration was successful
+ */
+export const migrateGuestDataToProfile = async (): Promise<{
+  success: boolean;
+  migratedAppleseed: boolean;
+  migratedExcalibur: boolean;
+  error?: string
+}> => {
+  try {
+    const { appleseed, aiResponse } = loadAppleseedFromLocalStorage();
+    const excalibur = loadExcaliburFromLocalStorage();
+
+    let migratedAppleseed = false;
+    let migratedExcalibur = false;
+
+    if (appleseed) {
+      const result = await saveAppleseed(appleseed, aiResponse || undefined);
+      if (result.success) {
+        migratedAppleseed = true;
+      }
+    }
+
+    if (excalibur) {
+      const result = await saveExcalibur(excalibur);
+      if (result.success) {
+        migratedExcalibur = true;
+      }
+    }
+
+    // Clear guest data after successful migration
+    if (migratedAppleseed || migratedExcalibur) {
+      clearGuestData();
+    }
+
+    return { success: true, migratedAppleseed, migratedExcalibur };
+  } catch (err) {
+    return {
+      success: false,
+      migratedAppleseed: false,
+      migratedExcalibur: false,
+      error: err instanceof Error ? err.message : "Migration failed"
+    };
+  }
+};
+
 /**
  * Get the user's game profile ID (supports both authenticated and guest users)
  */

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArrowLeft, Mail } from "lucide-react";
+import { captureReferralIdFromUrl } from "@/lib/gameProfile";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,10 @@ const Auth = () => {
   const { toast } = useToast();
 
   const redirectTo = searchParams.get("redirect") || "/start";
+
+  useEffect(() => {
+    captureReferralIdFromUrl();
+  }, []);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();

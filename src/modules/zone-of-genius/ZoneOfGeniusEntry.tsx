@@ -7,7 +7,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
-import { saveAppleseed, saveExcalibur, loadSavedData } from "./saveToDatabase";
+import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage, loadAppleseedFromLocalStorage } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
@@ -143,6 +143,10 @@ const ZoneOfGeniusEntry = () => {
             // Generate Appleseed from raw AI response
             const result = await generateAppleseed(aiResponse);
             setAppleseed(result);
+
+            // Auto-save to localStorage for guests (will be migrated after signup)
+            saveAppleseedToLocalStorage(result, aiResponse);
+
             setStep("appleseed-result");
         } catch (err) {
             setError('Failed to generate your Appleseed. Please try again.');
@@ -294,6 +298,7 @@ const ZoneOfGeniusEntry = () => {
             <GameShellV2 hideNavigation>
                 <AppleseedDisplay
                     appleseed={appleseed}
+                    profileId={profileId ?? undefined}
                     onSaveToProfile={handleSaveClick}
                     isSaving={isSaving}
                 />
@@ -341,6 +346,7 @@ const ZoneOfGeniusEntry = () => {
             <GameShellV2 hideNavigation>
                 <ExcaliburDisplay
                     excalibur={excalibur}
+                    profileId={profileId ?? undefined}
                     onSaveToProfile={handleSaveExcalibur}
                     isSaving={isSaving}
                 />

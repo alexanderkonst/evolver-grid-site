@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -79,6 +80,15 @@ const SignupModal = ({
                 title: "✨ Account Created!",
                 description: "Your genius is now saved forever",
             });
+
+            // Migrate any guest data from localStorage to database
+            const migration = await migrateGuestDataToProfile();
+            if (migration.migratedAppleseed) {
+                toast({
+                    title: "🎉 Genius Saved!",
+                    description: "Your Zone of Genius has been saved to your profile",
+                });
+            }
 
             onOpenChange(false);
 
