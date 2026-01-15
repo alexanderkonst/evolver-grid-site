@@ -50,6 +50,7 @@ const ZoneOfGeniusEntry = () => {
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
     const [showSignupModal, setShowSignupModal] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     // Removed navBar for cleaner onboarding flow
 
@@ -163,6 +164,7 @@ const ZoneOfGeniusEntry = () => {
         try {
             const result = await saveAppleseed(appleseed, aiResponse);
             if (result.success) {
+                setIsSaved(true);
                 toast({
                     title: "Zone of Genius Saved!",
                     description: "Your genius profile has been saved.",
@@ -300,7 +302,9 @@ const ZoneOfGeniusEntry = () => {
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
                     onSaveToProfile={handleSaveClick}
+                    onCreateBusiness={() => setStep("generating-excalibur")}
                     isSaving={isSaving}
+                    isSaved={isSaved}
                 />
 
                 {/* Signup Modal for guests */}
