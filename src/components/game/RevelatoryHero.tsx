@@ -87,31 +87,31 @@ const RevelatoryHero = ({
                 ))}
             </div>
 
-            {/* Content */}
-            <div className="relative px-6 py-12 sm:px-10 sm:py-16 text-center">
-                {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${palette.iconBg} mb-6`}>
-                    <IconComponent className={`w-8 h-8 ${palette.iconColor}`} />
+            {/* Content - Compact for one-screen */}
+            <div className="relative px-4 py-6 sm:px-6 sm:py-8 text-center">
+                {/* Icon - Smaller */}
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${palette.iconBg} mb-3`}>
+                    <IconComponent className={`w-6 h-6 ${palette.iconColor}`} />
                 </div>
 
                 {/* Tagline */}
                 {tagline && (
-                    <p className={`text-xs uppercase tracking-[0.2em] ${palette.textMuted} mb-3`}>
+                    <p className={`text-xs uppercase tracking-[0.2em] ${palette.textMuted} mb-1`}>
                         {tagline}
                     </p>
                 )}
 
-                {/* Main Title - Archetype Name */}
+                {/* Main Title - Archetype Name - Smaller */}
                 <h1
-                    className={`font-['Fraunces',serif] text-2xl sm:text-3xl md:text-4xl font-semibold ${palette.textPrimary} mb-6 leading-tight`}
+                    className={`font-['Fraunces',serif] text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
                     ✦ {title} ✦
                 </h1>
 
-                {/* Action Statement - the core "You [verb]..." statement */}
+                {/* Action Statement - Compact */}
                 {actionStatement && (
-                    <p className={`text-lg sm:text-xl ${palette.textSecondary} max-w-xl mx-auto mb-8 leading-relaxed`}>
+                    <p className={`text-sm sm:text-base ${palette.textSecondary} max-w-xl mx-auto mb-4 leading-relaxed`}>
                         "{actionStatement}"
                     </p>
                 )}
@@ -123,14 +123,14 @@ const RevelatoryHero = ({
                     </p>
                 )}
 
-                {/* Three Lenses - Integrated into main card */}
+                {/* Three Lenses - Compact */}
                 {threeLenses && (
-                    <div className="mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 max-w-lg mx-auto text-left">
+                    <div className="mt-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-left">
                         {/* Top Talents */}
                         {threeLenses.actions && threeLenses.actions.length > 0 && (
-                            <div className="mb-4">
-                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Top Talents</p>
-                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                            <div className="mb-2">
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Top Talents</p>
+                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.actions.join(" • ")}
                                 </p>
                             </div>
@@ -138,9 +138,9 @@ const RevelatoryHero = ({
 
                         {/* Prime Driver */}
                         {threeLenses.primeDriver && (
-                            <div className="mb-4">
-                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Prime Driver</p>
-                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                            <div className="mb-2">
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Prime Driver</p>
+                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.primeDriver}
                                 </p>
                             </div>
@@ -149,8 +149,8 @@ const RevelatoryHero = ({
                         {/* Archetype */}
                         {threeLenses.archetype && (
                             <div>
-                                <p className={`text-xs uppercase tracking-wider ${palette.textMuted} mb-1`}>Your Archetype</p>
-                                <p className={`text-base ${palette.textPrimary} font-medium`}>
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Archetype</p>
+                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.archetype}
                                 </p>
                             </div>
