@@ -254,6 +254,22 @@ const LandingPage = () => {
                         {slide.tagline}
                     </p>
 
+                    {/* Get Started button - RIGHT AFTER tagline, BEFORE icons */}
+                    {!slide.isCTA && !slide.headlineHero && (
+                        <button onClick={() => navigate("/start")}
+                            className={`mb-8 inline-block px-10 py-4 text-base font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-95 ${isDarkSlide ? "bg-white/20 text-white hover:bg-white/30 hover:shadow-[0_20px_60px_rgba(255,255,255,0.3)]" : "bg-[#29549f] text-white hover:bg-[#1e4374] hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)]"}`}>
+                            Get started
+                        </button>
+                    )}
+
+                    {/* Hero slide (slide 0) - Get Started after tagline */}
+                    {slide.headlineHero && (
+                        <button onClick={() => navigate("/start")}
+                            className="mb-8 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
+                            Get started
+                        </button>
+                    )}
+
                     {slide.things && (
                         <div className="flex justify-center gap-6 md:gap-10 mb-6 flex-wrap">
                             {slide.things.map((thing, i) => (
@@ -265,22 +281,13 @@ const LandingPage = () => {
                             ))}
                         </div>
                     )}
-                    {currentSlide === 0 && (
-                        <button onClick={() => navigate("/start")}
-                            className="mb-4 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                            Get started
-                        </button>
-                    )}
 
+                    {/* Footer tagline only (no button) for slides with icons */}
                     {slide.cta && (
-                        <div className="mt-8 space-y-3 animate-fade-in">
+                        <div className="mt-4 animate-fade-in">
                             <p className={`text-base md:text-lg font-medium tracking-wide ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
                                 {slide.cta}
                             </p>
-                            <button onClick={() => navigate("/start")}
-                                className={`inline-block px-8 py-3 text-sm font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-95 ${isDarkSlide ? "bg-white/20 text-white hover:bg-white/30 hover:shadow-[0_15px_40px_rgba(255,255,255,0.2)]" : "bg-[#29549f] text-white hover:bg-[#1e4374] hover:shadow-[0_15px_40px_rgba(41,84,159,0.3)]"}`}>
-                                Get started
-                            </button>
                         </div>
                     )}
 
