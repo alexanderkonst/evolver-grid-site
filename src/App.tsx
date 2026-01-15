@@ -162,6 +162,7 @@ const App = () => (
                 <Route path="/game" element={<GameHome />} />
                 <Route path="/game/next-move" element={<CoreLoopHome />} />
                 <Route path="/game/profile" element={<ProfileOverview />} />
+                <Route path="/game/profile/settings" element={<Profile />} />
                 <Route path="/game/profile/mission" element={<ProfileMissionSection />} />
                 <Route path="/game/profile/assets" element={<ProfileAssetsSection />} />
                 <Route path="/game/profile/genius-business" element={<GeniusBusiness />} />
