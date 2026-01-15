@@ -211,25 +211,29 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     // Progression: new → zog_started → zog_complete → qol_started → qol_complete → offer_complete → unlocked
     const stage = profile?.onboarding_stage || "new";
 
+    // For zog_complete: only Profile unlocked (user just signed up, needs to see ZoG + Reveal Business)
+    const isZogCompleteStage = stage === "zog_complete";
+
     // Define what unlocks at each stage
-    const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const qolComplete = ["qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const offerComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
+    const fullUnlock = ["qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
 
     // Unlock status for each space
     const unlockStatus: Record<string, boolean> = {
         // Profile is always unlocked (it's where users manage their data)
         "profile": true,
+        // For zog_complete: everything else locked
         // Next Move and Transformation unlock after QoL complete
-        "next-move": qolComplete,
-        "transformation": qolComplete,
-        // Teams unlock after ZoG complete (know your genius to find teammates)
-        "teams": zogComplete,
+        "next-move": !isZogCompleteStage && qolComplete,
+        "transformation": !isZogCompleteStage && qolComplete,
+        // Teams unlock after QoL complete
+        "teams": !isZogCompleteStage && qolComplete,
         // Marketplace and Coop unlock after offer complete (need an offer to sell)
-        "marketplace": offerComplete,
-        "coop": offerComplete,
-        // Events always available
-        "events": true,
+        "marketplace": !isZogCompleteStage && offerComplete,
+        "coop": !isZogCompleteStage && offerComplete,
+        // Events unlock after QoL complete
+        "events": !isZogCompleteStage && fullUnlock,
     };
 
     // Navigation handlers
