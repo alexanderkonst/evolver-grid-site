@@ -11,11 +11,13 @@ import { saveAppleseed, saveExcalibur, loadSavedData } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
+import SignupModal from "@/components/auth/SignupModal";
 import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import InviteFriendPrompt from "@/components/sharing/InviteFriendPrompt";
+import { supabase } from "@/integrations/supabase/client";
 
 type Step =
     | "choice"
@@ -44,6 +46,10 @@ const ZoneOfGeniusEntry = () => {
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
     const hasSavedAppleseed = useRef(false);
+
+    // Guest/Auth state
+    const [isGuest, setIsGuest] = useState(true);
+    const [showSignupModal, setShowSignupModal] = useState(false);
 
     // Removed navBar for cleaner onboarding flow
 
@@ -74,6 +80,17 @@ const ZoneOfGeniusEntry = () => {
         return () => {
             isMounted = false;
         };
+    }, []);
+
+    // Check if user is guest (no session)
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setIsGuest(!session?.user);
+        });
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+            setIsGuest(!session?.user);
+        });
+        return () => subscription.unsubscribe();
     }, []);
 
     // Auto-save appleseed when result is shown
@@ -180,6 +197,21 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
+    // Handle Save click - show modal for guests, save directly for authenticated
+    const handleSaveClick = () => {
+        if (isGuest) {
+            setShowSignupModal(true);
+        } else {
+            handleSaveAppleseed();
+        }
+    };
+
+    // After successful signup, save the appleseed
+    const handleSignupSuccess = async () => {
+        setIsGuest(false);
+        await handleSaveAppleseed();
+    };
+
     const handleGenerateExcalibur = async () => {
         if (!appleseed) return;
 
@@ -262,8 +294,17 @@ const ZoneOfGeniusEntry = () => {
             <GameShellV2 hideNavigation>
                 <AppleseedDisplay
                     appleseed={appleseed}
-                    onSaveToProfile={handleSaveAppleseed}
+                    onSaveToProfile={handleSaveClick}
                     isSaving={isSaving}
+                />
+
+                {/* Signup Modal for guests */}
+                <SignupModal
+                    open={showSignupModal}
+                    onOpenChange={setShowSignupModal}
+                    onSuccess={handleSignupSuccess}
+                    title="Save Your Genius"
+                    description="Create an account to save your Zone of Genius forever"
                 />
             </GameShellV2>
         );
