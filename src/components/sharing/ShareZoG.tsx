@@ -9,6 +9,7 @@ interface ShareZoGProps {
   primeDriver: string;
   talents?: string[];
   archetype?: string;
+  profileId?: string;
   profileUrl?: string;
 }
 
@@ -18,8 +19,9 @@ const buildShareText = (params: {
   primeDriver: string;
   talents?: string[];
   archetype?: string;
+  profileUrl: string;
 }) => {
-  const { archetypeName, tagline, primeDriver, talents, archetype } = params;
+  const { archetypeName, tagline, primeDriver, talents, archetype, profileUrl } = params;
 
   let text = `My genius is to be a ${archetypeName}.\n"${tagline}"\n\n`;
 
@@ -30,18 +32,25 @@ const buildShareText = (params: {
   if (archetype) {
     text += `My archetype: ${archetype}\n`;
   }
-  text += `\nDiscover yours for free at www.alexandrkonstantinov.com`;
+  text += `\nDiscover yours for free at ${profileUrl}`;
 
   return text;
 };
 
-const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, profileUrl }: ShareZoGProps) => {
+const buildShareUrl = (url: string, profileId?: string) => {
+  if (!profileId) return url;
+  const shareUrl = new URL(url);
+  shareUrl.searchParams.set("ref", profileId);
+  return shareUrl.toString();
+};
+
+const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, profileId, profileUrl }: ShareZoGProps) => {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const resolvedProfileUrl =
-    profileUrl || "https://www.alexandrkonstantinov.com";
+  const resolvedProfileUrl = profileUrl || "https://www.alexandrkonstantinov.com";
+  const shareUrl = buildShareUrl(resolvedProfileUrl, profileId);
 
   const shareText = useMemo(
     () =>
@@ -51,11 +60,12 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
         primeDriver,
         talents,
         archetype,
+        profileUrl: shareUrl,
       }),
-    [archetypeName, primeDriver, tagline, talents, archetype]
+    [archetypeName, primeDriver, tagline, talents, archetype, shareUrl]
   );
 
-  const encodedProfileUrl = encodeURIComponent(resolvedProfileUrl);
+  const encodedProfileUrl = encodeURIComponent(shareUrl);
   const encodedText = encodeURIComponent(shareText);
 
   const shareLinks = [

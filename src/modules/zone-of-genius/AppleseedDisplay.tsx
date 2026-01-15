@@ -7,6 +7,7 @@ import { AppleseedData } from "./appleseedGenerator";
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
     profileUrl?: string;
+    profileId?: string;
     onSaveToProfile?: () => void;
     isSaving?: boolean;
 }
@@ -16,7 +17,7 @@ interface AppleseedDisplayProps {
  * Shows: RevelatoryHero + ShareButton + Save to Profile
  * Fits on one screen
  */
-const AppleseedDisplay = ({ appleseed, profileUrl, onSaveToProfile, isSaving }: AppleseedDisplayProps) => {
+const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, isSaving }: AppleseedDisplayProps) => {
     return (
         <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
             {/* Epic Revelatory Hero - The core genius reveal */}
@@ -40,6 +41,7 @@ const AppleseedDisplay = ({ appleseed, profileUrl, onSaveToProfile, isSaving }: 
                 talents={appleseed.threeLenses.actions}
                 archetype={appleseed.threeLenses.archetype}
                 profileUrl={profileUrl}
+                profileId={profileId}
             />
 
             {/* Save to My Profile - Triggers signup for guests */}
@@ -60,5 +62,4 @@ const AppleseedDisplay = ({ appleseed, profileUrl, onSaveToProfile, isSaving }: 
 };
 
 export default AppleseedDisplay;
-
 
