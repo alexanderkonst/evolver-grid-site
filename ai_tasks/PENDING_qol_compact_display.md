@@ -1,32 +1,26 @@
-# CLAUDE: QoL Compact Display
+# QoL Compact Display
 
-## Priority: 🟡 MEDIUM
+> **Status**: PENDING  
+> **Agent**: CLAUDE  
+> **Priority**: High  
+> **Estimate**: 2-3 hours (large file: 737 lines)
 
-## Goal
-Apply same one-screen layout to Quality of Life results as we did for AppleseedDisplay.
+## Objective
+Apply one-screen layout pattern to QualityOfLifeMapResults.tsx, similar to AppleseedDisplay simplification.
 
-## Implementation Plan
+## Approach
+1. Extract hero section with main QoL score
+2. Reduce visible sections to essentials
+3. Move detailed breakdowns to "Apply Your Genius" paid section
+4. Add Share button dropdown
+5. Maintain Save to Profile functionality
 
-### Follow AppleseedDisplay Pattern
-1. Reduce max-width to 2xl
-2. Reduce padding/spacing
-3. Remove extra sections
-4. Add Share button (reuse ShareZoG pattern)
-5. Add Save button for guests
+## Files to Modify
+- `/src/pages/QualityOfLifeMapResults.tsx` - Main results page
+- Possibly create `/src/modules/quality-of-life-map/QolDisplay.tsx` - Simplified view
 
-### Files to Modify
-1. `src/modules/quality-of-life-map/QolLayout.tsx` or results display
-2. `src/pages/QualityOfLifeMapResults.tsx`
-
-### Changes
-- Compact header
-- Single-column layout
-- Share dropdown button
-- Save to Profile button
-
-### Acceptance Criteria
-- [ ] QoL results fit on one screen
-- [ ] Share button with dropdown
-- [ ] Consistent with ZoG styling
-
-## Assignee: CLAUDE
+## Acceptance Criteria
+- [ ] Single-screen layout (no scrolling for core info)
+- [ ] Wabi-sabi styling applied
+- [ ] Share dropdown integrated
+- [ ] Build passes
