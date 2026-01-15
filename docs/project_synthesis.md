@@ -15,33 +15,37 @@
 
 ## Executive Summary
 
-> **One-liner**: *"I'm building the coordination layer that unites startup societies, regen communities, and venture studios — citizens discover their value, monetize it, and find collaborators across tribes."*
+> **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Vanguard. One launch sequence across all tribes — Sovereignty, Innovation, Regeneration, Awakening, Rooting. Citizens articulate and monetize their value, jump-start collaborations systematically, and for the first time, the scattered movements building the future coordinate as one meta-ecosystem."*
 
-### The Meta-Ecosystem Play
+### The Evolutionary Vanguard
 
-This is **not just a member portal** — it's the **coordination infrastructure** for a new planetary layer of collaborative innovation.
+Communities at the **frontier of technology AND consciousness**. Not one tribe — a constellation of movements unified by shared coordination infrastructure.
 
-**What we unite:**
-- 🌐 **Network States / Web3 / Crypto** — sovereign digital communities
-- 🚀 **Venture Studios** — builders creating new ventures
-- 🌱 **Regen Communities** — ecological and social regenerators
-- ✨ **Spiritual / New Earth Communities** — conscious evolution pioneers
+**Five Currents:**
 
-**One infrastructure. Different tribes. Shared coordination layer.**
+| Current | Core Drive |
+|---------|------------|
+| 🌐 **Sovereignty** | Decentralized governance, self-determination |
+| 🚀 **Innovation** | Building the future through ventures |
+| 🌱 **Regeneration** | Healing earth and systems |
+| ✨ **Awakening** | Consciousness evolution, spiritual growth |
+| 🏡 **Rooting** | Land-based intentional living |
+
+📄 **Full taxonomy**: [evolutionary_vanguard_taxonomy.md](./evolutionary_vanguard_taxonomy.md)
 
 ### What Each Citizen Gets
 
 1. **Discover** their unique genius (Zone of Genius → Appleseed)
 2. **Monetize** their value (Genius Business → Excalibur)
 3. **Map** their quality of life (8 domains)
-4. **Connect** with complementary people across tribes
+4. **Connect** with complementary people across currents
 5. **Move** forward daily with AI guidance
 
 **Core Promise**: *"There's always a next move. And we'll always tell you what it is."*
 
 ### Why This Is Bigger Than Balaji
 
-Balaji's Network State is one channel — crypto-native. Our infrastructure connects **all streams of conscious innovation** into one coordination layer. This is why it's called **Planetary OS**, not just "member portal."
+Balaji's Network State is one channel — crypto-native Sovereignty. Our infrastructure connects **all five currents of conscious innovation** into one coordination layer. Cross-pollination is the product.
 
 ---
 
