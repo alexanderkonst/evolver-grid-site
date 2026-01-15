@@ -272,7 +272,7 @@ const ZoneOfGeniusEntry = () => {
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
-                    onCreateBusiness={() => setStep("generating-excalibur")}
+                    onCreateBusiness={handleGenerateExcalibur}
                 />
             </GameShellV2>
         );
@@ -283,7 +283,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShellV2 hideNavigation>
 
-                <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
+                <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
                         <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
                         <div className="absolute inset-4 border-2 border-violet-300 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
