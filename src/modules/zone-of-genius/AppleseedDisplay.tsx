@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Share2, Copy, Check } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
+import ShareZoG from "@/components/sharing/ShareZoG";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -15,7 +16,7 @@ interface AppleseedDisplayProps {
 
 /**
  * AppleseedDisplay - For authenticated users only (signup-first flow)
- * Shows: RevelatoryHero + Share + Reveal My Genius Business (side by side)
+ * Shows: RevelatoryHero + Share buttons + Reveal My Genius Business + ShareZoG dropdown
  */
 const AppleseedDisplay = ({
     appleseed,
@@ -77,9 +78,9 @@ const AppleseedDisplay = ({
                 }}
             />
 
-            {/* Buttons: Share + Reveal My Genius Business - Side by side */}
+            {/* Quick action buttons: Share + Reveal My Genius Business - Side by side */}
             <div className="flex gap-3 justify-center">
-                {/* Share Button */}
+                {/* Quick Share Button (mobile-friendly native share) */}
                 <Button
                     variant="wabi-ghost"
                     className="px-6"
@@ -105,6 +106,17 @@ const AppleseedDisplay = ({
                     </Button>
                 )}
             </div>
+
+            {/* Full Share dropdown with pre-written text for social networks */}
+            <ShareZoG
+                archetypeName={appleseed.vibrationalKey.name}
+                tagline={appleseed.bullseyeSentence}
+                primeDriver={appleseed.threeLenses.primeDriver}
+                talents={appleseed.threeLenses.actions}
+                archetype={appleseed.threeLenses.archetype}
+                profileId={profileId}
+                profileUrl={profileUrl}
+            />
         </div>
     );
 };
