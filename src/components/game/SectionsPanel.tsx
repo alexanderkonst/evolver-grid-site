@@ -1,6 +1,6 @@
 import { ReactNode, memo, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Search, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SubSection {
@@ -198,6 +198,7 @@ const SectionsPanel = ({
                         onClick={onClose}
                         className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
                         title="Hide sidebar (⌘B)"
+                        aria-label="Hide sidebar"
                     >
                         <X className="w-4 h-4" />
                     </button>

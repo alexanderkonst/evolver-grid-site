@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { ExternalLink, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Creator data - later will come from database

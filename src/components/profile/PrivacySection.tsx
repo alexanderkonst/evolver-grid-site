@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Loader2, Eye, EyeOff, MapPin, Target, Sparkles } from "lucide-react";
+import { Shield, Loader2, MapPin, Target, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";

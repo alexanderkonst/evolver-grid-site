@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Compass, Flame, Zap } from "lucide-react";
+import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Flame, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSection from "@/components/game/MeSection";

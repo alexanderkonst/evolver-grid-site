@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { User, Target, Sparkles, Map, Boxes, ArrowRight, Settings, Briefcase } from "lucide-react";
+import { User, Sparkles, Briefcase, Map, Target, Boxes, Settings, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProfileSummaryCard from "@/components/profile/ProfileSummaryCard";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
+import OnboardingProgress from "@/components/onboarding/OnboardingProgress";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { getOnboardingStep } from "@/lib/onboardingProgress";
 
 interface ProfileData {
+    firstName: string | null;
     level: number;
-    xp_total: number;
-    current_streak_days: number;
-    // ZoG data
-    zogArchetype?: string;
-    zogSentence?: string;
-    // QoL data
-    qolScore?: number;
-    // Genius Business data
-    businessName?: string;
-    businessTagline?: string;
+    xpTotal: number;
+    streakDays: number;
+    onboardingStage: string | null;
 }
 
 const ProfileOverviewContent = () => {
@@ -28,254 +23,119 @@ const ProfileOverviewContent = () => {
 
     useEffect(() => {
         let isMounted = true;
-        const loadProfileData = async () => {
+        const loadData = async () => {
             try {
                 const profileId = await getOrCreateGameProfileId();
-
-                // Load game_profiles data including excalibur_data
                 const { data: profile } = await supabase
                     .from("game_profiles")
-                    .select("level, xp_total, current_streak_days, excalibur_data")
+                    .select("first_name, level, xp_total, current_streak_days, onboarding_stage")
                     .eq("id", profileId)
                     .maybeSingle();
 
-                // Load ZoG snapshot
-                const { data: snapshot } = await supabase
-                    .from("zog_snapshots")
-                    .select("appleseed_data, archetype_title, core_pattern")
-                    .eq("profile_id", profileId)
-                    .order("created_at", { ascending: false })
-                    .limit(1)
-                    .maybeSingle();
-
-                // Load QoL data
-                const { data: qol } = await supabase
-                    .from("qol_snapshots")
-                    .select("overall_score")
-                    .eq("profile_id", profileId)
-                    .order("created_at", { ascending: false })
-                    .limit(1)
-                    .maybeSingle();
-
                 if (!isMounted) return;
-
-                // Extract business data from excalibur_data
-                const excalibur = profile?.excalibur_data as any;
-
                 setData({
+                    firstName: profile?.first_name ?? null,
                     level: profile?.level ?? 0,
-                    xp_total: profile?.xp_total ?? 0,
-                    current_streak_days: profile?.current_streak_days ?? 0,
-                    zogArchetype: snapshot?.archetype_title,
-                    zogSentence: snapshot?.core_pattern,
-                    qolScore: qol?.overall_score,
-                    businessName: excalibur?.businessIdentity?.name,
-                    businessTagline: excalibur?.businessIdentity?.tagline,
+                    xpTotal: profile?.xp_total ?? 0,
+                    streakDays: profile?.current_streak_days ?? 0,
+                    onboardingStage: profile?.onboarding_stage ?? null,
                 });
             } catch {
-                // Ignore profile stats failures.
+                // Silent fail
             } finally {
                 if (isMounted) setIsLoading(false);
             }
         };
-        loadProfileData();
-        return () => {
-            isMounted = false;
-        };
+        loadData();
+        return () => { isMounted = false; };
     }, []);
 
-    const Skeleton = ({ className }: { className?: string }) => (
-        <div className={`animate-pulse rounded bg-slate-200 ${className || ""}`} />
-    );
+    const currentStep = getOnboardingStep(data?.onboardingStage);
 
     return (
-        <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-            <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
-                    <User className="w-6 h-6 text-slate-700" />
-                    <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
+        <div className="p-6 lg:p-8 max-w-2xl mx-auto space-y-8">
+            {/* Welcome Header */}
+            <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8460ea]/20 to-[#a4a3d0]/10 flex items-center justify-center">
+                    <User className="w-8 h-8 text-[#8460ea]" />
                 </div>
-                <p className="text-slate-600">Know yourself. Build your character.</p>
-                {isLoading ? (
-                    <div className="mt-4">
-                        <Skeleton className="h-6 w-40" />
-                    </div>
-                ) : (
-                    data && (
-                        <div className="mt-4">
-                            <PlayerStatsBadge
-                                level={data.level}
-                                xpTotal={data.xp_total}
-                                streakDays={data.current_streak_days}
-                                size="sm"
-                            />
-                        </div>
-                    )
-                )}
+                <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
+                    {isLoading ? "Loading..." : data?.firstName ? `Hello, ${data.firstName}!` : "Your Profile"}
+                </h1>
+                <p className="text-[#a4a3d0]">
+                    Know yourself. Build your character.
+                </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-                {isLoading && (
-                    <>
-                        <Skeleton className="h-32 w-full" />
-                        <Skeleton className="h-32 w-full" />
-                        <Skeleton className="h-32 w-full" />
-                        <Skeleton className="h-32 w-full" />
-                    </>
-                )}
+            {/* Stats */}
+            {!isLoading && data && (
+                <div className="flex justify-center">
+                    <PlayerStatsBadge
+                        level={data.level}
+                        xpTotal={data.xpTotal}
+                        streakDays={data.streakDays}
+                        size="md"
+                    />
+                </div>
+            )}
 
-                {/* Zone of Genius Card - with summary */}
-                {!isLoading && (
-                    <ProfileSummaryCard
-                        icon={<Sparkles className="w-5 h-5" />}
-                        title="Zone of Genius"
-                        actionTo="/zone-of-genius/entry"
-                        actionLabel={
-                            <>
-                                {data?.zogArchetype ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
-                            </>
-                        }
-                    >
-                        {data?.zogArchetype ? (
-                            <div className="space-y-1">
-                                <p className="text-[#2c3150] font-medium">{data.zogArchetype}</p>
-                                <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.zogSentence}</p>
-                            </div>
-                        ) : (
-                            <p className="text-sm text-[#a4a3d0]">
-                                Discover how you create value.
-                            </p>
-                        )}
-                    </ProfileSummaryCard>
-                )}
+            {/* Onboarding Progress */}
+            {!isLoading && (
+                <div className="rounded-2xl border border-[#a4a3d0]/20 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6">
+                    <OnboardingProgress currentStep={currentStep} />
+                </div>
+            )}
 
-                {/* Genius Business Card - with summary */}
-                {!isLoading && (
-                    <ProfileSummaryCard
-                        icon={<Briefcase className="w-5 h-5" />}
-                        title="Genius Business"
-                        actionTo="/game/profile/genius-business"
-                        actionLabel={
-                            <>
-                                {data?.businessName ? "View" : "Create"} <ArrowRight className="w-4 h-4 ml-2" />
-                            </>
-                        }
-                    >
-                        {data?.businessName ? (
-                            <div className="space-y-1">
-                                <p className="text-[#2c3150] font-medium">{data.businessName}</p>
-                                <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.businessTagline}</p>
-                            </div>
-                        ) : (
-                            <p className="text-sm text-[#a4a3d0]">
-                                Monetize your genius.
-                            </p>
-                        )}
-                    </ProfileSummaryCard>
-                )}
+            {/* Quick Links */}
+            <div className="grid grid-cols-2 gap-3">
+                <Link
+                    to="/zone-of-genius/entry"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                >
+                    <Sparkles className="w-5 h-5 text-[#8460ea]" />
+                    <span className="text-sm font-medium text-[#2c3150]">Zone of Genius</span>
+                </Link>
+                <Link
+                    to="/game/profile/genius-business"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                >
+                    <Briefcase className="w-5 h-5 text-[#8460ea]" />
+                    <span className="text-sm font-medium text-[#2c3150]">Genius Business</span>
+                </Link>
+                <Link
+                    to="/quality-of-life-map/assessment"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                >
+                    <Map className="w-5 h-5 text-[#8460ea]" />
+                    <span className="text-sm font-medium text-[#2c3150]">Quality of Life</span>
+                </Link>
+                <Link
+                    to="/game/profile/mission"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/50 hover:bg-[#8460ea]/5 transition-colors"
+                >
+                    <Target className="w-5 h-5 text-[#8460ea]" />
+                    <span className="text-sm font-medium text-[#2c3150]">My Mission</span>
+                </Link>
+            </div>
 
-                {/* Quality of Life Card - with summary */}
-                {!isLoading && (
-                    <ProfileSummaryCard
-                        icon={<Map className="w-5 h-5" />}
-                        title="Quality of Life"
-                        actionTo="/quality-of-life-map/assessment"
-                        actionLabel={
-                            <>
-                                {data?.qolScore ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
-                            </>
-                        }
-                    >
-                        {data?.qolScore ? (
-                            <div className="space-y-1">
-                                <p className="text-[#2c3150] font-medium">Score: {data.qolScore.toFixed(1)}/10</p>
-                                <p className="text-sm text-[#a4a3d0]">Across 8 life domains</p>
-                            </div>
-                        ) : (
-                            <p className="text-sm text-[#a4a3d0]">
-                                Assess your life across 8 domains.
-                            </p>
-                        )}
-                    </ProfileSummaryCard>
-                )}
-
-                {/* My Mission Card */}
-                {!isLoading && (
-                    <div className="rounded-xl border border-slate-200 bg-white p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div>
-                                <div className="flex items-center gap-2 text-slate-700 mb-2">
-                                    <Target className="w-5 h-5" />
-                                    <h3 className="font-semibold">My Mission</h3>
-                                </div>
-                                <p className="text-sm text-slate-600">
-                                    Check or update your mission commitment.
-                                </p>
-                            </div>
-                            <Button asChild variant="outline" size="sm">
-                                <Link to="/game/profile/mission">
-                                    Open <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-                )}
-
-                {/* Assets Card */}
-                {!isLoading && (
-                    <div className="rounded-xl border border-slate-200 bg-white p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div>
-                                <div className="flex items-center gap-2 text-slate-700 mb-2">
-                                    <Boxes className="w-5 h-5" />
-                                    <h3 className="font-semibold">Assets</h3>
-                                </div>
-                                <p className="text-sm text-slate-600">
-                                    Review and grow your saved assets.
-                                </p>
-                            </div>
-                            <Button asChild variant="outline" size="sm">
-                                <Link to="/game/profile/assets">
-                                    Open <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-                )}
-
-                {/* Settings with Reset */}
-                {!isLoading && (
-                    <div className="rounded-xl border border-red-200 bg-red-50 p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div>
-                                <div className="flex items-center gap-2 text-red-700 mb-2">
-                                    <Settings className="w-5 h-5" />
-                                    <h3 className="font-semibold">Account Settings</h3>
-                                </div>
-                                <p className="text-sm text-red-600">
-                                    Manage account, billing, or reset your progress.
-                                </p>
-                            </div>
-                            <Button asChild variant="outline" size="sm" className="border-red-300 text-red-700 hover:bg-red-100">
-                                <Link to="/settings">
-                                    Open <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-                )}
+            {/* Settings Link */}
+            <div className="text-center">
+                <Link
+                    to="/game/profile/settings"
+                    className="inline-flex items-center gap-2 text-sm text-[#a4a3d0] hover:text-[#8460ea] transition-colors"
+                >
+                    <Settings className="w-4 h-4" />
+                    Profile Settings
+                </Link>
             </div>
         </div>
     );
 };
 
-const ProfileOverview = () => {
-    return (
-        <GameShellV2>
-            <ProfileOverviewContent />
-        </GameShellV2>
-    );
-};
+const ProfileOverview = () => (
+    <GameShellV2>
+        <ProfileOverviewContent />
+    </GameShellV2>
+);
 
 export default ProfileOverview;
-export { ProfileOverviewContent };

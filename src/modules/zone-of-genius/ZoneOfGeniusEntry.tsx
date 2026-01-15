@@ -7,7 +7,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
-import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage, loadAppleseedFromLocalStorage } from "./saveToDatabase";
+import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
@@ -16,7 +16,6 @@ import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import InviteFriendPrompt from "@/components/sharing/InviteFriendPrompt";
 import { supabase } from "@/integrations/supabase/client";
 
 type Step =

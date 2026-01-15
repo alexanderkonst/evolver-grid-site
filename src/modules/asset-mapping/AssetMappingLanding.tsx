@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes, HelpCircle } from "lucide-react";
+import { ArrowRight, Brain, ListChecks, Clipboard, Check, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";

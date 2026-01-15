@@ -10,9 +10,7 @@ import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { getPageTitle } from "@/lib/pageTitles";
 import ScrollRestoration from "@/components/ScrollRestoration";
-import Index from "./pages/Index";
 import LandingPage from "./pages/LandingPage";
-import Contact from "./pages/Contact";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
@@ -20,7 +18,6 @@ import AIUpgrade from "./pages/AIUpgrade";
 import Destiny from "./pages/Destiny";
 import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
-import GeniusOffer from "./pages/GeniusOffer";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
@@ -77,7 +74,6 @@ import Matchmaking from "./pages/Matchmaking";
 import PeopleDirectory from "./pages/PeopleDirectory";
 import MissionSelection from "./pages/MissionSelection";
 import PublicProfile from "./pages/PublicProfile";
-import OnboardingStart from "./pages/OnboardingStart";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery
@@ -105,7 +101,6 @@ const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace"));
 const TeamsSpace = lazy(() => import("./pages/spaces/TeamsSpace"));
 const EventsSpace = lazy(() => import("./pages/spaces/EventsSpace"));
 const CoopSpace = lazy(() => import("./pages/spaces/CoopSpace"));
-const SkillTrees = lazy(() => import("./pages/SkillTrees"));
 const QualityOfLifeMapResults = lazy(() => import("./pages/QualityOfLifeMapResults"));
 const AdminGeniusOffers = lazy(() => import("./pages/AdminGeniusOffers"));
 

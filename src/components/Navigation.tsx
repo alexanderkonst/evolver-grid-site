@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
-import headerImage from "@/assets/header-image.png";
 
 interface UserProfile {
   first_name: string | null;
