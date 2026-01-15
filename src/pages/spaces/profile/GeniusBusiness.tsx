@@ -1,99 +1,17 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Users, ArrowRight, Target, Radio, Telescope, Sparkles } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { Users, Target, Radio, Telescope, Sparkles } from "lucide-react";
+import { useExcaliburData } from "@/hooks/useExcaliburData";
 import ShareZoG from "@/components/sharing/ShareZoG";
-
-interface ExcaliburData {
-    businessIdentity?: {
-        name: string;
-        tagline: string;
-    };
-    essenceAnchor?: {
-        geniusAppleSeed: string;
-        primeDriver: string;
-        archetype: string;
-    };
-    offer?: {
-        statement: string;
-        form: string;
-        deliverable: string;
-    };
-    idealClient?: {
-        profile: string;
-        problem: string;
-        ahaRealization: string;
-    };
-    transformationalPromise?: {
-        fromState: string;
-        toState: string;
-        journey: string;
-    };
-    channels?: {
-        primary: string;
-        secondary: string;
-        content: string;
-    };
-    biggerArc?: {
-        mission: string;
-        movement: string;
-        legacy: string;
-    };
-}
 
 /**
  * GeniusBusiness - Overview page for the Genius Business module
- * Loads Excalibur data from zog_snapshots via last_zog_snapshot_id
+ * Shows the 3-word name + tagline and links to sub-modules
  */
 const GeniusBusiness = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
-    const [profileId, setProfileId] = useState<string | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const resolvedProfileId = await getOrCreateGameProfileId();
-                if (!resolvedProfileId) {
-                    setLoading(false);
-                    return;
-                }
-                setProfileId(resolvedProfileId);
-
-                // First get the profile to find the zog snapshot ID
-                const { data: profileData } = await supabase
-                    .from("game_profiles")
-                    .select("last_zog_snapshot_id")
-                    .eq("id", resolvedProfileId)
-                    .single();
-
-                if (!profileData?.last_zog_snapshot_id) {
-                    setLoading(false);
-                    return;
-                }
-
-                // Load excalibur_data from zog_snapshots
-                const { data: snapshotData } = await supabase
-                    .from("zog_snapshots")
-                    .select("excalibur_data")
-                    .eq("id", profileData.last_zog_snapshot_id)
-                    .single();
-
-                if (snapshotData?.excalibur_data) {
-                    setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
-                }
-            } catch (err) {
-                console.error("Error loading Genius Business data:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadData();
-    }, []);
+    const { loading, excaliburData, profileId } = useExcaliburData();
 
     const modules = [
         { id: "audience", label: "Ideal Client", icon: Users, path: "/game/profile/genius-business/audience", description: "Who this is for" },
