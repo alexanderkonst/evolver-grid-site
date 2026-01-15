@@ -182,15 +182,28 @@ const getOrCreateSnapshot = async (
 
 /**
  * Save Appleseed data to the user's ZoG snapshot
+ * For guests: saves to localStorage only
+ * For authenticated users: saves to database
  */
 export const saveAppleseed = async (
   appleseed: AppleseedData,
   aiResponseRaw?: string
 ): Promise<{ success: boolean; snapshotId?: string; xpAwarded?: number; firstTimeBonus?: number; error?: string }> => {
   try {
+    // Check if user is authenticated
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      // Guest user - save to localStorage only
+      saveAppleseedToLocalStorage(appleseed, aiResponseRaw);
+      console.log("[saveToDatabase] Guest save to localStorage successful");
+      return { success: true };
+    }
+
+    // Authenticated user - save to database
     const profileId = await getProfileId();
     if (!profileId) {
-      return { success: false, error: "User not authenticated or profile not found" };
+      return { success: false, error: "Profile not found for authenticated user" };
     }
 
     const snapshot = await getOrCreateSnapshot(profileId);

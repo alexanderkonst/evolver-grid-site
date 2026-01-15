@@ -146,37 +146,17 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     return data.id;
   }
 
-  // User is not authenticated - use device-based anonymous profile
+  // User is not authenticated - use device-based anonymous profile (localStorage only)
   const existingId = window.localStorage.getItem("game_profile_id");
   if (existingId) {
-    if (referralId) {
-      await supabase
-        .from('game_profiles')
-        .update({ invited_by: referralId })
-        .eq('id', existingId)
-        .is('invited_by', null);
-    }
+    // Already have a local guest profile ID
     return existingId;
   }
 
-  // Create a new anonymous profile
-  const { data, error } = await supabase
-    .from('game_profiles')
-    .insert({ invited_by: referralId })
-    .select('id')
-    .single();
-
-  if (error) {
-    throw error;
-  }
-
-  if (!data) {
-    throw new Error('No data returned from profile creation');
-  }
-
-  // Store the new ID in localStorage
-  const newId = data.id;
+  // Generate a new local UUID for guest (no DB interaction - RLS blocks inserts without user_id)
+  const newId = crypto.randomUUID();
   window.localStorage.setItem("game_profile_id", newId);
+  console.log("[gameProfile] Created guest profile ID (localStorage only):", newId);
 
   return newId;
 }
