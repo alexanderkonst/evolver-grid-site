@@ -1,16 +1,8 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Users, ArrowLeft, Lightbulb, AlertCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-
-interface IdealClientData {
-    profile: string;
-    problem: string;
-    aha: string;
-}
+import { useExcaliburData } from "@/hooks/useExcaliburData";
 
 /**
  * GeniusBusinessAudience - Ideal Client module
@@ -18,30 +10,8 @@ interface IdealClientData {
  */
 const GeniusBusinessAudience = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<IdealClientData | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const profileId = await getOrCreateGameProfileId();
-                if (!profileId) return;
-
-                const { data: profile } = await supabase
-                    .from("game_profiles")
-                    .select("excalibur_data")
-                    .eq("id", profileId)
-                    .single();
-
-                if (profile?.excalibur_data?.idealClient) {
-                    setData(profile.excalibur_data.idealClient as IdealClientData);
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadData();
-    }, []);
+    const { loading, excaliburData } = useExcaliburData();
+    const data = excaliburData?.idealClient;
 
     if (loading) {
         return (
@@ -95,15 +65,17 @@ const GeniusBusinessAudience = () => {
                         </div>
 
                         {/* Aha moment */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                            <div className="flex items-start gap-3">
-                                <Lightbulb className="w-5 h-5 text-[#8460ea] mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-[#a4a3d0] mb-1">Their "Aha" moment</p>
-                                    <p className="text-[#2c3150]">{data.aha}</p>
+                        {data.ahaRealization && (
+                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                                <div className="flex items-start gap-3">
+                                    <Lightbulb className="w-5 h-5 text-[#8460ea] mt-0.5" />
+                                    <div>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">Their "Aha" moment</p>
+                                        <p className="text-[#2c3150]">{data.ahaRealization}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 ) : (
                     <div className="text-center py-12">

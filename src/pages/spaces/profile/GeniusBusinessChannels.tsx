@@ -1,47 +1,17 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Radio, ArrowLeft, Megaphone, Share2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-
-interface ChannelsData {
-    primary: string;
-    secondary: string;
-    hook: string;
-}
+import { useExcaliburData } from "@/hooks/useExcaliburData";
 
 /**
  * GeniusBusinessChannels - Channels module
- * Shows primary/secondary channels and message hook
+ * Shows primary/secondary channels and content strategy
  */
 const GeniusBusinessChannels = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<ChannelsData | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const profileId = await getOrCreateGameProfileId();
-                if (!profileId) return;
-
-                const { data: profile } = await supabase
-                    .from("game_profiles")
-                    .select("excalibur_data")
-                    .eq("id", profileId)
-                    .single();
-
-                if (profile?.excalibur_data?.channels) {
-                    setData(profile.excalibur_data.channels as ChannelsData);
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadData();
-    }, []);
+    const { loading, excaliburData } = useExcaliburData();
+    const data = excaliburData?.channels;
 
     if (loading) {
         return (
@@ -84,26 +54,30 @@ const GeniusBusinessChannels = () => {
                         </div>
 
                         {/* Secondary Channel */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                            <div className="flex items-start gap-3">
-                                <Share2 className="w-5 h-5 text-[#8460ea] mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-[#a4a3d0] mb-1">Secondary Channel</p>
-                                    <p className="text-[#2c3150]">{data.secondary}</p>
+                        {data.secondary && (
+                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                                <div className="flex items-start gap-3">
+                                    <Share2 className="w-5 h-5 text-[#8460ea] mt-0.5" />
+                                    <div>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">Secondary Channel</p>
+                                        <p className="text-[#2c3150]">{data.secondary}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
 
-                        {/* Message Hook */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                            <div className="flex items-start gap-3">
-                                <Megaphone className="w-5 h-5 text-[#8460ea] mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-[#a4a3d0] mb-1">Your Hook Message</p>
-                                    <p className="text-[#2c3150] italic">"{data.hook}"</p>
+                        {/* Content Strategy */}
+                        {data.content && (
+                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                                <div className="flex items-start gap-3">
+                                    <Megaphone className="w-5 h-5 text-[#8460ea] mt-0.5" />
+                                    <div>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">Content Strategy</p>
+                                        <p className="text-[#2c3150]">{data.content}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 ) : (
                     <div className="text-center py-12">
