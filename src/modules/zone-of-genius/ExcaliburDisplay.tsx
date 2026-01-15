@@ -13,113 +13,101 @@ interface ExcaliburDisplayProps {
 
 /**
  * GeniusBusinessDisplay - My Unique Genius Business
- * Compact one-screen layout: USP, Who, Promise
- * Form, Deliverable, Channels, BiggerArc → moved to profile section
+ * All in one compact box: logo, title, USP, Who, Promise
  */
 const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
-        // Get first sentence of offer statement
-        const firstSentence = excalibur.offer.statement.split('.')[0] + '.';
+        const firstSentence = getFirstSentence(excalibur.offer.statement);
         await navigator.clipboard.writeText(firstSentence);
         setCopiedOffer(true);
         setTimeout(() => setCopiedOffer(false), 2000);
     };
 
-    // Get first sentence of offer statement for USP
+    // Get first sentence of offer statement
     const getFirstSentence = (text: string) => {
         const sentences = text.match(/[^.!?]+[.!?]+/g);
         return sentences ? sentences[0].trim() : text;
     };
 
-    // Get first phrase of profile (before comma or full text if short)
-    const getFirstPhrase = (text: string) => {
-        const parts = text.split(',');
-        return parts[0].trim();
-    };
-
-    // Create "I [action]" header from tagline
+    // Create "I [verb] [rest]" header from offer statement
+    // Takes first sentence and converts "I guide..." or extracts action verb
     const getActionHeader = () => {
-        const tagline = excalibur.businessIdentity.tagline;
-        // Capitalize first letter and ensure it starts with "I "
-        const cleaned = tagline.replace(/^["']|["']$/g, '').trim();
-        // If starts with lowercase verb, add "I "
-        if (/^[a-z]/.test(cleaned)) {
-            return "I " + cleaned;
+        const firstSentence = getFirstSentence(excalibur.offer.statement);
+        // Already starts with "I " - use as is
+        if (firstSentence.toLowerCase().startsWith("i ")) {
+            return firstSentence.replace(/\.$/, ""); // Remove trailing period
         }
-        return "I " + cleaned.toLowerCase();
+        // Otherwise construct from businessIdentity.name
+        const name = excalibur.businessIdentity.name; // e.g. "Holonic System Architect"
+        // Try to make it active: "I architect holonic systems..."
+        return `I ${name.toLowerCase()}`;
     };
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-2 space-y-3">
-            {/* Hero: Action Statement as Header */}
-            <div className="text-center space-y-2 py-4">
-                <div className="inline-flex items-center justify-center w-[84px] h-[84px] rounded-full overflow-hidden mb-3">
-                    <img
-                        src="/genius-business-logo.png"
-                        alt="Genius Business"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">My Unique Genius Business</p>
-
-                {/* Action Statement with "I" - Main Header */}
-                <h1 className="text-xl lg:text-2xl font-bold text-[#2c3150] leading-tight">
-                    {getActionHeader()}
-                </h1>
-            </div>
-
-            {/* Compact Box with all sections */}
-            <div className="p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm space-y-4">
-                {/* My Unique Selling Proposition (first sentence only) */}
-                <div>
-                    <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1">
-                            <p className="text-xs text-[#8460ea] font-medium uppercase tracking-wide mb-1">My Unique Selling Proposition</p>
-                            <p className="text-base text-[#2c3150] leading-relaxed">
-                                {getFirstSentence(excalibur.offer.statement)}
-                            </p>
-                        </div>
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={handleCopyOffer}
-                            className="shrink-0 h-8 w-8 p-0"
-                        >
-                            {copiedOffer ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4 text-[#a4a3d0]" />}
-                        </Button>
+        <div className="max-w-2xl mx-auto px-4 py-1 space-y-2">
+            {/* Single Unified Box with everything */}
+            <div className="p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm">
+                {/* Header: Logo + Title + Action Statement */}
+                <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/20">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-2">
+                        <img
+                            src="/genius-business-logo.png"
+                            alt="Genius Business"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
+                    <p className="text-[10px] text-[#a4a3d0] uppercase tracking-wide mb-1">My Unique Genius Business</p>
+                    <h1 className="text-lg lg:text-xl font-bold text-[#2c3150] leading-tight">
+                        {getActionHeader()}
+                    </h1>
                 </div>
 
-                {/* Divider */}
-                <div className="border-t border-[#a4a3d0]/20" />
-
-                {/* Who This Is For (first phrase only) */}
-                <div>
-                    <div className="flex items-center gap-2 mb-1">
-                        <Users className="w-4 h-4 text-[#8460ea]" />
-                        <p className="text-xs font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
-                    </div>
-                    <p className="text-base text-[#2c3150]">{getFirstPhrase(excalibur.idealClient.profile)}</p>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-[#a4a3d0]/20" />
-
-                {/* Transformational Promise (A → B only) */}
-                <div>
-                    <p className="text-xs font-medium text-[#8460ea] uppercase tracking-wide mb-2">Transformational Promise</p>
-                    <div className="flex items-center gap-2">
-                        <div className="flex-1 p-2 bg-white/80 rounded-lg">
-                            <p className="text-[10px] text-[#a4a3d0] uppercase">From</p>
-                            <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
+                {/* Sections */}
+                <div className="space-y-3">
+                    {/* My Unique Selling Proposition (first sentence) */}
+                    <div>
+                        <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1">
+                                <p className="text-[10px] text-[#8460ea] font-medium uppercase tracking-wide mb-0.5">My Unique Selling Proposition</p>
+                                <p className="text-sm text-[#2c3150] leading-relaxed">
+                                    {getFirstSentence(excalibur.offer.statement)}
+                                </p>
+                            </div>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleCopyOffer}
+                                className="shrink-0 h-7 w-7 p-0"
+                            >
+                                {copiedOffer ? <Check className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3 text-[#a4a3d0]" />}
+                            </Button>
                         </div>
-                        <ArrowRight className="w-5 h-5 text-[#8460ea] shrink-0" />
-                        <div className="flex-1 p-2 bg-white/80 rounded-lg">
-                            <p className="text-[10px] text-[#a4a3d0] uppercase">To</p>
-                            <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.toState}</p>
+                    </div>
+
+                    {/* Who This Is For (FULL text, no truncation) */}
+                    <div>
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                            <Users className="w-3 h-3 text-[#8460ea]" />
+                            <p className="text-[10px] font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
+                        </div>
+                        <p className="text-sm text-[#2c3150]">{excalibur.idealClient.profile}</p>
+                    </div>
+
+                    {/* Transformational Promise (A → B) */}
+                    <div>
+                        <p className="text-[10px] font-medium text-[#8460ea] uppercase tracking-wide mb-1">Transformational Promise</p>
+                        <div className="flex items-center gap-1.5">
+                            <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
+                                <p className="text-[9px] text-[#a4a3d0] uppercase">From</p>
+                                <p className="text-xs text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
+                            </div>
+                            <ArrowRight className="w-4 h-4 text-[#8460ea] shrink-0" />
+                            <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
+                                <p className="text-[9px] text-[#a4a3d0] uppercase">To</p>
+                                <p className="text-xs text-[#2c3150]">{excalibur.transformationalPromise.toState}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
