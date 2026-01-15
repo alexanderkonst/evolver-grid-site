@@ -288,8 +288,8 @@ const CoreLoopHome = () => {
             <GameShellV2>
                 <div className="p-6 lg:p-8 max-w-xl mx-auto">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
-                            <Sparkles className="w-8 h-8 text-amber-600" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
+                            <img src="/dodecahedron.png" alt="Genius Discovery" className="w-full h-full object-cover" />
                         </div>
                         <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome to Your Journey</h1>
                         <p className="text-slate-600">Let's start by discovering who you are at your best.</p>

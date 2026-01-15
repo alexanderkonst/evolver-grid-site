@@ -342,8 +342,8 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-100 mb-4">
-                        <Sparkles className="w-7 h-7 text-amber-600" />
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
+                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-bold text-slate-900">Zone of Genius</h1>
                     <p className="text-slate-600 mt-1">Discover who you are at your best</p>
