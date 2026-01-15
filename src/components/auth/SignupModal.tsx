@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { User, Sparkles, X } from "lucide-react";
+import { User, Sparkles } from "lucide-react";
 
 interface SignupModalProps {
     open: boolean;

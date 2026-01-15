@@ -4,7 +4,6 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
-import BoldText from "@/components/BoldText";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step1SelectTop10Talents = () => {
