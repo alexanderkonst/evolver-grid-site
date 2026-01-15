@@ -104,7 +104,7 @@ const SpacesRail = ({
         <div
             className={cn(
                 // Mobile: narrow with icons only, Desktop: wider with labels
-                "w-[72px] md:w-[240px] bg-slate-900 flex flex-col border-r border-slate-800",
+                "w-[72px] lg:w-[200px] bg-slate-900 flex flex-col border-r border-slate-800",
                 className
             )}
         >
