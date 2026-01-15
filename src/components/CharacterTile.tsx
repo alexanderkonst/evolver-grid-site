@@ -48,7 +48,7 @@ const CharacterTile = ({
                 sizeClasses.tile,
                 isLocked
                     ? "opacity-60 cursor-not-allowed"
-                    : "hover:scale-105 hover:shadow-lg active:scale-95"
+                    : "shadow-[0_6px_18px_rgba(164,163,208,0.16)] hover:scale-105 hover:shadow-[0_10px_28px_rgba(132,96,234,0.24)] active:scale-95"
             )}
             style={{
                 backgroundColor: isLocked ? "rgba(255,255,255,0.05)" : `${color}15`,

@@ -49,7 +49,8 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
 
   return (
     <Card
-      className="cursor-pointer hover:shadow-md transition-shadow border-slate-200 bg-white"
+      variant="wabi"
+      className="cursor-pointer transition-shadow hover:shadow-[0_12px_32px_rgba(132,96,234,0.22)]"
       onClick={onClick}
     >
       {/* Photo placeholder */}
