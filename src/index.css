@@ -296,3 +296,23 @@ All colors MUST be HSL.
   animation: shimmer 2.5s infinite;
   pointer-events: none;
 }
+
+.bokeh-shimmer {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(132, 96, 234, 0.16), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(164, 163, 208, 0.18), transparent 40%),
+    radial-gradient(circle at 30% 80%, rgba(200, 183, 216, 0.16), transparent 45%);
+  animation: bokeh-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes bokeh-shimmer {
+  0% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}

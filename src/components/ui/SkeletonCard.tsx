@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
+import BokehSkeleton from "@/components/ui/bokeh-skeleton";
 
 const SkeletonCard = ({ className }: { className?: string }) => (
-  <div className={cn("animate-pulse bg-slate-700/50 rounded-xl", className)} />
+  <BokehSkeleton className={cn("rounded-xl", className)} />
 );
 
 export default SkeletonCard;
