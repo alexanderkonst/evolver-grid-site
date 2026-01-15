@@ -329,6 +329,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         activeSpaceId={activeSpaceId}
                         onSpaceSelect={handleSpaceSelect}
                         unlockStatus={unlockStatus}
+                        userName={profile?.first_name || undefined}
+                        userAvatarUrl={profile?.avatar_url || undefined}
+                        userLevel={profile?.level || undefined}
+                        userXp={profile?.xp_total || undefined}
                     />
 
                     {/* Panel 2: Sections */}
