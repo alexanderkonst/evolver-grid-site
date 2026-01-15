@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,7 @@ const SignupModal = ({
     title = "Save Your Genius",
     description = "Create an account to save your Zone of Genius and unlock your profile",
 }: SignupModalProps) => {
+    const [searchParams] = useSearchParams();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -40,11 +42,24 @@ const SignupModal = ({
     const [loading, setLoading] = useState(false);
     const { toast } = useToast();
 
+    // Get referral ID from URL or localStorage
+    const getInviterId = (): string | null => {
+        const refParam = searchParams.get("ref");
+        if (refParam) {
+            // Store in localStorage for persistence
+            localStorage.setItem("inviter_id", refParam);
+            return refParam;
+        }
+        return localStorage.getItem("inviter_id");
+    };
+
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
+            const inviterId = getInviterId();
+
             const { data, error } = await supabase.auth.signUp({
                 email,
                 password,
@@ -53,6 +68,7 @@ const SignupModal = ({
                     data: {
                         first_name: firstName.trim(),
                         last_name: lastName.trim(),
+                        inviter_id: inviterId,
                     },
                 },
             });
