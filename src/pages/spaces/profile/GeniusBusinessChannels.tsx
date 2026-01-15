@@ -67,13 +67,13 @@ const GeniusBusinessChannels = () => {
                         )}
 
                         {/* Content Strategy */}
-                        {data.content && (
+                        {data.hook && (
                             <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
                                 <div className="flex items-start gap-3">
                                     <Megaphone className="w-5 h-5 text-[#8460ea] mt-0.5" />
                                     <div>
-                                        <p className="text-sm text-[#a4a3d0] mb-1">Content Strategy</p>
-                                        <p className="text-[#2c3150]">{data.content}</p>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">Your Hook Message</p>
+                                        <p className="text-[#2c3150]">{data.hook}</p>
                                     </div>
                                 </div>
                             </div>

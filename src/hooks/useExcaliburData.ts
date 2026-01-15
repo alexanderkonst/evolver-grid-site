@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 
+/**
+ * ExcaliburData interface - MUST match excaliburGenerator.ts exactly
+ * See: src/modules/zone-of-genius/excaliburGenerator.ts lines 208-245
+ */
 export interface ExcaliburData {
     businessIdentity?: {
         name: string;
@@ -20,7 +24,7 @@ export interface ExcaliburData {
     idealClient?: {
         profile: string;
         problem: string;
-        ahaRealization: string;
+        aha: string;  // NOTE: was incorrectly 'ahaRealization'
     };
     transformationalPromise?: {
         fromState: string;
@@ -30,12 +34,11 @@ export interface ExcaliburData {
     channels?: {
         primary: string;
         secondary: string;
-        content: string;
+        hook: string;  // NOTE: was incorrectly 'content'
     };
     biggerArc?: {
-        mission: string;
-        movement: string;
-        legacy: string;
+        vision: string;    // NOTE: was incorrectly 'mission'
+        moonshot: string;  // NOTE: was incorrectly 'legacy'
     };
 }
 
@@ -61,26 +64,41 @@ export function useExcaliburData() {
                 setProfileId(resolvedProfileId);
 
                 // Get the profile to find the zog snapshot ID
-                const { data: profileData } = await supabase
+                const { data: profileData, error: profileError } = await supabase
                     .from("game_profiles")
                     .select("last_zog_snapshot_id")
                     .eq("id", resolvedProfileId)
                     .single();
 
+                if (profileError) {
+                    console.error("[useExcaliburData] Profile fetch error:", profileError);
+                }
+
                 if (!profileData?.last_zog_snapshot_id) {
+                    console.log("[useExcaliburData] No last_zog_snapshot_id found");
                     setLoading(false);
                     return;
                 }
 
+                console.log("[useExcaliburData] Fetching snapshot:", profileData.last_zog_snapshot_id);
+
                 // Load excalibur_data from zog_snapshots
-                const { data: snapshotData } = await supabase
+                const { data: snapshotData, error: snapshotError } = await supabase
                     .from("zog_snapshots")
                     .select("excalibur_data")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
+                if (snapshotError) {
+                    console.error("[useExcaliburData] Snapshot fetch error:", snapshotError);
+                }
+
+                console.log("[useExcaliburData] Snapshot data:", snapshotData);
+
                 if (snapshotData?.excalibur_data) {
                     setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
+                } else {
+                    console.log("[useExcaliburData] No excalibur_data in snapshot");
                 }
             } catch (err) {
                 console.error("Error loading Excalibur data:", err);

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Telescope, ArrowLeft, Rocket, Sparkles, Globe } from "lucide-react";
+import { Telescope, ArrowLeft, Rocket, Sparkles } from "lucide-react";
 import { useExcaliburData } from "@/hooks/useExcaliburData";
 
 /**
  * GeniusBusinessVision - The Bigger Arc module
- * Shows mission, movement, and legacy
+ * Shows vision and moonshot
  */
 const GeniusBusinessVision = () => {
     const navigate = useNavigate();
@@ -36,48 +36,35 @@ const GeniusBusinessVision = () => {
                     </button>
                     <div>
                         <h1 className="text-2xl font-bold text-[#2c3150]">The Bigger Arc</h1>
-                        <p className="text-sm text-[#a4a3d0]">Your vision and legacy</p>
+                        <p className="text-sm text-[#a4a3d0]">Your vision and moonshot</p>
                     </div>
                 </div>
 
                 {data ? (
                     <div className="space-y-4">
-                        {/* Mission */}
-                        {data.mission && (
+                        {/* Vision */}
+                        {data.vision && (
                             <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
                                 <div className="flex items-start gap-3">
                                     <Telescope className="w-5 h-5 text-[#8460ea] mt-0.5" />
                                     <div>
-                                        <p className="text-sm text-[#a4a3d0] mb-1">Your Mission</p>
-                                        <p className="text-[#2c3150]">{data.mission}</p>
+                                        <p className="text-sm text-[#a4a3d0] mb-1">How This Fits Your Bigger Purpose</p>
+                                        <p className="text-[#2c3150]">{data.vision}</p>
                                     </div>
                                 </div>
                             </div>
                         )}
 
-                        {/* Movement */}
-                        {data.movement && (
-                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                                <div className="flex items-start gap-3">
-                                    <Globe className="w-5 h-5 text-[#8460ea] mt-0.5" />
-                                    <div>
-                                        <p className="text-sm text-[#a4a3d0] mb-1">The Movement You're Building</p>
-                                        <p className="text-[#2c3150]">{data.movement}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Legacy */}
-                        {data.legacy && (
+                        {/* Moonshot */}
+                        {data.moonshot && (
                             <div className="p-6 bg-gradient-to-br from-[#8460ea]/10 to-[#29549f]/10 rounded-xl border border-[#8460ea]/20">
                                 <div className="flex items-start gap-3">
                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] flex items-center justify-center flex-shrink-0">
                                         <Rocket className="w-5 h-5 text-white" />
                                     </div>
                                     <div>
-                                        <p className="text-xs text-[#8460ea] mb-1">YOUR LEGACY</p>
-                                        <p className="text-[#2c3150] font-medium">{data.legacy}</p>
+                                        <p className="text-xs text-[#8460ea] mb-1">MOONSHOT</p>
+                                        <p className="text-[#2c3150] font-medium">{data.moonshot}</p>
                                     </div>
                                 </div>
                             </div>
