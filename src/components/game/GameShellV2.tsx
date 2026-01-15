@@ -207,15 +207,29 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     }
 
     // Unlock status - progressive feature reveal
-    // Teams: available after ZoG complete (user knows their genius)
-    // Marketplace/Coop: available after Excalibur (user has their offer)
-    const completedStages = ["zog_complete", "offer_complete", "qol_complete", "recipe_complete", "unlocked"];
-    const teamsUnlocked = profile?.onboarding_stage && completedStages.includes(profile.onboarding_stage);
+    // Progressive unlock based on onboarding stage
+    // Progression: new → zog_started → zog_complete → qol_started → qol_complete → offer_complete → unlocked
+    const stage = profile?.onboarding_stage || "new";
 
+    // Define what unlocks at each stage
+    const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
+    const qolComplete = ["qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
+    const offerComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
+
+    // Unlock status for each space
     const unlockStatus: Record<string, boolean> = {
-        teams: teamsUnlocked || false,
-        marketplace: hasGeniusOffer,
-        coop: hasGeniusOffer,
+        // Profile is always unlocked (it's where users manage their data)
+        "profile": true,
+        // Next Move and Transformation unlock after QoL complete
+        "next-move": qolComplete,
+        "transformation": qolComplete,
+        // Teams unlock after ZoG complete (know your genius to find teammates)
+        "teams": zogComplete,
+        // Marketplace and Coop unlock after offer complete (need an offer to sell)
+        "marketplace": offerComplete,
+        "coop": offerComplete,
+        // Events always available
+        "events": true,
     };
 
     // Navigation handlers
