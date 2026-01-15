@@ -110,7 +110,7 @@ const RevelatoryHero = ({
                     className={`font-['Fraunces',serif] text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
-                    {title}
+                    {title.replace(/✦/g, '').trim()}
                 </h1>
 
                 {/* Action Statement - Compact */}
@@ -129,7 +129,7 @@ const RevelatoryHero = ({
 
                 {/* Three Lenses - Compact */}
                 {threeLenses && (
-                    <div className="mt-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-left">
+                    <div className="mt-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-center">
                         {/* Top Talents */}
                         {threeLenses.actions && threeLenses.actions.length > 0 && (
                             <div className="mb-2">
