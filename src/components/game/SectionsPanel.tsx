@@ -46,6 +46,18 @@ const SPACE_SECTIONS: SpaceSections = {
                 ],
             },
             {
+                id: "genius-business",
+                label: "Genius Business",
+                path: "/game/profile/genius-business",
+                subSections: [
+                    { id: "gb-overview", label: "Overview", path: "/game/profile/genius-business" },
+                    { id: "gb-audience", label: "Ideal Client", path: "/game/profile/genius-business/audience" },
+                    { id: "gb-promise", label: "Promise", path: "/game/profile/genius-business/promise" },
+                    { id: "gb-channels", label: "Channels", path: "/game/profile/genius-business/channels" },
+                    { id: "gb-vision", label: "Vision", path: "/game/profile/genius-business/vision" },
+                ],
+            },
+            {
                 id: "qol",
                 label: "Quality of Life",
                 path: "/quality-of-life-map/assessment",
