@@ -231,15 +231,26 @@ const Auth = () => {
   }
 
   return (
-    <div className={`min-h-dvh flex flex-col ${isOnboardingFlow ? 'bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]' : 'bg-background'}`}>
+    <div className={`min-h-dvh flex flex-col ${isOnboardingFlow
+      ? 'bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]'
+      : 'bg-background'}`}>
+      {/* Wabi-sabi Bokeh Overlay for onboarding */}
+      {isOnboardingFlow && (
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.08)_0%,transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
+        </div>
+      )}
       {!isOnboardingFlow && <Navigation />}
-      <main className="flex-grow flex items-center justify-center px-4 py-24">
-        <Card className="w-full max-w-md">
+      <main className="flex-grow flex items-center justify-center px-4 py-24 relative z-10">
+        <Card className={`w-full max-w-md ${isOnboardingFlow
+          ? 'bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]'
+          : ''}`}>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">
+            <CardTitle className={`text-2xl font-bold ${isOnboardingFlow ? 'text-[#2c3150]' : ''}`}>
               {isOnboardingFlow ? "Create Your Account" : "Welcome to the Game of Life"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className={isOnboardingFlow ? 'text-[#a4a3d0]' : ''}>
               {isOnboardingFlow
                 ? "Save your Zone of Genius and unlock your genius business."
                 : "Create an account or log in to save your character progress across devices."}
@@ -247,15 +258,15 @@ const Auth = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Log In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className={`grid w-full grid-cols-2 ${isOnboardingFlow ? 'bg-[#a4a3d0]/20' : ''}`}>
+                <TabsTrigger value="login" className={isOnboardingFlow ? 'data-[state=active]:bg-white data-[state=active]:text-[#8460ea]' : ''}>Log In</TabsTrigger>
+                <TabsTrigger value="signup" className={isOnboardingFlow ? 'data-[state=active]:bg-white data-[state=active]:text-[#8460ea]' : ''}>Sign Up</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
+                    <Label htmlFor="login-email" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Email</Label>
                     <Input
                       id="login-email"
                       type="email"
@@ -263,15 +274,16 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="login-password">Password</Label>
+                      <Label htmlFor="login-password" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Password</Label>
                       <button
                         type="button"
                         onClick={() => setShowForgotPassword(true)}
-                        className="text-xs text-primary hover:underline"
+                        className={`text-xs hover:underline ${isOnboardingFlow ? 'text-[#8460ea]' : 'text-primary'}`}
                       >
                         Forgot password?
                       </button>
@@ -283,9 +295,14 @@ const Auth = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button
+                    type="submit"
+                    className={`w-full ${isOnboardingFlow ? 'bg-[#8460ea] hover:bg-[#6894d0] text-white' : ''}`}
+                    disabled={loading}
+                  >
                     {loading ? "Logging in..." : "Log In"}
                   </Button>
                   {import.meta.env.DEV && (
@@ -306,7 +323,7 @@ const Auth = () => {
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-firstname">First Name</Label>
+                      <Label htmlFor="signup-firstname" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>First Name</Label>
                       <Input
                         id="signup-firstname"
                         type="text"
@@ -314,10 +331,11 @@ const Auth = () => {
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
+                        className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="signup-lastname">Last Name</Label>
+                      <Label htmlFor="signup-lastname" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Last Name</Label>
                       <Input
                         id="signup-lastname"
                         type="text"
@@ -325,11 +343,12 @@ const Auth = () => {
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
+                        className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signup-email" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Email</Label>
                     <Input
                       id="signup-email"
                       type="email"
@@ -337,10 +356,11 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Password</Label>
                     <Input
                       id="signup-password"
                       type="password"
@@ -349,12 +369,17 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       minLength={6}
+                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
-                    <p className="text-xs text-muted-foreground">
+                    <p className={`text-xs ${isOnboardingFlow ? 'text-[#a4a3d0]' : 'text-muted-foreground'}`}>
                       Password must be at least 6 characters
                     </p>
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button
+                    type="submit"
+                    className={`w-full ${isOnboardingFlow ? 'bg-[#8460ea] hover:bg-[#6894d0] text-white' : ''}`}
+                    disabled={loading}
+                  >
                     {loading ? "Creating account..." : "Sign Up"}
                   </Button>
                 </form>
