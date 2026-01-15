@@ -104,6 +104,7 @@ const ZoneOfGeniusEntry = () => {
                 try {
                     const result = await saveAppleseed(appleseed, aiResponse);
                     if (result.success) {
+                        setIsSaved(true);
                         toast({
                             title: "✨ Genius Saved!",
                             description: "Your Zone of Genius has been saved to your profile.",
@@ -182,7 +183,7 @@ const ZoneOfGeniusEntry = () => {
                     });
                 }
                 const redirectPath = getPostZogRedirect(returnPath);
-                if (redirectPath) {
+                if (redirectPath && returnPath !== "/game/profile") {
                     setTimeout(() => navigate(redirectPath), 600);
                 }
             } else {
