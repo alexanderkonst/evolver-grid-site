@@ -39,10 +39,13 @@ const SPACE_SECTIONS: SpaceSections = {
             {
                 id: "zog",
                 label: "Zone of Genius",
-                path: "/zone-of-genius/entry",
+                path: "/game/profile/zone-of-genius",
                 subSections: [
-                    { id: "appleseed", label: "Appleseed", path: "/zone-of-genius/appleseed" },
-                    { id: "excalibur", label: "Excalibur", path: "/zone-of-genius/excalibur" },
+                    { id: "zog-overview", label: "Overview", path: "/game/profile/zone-of-genius" },
+                    { id: "zog-archetype", label: "My Archetype", path: "/game/profile/zone-of-genius/archetype" },
+                    { id: "zog-talents", label: "Top Talents", path: "/game/profile/zone-of-genius/talents" },
+                    { id: "zog-driver", label: "Prime Driver", path: "/game/profile/zone-of-genius/driver" },
+                    { id: "zog-action", label: "Action Statement", path: "/game/profile/zone-of-genius/action" },
                 ],
             },
             {

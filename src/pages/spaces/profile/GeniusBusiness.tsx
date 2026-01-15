@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Briefcase, Users, ArrowRight, Target, Radio, Telescope, Sparkles } from "lucide-react";
+import { Users, ArrowRight, Target, Radio, Telescope, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import ShareZoG from "@/components/sharing/ShareZoG";
@@ -22,11 +22,31 @@ interface ExcaliburData {
         form: string;
         deliverable: string;
     };
+    idealClient?: {
+        profile: string;
+        problem: string;
+        ahaRealization: string;
+    };
+    transformationalPromise?: {
+        fromState: string;
+        toState: string;
+        journey: string;
+    };
+    channels?: {
+        primary: string;
+        secondary: string;
+        content: string;
+    };
+    biggerArc?: {
+        mission: string;
+        movement: string;
+        legacy: string;
+    };
 }
 
 /**
  * GeniusBusiness - Overview page for the Genius Business module
- * Shows the 3-word name + tagline and links to sub-modules
+ * Loads Excalibur data from zog_snapshots via last_zog_snapshot_id
  */
 const GeniusBusiness = () => {
     const navigate = useNavigate();
@@ -38,18 +58,36 @@ const GeniusBusiness = () => {
         const loadData = async () => {
             try {
                 const resolvedProfileId = await getOrCreateGameProfileId();
-                if (!resolvedProfileId) return;
+                if (!resolvedProfileId) {
+                    setLoading(false);
+                    return;
+                }
                 setProfileId(resolvedProfileId);
 
-                const { data } = await supabase
+                // First get the profile to find the zog snapshot ID
+                const { data: profileData } = await supabase
                     .from("game_profiles")
-                    .select("excalibur_data")
-                    .eq("id", profileId)
+                    .select("last_zog_snapshot_id")
+                    .eq("id", resolvedProfileId)
                     .single();
 
-                if (data?.excalibur_data) {
-                    setExcaliburData(data.excalibur_data as ExcaliburData);
+                if (!profileData?.last_zog_snapshot_id) {
+                    setLoading(false);
+                    return;
                 }
+
+                // Load excalibur_data from zog_snapshots
+                const { data: snapshotData } = await supabase
+                    .from("zog_snapshots")
+                    .select("excalibur_data")
+                    .eq("id", profileData.last_zog_snapshot_id)
+                    .single();
+
+                if (snapshotData?.excalibur_data) {
+                    setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
+                }
+            } catch (err) {
+                console.error("Error loading Genius Business data:", err);
             } finally {
                 setLoading(false);
             }
@@ -78,8 +116,8 @@ const GeniusBusiness = () => {
         return (
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] flex items-center justify-center">
-                        <Briefcase className="w-8 h-8 text-white" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
+                        <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Create Your Genius Business</h1>
                     <p className="text-[#a4a3d0] mb-6">
@@ -100,12 +138,12 @@ const GeniusBusiness = () => {
     return (
         <GameShellV2>
             <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-                {/* Hero: 3-word name + tagline */}
+                {/* Hero: Business name + tagline */}
                 <div className="text-center py-8 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] rounded-2xl border border-[#a4a3d0]/20">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] flex items-center justify-center">
-                        <Briefcase className="w-7 h-7 text-white" />
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
+                        <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-3xl font-bold text-[#2c3150] mb-2">
+                    <h1 className="text-3xl font-['Fraunces',serif] font-bold text-[#2c3150] mb-2">
                         {excaliburData.businessIdentity.name}
                     </h1>
                     <p className="text-lg text-[#8460ea] font-medium">
@@ -124,7 +162,7 @@ const GeniusBusiness = () => {
                 {/* Offer statement */}
                 {excaliburData.offer && (
                     <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
-                        <p className="text-sm text-[#a4a3d0] mb-1">Your Offer</p>
+                        <p className="text-sm text-[#a4a3d0] mb-1">Your Unique Selling Proposition</p>
                         <p className="text-[#2c3150]">{excaliburData.offer.statement}</p>
                     </div>
                 )}
