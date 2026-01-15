@@ -25,6 +25,9 @@ const Auth = () => {
   const { toast } = useToast();
 
   const redirectTo = searchParams.get("redirect") || "/start";
+  const mode = searchParams.get("mode"); // signup, login, or null
+  const isOnboardingFlow = mode === "signup"; // From ZoG flow - minimal UI
+  const defaultTab = mode === "signup" ? "signup" : "login";
 
   useEffect(() => {
     captureReferralIdFromUrl();
@@ -228,18 +231,22 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-background">
-      <Navigation />
+    <div className={`min-h-dvh flex flex-col ${isOnboardingFlow ? 'bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]' : 'bg-background'}`}>
+      {!isOnboardingFlow && <Navigation />}
       <main className="flex-grow flex items-center justify-center px-4 py-24">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Welcome to the Game of Life</CardTitle>
+            <CardTitle className="text-2xl font-bold">
+              {isOnboardingFlow ? "Create Your Account" : "Welcome to the Game of Life"}
+            </CardTitle>
             <CardDescription>
-              Create an account or log in to save your character progress across devices.
+              {isOnboardingFlow
+                ? "Save your Zone of Genius and unlock your genius business."
+                : "Create an account or log in to save your character progress across devices."}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="login" className="w-full">
+            <Tabs defaultValue={defaultTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="login">Log In</TabsTrigger>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -356,7 +363,7 @@ const Auth = () => {
           </CardContent>
         </Card>
       </main>
-      <Footer />
+      {!isOnboardingFlow && <Footer />}
     </div>
   );
 };

@@ -701,42 +701,6 @@ const GameHome = () => {
   return (
     <GameShellV2 hideNavigation={!hasAnyData}>
 
-      {/* Guest Banner */}
-      {!user && (
-        <div className="bg-amber-50 border-b border-amber-200">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-4xl mx-auto">
-              <div className="flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-amber-900">Playing as guest</p>
-                  <p className="text-xs text-amber-700">Log in to save progress across devices.</p>
-                </div>
-              </div>
-              <Button size="sm" asChild className="w-full sm:w-auto">
-                <Link
-                  to="/auth"
-                  onClick={() => {
-                    if (profileId) {
-                      logActionEvent({
-                        actionId: "guest-login",
-                        profileId,
-                        source: "src/pages/GameHome.tsx",
-                        loop: "profile",
-                        selectedAt: new Date().toISOString(),
-                        metadata: { intent: "guest_login" },
-                      });
-                    }
-                  }}
-                >
-                  Log in
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
 
