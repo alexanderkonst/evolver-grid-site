@@ -301,19 +301,11 @@ const ZoneOfGeniusEntry = () => {
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
-                    onSaveToProfile={handleSaveClick}
+                    onSaveGenius={handleSaveAppleseed}
                     onCreateBusiness={() => setStep("generating-excalibur")}
                     isSaving={isSaving}
                     isSaved={isSaved}
-                />
-
-                {/* Signup Modal for guests */}
-                <SignupModal
-                    open={showSignupModal}
-                    onOpenChange={setShowSignupModal}
-                    onSuccess={handleSignupSuccess}
-                    title="Save Your Genius"
-                    description="Create an account to save your Zone of Genius forever"
+                    isGuest={isGuest}
                 />
             </GameShellV2>
         );
