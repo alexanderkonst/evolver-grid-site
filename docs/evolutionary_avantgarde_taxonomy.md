@@ -89,11 +89,29 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 
 ## Why This Matters
 
-**Balaji = one channel** (crypto-native Network States).
+### One Organism
 
-**Planetary OS = all channels.** The infrastructure that lets a regeneration-focused permaculturist find a Web3 developer for a land DAO, or a spiritual teacher connect with a venture studio for scaling.
+The six currents aren't separate movements. **They're one organism waking up in six places simultaneously.** Planetary OS is the connective tissue.
 
-**Cross-pollination is the product.**
+### Genius Resonance — The Fourth Coordination Mechanism
+
+| Old Coordination | Problem |
+|------------------|---------|
+| 💰 Money | Slow, extractive |
+| 📊 Hierarchy | Bottlenecked |
+| 🎲 Chance | Doesn't scale |
+
+**✨ Genius Resonance** — fast, generative, fractal. The new way.
+
+### The Planetary Synapse
+
+This isn't connecting people. It's **completing circuits**.
+
+Every time two complementary geniuses find each other, energy flows that was previously stuck. Multiply by thousands. Then millions.
+
+Not a community platform. **A planetary synapse.**
+
+📄 **Full vision**: [vision.md](./vision.md)
 
 ---
 
