@@ -224,8 +224,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
         // Profile is always unlocked (it's where users manage their data)
         "profile": true,
         // For zog_complete: everything else locked
-        // Next Move and Transformation unlock after QoL complete
-        "next-move": !isZogCompleteStage && qolComplete,
+        // Next Move unlocks after offer complete
+        "next-move": !isZogCompleteStage && offerComplete,
         "transformation": !isZogCompleteStage && qolComplete,
         // Teams unlock after QoL complete
         "teams": !isZogCompleteStage && qolComplete,
@@ -303,17 +303,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                 )}
 
                 {/* Panel 3: Content */}
-                <main className="flex-1 bg-transparent min-h-dvh overflow-auto relative z-10">
-                    {profile && (
-                        <div className="sticky top-0 z-10 flex justify-end bg-gradient-to-b from-[#e7e9e5]/95 to-transparent px-4 pt-4 pb-2">
-                            <PlayerStatsBadge
-                                level={profile.level}
-                                xpTotal={profile.xp_total}
-                                streakDays={profile.current_streak_days}
-                                size="sm"
-                            />
-                        </div>
-                    )}
+                <main className="flex-1 bg-transparent min-h-dvh overflow-auto relative z-10 pt-4">
                     {children}
                 </main>
             </div>
@@ -371,15 +361,6 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         <span className="text-white font-medium flex-1 truncate">
                             {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
                         </span>
-                        {profile && (
-                            <PlayerStatsBadge
-                                level={profile.level}
-                                xpTotal={profile.xp_total}
-                                streakDays={profile.current_streak_days}
-                                size="sm"
-                                className="text-white [&>span]:bg-white/10 [&>span]:text-white"
-                            />
-                        )}
                     </header>
 
                     {/* Content with safe area bottom */}

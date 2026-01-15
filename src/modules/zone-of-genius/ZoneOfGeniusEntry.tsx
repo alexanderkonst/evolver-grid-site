@@ -31,7 +31,7 @@ const ZoneOfGeniusEntry = () => {
     const navigate = useNavigate();
     const { toast } = useToast();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/profile";
+    const returnPath = searchParams.get("return") || "/game/next-move";
 
     const [step, setStep] = useState<Step>("choice");
     const [aiResponse, setAiResponse] = useState("");
