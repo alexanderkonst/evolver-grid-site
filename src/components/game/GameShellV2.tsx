@@ -225,7 +225,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
         "profile": true,
         // For zog_complete: everything else locked
         // Next Move unlocks after offer complete
-        "next-move": !isZogCompleteStage && offerComplete,
+        "next-move": true,
         "transformation": !isZogCompleteStage && qolComplete,
         // Teams unlock after QoL complete
         "teams": !isZogCompleteStage && qolComplete,
@@ -280,14 +280,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                 <div
                     className={cn(
                         "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden",
-                        sectionsPanelOpen ? "w-[220px]" : "w-0"
+                        sectionsPanelOpen ? "w-[260px]" : "w-0"
                     )}
                 >
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
-                        className="h-full w-[220px]"
+                        className="h-full w-[260px]"
                     />
                 </div>
 

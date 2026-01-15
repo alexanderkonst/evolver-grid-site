@@ -190,7 +190,7 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[220px] bg-slate-700/90 flex flex-col border-r border-slate-600",
+                "w-[260px] bg-slate-700/90 flex flex-col border-r border-slate-600",
                 className
             )}
         >
