@@ -41,7 +41,7 @@ const AppleseedRitualLoading = ({
     }, [minDuration, onComplete]);
 
     return (
-        <div className="min-h-[60vh] flex flex-col items-center justify-center p-8">
+        <div className="min-h-screen flex flex-col items-center justify-center p-8">
             {/* Sacred Geometry Animation */}
             <div className="relative w-32 h-32 mb-8">
                 {/* Outer ring */}

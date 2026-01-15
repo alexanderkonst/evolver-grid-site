@@ -125,8 +125,11 @@ export const migrateGuestDataToProfile = async (): Promise<{
  */
 const getProfileId = async (): Promise<string | null> => {
   try {
-    return await getOrCreateGameProfileId();
-  } catch {
+    const profileId = await getOrCreateGameProfileId();
+    console.log("[saveToDatabase] getProfileId result:", profileId ? "found" : "null");
+    return profileId;
+  } catch (err) {
+    console.error("[saveToDatabase] getProfileId error:", err);
     return null;
   }
 };
