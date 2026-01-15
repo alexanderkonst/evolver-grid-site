@@ -351,7 +351,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />

@@ -51,7 +51,7 @@ const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDis
                     <p className="text-sm font-medium text-[#2c3150]">Genius Apple Seed</p>
                 </div>
                 <p className="text-[#2c3150]">{excalibur.essenceAnchor.geniusAppleSeed}</p>
-                <div className="flex gap-4 mt-3 text-sm text-[#a4a3d0]">
+                <div className="mt-3 flex flex-wrap gap-2 text-sm text-[#a4a3d0]">
                     <span>Driver: {excalibur.essenceAnchor.primeDriver}</span>
                     <span>•</span>
                     <span>{excalibur.essenceAnchor.archetype}</span>
@@ -105,7 +105,7 @@ const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDis
             {/* Transformational Promise */}
             <div className="p-4 bg-gradient-to-r from-[#8460ea]/10 to-[#29549f]/10 rounded-xl border border-[#8460ea]/30">
                 <p className="text-sm font-medium text-[#8460ea] mb-3">Transformational Promise</p>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                     <div className="flex-1 p-3 bg-white/80 rounded-lg">
                         <p className="text-xs text-[#a4a3d0]">Point A</p>
                         <p className="text-sm text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
@@ -125,7 +125,7 @@ const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDis
                     <Radio className="w-4 h-4 text-[#8460ea]" />
                     <p className="text-sm font-medium text-[#2c3150]">How to Reach Them</p>
                 </div>
-                <div className="flex gap-4 text-sm">
+                <div className="flex flex-wrap gap-2 text-sm">
                     <span className="text-[#2c3150]">{excalibur.channels.primary}</span>
                     <span className="text-[#a4a3d0]">•</span>
                     <span className="text-[#a4a3d0]">{excalibur.channels.secondary}</span>
@@ -168,4 +168,3 @@ const ExcaliburDisplay = ({ excalibur, onSaveToProfile, isSaving }: ExcaliburDis
 };
 
 export default ExcaliburDisplay;
-
