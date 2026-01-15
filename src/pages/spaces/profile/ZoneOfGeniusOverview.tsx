@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap, Target, Quote } from "lucide-react";
+import { Sparkles, Star, Zap, Target, Quote, TrendingUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import ShareZoG from "@/components/sharing/ShareZoG";
@@ -18,6 +18,12 @@ interface AppleseedData {
         primeDriver: string;
         archetype: string;
     };
+    masteryStages?: Array<{
+        stage: number;
+        name: string;
+        description: string;
+    }>;
+    monetizationAvenues?: string[];
 }
 
 /**
@@ -59,6 +65,7 @@ const ZoneOfGeniusOverview = () => {
                     .single();
 
                 if (snapshotData?.appleseed_data) {
+                    console.log("[ZoGOverview] Loaded appleseed_data:", snapshotData.appleseed_data);
                     setAppleseedData(snapshotData.appleseed_data as unknown as AppleseedData);
                 }
             } catch (err) {
@@ -92,7 +99,7 @@ const ZoneOfGeniusOverview = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                        <img src="/zone-of-genius-logo.png" alt="Zone of Genius" className="w-full h-full object-cover" />
+                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Discover Your Zone of Genius</h1>
                     <p className="text-[#a4a3d0] mb-6">
@@ -113,18 +120,18 @@ const ZoneOfGeniusOverview = () => {
     return (
         <GameShellV2>
             <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-                {/* Hero */}
-                <div className="text-center py-8 bg-gradient-to-br from-[#8460ea] via-[#a4a3d0] to-[#c8b7d8] rounded-2xl">
+                {/* Hero - Updated to match RevelatoryHero styling */}
+                <div className="text-center py-8 bg-gradient-to-br from-[#c8b7d8] via-[#d4d1e8] to-[#e7e9f5] rounded-2xl">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
-                        <img src="/zone-of-genius-logo.png" alt="Zone of Genius" className="w-full h-full object-cover" />
+                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
-                    <p className="text-xs text-white/70 uppercase tracking-widest mb-2">Your Genius Is To Be A</p>
-                    <h1 className="text-3xl font-['Fraunces',serif] font-bold text-white mb-3">
-                        ✦ {appleseedData.vibrationalKey.name} ✦
+                    <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2">My Genius Is To Be A</p>
+                    <h1 className="text-3xl font-['Fraunces',serif] font-bold text-[#2c3150] mb-3">
+                        {appleseedData.vibrationalKey.name}
                     </h1>
                     {appleseedData.bullseyeSentence && (
-                        <p className="text-white/80 max-w-md mx-auto px-4">
-                            "{appleseedData.bullseyeSentence}"
+                        <p className="text-[#2c3150]/80 max-w-md mx-auto px-4">
+                            I {appleseedData.bullseyeSentence}
                         </p>
                     )}
                 </div>
@@ -133,16 +140,56 @@ const ZoneOfGeniusOverview = () => {
                 {appleseedData.threeLenses && (
                     <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20 space-y-3">
                         <div>
-                            <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">Top Talents</p>
+                            <p className="text-xs text-[#8460ea] uppercase tracking-wide">My Top Talents</p>
                             <p className="text-[#2c3150] font-medium">{appleseedData.threeLenses.actions.join(" • ")}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">Prime Driver</p>
+                            <p className="text-xs text-[#8460ea] uppercase tracking-wide">My Prime Driver</p>
                             <p className="text-[#2c3150] font-medium">{appleseedData.threeLenses.primeDriver}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">Archetype</p>
+                            <p className="text-xs text-[#8460ea] uppercase tracking-wide">My Archetype</p>
                             <p className="text-[#2c3150] font-medium">{appleseedData.threeLenses.archetype}</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Mastery Stages */}
+                {appleseedData.masteryStages && appleseedData.masteryStages.length > 0 && (
+                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                        <div className="flex items-center gap-2 mb-3">
+                            <TrendingUp className="w-4 h-4 text-[#8460ea]" />
+                            <p className="text-xs text-[#8460ea] uppercase tracking-wide font-medium">Mastery Stages</p>
+                        </div>
+                        <div className="space-y-2">
+                            {appleseedData.masteryStages.map((stage, index) => (
+                                <div key={stage.stage || index} className="flex gap-3">
+                                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#8460ea]/10 text-[#8460ea] text-xs font-medium flex items-center justify-center">
+                                        {stage.stage || index + 1}
+                                    </div>
+                                    <div>
+                                        <p className="text-[#2c3150] font-medium text-sm">{stage.name}</p>
+                                        <p className="text-[#a4a3d0] text-xs">{stage.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Monetization Avenues */}
+                {appleseedData.monetizationAvenues && appleseedData.monetizationAvenues.length > 0 && (
+                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                        <p className="text-xs text-[#8460ea] uppercase tracking-wide mb-2">Monetization Pathways</p>
+                        <div className="flex flex-wrap gap-2">
+                            {appleseedData.monetizationAvenues.map((avenue, index) => (
+                                <span
+                                    key={index}
+                                    className="px-3 py-1 bg-[#8460ea]/10 text-[#8460ea] text-sm rounded-full"
+                                >
+                                    {avenue}
+                                </span>
+                            ))}
                         </div>
                     </div>
                 )}
