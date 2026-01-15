@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { User, Briefcase } from "lucide-react";
+import { User, Sparkles } from "lucide-react";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "./appleseedGenerator";
@@ -21,7 +21,7 @@ interface AppleseedDisplayProps {
  */
 const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, onCreateBusiness, isSaving, isSaved }: AppleseedDisplayProps) => {
     return (
-        <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
+        <div className="max-w-2xl mx-auto p-4 space-y-4">
             {/* Epic Revelatory Hero - The core genius reveal */}
             <RevelatoryHero
                 type="appleseed"
@@ -60,22 +60,46 @@ const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, o
                 </Button>
             )}
 
-            {/* Create Genius Business CTA - Shows after save */}
+            {/* Celebration + Reveal Genius Business CTA - Shows after save */}
             {isSaved && onCreateBusiness && (
-                <div className="space-y-3">
-                    <div className="text-center">
-                        <p className="text-sm text-[#a4a3d0]">
-                            ✨ Saved! Ready for the next step?
+                <div className="space-y-3 relative">
+                    {/* Confetti celebration effect */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                        {['🎉', '✨', '⭐', '💫', '🌟'].map((emoji, i) => (
+                            <span
+                                key={i}
+                                className="absolute text-2xl animate-bounce"
+                                style={{
+                                    left: `${10 + i * 20}%`,
+                                    top: `${-10 + (i % 3) * 10}%`,
+                                    animationDelay: `${i * 0.2}s`,
+                                    animationDuration: '1.5s'
+                                }}
+                            >
+                                {emoji}
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Celebration text */}
+                    <div className="text-center py-2">
+                        <p className="text-lg font-semibold text-[#8460ea] animate-pulse">
+                            🎊 Saved! Your genius is captured!
+                        </p>
+                        <p className="text-sm text-[#a4a3d0] mt-1">
+                            Ready to discover how to monetize it?
                         </p>
                     </div>
+
+                    {/* Glowing CTA Button */}
                     <Button
-                        variant="wabi-secondary"
+                        variant="wabi-primary"
                         size="lg"
-                        className="w-full"
+                        className="w-full relative overflow-hidden shadow-[0_0_30px_rgba(132,96,234,0.5)] hover:shadow-[0_0_40px_rgba(132,96,234,0.7)] transition-all animate-pulse"
                         onClick={onCreateBusiness}
                     >
-                        <Briefcase className="w-5 h-5 mr-2" />
-                        Create Your Genius Business
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Reveal My Genius Business
                     </Button>
                 </div>
             )}
@@ -84,3 +108,4 @@ const AppleseedDisplay = ({ appleseed, profileUrl, profileId, onSaveToProfile, o
 };
 
 export default AppleseedDisplay;
+
