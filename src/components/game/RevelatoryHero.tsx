@@ -37,15 +37,15 @@ const RevelatoryHero = ({
 
     const palette = isAppleseed
         ? {
-            gradient: "from-[#f59e0b] via-[#d97706] to-[#b45309]",
+            gradient: "from-[#8460ea] via-[#a4a3d0] to-[#c8b7d8]",
             icon: Sparkles,
-            iconBg: "bg-amber-200/20",
-            iconColor: "text-amber-200",
+            iconBg: "bg-white/20",
+            iconColor: "text-white",
             textPrimary: "text-white",
-            textSecondary: "text-amber-100/80",
-            textMuted: "text-amber-100/60",
-            glowColor: "rgba(251,191,36,0.3)",
-            divider: "bg-amber-200/30",
+            textSecondary: "text-white/80",
+            textMuted: "text-white/60",
+            glowColor: "rgba(132,96,234,0.3)",
+            divider: "bg-white/30",
         }
         : {
             gradient: "from-[#7c3aed] via-[#6d28d9] to-[#5b21b6]",
