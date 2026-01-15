@@ -278,6 +278,16 @@ export const saveExcalibur = async (
 
     if (error) throw error;
 
+    // Update game_profile with onboarding stage
+    await supabase
+      .from("game_profiles")
+      .update({
+        onboarding_stage: "offer_complete",
+        excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", profileId);
+
     let xpAwarded = 0;
     let firstTimeBonus = 0;
     if (!snapshot.excalibur_generated_at) {
