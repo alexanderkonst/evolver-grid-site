@@ -81,6 +81,48 @@ All colors MUST be HSL.
     --wabi-text-secondary: rgba(44, 49, 80, 0.7);
     --wabi-text-muted: rgba(44, 49, 80, 0.5);
   }
+
+  .dark {
+    --background: 220 30% 12%;
+    --foreground: 0 0% 96%;
+    --card: 220 30% 14%;
+    --card-foreground: 0 0% 96%;
+    --popover: 220 30% 14%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 45 100% 65%;
+    --primary-foreground: 220 30% 12%;
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 0 0% 75%;
+    --accent: 215 70% 60%;
+    --accent-foreground: 0 0% 96%;
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 45 100% 65%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 220 30% 12%;
+    --foreground: 0 0% 96%;
+    --card: 220 30% 14%;
+    --card-foreground: 0 0% 96%;
+    --popover: 220 30% 14%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 45 100% 65%;
+    --primary-foreground: 220 30% 12%;
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 0 0% 75%;
+    --accent: 215 70% 60%;
+    --accent-foreground: 0 0% 96%;
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 45 100% 65%;
+  }
 }
 
 @layer base {
