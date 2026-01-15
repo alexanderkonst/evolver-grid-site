@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
-import ShareZoG from "@/components/sharing/ShareZoG";
+import { Sparkles, Share2, Copy, Check } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "./appleseedGenerator";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
@@ -14,8 +15,7 @@ interface AppleseedDisplayProps {
 
 /**
  * AppleseedDisplay - For authenticated users only (signup-first flow)
- * Shows: RevelatoryHero + ShareButton + Reveal My Genius Business
- * Data is auto-saved to database in background
+ * Shows: RevelatoryHero + Share + Reveal My Genius Business (side by side)
  */
 const AppleseedDisplay = ({
     appleseed,
@@ -24,14 +24,51 @@ const AppleseedDisplay = ({
     onCreateBusiness,
     isSaved = true
 }: AppleseedDisplayProps) => {
+    const [copied, setCopied] = useState(false);
+    const { toast } = useToast();
+
+    const handleShare = async () => {
+        const shareText = `My genius is to be a ${appleseed.vibrationalKey.name}. I ${appleseed.bullseyeSentence}`;
+
+        // Try native share first
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `${appleseed.vibrationalKey.name} - Zone of Genius`,
+                    text: shareText,
+                    url: profileUrl
+                });
+                return;
+            } catch {
+                // Fall through to clipboard
+            }
+        }
+
+        // Fallback to clipboard
+        try {
+            await navigator.clipboard.writeText(shareText);
+            setCopied(true);
+            toast({
+                title: "Copied to clipboard!",
+                description: "Share your genius with others.",
+            });
+            setTimeout(() => setCopied(false), 2000);
+        } catch {
+            toast({
+                title: "Share failed",
+                description: "Please try again.",
+                variant: "destructive"
+            });
+        }
+    };
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-2 space-y-3">
+        <div className="max-w-2xl mx-auto px-4 py-2 space-y-4">
             {/* Epic Revelatory Hero - The core genius reveal */}
             <RevelatoryHero
                 type="appleseed"
                 title={appleseed.vibrationalKey.name}
-                tagline="Your genius is to be a"
+                tagline="My genius is to be a"
                 actionStatement={appleseed.bullseyeSentence}
                 threeLenses={{
                     actions: appleseed.threeLenses.actions,
@@ -40,29 +77,34 @@ const AppleseedDisplay = ({
                 }}
             />
 
-            {/* Share Your Genius - Dropdown button */}
-            <ShareZoG
-                archetypeName={appleseed.vibrationalKey.name}
-                tagline={appleseed.bullseyeSentence}
-                primeDriver={appleseed.threeLenses.primeDriver}
-                talents={appleseed.threeLenses.actions}
-                archetype={appleseed.threeLenses.archetype}
-                profileUrl={profileUrl}
-                profileId={profileId}
-            />
-
-            {/* Reveal My Genius Business - Main CTA for auth users */}
-            {onCreateBusiness && (
+            {/* Buttons: Share + Reveal My Genius Business - Side by side */}
+            <div className="flex gap-3 justify-center">
+                {/* Share Button */}
                 <Button
-                    variant="wabi-primary"
-                    size="lg"
-                    className="w-full shadow-[0_0_30px_rgba(132,96,234,0.5)] hover:shadow-[0_0_40px_rgba(132,96,234,0.7)] transition-all"
-                    onClick={onCreateBusiness}
+                    variant="wabi-ghost"
+                    className="px-6"
+                    onClick={handleShare}
                 >
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Reveal My Genius Business
+                    {copied ? (
+                        <Check className="w-4 h-4 mr-2" />
+                    ) : (
+                        <Share2 className="w-4 h-4 mr-2" />
+                    )}
+                    Share
                 </Button>
-            )}
+
+                {/* Reveal My Genius Business - CTA */}
+                {onCreateBusiness && (
+                    <Button
+                        variant="wabi-primary"
+                        className="px-6 shadow-[0_0_20px_rgba(132,96,234,0.4)] hover:shadow-[0_0_30px_rgba(132,96,234,0.6)] transition-all"
+                        onClick={onCreateBusiness}
+                    >
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        Reveal My Genius Business
+                    </Button>
+                )}
+            </div>
         </div>
     );
 };

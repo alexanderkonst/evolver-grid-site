@@ -114,7 +114,7 @@ LANGUAGE GUIDELINES:
 export const OUTPUT_FORMAT = `
 Return a JSON object with this exact structure:
 {
-  "bullseyeSentence": "string - one phrase essence",
+  "bullseyeSentence": "string - one phrase essence starting with a present tense VERB (e.g. 'architect nested systems...' NOT 'architecting...'). This will be displayed as 'I [bullseySentence]' so the verb must be in first-person present tense.",
   "vibrationalKey": {
     "name": "string - e.g. Architect of Integration Codes",
     "tagline": "string - e.g. He who sees what wants to be whole...",
@@ -177,7 +177,7 @@ Return a JSON object with this exact structure:
 // ---------------------------------------------------------------------------
 
 export const buildAppleseedPrompt = (rawSignal: string): string => {
-    return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
+  return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
 
 ${APPLESEED_TEMPLATE}
 
@@ -205,53 +205,53 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 // ---------------------------------------------------------------------------
 
 export interface AppleseedData {
-    bullseyeSentence: string;
-    vibrationalKey: {
-        name: string;
-        tagline: string;
-        tagline_simple: string;
-    };
-    threeLenses: {
-        actions: string[];
-        primeDriver: string;
-        primeDriver_meaning: string;
-        archetype: string;
-        archetype_meaning: string;
-    };
-    appreciatedFor: Array<{
-        effect: string;
-        scene: string;
-        outcome: string;
-    }>;
-    masteryStages: Array<{
-        stage: number;
-        name: string;
-        description: string;
-    }>;
-    professionalActivities: Array<{
-        activity: string;
-        targetAudience: string;
-        purpose: string;
-    }>;
-    rolesEnvironments: {
-        asCreator: string;
-        asContributor: string;
-        asFounder: string;
-        environment: string;
-    };
-    complementaryPartner: {
-        skillsWise: string;
-        geniusWise: string;
-        archetypeWise: string;
-        synergy: string;
-    };
-    monetizationAvenues: string[];
-    lifeScene: string;
-    visualCodes: Array<{
-        symbol: string;
-        meaning: string;
-    }>;
-    elevatorPitch: string;
+  bullseyeSentence: string;
+  vibrationalKey: {
+    name: string;
+    tagline: string;
+    tagline_simple: string;
+  };
+  threeLenses: {
+    actions: string[];
+    primeDriver: string;
+    primeDriver_meaning: string;
+    archetype: string;
+    archetype_meaning: string;
+  };
+  appreciatedFor: Array<{
+    effect: string;
+    scene: string;
+    outcome: string;
+  }>;
+  masteryStages: Array<{
+    stage: number;
+    name: string;
+    description: string;
+  }>;
+  professionalActivities: Array<{
+    activity: string;
+    targetAudience: string;
+    purpose: string;
+  }>;
+  rolesEnvironments: {
+    asCreator: string;
+    asContributor: string;
+    asFounder: string;
+    environment: string;
+  };
+  complementaryPartner: {
+    skillsWise: string;
+    geniusWise: string;
+    archetypeWise: string;
+    synergy: string;
+  };
+  monetizationAvenues: string[];
+  lifeScene: string;
+  visualCodes: Array<{
+    symbol: string;
+    meaning: string;
+  }>;
+  elevatorPitch: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -267,23 +267,23 @@ import { supabase } from "@/integrations/supabase/client";
  * @returns Promise<AppleseedData> - The generated Appleseed
  */
 export const generateAppleseed = async (rawSignal: string): Promise<AppleseedData> => {
-    const prompt = buildAppleseedPrompt(rawSignal);
+  const prompt = buildAppleseedPrompt(rawSignal);
 
-    const { data, error } = await supabase.functions.invoke('generate-appleseed', {
-        body: { prompt, rawSignal }
-    });
+  const { data, error } = await supabase.functions.invoke('generate-appleseed', {
+    body: { prompt, rawSignal }
+  });
 
-    if (error) {
-        throw new Error(error.message || 'Failed to generate Appleseed');
-    }
+  if (error) {
+    throw new Error(error.message || 'Failed to generate Appleseed');
+  }
 
-    if (data?.error) {
-        throw new Error(data.error);
-    }
+  if (data?.error) {
+    throw new Error(data.error);
+  }
 
-    if (!data?.appleseed) {
-        throw new Error('No appleseed data in response');
-    }
+  if (!data?.appleseed) {
+    throw new Error('No appleseed data in response');
+  }
 
-    return data.appleseed as AppleseedData;
+  return data.appleseed as AppleseedData;
 };

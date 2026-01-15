@@ -37,15 +37,15 @@ const RevelatoryHero = ({
 
     const palette = isAppleseed
         ? {
-            gradient: "from-[#8460ea] via-[#a4a3d0] to-[#c8b7d8]",
+            gradient: "from-[#c8b7d8] via-[#d4d1e8] to-[#e7e9f5]",
             icon: Sparkles,
-            iconBg: "bg-white/20",
-            iconColor: "text-white",
-            textPrimary: "text-white",
-            textSecondary: "text-white/80",
-            textMuted: "text-white/60",
-            glowColor: "rgba(132,96,234,0.3)",
-            divider: "bg-white/30",
+            iconBg: "bg-[#8460ea]/20",
+            iconColor: "text-[#8460ea]",
+            textPrimary: "text-[#2c3150]",
+            textSecondary: "text-[#2c3150]/80",
+            textMuted: "text-[#8460ea]",
+            glowColor: "rgba(132,96,234,0.15)",
+            divider: "bg-[#a4a3d0]/30",
         }
         : {
             gradient: "from-[#7c3aed] via-[#6d28d9] to-[#5b21b6]",
@@ -101,7 +101,7 @@ const RevelatoryHero = ({
                 {/* Tagline */}
                 {tagline && (
                     <p className={`text-xs uppercase tracking-[0.2em] ${palette.textMuted} mb-1`}>
-                        {tagline}
+                        My genius is to be a
                     </p>
                 )}
 
@@ -110,13 +110,13 @@ const RevelatoryHero = ({
                     className={`font-['Fraunces',serif] text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
-                    ✦ {title} ✦
+                    {title}
                 </h1>
 
                 {/* Action Statement - Compact */}
                 {actionStatement && (
                     <p className={`text-sm sm:text-base ${palette.textSecondary} max-w-xl mx-auto mb-2 leading-relaxed`}>
-                        "{actionStatement}"
+                        I {actionStatement}
                     </p>
                 )}
 
@@ -133,7 +133,7 @@ const RevelatoryHero = ({
                         {/* Top Talents */}
                         {threeLenses.actions && threeLenses.actions.length > 0 && (
                             <div className="mb-2">
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Top Talents</p>
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Top Talents</p>
                                 <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.actions.join(" • ")}
                                 </p>
@@ -143,7 +143,7 @@ const RevelatoryHero = ({
                         {/* Prime Driver */}
                         {threeLenses.primeDriver && (
                             <div className="mb-2">
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Prime Driver</p>
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Prime Driver</p>
                                 <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.primeDriver}
                                 </p>
@@ -153,7 +153,7 @@ const RevelatoryHero = ({
                         {/* Archetype */}
                         {threeLenses.archetype && (
                             <div>
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>Your Archetype</p>
+                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Archetype</p>
                                 <p className={`text-sm ${palette.textPrimary} font-medium`}>
                                     {threeLenses.archetype}
                                 </p>
