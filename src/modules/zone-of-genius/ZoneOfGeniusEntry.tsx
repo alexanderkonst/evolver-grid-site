@@ -93,35 +93,7 @@ const ZoneOfGeniusEntry = () => {
         return () => subscription.unsubscribe();
     }, []);
 
-    // Auto-save appleseed when result is shown
-    useEffect(() => {
-        if (step === "appleseed-result" && appleseed && !hasSavedAppleseed.current) {
-            hasSavedAppleseed.current = true;
-
-            // Auto-save in background
-            (async () => {
-                try {
-                    const result = await saveAppleseed(appleseed, aiResponse);
-                    if (result.success) {
-                        setIsSaved(true);
-                        toast({
-                            title: "✨ Genius Saved!",
-                            description: "Your Zone of Genius has been saved to your profile.",
-                        });
-                        if (result.xpAwarded) {
-                            toast({
-                                title: `🎉 +${result.xpAwarded} XP`,
-                                description: "Genius articulated!",
-                            });
-                        }
-                    }
-                } catch {
-                    // Silent fail for auto-save
-                    console.error('Auto-save failed');
-                }
-            })();
-        }
-    }, [step, appleseed, aiResponse, toast]);
+    // No auto-save - user must click "Save My Genius" button
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
