@@ -8,7 +8,7 @@
 
 > **Planetary OS is the coordination layer for the Evolutionary Avantgarde.**
 >
-> One launch sequence across all movements — **Sovereignty, Innovation, Regeneration, Awakening, Rooting**. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future **coordinate as one meta-ecosystem**.
+> One launch sequence across all movements — **Sovereignty, Innovation, Regeneration, Awakening, Rooting, Creation**. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future **coordinate as one meta-ecosystem**.
 
 ---
 
@@ -24,7 +24,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 
 ---
 
-## First Level: Five Currents
+## First Level: Six Currents
 
 | Current | Core Drive | Emoji |
 |---------|------------|-------|
@@ -33,6 +33,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 | **Regeneration** | Healing earth and systems | 🌱 |
 | **Awakening** | Consciousness evolution, spiritual growth | ✨ |
 | **Rooting** | Land-based intentional living | 🏡 |
+| **Creation** | Art, culture, narrative as evolution vectors | 🎭 |
 
 ---
 
@@ -44,6 +45,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 - Web3 / Crypto communities
 - Digital nomad nations
 - Parallel societies
+- DeSci (decentralized science)
 
 ### 🚀 Innovation
 - Venture studios
@@ -51,6 +53,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 - Startup ecosystems
 - Founder communities
 - Innovation labs
+- Longevity / biohacking communities
 
 ### 🌱 Regeneration
 - Regen communities (Gitcoin, Regen Network)
@@ -65,6 +68,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 - Plant medicine circles
 - Integral / metamodern groups
 - Mystery schools
+- Alternative education / unschooling
 
 ### 🏡 Rooting
 - Ecovillages (GEN Global)
@@ -72,6 +76,14 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 - New Earth settlements
 - Coliving networks
 - Land projects
+
+### 🎭 Creation
+- Cultural architects
+- Narrative designers
+- Memetic engineers
+- Conscious media collectives
+- Artist DAOs
+- Worldbuilders / speculative designers
 
 ---
 
@@ -94,4 +106,4 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 > "Infrastructure uniting movements at the frontier of technology and consciousness — so people discover their genius, monetize it, and find collaborators across all subcultures."
 
 **Mission:**
-> "One meta-ecosystem. Five currents. One launch sequence. The scattered avantgarde coordinates at last."
+> "One meta-ecosystem. Six currents. One launch sequence. The scattered avantgarde coordinates at last."

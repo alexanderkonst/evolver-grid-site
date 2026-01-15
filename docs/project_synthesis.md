@@ -15,13 +15,13 @@
 
 ## Executive Summary
 
-> **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Avantgarde. One launch sequence across all movements — Sovereignty, Innovation, Regeneration, Awakening, Rooting. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future coordinate as one meta-ecosystem."*
+> **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Avantgarde. One launch sequence across all movements — Sovereignty, Innovation, Regeneration, Awakening, Rooting, Creation. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future coordinate as one meta-ecosystem."*
 
 ### The Evolutionary Avantgarde
 
 Communities at the **frontier of technology AND consciousness**. Not one movement — a constellation of subcultures unified by shared coordination infrastructure.
 
-**Five Currents:**
+**Six Currents:**
 
 | Current | Core Drive |
 |---------|------------|
@@ -30,6 +30,7 @@ Communities at the **frontier of technology AND consciousness**. Not one movemen
 | 🌱 **Regeneration** | Healing earth and systems |
 | ✨ **Awakening** | Consciousness evolution, spiritual growth |
 | 🏡 **Rooting** | Land-based intentional living |
+| 🎭 **Creation** | Art, culture, narrative as evolution vectors |
 
 📄 **Full taxonomy**: [evolutionary_avantgarde_taxonomy.md](./evolutionary_avantgarde_taxonomy.md)
 
@@ -45,7 +46,7 @@ Communities at the **frontier of technology AND consciousness**. Not one movemen
 
 ### Why This Is Bigger Than Balaji
 
-Balaji's Network State is one channel — crypto-native Sovereignty. Our infrastructure connects **all five currents of conscious innovation** into one coordination layer. Cross-pollination is the product.
+Balaji's Network State is one channel — crypto-native Sovereignty. Our infrastructure connects **all six currents of conscious innovation** into one coordination layer. Cross-pollination is the product.
 
 ---
 
