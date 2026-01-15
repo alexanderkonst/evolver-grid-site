@@ -9,6 +9,7 @@ import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { getPageTitle } from "@/lib/pageTitles";
+import ScrollRestoration from "@/components/ScrollRestoration";
 import Index from "./pages/Index";
 import LandingPage from "./pages/LandingPage";
 import Contact from "./pages/Contact";
@@ -124,6 +125,7 @@ const App = () => (
       <CustomCursor />
       <BrowserRouter>
         <TitleManager />
+        <ScrollRestoration />
         <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <PageTransition>
