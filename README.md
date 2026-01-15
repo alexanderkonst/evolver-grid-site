@@ -1,6 +1,6 @@
 # Planetary OS
 
-> A coordination platform for human potential. The Member Portal (L1) of the planetary infrastructure.
+> **"I'm building the coordination layer that unites startup societies, regen communities, and venture studios — citizens discover their value, monetize it, and find collaborators across tribes."**
 
 **Live**: [evolver.network](https://evolver.network)
 
@@ -8,12 +8,20 @@
 
 ## What Is This?
 
-A system that helps individuals:
+The **coordination infrastructure** for conscious innovation. Not just a member portal — a shared layer connecting:
 
-1. **Discover** their unique genius (Zone of Genius)
-2. **Map** their quality of life across 8 domains
-3. **Connect** with complementary people
-4. **Move** forward daily with AI guidance
+- 🌐 **Network States / Web3 / Crypto** — sovereign digital communities
+- 🚀 **Venture Studios** — builders creating new ventures
+- 🌱 **Regen Communities** — ecological and social regenerators
+- ✨ **New Earth Communities** — conscious evolution pioneers
+
+### What Each Citizen Gets
+
+1. **Discover** their unique genius (Zone of Genius → Appleseed)
+2. **Monetize** their value (Genius Business → Excalibur)
+3. **Map** their quality of life across 8 domains
+4. **Connect** with complementary people across tribes
+5. **Move** forward daily with AI guidance
 
 **Core Promise**: *"There's always a next move. And we'll always tell you what it is."*
 
