@@ -13,7 +13,7 @@ interface ExcaliburDisplayProps {
 
 /**
  * GeniusBusinessDisplay - My Unique Genius Business
- * All in one compact box: logo, title, USP, Who, Promise
+ * Ultra-compact one-screen layout with Fraunces/Inter fonts
  */
 const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
@@ -25,53 +25,46 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
         setTimeout(() => setCopiedOffer(false), 2000);
     };
 
-    // Get first sentence of offer statement
     const getFirstSentence = (text: string) => {
         const sentences = text.match(/[^.!?]+[.!?]+/g);
         return sentences ? sentences[0].trim() : text;
     };
 
-    // Create "I [verb] [rest]" header from offer statement
-    // Takes first sentence and converts "I guide..." or extracts action verb
     const getActionHeader = () => {
         const firstSentence = getFirstSentence(excalibur.offer.statement);
-        // Already starts with "I " - use as is
         if (firstSentence.toLowerCase().startsWith("i ")) {
-            return firstSentence.replace(/\.$/, ""); // Remove trailing period
+            return firstSentence.replace(/\.$/, "");
         }
-        // Otherwise construct from businessIdentity.name
-        const name = excalibur.businessIdentity.name; // e.g. "Holonic System Architect"
-        // Try to make it active: "I architect holonic systems..."
-        return `I ${name.toLowerCase()}`;
+        return `I ${excalibur.businessIdentity.name.toLowerCase()}`;
     };
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-1 space-y-2">
-            {/* Single Unified Box with everything */}
-            <div className="p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm">
+        <div className="max-w-2xl mx-auto px-3 py-1 space-y-1.5 font-['Inter',sans-serif]">
+            {/* Single Unified Box */}
+            <div className="p-3 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm">
                 {/* Header: Logo + Title + Action Statement */}
-                <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/20">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-2">
+                <div className="text-center mb-2 pb-2 border-b border-[#a4a3d0]/20">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-1.5">
                         <img
                             src="/genius-business-logo.png"
                             alt="Genius Business"
                             className="w-full h-full object-cover"
                         />
                     </div>
-                    <p className="text-[10px] text-[#a4a3d0] uppercase tracking-wide mb-1">My Unique Genius Business</p>
-                    <h1 className="text-lg lg:text-xl font-bold text-[#2c3150] leading-tight">
+                    <p className="text-[9px] text-[#a4a3d0] uppercase tracking-wider mb-0.5">My Unique Genius Business</p>
+                    <h1 className="text-base lg:text-lg font-semibold text-[#2c3150] leading-snug font-['Fraunces',serif]">
                         {getActionHeader()}
                     </h1>
                 </div>
 
-                {/* Sections */}
-                <div className="space-y-3">
-                    {/* My Unique Selling Proposition (first sentence) */}
+                {/* Sections - Ultra Compact */}
+                <div className="space-y-2">
+                    {/* USP */}
                     <div>
                         <div className="flex items-start justify-between gap-2">
                             <div className="flex-1">
-                                <p className="text-[10px] text-[#8460ea] font-medium uppercase tracking-wide mb-0.5">My Unique Selling Proposition</p>
-                                <p className="text-sm text-[#2c3150] leading-relaxed">
+                                <p className="text-[9px] text-[#8460ea] font-medium uppercase tracking-wide mb-0.5">My Unique Selling Proposition</p>
+                                <p className="text-xs text-[#2c3150] leading-relaxed">
                                     {getFirstSentence(excalibur.offer.statement)}
                                 </p>
                             </div>
@@ -79,34 +72,34 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                                 variant="ghost"
                                 size="sm"
                                 onClick={handleCopyOffer}
-                                className="shrink-0 h-7 w-7 p-0"
+                                className="shrink-0 h-6 w-6 p-0"
                             >
                                 {copiedOffer ? <Check className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3 text-[#a4a3d0]" />}
                             </Button>
                         </div>
                     </div>
 
-                    {/* Who This Is For (FULL text, no truncation) */}
+                    {/* Who This Is For */}
                     <div>
-                        <div className="flex items-center gap-1.5 mb-0.5">
+                        <div className="flex items-center gap-1 mb-0.5">
                             <Users className="w-3 h-3 text-[#8460ea]" />
-                            <p className="text-[10px] font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
+                            <p className="text-[9px] font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
                         </div>
-                        <p className="text-sm text-[#2c3150]">{excalibur.idealClient.profile}</p>
+                        <p className="text-xs text-[#2c3150]">{excalibur.idealClient.profile}</p>
                     </div>
 
-                    {/* Transformational Promise (A → B) */}
+                    {/* Transformational Promise */}
                     <div>
-                        <p className="text-[10px] font-medium text-[#8460ea] uppercase tracking-wide mb-1">Transformational Promise</p>
-                        <div className="flex items-center gap-1.5">
+                        <p className="text-[9px] font-medium text-[#8460ea] uppercase tracking-wide mb-1">Transformational Promise</p>
+                        <div className="flex items-center gap-1">
                             <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
-                                <p className="text-[9px] text-[#a4a3d0] uppercase">From</p>
-                                <p className="text-xs text-[#2c3150]">{excalibur.transformationalPromise.fromState}</p>
+                                <p className="text-[8px] text-[#a4a3d0] uppercase">From</p>
+                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur.transformationalPromise.fromState}</p>
                             </div>
-                            <ArrowRight className="w-4 h-4 text-[#8460ea] shrink-0" />
+                            <ArrowRight className="w-3 h-3 text-[#8460ea] shrink-0" />
                             <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
-                                <p className="text-[9px] text-[#a4a3d0] uppercase">To</p>
-                                <p className="text-xs text-[#2c3150]">{excalibur.transformationalPromise.toState}</p>
+                                <p className="text-[8px] text-[#a4a3d0] uppercase">To</p>
+                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur.transformationalPromise.toState}</p>
                             </div>
                         </div>
                     </div>
@@ -121,7 +114,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                 profileId={profileId}
             />
 
-            {/* Save and Go to My Profile Button */}
+            {/* Save Button */}
             {onSaveToProfile && (
                 <Button
                     variant="wabi-primary"
@@ -130,7 +123,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                     onClick={onSaveToProfile}
                     disabled={isSaving}
                 >
-                    <User className="w-5 h-5 mr-2" />
+                    <User className="w-4 h-4 mr-2" />
                     {isSaving ? "Saving..." : "Save and Go to My Profile"}
                 </Button>
             )}
