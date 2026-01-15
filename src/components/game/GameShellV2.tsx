@@ -82,43 +82,55 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
 
     // Load profile
     const loadProfile = async (userId: string) => {
-        const { data } = await supabase
-            .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
-            .eq("user_id", userId)
-            .maybeSingle();
-        setProfile(data || null);
-
-        // Check if user has Excalibur (genius offer) in zog_snapshots
-        if (data?.last_zog_snapshot_id) {
-            const { data: snapshotData } = await supabase
-                .from("zog_snapshots")
-                .select("excalibur_data")
-                .eq("id", data.last_zog_snapshot_id)
+        try {
+            const { data } = await supabase
+                .from("game_profiles")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
+                .eq("user_id", userId)
                 .maybeSingle();
-            setHasGeniusOffer(!!snapshotData?.excalibur_data);
-        } else {
+            setProfile(data || null);
+
+            // Check if user has Excalibur (genius offer) in zog_snapshots
+            if (data?.last_zog_snapshot_id) {
+                const { data: snapshotData } = await supabase
+                    .from("zog_snapshots")
+                    .select("excalibur_data")
+                    .eq("id", data.last_zog_snapshot_id)
+                    .maybeSingle();
+                setHasGeniusOffer(!!snapshotData?.excalibur_data);
+            } else {
+                setHasGeniusOffer(false);
+            }
+        } catch (error) {
+            console.error("Failed to load profile:", error);
+            setProfile(null);
             setHasGeniusOffer(false);
         }
     };
 
     const loadProfileById = async (profileId: string) => {
-        const { data } = await supabase
-            .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
-            .eq("id", profileId)
-            .maybeSingle();
-        setProfile(data || null);
-
-        // Check if user has Excalibur in zog_snapshots
-        if (data?.last_zog_snapshot_id) {
-            const { data: snapshotData } = await supabase
-                .from("zog_snapshots")
-                .select("excalibur_data")
-                .eq("id", data.last_zog_snapshot_id)
+        try {
+            const { data } = await supabase
+                .from("game_profiles")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
+                .eq("id", profileId)
                 .maybeSingle();
-            setHasGeniusOffer(!!snapshotData?.excalibur_data);
-        } else {
+            setProfile(data || null);
+
+            // Check if user has Excalibur in zog_snapshots
+            if (data?.last_zog_snapshot_id) {
+                const { data: snapshotData } = await supabase
+                    .from("zog_snapshots")
+                    .select("excalibur_data")
+                    .eq("id", data.last_zog_snapshot_id)
+                    .maybeSingle();
+                setHasGeniusOffer(!!snapshotData?.excalibur_data);
+            } else {
+                setHasGeniusOffer(false);
+            }
+        } catch (error) {
+            console.error("Failed to load profile by ID:", error);
+            setProfile(null);
             setHasGeniusOffer(false);
         }
     };
