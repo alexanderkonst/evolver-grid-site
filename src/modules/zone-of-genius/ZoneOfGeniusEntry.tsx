@@ -417,31 +417,31 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: AI Prompt */}
                 {step === "ai-prompt" && (
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         <div className="text-center">
-                            <h2 className="text-lg font-semibold text-slate-900">
+                            <h2 className="text-base font-semibold text-slate-900">
                                 Copy this prompt into your AI
                             </h2>
                         </div>
 
                         <div className="relative rounded-xl border border-slate-200 bg-slate-50">
-                            <pre className="text-sm text-slate-700 whitespace-pre-wrap font-mono leading-relaxed max-h-64 overflow-y-auto p-4 pr-20">
+                            <pre className="text-xs text-slate-700 whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-3 right-3 bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200 shadow-sm"
+                                className="absolute top-2 right-2 bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200 shadow-sm text-xs"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
                                     <>
-                                        <Check className="w-4 h-4 mr-1" />
+                                        <Check className="w-3 h-3 mr-1" />
                                         Copied
                                     </>
                                 ) : (
                                     <>
-                                        <Copy className="w-4 h-4 mr-1" />
+                                        <Copy className="w-3 h-3 mr-1" />
                                         Copy
                                     </>
                                 )}
@@ -460,7 +460,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="text-center">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-sm text-slate-500 hover:text-slate-700"
+                                className="text-xs text-slate-500 hover:text-slate-700"
                             >
                                 Nevermind, I'll do the assessment →
                             </button>
