@@ -9,7 +9,6 @@ import {
     CalendarDays,
     Building2,
     Lock,
-    ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -111,20 +110,20 @@ const SpacesRail = ({
         >
             {/* User Profile + Community Header */}
             <div className="p-3 md:p-4 border-b border-slate-800">
-                {/* Community */}
-                <Link
-                    to="/game"
-                    className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
-                >
-                    <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold text-sm">E</span>
+                {/* Community - Placeholder (not clickable) */}
+                <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+                        <img
+                            src="/community-avatar.jpg"
+                            alt="Community"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <div className="hidden md:block overflow-hidden">
-                        <p className="text-white font-semibold text-sm truncate">Evolver Grid</p>
+                        <p className="text-white font-semibold text-sm truncate">Alexander Konstantinov's</p>
                         <p className="text-slate-500 text-xs truncate">Community</p>
                     </div>
-                    <ChevronDown className="hidden md:block w-4 h-4 text-slate-500 ml-auto flex-shrink-0" />
-                </Link>
+                </div>
 
                 {/* Divider between community and profile */}
                 <div className="hidden md:block h-px bg-slate-800 mb-3" />
@@ -153,7 +152,7 @@ const SpacesRail = ({
                         <p className="text-white font-medium text-sm truncate">{displayName}</p>
                         <div className="flex items-center gap-2 text-xs">
                             <span className="text-[#8460ea]">
-                                {userLevel ? `Lv ${userLevel}` : 'Member'}
+                                {userLevel ? `Level ${userLevel}` : 'Member'}
                             </span>
                             {userXp !== undefined && (
                                 <span className="text-[#a4a3d0]">
@@ -165,7 +164,7 @@ const SpacesRail = ({
                 </Link>
                 <div className="flex flex-col items-center gap-1 mt-2 md:hidden">
                     <span className="text-[10px] text-[#8460ea]">
-                        {userLevel ? `Lv ${userLevel}` : 'Member'}
+                        {userLevel ? `Level ${userLevel}` : 'Member'}
                     </span>
                     {userXp !== undefined && (
                         <span className="text-[10px] text-[#a4a3d0]">
@@ -199,8 +198,12 @@ const SpacesRail = ({
                                 isLocked
                                     ? "bg-slate-800/40 text-slate-600 cursor-not-allowed"
                                     : active
-                                        ? "bg-amber-500 text-white shadow-lg shadow-amber-500/25"
-                                        : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white"
+                                        ? space.id === "next-move"
+                                            ? "bg-amber-500 text-white shadow-lg shadow-amber-500/40 ring-2 ring-amber-400/50"
+                                            : "bg-amber-500 text-white shadow-lg shadow-amber-500/25"
+                                        : space.id === "next-move"
+                                            ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
+                                            : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white"
                             )}
                             title={space.label}
                         >
