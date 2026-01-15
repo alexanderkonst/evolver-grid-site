@@ -231,31 +231,31 @@ const LandingPage = () => {
             </div>
 
             {/* Content */}
-            <div key={currentSlide} className={`relative min-h-dvh flex flex-col justify-center items-center px-6 md:px-16 py-16 text-center transition-all duration-300 ${isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+            <div key={currentSlide} className={`relative min-h-dvh flex flex-col justify-center items-center px-6 md:px-12 py-6 text-center transition-all duration-300 ${isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
                 <div className="max-w-[1000px] w-full">
                     {slide.audienceTag && (
-                        <div className={`text-xs font-medium tracking-[0.2em] uppercase mb-6 animate-fade-in ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
+                        <div className={`text-xs font-medium tracking-[0.2em] uppercase mb-3 animate-fade-in ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
                             {slide.audienceTag}
                         </div>
                     )}
 
                     {slide.problem && (
-                        <div className={`text-base md:text-lg font-light tracking-wide mb-6 animate-fade-in ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}>
+                        <div className={`text-sm md:text-base font-light tracking-wide mb-3 animate-fade-in ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}>
                             {slide.problem}
                         </div>
                     )}
 
-                    <h1 className={`font-['Fraunces',serif] font-semibold leading-[1.1] mb-8 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
+                    <h1 className={`font-['Fraunces',serif] font-semibold leading-[1.1] mb-4 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-3xl md:text-5xl lg:text-6xl" : "text-2xl md:text-4xl lg:text-5xl"}`}
                         style={{ textShadow: isDarkSlide ? "0 0 60px rgba(255,255,255,0.3)" : "0 0 40px rgba(41,84,159,0.1)" }}>
                         {slide.headline}
                     </h1>
 
-                    <p className={`text-lg md:text-xl font-light mb-12 animate-fade-in ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}>
+                    <p className={`text-base md:text-lg font-light mb-6 animate-fade-in ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}>
                         {slide.tagline}
                     </p>
 
                     {slide.things && (
-                        <div className="flex justify-center gap-8 md:gap-14 mb-12 flex-wrap">
+                        <div className="flex justify-center gap-6 md:gap-10 mb-6 flex-wrap">
                             {slide.things.map((thing, i) => (
                                 <div key={i} className="text-center min-w-[120px] md:min-w-[150px] animate-fade-in">
                                     <div className={`text-3xl md:text-4xl mb-2 animate-breathe ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"}`}>{thing.icon}</div>
@@ -267,7 +267,7 @@ const LandingPage = () => {
                     )}
                     {currentSlide === 0 && (
                         <button onClick={() => navigate("/start")}
-                            className="mb-8 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
+                            className="mb-4 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
                             Get started
                         </button>
                     )}
