@@ -76,9 +76,10 @@ const SignupModal = ({
 
             if (error) throw error;
 
+            const displayName = firstName.trim() || "Friend";
             toast({
-                title: "✨ Account Created!",
-                description: "Your genius is now saved forever",
+                title: `Welcome, ${displayName}!`,
+                description: "Your genius is now saved forever.",
             });
 
             // Migrate any guest data from localStorage to database
