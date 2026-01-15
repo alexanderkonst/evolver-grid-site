@@ -193,11 +193,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
 
     if (hideNavigation) {
         return (
-            <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
+            <div className="min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]">
                 {/* Wabi-sabi Bokeh Overlay */}
                 <div className="fixed inset-0 pointer-events-none z-0">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(200,183,216,0.08)_0%,transparent_50%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
                 </div>
                 <div className="relative z-10">
                     {children}
