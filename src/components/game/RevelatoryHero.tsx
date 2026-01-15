@@ -88,7 +88,7 @@ const RevelatoryHero = ({
             </div>
 
             {/* Content - Compact for one-screen */}
-            <div className="relative px-4 py-6 sm:px-6 sm:py-8 text-center">
+            <div className="relative px-4 py-4 sm:px-5 sm:py-5 text-center">
                 {/* Icon - Smaller */}
                 <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${palette.iconBg} mb-3`}>
                     <IconComponent className={`w-6 h-6 ${palette.iconColor}`} />
@@ -111,7 +111,7 @@ const RevelatoryHero = ({
 
                 {/* Action Statement - Compact */}
                 {actionStatement && (
-                    <p className={`text-sm sm:text-base ${palette.textSecondary} max-w-xl mx-auto mb-4 leading-relaxed`}>
+                    <p className={`text-sm sm:text-base ${palette.textSecondary} max-w-xl mx-auto mb-2 leading-relaxed`}>
                         "{actionStatement}"
                     </p>
                 )}
@@ -125,7 +125,7 @@ const RevelatoryHero = ({
 
                 {/* Three Lenses - Compact */}
                 {threeLenses && (
-                    <div className="mt-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-left">
+                    <div className="mt-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-left">
                         {/* Top Talents */}
                         {threeLenses.actions && threeLenses.actions.length > 0 && (
                             <div className="mb-2">
