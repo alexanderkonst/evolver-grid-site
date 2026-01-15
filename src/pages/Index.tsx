@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { modules, getModulesByCategory } from "@/data/modules";
+import { getModulesByCategory } from "@/data/modules";
 import ModuleTile from "@/components/ModuleTile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SignalChannels from "@/components/SignalChannels";
 import SectionDivider from "@/components/SectionDivider";
-import TextReveal from "@/components/TextReveal";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import profilePhoto from "@/assets/profile-photo.png";

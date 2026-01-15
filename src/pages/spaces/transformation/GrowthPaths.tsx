@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { TrendingUp, ArrowRight, Heart, Brain, Sparkles, Zap, Activity } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 const PATHS = [
