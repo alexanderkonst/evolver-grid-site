@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { User, Target, Sparkles, Map, Boxes, ArrowRight, Settings, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ProfileSummaryCard from "@/components/profile/ProfileSummaryCard";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import { supabase } from "@/integrations/supabase/client";
@@ -125,89 +126,77 @@ const ProfileOverviewContent = () => {
 
                 {/* Zone of Genius Card - with summary */}
                 {!isLoading && (
-                    <div className="rounded-xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 text-[#8460ea] mb-2">
-                                    <Sparkles className="w-5 h-5" />
-                                    <h3 className="font-semibold">Zone of Genius</h3>
-                                </div>
-                                {data?.zogArchetype ? (
-                                    <div className="space-y-1">
-                                        <p className="text-[#2c3150] font-medium">{data.zogArchetype}</p>
-                                        <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.zogSentence}</p>
-                                    </div>
-                                ) : (
-                                    <p className="text-sm text-[#a4a3d0]">
-                                        Discover how you create value.
-                                    </p>
-                                )}
+                    <ProfileSummaryCard
+                        icon={<Sparkles className="w-5 h-5" />}
+                        title="Zone of Genius"
+                        actionTo="/zone-of-genius/entry"
+                        actionLabel={
+                            <>
+                                {data?.zogArchetype ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
+                            </>
+                        }
+                    >
+                        {data?.zogArchetype ? (
+                            <div className="space-y-1">
+                                <p className="text-[#2c3150] font-medium">{data.zogArchetype}</p>
+                                <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.zogSentence}</p>
                             </div>
-                            <Button asChild variant="wabi-ghost" size="sm">
-                                <Link to="/zone-of-genius/entry">
-                                    {data?.zogArchetype ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
+                        ) : (
+                            <p className="text-sm text-[#a4a3d0]">
+                                Discover how you create value.
+                            </p>
+                        )}
+                    </ProfileSummaryCard>
                 )}
 
                 {/* Genius Business Card - with summary */}
                 {!isLoading && (
-                    <div className="rounded-xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 text-[#8460ea] mb-2">
-                                    <Briefcase className="w-5 h-5" />
-                                    <h3 className="font-semibold">Genius Business</h3>
-                                </div>
-                                {data?.businessName ? (
-                                    <div className="space-y-1">
-                                        <p className="text-[#2c3150] font-medium">{data.businessName}</p>
-                                        <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.businessTagline}</p>
-                                    </div>
-                                ) : (
-                                    <p className="text-sm text-[#a4a3d0]">
-                                        Monetize your genius.
-                                    </p>
-                                )}
+                    <ProfileSummaryCard
+                        icon={<Briefcase className="w-5 h-5" />}
+                        title="Genius Business"
+                        actionTo="/game/profile/genius-business"
+                        actionLabel={
+                            <>
+                                {data?.businessName ? "View" : "Create"} <ArrowRight className="w-4 h-4 ml-2" />
+                            </>
+                        }
+                    >
+                        {data?.businessName ? (
+                            <div className="space-y-1">
+                                <p className="text-[#2c3150] font-medium">{data.businessName}</p>
+                                <p className="text-sm text-[#a4a3d0] line-clamp-2">{data.businessTagline}</p>
                             </div>
-                            <Button asChild variant="wabi-ghost" size="sm">
-                                <Link to="/game/profile/genius-business">
-                                    {data?.businessName ? "View" : "Create"} <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
+                        ) : (
+                            <p className="text-sm text-[#a4a3d0]">
+                                Monetize your genius.
+                            </p>
+                        )}
+                    </ProfileSummaryCard>
                 )}
 
                 {/* Quality of Life Card - with summary */}
                 {!isLoading && (
-                    <div className="rounded-xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-5">
-                        <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 text-[#8460ea] mb-2">
-                                    <Map className="w-5 h-5" />
-                                    <h3 className="font-semibold">Quality of Life</h3>
-                                </div>
-                                {data?.qolScore ? (
-                                    <div className="space-y-1">
-                                        <p className="text-[#2c3150] font-medium">Score: {data.qolScore.toFixed(1)}/10</p>
-                                        <p className="text-sm text-[#a4a3d0]">Across 8 life domains</p>
-                                    </div>
-                                ) : (
-                                    <p className="text-sm text-[#a4a3d0]">
-                                        Assess your life across 8 domains.
-                                    </p>
-                                )}
+                    <ProfileSummaryCard
+                        icon={<Map className="w-5 h-5" />}
+                        title="Quality of Life"
+                        actionTo="/quality-of-life-map/assessment"
+                        actionLabel={
+                            <>
+                                {data?.qolScore ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
+                            </>
+                        }
+                    >
+                        {data?.qolScore ? (
+                            <div className="space-y-1">
+                                <p className="text-[#2c3150] font-medium">Score: {data.qolScore.toFixed(1)}/10</p>
+                                <p className="text-sm text-[#a4a3d0]">Across 8 life domains</p>
                             </div>
-                            <Button asChild variant="wabi-ghost" size="sm">
-                                <Link to="/quality-of-life-map/assessment">
-                                    {data?.qolScore ? "View" : "Start"} <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
+                        ) : (
+                            <p className="text-sm text-[#a4a3d0]">
+                                Assess your life across 8 domains.
+                            </p>
+                        )}
+                    </ProfileSummaryCard>
                 )}
 
                 {/* My Mission Card */}
