@@ -772,9 +772,9 @@ const GameHome = () => {
                 <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-slate-100 flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-slate-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Start Your Character</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">Start Building Your Self-Understanding</h2>
                 <p className="text-base text-slate-600 mb-8 leading-relaxed">
-                  First, discover your Zone of Genius. Then map your life across eight domains.
+                  First, let's discover your Zone of Genius.
                 </p>
                 <Button
                   size="lg"
