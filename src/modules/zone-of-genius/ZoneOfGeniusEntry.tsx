@@ -93,7 +93,21 @@ const ZoneOfGeniusEntry = () => {
         return () => subscription.unsubscribe();
     }, []);
 
-    // No auto-save - user must click "Save My Genius" button
+    // Auto-save appleseed for auth users (silent)
+    useEffect(() => {
+        if (step === "appleseed-result" && appleseed && !isGuest && !hasSavedAppleseed.current) {
+            hasSavedAppleseed.current = true;
+            (async () => {
+                try {
+                    await saveAppleseed(appleseed, aiResponse);
+                    setIsSaved(true);
+                    console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
+                } catch (err) {
+                    console.error("[ZoneOfGeniusEntry] Auto-save failed:", err);
+                }
+            })();
+        }
+    }, [step, appleseed, isGuest, aiResponse]);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
@@ -258,11 +272,7 @@ const ZoneOfGeniusEntry = () => {
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
-                    onSaveGenius={handleSaveAppleseed}
                     onCreateBusiness={() => setStep("generating-excalibur")}
-                    isSaving={isSaving}
-                    isSaved={isSaved}
-                    isGuest={isGuest}
                 />
             </GameShellV2>
         );

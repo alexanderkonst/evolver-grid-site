@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Save, Sparkles } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "./appleseedGenerator";
@@ -9,39 +8,22 @@ interface AppleseedDisplayProps {
     appleseed: AppleseedData;
     profileUrl?: string;
     profileId?: string;
-    onSaveGenius?: () => Promise<void> | void;
     onCreateBusiness?: () => void;
-    isSaving?: boolean;
-    isGuest?: boolean;
+    isSaved?: boolean;
 }
 
 /**
- * AppleseedDisplay - Simplified for drip-feed onboarding
- * Shows: RevelatoryHero + ShareButton + Save My Genius
- * For guests: button saves then redirects to signup
- * For auth users: button saves then shows Reveal My Genius Business
+ * AppleseedDisplay - For authenticated users only (signup-first flow)
+ * Shows: RevelatoryHero + ShareButton + Reveal My Genius Business
+ * Data is auto-saved to database in background
  */
 const AppleseedDisplay = ({
     appleseed,
     profileUrl,
     profileId,
-    onSaveGenius,
     onCreateBusiness,
-    isSaving,
-    isGuest = true
+    isSaved = true
 }: AppleseedDisplayProps) => {
-    const navigate = useNavigate();
-
-    // Handle save + redirect for guests
-    const handleSaveClick = async () => {
-        if (onSaveGenius) {
-            await onSaveGenius();
-        }
-        if (isGuest) {
-            // Redirect to signup after save
-            navigate("/auth?mode=signup&redirect=/game");
-        }
-    };
 
     return (
         <div className="max-w-2xl mx-auto px-4 py-2 space-y-3">
@@ -69,41 +51,17 @@ const AppleseedDisplay = ({
                 profileId={profileId}
             />
 
-            {/* Save My Genius - For guests, saves to localStorage then redirects to signup */}
-            {isGuest && onSaveGenius && (
+            {/* Reveal My Genius Business - Main CTA for auth users */}
+            {onCreateBusiness && (
                 <Button
                     variant="wabi-primary"
                     size="lg"
-                    className="w-full"
-                    onClick={handleSaveClick}
-                    disabled={isSaving}
+                    className="w-full shadow-[0_0_30px_rgba(132,96,234,0.5)] hover:shadow-[0_0_40px_rgba(132,96,234,0.7)] transition-all"
+                    onClick={onCreateBusiness}
                 >
-                    <Save className="w-5 h-5 mr-2" />
-                    {isSaving ? "Saving..." : "Save My Genius"}
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Reveal My Genius Business
                 </Button>
-            )}
-
-            {/* Auth user: Show Reveal My Genius Business */}
-            {!isGuest && onCreateBusiness && (
-                <div className="space-y-3">
-                    <div className="text-center py-2">
-                        <p className="text-lg font-semibold text-[#8460ea]">
-                            Your Genius is Saved!
-                        </p>
-                        <p className="text-sm text-[#a4a3d0] mt-1">
-                            Ready to discover how to monetize it?
-                        </p>
-                    </div>
-                    <Button
-                        variant="wabi-primary"
-                        size="lg"
-                        className="w-full shadow-[0_0_30px_rgba(132,96,234,0.5)] hover:shadow-[0_0_40px_rgba(132,96,234,0.7)] transition-all"
-                        onClick={onCreateBusiness}
-                    >
-                        <Sparkles className="w-5 h-5 mr-2" />
-                        Reveal My Genius Business
-                    </Button>
-                </div>
             )}
         </div>
     );
