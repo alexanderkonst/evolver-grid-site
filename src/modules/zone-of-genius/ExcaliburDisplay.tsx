@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Briefcase, Copy, Check, Users, ArrowRight, User } from "lucide-react";
+import { Copy, Check, Users, ArrowRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import { ExcaliburData } from "./excaliburGenerator";
@@ -55,8 +55,12 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
         <div className="max-w-2xl mx-auto px-4 py-2 space-y-3">
             {/* Hero: Action Statement as Header */}
             <div className="text-center space-y-2 py-4">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] mb-3">
-                    <Briefcase className="w-7 h-7 text-white" />
+                <div className="inline-flex items-center justify-center w-[84px] h-[84px] rounded-full overflow-hidden mb-3">
+                    <img
+                        src="/genius-business-logo.png"
+                        alt="Genius Business"
+                        className="w-full h-full object-cover"
+                    />
                 </div>
 
                 <p className="text-xs text-[#a4a3d0] uppercase tracking-wide">My Unique Genius Business</p>
