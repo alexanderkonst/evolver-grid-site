@@ -699,7 +699,7 @@ const GameHome = () => {
   }
 
   return (
-    <GameShellV2>
+    <GameShellV2 hideNavigation={!hasAnyData}>
 
       {/* Guest Banner */}
       {!user && (
