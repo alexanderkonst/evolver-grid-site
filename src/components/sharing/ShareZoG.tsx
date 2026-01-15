@@ -128,7 +128,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
+              className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
               onClick={() => setIsOpen(false)}
             >
               <link.icon className="w-5 h-5 text-[#8460ea]" />
@@ -137,7 +137,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
           ))}
           <button
             onClick={handleCopy}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150] w-full"
+            className="flex min-h-[44px] w-full items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
           >
             {copied ? (
               <Check className="w-5 h-5 text-green-500" />
@@ -161,4 +161,3 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 };
 
 export default ShareZoG;
-
