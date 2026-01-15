@@ -292,30 +292,36 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 // ---------------------------------------------------------------------------
 
 /**
- * Generate an Excalibur from Appleseed.
- * 
- * TODO: LOVABLE AI INTEGRATION
- * This function should call Lovable's built-in AI model.
- * 
+ * Generate an Excalibur (genius-powered offer) based on Appleseed
  * @param appleseed - The user's Appleseed (Zone of Genius)
  * @returns Promise<ExcaliburData> - The generated Excalibur
  */
 export const generateExcalibur = async (appleseed: AppleseedData): Promise<ExcaliburData> => {
   const prompt = buildExcaliburPrompt(appleseed);
 
-  const { data, error } = await supabase.functions.invoke("generate-excalibur", {
+  // Add 30 second timeout to prevent infinite hangs
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error("Request timed out after 30 seconds. Please try again.")), 30000);
+  });
+
+  const fetchPromise = supabase.functions.invoke("generate-excalibur", {
     body: { prompt, appleseed },
   });
 
+  const { data, error } = await Promise.race([fetchPromise, timeoutPromise]);
+
   if (error) {
+    console.error("[generateExcalibur] Error:", error);
     throw new Error(error.message || "Failed to generate Excalibur");
   }
 
   if (data?.error) {
+    console.error("[generateExcalibur] Data error:", data.error);
     throw new Error(data.error);
   }
 
   if (!data?.excalibur) {
+    console.error("[generateExcalibur] No excalibur in response:", data);
     throw new Error("No excalibur data in response");
   }
 
