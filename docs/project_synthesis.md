@@ -15,15 +15,33 @@
 
 ## Executive Summary
 
-This is a **coordination platform for human potential**. It helps individuals:
-1. **Discover** their unique genius
-2. **Map** their quality of life
-3. **Connect** with complementary people
-4. **Move** forward daily with AI guidance
+> **One-liner**: *"I'm building the coordination layer that unites startup societies, regen communities, and venture studios — citizens discover their value, monetize it, and find collaborators across tribes."*
 
-The platform is the **Member Portal** (L1) within a larger planetary coordination infrastructure — designed to scale from personal clarity to civilization-level coherence.
+### The Meta-Ecosystem Play
+
+This is **not just a member portal** — it's the **coordination infrastructure** for a new planetary layer of collaborative innovation.
+
+**What we unite:**
+- 🌐 **Network States / Web3 / Crypto** — sovereign digital communities
+- 🚀 **Venture Studios** — builders creating new ventures
+- 🌱 **Regen Communities** — ecological and social regenerators
+- ✨ **Spiritual / New Earth Communities** — conscious evolution pioneers
+
+**One infrastructure. Different tribes. Shared coordination layer.**
+
+### What Each Citizen Gets
+
+1. **Discover** their unique genius (Zone of Genius → Appleseed)
+2. **Monetize** their value (Genius Business → Excalibur)
+3. **Map** their quality of life (8 domains)
+4. **Connect** with complementary people across tribes
+5. **Move** forward daily with AI guidance
 
 **Core Promise**: *"There's always a next move. And we'll always tell you what it is."*
+
+### Why This Is Bigger Than Balaji
+
+Balaji's Network State is one channel — crypto-native. Our infrastructure connects **all streams of conscious innovation** into one coordination layer. This is why it's called **Planetary OS**, not just "member portal."
 
 ---
 
