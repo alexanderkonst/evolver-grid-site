@@ -203,7 +203,10 @@ export const saveAppleseed = async (
     // Authenticated user - save to database
     const profileId = await getProfileId();
     if (!profileId) {
-      return { success: false, error: "Profile not found for authenticated user" };
+      // Profile not found - fallback to localStorage
+      console.warn("[saveToDatabase] Profile not found for authenticated user, falling back to localStorage");
+      saveAppleseedToLocalStorage(appleseed, aiResponseRaw);
+      return { success: true };
     }
 
     const snapshot = await getOrCreateSnapshot(profileId);
