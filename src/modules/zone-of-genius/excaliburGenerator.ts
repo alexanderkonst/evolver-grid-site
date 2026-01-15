@@ -289,8 +289,6 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 
 // ---------------------------------------------------------------------------
 // GENERATION FUNCTION (Placeholder for Lovable AI integration)
-// ---------------------------------------------------------------------------
-
 /**
  * Generate an Excalibur (genius-powered offer) based on Appleseed
  * @param appleseed - The user's Appleseed (Zone of Genius)
@@ -299,16 +297,13 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 export const generateExcalibur = async (appleseed: AppleseedData): Promise<ExcaliburData> => {
   const prompt = buildExcaliburPrompt(appleseed);
 
-  // Add 30 second timeout to prevent infinite hangs
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    setTimeout(() => reject(new Error("Request timed out after 30 seconds. Please try again.")), 30000);
-  });
+  console.log("[generateExcalibur] Starting edge function call...");
 
-  const fetchPromise = supabase.functions.invoke("generate-excalibur", {
+  const { data, error } = await supabase.functions.invoke("generate-excalibur", {
     body: { prompt, appleseed },
   });
 
-  const { data, error } = await Promise.race([fetchPromise, timeoutPromise]);
+  console.log("[generateExcalibur] Edge function returned", { hasData: !!data, hasError: !!error });
 
   if (error) {
     console.error("[generateExcalibur] Error:", error);
@@ -325,5 +320,6 @@ export const generateExcalibur = async (appleseed: AppleseedData): Promise<Excal
     throw new Error("No excalibur data in response");
   }
 
+  console.log("[generateExcalibur] Success!");
   return data.excalibur as ExcaliburData;
 };
