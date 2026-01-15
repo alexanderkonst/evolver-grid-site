@@ -15,11 +15,11 @@
 
 ## Executive Summary
 
-> **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Vanguard. One launch sequence across all tribes — Sovereignty, Innovation, Regeneration, Awakening, Rooting. Citizens articulate and monetize their value, jump-start collaborations systematically, and for the first time, the scattered movements building the future coordinate as one meta-ecosystem."*
+> **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Avantgarde. One launch sequence across all movements — Sovereignty, Innovation, Regeneration, Awakening, Rooting. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future coordinate as one meta-ecosystem."*
 
-### The Evolutionary Vanguard
+### The Evolutionary Avantgarde
 
-Communities at the **frontier of technology AND consciousness**. Not one tribe — a constellation of movements unified by shared coordination infrastructure.
+Communities at the **frontier of technology AND consciousness**. Not one movement — a constellation of subcultures unified by shared coordination infrastructure.
 
 **Five Currents:**
 
@@ -31,7 +31,7 @@ Communities at the **frontier of technology AND consciousness**. Not one tribe �
 | ✨ **Awakening** | Consciousness evolution, spiritual growth |
 | 🏡 **Rooting** | Land-based intentional living |
 
-📄 **Full taxonomy**: [evolutionary_vanguard_taxonomy.md](./evolutionary_vanguard_taxonomy.md)
+📄 **Full taxonomy**: [evolutionary_avantgarde_taxonomy.md](./evolutionary_avantgarde_taxonomy.md)
 
 ### What Each Citizen Gets
 
