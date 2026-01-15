@@ -1,4 +1,4 @@
-# Evolutionary Vanguard Taxonomy
+# Evolutionary Avantgarde Taxonomy
 
 > **Last Updated**: January 15, 2026
 
@@ -6,13 +6,13 @@
 
 ## The Thesis
 
-> **Planetary OS is the coordination layer for the Evolutionary Vanguard.**
+> **Planetary OS is the coordination layer for the Evolutionary Avantgarde.**
 >
-> One launch sequence across all tribes — **Sovereignty, Innovation, Regeneration, Awakening, Rooting**. Citizens articulate and monetize their value, jump-start collaborations systematically, and for the first time, the scattered movements building the future **coordinate as one meta-ecosystem**.
+> One launch sequence across all movements — **Sovereignty, Innovation, Regeneration, Awakening, Rooting**. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future **coordinate as one meta-ecosystem**.
 
 ---
 
-## What Is the Evolutionary Vanguard?
+## What Is the Evolutionary Avantgarde?
 
 Communities at the **frontier of technology AND consciousness**. They share three beliefs:
 
@@ -20,7 +20,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 2. A new paradigm is possible  
 3. Change starts with **self-development → system change**
 
-**Not just one tribe.** A constellation of movements — each with different focus, unified by shared coordination infrastructure.
+**Not just one movement.** A constellation of subcultures — each with different focus, unified by shared coordination infrastructure.
 
 ---
 
@@ -36,7 +36,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 
 ---
 
-## Second Level: Tribes Within Each Current
+## Second Level: Subcultures Within Each Current
 
 ### 🌐 Sovereignty
 - Network States (Balaji, Praxis, Próspera)
@@ -88,10 +88,10 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 ## One-Liner Variants
 
 **Short:**
-> "The coordination layer for the Evolutionary Vanguard."
+> "The coordination layer for the Evolutionary Avantgarde."
 
 **Descriptive:**
-> "Infrastructure uniting movements at the frontier of technology and consciousness — so citizens discover their genius, monetize it, and find collaborators across all tribes."
+> "Infrastructure uniting movements at the frontier of technology and consciousness — so people discover their genius, monetize it, and find collaborators across all subcultures."
 
 **Mission:**
-> "One meta-ecosystem. Five currents. One launch sequence. The scattered vanguard coordinates at last."
+> "One meta-ecosystem. Five currents. One launch sequence. The scattered avantgarde coordinates at last."
