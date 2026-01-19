@@ -126,14 +126,26 @@ const MyRsvps = () => {
           <div className="grid gap-4 sm:grid-cols-2">
             {displayRsvps.map((row) => {
               if (!row.events) return null;
+              const evt = row.events;
               return (
-                <div key={row.events.id} className="space-y-2">
+                <div key={evt.id} className="space-y-2">
                   <EventCard
                     event={{
-                      ...row.events,
+                      id: evt.id,
+                      title: evt.title,
+                      description: evt.description,
+                      event_date: evt.event_date,
+                      event_time: evt.event_time,
+                      location: evt.location,
+                      photo_url: evt.photo_url,
+                      timezone: evt.timezone,
+                      community_id: null,
+                      created_at: null,
+                      created_by: null,
+                      visibility: "public",
                       rsvp_count: (row as any).rsvp_count ?? 0,
                     }}
-                    onClick={() => navigate(`/events/${row.events?.id}`)}
+                    onClick={() => navigate(`/events/${evt.id}`)}
                   />
                   <p className="text-xs text-slate-500">
                     RSVP status: <span className="font-medium text-slate-700">{row.status || "going"}</span>

@@ -76,7 +76,7 @@ const PublicProfile = () => {
       let zogData: {
         appleseed_data: unknown | null;
         excalibur_data: unknown | null;
-        top_three_talents: string[] | null;
+        top_three_talents: unknown | null;
       } | null = null;
       if (profileData.last_zog_snapshot_id) {
         const { data } = await supabase
@@ -84,7 +84,7 @@ const PublicProfile = () => {
           .select("appleseed_data, excalibur_data, top_three_talents")
           .eq("id", profileData.last_zog_snapshot_id)
           .maybeSingle();
-        zogData = data || null;
+        zogData = data ? { ...data } : null;
       }
 
       const resolvedUserId = (profileData as { user_id?: string | null })?.user_id || userId || "";
@@ -103,7 +103,7 @@ const PublicProfile = () => {
         setMission(missionData ? (missionData as MissionRow) : null);
         setAppleseed(zogData?.appleseed_data ? (zogData.appleseed_data as unknown as AppleseedData) : null);
         setExcalibur(zogData?.excalibur_data ? (zogData.excalibur_data as unknown as ExcaliburData) : null);
-        setTopTalents(zogData?.top_three_talents || []);
+        setTopTalents(Array.isArray(zogData?.top_three_talents) ? (zogData.top_three_talents as string[]) : []);
         setLoading(false);
       }
     };
@@ -174,7 +174,7 @@ const PublicProfile = () => {
   const canShowMission = visibility !== "minimal" && (profile.show_mission ?? true) && mission;
   const canShowOffer = visibility === "full" && (profile.show_offer ?? true) && excalibur;
   const archetypeTitle = appleseed?.threeLenses?.archetype || appleseed?.vibrationalKey?.name;
-  const coreVibration = excalibur?.essenceAnchor?.coreVibration || null;
+  const coreVibration = excalibur?.essenceAnchor?.geniusAppleSeed || null;
 
   return (
     <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-slate-900">
@@ -259,9 +259,9 @@ const PublicProfile = () => {
           {canShowOffer && excalibur && (
             <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <p className="text-xs font-medium text-slate-500 mb-1">Unique Offer</p>
-              <h2 className="text-lg font-semibold text-slate-900">{excalibur.sword.offer}</h2>
-              <p className="text-sm text-slate-600 mt-2">{excalibur.sword.promise}</p>
-              <p className="text-sm text-slate-600 mt-2">{excalibur.exchange.pricing}</p>
+              <h2 className="text-lg font-semibold text-slate-900">{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
+              <p className="text-sm text-slate-600 mt-2">{excalibur.offer?.deliverable || ""}</p>
+              <p className="text-sm text-slate-600 mt-2">{excalibur.offer?.form || ""}</p>
             </div>
           )}
 
