@@ -277,20 +277,20 @@ const AssetMappingLanding = () => {
 
     return (
         <div className="min-h-dvh bg-white">
-            <div className="max-w-2xl mx-auto px-4 py-12">
+            <div className="max-w-3xl mx-auto px-4 py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                         <Boxes className="w-8 h-8 text-slate-700" />
                     </div>
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Asset Mapping</h1>
-                    <p className="text-slate-600">Map your resources for collaboration</p>
+                    <h1 className="text-4xl font-bold text-slate-900 mb-3">Asset Mapping</h1>
+                    <p className="text-lg text-slate-600">Map your resources for collaboration</p>
                 </div>
 
                 {/* Step: Choice */}
                 {step === "choice" && (
                     <div className="space-y-4">
-                        <p className="text-center text-slate-700 mb-6">
+                        <p className="text-center text-lg text-slate-700 mb-6">
                             How would you like to map your assets?
                         </p>
 
@@ -373,10 +373,10 @@ const AssetMappingLanding = () => {
                 {step === "matched" && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-xl font-semibold text-slate-900">
+                            <h2 className="text-2xl font-semibold text-slate-900">
                                 {matchedAssets.length > 0 ? `Found ${matchedAssets.length} assets` : "No exact matches"}
                             </h2>
-                            <p className="text-sm text-slate-600">
+                            <p className="text-base text-slate-600">
                                 {matchedAssets.length > 0
                                     ? "Review and save these to your profile."
                                     : "Try adding assets manually using the wizard."}

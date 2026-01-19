@@ -232,25 +232,25 @@ const LandingPage = () => {
 
             {/* Content */}
             <div key={currentSlide} className={`relative min-h-dvh flex flex-col justify-center items-center px-6 md:px-12 py-6 text-center transition-all duration-300 ${isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
-                <div className="max-w-[1000px] w-full">
+                <div className="max-w-[1200px] w-full">
                     {slide.audienceTag && (
-                        <div className={`text-xs font-medium tracking-[0.2em] uppercase mb-3 animate-fade-in ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
+                        <div className={`text-sm md:text-base font-medium tracking-[0.2em] uppercase mb-4 animate-fade-in ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
                             {slide.audienceTag}
                         </div>
                     )}
 
                     {slide.problem && (
-                        <div className={`text-sm md:text-base font-light tracking-wide mb-3 animate-fade-in ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}>
+                        <div className={`text-base md:text-lg lg:text-xl font-light tracking-wide mb-4 animate-fade-in ${isDarkSlide ? "text-white/60" : "text-[#2c3150]/60"}`}>
                             {slide.problem}
                         </div>
                     )}
 
-                    <h1 className={`font-['Fraunces',serif] font-semibold leading-[1.1] mb-4 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-3xl md:text-5xl lg:text-6xl" : "text-2xl md:text-4xl lg:text-5xl"}`}
+                    <h1 className={`font-['Fraunces',serif] font-semibold leading-[1.1] mb-6 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
                         style={{ textShadow: isDarkSlide ? "0 0 60px rgba(255,255,255,0.3)" : "0 0 40px rgba(41,84,159,0.1)" }}>
                         {slide.headline}
                     </h1>
 
-                    <p className={`text-base md:text-lg font-light mb-6 animate-fade-in ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}>
+                    <p className={`text-lg md:text-xl lg:text-2xl font-light mb-8 animate-fade-in ${isDarkSlide ? "text-white/70" : "text-[#2c3150]/70"}`}>
                         {slide.tagline}
                     </p>
 
@@ -271,12 +271,12 @@ const LandingPage = () => {
                     )}
 
                     {slide.things && (
-                        <div className="flex justify-center gap-6 md:gap-10 mb-6 flex-wrap">
+                        <div className="flex justify-center gap-8 md:gap-12 mb-8 flex-wrap">
                             {slide.things.map((thing, i) => (
-                                <div key={i} className="text-center min-w-[120px] md:min-w-[150px] animate-fade-in">
-                                    <div className={`text-3xl md:text-4xl mb-2 animate-breathe ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"}`}>{thing.icon}</div>
-                                    <div className={`text-sm md:text-base font-semibold mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"}`}>{thing.label}</div>
-                                    <div className={`text-xs md:text-sm ${isDarkSlide ? "text-white/50" : "text-[#2c3150]/50"}`}>{thing.desc}</div>
+                                <div key={i} className="text-center min-w-[140px] md:min-w-[180px] animate-fade-in">
+                                    <div className={`text-4xl md:text-5xl mb-3 animate-breathe ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#8460ea]"}`}>{thing.icon}</div>
+                                    <div className={`text-base md:text-lg font-semibold mb-1 ${isDarkSlide ? "text-white" : "text-[#2c3150]"}`}>{thing.label}</div>
+                                    <div className={`text-sm md:text-base ${isDarkSlide ? "text-white/50" : "text-[#2c3150]/50"}`}>{thing.desc}</div>
                                 </div>
                             ))}
                         </div>
@@ -284,8 +284,8 @@ const LandingPage = () => {
 
                     {/* Footer tagline only (no button) for slides with icons */}
                     {slide.cta && (
-                        <div className="mt-4 animate-fade-in">
-                            <p className={`text-base md:text-lg font-medium tracking-wide ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
+                        <div className="mt-6 animate-fade-in">
+                            <p className={`text-lg md:text-xl lg:text-2xl font-medium tracking-wide ${isDarkSlide ? "text-[#a7cbd4]" : "text-[#29549f]"}`}>
                                 {slide.cta}
                             </p>
                         </div>

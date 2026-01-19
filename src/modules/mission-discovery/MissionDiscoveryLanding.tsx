@@ -258,22 +258,22 @@ const MissionDiscoveryLanding = () => {
 
     return (
         <div className="min-h-dvh bg-white">
-            <div className="max-w-2xl mx-auto px-4 py-12">
+            <div className="max-w-3xl mx-auto px-4 py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                         <Sparkles className="w-8 h-8 text-slate-700" />
                     </div>
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Mission Discovery</h1>
-                    <p className="text-slate-600">Find your contribution to the planet</p>
+                    <h1 className="text-4xl font-bold text-slate-900 mb-3">Mission Discovery</h1>
+                    <p className="text-lg text-slate-600">Find your contribution to the planet</p>
                 </div>
 
                 {/* Step: Matches */}
                 {matches && matches.length > 0 && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-xl font-semibold text-slate-900">Top mission matches</h2>
-                            <p className="text-sm text-slate-600">Choose a mission that resonates with you.</p>
+                            <h2 className="text-2xl font-semibold text-slate-900">Top mission matches</h2>
+                            <p className="text-base text-slate-600">Choose a mission that resonates with you.</p>
                         </div>
                         <div className="space-y-4">
                             {matches.map(match => (
@@ -350,7 +350,7 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Clarity Check */}
                 {step === "clarity-check" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-slate-700 mb-6">
+                        <p className="text-center text-lg text-slate-700 mb-6">
                             Do you already have clarity on your mission or purpose?
                         </p>
 
