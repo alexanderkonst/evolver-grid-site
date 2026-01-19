@@ -10,7 +10,15 @@ const categories = [
 
 const ArtGallery = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center relative px-6 py-12">
+    <div 
+      className="min-h-screen flex flex-col items-center justify-center relative px-6 py-12"
+      style={{
+        backgroundImage: "url('https://i.imgur.com/LmAgOfb.jpeg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Audio Toggle */}
       <ArtAudioToggle />
 
