@@ -43,7 +43,7 @@ const ZoneOfGeniusLandingPage = () => {
       <Navigation />
 
       <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl space-y-20">
+        <div className="container mx-auto max-w-7xl space-y-24">
 
           {isLoading && (
             <section className="max-w-3xl mx-auto space-y-4">
@@ -78,11 +78,11 @@ const ZoneOfGeniusLandingPage = () => {
 
           {/* Hero Section */}
           <section className="text-center space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary">
               Name what you love doing
             </h1>
 
-            <p className="text-xl sm:text-2xl text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-2xl sm:text-3xl text-foreground/80 max-w-3xl mx-auto">
               Zone of Genius test that shows your core talents, where you thrive, and where you don't.
             </p>
 
@@ -133,7 +133,7 @@ const ZoneOfGeniusLandingPage = () => {
               <p className="text-xs uppercase  text-primary/70">
                 What the Zone of Genius Snapshot is
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-primary">
+              <h2 className="text-4xl sm:text-5xl font-bold text-primary">
                 Not a personality test. A one-page 'this is me' card.
               </h2>
             </div>
@@ -170,7 +170,7 @@ const ZoneOfGeniusLandingPage = () => {
 
           {/* What You Leave With Section */}
           <section className="space-y-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary">
+            <h2 className="text-4xl sm:text-5xl font-bold text-center text-primary">
               In one session you walk away with:
             </h2>
 
@@ -213,7 +213,7 @@ const ZoneOfGeniusLandingPage = () => {
               <p className="text-xs uppercase  text-primary/70">
                 How it works
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-primary">
+              <h2 className="text-4xl sm:text-5xl font-bold text-primary">
                 Simple flow. Surprisingly deep output.
               </h2>
             </div>
@@ -331,7 +331,7 @@ const ZoneOfGeniusLandingPage = () => {
 
           {/* Who It's For / Not For Section */}
           <section className="space-y-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary">
+            <h2 className="text-4xl sm:text-5xl font-bold text-center text-primary">
               This is for you if…
             </h2>
 
@@ -420,11 +420,11 @@ const ZoneOfGeniusLandingPage = () => {
 
           {/* Final CTA Section */}
           <section className="text-center space-y-6 py-16 px-6 rounded-3xl border-2 border-primary/30 bg-primary/5">
-            <h2 className="text-3xl sm:text-4xl font-bold text-primary">
+            <h2 className="text-4xl sm:text-5xl font-bold text-primary">
               Ready to see your Zone of Genius on one clean page?
             </h2>
 
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
               One focused assessment. One snapshot. A different way of making decisions from here.
             </p>
 
