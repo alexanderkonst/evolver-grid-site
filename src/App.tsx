@@ -90,6 +90,8 @@ import Profile from "./pages/Profile";
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
+import ArtGallery from "./pages/art/ArtGallery";
+import ArtPortfolio from "./pages/art/ArtPortfolio";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-slate-900">
@@ -240,6 +242,9 @@ const App = () => (
                 {/* Public Creator Pages */}
                 <Route path="/p/:slug" element={<CreatorPage />} />
                 <Route path="/my-page" element={<PublicPageEditor />} />
+                {/* Art Gallery */}
+                <Route path="/art" element={<ArtGallery />} />
+                <Route path="/art/:category" element={<ArtPortfolio />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
