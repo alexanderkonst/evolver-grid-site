@@ -5,25 +5,26 @@ import ArtAudioToggle from "@/components/art/ArtAudioToggle";
 
 // Category display names
 const categoryNames: Record<string, string> = {
-  "ceremonial-space-designs": "Ceremonial Space Designs",
-  "digital-illustrations": "Digital Illustrations",
-  "star-code-jewellery": "Star Code Jewellery",
-  "webportals": "Webportals",
+  "ceremonial-space-designs": "CEREMONIAL SPACE DESIGNS",
+  "digital-illustrations-stickers": "DIGITAL ILLUSTRATIONS & STICKERS",
+  "star-code-jewellery": "STAR CODE JEWELLERY",
+  "webportals": "WEBPORTALS",
 };
 
-// Placeholder images - replace with actual image URLs later
+// Portfolio images
 const categoryImages: Record<string, { src: string; caption: string }[]> = {
-  "ceremonial-space-designs": [
-    { src: "", caption: "" },
-  ],
-  "digital-illustrations": [
-    { src: "", caption: "" },
+  "ceremonial-space-designs": [],
+  "digital-illustrations-stickers": [
+    { src: "https://i.imgur.com/RpmgjXZ.png", caption: "" },
+    { src: "https://i.imgur.com/Q6c3UZT.png", caption: "" },
+    { src: "https://i.imgur.com/ArTfs8d.jpg", caption: "" },
   ],
   "star-code-jewellery": [
-    { src: "", caption: "" },
+    { src: "https://i.imgur.com/NGSxNw8.png", caption: "" },
+    { src: "https://i.imgur.com/EH24PWf.png", caption: "" },
   ],
   "webportals": [
-    { src: "", caption: "" },
+    { src: "https://i.imgur.com/V2k7mQD.jpeg", caption: "" },
   ],
 };
 
@@ -61,8 +62,8 @@ const ArtPortfolio = () => {
         </button>
 
         {/* Portfolio Title */}
-        <h1 className="flex-1 text-center font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] font-normal -ml-8 md:-ml-10">
-          {categoryName} portfolio
+        <h1 className="flex-1 text-center font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] font-normal -ml-8 md:-ml-10 uppercase">
+          {categoryName} PORTFOLIO
         </h1>
       </header>
 
