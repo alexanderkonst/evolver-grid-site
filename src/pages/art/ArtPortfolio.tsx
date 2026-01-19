@@ -18,6 +18,7 @@ const categoryImages: Record<string, { src: string; caption: string }[]> = {
     { src: "https://i.imgur.com/RpmgjXZ.png", caption: "" },
     { src: "https://i.imgur.com/Q6c3UZT.png", caption: "" },
     { src: "https://i.imgur.com/ArTfs8d.jpg", caption: "" },
+    { src: "https://i.imgur.com/pwk46QR.jpeg", caption: "" },
   ],
   "star-code-jewellery": [
     { src: "https://i.imgur.com/NGSxNw8.png", caption: "" },
@@ -25,6 +26,8 @@ const categoryImages: Record<string, { src: string; caption: string }[]> = {
   ],
   "webportals": [
     { src: "https://i.imgur.com/V2k7mQD.jpeg", caption: "" },
+    { src: "https://i.imgur.com/z52mHde.png", caption: "" },
+    { src: "https://i.imgur.com/3wd1seC.png", caption: "" },
   ],
 };
 
