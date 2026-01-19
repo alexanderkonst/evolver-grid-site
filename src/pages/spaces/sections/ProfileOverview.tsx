@@ -138,4 +138,5 @@ const ProfileOverview = () => (
     </GameShellV2>
 );
 
+export { ProfileOverviewContent };
 export default ProfileOverview;

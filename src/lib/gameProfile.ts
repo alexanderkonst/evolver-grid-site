@@ -61,7 +61,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     // User is authenticated - find or create profile linked to user_id
     const { data: existingProfile, error: fetchError } = await supabase
       .from('game_profiles')
-      .select('id, first_name, last_name, invited_by')
+      .select('id, first_name, last_name')
       .eq('user_id', user.id)
       .maybeSingle();
 
@@ -85,13 +85,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
           })
           .eq('id', existingProfile.id);
       }
-      if (!existingProfile.invited_by && referralId) {
-        await supabase
-          .from('game_profiles')
-          .update({ invited_by: referralId })
-          .eq('id', existingProfile.id)
-          .is('invited_by', null);
-      }
       return existingProfile.id;
     }
 
@@ -101,7 +94,7 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       // Try to attach the anonymous profile to this user
       const { data: anonymousProfile } = await supabase
         .from('game_profiles')
-        .select('id, user_id, invited_by')
+        .select('id, user_id')
         .eq('id', anonymousId)
         .maybeSingle();
 
@@ -113,7 +106,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
             user_id: user.id,
             first_name: metaFirstName,
             last_name: metaLastName,
-            invited_by: anonymousProfile.invited_by || referralId,
           })
           .eq('id', anonymousId);
 
@@ -130,7 +122,6 @@ export async function getOrCreateGameProfileId(): Promise<string> {
         user_id: user.id,
         first_name: metaFirstName,
         last_name: metaLastName,
-        invited_by: referralId,
       })
       .select('id')
       .single();

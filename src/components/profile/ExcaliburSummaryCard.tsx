@@ -24,10 +24,10 @@ const ExcaliburSummaryCard = ({ excalibur }: ExcaliburSummaryCardProps) => {
           <div className="flex-1 min-w-0">
             <p className="text-xs text-violet-600 font-medium mb-1">Your Unique Offer</p>
             <h3 className="text-base font-semibold text-slate-900 mb-1 line-clamp-2">
-              {excalibur.sword.offer}
+              {excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Your Genius Offer"}
             </h3>
             <p className="text-sm text-slate-600">
-              {excalibur.exchange.pricing}
+              {excalibur.offer?.form || ""}
             </p>
           </div>
         </div>

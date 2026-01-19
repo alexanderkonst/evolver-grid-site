@@ -24,14 +24,41 @@ const BrowseGuides = () => {
       setLoading(true);
       setError(null);
       try {
-        const { data, error: fetchError } = await supabase
-          .from("profiles")
-          .select("id, display_name, avatar_url, genius_statement, unique_offer_headline")
-          .not("unique_offer_headline", "is", null)
-          .eq("visibility_genius", true);
+        // Query game_profiles with show_offer=true and join to zog_snapshots for excalibur data
+        const { data: profilesData, error: fetchError } = await supabase
+          .from("game_profiles")
+          .select("id, first_name, last_name, avatar_url, last_zog_snapshot_id")
+          .eq("show_offer", true)
+          .not("last_zog_snapshot_id", "is", null);
 
         if (fetchError) throw fetchError;
-        setOffers((data || []) as PublicOffer[]);
+        
+        // For each profile, fetch zog snapshot to get excalibur offer
+        const offersWithData: PublicOffer[] = [];
+        for (const profile of profilesData || []) {
+          if (!profile.last_zog_snapshot_id) continue;
+          
+          const { data: snapshot } = await supabase
+            .from("zog_snapshots")
+            .select("excalibur_data, appleseed_data")
+            .eq("id", profile.last_zog_snapshot_id)
+            .maybeSingle();
+          
+          const excalibur = snapshot?.excalibur_data as any;
+          const appleseed = snapshot?.appleseed_data as any;
+          
+          if (excalibur?.offer?.statement || excalibur?.businessIdentity?.tagline) {
+            offersWithData.push({
+              id: profile.id,
+              display_name: [profile.first_name, profile.last_name].filter(Boolean).join(" ") || null,
+              avatar_url: profile.avatar_url,
+              genius_statement: appleseed?.vibrationalKey?.tagline || null,
+              unique_offer_headline: excalibur?.offer?.statement || excalibur?.businessIdentity?.tagline || null,
+            });
+          }
+        }
+        
+        setOffers(offersWithData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load guides.");
       } finally {
