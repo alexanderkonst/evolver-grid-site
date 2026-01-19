@@ -13,7 +13,9 @@ const categoryNames: Record<string, string> = {
 
 // Portfolio images
 const categoryImages: Record<string, { src: string; caption: string }[]> = {
-  "ceremonial-space-designs": [],
+  "ceremonial-space-designs": [
+    { src: "https://i.imgur.com/40cWWoe.jpg", caption: "" },
+  ],
   "digital-illustrations-stickers": [
     { src: "https://i.imgur.com/RpmgjXZ.png", caption: "" },
     { src: "https://i.imgur.com/Q6c3UZT.png", caption: "" },
@@ -23,6 +25,7 @@ const categoryImages: Record<string, { src: string; caption: string }[]> = {
   "star-code-jewellery": [
     { src: "https://i.imgur.com/NGSxNw8.png", caption: "" },
     { src: "https://i.imgur.com/EH24PWf.png", caption: "" },
+    { src: "https://i.imgur.com/GvGtQYc.png", caption: "" },
   ],
   "webportals": [
     { src: "https://i.imgur.com/V2k7mQD.jpeg", caption: "" },
