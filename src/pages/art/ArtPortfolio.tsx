@@ -1,0 +1,128 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import ArtAudioToggle from "@/components/art/ArtAudioToggle";
+
+// Category display names
+const categoryNames: Record<string, string> = {
+  "ceremonial-space-designs": "Ceremonial Space Designs",
+  "digital-illustrations": "Digital Illustrations",
+  "star-code-jewellery": "Star Code Jewellery",
+  "webportals": "Webportals",
+};
+
+// Placeholder images - replace with actual image URLs later
+const categoryImages: Record<string, { src: string; caption: string }[]> = {
+  "ceremonial-space-designs": [
+    { src: "", caption: "" },
+  ],
+  "digital-illustrations": [
+    { src: "", caption: "" },
+  ],
+  "star-code-jewellery": [
+    { src: "", caption: "" },
+  ],
+  "webportals": [
+    { src: "", caption: "" },
+  ],
+};
+
+const ArtPortfolio = () => {
+  const { category } = useParams<{ category: string }>();
+  const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const categoryName = category ? categoryNames[category] || category : "";
+  const images = category ? categoryImages[category] || [] : [];
+  const currentImage = images[currentIndex];
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col relative">
+      {/* Audio Toggle */}
+      <ArtAudioToggle />
+
+      {/* Header */}
+      <header className="w-full px-4 md:px-8 py-6 flex items-center">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate("/art")}
+          className="text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 -ml-2"
+          aria-label="Back to gallery"
+        >
+          <ArrowLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
+        </button>
+
+        {/* Portfolio Title */}
+        <h1 className="flex-1 text-center font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] font-normal -ml-8 md:-ml-10">
+          {categoryName} portfolio
+        </h1>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center px-4 md:px-16 pb-8">
+        {images.length > 0 && currentImage ? (
+          <div className="w-full max-w-5xl flex flex-col">
+            {/* Image Container with Navigation */}
+            <div className="relative flex items-center justify-center">
+              {/* Left Arrow */}
+              <button
+                onClick={goToPrevious}
+                className="absolute left-0 md:-left-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-10"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
+              </button>
+
+              {/* Image */}
+              <div className="w-full aspect-[4/3] md:aspect-[16/10] bg-gray-100 flex items-center justify-center">
+                {currentImage.src ? (
+                  <img
+                    src={currentImage.src}
+                    alt={currentImage.caption || `${categoryName} artwork`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                ) : (
+                  <span className="font-serif text-[hsl(210,70%,15%)] opacity-40 text-sm">
+                    Image placeholder
+                  </span>
+                )}
+              </div>
+
+              {/* Right Arrow */}
+              <button
+                onClick={goToNext}
+                className="absolute right-0 md:-right-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-10"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
+              </button>
+            </div>
+
+            {/* Caption - aligned with left edge of image */}
+            <div className="mt-4 md:mt-6">
+              <p className="font-serif text-sm md:text-base text-[hsl(210,70%,15%)] text-left">
+                {currentImage.caption || "\u00A0"}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <p className="font-serif text-[hsl(210,70%,15%)] opacity-50">
+              No images yet
+            </p>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default ArtPortfolio;
