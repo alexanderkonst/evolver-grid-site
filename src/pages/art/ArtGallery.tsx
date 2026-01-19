@@ -19,6 +19,9 @@ const ArtGallery = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+      {/* White overlay for subtlety */}
+      <div className="absolute inset-0 bg-white/85" />
+      
       {/* Audio Toggle */}
       <ArtAudioToggle />
 
