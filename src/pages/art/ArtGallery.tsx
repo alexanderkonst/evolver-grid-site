@@ -20,13 +20,13 @@ const ArtGallery = () => {
       }}
     >
       {/* White overlay for subtlety */}
-      <div className="absolute inset-0 bg-white/85" />
+      <div className="absolute inset-0 bg-white/70 z-0" />
       
       {/* Audio Toggle */}
       <ArtAudioToggle />
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center mb-16 text-center max-w-2xl">
+      <div className="flex flex-col items-center mb-16 text-center max-w-2xl relative z-10">
         <h1 className="font-serif text-4xl md:text-6xl text-[hsl(210,70%,15%)] mb-6">
           АРХАЗМ ART
         </h1>
@@ -41,7 +41,7 @@ const ArtGallery = () => {
       </div>
 
       {/* Category Links */}
-      <nav className="flex flex-col items-center gap-8 md:gap-10">
+      <nav className="flex flex-col items-center gap-8 md:gap-10 relative z-10">
         {categories.map((category) => (
           <Link
             key={category.id}
