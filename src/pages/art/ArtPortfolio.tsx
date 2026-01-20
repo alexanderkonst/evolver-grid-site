@@ -14,12 +14,19 @@ const categoryNames: Record<string, string> = {
 const categoryImages: Record<string, { src: string; caption: string }[]> = {
   "ceremonial-space-designs": [
     { src: "https://i.imgur.com/40cWWoe.jpg", caption: "" },
+    { src: "https://i.imgur.com/mOcLWQa.png", caption: "" },
+    { src: "https://i.imgur.com/sGuo9IQ.jpeg", caption: "" },
+    { src: "https://i.imgur.com/MT6HjU5.png", caption: "" },
+    { src: "https://i.imgur.com/dMUGpuE.png", caption: "" },
+    { src: "https://i.imgur.com/qFWDLb5.jpeg", caption: "" },
+    { src: "https://i.imgur.com/2ZqaVGq.png", caption: "" },
   ],
   "digital-illustrations-stickers": [
     { src: "https://i.imgur.com/RpmgjXZ.png", caption: "" },
     { src: "https://i.imgur.com/Q6c3UZT.png", caption: "" },
     { src: "https://i.imgur.com/ArTfs8d.jpg", caption: "" },
     { src: "https://i.imgur.com/pwk46QR.jpeg", caption: "" },
+    { src: "https://i.imgur.com/uKLx40i.png", caption: "" },
   ],
   "star-code-jewellery": [
     { src: "https://i.imgur.com/NGSxNw8.png", caption: "" },
@@ -52,12 +59,12 @@ const ArtPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col relative">
-      {/* Header */}
-      <header className="w-full px-4 md:px-8 py-6 flex items-center">
+      {/* Header - higher z-index to ensure buttons are immediately clickable */}
+      <header className="w-full px-4 md:px-8 py-6 flex items-center relative z-50">
         {/* Back Button */}
         <button
           onClick={() => navigate("/art")}
-          className="text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 -ml-2"
+          className="text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 -ml-2 cursor-pointer"
           aria-label="Back to gallery"
         >
           <ArrowLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
@@ -78,7 +85,7 @@ const ArtPortfolio = () => {
               {/* Left Arrow */}
               <button
                 onClick={goToPrevious}
-                className="absolute left-0 md:-left-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-10"
+                className="absolute left-0 md:-left-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
@@ -102,7 +109,7 @@ const ArtPortfolio = () => {
               {/* Right Arrow */}
               <button
                 onClick={goToNext}
-                className="absolute right-0 md:-right-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-10"
+                className="absolute right-0 md:-right-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
