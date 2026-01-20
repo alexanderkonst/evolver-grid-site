@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
-import ArtAudioToggle from "@/components/art/ArtAudioToggle";
 
 // Category display names
 const categoryNames: Record<string, string> = {
@@ -53,9 +52,6 @@ const ArtPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col relative">
-      {/* Audio Toggle */}
-      <ArtAudioToggle />
-
       {/* Header */}
       <header className="w-full px-4 md:px-8 py-6 flex items-center">
         {/* Back Button */}

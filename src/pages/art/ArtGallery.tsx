@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ArtAudioToggle from "@/components/art/ArtAudioToggle";
 
 const categories = [
   { id: "ceremonial-space-designs", label: "CEREMONIAL SPACE DESIGNS" },
@@ -10,7 +9,7 @@ const categories = [
 
 const ArtGallery = () => {
   return (
-    <div 
+    <div
       className="min-h-screen flex flex-col items-center justify-center relative px-6 py-12"
       style={{
         backgroundImage: "url('https://i.imgur.com/LmAgOfb.jpeg')",
@@ -21,9 +20,6 @@ const ArtGallery = () => {
     >
       {/* White overlay for subtlety */}
       <div className="absolute inset-0 bg-white/70 z-0" />
-      
-      {/* Audio Toggle */}
-      <ArtAudioToggle />
 
       {/* Hero Section */}
       <div className="flex flex-col items-center mb-16 text-center max-w-2xl relative z-10">
