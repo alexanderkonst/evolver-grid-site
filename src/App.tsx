@@ -90,6 +90,7 @@ import Profile from "./pages/Profile";
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
+import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
 
@@ -242,9 +243,11 @@ const App = () => (
                 {/* Public Creator Pages */}
                 <Route path="/p/:slug" element={<CreatorPage />} />
                 <Route path="/my-page" element={<PublicPageEditor />} />
-                {/* Art Gallery */}
-                <Route path="/art" element={<ArtGallery />} />
-                <Route path="/art/:category" element={<ArtPortfolio />} />
+                {/* Art Gallery - Wrapped with persistent audio */}
+                <Route path="/art" element={<ArtLayout />}>
+                  <Route index element={<ArtGallery />} />
+                  <Route path=":category" element={<ArtPortfolio />} />
+                </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
