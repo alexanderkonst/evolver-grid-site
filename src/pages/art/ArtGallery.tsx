@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const categories = [
   { id: "ceremonial-space-designs", label: "CEREMONIAL SPACE DESIGNS" },
   { id: "digital-illustrations-stickers", label: "DIGITAL ILLUSTRATIONS & STICKERS" },
-  { id: "star-code-jewellery", label: "STAR CODE JEWELLERY" },
+  { id: "star-code-jewellery", label: "STAR CODES" },
   { id: "webportals", label: "WEBPORTALS" },
 ];
 
@@ -54,7 +54,7 @@ const ArtGallery = () => {
           rel="noopener noreferrer"
           className="font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity duration-300 underline underline-offset-4 decoration-1"
         >
-          CONTACT MY TEAM
+          CONTACT THE TEAM
         </a>
       </nav>
     </div>

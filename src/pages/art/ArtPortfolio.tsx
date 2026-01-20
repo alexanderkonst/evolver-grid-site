@@ -6,7 +6,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 const categoryNames: Record<string, string> = {
   "ceremonial-space-designs": "CEREMONIAL SPACE DESIGNS",
   "digital-illustrations-stickers": "DIGITAL ILLUSTRATIONS & STICKERS",
-  "star-code-jewellery": "STAR CODE JEWELLERY",
+  "star-code-jewellery": "STAR CODES",
   "webportals": "WEBPORTALS",
 };
 
@@ -24,7 +24,6 @@ const categoryImages: Record<string, { src: string; caption: string }[]> = {
   "digital-illustrations-stickers": [
     { src: "https://i.imgur.com/RpmgjXZ.png", caption: "" },
     { src: "https://i.imgur.com/Q6c3UZT.png", caption: "" },
-    { src: "https://i.imgur.com/ArTfs8d.jpg", caption: "" },
     { src: "https://i.imgur.com/pwk46QR.jpeg", caption: "" },
     { src: "https://i.imgur.com/uKLx40i.png", caption: "" },
   ],
