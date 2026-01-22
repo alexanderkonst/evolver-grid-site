@@ -78,6 +78,12 @@ const Navigation = () => {
   };
 
   const handleLogout = async () => {
+    // Clear user-specific localStorage to prevent profile mixing on shared devices
+    window.localStorage.removeItem("game_profile_id");
+    window.localStorage.removeItem("guest_appleseed_data");
+    window.localStorage.removeItem("guest_ai_response");
+    window.localStorage.removeItem("guest_excalibur_data");
+    window.localStorage.removeItem("invited_by_profile_id");
     await supabase.auth.signOut();
     setUserProfile(null);
     navigate("/");
