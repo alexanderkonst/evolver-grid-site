@@ -5,70 +5,116 @@
 
 ---
 
-## The Core Insight
+## Part 1: First Principles — The Chain of Definitions
 
-A user journey is a **sequence of screens**. A screen is the **modular unit** of a graphical interface. An interface is a **bridge** that allows humans to act on reality — a tool for achieving a goal.
+To build a user journey with absurd simplicity, we must first understand what it is at its deepest level.
+
+### What is a User Journey?
+
+A **user journey** is a sequence. A sequence of what? **Screens**.
+
+### What is a Screen?
+
+A screen is the **modular unit** — the most stable building block of a graphical interface.
+
+### What is a Graphical Interface?
+
+An interface mirrors **how humans fundamentally interact with information**. It is a **bridge** that allows humans to act on reality. It is a technology, an instrument, a means of achieving a goal.
+
+### Therefore:
+
+```
+User Journey = Sequence of Screens
+Screen = Modular unit of Interface
+Interface = Bridge to act on reality
+```
 
 Everything else is derived from this.
 
 ---
 
-## Part 1: The Anatomy of a Screen
+## Part 2: The Anatomy of a Screen
 
-Every screen element exists in one or more of these layers:
+A screen breaks down modularly into **visual elements**. Each element has a role and may or may not be interactive. These elements can be viewed through several **dimensions** (плоскости):
 
-### Layer 1: Data Output (Information Delivery)
-- Communicating something to the user
-- Can be: symbol, icon, text, audio, video, 3D, VR/AR
-- Ranges from raw information to optimized infographics
+### Dimension 1: Data Output (Information Delivery)
 
-### Layer 2: Data Input (Information Request)
-- Requesting something from the user
+Communicating something to the user. This includes:
+
+- **Raw information** — Text, symbols, data
+- **Infographics** — Information *packaged* for optimal understanding and rapid comprehension
+- **Formats** (in order of complexity): Symbol → Icon → Text → Audio → Video → Interactive 3D → VR → AR
+
+### Dimension 2: Data Input (Information Request)
+
+Requesting something from the user:
 - Form fields, selections, uploads
-- Must minimize friction — make it effortless to provide
+- Must **minimize friction** — the user should be able to retrieve and provide this information effortlessly
+- Simplest example: "Enter your name" or "Select a date"
 
-### Layer 3: Backend Program (The Engine)
-- The invisible logic that makes interactivity possible
-- User doesn't need to understand it (like a car engine)
-- Without it, an interactive element is just decoration
+### Dimension 3: Backend Program (The Engine)
 
-### Layer 4: Harmony (Beauty & Energy)
-- Visual design that creates a feeling of harmony
-- Energetic impact that improves the user's internal state
-- Not utilitarian — but elevates the entire experience
+The invisible logic that makes interactivity possible.
 
-**Key Principle:** Every element must have a defined function. If it doesn't serve a purpose, it creates cognitive load and damages usability.
+> A person doesn't need to understand how an engine works to drive a car — but without an engine, the car won't move. **A car without an engine is not a car — it's a cart without a horse. And a cart without a horse is not a cart — it's just a stand or a table.**
+
+The same applies here: **an interactive element without a program behind it is not an interactive element — it's just visual decoration.**
+
+### Dimension 4: Harmony (Beauty & Energy)
+
+The function of visual design that creates a **feeling of harmony** through energetic impact on the person — improving their internal state.
+
+This is not utilitarian. This is about **raising the user's internal harmony through aesthetic energy**.
+
+### Dimension 5: Relationships Between Elements
+
+Elements and screens can be:
+- **Grouped** together
+- **Encoded with logic** (if/then)
+- **Positioned relative to each other** with purpose — showing their interrelationship through spatial arrangement
+
+### Dimension 6: Function
+
+Every element must have a **defined function**. There is always an optimization goal. No element exists without purpose.
+
+> This is the difference between simple products and those burdened with unnecessary complexity — complexity that creates cognitive load, unpleasant usage feelings, and distracts from the elements that carry the core functional load.
 
 ---
 
-## Part 2: The Master Parameter — Usability
+## Part 3: The Master Parameter — Usability
 
-**Usability** is the composite measure of product quality. It encompasses everything.
+**Usability** is the composite measure, the **master parameter** that includes everything we've discussed.
+
+> We are writing **the theory of maximizing usability** through maximizing user journey quality. This theory will become a step-by-step instruction for vibe-coding modern products. Follow it, and you get incredible products. **Steve Jobs-level products.** That's the bar we're setting.
 
 ### The Usability Laws
 
-| Less of This | = | Higher Usability |
-|--------------|---|------------------|
-| Fewer screens | → | Higher usability |
-| Fewer buttons | → | Higher usability |
-| Simpler communication | → | Higher usability |
-| Fewer sub-results to reach the result | → | Higher usability |
+| Principle | Effect |
+|-----------|--------|
+| Fewer screens | → Higher usability |
+| Fewer buttons | → Higher usability |
+| Simpler communication | → Higher usability |
+| Fewer sub-results to reach the result | → Higher usability |
+
+### The Limit: One Button
 
 **The evolutionary goal of every product is to become one button.**
 
-This is the limit. The user must express *some* intention to receive a result. In graphical interfaces, that's pressing a button. A button is the most intuitive human tool. Simpler would only be thought control.
+This is the limit. The user must express *some* intention to receive a result. In graphical interfaces, that's pressing a button. The button is the most intuitive human tool. Simpler would only be thought control.
+
+> Like kitchen appliances — they must be absolutely clear in usage. A blender has essentially one button: on/off. A vacuum cleaner: on/off, retract cord. **This is the simplicity we're aiming for.** This is what Steve Jobs means when he compares kitchen appliances to computers.
 
 Until we reach one button, every product is simply a **series of buttons** — the total result broken into a series of sub-results.
 
 ---
 
-## Part 3: The Structure of a User Journey
+## Part 4: The Structure of a User Journey
 
 ### Start With the Result
 
-Everything begins with the **result** the user should receive at the end.
+Everything begins with **reverse engineering** the result the user should receive at the end. This applies to the entire journey and each of its parts.
 
-If we cannot achieve that result in one step, we ask:
+If the result cannot be achieved in one step:
 > "What sub-results lead us to the final result?"
 
 We aim for the **minimum number** of sub-results.
@@ -83,45 +129,57 @@ RESULT
   └── Final Result → End Screen
 ```
 
-Each sub-result gets a screen (or minimal set of screens).
+Each sub-result gets a screen (or minimal set of screens). **There must be logic between screens**, and the overall result determines both the first and last screens.
 
-### First Screen & Last Screen
+### First Screen (of entire journey)
 
-**First Screen:**
-- Promises the result to the user
-- Describes it: concise, clear, beautiful
-- Contains the **Magic Button** — "Start" or equivalent
+- States **what result we will create** for the user
+- Contains the **Magic Button**: "Start"
 
-**Last Screen:**
-- Shows the result achieved
-- Describes its value and how to use it
-- Offers the **next step** — deeper engagement, adjacent result, or next module
+### Last Screen (of entire journey)
+
+- Shows **the result that was created**
+- Highlights **what we accomplished**
+- Offers the **next step**: deeper engagement, adjacent result, another module, or a paid offering
 
 ---
 
-## Part 4: Screen Templates
+## Part 5: Screen Templates
 
 ### The Start Screen (Per Sub-Result)
 
 **Required elements:**
-1. **Promise** — What result will the user get?
-2. **Description** — Concise, clear, minimal (icon + short text minimum)
+1. **Promise** — Offer the sub-result to the user
+2. **Description** — Concise, clear, beautiful (minimum: icon + short text)
 3. **Magic Button** — Call-to-action to begin
 
 **Optional elements:**
-- Infographics
-- Video explanation
-- Beauty/harmony elements
+- Infographics, video, beauty elements
+- These don't serve core functional goals but may add value, usability, fun, or art
 
 ### The End Screen (Per Sub-Result)
 
-**Required elements:**
-1. **The Result** — Show what was achieved
-2. **Its Value** — Why this matters
-3. **How to Use It** — Practical application
-4. **The Next Step** — Where this leads, and why it's valuable
+Three required elements:
+1. **The sub-result itself** — Show it
+2. **Its value** — What's the benefit?
+3. **How to use it** — The practical application
 
-**Note:** The end screen of one sub-result and the start screen of the next *could* be combined, but separation reduces cognitive load.
+Plus:
+4. **The next step** — What follows, and why it's valuable to take it
+
+**Note:** The end screen of one sub-result and the start screen of the next *could* be combined, but to reduce cognitive overload, it's better to separate them.
+
+### Sub-Screens (Information Chunking)
+
+When one screen would have too much information:
+> We break it into **sub-screens** — like how onboarding works: information broken into pieces that are easy to perceive and "live through."
+
+Sub-screens must show:
+- What comes next
+- How much remains
+- Where the user is in the sequence
+
+This is achieved through **progress indicators** (bars, dots) — elements that **calm the user** because they know what's happening, how much is left, and that they're being informed.
 
 ### The Information Request Screen
 
@@ -129,62 +187,54 @@ When you need input from the user:
 
 1. **What is needed** — Clearly state what information you're requesting
 2. **Why it's needed** — How this input creates the result they want
-3. **Input field** — With clear instructions
+3. **Input field** — With clear instructions, optimized for **minimum friction**
 4. **Submit button** — Labeled with the sub-result, not just "Submit"
 
-**Critical:** Minimize friction. The information should be easy to retrieve, easy to enter. The simplest version: "Enter your name" or "Select a date."
+---
+
+## Part 6: Navigation
+
+Navigation allows the user to **teleport** simply and clearly to any step in product usage.
+
+Core navigation elements:
+- **Back** — Return to previous step (if logic allows)
+- **Skip** — Move past current step
+- **Restart** — Begin from the start
+- **Save** — Preserve progress
 
 ---
 
-## Part 5: Navigation
-
-Users must be able to navigate. The core navigation elements:
-
-| Element | Function |
-|---------|----------|
-| **Back** | Return to previous step |
-| **Restart** | Begin from the start |
-| **Skip** | Move past current step (if logic allows) |
-| **Save** | Preserve progress |
-
-**Progress indicators** (dots, progress bars) are calming — they show:
-- What's happening
-- How much remains
-- Where the user is in the sequence
-
----
-
-## Part 6: The Button
+## Part 7: The Button
 
 The button is the atomic unit of user action.
 
 ### Button Elements
 
 1. **Visual design** — Clear, clickable, inviting
-2. **Call-to-action text** — 1-2 words maximum
+2. **Call-to-action** — 1-3 words maximum (ideally 1-2)
 3. **The promise** — The text names the result of pressing it
-
-**Example:** Not "Submit" but "Get My Genius Profile"
 
 ### Multiple Buttons
 
-When logic branches, multiple buttons can split users into different paths. But default to one button per screen.
+When logic branches, multiple buttons split users into different paths. But default to one button per screen.
 
 ---
 
-## Part 7: The Format Spectrum
+## Part 8: Optional Elements
 
-Information can be delivered in increasing complexity:
+Everything beyond the required Start Screen, End Screen, and Button is **optional**:
 
-```
-Symbol → Icon → Text → Audio → Video → Interactive 3D → VR → AR
-```
+- Additional screens for **beauty**
+- Screens for **user education** (if needed)
+- Screens for **transformational experience**
+- Elements for **fun, play, delight**
+- Elements that serve **no functional purpose at all — i.e., art**
 
-**Start simple.** Use the minimum format needed to communicate clearly.
+When done with taste, each of these increases overall product quality. They represent quality parameters that may or may not fall under usability — but they matter.
 
 ---
 
-## Part 8: The Playbook (Step-by-Step)
+## Part 9: The Playbook (Step-by-Step)
 
 ### Step 1: Define the Result
 What does the user receive at the end of this product/module?
@@ -193,69 +243,46 @@ What does the user receive at the end of this product/module?
 What intermediate results lead to the final result?
 *(Minimize these. Fewer = higher usability.)*
 
-### Step 3: Design Each Sub-Result's Screens
-- Start screen (promise + magic button)
-- Process screens (if needed)
-- End screen (result + value + next step)
+### Step 3: For Each Sub-Result, Design:
+- **Start screen**: Promise + Magic Button
+- **End screen**: Result + Value + Usage + Next Step
 
-### Step 4: Design Information Request Screens
-- What's needed
-- Why it matters
-- Simple input
-- Labeled submit
+### Step 4: For Information Requests:
+- What's needed + Why it matters
+- Simple input field + Labeled submit
 
 ### Step 5: Add Navigation
-- Back, Restart, Skip, Save as appropriate
-- Progress indicators
+- Back, Skip, Restart, Save as appropriate
+- Progress indicators (calming function)
 
-### Step 6: Add Harmony (Optional)
-- Beauty elements
-- Transformational experience
-- Delight, fun, art
+### Step 6: Add Optional Elements
+- Beauty, transformational experience, fun, art
 
 ### Step 7: Vibe-Code It
-Hand this specification to AI. The AI can now:
-- Help define results
+This specification becomes instructions for AI. AI can:
+- Define results
 - Break into sub-results
 - Write all components
-- Generate the actual product
+- Generate the product
 
 ---
 
-## Part 9: The Meta-Insight
+## Part 10: The Meta-Insight
 
-This playbook describes the **deepest principles of web design** — the foundation on which all internet interfaces are built.
+> What we have just done is define **the deepest principles of web design** — the foundation on which all internet interfaces are built, without needing to know anything about web design in advance.
 
-From these principles, we can:
+From these first principles, we can:
 - Add any functionality
 - Play with any parameters
 - Assemble any screen, any user journey
 
-Like LEGO blocks, these primitives combine into anything.
+**Like LEGO blocks, these primitives combine into anything.**
 
-**This is vibe-coding:** Describe what you want, structured by these principles, and AI builds it.
-
----
-
-## Summary: The Minimums
-
-| Component | Minimum Required |
-|-----------|------------------|
-| Product | 1 result |
-| Sub-results | As few as possible |
-| Start screen | Promise + Magic Button |
-| End screen | Result + Value + Next Step |
-| Input screen | What + Why + Field + Submit |
-| Button | 1-2 word call-to-action |
-| Navigation | Back, Restart, Skip, Save |
+This is vibe-coding: Describe what you want, structured by these principles, and AI builds it.
 
 ---
 
-*"We're writing the theory of maximizing usability through maximizing user journey quality. This theory becomes a step-by-step instruction for vibe-coding modern products. Follow it, and you get incredible products. Steve Jobs-level products. That's the bar we're setting."*
-
----
-
-## Appendix: The AI Prompt Structure
+## Appendix: AI Prompt Structure
 
 When using AI to vibe-code, provide:
 
@@ -281,4 +308,5 @@ AI handles the rest.
 
 ---
 
-*Channeled January 2025. Steve Jobs may have been involved.*
+*Channeled January 2025.*
+*Steve Jobs was probably watching.*
