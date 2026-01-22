@@ -383,16 +383,27 @@ GENERAL STYLE RULES:
         </p>
       </div>
 
-      {/* Hero: unlock moment */}
+      {/* Hero: Result Screen per UX Playbook */}
       <section className="rounded-3xl bg-slate-50 px-6 py-12 sm:px-12 sm:py-16 text-center border border-slate-200 shadow-sm mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
-          You Just Unlocked Your Zone of Genius
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-slate-700 max-w-3xl mx-auto">
-          This is your current character card in the game of your life — a mirror of how your deepest talents want to move right now.
+        <p className="text-sm uppercase tracking-wide text-slate-500 mb-4">
+          Your Zone of Genius
         </p>
-        <p className="mt-3 text-xs text-slate-500 max-w-2xl mx-auto">
-          Take a breath. Read slowly. This is not a test result — it's a starting point.
+        {parsedSnapshot ? (
+          <>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+              You are a {parsedSnapshot.archetypeTitle}
+            </h1>
+            <p className="mt-4 text-lg sm:text-xl text-slate-700 max-w-2xl mx-auto font-medium">
+              Now you have words for what makes you, you.
+            </p>
+          </>
+        ) : (
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+            Discovering Your Zone of Genius...
+          </h1>
+        )}
+        <p className="mt-4 text-sm text-slate-500 max-w-2xl mx-auto">
+          This is your current character card — a starting point, not a final verdict.
         </p>
       </section>
 
@@ -547,38 +558,44 @@ GENERAL STYLE RULES:
             </aside>
           </div>
 
-          {/* Footer / continuity line */}
+          {/* Footer: Magic button per UX Playbook */}
           <div className="mt-16 pt-8 border-t border-slate-200 text-center space-y-6">
             <p className="text-sm text-slate-600 max-w-2xl mx-auto">
-              This isn't a final verdict. It's your current character card in the game of your life.
-              You can always come back, reassess, and level up.
+              Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {returnTo === "genius-offer" ? (
                 <button
                   onClick={() => navigate("/genius-offer-intake?from=zog")}
-                  className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  className="px-8 py-3 text-base font-semibold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg"
                 >
                   Continue to Genius Offer Creation
                 </button>
               ) : (
-                <>
-                  <button
-                    onClick={handleBack}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to previous step
-                  </button>
-                  <button
-                    onClick={handleStartNew}
-                    className="px-6 py-2.5 text-sm font-medium rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors"
-                  >
-                    Start new assessment
-                  </button>
-                </>
+                <button
+                  onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
+                  className="px-8 py-3 text-base font-semibold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg"
+                >
+                  Save & Continue
+                </button>
               )}
+            </div>
+
+            <div className="flex items-center justify-center gap-4 text-sm">
+              <button
+                onClick={handleBack}
+                className="text-slate-500 hover:text-slate-700 transition-colors"
+              >
+                ← Back
+              </button>
+              <span className="text-slate-300">|</span>
+              <button
+                onClick={handleStartNew}
+                className="text-slate-500 hover:text-slate-700 transition-colors"
+              >
+                Start Over
+              </button>
             </div>
           </div>
 

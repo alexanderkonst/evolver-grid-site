@@ -22,6 +22,7 @@ const QualityOfLifeMapAssessment = ({
   const returnTo = searchParams.get("return");
   const { answers, setAnswer } = useQolAssessment();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showIntro, setShowIntro] = useState(true);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -40,6 +41,8 @@ const QualityOfLifeMapAssessment = ({
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+    } else {
+      setShowIntro(true);
     }
   };
 
@@ -54,6 +57,36 @@ const QualityOfLifeMapAssessment = ({
       setCurrentIndex(currentIndex + 1);
     }
   };
+
+  // UX Playbook: Start Screen
+  const introScreen = (
+    <section
+      className="py-24 px-6 min-h-dvh flex flex-col items-center justify-center"
+      style={{ backgroundColor: "hsl(220, 30%, 12%)" }}
+    >
+      <div className="text-center max-w-2xl mx-auto space-y-8">
+        <p className="text-sm uppercase tracking-wide text-[hsl(var(--destiny-gold))]">
+          Quality of Life Map
+        </p>
+        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white">
+          Rate 8 life areas
+        </h1>
+        <p className="text-lg text-white/70">
+          See where you're thriving and where to grow. Takes about 3 minutes.
+        </p>
+        <button
+          onClick={() => setShowIntro(false)}
+          className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-lg"
+          style={{
+            backgroundColor: "hsl(var(--destiny-gold))",
+            color: "hsl(var(--destiny-dark))",
+          }}
+        >
+          Map My Life
+        </button>
+      </div>
+    </section>
+  );
 
   const content = (
     <section
@@ -78,8 +111,8 @@ const QualityOfLifeMapAssessment = ({
                   idx < currentIndex
                     ? "bg-[hsl(var(--destiny-gold))]"
                     : idx === currentIndex
-                    ? "bg-[hsl(var(--destiny-gold))]/60"
-                    : "bg-white/20"
+                      ? "bg-[hsl(var(--destiny-gold))]/60"
+                      : "bg-white/20"
                 )}
               />
             ))}
@@ -207,20 +240,33 @@ const QualityOfLifeMapAssessment = ({
   );
 
   if (renderMode === "embedded") {
-    return <div className="py-8">{content}</div>;
+    return <div className="py-8">{showIntro ? introScreen : content}</div>;
+  }
+
+  // Show intro screen first (no nav bar for cleaner entry experience)
+  if (showIntro) {
+    return (
+      <div className="min-h-dvh">
+        <Navigation />
+        {introScreen}
+      </div>
+    );
   }
 
   return (
     <div className="min-h-dvh">
       <Navigation />
-      
+
       {/* Back Button */}
       <div className="pt-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'hsl(220, 30%, 12%)' }}>
         <div className="container mx-auto max-w-4xl">
-          <Link to="/" className="inline-flex items-center text-white/60 hover:text-white transition-colors">
+          <button
+            onClick={() => currentIndex === 0 ? setShowIntro(true) : handlePrevious()}
+            className="inline-flex items-center text-white/60 hover:text-white transition-colors"
+          >
             <ArrowLeft className="mr-2 h-4 w-4" />
             <BoldText>BACK</BoldText>
-          </Link>
+          </button>
         </div>
       </div>
 

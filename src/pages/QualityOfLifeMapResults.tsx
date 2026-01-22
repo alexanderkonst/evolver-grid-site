@@ -208,13 +208,16 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
       {/* Hero Section */}
       <div ref={snapshotRef} className="rounded-2xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6 space-y-5">
-        {/* Title */}
+        {/* Title with Value Statement */}
         <div className="text-center">
           <p className="text-sm text-[#a4a3d0] mb-1">Your Quality of Life</p>
           <div className="inline-flex items-center gap-3">
             <span className="text-5xl font-bold text-[#2c3150]">{overallStageRounded}</span>
             <span className="text-[#a4a3d0] text-lg">/10</span>
           </div>
+          <p className="mt-3 text-sm text-[#2c3150]/70 font-medium">
+            Now you know where to focus your growth.
+          </p>
         </div>
 
         {/* Radar Chart */}
@@ -264,10 +267,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         profileId={profileId ?? undefined}
       />
 
-      {/* Actions */}
+      {/* Actions - UX Playbook aligned */}
       <div className="space-y-3">
         <Button variant="wabi-primary" className="w-full" onClick={handlePriorities}>
-          Set Growth Priorities <ArrowRight className="w-4 h-4 ml-2" />
+          See My Profile <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
         <div className="grid grid-cols-2 gap-3">
           <Button variant="wabi-secondary" onClick={handleDownloadPdf}>
