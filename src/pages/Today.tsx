@@ -102,6 +102,9 @@ export default function TodayPage() {
     const [artifactNote, setArtifactNote] = useState("");
     const [savingArtifact, setSavingArtifact] = useState(false);
 
+    // First visit detection for entry screen
+    const [showFirstVisitIntro, setShowFirstVisitIntro] = useState(false);
+
     // Loading states
     const [loadingSideQuest, setLoadingSideQuest] = useState(false);
     const [completingSideQuest, setCompletingSideQuest] = useState(false);
@@ -150,6 +153,11 @@ export default function TodayPage() {
             }
 
             setProfile(profileData as TodayProfile);
+
+            // First visit detection: show intro if no practices done yet
+            if ((profileData.practice_count || 0) === 0) {
+                setShowFirstVisitIntro(true);
+            }
 
             // Fetch completed upgrades
             const playerUpgrades = await getPlayerUpgrades(profileData.id);
@@ -366,6 +374,36 @@ export default function TodayPage() {
         return (
             <div className="min-h-dvh flex items-center justify-center bg-slate-50">
                 <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+            </div>
+        );
+    }
+
+    // UX Playbook: First visit entry screen
+    if (showFirstVisitIntro) {
+        return (
+            <div className="min-h-dvh bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col items-center justify-center px-6">
+                <div className="text-center max-w-md space-y-8">
+                    <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center mx-auto">
+                        <Sparkles className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                        <p className="text-sm uppercase tracking-wide text-indigo-600 mb-3">
+                            Transformation Space
+                        </p>
+                        <h1 className="text-4xl font-bold text-slate-900 mb-4">
+                            Grow every day
+                        </h1>
+                        <p className="text-lg text-slate-600">
+                            One practice. Five paths. Consistent progress.
+                        </p>
+                    </div>
+                    <button
+                        onClick={() => setShowFirstVisitIntro(false)}
+                        className="px-8 py-4 text-lg font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-lg"
+                    >
+                        Show Me Today's Practice
+                    </button>
+                </div>
             </div>
         );
     }
