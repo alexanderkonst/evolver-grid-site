@@ -56,6 +56,7 @@ import ZoneOfGeniusEntry from "./modules/zone-of-genius/ZoneOfGeniusEntry";
 
 import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
+import ZoGPerspectiveView from "./pages/spaces/profile/ZoGPerspectiveView";
 import NotFound from "./pages/NotFound";
 // Space pages for the Game Shell
 import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
@@ -175,7 +176,7 @@ const App = () => (
                 <Route path="/game/profile/genius-business/channels" element={<GeniusBusinessChannels />} />
                 <Route path="/game/profile/genius-business/vision" element={<GeniusBusinessVision />} />
                 <Route path="/game/profile/zone-of-genius" element={<ZoneOfGeniusOverview />} />
-                <Route path="/game/profile/zone-of-genius/*" element={<ZoneOfGeniusOverview />} />
+                <Route path="/game/profile/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
                 <Route path="/game/transformation" element={<TransformationSpace />} />
                 <Route path="/game/transformation/today" element={<TodaysPractice />} />
                 <Route path="/game/transformation/paths" element={<TransformationGrowthPaths />} />
