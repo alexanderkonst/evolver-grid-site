@@ -340,13 +340,13 @@ const ZoneOfGeniusEntry = () => {
         <GameShellV2 hideNavigation>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
 
-                {/* Header */}
+                {/* Header - Start Screen per Playbook */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-slate-900">Zone of Genius</h1>
-                    <p className="text-slate-600 mt-1">Discover who you are at your best</p>
+                    <h1 className="text-2xl font-bold text-slate-900">Who are you, really?</h1>
+                    <p className="text-slate-600 mt-1">In 5 minutes, get words for your unique genius</p>
                 </div>
 
                 {/* Error message */}

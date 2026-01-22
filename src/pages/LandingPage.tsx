@@ -258,7 +258,7 @@ const LandingPage = () => {
                     {!slide.isCTA && !slide.headlineHero && (
                         <button onClick={() => navigate("/start")}
                             className={`mb-8 inline-block px-10 py-4 text-base font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-95 ${isDarkSlide ? "bg-white/20 text-white hover:bg-white/30 hover:shadow-[0_20px_60px_rgba(255,255,255,0.3)]" : "bg-[#29549f] text-white hover:bg-[#1e4374] hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)]"}`}>
-                            Get started
+                            Discover My Genius
                         </button>
                     )}
 
@@ -266,7 +266,7 @@ const LandingPage = () => {
                     {slide.headlineHero && (
                         <button onClick={() => navigate("/start")}
                             className="mb-8 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                            Get started
+                            Discover My Genius
                         </button>
                     )}
 
@@ -295,7 +295,7 @@ const LandingPage = () => {
                         <div className="mt-6 animate-fade-in">
                             <button onClick={() => navigate("/start")}
                                 className="inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                                Get started
+                                Discover My Genius
                             </button>
                             <br />
                             <button onClick={() => navigate("/contact")} className="inline-block mt-5 text-sm text-[#2c3150]/60 hover:text-[#29549f] transition-colors">
