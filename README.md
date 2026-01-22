@@ -2,7 +2,7 @@
 
 > **"I'm building the coordination layer that unites startup societies, regen communities, and venture studios — citizens discover their value, monetize it, and find collaborators across tribes."**
 
-**Live**: [evolver.network](https://evolver.network)
+**Live**: [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
 
 ---
 

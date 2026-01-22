@@ -9,6 +9,7 @@ import {
     CalendarDays,
     Building2,
     Lock,
+    Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -226,6 +227,22 @@ const SpacesRail = ({
                     );
                 })}
             </nav>
+
+            {/* Settings Button */}
+            <div className="p-2 md:p-3 border-t border-slate-800">
+                <button
+                    onClick={() => navigate("/game/settings")}
+                    className={cn(
+                        "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
+                        "justify-center md:justify-start",
+                        "bg-slate-800/30 text-slate-500 hover:bg-slate-700 hover:text-white"
+                    )}
+                    title="Settings"
+                >
+                    <Settings className="w-5 h-5 flex-shrink-0" />
+                    <span className="hidden md:block text-sm font-medium">Settings</span>
+                </button>
+            </div>
         </div>
     );
 };
