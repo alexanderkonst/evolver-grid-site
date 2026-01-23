@@ -34,7 +34,7 @@ const LandingPage = () => {
         {
             audienceTag: "For You",
             problem: "You know you're meant for more. You just can't name it yet.",
-            headline: "KNOW YOUR GENIUS.\nFIND YOUR PATH.\nMEET YOUR PEOPLE.",
+            headline: "KNOW YOURSELF.\nGROW YOURSELF.\nFIND YOUR PEOPLE.",
             tagline: "15 minutes to clarity. One week to direction.",
             things: [
                 { icon: "◎", label: "Your Unique Gift", desc: "Words for what makes you, you" },
