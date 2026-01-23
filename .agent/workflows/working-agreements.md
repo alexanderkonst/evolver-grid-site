@@ -37,7 +37,9 @@ description: Working agreements for AI agents on this project
 - Stage: MVP polish
 
 ## Key Documents
+- `docs/ux_playbook.md` - First principles of product design + execution workflow
 - `docs/customer_journey_map.md` - Source of truth for UX
 - `docs/customer_journey_progression.md` - Unlock conditions
 - `docs/onboarding_script.md` - Screen copy
 - `ai_tasks/README.md` - Task system overview
+- `ai_tasks/PENDING_MIGRATIONS.md` - Database tasks for Lovable
