@@ -90,3 +90,64 @@ Features are implementation. Results are value.
 
 - See `docs/ux_playbook.md` Part 15 for full context
 - See `docs/one_button_product_builder.md` for meta-product overview
+
+---
+
+## Example: Profile Complete Screen
+
+**Feature Request:**
+> I need to add a "Profile Complete" interstitial screen after QoL completion. It should celebrate the user's progress, show their archetype and QoL score, and offer a CTA to start transformation.
+
+**Generated FReD:**
+
+```markdown
+# Feature: Profile Complete Screen
+
+## Goal
+Celebrate user completing their profile and transition them to Transformation Space.
+
+## Result It Delivers
+Playbook Screen 1.3.1: "You know who you are. Now let's grow."
+
+## User Story
+As a user who just completed QoL, I want to see my progress celebrated, so that I feel accomplished and ready to continue.
+
+## Functional Requirements
+- [ ] Display archetype name from ZoG
+- [ ] Display QoL score (e.g., 7.2/10)
+- [ ] Show celebration animation/confetti
+- [ ] Show CTA: [Start Growing] → TransformationSpace
+
+## Data Requirements
+- Reused: archetype from game_profiles.zone_of_genius
+- Reused: QoL score from game_profiles.qol_scores
+
+## User Flow
+1. User completes QoL assessment
+2. System shows Profile Complete screen
+3. User sees archetype + QoL score
+4. User clicks [Start Growing]
+5. User enters Transformation Space
+
+## Acceptance Criteria
+- [ ] Screen appears after QoL completion
+- [ ] Archetype and QoL score displayed correctly
+- [ ] CTA works and navigates to Transformation
+
+## Edge Cases
+- What if ZoG was skipped? → Show generic message, prompt to complete ZoG
+- What if QoL has missing domains? → Show partial score with note
+```
+
+---
+
+## Usage Pattern
+
+```
+User prompt: "I need to add [feature description]"
+
+Agent: I'll generate a FReD first.
+       [Creates ai_tasks/features/FEATURE_[name].md]
+       [Reviews with user]
+       [Then implements]
+```
