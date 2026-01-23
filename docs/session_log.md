@@ -1190,20 +1190,6 @@ Met with Valentin from Priroda community. Key alignment:
 
 ---
 
-## Remaining Sprint: Jan 24-30 (Days 21-26)
-
-### Focus: Phase 8 Build
-
-| Day | Date | Focus |
-|-----|------|-------|
-| 21 | Jan 24 | Browser audit + fix gaps |
-| 22 | Jan 25 | Build missing screens |
-| 23 | Jan 26 | Build missing screens |
-| 24 | Jan 27 | Verify against spec |
-| 25 | Jan 28 | Polish + i18n prep |
-| 26 | Jan 29 | Deploy + test |
-| — | Jan 30 | Departure |
-
 
 
 
