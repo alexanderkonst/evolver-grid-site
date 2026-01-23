@@ -5,6 +5,44 @@
 
 ---
 
+## Quick Reference: Execution Workflow
+
+*Follow this sequence. Don't skip. See Part 12 for details.*
+
+```
+PHASE 1: MASTER RESULT
+1. State the Master Result
+2. Design First Screen (promise + Magic Button)
+3. Design Last Screen (result + celebration + next step)
+
+PHASE 2: SUB-RESULTS
+4. List Sub-Results that lead to Master Result
+5. Sequence them
+6. Define Start/End screens for each
+
+PHASE 3: NESTED LAYERS
+7. Go deeper into each Sub-Result
+8. Repeat until atomic screens
+9. Stop when no more nesting needed
+
+PHASE 4: SCREEN DETAILS
+10. For each screen: Data Output, Data Input, Magic Button, Navigation
+
+PHASE 5: ROAST & ITERATE
+11-13. Critique, fix, repeat until solid
+
+PHASE 6: EXTENSION MODULES
+14-18. Artifacts, Emotional States, Completion, Skip Paths, Bridges
+
+PHASE 7: WIREFRAMES
+19-21. ASCII sketches, navigation map, transitions
+
+PHASE 8: BUILD
+22-24. Tasks, code, verify
+```
+
+---
+
 ## Part 1: First Principles — The Chain of Definitions
 
 To build a user journey with absurd simplicity, we must first understand what it is at its deepest level.
@@ -310,3 +348,230 @@ AI handles the rest.
 
 *Channeled January 2025.*
 *Steve Jobs was probably watching.*
+
+---
+
+## Part 11: Extension Modules
+
+*Additions that bridge first principles → implementation reality.*
+
+The Playbook above establishes **what** and **why**. These modules address **how it lands** in practice.
+
+---
+
+### Module 1: Artifacts
+
+**Principle:** Every result needs a *tangible deliverable* the user can hold.
+
+The Playbook says: "Know your genius." The artifact is *what form that knowing takes*.
+
+| Result | Artifact Example |
+|--------|------------------|
+| Zone of Genius | PDF + Archetype title + 3 talents + 6 environments + 1 mastery action |
+| Quality of Life | Spider chart + Growth priorities + Score |
+| Connection Made | Profile link exchanged + Message sent confirmation |
+
+**Question to ask:** "What does the user *have* after this screen that they didn't have before?"
+
+---
+
+### Module 2: Emotional States
+
+**Principle:** Every transition has a *feeling*. Honor it before moving on.
+
+Results create emotional states. The next screen must acknowledge where the user just arrived.
+
+| After | User Feels | Next Screen Should |
+|-------|------------|-------------------|
+| ZoG Result | Wonder, recognition, vulnerability | Pause. Celebrate. Let them sit. |
+| QoL Assessment | Honesty, slight discomfort | Validate. "That took courage." |
+| Practice Complete | Accomplishment, momentum | Affirm progress. Show streak. |
+
+**Question to ask:** "How does the user *feel* right now, and does the next screen honor that?"
+
+---
+
+### Module 3: Bridges
+
+**Principle:** Spaces are not silos. Users live in *moments*, not features.
+
+When should one space pull you into another?
+
+| Moment | Trigger | Destination |
+|--------|---------|-------------|
+| "You haven't practiced in 3 days" | Notification | Transformation entry |
+| "Someone with complementary genius joined" | Notification | Discover |
+| "Your QoL dropped in Health" | Profile | Relevant practice |
+
+**Question to ask:** "What event in one space should pull the user into another?"
+
+---
+
+### Module 4: Completion
+
+**Principle:** Every section needs a *done* state.
+
+If there's no ✅, users don't know they've won. Neither do devs. Neither do analytics.
+
+| Section | Completion Condition | Celebration |
+|---------|---------------------|-------------|
+| Zone of Genius | Archetype generated + saved | "You are a {X}. Now you have words." |
+| Quality of Life | All 8 rated + priorities set | "Your map is complete." |
+| First Practice | 1 practice logged | "Day 1. You're building momentum." |
+
+**Question to ask:** "What does ✅ look like, and how do we celebrate it?"
+
+---
+
+### Module 5: Skip Paths
+
+**Principle:** Users can skip. Define what happens when they do.
+
+What's the minimum viable profile? Can they still get value?
+
+| Section | If Skipped | Consequence |
+|---------|------------|-------------|
+| Zone of Genius | Empty archetype | Cannot match, cannot see profile |
+| Quality of Life | No QoL data | Transformation recommendations are generic |
+| Mission | No mission set | Cannot match by mission |
+
+**Question to ask:** "If they skip everything, what's the floor — and is it still valuable?"
+
+---
+
+### Module 6: Document Purpose
+
+**Principle:** Every document should answer: *What decisions does this enable?*
+
+A doc that doesn't unlock action is just words.
+
+| Document Type | Enables These Decisions |
+|---------------|------------------------|
+| Screen Spec | "What should I build on this page?" |
+| User Flow | "What's the happy path? The error path?" |
+| Playbook | "What's the organizing principle for ALL screens?" |
+
+**Question to ask:** "After reading this doc, what can I now decide that I couldn't before?"
+
+---
+
+### How Modules Compose
+
+The original Playbook gives you:
+- Master Result → Sub-Results → Screens
+- Magic Button for each screen
+- Start + End screen templates
+
+These modules add:
+- **Artifacts** → what tangible thing is delivered
+- **Emotional States** → what transition feels right
+- **Bridges** → when spaces connect
+- **Completion** → when is it done
+- **Skip Paths** → graceful degradation
+- **Document Purpose** → what decisions are unlocked
+
+*Together: First Principles + Extension Modules = Implementation Blueprint.*
+
+---
+
+*Extension Modules added January 2025.*
+
+---
+
+## Part 12: Execution Workflow
+
+*The sequence of steps from definition to code.*
+
+Follow this order. Do not skip steps. Each phase must be complete before the next.
+
+---
+
+### Phase 1: Define the Master Result
+
+1. **State the Master Result** — What does the user receive at the very end?
+2. **Design the First Screen** — Promise the result, Magic Button to begin
+3. **Design the Last Screen** — Show the result delivered, celebrate, offer next step
+
+---
+
+### Phase 2: Break Into Sub-Results
+
+4. **List Sub-Results** — What intermediate results lead to the Master Result?
+5. **Sequence them** — In what order must they be delivered?
+6. **For each Sub-Result:**
+   - Define Start Screen (promise + Magic Button)
+   - Define End Screen (result shown + value + next step)
+
+---
+
+### Phase 3: Nested Layers
+
+7. **Go one level deeper** — Does each Sub-Result have its own sub-results?
+8. **Repeat** — Until you reach atomic screens that can be built
+9. **Stop** — When further nesting adds no clarity
+
+---
+
+### Phase 4: Screen Details
+
+10. **For each screen, define:**
+    - **Data Output** — What information is displayed?
+    - **Data Input** — What is requested from user? Why?
+    - **Magic Button** — What does it say? What does it do?
+    - **Navigation** — Back? Skip? Save? Progress bar?
+
+---
+
+### Phase 5: Roast & Iterate
+
+11. **Roast the spec** — Is anything missing? Vague? Wrong?
+12. **Iterate** — Fix what the roast revealed
+13. **Repeat** — Until the spec feels solid
+
+---
+
+### Phase 6: Apply Extension Modules
+
+14. **Artifacts** — What tangible thing does user GET from each screen?
+15. **Emotional States** — How does user FEEL at each transition?
+16. **Completion** — What does ✅ look like for each section?
+17. **Skip Paths** — What happens if user skips?
+18. **Bridges** — What events pull user between spaces?
+
+---
+
+### Phase 7: Wireframes
+
+19. **ASCII wireframes** — Sketch each screen structure
+20. **Navigation design** — Map how screens connect
+21. **Connective tissue** — Transitions, loading states, error states
+
+---
+
+### Phase 8: Build
+
+22. **Break into tasks** — Code changes per screen
+23. **Build** — Implement screens following the spec
+24. **Verify** — Does the build match the spec?
+
+---
+
+### Summary
+
+```
+1. Master Result → First/Last Screen
+2. Sub-Results → Start/End for each
+3. Nested layers → Until atomic
+4. Screen details → Data in/out, buttons, nav
+5. Roast & iterate
+6. Extension modules → Artifacts, emotions, completion, skips, bridges
+7. ASCII wireframes + navigation
+8. Build & verify
+```
+
+*Follow this. Don't skip. First principles → details → code.*
+
+---
+
+*Execution Workflow added January 2025.*
+
