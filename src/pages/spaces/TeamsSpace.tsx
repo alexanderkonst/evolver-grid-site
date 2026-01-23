@@ -17,6 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ConnectionSent from "@/components/game/ConnectionSent";
 
 type FilterMode = "all" | "mission" | "local" | "cofounders";
 type MatchMode = "genius" | "assets";
@@ -176,6 +177,10 @@ const TeamsSpace = () => {
     const [sending, setSending] = useState(false);
     const [selectedMatch, setSelectedMatch] = useState<MatchCandidate | null>(null);
     const [currentUserAssets, setCurrentUserAssets] = useState<StoredAsset[]>([]);
+
+    // ConnectionSent celebration state
+    const [showConnectionSent, setShowConnectionSent] = useState(false);
+    const [connectedRecipient, setConnectedRecipient] = useState<string | null>(null);
 
     useEffect(() => {
         const loadMatches = async () => {
@@ -392,14 +397,12 @@ const TeamsSpace = () => {
                 throw insertError;
             }
 
-            toast({
-                title: "Request sent",
-                description: `Your connection request was sent to ${selectedMatch.firstName}.`,
-            });
-
+            // Show celebration instead of toast
+            setConnectedRecipient(selectedMatch.firstName);
             setConnectModalOpen(false);
-            setSelectedMatch(null);
             setMatches((prev) => prev.filter((match) => match.id !== selectedMatch.id));
+            setSelectedMatch(null);
+            setShowConnectionSent(true);
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : "Could not send request.";
             toast({
@@ -550,6 +553,27 @@ const TeamsSpace = () => {
                         </DialogContent>
                     </ErrorBoundary>
                 </Dialog>
+
+                {/* Connection Sent Celebration Modal */}
+                {showConnectionSent && (
+                    <div
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4"
+                        onClick={() => setShowConnectionSent(false)}
+                    >
+                        <div
+                            className="w-full max-w-lg"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <ConnectionSent
+                                recipientName={connectedRecipient}
+                                onKeepDiscovering={() => {
+                                    setShowConnectionSent(false);
+                                    setConnectedRecipient(null);
+                                }}
+                            />
+                        </div>
+                    </div>
+                )}
             </ErrorBoundary>
         </GameShellV2>
     );
