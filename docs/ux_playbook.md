@@ -757,45 +757,66 @@ SHIPPED PRODUCT
 When translating a Result into an implementable Feature:
 
 ```markdown
-# Feature: [Name]
+# Feature: [Short, descriptive title]
 
 ## Goal
 What problem does this feature solve? Why does it exist?
 
 ## Result It Delivers
 Link back to the Playbook result this implements.
+(Result = what user GETS. Feature = how we deliver it.)
 
 ## User Story
 As a [user type], I want to [goal], so that I can [benefit].
 
 ## Functional Requirements
-- [ ] Core behavior 1
-- [ ] Core behavior 2
-- [ ] (be specific and measurable)
+List core behaviors the feature must support. Be specific and measurable.
+- [ ] Behavior 1
+- [ ] Behavior 2
+- [ ] Behavior 3
 
 ## Data Requirements
-- New tables/fields needed
-- Existing data reused
+What new tables, fields, or relationships are needed? What existing data do we reuse?
+- New: [tables/fields]
+- Reused: [existing data]
 
 ## User Flow
+Step-by-step actions the user performs from start to finish:
 1. User does X
 2. System responds with Y
 3. User sees Z
+4. User clicks [Magic Button]
+5. Result is delivered
 
 ## Acceptance Criteria
-- [ ] Condition 1 (when is this "done"?)
+Clear conditions defining when this feature is "done":
+- [ ] Condition 1
 - [ ] Condition 2
+- [ ] Condition 3
 
 ## Edge Cases
+List tricky scenarios the system must handle:
 - What if user skips?
 - What if data is missing?
 - What if load fails?
+- What if user has no [prerequisite]?
 
-## Non-Functional Requirements
-- Performance constraints
-- Security requirements
-- UX constraints
+## Non-Functional Requirements (Optional)
+- Performance: [constraints]
+- Security: [constraints]
+- UX: [constraints]
 ```
+
+---
+
+### Key Insight: Result ≠ Feature
+
+| Concept | Definition | Focus |
+|---------|------------|-------|
+| **Result** | Transformation the user receives | What user GETS |
+| **Feature** | Capability the product has | What product DOES |
+
+The Playbook defines Results. Features are derived from Results at build time.
 
 ---
 
