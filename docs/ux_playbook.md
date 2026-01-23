@@ -1033,9 +1033,9 @@ Acceptance Criteria:
 │  ONBOARDING FLOWS                                           │
 ├─────────────────────────────────────────────────────────────┤
 │  Landing Page                           ✅        2025-01-23 │
-│  Zone of Genius Entry                   ⬜        pending    │
-│  Quality of Life Assessment             ⬜        pending    │
-│  Auth Flow                              ⬜        pending    │
+│  Zone of Genius Entry                   ✅        2025-01-24 │
+│  Quality of Life Assessment             ✅        2025-01-24 │
+│  Auth Flow                              ✅        2025-01-24 │
 ├─────────────────────────────────────────────────────────────┤
 │  GUEST EXPERIENCE                                           │
 ├─────────────────────────────────────────────────────────────┤
@@ -1046,12 +1046,19 @@ Acceptance Criteria:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-#### 🎯 Next Steps
+#### ⚠️ Issues Found
 
-1. **Verify onboarding flows** — Zone of Genius, QoL Assessment, Auth
-2. **Run full `/ux-audit`** — Comprehensive site audit
-3. **Fix any remaining issues** — Based on audit findings
+| Issue | Severity | Location | Details |
+|-------|----------|----------|---------|
+| Branding: "Game of Life" | Low | `/auth` | Header says "Welcome to the Game of Life" — should be "Evolver" per working agreements |
+
+#### 🎯 Next Action
+
+**Phase 8.4 complete** — All core flows verified.
+
+**Next: Phase 8.5 — Fix branding issue, then final deploy & test**
 
 ---
 
-*Execution Log started January 2025.*
+*Execution Log updated January 2025.*
+
