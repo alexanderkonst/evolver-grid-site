@@ -37,6 +37,35 @@ Cost: ~$0 (API costs)
 
 ---
 
+## Core Concept: Product Compiler
+
+This is a **product compiler**.
+
+You give it source code (a transformational result) and it compiles it into a running product — just as a code compiler takes human-readable code and turns it into machine-executable software.
+
+```
+Source Code:   Point A → Point B (the transformation)
+Compiled:      Working software product that delivers that transformation
+```
+
+---
+
+## Key Distinction: Result ≠ Feature
+
+| Term | Definition | Focus |
+|------|------------|-------|
+| **Feature** | A capability the product has | What the product *does* |
+| **Result** | A transformation the user receives | What the user *gets* |
+
+**Features are implementation. Results are value.**
+
+A feature: "Users can rate 8 life domains."
+A result: "User knows where to focus their growth."
+
+The Playbook forces you to think in **results first**, then derive features. This is why products built this way have no bloat.
+
+---
+
 ## The 8 Phases
 
 ```
