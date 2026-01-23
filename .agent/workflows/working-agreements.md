@@ -36,6 +36,45 @@ description: Working agreements for AI agents on this project
 - Branding: "Evolver" (not "Game of Life")
 - Stage: MVP polish
 
+## 🚀 AUTONOMOUS OPERATIONS (CRITICAL)
+
+### // turbo-all — AUTO-RUN ALL SAFE COMMANDS
+This project uses **autonomous execution mode**. AI agents should:
+
+1. **Commands**: Set `SafeToAutoRun: true` for ALL safe terminal commands:
+   - ✅ `npm run dev`, `npm run build`, `git status`, `git diff`, `git log`
+   - ✅ `grep`, `find`, `cat`, `ls`, file reads
+   - ⚠️ Use judgment for: `git push`, `npm install`, file writes
+   - ❌ Never auto-run: destructive commands, `rm -rf`, system changes
+
+2. **Browser Automation**: When giving browser subagent tasks, ALWAYS include:
+   ```
+   Use SafeToAutoRun: true for all JavaScript operations including:
+   - Button clicks, link navigation, form interactions
+   - DOM queries, screenshot captures
+   - Page scrolling, element inspection
+   ```
+
+3. **Workflow Files**: All workflows in `.agent/workflows/` include:
+   ```
+   // turbo-all
+   ```
+   This annotation means ALL command steps auto-execute without confirmation.
+
+### Why This Matters
+- Eliminates constant "Confirm/Deny" interruptions
+- Enables truly autonomous task completion
+- Respects the developer's time and flow state
+
+### Example Browser Subagent Task
+```
+Navigate to https://evolver-grid-site.vercel.app/game/teams.
+Use SafeToAutoRun: true for all JavaScript operations.
+Take screenshots and report what you see.
+```
+
+---
+
 ## Key Documents
 - `docs/one_button_product_builder.md` - **META**: The product that builds products
 - `docs/ux_playbook.md` - First principles of product design + execution workflow

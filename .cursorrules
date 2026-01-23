@@ -1,0 +1,18 @@
+# Evolver Project - AI Rules
+
+## AUTONOMOUS EXECUTION MODE
+
+All AI agents working on this project MUST use autonomous execution:
+
+1. Set `SafeToAutoRun: true` for safe terminal commands
+2. Browser subagents use `SafeToAutoRun: true` for JavaScript operations
+3. All workflows have `// turbo-all` annotation
+
+See `.agent/RULES.md` for full details.
+
+## Quick Reference
+
+- **Language**: Russian for chat, English for code/docs
+- **Deploy**: `/deploy` workflow  
+- **UX Audit**: `/ux-audit` workflow
+- **Working Agreements**: `/working-agreements`
