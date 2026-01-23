@@ -37,6 +37,7 @@ description: Working agreements for AI agents on this project
 - Stage: MVP polish
 
 ## Key Documents
+- `docs/one_button_product_builder.md` - **META**: The product that builds products
 - `docs/ux_playbook.md` - First principles of product design + execution workflow
 - `docs/customer_journey_map.md` - Source of truth for UX
 - `docs/customer_journey_progression.md` - Unlock conditions
