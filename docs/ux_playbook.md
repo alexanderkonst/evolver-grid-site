@@ -575,3 +575,113 @@ Follow this order. Do not skip steps. Each phase must be complete before the nex
 
 *Execution Workflow added January 2025.*
 
+---
+
+## Part 13: Advanced Modules
+
+*Extensions discovered through practice.*
+
+---
+
+### Module 7: Progress Dashboard
+
+**Principle:** Track Playbook execution visually.
+
+At any point, you should be able to see:
+- Which phases are complete
+- Which phase you're in
+- Overall progress percentage
+
+```
+┌─────────────────────────────────────────────┐
+│  PHASE 1: Master Result          [████] ✅  │
+│  PHASE 2: Sub-Results            [████] ✅  │
+│  PHASE 3: Nested Layers          [████] ✅  │
+│  PHASE 4: Screen Details         [██░░] 🔄  │
+│  PHASE 5: Roast & Iterate        [░░░░] ⬜  │
+│  PHASE 6: Extension Modules      [░░░░] ⬜  │
+│  PHASE 7: Wireframes             [░░░░] ⬜  │
+│  PHASE 8: Build                  [░░░░] ⬜  │
+├─────────────────────────────────────────────┤
+│  OVERALL: ████████░░░░░░░░░░░░░░░    37.5%  │
+└─────────────────────────────────────────────┘
+```
+
+**Question to ask:** "Where are we? What's next?"
+
+---
+
+### Module 8: Roast Checklist
+
+**Principle:** Standardize the critique in Phase 5.
+
+| Category | Questions |
+|----------|-----------|
+| **Consistency** | Is numbering sequential? Are section names consistent? |
+| **Completeness** | Is every screen covered? Any gaps in flow? |
+| **Emotional** | Does each result screen have emotional state defined? |
+| **Technical** | Are loading states handled? Error states? |
+| **Mobile** | How does this work on mobile? Touch targets? |
+| **Prerequisite** | Are dependencies clear? What unlocks what? |
+
+**Question to ask:** "What would break if we shipped this today?"
+
+---
+
+### Module 9: White-Label
+
+**Principle:** Make the product work for multiple communities.
+
+| Layer | What Changes |
+|-------|--------------|
+| Branding | Logo, colors, fonts |
+| Copy | Headlines, button labels |
+| Content | Practices, recommendations, missions |
+| Values | What's recommended, what's not |
+
+**Question to ask:** "If Community X used this, what would they change?"
+
+---
+
+### Module 10: Content Curation
+
+**Principle:** Communities must approve recommended content.
+
+```
+Content Pool → Community Filter → Approved Content → User Recommendation
+```
+
+| Permission | Who Sets |
+|------------|----------|
+| Global pool | Platform admin |
+| Community filter | Community leader |
+| User preferences | User |
+
+**Question to ask:** "Who decides what this user sees?"
+
+---
+
+### Module 11: i18n (Internationalization)
+
+**Principle:** Prepare for multiple languages from day one.
+
+| Layer | What to Localize |
+|-------|------------------|
+| UI strings | Buttons, labels, messages |
+| AI prompts | Prompt templates in each language |
+| Static content | Practices, domain descriptions |
+| Dynamic content | AI-generated results |
+
+**Steps:**
+1. Install i18n framework (react-i18next)
+2. Create `locales/en.json`, `locales/ru.json`
+3. Wrap strings in `t("key")`
+4. Add language selector to settings
+
+**Question to ask:** "If a Russian user sees this, will they understand?"
+
+---
+
+*Advanced Modules added January 2025.*
+
+
