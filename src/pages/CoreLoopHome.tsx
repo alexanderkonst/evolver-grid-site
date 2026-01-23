@@ -70,11 +70,16 @@ const CoreLoopHome = () => {
         loadData();
     }, []);
 
+    const [isGuest, setIsGuest] = useState(false);
+
     const loadData = async () => {
         try {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                navigate('/login');
+                // Guest users see onboarding experience instead of redirect
+                setIsGuest(true);
+                setOnboardingStage('zog');
+                setIsLoading(false);
                 return;
             }
 
@@ -282,40 +287,60 @@ const CoreLoopHome = () => {
         );
     }
 
-    // Onboarding: Need Zone of Genius
+    // Onboarding: Need Zone of Genius (works for both guests and logged-in users)
     if (onboardingStage === 'zog') {
         return (
             <GameShellV2>
                 <div className="p-6 lg:p-8 max-w-xl mx-auto">
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                            <img src="/dodecahedron.png" alt="Genius Discovery" className="w-full h-full object-cover" />
+                            <Sparkles className="w-8 h-8 text-indigo-600" />
                         </div>
-                        <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome to Your Journey</h1>
-                        <p className="text-slate-600">Let's start by discovering who you are at your best.</p>
+                        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+                            {isGuest ? "Start Building Your Self-Understanding" : "Welcome to Your Journey"}
+                        </h1>
+                        <p className="text-slate-600">
+                            {isGuest
+                                ? "First, let's discover your Zone of Genius."
+                                : "Let's start by discovering who you are at your best."}
+                        </p>
                     </div>
 
                     <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6 mb-6">
-                        <h2 className="font-semibold text-slate-900 mb-2">Step 1: Discover Your Zone of Genius</h2>
+                        <h2 className="font-semibold text-slate-900 mb-2">
+                            {isGuest ? "Discover Your Zone of Genius" : "Step 1: Discover Your Zone of Genius"}
+                        </h2>
                         <p className="text-sm text-slate-600 mb-4">
                             In just 5 minutes, you'll uncover your unique archetype and core talents.
                             This becomes the foundation for everything else.
                         </p>
                         <Button asChild className="w-full" size="lg">
                             <Link to="/zone-of-genius/entry">
-                                Start Discovery
+                                {isGuest ? "Begin: Discover My Zone of Genius" : "Start Discovery"}
                                 <ArrowRight className="w-4 h-4 ml-2" />
                             </Link>
                         </Button>
                     </div>
 
-                    {/* Progress indicator */}
-                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
-                        <span className="w-3 h-3 rounded-full bg-amber-500" />
-                        <span className="w-3 h-3 rounded-full bg-slate-200" />
-                        <span className="w-3 h-3 rounded-full bg-slate-200" />
-                        <span className="w-3 h-3 rounded-full bg-slate-200" />
-                    </div>
+                    {/* Sign in option for guests */}
+                    {isGuest && (
+                        <div className="text-center text-sm text-slate-500">
+                            Already have an account?{" "}
+                            <Link to="/auth" className="text-indigo-600 hover:underline font-medium">
+                                Sign in
+                            </Link>
+                        </div>
+                    )}
+
+                    {/* Progress indicator for logged-in users */}
+                    {!isGuest && (
+                        <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+                            <span className="w-3 h-3 rounded-full bg-amber-500" />
+                            <span className="w-3 h-3 rounded-full bg-slate-200" />
+                            <span className="w-3 h-3 rounded-full bg-slate-200" />
+                            <span className="w-3 h-3 rounded-full bg-slate-200" />
+                        </div>
+                    )}
                 </div>
             </GameShellV2>
         );
