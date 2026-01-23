@@ -261,6 +261,7 @@ export type Database = {
           main_quest_stage: string
           main_quest_status: string
           main_quest_updated_at: string
+          mission_id: string | null
           multiple_intelligences_completed: boolean | null
           onboarding_completed: boolean
           onboarding_stage: string | null
@@ -310,6 +311,7 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
           onboarding_stage?: string | null
@@ -359,6 +361,7 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
           onboarding_stage?: string | null
@@ -397,6 +400,13 @@ export type Database = {
             columns: ["last_zog_snapshot_id"]
             isOneToOne: false
             referencedRelation: "zog_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "game_profiles_mission_id_fkey"
+            columns: ["mission_id"]
+            isOneToOne: false
+            referencedRelation: "missions"
             referencedColumns: ["id"]
           },
         ]
@@ -777,6 +787,41 @@ export type Database = {
             columns: ["pillar_id"]
             isOneToOne: false
             referencedRelation: "mission_pillars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      missions: {
+        Row: {
+          categories: string[] | null
+          created_at: string | null
+          id: string
+          profile_id: string | null
+          statement: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          categories?: string[] | null
+          created_at?: string | null
+          id?: string
+          profile_id?: string | null
+          statement?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          categories?: string[] | null
+          created_at?: string | null
+          id?: string
+          profile_id?: string | null
+          statement?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "missions_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
             referencedColumns: ["id"]
           },
         ]
