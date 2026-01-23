@@ -193,8 +193,10 @@ export const GameShell = ({ children }: GameShellProps) => {
     // Spaces unlock when Zone of Genius is completed
     const zogComplete = profile?.zone_of_genius_completed === true;
 
+    // Profile and Transformation are always unlocked
+    // Teams and Events require ZoG completion
+    // Marketplace and Coop require Genius Offer
     const unlockStatus = {
-        transformation: zogComplete,
         teams: zogComplete,
         marketplace: hasGeniusOffer,
         coop: hasGeniusOffer,
@@ -202,7 +204,6 @@ export const GameShell = ({ children }: GameShellProps) => {
     };
 
     const unlockHints = {
-        transformation: "Complete your Zone of Genius to unlock Transformation.",
         teams: "Complete your Zone of Genius to unlock Teams.",
         marketplace: "Create your Genius Offer to unlock Marketplace.",
         coop: "Create your Genius Offer to unlock Startup Co-op.",
