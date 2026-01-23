@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useParams } from "react-router-dom";
+import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackButton from "@/components/BackButton";
@@ -19,6 +19,7 @@ import { markPracticeDone } from "@/lib/practiceSystem";
 import { CheckCircle2 } from "lucide-react";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
+import PracticeComplete from "@/components/game/PracticeComplete";
 
 type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
 type IntentChoice = ExperienceIntent | null;
@@ -73,6 +74,7 @@ const getCategoryFromParam = (value?: string | null): LibraryCategoryId | "all" 
 const Library = () => {
   const { category } = useParams();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const fromGame = searchParams.get('from') === 'game';
   const fromDailyLoop = searchParams.get('from') === 'daily-loop';
   const initialCategory = getCategoryFromParam(category) ?? "breathEnergy";
@@ -82,7 +84,11 @@ const Library = () => {
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
   const [markingDone, setMarkingDone] = useState<string | null>(null);
   const [profileId, setProfileId] = useState<string | null>(null);
-  
+
+  // Practice Complete celebration state
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [completedPractice, setCompletedPractice] = useState<LibraryItem | null>(null);
+
   // Intent advisor state
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [intentChoice, setIntentChoice] = useState<IntentChoice>(null);
@@ -161,7 +167,10 @@ const Library = () => {
           },
         });
       }
-      toast.success(result.message || "Practice logged. +10 XP");
+      // Show celebration screen instead of just toast
+      setCompletedPractice(item);
+      setShowCelebration(true);
+      setSelectedItem(null); // Close video modal if open
     } else {
       toast.error(result.error || "Failed to log practice");
     }
@@ -231,7 +240,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
 
   const handleGetAdvisorSuggestions = async () => {
     if (!intentChoice) return;
-    
+
     try {
       setAdvisorLoading(true);
       setAdvisorError(null);
@@ -296,7 +305,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           const explanation = line.substring(separator + 1).trim();
 
           // Find matching library item (case-insensitive, fuzzy match)
-          const matchedItem = LIBRARY_ITEMS.find(item => 
+          const matchedItem = LIBRARY_ITEMS.find(item =>
             item.title.toLowerCase() === title.toLowerCase() ||
             item.title.toLowerCase().includes(title.toLowerCase()) ||
             title.toLowerCase().includes(item.title.toLowerCase())
@@ -351,7 +360,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
   return (
     <div className="min-h-dvh flex flex-col">
       <Navigation />
-      
+
       <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           {/* Back Button */}
@@ -364,18 +373,18 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
           </div>
 
           <div className="flex justify-center mb-6">
-            <img 
-              src={libraryLogo} 
+            <img
+              src={libraryLogo}
               alt="Library Logo"
               loading="lazy"
               className="h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 object-contain"
             />
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase text-center">
             <BoldText>Welcome to the Sacred Library of Transformation!</BoldText>
           </h1>
-          
+
           <p className="text-lg text-muted-foreground mb-8 text-center">
             <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. Enjoy transforming!</BoldText>
           </p>
@@ -385,7 +394,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             <button
               onClick={() => setIsAdvisorOpen(true)}
               className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)] uppercase"
-              style={{ 
+              style={{
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
               }}
@@ -651,7 +660,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
 
       {/* Video Modal */}
       {selectedItem && (
-        <div 
+        <div
           className="fixed inset-0 z-modal flex items-center justify-center bg-black/80 px-4"
           onClick={() => {
             if (profileId) {
@@ -670,7 +679,7 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
             setSelectedItem(null);
           }}
         >
-          <div 
+          <div
             className="w-full max-w-4xl rounded-2xl bg-card border border-border p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -722,6 +731,34 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
               <CheckCircle2 className="w-4 h-4" />
               {markingDone === selectedItem.id ? "Logging..." : "Mark as done"}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Practice Complete Celebration Modal */}
+      {showCelebration && completedPractice && (
+        <div
+          className="fixed inset-0 z-modal flex items-center justify-center bg-black/80 px-4"
+          onClick={() => setShowCelebration(false)}
+        >
+          <div
+            className="w-full max-w-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PracticeComplete
+              practiceName={completedPractice.title}
+              xpEarned={25}
+              streakDays={1}
+              onContinue={() => {
+                setShowCelebration(false);
+                setCompletedPractice(null);
+              }}
+              onFindPeople={() => {
+                setShowCelebration(false);
+                setCompletedPractice(null);
+                navigate("/game/teams");
+              }}
+            />
           </div>
         </div>
       )}
