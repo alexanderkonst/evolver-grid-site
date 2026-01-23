@@ -3,6 +3,18 @@
 
 *"The ultimate goal of every product is to become one button."*
 
+> **Meta-note:** This Playbook is itself a product — the **One-Button Product Builder**. 
+> See `docs/one_button_product_builder.md` for the productized version.
+
+### Result ≠ Feature
+
+| Term | Definition | Focus |
+|------|------------|-------|
+| **Feature** | A capability the product has | What the product *does* |
+| **Result** | A transformation the user receives | What the user *gets* |
+
+Features are implementation. Results are value. The Playbook operates in **results**, not features.
+
 ---
 
 ## Quick Reference: Execution Workflow
