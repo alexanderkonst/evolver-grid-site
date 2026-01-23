@@ -248,7 +248,7 @@ const Auth = () => {
           : ''}`}>
           <CardHeader className="text-center">
             <CardTitle className={`text-2xl font-bold ${isOnboardingFlow ? 'text-[#2c3150]' : ''}`}>
-              {isOnboardingFlow ? "Create Your Account" : "Welcome to the Game of Life"}
+              {isOnboardingFlow ? "Create Your Account" : "Welcome to Evolver"}
             </CardTitle>
             <CardDescription className={isOnboardingFlow ? 'text-[#a4a3d0]' : ''}>
               {isOnboardingFlow
