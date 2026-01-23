@@ -115,6 +115,7 @@ export const GameShell = ({ children }: GameShellProps) => {
         last_name: string | null;
         avatar_url: string | null;
         onboarding_stage?: string | null;
+        zone_of_genius_completed?: boolean | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -124,7 +125,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     const loadProfile = async (userId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage")
+            .select("first_name, last_name, avatar_url, onboarding_stage, zone_of_genius_completed")
             .eq("user_id", userId)
             .maybeSingle();
         setProfile(data || null);
@@ -140,7 +141,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     const loadProfileById = async (profileId: string) => {
         const { data } = await supabase
             .from("game_profiles")
-            .select("first_name, last_name, avatar_url, onboarding_stage")
+            .select("first_name, last_name, avatar_url, onboarding_stage, zone_of_genius_completed")
             .eq("id", profileId)
             .maybeSingle();
         setProfile(data || null);
@@ -189,16 +190,23 @@ export const GameShell = ({ children }: GameShellProps) => {
 
     const showSidebar = !profile?.onboarding_stage || ["qol_complete", "unlocked"].includes(profile.onboarding_stage);
 
+    // Spaces unlock when Zone of Genius is completed
+    const zogComplete = profile?.zone_of_genius_completed === true;
+
     const unlockStatus = {
-        teams: profile?.onboarding_stage === "unlocked",
+        transformation: zogComplete,
+        teams: zogComplete,
         marketplace: hasGeniusOffer,
         coop: hasGeniusOffer,
+        events: zogComplete,
     };
 
     const unlockHints = {
-        teams: "Complete onboarding to unlock Teams.",
+        transformation: "Complete your Zone of Genius to unlock Transformation.",
+        teams: "Complete your Zone of Genius to unlock Teams.",
         marketplace: "Create your Genius Offer to unlock Marketplace.",
         coop: "Create your Genius Offer to unlock Startup Co-op.",
+        events: "Complete your Zone of Genius to unlock Events.",
     };
 
     useEffect(() => {
