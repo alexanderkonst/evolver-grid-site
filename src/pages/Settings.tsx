@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, RotateCcw, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme, DEFAULT_THEME, ThemeColors } from "@/contexts/ThemeContext";
-import GameShellV2 from "@/components/game/GameShellV2";
 
 interface ColorInputProps {
     label: string;
@@ -52,7 +51,7 @@ const Settings = () => {
     const hasChanges = JSON.stringify(localColors) !== JSON.stringify(colors);
 
     return (
-        <GameShellV2>
+        <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
             <div className="max-w-2xl mx-auto p-6">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-8">
@@ -232,7 +231,7 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
-        </GameShellV2>
+        </div>
     );
 };
 

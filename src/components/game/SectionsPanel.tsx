@@ -128,7 +128,7 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     teams: {
-        title: "Teams",
+        title: "Discover",
         sections: [
             { id: "people", label: "People Directory", path: "/community/people" },
             { id: "connections", label: "Connections", path: "/connections" },
@@ -144,9 +144,10 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     coop: {
-        title: "Startup Co-op",
+        title: "Business Incubator",
         sections: [
-            { id: "about", label: "About", path: "/game/coop" },
+            { id: "product-builder", label: "Product Builder", path: "/product-builder" },
+            { id: "about", label: "About Incubator", path: "/game/coop" },
         ],
     },
 };
