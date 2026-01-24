@@ -91,7 +91,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                             <Users className="w-3 h-3 text-[#8460ea]" />
                             <p className="text-[9px] font-medium text-[#8460ea] uppercase tracking-wide">Who This Is For</p>
                         </div>
-                        <p className="text-xs text-[#2c3150]">{excalibur.idealClient.profile}</p>
+                        <p className="text-xs text-[#2c3150]">{excalibur?.idealClient?.profile || "Your ideal client"}</p>
                     </div>
 
                     {/* Transformational Promise */}
@@ -100,12 +100,12 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                         <div className="flex items-center gap-1">
                             <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
                                 <p className="text-[8px] text-[#a4a3d0] uppercase">From</p>
-                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur.transformationalPromise.fromState}</p>
+                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.fromState || "Where they are"}</p>
                             </div>
                             <ArrowRight className="w-3 h-3 text-[#8460ea] shrink-0" />
                             <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
                                 <p className="text-[8px] text-[#a4a3d0] uppercase">To</p>
-                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur.transformationalPromise.toState}</p>
+                                <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.toState || "Where they want to be"}</p>
                             </div>
                         </div>
                     </div>
@@ -122,9 +122,9 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
 
             {/* Share Button */}
             <ShareZoG
-                archetypeName={excalibur.businessIdentity.name}
-                tagline={excalibur.businessIdentity.tagline}
-                primeDriver={excalibur.essenceAnchor.primeDriver}
+                archetypeName={excalibur?.businessIdentity?.name || "Your Genius"}
+                tagline={excalibur?.businessIdentity?.tagline || ""}
+                primeDriver={excalibur?.essenceAnchor?.primeDriver || ""}
                 profileId={profileId}
             />
 
