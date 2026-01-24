@@ -42,13 +42,13 @@ They had self-recognition without a path to revenue."
 
 ---
 
-## The Meta-Insight: 64x Acceleration (1 minute)
+## The Meta-Insight: AI-Assisted Development (1 minute)
 
 "The task list estimated 32 hours.
 
 We built it in 30 minutes.
 
-That's **64x acceleration**.
+That's **AI-assisted development**.
 
 How? 
 
@@ -78,7 +78,7 @@ The acorn becomes the oak."
 
 1. **Pain Theory Playbook** — Pressure, Consequences, Cost, Stakes
 2. **Monetization Evolution Ladder** — Body → Mind → Soul → Spirit → Being
-3. **64x Acceleration Formula** — Human Vision + AI Speed + Pre-planned Design
+3. **AI-Assisted Development Formula** — Human Vision + AI Speed + Pre-planned Design
 
 ---
 
@@ -111,4 +111,4 @@ Questions?"
 - **8 screens** built
 - **7 step** wizard flow
 - **30 minutes** build time
-- **64x** acceleration
+- **significantly faster** acceleration
