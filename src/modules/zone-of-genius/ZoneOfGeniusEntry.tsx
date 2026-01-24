@@ -53,10 +53,27 @@ const ZoneOfGeniusEntry = () => {
 
     // Removed navBar for cleaner onboarding flow
 
+    // Helper to validate if Excalibur has real content (not just placeholder)
+    const hasValidExcaliburData = (exc: ExcaliburData | null): boolean => {
+        if (!exc) return false;
+        // Check if core fields have real content
+        const hasOffer = exc.offer?.statement && exc.offer.statement.length > 20;
+        const hasIdentity = exc.businessIdentity?.name && exc.businessIdentity.name.length > 3;
+        const hasClient = exc.idealClient?.profile && exc.idealClient.profile.length > 10;
+        return !!(hasOffer && hasIdentity && hasClient);
+    };
+
     // Load saved data on mount
     useEffect(() => {
         const loadExisting = async () => {
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
+
+            // If user has complete Excalibur data, redirect to profile
+            if (savedExcalibur && hasValidExcaliburData(savedExcalibur)) {
+                navigate("/game/profile");
+                return;
+            }
+
             if (savedAppleseed) {
                 setAppleseed(savedAppleseed);
                 if (savedExcalibur) {
@@ -68,7 +85,7 @@ const ZoneOfGeniusEntry = () => {
             }
         };
         loadExisting();
-    }, []);
+    }, [navigate]);
 
     useEffect(() => {
         let isMounted = true;
