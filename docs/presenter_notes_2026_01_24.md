@@ -28,7 +28,7 @@
 ---
 
 ## 4. THE META-INSIGHT (30 sec)
-**64x Acceleration**
+**AI-Assisted Development**
 - Estimated: 32 hours
 - Actual: 30 minutes
 - Formula: Human vision + AI speed + pre-planned design
