@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Copy, Check, Users, ArrowRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareZoG from "@/components/sharing/ShareZoG";
+import ResonanceRating from "@/components/ui/ResonanceRating";
 import { ExcaliburData } from "./excaliburGenerator";
 
 interface ExcaliburDisplayProps {
@@ -9,13 +10,14 @@ interface ExcaliburDisplayProps {
     profileId?: string;
     onSaveToProfile?: () => void;
     isSaving?: boolean;
+    onResonanceRating?: (rating: number) => void;
 }
 
 /**
  * GeniusBusinessDisplay - My Unique Genius Business
  * Ultra-compact one-screen layout with Fraunces/Inter fonts
  */
-const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: ExcaliburDisplayProps) => {
+const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onResonanceRating }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
@@ -105,6 +107,14 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving }: E
                     </div>
                 </div>
             </div>
+
+            {/* Resonance Rating - Validation metric */}
+            {onResonanceRating && (
+                <ResonanceRating
+                    question="From 1 to 10, how clearly does this describe the value you can bring to others?"
+                    onRate={onResonanceRating}
+                />
+            )}
 
             {/* Share Button */}
             <ShareZoG
