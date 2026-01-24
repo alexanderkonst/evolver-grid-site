@@ -85,6 +85,18 @@ import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscovery
 // Asset Mapping
 import AssetMappingLanding from "./modules/asset-mapping/AssetMappingLanding";
 import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
+// Product Builder
+import ProductBuilderLayout from "./modules/product-builder/ProductBuilderLayout";
+import ProductBuilderEntry from "./modules/product-builder/ProductBuilderEntry";
+import {
+  DeepICPScreen,
+  DeepPainScreen,
+  DeepTPScreen,
+  LandingPageScreen,
+  BlueprintScreen,
+  CTAScreen,
+  PublishedScreen
+} from "./modules/product-builder/steps";
 // Marketplace
 import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
@@ -92,6 +104,7 @@ import Profile from "./pages/Profile";
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
+import MarketplaceProductPage from "./pages/marketplace/MarketplaceProductPage";
 import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
@@ -245,8 +258,20 @@ const App = () => (
                   {/* Asset Mapping */}
                   <Route path="/asset-mapping" element={<AssetMappingLanding />} />
                   <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
+                  {/* Product Builder */}
+                  <Route path="/product-builder" element={<ProductBuilderLayout />}>
+                    <Route index element={<ProductBuilderEntry />} />
+                    <Route path="icp" element={<DeepICPScreen />} />
+                    <Route path="pain" element={<DeepPainScreen />} />
+                    <Route path="promise" element={<DeepTPScreen />} />
+                    <Route path="landing" element={<LandingPageScreen />} />
+                    <Route path="blueprint" element={<BlueprintScreen />} />
+                    <Route path="cta" element={<CTAScreen />} />
+                    <Route path="published" element={<PublishedScreen />} />
+                  </Route>
                   {/* Public Creator Pages */}
                   <Route path="/p/:slug" element={<CreatorPage />} />
+                  <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
                   <Route path="/my-page" element={<PublicPageEditor />} />
                   {/* Art Gallery - Wrapped with persistent audio */}
                   <Route path="/art" element={<ArtLayout />}>

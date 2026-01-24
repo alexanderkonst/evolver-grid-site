@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Users, ArrowRight, User } from "lucide-react";
+import { Copy, Check, Users, ArrowRight, User, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
@@ -11,13 +11,15 @@ interface ExcaliburDisplayProps {
     onSaveToProfile?: () => void;
     isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
+    onLaunchProductBuilder?: () => void;
+    showProductBuilderButton?: boolean;
 }
 
 /**
  * GeniusBusinessDisplay - My Unique Genius Business
  * Ultra-compact one-screen layout with Fraunces/Inter fonts
  */
-const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onResonanceRating }: ExcaliburDisplayProps) => {
+const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onResonanceRating, onLaunchProductBuilder, showProductBuilderButton = true }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
@@ -123,6 +125,19 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                 primeDriver={excalibur.essenceAnchor.primeDriver}
                 profileId={profileId}
             />
+
+            {/* Launch Product Builder - Bridge to Product Compiler */}
+            {showProductBuilderButton && (
+                <Button
+                    variant="default"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
+                    onClick={onLaunchProductBuilder}
+                >
+                    <Rocket className="w-4 h-4 mr-2" />
+                    Launch Product Builder
+                </Button>
+            )}
 
             {/* Save Button */}
             {onSaveToProfile && (

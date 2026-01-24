@@ -16,33 +16,33 @@ Build the Product Builder module that takes users from Genius Business → Publi
 
 ## Task Breakdown
 
-### TIER 1: Foundation (Do First)
+### TIER 1: Foundation (Do First) ✅ COMPLETE
 
 #### T1.1: Create ProductBuilder Route & Layout
-- [ ] Create `/product-builder` route
-- [ ] Create `ProductBuilderLayout.tsx` wrapper component
-- [ ] Add progress indicator (7 steps)
-- [ ] Add navigation (back button)
-- [ ] Connect to existing navigation
+- [x] Create `/product-builder` route
+- [x] Create `ProductBuilderLayout.tsx` wrapper component
+- [x] Add progress indicator (7 steps)
+- [x] Add navigation (back button)
+- [x] Connect to existing navigation
 
 **Dependencies:** None
-**Estimated:** 2 hours
+**Estimated:** 2 hours ✅
 
 ---
 
 #### T1.2: Create Loading Component
-- [ ] Create `ProductBuilderLoading.tsx`
-- [ ] Add animated progress bar
-- [ ] Add dynamic message prop ("Generating...", "Mapping...", etc.)
-- [ ] Style consistent with platform
+- [x] Create `ProductBuilderLoading.tsx`
+- [x] Add animated progress bar
+- [x] Add dynamic message prop ("Generating...", "Mapping...", etc.)
+- [x] Style consistent with platform
 
 **Dependencies:** None
-**Estimated:** 1 hour
+**Estimated:** 1 hour ✅
 
 ---
 
 #### T1.3: Create Database Schema
-- [ ] Add `product_builder_snapshots` table
+- [x] Add `product_builder_snapshots` table
   - user_id
   - deep_icp (jsonb)
   - deep_pain (jsonb)
@@ -52,164 +52,161 @@ Build the Product Builder module that takes users from Genius Business → Publi
   - cta_config (jsonb)
   - resonance_ratings (jsonb)
   - created_at, updated_at
-- [ ] Add `marketplace_products` table (if not exists)
+- [x] Add `marketplace_products` table (if not exists)
   - user_id
   - product_snapshot_id
   - slug
   - published_at
   - is_live
-- [ ] Create Supabase migration
+- [x] Create Supabase migration
 
 **Dependencies:** None
-**Estimated:** 2 hours
+**Estimated:** 2 hours ✅
 
 ---
 
-### TIER 2: Screens (Do Second)
+### TIER 2: Screens (Do Second) ✅ COMPLETE
 
 #### T2.1: Entry Screen
-- [ ] Create `ProductBuilderEntry.tsx`
-- [ ] Promise copy
-- [ ] "BUILD MY PRODUCT" magic button
-- [ ] Pull Excalibur data check (redirect if not available)
+- [x] Create `ProductBuilderEntry.tsx`
+- [x] Promise copy
+- [x] "BUILD MY PRODUCT" magic button
+- [x] Pull Excalibur data check (redirect if not available)
 
 **Dependencies:** T1.1
-**Estimated:** 1 hour
+**Estimated:** 1 hour ✅
 
 ---
 
 #### T2.2: Deep ICP Screen
-- [ ] Create `DeepICPScreen.tsx`
-- [ ] Integrate with AI edge function (deepen-icp)
-- [ ] Loading state
-- [ ] ICP card display
-- [ ] ResonanceRating integration
-- [ ] "Deepen Pain" button
+- [x] Create `DeepICPScreen.tsx`
+- [x] Integrate with AI edge function (deepen-icp) - mock for demo
+- [x] Loading state
+- [x] ICP card display
+- [x] ResonanceRating integration
+- [x] "Deepen Pain" button
 
 **Dependencies:** T1.1, T1.2, T2.5
-**Estimated:** 3 hours
+**Estimated:** 3 hours ✅
 
 ---
 
 #### T2.3: Deep Pain Screen
-- [ ] Create `DeepPainScreen.tsx`
-- [ ] Integrate with AI edge function (deepen-pain)
-- [ ] Display: Pressure, Consequences, Cost, Stakes
-- [ ] ResonanceRating integration
-- [ ] "Crystallize Promise" button
+- [x] Create `DeepPainScreen.tsx`
+- [x] Integrate with AI edge function (deepen-pain) - mock for demo
+- [x] Display: Pressure, Consequences, Cost, Stakes
+- [x] ResonanceRating integration
+- [x] "Crystallize Promise" button
 
 **Dependencies:** T2.2
-**Estimated:** 2 hours
+**Estimated:** 2 hours ✅
 
 ---
 
 #### T2.4: Deep TP Screen
-- [ ] Create `DeepTPScreen.tsx`
-- [ ] Point A → Point B visualization
-- [ ] AI-generated promise statement
-- [ ] ResonanceRating integration
-- [ ] "Build Landing Page" button
+- [x] Create `DeepTPScreen.tsx`
+- [x] Point A → Point B visualization
+- [x] AI-generated promise statement
+- [x] ResonanceRating integration
+- [x] "Build Landing Page" button
 
 **Dependencies:** T2.3
-**Estimated:** 2 hours
+**Estimated:** 2 hours ✅
 
 ---
 
 #### T2.5: AI Edge Functions
-- [ ] Create `deepen-icp` edge function
-  - Input: Excalibur ICP
-  - Process: Pain Theory + 3x Roasting (invisible)
-  - Output: Deep ICP
-- [ ] Create `deepen-pain` edge function
-- [ ] Create `deepen-tp` edge function
-- [ ] Create `generate-landing` edge function
-- [ ] Create `generate-blueprint` edge function
+- [ ] Create `deepen-icp` edge function *(deferred - using mock)*
+- [ ] Create `deepen-pain` edge function *(deferred - using mock)*
+- [ ] Create `deepen-tp` edge function *(deferred - using mock)*
+- [ ] Create `generate-landing` edge function *(deferred - using mock)*
+- [ ] Create `generate-blueprint` edge function *(deferred - using mock)*
 
 **Dependencies:** T1.3
-**Estimated:** 6 hours
+**Estimated:** 6 hours (deferred to post-hackathon)
 
 ---
 
 #### T2.6: Landing Page Screen
-- [ ] Create `LandingPageScreen.tsx`
-- [ ] Live preview component
-- [ ] Hero, Pain, Promise, CTA sections
-- [ ] ResonanceRating integration
-- [ ] "Add Blueprint" button
+- [x] Create `LandingPageScreen.tsx`
+- [x] Live preview component
+- [x] Hero, Pain, Promise, CTA sections
+- [x] ResonanceRating integration
+- [x] "Add Blueprint" button
 
 **Dependencies:** T2.4, T2.5
-**Estimated:** 4 hours
+**Estimated:** 4 hours ✅
 
 ---
 
 #### T2.7: Blueprint Screen
-- [ ] Create `BlueprintScreen.tsx`
-- [ ] Methodology preview
-- [ ] Skip option (default blueprint)
-- [ ] "Set CTA" button
+- [x] Create `BlueprintScreen.tsx`
+- [x] Methodology preview
+- [x] Skip option (default blueprint)
+- [x] "Set CTA" button
 
 **Dependencies:** T2.6
-**Estimated:** 2 hours
+**Estimated:** 2 hours ✅
 
 ---
 
 #### T2.8: CTA Options Screen
-- [ ] Create `CTAOptionsScreen.tsx`
-- [ ] Session / Software toggle
-- [ ] Skip option (default: session)
-- [ ] "Publish" button
+- [x] Create `CTAOptionsScreen.tsx`
+- [x] Session / Software toggle
+- [x] Skip option (default: session)
+- [x] "Publish" button
 
 **Dependencies:** T2.7
-**Estimated:** 1 hour
+**Estimated:** 1 hour ✅
 
 ---
 
 #### T2.9: Published Screen (EPIC)
-- [ ] Create `PublishedScreen.tsx`
-- [ ] Confetti animation
-- [ ] Heart/Mind/Gut messaging
-- [ ] Copy link functionality
-- [ ] View on Marketplace button
-- [ ] Share functionality
-- [ ] Edit button
+- [x] Create `PublishedScreen.tsx`
+- [x] Confetti animation
+- [x] Heart/Mind/Gut messaging
+- [x] Copy link functionality
+- [x] View on Marketplace button
+- [x] Share functionality
+- [x] Edit button
 
 **Dependencies:** T2.8
-**Estimated:** 3 hours
+**Estimated:** 3 hours ✅
 
 ---
 
-### TIER 3: Integration (Do Third)
+### TIER 3: Integration (Do Third) ✅ COMPLETE
 
 #### T3.1: Marketplace Integration
-- [ ] Product listing on marketplace
-- [ ] Public product URL generation
-- [ ] Landing page rendering
-- [ ] Blueprint download
+- [x] Product listing on marketplace
+- [x] Public product URL generation (/mp/:slug)
+- [x] Landing page rendering (mock)
+- [x] Blueprint download (mock)
 
 **Dependencies:** T2.9, T1.3
-**Estimated:** 4 hours
+**Estimated:** 4 hours ✅
 
 ---
 
 #### T3.2: Bridge from Excalibur
-- [ ] Add "Launch Product Builder" button after Excalibur
-- [ ] Pass data to Product Builder
-- [ ] Handle edge case: no Excalibur data
+- [x] Add "Launch Product Builder" button after Excalibur
+- [x] Pass data to Product Builder
+- [x] Handle edge case: no Excalibur data
 
 **Dependencies:** T2.1
-**Estimated:** 1 hour
+**Estimated:** 1 hour ✅
 
 ---
 
-### TIER 4: Polish (Do Last)
+### TIER 4: Polish (Do Last) ⏳ PARTIAL
 
 #### T4.1: Emotional Journey Polish
-- [ ] Microcopy refinement
-- [ ] Transition animations
-- [ ] Loading message variety
+- [x] Microcopy refinement
+- [x] Loading message variety
+- [ ] Transition animations (deferred)
 
 **Dependencies:** All T2
-**Estimated:** 2 hours
+**Estimated:** 2 hours ⏳
 
 ---
 
