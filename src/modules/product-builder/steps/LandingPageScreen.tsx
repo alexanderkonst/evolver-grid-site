@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, ArrowRight, Eye } from "lucide-react";
+import { FileText, ArrowRight, Eye, Check } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
 import { PRODUCT_BUILDER_STEPS } from "../productBuilderRoutes";
 import ProductBuilderLoading, { LOADING_MESSAGES } from "../ProductBuilderLoading";
@@ -44,22 +44,41 @@ const LandingPageScreen: React.FC = () => {
             setLandingContent({
                 headline: data.headline || "Your headline",
                 subheadline: data.subheadline || "Your subheadline",
-                painSection: data.painSection || "Pain section",
-                promiseSection: data.promiseSection || "Promise section",
-                ctaText: data.ctaText || "Get Started",
+                painSection: data.painSection || "",
+                promiseSection: data.promiseSection || "",
+                ctaText: data.ctaText || data.ctaButtonText || "Get Started",
                 rawData: data,
             });
         } catch (err: unknown) {
             console.error("Error generating landing:", err);
 
-            // Fallback mock data
+            // Enhanced fallback mock data using new framework
             setLandingContent({
-                headline: "Transform Your Genius Into a Thriving Business",
-                subheadline: "Stop trading time for money. Start getting paid to be authentically you.",
-                painSection: "You've achieved what society told you to achieve. The title, the salary, the stability. But something's missing. Sunday anxiety. Monday dread. The nagging feeling that you have more to give — but no idea how to package it.",
-                promiseSection: "Imagine waking up excited to work. Serving clients who value your unique perspective. Earning well while being authentically yourself. That's not a fantasy — it's a system. And I can show you how.",
-                ctaText: "Download Your Blueprint",
-                rawData: {},
+                headline: "Become the purpose coach clients remember",
+                subheadline: "Define and monetize your Zone of Genius so your offers stop blending in—and start attracting premium-fit clients without relying on fame or constant posting.",
+                painSection: "Your offers read like 'purpose + mindset' even if your results are deeper. Discovery calls end with 'I'm also talking to a more well-known coach.' Content takes more effort for less engagement. Referrals slow down as your work gets reduced to generic frameworks.",
+                promiseSection: "Identify your true Zone of Genius. Articulate a crisp POV clients can repeat in one sentence. Turn your genius into signature assets: method, messaging, and premium offer. Apply it so your content becomes specific and high-converting. Monetize with a minimally viable genius business.",
+                ctaText: "Get the Genius Business Blueprint",
+                rawData: {
+                    forAudience: "Purpose Coaches",
+                    painSectionHeader: "When your work sounds like everyone else's",
+                    painBullets: [
+                        "Your offers read like 'purpose + mindset' (even if your results are deeper), so prospects compare you on price and popularity.",
+                        "Discovery calls end with 'I'm also talking to a more well-known coach' and you feel quietly interchangeable.",
+                        "Content takes more effort for less engagement because your POV isn't sharp enough to be memorable.",
+                        "Referrals slow down as your work gets reduced to generic frameworks clients could find anywhere."
+                    ],
+                    solutionSectionHeader: "A clear system to name, package, and sell your secret sauce",
+                    solutionSteps: [
+                        "Identify your true Zone of Genius: the specific transformation you create that others can't replicate.",
+                        "Articulate a crisp Point of View (POV) clients can repeat in one sentence—and instantly 'get.'",
+                        "Turn your genius into signature assets: a method, messaging pillars, and a premium offer clients want.",
+                        "Apply it across your marketing so your content becomes specific, polarizing (in a good way), and high-converting.",
+                        "Monetize with a minimally viable genius business: simple packaging, pricing, and next-step client acquisition."
+                    ],
+                    finalCtaHeadline: "Stop blending in. Build your genius business.",
+                    finalCtaSubheadline: "Get the blueprint to define your secret sauce, package it into a signature offer, and start attracting premium-fit clients."
+                },
             });
         } finally {
             setIsLoading(false);
@@ -71,7 +90,7 @@ const LandingPageScreen: React.FC = () => {
     };
 
     const handleContinue = () => {
-        navigate(PRODUCT_BUILDER_STEPS[5].path); // Go to Blueprint step
+        navigate(PRODUCT_BUILDER_STEPS[5].path);
     };
 
     if (isLoading) {
@@ -86,6 +105,10 @@ const LandingPageScreen: React.FC = () => {
             </div>
         );
     }
+
+    const rawData = state.landingContent?.rawData || {};
+    const painBullets = rawData.painBullets || [];
+    const solutionSteps = rawData.solutionSteps || [];
 
     return (
         <div className="py-8">
@@ -107,41 +130,81 @@ const LandingPageScreen: React.FC = () => {
                     <span className="text-sm text-muted-foreground">Preview</span>
                 </div>
                 <CardContent className="p-0">
-                    {/* Mock Landing Page */}
-                    <div className="bg-gradient-to-b from-slate-900 to-slate-800 text-white p-8">
+                    {/* Landing Page */}
+                    <div className="bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+                        {/* For Audience Badge */}
+                        {rawData.forAudience && (
+                            <div className="text-center pt-6">
+                                <span className="text-xs uppercase tracking-wider text-slate-400">
+                                    For {rawData.forAudience}
+                                </span>
+                            </div>
+                        )}
+
                         {/* Hero */}
-                        <div className="text-center mb-8 py-8">
-                            <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+                        <div className="text-center px-6 py-8">
+                            <h1 className="text-2xl sm:text-3xl font-bold mb-4">
                                 {state.landingContent?.headline}
                             </h1>
-                            <p className="text-lg text-slate-300 max-w-xl mx-auto">
+                            <p className="text-base text-slate-300 max-w-xl mx-auto mb-6">
                                 {state.landingContent?.subheadline}
                             </p>
+                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold">
+                                {state.landingContent?.ctaText}
+                            </Button>
                         </div>
 
-                        {/* Pain Section */}
-                        <div className="bg-slate-800/50 rounded-lg p-6 mb-6">
-                            <h3 className="text-sm font-semibold text-amber-400 uppercase mb-3">
-                                Sound Familiar?
+                        {/* Pain Section with Bullets */}
+                        <div className="bg-slate-800/50 px-6 py-6">
+                            <h3 className="text-sm font-semibold text-amber-400 uppercase mb-4">
+                                {rawData.painSectionHeader || "Sound Familiar?"}
                             </h3>
-                            <p className="text-slate-300 leading-relaxed">
-                                {state.landingContent?.painSection}
-                            </p>
+                            {painBullets.length > 0 ? (
+                                <ul className="space-y-3">
+                                    {painBullets.map((bullet: string, i: number) => (
+                                        <li key={i} className="flex gap-2 text-slate-300 text-sm">
+                                            <span className="text-amber-400 mt-0.5">•</span>
+                                            <span>{bullet}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="text-slate-300 text-sm leading-relaxed">
+                                    {state.landingContent?.painSection}
+                                </p>
+                            )}
                         </div>
 
-                        {/* Promise Section */}
-                        <div className="bg-emerald-900/30 rounded-lg p-6 mb-8">
-                            <h3 className="text-sm font-semibold text-emerald-400 uppercase mb-3">
-                                There's Another Way
+                        {/* Solution Section with Steps */}
+                        <div className="bg-emerald-900/20 px-6 py-6">
+                            <h3 className="text-sm font-semibold text-emerald-400 uppercase mb-4">
+                                {rawData.solutionSectionHeader || "The Solution"}
                             </h3>
-                            <p className="text-slate-300 leading-relaxed">
-                                {state.landingContent?.promiseSection}
-                            </p>
+                            {solutionSteps.length > 0 ? (
+                                <ul className="space-y-3">
+                                    {solutionSteps.map((step: string, i: number) => (
+                                        <li key={i} className="flex gap-2 text-slate-300 text-sm">
+                                            <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                            <span>{step}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="text-slate-300 text-sm leading-relaxed">
+                                    {state.landingContent?.promiseSection}
+                                </p>
+                            )}
                         </div>
 
-                        {/* CTA */}
-                        <div className="text-center">
-                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8">
+                        {/* Final CTA */}
+                        <div className="text-center px-6 py-8 bg-slate-900/50">
+                            <h3 className="text-xl font-bold mb-2">
+                                {rawData.finalCtaHeadline || "Ready to transform?"}
+                            </h3>
+                            <p className="text-slate-400 text-sm mb-4 max-w-md mx-auto">
+                                {rawData.finalCtaSubheadline || "Get started today."}
+                            </p>
+                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold">
                                 {state.landingContent?.ctaText}
                             </Button>
                         </div>
@@ -152,7 +215,7 @@ const LandingPageScreen: React.FC = () => {
             {/* Resonance Rating */}
             <div className="max-w-2xl mx-auto mb-8">
                 <ResonanceRating
-                    question="How well does this describe your ideal client?"
+                    question="How excited are you about this landing page?"
                     onRate={handleResonanceRating}
                 />
             </div>
