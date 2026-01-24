@@ -331,6 +331,8 @@ const ZoneOfGeniusEntry = () => {
                     profileId={profileId ?? undefined}
                     onSaveToProfile={handleSaveExcalibur}
                     isSaving={isSaving}
+                    onLaunchProductBuilder={() => navigate("/product-builder")}
+                    showProductBuilderButton={true}
                 />
             </GameShellV2>
         );
