@@ -111,11 +111,11 @@ const DeepICPScreen: React.FC = () => {
         <div className="py-8">
             {/* Header */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <User className="w-8 h-8 text-primary" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
+                    <User className="w-8 h-8 text-amber-600" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Your Ideal Client</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-3xl font-bold text-slate-900 mb-2">Your Ideal Client</h1>
+                <p className="text-slate-600">
                     Meet the person waiting for your gift.
                 </p>
             </div>
@@ -124,24 +124,24 @@ const DeepICPScreen: React.FC = () => {
             <Card className="mb-8 max-w-2xl mx-auto">
                 <CardContent className="p-6 space-y-6">
                     <div>
-                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
                             Who They Are
                         </h3>
-                        <p className="text-foreground leading-relaxed">{state.deepICP?.who}</p>
+                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.who}</p>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
                             What They're Struggling With
                         </h3>
-                        <p className="text-foreground leading-relaxed">{state.deepICP?.struggles}</p>
+                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.struggles}</p>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
                             What They Truly Want
                         </h3>
-                        <p className="text-foreground leading-relaxed">{state.deepICP?.desires}</p>
+                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.desires}</p>
                     </div>
                 </CardContent>
             </Card>
@@ -166,7 +166,7 @@ const DeepICPScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.icp && (
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-sm text-slate-600 mt-2">
                         Rate the resonance to continue
                     </p>
                 )}

@@ -86,11 +86,11 @@ const DeepTPScreen: React.FC = () => {
         <div className="py-8">
             {/* Header */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <Sparkles className="w-8 h-8 text-primary" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
+                    <Sparkles className="w-8 h-8 text-amber-600" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Your Promise</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-3xl font-bold text-slate-900 mb-2">Your Promise</h1>
+                <p className="text-slate-600">
                     This is the bridge you build for them.
                 </p>
             </div>
@@ -105,9 +105,9 @@ const DeepTPScreen: React.FC = () => {
                                 <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 font-bold text-sm">
                                     A
                                 </div>
-                                <h3 className="font-semibold text-foreground">Where They Are Now</h3>
+                                <h3 className="font-semibold text-slate-900">Where They Are Now</h3>
                             </div>
-                            <p className="text-foreground/80 leading-relaxed text-sm">
+                            <p className="text-slate-900/80 leading-relaxed text-sm">
                                 {state.deepTP?.pointA}
                             </p>
                         </CardContent>
@@ -115,7 +115,7 @@ const DeepTPScreen: React.FC = () => {
 
                     {/* Arrow - hidden on mobile, visible on desktop */}
                     <div className="hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2">
-                        <ArrowRightCircle className="w-8 h-8 text-primary" />
+                        <ArrowRightCircle className="w-8 h-8 text-amber-600" />
                     </div>
 
                     {/* Point B */}
@@ -125,9 +125,9 @@ const DeepTPScreen: React.FC = () => {
                                 <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 font-bold text-sm">
                                     B
                                 </div>
-                                <h3 className="font-semibold text-foreground">Where They Want To Be</h3>
+                                <h3 className="font-semibold text-slate-900">Where They Want To Be</h3>
                             </div>
-                            <p className="text-foreground/80 leading-relaxed text-sm">
+                            <p className="text-slate-900/80 leading-relaxed text-sm">
                                 {state.deepTP?.pointB}
                             </p>
                         </CardContent>
@@ -136,17 +136,17 @@ const DeepTPScreen: React.FC = () => {
 
                 {/* Mobile arrow */}
                 <div className="flex md:hidden justify-center py-4">
-                    <ArrowRight className="w-6 h-6 text-primary" />
+                    <ArrowRight className="w-6 h-6 text-amber-600" />
                 </div>
             </div>
 
             {/* Promise Statement */}
             <Card className="max-w-2xl mx-auto mb-8 bg-primary/5 border-primary/20">
                 <CardContent className="p-6 text-center">
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                    <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-3">
                         Your Transformational Promise
                     </h3>
-                    <p className="text-xl font-medium text-foreground leading-relaxed">
+                    <p className="text-xl font-medium text-slate-900 leading-relaxed">
                         "{state.deepTP?.promiseStatement}"
                     </p>
                 </CardContent>
@@ -172,7 +172,7 @@ const DeepTPScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.tp && (
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-sm text-slate-600 mt-2">
                         Rate the resonance to continue
                     </p>
                 )}
