@@ -133,12 +133,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                     variant="default"
                     size="lg"
                     className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log("Launch Product Builder clicked!");
-                        onLaunchProductBuilder();
-                    }}
+                    onClick={() => onLaunchProductBuilder()}
                 >
                     <Rocket className="w-4 h-4 mr-2" />
                     Launch Product Builder
