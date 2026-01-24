@@ -122,8 +122,8 @@ const DeepPainScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 mb-4">
                     <Flame className="w-8 h-8 text-red-500" />
                 </div>
-                <h1 className="text-3xl font-bold text-slate-900 mb-2">Their Pain</h1>
-                <p className="text-slate-600">
+                <h1 className="text-3xl font-bold text-[#1e3a5f] mb-2">Their Pain</h1>
+                <p className="text-[#1e3a5f]">
                     This is what they're feeling right now.
                 </p>
             </div>
@@ -131,16 +131,16 @@ const DeepPainScreen: React.FC = () => {
             {/* Pain Cards */}
             <div className="grid gap-4 max-w-2xl mx-auto mb-8">
                 {painSections.map((section) => (
-                    <Card key={section.title} className="overflow-hidden">
+                    <Card key={section.title} className="overflow-hidden bg-white border border-gray-200 border-slate-700">
                         <CardContent className="p-0">
                             <div className="flex items-start gap-4 p-4">
                                 <div className={`mt-1 ${section.color}`}>
                                     <section.icon className="w-5 h-5" />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-slate-900">{section.title}</h3>
-                                    <p className="text-xs text-slate-600 mb-2">{section.subtitle}</p>
-                                    <p className="text-sm text-slate-900/80 leading-relaxed">
+                                    <h3 className="font-semibold text-[#1e3a5f]">{section.title}</h3>
+                                    <p className="text-xs text-[#1e3a5f] mb-2">{section.subtitle}</p>
+                                    <p className="text-sm text-[#1e3a5f] leading-relaxed">
                                         {section.content}
                                     </p>
                                 </div>
@@ -170,7 +170,7 @@ const DeepPainScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.pain && (
-                    <p className="text-sm text-slate-600 mt-2">
+                    <p className="text-sm text-[#1e3a5f] mt-2">
                         Rate the resonance to continue
                     </p>
                 )}
