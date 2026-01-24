@@ -106,7 +106,15 @@ const LandingPageScreen: React.FC = () => {
         );
     }
 
-    const rawData = state.landingContent?.rawData || {};
+    const rawData = (state.landingContent?.rawData || {}) as {
+        forAudience?: string;
+        painSectionHeader?: string;
+        painBullets?: string[];
+        solutionSectionHeader?: string;
+        solutionSteps?: string[];
+        finalCtaHeadline?: string;
+        finalCtaSubheadline?: string;
+    };
     const painBullets = rawData.painBullets || [];
     const solutionSteps = rawData.solutionSteps || [];
 
