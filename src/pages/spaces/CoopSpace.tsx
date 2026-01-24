@@ -11,7 +11,7 @@ const CoopSpace = () => {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
                             <Building2 className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Startup Co-op Space</h1>
+                            <h1 className="text-2xl font-bold text-slate-900">Business Incubator</h1>
                         </div>
                         <p className="text-slate-600">Build together. Create collective wealth.</p>
                     </div>
@@ -21,7 +21,7 @@ const CoopSpace = () => {
                         <Building2 className="w-12 h-12 text-slate-500 mx-auto mb-4" />
                         <h2 className="text-xl font-semibold text-slate-700 mb-2">Coming Soon</h2>
                         <p className="text-slate-500 max-w-md mx-auto">
-                            The Startup Co-op will enable you to join collective ventures, contribute your genius,
+                            The Business Incubator will enable you to build products, join collective ventures, contribute your genius,
                             and share in the wealth created by the community.
                         </p>
                     </div>

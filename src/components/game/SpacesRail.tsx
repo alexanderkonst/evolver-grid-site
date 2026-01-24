@@ -40,12 +40,7 @@ const SPACES: SpaceItem[] = [
         icon: <Sparkles className="w-5 h-5 flex-shrink-0" />,
         path: "/game/transformation",
     },
-    {
-        id: "product-builder",
-        label: "Product Builder",
-        icon: <Rocket className="w-5 h-5 flex-shrink-0" />,
-        path: "/product-builder",
-    },
+
     {
         id: "marketplace",
         label: "Marketplace",
@@ -54,7 +49,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "teams",
-        label: "Teams",
+        label: "Discover",
         icon: <Users className="w-5 h-5 flex-shrink-0" />,
         path: "/game/teams",
     },
@@ -66,8 +61,8 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "coop",
-        label: "Co-op",
-        icon: <Building2 className="w-5 h-5 flex-shrink-0" />,
+        label: "Business Incubator",
+        icon: <Rocket className="w-5 h-5 flex-shrink-0" />,
         path: "/game/coop",
     },
 ];

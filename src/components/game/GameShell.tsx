@@ -94,7 +94,7 @@ const SPACES: NavItem[] = [
     },
     {
         id: "coop",
-        label: "Startup Co-op",
+        label: "Business Incubator",
         icon: <Building2 className="w-5 h-5" />,
         path: "/game/coop",
         description: "Build together"
@@ -206,7 +206,7 @@ export const GameShell = ({ children }: GameShellProps) => {
     const unlockHints = {
         teams: "Complete your Zone of Genius to unlock Teams.",
         marketplace: "Create your Genius Offer to unlock Marketplace.",
-        coop: "Create your Genius Offer to unlock Startup Co-op.",
+        coop: "Create your Genius Offer to unlock Business Incubator.",
         events: "Complete your Zone of Genius to unlock Events.",
     };
 
