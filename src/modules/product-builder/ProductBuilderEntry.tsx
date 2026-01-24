@@ -16,61 +16,61 @@ const ProductBuilderEntry: React.FC = () => {
             {/* Hero */}
             <div className="mb-8">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white border border-gray-200 mb-6">
-                    <Rocket className="w-10 h-10 text-[#1e3a5f]" />
+                    <Rocket className="w-10 h-10 text-slate-800" />
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-bold text-[#1e3a5f] mb-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-4">
                     Launch Your Genius Business
                 </h1>
-                <p className="text-xl text-[#1e3a5f] max-w-2xl mx-auto">
+                <p className="text-xl text-slate-800 max-w-2xl mx-auto">
                     Turn your Zone of Genius into a complete sales funnel — in 15 minutes.
                 </p>
             </div>
 
             {/* What you'll get */}
             <div className="bg-white border border-gray-200 rounded-xl p-8 max-w-xl mx-auto mb-8">
-                <h3 className="text-lg font-semibold text-[#1e3a5f] mb-4 flex items-center justify-center gap-2">
-                    <Sparkles className="w-5 h-5 text-[#1e3a5f]" />
+                <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5 text-slate-800" />
                     What you'll create:
                 </h3>
                 <ul className="space-y-3 text-left">
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-[#1e3a5f]">
-                            <strong className="text-[#1e3a5f]">Deep client understanding</strong> — know exactly who needs your gift
+                        <span className="text-slate-800">
+                            <strong className="text-slate-800">Deep client understanding</strong> — know exactly who needs your gift
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-[#1e3a5f]">
-                            <strong className="text-[#1e3a5f]">Crystal-clear promise</strong> — articulate the transformation you create
+                        <span className="text-slate-800">
+                            <strong className="text-slate-800">Crystal-clear promise</strong> — articulate the transformation you create
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-[#1e3a5f]">
-                            <strong className="text-[#1e3a5f]">Landing page</strong> — a beautiful page that attracts ideal clients
+                        <span className="text-slate-800">
+                            <strong className="text-slate-800">Landing page</strong> — a beautiful page that attracts ideal clients
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-[#1e3a5f]">
-                            <strong className="text-[#1e3a5f]">Blueprint</strong> — a methodology gift they can download
+                        <span className="text-slate-800">
+                            <strong className="text-slate-800">Blueprint</strong> — a methodology gift they can download
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-[#1e3a5f]">
-                            <strong className="text-[#1e3a5f]">Live on marketplace</strong> — ready for your first customer
+                        <span className="text-slate-800">
+                            <strong className="text-slate-800">Live on marketplace</strong> — ready for your first customer
                         </span>
                     </li>
                 </ul>
             </div>
 
             {/* Bridge text */}
-            <p className="text-[#1e3a5f] mb-6 max-w-lg mx-auto">
+            <p className="text-slate-800 mb-6 max-w-lg mx-auto">
                 You've discovered your genius. You've defined your business.
                 <br />
-                <strong className="text-[#1e3a5f]">Now let's make it real.</strong>
+                <strong className="text-slate-800">Now let's make it real.</strong>
             </p>
 
             {/* CTA */}
