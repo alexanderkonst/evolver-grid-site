@@ -528,6 +528,62 @@ export type Database = {
         }
         Relationships: []
       }
+      marketplace_products: {
+        Row: {
+          blueprint_content: Json | null
+          created_at: string | null
+          cta_config: Json | null
+          id: string
+          is_live: boolean | null
+          landing_html: string | null
+          published_at: string | null
+          slug: string
+          snapshot_id: string | null
+          title: string
+          updated_at: string | null
+          user_id: string
+          views: number | null
+        }
+        Insert: {
+          blueprint_content?: Json | null
+          created_at?: string | null
+          cta_config?: Json | null
+          id?: string
+          is_live?: boolean | null
+          landing_html?: string | null
+          published_at?: string | null
+          slug: string
+          snapshot_id?: string | null
+          title: string
+          updated_at?: string | null
+          user_id: string
+          views?: number | null
+        }
+        Update: {
+          blueprint_content?: Json | null
+          created_at?: string | null
+          cta_config?: Json | null
+          id?: string
+          is_live?: boolean | null
+          landing_html?: string | null
+          published_at?: string | null
+          slug?: string
+          snapshot_id?: string | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+          views?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "marketplace_products_snapshot_id_fkey"
+            columns: ["snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "product_builder_snapshots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mission_challenges: {
         Row: {
           created_at: string
@@ -912,6 +968,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      product_builder_snapshots: {
+        Row: {
+          blueprint_content: Json | null
+          created_at: string | null
+          cta_config: Json | null
+          current_step: number | null
+          deep_icp: Json | null
+          deep_pain: Json | null
+          deep_tp: Json | null
+          id: string
+          is_complete: boolean | null
+          landing_content: Json | null
+          resonance_ratings: Json | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          blueprint_content?: Json | null
+          created_at?: string | null
+          cta_config?: Json | null
+          current_step?: number | null
+          deep_icp?: Json | null
+          deep_pain?: Json | null
+          deep_tp?: Json | null
+          id?: string
+          is_complete?: boolean | null
+          landing_content?: Json | null
+          resonance_ratings?: Json | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          blueprint_content?: Json | null
+          created_at?: string | null
+          cta_config?: Json | null
+          current_step?: number | null
+          deep_icp?: Json | null
+          deep_pain?: Json | null
+          deep_tp?: Json | null
+          id?: string
+          is_complete?: boolean | null
+          landing_content?: Json | null
+          resonance_ratings?: Json | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
       qol_snapshots: {
         Row: {
