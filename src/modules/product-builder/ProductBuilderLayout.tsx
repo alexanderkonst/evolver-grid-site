@@ -52,8 +52,8 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                             className={cn(
                                 "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all",
                                 currentStep >= step.number
-                                    ? "border-primary bg-primary text-primary-foreground"
-                                    : "border-border bg-background text-muted-foreground"
+                                    ? "border-primary bg-primary text-amber-600-foreground"
+                                    : "border-border bg-background text-slate-600"
                             )}
                         >
                             {step.number}
@@ -97,7 +97,7 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                             <div className="mb-6">
                                 <button
                                     onClick={handleBack}
-                                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-semibold"
+                                    className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors font-semibold"
                                 >
                                     <ChevronLeft className="w-4 h-4" />
                                     <span>Back</span>

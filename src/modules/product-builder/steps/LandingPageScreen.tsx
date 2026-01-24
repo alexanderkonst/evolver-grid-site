@@ -114,11 +114,11 @@ const LandingPageScreen: React.FC = () => {
         <div className="py-8">
             {/* Header */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <FileText className="w-8 h-8 text-primary" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
+                    <FileText className="w-8 h-8 text-amber-600" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Your Landing Page</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-3xl font-bold text-slate-900 mb-2">Your Landing Page</h1>
+                <p className="text-slate-600">
                     Look what you've created.
                 </p>
             </div>
@@ -126,8 +126,8 @@ const LandingPageScreen: React.FC = () => {
             {/* Landing Page Preview */}
             <Card className="max-w-3xl mx-auto mb-8 overflow-hidden">
                 <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">Preview</span>
+                    <Eye className="w-4 h-4 text-slate-600" />
+                    <span className="text-sm text-slate-600">Preview</span>
                 </div>
                 <CardContent className="p-0">
                     {/* Landing Page */}
@@ -232,7 +232,7 @@ const LandingPageScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.landing && (
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-sm text-slate-600 mt-2">
                         Rate the resonance to continue
                     </p>
                 )}
