@@ -378,9 +378,30 @@ export const loadSavedData = async (): Promise<{
   snapshotId: string | null;
 }> => {
   try {
+    // First check localStorage for guest data
+    const localAppleseed = loadAppleseedFromLocalStorage();
+    const localExcalibur = loadExcaliburFromLocalStorage();
+
+    // Check if user is authenticated
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      // Guest user - return localStorage data
+      return {
+        appleseed: localAppleseed.appleseed,
+        excalibur: localExcalibur,
+        snapshotId: null
+      };
+    }
+
     const profileId = await getProfileId();
     if (!profileId) {
-      return { appleseed: null, excalibur: null, snapshotId: null };
+      // Return localStorage fallback if no profile
+      return {
+        appleseed: localAppleseed.appleseed,
+        excalibur: localExcalibur,
+        snapshotId: null
+      };
     }
 
     const { data: snapshot } = await supabase
@@ -392,7 +413,12 @@ export const loadSavedData = async (): Promise<{
       .maybeSingle();
 
     if (!snapshot) {
-      return { appleseed: null, excalibur: null, snapshotId: null };
+      // Return localStorage fallback if no snapshot
+      return {
+        appleseed: localAppleseed.appleseed,
+        excalibur: localExcalibur,
+        snapshotId: null
+      };
     }
 
     return {
@@ -401,6 +427,14 @@ export const loadSavedData = async (): Promise<{
       snapshotId: snapshot.id,
     };
   } catch (err) {
-    return { appleseed: null, excalibur: null, snapshotId: null };
+    console.error("[loadSavedData] Error:", err);
+    // Return localStorage fallback on any error
+    const localAppleseed = loadAppleseedFromLocalStorage();
+    const localExcalibur = loadExcaliburFromLocalStorage();
+    return {
+      appleseed: localAppleseed.appleseed,
+      excalibur: localExcalibur,
+      snapshotId: null
+    };
   }
 };
