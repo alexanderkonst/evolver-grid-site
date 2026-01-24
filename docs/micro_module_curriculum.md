@@ -297,17 +297,65 @@ B1 → B2 → B3 → B4 → B5 → B6 → B7
 | 1 | G1 | Purpose vs Mission | 📚 | 1.8 |
 | 2 | G2 | Path of Least Resistance | 📚 | G1 |
 | 3 | G3 | Map of Uniqueness | 📚 | G2 |
-| 4 | G4 | What is Zone of Genius? | 📚 | G3 |
-| 5 | G5 | Zone of Genius Discovery | 📝 | G4 |
-| 6 | G6 | Zone of Genius Activation | 🔥 | G5 |
-| 7 | G7 | Flow State | � | G6 |
-| 8 | G8 | Creativity and Artistry | 📚 | G7 |
-| 9 | G9 | Unique Offering | ��💰 | G8 |
+| 4 | **G3.5** | **The Growth Hierarchy** | 📚 | G3 |
+| 5 | G4 | What is Zone of Genius? | 📚 | G3.5 |
+| 6 | G5 | Zone of Genius Discovery | 📝 | G4 |
+| 7 | G6 | Zone of Genius Activation | 🔥 | G5 |
+| 8 | G7 | Flow State | 📚 | G6 |
+| 9 | G8 | Creativity and Artistry | 📚 | G7 |
+| 10 | G9 | Unique Offering | 📚💰 | G8 |
 
 **Flow Logic:**
 ```
-G1 → G2 → G3 → G4 → G5 (Test) → G6 (Activation) → G7 → G8 → G9
+G1 → G2 → G3 → G3.5 → G4 → G5 (Test) → G6 (Activation) → G7 → G8 → G9
 ```
+
+---
+
+### G3.5: The Growth Hierarchy
+
+*Understanding the evolutionary stages of what we monetize*
+
+#### Micro-Learning Script (90s)
+
+Here's a secret most personal development misses:
+
+**You are already monetizing your genius. You just might not be aware of it.**
+
+When you look for work, apply for a job, or offer your services — you're exchanging something you have for money. The question isn't "How do I start?" but "What am I currently exchanging, and is it aligned with my deepest gifts?"
+
+There's a growth hierarchy — an evolution of what we monetize:
+
+**Level 1-3: The Basics**
+- **Body** — trading time and physical presence
+- **Care** — nurturing others' basic needs
+- **Conformity** — doing what you're told, fitting in
+
+**Level 4-6: Differentiation**
+- **Skill** — a learned, measurable ability
+- **Expertise** — accumulated wisdom from experience
+- **Talent** — a natural gift you were born with
+
+**Level 7-8: Integration**
+- **Genius** — your unique essence, integrating ALL previous levels
+- **Mastery** — your very presence creates value
+
+The key insight: **Higher levels integrate the lower ones.** You can't skip steps. A master like Steve Jobs had skills, expertise, and talent — but it was all integrated through his genius.
+
+Where are you on this ladder? What's the next level calling you?
+
+---
+
+#### Reflection Prompt
+
+"What am I currently monetizing — and does it feel aligned with my deepest gifts?"
+
+---
+
+#### Level Up
+
+**XP:** 100
+**Unlock:** G4 (What is Zone of Genius?)
 
 ---
 
