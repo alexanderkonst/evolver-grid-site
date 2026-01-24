@@ -15,62 +15,62 @@ const ProductBuilderEntry: React.FC = () => {
         <div className="text-center py-12">
             {/* Hero */}
             <div className="mb-8">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                    <Rocket className="w-10 h-10 text-primary" />
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-100 mb-6">
+                    <Rocket className="w-10 h-10 text-amber-600" />
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
                     Launch Your Genius Business
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                     Turn your Zone of Genius into a complete sales funnel — in 15 minutes.
                 </p>
             </div>
 
             {/* What you'll get */}
-            <div className="bg-card border border-border rounded-xl p-8 max-w-xl mx-auto mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
-                    <Sparkles className="w-5 h-5 text-primary" />
+            <div className="bg-slate-900 rounded-xl p-8 max-w-xl mx-auto mb-8">
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5 text-amber-400" />
                     What you'll create:
                 </h3>
                 <ul className="space-y-3 text-left">
                     <li className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                            <strong className="text-foreground">Deep client understanding</strong> — know exactly who needs your gift
+                        <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">
+                            <strong className="text-white">Deep client understanding</strong> — know exactly who needs your gift
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                            <strong className="text-foreground">Crystal-clear promise</strong> — articulate the transformation you create
+                        <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">
+                            <strong className="text-white">Crystal-clear promise</strong> — articulate the transformation you create
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                            <strong className="text-foreground">Landing page</strong> — a beautiful page that attracts ideal clients
+                        <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">
+                            <strong className="text-white">Landing page</strong> — a beautiful page that attracts ideal clients
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                            <strong className="text-foreground">Blueprint</strong> — a methodology gift they can download
+                        <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">
+                            <strong className="text-white">Blueprint</strong> — a methodology gift they can download
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                            <strong className="text-foreground">Live on marketplace</strong> — ready for your first customer
+                        <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">
+                            <strong className="text-white">Live on marketplace</strong> — ready for your first customer
                         </span>
                     </li>
                 </ul>
             </div>
 
             {/* Bridge text */}
-            <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
+            <p className="text-slate-600 mb-6 max-w-lg mx-auto">
                 You've discovered your genius. You've defined your business.
                 <br />
-                <strong className="text-foreground">Now let's make it real.</strong>
+                <strong className="text-slate-900">Now let's make it real.</strong>
             </p>
 
             {/* CTA */}
