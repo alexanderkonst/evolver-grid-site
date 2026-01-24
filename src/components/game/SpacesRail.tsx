@@ -10,6 +10,7 @@ import {
     Building2,
     Lock,
     Settings,
+    Rocket,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -38,6 +39,12 @@ const SPACES: SpaceItem[] = [
         label: "Transformation",
         icon: <Sparkles className="w-5 h-5 flex-shrink-0" />,
         path: "/game/transformation",
+    },
+    {
+        id: "product-builder",
+        label: "Product Builder",
+        icon: <Rocket className="w-5 h-5 flex-shrink-0" />,
+        path: "/product-builder",
     },
     {
         id: "marketplace",
