@@ -32,31 +32,31 @@ const DeepICPScreen: React.FC = () => {
         setError(null);
 
         try {
-        // Get user's Excalibur data via game_profiles
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) throw new Error("Not authenticated");
+            // Get user's Excalibur data via game_profiles
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) throw new Error("Not authenticated");
 
-        // First get the profile_id
-        const { data: profile } = await supabase
-            .from("game_profiles")
-            .select("id, last_zog_snapshot_id")
-            .eq("user_id", user.id)
-            .maybeSingle();
+            // First get the profile_id
+            const { data: profile } = await supabase
+                .from("game_profiles")
+                .select("id, last_zog_snapshot_id")
+                .eq("user_id", user.id)
+                .maybeSingle();
 
-        if (!profile?.last_zog_snapshot_id) {
-            throw new Error("No Genius Business data found. Please complete Excalibur first.");
-        }
+            if (!profile?.last_zog_snapshot_id) {
+                throw new Error("No Genius Business data found. Please complete Excalibur first.");
+            }
 
-        // Get the snapshot using the profile's reference
-        const { data: snapshot } = await supabase
-            .from("zog_snapshots")
-            .select("excalibur_data")
-            .eq("id", profile.last_zog_snapshot_id)
-            .maybeSingle();
+            // Get the snapshot using the profile's reference
+            const { data: snapshot } = await supabase
+                .from("zog_snapshots")
+                .select("excalibur_data")
+                .eq("id", profile.last_zog_snapshot_id)
+                .maybeSingle();
 
-        if (!snapshot?.excalibur_data) {
-            throw new Error("No Genius Business data found. Please complete Excalibur first.");
-        }
+            if (!snapshot?.excalibur_data) {
+                throw new Error("No Genius Business data found. Please complete Excalibur first.");
+            }
 
             // Call AI to deepen ICP
             const { data, error: fnError } = await supabase.functions.invoke("deepen-icp", {
@@ -121,27 +121,27 @@ const DeepICPScreen: React.FC = () => {
             </div>
 
             {/* ICP Card */}
-            <Card className="mb-8 max-w-2xl mx-auto">
+            <Card className="mb-8 max-w-2xl mx-auto bg-slate-900 border-slate-700">
                 <CardContent className="p-6 space-y-6">
                     <div>
-                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wide mb-2">
                             Who They Are
                         </h3>
-                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.who}</p>
+                        <p className="text-slate-100 leading-relaxed">{state.deepICP?.who}</p>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wide mb-2">
                             What They're Struggling With
                         </h3>
-                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.struggles}</p>
+                        <p className="text-slate-100 leading-relaxed">{state.deepICP?.struggles}</p>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
+                        <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wide mb-2">
                             What They Truly Want
                         </h3>
-                        <p className="text-slate-900 leading-relaxed">{state.deepICP?.desires}</p>
+                        <p className="text-slate-100 leading-relaxed">{state.deepICP?.desires}</p>
                     </div>
                 </CardContent>
             </Card>
