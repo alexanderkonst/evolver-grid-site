@@ -97,37 +97,37 @@ const DeepTPScreen: React.FC = () => {
 
             {/* Point A → Point B */}
             <div className="max-w-3xl mx-auto mb-8">
-                <div className="grid md:grid-cols-2 gap-4 items-stretch">
+                <div className="grid md:grid-cols-2 gap-4 items-stretch relative">
                     {/* Point A */}
-                    <Card className="bg-red-500/5 border-red-500/20">
+                    <Card className="bg-red-900 border-red-700">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 font-bold text-sm">
+                                <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm">
                                     A
                                 </div>
-                                <h3 className="font-semibold text-slate-900">Where They Are Now</h3>
+                                <h3 className="font-semibold text-white">Where They Are Now</h3>
                             </div>
-                            <p className="text-slate-900/80 leading-relaxed text-sm">
+                            <p className="text-red-100 leading-relaxed text-sm">
                                 {state.deepTP?.pointA}
                             </p>
                         </CardContent>
                     </Card>
 
                     {/* Arrow - hidden on mobile, visible on desktop */}
-                    <div className="hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2">
-                        <ArrowRightCircle className="w-8 h-8 text-amber-600" />
+                    <div className="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                        <ArrowRightCircle className="w-10 h-10 text-amber-400 bg-white rounded-full" />
                     </div>
 
                     {/* Point B */}
-                    <Card className="bg-green-500/5 border-green-500/20">
+                    <Card className="bg-green-900 border-green-700">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 font-bold text-sm">
+                                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">
                                     B
                                 </div>
-                                <h3 className="font-semibold text-slate-900">Where They Want To Be</h3>
+                                <h3 className="font-semibold text-white">Where They Want To Be</h3>
                             </div>
-                            <p className="text-slate-900/80 leading-relaxed text-sm">
+                            <p className="text-green-100 leading-relaxed text-sm">
                                 {state.deepTP?.pointB}
                             </p>
                         </CardContent>
@@ -141,12 +141,12 @@ const DeepTPScreen: React.FC = () => {
             </div>
 
             {/* Promise Statement */}
-            <Card className="max-w-2xl mx-auto mb-8 bg-primary/5 border-primary/20">
+            <Card className="max-w-2xl mx-auto mb-8 bg-slate-900 border-slate-700">
                 <CardContent className="p-6 text-center">
-                    <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-3">
+                    <h3 className="text-sm font-semibold text-amber-400 uppercase tracking-wide mb-3">
                         Your Transformational Promise
                     </h3>
-                    <p className="text-xl font-medium text-slate-900 leading-relaxed">
+                    <p className="text-xl font-medium text-white leading-relaxed">
                         "{state.deepTP?.promiseStatement}"
                     </p>
                 </CardContent>
