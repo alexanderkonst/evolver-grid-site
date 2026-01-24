@@ -60,6 +60,7 @@ const ExcaliburView = () => {
       <ExcaliburDisplay
         excalibur={excalibur}
         onLaunchProductBuilder={() => navigate("/product-builder")}
+        showProductBuilderButton={true}
       />
     </GameShellV2>
   );
