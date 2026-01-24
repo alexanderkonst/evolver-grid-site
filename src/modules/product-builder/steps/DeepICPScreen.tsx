@@ -32,21 +32,31 @@ const DeepICPScreen: React.FC = () => {
         setError(null);
 
         try {
-            // Get user's Excalibur data
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error("Not authenticated");
+        // Get user's Excalibur data via game_profiles
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) throw new Error("Not authenticated");
 
-            const { data: snapshot } = await supabase
-                .from("zog_snapshots")
-                .select("excalibur_data")
-                .eq("user_id", user.id)
-                .order("created_at", { ascending: false })
-                .limit(1)
-                .single();
+        // First get the profile_id
+        const { data: profile } = await supabase
+            .from("game_profiles")
+            .select("id, last_zog_snapshot_id")
+            .eq("user_id", user.id)
+            .maybeSingle();
 
-            if (!snapshot?.excalibur_data) {
-                throw new Error("No Genius Business data found. Please complete Excalibur first.");
-            }
+        if (!profile?.last_zog_snapshot_id) {
+            throw new Error("No Genius Business data found. Please complete Excalibur first.");
+        }
+
+        // Get the snapshot using the profile's reference
+        const { data: snapshot } = await supabase
+            .from("zog_snapshots")
+            .select("excalibur_data")
+            .eq("id", profile.last_zog_snapshot_id)
+            .maybeSingle();
+
+        if (!snapshot?.excalibur_data) {
+            throw new Error("No Genius Business data found. Please complete Excalibur first.");
+        }
 
             // Call AI to deepen ICP
             const { data, error: fnError } = await supabase.functions.invoke("deepen-icp", {
