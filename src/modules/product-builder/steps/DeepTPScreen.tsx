@@ -40,20 +40,34 @@ const DeepTPScreen: React.FC = () => {
 
             if (fnError) throw fnError;
 
+            // Build a smart fallback promiseStatement if AI doesn't provide one
+            const buildPromiseStatement = () => {
+                if (data.promiseStatement && data.promiseStatement !== "The transformation you create") {
+                    return data.promiseStatement;
+                }
+                // Generate from ICP and Pain data
+                const who = state.deepICP?.who?.split('.')[0] || "people who feel stuck";
+                const desire = state.deepICP?.desires?.split('.')[0] || "achieve their full potential";
+                return `I help ${who} ${desire}.`;
+            };
+
             setDeepTP({
                 pointA: data.pointA || "Where they are now",
                 pointB: data.pointB || "Where they want to be",
-                promiseStatement: data.promiseStatement || "The transformation you create",
+                promiseStatement: buildPromiseStatement(),
                 rawData: data,
             });
         } catch (err: unknown) {
             console.error("Error generating TP:", err);
 
-            // Fallback mock data
+            // Fallback mock data - but try to use real ICP data if available
+            const who = state.deepICP?.who?.split('.')[0] || "accomplished professionals who feel stuck";
+            const desire = state.deepICP?.desires?.split('.')[0] || "transform their unique genius into a thriving business";
+
             setDeepTP({
-                pointA: "Successful on paper but unfulfilled inside. Trading time for money in a role that doesn't fit. Knowing they have more to give but not knowing how to package it.",
-                pointB: "Waking up excited to work. Serving clients who value their unique perspective. Earning well while being authentically themselves. Making an impact that matters.",
-                promiseStatement: "I help accomplished professionals who feel stuck transform their unique genius into a thriving business that feels like play.",
+                pointA: state.deepPain?.consequences || "Successful on paper but unfulfilled inside. Trading time for money in a role that doesn't fit.",
+                pointB: state.deepICP?.desires || "Waking up excited to work. Serving clients who value their unique perspective.",
+                promiseStatement: `I help ${who} ${desire}.`,
                 rawData: {},
             });
         } finally {
