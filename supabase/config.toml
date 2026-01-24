@@ -65,3 +65,18 @@ verify_jwt = true
 
 [functions.create-test-user]
 verify_jwt = false
+
+[functions.deepen-icp]
+verify_jwt = false
+
+[functions.deepen-pain]
+verify_jwt = false
+
+[functions.deepen-tp]
+verify_jwt = false
+
+[functions.generate-blueprint]
+verify_jwt = false
+
+[functions.generate-landing]
+verify_jwt = false
