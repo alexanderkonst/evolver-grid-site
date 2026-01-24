@@ -23,9 +23,47 @@
 
 ---
 
-## Today's Goal
+## Today's Goal — CONCRETE DEFINITION
 
-**Build the Genius Venture Studio Product Compiler** — a module that takes a user from ZoG/Excalibur through to shippable artifacts.
+### The Gap (Presentation Key)
+
+> **Morning:** People discover their genius and resonate deeply (10/10), but don't know how to monetize it.
+> **Evening:** I have the way — a Product Compiler that leads from self-recognition to a shippable product.
+
+### 0 → 1 Transformation
+
+**INPUT (what user has now):**
+- Zone of Genius (Appleseed) — works, 10/10 resonance
+- Genius Business (Excalibur) — works
+
+**OUTPUT (what user gets after today's module):**
+- Deepened ICP (with pain, pressure, consequences, stakes)
+- Clear Transformational Promise (Point A → Point B)
+- **Landing Page published on Marketplace**
+
+### Three-Tier Goals
+
+| Tier | Goal | Status |
+|------|------|--------|
+| **MINIMUM** | Playbooks + Flow Spec ready, Landing described | 🔲 |
+| **TARGET** | Landing created, can show at presentation | 🔲 |
+| **STRETCH** | Landing published on Marketplace, can be purchased | 🔲 |
+
+---
+
+## Communication Brief (for 17:30 presentation)
+
+**One-Liner:**
+> "This morning, people could discover their genius. Tonight, they can sell it."
+
+**The Story Arc:**
+1. The Gap existed (people get 10/10 resonance but stuck)
+2. Today we built the bridge (Product Compiler)
+3. Here's the proof (live landing on marketplace)
+
+---
+
+## Product Compiler Trinity
 
 The **Product Compiler** can be applied to:
 1. **Product** — The core offering (what we've been building)
@@ -172,6 +210,34 @@ The acorn contains the FULL potential of the oak. Growth happens through iterati
 
 This is a meta-artifact — a playbook for how Alexander structures work across all time scales (hour, day, week, month, quarter, year). Added to scope as personal operating system.
 
+### 12:01 — Pain Theory Deep Dive (SPRINT 1 START)
+
+**Pain Theory Playbook created:** `docs/pain_theory_playbook.md`
+
+**Key framework established:**
+
+| Component | Description |
+|-----------|-------------|
+| **ICP** | Ideal Client Profile — WHO needs this most |
+| **TP** | Transformational Promise — Point A (pain) → Point B (dream) |
+| **Decision Pressure** | What's pushing them toward a decision NOW |
+| **Felt Consequences** | What they experience daily because of this |
+| **Cost of Inaction** | Price of doing nothing |
+| **Stakes** | What's really at stake beyond the surface |
+
+**The 5 Stages of Awareness (Eugene Schwartz):**
+1. **Unaware** — doesn't know they have a problem
+2. **Problem Aware** — knows the problem exists
+3. **Solution Aware** — looking for solutions
+4. **Product Aware** — knows different solutions exist
+5. **Most Aware** — comparing specific options, ready to buy
+
+**Jobs To Be Done Insight:**
+
+> "The dentist competes with grandpa's vodka cotton." — Products from completely different categories compete when they solve the same JOB.
+
+**Coming Soon:** Business Transaction Theory playbook — Value Perception Coefficient framework
+
 ## What Existed Before Today
 
 - Appleseed technology (articulate genius)
@@ -240,7 +306,36 @@ Each can be reverse-engineered from a Master Result using the same 8-phase playb
 |------|----------|----------|
 | 11:06 | Hackathon Log | `docs/hackathon_log_2026_01_24.md` |
 | 11:11 | Natural Work Rhythms | `docs/natural_work_rhythms.md` |
+| 11:40 | ResonanceRating Component | `src/components/ui/ResonanceRating.tsx` |
+| 11:40 | Resonance Rating Task | `ai_tasks/PENDING_resonance_rating.md` |
+| 11:47 | Holonic Work Playbook | `docs/holonic_work_playbook.md` |
+| 12:01 | Pain Theory Playbook | `docs/pain_theory_playbook.md` |
 | — | — | — |
+
+---
+
+## Sprint 1 Roadmap (12:00 - 15:15)
+
+### Block 1: Foundation (12:00 - 13:30)
+
+| Time | Task | Output |
+|------|------|--------|
+| 12:00-12:20 | ✅ Pain Theory documented | `pain_theory_playbook.md` |
+| 12:20-12:45 | ICP Deepening Template | Prompt + template for AI |
+| 12:45-13:15 | Product Compiler Flow Spec | Step-by-step flow diagram |
+| 13:15-13:30 | Review + sync | Check progress |
+
+**13:30 — MICRO BREAK (15 min)**
+
+### Block 2: Build (13:45 - 15:15)
+
+| Time | Task | Output |
+|------|------|--------|
+| 13:45-14:15 | Create YOUR ICP + TP | Apply to Alexander's own product |
+| 14:15-14:45 | Landing Page Content | Copy for the page |
+| 14:45-15:15 | Landing Page Code | Actual React component |
+
+**15:15 — INTEGRATION BREAK (45 min) — Walk away, don't think about project**
 
 ---
 
