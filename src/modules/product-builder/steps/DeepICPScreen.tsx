@@ -58,23 +58,41 @@ const DeepICPScreen: React.FC = () => {
                 throw new Error("No Genius Business data found. Please complete Excalibur first.");
             }
 
-            // Call AI to deepen ICP
-            const { data, error: fnError } = await supabase.functions.invoke("deepen-icp", {
-                body: { excalibur: snapshot.excalibur_data },
-            });
+            const excalibur = snapshot.excalibur_data as Record<string, unknown>;
 
-            if (fnError) throw fnError;
+            // Try to call AI to deepen ICP
+            try {
+                const { data, error: fnError } = await supabase.functions.invoke("deepen-icp", {
+                    body: { excalibur: snapshot.excalibur_data },
+                });
+
+                if (!fnError && data) {
+                    setDeepICP({
+                        who: data.who || "Your ideal client",
+                        struggles: data.struggles || "Their key struggles",
+                        desires: data.desires || "What they truly want",
+                        rawData: data,
+                    });
+                    return;
+                }
+            } catch (aiErr) {
+                console.log("AI function not available, using Excalibur data directly");
+            }
+
+            // Fallback: Use Excalibur data directly
+            const idealClient = (excalibur.idealClient as Record<string, string>) || {};
+            const offer = (excalibur.offer as Record<string, string>) || {};
 
             setDeepICP({
-                who: data.who || "Your ideal client",
-                struggles: data.struggles || "Their key struggles",
-                desires: data.desires || "What they truly want",
-                rawData: data,
+                who: idealClient.profile || offer.whoFor || "Professionals seeking transformation",
+                struggles: idealClient.struggles || "Feeling stuck despite external success",
+                desires: idealClient.desires || "To do meaningful work that feels authentic",
+                rawData: excalibur,
             });
         } catch (err: unknown) {
             console.error("Error generating deep ICP:", err);
 
-            // Fallback to mock data for demo
+            // Final fallback to mock data for demo
             setDeepICP({
                 who: "Ambitious professionals in their 30s-40s who feel stuck despite external success. They've achieved what society told them to achieve, but something feels missing.",
                 struggles: "They're exhausted from performing a role that doesn't fit. Every day feels like wearing a mask. They have skills but aren't sure how to package their unique gifts.",
