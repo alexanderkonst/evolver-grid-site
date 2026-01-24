@@ -57,7 +57,10 @@ const ExcaliburView = () => {
       <div className="px-4 pt-6">
         <BackButton to="/game/profile" />
       </div>
-      <ExcaliburDisplay excalibur={excalibur} />
+      <ExcaliburDisplay
+        excalibur={excalibur}
+        onLaunchProductBuilder={() => navigate("/product-builder")}
+      />
     </GameShellV2>
   );
 };
