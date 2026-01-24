@@ -87,17 +87,15 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
 
     return (
         <ProductBuilderProvider>
-            <div className="min-h-dvh flex flex-col">
-                <Navigation />
-
-                <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-dvh flex flex-col bg-white font-sans">
+                <main className="flex-1 pt-8 pb-16 px-4 sm:px-6 lg:px-8">
                     <div className="container mx-auto max-w-4xl">
                         {/* Back Button */}
                         {currentStep > 0 && currentStep < 7 && (
                             <div className="mb-6">
                                 <button
                                     onClick={handleBack}
-                                    className="flex items-center gap-2 text-[#1e3a5f] hover:text-[#1e3a5f] transition-colors font-semibold"
+                                    className="flex items-center gap-2 text-[#1e3a5f] hover:text-[#1e3a5f]/80 transition-colors font-semibold"
                                 >
                                     <ChevronLeft className="w-4 h-4" />
                                     <span>Back</span>
@@ -111,8 +109,6 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                         <Outlet />
                     </div>
                 </main>
-
-                <Footer />
             </div>
         </ProductBuilderProvider>
     );
