@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Share2, Copy, Check } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
+import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -12,6 +13,7 @@ interface AppleseedDisplayProps {
     profileId?: string;
     onCreateBusiness?: () => void;
     isSaved?: boolean;
+    onResonanceRating?: (rating: number) => void;
 }
 
 /**
@@ -23,7 +25,8 @@ const AppleseedDisplay = ({
     profileUrl,
     profileId,
     onCreateBusiness,
-    isSaved = true
+    isSaved = true,
+    onResonanceRating
 }: AppleseedDisplayProps) => {
     const [copied, setCopied] = useState(false);
     const { toast } = useToast();
@@ -77,6 +80,14 @@ const AppleseedDisplay = ({
                     archetype: appleseed.threeLenses.archetype,
                 }}
             />
+
+            {/* Resonance Rating - Validation metric */}
+            {onResonanceRating && (
+                <ResonanceRating
+                    question="From 1 to 10, how well does this match how you see yourself at your brightest?"
+                    onRate={onResonanceRating}
+                />
+            )}
 
             {/* Quick action buttons: Share + Reveal My Genius Business - Side by side */}
             <div className="flex gap-3 justify-center">
