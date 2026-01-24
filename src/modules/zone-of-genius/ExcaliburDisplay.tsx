@@ -23,7 +23,8 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
     const [copiedOffer, setCopiedOffer] = useState(false);
 
     const handleCopyOffer = async () => {
-        const firstSentence = getFirstSentence(excalibur.offer.statement);
+        const statement = excalibur?.offer?.statement || "";
+        const firstSentence = getFirstSentence(statement);
         await navigator.clipboard.writeText(firstSentence);
         setCopiedOffer(true);
         setTimeout(() => setCopiedOffer(false), 2000);
@@ -35,11 +36,12 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
     };
 
     const getActionHeader = () => {
-        const firstSentence = getFirstSentence(excalibur.offer.statement);
+        const statement = excalibur?.offer?.statement || "";
+        const firstSentence = getFirstSentence(statement);
         if (firstSentence.toLowerCase().startsWith("i ")) {
             return firstSentence.replace(/\.$/, "");
         }
-        return `I ${excalibur.businessIdentity.name.toLowerCase()}`;
+        return `I ${excalibur?.businessIdentity?.name?.toLowerCase() || "help"}`;
     };
 
     return (
@@ -69,7 +71,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                             <div className="flex-1">
                                 <p className="text-[9px] text-[#8460ea] font-medium uppercase tracking-wide mb-0.5">My Unique Selling Proposition</p>
                                 <p className="text-xs text-[#2c3150] leading-relaxed">
-                                    {getFirstSentence(excalibur.offer.statement)}
+                                    {getFirstSentence(excalibur?.offer?.statement || "")}
                                 </p>
                             </div>
                             <Button
