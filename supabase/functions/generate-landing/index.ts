@@ -5,29 +5,45 @@ const corsHeaders = {
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const GENERATE_LANDING_PROMPT = `You are a Landing Page Copywriter that creates high-converting, emotionally resonant landing page copy.
+const GENERATE_LANDING_PROMPT = `You are an elite Landing Page Copywriter using the Customer Forces Framework.
 
-Using the ICP, Pain, and Transformational Promise, create:
+FIRST, analyze the ideal client using Customer Forces:
+- PUSH (Pain): What's pushing them away from status quo? Daily experiences, quiet dread, what's NOT working
+- PULL (Benefits): What's pulling them toward the solution? Dream outcome, what they're drawn to
+- ANXIETY (Concerns): What stops them from buying? Fears, past failures, identity concerns
+- INERTIA (Habits): What keeps them stuck? Default behaviors, sunk costs, familiar moves
 
-1. HEADLINE - The main attention-grabber (8-12 words, speaks to transformation)
-2. SUBHEADLINE - Expands on the headline (15-20 words, specific benefit)
-3. PAIN SECTION - "Sound Familiar?" (2-3 sentences that make them nod)
-4. PROMISE SECTION - "There's Another Way" (2-3 sentences of hope)
-5. CTA TEXT - Button text (3-5 words, action-oriented)
+THEN, create landing page copy with this structure:
+
+1. FOR [AUDIENCE] - Who this is for
+2. HEADLINE (8-15 words) - "Become/Make/Stop/Turn" format, sharp positioning
+3. SUBHEADLINE (15-25 words) - Expands headline with specific benefit and "without..." clause
+4. CTA BUTTON TEXT (3-5 words)
+5. PAIN SECTION HEADER - "When your work sounds like everyone else's" style
+6. PAIN BULLETS (4 items) - Each bullet = pain point + consequence, conversational
+7. SOLUTION SECTION HEADER - "A clear system to..." style  
+8. SOLUTION STEPS (5 items) - Actionable steps with verbs, showing the transformation
+9. FINAL CTA HEADLINE - Punchy call to action
+10. FINAL CTA SUBHEADLINE - What they get
 
 The copy should:
-- Speak directly to ONE person
-- Lead with pain, end with possibility
-- Be conversational, not corporate
-- Create urgency without manipulation
+- Speak to ONE person directly
+- Use specific, market-readable language (not vague "transformation")
+- Address anxiety/objections implicitly
+- Make the offer feel inevitable
 
 Return a JSON object:
 {
+  "forAudience": "string - who this is for",
   "headline": "string - main headline",
   "subheadline": "string - supporting subheadline",
-  "painSection": "string - the pain acknowledgment",
-  "promiseSection": "string - the hope and solution",
-  "ctaText": "string - call to action button text"
+  "ctaButtonText": "string - button text",
+  "painSectionHeader": "string - problem section header",
+  "painBullets": ["bullet 1", "bullet 2", "bullet 3", "bullet 4"],
+  "solutionSectionHeader": "string - solution section header",
+  "solutionSteps": ["step 1", "step 2", "step 3", "step 4", "step 5"],
+  "finalCtaHeadline": "string - final CTA section headline",
+  "finalCtaSubheadline": "string - what they get"
 }
 
 Return ONLY the JSON. No explanation.`;
@@ -53,20 +69,24 @@ serve(async (req) => {
         }
 
         const context = `
-IDEAL CLIENT:
+TARGET AUDIENCE & ICP:
 - Who: ${icp.who || 'Unknown'}
 - Struggles: ${icp.struggles || 'Unknown'}
 - Desires: ${icp.desires || 'Unknown'}
 
-PAIN:
+PAIN LANDSCAPE (Customer Forces - PUSH):
 - Pressure: ${pain?.pressure || 'Unknown'}
 - Consequences: ${pain?.consequences || 'Unknown'}
+- Cost of Inaction: ${pain?.costOfInaction || 'Unknown'}
 - Stakes: ${pain?.stakes || 'Unknown'}
 
-TRANSFORMATION:
+TRANSFORMATION (PULL):
 - Point A: ${tp.pointA || 'Unknown'}
 - Point B: ${tp.pointB || 'Unknown'}
 - Core Promise: ${tp.corePromise || 'Unknown'}
+
+Generate landing page copy that makes this person say "Oh—you're the person for THIS."
+Make it specific enough that they can repeat your offer to a friend after one read.
 `;
 
         const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -105,8 +125,19 @@ TRANSFORMATION:
 
         const landing = JSON.parse(content);
 
+        // Also return backwards-compatible fields
+        const result = {
+            ...landing,
+            // Backwards compatible
+            headline: landing.headline,
+            subheadline: landing.subheadline,
+            painSection: landing.painBullets?.join(" ") || "",
+            promiseSection: landing.solutionSteps?.join(" ") || "",
+            ctaText: landing.ctaButtonText
+        };
+
         return new Response(
-            JSON.stringify(landing),
+            JSON.stringify(result),
             { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
     } catch (error) {
