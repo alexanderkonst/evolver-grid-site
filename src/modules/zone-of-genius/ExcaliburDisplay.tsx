@@ -127,7 +127,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
             />
 
             {/* Launch Product Builder - Bridge to Product Compiler */}
-            {showProductBuilderButton && (
+            {showProductBuilderButton && onLaunchProductBuilder && (
                 <Button
                     variant="default"
                     size="lg"
