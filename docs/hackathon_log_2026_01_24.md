@@ -238,6 +238,25 @@ This is a meta-artifact — a playbook for how Alexander structures work across 
 
 **Coming Soon:** Business Transaction Theory playbook — Value Perception Coefficient framework
 
+### 12:38 — Roasting Protocol + Venture Studio Vision
+
+**The Roasting Protocol** documented as meta-technology: `docs/roasting_protocol.md`
+
+**Core principle:** Don't fix immediately. Roast 3x first:
+1. First Roast — critique ruthlessly, NO FIXING
+2. Continue Roast — go deeper, STILL NO FIXING
+3. Meta Roast — roast the roast, STILL NO FIXING
+4. Now iterate with everything unearthed
+5. Repeat 3 cycles total
+
+**Application to Product Compiler:** User sees magic. Under the hood: 3 cycles of roasting before final output. Invisible, wow-effect inducing.
+
+**Genius Venture Studio Vision** documented: `docs/genius_venture_studio_vision.md`
+
+> *"Vibe Coding Hackathons from Zone of Genius. Sacred holonic, under the hood."*
+
+**Key insight:** The Venture Studio runs hackathons that start from genius, not from problems. All sophisticated technologies (Roasting Protocol, Holonic Architecture, Pain Theory) run invisibly — participants experience magic.
+
 ## What Existed Before Today
 
 - Appleseed technology (articulate genius)
