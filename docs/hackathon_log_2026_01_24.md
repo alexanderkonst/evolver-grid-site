@@ -329,6 +329,10 @@ Each can be reverse-engineered from a Master Result using the same 8-phase playb
 | 11:40 | Resonance Rating Task | `ai_tasks/PENDING_resonance_rating.md` |
 | 11:47 | Holonic Work Playbook | `docs/holonic_work_playbook.md` |
 | 12:01 | Pain Theory Playbook | `docs/pain_theory_playbook.md` |
+| 12:38 | Roasting Protocol | `docs/roasting_protocol.md` |
+| 12:38 | Genius Venture Studio Vision | `docs/genius_venture_studio_vision.md` |
+| 12:40 | ICP Deepening Template | `docs/icp_deepening_template.md` |
+| 12:40 | TP Deepening Template | `docs/tp_deepening_template.md` |
 | — | — | — |
 
 ---
@@ -340,8 +344,9 @@ Each can be reverse-engineered from a Master Result using the same 8-phase playb
 | Time | Task | Output |
 |------|------|--------|
 | 12:00-12:20 | ✅ Pain Theory documented | `pain_theory_playbook.md` |
-| 12:20-12:45 | ICP Deepening Template | Prompt + template for AI |
-| 12:45-13:15 | Product Compiler Flow Spec | Step-by-step flow diagram |
+| 12:20-12:45 | ✅ ICP Deepening Template | `icp_deepening_template.md` |
+| 12:40-12:50 | ✅ TP Deepening Template | `tp_deepening_template.md` |
+| 12:50-13:15 | Product Compiler Flow Spec | Step-by-step flow diagram |
 | 13:15-13:30 | Review + sync | Check progress |
 
 **13:30 — MICRO BREAK (15 min)**
