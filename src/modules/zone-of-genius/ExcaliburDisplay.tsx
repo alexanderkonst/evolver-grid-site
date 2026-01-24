@@ -129,10 +129,16 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
             {/* Launch Product Builder - Bridge to Product Compiler */}
             {showProductBuilderButton && onLaunchProductBuilder && (
                 <Button
+                    type="button"
                     variant="default"
                     size="lg"
                     className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
-                    onClick={onLaunchProductBuilder}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log("Launch Product Builder clicked!");
+                        onLaunchProductBuilder();
+                    }}
                 >
                     <Rocket className="w-4 h-4 mr-2" />
                     Launch Product Builder
