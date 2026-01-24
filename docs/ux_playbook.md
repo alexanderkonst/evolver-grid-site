@@ -49,8 +49,11 @@ PHASE 6: EXTENSION MODULES
 PHASE 7: WIREFRAMES
 19-21. ASCII sketches, navigation map, transitions
 
-PHASE 8: BUILD
-22-24. Tasks, code, verify
+PHASE 8: WIREFRAME ROAST (NEW)
+22-24. Roast wireframes (3 cycles), synthesize, refine
+
+PHASE 9: BUILD
+25-27. Tasks, code, verify
 ```
 
 ---
@@ -218,6 +221,52 @@ Plus:
 4. **The next step** — What follows, and why it's valuable to take it
 
 **Note:** The end screen of one sub-result and the start screen of the next *could* be combined, but to reduce cognitive overload, it's better to separate them.
+
+### Intermediate Screen Communication (NEW)
+
+On every intermediate screen (after any modular result is achieved), communicate **three dimensions** to the user:
+
+| Dimension | Question | Purpose |
+|-----------|----------|---------|
+| 🫀 **HEART** | "What just happened?" | Core essence of the result |
+| 🧠 **MIND** | "What does this mean for you?" | Significance, value for user |
+| 🔥 **GUT** | "What's the next step?" | Implication, what to do now |
+
+**Template for intermediate screens:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│  ✓ [HEART: What just happened]                     │
+│                                                     │
+│  [MIND: What this means for you]                   │
+│                                                     │
+│           [ GUT: Next Step Button ]                │
+└─────────────────────────────────────────────────────┘
+```
+
+**Example:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│  ✓ Your Ideal Client profile is ready              │
+│                                                     │
+│  Now you know exactly who needs your gift most.    │
+│                                                     │
+│       [ Crystallize Your Promise → ]               │
+└─────────────────────────────────────────────────────┘
+```
+
+**Under the hood:** Use this prompt to generate screen communication:
+
+```
+For the result "[MODULAR RESULT]", provide:
+
+1. ESSENCE / HEART: What this essentially is (the core, first principle)
+2. SIGNIFICANCE / MIND: What it truly means for the user
+3. IMPLICATIONS / GUT: What's the key next step or consequence
+```
+
+This ensures every intermediate screen maintains user clarity and momentum.
 
 ### Sub-Screens (Information Chunking)
 
