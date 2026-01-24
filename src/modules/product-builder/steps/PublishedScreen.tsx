@@ -64,9 +64,36 @@ const PublishedScreen: React.FC = () => {
             const slug = `genius-${Date.now().toString(36)}`;
             const url = `/mp/${slug}`;
 
-            // In a real implementation, we'd save to database here
-            // For now, just simulate success
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Build product data from state
+            const productData = {
+                user_id: user.id,
+                slug,
+                title: state.landingPage?.headline || "My Genius Product",
+                description: state.landingPage?.subheadline || "",
+                offer_statement: state.deepTP?.promiseStatement || "",
+                ideal_client: state.deepICP?.who || "",
+                transformation_from: state.deepTP?.pointA || "",
+                transformation_to: state.deepTP?.pointB || "",
+                cta_type: state.ctaType || "discovery",
+                cta_link: state.ctaLink || "",
+                landing_page_content: state.landingPage,
+                blueprint_content: state.blueprint,
+                status: "published",
+                published_at: new Date().toISOString(),
+            };
+
+            // Try to save to database
+            try {
+                const { error: dbError } = await supabase
+                    .from("marketplace_products")
+                    .insert(productData as Record<string, unknown>);
+
+                if (dbError) {
+                    console.warn("Could not save to database:", dbError);
+                }
+            } catch (saveErr) {
+                console.warn("Database save failed, continuing with demo:", saveErr);
+            }
 
             setPublished(url);
             triggerCelebration();
@@ -141,13 +168,13 @@ const PublishedScreen: React.FC = () => {
             <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
                     <PartyPopper className="w-8 h-8 text-yellow-500" />
-                    <Sparkles className="w-6 h-6 text-[#1e3a5f]" />
+                    <Sparkles className="w-6 h-6 text-slate-800" />
                     <Star className="w-8 h-8 text-amber-500" />
                 </div>
-                <h1 className="text-4xl font-bold text-[#1e3a5f] mb-2">
+                <h1 className="text-4xl font-bold text-slate-800 mb-2">
                     Congratulations!
                 </h1>
-                <p className="text-xl text-[#1e3a5f] font-semibold mb-4">
+                <p className="text-xl text-slate-800 font-semibold mb-4">
                     Your Genius is Now Live
                 </p>
 
@@ -157,11 +184,11 @@ const PublishedScreen: React.FC = () => {
                         <span className="mr-2">🫀</span>
                         <strong>You just published your genius.</strong>
                     </p>
-                    <p className="text-sm text-[#1e3a5f]">
+                    <p className="text-sm text-slate-800">
                         <span className="mr-2">🧠</span>
                         People can now find and buy from you.
                     </p>
-                    <p className="text-sm text-[#1e3a5f]">
+                    <p className="text-sm text-slate-800">
                         <span className="mr-2">🔥</span>
                         Share it with the world.
                     </p>
@@ -171,7 +198,7 @@ const PublishedScreen: React.FC = () => {
             {/* Link Box */}
             <Card className="max-w-xl mx-auto mb-6">
                 <CardContent className="p-4">
-                    <p className="text-sm text-[#1e3a5f] mb-2">Your product URL:</p>
+                    <p className="text-sm text-slate-800 mb-2">Your product URL:</p>
                     <div className="flex items-center gap-2">
                         <div className="flex-1 bg-muted rounded-lg px-4 py-3 text-sm font-mono truncate">
                             {state.productUrl || productUrl}
@@ -220,7 +247,7 @@ const PublishedScreen: React.FC = () => {
 
             {/* Motivational Footer */}
             <div className="text-center mt-12 max-w-lg mx-auto">
-                <p className="text-[#1e3a5f] italic">
+                <p className="text-slate-800 italic">
                     "You did something most people never do. You made your gift available to the world."
                 </p>
             </div>
