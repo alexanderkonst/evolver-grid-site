@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Rocket, Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
+import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
 import ProductBuilderLoading from "../ProductBuilderLoading";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
+import type { Json } from "@/integrations/supabase/types";
 
 const PublishedScreen: React.FC = () => {
     const navigate = useNavigate();
@@ -64,21 +65,15 @@ const PublishedScreen: React.FC = () => {
             const slug = `genius-${Date.now().toString(36)}`;
             const url = `/mp/${slug}`;
 
-            // Build product data from state
+            // Build product data from state (matching marketplace_products schema)
             const productData = {
                 user_id: user.id,
                 slug,
-                title: state.landingPage?.headline || "My Genius Product",
-                description: state.landingPage?.subheadline || "",
-                offer_statement: state.deepTP?.promiseStatement || "",
-                ideal_client: state.deepICP?.who || "",
-                transformation_from: state.deepTP?.pointA || "",
-                transformation_to: state.deepTP?.pointB || "",
-                cta_type: state.ctaType || "discovery",
-                cta_link: state.ctaLink || "",
-                landing_page_content: state.landingPage,
-                blueprint_content: state.blueprint,
-                status: "published",
+                title: state.landingContent?.headline || "My Genius Product",
+                landing_html: JSON.stringify(state.landingContent),
+                blueprint_content: state.blueprintContent ? JSON.parse(JSON.stringify(state.blueprintContent)) : null,
+                cta_config: state.ctaConfig ? JSON.parse(JSON.stringify(state.ctaConfig)) : null,
+                is_live: true,
                 published_at: new Date().toISOString(),
             };
 
@@ -86,7 +81,7 @@ const PublishedScreen: React.FC = () => {
             try {
                 const { error: dbError } = await supabase
                     .from("marketplace_products")
-                    .insert(productData as Record<string, unknown>);
+                    .insert(productData);
 
                 if (dbError) {
                     console.warn("Could not save to database:", dbError);
