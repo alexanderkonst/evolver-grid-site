@@ -109,6 +109,7 @@ import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
+import Transcriber from "./pages/Transcriber";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-slate-900">
@@ -278,6 +279,8 @@ const App = () => (
                     <Route index element={<ArtGallery />} />
                     <Route path=":category" element={<ArtPortfolio />} />
                   </Route>
+                  {/* Tools */}
+                  <Route path="/transcriber" element={<Transcriber />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
