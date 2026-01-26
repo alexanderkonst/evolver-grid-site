@@ -9,8 +9,51 @@
 
 ## Contents
 - [The Day](#the-day)
-- [The Week](#the-week) ← TO ADD (from transcript)
+- [The Week](#the-week)
 - [Bali Container (February)](#bali-container)
+
+---
+
+## The Week — Planetary Energy Cycle
+
+> *"There is a cycle of seven planets... trusting that the way this system has been designed by so many ancient civilizations."*
+
+### The Seven-Day Cycle
+
+Each day of the week carries the energy of a planet. This is encoded in the names across languages (French, Spanish, English) and was recognized by most developed ancient civilizations.
+
+| Day | Planet | Energy | Focus |
+|-----|--------|--------|-------|
+| **Monday** | Moon 🌙 | Imagination | Visioning, creativity, planting seeds, orienting |
+| **Tuesday** | Mars ♂️ | Action | Decisive action, getting things done, executing intentions |
+| **Wednesday** | Mercury ☿ | Communication | Synthesis, articulation, calls, clarity, writing |
+| **Thursday** | Jupiter ♃ | Expansion | Reaping rewards, reciprocity, abundance, receiving |
+| **Friday** | Venus ♀️ | Celebration | Sensuality, pleasure, joy, loving celebration |
+| **Saturday** | Saturn ♄ | Structure | Housekeeping, reflection, discipline, integration |
+| **Sunday** | Sun ☀️ | Renewal | Holy day, gratitude, connection with higher self, completion |
+
+### How to Use This
+
+**It's not about forcing.** It's about noticing:
+- Is it true that on Tuesdays you're inclined to get things done?
+- Is it true that on Wednesdays you communicate important things?
+- Is it true that on Mondays you just want to orient yourself?
+
+**Surf the wave.** The energy is already there. Align with it instead of fighting it.
+
+### Common Pitfalls
+
+- Acting too much on Monday → Burnout before Tuesday
+- Skipping Sunday reflection → Missing the completion of the cycle
+- Not celebrating on Friday → Depleting without replenishing
+
+### The Cycle Pattern
+
+```
+Monday (Seeds) → Tuesday (Action) → Wednesday (Synthesis) 
+                        ↓
+Sunday (Gratitude) ← Saturday (Order) ← Friday (Celebrate) ← Thursday (Receive)
+```
 
 ---
 
