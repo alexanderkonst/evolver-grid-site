@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, Copy, Check, Youtube, Sparkles } from "lucide-react";
+import { Loader2, Copy, Check, Youtube, Sparkles, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 /**
@@ -23,6 +23,7 @@ const Transcriber = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [showManualInput, setShowManualInput] = useState(false);
   const { toast } = useToast();
 
   // Extract video ID from various YouTube URL formats
@@ -33,7 +34,7 @@ const Transcriber = () => {
       /(?:youtube\.com\/embed\/)([^?]+)/,
       /(?:youtube\.com\/v\/)([^?]+)/,
     ];
-    
+
     for (const pattern of patterns) {
       const match = url.match(pattern);
       if (match) return match[1];
@@ -43,7 +44,7 @@ const Transcriber = () => {
 
   const handleGetTranscript = async () => {
     const videoId = extractVideoId(url);
-    
+
     if (!videoId) {
       setError("Please enter a valid YouTube URL");
       return;
@@ -52,67 +53,32 @@ const Transcriber = () => {
     setIsLoading(true);
     setError(null);
     setTranscript("");
+    setShowManualInput(false); // Reset manual input visibility
 
     try {
-      // Use a free YouTube transcript API
-      // Option 1: youtubetranscript.com (free, no auth)
+      // Try tactiq.io API (CORS-friendly, free)
       const response = await fetch(
-        `https://yt.lemnoslife.com/noKey/captions?part=snippet&videoId=${videoId}`
+        `https://tactiq-apps-prod.tactiq.io/transcript?videoId=${videoId}&langCode=en`
       );
-      
-      if (!response.ok) {
-        throw new Error("Could not fetch captions info");
-      }
 
-      const data = await response.json();
-      
-      if (!data.items || data.items.length === 0) {
-        throw new Error("No captions available for this video");
-      }
-
-      // Get the first available caption track (usually auto-generated or manual)
-      const captionTrack = data.items[0];
-      const captionUrl = captionTrack?.snippet?.trackKind === 'asr' 
-        ? `https://yt.lemnoslife.com/noKey/captions/${captionTrack.id}`
-        : `https://yt.lemnoslife.com/noKey/captions/${captionTrack.id}`;
-      
-      // Fetch the actual transcript
-      const transcriptResponse = await fetch(captionUrl);
-      
-      if (!transcriptResponse.ok) {
-        // Fallback: Try alternative API
-        const altResponse = await fetch(
-          `https://api.kome.ai/api/tools/youtube-transcripts?video_id=${videoId}`
-        );
-        
-        if (altResponse.ok) {
-          const altData = await altResponse.json();
-          if (altData.transcript) {
-            setTranscript(altData.transcript);
-            return;
-          }
+      if (response.ok) {
+        const data = await response.json();
+        if (data.captions && data.captions.length > 0) {
+          const text = data.captions.map((c: any) => c.text).join(" ");
+          setTranscript(text);
+          toast({ title: "Success!", description: `Transcript ready (${text.split(" ").length} words)` });
+          return;
         }
-        throw new Error("Could not fetch transcript");
       }
 
-      const transcriptData = await transcriptResponse.json();
-      
-      // Format the transcript
-      if (transcriptData.events) {
-        const text = transcriptData.events
-          .filter((e: any) => e.segs)
-          .map((e: any) => e.segs.map((s: any) => s.utf8).join(''))
-          .join(' ')
-          .replace(/\s+/g, ' ')
-          .trim();
-        setTranscript(text);
-      } else {
-        throw new Error("No transcript data found");
-      }
+      // If first API fails, show manual input option
+      setShowManualInput(true);
+      setError("Automatic transcript not available. You can paste the transcript manually below, or use YouTube's built-in transcript feature (click ⋮ → Show transcript on the video).");
 
     } catch (err: any) {
       console.error("Transcript error:", err);
-      setError(err.message || "Failed to get transcript. The video might not have captions available.");
+      setShowManualInput(true);
+      setError("Could not fetch transcript automatically. You can paste it manually below.");
     } finally {
       setIsLoading(false);
     }
@@ -142,7 +108,7 @@ const Transcriber = () => {
               Paste any YouTube URL → Get the transcript instantly
             </CardDescription>
           </CardHeader>
-          
+
           <CardContent className="space-y-4">
             {/* URL Input */}
             <div className="flex gap-2">
@@ -153,9 +119,9 @@ const Transcriber = () => {
                 className="flex-1 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                 onKeyDown={(e) => e.key === 'Enter' && handleGetTranscript()}
               />
-              
+
               {/* MAGIC BUTTON */}
-              <Button 
+              <Button
                 onClick={handleGetTranscript}
                 disabled={isLoading || !url.trim()}
                 className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold"
@@ -186,13 +152,37 @@ const Transcriber = () => {
               </div>
             )}
 
+            {/* MANUAL INPUT FALLBACK */}
+            {showManualInput && !transcript && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-amber-400">
+                  <AlertCircle className="w-4 h-4" />
+                  <span className="text-sm font-medium">Paste transcript manually</span>
+                </div>
+                <Textarea
+                  placeholder="Paste the transcript here..."
+                  value={transcript}
+                  onChange={(e) => setTranscript(e.target.value)}
+                  className="min-h-[200px] bg-slate-700 border-slate-600 text-slate-200"
+                />
+                {transcript && (
+                  <Button
+                    onClick={() => toast({ title: "Transcript saved!", description: `${transcript.split(" ").length} words` })}
+                    className="w-full bg-green-600 hover:bg-green-700"
+                  >
+                    <Check className="w-4 h-4 mr-2" /> Confirm Transcript
+                  </Button>
+                )}
+              </div>
+            )}
+
             {/* LAST SCREEN: Transcript Result */}
             {transcript && !isLoading && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white font-medium">Transcript</h3>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     onClick={handleCopy}
                     className="border-slate-600 text-slate-300 hover:text-white"
@@ -204,13 +194,13 @@ const Transcriber = () => {
                     )}
                   </Button>
                 </div>
-                
+
                 <Textarea
                   value={transcript}
                   readOnly
                   className="min-h-[300px] bg-slate-700 border-slate-600 text-slate-200 font-mono text-sm"
                 />
-                
+
                 <p className="text-xs text-slate-500 text-center">
                   {transcript.split(' ').length} words
                 </p>
