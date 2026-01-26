@@ -170,7 +170,67 @@ Synthesizing all three perspectives:
 
 ---
 
-## Part IV: Evolver Through This Lens
+## Part IV: The 7 Energetic Centers — Full Journey From Vision to Distribution
+
+Marketing and distribution are not separate — they are **different phases of one continuous flow** from creation to reception.
+
+Like the 7 energetic centers (chakras) in the body, value moves from inspiration to manifestation:
+
+### The Full Descent of Value
+
+| Center | Energy | Phase | What Happens |
+|--------|--------|-------|--------------|
+| **7. Crown** | Divine Inspiration | Vision | Product is divinely inspired, comes through as idea |
+| **6. Third Eye** | Abstract Vision | Concept | It's seen abstractly, the pattern is perceived |
+| **5. Throat** | Expression | Communication | It's articulated, given voice, named |
+| **4. Heart** | Resonance | **Marketing** | Values meet values, hearts resonate, connection forms |
+| **3. Solar Plexus** | Will | Launch | It's pushed into the world, launched, made public |
+| **2. Sacral** | Felt Sense | Packaging | It becomes sensual — touchable, feelable, experiential |
+| **1. Root** | Physical | **Distribution** | It lands in 3D — websites, products, guerrilla tactics |
+
+### The Insight
+
+**Heart = Marketing**
+- This is where resonance happens
+- Where core values strike a chord
+- Where hearts find each other
+- Abstract but felt
+
+**Gut/Root = Distribution**
+- This is the actual implementation
+- The sales, the physical channels
+- Where people see with their eyes
+- Where attention lands
+
+### Why This Matters
+
+If you skip centers, value doesn't fully manifest:
+
+| If You Skip... | Result |
+|----------------|--------|
+| Crown → Vision | No genuine inspiration, feels hollow |
+| Third Eye → Concept | Can't be articulated, stays vague |
+| Throat → Expression | No name, no form, can't be shared |
+| Heart → Marketing | No resonance, just noise |
+| Solar Plexus → Launch | Stays private, never reaches anyone |
+| Sacral → Packaging | Abstract, can't be experienced |
+| Root → Distribution | No physical channel, can't be found |
+
+### For Evolver
+
+```
+Crown     : "Help people find their genius" (divine download)
+Third Eye : The Zone of Genius framework (abstract pattern)
+Throat    : Appleseed, Excalibur, ZoG language (named)
+Heart     : "For people who know they're meant for more" (resonance)
+Solar     : Launch to pilot users (pushed out)
+Sacral    : The assessment experience, the reveal moment (felt)
+Root      : Landing page, QR codes, coworking guerrilla (physical)
+```
+
+---
+
+## Part V: Evolver Through This Lens
 
 ### Our Authentic Truth
 
@@ -202,7 +262,7 @@ We DO say:
 
 ---
 
-## Part V: Distribution — Moving Value to Recipients
+## Part VI: Distribution — Moving Value to Recipients
 
 Marketing creates resonance. Distribution delivers the value.
 
@@ -230,7 +290,7 @@ Marketing creates resonance. Distribution delivers the value.
 
 ---
 
-## Part VI: Next Actions
+## Part VII: Next Actions
 
 1. [ ] Apply one-liner to landing page
 2. [ ] Create QR code for Wednesday guerrilla
