@@ -782,3 +782,94 @@ Human Vision + AI Speed + Pre-planned Design = AI-Assisted Development
 ---
 
 *Hackathon Day 1 — Building the Genius Venture Studio Product Builder*
+
+---
+
+# Post-Hackathon Day — Saturday, January 25, 2026
+
+> Day 22 of Network School Sprint
+> Evening work session (~2 hours)
+
+## Session Focus: Bug Fixes & UX Polish
+
+After the hackathon presentation, continued with critical fixes and polish.
+
+---
+
+## Fixes Completed
+
+### 1. Login Redirect Bug ✅
+- **Problem:** Logged-in users saw onboarding with placeholder data instead of being redirected to profile
+- **Root Cause:** `loadSavedData()` returned Excalibur from database but fields were empty/incomplete
+- **Solution:** Added `hasValidExcaliburData()` validation function in `ZoneOfGeniusEntry.tsx`
+  - If data is complete → redirect to `/game/profile`
+  - If data is incomplete → show generation flow
+
+### 2. Settings Page Crash ✅
+- **Problem:** React error #300 (invalid element type) on `/game/settings`
+- **Root Cause:** `GameShellV2` wrapper causing issues
+- **Solution:** Replaced GameShellV2 with simple div container in `Settings.tsx`
+
+### 3. Product Builder Promise Fallback ✅
+- **Problem:** Promise placeholder "The transformation you create" shown instead of actual data
+- **Solution:** Added smart fallback in `DeepTPScreen.tsx` that generates promise from ICP and Pain data
+
+---
+
+## Navigation Restructure
+
+### Renamed Spaces
+| Before | After |
+|--------|-------|
+| Teams | **Discover** |
+| Co-op | **Business Incubator** |
+
+### Product Builder Moved
+- **Before:** Separate navigation space
+- **After:** Section within Business Incubator
+
+### Files Updated
+1. `SpacesRail.tsx` — Nav items renamed, Product Builder removed as separate space
+2. `SectionsPanel.tsx` — Labels updated, Product Builder added to Business Incubator sections
+3. `GameShell.tsx` — Unlock hints updated
+4. `pageTitles.ts` — Page titles updated
+5. `CoopSpace.tsx` — Header and description updated
+
+---
+
+## Session Persistence
+
+### Issue Reported
+User login not persisting across browser sessions.
+
+### Client-Side Fix Applied
+Added to `src/integrations/supabase/client.ts`:
+```typescript
+auth: {
+  storage: localStorage,
+  storageKey: 'evolver-auth-token',
+  persistSession: true,
+  autoRefreshToken: true,
+  detectSessionInUrl: true,
+}
+```
+
+### Server-Side Configuration Needed
+For 90-day sessions, Supabase Dashboard requires:
+- Authentication → Settings → JWT Configuration
+- Set JWT expiry to `7776000` seconds (90 days)
+
+---
+
+## Build Status
+
+✅ All changes compiled successfully
+✅ Deployed to Lovable
+
+---
+
+## Sunday, January 26
+
+*Day off — Recovery after hackathon*
+
+---
