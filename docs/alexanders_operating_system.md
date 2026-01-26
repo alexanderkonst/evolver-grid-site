@@ -100,6 +100,53 @@ If the day is chaotic → everything leaks.
 
 **Rule:** No meetings, no calls, no interruptions. Phone on airplane mode.
 
+---
+
+## Deep Work Principles — The Sacred Container
+
+> *"One distraction = a drop of tar in a barrel of honey. It ruins everything."*
+
+### The Non-Negotiables
+
+1. **Zero Distractions**
+   - If there's ANY distraction, it's NOT deep work
+   - Phone: airplane mode or in another room
+   - Browser: only tabs for current task
+   - Notifications: ALL OFF
+   
+2. **Task Formulation First**
+   - Before starting: define the ONE THING
+   - Write it down explicitly
+   - "For this sprint, I am completing: _______"
+   - If you can't write it, you're not ready
+
+3. **The Container is Sacred**
+   - Ceremony helps: candles, minerals, music
+   - Physical space matters
+   - Energy alignment (altar, intention)
+
+### Integration = No Screens
+
+> *"During integration breaks, you are the 5th element moving among the 4 elements."*
+
+**What integration looks like:**
+- Walking (movement)
+- Nature (earth, water, air, fire/sun)
+- NO screens
+- NO problem-solving
+- NO inputs
+- Just being and moving
+
+**What integration is NOT:**
+- Checking phone "quickly"
+- Social media scroll
+- Reading articles
+- YouTube videos
+
+**The subconscious does the work during integration. Let it.**
+
+---
+
 ### Midday: INTEGRATION (12:00 - 14:00)
 
 | Activity | Duration | Purpose |
