@@ -288,6 +288,17 @@ Marketing creates resonance. Distribution delivers the value.
 **The resonance:** Attracts self-improvement focused people
 **The progression:** Playlist → Curiosity → Platform
 
+### Guerrilla Tactics — Physical Presence
+
+| Tactic | Execution | ROI |
+|--------|-----------|-----|
+| **Coworking days** | Work in different coworkings, show QR codes | Work + clients same day |
+| **Laptop stickers** | QR stickers on laptop visible to others | Passive attention |
+| **Street QR placement** | Physical QR in spaces matching ICP | Low cost, high curiosity |
+| **iPad display** | Tablet showing signup/playlist at table | Professional, no print needed |
+
+**Key insight:** One coworking day = work done + multiple new clients. Compound effect.
+
 ---
 
 ## Part VII: Next Actions
