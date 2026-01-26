@@ -53,25 +53,73 @@ const Transcriber = () => {
     setIsLoading(true);
     setError(null);
     setTranscript("");
-    setShowManualInput(false); // Reset manual input visibility
+    setShowManualInput(false);
 
     try {
-      // Try tactiq.io API (CORS-friendly, free)
-      const response = await fetch(
-        `https://tactiq-apps-prod.tactiq.io/transcript?videoId=${videoId}&langCode=en`
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.captions && data.captions.length > 0) {
-          const text = data.captions.map((c: any) => c.text).join(" ");
-          setTranscript(text);
-          toast({ title: "Success!", description: `Transcript ready (${text.split(" ").length} words)` });
-          return;
+      // API 1: Try kome.ai (CORS-friendly)
+      try {
+        const komeResponse = await fetch(
+          `https://api.kome.ai/api/tools/youtube-transcripts?video_id=${videoId}`,
+          { headers: { "Accept": "application/json" } }
+        );
+        if (komeResponse.ok) {
+          const komeData = await komeResponse.json();
+          if (komeData.transcript) {
+            setTranscript(komeData.transcript);
+            toast({ title: "Success!", description: `Transcript ready (${komeData.transcript.split(" ").length} words)` });
+            return;
+          }
         }
+      } catch (e) {
+        console.log("kome.ai failed, trying next...");
       }
 
-      // If first API fails, show manual input option
+      // API 2: Try tactiq.io
+      try {
+        const tactiqResponse = await fetch(
+          `https://tactiq-apps-prod.tactiq.io/transcript?videoId=${videoId}&langCode=en`
+        );
+        if (tactiqResponse.ok) {
+          const tactiqData = await tactiqResponse.json();
+          if (tactiqData.captions && tactiqData.captions.length > 0) {
+            const text = tactiqData.captions.map((c: any) => c.text).join(" ");
+            setTranscript(text);
+            toast({ title: "Success!", description: `Transcript ready (${text.split(" ").length} words)` });
+            return;
+          }
+        }
+      } catch (e) {
+        console.log("tactiq.io failed, trying next...");
+      }
+
+      // API 3: Try youtubetranscript.com
+      try {
+        const ytResponse = await fetch(
+          `https://youtubetranscript.com/?server_vid2=${videoId}`
+        );
+        if (ytResponse.ok) {
+          const ytText = await ytResponse.text();
+          // Parse XML response
+          const textMatches = ytText.match(/<text[^>]*>([^<]*)<\/text>/g);
+          if (textMatches && textMatches.length > 0) {
+            const transcript = textMatches
+              .map(t => t.replace(/<[^>]+>/g, ''))
+              .join(' ')
+              .replace(/&amp;/g, '&')
+              .replace(/&lt;/g, '<')
+              .replace(/&gt;/g, '>')
+              .replace(/&#39;/g, "'")
+              .replace(/&quot;/g, '"');
+            setTranscript(transcript);
+            toast({ title: "Success!", description: `Transcript ready (${transcript.split(" ").length} words)` });
+            return;
+          }
+        }
+      } catch (e) {
+        console.log("youtubetranscript.com failed");
+      }
+
+      // All APIs failed - show manual input
       setShowManualInput(true);
       setError("Automatic transcript not available. You can paste the transcript manually below, or use YouTube's built-in transcript feature (click ⋮ → Show transcript on the video).");
 
