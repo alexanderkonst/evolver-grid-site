@@ -225,5 +225,135 @@ Use values-based marketing (Steve Jobs principle), not feature-speak.
 
 ---
 
+## Recursive Application — The Meta-Meta Insight
+
+### What If We Run This On The Product Playbook Itself?
+
+Apply Marketing Meta-Playbook → Product Playbook = **Marketing for the product-making tool**
+
+```
+Product Playbook (creates products)
+        ↓
+Marketing Meta-Playbook applied to it
+        ↓
+Product Playbook becomes a marketable product
+        ↓
+Others use it to productize THEIR missions
+```
+
+### Through Three Dan Tians:
+
+**🫀 ESSENCE:** The scaffold becomes the structure. The Product Playbook is itself a product that can be marketed and distributed.
+
+**🧠 SIGNIFICANCE:** You're not just building products — you're building **product-making infrastructure** that others use to manifest their missions.
+
+**🔥 IMPLICATIONS:**
+- Product Playbook can be sold/distributed standalone
+- Each person's Zone of Genius can be productized through it
+- The playbook is a manifestation of YOUR mission
+- Creates infinite leverage: one playbook → infinite products
+
+---
+
+## Holonic Landing Page Architecture
+
+Each module gets its own landing page. People find THEIR module, not the whole system.
+
+```
+Platform (Evolver)
+├── ZoG Module → ZoG Landing Page → ZoG-aligned people
+├── USP Module → USP Landing Page → USP-aligned people
+├── Excalibur Module → Excalibur Landing Page → Excalibur-aligned people
+└── [Any Module] → [Module Landing Page] → [Mission-aligned people]
+```
+
+### Why This Works:
+
+| Traditional | Holonic |
+|-------------|---------|
+| One landing page for all | Each module has its own |
+| Attract everyone → filter | Attract precisely → resonate |
+| Explain the whole system | Show the specific piece |
+| Overwhelming | Focused |
+
+---
+
+## Mission → Module → Integrative Working Group
+
+> **Naming note:** Current file names may seem reversed. Logically: First Principles = Meta. Step-by-step Template = Playbook. We keep current names for continuity but clarify here.
+
+**Every mission can be productized.** Every product is a manifestation of a mission.
+
+### The Flow:
+
+```
+Your Mission
+    ↓
+Product Playbook
+    ↓
+Integrating Product (productized mission)
+    ↓
+Marketing Playbook (template)
+    ↓
+Landing Page for Module
+    ↓
+Attracts mission-aligned people
+    ↓
+Integrative working group forms
+```
+
+### What You Offer Working Group Members:
+
+| Offering | Description |
+|----------|-------------|
+| **First draft** | Working module to build upon |
+| **Connections** | Introductions to others with same mission |
+| **Inflow** | New people discovering the module |
+| **Leadership path** | Opportunity to lead this direction |
+| **Synergy discovery** | Finding where missions overlap |
+| **Self-org playbook** | Decentralized coordination method (via allies like Alexander Keenan) |
+
+### Usage Tiers:
+
+1. **Personal use** — Free, just use it
+2. **Build on top** — Fork it, customize for your needs
+3. **Commercialize** — Agreement required, terms negotiated
+4. **Distribute** — Same license, attribution required
+
+---
+
+## The Complete Stack
+
+```
+L1: Zone of Genius discovered
+L2: ZoG → productized via Product Playbook
+L3: Integral Product → marketed via Meta-Playbook  
+L4: Marketing → creates landing page
+L5: Landing → attracts mission-aligned people
+L6: People → form integrative working group
+L7: Working group → evolves the integral product
+L8: Evolution → new cycle begins
+```
+
+This is **self-organizing infrastructure for mission manifestation**.
+
+---
+
+## Clarification: Playbook vs Meta-Playbook
+
+| | Marketing Playbook | Marketing Meta-Playbook |
+|--|-------------------|------------------------|
+| **What** | Principles + first principles | Step-by-step template |
+| **Content** | Theory (Steve Jobs, resonance, holons) | Fill-in prompts, structured output |
+| **AI use** | Synthesize, then create | Follow steps directly |
+| **Output** | Understanding + custom approach | Concrete strategy immediately |
+
+**Marketing Playbook** = Philosophy of marketing
+**Marketing Meta-Playbook** = Recipe card for execution
+
+---
+
 *Created: January 26, 2026*
 *Framework: Marketing as Product — Meta-Playbook*
+*Extended: Recursive Application, Holonic Architecture, Guild Formation*
+
