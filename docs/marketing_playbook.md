@@ -98,21 +98,28 @@ Marketing and distribution are **different phases of one continuous flow**:
 ## Master Result
 
 > **From:** Трансформационное обещание есть, но непонятно как продавать
-> **To:** Полная готовность к продаже: ЧТО говорить, КОМУ, В КАКОЙ ФОРМЕ, ЗА СКОЛЬКО, и КУПИТЬ = одна кнопка
+> **To:** ICP видит оффер → **сразу достаёт кошелёк и платит** (или сразу начинает использовать, если free)
 
 **Point A (Before Marketing):**
 - Transformational Promise exists
 - No clear message
 - No packaging
 - No price
-- Purchase = complex journey
+- ICP sees offer → confused, hesitates, leaves
 
 **Point B (After Marketing):**
 - Core Belief articulated (resonance filter)
 - Packaging defined (desirable form)
-- Purchase = ONE CLICK ready
+- Frictionless Purchase ready (one-click)
 - All objections answered
-- Ready for Distribution
+- **ICP sees offer → immediately acts**
+
+---
+
+> **⚠️ ITERATION PRINCIPLE:**
+> При каждом улучшении Master Result — необходимо заново пройти весь цикл:
+> Master Result → Sub-Results → Screens → Components.
+> Улучшение начальной точки каскадно улучшает всё остальное.
 
 ---
 
