@@ -66,19 +66,25 @@ const ZoneOfGeniusEntry = () => {
     // Load saved data on mount
     useEffect(() => {
         const loadExisting = async () => {
+            // When in onboarding flow (/start), always start fresh from "choice"
+            // Don't auto-restore saved data or redirect
+            const isInOnboarding = returnPath === "/start" || returnPath.includes("/start");
+            if (isInOnboarding) {
+                // User is doing fresh onboarding, start from choice screen
+                return;
+            }
+
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
 
-            // If user has complete Excalibur data AND is NOT in onboarding flow, redirect to profile
-            // When in onboarding (returnPath=/start), let them go through the flow again
-            const isInOnboarding = returnPath === "/start" || returnPath.includes("/start");
-            if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && !isInOnboarding) {
+            // If user has complete Excalibur data, redirect to profile
+            if (savedExcalibur && hasValidExcaliburData(savedExcalibur)) {
                 navigate("/game/profile");
                 return;
             }
 
             if (savedAppleseed) {
                 setAppleseed(savedAppleseed);
-                if (savedExcalibur && !isInOnboarding) {
+                if (savedExcalibur) {
                     setExcalibur(savedExcalibur);
                     setStep("excalibur-result");
                 } else {
