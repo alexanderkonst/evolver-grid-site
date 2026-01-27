@@ -187,38 +187,41 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
 
   // Steps 2 and 3: AI choice and ZoG completion (keep card layout for now)
   return (
-    <div className="min-h-dvh bg-white flex items-center justify-center">
+    <div className="min-h-dvh bg-gradient-to-b from-white to-[var(--wabi-pearl)] flex items-center justify-center">
       <div className="min-h-[70vh] px-4 py-16 w-full">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase  text-slate-500">Onboarding</p>
-              <h1 className="text-2xl font-bold text-slate-900 mt-2">{current.title}</h1>
-              <p className="text-slate-600 mt-3">{current.description}</p>
-            </div>
-            <Button variant="ghost" size="sm" onClick={handleSkip} disabled={saving}>
+          {/* Header with skip button */}
+          <div className="flex justify-end mb-4">
+            <Button variant="ghost" size="sm" onClick={handleSkip} disabled={saving} className="text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-secondary)]">
               Skip
             </Button>
           </div>
 
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100">
-              <CurrentIcon className="h-6 w-6 text-amber-600" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center justify-between text-xs text-slate-500">
-                <ProgressIndicator current={step + 1} total={steps.length} className="text-slate-500" />
-                <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
+          {/* Centered content */}
+          <div className="text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--wabi-lavender)] to-[var(--depth-violet)]">
+                <CurrentIcon className="h-7 w-7 text-white" />
               </div>
-              <OnboardingProgress
-                current={step + 1}
-                total={steps.length}
-                className="mt-2 mb-0 max-w-full"
-                labelClassName="sr-only"
-                trackClassName="bg-slate-100"
-                barClassName="from-amber-400 to-amber-500"
-              />
             </div>
+            <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)]">{current.title}</h1>
+            <p className="text-[var(--wabi-text-secondary)]">{current.description}</p>
+          </div>
+
+          {/* Progress */}
+          <div className="mt-8">
+            <div className="flex items-center justify-between text-xs text-[var(--wabi-text-muted)] mb-2">
+              <ProgressIndicator current={step + 1} total={steps.length} className="text-[var(--wabi-text-muted)]" />
+              <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
+            </div>
+            <OnboardingProgress
+              current={step + 1}
+              total={steps.length}
+              className="mb-0 max-w-full"
+              labelClassName="sr-only"
+              trackClassName="bg-[var(--wabi-pearl)]"
+              barClassName="from-[var(--depth-violet)] to-[var(--depth-cornflower)]"
+            />
           </div>
 
           {step === 1 && (
@@ -231,23 +234,23 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
           )}
 
           {step === 2 && (
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-3">
               <Button
-                className="w-full"
+                className="w-full bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 size="lg"
                 onClick={() => handleStartZog("ai")}
                 disabled={saving}
               >
-                Yes
+                Yes, my AI knows me
               </Button>
               <Button
-                className="w-full"
+                className="w-full border-2 border-[var(--depth-violet)] text-[var(--depth-violet)] hover:bg-[var(--wabi-lavender)] hover:scale-[1.02] active:scale-[0.98] transition-all"
                 variant="outline"
                 size="lg"
                 onClick={() => handleStartZog("manual")}
                 disabled={saving}
               >
-                No
+                No, I'll do the assessment
               </Button>
             </div>
           )}
