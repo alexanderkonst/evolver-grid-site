@@ -3,6 +3,8 @@
 
 > *"Pain is not just discomfort. Pain is pressure, consequences, stakes, and stages of awareness."*
 
+> 📚 **Foundation:** [Integral Transactional Field Theory](./integral_transactional_field_theory.md) — Pain as one of three conditions for transaction collapse
+
 ---
 
 ## Core Artifacts (Terminology)

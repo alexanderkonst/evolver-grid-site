@@ -3,6 +3,8 @@
 
 > *"Marketing is about values."* — Steve Jobs
 
+> 📚 **Foundation:** [Integral Transactional Field Theory](./integral_transactional_field_theory.md)
+
 ---
 
 # Part I: Philosophy — What Marketing IS
@@ -77,15 +79,15 @@ Clear Values → Right Resonance → Right People → Right Feedback → Better 
 
 Marketing and distribution are **different phases of one continuous flow**:
 
-| Center | Phase | What Happens |
-|--------|-------|--------------|
-| **Crown** | Vision | Product is divinely inspired |
-| **Third Eye** | Concept | Pattern is perceived |
-| **Throat** | Expression | Articulated, named |
-| **Heart** | **Marketing** | Values meet values, resonance |
-| **Solar Plexus** | Launch | Pushed into the world |
-| **Sacral** | Packaging | Touchable, experiential |
-| **Root** | **Distribution** | Physical channels, 3D landing |
+| Center | Phase | What Happens | Key Question |
+|--------|-------|--------------|---------------|
+| **Crown** | Vision | Product is divinely inspired | *What divine download sparked this?* |
+| **Third Eye** | Concept | Pattern is perceived | *What pattern does this follow?* |
+| **Throat** | Expression | Articulated, named | *What is this called? How do we describe it?* |
+| **Heart** | **Marketing** | Values meet values | *What values do we share with our people?* |
+| **Solar Plexus** | Launch | Pushed into world | *Are we ready to be visible?* |
+| **Sacral** | Packaging | Touchable, experiential | *How does it FEEL to use this?* |
+| **Root** | **Distribution** | Physical channels | *Where do they physically find us?* |
 
 ---
 
@@ -170,20 +172,25 @@ L4 - ACTION (convert):
 
 ## Step 6: ICP Through Three Dan Tians
 
+> 📎 For deeper pain analysis, see `pain_theory_playbook.md` (Decision Pressure, Felt Consequences, Cost of Inaction, Stakes)
+
 ```
 🫀 HEART (what they truly want):
    - Deep desire: 
    - Emotional need:
+   - Pain Point A (where they are now):
 
 🧠 MIND (what they think about it):
    - Beliefs about problem:
    - Beliefs about solutions:
    - Objections:
+   - Awareness Stage (1-5): [Unaware → Solution-Aware]
 
 🔥 GUT (what they'll do):
    - Current behavior:
    - Trigger for action:
    - Barrier to action:
+   - Decision Pressure: [Low/Medium/High]
 ```
 
 ---
@@ -192,11 +199,17 @@ L4 - ACTION (convert):
 
 | Channel | Tactic | Why This Works |
 |---------|--------|----------------|
-| **Warm/Direct** | | |
-| **Community** | | |
-| **Content** | | |
-| **Guerrilla** | | |
-| **Paid** | | |
+| **Warm/Direct** | Personal invites, DMs | Highest trust, fastest feedback |
+| **Community** | Pilot groups, shared spaces | Built-in audience, social proof |
+| **Content** | Playlists, videos, posts | Evergreen, compounds over time |
+| **Guerrilla** | QR codes, coworking presence, stickers | Low cost, high curiosity, ICP-matched |
+| **Paid** | Targeted ads (if budget) | Scale after organic validation |
+
+**Guerrilla Quick Reference:**
+- Coworking days = work + leads same day
+- Laptop stickers = passive attention
+- Café QR codes = low cost, high curiosity
+- Playlist lead magnet = value first, identity second
 
 ---
 
@@ -250,19 +263,6 @@ Platform (Evolver)
 | One landing page for all | Each module has its own |
 | Attract everyone → filter | Attract precisely → resonate |
 | Explain the whole system | Show the specific piece |
-
----
-
-## Guerrilla Distribution Tactics
-
-| Tactic | Execution | ROI |
-|--------|-----------|-----|
-| **Coworking days** | Work in different coworkings, show QR codes | Work + clients same day |
-| **Laptop stickers** | QR stickers visible to others | Passive attention |
-| **Café QR codes** | Physical QR in spaces matching ICP | Low cost, high curiosity |
-| **Playlist lead magnet** | "Dope Deep Work Playlist" with QR | Value first, identity second |
-
-**Key insight:** One coworking day = work done + multiple new leads. Compound effect.
 
 ---
 

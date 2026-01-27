@@ -3,6 +3,8 @@
 
 > *"The first ICP tells you WHO. The deepened ICP tells you WHY they'll buy."*
 
+> 📚 **Foundation:** [Integral Transactional Field Theory](./integral_transactional_field_theory.md) — ICP as the lens that focuses value into transaction
+
 ---
 
 ## Overview
