@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Compass, CheckCircle2, Map, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import ProgressIndicator from "@/components/ProgressIndicator";
@@ -158,13 +158,14 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     return (
       <ZoGIntroScreen
         onStart={() => goToStep(2)}
+        onBack={() => goToStep(0)}
         onSkip={handleSkip}
         saving={saving}
       />
     );
   }
 
-  // Step 3: QoL Intro (after returning from ZoG)
+  // Step 3: QoL Intro (after returning from ZoG - no back since ZoG is complete)
   if (step === 3) {
     return (
       <QoLIntroScreen
@@ -191,8 +192,16 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     <div className="min-h-dvh bg-gradient-to-b from-white to-[var(--wabi-pearl)] flex items-center justify-center">
       <div className="min-h-[70vh] px-4 py-16 w-full">
         <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-8 shadow-lg sm:p-10">
-          {/* Header with skip button */}
-          <div className="flex justify-end mb-4">
+          {/* Header with back and skip buttons */}
+          <div className="flex justify-between items-center mb-4">
+            <button
+              className="flex items-center gap-1 text-sm text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-secondary)] transition-colors"
+              onClick={() => goToStep(1)}
+              disabled={saving}
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </button>
             <Button variant="ghost" size="sm" onClick={handleSkip} disabled={saving} className="text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-secondary)]">
               Skip
             </Button>
