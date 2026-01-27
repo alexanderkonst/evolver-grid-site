@@ -98,21 +98,21 @@ Marketing and distribution are **different phases of one continuous flow**:
 ## Master Result
 
 > **From:** Трансформационное обещание есть, но непонятно как продавать
-> **To:** ICP видит оффер → **сразу достаёт кошелёк и платит** (или сразу начинает использовать, если free)
+> **To:** Созданы все условия: **ЕСЛИ** ICP видит оффер → **сразу действует** (платит или использует)
 
 **Point A (Before Marketing):**
 - Transformational Promise exists
 - No clear message
 - No packaging
 - No price
-- ICP sees offer → confused, hesitates, leaves
+- If ICP sees offer → confused, hesitates, leaves
 
 **Point B (After Marketing):**
 - Core Belief articulated (resonance filter)
 - Packaging defined (desirable form)
 - Frictionless Purchase ready (one-click)
 - All objections answered
-- **ICP sees offer → immediately acts**
+- **Condition created:** If ICP sees → immediately acts
 
 ---
 
