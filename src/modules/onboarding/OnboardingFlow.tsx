@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import ProgressIndicator from "@/components/ProgressIndicator";
 import OnboardingProgress from "@/components/OnboardingProgress";
+import WelcomeScreen from "@/components/onboarding/WelcomeScreen";
+import ZoGIntroScreen from "@/components/onboarding/ZoGIntroScreen";
+import QoLIntroScreen from "@/components/onboarding/QoLIntroScreen";
+import TourOverviewScreen from "@/components/onboarding/TourOverviewScreen";
 
 interface OnboardingFlowProps {
   profileId: string;
@@ -138,6 +142,50 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   const current = steps[step];
   const CurrentIcon = current.icon;
 
+  // Step 0: Welcome screen
+  if (step === 0) {
+    return (
+      <WelcomeScreen
+        onStart={() => goToStep(1)}
+        saving={saving}
+      />
+    );
+  }
+
+  // Step 1: ZoG Intro (new immersive screen)
+  if (step === 1) {
+    return (
+      <ZoGIntroScreen
+        onStart={() => goToStep(2)}
+        onSkip={handleSkip}
+        saving={saving}
+      />
+    );
+  }
+
+  // Step 4: QoL Intro (new immersive screen)
+  if (step === 4) {
+    return (
+      <QoLIntroScreen
+        onStart={handleStartQol}
+        onSkip={handleSkip}
+        saving={saving}
+      />
+    );
+  }
+
+  // Step 5: Tour Overview (after QoL returns)
+  if (step === 5) {
+    return (
+      <TourOverviewScreen
+        onStartTour={handleFinish}
+        onSkipTour={handleFinish}
+        saving={saving}
+      />
+    );
+  }
+
+  // Steps 2 and 3: AI choice and ZoG completion (keep card layout for now)
   return (
     <div className="min-h-dvh bg-white flex items-center justify-center">
       <div className="min-h-[70vh] px-4 py-16 w-full">
@@ -172,15 +220,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
               />
             </div>
           </div>
-
-          {step === 0 && (
-            <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={() => handleStartZog("ai")} disabled={saving}>
-                Start
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
 
           {step === 1 && (
             <div className="mt-8 space-y-4">
@@ -246,3 +285,4 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
 };
 
 export default OnboardingFlow;
+
