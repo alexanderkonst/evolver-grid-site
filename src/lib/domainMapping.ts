@@ -18,7 +18,7 @@ export const DOMAIN_TO_VECTOR: Record<DomainId, VectorId> = {
     love: "emotions",
     impact: "mind",
     growth: "spirit", // tie-breaker: Spirit wins over Mind
-    social: "emotions",
+    socialTies: "emotions",
     home: "body",
 };
 

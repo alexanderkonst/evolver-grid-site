@@ -24,6 +24,7 @@ import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
+import DailyLoopV2 from "./pages/DailyLoopV2";
 import Today from "./pages/Today";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
@@ -185,6 +186,7 @@ const App = () => (
                   {/* Game Routes */}
                   <Route path="/game" element={<GameHome />} />
                   <Route path="/game/next-move" element={<CoreLoopHome />} />
+                  <Route path="/game/next-move-v2" element={<DailyLoopV2 />} />
                   <Route path="/game/profile" element={<ProfileOverview />} />
                   <Route path="/game/profile/settings" element={<Profile />} />
                   <Route path="/game/profile/mission" element={<ProfileMissionSection />} />
