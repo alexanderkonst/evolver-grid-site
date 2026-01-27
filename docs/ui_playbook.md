@@ -1,10 +1,10 @@
-# UX/UI Playbook
-## Product Playbook Applied to Design
+# UI Playbook
+## Product Playbook Applied to Visual Design
 
 *"The ultimate goal of every interface is to become invisible."*
 
-> **Meta-note:** This Playbook treats UX/UI as a product.
-> Input: Current design state. Output: Harmonious, usable interface.
+> **Meta-note:** This Playbook treats UI as a product.
+> Input: Software architecture. Output: Beautiful, usable interface that looks and feels right.
 
 ---
 
@@ -119,6 +119,61 @@ UX/UI
 
 ### UI — 🔥 Implications
 **UI CREATES** trust or doubt. Good UI = "I want to use this." Bad UI = "This feels cheap."
+
+---
+
+## The Five Pillars of UI
+
+> **CRITICAL:** These five pillars must be established BEFORE writing any CSS/components.
+
+### Master Result
+
+> **From** "Software architecture exists (modules, routes, data)"
+> **To** "Software architecture LOOKS and FEELS right, works for humans"
+
+**Point A (Before UI):**
+- Routes work
+- Data flows
+- No visual design
+- Looks like developer tool
+
+**Point B (After UI):**
+- Beautiful, trustworthy interface
+- Consistent look & feel
+- User knows what to do intuitively
+- Transformational experience FELT
+
+---
+
+### The Five Pillars (Through Three Lenses)
+
+| Pillar | Суть (Essence) | Значимость (Significance) | Следствие (Consequence) |
+|--------|---------------|--------------------------|------------------------|
+| **1. Visual Rules** | Single source: colors, fonts, spacing | Without = inconsistent look | Change once → everywhere |
+| **2. Building Blocks** | Reusable components (buttons, cards) | Without = rewriting code | Speed + consistency |
+| **3. Layout Templates** | Page assembly patterns | Without = reinvent each page | Faster screen creation |
+| **4. Brandbook Integration** | Visual identity, voice, energy | Without = functional but soulless | Emotional connection |
+| **5. Emotional Flow** | How UI guides feelings through journey | Without = no transformation | User FEELS the journey |
+
+---
+
+### Pillar 5: Emotional Flow (Deep Dive)
+
+**Why it matters:**
+
+The other four pillars make UI **functional** and **beautiful**.
+Emotional Flow makes UI **transformational**.
+
+| Screen Type | Emotional Goal | UI Treatment |
+|-------------|----------------|---------------|
+| **Welcome** | Excitement, belonging | Warm colors, personal addressing |
+| **Assessment** | Focus, introspection | Minimal distractions, calm palette |
+| **Result reveal** | Celebration, validation | Animation, confetti, achievement |
+| **Daily return** | Motivation, clarity | Progress visible, clear next action |
+| **Deep work** | Flow state | Immersive, no navigation |
+
+**Question for each screen:**
+> "How should the user FEEL right now, and does the UI honor that?"
 
 ---
 

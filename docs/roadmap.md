@@ -187,6 +187,26 @@ For unbuilt features, show:
 
 ---
 
+## 📖 PLAYBOOK IMPROVEMENTS
+
+### Architecture Playbook Enhancement (Priority: LOW | Target: Future)
+**What:** Add real code examples from Evolver codebase + Decision Trees + Anti-patterns
+
+**Impact:** Playbook goes from 8/10 → 10/10
+
+**Status:** Parked - optimize after MVP
+
+---
+
+### Distribution Playbook Enhancement (Priority: LOW | Target: Future)
+**What:** Deeper integration with Marketing Playbook (Business Model → Channels)
+
+**Current state:** MVP level, functional but thin
+
+**Status:** Parked - will strengthen organically through use
+
+---
+
 ## 📅 Timeline Overview
 
 | Period | Focus | Key Deliverables |

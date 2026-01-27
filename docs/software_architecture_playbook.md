@@ -440,7 +440,7 @@ Therefore: You can run Product Playbook on Architecture Playbook.
 ## Related Documents
 
 - [product_playbook.md](./product_playbook.md) — Source playbook
-- [ux_ui_playbook.md](./ux_ui_playbook.md) — UI layer
+- [ui_playbook.md](./ui_playbook.md) — UI layer
 - [software_architecture.md](./software_architecture.md) — Current architecture state
 
 ---

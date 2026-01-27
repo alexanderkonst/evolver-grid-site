@@ -95,13 +95,60 @@ Marketing and distribution are **different phases of one continuous flow**:
 
 > **CRITICAL:** These three pillars must be established BEFORE any tactics, channels, or messaging.
 
+## Master Result
+
+> **From:** Трансформационное обещание есть, но непонятно как продавать
+> **To:** Полная готовность к продаже: ЧТО говорить, КОМУ, В КАКОЙ ФОРМЕ, ЗА СКОЛЬКО, и КУПИТЬ = одна кнопка
+
+**Point A (Before Marketing):**
+- Transformational Promise exists
+- No clear message
+- No packaging
+- No price
+- Purchase = complex journey
+
+**Point B (After Marketing):**
+- Core Belief articulated (resonance filter)
+- Packaging defined (desirable form)
+- Purchase = ONE CLICK ready
+- All objections answered
+- Ready for Distribution
+
+---
+
 ## The Three Pillars (Through Three Lenses)
 
-| Pillar | Суть (Essence) | Значимость (Significance) | Следствие (Consequence) |
-|--------|---------------|--------------------------|------------------------|
-| **1. Core Belief** | What you fundamentally stand for | FILTER for all decisions | Attracts tribe, repels wrong fit |
-| **2. Packaging** | Format + Sequence of delivery | Determines perceived value | Creates customer journey |
-| **3. Business Model** | How value exchange happens | Dictates unit economics | Determines viable distribution |
+| Pillar | Суть | Значимость | Следствие |
+|--------|------|-----------|-----------|
+| **1. Core Belief** | Фундаментальная позиция: "Мы верим, что..." | Без позиции — говоришь в пустоту | Каждое решение проходит через фильтр |
+| **2. Packaging** | Форма оффера + последовательность (free→paid) | Без packaging — ценность абстрактна | Покупатель понимает ЧТО он получает |
+| **3. Frictionless Purchase** | Всё для мгновенной покупки: цена, ответы на возражения, одна кнопка | Без этого — desire есть, friction убивает | Покупка = одно движение (Amazon One-Click) |
+
+---
+
+### Pillar 1: Core Belief (Deep Dive)
+
+| Линза | Ответ |
+|-------|-------|
+| **Суть** | Кристаллизация позиции: "Мы верим, что..." |
+| **Значимость** | Без позиции — говоришь в пустоту. С позицией — притягиваешь tribe |
+| **Следствие** | Каждое решение проходит через фильтр: "Это соответствует нашей вере?" |
+
+### Pillar 2: Packaging (Deep Dive)
+
+| Линза | Ответ |
+|-------|-------|
+| **Суть** | Структура оффера: формат (курс/книга/app) + последовательность (free→paid) |
+| **Значимость** | Без packaging — ценность абстрактна. С packaging — ценность осязаема |
+| **Следствие** | Покупатель понимает ЧТО он получает и СКОЛЬКО это стоит |
+
+### Pillar 3: Frictionless Purchase (Deep Dive)
+
+| Линза | Ответ |
+|-------|-------|
+| **Суть** | Все условия для мгновенной покупки: цена ясна, возражения сняты, кнопка готова |
+| **Значимость** | Без этого — desire есть, но friction убивает конверсию |
+| **Следствие** | Покупка = одно движение. Резонанс → одна кнопка → продукт "напечатан" |
 
 ---
 
@@ -120,10 +167,11 @@ PHASE 1: PACKAGING (Format + Sequence)
 1.2 What is the format ladder?
 1.3 What artifacts does each format produce?
 
-PHASE 2: BUSINESS MODEL (→ Price → Distribution)
+PHASE 2: FRICTIONLESS PURCHASE (→ Price → One-Click Ready)
 2.1 What is the value exchange model?
-2.2 What is the pricing?
-2.3 What distribution channels does this enable?
+2.2 What is the pricing at each tier?
+2.3 What objections must be answered?
+2.4 How does purchase become ONE CLICK?
 
 PHASE 3: COMMUNICATION (Flows from Core Belief)
 3.1 Core Message Stack
