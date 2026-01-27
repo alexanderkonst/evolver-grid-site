@@ -101,38 +101,117 @@ Three progressive steps:
 
 ---
 
-## Phase 6: Full Game World
+## Phase 6: The Tour
 
-### Spaces and Unlock Conditions
+> After ZoG + QoL, the user sees the Game World for the first time.
+> The Tour introduces the 5 spaces and what each unlocks.
 
-| Space | Initial State | Unlock Condition |
-|-------|---------------|------------------|
-| **Profile Space** | ✅ Unlocked | After ZoG + QoL |
-| **Transformation Space** | ✅ Unlocked | After ZoG + QoL |
-| **Matchmaking Space** | 🔒 Locked | "Unlock by knowing yourself more" |
-| **Startup Co-op** | 🔒 Locked | "Unlock by creating your Genius Offer" |
-| **Marketplace** | 👁 View Only | Can browse guides, cannot add own shop |
+### Tour Script
 
-### Marketplace Logic
-- Users can SEE all curated guides and products
-- Cannot UPLOAD until: "Unlock your shop by creating your Genius Offer"
-- Genius Monetization (Step 3) → First step of Startup Co-op
+**Screen 1: Tour Overview**
+> "Welcome to your transformation home. Here are 5 spaces for your journey."
+
+**Screen 2: Profile Space (YOU)**
+> "This is YOU. Your Zone of Genius lives here. Map your resources, discover your mission, and track your growth."
+
+What's inside:
+- Zone of Genius (12 perspectives)
+- Resources inventory (rename from "assets")
+- Mission discovery
+- Growth stats (XP, level, streaks)
+
+**Screen 3: Transformation Space (GROW)**
+> "This is where you GROW. 5 growth paths with transformational content tied to your Quality of Life domains."
+
+What's inside:
+- Genius Path (12 perspectives upgrade, leads to Genius Business)
+- Body Path
+- Mind Path
+- Emotions Path  
+- Spirit Path
+
+What unlocks from here:
+- ZoG → First upgrade on Genius path (12 perspectives articulation)
+- ZoG + Genius upgrade → **Genius Business reveal** (unlocks Business Incubator)
+
+**Screen 4: Discover Space (CONNECT)**
+> "This is where you CONNECT. Find your tribe through genius matchmaking."
+
+What's inside:
+- Matchmaking (3 matches based on genius compatibility)
+- Team formation
+
+Unlock condition:
+- 🔒 Locked until: Resources inventoried + Mission discovered
+- Nudge message: "Share who you are to find your people"
+
+**Screen 5: Business Incubator (BUILD)**
+> "This is where you BUILD. Create your first Genius Product and launch your offer."
+
+What's inside:
+- Genius Product Builder
+- Offer creation
+- Business fundamentals
+
+Unlock condition:
+- 🔒 Locked until: Genius Business reveal completed
+- Nudge message: "Reveal your Genius Business to unlock"
+
+**Screen 6: Tour Complete**
+> "You're ready! Your first recommended action is waiting."
+
+---
+
+## Spaces and Unlock Conditions (Detailed)
+
+| Space | Initial State | Unlock Condition | First Action Available |
+|-------|---------------|------------------|------------------------|
+| **Profile** | ✅ Unlocked | After ZoG + QoL | Map Resources, Discover Mission |
+| **Transformation** | ✅ Unlocked | After ZoG + QoL | First upgrade on Genius path |
+| **Discover** | 🔒 Locked | Resources + Mission complete | Browse matches |
+| **Business Incubator** | 🔒 Locked | Genius Business reveal | Create Genius Product |
+| **Marketplace** | 👁 View Only | Genius Offer created | List your offer |
+
+### Locked Space Behavior
+
+When user clicks a locked space:
+1. Show friendly lock message with specific unlock requirement
+2. **Show the action that unlocks it** (e.g., "Complete: Reveal Your Genius Business")
+3. Direct link to that action
+
+---
+
+## Quick Win Modules (Game Quests)
+
+The Daily Loop's "Next Move" should include quick-win modules:
+
+| Module | Time | Outcome | Unlocks |
+|--------|------|---------|---------|
+| Map My Resources | 5 min | Inventory of skills, tools, assets | Discover Space |
+| Discover My Mission | 10 min | Clarity on life purpose | Discover Space |
+| Articulate My Genius | 10 min | 12-perspective statement refined | Genius Business |
+| Reveal Genius Business | 15 min | Business concept from genius | Business Incubator |
+
+**Natural Sequence:**
+1. Zone of Genius (entry)
+2. Quality of Life (baseline)
+3. Map My Resources (Profile)
+4. Discover My Mission (Profile)
+5. Articulate My Genius (Transformation/Genius Path)
+6. Reveal Genius Business (unlocks Business Incubator)
+7. Create Genius Product (Business Incubator)
 
 ---
 
 ## Growth Path → QoL Domain Mapping
 
-**ROADMAP ITEM:** Each Growth Path should clearly state which QoL domains it supports.
-
 | Growth Path | Supports QoL Domains |
 |-------------|---------------------|
-| Genius | Wealth, Career, Personal Growth |
-| Spirit | Spiritual Life, Relationships |
-| Mind | Career, Personal Growth, Education |
-| Emotions | Relationships, Family, Health |
-| Body | Health, Vitality, Physical Wellbeing |
-
-*To be refined — this mapping should be shown in the first video of each path.*
+| Genius | Wealth, Impact, Growth |
+| Spirit | Happiness, Growth, Love |
+| Mind | Impact, Growth |
+| Emotions | Love, Social, Happiness |
+| Body | Health, Home |
 
 ---
 
@@ -147,25 +226,26 @@ Quality of Life Snapshot (10 min)
     ↓
 [Aha: Know your growth opportunity]
     ↓
-🔓 Game World Unlocked
+🔓 Game World Unlocked + TOUR
     ↓
-First Unit of Transformation
+First Unit (Genius Path: 12 Perspectives)
     ↓
-[Aha: I just grew]
+[Aha: I see myself clearly]
     ↓
-TWO OPTIONS:
-├── Continue Genius Discovery
-│      → Articulate → Make Useful → Monetize (paid)
-│
-└── Continue Transformation
-       → Second Unit → Third Unit → ...
+Quick Wins: Resources + Mission
     ↓
-As progress continues:
-├── 🔓 Matchmaking (after deeper self-knowledge)
-├── 🔓 Startup Co-op (after Genius Offer)
-└── 🔓 Marketplace Shop (after Genius Offer)
+🔓 Discover Space Unlocked
+    ↓
+Genius Business Reveal
+    ↓
+🔓 Business Incubator Unlocked
+    ↓
+Create First Genius Product
+    ↓
+🔓 Marketplace Unlocked
 ```
 
 ---
 
-*This document guides implementation of the progressive unlock system.*
+*Updated: January 27, 2026 — Added Tour content, locked space behavior, quick win modules*
+
