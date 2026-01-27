@@ -9,7 +9,7 @@ const DOMAIN_CONFIG: Record<DomainId, { icon: string; color: string; label: stri
     love: { icon: "💕", color: "#cea4ae", label: "Love" },
     impact: { icon: "🌍", color: "#29549f", label: "Impact" },
     growth: { icon: "📈", color: "#c8b7d8", label: "Growth" },
-    social: { icon: "👥", color: "#cdaed2", label: "Social" },
+    socialTies: { icon: "👥", color: "#cdaed2", label: "Social" },
     home: { icon: "🏠", color: "#a7cbd4", label: "Home" },
 };
 
