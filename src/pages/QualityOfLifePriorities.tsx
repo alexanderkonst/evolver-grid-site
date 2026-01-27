@@ -103,12 +103,12 @@ const QualityOfLifePriorities = () => {
       <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Set Your Priorities</h1>
+          <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Focus Areas</h1>
           <p className="text-sm text-[#a4a3d0]">
-            Drag to reorder. Top 3 become your focus areas.
+            💡 Lowest areas often hold your biggest breakthroughs
           </p>
           <p className="text-xs text-[#a4a3d0] mt-1">
-            💡 Lowest areas often hold the biggest breakthroughs
+            Drag to reorder if you'd like. Top 3 become your focus areas.
           </p>
         </div>
 
@@ -128,8 +128,8 @@ const QualityOfLifePriorities = () => {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(domainId)}
                 className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing ${isTop
-                    ? "border-[#8460ea]/50 bg-gradient-to-r from-[#8460ea]/10 to-[#a4a3d0]/10"
-                    : "border-[#a4a3d0]/20 bg-white/50"
+                  ? "border-[#8460ea]/50 bg-gradient-to-r from-[#8460ea]/10 to-[#a4a3d0]/10"
+                  : "border-[#a4a3d0]/20 bg-white/50"
                   }`}
               >
                 <GripVertical className="h-5 w-5 text-[#a4a3d0]" />

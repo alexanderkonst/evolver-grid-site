@@ -18,24 +18,30 @@ interface OnboardingFlowProps {
   onComplete: () => void;
 }
 
-const MAX_STEP = 5;
+const MAX_STEP = 4;
 
 const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: OnboardingFlowProps) => {
   const navigate = useNavigate();
   const startingStep = useMemo(() => {
     if (hasQol) return MAX_STEP;
-    if (hasZog) return 3;
+    if (hasZog) return 3; // Skip to QoL intro
     return Math.min(initialStep ?? 0, MAX_STEP);
   }, [hasQol, hasZog, initialStep]);
 
   const [step, setStep] = useState(startingStep);
   const [saving, setSaving] = useState(false);
 
+  // Simplified 5-step flow:
+  // 0: Welcome
+  // 1: ZoG Intro
+  // 2: AI Choice (navigates to ZoG Entry/Assessment)
+  // 3: QoL Intro (returns here after ZoG)
+  // 4: Tour Overview
   const steps = useMemo(
     () => [
       {
         title: "Discover who you really are.",
-        description: "3 minutes. Free.",
+        description: "7-10 minutes to transform your life.",
         icon: Sparkles,
       },
       {
@@ -49,18 +55,13 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
         icon: Bot,
       },
       {
-        title: "You've met yourself.",
-        description: "Now you can grow.",
-        icon: CheckCircle2,
-      },
-      {
         title: "Map your life.",
-        description: "8 areas. 2 minutes.",
+        description: "8 areas. 3-5 minutes.",
         icon: Map,
       },
       {
-        title: "This is your game.",
-        description: "This is your story.",
+        title: "Welcome home.",
+        description: "Your journey begins now.",
         icon: CheckCircle2,
       },
     ],
@@ -133,9 +134,9 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   };
 
   const handleStartQol = async () => {
-    const success = await persistStep(5);
+    const success = await persistStep(4);
     if (!success) return;
-    setStep(5);
+    setStep(4);
     navigate("/quality-of-life-map/assessment?return=/start");
   };
 
@@ -163,8 +164,8 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     );
   }
 
-  // Step 4: QoL Intro (new immersive screen)
-  if (step === 4) {
+  // Step 3: QoL Intro (after returning from ZoG)
+  if (step === 3) {
     return (
       <QoLIntroScreen
         onStart={handleStartQol}
@@ -174,8 +175,8 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     );
   }
 
-  // Step 5: Tour Overview (after QoL returns)
-  if (step === 5) {
+  // Step 4: Tour Overview (final step)
+  if (step === 4) {
     return (
       <TourOverviewScreen
         onStartTour={handleFinish}
@@ -185,7 +186,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     );
   }
 
-  // Steps 2 and 3: AI choice and ZoG completion (keep card layout for now)
+  // Step 2: AI choice (card layout)
   return (
     <div className="min-h-dvh bg-gradient-to-b from-white to-[var(--wabi-pearl)] flex items-center justify-center">
       <div className="min-h-[70vh] px-4 py-16 w-full">
@@ -224,63 +225,26 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
             />
           </div>
 
-          {step === 1 && (
-            <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={() => goToStep(2)} disabled={saving}>
-                Find mine
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
-
-          {step === 2 && (
-            <div className="mt-8 space-y-3">
-              <Button
-                className="w-full bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                size="lg"
-                onClick={() => handleStartZog("ai")}
-                disabled={saving}
-              >
-                Yes, my AI knows me
-              </Button>
-              <Button
-                className="w-full border-2 border-[var(--depth-violet)] text-[var(--depth-violet)] hover:bg-[var(--wabi-lavender)] hover:scale-[1.02] active:scale-[0.98] transition-all"
-                variant="outline"
-                size="lg"
-                onClick={() => handleStartZog("manual")}
-                disabled={saving}
-              >
-                No, I'll do the assessment
-              </Button>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={() => goToStep(4)} disabled={saving}>
-                Start growing
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={handleStartQol} disabled={saving}>
-                Begin
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
-
-          {step === 5 && (
-            <div className="mt-8 space-y-4">
-              <Button className="w-full" size="lg" onClick={handleFinish} disabled={saving}>
-                Begin
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
+          {/* AI Choice buttons */}
+          <div className="mt-8 space-y-3">
+            <Button
+              className="w-full bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              size="lg"
+              onClick={() => handleStartZog("ai")}
+              disabled={saving}
+            >
+              Yes, my AI knows me
+            </Button>
+            <Button
+              className="w-full border-2 border-[var(--depth-violet)] text-[var(--depth-violet)] hover:bg-[var(--wabi-lavender)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+              variant="outline"
+              size="lg"
+              onClick={() => handleStartZog("manual")}
+              disabled={saving}
+            >
+              No, I'll do the assessment
+            </Button>
+          </div>
         </div>
       </div>
     </div>
