@@ -214,6 +214,7 @@ through blending [key hows] so they can [inspiring result]."
 ## Related Documents
 
 This theory is the **foundational layer** under:
+- [sacred_transaction_field.md](./sacred_transaction_field.md) — Perceived value filter (13 factors)
 - [marketing_playbook.md](./marketing_playbook.md) — ICP section, Messaging Ladder
 - [pain_theory_playbook.md](./pain_theory_playbook.md) — Pain as decision pressure
 - [icp_deepening_template.md](./icp_deepening_template.md) — Outer lens construction

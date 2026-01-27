@@ -158,6 +158,49 @@ Deep Ocean → Royal Blue → Sky/Ice Blue → Pale Mint/Pearl → Lilac → Sof
 #1e4374 → #29549f → #6894d0 → #e7e9e5 → #c8b7d8 → #cba8ad
 ```
 
+### 4. Themed Palettes
+
+Three signature palettes for different vibes:
+
+#### Luminous Truth Ray
+*Archangel Michael + Cosmic Aether fusion*
+*Vibe: Protective, high-frequency, crystalline clarity, truth-bearing*
+
+| Name | HEX |
+|------|-----|
+| Deep Ocean Blue | `#0A3D62` |
+| Cobalt Radiance | `#165BBA` |
+| Light Celestial Blue | `#A7D9F5` |
+| White Gold | `#F7F4E3` |
+| Cosmic Lilac | `#C2B7E6` |
+| Rose Quartz Glow | `#E5B8C6` |
+
+#### Desert Temple Dawn
+*Integrates sacred earth grounding + visionary sky*
+*Vibe: Ancient wisdom meeting modern vision, timeless & rooted*
+
+| Name | HEX |
+|------|-----|
+| Desert Sandstone | `#D9C6A5` |
+| Soft Clay Rose | `#C08A80` |
+| Dune Mist | `#EDE3D1` |
+| Sky Portal Blue | `#3A82A0` |
+| Midnight Depth | `#0E2F44` |
+| Sunlit White | `#FEFAF4` |
+
+#### Aurora Consciousness
+*High activation + gentle integration*
+*Vibe: Transformational, awakened, ethereal*
+
+| Name | HEX |
+|------|-----|
+| Aurora Violet | `#8B3EFF` |
+| Misty Cyan | `#8DC5D1` |
+| Warm Sand Beige | `#CFCBAA` |
+| Soft Orchid | `#C3A0AC` |
+| Deep Space Indigo | `#2B2342` |
+| Luminous Pearl | `#F4F2F6` |
+
 ---
 
 ## When to Use Each Layer

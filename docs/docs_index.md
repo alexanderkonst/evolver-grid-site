@@ -94,7 +94,7 @@
 | [customer_journey_map.md](./customer_journey_map.md) | Full journey + dopamine points |
 | [customer_journey_progression.md](./customer_journey_progression.md) | Progression through journey |
 | [design_system.md](./design_system.md) | Design system spec |
-| [ux_playbook.md](./ux_playbook.md) | UX patterns & playbook |
+| [product_playbook.md](./product_playbook.md) | Product design first principles & playbook |
 | [data_architecture.md](./data_architecture.md) | Data structure |
 
 ---

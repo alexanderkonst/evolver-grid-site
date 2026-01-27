@@ -75,11 +75,59 @@ Take screenshots and report what you see.
 
 ---
 
+## 🔴 PLAYBOOK META-STACK (CRITICAL)
+
+**Every feature MUST follow this complete stack before coding:**
+
+```
+Layer 1: Transformational Promise (Point A → Point B for ICP)
+    ↓
+Layer 2: Product Playbook → Results, Sub-Results, Screens
+    ↓
+Layer 3: Architecture Playbook → Modules, Routes, Data, Shell, State
+    ↓
+Layer 4: UI Playbook → Components, Tokens, Patterns
+    ↓
+Layer 5: Code Implementation
+```
+
+**The Playbooks:**
+- `product_playbook.md` — Results → Screens
+- `software_architecture_playbook.md` — Screens → Working Architecture
+- `ux_ui_playbook.md` — Architecture → UI Components
+
+**Why this matters:**
+- Skipping layers = backtracking, rewrites, bugs
+- Following layers = methodical, predictable, minimal human-in-loop
+- Playbooks exist to AUTOMATE decision-making
+
+**When to escalate:** If Playbook doesn't cover a case → ask user before proceeding.
+
+---
+
+## Agent Hierarchy
+
+| Agent | Role | Task Type | Capacity |
+|-------|------|-----------|----------|
+| **Antigravity** | CTO/Architect | Architecture, coordination, playbook application | Unlimited |
+| **Claude CLI** | Senior Dev | Complex but SHORT tasks (5-10 min max) | ~40 min/week |
+| **Codex** | Junior/Intern | Simple, unambiguous tasks | Unlimited |
+| **Lovable** | DB Specialist | Migrations only | As needed |
+
+**Task assignment rules:**
+- Codex: "Do X to file Y" — no ambiguity
+- Claude CLI: "Implement Z considering A, B, C" — needs judgment but bounded
+- Antigravity: Orchestration, planning, complex debugging
+
+---
+
 ## Key Documents
-- `docs/one_button_product_builder.md` - **META**: The product that builds products
-- `docs/ux_playbook.md` - First principles of product design + execution workflow
+- `docs/product_playbook.md` - **META**: First principles + 9-phase Execution Workflow
+- `docs/ux_ui_playbook.md` - UX/UI as product, taxonomy, mobile-first, performance
+- `docs/marketing_playbook.md` - Marketing as product, 8-phase workflow
+- `docs/distribution_playbook.md` - Distribution as product, 8-phase workflow
 - `docs/customer_journey_map.md` - Source of truth for UX
-- `docs/customer_journey_progression.md` - Unlock conditions
-- `docs/onboarding_script.md` - Screen copy
+- `docs/onboarding_spec.md` - Onboarding flow specification
 - `ai_tasks/README.md` - Task system overview
 - `ai_tasks/PENDING_MIGRATIONS.md` - Database tasks for Lovable
+

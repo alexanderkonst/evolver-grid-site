@@ -1,113 +1,213 @@
-# Roadmap: 26-Day Sprint
+# Roadmap — Evolver Platform
 
-> Jan 4 - Jan 29, 2025 | Network School, Forest City, Malaysia
-
-*Last updated: 2025-01-07 (Day 4, 3pm)*
+> Single source of truth for platform development direction.
+> 
+> *Last updated: 2026-01-27*
 
 ---
 
-## Sprint Reality Check
+## Current Status
 
 | Metric | Value |
 |--------|-------|
-| **Sprint start** | Jan 4, 2025 |
-| **Sprint end** | Jan 29, 2025 (fly out Jan 30) |
-| **Total days** | 26 days |
-| **Days worked** | 4 |
-| **Days remaining** | 22 days |
+| **Current phase** | MVP Polish + Compiler Suite |
+| **Focus** | Product/Marketing/Distribution Playbooks |
+| **Next milestone** | Module Landings + Versioning |
 
 ---
 
-## Sprint Overview
+## 🎯 Active Sprint (January 27-31, 2026)
 
-| Week | Dates | Focus | Status |
-|------|-------|-------|--------|
-| Week 1 | Jan 4-10 | Architecture + Paths + Flows | 🟢 Almost done |
-| Week 2 | Jan 11-17 | MVP Build | ⏳ Prep started |
-| Week 3 | Jan 18-24 | User Testing with Pilots | ⏳ |
-| Week 4 | Jan 25-29 | Visibility, Pitching, Pilots confirmed | ⏳ |
+### Today's Focus
+- [x] Product Playbook created (from UX Playbook)
+- [x] Marketing Playbook restructured (8-phase Execution Workflow)
+- [x] Distribution Playbook restructured (8-phase Execution Workflow)
+- [ ] Design system / fast design workflow
 
----
-
-## ✅ Completed (Days 1-4)
-
-### Architecture
-- [x] 5 Growth Paths (Spirit, Mind, Emotions, Genius, Body)
-- [x] 5 Game Spaces (Profile, Transformation, Marketplace, Matchmaking, Venture Co-op)
-- [x] Key Distinction: Growth Paths (you change) vs Game Spaces (you act)
-- [x] Core Insight: "Life results ← Self-development"
-- [x] Language Principles: Consistency + Universality
-
-### Growth Paths
-| Path | Status |
-|------|--------|
-| Genius | ✅ Complete |
-| Spirit | ✅ Complete |
-| Mind | ✅ Complete |
-| Emotions | 🟡 In progress |
-| Body | ⬜ Next |
-
-### Documentation (29 docs total)
-- [x] game_architecture.md
-- [x] game_design_principles.md
-- [x] growth_paths.md
-- [x] game_spaces.md
-- [x] user_flows.md
-- [x] module_scope.md
-- [x] first_actions.md
-- [x] onboarding_script.md
-- [x] inventory.md
-- [x] gamification_spec.md (v2.0)
-- [x] docs_index.md
-- [x] wireframes.md (16 screens)
+### This Week
+- [ ] Landing pages for every module
+- [ ] Versioning scheme for modules
+- [ ] Holonic page navigation system
 
 ---
 
-## 🔄 In Progress (Day 4)
-
-- Emotions + Body growth paths (Alexander)
-- Docs consistency audit (terminology)
+# Roadmap by Category
 
 ---
 
-## 📋 Week 2 Prep
+## 📦 PRODUCT / MODULES
 
-### MVP Scope (confirmed)
-1. ZoG + QoL onboarding (built)
-2. First 5 actions (spec'd)
-3. Daily Loop v2 (behind feature flag)
-4. XP + Streak + Level (built, needs polish)
+### Module Landings (Priority: HIGH | Target: Tomorrow)
+**Idea #1:** Landing pages for every module!
 
-### What We're NOT building for MVP
-- Matchmaking (defer to post-MVP)
-- Asset Mapping (need prototypes first)
-- Mission Discovery (need prototypes first)
+Every module in the system gets its own landing page that explains:
+- What the module does
+- Transformational result
+- How to use it
+- How to co-create it
 
-### Codex Status
-- Phase 0-1: ✅ Merged
-- Phase 2: Unified action pipeline ✅
-- Phase 3: Growth path sequences ✅
-- Phase 4: Onboarding + telemetry polish ✅
-- Phase 5: QA + rollout prep (in progress)
+**Status:** 🎯 Tomorrow's scope of work
 
 ---
 
-## 🎯 Week 2 Target
+### Module Versioning (Priority: HIGH | Target: This Week)
+**Idea #3:** Version the whole thing! Every module, every piece of documentation.
 
-- Flip Daily Loop v2 feature flag
-- Wire First Actions into recommendation engine
-- Polish reveal moments (sounds, visuals)
-- Test with Alexander → 3-5 friends
+Create an underlying versioning scheme:
+- Module versions (v1.0, v1.1, v2.0)
+- Documentation versions
+- Changelog per module
 
----
-
-## 🚀 End-of-Sprint Vision
-
-- MVP tested by 10-50 real users
-- 2-3 pilot communities identified
-- Network School visibility: pitched
-- Clear data on what works
+**Status:** Will be added when creating module landings
 
 ---
 
-*Day 4 of 26. Ahead of schedule.*
+### User Artifact Versioning (Priority: HIGH | Target: This Week)  
+**Idea #4:** Version each person's artifacts.
+
+Track evolution of user-generated content:
+- Zone of Genius v1.0, v1.1...
+- Genius Business v1.0, v1.1...
+- Landing Page v1.0, v1.1...
+- Distribution Strategy v1.0...
+- Mission v1.0...
+- Assets v1.0...
+
+Creates feeling of progress and evolution. "Your Zone of Genius has evolved 3 times!"
+
+**Status:** Part of module versioning scope
+
+---
+
+### Holonic Page Navigation (Priority: MEDIUM | Target: This Week)
+**Idea #8:** How to show and navigate the holonic pages?
+
+Visual representation of nested module structure:
+- Zoomable hierarchy
+- Breadcrumb navigation
+- Module relationships
+
+**Status:** 🔄 Design exploration needed
+
+---
+
+## 📣 MARKETING & GROWTH
+
+### Invite System (Priority: MEDIUM | Target: February)
+**Idea #2:** Invite people to every module — to use, to co-create, to meet others working on this.
+
+Every module can be:
+- Used individually
+- Co-created (contribute improvements)
+- Social space (meet other users of this module)
+
+**Status:** February scope
+
+---
+
+### Doubling Invites / Waitlist (Priority: MEDIUM | Target: February)
+**Idea #5:** Invite users in doubling batches.
+
+Growth strategy:
+1. First 2 invites
+2. First 5 invites
+3. First 10 invites
+4. First 100 invites
+5. First 500 invites
+6. Waitlist for the rest
+
+Build a tool for this. Karime as second user.
+
+**Status:** February - Growth hacking scope
+
+---
+
+### Autonomous Agent Invites (Priority: HIGH | Target: March)
+**Idea #6:** Platform invites as a living organism.
+
+The platform will reach out using agents:
+- First invites are manual (Alexander)
+- Then OS does the invites autonomously
+- AI agents identify and reach potential users
+
+**Status:** March - Autonomous growth scope
+
+---
+
+## 🎨 DESIGN / UX
+
+### Fast Design Workflow (Priority: HIGH | Target: Today/Tomorrow)
+**Idea #7:** How to make & develop design for the OS fast?
+
+Initial ideas:
+- Screenshots → send to AI → get improvements
+- Standardize patterns
+- Taxonomize page types
+- Harmonize (layout, sizes)
+- Minimalism as principle
+- Types of pages catalog
+
+**Status:** 🎯 Next sprint today
+
+---
+
+## 📦 PARKED FEATURES
+
+### Events Module (Luma-like)
+**Status:** Parked | **Priority:** Medium
+
+Three clicks after signup:
+1. See list of events
+2. Pick an event
+3. Get confirmation
+
+Routes: `/events`, `/events/:id`
+
+---
+
+### Admin Panel & Dashboard
+**Status:** Parked | **Priority:** Future
+
+For community leadership:
+- Member overview
+- Invite members
+- Manage branding
+- View aggregate patterns
+- Manage events
+
+Routes: `/admin`, `/admin/members`, `/admin/branding`
+
+---
+
+### Placeholder Strategy
+For unbuilt features, show:
+- **[Coming Soon]** badge
+- Grayed out module in sidebar
+- Tooltip: "This feature is being built"
+
+---
+
+## 📅 Timeline Overview
+
+| Period | Focus | Key Deliverables |
+|--------|-------|-----------------|
+| **Jan 27** | Compiler Suite | Product/Marketing/Distribution Playbooks ✅ |
+| **Jan 28** | Module Landings | Landing page per module + versioning |
+| **Jan 29-31** | Design System | Fast design workflow + holonic navigation |
+| **February** | Growth | Invite system, waitlist, doubling batches |
+| **March** | Autonomous | Agent-based invitations, living organism |
+
+---
+
+## Archived Sprints
+
+### Sprint: Jan 4-29, 2025 (Network School)
+- ✅ 5 Growth Paths defined
+- ✅ 5 Game Spaces architecture
+- ✅ ZoG + QoL onboarding
+- ✅ Core documentation (29 docs)
+- ✅ MVP tested with 10-50 users
+
+---
+
+*Roadmap is a living document. Updated as we evolve.*
