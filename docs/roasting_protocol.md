@@ -5,6 +5,60 @@
 
 ---
 
+## ⚠️ Critical: The Energy of Roasting
+
+**Two energies exist for roasting. Only one creates transformation:**
+
+| ❌ Attacking Energy | ✅ Loving Energy |
+|---------------------|------------------|
+| Seeks to wound | Seeks to strengthen |
+| "This is neither X nor Y" (invalidates) | "This already does X and Y — let's amplify each" |
+| Finds flaws to prove incompetence | Finds flaws to reveal potential |
+| Makes the creator feel small | Makes the creator feel supported |
+| Uses harsh language ("generic bullshit") | Uses precise language ("AI might miss the pattern") |
+| "But" after compliments (cancels them) | "And" after compliments (builds on them) |
+
+### The Test
+
+After reading the roast, the creator should feel:
+- Seen, not attacked
+- Energized, not deflated  
+- Clear on next steps, not overwhelmed
+
+**If the roast makes you feel defensive — the roaster failed, not you.**
+
+### Phrase Upgrades
+
+| ❌ Avoid | ✅ Use Instead |
+|----------|----------------|
+| "This doesn't work" | "This works — here's how to amplify it" |
+| "Neither X nor Y" | "Already both X and Y — can deepen each" |
+| "Missing entirely" | "Opportunity to add" |
+| "Wrong approach" | "One alternative approach" |
+| "Vague" | "Can be more specific about..." |
+
+### The Balance
+
+**Two failure modes to avoid:**
+
+| ❌ Too Harsh | ❌ Too Soft |
+|--------------|-------------|
+| Attack to wound | Afraid to name what's broken |
+| Invalidate what exists | "Everything is already perfect, just amplify" |
+| Find flaws artificially | Miss real errors for fear of being mean |
+| Leave creator deflated | Leave creator in illusion |
+
+**The middle way:**
+- Be honest about what doesn't work — *with love*
+- Name errors clearly — *without malice*
+- Suggest replacements — *not just "amplify"*
+- Hold high standards — *while honoring the work already done*
+
+**The mark of clean roast:**
+> Creator feels challenged AND supported. Sees clearly what to fix AND feels capable of doing it.
+
+---
+
 ## The Heart of the Matter
 
 The Roasting Protocol is a **disciplined restraint technique**. The instinct to fix immediately is suspended in favor of seeing the full picture first. By roasting (critiquing) an artifact multiple times WITHOUT fixing, you:
