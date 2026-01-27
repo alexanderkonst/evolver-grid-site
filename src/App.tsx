@@ -59,6 +59,7 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import ZoGPerspectiveView from "./pages/spaces/profile/ZoGPerspectiveView";
 import NotFound from "./pages/NotFound";
+import OnboardingPage from "./pages/OnboardingPage";
 // Space pages for the Game Shell
 import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
 import TransformationGrowthPaths from "./pages/spaces/transformation/GrowthPaths";
@@ -160,7 +161,7 @@ const App = () => (
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
 
-                  <Route path="/start" element={<Navigate to="/auth?mode=signup&redirect=/zone-of-genius/entry" replace />} />
+                  <Route path="/start" element={<OnboardingPage />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />
                   <Route path="/profile" element={<Navigate to="/game/profile" replace />} />

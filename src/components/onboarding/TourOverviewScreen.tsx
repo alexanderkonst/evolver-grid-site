@@ -50,7 +50,7 @@ const TourOverviewScreen = ({ onStartTour, onSkipTour, saving = false }: TourOve
                 <div className="space-y-3 pt-4">
                     <Button
                         size="lg"
-                        className="w-full max-w-sm h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-[var(--wabi-lilac)] to-[var(--wabi-orchid)] text-[var(--wabi-text-primary)] hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="w-full max-w-sm h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-[var(--wabi-lilac)] to-[var(--wabi-orchid)] text-[var(--wabi-text-primary)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl"
                         onClick={onStartTour}
                         disabled={saving}
                     >

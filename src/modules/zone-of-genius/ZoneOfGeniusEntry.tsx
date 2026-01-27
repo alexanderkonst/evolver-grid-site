@@ -68,15 +68,17 @@ const ZoneOfGeniusEntry = () => {
         const loadExisting = async () => {
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
 
-            // If user has complete Excalibur data, redirect to profile
-            if (savedExcalibur && hasValidExcaliburData(savedExcalibur)) {
+            // If user has complete Excalibur data AND is NOT in onboarding flow, redirect to profile
+            // When in onboarding (returnPath=/start), let them go through the flow again
+            const isInOnboarding = returnPath === "/start" || returnPath.includes("/start");
+            if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && !isInOnboarding) {
                 navigate("/game/profile");
                 return;
             }
 
             if (savedAppleseed) {
                 setAppleseed(savedAppleseed);
-                if (savedExcalibur) {
+                if (savedExcalibur && !isInOnboarding) {
                     setExcalibur(savedExcalibur);
                     setStep("excalibur-result");
                 } else {
@@ -85,7 +87,7 @@ const ZoneOfGeniusEntry = () => {
             }
         };
         loadExisting();
-    }, [navigate]);
+    }, [navigate, returnPath]);
 
     useEffect(() => {
         let isMounted = true;
