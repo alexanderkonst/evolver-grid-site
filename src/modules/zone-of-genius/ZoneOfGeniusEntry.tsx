@@ -77,7 +77,12 @@ const ZoneOfGeniusEntry = () => {
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
 
             // If user has complete Excalibur data, redirect to profile
-            if (savedExcalibur && hasValidExcaliburData(savedExcalibur)) {
+            // UNLESS they're intentionally visiting to redo (check for ?redo=true or direct navigation)
+            const urlParams = new URLSearchParams(window.location.search);
+            const isRedoing = urlParams.get("redo") === "true";
+            const isDirectVisit = !returnPath || returnPath === "/zone-of-genius/entry";
+
+            if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && !isRedoing && !isDirectVisit) {
                 navigate("/game/profile");
                 return;
             }
