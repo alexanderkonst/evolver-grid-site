@@ -96,6 +96,12 @@
 | [design_system.md](./design_system.md) | Design system spec |
 | [product_playbook.md](./product_playbook.md) | Product design first principles & playbook |
 | [data_architecture.md](./data_architecture.md) | Data structure |
+| [ui_playbook.md](./ui_playbook.md) | UI design first principles & playbook (NEW) |
+| [evolver_ui_application.md](./evolver_ui_application.md) | Platform-wide UI rules (NEW) |
+| [brandbook.md](./brandbook.md) | Visual identity & soul frequency (NEW) |
+| [complete_product_stack.md](./complete_product_stack.md) | Master map: ZoG → Code (NEW) |
+| [software_architecture_playbook.md](./software_architecture_playbook.md) | Architecture playbook (NEW) |
+| [distribution_playbook.md](./distribution_playbook.md) | Distribution first principles (NEW) |
 
 ---
 

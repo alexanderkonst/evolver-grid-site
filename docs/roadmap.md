@@ -91,6 +91,52 @@ Visual representation of nested module structure:
 
 ---
 
+### Genius Business Iteration Flow (Priority: HIGH | Target: February)
+**Idea #9:** After first Genius Business iteration, prompt for improvement.
+
+When user sees their first Genius Business version:
+1. Ask: "Want to improve any aspects? Create next iteration?"
+2. Show dropdown/buttons: ICP, Transformational Promise, Methodology, etc.
+3. On selection → show quality prompts (e.g., for ICP: "Describe yourself, what subcultures, who do you really speak same language with?")
+4. AI generates improved version
+
+**Key insight:** User refines iteratively, each cycle improves their business.
+
+**Status:** February scope - after core flow works
+
+---
+
+### Smart Packaging Recommendations (Priority: HIGH | Target: February)
+**Idea #10:** Recommend 2-3 packaging formats based on Genius Business type.
+
+Different business types need different formats:
+- From books to SaaS products
+- Methodologies, playlists, 1-on-1 sessions, substacks, etc.
+
+The system will:
+1. Analyze user's Genius Business
+2. Recommend 2-3 best-fit formats
+3. Explain WHY each format matches their business
+4. Start simple, grow complexity
+
+**Status:** February scope - after Genius Business flow works
+
+---
+
+### Community Leader Dashboard (Priority: MEDIUM | Target: February)
+**Idea #11:** Admin view for community leaders.
+
+Leaders can see in one place:
+- All community resources
+- Member stats
+- Event management
+- Aggregate patterns
+- Branding controls
+
+**Status:** February scope - after core platform stable
+
+---
+
 ## 📣 MARKETING & GROWTH
 
 ### Invite System (Priority: MEDIUM | Target: February)

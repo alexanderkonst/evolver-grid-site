@@ -47,11 +47,11 @@ The Distribution Playbook transforms a product with marketing into a working dis
 
 ## Master Result
 
-> **From:** Marketing готов (резонанс + one-click buy ready), но 0 людей видят
-> **To:** Правильные люди находят, получают продукт, и несут его дальше
+> **From:** Marketing готов (условия для мгновенного действия созданы), но 0 людей видят
+> **To:** Правильные люди ВИДЯТ оффер, получают продукт, и несут его дальше
 
 **Point A (Before Distribution):**
-- Marketing complete (Core Belief + Packaging + Frictionless Purchase)
+- Marketing complete (conditions created: if ICP sees → acts)
 - Zero visibility
 - No channels activated
 - Nobody finding you
