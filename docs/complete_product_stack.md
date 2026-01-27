@@ -116,13 +116,155 @@ This unified view combines multiple traditional roles:
 
 ---
 
+## The Complete Stack with Zone of Genius
+
+```
+           ╔═══════════════════════════════════════╗
+           ║        ZONE OF GENIUS (Source)        ║
+           ║  Appleseed → Excalibur → Genius Offer ║
+           ╚═══════════════════════════════════════╝
+                            │
+                            ▼
+           ╔═══════════════════════════════════════╗
+           ║     TRANSFORMATIONAL PROMISE          ║
+           ║      ICP → Pain → Promise             ║
+           ╚═══════════════════════════════════════╝
+                            │
+              ┌─────────────┴─────────────┐
+              ▼                           ▼
+    ╔═══════════════════╗      ╔═══════════════════╗
+    ║   PRODUCT PATH    ║      ║   MARKET PATH     ║
+    ╚═══════════════════╝      ╚═══════════════════╝
+              │                           │
+              ▼                           ▼
+    ┌───────────────────┐      ┌───────────────────┐
+    │ Product Playbook  │      │ Marketing Playbook│
+    └───────────────────┘      └───────────────────┘
+              │                           │
+              ▼                           ▼
+    ┌───────────────────┐      ┌───────────────────┐
+    │ Architecture PB   │      │ Distribution PB   │
+    └───────────────────┘      └───────────────────┘
+              │
+              ▼
+    ┌───────────────────┐      ┌───────────────────┐
+    │ UI Playbook       │◄────►│   BRANDBOOK       │
+    └───────────────────┘      └───────────────────┘
+              │
+              ▼
+    ┌───────────────────┐
+    │ VIBE-CODING       │
+    └───────────────────┘
+              │
+              ▼
+        ╔═══════════════╗
+        ║   PRODUCT     ║
+        ╚═══════════════╝
+```
+
+---
+
+## Three Elements Per Layer
+
+### Zone of Genius (Source)
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Appleseed** | Articulation of your genius | Without words, genius stays hidden | Others can understand your value |
+| **Excalibur** | Value proposition (ICP + Pain + Promise) | The sword that cuts through noise | Clear direction for all decisions |
+| **Genius Offer** | Concrete product/service with price | Monetizable form of genius | Sustainable business |
+
+---
+
+### Transformational Promise
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **ICP** | Ideal Customer Profile | Without knowing WHO, you talk to no one | Right people find you |
+| **Pain** | Point A — where they are now | Without pain, no motivation to move | They feel understood |
+| **Promise** | Point B — where they'll be after | Without promise, no reason to engage | They see the destination |
+
+---
+
+### Product Playbook (User Journey)
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Sub-Results** | Intermediate wins | Big promises break into digestible steps | User stays motivated |
+| **Screens** | Individual views | Each screen = one action | Clear progression |
+| **Elements** | Inputs, outputs, buttons | The atoms of interaction | Usable interface |
+
+---
+
+### Architecture Playbook
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Module Boundaries** | Where each module starts/ends | Without = dependency chaos | Clean, changeable code |
+| **Route + Data Contract** | URL ↔ Screen ↔ Data | Without = broken navigation | User lands where expected |
+| **Shell + State Logic** | Persistent UI + data persistence | Without = lost on refresh | Seamless experience |
+
+---
+
+### UI Playbook
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Visual Rules** | Colors, fonts, spacing (единый источник) | Without = inconsistent look | Change once → changes everywhere |
+| **Building Blocks** | Reusable components | Without = rewriting same code | Speed + consistency |
+| **Layout Templates** | Page assembly patterns | Without = reinventing each page | Faster screen creation |
+| **Brandbook Integration** | Visual identity, voice, energy | Without = functional but soulless | Emotional connection |
+| **Emotional Flow** | How UI guides feelings through journey | Without = no transformation | User FEELS the journey |
+
+---
+
+### Marketing Playbook
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Core Belief** | Фундаментальная позиция: "Мы верим, что..." | Без позиции — говоришь в пустоту | Каждое решение через фильтр |
+| **Packaging** | Форма оффера + последовательность | Без packaging — ценность абстрактна | Покупатель понимает ЧТО получит |
+| **Frictionless Purchase** | Всё для мгновенной покупки: цена, ответы, одна кнопка | Без этого — desire ≠ conversion | Покупка = одно движение (Amazon One-Click) |
+
+---
+
+### Distribution Playbook
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Reach** | Правильные люди ВИДЯТ оффер | Без reach — продукт не существует для рынка | Трафик идёт, конверсия начинается |
+| **Delivery** | Продукт "печатается" у двери клиента | Без delivery — покупка не завершена | Трансформация начинается |
+| **Spread** | Клиент становится каналом | Без spread — линейный рост | CAC → 0, рост compounds |
+
+---
+
+### Brandbook (Overlay)
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **Visual Identity** | Logo, colors, typography | Recognition | "This is [Brand]" instant |
+| **Voice & Tone** | How we speak (warm, honest, wabi-sabi) | Emotional connection | Feels "ours" |
+| **Energy Signature** | Overall vibe (премиум, легкость, глубина) | Differentiation | Unique in market |
+
+---
+
+### Vibe-Coding
+
+| Element | Суть | Значимость | Следствие |
+|---------|------|-----------|-----------|
+| **One Button** | Human gives one impulse | Minimal human involvement | Founder focuses on genius |
+| **Autonomous Cycle** | AI executes full cycle | No step-by-step supervision | 100x speed |
+| **Playbook Infrastructure** | Instructions that enable autonomy | AI knows what to do | Predictable quality |
+
+---
+
 ## The Playbook Suite
 
 | Playbook | Input | Output | Document |
 |----------|-------|--------|----------|
 | **Product Playbook** | Transformational Promise | Screens + Elements | `product_playbook.md` |
 | **Architecture Playbook** | Screens | Working Architecture | `software_architecture_playbook.md` |
-| **UI Playbook** | Architecture | Components + Patterns | `ux_ui_playbook.md` |
+| **UI Playbook** | Software Architecture | Interface + Components | `ui_playbook.md` |
 | **Marketing Playbook** | Transformational Promise | Messages + Positioning | `marketing_playbook.md` |
 | **Distribution Playbook** | Marketing | Channels + Growth | `distribution_playbook.md` |
 
