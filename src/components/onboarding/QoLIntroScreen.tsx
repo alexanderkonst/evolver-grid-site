@@ -18,10 +18,9 @@ const QoLIntroScreen = ({ onStart, onSkip, saving = false }: QoLIntroScreenProps
                     </div>
                 </div>
 
-                {/* Content */}
                 <div className="space-y-4">
-                    <p className="text-sm uppercase tracking-wide text-[var(--wabi-text-muted)]">
-                        Step 2 of 3
+                    <p className="text-sm uppercase tracking-wide text-[var(--wabi-sage)]">
+                        Quality of Life
                     </p>
                     <h1 className="text-3xl md:text-4xl font-bold text-[var(--wabi-text-primary)]">
                         Now let's see where you are in life
@@ -43,7 +42,7 @@ const QoLIntroScreen = ({ onStart, onSkip, saving = false }: QoLIntroScreenProps
                 {/* Time estimate */}
                 <div className="flex items-center justify-center gap-2 text-sm text-[var(--wabi-text-muted)]">
                     <span className="w-2 h-2 rounded-full bg-[var(--wabi-sage)]" />
-                    2-3 minutes
+                    3-5 minutes
                 </div>
 
                 {/* CTA */}
@@ -63,7 +62,7 @@ const QoLIntroScreen = ({ onStart, onSkip, saving = false }: QoLIntroScreenProps
                         onClick={onSkip}
                         disabled={saving}
                     >
-                        Skip onboarding
+                        Skip
                     </button>
                 </div>
             </div>

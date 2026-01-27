@@ -40,17 +40,13 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
 
                 {/* Transformation promise */}
                 <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-                    <div className="flex items-center justify-between text-sm text-[var(--wabi-text-secondary)]">
+                    <div className="flex items-center justify-center text-sm text-[var(--wabi-text-secondary)]">
                         <span className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-[var(--depth-violet)]" />
-                            7-10 minutes
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[var(--wabi-sage)]" />
-                            Free forever
+                            7-10 minutes to discover yourself
                         </span>
                     </div>
-                    <div className="mt-4 text-sm text-[var(--wabi-text-secondary)]">
+                    <div className="mt-4 text-sm text-[var(--wabi-text-secondary)] text-center">
                         You'll discover who you really are and get your first personalized action.
                     </div>
                 </div>
@@ -68,7 +64,7 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
 
                 {/* Trust indicator */}
                 <p className="text-xs text-[var(--wabi-text-muted)]">
-                    No credit card required • Cancel anytime
+                    No signup required to start
                 </p>
             </div>
         </div>

@@ -18,10 +18,9 @@ const ZoGIntroScreen = ({ onStart, onSkip, saving = false }: ZoGIntroScreenProps
                     </div>
                 </div>
 
-                {/* Content */}
                 <div className="space-y-4">
-                    <p className="text-sm uppercase tracking-wide text-[var(--wabi-text-muted)]">
-                        Step 1 of 3
+                    <p className="text-sm uppercase tracking-wide text-[var(--depth-violet)]">
+                        Zone of Genius
                     </p>
                     <h1 className="text-3xl md:text-4xl font-bold text-[var(--wabi-text-primary)]">
                         Let's discover who you really are
@@ -35,7 +34,7 @@ const ZoGIntroScreen = ({ onStart, onSkip, saving = false }: ZoGIntroScreenProps
                 {/* Time estimate */}
                 <div className="flex items-center justify-center gap-2 text-sm text-[var(--wabi-text-muted)]">
                     <span className="w-2 h-2 rounded-full bg-[var(--depth-violet)]" />
-                    3-5 minutes
+                    5-7 minutes
                 </div>
 
                 {/* CTA */}
@@ -55,7 +54,7 @@ const ZoGIntroScreen = ({ onStart, onSkip, saving = false }: ZoGIntroScreenProps
                         onClick={onSkip}
                         disabled={saving}
                     >
-                        Skip onboarding
+                        Skip
                     </button>
                 </div>
             </div>

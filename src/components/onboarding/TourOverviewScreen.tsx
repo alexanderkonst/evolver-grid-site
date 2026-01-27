@@ -18,10 +18,9 @@ const TourOverviewScreen = ({ onStartTour, onSkipTour, saving = false }: TourOve
                     </div>
                 </div>
 
-                {/* Content */}
                 <div className="space-y-4">
-                    <p className="text-sm uppercase tracking-wide text-[var(--wabi-text-muted)]">
-                        Step 3 of 3
+                    <p className="text-sm uppercase tracking-wide text-[var(--wabi-lilac)]">
+                        Welcome
                     </p>
                     <h1 className="text-3xl md:text-4xl font-bold text-[var(--wabi-text-primary)]">
                         Here's your new home
@@ -29,15 +28,6 @@ const TourOverviewScreen = ({ onStartTour, onSkipTour, saving = false }: TourOve
                     <p className="text-lg text-[var(--wabi-text-secondary)] max-w-md mx-auto">
                         Let me show you around — it'll only take a minute.
                     </p>
-                </div>
-
-                {/* Preview placeholder */}
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-                    <div className="space-y-3">
-                        <div className="h-8 bg-[var(--wabi-lavender)]/20 rounded-lg w-3/4 mx-auto" />
-                        <div className="h-20 bg-[var(--wabi-aqua)]/20 rounded-lg" />
-                        <div className="h-12 bg-[var(--depth-violet)]/10 rounded-lg" />
-                    </div>
                 </div>
 
                 {/* Time estimate */}
