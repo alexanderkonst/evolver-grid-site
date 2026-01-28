@@ -152,6 +152,75 @@ COMPLETED: __________
 
 ---
 
+# 📊 VISUAL TRACKER TEMPLATE
+
+> **Create a new file for each module:** `[module]_tracker.md`
+> 
+> This format enables real-time supervision by AI, other agents, and humans.
+
+## Example: Tour Module Tracker
+
+```markdown
+# Tour Module — Progress Tracker
+
+**Started:** 2026-01-28 16:45
+**Status:** Phase 2: ARCHITECTURE
+
+---
+
+## INPUT ✅ COMPLETE (5/5)
+
+- [x] 1. **ICP:** New user who just completed ZoG + QoL
+- [x] 2. **Transformation:** Lost → Knows 5 spaces + next step
+- [x] 3. **Pain:** Overwhelm, confusion
+- [x] 4. **Dream Outcome:** Clarity, excitement, knows next action
+- [x] 5. **Action:** 5-space guided walkthrough
+
+---
+
+## PHASE 1: PRODUCT ✅ COMPLETE (7/7)
+
+- [x] 1.1 Master Result
+- [x] 1.2 Sub-Results (7)
+- [x] 1.3 Screens (3)
+- [x] 1.4 Dan Tians
+- [x] 1.5 Extensions
+- [x] 1.6 Wireframes
+- [x] 🔥 ROAST GATE 1 — PASS
+
+---
+
+## PHASE 2: ARCHITECTURE `[■■■■░░░░]` 50%
+
+- [x] 2.1 Module Boundaries — In OnboardingFlow steps 4-6
+- [x] 2.2 Routing — No new routes needed
+- [ ] 2.3 Data Schema ← CURRENT
+- [ ] 2.4 Shell & Layout
+- [ ] 2.5 State Management
+- [ ] 🔥 ROAST GATE 2
+
+---
+
+## PHASE 3: UI `[░░░░░░░░]`
+...
+
+## PHASE 4: VIBE-CODING `[░░░░░░░░]`
+...
+
+---
+
+**Completed:** _________
+```
+
+### Key Rules
+
+1. **Update after each step** — mark `[x]` immediately after completing
+2. **Show current position** — use `← CURRENT` marker
+3. **Add context** — brief note after completed items (e.g., "No new routes needed")
+4. **Track time** — Started + Completed timestamps
+
+---
+
 # INPUT (5 Required Elements)
 
 Before starting, ALL of these must be defined:
@@ -187,37 +256,77 @@ What this process produces:
 > **Output:** `[module]_product_spec.md`
 
 ## 1.1 Master Result
-- [ ] Define Point A (current state)
-- [ ] Define Point B (transformed state)
-- [ ] Write one-sentence Master Result
+
+**Task:** Define the transformation this module delivers.
+
+> *"What state is the user in before this module? What state are they in after? Write it as one sentence: 'From [Point A] to [Point B]'"*
+
+- [ ] Define Point A (current state) — What pain/confusion does user have?
+- [ ] Define Point B (transformed state) — What clarity/result do they gain?
+- [ ] Write one-sentence Master Result — "[Module] takes user from [A] to [B]"
+
+---
 
 ## 1.2 Sub-Results
-- [ ] List all sub-results (3-7)
-- [ ] Sequence them
-- [ ] Define Start/End screen for each
+
+**Task:** Break the Master Result into 3-7 intermediate wins.
+
+> *"What are the stepping stones between Point A and Point B? Each sub-result is a mini-transformation the user experiences."*
+
+- [ ] List all sub-results (3-7) — Each is a felt win
+- [ ] Sequence them — What must come before what?
+- [ ] Define Start/End screen for each — Where does user enter and exit this sub-result?
+
+---
 
 ## 1.3 Screens
-- [ ] Break each sub-result into atomic screens
-- [ ] Name each screen
-- [ ] Define screen purpose (one sentence)
+
+**Task:** Map each sub-result to atomic screens.
+
+> *"A screen is one view the user sees. Break each sub-result into the minimum screens needed. Name each screen clearly."*
+
+- [ ] Break each sub-result into atomic screens — One purpose per screen
+- [ ] Name each screen — Use pattern: `[Module][Purpose]Screen` (e.g., `TourOverviewScreen`)
+- [ ] Define screen purpose — One sentence describing what this screen accomplishes
+
+---
 
 ## 1.4 Screen Details (Three Dan Tians)
+
+**Task:** For each screen, define Heart, Mind, Gut.
+
+> *"Heart = what they feel. Mind = what they understand. Gut = what they do (the CTA). Every screen needs all three."*
+
 For each screen:
-- [ ] 🫀 Heart: What user feels
-- [ ] 🧠 Mind: What user understands
-- [ ] 🔥 Gut: What user does (CTA label)
+- [ ] 🫀 Heart: What user feels — The emotional state this screen creates
+- [ ] 🧠 Mind: What user understands — The key insight they gain
+- [ ] 🔥 Gut: What user does — The CTA label (verb + noun)
+
+---
 
 ## 1.5 Extensions
-- [ ] Artifacts (what module produces)
-- [ ] Emotional states (at each point)
-- [ ] Completion criteria
-- [ ] Skip paths
-- [ ] Bridges (to other modules)
+
+**Task:** Define module metadata.
+
+> *"What does this module produce? How does it connect to other modules? What if user wants to skip?"*
+
+- [ ] Artifacts — What data/records does this module create?
+- [ ] Emotional states — What emotions at each screen?
+- [ ] Completion criteria — How do we know the module is "done"?
+- [ ] Skip paths — What happens if user skips mid-flow?
+- [ ] Bridges — What other modules does this connect to?
+
+---
 
 ## 1.6 Wireframes
+
+**Task:** Create visual layout for each screen.
+
+> *"ASCII wireframe or sketch. Show key elements: title, body, CTA. Mobile-first."*
+
 - [ ] ASCII or visual wireframe for each screen
-- [ ] Mobile-first layout
-- [ ] Key elements positioned
+- [ ] Mobile-first layout — Starts at 375px width
+- [ ] Key elements positioned — Hero, content, CTA order
 
 ---
 
@@ -250,32 +359,65 @@ For each screen:
 > **Output:** `[module]_architecture_spec.md`
 
 ## 2.1 Module Boundaries
-- [ ] Entry points (routes, buttons)
-- [ ] Exit points (where user goes after)
-- [ ] Data in (what module needs)
-- [ ] Data out (what module produces)
+
+**Task:** Define what goes in and out of this module.
+
+> *"Where does user enter this module? Where do they exit? What data does module need, and what does it produce?"*
+
+- [ ] Entry points — Routes (URL) and buttons that launch this module
+- [ ] Exit points — Where user goes after completing/skipping
+- [ ] Data in — What props/state/DB data does module need?
+- [ ] Data out — What does module write to DB or pass to next module?
+
+---
 
 ## 2.2 Routing
-- [ ] Map routes to screens
-- [ ] Route hierarchy (flat vs nested)
-- [ ] Guards (auth required?)
-- [ ] Redirects
+
+**Task:** Map URL routes to screens.
+
+> *"Each screen may or may not have its own route. Define the route structure."*
+
+- [ ] Map routes to screens — Which screens get their own /path?
+- [ ] Route hierarchy — Flat (/a, /b) or nested (/parent/child)?
+- [ ] Guards — Does route require auth? Other checks?
+- [ ] Redirects — When and where to redirect?
+
+---
 
 ## 2.3 Data Schema
-- [ ] Existing tables to use
-- [ ] New tables if needed
-- [ ] Relationships (FK, joins)
-- [ ] Migration created
+
+**Task:** Define database structure.
+
+> *"What tables does this module read from and write to? Do we need new tables?"*
+
+- [ ] Existing tables to use — What's already in Supabase?
+- [ ] New tables if needed — Schema definition
+- [ ] Relationships — Foreign keys, joins
+- [ ] Migration created — SQL migration file if needed
+
+---
 
 ## 2.4 Shell & Layout
-- [ ] Shell rule: when to show nav
-- [ ] Focus mode: when to hide nav
-- [ ] Responsive behavior
+
+**Task:** Define navigation visibility rules.
+
+> *"When does the sidebar show? When is it hidden? What about mobile?"*
+
+- [ ] Shell rule — When to show nav (authenticated + past onboarding)
+- [ ] Focus mode — When to hide nav (onboarding, wizards)
+- [ ] Responsive behavior — Mobile nav treatment
+
+---
 
 ## 2.5 State Management
-- [ ] What persists (DB, localStorage, URL)
-- [ ] Resume logic
-- [ ] Tab/device sync
+
+**Task:** Define where state lives.
+
+> *"What persists between sessions? What persists between tabs? Resume logic?"*
+
+- [ ] What persists — DB (permanent), localStorage (device), URL (shareable)
+- [ ] Resume logic — What happens if user returns mid-flow?
+- [ ] Tab/device sync — Does state sync across tabs/devices?
 
 ---
 
@@ -308,33 +450,66 @@ For each screen:
 > **Output:** Screen components in `src/components/[module]/`
 
 ## 3.1 Visual Rules
-- [ ] Colors from token palette only
-- [ ] Typography from scale
-- [ ] Spacing uses tokens
-- [ ] Border radius consistent
-- [ ] Shadows from defined set
+
+**Task:** Audit that all styling uses design tokens.
+
+> *"No hardcoded colors, sizes, or styles. Everything from the token system."*
+
+- [ ] Colors from token palette only — Check for any `#` hex or hardcoded rgb()
+- [ ] Typography from scale — Check for rogue font-size values
+- [ ] Spacing uses tokens — Check for random px values
+- [ ] Border radius consistent — Only use defined radius tokens
+- [ ] Shadows from defined set — shadow-sm, shadow, shadow-lg, shadow-xl
+
+---
 
 ## 3.2 Building Blocks
-- [ ] Standard Button variants
-- [ ] Standard Card variants
-- [ ] Standard Input styles
-- [ ] Standard Modal pattern
+
+**Task:** Use existing components, don't reinvent.
+
+> *"Check what UI components already exist. Use them. Don't create duplicates."*
+
+- [ ] Standard Button variants — Primary, secondary, ghost, destructive
+- [ ] Standard Card variants — Outlined, filled, glass
+- [ ] Standard Input styles — From shadcn/ui
+- [ ] Standard Modal pattern — Dialog from shadcn/ui
+
+---
 
 ## 3.3 Layout Templates
-- [ ] Mobile-first
-- [ ] Responsive breakpoints
-- [ ] Container widths
+
+**Task:** Ensure responsive mobile-first layouts.
+
+> *"Start at 375px. Add complexity at breakpoints. Use standard containers."*
+
+- [ ] Mobile-first — Base styles for 375px
+- [ ] Responsive breakpoints — sm:640, md:768, lg:1024, xl:1280
+- [ ] Container widths — max-w-md, max-w-lg, max-w-xl patterns
+
+---
 
 ## 3.4 Brandbook Integration
-- [ ] Emotional mode (warm/calm/celebration)
-- [ ] Gradients appropriate
-- [ ] Voice/copy matches brand
+
+**Task:** Match emotional mode and voice.
+
+> *"Is this screen warm? Calm? Celebratory? Does the copy sound like our brand?"*
+
+- [ ] Emotional mode — Warm (onboarding), Calm (dashboard), Celebration (completion)
+- [ ] Gradients appropriate — Match mode to gradient palette
+- [ ] Voice/copy matches brand — Friendly, clear, empowering
+
+---
 
 ## 3.5 Micro-interactions
-- [ ] Hover: scale(1.02)
-- [ ] Active: scale(0.98)
-- [ ] Transitions: fade + slide
-- [ ] Success: pulse/confetti
+
+**Task:** Add life with subtle animations.
+
+> *"Every button should respond. Every transition should feel smooth."*
+
+- [ ] Hover: scale(1.02) — Slight grow on hover
+- [ ] Active: scale(0.98) — Slight shrink on click
+- [ ] Transitions: fade + slide — 200-300ms durations
+- [ ] Success: pulse/confetti — Celebrate wins
 
 ---
 
@@ -366,38 +541,76 @@ For each screen:
 > **Principle:** AI works end-to-end, human enters ONCE per cycle.
 
 ## 4.1 Create Files
-- [ ] Module folder: `src/modules/[name]/`
-- [ ] Screen components created
-- [ ] Index/router created
+
+**Task:** Create the module folder structure.
+
+> *"Every module lives in its own folder. Create the structure before writing code."*
+
+- [ ] Module folder: `src/modules/[name]/` — Or `src/components/[module]/` for UI-only
+- [ ] Screen components created — One file per screen from Phase 1
+- [ ] Index/router created — Barrel export or route definitions
+
+---
 
 ## 4.2 Implement Screens
-- [ ] Import existing UI components
-- [ ] Implement Three Dan Tians per screen
-- [ ] Add navigation handlers
+
+**Task:** Build each screen component.
+
+> *"Import existing UI components. Implement the Three Dan Tians from Phase 1. Wire up handlers."*
+
+- [ ] Import existing UI components — Button, Card, etc. from @/components/ui
+- [ ] Implement Three Dan Tians per screen — Heart (emotion), Mind (content), Gut (CTA)
+- [ ] Add navigation handlers — onClick → navigate, state updates
+
+---
 
 ## 4.3 Connect Routes
-- [ ] Add to App.tsx
-- [ ] Guards applied
-- [ ] Redirects work
+
+**Task:** Wire screens to the router.
+
+> *"Update App.tsx or relevant router. Ensure guards and redirects work."*
+
+- [ ] Add to App.tsx — Or in parent flow component
+- [ ] Guards applied — Auth checks, onboarding checks
+- [ ] Redirects work — Correct fallback routes
+
+---
 
 ## 4.4 Connect Data
-- [ ] Supabase table created/updated
-- [ ] Hooks for data fetching
-- [ ] Wired to components
+
+**Task:** Wire to database.
+
+> *"Create hooks for data. Connect to Supabase. Wire to component state."*
+
+- [ ] Supabase table created/updated — Run migration if needed
+- [ ] Hooks for data fetching — useQuery, useMutation patterns
+- [ ] Wired to components — State flows through props
+
+---
 
 ## 4.5 Verification
-- [ ] `npm run build` passes
-- [ ] No TypeScript errors
-- [ ] No console warnings
-- [ ] Browser walkthrough captured
 
-## 4.6 AI Self-Test (Before Human)
-> Use browser automation to validate before asking human to test.
+**Task:** Verify the build passes.
+
+> *"Build, check types, check console, do a manual walkthrough."*
+
+- [ ] `npm run build` passes — No build errors
+- [ ] No TypeScript errors — Type-check clean
+- [ ] No console warnings — Clean console
+- [ ] Browser walkthrough captured — Manual test of flow
+
+---
+
+## 4.6 AI Self-Test *(Optional)*
+
+**Task:** Use browser automation to validate before asking human to test.
+
+> *"This step is OPTIONAL. Human verification is often faster. Use only for complex flows or when human isn't available."*
 
 - [ ] Run automated browser walkthrough of complete flow
-- [ ] Capture recording as proof of work
-- [ ] Verify all CTAs navigate correctly
-- [ ] Verify no visual glitches in recording
+- [ ] Capture recording as proof of work — Save to artifacts
+- [ ] Verify all CTAs navigate correctly — No broken links
+- [ ] Verify no visual glitches in recording — No layout jumps
 
 ---
 
