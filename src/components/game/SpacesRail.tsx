@@ -109,14 +109,14 @@ const SpacesRail = ({
         <div
             className={cn(
                 // Mobile: narrow with icons only, Desktop: wider with labels
-                // Premium: subtle gradient background instead of flat slate
-                "w-[72px] lg:w-[280px] flex flex-col border-r border-slate-700/50",
-                "bg-gradient-to-b from-slate-900 via-slate-900 to-[#1a1a2e]",
+                // Wabi-sabi: charcoal gradient with subtle violet border
+                "w-[72px] lg:w-[280px] flex flex-col border-r border-[#8460ea]/20",
+                "bg-gradient-to-b from-[#2c3150] via-[#252941] to-[#1a1a2e]",
                 className
             )}
         >
             {/* User Profile + Community Header */}
-            <div className="p-3 md:p-4 border-b border-slate-800">
+            <div className="p-3 md:p-4 border-b border-[#a4a3d0]/20">
                 {/* Community - Placeholder (not clickable) */}
                 <div className="flex items-center gap-2 mb-3">
                     <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
@@ -133,12 +133,12 @@ const SpacesRail = ({
                 </div>
 
                 {/* Divider between community and profile */}
-                <div className="hidden md:block h-px bg-slate-800 mb-3" />
+                <div className="hidden md:block h-px bg-[#a4a3d0]/15 mb-3" />
 
                 {/* User Profile */}
                 <Link
                     to="/game/profile"
-                    className="flex items-center gap-2 hover:bg-slate-800/50 rounded-lg p-1.5 -m-1.5 transition-colors"
+                    className="flex items-center gap-2 hover:bg-[#8460ea]/15 rounded-lg p-1.5 -m-1.5 transition-colors"
                 >
                     {avatarUrl ? (
                         <img
@@ -151,8 +151,8 @@ const SpacesRail = ({
                             className="w-8 h-8 rounded-full object-cover flex-shrink-0"
                         />
                     ) : (
-                        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                            <User className="w-4 h-4 text-slate-400" />
+                        <div className="w-8 h-8 rounded-full bg-[#2c3150] flex items-center justify-center flex-shrink-0">
+                            <User className="w-4 h-4 text-[#a4a3d0]" />
                         </div>
                     )}
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
@@ -205,16 +205,16 @@ const SpacesRail = ({
                                 "justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50",
                                 isLocked
-                                    ? "bg-slate-800/40 text-[rgba(44,49,80,0.7)] cursor-not-allowed"
+                                    ? "bg-[#2c3150]/40 text-[#a4a3d0]/50 cursor-not-allowed"
                                     : active
                                         ? space.id === "next-move"
                                             ? "bg-amber-500 text-white shadow-lg shadow-amber-500/40 ring-2 ring-amber-400/50"
-                                            : "bg-amber-500 text-white shadow-lg shadow-amber-500/25"
+                                            : "bg-[#8460ea]/25 text-white border-l-2 border-[#8460ea] shadow-md"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : space.id === "next-move"
-                                                ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
-                                                : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
+                                                ? "bg-[#2c3150]/50 text-[#a4a3d0] hover:bg-[#8460ea]/15 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
+                                                : "bg-[#2c3150]/50 text-[#a4a3d0] hover:bg-[#8460ea]/15 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={space.label}
                         >
@@ -231,10 +231,10 @@ const SpacesRail = ({
 
                             {/* Nudge Badge - new unlock indicator */}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#2c3150] animate-ping" />
                             )}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#2c3150]" />
                             )}
 
                             {/* Active indicator */}
@@ -247,13 +247,13 @@ const SpacesRail = ({
             </nav>
 
             {/* Settings Button */}
-            <div className="p-2 md:p-3 border-t border-slate-800">
+            <div className="p-2 md:p-3 border-t border-[#a4a3d0]/20">
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
                         "justify-center md:justify-start",
-                        "bg-slate-800/30 text-slate-500 hover:bg-slate-700 hover:text-white"
+                        "bg-[#2c3150]/30 text-[#a4a3d0] hover:bg-[#8460ea]/15 hover:text-white"
                     )}
                     title="Settings"
                 >

@@ -211,20 +211,20 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                // Premium: gradient background for depth, glassmorphic border
+                // Wabi-sabi: charcoal gradient with glassmorphic effect
                 "w-[260px] flex flex-col",
-                "bg-gradient-to-b from-slate-800/95 via-slate-800/90 to-slate-900/95",
-                "backdrop-blur-sm border-r border-slate-600/50",
+                "bg-gradient-to-b from-[#2c3150]/95 via-[#2c3150]/90 to-[#1a1a2e]/95",
+                "backdrop-blur-sm border-r border-[#a4a3d0]/15",
                 className
             )}
         >
             {/* Header */}
-            <div className="h-14 px-4 flex items-center justify-between border-b border-slate-700">
-                <h2 className="text-white font-semibold">{spaceData.title}</h2>
+            <div className="h-14 px-4 flex items-center justify-between border-b border-[#a4a3d0]/20">
+                <h2 className="text-[#e7e9f5] font-semibold font-display">{spaceData.title}</h2>
                 {onClose && (
                     <button
                         onClick={onClose}
-                        className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                        className="p-1.5 text-[#a4a3d0] hover:text-white hover:bg-[#8460ea]/15 rounded-md transition-colors"
                         title="Hide sidebar (⌘B)"
                         aria-label="Hide sidebar"
                     >
@@ -248,8 +248,8 @@ const SectionsPanel = ({
                                     "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-all duration-150",
                                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50",
                                     sectionActive && !hasSubSections
-                                        ? "bg-slate-700 text-white"
-                                        : "text-slate-400 hover:bg-slate-700/50 hover:text-white hover:translate-x-0.5"
+                                        ? "bg-[#8460ea]/20 text-white border-l-2 border-[#8460ea]"
+                                        : "text-[#a4a3d0] hover:bg-[#8460ea]/10 hover:text-[#e7e9f5] hover:translate-x-0.5"
                                 )}
                                 onClick={() => {
                                     if (hasSubSections) {
@@ -274,7 +274,7 @@ const SectionsPanel = ({
 
                             {/* Sub-sections with indent */}
                             {hasSubSections && isExpanded && (
-                                <div className="ml-8 border-l border-slate-700">
+                                <div className="ml-8 border-l border-[#a4a3d0]/20">
                                     {section.subSections!.map((sub) => {
                                         const subActive = isActive(sub.path);
                                         return (
@@ -283,8 +283,8 @@ const SectionsPanel = ({
                                                 className={cn(
                                                     "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
                                                     subActive
-                                                        ? "bg-slate-700 text-white"
-                                                        : "text-slate-500 hover:bg-slate-700/50 hover:text-white"
+                                                        ? "bg-[#8460ea]/20 text-white"
+                                                        : "text-[#a4a3d0]/80 hover:bg-[#8460ea]/10 hover:text-white"
                                                 )}
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
