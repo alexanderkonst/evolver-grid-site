@@ -263,7 +263,7 @@ const MissionDiscoveryLanding = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                         <Sparkles className="w-8 h-8 text-[#2c3150]" />
                     </div>
-                    <h1 className="text-4xl font-bold text-[#2c3150] mb-3">Mission Discovery</h1>
+                    <h1 className="text-4xl font-bold font-display aurora-text mb-3">Mission Discovery</h1>
                     <p className="text-lg text-[rgba(44,49,80,0.7)]">Find your contribution to the planet</p>
                 </div>
 
