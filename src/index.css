@@ -51,7 +51,7 @@ All colors MUST be HSL.
        WABI-SABI DESIGN SYSTEM
        Apple-style + soft-focus aesthetic
        ======================================== */
-    
+
     /* Core Pastels (Dominant) */
     --wabi-lavender: #a4a3d0;
     --wabi-lavender-alt: #aba4cd;
@@ -85,14 +85,14 @@ All colors MUST be HSL.
        PREMIUM TOKENS (Hero Moments)
        For Welcome, Results, Celebrations
        ======================================== */
-    
+
     /* Transformation Gradients */
     --gradient-transformation: linear-gradient(135deg, #8460ea 0%, #a4a3d0 25%, #a7cbd4 50%, #cec9b0 75%, #cea4ae 100%);
     --gradient-hero: linear-gradient(135deg, #0A3D62 0%, #165BBA 50%, #A7D9F5 100%);
     --gradient-cosmic: linear-gradient(135deg, #2B2342 0%, #8B3EFF 50%, #C3A0AC 100%);
     --gradient-background-light: linear-gradient(180deg, #f0f4ff 0%, #e8f0fe 50%, #f5f7fa 100%);
     --gradient-background-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-    
+
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-bg-strong: rgba(255, 255, 255, 0.95);
@@ -101,13 +101,13 @@ All colors MUST be HSL.
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
     --glass-blur: blur(20px);
-    
+
     /* Premium Buttons */
     --btn-premium-bg: linear-gradient(135deg, #8460ea 0%, #6894d0 100%);
     --btn-premium-bg-hover: linear-gradient(135deg, #7550da 0%, #5884c0 100%);
     --btn-premium-glow: 0 4px 20px rgba(132, 96, 234, 0.4);
     --btn-premium-glow-hover: 0 6px 28px rgba(132, 96, 234, 0.5);
-    
+
     /* Animation */
     --transition-fast: all 0.15s ease-out;
     --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,7 +181,9 @@ All colors MUST be HSL.
   h4,
   h5,
   h6 {
-    @apply font-serif;
+    @apply font-display;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   /* Navigation link underline animation */
@@ -383,9 +385,11 @@ All colors MUST be HSL.
   0% {
     opacity: 0.25;
   }
+
   50% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 0.25;
   }
