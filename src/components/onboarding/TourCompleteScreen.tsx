@@ -104,7 +104,7 @@ const TourCompleteScreen = ({ hasZog, hasQol, onFinish, saving = false }: TourCo
                     {/* CTA */}
                     <Button
                         size="lg"
-                        className="w-full h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                        className="w-full h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                         onClick={onFinish}
                         disabled={saving}
                     >

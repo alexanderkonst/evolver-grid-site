@@ -828,6 +828,39 @@ From the "UI as Transmission" vision. Makes interfaces feel alive.
 
 ---
 
+## Typography Scale
+
+Based on 1.25 modular scale for clear visual hierarchy.
+
+| Role | Size | Tailwind | Where |
+|------|------|----------|-------|
+| Hero (h1) | 30px | `text-3xl` | Page titles, reveals |
+| Section (h2) | 24px | `text-2xl` | Section headers |
+| Subsection (h3) | 20px | `text-xl` | Card headers, labels |
+| Body Large | 18px | `text-lg` | Lead paragraphs |
+| Body | 16px | `text-base` | Default body text |
+| **Button** | **14px** | **`text-sm`** | All buttons |
+| Caption | 12px | `text-xs` | Labels, meta |
+
+### Button Sizes (PremiumButton)
+
+```tsx
+sm: "text-xs"  // 12px
+md: "text-sm"  // 14px
+lg: "text-base" // 16px
+```
+
+### Key Principle
+
+**Buttons are always smaller than the header they serve.**
+- h2 (24px) + button (14px) = clear hierarchy
+- h3 (20px) + button (14px) = clear hierarchy
+
+❌ **Wrong:** Button text same size as header
+✅ **Correct:** Button text at least 1 step smaller
+
+---
+
 ## Typography
 
 ### Font Stack

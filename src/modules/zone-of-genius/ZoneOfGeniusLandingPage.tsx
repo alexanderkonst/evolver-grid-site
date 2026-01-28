@@ -88,7 +88,7 @@ const ZoneOfGeniusLandingPage = () => {
 
             <button
               onClick={handleStartAssessment}
-              className="mt-8 px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              className="mt-8 px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
               style={{
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'
@@ -196,7 +196,7 @@ const ZoneOfGeniusLandingPage = () => {
             <div className="text-center pt-6">
               <button
                 onClick={handleStartAssessment}
-                className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+                className="px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
                 style={{
                   backgroundColor: 'hsl(210, 70%, 15%)',
                   color: 'white'
@@ -430,7 +430,7 @@ const ZoneOfGeniusLandingPage = () => {
 
             <button
               onClick={handleStartAssessment}
-              className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              className="px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
               style={{
                 backgroundColor: 'hsl(210, 70%, 15%)',
                 color: 'white'

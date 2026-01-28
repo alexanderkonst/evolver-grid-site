@@ -55,7 +55,7 @@ const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScr
                 <div className="space-y-3 pt-4">
                     <Button
                         size="lg"
-                        className="w-full max-w-sm h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="w-full max-w-sm h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl"
                         onClick={onStart}
                         disabled={saving}
                     >

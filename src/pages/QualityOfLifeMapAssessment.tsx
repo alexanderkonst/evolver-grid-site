@@ -76,7 +76,7 @@ const QualityOfLifeMapAssessment = ({
         </p>
         <button
           onClick={() => setShowIntro(false)}
-          className="px-8 py-4 text-lg font-semibold rounded-full transition-all shadow-lg"
+          className="px-8 py-4 text-base font-semibold rounded-full transition-all shadow-lg"
           style={{
             backgroundColor: "hsl(var(--destiny-gold))",
             color: "hsl(var(--destiny-dark))",

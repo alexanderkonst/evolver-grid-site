@@ -9,6 +9,8 @@ import WelcomeScreen from "@/components/onboarding/WelcomeScreen";
 import ZoGIntroScreen from "@/components/onboarding/ZoGIntroScreen";
 import QoLIntroScreen from "@/components/onboarding/QoLIntroScreen";
 import TourOverviewScreen from "@/components/onboarding/TourOverviewScreen";
+import TourStepsScreen from "@/components/onboarding/TourStepsScreen";
+import TourCompleteScreen from "@/components/onboarding/TourCompleteScreen";
 
 interface OnboardingFlowProps {
   profileId: string;
@@ -18,7 +20,7 @@ interface OnboardingFlowProps {
   onComplete: () => void;
 }
 
-const MAX_STEP = 4;
+const MAX_STEP = 6;
 
 const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: OnboardingFlowProps) => {
   const navigate = useNavigate();
@@ -58,6 +60,16 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
         title: "Map your life.",
         description: "8 areas. 3-5 minutes.",
         icon: Map,
+      },
+      {
+        title: "Your 5 spaces",
+        description: "Quick tour of the platform.",
+        icon: Map,
+      },
+      {
+        title: "Explore your spaces",
+        description: "Each space has a purpose.",
+        icon: Compass,
       },
       {
         title: "Welcome home.",
@@ -176,12 +188,35 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     );
   }
 
-  // Step 4: Tour Overview (final step)
+  // Step 4: Tour Overview
   if (step === 4) {
     return (
       <TourOverviewScreen
-        onStartTour={handleFinish}
+        onStartTour={() => goToStep(5)}
         onSkipTour={handleFinish}
+        saving={saving}
+      />
+    );
+  }
+
+  // Step 5: Tour Steps (5-space walkthrough)
+  if (step === 5) {
+    return (
+      <TourStepsScreen
+        onComplete={() => goToStep(6)}
+        onBack={() => goToStep(4)}
+        onSkip={handleFinish}
+      />
+    );
+  }
+
+  // Step 6: Tour Complete (final celebration)
+  if (step === 6) {
+    return (
+      <TourCompleteScreen
+        hasZog={hasZog}
+        hasQol={hasQol}
+        onFinish={handleFinish}
         saving={saving}
       />
     );

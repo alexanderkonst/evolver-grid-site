@@ -96,7 +96,7 @@ export default function NextMoveCard({
                 {/* START Button */}
                 <Button
                     onClick={onStart}
-                    className="w-full h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-[#8460ea] to-[#6894d0] text-white shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                    className="w-full h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[#8460ea] to-[#6894d0] text-white shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                 >
                     START
                     <span className="ml-2 text-sm opacity-80">+{action.xp || 15} XP</span>
