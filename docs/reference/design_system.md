@@ -197,13 +197,34 @@
 ## Do's and Don'ts
 
 ✅ **Do:**
-- Use `slate` palette for neutrals
+- Use `slate` palette for utility/navigation elements
 - Use `rounded-xl` for cards
 - Stack layouts on mobile
 - Keep touch targets ≥44px
+- **Use gradients for hero moments** (see brandbook.md)
+- **Use glassmorphism for premium cards**
+- **Add micro-animations to interactive elements**
 
 ❌ **Don't:**
 - Use pure black (`#000`)
-- Use shadows (keep flat)
-- Use gradients (stay minimal)
 - Make buttons smaller than 44px height on mobile
+- Use gradients for utility elements (navigation, forms)
+- Add decorative animations that don't guide attention
+
+---
+
+## Premium Tokens (Hero Moments)
+
+For hero/transformational moments, apply brandbook aesthetics:
+
+```css
+/* Use these for Welcome, Results, Celebrations */
+--gradient-transformation: linear-gradient(135deg, #8460ea 0%, #a4a3d0 25%, #a7cbd4 50%, #cec9b0 75%, #cea4ae 100%);
+--glass-bg: rgba(255, 255, 255, 0.85);
+--glass-blur: blur(20px);
+--glass-border: 1px solid rgba(255, 255, 255, 0.3);
+--glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+```
+
+See `brandbook.md` for full palette and guidelines.
+

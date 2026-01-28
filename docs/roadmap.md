@@ -2,7 +2,53 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-01-27*
+> *Last updated: 2026-01-28*
+
+---
+
+## 📋 All Items at a Glance
+
+| # | Item | Category | Priority | Target |
+|---|------|----------|----------|--------|
+| **UX POLISH** |
+| 1 | Tour completion | UX | 🔴 HIGH | Today |
+| 2 | Deep UX/UI pass (blocks, templates, brandbook) | UX | 🔴 HIGH | This week |
+| 3 | Images instead of icons | UX | 🔴 HIGH | This week |
+| 4 | Premium visual research | UX | 🟡 MED | Backlog |
+| 5 | ZoG explainer + activation recording | UX | 🔴 HIGH | Today |
+| 6 | Upgrades in Profile (categories) | UX | 🔴 HIGH | Today |
+| 7 | Library: practices, combos, sequences | UX | 🟡 MED | This week |
+| 8 | Fast design workflow | UX | 🔴 HIGH | This week |
+| **DATA MODEL** |
+| 9 | User results to DB (missions, resources) | Data | 🔴 HIGH | Today |
+| 10 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This week |
+| **GENIUS BUSINESS** |
+| 11 | Genius Business sequence spec | Product | 🔴 HIGH | Today |
+| 12 | Genius Business iteration flow | Product | 🔴 HIGH | February |
+| 13 | Smart packaging recommendations | Product | 🔴 HIGH | February |
+| 14 | How to enter the co-op | Product | 🟡 MED | Backlog |
+| 15 | Why venture studios use this | Product | 🟡 MED | Backlog |
+| **PLATFORM STRATEGY** |
+| 16 | Solo user landing page | Marketing | 🔴 HIGH | Today |
+| 17 | Module landings (every module) | Marketing | 🔴 HIGH | This week |
+| 18 | Community leader value prop | Strategy | 🟡 MED | February |
+| 19 | Holonic landings for similar projects | Strategy | 🟡 MED | Backlog |
+| 20 | Monetization streams (5 mechanisms) | Strategy | 🔴 HIGH | Spec done |
+| **VERSIONING** |
+| 21 | Module versioning | Infra | 🔴 HIGH | This week |
+| 22 | User artifact versioning | Infra | 🔴 HIGH | This week |
+| 23 | Holonic page navigation | Infra | 🟡 MED | This week |
+| **GROWTH** |
+| 24 | Invite system (modules) | Growth | 🟡 MED | February |
+| 25 | Doubling invites / waitlist | Growth | 🟡 MED | February |
+| 26 | Autonomous agent invites | Growth | 🔴 HIGH | March |
+| **ECONOMICS** |
+| 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
+| 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
+| **PARKED** |
+| 29 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
+| 30 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
+| 31 | Loom video for onboarding | UX | 🟢 LOW | Deferred |
 
 ---
 
@@ -10,34 +56,39 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | MVP Polish + Compiler Suite |
-| **Focus** | Product/Marketing/Distribution Playbooks |
-| **Next milestone** | Module Landings + Versioning |
+| **Current phase** | MVP Polish → Beta Ready |
+| **Focus** | Tour + Genius Business + Match-making |
+| **Next milestone** | 20 beta testers by Thursday |
 
 ---
 
-## 🎯 Active Sprint (January 27-31, 2026)
+## 🎯 Today's Sprint (January 28, 2026)
 
-### Today's Focus
-- [x] Product Playbook created (from UX Playbook)
-- [x] Marketing Playbook restructured (8-phase Execution Workflow)
-- [x] Distribution Playbook restructured (8-phase Execution Workflow)
-- [ ] Design system / fast design workflow
+### Priority 1: UX Polish
+- [ ] **Tour completion** — 5-space walkthrough with tooltips
+- [ ] **ZoG explainer** — add activation recording + verb definitions
+- [ ] **Upgrades in Profile** — categories with dropdowns
 
-### This Week
-- [ ] Landing pages for every module
-- [ ] Versioning scheme for modules
-- [ ] Holonic page navigation system
+### Priority 2: Data Model
+- [ ] **User results to DB** — missions, resources (rename from assets)
+- [ ] **Matchmaking types spec** — resources, ZoG, missions
+
+### Priority 3: Genius Business
+- [ ] **Sequence spec** — ZoG → Seed → Product → Published
+
+### Nice to Have Today
+- [ ] **Solo user landing page** — one page for organic acquisition
+- [ ] **Library practices** — combos, sequences, rename "practice"
 
 ---
 
-# Roadmap by Category
+# ORIGINAL ROADMAP ITEMS (Preserved)
 
 ---
 
 ## 📦 PRODUCT / MODULES
 
-### Module Landings (Priority: HIGH | Target: Tomorrow)
+### Module Landings (Priority: HIGH | Target: This Week)
 **Idea #1:** Landing pages for every module!
 
 Every module in the system gets its own landing page that explains:
@@ -46,7 +97,7 @@ Every module in the system gets its own landing page that explains:
 - How to use it
 - How to co-create it
 
-**Status:** 🎯 Tomorrow's scope of work
+**Status:** Queued
 
 ---
 
@@ -193,7 +244,228 @@ Initial ideas:
 - Minimalism as principle
 - Types of pages catalog
 
-**Status:** 🎯 Next sprint today
+**Status:** 🎯 Active
+
+---
+
+## 📖 PLAYBOOK IMPROVEMENTS
+
+### Architecture Playbook Enhancement (Priority: LOW | Target: Future)
+**What:** Add real code examples from Evolver codebase + Decision Trees + Anti-patterns
+
+**Impact:** Playbook goes from 8/10 → 10/10
+
+**Status:** Parked - optimize after MVP
+
+---
+
+### Distribution Playbook Enhancement (Priority: LOW | Target: Future)
+**What:** Deeper integration with Marketing Playbook (Business Model → Channels)
+
+**Current state:** MVP level, functional but thin
+
+**Status:** Parked - will strengthen organically through use
+
+---
+
+# NEW ITEMS (Added Jan 28, 2026)
+
+---
+
+## 🎨 CLUSTER 1: UX POLISH
+
+### 1.1 Deep UX/UI Pass (Priority: HIGH)
+**What:** Design system completeness — blocks, templates, brandbook representation
+**Why:** Consistency = premium feel. Any dev can build on-brand screens fast.
+**Status:** 🎯 Active
+
+---
+
+### 1.2 Images Instead of Icons (Priority: HIGH)
+**What:** Beautiful images instead of functional icons
+**Why:** First impression = "wow". Users feel premium, not prototype.
+**Status:** 🎯 Active
+
+---
+
+### 1.3 Premium Visual Research (Priority: MEDIUM)
+**What:** Research/brainstorm other premium aesthetics
+**Why:** Differentiation from generic SaaS. Justifies premium positioning.
+**Status:** Backlog
+
+---
+
+### 1.4 Tour Completion (Priority: HIGH | TODAY)
+**What:** Full 5-space onboarding walkthrough with tooltips
+**Why:** Reduces confusion, increases activation
+**Status:** 🎯 Today
+
+---
+
+### 1.5 Loom Video for Onboarding? (Priority: LOW)
+**What:** Educational video vs. intuitive UX
+**Why:** Maybe not needed IF Tour + drip unlock + My Next Move work well
+**Decision:** Skip for MVP. Optional "founder welcome" video later.
+**Status:** Deferred
+
+---
+
+### 1.6 Library: Practices, Combos, Sequences (Priority: MEDIUM)
+**What:** Content organization + transformation paths. Rename "practice" to "Ritual" or "Micro-Upgrade"
+**Why:** Better transformation outcomes
+**Status:** 🎯 Active
+
+---
+
+### 1.7 ZoG Explainer + Activation Recording (Priority: HIGH)
+**What:** Educational content for deeper ZoG engagement. Explain action verbs.
+**Why:** ZoG becomes actionable, not just a label
+**Status:** 🎯 Active
+
+---
+
+### 1.8 Upgrades in Profile with Categories (Priority: HIGH | TODAY)
+**What:** UI organization — categories first with dropdowns
+**Why:** User clarity on progress, better navigation
+**Status:** 🎯 Today
+
+---
+
+## 📊 CLUSTER 2: DATA MODEL
+
+### 2.1 User Results to DB (Priority: HIGH | TODAY)
+**What:** Store missions, resources (rename from "assets") in database
+**Why:** Enables matchmaking, recommendations, profiles. Platform becomes useful long-term.
+**Status:** 🎯 Today
+
+---
+
+### 2.2 Matchmaking Types (Priority: HIGH)
+**What:** Multi-dimensional matching:
+- By resources (complementary)
+- By ZoG (complementary genius)
+- By mission (similar purpose)
+
+**Intro Mechanic:** Message → "There's someone with X match. Want intro? If they agree, I'll connect you."
+**Mission Groups:** Email list or Discord channel per mission initially. Chat when 3+ match.
+
+**Why:** Core value prop "find your tribe". Network effects kick in.
+**Status:** 🎯 Active
+
+---
+
+## 💼 CLUSTER 3: GENIUS BUSINESS
+
+### 3.1 Genius Business Sequence (Priority: HIGH | TODAY)
+**What:** Clear progression:
+1. Zone of Genius → 
+2. Genius Business Seed → 
+3. Genius Product Creation → 
+4. Published Product → 
+5. (Later) Vibe-Coded Product
+
+**Why:** Monetization path for users. Users make money = retention + proof of value.
+**Status:** 🎯 Today
+
+---
+
+### 3.2 How to Enter the Co-op (Priority: MEDIUM)
+**What:** Venture studio entry funnel — high-touch premium offering
+**Why:** Revenue + deep collaboration
+**Status:** Backlog
+
+---
+
+### 3.3 Why Venture Studios Use This (Priority: MEDIUM)
+**What:** B2B positioning and value prop for studios
+**Why:** Enterprise channel + legitimacy
+**Status:** Backlog
+
+---
+
+## 🏢 CLUSTER 4: PLATFORM STRATEGY
+
+### 4.1 Solo User Landing Page (Priority: HIGH | TODAY)
+**What:** Marketing entry point for individual users
+**Why:** Organic acquisition begins
+**Status:** 🎯 Today
+
+---
+
+### 4.2 Community Leader Value Prop (Priority: MEDIUM)
+**What:** What's in it for community leaders?
+- Impact dashboard
+- Resource pool across communities
+- Connections to other leaders
+- One platform for all needs
+
+**Note:** Messenger stays separate (Telegram/Discord integration, not replacement)
+**Why:** Scalable distribution via leaders = platform of platforms
+**Status:** Backlog
+
+---
+
+### 4.3 Holonic Landings for Similar Projects (Priority: MEDIUM)
+**What:** White-label / partnership model for aligned projects
+**Value Exchange:** They get ready module, we get distribution
+**Why:** Ecosystem play
+**Status:** Backlog
+
+---
+
+### 4.4 Monetization Streams (Priority: HIGH)
+**What:** 5 revenue mechanisms:
+
+| Stream | Trigger |
+|--------|---------|
+| Commercial license | Use modules commercially → contact us |
+| Contribution | Bring code/content → earn leadership role |
+| Business incubator | Join co-op membership |
+| Finder's fee | Published projects pay % per transaction |
+| Content sales | Curated content with approval |
+
+**Why:** Business sustainability, investment-ready
+**Status:** Spec complete
+
+---
+
+## 💰 CLUSTER 5: ECONOMICS
+
+### 5.1 Token Economics (Priority: MEDIUM)
+**What:** Incentive layer design:
+- **Value token:** XP/credits for contributions
+- **Reputation token:** ZoG verification level + endorsements
+- **Wallet:** Internal credits (crypto optional later)
+
+**MVP Decision:** XP + level is enough for now
+**Why:** Alignment of interests, sustainable ecosystem
+**Status:** Backlog (MVP has XP)
+
+---
+
+### 5.2 Daily Use Case (Priority: HIGH)
+**What:** Retention loop definition:
+- Learn
+- Meet  
+- Collaborate
+- Grow
+- Build your genius business
+
+**Why:** User habit formation, DAU/MAU ratio
+**Status:** ✅ Defined in Daily Loop spec
+
+---
+
+# 📅 Timeline Overview
+
+| Period | Focus | Key Deliverables |
+|--------|-------|-----------------|
+| **Jan 28** | Tour + Data Model | Tour, User DB, Genius Business Sequence |
+| **Jan 29** | UX Polish | Images, Brandbook application, Landing |
+| **Jan 30** | Testing | Full flow test, 20 beta invites ready |
+| **Jan 31** | Launch | First beta testers enter |
+| **February** | Growth | Matchmaking live, invite system, versioning |
+| **March** | Autonomous | Agent-based invitations |
 
 ---
 
@@ -233,38 +505,6 @@ For unbuilt features, show:
 
 ---
 
-## 📖 PLAYBOOK IMPROVEMENTS
-
-### Architecture Playbook Enhancement (Priority: LOW | Target: Future)
-**What:** Add real code examples from Evolver codebase + Decision Trees + Anti-patterns
-
-**Impact:** Playbook goes from 8/10 → 10/10
-
-**Status:** Parked - optimize after MVP
-
----
-
-### Distribution Playbook Enhancement (Priority: LOW | Target: Future)
-**What:** Deeper integration with Marketing Playbook (Business Model → Channels)
-
-**Current state:** MVP level, functional but thin
-
-**Status:** Parked - will strengthen organically through use
-
----
-
-## 📅 Timeline Overview
-
-| Period | Focus | Key Deliverables |
-|--------|-------|-----------------|
-| **Jan 27** | Compiler Suite | Product/Marketing/Distribution Playbooks ✅ |
-| **Jan 28** | Module Landings | Landing page per module + versioning |
-| **Jan 29-31** | Design System | Fast design workflow + holonic navigation |
-| **February** | Growth | Invite system, waitlist, doubling batches |
-| **March** | Autonomous | Agent-based invitations, living organism |
-
----
-
 ## Archived Sprints
 
 ### Sprint: Jan 4-29, 2025 (Network School)
@@ -276,4 +516,4 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap is a living document. Updated as we evolve.*
+*Roadmap updated: 2026-01-28 11:55. Original items preserved + 19 new items added.*

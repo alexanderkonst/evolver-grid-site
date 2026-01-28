@@ -9,6 +9,9 @@ import {
 import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
+import PremiumCard from "@/components/ui/PremiumCard";
+import PremiumButton from "@/components/ui/PremiumButton";
+import HeroIcon from "@/components/ui/HeroIcon";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import PowerfulWelcome from "@/components/game/PowerfulWelcome";
@@ -738,33 +741,41 @@ const GameHome = () => {
           {/* ONBOARDING - New users */}
           {!hasAnyData && !isZogCompleteStage && (
             <div className="max-w-2xl mx-auto">
-              <div className="rounded-3xl border-2 border-slate-200 bg-white p-8 sm:p-12 text-center shadow-lg">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-slate-100 flex items-center justify-center">
-                  <Sparkles className="w-8 h-8 text-slate-600" />
+              <PremiumCard variant="gradient-border" size="lg" className="text-center">
+                <div className="flex justify-center mb-6">
+                  <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Start Building Your Self-Understanding</h2>
-                <p className="text-base text-slate-600 mb-8 leading-relaxed">
-                  First, let's discover your Zone of Genius.
+                <h2 className="text-3xl font-bold text-[#2c3150] mb-4">
+                  Your Operating System for Life
+                </h2>
+                <p className="text-lg text-[#2c3150]/70 mb-8 leading-relaxed max-w-md mx-auto">
+                  Discover your genius. Build your vision. Transform your life.
                 </p>
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    if (profileId) {
-                      logActionEvent({
-                        actionId: "onboarding:zog_start",
-                        profileId,
-                        source: "src/pages/GameHome.tsx",
-                        loop: "profile",
-                        selectedAt: new Date().toISOString(),
-                        metadata: { intent: "start_onboarding" },
-                      });
-                    }
-                    navigate("/zone-of-genius/entry");
-                  }}
-                >
-                  <BoldText className="uppercase">Begin: Discover My Zone of Genius</BoldText>
-                </Button>
-              </div>
+                <div className="space-y-4">
+                  <PremiumButton
+                    size="lg"
+                    className="w-full max-w-sm"
+                    onClick={() => {
+                      if (profileId) {
+                        logActionEvent({
+                          actionId: "onboarding:zog_start",
+                          profileId,
+                          source: "src/pages/GameHome.tsx",
+                          loop: "profile",
+                          selectedAt: new Date().toISOString(),
+                          metadata: { intent: "start_onboarding" },
+                        });
+                      }
+                      navigate("/zone-of-genius/entry");
+                    }}
+                  >
+                    Begin: Discover My Zone of Genius
+                  </PremiumButton>
+                  <p className="text-sm text-[#2c3150]/50">
+                    7-10 minutes • No signup required
+                  </p>
+                </div>
+              </PremiumCard>
             </div>
           )}
 
