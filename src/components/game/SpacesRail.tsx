@@ -29,41 +29,40 @@ const SPACES: SpaceItem[] = [
         path: "/game/next-move",
     },
     {
-        id: "profile",
-        label: "Profile",
+        id: "grow",
+        label: "GROW",
         icon: <User className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/profile",
+        path: "/game/grow",
     },
     {
-        id: "transformation",
-        label: "Transformation",
+        id: "learn",
+        label: "LEARN",
         icon: <Sparkles className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/transformation",
+        path: "/game/learn",
     },
-
     {
-        id: "marketplace",
-        label: "Marketplace",
+        id: "meet",
+        label: "MEET",
+        icon: <CalendarDays className="w-5 h-5 flex-shrink-0" />,
+        path: "/game/meet",
+    },
+    {
+        id: "collaborate",
+        label: "COLLABORATE",
+        icon: <Users className="w-5 h-5 flex-shrink-0" />,
+        path: "/game/collaborate",
+    },
+    {
+        id: "build",
+        label: "BUILD",
+        icon: <Rocket className="w-5 h-5 flex-shrink-0" />,
+        path: "/game/build",
+    },
+    {
+        id: "buysell",
+        label: "BUY & SELL",
         icon: <Store className="w-5 h-5 flex-shrink-0" />,
         path: "/game/marketplace",
-    },
-    {
-        id: "teams",
-        label: "Discover",
-        icon: <Users className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/teams",
-    },
-    {
-        id: "events",
-        label: "Events",
-        icon: <CalendarDays className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/events",
-    },
-    {
-        id: "coop",
-        label: "Business Incubator",
-        icon: <Rocket className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/coop",
     },
 ];
 

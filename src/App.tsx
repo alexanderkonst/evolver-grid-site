@@ -119,11 +119,13 @@ const PageLoader = () => (
   </div>
 );
 
-const TransformationSpace = lazy(() => import("./pages/spaces/TransformationSpace"));
-const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace"));
-const TeamsSpace = lazy(() => import("./pages/spaces/TeamsSpace"));
-const EventsSpace = lazy(() => import("./pages/spaces/EventsSpace"));
-const CoopSpace = lazy(() => import("./pages/spaces/CoopSpace"));
+// Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, BUY & SELL
+const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
+const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
+const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
+const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
+const BuildSpace = lazy(() => import("./pages/spaces/CoopSpace")); // was Business Incubator
+const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace")); // BUY & SELL
 const QualityOfLifeMapResults = lazy(() => import("./pages/QualityOfLifeMapResults"));
 const AdminGeniusOffers = lazy(() => import("./pages/AdminGeniusOffers"));
 
@@ -165,7 +167,7 @@ const App = () => (
                   <Route path="/start" element={<OnboardingPage />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />
-                  <Route path="/profile" element={<Navigate to="/game/profile" replace />} />
+                  <Route path="/profile" element={<Navigate to="/game/grow" replace />} />
                   <Route path="/settings" element={<Profile />} />
                   <Route path="/game/settings" element={<Settings />} />
                   <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
@@ -187,44 +189,67 @@ const App = () => (
                   <Route path="/game" element={<GameHome />} />
                   <Route path="/game/next-move" element={<CoreLoopHome />} />
                   <Route path="/game/next-move-v2" element={<DailyLoopV2 />} />
-                  <Route path="/game/profile" element={<ProfileOverview />} />
-                  <Route path="/game/profile/settings" element={<Profile />} />
-                  <Route path="/game/profile/mission" element={<ProfileMissionSection />} />
-                  <Route path="/game/profile/assets" element={<ProfileAssetsSection />} />
-                  <Route path="/game/profile/genius-business" element={<GeniusBusiness />} />
-                  <Route path="/game/profile/genius-business/audience" element={<GeniusBusinessAudience />} />
-                  <Route path="/game/profile/genius-business/promise" element={<GeniusBusinessPromise />} />
-                  <Route path="/game/profile/genius-business/channels" element={<GeniusBusinessChannels />} />
-                  <Route path="/game/profile/genius-business/vision" element={<GeniusBusinessVision />} />
-                  <Route path="/game/profile/zone-of-genius" element={<ZoneOfGeniusOverview />} />
-                  <Route path="/game/profile/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
-                  <Route path="/game/transformation" element={<TransformationSpace />} />
-                  <Route path="/game/transformation/today" element={<TodaysPractice />} />
-                  <Route path="/game/transformation/paths" element={<TransformationGrowthPaths />} />
-                  <Route path="/game/transformation/path/:pathId" element={<PathSection />} />
-                  <Route path="/game/transformation/library" element={<TransformationPracticeLibrary />} />
-                  <Route path="/game/transformation/tests" element={<TransformationPersonalityTests />} />
-                  <Route path="/game/transformation/qol-assessment" element={<TransformationQolAssessment />} />
-                  <Route path="/game/transformation/qol-results" element={<TransformationQolResults />} />
-                  <Route path="/game/transformation/genius-assessment" element={<TransformationGeniusAssessment />}>
+                  {/* GROW Space (was Profile) */}
+                  <Route path="/game/grow" element={<ProfileOverview />} />
+                  <Route path="/game/grow/settings" element={<Profile />} />
+                  <Route path="/game/grow/mission" element={<ProfileMissionSection />} />
+                  <Route path="/game/grow/assets" element={<ProfileAssetsSection />} />
+                  <Route path="/game/grow/genius-business" element={<GeniusBusiness />} />
+                  <Route path="/game/grow/genius-business/audience" element={<GeniusBusinessAudience />} />
+                  <Route path="/game/grow/genius-business/promise" element={<GeniusBusinessPromise />} />
+                  <Route path="/game/grow/genius-business/channels" element={<GeniusBusinessChannels />} />
+                  <Route path="/game/grow/genius-business/vision" element={<GeniusBusinessVision />} />
+                  <Route path="/game/grow/zone-of-genius" element={<ZoneOfGeniusOverview />} />
+                  <Route path="/game/grow/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
+                  {/* Legacy redirects */}
+                  <Route path="/game/profile" element={<Navigate to="/game/grow" replace />} />
+                  <Route path="/game/profile/*" element={<Navigate to="/game/grow" replace />} />
+                  {/* LEARN Space (was Transformation) */}
+                  <Route path="/game/learn" element={<LearnSpace />} />
+                  <Route path="/game/learn/today" element={<TodaysPractice />} />
+                  <Route path="/game/learn/paths" element={<TransformationGrowthPaths />} />
+                  <Route path="/game/learn/path/:pathId" element={<PathSection />} />
+                  <Route path="/game/learn/library" element={<TransformationPracticeLibrary />} />
+                  <Route path="/game/learn/tests" element={<TransformationPersonalityTests />} />
+                  <Route path="/game/learn/qol-assessment" element={<TransformationQolAssessment />} />
+                  <Route path="/game/learn/qol-results" element={<TransformationQolResults />} />
+                  <Route path="/game/learn/genius-assessment" element={<TransformationGeniusAssessment />}>
                     <Route path="step-0" element={<Step0SwipeTalents />} />
                     <Route path="step-1" element={<Step1SelectTop10Talents />} />
                     <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />
                     <Route path="step-3" element={<Step3OrderTalents />} />
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
+                  {/* Legacy redirects */}
+                  <Route path="/game/transformation" element={<Navigate to="/game/learn" replace />} />
+                  <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
+                  {/* BUY & SELL Space (was Marketplace) */}
                   <Route path="/game/marketplace" element={<MarketplaceSpace />} />
                   <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
-                  <Route path="/game/teams" element={<TeamsSpace />} />
-                  <Route path="/game/matches" element={<Matchmaking />} />
-                  <Route path="/connections" element={<Connections />} />
-                  <Route path="/game/mission" element={<MissionSelection />} />
-                  <Route path="/community/people" element={<PeopleDirectory />} />
-                  <Route path="/game/events" element={<EventsSpace />} />
-                  <Route path="/game/events/create" element={<CreateEvent />} />
-                  <Route path="/game/events/my-rsvps" element={<MyRsvps />} />
-                  <Route path="/game/coop" element={<CoopSpace />} />
-                  <Route path="/events" element={<Navigate to="/game/events" replace />} />
+                  {/* COLLABORATE Space (was Teams/Discover) */}
+                  <Route path="/game/collaborate" element={<CollaborateSpace />} />
+                  <Route path="/game/collaborate/matches" element={<Matchmaking />} />
+                  <Route path="/game/collaborate/connections" element={<Connections />} />
+                  <Route path="/game/collaborate/mission" element={<MissionSelection />} />
+                  <Route path="/game/collaborate/people" element={<PeopleDirectory />} />
+                  {/* Legacy redirects */}
+                  <Route path="/game/teams" element={<Navigate to="/game/collaborate" replace />} />
+                  <Route path="/game/matches" element={<Navigate to="/game/collaborate/matches" replace />} />
+                  <Route path="/connections" element={<Navigate to="/game/collaborate/connections" replace />} />
+                  <Route path="/game/mission" element={<Navigate to="/game/collaborate/mission" replace />} />
+                  <Route path="/community/people" element={<Navigate to="/game/collaborate/people" replace />} />
+                  {/* MEET Space (was Events) */}
+                  <Route path="/game/meet" element={<MeetSpace />} />
+                  <Route path="/game/meet/create" element={<CreateEvent />} />
+                  <Route path="/game/meet/my-rsvps" element={<MyRsvps />} />
+                  {/* Legacy redirects */}
+                  <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
+                  <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
+                  {/* BUILD Space (was Business Incubator/Co-op) */}
+                  <Route path="/game/build" element={<BuildSpace />} />
+                  {/* Legacy redirects */}
+                  <Route path="/game/coop" element={<Navigate to="/game/build" replace />} />
+                  <Route path="/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/events/:id" element={<EventDetail />} />
                   <Route path="/events/community/:communityId" element={<CommunityEvents />} />
                   <Route path="/game/snapshot" element={<CharacterSnapshot />} />

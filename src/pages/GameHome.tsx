@@ -15,6 +15,8 @@ import HeroIcon from "@/components/ui/HeroIcon";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import PowerfulWelcome from "@/components/game/PowerfulWelcome";
+import MyLifeSection, { DOMAIN_LABELS } from "@/components/game/MyLifeSection";
+import CelebrationModal from "@/components/game/CelebrationModal";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
@@ -115,6 +117,8 @@ const GameHome = () => {
   const [currentQolSnapshot, setCurrentQolSnapshot] = useState<QolSnapshot | null>(null);
   const [user, setUser] = useState<any>(null);
   const [celebration, setCelebration] = useState<{ title: string; detail?: string } | null>(null);
+  const [showCelebrationModal, setShowCelebrationModal] = useState(false);
+  const [lastXpEarned, setLastXpEarned] = useState(0);
   const previousProfileRef = useRef<{ xp_total?: number; level?: number } | null>(null);
   const loadStartRef = useRef<number | null>(null);
   const lastLoadDurationRef = useRef<number | null>(null);
@@ -483,11 +487,9 @@ const GameHome = () => {
       }
 
       setQuestCompleted(true);
-      if (result.xpAwarded) {
-        toast({ title: `+${result.xpAwarded} XP earned!`, description: "Side quest completed." });
-      } else {
-        toast({ title: "Side quest completed.", description: "Nice work." });
-      }
+      // Show celebration modal instead of just toast
+      setLastXpEarned(result.xpAwarded || 15);
+      setShowCelebrationModal(true);
       await loadGameData();
     } catch (error) {
       toast({ title: "Error", description: "Failed to save side quest.", variant: "destructive" });
@@ -709,6 +711,14 @@ const GameHome = () => {
 
   return (
     <GameShellV2 hideNavigation={!hasAnyData}>
+      {/* Celebration Modal for action completion */}
+      <CelebrationModal
+        isOpen={showCelebrationModal}
+        onClose={() => setShowCelebrationModal(false)}
+        xpEarned={lastXpEarned}
+        title="Well done!"
+        message="Your next move is ready"
+      />
 
       <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="container mx-auto max-w-4xl">
@@ -732,6 +742,24 @@ const GameHome = () => {
                     xpTotal={profile.xp_total}
                     streakDays={profile.current_streak_days}
                     size="lg"
+                  />
+                </div>
+              )}
+
+              {/* MY LIFE Section - QoL overview */}
+              {currentQolSnapshot && (
+                <div className="mb-8 max-w-md mx-auto">
+                  <MyLifeSection
+                    qolScores={[
+                      { key: "wealth_stage", label: "Wealth", score: currentQolSnapshot.wealth_stage },
+                      { key: "health_stage", label: "Health", score: currentQolSnapshot.health_stage },
+                      { key: "happiness_stage", label: "Happiness", score: currentQolSnapshot.happiness_stage },
+                      { key: "love_relationships_stage", label: "Love", score: currentQolSnapshot.love_relationships_stage },
+                      { key: "impact_stage", label: "Impact", score: currentQolSnapshot.impact_stage },
+                      { key: "growth_stage", label: "Growth", score: currentQolSnapshot.growth_stage },
+                      { key: "social_ties_stage", label: "Social", score: currentQolSnapshot.social_ties_stage },
+                      { key: "home_stage", label: "Home", score: currentQolSnapshot.home_stage },
+                    ]}
                   />
                 </div>
               )}
