@@ -583,10 +583,10 @@ const AIUpgrade = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { toast } = useToast();
-  
+
   const { user, hasPurchased, isLoading, recordPurchase } = useAIBoostPurchase();
   const { hasAccess: hasPromoAccess, isLoading: promoLoading, validateAndGrantAccess } = useAIUpgradeAccess(user);
-  
+
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -603,7 +603,7 @@ const AIUpgrade = () => {
     const handleStripeSuccess = async () => {
       const status = searchParams.get('status');
       const sessionId = searchParams.get('session_id');
-      
+
       if (status === 'success' && user && !purchaseRecorded) {
         const success = await recordPurchase('stripe_checkout', sessionId ?? undefined);
         if (success) {
@@ -625,7 +625,7 @@ const AIUpgrade = () => {
 
   const handleApplyPromo = async () => {
     setPromoError("");
-    
+
     if (!promoCode.trim()) {
       setPromoError("Please enter a promo code.");
       return;
@@ -700,8 +700,8 @@ const AIUpgrade = () => {
         {/* Navigation */}
         <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
           <div className="container mx-auto px-6 py-4">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-sm font-medium hover:opacity-70 transition-opacity"
               style={{ color: '#0A2342' }}
             >
@@ -712,13 +712,13 @@ const AIUpgrade = () => {
 
         <div className="pt-32 pb-20 px-6 flex items-center justify-center min-h-dvh">
           <div className="text-center max-w-md mx-auto">
-            <div 
+            <div
               className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
               style={{ backgroundColor: '#0A2342' }}
             >
               <LogIn className="w-8 h-8 text-white" />
             </div>
-            <h1 
+            <h1
               className="text-3xl font-bold mb-4"
               style={{ color: '#0A2342' }}
             >
@@ -746,18 +746,17 @@ const AIUpgrade = () => {
   // Full access - show Prompt Launcher
   if (hasAccess) {
     return (
-      <div 
-        className="min-h-dvh bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: 'url(/images/paper-texture.png)',
+      <div
+        className="min-h-dvh"
+        style={{
           backgroundColor: '#0A2342'
         }}
       >
         {/* Navigation */}
         <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
           <div className="container mx-auto px-6 py-4">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-sm font-medium hover:opacity-70 transition-opacity"
               style={{ color: '#0A2342' }}
             >
@@ -768,17 +767,17 @@ const AIUpgrade = () => {
 
         {/* Main Content - Centered Card */}
         <div className="min-h-dvh flex items-center justify-center px-4 py-24">
-          <div 
+          <div
             className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 sm:p-10"
           >
             {/* Title */}
-            <h1 
+            <h1
               className="text-3xl sm:text-4xl font-bold text-center mb-3"
               style={{ color: '#0A2342' }}
             >
               Prompt Launcher
             </h1>
-            
+
             {/* Subtitle */}
             <p className="text-center text-gray-500 mb-8 text-sm sm:text-base">
               Tap to copy a prompt to your clipboard
@@ -796,7 +795,7 @@ const AIUpgrade = () => {
                   {copied === button.id ? "✓ Copied!" : button.label}
                 </button>
               ))}
-              
+
               {/* Telegram Contact Button */}
               <button
                 onClick={handleTelegramContact}
@@ -843,8 +842,8 @@ const AIUpgrade = () => {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
         <div className="container mx-auto px-6 py-4">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="text-sm font-medium hover:opacity-70 transition-opacity"
             style={{ color: '#0A2342' }}
           >
@@ -856,13 +855,13 @@ const AIUpgrade = () => {
       {/* Hero Section - Sales Page */}
       <section className="pt-32 pb-20 px-6 animate-fade-in">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 
+          <h1
             className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight transition-all duration-700"
             style={{ color: '#0A2342' }}
           >
             Your AI model can't think as fast as you and is slowing you down.
           </h1>
-          <p 
+          <p
             className="text-2xl sm:text-3xl font-light mb-8"
             style={{ color: '#0A2342' }}
           >
@@ -871,7 +870,7 @@ const AIUpgrade = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
             This instant AI upgrade removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands.
           </p>
-          <Button 
+          <Button
             onClick={handleGetUpgrade}
             size="lg"
             className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
@@ -897,7 +896,7 @@ const AIUpgrade = () => {
                 )}
               </button>
             </div>
-            
+
             {showPromoInput && (
               <div className="mt-4 max-w-sm mx-auto animate-in slide-in-from-top-2 duration-200">
                 <div className="flex gap-2">
@@ -959,7 +958,7 @@ const AIUpgrade = () => {
       {/* Problem Section */}
       <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
-          <h2 
+          <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: '#0A2342' }}
           >
@@ -1013,7 +1012,7 @@ const AIUpgrade = () => {
       {/* Upgrade Section */}
       <section className="py-20 px-6 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
-          <h2 
+          <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: '#0A2342' }}
           >
@@ -1064,7 +1063,7 @@ const AIUpgrade = () => {
               A cognitive instrument.
             </p>
             <div className="mt-12 text-center">
-              <Button 
+              <Button
                 onClick={handleGetUpgrade}
                 size="lg"
                 className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
@@ -1081,7 +1080,7 @@ const AIUpgrade = () => {
       {/* Who It's For Section */}
       <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
-          <h2 
+          <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: '#0A2342' }}
           >
@@ -1120,7 +1119,7 @@ const AIUpgrade = () => {
       {/* Before/After Section */}
       <section className="py-20 px-6 transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
-          <h2 
+          <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: '#0A2342' }}
           >
@@ -1171,7 +1170,7 @@ const AIUpgrade = () => {
             </div>
           </div>
           <div className="mt-16 text-center">
-            <Button 
+            <Button
               onClick={handleGetUpgrade}
               size="lg"
               className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
