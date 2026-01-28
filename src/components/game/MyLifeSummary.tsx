@@ -74,7 +74,7 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
     };
 
     return (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
             <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Life</h3>
 
             {scores ? (

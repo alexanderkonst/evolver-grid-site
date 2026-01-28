@@ -67,7 +67,7 @@ export default function NextMoveCard({
     }
 
     return (
-        <div className="bg-gradient-to-br from-[#a4a3d0]/10 to-white rounded-2xl p-6">
+        <div className="bg-gradient-to-br from-[#a4a3d0]/10 to-white rounded-2xl p-6 breathing-card">
             <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Next Move</h3>
 
             <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 border border-[var(--wabi-lavender)]/20">
