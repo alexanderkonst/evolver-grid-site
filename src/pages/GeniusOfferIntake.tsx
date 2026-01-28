@@ -800,7 +800,7 @@ const GeniusOfferIntake = () => {
                   disabled={saving}
                 >
                   {saving ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span className="premium-spinner h-4 w-4" />
                   ) : (
                     <>
                       <BoldText>SUBMIT</BoldText>
