@@ -295,8 +295,8 @@ const Profile = () => {
                                                             type="button"
                                                             onClick={() => toggleLanguage(language)}
                                                             className={`rounded-full border px-3 py-1 text-sm transition ${isSelected
-                                                                    ? "border-amber-300 bg-amber-50 text-amber-900"
-                                                                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                                                                ? "border-amber-300 bg-amber-50 text-amber-900"
+                                                                : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
                                                                 }`}
                                                             aria-pressed={isSelected}
                                                         >
@@ -507,7 +507,9 @@ const Profile = () => {
                                                         xp_uniqueness: 0,
                                                         practice_count: 0,
                                                         zone_of_genius_completed: false,
-                                                        total_quests_completed: 0
+                                                        total_quests_completed: 0,
+                                                        onboarding_completed: false,
+                                                        onboarding_step: 0
                                                     })
                                                     .eq('id', profile.id);
 
