@@ -725,6 +725,37 @@ import { PremiumLoader, FullPageLoader } from "@/components/ui/PremiumLoader";
 <span className="premium-spinner w-4 h-4" />
 ```
 
+### 6. prompt-barely-visible (CSS class)
+
+For prompts users should **copy, not read**. Intentionally low contrast to discourage reading.
+
+```tsx
+// Prompt text that users copy to their AI
+<pre className="prompt-barely-visible">
+    {PROMPT_TEXT}
+</pre>
+```
+
+**CSS Definition:**
+```css
+.prompt-barely-visible {
+    color: rgba(44, 49, 80, 0.15) !important;
+    transition: color 0.2s ease;
+}
+
+.prompt-barely-visible:hover {
+    color: rgba(44, 49, 80, 0.3) !important;
+}
+```
+
+**Used in:**
+- Zone of Genius flow
+- Asset Mapping
+- Mission Discovery  
+- Genius Offer intake
+
+**Rationale:** Users don't need to read AI prompts — they just need to copy them. Visible text distracts users and makes them start reading. Barely visible text signals "just copy this."
+
 ---
 
 ## Color System
