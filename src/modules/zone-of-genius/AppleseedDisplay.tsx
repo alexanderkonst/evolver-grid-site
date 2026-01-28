@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PremiumButton } from "@/components/ui/PremiumButton";
 import { Sparkles, Share2, Copy, Check } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
@@ -105,16 +106,15 @@ const AppleseedDisplay = ({
                     Share
                 </Button>
 
-                {/* Reveal My Genius Business - CTA */}
+                {/* Reveal My Genius Business - Premium CTA */}
                 {onCreateBusiness && (
-                    <Button
-                        variant="wabi-primary"
-                        className="px-6 shadow-[0_0_20px_rgba(132,96,234,0.4)] hover:shadow-[0_0_30px_rgba(132,96,234,0.6)] transition-all"
+                    <PremiumButton
+                        className="px-6"
                         onClick={onCreateBusiness}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
                         Reveal My Genius Business
-                    </Button>
+                    </PremiumButton>
                 )}
             </div>
 
