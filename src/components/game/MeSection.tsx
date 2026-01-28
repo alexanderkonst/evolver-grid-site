@@ -17,12 +17,23 @@ const getXpForLevel = (level: number) => {
     return XP_PER_LEVEL[XP_PER_LEVEL.length - 1] + (level - XP_PER_LEVEL.length + 1) * 5000;
 };
 
-const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: MeSectionProps) => {
+// Calculate actual level from XP total (fixes mismatch between DB level and xpTotal)
+const getLevelFromXp = (xpTotal: number): number => {
+    let level = 1;
+    while (getXpForLevel(level) <= xpTotal && level < 100) {
+        level++;
+    }
+    return level;
+};
+
+const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avatarUrl }: MeSectionProps) => {
+    // Use XP-derived level to avoid mismatch bugs
+    const level = getLevelFromXp(xpTotal);
     const xpForCurrentLevel = getXpForLevel(level - 1);
     const xpForNextLevel = getXpForLevel(level);
-    const xpInCurrentLevel = xpTotal - xpForCurrentLevel;
+    const xpInCurrentLevel = Math.max(0, xpTotal - xpForCurrentLevel);
     const xpNeededForNext = xpForNextLevel - xpForCurrentLevel;
-    const progressPercent = Math.min(100, (xpInCurrentLevel / xpNeededForNext) * 100);
+    const progressPercent = Math.min(100, Math.max(0, (xpInCurrentLevel / xpNeededForNext) * 100));
 
     return (
         <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 mb-4">

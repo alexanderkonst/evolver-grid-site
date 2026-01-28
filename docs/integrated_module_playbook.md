@@ -154,7 +154,15 @@ COMPLETED: __________
 
 # 📊 VISUAL TRACKER TEMPLATE
 
-> **Create a new file for each module:** `[module]_tracker.md`
+> [!CAUTION]
+> **ЭТО ШАБЛОН — НЕ ЗАПОЛНЯТЬ ЗДЕСЬ!**
+> 
+> Для каждого нового модуля:
+> 1. Скопируй этот tracker в `docs/specs/[module]/[module]_tracker.md`
+> 2. Заполняй прогресс в скопированном файле
+> 3. Этот шаблон остаётся чистым для переиспользования
+
+> **Create a new file for each module:** `docs/specs/[module]/[module]_tracker.md`
 > 
 > This format enables real-time supervision by AI, other agents, and humans.
 

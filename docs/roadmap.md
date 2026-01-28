@@ -78,6 +78,10 @@
 
 ### Nice to Have Today
 - [ ] **Solo user landing page** — one page for organic acquisition
+
+### My Next Move Follow-ups (from Jan 28 session)
+- [ ] **Add DB fields for hasResources/hasMission** — currently hardcoded as false in myNextMoveLogic.ts
+- [ ] **BUILD badge/glow on unlock** — visual indicator on BUILD space when ZoG complete (nudge user to explore)
 - [ ] **Library practices** — combos, sequences, rename "practice"
 
 ---
