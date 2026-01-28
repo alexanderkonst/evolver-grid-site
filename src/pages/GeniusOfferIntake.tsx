@@ -556,7 +556,7 @@ const GeniusOfferIntake = () => {
               </p>
 
               <div className="p-4 bg-secondary/30 rounded-xl border border-border relative">
-                <pre className="text-sm whitespace-pre-wrap text-muted-foreground">
+                <pre className="text-sm whitespace-pre-wrap prompt-barely-visible">
                   {progress.ai_knows_offers ? GENIUS_OFFER_PROMPT_FULL : GENIUS_OFFER_PROMPT_SHORT}
                 </pre>
                 <Button

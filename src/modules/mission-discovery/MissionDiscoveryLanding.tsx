@@ -459,7 +459,7 @@ const MissionDiscoveryLanding = () => {
                                     {copied ? "Copied!" : "Copy"}
                                 </Button>
                             </div>
-                            <pre className="text-xs text-[rgba(44,49,80,0.7)] whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
+                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto prompt-barely-visible">
                                 {MISSION_DISCOVERY_PROMPT}
                             </pre>
                         </div>

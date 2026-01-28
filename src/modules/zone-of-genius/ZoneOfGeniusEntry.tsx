@@ -458,7 +458,7 @@ const ZoneOfGeniusEntry = () => {
                         </div>
 
                         <div className="relative rounded-xl border border-[var(--wabi-lavender)]/30 bg-[var(--wabi-pearl)]">
-                            <pre className="text-xs text-[#2c3150] whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16">
+                            <pre className="text-xs whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16 prompt-barely-visible">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
