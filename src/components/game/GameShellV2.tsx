@@ -345,10 +345,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-8 bg-[#1e4374] hover:bg-slate-700 flex items-center justify-center border-r border-slate-700/50 transition-colors"
+                        className="h-dvh sticky top-0 w-8 bg-[#29549f] hover:bg-[#1e4374] flex items-center justify-center border-r border-[#6894d0]/30 transition-colors"
                         title="Expand sidebar (⌘B)"
                     >
-                        <PanelLeft className="w-4 h-4 text-slate-400" />
+                        <PanelLeft className="w-4 h-4 text-[#a7cbd4]" />
                     </button>
                 )}
 
@@ -383,7 +383,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     />
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 bg-slate-800">
+                    <div className="flex-1 bg-[#29549f]">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}
@@ -400,12 +400,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     )}
                 >
                     <header
-                        className="bg-gradient-to-r from-[#1e4374] via-[#1a2f4a] to-[#1e4374] backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-slate-700/50"
+                        className="bg-gradient-to-r from-[#29549f] via-[#1e4374] to-[#29549f] backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-[#6894d0]/30"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-slate-700 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-[#1e4374] rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
