@@ -314,6 +314,9 @@ const ZoneOfGeniusEntry = () => {
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
                     onCreateBusiness={handleGenerateExcalibur}
+                    isSaved={isSaved}
+                    onSave={handleSaveClick}
+                    isSaving={isSaving}
                 />
             </GameShellV2>
         );
