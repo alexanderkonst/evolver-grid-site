@@ -74,15 +74,24 @@ const ZoneOfGeniusEntry = () => {
                 return;
             }
 
+            // Check if user is intentionally visiting to redo
+            const urlParams = new URLSearchParams(window.location.search);
+            const isRedoing = urlParams.get("redo") === "true";
+            const hasReturnParam = urlParams.has("return");
+
+            // If doing a redo, clear localStorage to start fresh
+            if (isRedoing) {
+                localStorage.removeItem("guest_excalibur_data");
+                localStorage.removeItem("guest_appleseed_data");
+                localStorage.removeItem("guest_ai_response");
+                return; // Start fresh from choice
+            }
+
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
 
             // If user has complete Excalibur data, redirect to profile
-            // UNLESS they're intentionally visiting to redo (check for ?redo=true or direct navigation)
-            const urlParams = new URLSearchParams(window.location.search);
-            const isRedoing = urlParams.get("redo") === "true";
-            const isDirectVisit = !returnPath || returnPath === "/zone-of-genius/entry";
-
-            if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && !isRedoing && !isDirectVisit) {
+            // UNLESS they're visiting directly (no return param) - they might want to redo
+            if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && hasReturnParam) {
                 navigate("/game/profile");
                 return;
             }
