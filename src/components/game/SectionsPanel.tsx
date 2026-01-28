@@ -169,7 +169,6 @@ const SectionsPanel = ({
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
     const spaceData = SPACE_SECTIONS[activeSpaceId];
-    if (!spaceData) return null;
 
     const toggleExpand = (sectionId: string) => {
         setExpandedSections((prev) => ({
@@ -181,6 +180,9 @@ const SectionsPanel = ({
     const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + "/");
 
     useEffect(() => {
+        // Guard against null spaceData inside effect
+        if (!spaceData) return;
+
         const nextExpanded: Record<string, boolean> = {};
 
         spaceData.sections.forEach((section) => {
@@ -195,6 +197,9 @@ const SectionsPanel = ({
             setExpandedSections((prev) => ({ ...prev, ...nextExpanded }));
         }
     }, [location.pathname, spaceData]);
+
+    // Early return AFTER all hooks (Rules of Hooks compliance)
+    if (!spaceData) return null;
 
     return (
         <div
