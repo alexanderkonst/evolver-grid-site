@@ -120,7 +120,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
         onClick={() => setIsOpen(!isOpen)}
       >
         <Share2 className="w-5 h-5" />
-        <span>Let the world know about my genius and invite others to discover theirs</span>
+        <span>Share</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
 

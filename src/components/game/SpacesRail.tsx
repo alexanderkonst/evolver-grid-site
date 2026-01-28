@@ -24,7 +24,7 @@ interface SpaceItem {
 const SPACES: SpaceItem[] = [
     {
         id: "next-move",
-        label: "My Next Move",
+        label: "MY NEXT MOVE",
         icon: <Compass className="w-5 h-5 flex-shrink-0" />,
         path: "/game/next-move",
     },
@@ -157,11 +157,11 @@ const SpacesRail = ({
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
                         <p className="text-white font-medium text-sm truncate">{displayName}</p>
                         <div className="flex items-center gap-2 text-xs">
-                            <span className="text-[#8460ea]">
+                            <span className="text-[#6894d0]">
                                 {userLevel ? `Level ${userLevel}` : 'Member'}
                             </span>
                             {userXp !== undefined && (
-                                <span className="text-[#a4a3d0]">
+                                <span className="text-[#a7cbd4]">
                                     {userXp} XP
                                 </span>
                             )}
@@ -169,11 +169,11 @@ const SpacesRail = ({
                     </div>
                 </Link>
                 <div className="flex flex-col items-center gap-1 mt-2 md:hidden">
-                    <span className="text-[10px] text-[#8460ea]">
+                    <span className="text-[10px] text-[#6894d0]">
                         {userLevel ? `Level ${userLevel}` : 'Member'}
                     </span>
                     {userXp !== undefined && (
-                        <span className="text-[10px] text-[#a4a3d0]">
+                        <span className="text-[10px] text-[#a7cbd4]">
                             {userXp} XP
                         </span>
                     )}
@@ -202,18 +202,18 @@ const SpacesRail = ({
                                 // Mobile: centered icon, Desktop: icon + label
                                 "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 relative group",
                                 "justify-center md:justify-start",
-                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6894d0]/50",
                                 isLocked
-                                    ? "bg-slate-800/40 text-slate-500 cursor-not-allowed"
+                                    ? "bg-[#1e4374]/40 text-[#6894d0]/50 cursor-not-allowed"
                                     : active
                                         ? space.id === "next-move"
-                                            ? "bg-amber-500 text-white shadow-lg shadow-amber-500/40 ring-2 ring-amber-400/50"
-                                            : "bg-slate-700/80 text-white border-l-2 border-[#8460ea] shadow-md"
+                                            ? "bg-[#29549f] text-white shadow-lg shadow-[#29549f]/40 ring-2 ring-[#6894d0]/60"
+                                            : "bg-[#29549f]/80 text-white border-l-2 border-[#a7cbd4] shadow-md"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : space.id === "next-move"
-                                                ? "bg-slate-800/50 text-slate-300 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
-                                                : "bg-slate-800/50 text-slate-300 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
+                                                ? "bg-[#1e4374]/60 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white hover:translate-y-[-1px] ring-1 ring-[#6894d0]/30"
+                                                : "bg-[#1e4374]/60 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={space.label}
                         >
@@ -230,10 +230,10 @@ const SpacesRail = ({
 
                             {/* Nudge Badge - new unlock indicator */}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#1e4374] animate-ping" />
                             )}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#1e4374]" />
                             )}
 
                             {/* Active indicator */}
@@ -246,13 +246,13 @@ const SpacesRail = ({
             </nav>
 
             {/* Settings Button */}
-            <div className="p-2 md:p-3 border-t border-slate-700/50">
+            <div className="p-2 md:p-3 border-t border-[#29549f]/30">
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
                         "justify-center md:justify-start",
-                        "bg-slate-800/30 text-slate-400 hover:bg-slate-700 hover:text-white"
+                        "bg-[#1e4374]/40 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white"
                     )}
                     title="Settings"
                 >
