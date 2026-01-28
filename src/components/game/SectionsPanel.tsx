@@ -199,7 +199,10 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[260px] bg-slate-700/90 flex flex-col border-r border-slate-600",
+                // Premium: gradient background for depth, glassmorphic border
+                "w-[260px] flex flex-col",
+                "bg-gradient-to-b from-slate-800/95 via-slate-800/90 to-slate-900/95",
+                "backdrop-blur-sm border-r border-slate-600/50",
                 className
             )}
         >

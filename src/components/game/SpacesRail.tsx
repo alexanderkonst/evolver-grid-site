@@ -107,7 +107,9 @@ const SpacesRail = ({
         <div
             className={cn(
                 // Mobile: narrow with icons only, Desktop: wider with labels
-                "w-[72px] lg:w-[280px] bg-slate-900 flex flex-col border-r border-slate-800",
+                // Premium: subtle gradient background instead of flat slate
+                "w-[72px] lg:w-[280px] flex flex-col border-r border-slate-700/50",
+                "bg-gradient-to-b from-slate-900 via-slate-900 to-[#1a1a2e]",
                 className
             )}
         >
