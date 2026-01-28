@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ExternalLink, Upload, Check, Loader2, ArrowRight } from "lucide-react";
+import { ExternalLink, Upload, Check, ArrowRight } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -48,14 +49,14 @@ const ResourcesPersonalityTests = () => {
       if (profile?.personality_tests) {
         const existingTests = profile.personality_tests as Record<string, any>;
         const savedTypes = new Set<TestType>();
-        
+
         if (existingTests.enneagram) savedTypes.add('enneagram');
         if (existingTests['16personalities']) savedTypes.add('16personalities');
         if (existingTests.human_design) savedTypes.add('human_design');
-        
+
         setUploadedTests(savedTypes);
       }
-      
+
       if (profile?.multiple_intelligences_completed) {
         setMiCompleted(true);
       }
@@ -68,7 +69,7 @@ const ResourcesPersonalityTests = () => {
           .select('id')
           .eq('user_id', user.id)
           .maybeSingle();
-        
+
         if (miResult) {
           setMiCompleted(true);
         }
@@ -134,7 +135,7 @@ const ResourcesPersonalityTests = () => {
 
             {loading ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+                <PremiumLoader />
               </div>
             ) : (
               <div className="space-y-4">
