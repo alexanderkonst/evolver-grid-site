@@ -279,6 +279,91 @@ All colors MUST be HSL.
     animation: fade-in-up 0.8s ease-out forwards;
   }
 
+  /* ===== BREATHING UI - UI as Transmission Vision ===== */
+
+  /* Breathing pulse - subtle alive feeling */
+  @keyframes breathe {
+
+    0%,
+    100% {
+      opacity: 0.88;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.005);
+    }
+  }
+
+  /* Aurora gradient shift - cosmic flow */
+  @keyframes aurora {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Gentle glow pulse */
+  @keyframes glow-pulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(132, 96, 234, 0.15);
+    }
+
+    50% {
+      box-shadow: 0 0 30px rgba(132, 96, 234, 0.25);
+    }
+  }
+
+  /* Breathing card - apply to PremiumCard or key surfaces */
+  .breathing-card {
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  /* Aurora gradient background */
+  .aurora-gradient {
+    background: linear-gradient(135deg,
+        var(--depth-violet) 0%,
+        var(--wabi-aqua) 50%,
+        var(--depth-royal) 100%);
+    background-size: 200% 200%;
+    animation: aurora 15s ease infinite;
+  }
+
+  /* Subtle aurora for text gradients */
+  .aurora-text {
+    background: linear-gradient(135deg,
+        var(--depth-violet) 0%,
+        var(--wabi-aqua) 50%,
+        var(--depth-violet) 100%);
+    background-size: 200% 200%;
+    animation: aurora 12s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glowing card - for hero/reveal moments */
+  .glowing-card {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  /* Combined: breathing + glow for premium feel */
+  .alive-card {
+    animation:
+      breathe 6s ease-in-out infinite,
+      glow-pulse 4s ease-in-out infinite;
+  }
+
   /* Scroll margin for anchor navigation */
   section[id] {
     scroll-margin-top: 140px;

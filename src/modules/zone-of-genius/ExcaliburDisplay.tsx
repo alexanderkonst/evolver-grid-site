@@ -50,7 +50,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
     return (
         <div className="max-w-2xl mx-auto px-3 py-1 space-y-3">
             {/* Single Unified Box - Premium Glassmorphic Card */}
-            <PremiumCard variant="glass-strong" className="p-4">
+            <PremiumCard variant="glass-strong" className="p-4 alive-card">
                 {/* Header: Icon + Title + Action Statement */}
                 <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/20">
                     <div className="flex justify-center mb-2">

@@ -756,6 +756,40 @@ For prompts users should **copy, not read**. Intentionally low contrast to disco
 
 **Rationale:** Users don't need to read AI prompts — they just need to copy them. Visible text distracts users and makes them start reading. Barely visible text signals "just copy this."
 
+### 7. Breathing UI Effects (CSS classes)
+
+From the "UI as Transmission" vision. Makes interfaces feel alive.
+
+```tsx
+// Subtle breathing on cards
+<PremiumCard className="breathing-card">...</PremiumCard>
+
+// Full alive effect (breathing + glow)
+<PremiumCard className="alive-card">...</PremiumCard>
+
+// Aurora gradient background (cosmic flow)
+<div className="aurora-gradient">...</div>
+
+// Animated gradient text
+<h1 className="aurora-text">Your Title</h1>
+
+// Gentle glow pulse
+<div className="glowing-card">...</div>
+```
+
+**Available classes:**
+| Class | Effect |
+|-------|--------|
+| `breathing-card` | Subtle scale + opacity pulse (6s) |
+| `aurora-gradient` | Shifting violet→aqua→royal background (15s) |
+| `aurora-text` | Animated gradient text (12s) |
+| `glowing-card` | Pulsing violet shadow (4s) |
+| `alive-card` | Combined breathing + glow |
+
+**Used in:**
+- ExcaliburDisplay (alive-card)
+- Zone of Genius entry header (aurora-text)
+
 ---
 
 ## Color System
