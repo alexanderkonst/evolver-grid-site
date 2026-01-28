@@ -80,7 +80,7 @@ const PracticeComplete = ({
 
                 {/* Headline */}
                 <h1
-                    className="text-3xl sm:text-4xl md:text-5xl font-['Fraunces',serif] font-semibold text-white mb-2"
+                    className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-white mb-2"
                     style={{ textShadow: "0 0 60px rgba(255,255,255,0.4)" }}
                 >
                     Practice Complete!

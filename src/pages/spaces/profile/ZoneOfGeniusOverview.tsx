@@ -126,7 +126,7 @@ const ZoneOfGeniusOverview = () => {
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2">My Genius Is To Be A</p>
-                    <h1 className="text-3xl font-['Fraunces',serif] font-bold text-[#2c3150] mb-3">
+                    <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-3">
                         {appleseedData.vibrationalKey.name}
                     </h1>
                     {appleseedData.bullseyeSentence && (

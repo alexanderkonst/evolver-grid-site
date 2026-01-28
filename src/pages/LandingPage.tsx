@@ -245,7 +245,7 @@ const LandingPage = () => {
                         </div>
                     )}
 
-                    <h1 className={`font-['Fraunces',serif] font-semibold leading-[1.1] mb-6 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
+                    <h1 className={`font-display font-semibold leading-[1.1] mb-6 whitespace-pre-line animate-fade-in tracking-wide ${isDarkSlide ? "text-white" : "text-[#2c3150]"} ${slide.headlineHero ? "text-4xl md:text-6xl lg:text-7xl" : "text-3xl md:text-5xl lg:text-6xl"}`}
                         style={{ textShadow: isDarkSlide ? "0 0 60px rgba(255,255,255,0.3)" : "0 0 40px rgba(41,84,159,0.1)" }}>
                         {slide.headline}
                     </h1>

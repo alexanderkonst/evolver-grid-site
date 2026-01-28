@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        // Premium typography: Fraunces for headings, Inter for body
-        display: ["Fraunces", "Georgia", "serif"],
-        serif: ["Fraunces", "Georgia", "serif"],
-        sans: ["Inter", "system-ui", "sans-serif"],
+        // Premium typography: Cormorant Garamond (inscribed/etched) for headings, DM Sans (clean minimal) for body
+        display: ["Cormorant Garamond", "Georgia", "serif"],
+        serif: ["Cormorant Garamond", "Georgia", "serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

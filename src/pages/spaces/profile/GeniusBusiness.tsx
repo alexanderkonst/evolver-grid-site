@@ -61,7 +61,7 @@ const GeniusBusiness = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
                         <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-3xl font-['Fraunces',serif] font-bold text-[#2c3150] mb-2">
+                    <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-2">
                         {excaliburData.businessIdentity.name}
                     </h1>
                     <p className="text-lg text-[#8460ea] font-medium">

@@ -339,7 +339,7 @@ const Matchmaking = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 mb-4">
               <Users className="w-8 h-8 text-white" />
             </div>
-            <h1 className="font-['Fraunces',serif] text-2xl sm:text-3xl font-semibold text-white mb-2"
+            <h1 className="font-display text-2xl sm:text-3xl font-semibold text-white mb-2"
               style={{ textShadow: "0 0 40px rgba(255,255,255,0.3)" }}>
               Your Genius Matches
             </h1>
