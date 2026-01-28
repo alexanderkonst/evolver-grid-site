@@ -68,7 +68,7 @@ const TourCompleteScreen = ({ hasZog, hasQol, onFinish, saving = false }: TourCo
 
                     {/* Title */}
                     <div className="space-y-2">
-                        <h1 className="text-3xl md:text-4xl font-bold text-[var(--wabi-text-primary)]">
+                        <h1 className="text-3xl md:text-4xl font-display font-bold text-[var(--wabi-text-primary)]">
                             🎉 You're Ready! 🎉
                         </h1>
                         <p className="text-lg text-[var(--wabi-text-secondary)]">
