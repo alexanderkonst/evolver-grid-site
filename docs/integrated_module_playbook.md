@@ -11,16 +11,16 @@
 
 ## Holonic Iteration Principle
 
-> **При улучшении Master Result — пересмотреть весь цикл.**
+> **When Master Result improves — review the entire cycle.**
 
 ```
-[Master Result улучшился]
+[Master Result improved]
         ↓
-[Пересмотреть Sub-Results]
+[Review Sub-Results]
         ↓
-[Пересмотреть Screens]
+[Review Screens]
         ↓
-[Пересмотреть Components]
+[Review Components]
 ```
 
 **Why:** Each level builds on previous. Improvement at top cascades down.
@@ -155,12 +155,12 @@ COMPLETED: __________
 # 📊 VISUAL TRACKER TEMPLATE
 
 > [!CAUTION]
-> **ЭТО ШАБЛОН — НЕ ЗАПОЛНЯТЬ ЗДЕСЬ!**
+> **THIS IS A TEMPLATE — DO NOT FILL IN HERE!**
 > 
-> Для каждого нового модуля:
-> 1. Скопируй этот tracker в `docs/specs/[module]/[module]_tracker.md`
-> 2. Заполняй прогресс в скопированном файле
-> 3. Этот шаблон остаётся чистым для переиспользования
+> For each new module:
+> 1. Copy this tracker to `docs/specs/[module]/[module]_tracker.md`
+> 2. Fill in progress in the copied file
+> 3. Keep this template clean for reuse
 
 > **Create a new file for each module:** `docs/specs/[module]/[module]_tracker.md`
 > 

@@ -250,13 +250,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     };
 
     // Nudge badges - visual indicators for unlocked spaces
-    // Show BUILD badge when ZoG complete (nudge user to explore BUILD)
+    // Show BUILD badge when user has READ their ZoG profile (not just completed ZoG onboarding)
     // Show COLLABORATE badge when resources mapped (not implemented yet)
     const nudges = loadNudgeState();
     const nudgeBadges: string[] = [];
 
-    // If ZoG complete and BUILD nudge not seen yet, show badge on BUILD
-    if (stage !== 'new' && stage !== 'zog_started' && !nudges.buildNudgeSeen) {
+    // BUILD badge: triggers after user reads their ZoG Profile (Deep Dive module)
+    // TODO: Once zog_profile_read_at DB field exists, check that instead of just stage
+    // For now, we use stage as proxy (will be more accurate with DB field)
+    // Correct logic should be: if (hasReadZoGProfile && !nudges.buildNudgeSeen)
+    const hasZoGComplete = stage !== 'new' && stage !== 'zog_started';
+    if (hasZoGComplete && !nudges.buildNudgeSeen) {
         nudgeBadges.push('build');
     }
     // COLLABORATE nudge - will activate when hasResources is tracked
