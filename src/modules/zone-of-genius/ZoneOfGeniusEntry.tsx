@@ -421,7 +421,7 @@ const ZoneOfGeniusEntry = () => {
                                                     group-hover:bg-[#8460ea]/20 transition-colors">
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
-                                    <p className="font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
+                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
                                         Yes, my AI knows me
                                     </p>
                                 </div>
@@ -439,7 +439,7 @@ const ZoneOfGeniusEntry = () => {
                                                     group-hover:bg-[var(--depth-cornflower)]/20 transition-colors">
                                         <ClipboardList className="w-5 h-5 text-[var(--depth-cornflower)]" />
                                     </div>
-                                    <p className="font-semibold text-[#2c3150] group-hover:text-[var(--depth-cornflower)] transition-colors">
+                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[var(--depth-cornflower)] transition-colors">
                                         No, I'll do the assessment
                                     </p>
                                 </div>

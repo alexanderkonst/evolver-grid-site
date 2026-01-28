@@ -788,7 +788,14 @@ From the "UI as Transmission" vision. Makes interfaces feel alive.
 
 **Used in:**
 - ExcaliburDisplay (alive-card)
+- GameHome onboarding hero (alive-card)
 - Zone of Genius entry header (aurora-text)
+- Asset Mapping header (aurora-text)
+- Mission Discovery header (aurora-text)
+- RevelatoryHero (breathing-card)
+- NextMoveCard (breathing-card)
+- MeSummary (breathing-card)
+- MyLifeSummary (breathing-card)
 
 ---
 
