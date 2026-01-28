@@ -400,7 +400,7 @@ export default function TodayPage() {
                     </div>
                     <button
                         onClick={() => setShowFirstVisitIntro(false)}
-                        className="px-8 py-4 text-lg font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-lg"
+                        className="px-8 py-4 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-lg"
                     >
                         Show Me Today's Practice
                     </button>
