@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, Copy, Check, Youtube, Sparkles, AlertCircle } from "lucide-react";
+import { Copy, Check, Youtube, Sparkles, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 /**
@@ -175,7 +175,7 @@ const Transcriber = () => {
                 className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold"
               >
                 {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="premium-spinner w-4 h-4" />
                 ) : (
                   <>
                     <Sparkles className="w-4 h-4 mr-2" />
@@ -195,7 +195,7 @@ const Transcriber = () => {
             {/* LOADING STATE */}
             {isLoading && (
               <div className="py-8 text-center">
-                <Loader2 className="w-8 h-8 animate-spin text-amber-500 mx-auto mb-2" />
+                <span className="premium-spinner w-8 h-8 mx-auto mb-2" />
                 <p className="text-slate-400">Fetching transcript...</p>
               </div>
             )}
