@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
@@ -112,7 +112,7 @@ const AdminMissionParticipants = () => {
   if (authLoading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-slate-500" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -150,7 +150,7 @@ const AdminMissionParticipants = () => {
 
         {loading ? (
           <div className="flex items-center gap-2 text-[rgba(44,49,80,0.7)]">
-            <Loader2 className="w-4 h-4 animate-spin" />
+            <span className="premium-spinner w-4 h-4" />
             Loading participants...
           </div>
         ) : participants.length === 0 ? (

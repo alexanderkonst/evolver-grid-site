@@ -4,7 +4,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { Eye, Loader2 } from "lucide-react";
+import { Eye } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
@@ -169,11 +170,10 @@ const AdminGeniusOffers = () => {
     });
   };
 
-  // Loading state
   if (authLoading) {
     return (
       <div className="min-h-dvh bg-background flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -249,7 +249,7 @@ const AdminGeniusOffers = () => {
 
           {loading ? (
             <div className="flex justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+              <PremiumLoader />
             </div>
           ) : requests.length === 0 ? (
             <p className="text-center text-muted-foreground">No requests yet.</p>
