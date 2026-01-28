@@ -866,6 +866,105 @@ grep -r 'bg-white rounded' --include="*.tsx" src/
 
 ---
 
+## Premium UI Execution Workflow
+
+> **Follow this phased approach when applying premium UI to any screen or module.**
+
+### Phase 1: Foundation Setup
+*Do once per project, skip if already done.*
+
+- [ ] **1.1** — Verify premium tokens in `index.css` (wabi colors, glassmorphism, gradients)
+- [ ] **1.2** — Verify fonts loaded in `index.html` (Cormorant Garamond, DM Sans)
+- [ ] **1.3** — Confirm premium components exist:
+  - `PremiumCard.tsx`
+  - `PremiumButton.tsx`
+  - `HeroIcon.tsx`
+  - `PremiumLoader.tsx`
+- [ ] **1.4** — Confirm `premium-spinner` class defined in CSS
+
+---
+
+### Phase 2: Audit Target Screen
+*For each screen you're upgrading:*
+
+- [ ] **2.1** — Screenshot current state
+- [ ] **2.2** — Check for pure black text (`#000`, `black`, `text-black`)
+- [ ] **2.3** — Check for `Loader2` imports
+- [ ] **2.4** — Check for plain `bg-white rounded` cards
+- [ ] **2.5** — Check for plain `Button` on primary CTAs
+- [ ] **2.6** — Check headings for missing `font-display`
+
+---
+
+### Phase 3: Typography Updates
+- [ ] **3.1** — Add `font-display` to all `<h1>`, `<h2>` headings
+- [ ] **3.2** — Change black text to `text-[#2c3150]`
+- [ ] **3.3** — Change gray text to `text-[var(--wabi-text-secondary)]`
+- [ ] **3.4** — Change muted text to `text-[var(--wabi-text-muted)]`
+
+---
+
+### Phase 4: Component Upgrades
+
+#### 4A: Buttons
+- [ ] **4A.1** — Replace primary `Button` → `PremiumButton`
+- [ ] **4A.2** — Add `loading` prop where applicable
+- [ ] **4A.3** — Keep `Button` for secondary/outline actions only
+
+#### 4B: Cards
+- [ ] **4B.1** — Replace `bg-white rounded-xl` → `PremiumCard`
+- [ ] **4B.2** — Choose variant: `glass`, `glass-strong`, or `solid`
+- [ ] **4B.3** — For choice cards, use the Choice Button Pattern (glassmorphic)
+
+#### 4C: Loading States
+- [ ] **4C.1** — Replace `Loader2` with `PremiumLoader` (component-level)
+- [ ] **4C.2** — Replace inline `Loader2` with `<span className="premium-spinner" />`
+- [ ] **4C.3** — Use `FullPageLoader` for full-page loading
+
+#### 4D: Icons
+- [ ] **4D.1** — Hero/header icons → `HeroIcon` with `variant="gradient"`
+- [ ] **4D.2** — Standard icons → keep Lucide with proper colors
+
+---
+
+### Phase 5: Interactivity Polish
+- [ ] **5.1** — Add `hover:` states to interactive elements
+- [ ] **5.2** — Add `transition-all` or `transition-colors`
+- [ ] **5.3** — Add `group` class for parent containers, `group-hover:` for children
+- [ ] **5.4** — Add hover shadows where appropriate: `hover:shadow-lg hover:shadow-[color]/10`
+
+---
+
+### Phase 6: Verification
+- [ ] **6.1** — Run `npm run build` — must pass
+- [ ] **6.2** — Visual check in browser
+- [ ] **6.3** — Test hover states
+- [ ] **6.4** — Test loading states
+- [ ] **6.5** — Compare against brandbook aesthetic
+
+---
+
+### Phase 7: Cleanup
+- [ ] **7.1** — Remove unused imports (e.g., `Loader2` if replaced)
+- [ ] **7.2** — Run final build verification
+- [ ] **7.3** — Mark screen as complete in task tracking
+
+---
+
+## Quick Reference: Common Replacements
+
+| Before | After |
+|--------|-------|
+| `text-black` | `text-[#2c3150]` |
+| `text-gray-500` | `text-[var(--wabi-text-muted)]` |
+| `text-slate-600` | `text-[var(--wabi-text-secondary)]` |
+| `bg-white rounded-xl` | `<PremiumCard>` |
+| `<Button>` (primary CTA) | `<PremiumButton>` |
+| `<Loader2 />` | `<PremiumLoader />` or `<span className="premium-spinner" />` |
+| `font-bold` (heading) | `font-semibold font-display` |
+
+---
+
 ## Related Documents
 
 - [product_playbook.md](./product_playbook.md) — Source methodology
