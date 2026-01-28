@@ -80,6 +80,38 @@ All colors MUST be HSL.
     --wabi-text-primary: #2c3150;
     --wabi-text-secondary: rgba(44, 49, 80, 0.7);
     --wabi-text-muted: rgba(44, 49, 80, 0.5);
+
+    /* ========================================
+       PREMIUM TOKENS (Hero Moments)
+       For Welcome, Results, Celebrations
+       ======================================== */
+    
+    /* Transformation Gradients */
+    --gradient-transformation: linear-gradient(135deg, #8460ea 0%, #a4a3d0 25%, #a7cbd4 50%, #cec9b0 75%, #cea4ae 100%);
+    --gradient-hero: linear-gradient(135deg, #0A3D62 0%, #165BBA 50%, #A7D9F5 100%);
+    --gradient-cosmic: linear-gradient(135deg, #2B2342 0%, #8B3EFF 50%, #C3A0AC 100%);
+    --gradient-background-light: linear-gradient(180deg, #f0f4ff 0%, #e8f0fe 50%, #f5f7fa 100%);
+    --gradient-background-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg-strong: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-border-accent: rgba(132, 96, 234, 0.3);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+    --glass-blur: blur(20px);
+    
+    /* Premium Buttons */
+    --btn-premium-bg: linear-gradient(135deg, #8460ea 0%, #6894d0 100%);
+    --btn-premium-bg-hover: linear-gradient(135deg, #7550da 0%, #5884c0 100%);
+    --btn-premium-glow: 0 4px 20px rgba(132, 96, 234, 0.4);
+    --btn-premium-glow-hover: 0 6px 28px rgba(132, 96, 234, 0.5);
+    
+    /* Animation */
+    --transition-fast: all 0.15s ease-out;
+    --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
