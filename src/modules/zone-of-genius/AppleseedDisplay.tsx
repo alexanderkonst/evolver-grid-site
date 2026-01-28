@@ -14,6 +14,8 @@ interface AppleseedDisplayProps {
     profileId?: string;
     onCreateBusiness?: () => void;
     isSaved?: boolean;
+    onSave?: () => void;
+    isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
 }
 
@@ -27,6 +29,8 @@ const AppleseedDisplay = ({
     profileId,
     onCreateBusiness,
     isSaved = true,
+    onSave,
+    isSaving = false,
     onResonanceRating
 }: AppleseedDisplayProps) => {
     const [copied, setCopied] = useState(false);
@@ -88,6 +92,21 @@ const AppleseedDisplay = ({
                     question="From 1 to 10, how well does this match how you see yourself at your brightest?"
                     onRate={onResonanceRating}
                 />
+            )}
+
+            {/* Save to Profile CTA - Shows when not yet saved */}
+            {!isSaved && onSave && (
+                <div className="flex justify-center">
+                    <PremiumButton
+                        size="lg"
+                        onClick={onSave}
+                        loading={isSaving}
+                        disabled={isSaving}
+                    >
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        {isSaving ? 'Saving...' : 'Save to My Profile'}
+                    </PremiumButton>
+                </div>
             )}
 
             {/* Full Share dropdown with pre-written text for social networks */}
