@@ -31,41 +31,42 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "recommended", label: "Recommended Action", path: "/game/next-move" },
         ],
     },
-    profile: {
-        title: "Profile",
+    // GROW Space (was Profile)
+    grow: {
+        title: "GROW",
         sections: [
-            { id: "overview", label: "Overview", path: "/game/profile" },
-            { id: "mission", label: "My Mission", path: "/game/profile/mission" },
+            { id: "overview", label: "Overview", path: "/game/grow" },
+            { id: "mission", label: "My Mission", path: "/game/grow/mission" },
             {
                 id: "zog",
                 label: "Zone of Genius",
-                path: "/game/profile/zone-of-genius",
+                path: "/game/grow/zone-of-genius",
                 subSections: [
-                    { id: "zog-overview", label: "Overview", path: "/game/profile/zone-of-genius" },
-                    { id: "zog-bullseye", label: "Bullseye Sentence", path: "/game/profile/zone-of-genius/bullseye" },
-                    { id: "zog-vibrational-key", label: "Vibrational Key", path: "/game/profile/zone-of-genius/vibrational-key" },
-                    { id: "zog-three-lenses", label: "Three Lenses", path: "/game/profile/zone-of-genius/three-lenses" },
-                    { id: "zog-appreciated-for", label: "Appreciated For", path: "/game/profile/zone-of-genius/appreciated-for" },
-                    { id: "zog-mastery", label: "Mastery Stages", path: "/game/profile/zone-of-genius/mastery" },
-                    { id: "zog-activities", label: "Professional Activities", path: "/game/profile/zone-of-genius/activities" },
-                    { id: "zog-roles", label: "Roles & Environments", path: "/game/profile/zone-of-genius/roles" },
-                    { id: "zog-partner", label: "Complementary Partner", path: "/game/profile/zone-of-genius/partner" },
-                    { id: "zog-monetization", label: "Monetization", path: "/game/profile/zone-of-genius/monetization" },
-                    { id: "zog-life-scene", label: "Life Scene", path: "/game/profile/zone-of-genius/life-scene" },
-                    { id: "zog-visual-codes", label: "Visual Codes", path: "/game/profile/zone-of-genius/visual-codes" },
-                    { id: "zog-elevator-pitch", label: "Elevator Pitch", path: "/game/profile/zone-of-genius/elevator-pitch" },
+                    { id: "zog-overview", label: "Overview", path: "/game/grow/zone-of-genius" },
+                    { id: "zog-bullseye", label: "Bullseye Sentence", path: "/game/grow/zone-of-genius/bullseye" },
+                    { id: "zog-vibrational-key", label: "Vibrational Key", path: "/game/grow/zone-of-genius/vibrational-key" },
+                    { id: "zog-three-lenses", label: "Three Lenses", path: "/game/grow/zone-of-genius/three-lenses" },
+                    { id: "zog-appreciated-for", label: "Appreciated For", path: "/game/grow/zone-of-genius/appreciated-for" },
+                    { id: "zog-mastery", label: "Mastery Stages", path: "/game/grow/zone-of-genius/mastery" },
+                    { id: "zog-activities", label: "Professional Activities", path: "/game/grow/zone-of-genius/activities" },
+                    { id: "zog-roles", label: "Roles & Environments", path: "/game/grow/zone-of-genius/roles" },
+                    { id: "zog-partner", label: "Complementary Partner", path: "/game/grow/zone-of-genius/partner" },
+                    { id: "zog-monetization", label: "Monetization", path: "/game/grow/zone-of-genius/monetization" },
+                    { id: "zog-life-scene", label: "Life Scene", path: "/game/grow/zone-of-genius/life-scene" },
+                    { id: "zog-visual-codes", label: "Visual Codes", path: "/game/grow/zone-of-genius/visual-codes" },
+                    { id: "zog-elevator-pitch", label: "Elevator Pitch", path: "/game/grow/zone-of-genius/elevator-pitch" },
                 ],
             },
             {
                 id: "genius-business",
                 label: "Genius Business",
-                path: "/game/profile/genius-business",
+                path: "/game/grow/genius-business",
                 subSections: [
-                    { id: "gb-overview", label: "Overview", path: "/game/profile/genius-business" },
-                    { id: "gb-audience", label: "Ideal Client", path: "/game/profile/genius-business/audience" },
-                    { id: "gb-promise", label: "Promise", path: "/game/profile/genius-business/promise" },
-                    { id: "gb-channels", label: "Channels", path: "/game/profile/genius-business/channels" },
-                    { id: "gb-vision", label: "Vision", path: "/game/profile/genius-business/vision" },
+                    { id: "gb-overview", label: "Overview", path: "/game/grow/genius-business" },
+                    { id: "gb-audience", label: "Ideal Client", path: "/game/grow/genius-business/audience" },
+                    { id: "gb-promise", label: "Promise", path: "/game/grow/genius-business/promise" },
+                    { id: "gb-channels", label: "Channels", path: "/game/grow/genius-business/channels" },
+                    { id: "gb-vision", label: "Vision", path: "/game/grow/genius-business/vision" },
                 ],
             },
             {
@@ -77,77 +78,83 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "results", label: "Results", path: "/quality-of-life-map/results" },
                 ],
             },
-            { id: "assets", label: "Assets", path: "/game/profile/assets" },
-            { id: "settings", label: "Settings", path: "/game/profile/settings" },
+            { id: "assets", label: "Assets", path: "/game/grow/assets" },
+            { id: "settings", label: "Settings", path: "/game/grow/settings" },
         ],
     },
-    transformation: {
-        title: "Transformation",
+    // LEARN Space (was Transformation)
+    learn: {
+        title: "LEARN",
         sections: [
-            { id: "today", label: "Today's Practice", path: "/game/transformation/today" },
+            { id: "today", label: "Today's Practice", path: "/game/learn/today" },
             {
                 id: "paths",
                 label: "Growth Paths",
-                path: "/game/transformation/paths",
+                path: "/game/learn/paths",
                 subSections: [
-                    { id: "body", label: "Body", path: "/game/transformation/path/body" },
-                    { id: "emotions", label: "Emotions", path: "/game/transformation/path/emotions" },
-                    { id: "mind", label: "Mind", path: "/game/transformation/path/mind" },
-                    { id: "genius", label: "Genius", path: "/game/transformation/path/genius" },
-                    { id: "spirit", label: "Spirit", path: "/game/transformation/path/spirit" },
+                    { id: "body", label: "Body", path: "/game/learn/path/body" },
+                    { id: "emotions", label: "Emotions", path: "/game/learn/path/emotions" },
+                    { id: "mind", label: "Mind", path: "/game/learn/path/mind" },
+                    { id: "genius", label: "Genius", path: "/game/learn/path/genius" },
+                    { id: "spirit", label: "Spirit", path: "/game/learn/path/spirit" },
                 ],
             },
-            { id: "library", label: "Practice Library", path: "/game/transformation/library" },
-            { id: "tests", label: "Personality Tests", path: "/game/transformation/tests" },
+            { id: "library", label: "Practice Library", path: "/game/learn/library" },
+            { id: "tests", label: "Personality Tests", path: "/game/learn/tests" },
             {
                 id: "qol-map",
                 label: "Quality of Life Map",
-                path: "/game/transformation/qol-assessment",
+                path: "/game/learn/qol-assessment",
                 subSections: [
-                    { id: "qol-assessment", label: "Assessment", path: "/game/transformation/qol-assessment" },
-                    { id: "qol-results", label: "Results", path: "/game/transformation/qol-results" },
+                    { id: "qol-assessment", label: "Assessment", path: "/game/learn/qol-assessment" },
+                    { id: "qol-results", label: "Results", path: "/game/learn/qol-results" },
                 ],
             },
             {
                 id: "zog-assessment",
                 label: "Zone of Genius",
-                path: "/game/transformation/genius-assessment/step-0",
+                path: "/game/learn/genius-assessment/step-0",
                 subSections: [
-                    { id: "zog-assessment", label: "Assessment", path: "/game/transformation/genius-assessment/step-0" },
-                    { id: "zog-snapshot", label: "Snapshot", path: "/game/transformation/genius-assessment/step-4" },
+                    { id: "zog-assessment", label: "Assessment", path: "/game/learn/genius-assessment/step-0" },
+                    { id: "zog-snapshot", label: "Snapshot", path: "/game/learn/genius-assessment/step-4" },
                 ],
             },
         ],
     },
-    marketplace: {
-        title: "Marketplace",
+    // MEET Space (was Events)
+    meet: {
+        title: "MEET",
         sections: [
-            { id: "genius-offer", label: "Genius Offer", path: "/genius-offer" },
-            { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
-            { id: "browse", label: "Browse Guides", path: "/game/marketplace/browse" },
+            { id: "browse", label: "Browse Events", path: "/game/meet" },
+            { id: "my-rsvps", label: "My RSVPs", path: "/game/meet/my-rsvps" },
+            { id: "create", label: "Create Event", path: "/game/meet/create" },
         ],
     },
-    teams: {
-        title: "Discover",
+    // COLLABORATE Space (was Teams)
+    collaborate: {
+        title: "COLLABORATE",
         sections: [
-            { id: "people", label: "People Directory", path: "/community/people" },
-            { id: "connections", label: "Connections", path: "/connections" },
-            { id: "genius-match", label: "Genius Match", path: "/game/teams" },
+            { id: "genius-match", label: "Genius Match", path: "/game/collaborate" },
+            { id: "connections", label: "Connections", path: "/game/collaborate/connections" },
+            { id: "people", label: "People Directory", path: "/game/collaborate/people" },
+            { id: "mission", label: "Mission Groups", path: "/game/collaborate/mission" },
         ],
     },
-    events: {
-        title: "Events",
+    // BUILD Space (was Coop/Incubator)
+    build: {
+        title: "BUILD",
         sections: [
-            { id: "browse", label: "Browse Events", path: "/game/events" },
-            { id: "my-rsvps", label: "My RSVPs", path: "/game/events/my-rsvps" },
-            { id: "create", label: "Create Event", path: "/game/events/create" },
-        ],
-    },
-    coop: {
-        title: "Business Incubator",
-        sections: [
+            { id: "overview", label: "Overview", path: "/game/build" },
             { id: "product-builder", label: "Product Builder", path: "/product-builder" },
-            { id: "about", label: "About Incubator", path: "/game/coop" },
+        ],
+    },
+    // BUY & SELL Space (was Marketplace)
+    buysell: {
+        title: "BUY & SELL",
+        sections: [
+            { id: "browse", label: "Browse Guides", path: "/game/marketplace/browse" },
+            { id: "genius-offer", label: "Genius Offer", path: "/zone-of-genius/entry" },
+            { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
         ],
     },
 };
