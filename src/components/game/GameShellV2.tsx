@@ -358,14 +358,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         mobileView === "content" ? "translate-x-0" : "translate-x-full"
                     )}
                 >
-                    {/* Mobile Header with safe area */}
+                    {/* Mobile Header with safe area - Premium gradient */}
                     <header
-                        className="bg-slate-900 flex items-center px-4 gap-3 sticky top-0 z-modal"
+                        className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-slate-700/50"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-slate-800 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-slate-700/50 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />

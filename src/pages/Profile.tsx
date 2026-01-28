@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, CreditCard, Loader2, Check, Edit2, X, AlertTriangle } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
-import BackButton from "@/components/BackButton";
 
 interface UserProfile {
     id: string;
@@ -207,24 +205,18 @@ const Profile = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-dvh">
-                <Navigation />
-                <div className="pt-24 flex items-center justify-center min-h-[60vh]">
+            <GameShellV2>
+                <div className="flex items-center justify-center min-h-[60vh]">
                     <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
                 </div>
-            </div>
+            </GameShellV2>
         );
     }
 
     return (
-        <div className="min-h-dvh flex flex-col">
-            <Navigation />
-
-            <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-                <div className="container mx-auto max-w-3xl">
-                    <div className="mb-6">
-                        <BackButton />
-                    </div>
+        <GameShellV2>
+            <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
+                <div className="container mx-auto max-w-3xl px-4 py-6">
 
                     {/* Page Header */}
                     <div className="mb-8">
@@ -302,11 +294,10 @@ const Profile = () => {
                                                             key={language}
                                                             type="button"
                                                             onClick={() => toggleLanguage(language)}
-                                                            className={`rounded-full border px-3 py-1 text-sm transition ${
-                                                                isSelected
+                                                            className={`rounded-full border px-3 py-1 text-sm transition ${isSelected
                                                                     ? "border-amber-300 bg-amber-50 text-amber-900"
                                                                     : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
-                                                            }`}
+                                                                }`}
                                                             aria-pressed={isSelected}
                                                         >
                                                             {language}
@@ -561,10 +552,8 @@ const Profile = () => {
                         </Card>
                     </div>
                 </div>
-            </main>
-
-            <Footer />
-        </div>
+            </div>
+        </GameShellV2>
     );
 };
 
