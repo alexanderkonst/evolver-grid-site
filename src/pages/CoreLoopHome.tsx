@@ -1,15 +1,32 @@
+/**
+ * CoreLoopHome — My Next Move Hub
+ * 
+ * Implements the GROW → LEARN → Nudges sequence from module_taxonomy.md
+ * 
+ * Sections:
+ * 1. ME — Who I am (avatar, name, level, XP)
+ * 2. MY LIFE — QoL domain scores
+ * 3. MY NEXT MOVE — One recommended action
+ */
+
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { CheckCircle2, Sparkles, BarChart3, ArrowRight, Flame, Zap } from "lucide-react";
+import { Sparkles, BarChart3, ArrowRight, Book, Users, Rocket } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSection from "@/components/game/MeSection";
-import MyNextMoveSection from "@/components/game/MyNextMoveSection";
-import NextActionsPanel from "@/components/game/NextActionsPanel";
+import MyLifeSection from "@/components/game/MyLifeSection";
+import CelebrationModal from "@/components/game/CelebrationModal";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { getRecommendedAction, type Action } from "@/data/actions";
+import {
+    getNextRecommendation,
+    loadNudgeState,
+    markNudgeSeen,
+    type ProfileCompletionState,
+    type Recommendation
+} from "@/lib/myNextMoveLogic";
 import { useToast } from "@/hooks/use-toast";
 
 interface QolDomain {
@@ -18,68 +35,53 @@ interface QolDomain {
     score: number;
 }
 
-// Onboarding stages
-type OnboardingStage = 'zog' | 'qol' | 'profile' | 'explore' | 'complete';
-
-// Genius Discovery stages: entry → articulate → useful → monetize
-type GeniusStage = 'entry' | 'articulate' | 'useful' | 'monetize' | 'complete';
-
-const getNextStage = (current: GeniusStage): GeniusStage => {
-    const sequence: GeniusStage[] = ['entry', 'articulate', 'useful', 'monetize', 'complete'];
-    const currentIndex = sequence.indexOf(current);
-    return sequence[Math.min(currentIndex + 1, sequence.length - 1)];
-};
-
 const CoreLoopHome = () => {
     const navigate = useNavigate();
     const { toast } = useToast();
 
+    // Loading state
     const [isLoading, setIsLoading] = useState(true);
+    const [isGuest, setIsGuest] = useState(false);
+
+    // Profile data (ME section)
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
     const [level, setLevel] = useState(1);
     const [xpTotal, setXpTotal] = useState(0);
     const [displayName, setDisplayName] = useState<string | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+    // QoL data (MY LIFE section)
     const [qolScores, setQolScores] = useState<QolDomain[]>([]);
-    const [recommendedAction, setRecommendedAction] = useState<Action | null>(null);
-    const [isCompleting, setIsCompleting] = useState(false);
-    const [showCelebration, setShowCelebration] = useState(false);
-    const [celebrationXp, setCelebrationXp] = useState(0);
 
-    // Streak tracking
-    const [daysActive, setDaysActive] = useState(0);
-    const [todaysXP, setTodaysXP] = useState(0);
-    const [streak, setStreak] = useState(0);
+    // Recommendation state (MY NEXT MOVE section)
+    const [primaryRecommendation, setPrimaryRecommendation] = useState<Recommendation | null>(null);
+    const [nudgeRecommendation, setNudgeRecommendation] = useState<Recommendation | null>(null);
+    const [profileCompletion, setProfileCompletion] = useState<ProfileCompletionState>({
+        hasZoG: false,
+        hasQoL: false,
+        hasResources: false,
+        hasMission: false,
+    });
 
-    // Onboarding state
-    const [onboardingStage, setOnboardingStage] = useState<OnboardingStage>('complete');
-    const [hasZoG, setHasZoG] = useState(false);
-    const [hasQoL, setHasQoL] = useState(false);
-
-    const [geniusStage, setGeniusStage] = useState<GeniusStage>('entry');
-    const [practiceCount, setPracticeCount] = useState(0);
-
-    // Completed steps for display
-    const [completedSteps, setCompletedSteps] = useState<{
-        id: string;
-        title: string;
-        completedAt: string;
-        xpEarned: number;
-    }[]>([]);
+    // Celebration modal
+    const [showCelebrationModal, setShowCelebrationModal] = useState(false);
+    const [celebrationXp, setCelebrationXp] = useState(50);
 
     useEffect(() => {
         loadData();
     }, []);
 
-    const [isGuest, setIsGuest] = useState(false);
-
     const loadData = async () => {
         try {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                // Guest users see onboarding experience instead of redirect
+                // Guest user — show ZoG recommendation
                 setIsGuest(true);
-                setOnboardingStage('zog');
+                const { primary } = getNextRecommendation(
+                    { hasZoG: false, hasQoL: false, hasResources: false, hasMission: false },
+                    loadNudgeState()
+                );
+                setPrimaryRecommendation(primary);
                 setIsLoading(false);
                 return;
             }
@@ -89,7 +91,7 @@ const CoreLoopHome = () => {
             // Load game profile
             const { data: profile } = await supabase
                 .from('game_profiles')
-                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, practice_count, genius_stage, first_name, avatar_url')
+                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, first_name, avatar_url')
                 .eq('id', profileId)
                 .single();
 
@@ -98,61 +100,22 @@ const CoreLoopHome = () => {
                 setXpTotal(profile.xp_total || 0);
                 setDisplayName(profile.first_name || user.email?.split("@")[0] || "Player");
                 setAvatarUrl((profile as any).avatar_url || null);
-                setPracticeCount(profile.practice_count || 0);
 
-                // Set genius stage from database (with safe fallback)
-                const validStages = ['entry', 'articulate', 'useful', 'monetize', 'complete'] as const;
-                const storedStage = (profile as any).genius_stage;
-                if (storedStage && validStages.includes(storedStage)) {
-                    setGeniusStage(storedStage as typeof geniusStage);
-                }
+                // Determine completion state
+                const completion: ProfileCompletionState = {
+                    hasZoG: !!profile.last_zog_snapshot_id,
+                    hasQoL: !!profile.last_qol_snapshot_id,
+                    // For now, assume not complete (will need DB fields later)
+                    hasResources: false,
+                    hasMission: false,
+                };
+                setProfileCompletion(completion);
 
-                // Build completed steps from profile data
-                const steps: typeof completedSteps = [];
-                if (profile.last_zog_snapshot_id) {
-                    steps.push({
-                        id: 'zog-complete',
-                        title: 'Zone of Genius Discovery',
-                        completedAt: new Date().toISOString(),
-                        xpEarned: 50
-                    });
-                }
-                if (profile.last_qol_snapshot_id) {
-                    steps.push({
-                        id: 'qol-complete',
-                        title: 'Quality of Life Mapping',
-                        completedAt: new Date().toISOString(),
-                        xpEarned: 50
-                    });
-                }
-                if ((profile.practice_count || 0) > 0) {
-                    steps.push({
-                        id: 'first-action',
-                        title: 'First Transformation',
-                        completedAt: new Date().toISOString(),
-                        xpEarned: 25
-                    });
-                }
-                setCompletedSteps(steps);
-
-                // Check onboarding state
-                const zogComplete = !!profile.last_zog_snapshot_id;
-                const qolComplete = !!profile.last_qol_snapshot_id;
-                const hasFirstAction = (profile.practice_count || 0) > 0;
-
-                setHasZoG(zogComplete);
-                setHasQoL(qolComplete);
-
-                // Determine onboarding stage
-                if (!zogComplete) {
-                    setOnboardingStage('zog');
-                } else if (!qolComplete) {
-                    setOnboardingStage('qol');
-                } else if (!hasFirstAction) {
-                    setOnboardingStage('explore'); // Ready for first action
-                } else {
-                    setOnboardingStage('complete');
-                }
+                // Get recommendation based on completion state
+                const nudges = loadNudgeState();
+                const { primary, nudge } = getNextRecommendation(completion, nudges);
+                setPrimaryRecommendation(primary);
+                setNudgeRecommendation(nudge || null);
 
                 // Load ZoG archetype
                 if (profile.last_zog_snapshot_id) {
@@ -186,96 +149,59 @@ const CoreLoopHome = () => {
                             { key: 'home_stage', label: 'Home', score: qol.home_stage || 5 },
                         ];
                         setQolScores(domains);
-
-                        // Get recommended action based on lowest domain
-                        const sorted = [...domains].sort((a, b) => a.score - b.score);
-                        const lowestDomain = sorted[0]?.key;
-                        if (lowestDomain) {
-                            const action = getRecommendedAction(lowestDomain);
-                            setRecommendedAction(action);
-                        }
                     }
                 }
             }
         } catch (error) {
+            console.error('Error loading data:', error);
         } finally {
             setIsLoading(false);
         }
     };
 
-    const handleActionComplete = async (action: Action) => {
-        setIsCompleting(true);
-        try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-
-            const profileId = await getOrCreateGameProfileId();
-
-            // Award XP
-            const vectorColumn = `xp_${action.vector}`;
-            const { data: currentProfile } = await supabase
-                .from('game_profiles')
-                .select('xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, practice_count')
-                .eq('id', profileId)
-                .single();
-
-            if (currentProfile) {
-                const newXpTotal = (currentProfile.xp_total || 0) + action.xp;
-                const newVectorXp = ((currentProfile as any)[vectorColumn] || 0) + action.xp;
-                const newPracticeCount = (currentProfile.practice_count || 0) + 1;
-
-                // Simple level calculation
-                const newLevel = Math.floor(newXpTotal / 500) + 1;
-
-                await supabase
-                    .from('game_profiles')
-                    .update({
-                        xp_total: newXpTotal,
-                        [vectorColumn]: newVectorXp,
-                        level: newLevel,
-                        practice_count: newPracticeCount
-                    })
-                    .eq('id', profileId);
-
-                // Show celebration
-                setCelebrationXp(action.xp);
-                setShowCelebration(true);
-
-                // Update local state
-                setXpTotal(newXpTotal);
-                setLevel(newLevel);
-                setTodaysXP(prev => prev + action.xp);
-                setOnboardingStage('complete'); // First action done!
-
-                // Get next action
-                const sorted = [...qolScores].sort((a, b) => a.score - b.score);
-                const lowestDomain = sorted[0]?.key;
-                if (lowestDomain) {
-                    const nextAction = getRecommendedAction(lowestDomain, [action.id]);
-                    setRecommendedAction(nextAction);
-                }
-
-                // Hide celebration after delay
-                setTimeout(() => setShowCelebration(false), 3000);
+    const handleStartAction = (recommendation: Recommendation) => {
+        // If it's a nudge, mark it as seen
+        if (recommendation.type === 'nudge') {
+            if (recommendation.id === 'nudge-collaborate') {
+                markNudgeSeen('collaborate');
+            } else if (recommendation.id === 'nudge-build') {
+                markNudgeSeen('build');
             }
-        } catch (error) {
-            toast({
-                title: "Error",
-                description: "Could not complete action. Please try again.",
-                variant: "destructive"
-            });
-        } finally {
-            setIsCompleting(false);
+        }
+        navigate(recommendation.path);
+    };
+
+    const handleDismissNudge = () => {
+        if (nudgeRecommendation) {
+            if (nudgeRecommendation.id === 'nudge-collaborate') {
+                markNudgeSeen('collaborate');
+            } else if (nudgeRecommendation.id === 'nudge-build') {
+                markNudgeSeen('build');
+            }
+            setNudgeRecommendation(null);
         }
     };
 
-    const updateGeniusStage = async (newStage: GeniusStage) => {
-        const profileId = await getOrCreateGameProfileId();
-        await supabase
-            .from('game_profiles')
-            .update({ genius_stage: newStage })
-            .eq('id', profileId);
-        setGeniusStage(newStage);
+    // Get icon for recommendation
+    const getIcon = (icon: Recommendation['icon']) => {
+        switch (icon) {
+            case 'sparkles': return <Sparkles className="w-6 h-6" />;
+            case 'book': return <Book className="w-6 h-6" />;
+            case 'users': return <Users className="w-6 h-6" />;
+            case 'rocket': return <Rocket className="w-6 h-6" />;
+            default: return <Sparkles className="w-6 h-6" />;
+        }
+    };
+
+    // Get space color
+    const getSpaceColor = (space: Recommendation['space']) => {
+        switch (space) {
+            case 'grow': return 'amber';
+            case 'learn': return 'blue';
+            case 'collaborate': return 'purple';
+            case 'build': return 'emerald';
+            default: return 'indigo';
+        }
     };
 
     if (isLoading) {
@@ -288,165 +214,11 @@ const CoreLoopHome = () => {
         );
     }
 
-    // Onboarding: Need Zone of Genius (works for both guests and logged-in users)
-    if (onboardingStage === 'zog') {
-        return (
-            <GameShellV2>
-                <div className="p-6 lg:p-8 max-w-xl mx-auto">
-                    <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                            <Sparkles className="w-8 h-8 text-indigo-600" />
-                        </div>
-                        <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
-                            {isGuest ? "Start Building Your Self-Understanding" : "Welcome to Your Journey"}
-                        </h1>
-                        <p className="text-[rgba(44,49,80,0.7)]">
-                            {isGuest
-                                ? "First, let's discover your Zone of Genius."
-                                : "Let's start by discovering who you are at your best."}
-                        </p>
-                    </div>
-
-                    <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6 mb-6">
-                        <h2 className="font-semibold text-[#2c3150] mb-2">
-                            {isGuest ? "Discover Your Zone of Genius" : "Step 1: Discover Your Zone of Genius"}
-                        </h2>
-                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
-                            In just 5 minutes, you'll uncover your unique archetype and core talents.
-                            This becomes the foundation for everything else.
-                        </p>
-                        <Button asChild className="w-full" size="lg">
-                            <Link to="/zone-of-genius/entry">
-                                {isGuest ? "Begin: Discover My Zone of Genius" : "Start Discovery"}
-                                <ArrowRight className="w-4 h-4 ml-2" />
-                            </Link>
-                        </Button>
-                    </div>
-
-                    {/* Sign in option for guests */}
-                    {isGuest && (
-                        <div className="text-center text-sm text-slate-500">
-                            Already have an account?{" "}
-                            <Link to="/auth" className="text-indigo-600 hover:underline font-medium">
-                                Sign in
-                            </Link>
-                        </div>
-                    )}
-
-                    {/* Progress indicator for logged-in users */}
-                    {!isGuest && (
-                        <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
-                            <span className="w-3 h-3 rounded-full bg-amber-500" />
-                            <span className="w-3 h-3 rounded-full bg-slate-200" />
-                            <span className="w-3 h-3 rounded-full bg-slate-200" />
-                            <span className="w-3 h-3 rounded-full bg-slate-200" />
-                        </div>
-                    )}
-                </div>
-            </GameShellV2>
-        );
-    }
-
-    // Onboarding: Need Quality of Life
-    if (onboardingStage === 'qol') {
-        return (
-            <GameShellV2>
-                <div className="p-6 lg:p-8 max-w-xl mx-auto">
-                    <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
-                            <BarChart3 className="w-8 h-8 text-blue-600" />
-                        </div>
-                        <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
-                            Great, {archetypeTitle ? `${archetypeTitle}!` : 'Genius Discovered!'}
-                        </h1>
-                        <p className="text-[rgba(44,49,80,0.7)]">Now let's see where your life is asking for attention.</p>
-                    </div>
-
-                    <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6 mb-6">
-                        <h2 className="font-semibold text-[#2c3150] mb-2">Step 2: Map Your Quality of Life</h2>
-                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
-                            Assess 8 life domains in 5 minutes. This reveals your growth drivers
-                            and helps us recommend your next moves.
-                        </p>
-                        <Button asChild className="w-full" size="lg">
-                            <Link to="/quality-of-life-map/assessment">
-                                Start Assessment
-                                <ArrowRight className="w-4 h-4 ml-2" />
-                            </Link>
-                        </Button>
-                    </div>
-
-                </div>
-            </GameShellV2>
-        );
-    }
-
-    // Onboarding: Ready for first action (explore)
-    if (onboardingStage === 'explore') {
-        return (
-            <GameShellV2>
-                <div className="p-4 lg:p-6 max-w-2xl mx-auto">
-                    {/* Show ME section */}
-                    <MeSection
-                        archetypeTitle={archetypeTitle || undefined}
-                        level={level}
-                        xpTotal={xpTotal}
-                        displayName={displayName || undefined}
-                        avatarUrl={avatarUrl}
-                    />
-
-                    {/* MY NEXT MOVE Section */}
-                    <MyNextMoveSection
-                        action={recommendedAction}
-                        onComplete={handleActionComplete}
-                        isCompleting={isCompleting}
-                    />
-
-                </div>
-            </GameShellV2>
-        );
-    }
-
-    // Full Core Loop (onboarding complete)
     return (
         <GameShellV2>
-            <div className="p-4 lg:p-6 max-w-2xl mx-auto">
-                {/* Celebration Toast */}
-                {showCelebration && (
-                    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-modal animate-bounce">
-                        <div className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full shadow-lg">
-                            <CheckCircle2 className="w-5 h-5" />
-                            <span className="font-semibold">+{celebrationXp} XP!</span>
-                        </div>
-                    </div>
-                )}
+            <div className="p-4 lg:p-6 max-w-2xl mx-auto space-y-6">
 
-                {/* Daily Stats Header */}
-                <div className="mb-6 flex items-center justify-between rounded-lg bg-slate-50 border border-slate-200 px-4 py-3">
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                            <Zap className="w-4 h-4 text-amber-500" />
-                            <div>
-                                <div className="text-xs text-slate-500">Today's XP</div>
-                                <div className="text-lg font-bold text-[#2c3150]">+{todaysXP}</div>
-                            </div>
-                        </div>
-                        <div className="h-8 w-px bg-slate-200" />
-                        <div className="flex items-center gap-2">
-                            <Flame className="w-4 h-4 text-orange-500" />
-                            <div>
-                                <div className="text-xs text-slate-500">Total XP</div>
-                                <div className="text-lg font-bold text-[#2c3150]">{xpTotal.toLocaleString()}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="text-right">
-                        <div className="text-xs text-slate-500">Level</div>
-                        <div className="text-lg font-bold text-[#2c3150]">{level}</div>
-                    </div>
-                </div>
-
-                {/* ME Section */}
+                {/* === ME SECTION === */}
                 <MeSection
                     archetypeTitle={archetypeTitle || undefined}
                     level={level}
@@ -455,68 +227,130 @@ const CoreLoopHome = () => {
                     avatarUrl={avatarUrl}
                 />
 
-                {/* MY NEXT MOVE Section — Two Action Options */}
-                <NextActionsPanel
-                    completedSteps={completedSteps}
-                    nextActions={[
-                        // Primary action: Continue Genius Discovery or Transformation
-                        geniusStage === 'entry' ? {
-                            id: 'genius-articulate',
-                            type: 'genius' as const,
-                            title: 'Articulate Your Genius',
-                            description: 'Define how your unique talents combine into a powerful offering',
-                            route: '/zone-of-genius',
-                            ctaLabel: 'Continue Discovery',
-                            icon: 'sparkles' as const,
-                            priority: 'primary' as const,
-                        } : geniusStage === 'articulate' ? {
-                            id: 'genius-useful',
-                            type: 'genius' as const,
-                            title: 'Make Your Genius Useful',
-                            description: 'Turn your genius into something people actually want',
-                            route: '/game/profile',
-                            ctaLabel: 'Make It Useful',
-                            icon: 'sparkles' as const,
-                            priority: 'primary' as const,
-                        } : {
-                            id: 'transformation-practice',
-                            type: 'transformation' as const,
-                            title: recommendedAction?.title || 'Daily Practice',
-                            description: recommendedAction?.description || 'Your recommended practice based on your growth priorities',
-                            route: '/game/transformation',
-                            ctaLabel: 'Start Practice',
-                            icon: 'trending' as const,
-                            priority: 'primary' as const,
-                        },
-                        // Secondary action: The other path
-                        geniusStage !== 'complete' ? {
-                            id: 'transformation-alt',
-                            type: 'transformation' as const,
-                            title: recommendedAction?.title || 'Continue Transformation',
-                            description: `Grow in ${qolScores.sort((a, b) => a.score - b.score)[0]?.label || 'your lowest domain'}`,
-                            route: '/game/transformation',
-                            ctaLabel: 'Explore Growth Paths',
-                            icon: 'trending' as const,
-                            priority: 'secondary' as const,
-                        } : {
-                            id: 'genius-monetize',
-                            type: 'genius' as const,
-                            title: 'Monetize Your Genius',
-                            description: 'Work with a coach to create your genius offer',
-                            route: '/game/marketplace',
-                            ctaLabel: 'Learn More',
-                            icon: 'sparkles' as const,
-                            priority: 'secondary' as const,
-                        },
-                    ]}
-                    onActionClick={(action) => {
-                        navigate(action.route);
-                        if (action.type === 'genius') {
-                            updateGeniusStage(getNextStage(geniusStage));
-                        }
-                    }}
-                />
+                {/* === MY LIFE SECTION (QoL Scores) === */}
+                {qolScores.length > 0 && (
+                    <MyLifeSection qolScores={qolScores} />
+                )}
+
+                {/* === MY NEXT MOVE SECTION === */}
+                {primaryRecommendation && (
+                    <section className="space-y-3">
+                        <h2 className="text-lg font-semibold text-[#2c3150]">My Next Move</h2>
+
+                        {/* Primary Recommendation Card */}
+                        <div className={`rounded-xl border-2 p-6 transition-all hover:shadow-lg
+                            ${primaryRecommendation.space === 'grow' ? 'border-amber-200 bg-amber-50' : ''}
+                            ${primaryRecommendation.space === 'learn' ? 'border-blue-200 bg-blue-50' : ''}
+                            ${primaryRecommendation.space === 'collaborate' ? 'border-purple-200 bg-purple-50' : ''}
+                            ${primaryRecommendation.space === 'build' ? 'border-emerald-200 bg-emerald-50' : ''}
+                        `}>
+                            <div className="flex items-start gap-4">
+                                <div className={`p-3 rounded-xl
+                                    ${primaryRecommendation.space === 'grow' ? 'bg-amber-100 text-amber-600' : ''}
+                                    ${primaryRecommendation.space === 'learn' ? 'bg-blue-100 text-blue-600' : ''}
+                                    ${primaryRecommendation.space === 'collaborate' ? 'bg-purple-100 text-purple-600' : ''}
+                                    ${primaryRecommendation.space === 'build' ? 'bg-emerald-100 text-emerald-600' : ''}
+                                `}>
+                                    {getIcon(primaryRecommendation.icon)}
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-lg font-semibold text-[#2c3150] mb-1">
+                                        {primaryRecommendation.title}
+                                    </h3>
+                                    <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
+                                        {primaryRecommendation.description}
+                                    </p>
+                                    {primaryRecommendation.estimatedTime && (
+                                        <p className="text-xs text-[rgba(44,49,80,0.5)] mb-3">
+                                            ⏱️ {primaryRecommendation.estimatedTime}
+                                        </p>
+                                    )}
+                                    <Button
+                                        onClick={() => handleStartAction(primaryRecommendation)}
+                                        className="w-full"
+                                        size="lg"
+                                    >
+                                        {primaryRecommendation.ctaLabel}
+                                        <ArrowRight className="w-4 h-4 ml-2" />
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Nudge (if any) */}
+                        {nudgeRecommendation && (
+                            <div className={`rounded-xl border p-4 transition-all
+                                ${nudgeRecommendation.space === 'collaborate' ? 'border-purple-200 bg-purple-50/50' : ''}
+                                ${nudgeRecommendation.space === 'build' ? 'border-emerald-200 bg-emerald-50/50' : ''}
+                            `}>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className={`p-2 rounded-lg
+                                            ${nudgeRecommendation.space === 'collaborate' ? 'bg-purple-100 text-purple-600' : ''}
+                                            ${nudgeRecommendation.space === 'build' ? 'bg-emerald-100 text-emerald-600' : ''}
+                                        `}>
+                                            {getIcon(nudgeRecommendation.icon)}
+                                        </div>
+                                        <div>
+                                            <p className="font-medium text-[#2c3150] text-sm">
+                                                {nudgeRecommendation.title}
+                                            </p>
+                                            <p className="text-xs text-[rgba(44,49,80,0.6)]">
+                                                {nudgeRecommendation.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={handleDismissNudge}
+                                        >
+                                            Later
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => handleStartAction(nudgeRecommendation)}
+                                        >
+                                            Explore
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Explore All Spaces Link */}
+                        <div className="text-center pt-2">
+                            <Link
+                                to="/game/grow"
+                                className="text-sm text-[rgba(44,49,80,0.6)] hover:text-[#2c3150] transition-colors"
+                            >
+                                ▼ Explore All Spaces
+                            </Link>
+                        </div>
+                    </section>
+                )}
+
+                {/* Guest Sign In Prompt */}
+                {isGuest && (
+                    <div className="text-center text-sm text-slate-500 pt-4">
+                        Already have an account?{" "}
+                        <Link to="/auth" className="text-indigo-600 hover:underline font-medium">
+                            Sign in
+                        </Link>
+                    </div>
+                )}
             </div>
+
+            {/* Celebration Modal */}
+            <CelebrationModal
+                isOpen={showCelebrationModal}
+                onClose={() => setShowCelebrationModal(false)}
+                xpEarned={celebrationXp}
+                title="Great Progress!"
+                message="You're building your transformation journey."
+            />
         </GameShellV2>
     );
 };
