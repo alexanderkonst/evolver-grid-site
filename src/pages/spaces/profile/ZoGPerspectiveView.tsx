@@ -34,7 +34,7 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         icon: Target,
         render: (data) => (
             <div className="text-center py-8">
-                <p className="text-2xl font-['Fraunces',serif] text-[#2c3150] leading-relaxed">
+                <p className="text-2xl font-display text-[#2c3150] leading-relaxed">
                     I {data.bullseyeSentence}
                 </p>
             </div>
@@ -46,7 +46,7 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         icon: Sparkles,
         render: (data) => (
             <div className="space-y-6 text-center py-8">
-                <h2 className="text-3xl font-['Fraunces',serif] font-bold text-[#2c3150]">
+                <h2 className="text-3xl font-display font-bold text-[#2c3150]">
                     ✦ {data.vibrationalKey.name} ✦
                 </h2>
                 <p className="text-lg text-[#2c3150]/80 italic">
@@ -344,7 +344,7 @@ const ZoGPerspectiveView = () => {
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/50 mb-4">
                         <Icon className="w-6 h-6 text-[#8460ea]" />
                     </div>
-                    <h1 className="text-2xl font-['Fraunces',serif] font-bold text-[#2c3150] mb-1">
+                    <h1 className="text-2xl font-display font-bold text-[#2c3150] mb-1">
                         {config.title}
                     </h1>
                     <p className="text-[#8460ea] text-sm">{config.subtitle}</p>

@@ -107,7 +107,7 @@ const RevelatoryHero = ({
 
                 {/* Main Title - Archetype Name - Smaller */}
                 <h1
-                    className={`font-['Fraunces',serif] text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
+                    className={`font-display text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
                     {title.replace(/✦/g, '').trim()}

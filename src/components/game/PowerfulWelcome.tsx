@@ -57,14 +57,14 @@ const PowerfulWelcome = ({
                 {/* Archetype Title - The Star */}
                 {archetypeTitle ? (
                     <h1
-                        className="text-2xl sm:text-3xl md:text-4xl font-['Fraunces',serif] font-semibold text-white mb-3 leading-tight"
+                        className="text-2xl sm:text-3xl md:text-4xl font-display font-semibold text-white mb-3 leading-tight"
                         style={{ textShadow: "0 0 60px rgba(255,255,255,0.4)" }}
                     >
                         {archetypeTitle}
                     </h1>
                 ) : (
                     <h1
-                        className="text-2xl sm:text-3xl md:text-4xl font-['Fraunces',serif] font-semibold text-white mb-3"
+                        className="text-2xl sm:text-3xl md:text-4xl font-display font-semibold text-white mb-3"
                         style={{ textShadow: "0 0 60px rgba(255,255,255,0.4)" }}
                     >
                         Your Journey Awaits

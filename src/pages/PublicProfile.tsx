@@ -206,7 +206,7 @@ const PublicProfile = () => {
                 </span>
               )}
             </div>
-            <h1 className="text-3xl sm:text-4xl font-['Fraunces',serif] font-semibold mt-5">{fullName}</h1>
+            <h1 className="text-3xl sm:text-4xl font-display font-semibold mt-5">{fullName}</h1>
             {archetypeTitle && (
               <p className="mt-3 text-lg font-medium text-slate-700">✦ {archetypeTitle} ✦</p>
             )}

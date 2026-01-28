@@ -57,7 +57,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                         <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
                     </div>
                     <p className="text-[9px] text-[#a4a3d0] uppercase tracking-wider mb-1">My Unique Genius Business</p>
-                    <h1 className="text-base lg:text-lg font-semibold text-[#2c3150] leading-snug font-['Fraunces',serif]">
+                    <h1 className="text-base lg:text-lg font-semibold text-[#2c3150] leading-snug font-display">
                         {getActionHeader()}
                     </h1>
                 </div>
