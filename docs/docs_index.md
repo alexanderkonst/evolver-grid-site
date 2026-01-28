@@ -12,7 +12,7 @@
 
 | Doc | Purpose |
 |-----|---------|
-| [foundational_ontology.md](./foundational_ontology.md) | Holonic structure, toroidal field, soul colors, primordial splits |
+| [universal_ontology.md](./universal_ontology.md) | **THE** foundational document — Source, Field, Holographic Principle, Manifestation, Being, Holon Cycle |
 | [vision/new_ui_paradigm_vision.md](./vision/new_ui_paradigm_vision.md) | UI as Transmission — soul color personalization, breathing UI |
 | [holonic_vision.md](./holonic_vision.md) | Holonic worldview applied to platform |
 
