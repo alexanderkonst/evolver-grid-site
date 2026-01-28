@@ -29,7 +29,7 @@
 | 14 | How to enter the co-op | Product | 🟡 MED | Backlog |
 | 15 | Why venture studios use this | Product | 🟡 MED | Backlog |
 | **PLATFORM STRATEGY** |
-| 16 | Solo user landing page | Marketing | 🔴 HIGH | Today |
+| 16 | Solo user main landing page | Marketing | 🔴 HIGH | Today |
 | 17 | Module landings (every module) | Marketing | 🔴 HIGH | This week |
 | 18 | Community leader value prop | Strategy | 🟡 MED | February |
 | 19 | Holonic landings for similar projects | Strategy | 🟡 MED | Backlog |
