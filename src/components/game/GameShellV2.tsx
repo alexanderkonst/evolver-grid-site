@@ -8,6 +8,7 @@ import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import { loadNudgeState } from "@/lib/myNextMoveLogic";
 
 interface GameShellV2Props {
     children: ReactNode;
@@ -248,6 +249,21 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
         "events": !isZogCompleteStage && fullUnlock,
     };
 
+    // Nudge badges - visual indicators for unlocked spaces
+    // Show BUILD badge when ZoG complete (nudge user to explore BUILD)
+    // Show COLLABORATE badge when resources mapped (not implemented yet)
+    const nudges = loadNudgeState();
+    const nudgeBadges: string[] = [];
+
+    // If ZoG complete and BUILD nudge not seen yet, show badge on BUILD
+    if (stage !== 'new' && stage !== 'zog_started' && !nudges.buildNudgeSeen) {
+        nudgeBadges.push('build');
+    }
+    // COLLABORATE nudge - will activate when hasResources is tracked
+    // if (hasResources && !nudges.collaborateNudgeSeen) {
+    //     nudgeBadges.push('collaborate');
+    // }
+
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
         setActiveSpaceId(spaceId);
@@ -281,6 +297,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     activeSpaceId={activeSpaceId}
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
+                    nudgeBadges={nudgeBadges}
                     className="h-dvh sticky top-0"
                     userName={profile?.first_name || undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
@@ -337,6 +354,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         activeSpaceId={activeSpaceId}
                         onSpaceSelect={handleSpaceSelect}
                         unlockStatus={unlockStatus}
+                        nudgeBadges={nudgeBadges}
                         userName={profile?.first_name || undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}
                         userLevel={profile?.level || undefined}
