@@ -413,10 +413,13 @@ export const loadSavedData = async (): Promise<{
       .maybeSingle();
 
     if (!snapshot) {
-      // Return localStorage fallback if no snapshot
+      // IMPORTANT: For authenticated users with no snapshot, return empty.
+      // Do NOT fallback to localStorage - it may contain another user's data!
+      // localStorage is ONLY for guests who haven't signed up yet.
+      console.log("[loadSavedData] Auth user with no snapshot - returning empty (no localStorage fallback)");
       return {
-        appleseed: localAppleseed.appleseed,
-        excalibur: localExcalibur,
+        appleseed: null,
+        excalibur: null,
         snapshotId: null
       };
     }
@@ -428,12 +431,11 @@ export const loadSavedData = async (): Promise<{
     };
   } catch (err) {
     console.error("[loadSavedData] Error:", err);
-    // Return localStorage fallback on any error
-    const localAppleseed = loadAppleseedFromLocalStorage();
-    const localExcalibur = loadExcaliburFromLocalStorage();
+    // On error, return empty to avoid risk of cross-profile data leakage
+    // The user can redo the ZoG process if needed
     return {
-      appleseed: localAppleseed.appleseed,
-      excalibur: localExcalibur,
+      appleseed: null,
+      excalibur: null,
       snapshotId: null
     };
   }
