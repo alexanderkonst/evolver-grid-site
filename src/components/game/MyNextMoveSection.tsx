@@ -15,7 +15,7 @@ const VECTOR_COLORS: Record<string, string> = {
     mind: 'bg-blue-100 text-blue-700',
     emotions: 'bg-pink-100 text-pink-700',
     spirit: 'bg-purple-100 text-purple-700',
-    uniqueness: 'bg-amber-100 text-amber-700'
+    uniqueness: 'bg-[#c8b7d8]/30 text-[#8460ea]'
 };
 
 const VECTOR_LABELS: Record<string, string> = {

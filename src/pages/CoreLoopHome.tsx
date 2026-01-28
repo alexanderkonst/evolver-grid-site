@@ -200,7 +200,7 @@ const CoreLoopHome = () => {
     // Get space color
     const getSpaceColor = (space: Recommendation['space']) => {
         switch (space) {
-            case 'grow': return 'amber';
+            case 'grow': return 'lilac';
             case 'learn': return 'blue';
             case 'collaborate': return 'purple';
             case 'build': return 'emerald';
@@ -243,14 +243,14 @@ const CoreLoopHome = () => {
 
                         {/* Primary Recommendation Card */}
                         <div className={`rounded-xl border-2 p-6 transition-all hover:shadow-lg
-                            ${primaryRecommendation.space === 'grow' ? 'border-amber-200 bg-amber-50' : ''}
+                            ${primaryRecommendation.space === 'grow' ? 'border-[#c8b7d8] bg-[#c8b7d8]/10' : ''}
                             ${primaryRecommendation.space === 'learn' ? 'border-blue-200 bg-blue-50' : ''}
                             ${primaryRecommendation.space === 'collaborate' ? 'border-purple-200 bg-purple-50' : ''}
                             ${primaryRecommendation.space === 'build' ? 'border-emerald-200 bg-emerald-50' : ''}
                         `}>
                             <div className="flex items-start gap-4">
                                 <div className={`p-3 rounded-xl
-                                    ${primaryRecommendation.space === 'grow' ? 'bg-amber-100 text-amber-600' : ''}
+                                    ${primaryRecommendation.space === 'grow' ? 'bg-[#c8b7d8]/30 text-[#8460ea]' : ''}
                                     ${primaryRecommendation.space === 'learn' ? 'bg-blue-100 text-blue-600' : ''}
                                     ${primaryRecommendation.space === 'collaborate' ? 'bg-purple-100 text-purple-600' : ''}
                                     ${primaryRecommendation.space === 'build' ? 'bg-emerald-100 text-emerald-600' : ''}

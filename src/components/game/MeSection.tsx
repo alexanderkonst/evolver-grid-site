@@ -38,7 +38,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
     return (
         <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 mb-4">
             <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 rounded-full bg-amber-100 overflow-hidden flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-[#c8b7d8]/30 overflow-hidden flex items-center justify-center">
                     {avatarUrl ? (
                         <img
                             src={avatarUrl}
@@ -50,7 +50,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                             className="w-full h-full object-cover"
                         />
                     ) : (
-                        <Sparkles className="w-5 h-5 text-amber-600" />
+                        <Sparkles className="w-5 h-5 text-[#8460ea]" />
                     )}
                 </div>
                 <div>
@@ -72,9 +72,9 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                     <span>{xpInCurrentLevel.toLocaleString()} / {xpNeededForNext.toLocaleString()} XP</span>
                     <span>Level {level + 1}</span>
                 </div>
-                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-[#a4a3d0]/20 rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-amber-500 rounded-full transition-all duration-500"
+                        className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] rounded-full transition-all duration-500"
                         style={{ width: `${progressPercent}%` }}
                     />
                 </div>
