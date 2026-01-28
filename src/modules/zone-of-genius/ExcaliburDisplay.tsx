@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Copy, Check, Users, ArrowRight, User, Rocket } from "lucide-react";
+import { Copy, Check, Users, ArrowRight, User, Rocket, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PremiumCard } from "@/components/ui/PremiumCard";
+import { PremiumButton } from "@/components/ui/PremiumButton";
+import { HeroIcon } from "@/components/ui/HeroIcon";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { ExcaliburData } from "./excaliburGenerator";
@@ -45,19 +48,15 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
     };
 
     return (
-        <div className="max-w-2xl mx-auto px-3 py-1 space-y-1.5 font-['Inter',sans-serif]">
-            {/* Single Unified Box */}
-            <div className="p-3 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-2xl border border-[#a4a3d0]/30 shadow-sm">
-                {/* Header: Logo + Title + Action Statement */}
-                <div className="text-center mb-2 pb-2 border-b border-[#a4a3d0]/20">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-1.5">
-                        <img
-                            src="/genius-business-logo.png"
-                            alt="Genius Business"
-                            className="w-full h-full object-cover"
-                        />
+        <div className="max-w-2xl mx-auto px-3 py-1 space-y-3">
+            {/* Single Unified Box - Premium Glassmorphic Card */}
+            <PremiumCard variant="glass-strong" className="p-4">
+                {/* Header: Icon + Title + Action Statement */}
+                <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/20">
+                    <div className="flex justify-center mb-2">
+                        <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
                     </div>
-                    <p className="text-[9px] text-[#a4a3d0] uppercase tracking-wider mb-0.5">My Unique Genius Business</p>
+                    <p className="text-[9px] text-[#a4a3d0] uppercase tracking-wider mb-1">My Unique Genius Business</p>
                     <h1 className="text-base lg:text-lg font-semibold text-[#2c3150] leading-snug font-['Fraunces',serif]">
                         {getActionHeader()}
                     </h1>
@@ -110,7 +109,7 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                         </div>
                     </div>
                 </div>
-            </div>
+            </PremiumCard>
 
             {/* Resonance Rating - Validation metric */}
             {onResonanceRating && (
@@ -144,16 +143,15 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
 
             {/* Save Button */}
             {onSaveToProfile && (
-                <Button
-                    variant="wabi-primary"
+                <PremiumButton
                     size="lg"
                     className="w-full"
                     onClick={onSaveToProfile}
-                    disabled={isSaving}
+                    loading={isSaving}
                 >
                     <User className="w-4 h-4 mr-2" />
                     {isSaving ? "Saving..." : "Save and Go to My Profile"}
-                </Button>
+                </PremiumButton>
             )}
         </div>
     );
