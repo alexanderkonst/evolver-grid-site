@@ -267,6 +267,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
         setActiveSpaceId(spaceId);
+        // Mark nudge as seen if this space had one
+        if (spaceId === 'build' && nudgeBadges.includes('build')) {
+            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('build'));
+        }
+        if (spaceId === 'collaborate' && nudgeBadges.includes('collaborate')) {
+            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('collaborate'));
+        }
         // Mobile view stays on navigation - both panels visible
     };
 
