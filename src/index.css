@@ -215,6 +215,18 @@ All colors MUST be HSL.
     filter: drop-shadow(0 0 16px hsla(var(--primary), 0.6)) drop-shadow(0 0 24px hsla(var(--accent), 0.4));
   }
 
+  /* Prompt Copy Pattern - barely visible text for copy-paste prompts
+   * Used when users should copy the prompt to AI, not read it
+   * Intentionally low contrast to discourage reading */
+  .prompt-barely-visible {
+    color: rgba(44, 49, 80, 0.15) !important;
+    transition: color 0.2s ease;
+  }
+
+  .prompt-barely-visible:hover {
+    color: rgba(44, 49, 80, 0.3) !important;
+  }
+
   /* Destiny Landing Page Animations */
   @keyframes orb-pulse {
 
