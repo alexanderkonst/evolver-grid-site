@@ -89,14 +89,15 @@ const ZoneOfGeniusEntry = () => {
 
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
 
-            // If user has complete Excalibur data, redirect to profile
-            // UNLESS they're visiting directly (no return param) - they might want to redo
+            // If user has complete Excalibur data AND came from another page, redirect to profile
             if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && hasReturnParam) {
                 navigate("/game/profile");
                 return;
             }
 
-            if (savedAppleseed) {
+            // Only auto-restore saved data if user came from another page (has return param)
+            // Direct visits should stay on choice screen so user can redo if they want
+            if (savedAppleseed && hasReturnParam) {
                 setAppleseed(savedAppleseed);
                 if (savedExcalibur) {
                     setExcalibur(savedExcalibur);
