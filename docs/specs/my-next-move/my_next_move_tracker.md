@@ -65,13 +65,27 @@
 
 ---
 
-## PHASE 4: CODE            [■■░░░░░░] 25%
-├─ [ ] 4.1 Create Files — N/A (updating existing CoreLoopHome.tsx)
-├─ [/] 4.2 Implement Screens ← CURRENT
-├─ [ ] 4.3 Connect Routes
-├─ [ ] 4.4 Connect Data
-├─ [ ] 4.5 Verification
-└─ [ ] 🔥 ROAST GATE 4
+## PHASE 4: CODE            [■■■■■■■■] 100% ✅
+├─ [x] 4.1 Create Files — Created `myNextMoveLogic.ts`
+├─ [x] 4.2 Implement Screens — Rewrote `CoreLoopHome.tsx`
+├─ [x] 4.3 Connect Routes — Uses existing `/game/next-move`
+├─ [x] 4.4 Connect Data — Supabase integration preserved
+├─ [x] 4.5 Verification — Build passed, browser test passed
+└─ [x] 🔥 ROAST GATE 4 — PASS
+
+**Changes:**
+- Created: `src/lib/myNextMoveLogic.ts` — GROW → LEARN → Nudges logic
+- Rewrote: `src/pages/CoreLoopHome.tsx` — Clean implementation
+
+---
+
+## OUTPUT ✅
+├─ [x] User Journey — `my_next_move_product_spec.md`
+├─ [x] UX/UI — Uses existing components (MeSection, MyLifeSection)
+├─ [x] Software Architecture — `my_next_move_architecture_spec.md`
+└─ [x] Working Code — Verified via build + browser test
+
+**Completed:** 2026-01-28 22:30
 
 ---
 
