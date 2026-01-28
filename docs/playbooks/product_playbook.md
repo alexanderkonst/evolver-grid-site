@@ -305,7 +305,57 @@ How does this product connect to other products/modules?
 |------|-----|--------|
 | [This product] | [Next product] | [Transition] |
 
----
+### Module 6: Ritual/Celebration Container Pattern
+
+Every module, container, or flow is a **self-contained ritual**.
+
+This pattern treats each transformational segment as a sacred container:
+
+| Position | Purpose | Focus |
+|----------|---------|-------|
+| **Start Screen** | Set the intention | What we're about to create (future) |
+| **End Screen** | Celebrate completion | What just happened (present) |
+
+#### The Ritual Frame
+
+```
+🌅 START:  "You're about to discover X"  (Intention, Promise, Threshold)
+    │
+    ↓ [The Transformation Journey]
+    │
+🌟 END:    "You just discovered X!"     (Celebration, Artifact, What's Next)
+```
+
+#### Why This Works
+
+Each module becomes:
+- **Self-complete** — Has its own beginning, middle, end
+- **Emotionally coherent** — User knows where they are in the journey  
+- **Stackable** — Multiple rituals compose into larger journeys
+- **Celebratory** — Every completion gets honored, not rushed past
+
+#### Implementation Notes
+
+| Element | Start Screen | End Screen |
+|---------|--------------|------------|
+| **Verb Tense** | Future ("You will...") | Past ("You just...") |
+| **Emotion** | Anticipation, possibility | Accomplishment, satisfaction |
+| **Visual** | Clean, invitational | Rich, celebratory (confetti, gradient, glow) |
+| **Action** | "Begin" / "Start" | "Continue" / "Share" / "Go Deeper" |
+
+#### Example: Zone of Genius
+
+```
+START:  "Discover your Zone of Genius"
+        "In the next few minutes, you'll uncover what makes you uniquely brilliant."
+        [Begin →]
+
+END:    "Your Zone of Genius: The Catalyst"
+        "You've just discovered your unique genius..."
+        • Share    • Reveal Business    • Continue
+```
+
+**Key Principle:** The start screen sets up what's ABOUT to happen (anticipation). The end screen celebrates what JUST happened (completion). Never reverse these energies.
 
 ## Phase 7: Wireframes
 
