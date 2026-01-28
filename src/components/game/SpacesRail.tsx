@@ -70,6 +70,8 @@ interface SpacesRailProps {
     activeSpaceId?: string;
     onSpaceSelect?: (spaceId: string) => void;
     unlockStatus?: Record<string, boolean>;
+    /** Spaces that have a new unlock waiting (shows badge/glow) */
+    nudgeBadges?: string[];
     className?: string;
     // Optional user data props
     userName?: string;
@@ -82,6 +84,7 @@ const SpacesRail = ({
     activeSpaceId,
     onSpaceSelect,
     unlockStatus = {},
+    nudgeBadges = [],
     className,
     userName,
     userAvatarUrl,
@@ -183,6 +186,7 @@ const SpacesRail = ({
                 {SPACES.map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
+                    const hasNudge = nudgeBadges.includes(space.id);
 
                     const handleSpaceClick = () => {
                         if (isLocked) return;
@@ -206,9 +210,11 @@ const SpacesRail = ({
                                         ? space.id === "next-move"
                                             ? "bg-amber-500 text-white shadow-lg shadow-amber-500/40 ring-2 ring-amber-400/50"
                                             : "bg-amber-500 text-white shadow-lg shadow-amber-500/25"
-                                        : space.id === "next-move"
-                                            ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
-                                            : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
+                                        : hasNudge
+                                            ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
+                                            : space.id === "next-move"
+                                                ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
+                                                : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={space.label}
                         >
@@ -223,13 +229,21 @@ const SpacesRail = ({
                                 {space.label}
                             </span>
 
+                            {/* Nudge Badge - new unlock indicator */}
+                            {hasNudge && (
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping" />
+                            )}
+                            {hasNudge && (
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900" />
+                            )}
+
                             {/* Active indicator */}
                             {active && (
                                 <div className="absolute left-0 w-1 h-8 bg-white rounded-r-full -translate-x-1/2" />
                             )}
                         </button>
                     );
-                })}
+                })}}
             </nav>
 
             {/* Settings Button */}
@@ -255,6 +269,14 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prev.activeSpaceId !== next.activeSpaceId) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;
+    // Check nudgeBadges
+    const prevNudges = prev.nudgeBadges || [];
+    const nextNudges = next.nudgeBadges || [];
+    if (prevNudges.length !== nextNudges.length) return false;
+    for (const badge of prevNudges) {
+        if (!nextNudges.includes(badge)) return false;
+    }
+    // Check unlockStatus
     const prevKeys = Object.keys(prev.unlockStatus || {});
     const nextKeys = Object.keys(next.unlockStatus || {});
     if (prevKeys.length !== nextKeys.length) return false;
