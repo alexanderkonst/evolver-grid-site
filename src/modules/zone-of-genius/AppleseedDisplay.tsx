@@ -90,24 +90,24 @@ const AppleseedDisplay = ({
                 />
             )}
 
-            {/* Quick action buttons: Share + Reveal My Genius Business - Side by side */}
-            <div className="flex gap-3 justify-center">
-                {/* Quick Share Button (mobile-friendly native share) */}
-                <Button
-                    variant="wabi-ghost"
-                    className="px-6"
-                    onClick={handleShare}
-                >
-                    {copied ? (
-                        <Check className="w-4 h-4 mr-2" />
-                    ) : (
-                        <Share2 className="w-4 h-4 mr-2" />
-                    )}
-                    Share
-                </Button>
+            {/* Full Share dropdown with pre-written text for social networks */}
+            {/* Only showing the dropdown - removed simple Share button as it was duplicate */}
+            <div className="flex justify-center">
+                <ShareZoG
+                    archetypeName={appleseed.vibrationalKey.name}
+                    tagline={appleseed.bullseyeSentence}
+                    primeDriver={appleseed.threeLenses.primeDriver}
+                    talents={appleseed.threeLenses.actions}
+                    archetype={appleseed.threeLenses.archetype}
+                    profileId={profileId}
+                    profileUrl={profileUrl}
+                />
+            </div>
 
-                {/* Reveal My Genius Business - Premium CTA */}
-                {onCreateBusiness && (
+            {/* Reveal My Genius Business - Hidden for now, should only show after ZoG Profile Deep Dive */}
+            {/* TODO: Show this after user has read their ZoG profile (zog_profile_read_at is set)
+            {onCreateBusiness && (
+                <div className="flex justify-center">
                     <PremiumButton
                         className="px-6"
                         onClick={onCreateBusiness}
@@ -115,19 +115,9 @@ const AppleseedDisplay = ({
                         <Sparkles className="w-4 h-4 mr-2" />
                         Reveal My Genius Business
                     </PremiumButton>
-                )}
-            </div>
-
-            {/* Full Share dropdown with pre-written text for social networks */}
-            <ShareZoG
-                archetypeName={appleseed.vibrationalKey.name}
-                tagline={appleseed.bullseyeSentence}
-                primeDriver={appleseed.threeLenses.primeDriver}
-                talents={appleseed.threeLenses.actions}
-                archetype={appleseed.threeLenses.archetype}
-                profileId={profileId}
-                profileUrl={profileUrl}
-            />
+                </div>
+            )}
+            */}
         </div>
     );
 };
