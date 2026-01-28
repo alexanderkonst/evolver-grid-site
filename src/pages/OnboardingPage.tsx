@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import OnboardingFlow from "@/modules/onboarding/OnboardingFlow";
-import { Loader2 } from "lucide-react";
+import { FullPageLoader } from "@/components/ui/PremiumLoader";
 
 /**
  * OnboardingPage - Entry point for /start route
@@ -81,14 +81,7 @@ const OnboardingPage = () => {
     };
 
     if (loading) {
-        return (
-            <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-[var(--wabi-lavender)] via-[var(--wabi-background)] to-[var(--wabi-lilac)]">
-                <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="w-8 h-8 animate-spin text-[var(--depth-violet)]" />
-                    <p className="text-[var(--wabi-text-secondary)]">Preparing your journey...</p>
-                </div>
-            </div>
-        );
+        return <FullPageLoader text="Preparing your journey..." />;
     }
 
     if (!profileData) {

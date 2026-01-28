@@ -316,7 +316,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
 
                 {/* Panel 3: Content */}
                 <main className="flex-1 bg-transparent min-h-dvh overflow-auto relative z-10 pt-4">
-                    {children}
+                    <div className="page-transition-enter">
+                        {children}
+                    </div>
                 </main>
             </div>
 
@@ -380,7 +382,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         className="flex-1 bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5] overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
-                        {children}
+                        <div className="page-transition-enter">
+                            {children}
+                        </div>
                     </main>
                 </div>
             </div>

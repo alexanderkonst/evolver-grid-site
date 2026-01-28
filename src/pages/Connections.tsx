@@ -126,7 +126,7 @@ const Connections = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-semibold text-slate-900 mb-3">Sign in to view connections</h1>
+          <h1 className="text-2xl font-semibold text-[#2c3150] mb-3">Sign in to view connections</h1>
           <Button onClick={() => navigate("/auth")}>Sign in</Button>
         </div>
       </GameShellV2>
@@ -156,8 +156,8 @@ const Connections = () => {
       <div key={row.id} className="rounded-xl border border-slate-200 bg-white p-4">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="font-semibold text-slate-900">{name}</p>
-            {row.message && <p className="text-sm text-slate-600 mt-1">"{row.message}"</p>}
+            <p className="font-semibold text-[#2c3150]">{name}</p>
+            {row.message && <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">"{row.message}"</p>}
           </div>
           {showActions && (
             <div className="flex gap-2">
@@ -189,8 +189,8 @@ const Connections = () => {
         <BackButton to="/game/matches" className="mb-6" />
 
         <div className="flex items-center gap-3 mb-6">
-          <UserPlus className="w-6 h-6 text-slate-700" />
-          <h1 className="text-2xl font-bold text-slate-900">Connections</h1>
+          <UserPlus className="w-6 h-6 text-[#2c3150]" />
+          <h1 className="text-2xl font-bold text-[#2c3150]">Connections</h1>
         </div>
 
         {!hasConnections ? (
@@ -208,7 +208,7 @@ const Connections = () => {
         ) : (
           <div className="space-y-8">
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-slate-600">Pending requests</h2>
+              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Pending requests</h2>
               {incoming.length === 0 ? (
                 <p className="text-sm text-slate-500">No incoming requests.</p>
               ) : (
@@ -217,7 +217,7 @@ const Connections = () => {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-slate-600">Sent requests</h2>
+              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Sent requests</h2>
               {outgoing.length === 0 ? (
                 <p className="text-sm text-slate-500">No sent requests.</p>
               ) : (
@@ -226,7 +226,7 @@ const Connections = () => {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-slate-600">Active connections</h2>
+              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Active connections</h2>
               {accepted.length === 0 ? (
                 <p className="text-sm text-slate-500">No accepted connections yet.</p>
               ) : (

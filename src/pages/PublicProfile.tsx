@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Loader2, MapPin, Target } from "lucide-react";
+import { MapPin, Target } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
@@ -153,7 +154,7 @@ const PublicProfile = () => {
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -162,7 +163,7 @@ const PublicProfile = () => {
     return (
       <div className="min-h-dvh flex items-center justify-center px-4">
         <div className="max-w-md text-center space-y-4">
-          <h1 className="text-2xl font-semibold text-slate-900">Profile Private</h1>
+          <h1 className="text-2xl font-semibold text-[#2c3150]">Profile Private</h1>
           <p className="text-sm text-slate-500">This profile is not available right now.</p>
           <BackButton />
         </div>
@@ -177,7 +178,7 @@ const PublicProfile = () => {
   const coreVibration = excalibur?.essenceAnchor?.geniusAppleSeed || null;
 
   return (
-    <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-slate-900">
+    <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-[#2c3150]">
       <div className="px-4 py-6 max-w-4xl mx-auto">
         <BackButton />
       </div>
@@ -208,7 +209,7 @@ const PublicProfile = () => {
             </div>
             <h1 className="text-3xl sm:text-4xl font-display font-semibold mt-5">{fullName}</h1>
             {archetypeTitle && (
-              <p className="mt-3 text-lg font-medium text-slate-700">✦ {archetypeTitle} ✦</p>
+              <p className="mt-3 text-lg font-medium text-[#2c3150]">✦ {archetypeTitle} ✦</p>
             )}
             {appleseed?.vibrationalKey?.tagline && (
               <p className="mt-2 text-sm italic text-slate-500 max-w-xl">
@@ -216,7 +217,7 @@ const PublicProfile = () => {
               </p>
             )}
             {coreVibration && (
-              <p className="mt-3 text-sm font-medium text-slate-600">
+              <p className="mt-3 text-sm font-medium text-[rgba(44,49,80,0.7)]">
                 Core Vibration: <span className="text-slate-800">{coreVibration}</span>
               </p>
             )}
@@ -252,16 +253,16 @@ const PublicProfile = () => {
           {mission?.intro_text && (
             <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 text-center">
               <p className="text-sm uppercase tracking-wide text-slate-500">Bio</p>
-              <p className="mt-2 text-slate-700">{mission.intro_text}</p>
+              <p className="mt-2 text-[#2c3150]">{mission.intro_text}</p>
             </div>
           )}
 
           {canShowOffer && excalibur && (
             <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <p className="text-xs font-medium text-slate-500 mb-1">Unique Offer</p>
-              <h2 className="text-lg font-semibold text-slate-900">{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
-              <p className="text-sm text-slate-600 mt-2">{excalibur.offer?.deliverable || ""}</p>
-              <p className="text-sm text-slate-600 mt-2">{excalibur.offer?.form || ""}</p>
+              <h2 className="text-lg font-semibold text-[#2c3150]">{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
+              <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.deliverable || ""}</p>
+              <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.form || ""}</p>
             </div>
           )}
 

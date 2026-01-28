@@ -13,7 +13,7 @@ interface ColorInputProps {
 
 const ColorInput = ({ label, value, onChange }: ColorInputProps) => (
     <div className="flex items-center justify-between py-2">
-        <span className="text-sm text-slate-700">{label}</span>
+        <span className="text-sm text-[#2c3150]">{label}</span>
         <div className="flex items-center gap-2">
             <input
                 type="color"
@@ -61,10 +61,10 @@ const Settings = () => {
                             onClick={() => navigate(-1)}
                             className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
                         >
-                            <ArrowLeft className="w-5 h-5 text-slate-600" />
+                            <ArrowLeft className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
                         </button>
                         <div>
-                            <h1 className="text-2xl font-bold text-slate-900">Settings</h1>
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Settings</h1>
                             <p className="text-sm text-slate-500">Customize your experience</p>
                         </div>
                     </div>
@@ -72,8 +72,8 @@ const Settings = () => {
                     {/* Color Customization */}
                     <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
                         <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center gap-2">
-                            <Palette className="w-4 h-4 text-slate-600" />
-                            <h2 className="font-semibold text-slate-900">Color Theme</h2>
+                            <Palette className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
+                            <h2 className="font-semibold text-[#2c3150]">Color Theme</h2>
                         </div>
 
                         <div className="p-4 space-y-4">
@@ -173,7 +173,7 @@ const Settings = () => {
                                 variant="ghost"
                                 size="sm"
                                 onClick={handleReset}
-                                className="text-slate-600"
+                                className="text-[rgba(44,49,80,0.7)]"
                             >
                                 <RotateCcw className="w-4 h-4 mr-2" />
                                 Reset to Default
@@ -191,7 +191,7 @@ const Settings = () => {
                     {/* Preview */}
                     <div className="mt-6 bg-white rounded-xl border border-slate-200 overflow-hidden">
                         <div className="px-4 py-3 bg-slate-50 border-b border-slate-200">
-                            <h2 className="font-semibold text-slate-900">Preview</h2>
+                            <h2 className="font-semibold text-[#2c3150]">Preview</h2>
                         </div>
                         <div className="p-4">
                             <div className="flex h-24 rounded-lg overflow-hidden border border-slate-200">

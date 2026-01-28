@@ -18,24 +18,24 @@ const TransformationSpace = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Sparkles className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Transformation Space</h1>
+                            <Sparkles className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Transformation Space</h1>
                         </div>
-                        <p className="text-slate-600">Master yourself through practice and growth.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Master yourself through practice and growth.</p>
                     </div>
 
                     {/* Quick Stats */}
                     <div className="grid grid-cols-3 gap-4 mb-8">
                         <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
-                            <p className="text-2xl font-bold text-slate-900">0</p>
+                            <p className="text-2xl font-bold text-[#2c3150]">0</p>
                             <p className="text-sm text-slate-500">Actions</p>
                         </div>
                         <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
-                            <p className="text-2xl font-bold text-slate-900">0</p>
+                            <p className="text-2xl font-bold text-[#2c3150]">0</p>
                             <p className="text-sm text-slate-500">XP Total</p>
                         </div>
                         <div className="rounded-xl border border-slate-200 bg-white p-4 text-center">
-                            <p className="text-2xl font-bold text-slate-900">1</p>
+                            <p className="text-2xl font-bold text-[#2c3150]">1</p>
                             <p className="text-sm text-slate-500">Level</p>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ const TransformationSpace = () => {
                                     <BookOpen className="w-6 h-6" />
                                 </div>
                             </div>
-                            <h3 className="font-semibold text-slate-900 mb-1">Practice Library</h3>
-                            <p className="text-sm text-slate-600 mb-4">Breathwork, meditation, and micro-actions</p>
+                            <h3 className="font-semibold text-[#2c3150] mb-1">Practice Library</h3>
+                            <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Breathwork, meditation, and micro-actions</p>
                             <Button asChild variant="outline" size="sm" className="w-full">
                                 <Link to="/library?from=transformation">
                                     Browse <ArrowRight className="w-4 h-4 ml-2" />
@@ -65,8 +65,8 @@ const TransformationSpace = () => {
                                     <TrendingUp className="w-6 h-6" />
                                 </div>
                             </div>
-                            <h3 className="font-semibold text-slate-900 mb-1">5 Growth Paths</h3>
-                            <p className="text-sm text-slate-600 mb-4">Spirit, Mind, Emotions, Genius, Body</p>
+                            <h3 className="font-semibold text-[#2c3150] mb-1">5 Growth Paths</h3>
+                            <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Spirit, Mind, Emotions, Genius, Body</p>
                             <Button asChild variant="outline" size="sm" className="w-full">
                                 <Link to="/growth-paths">
                                     View Paths <ArrowRight className="w-4 h-4 ml-2" />
@@ -82,8 +82,8 @@ const TransformationSpace = () => {
                                 </div>
                                 <span className="text-xs text-purple-600 font-medium bg-purple-50 px-2 py-1 rounded-full">Upgrade</span>
                             </div>
-                            <h3 className="font-semibold text-slate-900 mb-1">Personality Tests</h3>
-                            <p className="text-sm text-slate-600 mb-4">MBTI, Enneagram, and other frameworks</p>
+                            <h3 className="font-semibold text-[#2c3150] mb-1">Personality Tests</h3>
+                            <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">MBTI, Enneagram, and other frameworks</p>
                             <Button asChild variant="outline" size="sm" className="w-full">
                                 <Link to="/resources/personality-tests?from=transformation">
                                     Take Tests <ArrowRight className="w-4 h-4 ml-2" />
@@ -98,8 +98,8 @@ const TransformationSpace = () => {
                                     <Sparkles className="w-6 h-6" />
                                 </div>
                             </div>
-                            <h3 className="font-semibold text-slate-900 mb-1">Today's Practice</h3>
-                            <p className="text-sm text-slate-600 mb-4">Get your personalized recommendation</p>
+                            <h3 className="font-semibold text-[#2c3150] mb-1">Today's Practice</h3>
+                            <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Get your personalized recommendation</p>
                             <Button asChild size="sm" className="w-full">
                                 <Link to="/game">
                                     Go to Next Move <ArrowRight className="w-4 h-4 ml-2" />

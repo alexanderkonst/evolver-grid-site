@@ -119,9 +119,9 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500 mb-6 animate-pulse">
                         <PartyPopper className="w-10 h-10 text-white" />
                     </div>
-                    <h2 className="text-3xl font-bold text-slate-900 mb-3">You committed to this mission!</h2>
+                    <h2 className="text-3xl font-bold text-[#2c3150] mb-3">You committed to this mission!</h2>
                     <p className="text-xl text-emerald-600 font-medium mb-2">{mission.title}</p>
-                    <p className="text-slate-600 max-w-md mx-auto mb-8">
+                    <p className="text-[rgba(44,49,80,0.7)] max-w-md mx-auto mb-8">
                         {mission.statement}
                     </p>
 
@@ -143,7 +143,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
                             <Users className="w-5 h-5 text-blue-600" />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">
+                        <h2 className="text-xl font-bold text-[#2c3150]">
                             Would you like to connect with others on this same mission?
                         </h2>
                     </div>
@@ -156,7 +156,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 onChange={(e) => setShareConsent(e.target.checked)}
                                 className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                             />
-                            <span className="text-sm text-slate-700">
+                            <span className="text-sm text-[#2c3150]">
                                 Share my details with others on this mission so we can connect
                             </span>
                         </label>
@@ -168,7 +168,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 onChange={(e) => setWantsToLead(e.target.checked)}
                                 className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                             />
-                            <span className="text-sm text-slate-700">
+                            <span className="text-sm text-[#2c3150]">
                                 I'd like to help lead this mission
                             </span>
                         </label>
@@ -180,7 +180,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 onChange={(e) => setWantsToIntegrate(e.target.checked)}
                                 className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                             />
-                            <span className="text-sm text-slate-700">
+                            <span className="text-sm text-[#2c3150]">
                                 I feel my role is to integrate everyone working on this mission
                             </span>
                         </label>
@@ -211,7 +211,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
                             <Bell className="w-5 h-5 text-amber-600" />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">
+                        <h2 className="text-xl font-bold text-[#2c3150]">
                             Would you like to be notified when someone new commits to this mission?
                         </h2>
                     </div>
@@ -224,20 +224,20 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 onChange={(e) => setWantsNotifications(e.target.checked)}
                                 className="mt-1 w-5 h-5 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
                             />
-                            <span className="text-sm text-slate-700">
+                            <span className="text-sm text-[#2c3150]">
                                 Yes, notify me about new people joining this mission
                             </span>
                         </label>
 
                         {wantsNotifications && (
                             <div className="ml-8 space-y-3">
-                                <label className="block text-sm font-medium text-slate-900">
+                                <label className="block text-sm font-medium text-[#2c3150]">
                                     Notify me about people who commit to...
                                 </label>
                                 <select
                                     value={notifyLevel}
                                     onChange={(e) => setNotifyLevel(e.target.value as typeof notifyLevel)}
-                                    className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                                    className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-[#2c3150] focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                                 >
                                     <option value="mission">This exact mission only</option>
                                     <option value="outcome">Same desired outcome</option>
@@ -273,13 +273,13 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
                             <Layers className="w-5 h-5 text-purple-600" />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900">
+                        <h2 className="text-xl font-bold text-[#2c3150]">
                             Would you like to add sub-missions that contribute to this mission?
                         </h2>
                     </div>
 
                     <div className="bg-purple-50 rounded-xl p-6 mb-6 border border-purple-100">
-                        <p className="text-sm text-slate-600 mb-4">
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
                             Some missions have modular parts. If your contribution involves multiple distinct sub-missions,
                             you can add them now to create a more complete picture of your work.
                         </p>

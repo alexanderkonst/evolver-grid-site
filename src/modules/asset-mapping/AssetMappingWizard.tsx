@@ -141,7 +141,7 @@ const AssetMappingWizard = () => {
                                 label="Back"
                             />
                             <div>
-                                <h1 className="text-lg font-bold text-slate-900">Asset Mapping</h1>
+                                <h1 className="text-lg font-bold text-[#2c3150]">Asset Mapping</h1>
                                 <p className="text-xs text-slate-500">Map your resources for collaboration</p>
                             </div>
                         </div>
@@ -158,8 +158,8 @@ const AssetMappingWizard = () => {
                 {/* Step: Type Selection */}
                 {step === 'type' && (
                     <div>
-                        <h2 className="text-xl font-semibold text-slate-900 mb-2">What type of asset?</h2>
-                        <p className="text-sm text-slate-600 mb-6">Select the category that best describes this asset.</p>
+                        <h2 className="text-xl font-semibold text-[#2c3150] mb-2">What type of asset?</h2>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">Select the category that best describes this asset.</p>
 
                         <div className="grid gap-3 sm:grid-cols-2">
                             {ASSET_TYPES.map(type => (
@@ -169,7 +169,7 @@ const AssetMappingWizard = () => {
                                     className="p-4 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                                 >
                                     <span className="text-2xl mb-2 block">{type.icon}</span>
-                                    <h3 className="font-semibold text-slate-900">{type.title}</h3>
+                                    <h3 className="font-semibold text-[#2c3150]">{type.title}</h3>
                                     <p className="text-sm text-slate-500 mt-1">{type.description}</p>
                                 </button>
                             ))}
@@ -180,13 +180,13 @@ const AssetMappingWizard = () => {
                 {/* Step: Sub-Type Selection */}
                 {step === 'subtype' && selectedType && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-slate-700 mb-4">
+                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
                             ← Back to types
                         </button>
-                        <h2 className="text-xl font-semibold text-slate-900 mb-2">
+                        <h2 className="text-xl font-semibold text-[#2c3150] mb-2">
                             {selectedType.icon} {selectedType.title}
                         </h2>
-                        <p className="text-sm text-slate-600 mb-6">What area within {selectedType.title.toLowerCase()}?</p>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">What area within {selectedType.title.toLowerCase()}?</p>
 
                         <div className="grid gap-2">
                             {subTypes.map(subType => (
@@ -195,7 +195,7 @@ const AssetMappingWizard = () => {
                                     onClick={() => handleSelectSubType(subType.id)}
                                     className="p-3 rounded-lg border border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                                 >
-                                    <span className="font-medium text-slate-900">{subType.title}</span>
+                                    <span className="font-medium text-[#2c3150]">{subType.title}</span>
                                 </button>
                             ))}
                         </div>
@@ -205,11 +205,11 @@ const AssetMappingWizard = () => {
                 {/* Step: Category Selection */}
                 {step === 'category' && selectedSubType && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-slate-700 mb-4">
+                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
                             ← Back to {selectedType?.title}
                         </button>
-                        <h2 className="text-xl font-semibold text-slate-900 mb-2">{selectedSubType.title}</h2>
-                        <p className="text-sm text-slate-600 mb-6">Select the specific type of asset.</p>
+                        <h2 className="text-xl font-semibold text-[#2c3150] mb-2">{selectedSubType.title}</h2>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">Select the specific type of asset.</p>
 
                         <div className="grid gap-2">
                             {categories.map(category => (
@@ -218,7 +218,7 @@ const AssetMappingWizard = () => {
                                     onClick={() => handleSelectCategory(category.id)}
                                     className="p-3 rounded-lg border border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                                 >
-                                    <span className="font-medium text-slate-900">{category.title}</span>
+                                    <span className="font-medium text-[#2c3150]">{category.title}</span>
                                 </button>
                             ))}
                         </div>
@@ -228,17 +228,17 @@ const AssetMappingWizard = () => {
                 {/* Step: Details */}
                 {step === 'details' && selectedCategory && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-slate-700 mb-4">
+                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
                             ← Back to categories
                         </button>
-                        <h2 className="text-xl font-semibold text-slate-900 mb-2">Describe this asset</h2>
-                        <p className="text-sm text-slate-600 mb-6">
+                        <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Describe this asset</h2>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">
                             {selectedType?.icon} {selectedType?.title} → {selectedSubType?.title} → {selectedCategory.title}
                         </p>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
+                                <label className="block text-sm font-medium text-[#2c3150] mb-1">Title</label>
                                 <Input
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
@@ -246,7 +246,7 @@ const AssetMappingWizard = () => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Description (optional)</label>
+                                <label className="block text-sm font-medium text-[#2c3150] mb-1">Description (optional)</label>
                                 <Textarea
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
@@ -272,8 +272,8 @@ const AssetMappingWizard = () => {
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-4">
                             <Check className="w-8 h-8 text-emerald-600" />
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Asset Added!</h2>
-                        <p className="text-slate-600 mb-8">
+                        <h2 className="text-2xl font-bold text-[#2c3150] mb-2">Asset Added!</h2>
+                        <p className="text-[rgba(44,49,80,0.7)] mb-8">
                             You've added {addedAssets.length} asset{addedAssets.length > 1 ? 's' : ''} so far.
                         </p>
 
@@ -290,10 +290,10 @@ const AssetMappingWizard = () => {
 
                         {addedAssets.length > 0 && (
                             <div className="mt-8 text-left">
-                                <h3 className="text-sm font-medium text-slate-700 mb-2">Assets added this session:</h3>
+                                <h3 className="text-sm font-medium text-[#2c3150] mb-2">Assets added this session:</h3>
                                 <ul className="space-y-1">
                                     {addedAssets.map((asset, i) => (
-                                        <li key={i} className="text-sm text-slate-600">
+                                        <li key={i} className="text-sm text-[rgba(44,49,80,0.7)]">
                                             • {asset.title} <span className="text-slate-500">({asset.type})</span>
                                         </li>
                                     ))}

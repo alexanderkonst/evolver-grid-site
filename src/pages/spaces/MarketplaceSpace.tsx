@@ -46,15 +46,15 @@ const MarketplaceSpace = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Store className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Marketplace</h1>
+                            <Store className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Marketplace</h1>
                         </div>
-                        <p className="text-slate-600">Monetize your genius. Create and sell offers.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Monetize your genius. Create and sell offers.</p>
                     </div>
 
                     {/* My Offers Section */}
                     <div className="mb-8">
-                        <h2 className="text-lg font-semibold text-slate-900 mb-4">My Offers</h2>
+                        <h2 className="text-lg font-semibold text-[#2c3150] mb-4">My Offers</h2>
                         <div className="grid gap-4 sm:grid-cols-2">
                             {/* Create Genius Offer */}
                             <div className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
@@ -63,8 +63,8 @@ const MarketplaceSpace = () => {
                                         <Sparkles className="w-6 h-6 text-amber-600" />
                                     </div>
                                 </div>
-                                <h3 className="font-semibold text-slate-900 mb-1">Genius Offer</h3>
-                                <p className="text-sm text-slate-600 mb-4">Create your signature offer based on your Zone of Genius</p>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Genius Offer</h3>
+                                <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Create your signature offer based on your Zone of Genius</p>
                                 <Button asChild variant="outline" size="sm" className="w-full">
                                     <Link to="/genius-offer?from=marketplace">
                                         Create Offer <ArrowRight className="w-4 h-4 ml-2" />
@@ -76,11 +76,11 @@ const MarketplaceSpace = () => {
                             <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5 hover:border-slate-400 transition-colors">
                                 <div className="flex items-start justify-between mb-3">
                                     <div className="p-2 rounded-lg bg-slate-200">
-                                        <Plus className="w-6 h-6 text-slate-600" />
+                                        <Plus className="w-6 h-6 text-[rgba(44,49,80,0.7)]" />
                                     </div>
                                 </div>
-                                <h3 className="font-semibold text-slate-900 mb-1">Create Public Page</h3>
-                                <p className="text-sm text-slate-600 mb-4">Build your creator page with your brand and products</p>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Create Public Page</h3>
+                                <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Build your creator page with your brand and products</p>
                                 <Button asChild variant="outline" size="sm" className="w-full">
                                     <Link to="/marketplace/create-page">
                                         Get Started <ArrowRight className="w-4 h-4 ml-2" />
@@ -92,7 +92,7 @@ const MarketplaceSpace = () => {
 
                     {/* Featured Guides */}
                     <div>
-                        <h2 className="text-lg font-semibold text-slate-900 mb-4">Featured Guides</h2>
+                        <h2 className="text-lg font-semibold text-[#2c3150] mb-4">Featured Guides</h2>
                         <div className="grid gap-4 sm:grid-cols-3">
                             {FEATURED_GUIDES.map(guide => (
                                 <Link
@@ -106,11 +106,11 @@ const MarketplaceSpace = () => {
                                     >
                                         {guide.name.charAt(0)}
                                     </div>
-                                    <h3 className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                    <h3 className="font-semibold text-[#2c3150] group-hover:text-blue-600 transition-colors">
                                         {guide.name}
                                     </h3>
                                     <p className="text-xs text-slate-500 mb-1">{guide.title}</p>
-                                    <p className="text-sm text-slate-600">{guide.tagline}</p>
+                                    <p className="text-sm text-[rgba(44,49,80,0.7)]">{guide.tagline}</p>
                                     <div className="mt-3 flex items-center text-xs text-blue-600 font-medium">
                                         View Page <ExternalLink className="w-3 h-3 ml-1" />
                                     </div>

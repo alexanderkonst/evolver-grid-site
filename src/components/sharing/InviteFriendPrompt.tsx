@@ -98,17 +98,17 @@ const InviteFriendPrompt = ({
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-wide text-slate-500 mb-2">Invite a Friend</p>
-          <h3 className="text-lg font-semibold text-slate-900">
+          <h3 className="text-lg font-semibold text-[#2c3150]">
             Know someone who&apos;d love to discover their genius?
           </h3>
-          <p className="text-sm text-slate-600 mt-2">
+          <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">
             Send them a quick invite while the moment is fresh.
           </p>
         </div>
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="text-slate-500 hover:text-slate-700"
+          className="text-slate-500 hover:text-[#2c3150]"
           aria-label="Dismiss invite"
         >
           <X className="w-4 h-4" />

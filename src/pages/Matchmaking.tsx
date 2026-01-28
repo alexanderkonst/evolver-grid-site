@@ -316,15 +316,15 @@ const Matchmaking = () => {
     <div key={match.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-lg font-semibold text-slate-900">{match.name}</h3>
-          <p className="text-sm text-slate-600">✦ {match.archetype} ✦</p>
+          <h3 className="text-lg font-semibold text-[#2c3150]">{match.name}</h3>
+          <p className="text-sm text-[rgba(44,49,80,0.7)]">✦ {match.archetype} ✦</p>
           {match.tagline && (
             <p className="text-xs text-slate-500 mt-1 italic">"{match.tagline}"</p>
           )}
         </div>
         <Badge variant="secondary">{match.similarityScore}% match</Badge>
       </div>
-      <p className="text-sm text-slate-600 mt-3">{match.matchReason}</p>
+      <p className="text-sm text-[rgba(44,49,80,0.7)] mt-3">{match.matchReason}</p>
     </div>
   );
 
@@ -354,7 +354,7 @@ const Matchmaking = () => {
             <div className="flex items-center gap-3">
               <MapPin className="w-4 h-4 text-slate-500" />
               <div>
-                <p className="text-sm font-medium text-slate-700">Same location</p>
+                <p className="text-sm font-medium text-[#2c3150]">Same location</p>
                 <p className="text-xs text-slate-500">
                   {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
                 </p>
@@ -368,7 +368,7 @@ const Matchmaking = () => {
             <div className="flex items-center gap-3">
               <Languages className="w-4 h-4 text-slate-500" />
               <div>
-                <p className="text-sm font-medium text-slate-700">Same language</p>
+                <p className="text-sm font-medium text-[#2c3150]">Same language</p>
                 <p className="text-xs text-slate-500">
                   {currentProfile?.spokenLanguages?.length
                     ? currentProfile.spokenLanguages.join(", ")
@@ -419,7 +419,7 @@ const Matchmaking = () => {
           <div className="space-y-8">
             <section>
               <div className="mb-3">
-                <h2 className="text-lg font-semibold text-slate-900">Similar Genius</h2>
+                <h2 className="text-lg font-semibold text-[#2c3150]">Similar Genius</h2>
                 <p className="text-sm text-slate-500">People who think and operate like you.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
@@ -434,7 +434,7 @@ const Matchmaking = () => {
 
             <section>
               <div className="mb-3">
-                <h2 className="text-lg font-semibold text-slate-900">Complementary Genius</h2>
+                <h2 className="text-lg font-semibold text-[#2c3150]">Complementary Genius</h2>
                 <p className="text-sm text-slate-500">Great co-founder or collaborator fit.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
@@ -449,7 +449,7 @@ const Matchmaking = () => {
 
             <section>
               <div className="mb-3">
-                <h2 className="text-lg font-semibold text-slate-900">Similar Mission</h2>
+                <h2 className="text-lg font-semibold text-[#2c3150]">Similar Mission</h2>
                 <p className="text-sm text-slate-500">People aligned with your current mission.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">

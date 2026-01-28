@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { CalendarDays, Loader2 } from "lucide-react";
+import { CalendarDays } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
 import EmptyState from "@/components/ui/EmptyState";
@@ -24,17 +25,17 @@ const CommunityEvents = () => {
 
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">Community Events</h1>
+            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
+            <h1 className="text-2xl font-bold text-[#2c3150]">Community Events</h1>
           </div>
-          <p className="text-slate-600">
+          <p className="text-[rgba(44,49,80,0.7)]">
             Community: {communityId}
           </p>
         </div>
 
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+            <PremiumLoader size="md" />
           </div>
         )}
 

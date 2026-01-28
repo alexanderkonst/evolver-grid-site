@@ -6,7 +6,8 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, Target, Brain, Heart, User, Loader2, RefreshCw } from 'lucide-react';
+import { Sparkles, Target, Brain, Heart, User, RefreshCw } from 'lucide-react';
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { TALENTS } from '@/modules/zone-of-genius/talents';
 import { DOMAINS } from '@/modules/quality-of-life-map/qolConfig';
 import BackButton from '@/components/BackButton';
@@ -171,7 +172,7 @@ const CharacterSnapshot: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -357,9 +358,9 @@ const CharacterSnapshot: React.FC = () => {
                     {multipleIntelligences.ordered_intelligences.slice(0, 5).map((intel, idx) => (
                       <div key={intel} className="flex items-center gap-3">
                         <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${idx === 0 ? 'bg-amber-500 text-white' :
-                            idx === 1 ? 'bg-gray-300 text-gray-700' :
-                              idx === 2 ? 'bg-amber-700 text-white' :
-                                'bg-muted text-muted-foreground'
+                          idx === 1 ? 'bg-gray-300 text-gray-700' :
+                            idx === 2 ? 'bg-amber-700 text-white' :
+                              'bg-muted text-muted-foreground'
                           }`}>
                           {idx + 1}
                         </span>

@@ -17,9 +17,9 @@ const PersonalityTests = () => {
                     <div>
                         <div className="flex items-center gap-3 mb-2">
                             <Award className="w-6 h-6 text-purple-600" />
-                            <h1 className="text-2xl font-bold text-slate-900">Personality Tests</h1>
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Personality Tests</h1>
                         </div>
-                        <p className="text-slate-600">MBTI, Enneagram, and other frameworks</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">MBTI, Enneagram, and other frameworks</p>
                     </div>
                     <Panel3Actions
                         primaryLabel="Take Tests"
@@ -33,7 +33,7 @@ const PersonalityTests = () => {
                     <div className="flex items-center gap-2 mb-4">
                         <span className="text-xs text-purple-600 font-medium bg-purple-50 px-2 py-1 rounded-full">Upgrade</span>
                     </div>
-                    <p className="text-slate-600 mb-6">
+                    <p className="text-[rgba(44,49,80,0.7)] mb-6">
                         Take personality tests to deepen your self-understanding.
                     </p>
                 </div>

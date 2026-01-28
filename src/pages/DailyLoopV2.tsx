@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSummary from "@/components/game/MeSummary";
 import MyLifeSummary from "@/components/game/MyLifeSummary";
@@ -117,7 +117,7 @@ export default function DailyLoopV2() {
         return (
             <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+                    <PremiumLoader size="lg" />
                 </div>
             </GameShellV2>
         );

@@ -16,10 +16,10 @@ const PracticeLibrary = () => {
                 <div className="mb-8 flex items-start justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <BookOpen className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Practice Library</h1>
+                            <BookOpen className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Practice Library</h1>
                         </div>
-                        <p className="text-slate-600">Breathwork, meditation, and micro-actions</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Breathwork, meditation, and micro-actions</p>
                     </div>
                     <Panel3Actions
                         primaryLabel="Browse Library"
@@ -30,7 +30,7 @@ const PracticeLibrary = () => {
 
                 {/* Main Card */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    <p className="text-slate-600 mb-6">
+                    <p className="text-[rgba(44,49,80,0.7)] mb-6">
                         Curated collection of practices for your transformation journey.
                     </p>
                 </div>

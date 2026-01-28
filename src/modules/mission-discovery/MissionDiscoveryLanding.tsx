@@ -9,8 +9,7 @@ import {
     Check,
     HelpCircle,
     BookOpen,
-    Sword,
-    Loader2
+    Sword
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -88,7 +87,7 @@ const getPillarColor = (pillarId?: string) => {
         'env': 'bg-emerald-100 text-emerald-700',
         'culture': 'bg-pink-100 text-pink-700',
     };
-    return colors[pillarId || ''] || 'bg-slate-100 text-slate-700';
+    return colors[pillarId || ''] || 'bg-slate-100 text-[#2c3150]';
 };
 
 const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null> => {
@@ -262,18 +261,18 @@ const MissionDiscoveryLanding = () => {
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
-                        <Sparkles className="w-8 h-8 text-slate-700" />
+                        <Sparkles className="w-8 h-8 text-[#2c3150]" />
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 mb-3">Mission Discovery</h1>
-                    <p className="text-lg text-slate-600">Find your contribution to the planet</p>
+                    <h1 className="text-4xl font-bold text-[#2c3150] mb-3">Mission Discovery</h1>
+                    <p className="text-lg text-[rgba(44,49,80,0.7)]">Find your contribution to the planet</p>
                 </div>
 
                 {/* Step: Matches */}
                 {matches && matches.length > 0 && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-2xl font-semibold text-slate-900">Top mission matches</h2>
-                            <p className="text-base text-slate-600">Choose a mission that resonates with you.</p>
+                            <h2 className="text-2xl font-semibold text-[#2c3150]">Top mission matches</h2>
+                            <p className="text-base text-[rgba(44,49,80,0.7)]">Choose a mission that resonates with you.</p>
                         </div>
                         <div className="space-y-4">
                             {matches.map(match => (
@@ -287,16 +286,16 @@ const MissionDiscoveryLanding = () => {
                                                 </span>
                                             )}
                                             {match.context.focusArea && (
-                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
                                                     {match.context.focusArea}
                                                 </span>
                                             )}
                                         </div>
                                         {/* Title */}
-                                        <h3 className="text-lg font-semibold text-slate-900 mb-1">{match.mission.title}</h3>
+                                        <h3 className="text-lg font-semibold text-[#2c3150] mb-1">{match.mission.title}</h3>
                                         {/* Statement (only if different from title) */}
                                         {match.mission.statement !== match.mission.title && (
-                                            <p className="text-sm text-slate-600">{match.mission.statement}</p>
+                                            <p className="text-sm text-[rgba(44,49,80,0.7)]">{match.mission.statement}</p>
                                         )}
                                         {/* Challenge + Outcome context */}
                                         {(match.context.challenge || match.context.outcome) && (
@@ -337,8 +336,8 @@ const MissionDiscoveryLanding = () => {
                 {matches && matches.length === 0 && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-xl font-semibold text-slate-900">No strong matches yet</h2>
-                            <p className="text-sm text-slate-600">Try adding more detail or use the full wizard.</p>
+                            <h2 className="text-xl font-semibold text-[#2c3150]">No strong matches yet</h2>
+                            <p className="text-sm text-[rgba(44,49,80,0.7)]">Try adding more detail or use the full wizard.</p>
                         </div>
                         <div className="flex flex-wrap gap-3 justify-center">
                             <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
@@ -350,7 +349,7 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Clarity Check */}
                 {step === "clarity-check" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-lg text-slate-700 mb-6">
+                        <p className="text-center text-lg text-[#2c3150] mb-6">
                             Do you already have clarity on your mission or purpose?
                         </p>
 
@@ -364,15 +363,15 @@ const MissionDiscoveryLanding = () => {
                                 >
                                     <div className="flex items-center gap-3">
                                         {isMatchingFromExcalibur ? (
-                                            <Loader2 className="w-6 h-6 text-amber-600 animate-spin" />
+                                            <span className="premium-spinner w-6 h-6" />
                                         ) : (
                                             <Sword className="w-6 h-6 text-amber-600" />
                                         )}
                                         <div>
-                                            <h3 className="font-semibold text-slate-900 mb-1">
+                                            <h3 className="font-semibold text-[#2c3150] mb-1">
                                                 {isMatchingFromExcalibur ? 'Finding your missions...' : 'Suggest from my Excalibur'}
                                             </h3>
-                                            <p className="text-sm text-slate-600">
+                                            <p className="text-sm text-[rgba(44,49,80,0.7)]">
                                                 AI will match your Unique Offer to the most aligned missions
                                             </p>
                                         </div>
@@ -385,7 +384,7 @@ const MissionDiscoveryLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left group"
                             >
                                 <Check className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">Yes, I have clarity</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Yes, I have clarity</h3>
                                 <p className="text-sm text-slate-500">I know what I'm here to do</p>
                             </button>
 
@@ -394,7 +393,7 @@ const MissionDiscoveryLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left group"
                             >
                                 <HelpCircle className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">I need to discover it</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">I need to discover it</h3>
                                 <p className="text-sm text-slate-500">Take me through the wizard</p>
                             </button>
                         </div>
@@ -408,7 +407,7 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Has AI */}
                 {step === "has-ai" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-slate-700 mb-6">
+                        <p className="text-center text-[#2c3150] mb-6">
                             Do you have an AI model (ChatGPT, Claude, etc.) that you've discussed your mission with?
                         </p>
 
@@ -418,7 +417,7 @@ const MissionDiscoveryLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                             >
                                 <Brain className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">Yes, I have an AI</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Yes, I have an AI</h3>
                                 <p className="text-sm text-slate-500">I'll paste its response</p>
                             </button>
 
@@ -427,14 +426,14 @@ const MissionDiscoveryLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                             >
                                 <ListChecks className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">No, I'll type it</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">No, I'll type it</h3>
                                 <p className="text-sm text-slate-500">Write my mission manually</p>
                             </button>
                         </div>
 
                         <button
                             onClick={() => setStep("clarity-check")}
-                            className="w-full text-sm text-slate-500 hover:text-slate-700 mt-4"
+                            className="w-full text-sm text-slate-500 hover:text-[#2c3150] mt-4"
                         >
                             ← Go back
                         </button>
@@ -447,7 +446,7 @@ const MissionDiscoveryLanding = () => {
                         <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                             <div className="flex items-start justify-between mb-2">
                                 <div>
-                                    <h3 className="font-semibold text-slate-900 text-sm">Prompt for your AI</h3>
+                                    <h3 className="font-semibold text-[#2c3150] text-sm">Prompt for your AI</h3>
                                     <p className="text-xs text-slate-500">Copy this and ask your AI model</p>
                                 </div>
                                 <Button
@@ -460,13 +459,13 @@ const MissionDiscoveryLanding = () => {
                                     {copied ? "Copied!" : "Copy"}
                                 </Button>
                             </div>
-                            <pre className="text-xs text-slate-600 whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
+                            <pre className="text-xs text-[rgba(44,49,80,0.7)] whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
                                 {MISSION_DISCOVERY_PROMPT}
                             </pre>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-2">
+                            <label className="block text-sm font-medium text-[#2c3150] mb-2">
                                 Paste AI's response here
                             </label>
                             <Textarea
@@ -500,7 +499,7 @@ const MissionDiscoveryLanding = () => {
                 {step === "type-manually" && !matches && (
                     <div className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-2">
+                            <label className="block text-sm font-medium text-[#2c3150] mb-2">
                                 Describe your mission
                             </label>
                             <Textarea
@@ -534,7 +533,7 @@ const MissionDiscoveryLanding = () => {
                         <div className="text-center">
                             <button
                                 onClick={handleGoToWizard}
-                                className="text-sm text-slate-500 hover:text-slate-700"
+                                className="text-sm text-slate-500 hover:text-[#2c3150]"
                             >
                                 Or take the guided wizard instead →
                             </button>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CalendarDays, Loader2 } from "lucide-react";
+import { CalendarDays } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
 import { Button } from "@/components/ui/button";
@@ -83,7 +84,7 @@ const MyRsvps = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-semibold text-slate-900 mb-3">Sign in to view RSVPs</h1>
+          <h1 className="text-2xl font-semibold text-[#2c3150] mb-3">Sign in to view RSVPs</h1>
           <Button onClick={() => navigate("/auth")}>Sign in</Button>
         </div>
       </GameShellV2>
@@ -95,15 +96,15 @@ const MyRsvps = () => {
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">My RSVPs</h1>
+            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
+            <h1 className="text-2xl font-bold text-[#2c3150]">My RSVPs</h1>
           </div>
-          <p className="text-slate-600">Events you have RSVP’d to.</p>
+          <p className="text-[rgba(44,49,80,0.7)]">Events you have RSVP’d to.</p>
         </div>
 
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+            <PremiumLoader size="md" />
           </div>
         )}
 
@@ -116,8 +117,8 @@ const MyRsvps = () => {
         {!loading && !error && displayRsvps.length === 0 && (
           <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
             <CalendarDays className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">No RSVPs yet</h2>
-            <p className="text-slate-600 mb-4">Browse events and join one to see it here.</p>
+            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">No RSVPs yet</h2>
+            <p className="text-[rgba(44,49,80,0.7)] mb-4">Browse events and join one to see it here.</p>
             <Button onClick={() => navigate("/game/events")}>Browse Events</Button>
           </div>
         )}
@@ -148,7 +149,7 @@ const MyRsvps = () => {
                     onClick={() => navigate(`/events/${evt.id}`)}
                   />
                   <p className="text-xs text-slate-500">
-                    RSVP status: <span className="font-medium text-slate-700">{row.status || "going"}</span>
+                    RSVP status: <span className="font-medium text-[#2c3150]">{row.status || "going"}</span>
                   </p>
                 </div>
               );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, CreditCard, Loader2, Check, Edit2, X, AlertTriangle } from "lucide-react";
+import { User, CreditCard, Check, Edit2, X, AlertTriangle } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -207,7 +208,7 @@ const Profile = () => {
         return (
             <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+                    <PremiumLoader size="lg" />
                 </div>
             </GameShellV2>
         );
@@ -296,7 +297,7 @@ const Profile = () => {
                                                             onClick={() => toggleLanguage(language)}
                                                             className={`rounded-full border px-3 py-1 text-sm transition ${isSelected
                                                                 ? "border-amber-300 bg-amber-50 text-amber-900"
-                                                                : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                                                                : "border-slate-200 bg-white text-[rgba(44,49,80,0.7)] hover:border-slate-300"
                                                                 }`}
                                                             aria-pressed={isSelected}
                                                         >
@@ -343,7 +344,7 @@ const Profile = () => {
                                             <Button onClick={handleSaveProfile} disabled={isSaving}>
                                                 {isSaving ? (
                                                     <>
-                                                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                        <span className="premium-spinner h-4 w-4 mr-2" />
                                                         Saving...
                                                     </>
                                                 ) : (
@@ -451,7 +452,7 @@ const Profile = () => {
                                         >
                                             {isPortalLoading ? (
                                                 <>
-                                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                    <span className="premium-spinner h-4 w-4 mr-2" />
                                                     Opening...
                                                 </>
                                             ) : (

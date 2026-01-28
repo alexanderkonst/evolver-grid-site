@@ -108,7 +108,7 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                     </div>
 
                     {/* Focus area + sentiment */}
-                    <div className="text-center text-sm text-slate-600">
+                    <div className="text-center text-sm text-[rgba(44,49,80,0.7)]">
                         {focusDomain && (
                             <p>
                                 <span className="font-medium">Focus:</span>{" "}

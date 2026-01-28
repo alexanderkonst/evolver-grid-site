@@ -34,7 +34,7 @@ const VISIBILITY_BADGES = {
   private: {
     label: "Private",
     icon: Lock,
-    className: "bg-slate-100 text-slate-700",
+    className: "bg-slate-100 text-[#2c3150]",
   },
   team: {
     label: "Team",
@@ -79,11 +79,11 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
             </span>
           </div>
         )}
-        <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">
+        <h3 className="font-semibold text-[#2c3150] mb-2 line-clamp-2">
           {event.title}
         </h3>
 
-        <div className="space-y-1.5 text-sm text-slate-600">
+        <div className="space-y-1.5 text-sm text-[rgba(44,49,80,0.7)]">
           {/* Date & Time */}
           <div className="flex items-center gap-2">
             <CalendarDays className="w-4 h-4 text-slate-500" />

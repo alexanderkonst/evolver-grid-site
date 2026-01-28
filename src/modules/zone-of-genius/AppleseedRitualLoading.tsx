@@ -75,7 +75,7 @@ const AppleseedRitualLoading = ({
 
             {/* Phase text */}
             <div className="h-8 mb-4">
-                <p className="text-lg text-slate-600 animate-pulse transition-all duration-500">
+                <p className="text-lg text-[rgba(44,49,80,0.7)] animate-pulse transition-all duration-500">
                     {PHASES[phaseIndex]}
                 </p>
             </div>

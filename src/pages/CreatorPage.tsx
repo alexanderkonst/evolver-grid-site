@@ -75,8 +75,8 @@ const CreatorPage = () => {
         return (
             <div className="min-h-dvh bg-white flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-2">Page Not Found</h1>
-                    <p className="text-slate-600">This creator page doesn't exist yet.</p>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Page Not Found</h1>
+                    <p className="text-[rgba(44,49,80,0.7)]">This creator page doesn't exist yet.</p>
                 </div>
             </div>
         );
@@ -99,12 +99,12 @@ const CreatorPage = () => {
                     {creator.name.charAt(0)}
                 </div>
 
-                <h1 className="text-2xl font-bold text-slate-900">{creator.name}</h1>
-                <p className="text-slate-600 mb-4">{creator.title}</p>
-                <p className="text-slate-700 mb-8">{creator.bio}</p>
+                <h1 className="text-2xl font-bold text-[#2c3150]">{creator.name}</h1>
+                <p className="text-[rgba(44,49,80,0.7)] mb-4">{creator.title}</p>
+                <p className="text-[#2c3150] mb-8">{creator.bio}</p>
 
                 {/* Offers */}
-                <h2 className="text-lg font-semibold text-slate-900 mb-4">Offers</h2>
+                <h2 className="text-lg font-semibold text-[#2c3150] mb-4">Offers</h2>
                 <div className="space-y-4 mb-12">
                     {creator.offers.map(offer => (
                         <div
@@ -113,11 +113,11 @@ const CreatorPage = () => {
                         >
                             <div className="flex items-start justify-between">
                                 <div>
-                                    <h3 className="font-semibold text-slate-900">{offer.title}</h3>
-                                    <p className="text-sm text-slate-600 mt-1">{offer.description}</p>
+                                    <h3 className="font-semibold text-[#2c3150]">{offer.title}</h3>
+                                    <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{offer.description}</p>
                                 </div>
                                 {offer.price && (
-                                    <span className="text-lg font-bold text-slate-900">{offer.price}</span>
+                                    <span className="text-lg font-bold text-[#2c3150]">{offer.price}</span>
                                 )}
                             </div>
                             <Button className="w-full mt-4" style={{ backgroundColor: creator.color }}>

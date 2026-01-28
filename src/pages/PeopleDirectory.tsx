@@ -291,7 +291,7 @@ const PeopleDirectory = () => {
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8">
-            <div className="flex items-center gap-3 text-slate-900">
+            <div className="flex items-center gap-3 text-[#2c3150]">
               <Users className="w-6 h-6" />
               <h1 className="text-2xl sm:text-3xl font-semibold">People Directory</h1>
             </div>
@@ -453,12 +453,12 @@ const PeopleDirectory = () => {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-base font-semibold text-slate-900 truncate">{person.name}</h3>
+                      <h3 className="text-base font-semibold text-[#2c3150] truncate">{person.name}</h3>
                       <p className="text-sm text-slate-500 truncate">✦ {person.archetype} ✦</p>
                     </div>
                   </div>
                   {person.tagline && (
-                    <p className="mt-3 text-sm text-slate-600 italic line-clamp-2">
+                    <p className="mt-3 text-sm text-[rgba(44,49,80,0.7)] italic line-clamp-2">
                       "{person.tagline}"
                     </p>
                   )}

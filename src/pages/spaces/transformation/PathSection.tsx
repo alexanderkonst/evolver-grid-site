@@ -38,8 +38,8 @@ const PathSection = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold text-slate-900">Path not found</h1>
-          <p className="text-slate-600 mt-2">This growth path does not exist.</p>
+          <h1 className="text-2xl font-bold text-[#2c3150]">Path not found</h1>
+          <p className="text-[rgba(44,49,80,0.7)] mt-2">This growth path does not exist.</p>
         </div>
       </GameShellV2>
     );
@@ -52,14 +52,14 @@ const PathSection = () => {
       <div className="p-6 lg:p-8 max-w-2xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Icon className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">{pathInfo.label}</h1>
+            <Icon className="w-6 h-6 text-[#2c3150]" />
+            <h1 className="text-2xl font-bold text-[#2c3150]">{pathInfo.label}</h1>
           </div>
-          <p className="text-slate-600">{pathInfo.description}</p>
+          <p className="text-[rgba(44,49,80,0.7)]">{pathInfo.description}</p>
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <p className="text-slate-600">
+          <p className="text-[rgba(44,49,80,0.7)]">
             Coming soon: practices and content for the {pathInfo.label} path.
           </p>
         </div>

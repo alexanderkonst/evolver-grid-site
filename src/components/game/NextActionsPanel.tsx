@@ -85,7 +85,7 @@ export default function NextActionsPanel({
                                 >
                                     <div className="flex items-center gap-2">
                                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                                        <span className="text-slate-700">{step.title}</span>
+                                        <span className="text-[#2c3150]">{step.title}</span>
                                     </div>
                                     <span className="text-xs text-emerald-600">+{step.xpEarned} XP</span>
                                 </div>
@@ -127,10 +127,10 @@ export default function NextActionsPanel({
                                 </span>
                             </div>
 
-                            <h4 className="text-lg font-bold text-slate-900 mb-1">
+                            <h4 className="text-lg font-bold text-[#2c3150] mb-1">
                                 {primaryAction.title}
                             </h4>
-                            <p className="text-sm text-slate-600 mb-4">
+                            <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
                                 {primaryAction.description}
                             </p>
 
@@ -168,9 +168,9 @@ export default function NextActionsPanel({
                         <div className="flex items-start gap-3">
                             <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center flex-shrink-0">
                                 {secondaryAction.icon === 'sparkles' ? (
-                                    <Sparkles className="w-4 h-4 text-slate-600" />
+                                    <Sparkles className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
                                 ) : (
-                                    <TrendingUp className="w-4 h-4 text-slate-600" />
+                                    <TrendingUp className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
                                 )}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -179,7 +179,7 @@ export default function NextActionsPanel({
                                         {secondaryAction.type === 'genius' ? 'Genius Discovery' : 'Growth Path'}
                                     </span>
                                 </div>
-                                <h4 className="font-semibold text-slate-900 mt-1">
+                                <h4 className="font-semibold text-[#2c3150] mt-1">
                                     {secondaryAction.title}
                                 </h4>
                                 <p className="text-sm text-slate-500 mt-0.5 mb-3">

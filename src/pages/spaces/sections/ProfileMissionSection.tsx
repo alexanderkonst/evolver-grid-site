@@ -100,9 +100,9 @@ const ProfileMissionSection = () => {
                     <div>
                         <div className="flex items-center gap-3 mb-2">
                             <Target className="w-6 h-6 text-blue-600" />
-                            <h1 className="text-2xl font-bold text-slate-900">Mission Snapshot</h1>
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Mission Snapshot</h1>
                         </div>
-                        <p className="text-slate-600">Keep your mission front and center.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Keep your mission front and center.</p>
                     </div>
                     <Panel3Actions
                         primaryLabel={missionCommitment ? "Edit Mission" : "Start Mission"}
@@ -120,10 +120,10 @@ const ProfileMissionSection = () => {
                             </div>
                             {missionCommitment ? (
                                 <>
-                                    <h2 className="text-lg font-semibold text-slate-900 mb-1">
+                                    <h2 className="text-lg font-semibold text-[#2c3150] mb-1">
                                         {missionCommitment.mission_title}
                                     </h2>
-                                    <p className="text-sm text-slate-600 mb-3">
+                                    <p className="text-sm text-[rgba(44,49,80,0.7)] mb-3">
                                         {missionCommitment.mission_statement}
                                     </p>
                                     <div className="flex flex-wrap gap-2 text-xs text-slate-500">
@@ -143,8 +143,8 @@ const ProfileMissionSection = () => {
                                 </>
                             ) : (
                                 <>
-                                    <h2 className="text-lg font-semibold text-slate-900 mb-1">Set your mission</h2>
-                                    <p className="text-sm text-slate-600">
+                                    <h2 className="text-lg font-semibold text-[#2c3150] mb-1">Set your mission</h2>
+                                    <p className="text-sm text-[rgba(44,49,80,0.7)]">
                                         Choose the mission that best matches your contribution to the planet.
                                     </p>
                                 </>

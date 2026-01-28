@@ -60,10 +60,10 @@ const ProfileAssetsSection = () => {
                 <div className="mb-6 flex items-start justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <Boxes className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Saved Assets</h1>
+                            <Boxes className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Saved Assets</h1>
                         </div>
-                        <p className="text-slate-600">Track the skills, tools, and resources you have mapped.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Track the skills, tools, and resources you have mapped.</p>
                     </div>
                     <Panel3Actions
                         primaryLabel={savedAssets.length > 0 ? "Find Matches" : "Add more"}
@@ -82,8 +82,8 @@ const ProfileAssetsSection = () => {
                         className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors"
                     >
                         <div className="flex items-center gap-3">
-                            <Boxes className="w-5 h-5 text-slate-600" />
-                            <span className="font-semibold text-slate-900">
+                            <Boxes className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
+                            <span className="font-semibold text-[#2c3150]">
                                 Your Assets ({savedAssets.length})
                             </span>
                         </div>
@@ -115,7 +115,7 @@ const ProfileAssetsSection = () => {
                                         className="p-4 border-b border-slate-100 last:border-b-0 hover:bg-slate-50"
                                     >
                                         <div className="flex flex-wrap items-center gap-1 mb-1">
-                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
                                                 {getAssetTypeName(asset.typeId)}
                                             </span>
                                             {asset.subTypeId && (
@@ -124,9 +124,9 @@ const ProfileAssetsSection = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="font-medium text-slate-900">{asset.title}</p>
+                                        <p className="font-medium text-[#2c3150]">{asset.title}</p>
                                         {asset.description && (
-                                            <p className="text-sm text-slate-600 mt-1">{asset.description}</p>
+                                            <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{asset.description}</p>
                                         )}
                                     </div>
                                 ))

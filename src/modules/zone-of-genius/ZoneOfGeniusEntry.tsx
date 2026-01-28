@@ -331,7 +331,7 @@ const ZoneOfGeniusEntry = () => {
                             <Sword className="w-6 h-6 text-violet-600" />
                         </div>
                     </div>
-                    <p className="text-lg text-slate-600 animate-pulse">
+                    <p className="text-lg text-[rgba(44,49,80,0.7)] animate-pulse">
                         Creating your unique offer...
                     </p>
                     <p className="mt-4 text-sm text-slate-500">
@@ -387,8 +387,8 @@ const ZoneOfGeniusEntry = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-slate-900">Who are you, really?</h1>
-                    <p className="text-slate-600 mt-1">In 5 minutes, get words for your unique genius</p>
+                    <h1 className="text-2xl font-semibold text-[#2c3150] font-display">Who are you, really?</h1>
+                    <p className="text-[var(--wabi-text-secondary)] mt-1">In 5 minutes, get words for your unique genius</p>
                 </div>
 
                 {/* Error message */}
@@ -402,7 +402,7 @@ const ZoneOfGeniusEntry = () => {
                 {step === "choice" && (
                     <div className="space-y-6">
                         <div className="text-center mb-6">
-                            <h2 className="text-lg font-semibold text-slate-900 mb-2">
+                            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">
                                 Do you have an AI that knows you?
                             </h2>
                         </div>
@@ -410,25 +410,25 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-4 rounded-xl border-2 border-slate-200 hover:border-amber-300 bg-white transition-all text-left flex items-start gap-4"
+                                className="w-full p-4 rounded-xl border-2 border-[var(--wabi-lavender)]/30 hover:border-[#8460ea] bg-white transition-all text-left flex items-start gap-4"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2 rounded-full bg-amber-100 shrink-0">
-                                        <Bot className="w-5 h-5 text-amber-600" />
+                                    <div className="p-2 rounded-full bg-[var(--wabi-lavender)]/20 shrink-0">
+                                        <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
-                                    <p className="font-semibold text-slate-900">Yes, my AI knows me</p>
+                                    <p className="font-semibold text-[#2c3150]">Yes, my AI knows me</p>
                                 </div>
                             </button>
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-4 rounded-xl border-2 border-slate-200 hover:border-blue-300 bg-white transition-all text-left flex items-start gap-4"
+                                className="w-full p-4 rounded-xl border-2 border-[var(--wabi-aqua)]/30 hover:border-[var(--depth-cornflower)] bg-white transition-all text-left flex items-start gap-4"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2 rounded-full bg-blue-100 shrink-0">
-                                        <ClipboardList className="w-5 h-5 text-blue-600" />
+                                    <div className="p-2 rounded-full bg-[var(--wabi-aqua)]/20 shrink-0">
+                                        <ClipboardList className="w-5 h-5 text-[var(--depth-cornflower)]" />
                                     </div>
-                                    <p className="font-semibold text-slate-900">No, I'll do the assessment</p>
+                                    <p className="font-semibold text-[#2c3150]">No, I'll do the assessment</p>
                                 </div>
                             </button>
                         </div>
@@ -439,19 +439,19 @@ const ZoneOfGeniusEntry = () => {
                 {step === "ai-prompt" && (
                     <div className="space-y-4">
                         <div className="text-center">
-                            <h2 className="text-base font-semibold text-slate-900">
+                            <h2 className="text-base font-semibold text-[#2c3150]">
                                 Copy this prompt into your AI
                             </h2>
                         </div>
 
-                        <div className="relative rounded-xl border border-slate-200 bg-slate-50">
-                            <pre className="text-xs text-slate-700 whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16">
+                        <div className="relative rounded-xl border border-[var(--wabi-lavender)]/30 bg-[var(--wabi-pearl)]">
+                            <pre className="text-xs text-[#2c3150] whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-2 right-2 bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200 shadow-sm text-xs"
+                                className="absolute top-2 right-2 bg-slate-100 border-slate-300 text-[#2c3150] hover:bg-slate-200 shadow-sm text-xs"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
@@ -480,7 +480,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="text-center">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-xs text-slate-500 hover:text-slate-700"
+                                className="text-xs text-[var(--wabi-text-muted)] hover:text-[#8460ea] transition-colors"
                             >
                                 Nevermind, I'll do the assessment →
                             </button>
@@ -492,7 +492,7 @@ const ZoneOfGeniusEntry = () => {
                 {step === "paste-response" && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-lg font-semibold text-slate-900">
+                            <h2 className="text-lg font-semibold text-[#2c3150]">
                                 Paste your AI's response
                             </h2>
                         </div>

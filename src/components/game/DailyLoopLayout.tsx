@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Sparkles, Flame, Compass, Heart, Loader2, ArrowRight, Clock } from "lucide-react";
+import { Sparkles, Flame, Compass, Heart, ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BoldText from "@/components/BoldText";
 
@@ -48,7 +48,7 @@ const SectionCard = ({
   <div className="rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-lg">
     <div className="flex items-center gap-3 mb-4">
       {icon}
-      <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+      <h2 className="text-lg font-bold text-[#2c3150]">{title}</h2>
     </div>
     {children}
   </div>
@@ -79,17 +79,17 @@ export const DailyLoopLayout = ({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-slate-500">Welcome back</p>
-            <p className="text-xl font-bold text-slate-900">
+            <p className="text-xl font-bold text-[#2c3150]">
               {profileName ? `${profileName}` : "Player"}
             </p>
             {archetypeTitle && (
-              <p className="text-sm text-slate-600 mt-1">{archetypeTitle}</p>
+              <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{archetypeTitle}</p>
             )}
           </div>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[#2c3150]">
             {typeof level === "number" && typeof xpTotal === "number" && (
               <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold">
-                <Compass className="w-4 h-4 text-slate-700" aria-hidden />
+                <Compass className="w-4 h-4 text-[#2c3150]" aria-hidden />
                 Level {level} · {xpTotal} XP
               </span>
             )}
@@ -130,7 +130,7 @@ export const DailyLoopLayout = ({
             ))}
           </div>
         ) : (
-          <p className="text-sm text-slate-600">No QoL focus yet. Complete your snapshot to unlock guidance.</p>
+          <p className="text-sm text-[rgba(44,49,80,0.7)]">No QoL focus yet. Complete your snapshot to unlock guidance.</p>
         )}
       </SectionCard>
 
@@ -142,7 +142,7 @@ export const DailyLoopLayout = ({
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 sm:p-5">
             {isLoadingAction ? (
               <div className="flex items-center gap-3 text-emerald-700">
-                <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+                <span className="premium-spinner h-5 w-5" aria-hidden />
                 <p className="font-semibold">Finding your next move...</p>
               </div>
             ) : actionError ? (

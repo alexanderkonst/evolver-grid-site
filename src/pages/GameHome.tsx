@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import {
   Sparkles,
-  Loader2,
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
@@ -691,7 +691,7 @@ const GameHome = () => {
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+          <PremiumLoader size="lg" />
         </div>
       </GameShellV2>
     );
@@ -783,13 +783,13 @@ const GameHome = () => {
                 <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8460ea]/10 flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-[#8460ea]" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-2">Your Genius is Saved!</h2>
+                <h2 className="text-2xl font-bold text-[#2c3150] mb-2">Your Genius is Saved!</h2>
                 {zogSnapshot?.archetype_title && (
                   <p className="text-lg text-[#8460ea] font-medium mb-4">
                     ✦ {zogSnapshot.archetype_title} ✦
                   </p>
                 )}
-                <p className="text-base text-slate-600 mb-8 leading-relaxed">
+                <p className="text-base text-[rgba(44,49,80,0.7)] mb-8 leading-relaxed">
                   Ready to discover how to monetize it?
                 </p>
                 <Button
@@ -830,7 +830,7 @@ const GameHome = () => {
             <div className="fixed inset-0 bg-black/50 z-modal flex items-center justify-center p-4">
               <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-slate-900">Choose Your Side Quest</h2>
+                  <h2 className="text-xl font-bold text-[#2c3150]">Choose Your Side Quest</h2>
                   <button
                     onClick={() => {
                       setShowQuestPicker(false);
@@ -838,7 +838,7 @@ const GameHome = () => {
                       setSelectedMode(null);
                       setQuestSuggestion(null);
                     }}
-                    className="text-slate-500 hover:text-slate-700"
+                    className="text-slate-500 hover:text-[#2c3150]"
                   >
                     ✕
                   </button>
@@ -848,7 +848,7 @@ const GameHome = () => {
                   <>
                     {/* Duration Selection */}
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-slate-900 mb-3">How long do you have?</p>
+                      <p className="text-sm font-semibold text-[#2c3150] mb-3">How long do you have?</p>
                       <div className="flex flex-wrap gap-2">
                         {QUEST_DURATIONS.map(dur => (
                           <button
@@ -868,7 +868,7 @@ const GameHome = () => {
                             }}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedDuration === dur
                               ? 'bg-slate-900 text-white'
-                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                              : 'bg-slate-100 text-[#2c3150] hover:bg-slate-200'
                               }`}
                           >
                             {dur >= 60 ? `${dur / 60}h` : `${dur}m`}
@@ -879,7 +879,7 @@ const GameHome = () => {
 
                     {/* Mode Selection */}
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-slate-900 mb-3">What mode?</p>
+                      <p className="text-sm font-semibold text-[#2c3150] mb-3">What mode?</p>
                       <div className="flex flex-wrap gap-2">
                         {QUEST_MODES.map(mode => (
                           <button
@@ -899,7 +899,7 @@ const GameHome = () => {
                             }}
                             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedMode === mode.id
                               ? 'bg-slate-900 text-white'
-                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                              : 'bg-slate-100 text-[#2c3150] hover:bg-slate-200'
                               }`}
                           >
                             {mode.label}
@@ -915,7 +915,7 @@ const GameHome = () => {
                     >
                       {isLoadingQuest ? (
                         <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          <span className="premium-spinner w-4 h-4 mr-2" />
                           Finding your quest...
                         </>
                       ) : (
@@ -929,13 +929,13 @@ const GameHome = () => {
                 {questSuggestion && (
                   <div className="space-y-4">
                     <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-5">
-                      <h3 className="text-lg font-bold text-slate-900 mb-2">
+                      <h3 className="text-lg font-bold text-[#2c3150] mb-2">
                         {questSuggestion.main.quest_title}
                       </h3>
-                      <p className="text-sm text-slate-600 mb-3">
+                      <p className="text-sm text-[rgba(44,49,80,0.7)] mb-3">
                         {questSuggestion.main.practice_type} · ~{questSuggestion.main.approx_duration_minutes} min
                       </p>
-                      <p className="text-sm text-slate-700 mb-4">
+                      <p className="text-sm text-[#2c3150] mb-4">
                         {questSuggestion.main.why_it_is_a_good_next_move}
                       </p>
 
@@ -1013,9 +1013,9 @@ const GameHome = () => {
                                   });
                                   setQuestCompleted(false);
                                 }}
-                                className="w-full text-left rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 hover:border-slate-300 hover:bg-slate-100 transition-colors"
+                                className="w-full text-left rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-[#2c3150] hover:border-slate-300 hover:bg-slate-100 transition-colors"
                               >
-                                <div className="font-semibold text-slate-900">{alt.quest_title}</div>
+                                <div className="font-semibold text-[#2c3150]">{alt.quest_title}</div>
                                 <div className="text-xs text-slate-500">
                                   {alt.practice_type} · ~{alt.approx_duration_minutes || 10} min
                                 </div>

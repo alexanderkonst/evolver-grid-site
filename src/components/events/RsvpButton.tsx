@@ -1,4 +1,4 @@
-import { Check, HelpCircle, X, Loader2 } from "lucide-react";
+import { Check, HelpCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -65,7 +65,7 @@ const RsvpButton = ({
             )}
           >
             {loading && isActive ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <span className="premium-spinner w-4 h-4" />
             ) : (
               <Icon className="w-4 h-4" />
             )}

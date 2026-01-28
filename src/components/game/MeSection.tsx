@@ -46,7 +46,7 @@ const MeSection = ({ archetypeTitle, level, xpTotal, displayName, avatarUrl }: M
                     {displayName && (
                         <p className="text-sm text-slate-500">{displayName}</p>
                     )}
-                    <h2 className="font-semibold text-slate-900">
+                    <h2 className="font-semibold text-[#2c3150]">
                         {archetypeTitle || "Discover Your Archetype"}
                     </h2>
                     <p className="text-sm text-slate-500">

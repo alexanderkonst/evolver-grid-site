@@ -17,9 +17,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import {
-    Sparkles, Target, Zap, CheckCircle2, Flame, Trophy, ChevronRight, Loader2,
+    Sparkles, Target, Zap, CheckCircle2, Flame, Trophy, ChevronRight,
     BookOpen, Gift, Lock, Upload, Link as LinkIcon, X
 } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import {
     getMainQuestCopy,
     computeNextMainQuestStage,
@@ -373,7 +374,7 @@ export default function TodayPage() {
     if (isLoading) {
         return (
             <div className="min-h-dvh flex items-center justify-center bg-slate-50">
-                <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+                <PremiumLoader size="lg" />
             </div>
         );
     }
@@ -390,10 +391,10 @@ export default function TodayPage() {
                         <p className="text-sm uppercase tracking-wide text-indigo-600 mb-3">
                             Transformation Space
                         </p>
-                        <h1 className="text-4xl font-bold text-slate-900 mb-4">
+                        <h1 className="text-4xl font-bold text-[#2c3150] mb-4">
                             Grow every day
                         </h1>
-                        <p className="text-lg text-slate-600">
+                        <p className="text-lg text-[rgba(44,49,80,0.7)]">
                             One practice. Five paths. Consistent progress.
                         </p>
                     </div>
@@ -414,8 +415,8 @@ export default function TodayPage() {
 
                 {/* Header */}
                 <header className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Today</h1>
-                    <div className="flex items-center gap-4 text-sm text-slate-600">
+                    <h1 className="text-3xl font-bold text-[#2c3150] mb-2">Today</h1>
+                    <div className="flex items-center gap-4 text-sm text-[rgba(44,49,80,0.7)]">
                         <span className="flex items-center gap-1">
                             <Flame className="w-4 h-4 text-orange-500" />
                             {profile?.current_streak_days || 0} day streak
@@ -432,8 +433,8 @@ export default function TodayPage() {
                 {allDoneForToday && (
                     <div className="rounded-3xl border-2 border-emerald-200 bg-emerald-50 p-8 text-center mb-6">
                         <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Done for Today! 🎉</h2>
-                        <p className="text-slate-600 mb-6">You've completed your daily actions. Great work!</p>
+                        <h2 className="text-2xl font-bold text-[#2c3150] mb-2">Done for Today! 🎉</h2>
+                        <p className="text-[rgba(44,49,80,0.7)] mb-6">You've completed your daily actions. Great work!</p>
                         <Button
                             variant="outline"
                             onClick={() => {
@@ -478,8 +479,8 @@ export default function TodayPage() {
                             </span>
                         </div>
 
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">{mainQuestCopy.title}</h3>
-                        <p className="text-sm text-slate-600 mb-4">{mainQuestCopy.objective}</p>
+                        <h3 className="text-lg font-bold text-[#2c3150] mb-1">{mainQuestCopy.title}</h3>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">{mainQuestCopy.objective}</p>
 
                         {mainQuestComplete || artifactSubmitted ? (
                             <div className="flex items-center gap-2 text-emerald-600">
@@ -558,24 +559,24 @@ export default function TodayPage() {
                                     }}
                                     disabled={loadingSideQuest}
                                 >
-                                    {loadingSideQuest ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                    {loadingSideQuest ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
                                     Bonus Practice
                                 </Button>
                             </>
                         ) : loadingSideQuest ? (
                             <div className="flex items-center gap-2 text-slate-500">
-                                <Loader2 className="w-4 h-4 animate-spin" />
+                                <span className="premium-spinner w-4 h-4" />
                                 <span className="text-sm">Finding your practice...</span>
                             </div>
                         ) : sideQuest ? (
                             <>
-                                <h3 className="text-lg font-bold text-slate-900 mb-1">
+                                <h3 className="text-lg font-bold text-[#2c3150] mb-1">
                                     {sideQuest.practice.title}
                                 </h3>
                                 <p className="text-sm text-slate-500 mb-1">
                                     {sideQuest.practice.duration_min} min • {sideQuest.domain}
                                 </p>
-                                <p className="text-sm text-slate-600 mb-4">
+                                <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
                                     {sideQuest.why?.[0] || 'Recommended for your growth.'}
                                 </p>
                                 <Button
@@ -583,7 +584,7 @@ export default function TodayPage() {
                                     disabled={completingSideQuest}
                                     className="w-full"
                                 >
-                                    {completingSideQuest ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                    {completingSideQuest ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
                                     Mark as Done
                                 </Button>
                             </>
@@ -625,7 +626,7 @@ export default function TodayPage() {
                                 Upgrade (Growth Path)
                             </span>
                             {!upgradeUnlockStatus.unlocked && (
-                                <span className="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">
+                                <span className="text-xs bg-slate-200 text-[rgba(44,49,80,0.7)] px-2 py-0.5 rounded-full">
                                     Locked
                                 </span>
                             )}
@@ -633,11 +634,11 @@ export default function TodayPage() {
 
                         {nextUpgrade ? (
                             <>
-                                <h3 className={`text-lg font-bold mb-1 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-slate-900'
+                                <h3 className={`text-lg font-bold mb-1 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-[#2c3150]'
                                     }`}>
                                     {nextUpgrade.title}
                                 </h3>
-                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-slate-600'
+                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-[rgba(44,49,80,0.7)]'
                                     }`}>
                                     {nextUpgrade.description || 'Unlock this upgrade to level up.'}
                                 </p>
@@ -659,7 +660,7 @@ export default function TodayPage() {
                                         variant="outline"
                                         className="w-full"
                                     >
-                                        {completingUpgrade ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                        {completingUpgrade ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
                                         Complete Upgrade
                                         <ChevronRight className="w-4 h-4 ml-1" />
                                     </Button>
@@ -701,7 +702,7 @@ export default function TodayPage() {
                             {todayQuestRuns.map(run => (
                                 <div key={run.id} className="flex items-center justify-between bg-white rounded-lg border border-slate-200 px-4 py-3">
                                     <div>
-                                        <p className="font-medium text-slate-900">{run.title}</p>
+                                        <p className="font-medium text-[#2c3150]">{run.title}</p>
                                         <p className="text-xs text-slate-500">{run.path} • {run.duration_minutes} min</p>
                                     </div>
                                     <span className="text-sm font-semibold text-emerald-600">+{run.xp_awarded} XP</span>
@@ -718,19 +719,19 @@ export default function TodayPage() {
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-modal p-4">
                     <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
                         <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-bold text-slate-900">Capture Your Output</h2>
-                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-500 hover:text-slate-700">
+                            <h2 className="text-xl font-bold text-[#2c3150]">Capture Your Output</h2>
+                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-500 hover:text-[#2c3150]">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
-                        <p className="text-sm text-slate-600 mb-6">
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">
                             Document your real-world creation — a post, pitch, demo, or any tangible output.
                         </p>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-[#2c3150] mb-1">
                                     Type *
                                 </label>
                                 <select
@@ -748,7 +749,7 @@ export default function TodayPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-[#2c3150] mb-1">
                                     Link (optional)
                                 </label>
                                 <div className="relative">
@@ -763,7 +764,7 @@ export default function TodayPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-[#2c3150] mb-1">
                                     Notes (optional)
                                 </label>
                                 <Textarea
@@ -784,7 +785,7 @@ export default function TodayPage() {
                                 onClick={handleSaveArtifact}
                                 disabled={savingArtifact}
                             >
-                                {savingArtifact ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                                {savingArtifact ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
                                 Mark Artifact Done
                             </Button>
                         </div>

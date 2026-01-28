@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, Target, Heart, TrendingUp, Zap, Gift, Loader2 } from "lucide-react";
+import { Sparkles, Target, Heart, TrendingUp, Zap, Gift } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
@@ -254,7 +255,7 @@ const CharacterHub = () => {
     if (loading) {
         return (
             <div className="min-h-dvh flex items-center justify-center bg-background">
-                <Loader2 className="w-8 h-8 animate-spin text-amber-400" />
+                <PremiumLoader size="lg" />
             </div>
         );
     }
@@ -268,7 +269,7 @@ const CharacterHub = () => {
                         <h1 className="text-2xl font-bold text-white mb-4">
                             <BoldText>SIGN IN TO ACCESS YOUR CHARACTER</BoldText>
                         </h1>
-                        <Button onClick={() => navigate("/auth")} className="bg-amber-500 hover:bg-amber-600 text-slate-900">
+                        <Button onClick={() => navigate("/auth")} className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]">
                             Sign In
                         </Button>
                     </div>
@@ -330,7 +331,7 @@ const CharacterHub = () => {
                             </p>
                             <Button
                                 size="sm"
-                                className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                 onClick={() => navigate("/auth")}
                             >
                                 Sign In
@@ -357,7 +358,7 @@ const CharacterHub = () => {
                             >
                                 {generatingColors ? (
                                     <>
-                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        <span className="premium-spinner w-4 h-4 mr-2" />
                                         Discovering Colors...
                                     </>
                                 ) : (
@@ -394,7 +395,7 @@ const CharacterHub = () => {
                                 </p>
                                 <Button
                                     size="sm"
-                                    className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                    className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
                                     Start Zone of Genius
@@ -434,7 +435,7 @@ const CharacterHub = () => {
                                 <Button
                                     size="sm"
                                     variant="secondary"
-                                    className="bg-amber-500 text-slate-900 hover:bg-amber-600"
+                                    className="bg-amber-500 text-[#2c3150] hover:bg-amber-600"
                                     onClick={() => navigate("/game/mission")}
                                 >
                                     {missionCommitment ? "Edit" : "Select"}
@@ -552,7 +553,7 @@ const CharacterHub = () => {
                                     </div>
                                     <Button
                                         size="sm"
-                                        className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                        className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                         onClick={() => navigate("/map")}
                                     >
                                         Explore →

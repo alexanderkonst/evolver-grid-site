@@ -20,7 +20,7 @@ const GrowthPathsPage = () => {
                         variant="ghost"
                         size="sm"
                         onClick={() => setSelectedPath(null)}
-                        className="text-slate-600 hover:text-slate-900 mb-6"
+                        className="text-[rgba(44,49,80,0.7)] hover:text-[#2c3150] mb-6"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back
@@ -36,13 +36,13 @@ const GrowthPathsPage = () => {
                                 <Icon className="w-6 h-6" style={{ color: selectedPath.color }} />
                             </div>
                             <div>
-                                <h1 className="text-xl font-bold text-slate-900">
+                                <h1 className="text-xl font-bold text-[#2c3150]">
                                     {selectedPath.name}
                                 </h1>
                                 <p className="text-sm text-slate-500">{selectedPath.subtitle}</p>
                             </div>
                         </div>
-                        <p className="text-slate-600 mt-2">{selectedPath.description}</p>
+                        <p className="text-[rgba(44,49,80,0.7)] mt-2">{selectedPath.description}</p>
                     </div>
 
                     {/* Upgrade list */}
@@ -68,8 +68,8 @@ const GrowthPathsPage = () => {
             <div className="p-4 lg:p-6 max-w-3xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-2">Growth Paths</h1>
-                    <p className="text-slate-600">
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Growth Paths</h1>
+                    <p className="text-[rgba(44,49,80,0.7)]">
                         Sequences of transformational upgrades — how you develop yourself
                     </p>
                 </div>
@@ -96,7 +96,7 @@ const GrowthPathsPage = () => {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2">
-                                            <h2 className="font-semibold text-slate-900">
+                                            <h2 className="font-semibold text-[#2c3150]">
                                                 {path.name}
                                             </h2>
                                             <span className="text-xs text-slate-500 font-normal">
@@ -119,23 +119,23 @@ const GrowthPathsPage = () => {
 
                 {/* Legend */}
                 <div className="mt-8 p-4 rounded-lg bg-slate-50 border border-slate-200">
-                    <h3 className="text-sm font-medium text-slate-700 mb-3">Legend</h3>
+                    <h3 className="text-sm font-medium text-[#2c3150] mb-3">Legend</h3>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center gap-2">
                             <span>🔥</span>
-                            <span className="text-slate-600">Immersive Activation</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">Immersive Activation</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>📚</span>
-                            <span className="text-slate-600">Micro-learning (90s)</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">Micro-learning (90s)</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>📝</span>
-                            <span className="text-slate-600">Self-Assessment</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">Self-Assessment</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>💰</span>
-                            <span className="text-slate-600">Premium Module</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">Premium Module</span>
                         </div>
                     </div>
                 </div>
@@ -213,12 +213,12 @@ const UpgradeCard = ({
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-lg">{typeIcon}</span>
-                        <h3 className={`font-medium ${isLocked ? 'text-slate-500' : 'text-slate-900'}`}>
+                        <h3 className={`font-medium ${isLocked ? 'text-slate-500' : 'text-[#2c3150]'}`}>
                             {upgrade.name}
                         </h3>
                         {!isLocked && getStatusBadge()}
                     </div>
-                    <p className={`text-sm ${isLocked ? 'text-slate-500' : 'text-slate-600'}`}>
+                    <p className={`text-sm ${isLocked ? 'text-slate-500' : 'text-[rgba(44,49,80,0.7)]'}`}>
                         {upgrade.description}
                     </p>
                     <div className="flex items-center gap-3 mt-2">

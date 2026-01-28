@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
-import { GripVertical, ArrowUp, ArrowDown, Check, Loader2 } from "lucide-react";
+import { GripVertical, ArrowUp, ArrowDown, Check } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
@@ -156,7 +157,7 @@ const MultipleIntelligences = () => {
   if (loading) {
     return (
       <div className="min-h-dvh bg-background flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -266,8 +267,8 @@ const MultipleIntelligences = () => {
                   onDragOver={(e) => handleDragOver(e, index)}
                   onDragEnd={handleDragEnd}
                   className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${draggedIndex === index
-                      ? "border-accent bg-accent/10 scale-[1.02]"
-                      : "border-border bg-card/60 hover:border-accent/50"
+                    ? "border-accent bg-accent/10 scale-[1.02]"
+                    : "border-border bg-card/60 hover:border-accent/50"
                     }`}
                 >
                   <GripVertical className="h-5 w-5 text-muted-foreground cursor-grab flex-shrink-0" />

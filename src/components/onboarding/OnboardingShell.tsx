@@ -19,7 +19,7 @@ export const OnboardingShell = ({ children }: OnboardingShellProps) => {
                         <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">
                             <span className="text-white font-bold text-sm">E</span>
                         </div>
-                        <span className="font-semibold text-slate-900">Evolver Grid</span>
+                        <span className="font-semibold text-[#2c3150]">Evolver Grid</span>
                     </div>
                 </div>
             </header>

@@ -42,7 +42,7 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
                 <div className="p-2 rounded-full bg-blue-100">
                     <BarChart3 className="w-5 h-5 text-blue-600" />
                 </div>
-                <h2 className="font-semibold text-slate-900">My Life</h2>
+                <h2 className="font-semibold text-[#2c3150]">My Life</h2>
             </div>
 
             {/* Domain bars */}
@@ -51,7 +51,7 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
                     const isLowest = lowestTwo.some(d => d.key === domain.key);
                     return (
                         <div key={domain.key} className="flex items-center gap-3">
-                            <span className={`text-xs w-16 ${isLowest ? 'font-semibold text-amber-700' : 'text-slate-600'}`}>
+                            <span className={`text-xs w-16 ${isLowest ? 'font-semibold text-amber-700' : 'text-[rgba(44,49,80,0.7)]'}`}>
                                 {domain.label}
                             </span>
                             <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
@@ -69,7 +69,7 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
             </div>
 
             {/* Insight */}
-            <p className="text-sm text-slate-600 bg-slate-50 rounded-lg p-3">
+            <p className="text-sm text-[rgba(44,49,80,0.7)] bg-slate-50 rounded-lg p-3">
                 <span className="font-medium">Your life is asking for attention in:</span>{" "}
                 <span className="text-amber-700 font-semibold">{lowestLabels}</span>
             </p>

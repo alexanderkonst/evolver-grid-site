@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import AppleseedDisplay from "@/modules/zone-of-genius/AppleseedDisplay";
@@ -35,7 +36,7 @@ const AppleseedView = () => {
     return (
       <GameShellV2>
         <div className="min-h-[60vh] flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+          <PremiumLoader size="lg" />
         </div>
       </GameShellV2>
     );
@@ -46,8 +47,8 @@ const AppleseedView = () => {
       <GameShellV2>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sparkles className="w-10 h-10 text-amber-400 mb-3" />
-          <h1 className="text-2xl font-semibold text-slate-900 mb-2">No genius profile yet</h1>
-          <p className="text-slate-600 mb-6">
+          <h1 className="text-2xl font-semibold text-[#2c3150] mb-2">No genius profile yet</h1>
+          <p className="text-[rgba(44,49,80,0.7)] mb-6">
             Generate your Zone of Genius to view your profile here.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
@@ -70,8 +71,8 @@ const AppleseedView = () => {
       {!excalibur && (
         <div className="px-4 pb-10">
           <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-violet-50 p-6 text-center">
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">Your Unique Offer</h2>
-            <p className="text-slate-600 mb-4">
+            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">Your Unique Offer</h2>
+            <p className="text-[rgba(44,49,80,0.7)] mb-4">
               You know who you are. Now discover what you can offer.
             </p>
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
