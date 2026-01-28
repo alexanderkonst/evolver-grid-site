@@ -487,7 +487,7 @@ const ZoneOfGeniusEntry = () => {
                             onClick={() => setStep("paste-response")}
                         >
                             I've got my AI's response
-                            <ArrowRight className="w-4 h-4 ml-2" />
+                            <ArrowRight className="w-4 h-4" />
                         </PremiumButton>
 
                         <div className="text-center">
@@ -525,7 +525,7 @@ const ZoneOfGeniusEntry = () => {
                             disabled={!aiResponse.trim()}
                         >
                             Discover My Zone of Genius
-                            <Sparkles className="w-4 h-4 ml-2" />
+                            <Sparkles className="w-4 h-4" />
                         </PremiumButton>
                     </div>
                 )}
