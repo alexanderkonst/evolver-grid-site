@@ -23,7 +23,7 @@ export default function MeSummary({
     const progressPercent = (xpInCurrentLevel / xpToNextLevel) * 100;
 
     return (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
             <div className="flex items-start gap-4">
                 {/* Archetype Icon */}
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#a4a3d0] to-[#8460ea] flex items-center justify-center flex-shrink-0">

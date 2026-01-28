@@ -741,7 +741,7 @@ const GameHome = () => {
           {/* ONBOARDING - New users */}
           {!hasAnyData && !isZogCompleteStage && (
             <div className="max-w-2xl mx-auto">
-              <PremiumCard variant="gradient-border" size="lg" className="text-center">
+              <PremiumCard variant="gradient-border" size="lg" className="text-center alive-card">
                 <div className="flex justify-center mb-6">
                   <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
                 </div>

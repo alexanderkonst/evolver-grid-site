@@ -62,7 +62,7 @@ const RevelatoryHero = ({
     const IconComponent = palette.icon;
 
     return (
-        <div className="relative overflow-hidden rounded-3xl mb-4">
+        <div className="relative overflow-hidden rounded-3xl mb-4 breathing-card">
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${palette.gradient}`} />
 
