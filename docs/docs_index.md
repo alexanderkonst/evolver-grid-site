@@ -2,7 +2,19 @@
 
 > **Holonic documentation structure — everything in its place**
 
-*Updated: 2026-01-27*
+*Updated: 2026-01-28*
+
+---
+
+## 🌌 Foundational (Ontology & Vision)
+
+*The deepest layer — the architecture of reality itself.*
+
+| Doc | Purpose |
+|-----|---------|
+| [foundational_ontology.md](./foundational_ontology.md) | Holonic structure, toroidal field, soul colors, primordial splits |
+| [vision/new_ui_paradigm_vision.md](./vision/new_ui_paradigm_vision.md) | UI as Transmission — soul color personalization, breathing UI |
+| [holonic_vision.md](./holonic_vision.md) | Holonic worldview applied to platform |
 
 ---
 
