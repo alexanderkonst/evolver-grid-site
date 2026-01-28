@@ -107,8 +107,8 @@ const CreateEvent = () => {
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
           <div className="flex flex-col items-center gap-3 mb-6">
             <Users className="w-10 h-10 text-slate-500" />
-            <h1 className="text-2xl font-semibold text-slate-900">Sign in to create events</h1>
-            <p className="text-slate-600">
+            <h1 className="text-2xl font-semibold text-[#2c3150]">Sign in to create events</h1>
+            <p className="text-[rgba(44,49,80,0.7)]">
               You need an account to publish events for the community.
             </p>
           </div>
@@ -128,10 +128,10 @@ const CreateEvent = () => {
       <div className="p-6 lg:p-8 max-w-2xl mx-auto">
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">Create Event</h1>
+            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
+            <h1 className="text-2xl font-bold text-[#2c3150]">Create Event</h1>
           </div>
-          <p className="text-slate-600">Share a gathering with the community.</p>
+          <p className="text-[rgba(44,49,80,0.7)]">Share a gathering with the community.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-slate-200 bg-white p-6">

@@ -122,8 +122,8 @@ const AdminMissionParticipants = () => {
       <div className="min-h-dvh bg-background">
         <Navigation />
         <div className="max-w-3xl mx-auto px-4 pt-28 pb-20 text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Admin access required</h1>
-          <p className="text-sm text-slate-600 mb-6">You don&apos;t have permission to access this page.</p>
+          <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Admin access required</h1>
+          <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">You don&apos;t have permission to access this page.</p>
           <Button onClick={() => navigate("/")}>Return Home</Button>
         </div>
         <Footer />
@@ -144,23 +144,23 @@ const AdminMissionParticipants = () => {
         </div>
 
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Mission Participants</h1>
-          <p className="text-sm text-slate-600">Track who committed to missions and their connection preferences.</p>
+          <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Mission Participants</h1>
+          <p className="text-sm text-[rgba(44,49,80,0.7)]">Track who committed to missions and their connection preferences.</p>
         </div>
 
         {loading ? (
-          <div className="flex items-center gap-2 text-slate-600">
+          <div className="flex items-center gap-2 text-[rgba(44,49,80,0.7)]">
             <Loader2 className="w-4 h-4 animate-spin" />
             Loading participants...
           </div>
         ) : participants.length === 0 ? (
-          <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600">
+          <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-[rgba(44,49,80,0.7)]">
             No mission participants yet.
           </div>
         ) : (
           <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-slate-600">
+              <thead className="bg-slate-50 text-[rgba(44,49,80,0.7)]">
                 <tr>
                   <th className="text-left px-4 py-3 font-semibold">Mission</th>
                   <th className="text-left px-4 py-3 font-semibold">User</th>
@@ -173,19 +173,19 @@ const AdminMissionParticipants = () => {
                 {participants.map((participant) => (
                   <tr key={participant.id} className="border-t border-slate-100">
                     <td className="px-4 py-3">
-                      <p className="font-semibold text-slate-900">{participant.mission_title}</p>
+                      <p className="font-semibold text-[#2c3150]">{participant.mission_title}</p>
                       <p className="text-xs text-slate-500">{participant.mission_id}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="font-semibold text-slate-900">{participant.first_name || "Unknown"}</p>
+                      <p className="font-semibold text-[#2c3150]">{participant.first_name || "Unknown"}</p>
                       <p className="text-xs text-slate-500">{participant.email}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-600"}`}>
+                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-[rgba(44,49,80,0.7)]"}`}>
                         {participant.share_consent ? "Shared" : "Private"}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-xs text-slate-600">
+                    <td className="px-4 py-3 text-xs text-[rgba(44,49,80,0.7)]">
                       <div>Notify: {participant.notify_level} · {participant.email_frequency}</div>
                       <div>Lead: {participant.wants_to_lead ? "Yes" : "No"} · Integrate: {participant.wants_to_integrate ? "Yes" : "No"}</div>
                     </td>

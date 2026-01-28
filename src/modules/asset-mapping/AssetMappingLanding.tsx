@@ -281,16 +281,16 @@ const AssetMappingLanding = () => {
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
-                        <Boxes className="w-8 h-8 text-slate-700" />
+                        <Boxes className="w-8 h-8 text-[#2c3150]" />
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 mb-3">Asset Mapping</h1>
-                    <p className="text-lg text-slate-600">Map your resources for collaboration</p>
+                    <h1 className="text-4xl font-bold text-[#2c3150] mb-3">Asset Mapping</h1>
+                    <p className="text-lg text-[rgba(44,49,80,0.7)]">Map your resources for collaboration</p>
                 </div>
 
                 {/* Step: Choice */}
                 {step === "choice" && (
                     <div className="space-y-4">
-                        <p className="text-center text-lg text-slate-700 mb-6">
+                        <p className="text-center text-lg text-[#2c3150] mb-6">
                             How would you like to map your assets?
                         </p>
 
@@ -300,7 +300,7 @@ const AssetMappingLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                             >
                                 <Brain className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">Use AI to extract</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Use AI to extract</h3>
                                 <p className="text-sm text-slate-500">I have an AI that knows me</p>
                             </button>
 
@@ -309,7 +309,7 @@ const AssetMappingLanding = () => {
                                 className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
                             >
                                 <ListChecks className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-slate-900 mb-1">Add manually</h3>
+                                <h3 className="font-semibold text-[#2c3150] mb-1">Add manually</h3>
                                 <p className="text-sm text-slate-500">Go through the categories</p>
                             </button>
                         </div>
@@ -322,7 +322,7 @@ const AssetMappingLanding = () => {
                         <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                             <div className="flex items-start justify-between mb-2">
                                 <div>
-                                    <h3 className="font-semibold text-slate-900 text-sm">Prompt for your AI</h3>
+                                    <h3 className="font-semibold text-[#2c3150] text-sm">Prompt for your AI</h3>
                                     <p className="text-xs text-slate-500">Copy this and ask your AI model</p>
                                 </div>
                                 <Button variant="outline" size="sm" onClick={handleCopyPrompt} className="shrink-0">
@@ -330,13 +330,13 @@ const AssetMappingLanding = () => {
                                     {copied ? "Copied!" : "Copy"}
                                 </Button>
                             </div>
-                            <pre className="text-xs text-slate-600 whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
+                            <pre className="text-xs text-[rgba(44,49,80,0.7)] whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto">
                                 {ASSET_MAPPING_PROMPT}
                             </pre>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-2">
+                            <label className="block text-sm font-medium text-[#2c3150] mb-2">
                                 Paste AI's response here
                             </label>
                             <Textarea
@@ -362,7 +362,7 @@ const AssetMappingLanding = () => {
                         </div>
 
                         <div className="text-center">
-                            <button onClick={handleGoToWizard} className="text-sm text-slate-500 hover:text-slate-700">
+                            <button onClick={handleGoToWizard} className="text-sm text-slate-500 hover:text-[#2c3150]">
                                 Or add assets manually →
                             </button>
                         </div>
@@ -373,10 +373,10 @@ const AssetMappingLanding = () => {
                 {step === "matched" && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-2xl font-semibold text-slate-900">
+                            <h2 className="text-2xl font-semibold text-[#2c3150]">
                                 {matchedAssets.length > 0 ? `Found ${matchedAssets.length} assets` : "No exact matches"}
                             </h2>
-                            <p className="text-base text-slate-600">
+                            <p className="text-base text-[rgba(44,49,80,0.7)]">
                                 {matchedAssets.length > 0
                                     ? "Review and save these to your profile."
                                     : "Try adding assets manually using the wizard."}
@@ -389,7 +389,7 @@ const AssetMappingLanding = () => {
                                     <div key={i} className="p-4 rounded-lg border border-slate-200 bg-white">
                                         <div className="flex items-start justify-between gap-2 mb-2">
                                             <div className="flex flex-wrap items-center gap-1">
-                                                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                                                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
                                                     {asset.typeTitle}
                                                 </span>
                                                 {asset.subTypeTitle && (
@@ -409,7 +409,7 @@ const AssetMappingLanding = () => {
                                                         <TooltipTrigger asChild>
                                                             <span className={`text-xs px-2 py-0.5 rounded-full font-medium cursor-help ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
                                                                 asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
-                                                                    'bg-slate-100 text-slate-600'
+                                                                    'bg-slate-100 text-[rgba(44,49,80,0.7)]'
                                                                 }`}>
                                                                 ⚡ {asset.leverageScore}/10
                                                             </span>
@@ -421,9 +421,9 @@ const AssetMappingLanding = () => {
                                                 </TooltipProvider>
                                             )}
                                         </div>
-                                        <p className="font-semibold text-slate-900">{asset.title}</p>
+                                        <p className="font-semibold text-[#2c3150]">{asset.title}</p>
                                         {asset.description && (
-                                            <p className="text-sm text-slate-600 mt-1">{asset.description}</p>
+                                            <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{asset.description}</p>
                                         )}
                                         {asset.leverageReason && (
                                             <p className="text-xs text-slate-500 mt-2 italic">{asset.leverageReason}</p>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import OnboardingFlow from "@/modules/onboarding/OnboardingFlow";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -49,7 +49,7 @@ const OnboardingStart = () => {
   if (loading || !profileId) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }

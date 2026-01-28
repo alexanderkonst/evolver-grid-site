@@ -166,7 +166,7 @@ const GameMap = () => {
                         <div className="text-center">
                             <Button
                                 onClick={handleGetQuest}
-                                className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-medium px-6"
+                                className="bg-amber-500 hover:bg-amber-600 text-[#2c3150] font-medium px-6"
                             >
                                 <Sparkles className="w-4 h-4 mr-2" />
                                 Get a Quest
@@ -245,7 +245,7 @@ const GameMap = () => {
                                             Cancel
                                         </Button>
                                         <Button
-                                            className="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-900"
+                                            className="flex-1 bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                             onClick={handleFilterSubmit}
                                             disabled={!selectedTime || !selectedEnergy}
                                         >

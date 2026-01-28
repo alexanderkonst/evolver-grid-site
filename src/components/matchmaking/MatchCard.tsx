@@ -48,10 +48,10 @@ const MatchCard = ({
           )}
         </div>
         <div>
-          <h2 className="text-2xl font-semibold text-slate-900">
+          <h2 className="text-2xl font-semibold text-[#2c3150]">
             {user.firstName} {user.lastName}
           </h2>
-          <p className="text-slate-700 mt-1">✦ {user.archetype} ✦</p>
+          <p className="text-[#2c3150] mt-1">✦ {user.archetype} ✦</p>
           {user.tagline && (
             <p className="text-sm text-slate-500 mt-2 italic break-words">"{user.tagline}"</p>
           )}
@@ -61,7 +61,7 @@ const MatchCard = ({
           <p className="text-xs uppercase text-slate-500 mb-2">
             {matchLabel || "Why you match"}
           </p>
-          <p className="text-sm text-slate-700 break-words">{matchReason}</p>
+          <p className="text-sm text-[#2c3150] break-words">{matchReason}</p>
         </div>
 
         {secondaryReason && (
@@ -69,7 +69,7 @@ const MatchCard = ({
             <p className="text-xs uppercase text-slate-500 mb-2">
               {secondaryLabel || "Also relevant"}
             </p>
-            <p className="text-sm text-slate-700 break-words">{secondaryReason}</p>
+            <p className="text-sm text-[#2c3150] break-words">{secondaryReason}</p>
           </div>
         )}
 

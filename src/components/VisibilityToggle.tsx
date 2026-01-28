@@ -34,7 +34,7 @@ const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) 
           variant="ghost"
           size="sm"
           disabled={disabled}
-          className="h-7 px-2 text-xs gap-1 text-slate-500 hover:text-slate-700 hover:bg-slate-100"
+          className="h-7 px-2 text-xs gap-1 text-slate-500 hover:text-[#2c3150] hover:bg-slate-100"
         >
           <CurrentIcon className="w-3 h-3" />
           <ChevronDown className="w-3 h-3 opacity-50" />
@@ -54,8 +54,8 @@ const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) 
                 className={`
                   w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-sm transition-colors
                   ${isSelected
-                    ? "bg-slate-100 text-slate-900"
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    ? "bg-slate-100 text-[#2c3150]"
+                    : "text-[rgba(44,49,80,0.7)] hover:bg-slate-50 hover:text-[#2c3150]"
                   }
                 `}
                 onClick={() => {

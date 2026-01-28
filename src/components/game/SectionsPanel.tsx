@@ -233,10 +233,11 @@ const SectionsPanel = ({
                             {/* Section item */}
                             <div
                                 className={cn(
-                                    "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-colors",
+                                    "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-all duration-150",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50",
                                     sectionActive && !hasSubSections
                                         ? "bg-slate-700 text-white"
-                                        : "text-slate-400 hover:bg-slate-700/50 hover:text-white"
+                                        : "text-slate-400 hover:bg-slate-700/50 hover:text-white hover:translate-x-0.5"
                                 )}
                                 onClick={() => {
                                     if (hasSubSections) {

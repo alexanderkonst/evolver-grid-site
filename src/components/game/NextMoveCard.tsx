@@ -51,7 +51,7 @@ export default function NextMoveCard({
                 <h3 className="text-lg font-semibold text-slate-800 mb-4">My Next Move</h3>
                 <div className="bg-white rounded-xl shadow-md p-6 text-center">
                     <div className="text-3xl mb-3">✨</div>
-                    <p className="text-slate-600 mb-4">
+                    <p className="text-[rgba(44,49,80,0.7)] mb-4">
                         You've completed all recommended actions!
                     </p>
                     <Button
@@ -88,7 +88,7 @@ export default function NextMoveCard({
 
                 {/* Why this action */}
                 {action.whyRecommended && (
-                    <p className="text-sm text-slate-600 italic mb-4 pl-14">
+                    <p className="text-sm text-[rgba(44,49,80,0.7)] italic mb-4 pl-14">
                         "{action.whyRecommended}"
                     </p>
                 )}

@@ -103,7 +103,7 @@ const CollapsibleSection = ({
           type="button"
           className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors hover:bg-slate-50"
         >
-          <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-600">
+          <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(44,49,80,0.7)]">
             <span>{title}</span>
             <span className="text-xs font-medium text-slate-500">({duration})</span>
           </div>
@@ -125,20 +125,20 @@ const MarkdownContent = ({ content }: { content: string }) => (
   <ReactMarkdown
     components={{
       p: ({ children }) => (
-        <p className="mb-3 text-sm leading-relaxed text-slate-600 last:mb-0">{children}</p>
+        <p className="mb-3 text-sm leading-relaxed text-[rgba(44,49,80,0.7)] last:mb-0">{children}</p>
       ),
       ul: ({ children }) => (
-        <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-slate-600 last:mb-0">
+        <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-[rgba(44,49,80,0.7)] last:mb-0">
           {children}
         </ul>
       ),
       ol: ({ children }) => (
-        <ol className="mb-3 list-decimal space-y-1 pl-5 text-sm text-slate-600 last:mb-0">
+        <ol className="mb-3 list-decimal space-y-1 pl-5 text-sm text-[rgba(44,49,80,0.7)] last:mb-0">
           {children}
         </ol>
       ),
       li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-      strong: ({ children }) => <strong className="font-semibold text-slate-700">{children}</strong>,
+      strong: ({ children }) => <strong className="font-semibold text-[#2c3150]">{children}</strong>,
       a: ({ children, href }) => (
         <a
           className="font-medium text-amber-700 underline underline-offset-2"
@@ -183,7 +183,7 @@ const MicroModulePage = ({
           <span className="text-slate-500">•</span>
           <span className="text-slate-500">{moduleId}</span>
         </div>
-        <h1 className="text-2xl font-semibold text-slate-900 lg:text-3xl">{title}</h1>
+        <h1 className="text-2xl font-semibold text-[#2c3150] lg:text-3xl">{title}</h1>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
@@ -207,7 +207,7 @@ const MicroModulePage = ({
 
       <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
         <p className="text-sm font-semibold uppercase tracking-wide text-amber-700">Key Takeaway</p>
-        <p className="mt-3 text-base leading-relaxed text-slate-700">{keyTakeaway}</p>
+        <p className="mt-3 text-base leading-relaxed text-[#2c3150]">{keyTakeaway}</p>
       </div>
 
       <CollapsibleSection title="Experience" duration={experience.duration} defaultOpen>
@@ -230,10 +230,10 @@ const MicroModulePage = ({
                   href={resource.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100"
+                  className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2 text-sm text-[rgba(44,49,80,0.7)] transition-colors hover:bg-slate-100"
                 >
                   <Icon className="h-4 w-4 text-slate-500" />
-                  <span className="font-medium text-slate-700">{resource.title}</span>
+                  <span className="font-medium text-[#2c3150]">{resource.title}</span>
                 </a>
               );
             })}

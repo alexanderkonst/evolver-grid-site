@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, CheckCircle2, Sparkles, BarChart3, ArrowRight, Flame, Zap } from "lucide-react";
+import { CheckCircle2, Sparkles, BarChart3, ArrowRight, Flame, Zap } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSection from "@/components/game/MeSection";
@@ -281,7 +282,7 @@ const CoreLoopHome = () => {
         return (
             <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+                    <PremiumLoader size="lg" />
                 </div>
             </GameShellV2>
         );
@@ -296,10 +297,10 @@ const CoreLoopHome = () => {
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
                             <Sparkles className="w-8 h-8 text-indigo-600" />
                         </div>
-                        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+                        <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
                             {isGuest ? "Start Building Your Self-Understanding" : "Welcome to Your Journey"}
                         </h1>
-                        <p className="text-slate-600">
+                        <p className="text-[rgba(44,49,80,0.7)]">
                             {isGuest
                                 ? "First, let's discover your Zone of Genius."
                                 : "Let's start by discovering who you are at your best."}
@@ -307,10 +308,10 @@ const CoreLoopHome = () => {
                     </div>
 
                     <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6 mb-6">
-                        <h2 className="font-semibold text-slate-900 mb-2">
+                        <h2 className="font-semibold text-[#2c3150] mb-2">
                             {isGuest ? "Discover Your Zone of Genius" : "Step 1: Discover Your Zone of Genius"}
                         </h2>
-                        <p className="text-sm text-slate-600 mb-4">
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
                             In just 5 minutes, you'll uncover your unique archetype and core talents.
                             This becomes the foundation for everything else.
                         </p>
@@ -355,15 +356,15 @@ const CoreLoopHome = () => {
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
                             <BarChart3 className="w-8 h-8 text-blue-600" />
                         </div>
-                        <h1 className="text-2xl font-bold text-slate-900 mb-2">
+                        <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
                             Great, {archetypeTitle ? `${archetypeTitle}!` : 'Genius Discovered!'}
                         </h1>
-                        <p className="text-slate-600">Now let's see where your life is asking for attention.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Now let's see where your life is asking for attention.</p>
                     </div>
 
                     <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6 mb-6">
-                        <h2 className="font-semibold text-slate-900 mb-2">Step 2: Map Your Quality of Life</h2>
-                        <p className="text-sm text-slate-600 mb-4">
+                        <h2 className="font-semibold text-[#2c3150] mb-2">Step 2: Map Your Quality of Life</h2>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
                             Assess 8 life domains in 5 minutes. This reveals your growth drivers
                             and helps us recommend your next moves.
                         </p>
@@ -427,7 +428,7 @@ const CoreLoopHome = () => {
                             <Zap className="w-4 h-4 text-amber-500" />
                             <div>
                                 <div className="text-xs text-slate-500">Today's XP</div>
-                                <div className="text-lg font-bold text-slate-900">+{todaysXP}</div>
+                                <div className="text-lg font-bold text-[#2c3150]">+{todaysXP}</div>
                             </div>
                         </div>
                         <div className="h-8 w-px bg-slate-200" />
@@ -435,13 +436,13 @@ const CoreLoopHome = () => {
                             <Flame className="w-4 h-4 text-orange-500" />
                             <div>
                                 <div className="text-xs text-slate-500">Total XP</div>
-                                <div className="text-lg font-bold text-slate-900">{xpTotal.toLocaleString()}</div>
+                                <div className="text-lg font-bold text-[#2c3150]">{xpTotal.toLocaleString()}</div>
                             </div>
                         </div>
                     </div>
                     <div className="text-right">
                         <div className="text-xs text-slate-500">Level</div>
-                        <div className="text-lg font-bold text-slate-900">{level}</div>
+                        <div className="text-lg font-bold text-[#2c3150]">{level}</div>
                     </div>
                 </div>
 

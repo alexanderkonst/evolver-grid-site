@@ -254,7 +254,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 >
                     {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
-                <span className="font-bold text-slate-900">Evolver</span>
+                <span className="font-bold text-[#2c3150]">Evolver</span>
                 <div className="w-9" /> {/* Spacer */}
             </div>
 
@@ -299,7 +299,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                             flex-1 flex items-center gap-3 px-3 py-2.5 rounded-lg
                                             transition-colors duration-150
                                             ${!isUnlocked
-                                            ? "text-slate-600 bg-slate-900/40 cursor-not-allowed"
+                                            ? "text-[rgba(44,49,80,0.7)] bg-slate-900/40 cursor-not-allowed"
                                             : isActive(item.path)
                                                 ? "bg-slate-700 text-white"
                                                 : "text-slate-400 hover:bg-slate-800 hover:text-white"

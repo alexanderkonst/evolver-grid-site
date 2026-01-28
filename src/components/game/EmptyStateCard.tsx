@@ -41,7 +41,7 @@ export default function EmptyStateCard({ type }: EmptyStateCardProps) {
     return (
         <div className="bg-gradient-to-br from-[#a4a3d0]/20 to-white rounded-2xl p-8 text-center">
             <div className="text-4xl mb-4">{config.icon}</div>
-            <p className="text-lg text-slate-600 mb-6">{config.message}</p>
+            <p className="text-lg text-[rgba(44,49,80,0.7)] mb-6">{config.message}</p>
             <Link to={config.href}>
                 <Button
                     variant="outline"

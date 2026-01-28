@@ -23,7 +23,7 @@ const KeyboardShortcuts = ({ open, onClose }: KeyboardShortcutsProps) => (
             <kbd className="px-2 py-1 bg-slate-100 rounded text-sm font-mono">
               {shortcut.key}
             </kbd>
-            <span className="text-slate-600">{shortcut.description}</span>
+            <span className="text-[rgba(44,49,80,0.7)]">{shortcut.description}</span>
           </div>
         ))}
       </div>

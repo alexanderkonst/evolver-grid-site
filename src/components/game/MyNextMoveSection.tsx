@@ -33,7 +33,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
     if (!action) {
         return (
             <div className="rounded-xl border border-slate-200 bg-white p-5">
-                <h2 className="font-semibold text-slate-900 mb-3">My Next Move</h2>
+                <h2 className="font-semibold text-[#2c3150] mb-3">My Next Move</h2>
                 <div className="text-center py-8 text-slate-500">
                     <p>Complete your Zone of Genius and Quality of Life assessments to get personalized recommendations.</p>
                     <Button asChild className="mt-4">
@@ -61,21 +61,21 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
 
     return (
         <div className="rounded-xl border border-slate-200 bg-white p-5">
-            <h2 className="font-semibold text-slate-900 mb-4">My Next Move</h2>
+            <h2 className="font-semibold text-[#2c3150] mb-4">My Next Move</h2>
 
             {/* Action Card */}
             <div className="rounded-xl border-2 border-slate-100 bg-slate-50 p-5 mb-4">
                 <div className="flex items-start gap-3 mb-3">
                     <span className="text-3xl">{action.emoji || '🎯'}</span>
                     <div className="flex-1">
-                        <h3 className="font-semibold text-lg text-slate-900">{action.title}</h3>
-                        <p className="text-sm text-slate-600 mt-1">{action.description}</p>
+                        <h3 className="font-semibold text-lg text-[#2c3150]">{action.title}</h3>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{action.description}</p>
                     </div>
                 </div>
 
                 {/* Metadata */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
                         <Clock className="w-3 h-3" />
                         {action.duration}
                     </span>
@@ -88,7 +88,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
                 {/* Action Button */}
                 {showConfirm ? (
                     <div className="space-y-2">
-                        <p className="text-sm text-slate-600 text-center">Did you complete this action?</p>
+                        <p className="text-sm text-[rgba(44,49,80,0.7)] text-center">Did you complete this action?</p>
                         <div className="flex gap-2">
                             <Button
                                 variant="outline"
@@ -122,7 +122,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
             {/* Explore More */}
             <Link
                 to="/game/transformation"
-                className="flex items-center justify-center gap-1 text-sm text-slate-500 hover:text-slate-700 transition-colors"
+                className="flex items-center justify-center gap-1 text-sm text-slate-500 hover:text-[#2c3150] transition-colors"
             >
                 Not this? Explore more
                 <ChevronRight className="w-4 h-4" />

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { FileText, Loader2, CheckCircle2, ExternalLink, Trash2 } from "lucide-react";
+import { FileText, CheckCircle2, ExternalLink, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -100,10 +100,10 @@ const LinkedInUpload = ({ userId, pdfPath, onUpdate }: LinkedInUploadProps) => {
     <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-4">
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-full bg-slate-100">
-          <FileText className="w-5 h-5 text-slate-600" />
+          <FileText className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
         </div>
         <div>
-          <h3 className="font-semibold text-slate-900">Add Your LinkedIn Profile</h3>
+          <h3 className="font-semibold text-[#2c3150]">Add Your LinkedIn Profile</h3>
           <p className="text-sm text-slate-500">Upload a PDF export from LinkedIn.</p>
         </div>
       </div>
@@ -128,21 +128,21 @@ const LinkedInUpload = ({ userId, pdfPath, onUpdate }: LinkedInUploadProps) => {
         </div>
       ) : (
         <Button onClick={() => inputRef.current?.click()} disabled={uploading}>
-          {uploading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <FileText className="w-4 h-4 mr-2" />}
+          {uploading ? <span className="premium-spinner w-4 h-4 mr-2" /> : <FileText className="w-4 h-4 mr-2" />}
           Upload PDF
         </Button>
       )}
 
       <button
         type="button"
-        className="text-xs text-slate-500 hover:text-slate-700"
+        className="text-xs text-slate-500 hover:text-[#2c3150]"
         onClick={() => setShowInstructions((prev) => !prev)}
       >
         {showInstructions ? "Hide instructions" : "How to get your LinkedIn PDF"}
       </button>
 
       {showInstructions && (
-        <ol className="text-xs text-slate-600 list-decimal list-inside space-y-1">
+        <ol className="text-xs text-[rgba(44,49,80,0.7)] list-decimal list-inside space-y-1">
           <li>Go to linkedin.com/in/your-profile</li>
           <li>Click the "More" button</li>
           <li>Select "Save to PDF"</li>

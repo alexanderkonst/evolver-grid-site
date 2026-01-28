@@ -16,10 +16,10 @@ const TodaysPractice = () => {
                 <div className="mb-8 flex items-start justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <Sparkles className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Today's Practice</h1>
+                            <Sparkles className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Today's Practice</h1>
                         </div>
-                        <p className="text-slate-600">Get your personalized practice recommendation</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Get your personalized practice recommendation</p>
                     </div>
                     <Panel3Actions
                         primaryLabel="Go to My Next Move"
@@ -30,7 +30,7 @@ const TodaysPractice = () => {
 
                 {/* Main Card */}
                 <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    <p className="text-slate-600 mb-6">
+                    <p className="text-[rgba(44,49,80,0.7)] mb-6">
                         Based on your profile and progress, we'll recommend the best practice for today.
                     </p>
                 </div>

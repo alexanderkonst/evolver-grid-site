@@ -20,10 +20,10 @@ const GrowthPaths = () => {
                 {/* Header */}
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
-                        <TrendingUp className="w-6 h-6 text-slate-700" />
-                        <h1 className="text-2xl font-bold text-slate-900">5 Growth Paths</h1>
+                        <TrendingUp className="w-6 h-6 text-[#2c3150]" />
+                        <h1 className="text-2xl font-bold text-[#2c3150]">5 Growth Paths</h1>
                     </div>
-                    <p className="text-slate-600">Body, Emotions, Mind, Genius, Spirit</p>
+                    <p className="text-[rgba(44,49,80,0.7)]">Body, Emotions, Mind, Genius, Spirit</p>
                 </div>
 
                 {/* Paths Grid */}
@@ -36,10 +36,10 @@ const GrowthPaths = () => {
                         >
                             <div className="flex items-center gap-4">
                                 <div className="p-2 rounded-lg bg-slate-100">
-                                    <path.icon className="w-5 h-5 text-slate-700" />
+                                    <path.icon className="w-5 h-5 text-[#2c3150]" />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-slate-900">{path.label}</h3>
+                                    <h3 className="font-semibold text-[#2c3150]">{path.label}</h3>
                                     <p className="text-sm text-slate-500">{path.description}</p>
                                 </div>
                                 <ArrowRight className="w-4 h-4 text-slate-500" />

@@ -26,7 +26,7 @@ const BackButton = ({
       variant={variant}
       size={size}
       onClick={() => (to ? navigate(to) : navigate(-1))}
-      className={cn("text-slate-600 hover:text-slate-900", className)}
+      className={cn("text-[rgba(44,49,80,0.7)] hover:text-[#2c3150]", className)}
     >
       <ArrowLeft className="w-4 h-4 mr-2" />
       {label}

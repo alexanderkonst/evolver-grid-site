@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Loader2, MapPin, Target, Sparkles } from "lucide-react";
+import { Shield, MapPin, Target, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
@@ -105,17 +105,17 @@ const PrivacySection = ({
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-full bg-slate-100">
-          <Shield className="w-5 h-5 text-slate-600" />
+          <Shield className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
         </div>
         <div>
-          <h3 className="font-semibold text-slate-900">Privacy & Visibility</h3>
+          <h3 className="font-semibold text-[#2c3150]">Privacy & Visibility</h3>
           <p className="text-sm text-slate-500">Control who can see your profile</p>
         </div>
       </div>
 
       {/* Visibility Level */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-slate-700">Profile Visibility</Label>
+        <Label className="text-sm font-medium text-[#2c3150]">Profile Visibility</Label>
         <RadioGroup
           value={visibility}
           onValueChange={(value) => handleVisibilityChange(value as VisibilityLevel)}
@@ -131,14 +131,14 @@ const PrivacySection = ({
               <div className="flex-1">
                 <Label
                   htmlFor={`visibility-${option.value}`}
-                  className="text-sm font-medium text-slate-900 cursor-pointer"
+                  className="text-sm font-medium text-[#2c3150] cursor-pointer"
                 >
                   {option.label}
                 </Label>
                 <p className="text-xs text-slate-500">{option.description}</p>
               </div>
               {saving === "visibility" && visibility === option.value && (
-                <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
+                <span className="premium-spinner w-4 h-4" />
               )}
             </div>
           ))}
@@ -150,20 +150,20 @@ const PrivacySection = ({
 
       {/* Toggle Switches */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-slate-700">Show on Public Profile</Label>
+        <Label className="text-sm font-medium text-[#2c3150]">Show on Public Profile</Label>
 
         {/* Location Toggle */}
         <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50">
           <div className="flex items-center gap-3">
             <MapPin className="w-4 h-4 text-slate-500" />
             <div>
-              <p className="text-sm font-medium text-slate-900">My location</p>
+              <p className="text-sm font-medium text-[#2c3150]">My location</p>
               <p className="text-xs text-slate-500">City and country</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_location" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
+              <span className="premium-spinner w-4 h-4" />
             )}
             <Switch
               checked={showLocation}
@@ -178,13 +178,13 @@ const PrivacySection = ({
           <div className="flex items-center gap-3">
             <Target className="w-4 h-4 text-slate-500" />
             <div>
-              <p className="text-sm font-medium text-slate-900">My mission</p>
+              <p className="text-sm font-medium text-[#2c3150]">My mission</p>
               <p className="text-xs text-slate-500">Current mission focus</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_mission" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
+              <span className="premium-spinner w-4 h-4" />
             )}
             <Switch
               checked={showMission}
@@ -199,13 +199,13 @@ const PrivacySection = ({
           <div className="flex items-center gap-3">
             <Sparkles className="w-4 h-4 text-slate-500" />
             <div>
-              <p className="text-sm font-medium text-slate-900">My unique offer</p>
+              <p className="text-sm font-medium text-[#2c3150]">My unique offer</p>
               <p className="text-xs text-slate-500">Your genius offer</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             {saving === "show_offer" && (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-500" />
+              <span className="premium-spinner w-4 h-4" />
             )}
             <Switch
               checked={showOffer}

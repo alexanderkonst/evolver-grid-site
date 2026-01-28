@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExternalLink, Loader2, Sparkles } from "lucide-react";
+import { ExternalLink, Sparkles } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -32,21 +33,21 @@ const BrowseGuides = () => {
           .not("last_zog_snapshot_id", "is", null);
 
         if (fetchError) throw fetchError;
-        
+
         // For each profile, fetch zog snapshot to get excalibur offer
         const offersWithData: PublicOffer[] = [];
         for (const profile of profilesData || []) {
           if (!profile.last_zog_snapshot_id) continue;
-          
+
           const { data: snapshot } = await supabase
             .from("zog_snapshots")
             .select("excalibur_data, appleseed_data")
             .eq("id", profile.last_zog_snapshot_id)
             .maybeSingle();
-          
+
           const excalibur = snapshot?.excalibur_data as any;
           const appleseed = snapshot?.appleseed_data as any;
-          
+
           if (excalibur?.offer?.statement || excalibur?.businessIdentity?.tagline) {
             offersWithData.push({
               id: profile.id,
@@ -57,7 +58,7 @@ const BrowseGuides = () => {
             });
           }
         }
-        
+
         setOffers(offersWithData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load guides.");
@@ -79,15 +80,15 @@ const BrowseGuides = () => {
       <div className="p-6 lg:p-8 max-w-5xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Sparkles className="w-6 h-6 text-slate-700" />
-            <h1 className="text-2xl font-bold text-slate-900">Browse Guides</h1>
+            <Sparkles className="w-6 h-6 text-[#2c3150]" />
+            <h1 className="text-2xl font-bold text-[#2c3150]">Browse Guides</h1>
           </div>
-          <p className="text-slate-600">Discover public genius offers from the community.</p>
+          <p className="text-[rgba(44,49,80,0.7)]">Discover public genius offers from the community.</p>
         </div>
 
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+            <PremiumLoader size="md" />
           </div>
         )}
 
@@ -100,8 +101,8 @@ const BrowseGuides = () => {
         {!loading && !error && sortedOffers.length === 0 && (
           <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
             <Sparkles className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">No public offers yet</h2>
-            <p className="text-slate-600">Check back soon for new guides.</p>
+            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">No public offers yet</h2>
+            <p className="text-[rgba(44,49,80,0.7)]">Check back soon for new guides.</p>
           </div>
         )}
 
@@ -130,7 +131,7 @@ const BrowseGuides = () => {
                     )}
                   </div>
                   <div className="min-w-0">
-                    <p className="font-semibold text-slate-900 truncate">
+                    <p className="font-semibold text-[#2c3150] truncate">
                       {offer.display_name || "Community Guide"}
                     </p>
                     {offer.unique_offer_headline && (
@@ -140,7 +141,7 @@ const BrowseGuides = () => {
                 </div>
 
                 {offer.genius_statement && (
-                  <p className="text-sm text-slate-600 mb-4 line-clamp-3">"{offer.genius_statement}"</p>
+                  <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4 line-clamp-3">"{offer.genius_statement}"</p>
                 )}
 
                 <Button

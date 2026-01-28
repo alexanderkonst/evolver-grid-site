@@ -198,17 +198,18 @@ const SpacesRail = ({
                             disabled={isLocked}
                             className={cn(
                                 // Mobile: centered icon, Desktop: icon + label
-                                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all relative",
+                                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 relative group",
                                 "justify-center md:justify-start",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50",
                                 isLocked
-                                    ? "bg-slate-800/40 text-slate-600 cursor-not-allowed"
+                                    ? "bg-slate-800/40 text-[rgba(44,49,80,0.7)] cursor-not-allowed"
                                     : active
                                         ? space.id === "next-move"
                                             ? "bg-amber-500 text-white shadow-lg shadow-amber-500/40 ring-2 ring-amber-400/50"
                                             : "bg-amber-500 text-white shadow-lg shadow-amber-500/25"
                                         : space.id === "next-move"
-                                            ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
-                                            : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white"
+                                            ? "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] shadow-[0_0_20px_rgba(245,158,11,0.3)] ring-1 ring-amber-500/30"
+                                            : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={space.label}
                         >

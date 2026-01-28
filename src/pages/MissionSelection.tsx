@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2, Target } from "lucide-react";
+import { Target } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -149,7 +150,7 @@ const MissionSelection = () => {
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-6 h-6 animate-spin text-slate-500" />
+          <PremiumLoader size="lg" />
         </div>
       </GameShellV2>
     );
@@ -159,7 +160,7 @@ const MissionSelection = () => {
     <GameShellV2>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl space-y-6">
-          <div className="flex items-center gap-3 text-slate-900">
+          <div className="flex items-center gap-3 text-[#2c3150]">
             <Target className="w-6 h-6" />
             <div>
               <h1 className="text-2xl sm:text-3xl font-semibold">Mission Selection</h1>
@@ -212,7 +213,7 @@ const MissionSelection = () => {
           </Select>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-medium text-slate-700 mb-2">Describe your specific mission (optional)</p>
+            <p className="text-sm font-medium text-[#2c3150] mb-2">Describe your specific mission (optional)</p>
             <Textarea
               value={missionNote}
               onChange={(event) => setMissionNote(event.target.value)}

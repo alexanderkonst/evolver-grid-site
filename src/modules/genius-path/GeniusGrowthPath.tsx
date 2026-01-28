@@ -77,7 +77,7 @@ const GeniusGrowthPath = ({ appleseed, excalibur }: GeniusGrowthPathProps) => {
                       <p className={`text-sm font-semibold ${isLocked ? "text-slate-500" : "text-white"}`}>
                         {stage.title}
                       </p>
-                      <p className={`text-xs ${isLocked ? "text-slate-600" : "text-slate-300"}`}>
+                      <p className={`text-xs ${isLocked ? "text-[rgba(44,49,80,0.7)]" : "text-slate-300"}`}>
                         {stage.description}
                       </p>
                     </div>

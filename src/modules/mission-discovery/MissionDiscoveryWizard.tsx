@@ -23,7 +23,7 @@ interface SelectionColumnProps {
 
 const SelectionColumn = ({ title, description, items, selectedId, onSelect, disabled, readOnly }: SelectionColumnProps) => (
     <div className={`bg-slate-50 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""} ${readOnly ? "pointer-events-none" : ""}`}>
-        <h3 className="font-semibold text-slate-900 mb-1 text-sm sm:text-base">{title}</h3>
+        <h3 className="font-semibold text-[#2c3150] mb-1 text-sm sm:text-base">{title}</h3>
         <p className="text-xs text-slate-500 mb-3 line-clamp-2">{description}</p>
         <div className="space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
             {items.length === 0 && (
@@ -38,7 +38,7 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
               w-full text-left px-3 py-3 rounded-lg text-sm transition-colors min-h-[44px]
               ${selectedId === item.id
                             ? "bg-blue-500 text-white"
-                            : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
+                            : "bg-white border border-slate-200 text-[#2c3150] hover:border-blue-300 hover:bg-blue-50"
                         }
               ${(disabled || readOnly) ? "cursor-not-allowed" : "cursor-pointer"}
             `}
@@ -303,7 +303,7 @@ const MissionDiscoveryWizard = () => {
                                 <span className="hidden sm:inline">Back to mission list</span>
                             </Button>
                             <div>
-                                <h1 className="text-lg sm:text-xl font-bold text-slate-900">
+                                <h1 className="text-lg sm:text-xl font-bold text-[#2c3150]">
                                     {isReadOnly ? "Mission Details" : "Mission Discovery"}
                                 </h1>
                                 <p className="text-xs sm:text-sm text-slate-500 hidden sm:block">
@@ -377,7 +377,7 @@ const MissionDiscoveryWizard = () => {
                 <div className={`grid grid-cols-1 lg:grid-cols-3 gap-4 ${isReadOnly ? "opacity-75" : ""}`}>
                     {/* Mission List */}
                     <div className={`bg-slate-50 rounded-xl p-4 ${isReadOnly ? "pointer-events-none" : ""}`}>
-                        <h3 className="font-semibold text-slate-900 mb-1">Select a Mission</h3>
+                        <h3 className="font-semibold text-[#2c3150] mb-1">Select a Mission</h3>
                         <p className="text-xs text-slate-500 mb-3">Choose a mission associated with the selected outcome</p>
                         <div className="space-y-2 max-h-80 overflow-y-auto">
                             {missions.length === 0 && (
@@ -392,7 +392,7 @@ const MissionDiscoveryWizard = () => {
                     w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
                     ${selectedMissionId === mission.id
                                             ? "bg-blue-500 text-white"
-                                            : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50"
+                                            : "bg-white border border-slate-200 text-[#2c3150] hover:border-blue-300 hover:bg-blue-50"
                                         }
                     ${isReadOnly ? "cursor-not-allowed" : "cursor-pointer"}
                   `}
@@ -405,17 +405,17 @@ const MissionDiscoveryWizard = () => {
 
                     {/* Mission Details */}
                     <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6">
-                        <h3 className="font-semibold text-slate-900 mb-4">Mission Details</h3>
+                        <h3 className="font-semibold text-[#2c3150] mb-4">Mission Details</h3>
                         {selectedMission ? (
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-slate-700 leading-relaxed">{selectedMission.statement}</p>
+                                    <p className="text-[#2c3150] leading-relaxed">{selectedMission.statement}</p>
                                 </div>
 
                                 {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
                                     <div>
-                                        <h4 className="font-semibold text-slate-900 mb-2">Existing Projects</h4>
-                                        <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                                        <h4 className="font-semibold text-[#2c3150] mb-2">Existing Projects</h4>
+                                        <ul className="list-disc list-inside text-sm text-[rgba(44,49,80,0.7)] space-y-1">
                                             {selectedMission.existingProjects.map((project, idx) => (
                                                 <li key={idx}>{project}</li>
                                             ))}
@@ -424,7 +424,7 @@ const MissionDiscoveryWizard = () => {
                                 )}
 
                                 <div>
-                                    <h4 className="font-semibold text-slate-900 mb-2">Mission Chat</h4>
+                                    <h4 className="font-semibold text-[#2c3150] mb-2">Mission Chat</h4>
                                     {selectedMission.chatLink ? (
                                         <a
                                             href={selectedMission.chatLink}

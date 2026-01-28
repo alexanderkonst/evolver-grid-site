@@ -63,10 +63,10 @@ const EventsSpace = () => {
           <div className="flex items-start justify-between mb-8">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <CalendarDays className="w-6 h-6 text-slate-700" />
-                <h1 className="text-2xl font-bold text-slate-900">Events</h1>
+                <CalendarDays className="w-6 h-6 text-[#2c3150]" />
+                <h1 className="text-2xl font-bold text-[#2c3150]">Events</h1>
               </div>
-              <p className="text-slate-600">Gatherings and experiences</p>
+              <p className="text-[rgba(44,49,80,0.7)]">Gatherings and experiences</p>
             </div>
 
             {/* Create Event Button */}
@@ -171,7 +171,7 @@ const EventsSpace = () => {
                 <div className="space-y-6">
                   {Object.entries(eventsByLocation).map(([location, grouped]) => (
                     <div key={location}>
-                      <h3 className="text-sm font-semibold text-slate-700 mb-3">{location}</h3>
+                      <h3 className="text-sm font-semibold text-[#2c3150] mb-3">{location}</h3>
                       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {grouped.map((event) => (
                           <EventCard

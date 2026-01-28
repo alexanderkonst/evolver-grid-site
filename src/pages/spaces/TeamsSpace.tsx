@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Users, Loader2 } from "lucide-react";
+import { Users } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MatchCard from "@/components/matchmaking/MatchCard";
 import { Button } from "@/components/ui/button";
@@ -422,10 +423,10 @@ const TeamsSpace = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Users className="w-6 h-6 text-slate-700" />
-                            <h1 className="text-2xl font-bold text-slate-900">Teams</h1>
+                            <Users className="w-6 h-6 text-[#2c3150]" />
+                            <h1 className="text-2xl font-bold text-[#2c3150]">Teams</h1>
                         </div>
-                        <p className="text-slate-600">Find your people. Connect with complementary geniuses.</p>
+                        <p className="text-[rgba(44,49,80,0.7)]">Find your people. Connect with complementary geniuses.</p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
@@ -476,7 +477,7 @@ const TeamsSpace = () => {
 
                     {loading && (
                         <div className="flex items-center justify-center py-12">
-                            <Loader2 className="w-8 h-8 animate-spin text-amber-500" />
+                            <PremiumLoader size="md" />
                         </div>
                     )}
 
@@ -489,7 +490,7 @@ const TeamsSpace = () => {
                     {!loading && !error && !currentMatch && (
                         <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
                             <Users className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-                            <h2 className="text-xl font-semibold text-slate-700 mb-2">No matches yet</h2>
+                            <h2 className="text-xl font-semibold text-[#2c3150] mb-2">No matches yet</h2>
                             <p className="text-slate-500 max-w-md mx-auto">
                                 {filterMode === "cofounders"
                                     ? "No complementary matches right now. Try a different filter."
@@ -532,7 +533,7 @@ const TeamsSpace = () => {
                                 </DialogTitle>
                             </DialogHeader>
                             <div className="space-y-3">
-                                <label htmlFor="connect-message" className="text-sm text-slate-600">
+                                <label htmlFor="connect-message" className="text-sm text-[rgba(44,49,80,0.7)]">
                                     Add a message (optional)
                                 </label>
                                 <Textarea

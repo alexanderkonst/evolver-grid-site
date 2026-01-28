@@ -158,8 +158,8 @@ const PublicPageEditor = () => {
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-2">Your Public Page</h1>
-                    <p className="text-slate-600">
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Public Page</h1>
+                    <p className="text-[rgba(44,49,80,0.7)]">
                         Customize how you appear to others and manage your creator storefront.
                     </p>
                 </div>
@@ -254,7 +254,7 @@ const PublicPageEditor = () => {
                     {/* Public Toggle */}
                     <div className="flex items-center justify-between rounded-lg border border-slate-200 p-4">
                         <div>
-                            <div className="font-medium text-slate-900">Make Page Public</div>
+                            <div className="font-medium text-[#2c3150]">Make Page Public</div>
                             <div className="text-sm text-slate-500">
                                 Others can view your page at /p/{slug || "your-slug"}
                             </div>

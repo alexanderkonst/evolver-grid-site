@@ -86,10 +86,10 @@ const Index = () => {
             className="rounded-3xl border-2 border-slate-300 bg-slate-50 p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all cursor-pointer group"
           >
             <div className="text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-3 group-hover:text-[#2c3150] transition-colors">
                 <BoldText>PLAY YOUR LIFE AS A GAME</BoldText>
               </h2>
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-[rgba(44,49,80,0.7)] max-w-2xl mx-auto">
                 See yourself as a character, your life as a world, and choose one next move.
               </p>
             </div>

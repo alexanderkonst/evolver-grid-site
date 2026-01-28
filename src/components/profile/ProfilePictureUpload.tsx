@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Camera, Loader2 } from "lucide-react";
+import { Camera } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -144,10 +144,10 @@ const ProfilePictureUpload = ({
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="absolute bottom-2 right-2 rounded-full bg-white/90 text-slate-700 p-2 shadow hover:bg-white"
+            className="absolute bottom-2 right-2 rounded-full bg-white/90 text-[#2c3150] p-2 shadow hover:bg-white"
             aria-label="Upload profile picture"
           >
-            {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+            {uploading ? <span className="premium-spinner h-4 w-4" /> : <Camera className="h-4 w-4" />}
           </button>
         </div>
         <input

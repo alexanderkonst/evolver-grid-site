@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Copy, Check, ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
+import { Copy, Check, ArrowLeft, ArrowRight } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,7 +15,7 @@ import BackButton from "@/components/BackButton";
 import { User } from "@supabase/supabase-js";
 import { GENIUS_OFFER_PROMPT_FULL, GENIUS_OFFER_PROMPT_SHORT } from "@/prompts";
 
-type WizardStep = 
+type WizardStep =
   | "auth"
   | "name"
   | "email"
@@ -44,12 +45,12 @@ const GeniusOfferIntake = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  
+
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [copied, setCopied] = useState(false);
-  
+
   const [currentStep, setCurrentStep] = useState<WizardStep>("auth");
   const [progress, setProgress] = useState<WizardProgress>({
     current_step: 1,
@@ -69,17 +70,17 @@ const GeniusOfferIntake = () => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
         // Pre-fill email from auth
         setProgress(prev => ({
           ...prev,
           email: session.user.email || prev.email,
         }));
-        
+
         // Load wizard progress
         const savedProgress = await loadProgress(session.user.id);
-        
+
         // Check if returning from ZoG or MI
         const from = searchParams.get("from");
         if (from === "zog") {
@@ -90,7 +91,7 @@ const GeniusOfferIntake = () => {
             .eq("profile_id", session.user.id)
             .order("created_at", { ascending: false })
             .limit(1);
-          
+
           if (zogData && zogData.length > 0) {
             setProgress(prev => ({ ...prev, zone_of_genius_completed: true }));
             await updateProgressDb(session.user.id, { zone_of_genius_completed: true });
@@ -103,7 +104,7 @@ const GeniusOfferIntake = () => {
             .select("id")
             .eq("user_id", session.user.id)
             .limit(1);
-          
+
           if (miData && miData.length > 0) {
             setProgress(prev => ({ ...prev, multiple_intelligences_completed: true }));
             await updateProgressDb(session.user.id, { multiple_intelligences_completed: true });
@@ -139,7 +140,7 @@ const GeniusOfferIntake = () => {
   // Determine current step only on initial load
   useEffect(() => {
     if (loading) return;
-    
+
     if (!user) {
       setCurrentStep("auth");
       return;
@@ -151,7 +152,7 @@ const GeniusOfferIntake = () => {
     if (!data.name) return "name";
     if (!data.email) return "email";
     if (data.has_ai_assistant === null) return "ai_branch";
-    
+
     if (data.has_ai_assistant) {
       if (data.ai_knows_offers === null) return "ai_knows_offers";
       if (!data.ai_summary) return "ai_prompt";
@@ -171,7 +172,7 @@ const GeniusOfferIntake = () => {
       .select("*")
       .eq("user_id", userId)
       .single();
-    
+
     if (data) {
       const progressData: WizardProgress = {
         current_step: data.current_step || 1,
@@ -203,10 +204,10 @@ const GeniusOfferIntake = () => {
 
   const updateProgress = async (updates: Partial<WizardProgress>) => {
     if (!user) return;
-    
+
     const newProgress = { ...progress, ...updates };
     setProgress(newProgress);
-    
+
     await supabase
       .from("genius_offer_wizard_progress")
       .upsert({
@@ -269,7 +270,7 @@ const GeniusOfferIntake = () => {
     const steps: WizardStep[] = progress.has_ai_assistant
       ? ["name", "email", "ai_branch", "ai_knows_offers", "ai_prompt", "products_sold", "best_clients"]
       : ["name", "email", "ai_branch", "zog_redirect", "mi_redirect", "products_sold", "best_clients"];
-    
+
     const idx = steps.indexOf(currentStep);
     return idx >= 0 ? idx + 1 : 1;
   };
@@ -281,7 +282,7 @@ const GeniusOfferIntake = () => {
   if (loading) {
     return (
       <div className="min-h-dvh bg-background flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <PremiumLoader size="lg" />
       </div>
     );
   }
@@ -299,8 +300,8 @@ const GeniusOfferIntake = () => {
             <p className="text-muted-foreground">
               Please log in or create a free account to continue your Genius Offer.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               onClick={() => navigate("/auth?redirect=/genius-offer-intake")}
               className="w-full"
             >
@@ -336,8 +337,8 @@ const GeniusOfferIntake = () => {
               <p>You&apos;ll also be able to find your Genius Offer inside your profile once it&apos;s ready.</p>
             </div>
             <div className="pt-4 space-y-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => window.open("https://t.me/integralevolution", "_blank")}
                 className="w-full"
               >
@@ -359,7 +360,7 @@ const GeniusOfferIntake = () => {
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <Navigation />
-      
+
       <div className="pt-24 pb-20 px-4">
         <div className="max-w-xl mx-auto">
           {/* Step indicator */}
@@ -553,7 +554,7 @@ const GeniusOfferIntake = () => {
                   ? "Great. We'll let your AI model summarize your genius and past offers."
                   : "No problem. We'll just use your AI to capture your genius signal."}
               </p>
-              
+
               <div className="p-4 bg-secondary/30 rounded-xl border border-border relative">
                 <pre className="text-sm whitespace-pre-wrap text-muted-foreground">
                   {progress.ai_knows_offers ? GENIUS_OFFER_PROMPT_FULL : GENIUS_OFFER_PROMPT_SHORT}
@@ -621,7 +622,7 @@ const GeniusOfferIntake = () => {
               <p className="text-muted-foreground">
                 You&apos;ll take a short assessment, and when you&apos;re done we&apos;ll bring you back here.
               </p>
-              
+
               {progress.zone_of_genius_completed ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-center gap-2 text-accent">
@@ -667,7 +668,7 @@ const GeniusOfferIntake = () => {
               <p className="text-muted-foreground">
                 This takes 2–3 minutes and is a simple drag-and-drop ranking.
               </p>
-              
+
               {progress.multiple_intelligences_completed ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-center gap-2 text-accent">

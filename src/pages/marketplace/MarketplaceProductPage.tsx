@@ -129,7 +129,7 @@ const MarketplaceProductPage: React.FC = () => {
                         {product.cta_config && (
                             <Button
                                 size="lg"
-                                className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8 mt-8"
+                                className="bg-amber-500 hover:bg-amber-600 text-[#2c3150] font-semibold px-8 mt-8"
                                 onClick={handleCTA}
                             >
                                 {product.cta_config.type === "session" ? (

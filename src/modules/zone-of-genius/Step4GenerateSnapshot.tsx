@@ -4,7 +4,8 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Download, ExternalLink, Loader2, ArrowLeft } from "lucide-react";
+import { Download, ExternalLink, ArrowLeft } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -390,15 +391,15 @@ GENERAL STYLE RULES:
         </p>
         {parsedSnapshot ? (
           <>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2c3150]">
               You are a {parsedSnapshot.archetypeTitle}
             </h1>
-            <p className="mt-4 text-lg sm:text-xl text-slate-700 max-w-2xl mx-auto font-medium">
+            <p className="mt-4 text-lg sm:text-xl text-[#2c3150] max-w-2xl mx-auto font-medium">
               Now you have words for what makes you, you.
             </p>
           </>
         ) : (
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2c3150]">
             Discovering Your Zone of Genius...
           </h1>
         )}
@@ -410,8 +411,7 @@ GENERAL STYLE RULES:
       {/* Loading State */}
       {isGenerating ? (
         <div className="flex flex-col items-center justify-center py-16 space-y-4">
-          <Loader2 className="w-12 h-12 animate-spin text-slate-600" />
-          <p className="text-lg text-slate-600">Generating your personalized snapshot...</p>
+          <PremiumLoader size="lg" text="Generating your personalized snapshot..." />
         </div>
       ) : parsedSnapshot ? (
         <>
@@ -433,12 +433,12 @@ GENERAL STYLE RULES:
                   Generated on: {currentDate}
                 </p>
 
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3150] text-center mb-6">
                   {parsedSnapshot.archetypeTitle}
                 </h2>
 
                 <div className="prose prose-sm sm:prose-base max-w-none mb-6">
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#2c3150] leading-relaxed">
                     {parsedSnapshot.description}
                   </p>
                 </div>
@@ -457,39 +457,39 @@ GENERAL STYLE RULES:
 
               {/* Panel A: Superpowers in Action */}
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Superpowers in Action
                 </h3>
-                <p className="text-xs text-slate-600 mb-3">
+                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
                   How this genius tends to show up when you are on.
                 </p>
-                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
                   {formatBullets(parsedSnapshot.superpowers)}
                 </ul>
               </article>
 
               {/* Panel B: Your Edge */}
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Your Edge (Where You Trip Yourself Up)
                 </h3>
-                <p className="text-xs text-slate-600 mb-3">
+                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
                   Your supershadow — the flip side of your gift. Growth happens here.
                 </p>
-                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
                   {formatBullets(parsedSnapshot.edge)}
                 </ul>
               </article>
 
               {/* Panel C: Where This Genius Thrives */}
               <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Where This Genius Thrives
                 </h3>
-                <p className="text-xs text-slate-600 mb-3">
+                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
                   Environments and roles where this pattern tends to shine.
                 </p>
-                <ul className="space-y-2 text-sm text-slate-700 list-disc list-inside">
+                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
                   {formatBullets(parsedSnapshot.thrives)}
                 </ul>
               </article>
@@ -497,10 +497,10 @@ GENERAL STYLE RULES:
               {/* Panel D: Mastery Action */}
               {parsedSnapshot.masteryAction && (
                 <article className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                     🔁 Your Mastery Action
                   </h3>
-                  <p className="text-xs text-slate-600 mb-3">
+                  <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
                     One repeatable action that builds mastery over time.
                   </p>
                   <p className="text-base text-slate-800 font-medium leading-relaxed">
@@ -522,7 +522,7 @@ GENERAL STYLE RULES:
               >
                 {isDownloading ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span className="premium-spinner w-4 h-4" />
                     <span>Generating PDF...</span>
                   </>
                 ) : (
@@ -535,21 +535,21 @@ GENERAL STYLE RULES:
 
               {/* Session card: If This Hit Home */}
               <article className="rounded-2xl border border-slate-300 bg-slate-50 p-5 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                <h3 className="text-sm font-semibold text-[#2c3150] mb-2">
                   If This Hit Home
                 </h3>
-                <p className="text-xs text-slate-700 mb-3">
+                <p className="text-xs text-[#2c3150] mb-3">
                   If this description feels uncannily accurate and you want help turning it into concrete career moves,
                   Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
                 </p>
-                <p className="text-xs font-semibold text-slate-900 mb-3">
+                <p className="text-xs font-semibold text-[#2c3150] mb-3">
                   $297 · 90 minutes
                 </p>
                 <a
                   href="https://www.calendly.com/konstantinov"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-slate-900 hover:bg-slate-50 transition-colors"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-[#2c3150] hover:bg-slate-50 transition-colors"
                 >
                   Book a Deep-Dive Session
                   <ExternalLink className="w-3 h-3" />
@@ -560,7 +560,7 @@ GENERAL STYLE RULES:
 
           {/* Footer: Magic button per UX Playbook */}
           <div className="mt-16 pt-8 border-t border-slate-200 text-center space-y-6">
-            <p className="text-sm text-slate-600 max-w-2xl mx-auto">
+            <p className="text-sm text-[rgba(44,49,80,0.7)] max-w-2xl mx-auto">
               Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
             </p>
 
@@ -585,14 +585,14 @@ GENERAL STYLE RULES:
             <div className="flex items-center justify-center gap-4 text-sm">
               <button
                 onClick={handleBack}
-                className="text-slate-500 hover:text-slate-700 transition-colors"
+                className="text-slate-500 hover:text-[#2c3150] transition-colors"
               >
                 ← Back
               </button>
               <span className="text-slate-300">|</span>
               <button
                 onClick={handleStartNew}
-                className="text-slate-500 hover:text-slate-700 transition-colors"
+                className="text-slate-500 hover:text-[#2c3150] transition-colors"
               >
                 Start Over
               </button>
@@ -623,12 +623,12 @@ GENERAL STYLE RULES:
                   ))}
                 </div>
 
-                <h1 className="text-3xl font-bold text-slate-900 mb-3">
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-3">
                   {parsedSnapshot.archetypeTitle}
                 </h1>
 
                 <div className="max-w-2xl mx-auto">
-                  <p className="text-base text-slate-700 leading-relaxed">
+                  <p className="text-base text-[#2c3150] leading-relaxed">
                     {parsedSnapshot.description}
                   </p>
                 </div>
@@ -638,45 +638,45 @@ GENERAL STYLE RULES:
               <div className="space-y-6">
                 {/* Superpowers */}
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
                     Superpowers in Action
                   </h2>
-                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
                     {formatBullets(parsedSnapshot.superpowers)}
                   </ul>
                 </div>
 
                 {/* Edge */}
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
                     Your Edge (Where You Trip Yourself Up)
                   </h2>
-                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
                     {formatBullets(parsedSnapshot.edge)}
                   </ul>
                 </div>
 
                 {/* Thrives */}
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 mb-2">
+                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
                     Where This Genius Thrives
                   </h2>
-                  <ul className="space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
                     {formatBullets(parsedSnapshot.thrives)}
                   </ul>
                 </div>
 
                 {/* PDF Footer CTA */}
                 <div className="mt-8 pt-6 border-t border-slate-200">
-                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                  <h3 className="text-base font-bold text-[#2c3150] mb-2">
                     Ready to Turn Insight into Action?
                   </h3>
-                  <p className="text-sm text-slate-700 mb-2">
+                  <p className="text-sm text-[#2c3150] mb-2">
                     This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
                     confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
                     transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
                   </p>
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-[#2c3150]">
                     Book My Career Re-Ignition Session at calendly.com/konstantinov
                   </p>
                 </div>
