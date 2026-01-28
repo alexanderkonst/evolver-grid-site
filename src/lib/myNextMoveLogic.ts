@@ -4,9 +4,9 @@
  * Implements the GROW → LEARN → Nudges sequence from module_taxonomy.md
  * 
  * Sequence:
- * 1. GROW → Profile completion first (ZoG → QoL → Resources → Mission)
+ * 1. GROW → Profile completion first (ZoG → ZoG Profile Read → QoL → Resources → Mission)
  * 2. LEARN → Ongoing forever (Library → Growth Paths → Skill Trees)
- * 3. One-time nudges: Resources done → nudge COLLABORATE, ZoG done → nudge BUILD
+ * 3. One-time nudges: ZoG Profile read → nudge BUILD, Resources done → nudge COLLABORATE
  */
 
 export interface Recommendation {
@@ -24,6 +24,8 @@ export interface Recommendation {
 
 export interface ProfileCompletionState {
     hasZoG: boolean;
+    /** User has read their full ZoG profile (unlocks BUILD) */
+    hasReadZoGProfile: boolean;
     hasQoL: boolean;
     hasResources: boolean;
     hasMission: boolean;
@@ -66,6 +68,25 @@ export function getNextRecommendation(
         };
     }
 
+    // Step 2: Read ZoG Profile (Deep Dive) → unlocks BUILD
+    if (!completion.hasReadZoGProfile) {
+        return {
+            primary: {
+                id: 'zog-profile',
+                type: 'grow',
+                space: 'grow',
+                title: 'Read Your Genius Profile',
+                description: 'Explore your full genius breakdown and understand how to leverage it',
+                path: '/game/grow/zone-of-genius',
+                ctaLabel: 'Read Profile',
+                icon: 'sparkles',
+                estimatedTime: '5 min',
+                priority: 'primary',
+            },
+        };
+    }
+
+    // Step 3: QoL Assessment
     if (!completion.hasQoL) {
         return {
             primary: {
@@ -80,9 +101,22 @@ export function getNextRecommendation(
                 estimatedTime: '5 min',
                 priority: 'primary',
             },
+            // BUILD nudge appears after reading ZoG Profile
+            nudge: !nudges.buildNudgeSeen ? {
+                id: 'nudge-build',
+                type: 'nudge',
+                space: 'build',
+                title: 'BUILD is now available!',
+                description: 'You understand your genius. Now create your Genius Offer.',
+                path: '/game/build',
+                ctaLabel: 'Explore BUILD',
+                icon: 'rocket',
+                priority: 'secondary',
+            } : undefined,
         };
     }
 
+    // Step 4: Resources Mapping
     if (!completion.hasResources) {
         return {
             primary: {
@@ -97,18 +131,6 @@ export function getNextRecommendation(
                 estimatedTime: '10 min',
                 priority: 'primary',
             },
-            // Check for BUILD nudge (ZoG done = can start building)
-            nudge: !nudges.buildNudgeSeen ? {
-                id: 'nudge-build',
-                type: 'nudge',
-                space: 'build',
-                title: 'BUILD is now available!',
-                description: 'Your genius is discovered. You can now start building your offering.',
-                path: '/game/build',
-                ctaLabel: 'Explore BUILD',
-                icon: 'rocket',
-                priority: 'secondary',
-            } : undefined,
         };
     }
 
@@ -181,6 +203,7 @@ export function getNextRecommendation(
 export function getGrowCompletion(completion: ProfileCompletionState): number {
     const steps = [
         completion.hasZoG,
+        completion.hasReadZoGProfile,
         completion.hasQoL,
         completion.hasResources,
         completion.hasMission,
@@ -190,10 +213,11 @@ export function getGrowCompletion(completion: ProfileCompletionState): number {
 }
 
 /**
- * Check if GROW is complete (all 4 steps done)
+ * Check if GROW is complete (all 5 steps done)
  */
 export function isGrowComplete(completion: ProfileCompletionState): boolean {
     return completion.hasZoG &&
+        completion.hasReadZoGProfile &&
         completion.hasQoL &&
         completion.hasResources &&
         completion.hasMission;

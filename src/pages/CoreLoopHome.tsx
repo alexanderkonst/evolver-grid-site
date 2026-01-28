@@ -58,6 +58,7 @@ const CoreLoopHome = () => {
     const [nudgeRecommendation, setNudgeRecommendation] = useState<Recommendation | null>(null);
     const [profileCompletion, setProfileCompletion] = useState<ProfileCompletionState>({
         hasZoG: false,
+        hasReadZoGProfile: false,
         hasQoL: false,
         hasResources: false,
         hasMission: false,
@@ -78,7 +79,7 @@ const CoreLoopHome = () => {
                 // Guest user — show ZoG recommendation
                 setIsGuest(true);
                 const { primary } = getNextRecommendation(
-                    { hasZoG: false, hasQoL: false, hasResources: false, hasMission: false },
+                    { hasZoG: false, hasReadZoGProfile: false, hasQoL: false, hasResources: false, hasMission: false },
                     loadNudgeState()
                 );
                 setPrimaryRecommendation(primary);
@@ -102,8 +103,11 @@ const CoreLoopHome = () => {
                 setAvatarUrl((profile as any).avatar_url || null);
 
                 // Determine completion state
+                // Note: hasReadZoGProfile will use zog_profile_read_at field once DB migration is applied
+                // For now, default to false (user hasn't read their profile)
                 const completion: ProfileCompletionState = {
                     hasZoG: !!profile.last_zog_snapshot_id,
+                    hasReadZoGProfile: false, // TODO: check (profile as any).zog_profile_read_at once DB field exists
                     hasQoL: !!profile.last_qol_snapshot_id,
                     // For now, assume not complete (will need DB fields later)
                     hasResources: false,

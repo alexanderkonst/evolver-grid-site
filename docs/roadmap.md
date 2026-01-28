@@ -80,8 +80,11 @@
 - [ ] **Solo user landing page** — one page for organic acquisition
 
 ### My Next Move Follow-ups (from Jan 28 session)
+- [ ] **ZoG Profile Deep Dive module** — Upgrade after ZoG onboarding, user reads full profile → unlocks BUILD badge (spec: `docs/specs/zog-profile/`)
+- [ ] **Add `zog_profile_read_at` DB field** — tracks when user read their full ZoG profile
 - [ ] **Add DB fields for hasResources/hasMission** — currently hardcoded as false in myNextMoveLogic.ts
-- [ ] **BUILD badge/glow on unlock** — visual indicator on BUILD space when ZoG complete (nudge user to explore)
+- [ ] **BUILD badge triggers after ZoG Profile read** — not just ZoG onboarding (update GameShellV2.tsx)
+- [ ] **COLLABORATE badge after Resources mapping** — logic ready, needs hasResources DB field
 - [ ] **Library practices** — combos, sequences, rename "practice"
 
 ---
