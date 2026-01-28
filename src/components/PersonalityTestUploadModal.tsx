@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Upload, Loader2, Check, AlertCircle } from "lucide-react";
+import { Upload, Check, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { completeAction } from "@/lib/completeAction";
@@ -102,47 +102,47 @@ const PersonalityTestUploadModal = ({
 
         try {
             const profileId = await getOrCreateGameProfileId();
-            
+
             // Get existing personality tests from profile
             const { data: profile, error: fetchError } = await supabase
                 .from('game_profiles')
                 .select('personality_tests')
                 .eq('id', profileId)
                 .single();
-            
+
             if (fetchError) throw fetchError;
-            
+
             // Merge with existing tests
             const existingTests = (profile?.personality_tests as Record<string, any>) || {};
             const updatedTests = {
                 ...existingTests,
                 [testType]: results
             };
-            
+
             // Save to database
             const { error: updateError } = await supabase
                 .from('game_profiles')
                 .update({ personality_tests: updatedTests })
                 .eq('id', profileId);
-            
+
             if (updateError) throw updateError;
-            
+
             // Complete the upgrade if this is the first test (or any test)
             await completeAction(
-              {
-                id: "upgrade:personality_tests_completed",
-                type: "upgrade",
-                loop: "transformation",
-                title: "Complete Personality Tests",
-                source: "lib/upgradeSystem.ts",
-                completionPayload: { sourceId: "personality_tests_completed" },
-              },
-              { profileId }
+                {
+                    id: "upgrade:personality_tests_completed",
+                    type: "upgrade",
+                    loop: "transformation",
+                    title: "Complete Personality Tests",
+                    source: "lib/upgradeSystem.ts",
+                    completionPayload: { sourceId: "personality_tests_completed" },
+                },
+                { profileId }
             );
-            
+
             setSaved(true);
             onSuccess?.(results);
-            
+
             toast({
                 title: "Results saved!",
                 description: "+20 XP for exploring your inner landscape.",
@@ -300,17 +300,17 @@ const PersonalityTestUploadModal = ({
                                     )}
                                 </p>
                                 <div className="rounded-lg overflow-hidden border border-border">
-                                <img 
-                                    src={
-                                        testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
-                                        testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
-                                        'https://i.imgur.com/oHYAq89.jpeg'
-                                    }
-                                    alt={`Example ${testType} result`}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-auto max-h-32 object-cover object-top"
-                                />
+                                    <img
+                                        src={
+                                            testType === 'enneagram' ? 'https://i.imgur.com/IQMLKiz.jpeg' :
+                                                testType === '16personalities' ? 'https://i.imgur.com/kxjODNb.jpeg' :
+                                                    'https://i.imgur.com/oHYAq89.jpeg'
+                                        }
+                                        alt={`Example ${testType} result`}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-auto max-h-32 object-cover object-top"
+                                    />
                                     <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
                                 </div>
                             </div>
@@ -331,13 +331,13 @@ const PersonalityTestUploadModal = ({
                                 />
                                 {preview ? (
                                     <div className="space-y-2">
-                                    <img
-                                        src={preview}
-                                        alt="Preview"
-                                        loading="lazy"
-                                        decoding="async"
-                                        className="max-h-48 mx-auto rounded"
-                                    />
+                                        <img
+                                            src={preview}
+                                            alt="Preview"
+                                            loading="lazy"
+                                            decoding="async"
+                                            className="max-h-48 mx-auto rounded"
+                                        />
                                         <p className="text-sm text-muted-foreground">Click or drop to change</p>
                                     </div>
                                 ) : (
@@ -384,7 +384,7 @@ const PersonalityTestUploadModal = ({
                                     >
                                         {analyzing ? (
                                             <>
-                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                <span className="premium-spinner w-4 h-4 mr-2" />
                                                 Analyzing...
                                             </>
                                         ) : (
@@ -412,7 +412,7 @@ const PersonalityTestUploadModal = ({
                                     >
                                         {saving ? (
                                             <>
-                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                <span className="premium-spinner w-4 h-4 mr-2" />
                                                 Saving...
                                             </>
                                         ) : saved ? (
