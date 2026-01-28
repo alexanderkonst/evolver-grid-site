@@ -243,7 +243,7 @@ const SpacesRail = ({
                             )}
                         </button>
                     );
-                })}}
+                })}
             </nav>
 
             {/* Settings Button */}
