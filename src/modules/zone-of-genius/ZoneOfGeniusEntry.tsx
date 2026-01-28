@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PremiumButton } from "@/components/ui/PremiumButton";
 import { Textarea } from "@/components/ui/textarea";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
@@ -402,7 +403,7 @@ const ZoneOfGeniusEntry = () => {
                 {step === "choice" && (
                     <div className="space-y-6">
                         <div className="text-center mb-6">
-                            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">
+                            <h2 className="text-lg font-semibold text-[#2c3150] font-display mb-2">
                                 Do you have an AI that knows you?
                             </h2>
                         </div>
@@ -410,25 +411,37 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-4 rounded-xl border-2 border-[var(--wabi-lavender)]/30 hover:border-[#8460ea] bg-white transition-all text-left flex items-start gap-4"
+                                className="w-full p-5 rounded-xl border-2 border-[var(--wabi-lavender)]/40 
+                                           hover:border-[#8460ea] hover:shadow-lg hover:shadow-[#8460ea]/10
+                                           bg-white/80 backdrop-blur-sm transition-all duration-200 
+                                           text-left flex items-start gap-4 group"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2 rounded-full bg-[var(--wabi-lavender)]/20 shrink-0">
+                                    <div className="p-2.5 rounded-full bg-[var(--wabi-lavender)]/20 shrink-0
+                                                    group-hover:bg-[#8460ea]/20 transition-colors">
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
-                                    <p className="font-semibold text-[#2c3150]">Yes, my AI knows me</p>
+                                    <p className="font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
+                                        Yes, my AI knows me
+                                    </p>
                                 </div>
                             </button>
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-4 rounded-xl border-2 border-[var(--wabi-aqua)]/30 hover:border-[var(--depth-cornflower)] bg-white transition-all text-left flex items-start gap-4"
+                                className="w-full p-5 rounded-xl border-2 border-[var(--wabi-aqua)]/40 
+                                           hover:border-[var(--depth-cornflower)] hover:shadow-lg hover:shadow-[var(--depth-cornflower)]/10
+                                           bg-white/80 backdrop-blur-sm transition-all duration-200 
+                                           text-left flex items-start gap-4 group"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2 rounded-full bg-[var(--wabi-aqua)]/20 shrink-0">
+                                    <div className="p-2.5 rounded-full bg-[var(--wabi-aqua)]/20 shrink-0
+                                                    group-hover:bg-[var(--depth-cornflower)]/20 transition-colors">
                                         <ClipboardList className="w-5 h-5 text-[var(--depth-cornflower)]" />
                                     </div>
-                                    <p className="font-semibold text-[#2c3150]">No, I'll do the assessment</p>
+                                    <p className="font-semibold text-[#2c3150] group-hover:text-[var(--depth-cornflower)] transition-colors">
+                                        No, I'll do the assessment
+                                    </p>
                                 </div>
                             </button>
                         </div>
@@ -439,7 +452,7 @@ const ZoneOfGeniusEntry = () => {
                 {step === "ai-prompt" && (
                     <div className="space-y-4">
                         <div className="text-center">
-                            <h2 className="text-base font-semibold text-[#2c3150]">
+                            <h2 className="text-base font-semibold text-[#2c3150] font-display">
                                 Copy this prompt into your AI
                             </h2>
                         </div>
@@ -468,14 +481,14 @@ const ZoneOfGeniusEntry = () => {
                             </Button>
                         </div>
 
-                        <Button
+                        <PremiumButton
                             className="w-full"
                             size="lg"
                             onClick={() => setStep("paste-response")}
                         >
                             I've got my AI's response
                             <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
+                        </PremiumButton>
 
                         <div className="text-center">
                             <button
@@ -492,7 +505,7 @@ const ZoneOfGeniusEntry = () => {
                 {step === "paste-response" && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-lg font-semibold text-[#2c3150]">
+                            <h2 className="text-lg font-semibold text-[#2c3150] font-display">
                                 Paste your AI's response
                             </h2>
                         </div>
@@ -504,15 +517,16 @@ const ZoneOfGeniusEntry = () => {
                             className="min-h-[200px] font-mono text-sm"
                         />
 
-                        <Button
-                            className="w-full bg-amber-500 hover:from-amber-600 hover:to-orange-600"
+                        <PremiumButton
+                            className="w-full"
                             size="lg"
                             onClick={handleGenerateAppleseed}
-                            disabled={!aiResponse.trim() || isProcessing}
+                            loading={isProcessing}
+                            disabled={!aiResponse.trim()}
                         >
-                            {isProcessing ? "Generating..." : "Discover My Zone of Genius"}
+                            Discover My Zone of Genius
                             <Sparkles className="w-4 h-4 ml-2" />
-                        </Button>
+                        </PremiumButton>
                     </div>
                 )}
             </div>

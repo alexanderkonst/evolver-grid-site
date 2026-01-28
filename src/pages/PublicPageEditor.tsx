@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader2, Check, ExternalLink, Palette } from "lucide-react";
+import { Check, ExternalLink, Palette } from "lucide-react";
+import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -147,7 +148,7 @@ const PublicPageEditor = () => {
         return (
             <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+                    <PremiumLoader size="lg" />
                 </div>
             </GameShellV2>
         );
@@ -221,8 +222,8 @@ const PublicPageEditor = () => {
                                     key={color}
                                     onClick={() => setBrandColor(color)}
                                     className={`w-8 h-8 rounded-full transition-all ${brandColor === color
-                                            ? "ring-2 ring-offset-2 ring-slate-900 scale-110"
-                                            : "hover:scale-105"
+                                        ? "ring-2 ring-offset-2 ring-slate-900 scale-110"
+                                        : "hover:scale-105"
                                         }`}
                                     style={{ backgroundColor: color }}
                                 />
@@ -277,7 +278,7 @@ const PublicPageEditor = () => {
                             className="flex-1"
                         >
                             {isSaving ? (
-                                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                                <span className="premium-spinner w-4 h-4 mr-2" />
                             ) : (
                                 <Check className="w-4 h-4 mr-2" />
                             )}

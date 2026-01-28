@@ -649,6 +649,223 @@ For rapid iteration:
 
 ---
 
+# Part III: Premium UI Enhancement
+
+> **Purpose:** Transform functional UI into premium Planetary OS experience that matches the brandbook vision.
+
+## The Premium Standard
+
+| Element | ❌ Avoid | ✅ Premium |
+|---------|---------|-----------|
+| Text color | Pure `black` or `#000` | `#2c3150` (charcoal) or `rgba(44,49,80,0.7)` |
+| Buttons | Plain white/gray, flat | `PremiumButton` with gradient + glow |
+| Cards | Plain white `bg-white` | `PremiumCard` with glass effect |
+| Loading | `Loader2` from lucide | `PremiumLoader` or `premium-spinner` |
+| Headings | System sans-serif | `font-display` (Cormorant Garamond) |
+| Body text | Default styles | `font-sans` (DM Sans), tight letter-spacing |
+
+---
+
+## Premium Components (Required)
+
+### 1. PremiumCard
+
+```tsx
+import { PremiumCard } from "@/components/ui/PremiumCard";
+
+// Variants: "glass" (default), "glass-strong", "solid"
+<PremiumCard variant="glass-strong" className="p-4">
+  {/* Content */}
+</PremiumCard>
+```
+
+**Use for:** Choice cards, result displays, content boxes, modal bodies
+
+### 2. PremiumButton
+
+```tsx
+import { PremiumButton } from "@/components/ui/PremiumButton";
+
+<PremiumButton size="lg" loading={isLoading}>
+  Continue
+</PremiumButton>
+```
+
+**Use for:** Primary CTAs, important actions, form submissions
+
+### 3. HeroIcon
+
+```tsx
+import { HeroIcon } from "@/components/ui/HeroIcon";
+import { Sparkles } from "lucide-react";
+
+<HeroIcon icon={Sparkles} size="lg" variant="gradient" />
+```
+
+**Use for:** Page headers, result reveals, celebration moments
+
+### 4. PremiumLoader
+
+```tsx
+import { PremiumLoader, FullPageLoader } from "@/components/ui/PremiumLoader";
+
+// Component-level loading
+<PremiumLoader size="lg" />
+
+// Full page with message
+<FullPageLoader text="Preparing your journey..." />
+```
+
+**Use for:** All loading states. Never use `Loader2` directly.
+
+### 5. premium-spinner (CSS class)
+
+```tsx
+// For inline/button loading states
+<span className="premium-spinner w-4 h-4" />
+```
+
+---
+
+## Color System
+
+### Primary Text Colors
+
+| Variable | Value | Use |
+|----------|-------|-----|
+| `--wabi-text-primary` | `#2c3150` | Headings, important text |
+| `--wabi-text-secondary` | `rgba(44,49,80,0.7)` | Body text, descriptions |
+| `--wabi-text-muted` | `rgba(44,49,80,0.5)` | Hints, subtle labels |
+
+### Accent Colors
+
+| Variable | Value | Use |
+|----------|-------|-----|
+| `--depth-violet` | `#8460ea` | Primary accent, CTAs |
+| `--depth-royal` | `#29549f` | Secondary accent |
+| `--wabi-lavender` | `#a4a3d0` | Soft accent, icons |
+| `--wabi-aqua` | `#a7cbd4` | Secondary options |
+
+### Glassmorphism
+
+```css
+--glass-bg: rgba(255, 255, 255, 0.85);
+--glass-bg-strong: rgba(255, 255, 255, 0.95);
+--glass-border: rgba(255, 255, 255, 0.3);
+```
+
+---
+
+## Typography
+
+### Font Stack
+
+| Role | Font | Class |
+|------|------|-------|
+| Headings | Cormorant Garamond | `font-display` |
+| Body | DM Sans | `font-sans` |
+| Code | JetBrains Mono | `font-mono` |
+
+### Heading Styles
+
+```tsx
+// H1 - Page title
+<h1 className="text-2xl font-semibold text-[#2c3150] font-display">
+  Who are you, really?
+</h1>
+
+// Subtitle
+<p className="text-[var(--wabi-text-secondary)] mt-1">
+  In 5 minutes, get words for your unique genius
+</p>
+
+// Section label
+<p className="text-[9px] text-[#8460ea] font-medium uppercase tracking-wide">
+  My Unique Offer
+</p>
+```
+
+---
+
+## Choice Button Pattern
+
+For screens with 2-3 options (like the screenshot):
+
+```tsx
+<button
+  onClick={handleChoice}
+  className="w-full p-4 rounded-xl border-2 border-[var(--wabi-lavender)]/30 
+             hover:border-[#8460ea] hover:shadow-md bg-white/80 backdrop-blur-sm
+             transition-all text-left flex items-start gap-4 group"
+>
+  <div className="flex items-center gap-4">
+    <div className="p-2 rounded-full bg-[var(--wabi-lavender)]/20 shrink-0
+                    group-hover:bg-[#8460ea]/20 transition-colors">
+      <Bot className="w-5 h-5 text-[#8460ea]" />
+    </div>
+    <p className="font-semibold text-[#2c3150]">Yes, my AI knows me</p>
+  </div>
+</button>
+```
+
+**Key properties:**
+- `bg-white/80 backdrop-blur-sm` — glassmorphic
+- `border-[var(--wabi-lavender)]/30` — soft border
+- `hover:border-[#8460ea]` — accent on hover
+- `text-[#2c3150]` — never pure black
+
+---
+
+## AI Step-by-Step Checklist
+
+When working on ANY screen, verify:
+
+### 1. Colors
+- [ ] No pure black text (`#000` or `black`) — use `#2c3150`
+- [ ] Body text uses `rgba(44,49,80,0.7)`
+- [ ] Muted text uses `rgba(44,49,80,0.5)`
+- [ ] Accent colors from design system (not arbitrary)
+
+### 2. Typography
+- [ ] Headings use `font-display` class
+- [ ] Body uses `font-sans` class
+- [ ] Proper hierarchy (h1 > h2 > p)
+
+### 3. Components
+- [ ] Primary actions use `PremiumButton` (not plain `Button`)
+- [ ] Cards use `PremiumCard` (not `bg-white rounded-xl`)
+- [ ] Icons in hero positions use `HeroIcon`
+- [ ] Loading states use `PremiumLoader` or `premium-spinner`
+
+### 4. Interactivity
+- [ ] Hover states defined (`hover:`)
+- [ ] Focus states for accessibility
+- [ ] Transitions smooth (`transition-all`)
+
+### 5. Layout
+- [ ] Proper spacing (not cramped)
+- [ ] Max-width containers for readability
+- [ ] Responsive considerations
+
+---
+
+## Quick Audit Command
+
+Run this to find remaining issues:
+
+```bash
+# Find pure black text
+grep -r "text-black\|#000000\|black;" --include="*.tsx" src/
+
+# Find non-premium loaders
+grep -r "Loader2" --include="*.tsx" src/
+
+# Find plain white cards (may need premium treatment)
+grep -r 'bg-white rounded' --include="*.tsx" src/
+```
+
+---
+
 ## Related Documents
 
 - [product_playbook.md](./product_playbook.md) — Source methodology

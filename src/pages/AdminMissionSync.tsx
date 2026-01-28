@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { syncMissionData, getMissionCounts, SyncResult } from "@/lib/syncMissionData";
-import { Loader2, CheckCircle, AlertCircle, Database } from "lucide-react";
+import { CheckCircle, AlertCircle, Database } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface MissionManifest {
@@ -285,7 +285,7 @@ export default function AdminMissionSync() {
             <Button onClick={handleSync} disabled={syncDisabled} size="lg">
               {loading ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <span className="premium-spinner mr-2 h-4 w-4" />
                   Syncing...
                 </>
               ) : (
@@ -348,7 +348,7 @@ export default function AdminMissionSync() {
                   <CheckCircle className="h-5 w-5 text-green-500" />
                   <p className="font-medium text-green-700">Sync Completed Successfully!</p>
                 </div>
-                
+
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
                   <div className="text-center p-2 bg-white/50 rounded">
                     <div className="text-lg font-bold">{result.counts.pillars}</div>
