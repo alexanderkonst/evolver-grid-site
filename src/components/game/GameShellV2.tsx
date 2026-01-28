@@ -345,10 +345,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-8 bg-slate-800 hover:bg-slate-700 flex items-center justify-center border-r border-slate-700 transition-colors"
+                        className="h-dvh sticky top-0 w-8 bg-[#2c3150] hover:bg-[#8460ea]/20 flex items-center justify-center border-r border-[#8460ea]/20 transition-colors"
                         title="Expand sidebar (⌘B)"
                     >
-                        <PanelLeft className="w-4 h-4 text-slate-400" />
+                        <PanelLeft className="w-4 h-4 text-[#a4a3d0]" />
                     </button>
                 )}
 
@@ -399,14 +399,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                         mobileView === "content" ? "translate-x-0" : "translate-x-full"
                     )}
                 >
-                    {/* Mobile Header with safe area - Premium gradient */}
                     <header
-                        className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-slate-700/50"
+                        className="bg-gradient-to-r from-[#2c3150] via-[#252941] to-[#2c3150] backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-[#8460ea]/20"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-slate-700/50 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-[#8460ea]/20 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
