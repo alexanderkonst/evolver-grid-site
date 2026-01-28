@@ -48,8 +48,8 @@ export default function NextMoveCard({
     if (!action) {
         return (
             <div className="bg-gradient-to-br from-[#a4a3d0]/10 to-white rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-slate-800 mb-4">My Next Move</h3>
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Next Move</h3>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 text-center border border-[var(--wabi-lavender)]/20">
                     <div className="text-3xl mb-3">✨</div>
                     <p className="text-[rgba(44,49,80,0.7)] mb-4">
                         You've completed all recommended actions!
@@ -68,19 +68,19 @@ export default function NextMoveCard({
 
     return (
         <div className="bg-gradient-to-br from-[#a4a3d0]/10 to-white rounded-2xl p-6">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">My Next Move</h3>
+            <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Next Move</h3>
 
-            <div className="bg-white rounded-xl shadow-md p-6">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 border border-[var(--wabi-lavender)]/20">
                 {/* Action Header */}
                 <div className="flex items-start gap-4 mb-4">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#8460ea]/20 to-[#6894d0]/20 flex items-center justify-center text-xl flex-shrink-0">
                         {icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <h4 className="text-xl font-bold text-slate-800 leading-tight">
+                        <h4 className="text-xl font-bold text-[#2c3150] leading-tight">
                             {action.title}
                         </h4>
-                        <p className="text-sm text-slate-500 mt-1">
+                        <p className="text-sm text-[var(--wabi-text-muted)] mt-1">
                             {action.vector} Path · {action.duration || 10} min
                         </p>
                     </div>
@@ -106,7 +106,7 @@ export default function NextMoveCard({
             {/* Explore link */}
             <button
                 onClick={onExplore}
-                className="mt-4 text-sm text-slate-500 hover:text-[#8460ea] w-full text-center transition-colors"
+                className="mt-4 text-sm text-[var(--wabi-text-muted)] hover:text-[#8460ea] w-full text-center transition-colors"
             >
                 Not this? Explore more →
             </button>

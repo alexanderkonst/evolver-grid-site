@@ -74,8 +74,8 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">My Life</h3>
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6">
+            <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Life</h3>
 
             {scores ? (
                 <>
@@ -116,12 +116,12 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                             </p>
                         )}
                         {avgScore && (
-                            <p className="text-slate-500 mt-1">{getSentiment(avgScore)}</p>
+                            <p className="text-[var(--wabi-text-muted)] mt-1">{getSentiment(avgScore)}</p>
                         )}
                     </div>
                 </>
             ) : (
-                <p className="text-sm text-slate-500 text-center italic">
+                <p className="text-sm text-[var(--wabi-text-muted)] text-center italic">
                     No life map yet
                 </p>
             )}

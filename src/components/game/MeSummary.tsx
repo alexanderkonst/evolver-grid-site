@@ -23,7 +23,7 @@ export default function MeSummary({
     const progressPercent = (xpInCurrentLevel / xpToNextLevel) * 100;
 
     return (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6">
             <div className="flex items-start gap-4">
                 {/* Archetype Icon */}
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#a4a3d0] to-[#8460ea] flex items-center justify-center flex-shrink-0">
@@ -32,10 +32,10 @@ export default function MeSummary({
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                    <h2 className="text-lg font-bold text-slate-800 truncate">
+                    <h2 className="text-lg font-bold text-[#2c3150] font-display truncate">
                         {archetypeTitle || "Discovering..."}
                     </h2>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-[var(--wabi-text-secondary)]">
                         Level {level} · {xpTotal.toLocaleString()} XP
                     </p>
 
@@ -46,7 +46,7 @@ export default function MeSummary({
                             style={{ width: `${progressPercent}%` }}
                         />
                     </div>
-                    <p className="text-xs text-slate-400 mt-1">
+                    <p className="text-xs text-[var(--wabi-text-muted)] mt-1">
                         {xpInCurrentLevel} / {xpToNextLevel} to level {level + 1}
                     </p>
                 </div>
