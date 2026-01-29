@@ -102,6 +102,26 @@ All colors MUST be HSL.
     --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
     --glass-blur: blur(20px);
 
+    /* ========================================
+       PANEL 3 CONTENT AREA TOKENS
+       Pearl/White base with wabi-sabi aesthetic
+       ======================================== */
+
+    /* Panel 3 Backgrounds */
+    --panel3-bg: #f0f4ff;
+    --panel3-bg-alt: #e8f0fe;
+    --panel3-bg-end: #f5f7fa;
+    --panel3-gradient: linear-gradient(180deg, #f0f4ff 0%, #e8f0fe 50%, #f5f7fa 100%);
+
+    /* Panel 3 Cards */
+    --panel3-card-bg: rgba(255, 255, 255, 0.85);
+    --panel3-card-border: rgba(164, 163, 208, 0.2);
+    --panel3-card-shadow: 0 4px 16px rgba(44, 49, 80, 0.06);
+
+    /* Panel 3 Progress Elements */
+    --progress-bg: rgba(164, 163, 208, 0.2);
+    --progress-fill: linear-gradient(90deg, #8460ea 0%, #6894d0 100%);
+
     /* Premium Buttons */
     --btn-premium-bg: linear-gradient(135deg, #8460ea 0%, #6894d0 100%);
     --btn-premium-bg-hover: linear-gradient(135deg, #7550da 0%, #5884c0 100%);
@@ -387,6 +407,29 @@ All colors MUST be HSL.
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Thin scrollbar for dark panels - matches brandbook */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(104, 148, 208, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(104, 148, 208, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(104, 148, 208, 0.5);
   }
 
   /* Safe area support for mobile devices */

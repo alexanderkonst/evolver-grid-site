@@ -32,9 +32,9 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
 
     if (!action) {
         return (
-            <div className="rounded-xl border border-slate-200 bg-white p-5">
-                <h2 className="font-semibold text-[#2c3150] mb-3">My Next Move</h2>
-                <div className="text-center py-8 text-slate-500">
+            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                <h2 className="font-display text-lg font-semibold text-[#2c3150] mb-3">My Next Move</h2>
+                <div className="text-center py-8 text-[#2c3150]/60">
                     <p>Complete your Zone of Genius and Quality of Life assessments to get personalized recommendations.</p>
                     <Button asChild className="mt-4">
                         <Link to="/start">Start Zone of Genius</Link>
@@ -60,11 +60,11 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
     };
 
     return (
-        <div className="rounded-xl border border-slate-200 bg-white p-5">
-            <h2 className="font-semibold text-[#2c3150] mb-4">My Next Move</h2>
+        <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
+            <h2 className="font-display text-lg font-semibold text-[#2c3150] mb-4">My Next Move</h2>
 
             {/* Action Card */}
-            <div className="rounded-xl border-2 border-slate-100 bg-slate-50 p-5 mb-4">
+            <div className="rounded-xl border-2 border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 mb-4">
                 <div className="flex items-start gap-3 mb-3">
                     <span className="text-3xl">{action.emoji || '🎯'}</span>
                     <div className="flex-1">
@@ -75,7 +75,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
 
                 {/* Metadata */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
+                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#a4a3d0]/10 text-[#2c3150]/70">
                         <Clock className="w-3 h-3" />
                         {action.duration}
                     </span>
@@ -98,7 +98,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
                                 Not Yet
                             </Button>
                             <Button
-                                className="flex-1 bg-green-600 hover:bg-green-700"
+                                className="flex-1 bg-[#b1c9b6] hover:bg-[#9ab8a5]"
                                 onClick={handleConfirmComplete}
                                 disabled={isCompleting}
                             >

@@ -32,17 +32,17 @@ const GrowthPaths = () => {
                         <Link
                             key={path.id}
                             to={path.path}
-                            className="block rounded-xl border border-slate-200 bg-white p-4 hover:border-slate-300 hover:shadow-sm transition-all"
+                            className="block rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="p-2 rounded-lg bg-slate-100">
+                                <div className="p-2 rounded-lg bg-[#a4a3d0]/20">
                                     <path.icon className="w-5 h-5 text-[#2c3150]" />
                                 </div>
                                 <div className="flex-1">
                                     <h3 className="font-semibold text-[#2c3150]">{path.label}</h3>
-                                    <p className="text-sm text-slate-500">{path.description}</p>
+                                    <p className="text-sm text-[#2c3150]/60">{path.description}</p>
                                 </div>
-                                <ArrowRight className="w-4 h-4 text-slate-500" />
+                                <ArrowRight className="w-4 h-4 text-[#2c3150]/50" />
                             </div>
                         </Link>
                     ))}

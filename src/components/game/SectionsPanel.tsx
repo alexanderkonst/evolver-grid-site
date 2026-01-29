@@ -218,10 +218,9 @@ const SectionsPanel = ({
                 className
             )}
         >
-            {/* Header */}
-            <div className="h-14 px-4 flex items-center justify-between border-b border-[#6894d0]/30">
-                <h2 className="text-white font-semibold">{spaceData.title}</h2>
-                {onClose && (
+            {/* Close button (only when onClose provided) */}
+            {onClose && (
+                <div className="h-10 px-4 flex items-center justify-end">
                     <button
                         onClick={onClose}
                         className="p-1.5 text-[#a7cbd4] hover:text-white hover:bg-[#29549f]/60 rounded-md transition-colors"
@@ -230,11 +229,11 @@ const SectionsPanel = ({
                     >
                         <X className="w-4 h-4" />
                     </button>
-                )}
-            </div>
+                </div>
+            )}
 
-            {/* Sections */}
-            <nav className="flex-1 overflow-y-auto py-2">
+            {/* Sections - custom scrollbar */}
+            <nav className="flex-1 overflow-y-auto py-2 pt-4 scrollbar-thin">
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;

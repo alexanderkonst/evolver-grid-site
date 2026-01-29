@@ -29,8 +29,8 @@ const TodaysPractice = () => {
                 </div>
 
                 {/* Main Card */}
-                <div className="rounded-xl border border-slate-200 bg-white p-6">
-                    <p className="text-[rgba(44,49,80,0.7)] mb-6">
+                <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                    <p className="text-[#2c3150]/70 mb-6">
                         Based on your profile and progress, we'll recommend the best practice for today.
                     </p>
                 </div>

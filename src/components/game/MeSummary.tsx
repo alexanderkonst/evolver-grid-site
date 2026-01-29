@@ -40,7 +40,7 @@ export default function MeSummary({
                     </p>
 
                     {/* XP Progress Bar */}
-                    <div className="mt-3 h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="mt-3 h-2 bg-[#a4a3d0]/20 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] transition-all duration-500"
                             style={{ width: `${progressPercent}%` }}

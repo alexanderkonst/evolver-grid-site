@@ -76,30 +76,30 @@ const ProfileAssetsSection = () => {
                     />
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+                <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm overflow-hidden shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                     <button
                         onClick={() => setShowAssets(!showAssets)}
-                        className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors"
+                        className="w-full flex items-center justify-between p-4 hover:bg-[#f0f4ff]/50 transition-colors"
                     >
                         <div className="flex items-center gap-3">
-                            <Boxes className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
+                            <Boxes className="w-5 h-5 text-[#2c3150]/70" />
                             <span className="font-semibold text-[#2c3150]">
                                 Your Assets ({savedAssets.length})
                             </span>
                         </div>
                         {showAssets ? (
-                            <ChevronUp className="w-5 h-5 text-slate-500" />
+                            <ChevronUp className="w-5 h-5 text-[#2c3150]/50" />
                         ) : (
-                            <ChevronDown className="w-5 h-5 text-slate-500" />
+                            <ChevronDown className="w-5 h-5 text-[#2c3150]/50" />
                         )}
                     </button>
 
                     {showAssets && (
-                        <div className="border-t border-slate-100 max-h-96 overflow-y-auto">
+                        <div className="border-t border-[#a4a3d0]/10 max-h-96 overflow-y-auto">
                             {savedAssets.length === 0 ? (
                                 <div className="p-4">
                                     <EmptyState
-                                        icon={<Boxes className="w-6 h-6 text-slate-500" />}
+                                        icon={<Boxes className="w-6 h-6 text-[#2c3150]/50" />}
                                         title="No assets saved"
                                         description="Start mapping your resources to build your library."
                                         action={{
@@ -112,21 +112,21 @@ const ProfileAssetsSection = () => {
                                 savedAssets.map((asset, i) => (
                                     <div
                                         key={i}
-                                        className="p-4 border-b border-slate-100 last:border-b-0 hover:bg-slate-50"
+                                        className="p-4 border-b border-[#a4a3d0]/10 last:border-b-0 hover:bg-[#f0f4ff]/30"
                                     >
                                         <div className="flex flex-wrap items-center gap-1 mb-1">
-                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
+                                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#a4a3d0]/20 text-[#2c3150]/70">
                                                 {getAssetTypeName(asset.typeId)}
                                             </span>
                                             {asset.subTypeId && (
-                                                <span className="text-xs text-slate-500">
+                                                <span className="text-xs text-[#2c3150]/50">
                                                     → {getAssetSubTypeName(asset.subTypeId)}
                                                 </span>
                                             )}
                                         </div>
                                         <p className="font-medium text-[#2c3150]">{asset.title}</p>
                                         {asset.description && (
-                                            <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{asset.description}</p>
+                                            <p className="text-sm text-[#2c3150]/70 mt-1">{asset.description}</p>
                                         )}
                                     </div>
                                 ))

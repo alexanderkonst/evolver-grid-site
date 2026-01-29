@@ -164,7 +164,7 @@ const MissionSelection = () => {
             <Target className="w-6 h-6" />
             <div>
               <h1 className="text-2xl sm:text-3xl font-semibold">Mission Selection</h1>
-              <p className="text-sm text-slate-500">Choose a mission that reflects what you are here to build.</p>
+              <p className="text-sm text-[#2c3150]/60">Choose a mission that reflects what you are here to build.</p>
             </div>
           </div>
 
@@ -212,7 +212,7 @@ const MissionSelection = () => {
             </SelectContent>
           </Select>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <p className="text-sm font-medium text-[#2c3150] mb-2">Describe your specific mission (optional)</p>
             <Textarea
               value={missionNote}

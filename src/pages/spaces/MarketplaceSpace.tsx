@@ -57,14 +57,14 @@ const MarketplaceSpace = () => {
                         <h2 className="text-lg font-semibold text-[#2c3150] mb-4">My Offers</h2>
                         <div className="grid gap-4 sm:grid-cols-2">
                             {/* Create Genius Offer */}
-                            <div className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors">
+                            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                                 <div className="flex items-start justify-between mb-3">
-                                    <div className="p-2 rounded-lg bg-amber-100">
-                                        <Sparkles className="w-6 h-6 text-amber-600" />
+                                    <div className="p-2 rounded-lg bg-[#8460ea]/20">
+                                        <Sparkles className="w-6 h-6 text-[#8460ea]" />
                                     </div>
                                 </div>
                                 <h3 className="font-semibold text-[#2c3150] mb-1">Genius Offer</h3>
-                                <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Create your signature offer based on your Zone of Genius</p>
+                                <p className="text-sm text-[#2c3150]/70 mb-4">Create your signature offer based on your Zone of Genius</p>
                                 <Button asChild variant="outline" size="sm" className="w-full">
                                     <Link to="/genius-offer?from=marketplace">
                                         Create Offer <ArrowRight className="w-4 h-4 ml-2" />
@@ -73,14 +73,14 @@ const MarketplaceSpace = () => {
                             </div>
 
                             {/* Create Public Page */}
-                            <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-5 hover:border-slate-400 transition-colors">
+                            <div className="rounded-xl border border-dashed border-[#a4a3d0]/40 bg-[#f0f4ff]/50 p-5 hover:border-[#a4a3d0]/60 transition-colors">
                                 <div className="flex items-start justify-between mb-3">
-                                    <div className="p-2 rounded-lg bg-slate-200">
-                                        <Plus className="w-6 h-6 text-[rgba(44,49,80,0.7)]" />
+                                    <div className="p-2 rounded-lg bg-[#a4a3d0]/20">
+                                        <Plus className="w-6 h-6 text-[#2c3150]/70" />
                                     </div>
                                 </div>
                                 <h3 className="font-semibold text-[#2c3150] mb-1">Create Public Page</h3>
-                                <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">Build your creator page with your brand and products</p>
+                                <p className="text-sm text-[#2c3150]/70 mb-4">Build your creator page with your brand and products</p>
                                 <Button asChild variant="outline" size="sm" className="w-full">
                                     <Link to="/marketplace/create-page">
                                         Get Started <ArrowRight className="w-4 h-4 ml-2" />
@@ -98,7 +98,7 @@ const MarketplaceSpace = () => {
                                 <Link
                                     key={guide.id}
                                     to={`/p/${guide.slug}`}
-                                    className="rounded-xl border border-slate-200 bg-white p-4 hover:border-slate-300 hover:shadow-sm transition-all group"
+                                    className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all group shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
                                 >
                                     <div
                                         className="w-12 h-12 rounded-full mb-3 flex items-center justify-center text-white font-bold text-lg"
@@ -106,12 +106,12 @@ const MarketplaceSpace = () => {
                                     >
                                         {guide.name.charAt(0)}
                                     </div>
-                                    <h3 className="font-semibold text-[#2c3150] group-hover:text-blue-600 transition-colors">
+                                    <h3 className="font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
                                         {guide.name}
                                     </h3>
-                                    <p className="text-xs text-slate-500 mb-1">{guide.title}</p>
-                                    <p className="text-sm text-[rgba(44,49,80,0.7)]">{guide.tagline}</p>
-                                    <div className="mt-3 flex items-center text-xs text-blue-600 font-medium">
+                                    <p className="text-xs text-[#2c3150]/50 mb-1">{guide.title}</p>
+                                    <p className="text-sm text-[#2c3150]/70">{guide.tagline}</p>
+                                    <div className="mt-3 flex items-center text-xs text-[#8460ea] font-medium">
                                         View Page <ExternalLink className="w-3 h-3 ml-1" />
                                     </div>
                                 </Link>

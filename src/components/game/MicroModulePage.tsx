@@ -47,27 +47,27 @@ const PATH_CONFIG = {
   body: {
     label: "Body",
     icon: Activity,
-    badge: "bg-green-100 text-green-700",
+    badge: "bg-[#b1c9b6]/30 text-[#2c3150]",
   },
   mind: {
     label: "Mind",
     icon: Brain,
-    badge: "bg-blue-100 text-blue-700",
+    badge: "bg-[#6894d0]/20 text-[#2c3150]",
   },
   emotions: {
     label: "Emotions",
     icon: Heart,
-    badge: "bg-pink-100 text-pink-700",
+    badge: "bg-[#cea4ae]/30 text-[#2c3150]",
   },
   spirit: {
     label: "Spirit",
     icon: Sparkles,
-    badge: "bg-purple-100 text-purple-700",
+    badge: "bg-[#c8b7d8]/30 text-[#2c3150]",
   },
   genius: {
     label: "Genius",
     icon: Zap,
-    badge: "bg-amber-100 text-amber-700",
+    badge: "bg-[#8460ea]/20 text-[#8460ea]",
   },
 } as const;
 
@@ -96,21 +96,21 @@ const CollapsibleSection = ({
     <Collapsible
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="rounded-xl border border-slate-200 bg-white"
+      className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
     >
       <CollapsibleTrigger asChild>
         <button
           type="button"
-          className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors hover:bg-slate-50"
+          className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition-colors hover:bg-[#f0f4ff]/50"
         >
-          <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[rgba(44,49,80,0.7)]">
+          <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-[#2c3150]/70">
             <span>{title}</span>
-            <span className="text-xs font-medium text-slate-500">({duration})</span>
+            <span className="text-xs font-medium text-[#2c3150]/50">({duration})</span>
           </div>
           {isOpen ? (
-            <ChevronUp className="h-5 w-5 text-slate-500" />
+            <ChevronUp className="h-5 w-5 text-[#2c3150]/50" />
           ) : (
-            <ChevronDown className="h-5 w-5 text-slate-500" />
+            <ChevronDown className="h-5 w-5 text-[#2c3150]/50" />
           )}
         </button>
       </CollapsibleTrigger>
@@ -141,7 +141,7 @@ const MarkdownContent = ({ content }: { content: string }) => (
       strong: ({ children }) => <strong className="font-semibold text-[#2c3150]">{children}</strong>,
       a: ({ children, href }) => (
         <a
-          className="font-medium text-amber-700 underline underline-offset-2"
+          className="font-medium text-[#8460ea] underline underline-offset-2"
           href={href}
           target="_blank"
           rel="noreferrer"
@@ -175,18 +175,18 @@ const MicroModulePage = ({
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-6 lg:px-8">
       <div className="space-y-2">
-        <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-500">
+        <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#2c3150]/60">
           <span className={cn("inline-flex items-center gap-2 rounded-full px-3 py-1", pathConfig.badge)}>
             <PathIcon className="h-4 w-4" />
             {pathConfig.label}
           </span>
-          <span className="text-slate-500">•</span>
-          <span className="text-slate-500">{moduleId}</span>
+          <span className="text-[#2c3150]/40">•</span>
+          <span className="text-[#2c3150]/50">{moduleId}</span>
         </div>
         <h1 className="text-2xl font-semibold text-[#2c3150] lg:text-3xl">{title}</h1>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+      <div className="overflow-hidden rounded-2xl border border-[#a4a3d0]/20 bg-[#f0f4ff]/50">
         <AspectRatio ratio={16 / 9}>
           {videoUrl ? (
             <iframe
@@ -198,15 +198,15 @@ const MicroModulePage = ({
               loading="lazy"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-sm text-slate-500">
+            <div className="flex h-full w-full items-center justify-center text-sm text-[#2c3150]/50">
               Video coming soon.
             </div>
           )}
         </AspectRatio>
       </div>
 
-      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-        <p className="text-sm font-semibold uppercase tracking-wide text-amber-700">Key Takeaway</p>
+      <div className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 p-5">
+        <p className="text-sm font-semibold uppercase tracking-wide text-[#8460ea]">Key Takeaway</p>
         <p className="mt-3 text-base leading-relaxed text-[#2c3150]">{keyTakeaway}</p>
       </div>
 
@@ -219,8 +219,8 @@ const MicroModulePage = ({
       </CollapsibleSection>
 
       {hasResources && (
-        <div className="rounded-2xl border border-slate-200 bg-white p-5">
-          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Resources</p>
+        <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 p-5 backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <p className="text-sm font-semibold uppercase tracking-wide text-[#2c3150]/60">Resources</p>
           <div className="mt-4 space-y-3">
             {resources?.map((resource) => {
               const Icon = RESOURCE_ICONS[resource.type];
@@ -230,9 +230,9 @@ const MicroModulePage = ({
                   href={resource.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2 text-sm text-[rgba(44,49,80,0.7)] transition-colors hover:bg-slate-100"
+                  className="flex items-center gap-3 rounded-lg border border-[#a4a3d0]/20 bg-[#f0f4ff]/30 px-3 py-2 text-sm text-[#2c3150]/70 transition-colors hover:bg-[#f0f4ff]/60"
                 >
-                  <Icon className="h-4 w-4 text-slate-500" />
+                  <Icon className="h-4 w-4 text-[#2c3150]/50" />
                   <span className="font-medium text-[#2c3150]">{resource.title}</span>
                 </a>
               );

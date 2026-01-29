@@ -36,7 +36,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
     const progressPercent = Math.min(100, Math.max(0, (xpInCurrentLevel / xpNeededForNext) * 100));
 
     return (
-        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 mb-4">
+        <div className="relative overflow-hidden rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 mb-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-full bg-[#c8b7d8]/30 overflow-hidden flex items-center justify-center">
                     {avatarUrl ? (
@@ -55,12 +55,12 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                 </div>
                 <div>
                     {displayName && (
-                        <p className="text-sm text-slate-500">{displayName}</p>
+                        <p className="text-sm text-[#2c3150]/60">{displayName}</p>
                     )}
                     <h2 className="font-semibold text-[#2c3150]">
                         {archetypeTitle || "Discover Your Archetype"}
                     </h2>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-[#2c3150]/60">
                         Level {level} · {xpTotal.toLocaleString()} XP
                     </p>
                 </div>
@@ -68,7 +68,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
 
             {/* XP Progress Bar */}
             <div className="mt-2">
-                <div className="flex justify-between text-xs text-slate-500 mb-1">
+                <div className="flex justify-between text-xs text-[#2c3150]/50 mb-1">
                     <span>{xpInCurrentLevel.toLocaleString()} / {xpNeededForNext.toLocaleString()} XP</span>
                     <span>Level {level + 1}</span>
                 </div>
