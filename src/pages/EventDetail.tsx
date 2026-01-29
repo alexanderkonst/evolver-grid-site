@@ -173,7 +173,7 @@ const EventDetail = () => {
     return (
       <div className="min-h-dvh bg-white flex items-center justify-center">
         <div className="text-center p-6">
-          <CalendarDays className="w-12 h-12 text-slate-500 mx-auto mb-4" />
+          <CalendarDays className="w-12 h-12 text-[#2c3150]/50 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Event Not Found</h2>
           <p className="text-[rgba(44,49,80,0.7)] mb-4">{error || "This event doesn't exist or has been removed."}</p>
           <BackButton to="/game/events" />
@@ -200,15 +200,15 @@ const EventDetail = () => {
   const hasRsvp = currentStatus === "going";
   const visibility = event.visibility ?? "public";
   const visibilityConfig = {
-    public: { label: "Public", icon: Globe, className: "bg-slate-100 text-[#2c3150]" },
-    community: { label: "Community", icon: Users, className: "bg-blue-50 text-blue-700" },
-    private: { label: "Private", icon: Lock, className: "bg-slate-100 text-[#2c3150]" },
-    team: { label: "Team", icon: UserCheck, className: "bg-emerald-50 text-emerald-700" },
+    public: { label: "Public", icon: Globe, className: "bg-[#f0f4ff] text-[#2c3150]" },
+    community: { label: "Community", icon: Users, className: "bg-[#6894d0]/10 text-[#6894d0]" },
+    private: { label: "Private", icon: Lock, className: "bg-[#f0f4ff] text-[#2c3150]" },
+    team: { label: "Team", icon: UserCheck, className: "bg-[#b1c9b6]/20 text-[#2c3150]" },
   } as const;
   const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
 
   return (
-    <div className="min-h-dvh bg-slate-50">
+    <div className="min-h-dvh bg-[#f8f9fc]">
       {/* Hero Image */}
       <div className="h-48 sm:h-64 bg-amber-100 relative">
         {event.photo_url ? (
@@ -233,9 +233,9 @@ const EventDetail = () => {
 
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-above pb-12">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-[#a4a3d0]/20 overflow-hidden">
           {/* Title & RSVP */}
-          <div className="p-6 border-b border-slate-100">
+          <div className="p-6 border-b border-[#a4a3d0]/10">"
             <h1 className="text-2xl font-bold text-[#2c3150] mb-4">{event.title}</h1>
             {visibilityBadge && (
               <div className="mb-4">
@@ -255,7 +255,7 @@ const EventDetail = () => {
               {currentStatus === "going" ? "Attending" : "RSVP"}
             </Button>
             {!isAuthenticated && (
-              <p className="text-xs text-slate-500 mt-2">Sign in to RSVP</p>
+              <p className="text-xs text-[#2c3150]/60 mt-2">Sign in to RSVP</p>
             )}
           </div>
 
@@ -269,7 +269,7 @@ const EventDetail = () => {
                 <p className="text-[rgba(44,49,80,0.7)] flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   {localDateTime.time}
-                  <span className="text-xs text-slate-500">Your time</span>
+                  <span className="text-xs text-[#2c3150]/60">Your time</span>
                 </p>
                 <button
                   type="button"
@@ -279,7 +279,7 @@ const EventDetail = () => {
                   {showOriginalTime ? "Hide original time" : "Show original time"}
                 </button>
                 {showOriginalTime && (
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-[#2c3150]/60 mt-1">
                     {originalDateTime.date} · {originalDateTime.time} ({eventTimezone})
                   </p>
                 )}
@@ -304,9 +304,9 @@ const EventDetail = () => {
 
             {/* RSVP Reminder */}
             {hasRsvp && (
-              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-3">
+              <div className="rounded-lg border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-4 space-y-3">
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-slate-500" />
+                  <Mail className="w-4 h-4 text-[#2c3150]/60" />
                   <p className="text-sm font-medium text-[#2c3150]">Email reminder</p>
                 </div>
                 <div className="space-y-2">
@@ -365,7 +365,7 @@ const EventDetail = () => {
 
           {/* Attendees List */}
           {attendees.length > 0 && (
-            <div className="p-6 bg-slate-50 border-t border-slate-100">
+            <div className="p-6 bg-[#f0f4ff]/50 border-t border-[#a4a3d0]/10">
               <h3 className="font-medium text-[#2c3150] mb-3">Who's coming</h3>
               <div className="flex flex-wrap gap-2">
                 {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
@@ -378,7 +378,7 @@ const EventDetail = () => {
                   </div>
                 ))}
                 {extraCount > 0 && (
-                  <span className="text-xs text-slate-500 self-center">
+                  <span className="text-xs text-[#2c3150]/60 self-center">
                     +{extraCount} more
                   </span>
                 )}
