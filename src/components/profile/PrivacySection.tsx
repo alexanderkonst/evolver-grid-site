@@ -101,15 +101,15 @@ const PrivacySection = ({
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 space-y-5">
+    <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white p-5 space-y-5">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-full bg-slate-100">
+        <div className="p-2 rounded-full bg-[#a4a3d0]/20">
           <Shield className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
         </div>
         <div>
           <h3 className="font-semibold text-[#2c3150]">Privacy & Visibility</h3>
-          <p className="text-sm text-slate-500">Control who can see your profile</p>
+          <p className="text-sm text-[#2c3150]/60">Control who can see your profile</p>
         </div>
       </div>
 
@@ -125,7 +125,7 @@ const PrivacySection = ({
           {VISIBILITY_OPTIONS.map((option) => (
             <div
               key={option.value}
-              className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-3 p-3 rounded-lg border border-[#a4a3d0]/20 hover:bg-[#f8f7fc] transition-colors"
             >
               <RadioGroupItem value={option.value} id={`visibility-${option.value}`} />
               <div className="flex-1">
@@ -135,7 +135,7 @@ const PrivacySection = ({
                 >
                   {option.label}
                 </Label>
-                <p className="text-xs text-slate-500">{option.description}</p>
+                <p className="text-xs text-[#2c3150]/60">{option.description}</p>
               </div>
               {saving === "visibility" && visibility === option.value && (
                 <span className="premium-spinner w-4 h-4" />
@@ -146,19 +146,19 @@ const PrivacySection = ({
       </div>
 
       {/* Divider */}
-      <div className="border-t border-slate-200" />
+      <div className="border-t border-[#a4a3d0]/20" />
 
       {/* Toggle Switches */}
       <div className="space-y-3">
         <Label className="text-sm font-medium text-[#2c3150]">Show on Public Profile</Label>
 
         {/* Location Toggle */}
-        <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50">
+        <div className="flex items-center justify-between p-3 rounded-lg bg-[#f8f7fc]">
           <div className="flex items-center gap-3">
-            <MapPin className="w-4 h-4 text-slate-500" />
+            <MapPin className="w-4 h-4 text-[#2c3150]/60" />
             <div>
               <p className="text-sm font-medium text-[#2c3150]">My location</p>
-              <p className="text-xs text-slate-500">City and country</p>
+              <p className="text-xs text-[#2c3150]/60">City and country</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -174,12 +174,12 @@ const PrivacySection = ({
         </div>
 
         {/* Mission Toggle */}
-        <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50">
+        <div className="flex items-center justify-between p-3 rounded-lg bg-[#f8f7fc]">
           <div className="flex items-center gap-3">
-            <Target className="w-4 h-4 text-slate-500" />
+            <Target className="w-4 h-4 text-[#2c3150]/60" />
             <div>
               <p className="text-sm font-medium text-[#2c3150]">My mission</p>
-              <p className="text-xs text-slate-500">Current mission focus</p>
+              <p className="text-xs text-[#2c3150]/60">Current mission focus</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -195,12 +195,12 @@ const PrivacySection = ({
         </div>
 
         {/* Offer Toggle */}
-        <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50">
+        <div className="flex items-center justify-between p-3 rounded-lg bg-[#f8f7fc]">
           <div className="flex items-center gap-3">
-            <Sparkles className="w-4 h-4 text-slate-500" />
+            <Sparkles className="w-4 h-4 text-[#2c3150]/60" />
             <div>
               <p className="text-sm font-medium text-[#2c3150]">My unique offer</p>
-              <p className="text-xs text-slate-500">Your genius offer</p>
+              <p className="text-xs text-[#2c3150]/60">Your genius offer</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

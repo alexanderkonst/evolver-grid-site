@@ -356,7 +356,7 @@ const EventDetail = () => {
 
             {/* Description */}
             {event.description && (
-              <div className="pt-4 border-t border-slate-100">
+              <div className="pt-4 border-t border-[#a4a3d0]/20">
                 <h3 className="font-medium text-[#2c3150] mb-2">About this event</h3>
                 <p className="text-[rgba(44,49,80,0.7)] whitespace-pre-wrap">{event.description}</p>
               </div>

@@ -250,8 +250,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="photo" className="flex items-center gap-2">
-              <Image className="w-4 h-4 text-slate-500" />
-              Image URL
+              <Image className="w-4 h-4 text-[#2c3150]/60" />\n              Image URL"
             </Label>
             <Input
               id="photo"

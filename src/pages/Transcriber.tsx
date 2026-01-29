@@ -143,16 +143,16 @@ const Transcriber = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1d2e] via-[#2c3150] to-[#1a1d2e] flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         {/* FIRST SCREEN: Input + Magic Button */}
-        <Card className="border-slate-700 bg-slate-800/50 backdrop-blur">
+        <Card className="border-[#a4a3d0]/30 bg-[#2c3150]/50 backdrop-blur">
           <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center mb-4">
+            <div className="mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] flex items-center justify-center mb-4">
               <Youtube className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-2xl text-white">YouTube Transcriber</CardTitle>
-            <CardDescription className="text-slate-400">
+            <CardDescription className="text-[#a4a3d0]">
               Paste any YouTube URL → Get the transcript instantly
             </CardDescription>
           </CardHeader>
@@ -164,7 +164,7 @@ const Transcriber = () => {
                 placeholder="https://youtube.com/watch?v=..."
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                className="flex-1 bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                className="flex-1 bg-[#1a1d2e] border-[#a4a3d0]/40 text-white placeholder:text-[#a4a3d0]/60"
                 onKeyDown={(e) => e.key === 'Enter' && handleGetTranscript()}
               />
 
@@ -172,7 +172,7 @@ const Transcriber = () => {
               <Button
                 onClick={handleGetTranscript}
                 disabled={isLoading || !url.trim()}
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold"
+                className="bg-gradient-to-r from-[#8460ea] to-[#6894d0] hover:from-[#7050da] hover:to-[#5884c0] text-white font-semibold"
               >
                 {isLoading ? (
                   <span className="premium-spinner w-4 h-4" />
@@ -196,14 +196,14 @@ const Transcriber = () => {
             {isLoading && (
               <div className="py-8 text-center">
                 <span className="premium-spinner w-8 h-8 mx-auto mb-2" />
-                <p className="text-slate-400">Fetching transcript...</p>
+                <p className="text-[#a4a3d0]">Fetching transcript...</p>
               </div>
             )}
 
             {/* MANUAL INPUT FALLBACK */}
             {showManualInput && !transcript && (
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-amber-400">
+                <div className="flex items-center gap-2 text-[#8460ea]">
                   <AlertCircle className="w-4 h-4" />
                   <span className="text-sm font-medium">Paste transcript manually</span>
                 </div>
@@ -211,7 +211,7 @@ const Transcriber = () => {
                   placeholder="Paste the transcript here..."
                   value={transcript}
                   onChange={(e) => setTranscript(e.target.value)}
-                  className="min-h-[200px] bg-slate-700 border-slate-600 text-slate-200"
+                  className="min-h-[200px] bg-[#1a1d2e] border-[#a4a3d0]/40 text-white"
                 />
                 {transcript && (
                   <Button
@@ -233,7 +233,7 @@ const Transcriber = () => {
                     variant="outline"
                     size="sm"
                     onClick={handleCopy}
-                    className="border-slate-600 text-slate-300 hover:text-white"
+                    className="border-[#a4a3d0]/40 text-[#a4a3d0] hover:text-white"
                   >
                     {copied ? (
                       <><Check className="w-4 h-4 mr-1" /> Copied</>
@@ -246,10 +246,10 @@ const Transcriber = () => {
                 <Textarea
                   value={transcript}
                   readOnly
-                  className="min-h-[300px] bg-slate-700 border-slate-600 text-slate-200 font-mono text-sm"
+                  className="min-h-[300px] bg-[#1a1d2e] border-[#a4a3d0]/40 text-white font-mono text-sm"
                 />
 
-                <p className="text-xs text-slate-500 text-center">
+                <p className="text-xs text-[#a4a3d0]/60 text-center">
                   {transcript.split(' ').length} words
                 </p>
               </div>
@@ -258,7 +258,7 @@ const Transcriber = () => {
         </Card>
 
         {/* Footer tip */}
-        <p className="text-center text-slate-500 text-xs mt-4">
+        <p className="text-center text-[#a4a3d0]/60 text-xs mt-4">
           Works with most YouTube videos that have captions enabled
         </p>
       </div>

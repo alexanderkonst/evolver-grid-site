@@ -94,10 +94,10 @@ const InviteFriendPrompt = ({
   if (dismissed) return null;
 
   return (
-    <div className={cn("rounded-2xl border border-slate-200 bg-white p-5 shadow-sm", className)}>
+    <div className={cn("rounded-2xl border border-[#a4a3d0]/20 bg-white p-5 shadow-sm", className)}>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs uppercase tracking-wide text-slate-500 mb-2">Invite a Friend</p>
+          <p className="text-xs uppercase tracking-wide text-[#2c3150]/60 mb-2">Invite a Friend</p>
           <h3 className="text-lg font-semibold text-[#2c3150]">
             Know someone who&apos;d love to discover their genius?
           </h3>
@@ -108,7 +108,7 @@ const InviteFriendPrompt = ({
         <button
           type="button"
           onClick={() => setDismissed(true)}
-          className="text-slate-500 hover:text-[#2c3150]"
+          className="text-[#2c3150]/60 hover:text-[#2c3150]"
           aria-label="Dismiss invite"
         >
           <X className="w-4 h-4" />

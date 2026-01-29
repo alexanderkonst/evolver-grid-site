@@ -30,6 +30,7 @@ docs/
 | Doc | Purpose |
 |-----|---------|
 | [universal_ontology.md](./01-vision/universal_ontology.md) | **THE** foundational doc — Source, Field, Holographic Principle |
+| [architecture_of_liberation.md](./01-vision/architecture_of_liberation.md) | **THE** product essence — what the platform actually does |
 | [foundational_ontology.md](./01-vision/foundational_ontology.md) | Philosophical foundations |
 | [holonic_vision.md](./01-vision/holonic_vision.md) | Holonic worldview applied to platform |
 | [manifesto.md](./01-vision/manifesto.md) | Core manifesto & mission |

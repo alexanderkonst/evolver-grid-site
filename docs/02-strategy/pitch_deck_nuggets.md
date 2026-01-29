@@ -2,7 +2,47 @@
 
 > Insights that will form the pitch deck
 
-*Started: 2025-01-06*
+*Started: 2025-01-06*  
+*Updated: 2026-01-29 — Architecture of Liberation crystallized*
+
+---
+
+## ⭐ The Architecture of Liberation (Core Essence)
+
+> **📌 Reference:** [Full document](./01-vision/architecture_of_liberation.md)
+
+### The One-Minute Miracles
+
+| Step | Time | Output |
+|------|------|--------|
+| Zone of Genius | 60 sec | Unprecedented precision articulation |
+| Quality of Life Map | 60 sec | Integral positioning |
+| Asset Mapping | 60 sec | Resources catalogued |
+| Central Mission | 60 sec | Life purpose identified |
+| Adjacent Missions | 60 sec | Satellite missions discovered |
+
+**Total onboarding: 5 minutes → Complete self-articulation**
+
+### The Three Spaces
+
+1. **Transformation Space** — Body · Mind · Spirit · Genius · Emotions
+2. **Matchmaking Space** — Co-founder matching + Asset matching  
+3. **Business Incubator** — Genius → SaaS in magic buttons
+
+### The Business Incubator Magic Sequence
+
+```
+🧬 Genius → 👤 Profile → 🎯 ICP → ✨ Promise → 📄 Landing Page
+→ 🎁 Lead Magnet → 📢 Distribution → 🚀 SaaS Product → 🏪 Marketplace
+```
+
+**Each step: One magic button. One minute.**
+
+### The Pattern
+
+What used to take **months/years** is now a **series of one-minute miracles**.
+
+This is not incremental innovation — this is a **phase transition** in how humans unlock and deploy their gifts at scale.
 
 ---
 

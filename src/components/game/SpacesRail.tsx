@@ -109,13 +109,13 @@ const SpacesRail = ({
         <div
             className={cn(
                 // Brandbook: Navigation uses slate palette, Deep Navy for dark mode
-                "w-[72px] lg:w-[280px] flex flex-col border-r border-slate-700/50",
+                "w-[72px] lg:w-[280px] flex flex-col border-r border-[#a4a3d0]/30",
                 "bg-gradient-to-b from-[#1e4374] via-[#1a2f4a] to-[#0e1f35]",
                 className
             )}
         >
             {/* User Profile + Community Header */}
-            <div className="p-3 md:p-4 border-b border-slate-700/50">
+            <div className="p-3 md:p-4 border-b border-[#a4a3d0]/30">
                 {/* Community - Placeholder (not clickable) */}
                 <div className="flex items-center gap-2 mb-3">
                     <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
@@ -127,17 +127,17 @@ const SpacesRail = ({
                     </div>
                     <div className="hidden md:block overflow-hidden">
                         <p className="text-white font-semibold text-sm truncate">Alexander Konstantinov's</p>
-                        <p className="text-slate-500 text-xs truncate">Community</p>
+                        <p className="text-[#a4a3d0] text-xs truncate">Community</p>
                     </div>
                 </div>
 
                 {/* Divider between community and profile */}
-                <div className="hidden md:block h-px bg-slate-700/50 mb-3" />
+                <div className="hidden md:block h-px bg-[#a4a3d0]/30 mb-3" />
 
                 {/* User Profile */}
                 <Link
                     to="/game/profile"
-                    className="flex items-center gap-2 hover:bg-slate-600/30 rounded-lg p-1.5 -m-1.5 transition-colors"
+                    className="flex items-center gap-2 hover:bg-[#29549f]/30 rounded-lg p-1.5 -m-1.5 transition-colors"
                 >
                     {avatarUrl ? (
                         <img
@@ -150,8 +150,8 @@ const SpacesRail = ({
                             className="w-8 h-8 rounded-full object-cover flex-shrink-0"
                         />
                     ) : (
-                        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                            <User className="w-4 h-4 text-slate-400" />
+                        <div className="w-8 h-8 rounded-full bg-[#2c3150] flex items-center justify-center flex-shrink-0">
+                            <User className="w-4 h-4 text-[#a4a3d0]" />
                         </div>
                     )}
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">

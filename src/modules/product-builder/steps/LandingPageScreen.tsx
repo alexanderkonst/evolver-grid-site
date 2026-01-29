@@ -123,10 +123,10 @@ const LandingPageScreen: React.FC = () => {
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
-                    <FileText className="w-8 h-8 text-slate-800" />
+                    <FileText className="w-8 h-8 text-[#2c3150]" />
                 </div>
-                <h1 className="text-3xl font-bold text-slate-800 mb-2">Your Landing Page</h1>
-                <p className="text-slate-800">
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2">Your Landing Page</h1>
+                <p className="text-[#2c3150]">
                     Look what you've created.
                 </p>
             </div>
@@ -134,16 +134,16 @@ const LandingPageScreen: React.FC = () => {
             {/* Landing Page Preview */}
             <Card className="max-w-3xl mx-auto mb-8 overflow-hidden">
                 <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-slate-800" />
-                    <span className="text-sm text-slate-800">Preview</span>
+                    <Eye className="w-4 h-4 text-[#2c3150]" />
+                    <span className="text-sm text-[#2c3150]">Preview</span>
                 </div>
                 <CardContent className="p-0">
                     {/* Landing Page */}
-                    <div className="bg-gradient-to-b from-slate-900 to-slate-800 text-slate-800">
+                    <div className="bg-gradient-to-b from-[#1a1d2e] to-[#2c3150] text-[#2c3150]">
                         {/* For Audience Badge */}
                         {rawData.forAudience && (
                             <div className="text-center pt-6">
-                                <span className="text-xs uppercase tracking-wider text-slate-800">
+                                <span className="text-xs uppercase tracking-wider text-[#2c3150]">
                                     For {rawData.forAudience}
                                 </span>
                             </div>
@@ -154,30 +154,30 @@ const LandingPageScreen: React.FC = () => {
                             <h1 className="text-2xl sm:text-3xl font-bold mb-4">
                                 {state.landingContent?.headline}
                             </h1>
-                            <p className="text-base text-slate-800 max-w-xl mx-auto mb-6">
+                            <p className="text-base text-[#2c3150] max-w-xl mx-auto mb-6">
                                 {state.landingContent?.subheadline}
                             </p>
-                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-800 font-semibold">
+                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-[#2c3150] font-semibold">
                                 {state.landingContent?.ctaText}
                             </Button>
                         </div>
 
                         {/* Pain Section with Bullets */}
-                        <div className="bg-slate-800/50 px-6 py-6">
-                            <h3 className="text-sm font-semibold text-slate-800 uppercase mb-4">
+                        <div className="bg-[#2c3150]/50 px-6 py-6">
+                            <h3 className="text-sm font-semibold text-[#2c3150] uppercase mb-4">
                                 {rawData.painSectionHeader || "Sound Familiar?"}
                             </h3>
                             {painBullets.length > 0 ? (
                                 <ul className="space-y-3">
                                     {painBullets.map((bullet: string, i: number) => (
-                                        <li key={i} className="flex gap-2 text-slate-800 text-sm">
-                                            <span className="text-slate-800 mt-0.5">•</span>
+                                        <li key={i} className="flex gap-2 text-[#2c3150] text-sm">
+                                            <span className="text-[#2c3150] mt-0.5">•</span>
                                             <span>{bullet}</span>
                                         </li>
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-slate-800 text-sm leading-relaxed">
+                                <p className="text-[#2c3150] text-sm leading-relaxed">
                                     {state.landingContent?.painSection}
                                 </p>
                             )}
@@ -191,14 +191,14 @@ const LandingPageScreen: React.FC = () => {
                             {solutionSteps.length > 0 ? (
                                 <ul className="space-y-3">
                                     {solutionSteps.map((step: string, i: number) => (
-                                        <li key={i} className="flex gap-2 text-slate-800 text-sm">
+                                        <li key={i} className="flex gap-2 text-[#2c3150] text-sm">
                                             <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                                             <span>{step}</span>
                                         </li>
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-slate-800 text-sm leading-relaxed">
+                                <p className="text-[#2c3150] text-sm leading-relaxed">
                                     {state.landingContent?.promiseSection}
                                 </p>
                             )}
@@ -209,10 +209,10 @@ const LandingPageScreen: React.FC = () => {
                             <h3 className="text-xl font-bold mb-2">
                                 {rawData.finalCtaHeadline || "Ready to transform?"}
                             </h3>
-                            <p className="text-slate-800 text-sm mb-4 max-w-md mx-auto">
+                            <p className="text-[#2c3150] text-sm mb-4 max-w-md mx-auto">
                                 {rawData.finalCtaSubheadline || "Get started today."}
                             </p>
-                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-800 font-semibold">
+                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-[#2c3150] font-semibold">
                                 {state.landingContent?.ctaText}
                             </Button>
                         </div>
@@ -240,7 +240,7 @@ const LandingPageScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.landing && (
-                    <p className="text-sm text-slate-800 mt-2">
+                    <p className="text-sm text-[#2c3150] mt-2">
                         Rate the resonance to continue
                     </p>
                 )}

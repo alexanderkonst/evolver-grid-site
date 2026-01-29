@@ -114,7 +114,7 @@ import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
 
 const PageLoader = () => (
-  <div className="h-screen flex items-center justify-center bg-slate-900">
+  <div className="h-screen flex items-center justify-center bg-[#1a1d2e]">
     <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full" />
   </div>
 );

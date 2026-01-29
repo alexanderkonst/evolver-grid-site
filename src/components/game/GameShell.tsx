@@ -246,10 +246,10 @@ export const GameShell = ({ children }: GameShellProps) => {
     return (
         <div className="min-h-dvh bg-white flex">
             {/* Mobile Header */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-slate-200 z-modal flex items-center justify-between px-4 pt-safe">
+            <div className="lg:hidden fixed top-0 left-0 right-0 h-safe-14 bg-white border-b border-[#a4a3d0]/20 z-modal flex items-center justify-between px-4 pt-safe">
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="p-2 hover:bg-slate-100 rounded-lg"
+                    className="p-2 hover:bg-[#a4a3d0]/10 rounded-lg"
                     aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
                 >
                     {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -263,7 +263,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 className={`
           fixed lg:static inset-y-0 left-0 z-overlay
           ${desktopSidebarOpen ? 'w-64' : 'lg:w-0 lg:overflow-hidden'}
-          bg-slate-900 border-r border-slate-800
+          bg-[#1a1d2e] border-r border-[#2c3150]
           transform transition-all duration-200 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           ${desktopSidebarOpen ? "lg:translate-x-0" : "lg:-translate-x-full"}
@@ -271,14 +271,14 @@ export const GameShell = ({ children }: GameShellProps) => {
         `}
             >
                 {/* Logo */}
-                <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-slate-800">
+                <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-[#2c3150]">
                     <Link to="/" className="font-bold text-lg text-white">
                         Evolver
                     </Link>
                     {/* Desktop collapse button */}
                     <button
                         onClick={() => setDesktopSidebarOpen(false)}
-                        className="hidden lg:block p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-colors"
+                        className="hidden lg:block p-1.5 text-[#a4a3d0] hover:text-white hover:bg-[#2c3150] rounded-md transition-colors"
                         title="Collapse sidebar"
                         aria-label="Collapse sidebar"
                     >
@@ -299,10 +299,10 @@ export const GameShell = ({ children }: GameShellProps) => {
                                             flex-1 flex items-center gap-3 px-3 py-2.5 rounded-lg
                                             transition-colors duration-150
                                             ${!isUnlocked
-                                            ? "text-[rgba(44,49,80,0.7)] bg-slate-900/40 cursor-not-allowed"
+                                            ? "text-[rgba(44,49,80,0.7)] bg-[#1a1d2e]/60 cursor-not-allowed"
                                             : isActive(item.path)
-                                                ? "bg-slate-700 text-white"
-                                                : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                                                ? "bg-[#2c3150] text-white"
+                                                : "text-[#a4a3d0] hover:bg-[#2c3150] hover:text-white"
                                         }
                                         `;
 
@@ -311,11 +311,11 @@ export const GameShell = ({ children }: GameShellProps) => {
                                             {item.icon}
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-sm font-medium truncate">{item.label}</p>
-                                                <p className={`text-xs truncate ${isActive(item.path) ? "text-slate-300" : "text-slate-500"}`}>
+                                                <p className={`text-xs truncate ${isActive(item.path) ? "text-[#a4a3d0]" : "text-[#a4a3d0]/60"}`}>
                                                     {item.description}
                                                 </p>
                                             </div>
-                                            {!isUnlocked && <Lock className="w-4 h-4 text-slate-500" />}
+                                            {!isUnlocked && <Lock className="w-4 h-4 text-[#a4a3d0]/60" />}
                                         </>
                                     );
 
@@ -348,7 +348,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                             {showModules && (
                                                 <button
                                                     onClick={() => toggleExpanded(item.id)}
-                                                    className="p-2 text-slate-400 hover:text-white"
+                                                    className="p-2 text-[#a4a3d0] hover:text-white"
                                                 >
                                                     {expandedSpaces.has(item.id)
                                                         ? <ChevronDown className="w-4 h-4" />
@@ -361,7 +361,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                 })()}
                                 {/* Modules dropdown - smaller font, indent */}
                                 {item.modules && expandedSpaces.has(item.id) && (unlockStatus[item.id as keyof typeof unlockStatus] ?? true) && (
-                                    <div className="ml-10 mt-1 space-y-0.5 border-l border-slate-700 pl-3">
+                                    <div className="ml-10 mt-1 space-y-0.5 border-l border-[#2c3150] pl-3">
                                         {item.modules.map((module) => (
                                             <Link
                                                 key={module.id}
@@ -370,8 +370,8 @@ export const GameShell = ({ children }: GameShellProps) => {
                                                 className={`
                                                     block px-2 py-1 rounded-md text-xs font-normal
                                                     ${location.pathname.startsWith(module.path)
-                                                        ? "text-white bg-slate-700/50"
-                                                        : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
+                                                        ? "text-white bg-[#2c3150]/50"
+                                                        : "text-[#a4a3d0]/60 hover:text-[#a4a3d0] hover:bg-[#2c3150]/30"
                                                     }
                                                 `}
                                             >
@@ -386,11 +386,11 @@ export const GameShell = ({ children }: GameShellProps) => {
                 </nav>
 
                 {/* User Section */}
-                <div className="border-t border-slate-800 p-4">
+                <div className="border-t border-[#2c3150] p-4">
                     {user ? (
                         <div className="space-y-3">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center overflow-hidden">
+                                <div className="w-10 h-10 rounded-full bg-[#2c3150] text-white flex items-center justify-center overflow-hidden">
                                     {profile?.avatar_url ? (
                                         <img
                                             src={profile.avatar_url}
@@ -411,13 +411,13 @@ export const GameShell = ({ children }: GameShellProps) => {
                                     <p className="text-sm text-white truncate">
                                         {profile?.first_name || user.email?.split("@")[0] || "Player"}
                                     </p>
-                                    <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                                    <p className="text-xs text-[#a4a3d0] truncate">{user.email}</p>
                                 </div>
                             </div>
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className="w-full justify-start text-slate-400 hover:text-white hover:bg-slate-800"
+                                className="w-full justify-start text-[#a4a3d0] hover:text-white hover:bg-[#2c3150]"
                                 onClick={handleLogout}
                             >
                                 <LogOut className="w-4 h-4 mr-2" />
@@ -428,7 +428,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                         <Button
                             variant="outline"
                             size="sm"
-                            className="w-full border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
+                            className="w-full border-[#2c3150] text-[#a4a3d0] hover:bg-[#2c3150] hover:text-white"
                             onClick={() => navigate("/auth")}
                         >
                             Sign in
@@ -449,7 +449,7 @@ export const GameShell = ({ children }: GameShellProps) => {
             {!desktopSidebarOpen && (
                 <button
                     onClick={() => setDesktopSidebarOpen(true)}
-                    className="hidden lg:flex fixed top-4 left-4 z-modal items-center justify-center w-10 h-10 bg-slate-900 text-slate-400 hover:text-white rounded-lg shadow-lg border border-slate-700 transition-colors"
+                    className="hidden lg:flex fixed top-4 left-4 z-modal items-center justify-center w-10 h-10 bg-[#1a1d2e] text-[#a4a3d0] hover:text-white rounded-lg shadow-lg border border-[#2c3150] transition-colors"
                     title="Expand sidebar"
                     aria-label="Expand sidebar"
                 >

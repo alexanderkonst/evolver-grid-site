@@ -154,13 +154,13 @@ const AdminMissionParticipants = () => {
             Loading participants...
           </div>
         ) : participants.length === 0 ? (
-          <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-[rgba(44,49,80,0.7)]">
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 text-sm text-[rgba(44,49,80,0.7)] shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             No mission participants yet.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+          <div className="overflow-x-auto rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-[rgba(44,49,80,0.7)]">
+              <thead className="bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]">
                 <tr>
                   <th className="text-left px-4 py-3 font-semibold">Mission</th>
                   <th className="text-left px-4 py-3 font-semibold">User</th>
@@ -171,17 +171,17 @@ const AdminMissionParticipants = () => {
               </thead>
               <tbody>
                 {participants.map((participant) => (
-                  <tr key={participant.id} className="border-t border-slate-100">
+                  <tr key={participant.id} className="border-t border-[#a4a3d0]/10">
                     <td className="px-4 py-3">
                       <p className="font-semibold text-[#2c3150]">{participant.mission_title}</p>
-                      <p className="text-xs text-slate-500">{participant.mission_id}</p>
+                      <p className="text-xs text-[#2c3150]/60">{participant.mission_id}</p>
                     </td>
                     <td className="px-4 py-3">
                       <p className="font-semibold text-[#2c3150]">{participant.first_name || "Unknown"}</p>
-                      <p className="text-xs text-slate-500">{participant.email}</p>
+                      <p className="text-xs text-[#2c3150]/60">{participant.email}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-[rgba(44,49,80,0.7)]"}`}>
+                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-[#b1c9b6]/20 text-[#2c3150]" : "bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]"}`}>
                         {participant.share_consent ? "Shared" : "Private"}
                       </span>
                     </td>
@@ -189,7 +189,7 @@ const AdminMissionParticipants = () => {
                       <div>Notify: {participant.notify_level} · {participant.email_frequency}</div>
                       <div>Lead: {participant.wants_to_lead ? "Yes" : "No"} · Integrate: {participant.wants_to_integrate ? "Yes" : "No"}</div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-slate-500">
+                    <td className="px-4 py-3 text-xs text-[#2c3150]/60">
                       {new Date(participant.created_at).toLocaleString()}
                     </td>
                   </tr>

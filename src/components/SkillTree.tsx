@@ -52,7 +52,7 @@ const SkillTree = ({ tree, progress = {}, onNodeClick }: SkillTreeProps) => {
 
     return (
         <div className="relative w-full h-full min-h-[500px]">
-            <div className="absolute inset-0 bg-slate-900/10 rounded-xl" />
+            <div className="absolute inset-0 bg-[#2c3150]/10 rounded-xl" />
 
             {/* Connection lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">

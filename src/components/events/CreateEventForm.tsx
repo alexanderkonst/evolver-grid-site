@@ -145,7 +145,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             {/* Description */}
             <div className="space-y-2">
               <Label htmlFor="description" className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-slate-500" />
+                <FileText className="w-4 h-4 text-[#2c3150]/60" />
                 Description
               </Label>
               <Textarea
@@ -161,7 +161,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="date" className="flex items-center gap-2">
-                  <CalendarDays className="w-4 h-4 text-slate-500" />
+                  <CalendarDays className="w-4 h-4 text-[#2c3150]/60" />
                   Date *
                 </Label>
                 <Input
@@ -174,7 +174,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="time" className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-500" />
+                  <Clock className="w-4 h-4 text-[#2c3150]/60" />
                   Time *
                 </Label>
                 <Input
@@ -190,7 +190,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             {/* Timezone */}
             <div className="space-y-2">
               <Label htmlFor="timezone" className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-slate-500" />
+                <Clock className="w-4 h-4 text-[#2c3150]/60" />
                 Timezone
               </Label>
               <select
@@ -210,7 +210,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             {/* Location */}
             <div className="space-y-2">
               <Label htmlFor="location" className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-slate-500" />
+                <MapPin className="w-4 h-4 text-[#2c3150]/60" />
                 Location
               </Label>
               <Input
@@ -224,7 +224,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             {/* Photo URL */}
             <div className="space-y-2">
               <Label htmlFor="photo" className="flex items-center gap-2">
-                <Image className="w-4 h-4 text-slate-500" />
+                <Image className="w-4 h-4 text-[#2c3150]/60" />
                 Photo URL
               </Label>
               <Input
@@ -238,7 +238,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
 
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-slate-500" />
+                <Users className="w-4 h-4 text-[#2c3150]/60" />
                 Visibility
               </Label>
               <Select

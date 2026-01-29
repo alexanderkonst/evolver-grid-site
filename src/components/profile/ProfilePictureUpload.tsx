@@ -125,7 +125,7 @@ const ProfilePictureUpload = ({
     <ErrorBoundary>
       <div className="flex flex-col items-center gap-3">
         <div
-          className="relative rounded-full overflow-hidden bg-slate-800 text-white flex items-center justify-center"
+          className="relative rounded-full overflow-hidden bg-[#2c3150] text-white flex items-center justify-center"
           style={{ width: size, height: size }}
         >
           {avatarUrl ? (
