@@ -218,7 +218,7 @@ const PublicProfile = () => {
             )}
             {coreVibration && (
               <p className="mt-3 text-sm font-medium text-[rgba(44,49,80,0.7)]">
-                Core Vibration: <span className="text-slate-800">{coreVibration}</span>
+                Core Vibration: <span className="text-[#2c3150]">{coreVibration}</span>
               </p>
             )}
             <div className="mt-4 space-y-2 text-sm text-[#2c3150]/60">

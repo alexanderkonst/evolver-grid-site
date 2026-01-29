@@ -103,7 +103,7 @@ const GameMap = () => {
     };
 
     return (
-        <div className="min-h-dvh flex flex-col bg-slate-950">
+        <div className="min-h-dvh flex flex-col bg-[#1a1d2e]">
             <Navigation />
 
             <main className="flex-grow pt-20 pb-20 px-4">
@@ -112,15 +112,15 @@ const GameMap = () => {
                     <BackButton
                         to="/"
                         label="Home"
-                        className="text-slate-400 hover:text-white transition-colors mb-4"
+                        className="text-[#a4a3d0] hover:text-white transition-colors mb-4"
                     />
 
                     {/* Player Header */}
                     <div className="text-center mb-6">
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
-                            Welcome back, <span className="text-amber-400">{playerName}</span>
+                            Welcome back, <span className="text-[#8460ea]">{playerName}</span>
                         </h1>
-                        <p className="text-slate-400 text-sm">
+                        <p className="text-[#a4a3d0] text-sm">
                             Level {playerLevel} · {playerXP.toLocaleString()} XP
                         </p>
                     </div>
@@ -134,19 +134,19 @@ const GameMap = () => {
                     </div>
 
                     {/* Instruction */}
-                    <p className="text-center text-slate-400 text-sm mb-6">
+                    <p className="text-center text-[#a4a3d0] text-sm mb-6">
                         Tap a path to explore your journey
                     </p>
 
                     {/* Active Quest or Get Quest */}
                     {activeQuest ? (
-                        <Card className="bg-slate-900/80 border-slate-700">
+                        <Card className="bg-[#2c3150]/80 border-[#a4a3d0]/30">
                             <CardContent className="p-4">
                                 <div className="flex items-start justify-between">
                                     <div>
-                                        <p className="text-xs text-slate-400 mb-1">Your Current Quest</p>
+                                        <p className="text-xs text-[#a4a3d0] mb-1">Your Current Quest</p>
                                         <h3 className="text-white font-medium">{activeQuest.title}</h3>
-                                        <p className="text-sm text-slate-400 mt-1">
+                                        <p className="text-sm text-[#a4a3d0] mt-1">
                                             {activeQuest.durationMinutes} min · {activeQuest.practiceType}
                                         </p>
                                     </div>
@@ -177,7 +177,7 @@ const GameMap = () => {
                     {/* Quest Filter Modal */}
                     {showQuestFilter && (
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-modal flex items-end sm:items-center justify-center p-4">
-                            <Card className="bg-slate-900 border-slate-700 w-full max-w-md animate-in slide-in-from-bottom-4">
+                            <Card className="bg-[#2c3150] border-[#a4a3d0]/30 w-full max-w-md animate-in slide-in-from-bottom-4">
                                 <CardContent className="p-6">
                                     <h2 className="text-lg font-semibold text-white mb-4">
                                         <BoldText>FIND YOUR QUEST</BoldText>
@@ -185,7 +185,7 @@ const GameMap = () => {
 
                                     {/* Time Selection */}
                                     <div className="mb-6">
-                                        <p className="text-sm text-slate-400 mb-3">How much time do you have?</p>
+                                        <p className="text-sm text-[#a4a3d0] mb-3">How much time do you have?</p>
                                         <div className="flex flex-wrap gap-2">
                                             {TIME_OPTIONS.map((option) => (
                                                 <button
@@ -194,8 +194,8 @@ const GameMap = () => {
                                                     className={cn(
                                                         "flex items-center gap-2 px-4 py-2 rounded-full border transition-all",
                                                         selectedTime === option.value
-                                                            ? "bg-amber-500/20 border-amber-500 text-amber-400"
-                                                            : "border-slate-600 text-slate-400 hover:border-slate-500"
+                                                            ? "bg-[#8460ea]/20 border-[#8460ea] text-[#8460ea]"
+                                                            : "border-[#a4a3d0]/40 text-[#a4a3d0] hover:border-[#a4a3d0]/60"
                                                     )}
                                                 >
                                                     <Clock className="w-4 h-4" />
@@ -207,7 +207,7 @@ const GameMap = () => {
 
                                     {/* Energy Selection */}
                                     <div className="mb-6">
-                                        <p className="text-sm text-slate-400 mb-3">What kind of experience?</p>
+                                        <p className="text-sm text-[#a4a3d0] mb-3">What kind of experience?</p>
                                         <div className="flex flex-wrap gap-2">
                                             {ENERGY_TYPES.map((energy) => {
                                                 const Icon = energy.icon;
@@ -219,7 +219,7 @@ const GameMap = () => {
                                                             "flex items-center gap-2 px-4 py-2 rounded-full border transition-all",
                                                             selectedEnergy === energy.id
                                                                 ? "border-current"
-                                                                : "border-slate-600 text-slate-400 hover:border-slate-500"
+                                                                : "border-[#a4a3d0]/40 text-[#a4a3d0] hover:border-[#a4a3d0]/60"
                                                         )}
                                                         style={{
                                                             color: selectedEnergy === energy.id ? energy.color : undefined,
@@ -258,8 +258,8 @@ const GameMap = () => {
                     )}
 
                     {/* Other Moves */}
-                    <div className="mt-12 pt-8 border-t border-slate-800">
-                        <h3 className="text-sm font-medium text-slate-400 mb-4 text-center">
+                    <div className="mt-12 pt-8 border-t border-[#a4a3d0]/20">
+                        <h3 className="text-sm font-medium text-[#a4a3d0] mb-4 text-center">
                             Other moves
                         </h3>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -267,7 +267,7 @@ const GameMap = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => navigate("/game")}
-                                className="border-slate-700 text-slate-300"
+                                className="border-[#a4a3d0]/40 text-[#a4a3d0]"
                             >
                                 Character Home
                             </Button>
@@ -275,7 +275,7 @@ const GameMap = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => navigate("/growth-paths")}
-                                className="border-slate-700 text-slate-300"
+                                className="border-[#a4a3d0]/40 text-[#a4a3d0]"
                             >
                                 All Growth Paths
                             </Button>

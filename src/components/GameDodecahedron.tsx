@@ -105,7 +105,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
     return (
         <div className="relative w-full aspect-square max-w-lg mx-auto">
             {/* Background glow */}
-            <div className="absolute inset-0 bg-slate-900/80 rounded-full" />
+            <div className="absolute inset-0 bg-[#2c3150]/80 rounded-full" />
 
             {/* Connection lines from center to each path */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
@@ -152,7 +152,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                             "absolute transform -translate-x-1/2 -translate-y-1/2 z-above",
                             "flex flex-col items-center gap-1 p-2 rounded-xl",
                             "transition-all duration-300 hover:scale-110",
-                            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900"
+                            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#2c3150]"
                         )}
                         style={{
                             left: `${pos.x}%`,
@@ -214,7 +214,7 @@ const GameDodecahedron = ({ onPathClick, progress }: GameDodecahedronProps) => {
                             >
                                 {path.name}
                             </div>
-                            <div className="text-[10px] sm:text-xs text-slate-400 leading-tight hidden sm:block">
+                            <div className="text-[10px] sm:text-xs text-[#a4a3d0] leading-tight hidden sm:block">
                                 {path.subtitle}
                             </div>
                         </div>

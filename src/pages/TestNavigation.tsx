@@ -16,21 +16,21 @@ const TestNavigation = () => {
                 </p>
 
                 <div className="space-y-4">
-                    <div className="p-6 bg-white rounded-xl border border-slate-200">
+                    <div className="p-6 bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                         <h2 className="font-semibold text-lg mb-2">Panel 1: Spaces Rail</h2>
                         <p className="text-[rgba(44,49,80,0.7)]">
                             ✅ Icon-only navigation on left
                         </p>
                     </div>
 
-                    <div className="p-6 bg-white rounded-xl border border-slate-200">
+                    <div className="p-6 bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                         <h2 className="font-semibold text-lg mb-2">Panel 2: Sections</h2>
                         <p className="text-[rgba(44,49,80,0.7)]">
                             ✅ Expandable sections with sub-sections
                         </p>
                     </div>
 
-                    <div className="p-6 bg-white rounded-xl border border-slate-200">
+                    <div className="p-6 bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                         <h2 className="font-semibold text-lg mb-2">Panel 3: Content</h2>
                         <p className="text-[rgba(44,49,80,0.7)]">
                             ✅ You're looking at it right now!

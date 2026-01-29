@@ -11,9 +11,9 @@ interface OnboardingShellProps {
 
 export const OnboardingShell = ({ children }: OnboardingShellProps) => {
     return (
-        <div className="min-h-dvh bg-slate-50">
+        <div className="min-h-dvh bg-[#f8f7fc]">
             {/* Simple header */}
-            <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-sm border-b border-slate-100 z-modal">
+            <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-sm border-b border-[#a4a3d0]/20 z-modal">
                 <div className="h-full max-w-4xl mx-auto px-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">

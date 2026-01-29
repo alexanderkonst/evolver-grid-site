@@ -122,7 +122,7 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
             {/* Explore More */}
             <Link
                 to="/game/transformation"
-                className="flex items-center justify-center gap-1 text-sm text-slate-500 hover:text-[#2c3150] transition-colors"
+                className="flex items-center justify-center gap-1 text-sm text-[#2c3150]/60 hover:text-[#2c3150] transition-colors"
             >
                 Not this? Explore more
                 <ChevronRight className="w-4 h-4" />

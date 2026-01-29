@@ -94,10 +94,10 @@ const BlueprintScreen: React.FC = () => {
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
-                    <BookOpen className="w-8 h-8 text-slate-800" />
+                    <BookOpen className="w-8 h-8 text-[#2c3150]" />
                 </div>
-                <h1 className="text-3xl font-bold text-slate-800 mb-2">Your Blueprint</h1>
-                <p className="text-slate-800">
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2">Your Blueprint</h1>
+                <p className="text-[#2c3150]">
                     This is your gift to them — a lead magnet they can download.
                 </p>
             </div>
@@ -107,8 +107,8 @@ const BlueprintScreen: React.FC = () => {
                 <CardContent className="p-6">
                     {/* Title */}
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b">
-                        <Download className="w-6 h-6 text-slate-800" />
-                        <h2 className="text-xl font-bold text-slate-800">
+                        <Download className="w-6 h-6 text-[#2c3150]" />
+                        <h2 className="text-xl font-bold text-[#2c3150]">
                             {state.blueprintContent?.title}
                         </h2>
                     </div>
@@ -118,16 +118,16 @@ const BlueprintScreen: React.FC = () => {
                         {state.blueprintContent?.steps.map((step, index) => (
                             <div key={index} className="flex gap-4">
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center">
-                                    <span className="text-sm font-semibold text-slate-800">{index + 1}</span>
+                                    <span className="text-sm font-semibold text-[#2c3150]">{index + 1}</span>
                                 </div>
-                                <p className="text-slate-800/80 leading-relaxed pt-1">{step}</p>
+                                <p className="text-[#2c3150]/80 leading-relaxed pt-1">{step}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* CTA Section */}
                     <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                        <p className="text-slate-800/80 text-sm">
+                        <p className="text-[#2c3150]/80 text-sm">
                             {state.blueprintContent?.ctaSection}
                         </p>
                     </div>

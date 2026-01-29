@@ -44,7 +44,7 @@ const CharacterTile = ({
             className={cn(
                 "relative rounded-2xl p-3 flex flex-col items-center justify-center gap-1",
                 "transition-all duration-300 ease-out",
-                "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900",
+                "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#2c3150]",
                 sizeClasses.tile,
                 isLocked
                     ? "opacity-60 cursor-not-allowed"
@@ -86,11 +86,11 @@ const CharacterTile = ({
 
             {/* Lock overlay */}
             {isLocked && (
-                <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-slate-900/50 backdrop-blur-sm z-above">
+                <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-[#2c3150]/50 backdrop-blur-sm z-above">
                     <div className="flex flex-col items-center gap-1">
-                        <Lock className="w-5 h-5 text-slate-400" />
+                        <Lock className="w-5 h-5 text-[#a4a3d0]" />
                         {unlockHint && (
-                            <span className="text-[10px] text-slate-400 text-center px-2">
+                            <span className="text-[10px] text-[#a4a3d0] text-center px-2">
                                 {unlockHint}
                             </span>
                         )}
@@ -115,7 +115,7 @@ const CharacterTile = ({
 
             {/* Subtitle or custom children */}
             {subtitle && !children && (
-                <div className="text-[10px] text-slate-500 text-center leading-tight">
+                <div className="text-[10px] text-[#2c3150]/60 text-center leading-tight">
                     {subtitle}
                 </div>
             )}

@@ -103,7 +103,7 @@ const Settings = () => {
 
                             {/* Middle Panel */}
                             <div>
-                                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">
                                     Middle Panel
                                 </h3>
                                 <ColorInput
@@ -127,7 +127,7 @@ const Settings = () => {
 
                             {/* Right Panel (Content - Gradient) */}
                             <div>
-                                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">
                                     Content Area (Gradient)
                                 </h3>
                                 <ColorInput
@@ -147,11 +147,11 @@ const Settings = () => {
                                 />
                             </div>
 
-                            <hr className="border-slate-200" />
+                            <hr className="border-[#a4a3d0]/20" />
 
                             {/* Accents */}
                             <div>
-                                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">
                                     Accent Colors
                                 </h3>
                                 <ColorInput

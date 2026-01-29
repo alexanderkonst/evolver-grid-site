@@ -52,7 +52,7 @@ const GeniusGrowthPath = ({ appleseed, excalibur }: GeniusGrowthPathProps) => {
   );
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+    <div className="rounded-2xl border border-[#2c3150] bg-[#1a1d2e]/60 p-5">
       <h3 className="text-sm font-semibold text-amber-200 mb-4">GENIUS GROWTH PATH</h3>
       <div className="space-y-4">
         {stages.map((stage, index) => {
@@ -66,7 +66,7 @@ const GeniusGrowthPath = ({ appleseed, excalibur }: GeniusGrowthPathProps) => {
                   {isComplete ? (
                     <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                   ) : isLocked ? (
-                    <Lock className="h-5 w-5 text-slate-500" />
+                    <Lock className="h-5 w-5 text-[#a4a3d0]/60" />
                   ) : (
                     <div className="h-5 w-5 rounded-full border-2 border-amber-400" />
                   )}
@@ -74,10 +74,10 @@ const GeniusGrowthPath = ({ appleseed, excalibur }: GeniusGrowthPathProps) => {
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className={`text-sm font-semibold ${isLocked ? "text-slate-500" : "text-white"}`}>
+                      <p className={`text-sm font-semibold ${isLocked ? "text-[#a4a3d0]/60" : "text-white"}`}>
                         {stage.title}
                       </p>
-                      <p className={`text-xs ${isLocked ? "text-[rgba(44,49,80,0.7)]" : "text-slate-300"}`}>
+                      <p className={`text-xs ${isLocked ? "text-[rgba(44,49,80,0.7)]" : "text-[#a4a3d0]"}`}>
                         {stage.description}
                       </p>
                     </div>
@@ -98,14 +98,14 @@ const GeniusGrowthPath = ({ appleseed, excalibur }: GeniusGrowthPathProps) => {
               </div>
 
               {index < stages.length - 1 && (
-                <div className="ml-2.5 mt-3 h-6 border-l border-slate-700" />
+                <div className="ml-2.5 mt-3 h-6 border-l border-[#2c3150]" />
               )}
             </div>
           );
         })}
       </div>
       {(!hasAppleseed || !hasExcalibur) && (
-        <p className="mt-4 text-xs text-slate-400">
+        <p className="mt-4 text-xs text-[#a4a3d0]">
           {hasAppleseed
             ? "Finish Excalibur to unlock the next stages."
             : "Start with your Zone of Genius to activate this path."}

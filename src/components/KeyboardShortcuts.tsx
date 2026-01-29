@@ -20,7 +20,7 @@ const KeyboardShortcuts = ({ open, onClose }: KeyboardShortcutsProps) => (
       <div className="space-y-2">
         {shortcuts.map((shortcut) => (
           <div key={shortcut.key} className="flex items-center justify-between gap-4">
-            <kbd className="px-2 py-1 bg-slate-100 rounded text-sm font-mono">
+            <kbd className="px-2 py-1 bg-[#a4a3d0]/20 rounded text-sm font-mono">
               {shortcut.key}
             </kbd>
             <span className="text-[rgba(44,49,80,0.7)]">{shortcut.description}</span>

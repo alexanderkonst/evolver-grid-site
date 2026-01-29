@@ -205,7 +205,7 @@ const AssetMappingWizard = () => {
                 {/* Step: Category Selection */}
                 {step === 'category' && selectedSubType && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
+                        <button onClick={handleBack} className="text-sm text-[#2c3150]/60 hover:text-[#2c3150] mb-4">
                             ← Back to {selectedType?.title}
                         </button>
                         <h2 className="text-xl font-semibold text-[#2c3150] mb-2">{selectedSubType.title}</h2>
@@ -228,7 +228,7 @@ const AssetMappingWizard = () => {
                 {/* Step: Details */}
                 {step === 'details' && selectedCategory && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
+                        <button onClick={handleBack} className="text-sm text-[#2c3150]/60 hover:text-[#2c3150] mb-4">
                             ← Back to categories
                         </button>
                         <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Describe this asset</h2>

@@ -37,7 +37,7 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
 
     const progressSection = showProgress && (
         <div className="text-center mb-8">
-            <ProgressIndicator current={currentStep} total={TOTAL_STEPS} className="text-slate-500" />
+            <ProgressIndicator current={currentStep} total={TOTAL_STEPS} className="text-[#2c3150]/60" />
             <OnboardingProgress
                 current={currentStep}
                 total={TOTAL_STEPS}
@@ -52,8 +52,8 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                             className={cn(
                                 "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all",
                                 currentStep >= step.number
-                                    ? "border-primary bg-primary text-slate-800-foreground"
-                                    : "border-border bg-background text-slate-800"
+                                    ? "border-primary bg-primary text-[#2c3150]-foreground"
+                                    : "border-border bg-background text-[#2c3150]"
                             )}
                         >
                             {step.number}
@@ -95,7 +95,7 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                             <div className="mb-6">
                                 <button
                                     onClick={handleBack}
-                                    className="flex items-center gap-2 text-slate-800 hover:text-slate-800/80 transition-colors font-semibold"
+                                    className="flex items-center gap-2 text-[#2c3150] hover:text-[#2c3150]/80 transition-colors font-semibold"
                                 >
                                     <ChevronLeft className="w-4 h-4" />
                                     <span>Back</span>

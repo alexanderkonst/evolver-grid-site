@@ -289,7 +289,7 @@ const CharacterHub = () => {
                     <BackButton
                         to="/"
                         label="Home"
-                        className="text-slate-400 hover:text-white transition-colors mb-4"
+                        className="text-[#a4a3d0] hover:text-white transition-colors mb-4"
                     />
 
                     {/* Player Header */}
@@ -315,18 +315,18 @@ const CharacterHub = () => {
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
                             {profile?.first_name || user?.email?.split("@")[0] || "Player"}
                         </h1>
-                        <p className="text-amber-400 text-sm">
+                        <p className="text-[#8460ea] text-sm">
                             Level {profile?.level || 1} · {(profile?.xp_total || 0).toLocaleString()} XP
                         </p>
                         {zogSnapshot?.archetype_title && (
-                            <p className="text-slate-400 text-xs mt-1">{zogSnapshot.archetype_title}</p>
+                            <p className="text-[#a4a3d0] text-xs mt-1">{zogSnapshot.archetype_title}</p>
                         )}
                     </div>
 
                     {!user && (
                         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left mb-6">
                             <p className="text-xs text-amber-300 font-medium mb-1">Anonymous Mode</p>
-                            <p className="text-sm text-slate-200 mb-3">
+                            <p className="text-sm text-[#a4a3d0] mb-3">
                                 You’re exploring without signing in. Sign in to save and sync your progress.
                             </p>
                             <Button
@@ -370,7 +370,7 @@ const CharacterHub = () => {
                             </Button>
                         )}
 
-                        <p className="text-slate-400 text-xs mt-3">Tap to explore your paths</p>
+                        <p className="text-[#a4a3d0] text-xs mt-3">Tap to explore your paths</p>
                     </div>
 
                     {/* 🌱 GENIUS GROWTH PATH */}
@@ -388,14 +388,14 @@ const CharacterHub = () => {
                                 />
                             </div>
                         ) : (
-                            <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left">
-                                <p className="text-xs text-amber-300 font-medium mb-1">Your Zone of Genius</p>
-                                <p className="text-sm text-slate-200 mb-3">
+                            <div className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/10 p-5 text-left">
+                                <p className="text-xs text-[#b691f2] font-medium mb-1">Your Zone of Genius</p>
+                                <p className="text-sm text-white mb-3">
                                     Generate your Zone of Genius to unlock your profile.
                                 </p>
                                 <Button
                                     size="sm"
-                                    className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
+                                    className="bg-[#8460ea] hover:bg-[#7050da] text-white"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
                                     Start Zone of Genius
@@ -407,7 +407,7 @@ const CharacterHub = () => {
                         ) : appleseed ? (
                             <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-5 text-left">
                                 <p className="text-xs text-violet-300 font-medium mb-1">Your Unique Offer</p>
-                                <p className="text-sm text-slate-200 mb-3">
+                                <p className="text-sm text-white mb-3">
                                     You know WHO you are. Now discover WHAT you can offer.
                                 </p>
                                 <Button
@@ -424,39 +424,39 @@ const CharacterHub = () => {
 
                     {/* 🎯 MY MISSION */}
                     <div className="mb-8">
-                        <div className="rounded-2xl border border-slate-700/40 bg-slate-900/40 p-5 text-left">
+                        <div className="rounded-2xl border border-[#a4a3d0]/30 bg-[#2c3150]/40 p-5 text-left">
                             <div className="flex items-center justify-between gap-3 mb-3">
                                 <div>
-                                    <p className="text-xs text-amber-300 font-medium mb-1">My Mission</p>
-                                    <h3 className="text-base font-semibold text-slate-100">
+                                    <p className="text-xs text-[#8460ea] font-medium mb-1">My Mission</p>
+                                    <h3 className="text-base font-semibold text-white">
                                         {missionCommitment?.mission_title || "Choose your mission"}
                                     </h3>
                                 </div>
                                 <Button
                                     size="sm"
                                     variant="secondary"
-                                    className="bg-amber-500 text-[#2c3150] hover:bg-amber-600"
+                                    className="bg-[#8460ea] text-white hover:bg-[#7050da]"
                                     onClick={() => navigate("/game/mission")}
                                 >
                                     {missionCommitment ? "Edit" : "Select"}
                                 </Button>
                             </div>
                             {missionCommitment ? (
-                                <div className="space-y-2 text-sm text-slate-300">
+                                <div className="space-y-2 text-sm text-[#a4a3d0]">
                                     <p>{missionCommitment.mission_statement}</p>
                                     {(missionCommitment.pillar || missionCommitment.focus_area) && (
-                                        <p className="text-xs text-slate-400">
+                                        <p className="text-xs text-[#a4a3d0]/80">
                                             {missionCommitment.pillar ? `Pillar: ${missionCommitment.pillar}` : ""}
                                             {missionCommitment.pillar && missionCommitment.focus_area ? " · " : ""}
                                             {missionCommitment.focus_area ? `Focus: ${missionCommitment.focus_area}` : ""}
                                         </p>
                                     )}
                                     {missionCommitment.intro_text && (
-                                        <p className="text-slate-300 italic">\"{missionCommitment.intro_text}\"</p>
+                                        <p className="text-[#a4a3d0] italic">\"{missionCommitment.intro_text}\"</p>
                                     )}
                                 </div>
                             ) : (
-                                <p className="text-sm text-slate-300">
+                                <p className="text-sm text-[#a4a3d0]">
                                     Set your mission to unlock clearer matchmaking and community alignment.
                                 </p>
                             )}

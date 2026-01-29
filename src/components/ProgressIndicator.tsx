@@ -8,7 +8,7 @@ interface ProgressIndicatorProps {
 
 const ProgressIndicator = ({ current, total, className }: ProgressIndicatorProps) => {
   return (
-    <span className={cn("text-xs font-semibold uppercase tracking-wide text-slate-500", className)}>
+    <span className={cn("text-xs font-semibold uppercase tracking-wide text-[#2c3150]/60", className)}>
       Step {current} of {total}
     </span>
   );

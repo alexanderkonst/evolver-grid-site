@@ -3,7 +3,7 @@
 
 > *"Marketing is about values."* — Steve Jobs
 
-> 📚 **Foundation:** [Integral Transactional Field Theory](./integral_transactional_field_theory.md) | [Sacred Transaction Field](./sacred_transaction_field.md)
+> 📚 **Foundation:** [Integral Transactional Field Theory](./integral_transactional_field_theory.md) | [Sacred Transaction Field](./sacred_transaction_field.md) | [**Architecture of Liberation**](../01-vision/architecture_of_liberation.md)
 
 ---
 

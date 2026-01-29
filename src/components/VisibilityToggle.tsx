@@ -17,10 +17,10 @@ const OPTIONS: Array<{
   description: string;
   Icon: typeof Lock;
 }> = [
-  { value: "private", label: "Only me", description: "Only you can see this", Icon: Lock },
-  { value: "community", label: "My community", description: "Visible to your community", Icon: Users },
-  { value: "public", label: "Everyone", description: "Visible to all users", Icon: Globe },
-];
+    { value: "private", label: "Only me", description: "Only you can see this", Icon: Lock },
+    { value: "community", label: "My community", description: "Visible to your community", Icon: Users },
+    { value: "public", label: "Everyone", description: "Visible to all users", Icon: Globe },
+  ];
 
 const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) => {
   const [open, setOpen] = useState(false);
@@ -34,14 +34,14 @@ const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) 
           variant="ghost"
           size="sm"
           disabled={disabled}
-          className="h-7 px-2 text-xs gap-1 text-slate-500 hover:text-[#2c3150] hover:bg-slate-100"
+          className="h-7 px-2 text-xs gap-1 text-[#2c3150]/60 hover:text-[#2c3150] hover:bg-[#a4a3d0]/20"
         >
           <CurrentIcon className="w-3 h-3" />
           <ChevronDown className="w-3 h-3 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-48 p-1" align="end">
-        <div className="text-xs text-slate-500 px-2 py-1.5 font-medium">
+        <div className="text-xs text-[#2c3150]/60 px-2 py-1.5 font-medium">
           Who can see this?
         </div>
         <div className="space-y-0.5">
@@ -54,8 +54,8 @@ const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) 
                 className={`
                   w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-sm transition-colors
                   ${isSelected
-                    ? "bg-slate-100 text-[#2c3150]"
-                    : "text-[rgba(44,49,80,0.7)] hover:bg-slate-50 hover:text-[#2c3150]"
+                    ? "bg-[#a4a3d0]/20 text-[#2c3150]"
+                    : "text-[rgba(44,49,80,0.7)] hover:bg-[#a4a3d0]/10 hover:text-[#2c3150]"
                   }
                 `}
                 onClick={() => {
@@ -65,7 +65,7 @@ const VisibilityToggle = ({ value, onChange, disabled }: VisibilityToggleProps) 
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span className="flex-1 text-left">{label}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-slate-500" />}
+                {isSelected && <Check className="w-3.5 h-3.5 text-[#2c3150]/60" />}
               </button>
             );
           })}

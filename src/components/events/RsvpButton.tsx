@@ -26,7 +26,7 @@ const STATUS_CONFIG: Record<RsvpStatus, { label: string; icon: typeof Check; act
   not_going: {
     label: "Can't Go",
     icon: X,
-    activeClass: "bg-slate-500 hover:bg-slate-600 text-white border-slate-500",
+    activeClass: "bg-[#2c3150] hover:bg-[#1a1d2e] text-white border-[#2c3150]",
   },
 };
 
