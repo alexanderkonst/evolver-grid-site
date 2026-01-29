@@ -123,8 +123,7 @@ const AppleseedDisplay = ({
                 />
             </div>
 
-            {/* Reveal My Genius Business - Hidden for now, should only show after ZoG Profile Deep Dive */}
-            {/* TODO: Show this after user has read their ZoG profile (zog_profile_read_at is set)
+            {/* Reveal My Genius Business - Primary action to advance */}
             {onCreateBusiness && (
                 <div className="flex justify-center">
                     <PremiumButton
@@ -136,7 +135,6 @@ const AppleseedDisplay = ({
                     </PremiumButton>
                 </div>
             )}
-            */}
         </div>
     );
 };

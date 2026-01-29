@@ -250,6 +250,40 @@ This pattern appears at every scale:
 
 ---
 
+## Monetization Pathways (January 2026)
+
+> *Six streams — from active income to serendipity.*
+
+### Active Income Streams
+
+| # | Stream | Status | Next Action |
+|---|--------|--------|-------------|
+| **1** | AI Workshops | 🟢 Active | Continue current momentum at Network School model |
+| **2** | Mentorship Client | 🟡 Incoming | New client just knocked — respond and onboard |
+| **3** | Men's Circles (English) | 🟡 Planned | Launch English language circles, invite Oy to collaborate |
+| **4** | Mentor Profile Distribution | 🔵 Ready | Post mentor profile on every relevant platform |
+| **5** | Venture Studio Pitches | 🟡 Warm | Speak to studios, pitch R&D innovations (Platform, Product Builder, etc.) |
+
+### Serendipity Stream
+
+| # | Stream | Status | Notes |
+|---|--------|--------|-------|
+| **6** | Platform Network Effects | 🔮 Emerging | Get platform to many users → allow serendipity to bring abundance |
+
+### The Pattern
+
+```
+ACTIVE ────────────────────────────────────────────► PASSIVE
+
+[1] Workshops     [3] Circles      [5] Pitches      [6] Platform
+[2] Mentorship    [4] Profile                       ↓
+                                                Serendipity
+```
+
+**Principle:** Work flows from direct exchange (1-2) → leveraged reach (3-5) → emergent abundance (6).
+
+---
+
 ## Quote to Remember
 
 > *"Don't push through the trough. Rest = incubation."*
@@ -258,5 +292,6 @@ This pattern appears at every scale:
 
 ---
 
-*Document created: January 26, 2026*
+*Document created: January 26, 2026*  
+*Updated: January 30, 2026 — Monetization pathways added*  
 *Part of Alexander's Operating System*
