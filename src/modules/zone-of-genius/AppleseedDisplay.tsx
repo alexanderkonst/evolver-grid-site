@@ -17,6 +17,7 @@ interface AppleseedDisplayProps {
     onSave?: () => void;
     isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
+    onContinue?: () => void; // Primary action to continue after ZoG
 }
 
 /**
@@ -31,7 +32,8 @@ const AppleseedDisplay = ({
     isSaved = true,
     onSave,
     isSaving = false,
-    onResonanceRating
+    onResonanceRating,
+    onContinue
 }: AppleseedDisplayProps) => {
     const [copied, setCopied] = useState(false);
     const { toast } = useToast();
@@ -123,15 +125,16 @@ const AppleseedDisplay = ({
                 />
             </div>
 
-            {/* Reveal My Genius Business - Primary action to advance */}
-            {onCreateBusiness && (
+            {/* Continue to Profile - Shows after save (primary onboarding action) */}
+            {isSaved && onContinue && (
                 <div className="flex justify-center">
                     <PremiumButton
-                        className="px-6"
-                        onClick={onCreateBusiness}
+                        size="lg"
+                        className="px-8"
+                        onClick={onContinue}
                     >
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        Reveal My Genius Business
+                        Continue to My Profile
+                        <Sparkles className="w-4 h-4 ml-2" />
                     </PremiumButton>
                 </div>
             )}
