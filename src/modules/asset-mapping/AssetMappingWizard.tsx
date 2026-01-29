@@ -132,7 +132,7 @@ const AssetMappingWizard = () => {
     return (
         <div className="min-h-dvh bg-white">
             {/* Header */}
-            <div className="border-b border-slate-200 bg-white sticky top-0 z-above">
+            <div className="border-b border-[#a4a3d0]/20 bg-white sticky top-0 z-above">
                 <div className="max-w-2xl mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -142,11 +142,11 @@ const AssetMappingWizard = () => {
                             />
                             <div>
                                 <h1 className="text-lg font-bold text-[#2c3150]">Asset Mapping</h1>
-                                <p className="text-xs text-slate-500">Map your resources for collaboration</p>
+                                <p className="text-xs text-[#2c3150]/60">Map your resources for collaboration</p>
                             </div>
                         </div>
                         {addedAssets.length > 0 && (
-                            <span className="text-sm text-slate-500">
+                            <span className="text-sm text-[#2c3150]/60">
                                 {addedAssets.length} asset{addedAssets.length > 1 ? 's' : ''} added
                             </span>
                         )}
@@ -166,11 +166,11 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={type.id}
                                     onClick={() => handleSelectType(type.id)}
-                                    className="p-4 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                                    className="p-4 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
                                 >
                                     <span className="text-2xl mb-2 block">{type.icon}</span>
                                     <h3 className="font-semibold text-[#2c3150]">{type.title}</h3>
-                                    <p className="text-sm text-slate-500 mt-1">{type.description}</p>
+                                    <p className="text-sm text-[#2c3150]/60 mt-1">{type.description}</p>
                                 </button>
                             ))}
                         </div>
@@ -180,7 +180,7 @@ const AssetMappingWizard = () => {
                 {/* Step: Sub-Type Selection */}
                 {step === 'subtype' && selectedType && (
                     <div>
-                        <button onClick={handleBack} className="text-sm text-slate-500 hover:text-[#2c3150] mb-4">
+                        <button onClick={handleBack} className="text-sm text-[#2c3150]/60 hover:text-[#2c3150] mb-4">
                             ← Back to types
                         </button>
                         <h2 className="text-xl font-semibold text-[#2c3150] mb-2">
@@ -193,7 +193,7 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={subType.id}
                                     onClick={() => handleSelectSubType(subType.id)}
-                                    className="p-3 rounded-lg border border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                                    className="p-3 rounded-lg border border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
                                 >
                                     <span className="font-medium text-[#2c3150]">{subType.title}</span>
                                 </button>
@@ -216,7 +216,7 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={category.id}
                                     onClick={() => handleSelectCategory(category.id)}
-                                    className="p-3 rounded-lg border border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                                    className="p-3 rounded-lg border border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
                                 >
                                     <span className="font-medium text-[#2c3150]">{category.title}</span>
                                 </button>
@@ -294,7 +294,7 @@ const AssetMappingWizard = () => {
                                 <ul className="space-y-1">
                                     {addedAssets.map((asset, i) => (
                                         <li key={i} className="text-sm text-[rgba(44,49,80,0.7)]">
-                                            • {asset.title} <span className="text-slate-500">({asset.type})</span>
+                                            • {asset.title} <span className="text-[#2c3150]/60">({asset.type})</span>
                                         </li>
                                     ))}
                                 </ul>

@@ -99,8 +99,8 @@ const BrowseGuides = () => {
         )}
 
         {!loading && !error && sortedOffers.length === 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-            <Sparkles className="w-10 h-10 text-slate-500 mx-auto mb-3" />
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <Sparkles className="w-10 h-10 text-[#2c3150]/50 mx-auto mb-3" />
             <h2 className="text-lg font-semibold text-[#2c3150] mb-2">No public offers yet</h2>
             <p className="text-[rgba(44,49,80,0.7)]">Check back soon for new guides.</p>
           </div>
@@ -111,10 +111,10 @@ const BrowseGuides = () => {
             {sortedOffers.map((offer) => (
               <div
                 key={offer.id}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm flex flex-col"
+                className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)] flex flex-col"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-100 overflow-hidden flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-[#f0f4ff] overflow-hidden flex items-center justify-center">
                     {offer.avatar_url ? (
                       <img
                         src={offer.avatar_url}
@@ -135,7 +135,7 @@ const BrowseGuides = () => {
                       {offer.display_name || "Community Guide"}
                     </p>
                     {offer.unique_offer_headline && (
-                      <p className="text-xs text-slate-500 line-clamp-1">{offer.unique_offer_headline}</p>
+                      <p className="text-xs text-[#2c3150]/60 line-clamp-1">{offer.unique_offer_headline}</p>
                     )}
                   </div>
                 </div>

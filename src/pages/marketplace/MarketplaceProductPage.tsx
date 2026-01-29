@@ -119,7 +119,7 @@ const MarketplaceProductPage: React.FC = () => {
 
             <main className="flex-1 pt-24">
                 {/* Landing Section - Dark Theme */}
-                <section className="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16 px-4">
+                <section className="bg-gradient-to-b from-[#2c3150] to-[#1f2336] text-white py-16 px-4">
                     <div className="container mx-auto max-w-3xl text-center">
                         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
                             {product.title}

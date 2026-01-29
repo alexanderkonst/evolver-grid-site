@@ -19,13 +19,13 @@ const ColorInput = ({ label, value, onChange }: ColorInputProps) => (
                 type="color"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-10 h-8 rounded cursor-pointer border border-slate-300"
+                className="w-10 h-8 rounded cursor-pointer border border-[#a4a3d0]/30"
             />
             <input
                 type="text"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-24 px-2 py-1 text-xs font-mono border border-slate-300 rounded"
+                className="w-24 px-2 py-1 text-xs font-mono border border-[#a4a3d0]/30 rounded"
             />
         </div>
     </div>
@@ -59,19 +59,19 @@ const Settings = () => {
                     <div className="flex items-center gap-4 mb-8">
                         <button
                             onClick={() => navigate(-1)}
-                            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                            className="p-2 hover:bg-[#f0f4ff] rounded-lg transition-colors"
                         >
                             <ArrowLeft className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
                         </button>
                         <div>
                             <h1 className="text-2xl font-bold text-[#2c3150]">Settings</h1>
-                            <p className="text-sm text-slate-500">Customize your experience</p>
+                            <p className="text-sm text-[#2c3150]/60">Customize your experience</p>
                         </div>
                     </div>
 
                     {/* Color Customization */}
-                    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center gap-2">
+                    <div className="bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 overflow-hidden shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                        <div className="px-4 py-3 bg-[#f0f4ff]/50 border-b border-[#a4a3d0]/20 flex items-center gap-2">
                             <Palette className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
                             <h2 className="font-semibold text-[#2c3150]">Color Theme</h2>
                         </div>
@@ -79,7 +79,7 @@ const Settings = () => {
                         <div className="p-4 space-y-4">
                             {/* Left Panel (Darkest) */}
                             <div>
-                                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">
                                     Left Panel (Darkest)
                                 </h3>
                                 <ColorInput
@@ -99,7 +99,7 @@ const Settings = () => {
                                 />
                             </div>
 
-                            <hr className="border-slate-200" />
+                            <hr className="border-[#a4a3d0]/20" />
 
                             {/* Middle Panel */}
                             <div>
@@ -123,7 +123,7 @@ const Settings = () => {
                                 />
                             </div>
 
-                            <hr className="border-slate-200" />
+                            <hr className="border-[#a4a3d0]/20" />
 
                             {/* Right Panel (Content - Gradient) */}
                             <div>
@@ -168,7 +168,7 @@ const Settings = () => {
                         </div>
 
                         {/* Actions */}
-                        <div className="px-4 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                        <div className="px-4 py-3 bg-[#f0f4ff]/50 border-t border-[#a4a3d0]/20 flex items-center justify-between">
                             <Button
                                 variant="ghost"
                                 size="sm"
@@ -189,12 +189,12 @@ const Settings = () => {
                     </div>
 
                     {/* Preview */}
-                    <div className="mt-6 bg-white rounded-xl border border-slate-200 overflow-hidden">
-                        <div className="px-4 py-3 bg-slate-50 border-b border-slate-200">
+                    <div className="mt-6 bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 overflow-hidden shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                        <div className="px-4 py-3 bg-[#f0f4ff]/50 border-b border-[#a4a3d0]/20">
                             <h2 className="font-semibold text-[#2c3150]">Preview</h2>
                         </div>
                         <div className="p-4">
-                            <div className="flex h-24 rounded-lg overflow-hidden border border-slate-200">
+                            <div className="flex h-24 rounded-lg overflow-hidden border border-[#a4a3d0]/20">
                                 {/* Left Panel Preview */}
                                 <div
                                     className="w-12 flex items-center justify-center"
