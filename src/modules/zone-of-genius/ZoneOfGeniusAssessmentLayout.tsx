@@ -29,7 +29,7 @@ const ZoneOfGeniusAssessmentLayout = ({
       <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
         Discover Your Zone of Genius Now:
       </h1>
-      <ProgressIndicator current={activeStep} total={steps.length} className="text-slate-500" />
+      <ProgressIndicator current={activeStep} total={steps.length} className="text-[#2c3150]/60" />
       <OnboardingProgress
         current={activeStep}
         total={steps.length}

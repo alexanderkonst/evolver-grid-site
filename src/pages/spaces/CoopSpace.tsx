@@ -17,10 +17,10 @@ const CoopSpace = () => {
                     </div>
 
                     {/* Coming Soon */}
-                    <div className="rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-12 text-center">
-                        <Building2 className="w-12 h-12 text-slate-500 mx-auto mb-4" />
+                    <div className="rounded-xl border-2 border-dashed border-[#a4a3d0]/40 bg-[#f0f4ff]/50 p-12 text-center">
+                        <Building2 className="w-12 h-12 text-[#2c3150]/50 mx-auto mb-4" />
                         <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Coming Soon</h2>
-                        <p className="text-slate-500 max-w-md mx-auto">
+                        <p className="text-[#2c3150]/60 max-w-md mx-auto">
                             The Business Incubator will enable you to build products, join collective ventures, contribute your genius,
                             and share in the wealth created by the community.
                         </p>

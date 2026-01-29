@@ -379,14 +379,14 @@ GENERAL STYLE RULES:
     <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
       {/* Step indicator */}
       <div className="flex items-center justify-center mb-6">
-        <p className="text-xs font-medium uppercase  text-slate-500">
+        <p className="text-xs font-medium uppercase  text-[#2c3150]/60">
           STEP 5 OF 5 · LIFELINE SNAPSHOT
         </p>
       </div>
 
       {/* Hero: Result Screen per UX Playbook */}
-      <section className="rounded-3xl bg-slate-50 px-6 py-12 sm:px-12 sm:py-16 text-center border border-slate-200 shadow-sm mb-12">
-        <p className="text-sm uppercase tracking-wide text-slate-500 mb-4">
+      <section className="rounded-3xl bg-[#f0f4ff]/50 px-6 py-12 sm:px-12 sm:py-16 text-center border border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)] mb-12">
+        <p className="text-sm uppercase tracking-wide text-[#2c3150]/60 mb-4">
           Your Zone of Genius
         </p>
         {parsedSnapshot ? (
@@ -403,7 +403,7 @@ GENERAL STYLE RULES:
             Discovering Your Zone of Genius...
           </h1>
         )}
-        <p className="mt-4 text-sm text-slate-500 max-w-2xl mx-auto">
+        <p className="mt-4 text-sm text-[#2c3150]/60 max-w-2xl mx-auto">
           This is your current character card — a starting point, not a final verdict.
         </p>
       </section>
@@ -425,11 +425,11 @@ GENERAL STYLE RULES:
             {/* LEFT COLUMN */}
             <div className="space-y-6">
               {/* Character Card */}
-              <article className="rounded-3xl border-2 border-slate-900/10 bg-white p-8 sm:p-10 shadow-lg">
-                <p className="text-xs uppercase  text-slate-500 mb-1">
+              <article className="rounded-3xl border border-[#a4a3d0]/30 bg-white/85 backdrop-blur-sm p-8 sm:p-10 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                <p className="text-xs uppercase  text-[#2c3150]/60 mb-1">
                   Zone of Genius Character Card
                 </p>
-                <p className="text-xs text-slate-500 mb-6">
+                <p className="text-xs text-[#2c3150]/60 mb-6">
                   Generated on: {currentDate}
                 </p>
 
@@ -443,11 +443,11 @@ GENERAL STYLE RULES:
                   </p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-slate-200">
+                <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-[#a4a3d0]/20">
                   {top3Talents.map(talent => (
                     <span
                       key={talent.id}
-                      className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-xs sm:text-sm font-medium text-white"
+                      className="inline-flex items-center rounded-full bg-[#2c3150] px-4 py-2 text-xs sm:text-sm font-medium text-white"
                     >
                       {talent.name}
                     </span>
@@ -456,7 +456,7 @@ GENERAL STYLE RULES:
               </article>
 
               {/* Panel A: Superpowers in Action */}
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                 <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Superpowers in Action
                 </h3>
@@ -469,7 +469,7 @@ GENERAL STYLE RULES:
               </article>
 
               {/* Panel B: Your Edge */}
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                 <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Your Edge (Where You Trip Yourself Up)
                 </h3>
@@ -482,7 +482,7 @@ GENERAL STYLE RULES:
               </article>
 
               {/* Panel C: Where This Genius Thrives */}
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                 <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                   Where This Genius Thrives
                 </h3>
@@ -496,14 +496,14 @@ GENERAL STYLE RULES:
 
               {/* Panel D: Mastery Action */}
               {parsedSnapshot.masteryAction && (
-                <article className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6 shadow-sm">
+                <article className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                   <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
                     🔁 Your Mastery Action
                   </h3>
                   <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
                     One repeatable action that builds mastery over time.
                   </p>
-                  <p className="text-base text-slate-800 font-medium leading-relaxed">
+                  <p className="text-base text-[#2c3150] font-medium leading-relaxed">
                     {parsedSnapshot.masteryAction}
                   </p>
                 </article>
@@ -518,7 +518,7 @@ GENERAL STYLE RULES:
                 type="button"
                 onClick={handleDownloadPDF}
                 disabled={isDownloading}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-slate-800 transition-colors disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#2c3150] px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#2c3150]/90 transition-colors disabled:opacity-50"
               >
                 {isDownloading ? (
                   <>
@@ -534,7 +534,7 @@ GENERAL STYLE RULES:
               </button>
 
               {/* Session card: If This Hit Home */}
-              <article className="rounded-2xl border border-slate-300 bg-slate-50 p-5 shadow-sm">
+              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                 <h3 className="text-sm font-semibold text-[#2c3150] mb-2">
                   If This Hit Home
                 </h3>
@@ -549,7 +549,7 @@ GENERAL STYLE RULES:
                   href="https://www.calendly.com/konstantinov"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-[#2c3150] hover:bg-slate-50 transition-colors"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#a4a3d0]/30 bg-white px-4 py-2 text-xs font-medium text-[#2c3150] hover:bg-[#f0f4ff] transition-colors"
                 >
                   Book a Deep-Dive Session
                   <ExternalLink className="w-3 h-3" />
@@ -559,7 +559,7 @@ GENERAL STYLE RULES:
           </div>
 
           {/* Footer: Magic button per UX Playbook */}
-          <div className="mt-16 pt-8 border-t border-slate-200 text-center space-y-6">
+          <div className="mt-16 pt-8 border-t border-[#a4a3d0]/20 text-center space-y-6">
             <p className="text-sm text-[rgba(44,49,80,0.7)] max-w-2xl mx-auto">
               Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
             </p>
@@ -568,14 +568,14 @@ GENERAL STYLE RULES:
               {returnTo === "genius-offer" ? (
                 <button
                   onClick={() => navigate("/genius-offer-intake?from=zog")}
-                  className="px-8 py-3 text-base font-semibold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg"
+                  className="px-8 py-3 text-base font-semibold rounded-full bg-[#2c3150] text-white hover:bg-[#2c3150]/90 transition-colors shadow-lg"
                 >
                   Continue to Genius Offer Creation
                 </button>
               ) : (
                 <button
                   onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
-                  className="px-8 py-3 text-base font-semibold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg"
+                  className="px-8 py-3 text-base font-semibold rounded-full bg-[#2c3150] text-white hover:bg-[#2c3150]/90 transition-colors shadow-lg"
                 >
                   Save & Continue
                 </button>
@@ -585,14 +585,14 @@ GENERAL STYLE RULES:
             <div className="flex items-center justify-center gap-4 text-sm">
               <button
                 onClick={handleBack}
-                className="text-slate-500 hover:text-[#2c3150] transition-colors"
+                className="text-[#2c3150]/50 hover:text-[#2c3150] transition-colors"
               >
                 ← Back
               </button>
-              <span className="text-slate-300">|</span>
+              <span className="text-[#a4a3d0]/50">|</span>
               <button
                 onClick={handleStartNew}
-                className="text-slate-500 hover:text-[#2c3150] transition-colors"
+                className="text-[#2c3150]/50 hover:text-[#2c3150] transition-colors"
               >
                 Start Over
               </button>
@@ -603,11 +603,11 @@ GENERAL STYLE RULES:
           <div ref={snapshotRef} className="hidden">
             <div className="bg-white p-12" style={{ width: '800px' }}>
               {/* PDF Header */}
-              <div className="text-center mb-8 pb-6 border-b-2 border-slate-200">
-                <p className="text-xs uppercase  text-slate-500 mb-2">
+              <div className="text-center mb-8 pb-6 border-b-2 border-[#a4a3d0]/30">
+                <p className="text-xs uppercase  text-[#2c3150]/60 mb-2">
                   Zone of Genius Character Card
                 </p>
-                <p className="text-xs text-slate-500 mb-4">
+                <p className="text-xs text-[#2c3150]/60 mb-4">
                   Generated on: {currentDate}
                 </p>
 
@@ -616,7 +616,7 @@ GENERAL STYLE RULES:
                   {top3Talents.map(talent => (
                     <span
                       key={talent.id}
-                      className="inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white"
+                      className="inline-flex items-center rounded-full bg-[#2c3150] px-6 py-3 text-sm font-bold text-white"
                     >
                       {talent.name}
                     </span>
@@ -667,7 +667,7 @@ GENERAL STYLE RULES:
                 </div>
 
                 {/* PDF Footer CTA */}
-                <div className="mt-8 pt-6 border-t border-slate-200">
+                <div className="mt-8 pt-6 border-t border-[#a4a3d0]/20">
                   <h3 className="text-base font-bold text-[#2c3150] mb-2">
                     Ready to Turn Insight into Action?
                   </h3>

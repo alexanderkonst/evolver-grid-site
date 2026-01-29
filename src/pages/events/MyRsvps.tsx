@@ -115,8 +115,8 @@ const MyRsvps = () => {
         )}
 
         {!loading && !error && displayRsvps.length === 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-            <CalendarDays className="w-10 h-10 text-slate-500 mx-auto mb-3" />
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <CalendarDays className="w-10 h-10 text-[#2c3150]/50 mx-auto mb-3" />
             <h2 className="text-lg font-semibold text-[#2c3150] mb-2">No RSVPs yet</h2>
             <p className="text-[rgba(44,49,80,0.7)] mb-4">Browse events and join one to see it here.</p>
             <Button onClick={() => navigate("/game/events")}>Browse Events</Button>
@@ -148,7 +148,7 @@ const MyRsvps = () => {
                     }}
                     onClick={() => navigate(`/events/${evt.id}`)}
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-[#2c3150]/60">
                     RSVP status: <span className="font-medium text-[#2c3150]">{row.status || "going"}</span>
                   </p>
                 </div>

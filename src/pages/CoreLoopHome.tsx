@@ -338,9 +338,9 @@ const CoreLoopHome = () => {
 
                 {/* Guest Sign In Prompt */}
                 {isGuest && (
-                    <div className="text-center text-sm text-slate-500 pt-4">
+                    <div className="text-center text-sm text-[#2c3150]/60 pt-4">
                         Already have an account?{" "}
-                        <Link to="/auth" className="text-indigo-600 hover:underline font-medium">
+                        <Link to="/auth" className="text-[#8460ea] hover:underline font-medium">
                             Sign in
                         </Link>
                     </div>

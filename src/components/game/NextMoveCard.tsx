@@ -37,9 +37,9 @@ export default function NextMoveCard({
         return (
             <div className="bg-gradient-to-br from-[#a4a3d0]/10 to-white rounded-2xl p-6">
                 <div className="bg-white rounded-xl shadow-md p-6 animate-pulse">
-                    <div className="h-6 bg-slate-100 rounded w-3/4 mb-3" />
-                    <div className="h-4 bg-slate-100 rounded w-1/2 mb-4" />
-                    <div className="h-14 bg-slate-200 rounded-xl" />
+                    <div className="h-6 bg-[#a4a3d0]/20 rounded w-3/4 mb-3" />
+                    <div className="h-4 bg-[#a4a3d0]/20 rounded w-1/2 mb-4" />
+                    <div className="h-14 bg-[#a4a3d0]/30 rounded-xl" />
                 </div>
             </div>
         );

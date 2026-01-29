@@ -338,7 +338,7 @@ const ZoneOfGeniusEntry = () => {
                     <p className="text-lg text-[rgba(44,49,80,0.7)] animate-pulse">
                         Creating your unique offer...
                     </p>
-                    <p className="mt-4 text-sm text-slate-500">
+                    <p className="mt-4 text-sm text-[#2c3150]/60">
                         One clear offer, one path forward...
                     </p>
 
@@ -467,7 +467,7 @@ const ZoneOfGeniusEntry = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-2 right-2 bg-slate-100 border-slate-300 text-[#2c3150] hover:bg-slate-200 shadow-sm text-xs"
+                                className="absolute top-2 right-2 bg-[#f0f4ff] border-[#a4a3d0]/30 text-[#2c3150] hover:bg-[#a4a3d0]/20 shadow-sm text-xs"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (

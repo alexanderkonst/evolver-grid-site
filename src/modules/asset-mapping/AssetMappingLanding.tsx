@@ -280,7 +280,7 @@ const AssetMappingLanding = () => {
             <div className="max-w-3xl mx-auto px-4 py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#f0f4ff] mb-4">
                         <Boxes className="w-8 h-8 text-[#2c3150]" />
                     </div>
                     <h1 className="text-4xl font-bold font-display aurora-text mb-3">Asset Mapping</h1>
@@ -297,20 +297,20 @@ const AssetMappingLanding = () => {
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
                             >
-                                <Brain className="w-6 h-6 text-blue-500 mb-3" />
+                                <Brain className="w-6 h-6 text-[#6894d0] mb-3" />
                                 <h3 className="font-semibold text-[#2c3150] mb-1">Use AI to extract</h3>
-                                <p className="text-sm text-slate-500">I have an AI that knows me</p>
+                                <p className="text-sm text-[#2c3150]/60">I have an AI that knows me</p>
                             </button>
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="p-6 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
                             >
-                                <ListChecks className="w-6 h-6 text-blue-500 mb-3" />
+                                <ListChecks className="w-6 h-6 text-[#6894d0] mb-3" />
                                 <h3 className="font-semibold text-[#2c3150] mb-1">Add manually</h3>
-                                <p className="text-sm text-slate-500">Go through the categories</p>
+                                <p className="text-sm text-[#2c3150]/60">Go through the categories</p>
                             </button>
                         </div>
                     </div>
@@ -319,18 +319,18 @@ const AssetMappingLanding = () => {
                 {/* Step: Has AI */}
                 {step === "has-ai" && (
                     <div className="space-y-6">
-                        <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div className="bg-[#f0f4ff]/50 rounded-xl p-4 border border-[#a4a3d0]/20">
                             <div className="flex items-start justify-between mb-2">
                                 <div>
                                     <h3 className="font-semibold text-[#2c3150] text-sm">Prompt for your AI</h3>
-                                    <p className="text-xs text-slate-500">Copy this and ask your AI model</p>
+                                    <p className="text-xs text-[#2c3150]/60">Copy this and ask your AI model</p>
                                 </div>
                                 <Button variant="outline" size="sm" onClick={handleCopyPrompt} className="shrink-0">
                                     {copied ? <Check className="w-4 h-4 mr-1" /> : <Clipboard className="w-4 h-4 mr-1" />}
                                     {copied ? "Copied!" : "Copy"}
                                 </Button>
                             </div>
-                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-100 max-h-32 overflow-y-auto prompt-barely-visible">
+                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-[#a4a3d0]/20 max-h-32 overflow-y-auto prompt-barely-visible">
                                 {ASSET_MAPPING_PROMPT}
                             </pre>
                         </div>
@@ -362,7 +362,7 @@ const AssetMappingLanding = () => {
                         </div>
 
                         <div className="text-center">
-                            <button onClick={handleGoToWizard} className="text-sm text-slate-500 hover:text-[#2c3150]">
+                            <button onClick={handleGoToWizard} className="text-sm text-[#2c3150]/60 hover:text-[#2c3150]">
                                 Or add assets manually →
                             </button>
                         </div>
@@ -386,19 +386,19 @@ const AssetMappingLanding = () => {
                         {matchedAssets.length > 0 && (
                             <div className="space-y-3 max-h-96 overflow-y-auto">
                                 {matchedAssets.map((asset, i) => (
-                                    <div key={i} className="p-4 rounded-lg border border-slate-200 bg-white">
+                                    <div key={i} className="p-4 rounded-lg border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm">
                                         <div className="flex items-start justify-between gap-2 mb-2">
                                             <div className="flex flex-wrap items-center gap-1">
-                                                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-[rgba(44,49,80,0.7)]">
+                                                <span className="text-xs px-2 py-0.5 rounded-full bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]">
                                                     {asset.typeTitle}
                                                 </span>
                                                 {asset.subTypeTitle && (
-                                                    <span className="text-xs text-slate-500">
+                                                    <span className="text-xs text-[#2c3150]/60">
                                                         → {asset.subTypeTitle}
                                                     </span>
                                                 )}
                                                 {asset.categoryTitle && (
-                                                    <span className="text-xs text-slate-500">
+                                                    <span className="text-xs text-[#2c3150]/60">
                                                         → {asset.categoryTitle}
                                                     </span>
                                                 )}
@@ -409,7 +409,7 @@ const AssetMappingLanding = () => {
                                                         <TooltipTrigger asChild>
                                                             <span className={`text-xs px-2 py-0.5 rounded-full font-medium cursor-help ${asset.leverageScore >= 8 ? 'bg-green-100 text-green-700' :
                                                                 asset.leverageScore >= 5 ? 'bg-amber-100 text-amber-700' :
-                                                                    'bg-slate-100 text-[rgba(44,49,80,0.7)]'
+                                                                    'bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]'
                                                                 }`}>
                                                                 ⚡ {asset.leverageScore}/10
                                                             </span>
@@ -426,7 +426,7 @@ const AssetMappingLanding = () => {
                                             <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{asset.description}</p>
                                         )}
                                         {asset.leverageReason && (
-                                            <p className="text-xs text-slate-500 mt-2 italic">{asset.leverageReason}</p>
+                                            <p className="text-xs text-[#2c3150]/60 mt-2 italic">{asset.leverageReason}</p>
                                         )}
                                     </div>
                                 ))}
@@ -447,7 +447,7 @@ const AssetMappingLanding = () => {
                                     </Button>
                                 )
                             )}
-                            <Button variant="ghost" onClick={handleGoToWizard} className="text-slate-500">
+                            <Button variant="ghost" onClick={handleGoToWizard} className="text-[#2c3150]/60">
                                 Add more manually
                             </Button>
                         </div>

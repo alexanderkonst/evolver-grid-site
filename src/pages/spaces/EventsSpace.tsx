@@ -95,14 +95,14 @@ const EventsSpace = () => {
           {!loading && !error && events.length > 0 && (
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="flex items-center gap-2">
-                <label htmlFor="events-filter" className="text-xs text-slate-500">
+                <label htmlFor="events-filter" className="text-xs text-[#2c3150]/60">
                   Filter
                 </label>
                 <select
                   id="events-filter"
                   value={filterMode}
                   onChange={(e) => setFilterMode(e.target.value as "all" | "location" | "community")}
-                  className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm"
+                  className="rounded-md border border-[#a4a3d0]/30 bg-white px-2 py-1 text-sm"
                 >
                   <option value="all">All Events</option>
                   <option value="location">By Location</option>
@@ -111,14 +111,14 @@ const EventsSpace = () => {
               </div>
               {filterMode === "community" && (
                 <div className="flex items-center gap-2">
-                  <label htmlFor="community-filter" className="text-xs text-slate-500">
+                  <label htmlFor="community-filter" className="text-xs text-[#2c3150]/60">
                     Community
                   </label>
                   <select
                     id="community-filter"
                     value={selectedCommunity}
                     onChange={(e) => setSelectedCommunity(e.target.value)}
-                    className="rounded-md border border-slate-200 bg-white px-2 py-1 text-sm"
+                    className="rounded-md border border-[#a4a3d0]/30 bg-white px-2 py-1 text-sm"
                   >
                     <option value="all">All Communities</option>
                     {communityOptions.map((communityId) => (
@@ -143,9 +143,9 @@ const EventsSpace = () => {
 
           {/* Empty State */}
           {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-slate-200 bg-white p-8">
+            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <EmptyState
-                icon={<CalendarDays className="w-6 h-6 text-slate-500" />}
+                icon={<CalendarDays className="w-6 h-6 text-[#2c3150]/50" />}
                 title="No events yet"
                 description={
                   isAuthenticated
@@ -155,9 +155,9 @@ const EventsSpace = () => {
                 action={
                   isAuthenticated
                     ? {
-                        label: "Create Event",
-                        onClick: () => navigate("/game/events/create"),
-                      }
+                      label: "Create Event",
+                      onClick: () => navigate("/game/events/create"),
+                    }
                     : undefined
                 }
               />

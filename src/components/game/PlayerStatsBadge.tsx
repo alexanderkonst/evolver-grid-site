@@ -32,11 +32,11 @@ const PlayerStatsBadge = ({
 
   return (
     <div className={cn("flex flex-wrap items-center gap-2", sizeStyles, className)}>
-      <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-800">
+      <span className="inline-flex items-center gap-2 rounded-full bg-[#a4a3d0]/20 px-3 py-1 font-semibold text-[#2c3150]">
         Level {level} • {xpTotal} XP
       </span>
       {showStreak && (
-        <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1 font-semibold text-orange-700">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[#c8b7d8]/20 px-3 py-1 font-semibold text-[#8460ea]">
           Day {streakDays}
           <span className={cn(isMilestone ? "animate-bounce" : "")}>🔥</span>
         </span>

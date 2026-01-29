@@ -16,7 +16,7 @@ const PersonalityTests = () => {
                 <div className="mb-8 flex items-start justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <Award className="w-6 h-6 text-purple-600" />
+                            <Award className="w-6 h-6 text-[#8460ea]" />
                             <h1 className="text-2xl font-bold text-[#2c3150]">Personality Tests</h1>
                         </div>
                         <p className="text-[rgba(44,49,80,0.7)]">MBTI, Enneagram, and other frameworks</p>
@@ -29,11 +29,11 @@ const PersonalityTests = () => {
                 </div>
 
                 {/* Main Card */}
-                <div className="rounded-xl border border-slate-200 bg-white p-6">
+                <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                     <div className="flex items-center gap-2 mb-4">
-                        <span className="text-xs text-purple-600 font-medium bg-purple-50 px-2 py-1 rounded-full">Upgrade</span>
+                        <span className="text-xs text-[#8460ea] font-medium bg-[#8460ea]/10 px-2 py-1 rounded-full">Upgrade</span>
                     </div>
-                    <p className="text-[rgba(44,49,80,0.7)] mb-6">
+                    <p className="text-[#2c3150]/70 mb-6">
                         Take personality tests to deepen your self-understanding.
                     </p>
                 </div>

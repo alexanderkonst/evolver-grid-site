@@ -39,7 +39,7 @@ const GrowthPathsPage = () => {
                                 <h1 className="text-xl font-bold text-[#2c3150]">
                                     {selectedPath.name}
                                 </h1>
-                                <p className="text-sm text-slate-500">{selectedPath.subtitle}</p>
+                                <p className="text-sm text-[#2c3150]/60">{selectedPath.subtitle}</p>
                             </div>
                         </div>
                         <p className="text-[rgba(44,49,80,0.7)] mt-2">{selectedPath.description}</p>
@@ -82,7 +82,7 @@ const GrowthPathsPage = () => {
                             <button
                                 key={path.id}
                                 onClick={() => setSelectedPath(path)}
-                                className="w-full p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm transition-all text-left"
+                                className="w-full p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all text-left"
                             >
                                 <div className="flex items-center gap-4">
                                     <div
@@ -99,18 +99,18 @@ const GrowthPathsPage = () => {
                                             <h2 className="font-semibold text-[#2c3150]">
                                                 {path.name}
                                             </h2>
-                                            <span className="text-xs text-slate-500 font-normal">
+                                            <span className="text-xs text-[#2c3150]/60 font-normal">
                                                 ({path.subtitle})
                                             </span>
                                         </div>
-                                        <p className="text-sm text-slate-500 mt-0.5">
+                                        <p className="text-sm text-[#2c3150]/60 mt-0.5">
                                             {path.tagline}
                                         </p>
-                                        <p className="text-xs text-slate-500 mt-1">
+                                        <p className="text-xs text-[#2c3150]/60 mt-1">
                                             {path.upgrades.length} upgrades
                                         </p>
                                     </div>
-                                    <ChevronRight className="w-5 h-5 text-slate-500 shrink-0" />
+                                    <ChevronRight className="w-5 h-5 text-[#2c3150]/50 shrink-0" />
                                 </div>
                             </button>
                         );
@@ -118,7 +118,7 @@ const GrowthPathsPage = () => {
                 </div>
 
                 {/* Legend */}
-                <div className="mt-8 p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <div className="mt-8 p-4 rounded-lg bg-[#f0f4ff]/50 border border-[#a4a3d0]/20">
                     <h3 className="text-sm font-medium text-[#2c3150] mb-3">Legend</h3>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ const UpgradeCard = ({
     // Content status badge
     const getStatusBadge = () => {
         if (!upgrade.contentStatus || upgrade.contentStatus === 'coming-soon') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">Coming Soon</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#f0f4ff] text-[#2c3150]/60">Coming Soon</span>;
         }
         if (upgrade.contentStatus === 'available') {
             return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">Ready</span>;
@@ -179,10 +179,10 @@ const UpgradeCard = ({
             className={`
                 p-4 rounded-xl border transition-all
                 ${isLocked
-                    ? 'border-slate-200 bg-slate-50 opacity-60'
+                    ? 'border-[#a4a3d0]/20 bg-[#f0f4ff]/50 opacity-60'
                     : isCompleted
                         ? 'border-green-200 bg-green-50'
-                        : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'
+                        : 'border-[#a4a3d0]/20 bg-white hover:border-[#a4a3d0]/40 hover:shadow-sm'
                 }
             `}
         >
@@ -194,7 +194,7 @@ const UpgradeCard = ({
                         ${isCompleted
                             ? 'bg-green-500 text-white'
                             : isLocked
-                                ? 'bg-slate-200 text-slate-500'
+                                ? 'bg-[#a4a3d0] text-[#2c3150]/60'
                                 : 'text-white'
                         }
                     `}
@@ -213,17 +213,17 @@ const UpgradeCard = ({
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-lg">{typeIcon}</span>
-                        <h3 className={`font-medium ${isLocked ? 'text-slate-500' : 'text-[#2c3150]'}`}>
+                        <h3 className={`font-medium ${isLocked ? 'text-[#2c3150]/60' : 'text-[#2c3150]'}`}>
                             {upgrade.name}
                         </h3>
                         {!isLocked && getStatusBadge()}
                     </div>
-                    <p className={`text-sm ${isLocked ? 'text-slate-500' : 'text-[rgba(44,49,80,0.7)]'}`}>
+                    <p className={`text-sm ${isLocked ? 'text-[#2c3150]/60' : 'text-[rgba(44,49,80,0.7)]'}`}>
                         {upgrade.description}
                     </p>
                     <div className="flex items-center gap-3 mt-2">
                         {upgrade.duration && (
-                            <span className="text-xs text-slate-500">{upgrade.duration}</span>
+                            <span className="text-xs text-[#2c3150]/60">{upgrade.duration}</span>
                         )}
                         <span className="text-xs font-medium" style={{ color: pathColor }}>
                             +{upgrade.xpReward} XP
@@ -233,7 +233,7 @@ const UpgradeCard = ({
 
                 {/* Arrow for actionable items */}
                 {!isLocked && !isCompleted && upgrade.contentStatus !== 'coming-soon' && (
-                    <ChevronRight className="w-5 h-5 text-slate-500 shrink-0" />
+                    <ChevronRight className="w-5 h-5 text-[#2c3150]/50 shrink-0" />
                 )}
             </div>
         </div>

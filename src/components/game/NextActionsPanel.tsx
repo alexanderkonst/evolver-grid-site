@@ -55,24 +55,24 @@ export default function NextActionsPanel({
         <div className="space-y-4">
             {/* Completed Steps (collapsible) */}
             {completedSteps.length > 0 && (
-                <div className="rounded-lg border border-emerald-200 bg-emerald-50/50">
+                <div className="rounded-lg border border-[#b1c9b6]/50 bg-[#b1c9b6]/10">
                     <button
                         onClick={() => setShowCompleted(!showCompleted)}
                         className="w-full flex items-center justify-between px-4 py-3 text-left"
                     >
                         <div className="flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                            <span className="text-sm font-medium text-emerald-700">
+                            <CheckCircle2 className="w-4 h-4 text-[#b1c9b6]" />
+                            <span className="text-sm font-medium text-[#2c3150]">
                                 {completedSteps.length} step{completedSteps.length > 1 ? 's' : ''} completed
                             </span>
-                            <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">
+                            <span className="text-xs text-[#2c3150]/70 bg-[#b1c9b6]/30 px-2 py-0.5 rounded-full">
                                 +{completedSteps.reduce((sum, s) => sum + s.xpEarned, 0)} XP
                             </span>
                         </div>
                         {showCompleted ? (
-                            <ChevronUp className="w-4 h-4 text-emerald-500" />
+                            <ChevronUp className="w-4 h-4 text-[#b1c9b6]" />
                         ) : (
-                            <ChevronDown className="w-4 h-4 text-emerald-500" />
+                            <ChevronDown className="w-4 h-4 text-[#b1c9b6]" />
                         )}
                     </button>
 
@@ -84,10 +84,10 @@ export default function NextActionsPanel({
                                     className="flex items-center justify-between text-sm py-1.5 border-t border-emerald-100"
                                 >
                                     <div className="flex items-center gap-2">
-                                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-[#b1c9b6]" />
                                         <span className="text-[#2c3150]">{step.title}</span>
                                     </div>
-                                    <span className="text-xs text-emerald-600">+{step.xpEarned} XP</span>
+                                    <span className="text-xs text-[#2c3150]/70">+{step.xpEarned} XP</span>
                                 </div>
                             ))}
                         </div>
@@ -97,7 +97,7 @@ export default function NextActionsPanel({
 
             {/* Two Next Actions */}
             <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-slate-500 uppercase ">
+                <h3 className="text-sm font-semibold text-[#2c3150]/60 uppercase ">
                     Your Next Move
                 </h3>
 
@@ -106,7 +106,7 @@ export default function NextActionsPanel({
                     <div
                         className={cn(
                             "relative rounded-xl border-2 p-5 overflow-hidden",
-                            "border-indigo-200 bg-indigo-50",
+                            "border-[#8460ea]/30 bg-[#8460ea]/5",
                             "shimmer-card"
                         )}
                     >
@@ -115,14 +115,14 @@ export default function NextActionsPanel({
 
                         <div className="relative z-above">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-full bg-[#8460ea] flex items-center justify-center">
                                     {primaryAction.icon === 'sparkles' ? (
                                         <Sparkles className="w-4 h-4 text-white" />
                                     ) : (
                                         <TrendingUp className="w-4 h-4 text-white" />
                                     )}
                                 </div>
-                                <span className="text-xs font-semibold uppercase  text-indigo-600">
+                                <span className="text-xs font-semibold uppercase text-[#8460ea]">
                                     {primaryAction.type === 'genius' ? 'Genius Discovery' : 'Growth Path'}
                                 </span>
                             </div>
@@ -136,7 +136,7 @@ export default function NextActionsPanel({
 
                             <Button
                                 asChild
-                                className="w-full bg-indigo-600 hover:bg-indigo-700"
+                                className="w-full bg-[#8460ea] hover:bg-[#7550da]"
                                 onClick={() => onActionClick?.(primaryAction)}
                             >
                                 <Link to={primaryAction.route}>
@@ -151,9 +151,9 @@ export default function NextActionsPanel({
                 {/* Divider with "or" */}
                 {primaryAction && secondaryAction && (
                     <div className="flex items-center gap-3 px-4">
-                        <div className="flex-1 h-px bg-slate-200" />
-                        <span className="text-xs text-slate-500 uppercase">or</span>
-                        <div className="flex-1 h-px bg-slate-200" />
+                        <div className="flex-1 h-px bg-[#a4a3d0]/30" />
+                        <span className="text-xs text-[#2c3150]/50 uppercase">or</span>
+                        <div className="flex-1 h-px bg-[#a4a3d0]/30" />
                     </div>
                 )}
 
@@ -162,27 +162,27 @@ export default function NextActionsPanel({
                     <div
                         className={cn(
                             "rounded-xl border p-4",
-                            "border-slate-200 bg-white hover:border-slate-300 transition-colors"
+                            "border-[#a4a3d0]/20 bg-white/85 hover:border-[#a4a3d0]/40 transition-colors"
                         )}
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-[#a4a3d0]/20 flex items-center justify-center flex-shrink-0">
                                 {secondaryAction.icon === 'sparkles' ? (
-                                    <Sparkles className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
+                                    <Sparkles className="w-4 h-4 text-[#2c3150]/70" />
                                 ) : (
-                                    <TrendingUp className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
+                                    <TrendingUp className="w-4 h-4 text-[#2c3150]/70" />
                                 )}
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xs font-medium text-slate-500 uppercase ">
+                                    <span className="text-xs font-medium text-[#2c3150]/60 uppercase ">
                                         {secondaryAction.type === 'genius' ? 'Genius Discovery' : 'Growth Path'}
                                     </span>
                                 </div>
                                 <h4 className="font-semibold text-[#2c3150] mt-1">
                                     {secondaryAction.title}
                                 </h4>
-                                <p className="text-sm text-slate-500 mt-0.5 mb-3">
+                                <p className="text-sm text-[#2c3150]/60 mt-0.5 mb-3">
                                     {secondaryAction.description}
                                 </p>
                                 <Button

@@ -109,7 +109,7 @@ const CreatorPage = () => {
                     {creator.offers.map(offer => (
                         <div
                             key={offer.id}
-                            className="rounded-xl border border-slate-200 bg-white p-5 hover:border-slate-300 transition-colors"
+                            className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
                         >
                             <div className="flex items-start justify-between">
                                 <div>
@@ -128,7 +128,7 @@ const CreatorPage = () => {
                 </div>
 
                 {/* Contact */}
-                <div className="border-t border-slate-200 pt-8 pb-12">
+                <div className="border-t border-[#a4a3d0]/20 pt-8 pb-12">
                     <Button variant="outline" className="w-full">
                         <Mail className="w-4 h-4 mr-2" />
                         Contact {creator.name.split(' ')[0]}

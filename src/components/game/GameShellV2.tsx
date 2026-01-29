@@ -352,8 +352,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
                     </button>
                 )}
 
-                {/* Panel 3: Content */}
-                <main className="flex-1 bg-transparent min-h-dvh overflow-auto relative z-10 pt-4">
+                {/* Panel 3: Content - Pearl/White gradient (lightest panel) */}
+                <main
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4"
+                    style={{ background: 'var(--panel3-gradient)' }}
+                >
                     <div className="page-transition-enter">
                         {children}
                     </div>

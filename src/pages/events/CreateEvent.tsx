@@ -106,7 +106,7 @@ const CreateEvent = () => {
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
           <div className="flex flex-col items-center gap-3 mb-6">
-            <Users className="w-10 h-10 text-slate-500" />
+            <Users className="w-10 h-10 text-[#2c3150]/50" />
             <h1 className="text-2xl font-semibold text-[#2c3150]">Sign in to create events</h1>
             <p className="text-[rgba(44,49,80,0.7)]">
               You need an account to publish events for the community.
@@ -134,7 +134,7 @@ const CreateEvent = () => {
           <p className="text-[rgba(44,49,80,0.7)]">Share a gathering with the community.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-slate-200 bg-white p-6">
+        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
           <div className="space-y-2">
             <Label htmlFor="title">Title *</Label>
             <Input
@@ -148,7 +148,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="description" className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-slate-500" />
+              <FileText className="w-4 h-4 text-[#2c3150]/60" />
               Description
             </Label>
             <Textarea
@@ -162,7 +162,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="datetime" className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-slate-500" />
+              <Clock className="w-4 h-4 text-[#2c3150]/60" />
               Date & time *
             </Label>
             <Input
@@ -176,7 +176,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="location" className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-slate-500" />
+              <MapPin className="w-4 h-4 text-[#2c3150]/60" />
               Location
             </Label>
             <Input
@@ -189,7 +189,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="community" className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-slate-500" />
+              <Users className="w-4 h-4 text-[#2c3150]/60" />
               Community
             </Label>
             <select
@@ -209,7 +209,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-slate-500" />
+              <Users className="w-4 h-4 text-[#2c3150]/60" />
               Visibility
             </Label>
             <Select
@@ -266,7 +266,7 @@ const CreateEvent = () => {
             <Button type="button" variant="outline" onClick={() => navigate("/game/events")}>
               Cancel
             </Button>
-            <Button type="submit" disabled={loading || !canSubmit} className="bg-amber-500 hover:bg-amber-600">
+            <Button type="submit" disabled={loading || !canSubmit} className="bg-[#8460ea] hover:bg-[#8460ea]/90">
               {loading ? "Creating..." : "Create Event"}
             </Button>
           </div>

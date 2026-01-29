@@ -222,7 +222,7 @@ const PublicPageEditor = () => {
                                     key={color}
                                     onClick={() => setBrandColor(color)}
                                     className={`w-8 h-8 rounded-full transition-all ${brandColor === color
-                                        ? "ring-2 ring-offset-2 ring-slate-900 scale-110"
+                                        ? "ring-2 ring-offset-2 ring-[#2c3150] scale-110"
                                         : "hover:scale-105"
                                         }`}
                                     style={{ backgroundColor: color }}
@@ -241,7 +241,7 @@ const PublicPageEditor = () => {
                     <div>
                         <Label htmlFor="slug">Page URL</Label>
                         <div className="flex items-center gap-2 mt-1">
-                            <span className="text-sm text-slate-500">evolver.app/p/</span>
+                            <span className="text-sm text-[#2c3150]/60">evolver.app/p/</span>
                             <Input
                                 id="slug"
                                 value={slug}
@@ -253,16 +253,16 @@ const PublicPageEditor = () => {
                     </div>
 
                     {/* Public Toggle */}
-                    <div className="flex items-center justify-between rounded-lg border border-slate-200 p-4">
+                    <div className="flex items-center justify-between rounded-lg border border-[#a4a3d0]/20 p-4">
                         <div>
                             <div className="font-medium text-[#2c3150]">Make Page Public</div>
-                            <div className="text-sm text-slate-500">
+                            <div className="text-sm text-[#2c3150]/60">
                                 Others can view your page at /p/{slug || "your-slug"}
                             </div>
                         </div>
                         <button
                             onClick={() => setIsPublic(!isPublic)}
-                            className={`relative w-12 h-6 rounded-full transition-colors ${isPublic ? "bg-green-500" : "bg-slate-300"
+                            className={`relative w-12 h-6 rounded-full transition-colors ${isPublic ? "bg-green-500" : "bg-[#a4a3d0]/40"
                                 }`}
                         >
                             <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${isPublic ? "translate-x-6" : "translate-x-0.5"

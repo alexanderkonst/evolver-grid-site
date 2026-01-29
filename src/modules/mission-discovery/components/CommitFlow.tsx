@@ -140,21 +140,21 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
             {currentStep === "connect" && (
                 <div>
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                            <Users className="w-5 h-5 text-blue-600" />
+                        <div className="w-10 h-10 rounded-full bg-[#6894d0]/20 flex items-center justify-center">
+                            <Users className="w-5 h-5 text-[#6894d0]" />
                         </div>
                         <h2 className="text-xl font-bold text-[#2c3150]">
                             Would you like to connect with others on this same mission?
                         </h2>
                     </div>
 
-                    <div className="bg-slate-50 rounded-xl p-6 mb-6 space-y-4">
+                    <div className="bg-[#f0f4ff]/50 rounded-xl p-6 mb-6 space-y-4 border border-[#a4a3d0]/20">
                         <label className="flex items-start gap-3 cursor-pointer">
                             <input
                                 type="checkbox"
                                 checked={shareConsent}
                                 onChange={(e) => setShareConsent(e.target.checked)}
-                                className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                className="mt-1 w-5 h-5 rounded border-[#a4a3d0]/30 text-[#6894d0] focus:ring-[#6894d0]"
                             />
                             <span className="text-sm text-[#2c3150]">
                                 Share my details with others on this mission so we can connect
@@ -166,7 +166,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 type="checkbox"
                                 checked={wantsToLead}
                                 onChange={(e) => setWantsToLead(e.target.checked)}
-                                className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                className="mt-1 w-5 h-5 rounded border-[#a4a3d0]/30 text-[#6894d0] focus:ring-[#6894d0]"
                             />
                             <span className="text-sm text-[#2c3150]">
                                 I'd like to help lead this mission
@@ -178,7 +178,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 type="checkbox"
                                 checked={wantsToIntegrate}
                                 onChange={(e) => setWantsToIntegrate(e.target.checked)}
-                                className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                className="mt-1 w-5 h-5 rounded border-[#a4a3d0]/30 text-[#6894d0] focus:ring-[#6894d0]"
                             />
                             <span className="text-sm text-[#2c3150]">
                                 I feel my role is to integrate everyone working on this mission
@@ -195,7 +195,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         </Button>
                         <Button
                             onClick={handleNextStep}
-                            className="flex-1 ring-2 ring-blue-400/50 ring-offset-2"
+                            className="flex-1 ring-2 ring-[#6894d0]/50 ring-offset-2"
                         >
                             Continue
                             <ArrowRight className="w-4 h-4 ml-2" />
@@ -208,21 +208,21 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
             {currentStep === "notifications" && (
                 <div>
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                            <Bell className="w-5 h-5 text-amber-600" />
+                        <div className="w-10 h-10 rounded-full bg-[#8460ea]/20 flex items-center justify-center">
+                            <Bell className="w-5 h-5 text-[#8460ea]" />
                         </div>
                         <h2 className="text-xl font-bold text-[#2c3150]">
                             Would you like to be notified when someone new commits to this mission?
                         </h2>
                     </div>
 
-                    <div className="bg-slate-50 rounded-xl p-6 mb-6 space-y-4">
+                    <div className="bg-[#f0f4ff]/50 rounded-xl p-6 mb-6 space-y-4 border border-[#a4a3d0]/20">
                         <label className="flex items-start gap-3 cursor-pointer">
                             <input
                                 type="checkbox"
                                 checked={wantsNotifications}
                                 onChange={(e) => setWantsNotifications(e.target.checked)}
-                                className="mt-1 w-5 h-5 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
+                                className="mt-1 w-5 h-5 rounded border-[#a4a3d0]/30 text-[#8460ea] focus:ring-[#8460ea]"
                             />
                             <span className="text-sm text-[#2c3150]">
                                 Yes, notify me about new people joining this mission
@@ -237,7 +237,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                                 <select
                                     value={notifyLevel}
                                     onChange={(e) => setNotifyLevel(e.target.value as typeof notifyLevel)}
-                                    className="w-full rounded-lg border border-slate-300 p-2.5 text-sm text-[#2c3150] focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                                    className="w-full rounded-lg border border-[#a4a3d0]/30 p-2.5 text-sm text-[#2c3150] focus:border-[#8460ea] focus:ring-1 focus:ring-[#8460ea]"
                                 >
                                     <option value="mission">This exact mission only</option>
                                     <option value="outcome">Same desired outcome</option>
@@ -257,7 +257,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         </Button>
                         <Button
                             onClick={handleNextStep}
-                            className="flex-1 ring-2 ring-amber-400/50 ring-offset-2"
+                            className="flex-1 ring-2 ring-[#8460ea]/50 ring-offset-2"
                         >
                             Continue
                             <ArrowRight className="w-4 h-4 ml-2" />
@@ -304,7 +304,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                         </Button>
                     </div>
 
-                    <p className="text-xs text-center text-slate-500 mt-4">
+                    <p className="text-xs text-center text-[#2c3150]/60 mt-4">
                         You can always come back and add sub-missions later.
                     </p>
                 </div>
@@ -315,13 +315,12 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                 {(["celebration", "connect", "notifications", "submissions"] as CommitStep[]).map((step, i) => (
                     <div
                         key={step}
-                        className={`w-2 h-2 rounded-full transition-colors ${
-                            currentStep === step
-                                ? "bg-slate-900"
+                        className={`w-2 h-2 rounded-full transition-colors ${currentStep === step
+                                ? "bg-[#2c3150]"
                                 : i < ["celebration", "connect", "notifications", "submissions"].indexOf(currentStep)
-                                    ? "bg-slate-400"
-                                    : "bg-slate-200"
-                        }`}
+                                    ? "bg-[#a4a3d0]"
+                                    : "bg-[#a4a3d0]/30"
+                            }`}
                     />
                 ))}
             </div>

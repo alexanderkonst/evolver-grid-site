@@ -56,7 +56,7 @@ export default function CelebrationModal({
                 </div>
 
                 {/* Progress bar visual */}
-                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden mb-6">
+                <div className="w-full h-2 bg-[#a4a3d0]/20 rounded-full overflow-hidden mb-6">
                     <div
                         className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] rounded-full animate-pulse"
                         style={{ width: "100%" }}
@@ -64,7 +64,7 @@ export default function CelebrationModal({
                 </div>
 
                 {/* Message */}
-                <p className="text-[rgba(44,49,80,0.7)] mb-6">{message}</p>
+                <p className="text-[#2c3150]/70 mb-6">{message}</p>
 
                 {/* CTA */}
                 <Button
