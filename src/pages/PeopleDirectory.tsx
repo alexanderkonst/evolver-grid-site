@@ -295,7 +295,7 @@ const PeopleDirectory = () => {
               <Users className="w-6 h-6" />
               <h1 className="text-2xl sm:text-3xl font-semibold">People Directory</h1>
             </div>
-            <p className="text-sm text-slate-500 mt-2">
+            <p className="text-sm text-[#2c3150]/60 mt-2">
               Find people who share your mission, focus, and location.
             </p>
           </div>
@@ -415,7 +415,7 @@ const PeopleDirectory = () => {
           )}
 
           {!loading && !error && filteredPeople.length === 0 && (
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-500">
+            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 text-center text-sm text-[#2c3150]/60">
               No profiles match these filters yet.
             </div>
           )}
@@ -431,10 +431,10 @@ const PeopleDirectory = () => {
                 <button
                   key={person.userId}
                   onClick={() => navigate(`/profile/${person.userId}`)}
-                  className="text-left rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-amber-200 hover:shadow-md"
+                  className="text-left rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition hover:border-[#8460ea]/40 hover:shadow-md"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-slate-100 overflow-hidden flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-[#f0f4ff] overflow-hidden flex items-center justify-center">
                       {person.avatarUrl ? (
                         <img
                           src={person.avatarUrl}
@@ -447,14 +447,14 @@ const PeopleDirectory = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="text-xs font-semibold text-[#2c3150]/60">
                           {person.name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}
                         </span>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-base font-semibold text-[#2c3150] truncate">{person.name}</h3>
-                      <p className="text-sm text-slate-500 truncate">✦ {person.archetype} ✦</p>
+                      <p className="text-sm text-[#2c3150]/60 truncate">✦ {person.archetype} ✦</p>
                     </div>
                   </div>
                   {person.tagline && (
@@ -462,7 +462,7 @@ const PeopleDirectory = () => {
                       "{person.tagline}"
                     </p>
                   )}
-                  <div className="mt-4 space-y-2 text-xs text-slate-500">
+                  <div className="mt-4 space-y-2 text-xs text-[#2c3150]/60">
                     {canShowLocation && (
                       <div className="flex items-center gap-2">
                         <MapPin className="w-3 h-3" />

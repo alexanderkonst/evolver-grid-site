@@ -153,7 +153,7 @@ const Connections = () => {
       : "Community member";
 
     return (
-      <div key={row.id} className="rounded-xl border border-slate-200 bg-white p-4">
+      <div key={row.id} className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-[#2c3150]">{name}</p>
@@ -194,9 +194,9 @@ const Connections = () => {
         </div>
 
         {!hasConnections ? (
-          <div className="rounded-xl border border-slate-200 bg-white p-6">
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
-              icon={<UserPlus className="w-6 h-6 text-slate-500" />}
+              icon={<UserPlus className="w-6 h-6 text-[#2c3150]/50" />}
               title="No connections yet"
               description="Start connecting with people to build your network."
               action={{
@@ -210,7 +210,7 @@ const Connections = () => {
             <section className="space-y-3">
               <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Pending requests</h2>
               {incoming.length === 0 ? (
-                <p className="text-sm text-slate-500">No incoming requests.</p>
+                <p className="text-sm text-[#2c3150]/60">No incoming requests.</p>
               ) : (
                 incoming.map((row) => renderRow(row, true))
               )}
@@ -219,7 +219,7 @@ const Connections = () => {
             <section className="space-y-3">
               <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Sent requests</h2>
               {outgoing.length === 0 ? (
-                <p className="text-sm text-slate-500">No sent requests.</p>
+                <p className="text-sm text-[#2c3150]/60">No sent requests.</p>
               ) : (
                 outgoing.map((row) => renderRow(row, false))
               )}
@@ -228,7 +228,7 @@ const Connections = () => {
             <section className="space-y-3">
               <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Active connections</h2>
               {accepted.length === 0 ? (
-                <p className="text-sm text-slate-500">No accepted connections yet.</p>
+                <p className="text-sm text-[#2c3150]/60">No accepted connections yet.</p>
               ) : (
                 accepted.map((row) => renderRow(row, false))
               )}

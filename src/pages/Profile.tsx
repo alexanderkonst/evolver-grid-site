@@ -297,7 +297,7 @@ const Profile = () => {
                                                             onClick={() => toggleLanguage(language)}
                                                             className={`rounded-full border px-3 py-1 text-sm transition ${isSelected
                                                                 ? "border-amber-300 bg-amber-50 text-amber-900"
-                                                                : "border-slate-200 bg-white text-[rgba(44,49,80,0.7)] hover:border-slate-300"
+                                                                : "border-[#a4a3d0]/20 bg-white text-[rgba(44,49,80,0.7)] hover:border-[#a4a3d0]/40"
                                                                 }`}
                                                             aria-pressed={isSelected}
                                                         >
