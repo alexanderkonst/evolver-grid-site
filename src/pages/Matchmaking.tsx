@@ -99,7 +99,7 @@ const Matchmaking = () => {
   const [sameLanguageOnly, setSameLanguageOnly] = useState(false);
 
   const Skeleton = ({ className }: { className?: string }) => (
-    <div className={`animate-pulse bg-slate-200 rounded ${className || ""}`} />
+    <div className={`animate-pulse bg-[#a4a3d0]/20 rounded ${className || ""}`} />
   );
 
   useEffect(() => {
@@ -313,13 +313,13 @@ const Matchmaking = () => {
     filteredGroups.similarMission.length > 0;
 
   const renderMatch = (match: MatchCandidate) => (
-    <div key={match.id} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div key={match.id} className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-lg font-semibold text-[#2c3150]">{match.name}</h3>
           <p className="text-sm text-[rgba(44,49,80,0.7)]">✦ {match.archetype} ✦</p>
           {match.tagline && (
-            <p className="text-xs text-slate-500 mt-1 italic">"{match.tagline}"</p>
+            <p className="text-xs text-[#2c3150]/60 mt-1 italic">"{match.tagline}"</p>
           )}
         </div>
         <Badge variant="secondary">{match.similarityScore}% match</Badge>
@@ -349,13 +349,13 @@ const Matchmaking = () => {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 mb-6">
+        <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 mb-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-slate-500" />
+              <MapPin className="w-4 h-4 text-[#2c3150]/60" />
               <div>
                 <p className="text-sm font-medium text-[#2c3150]">Same location</p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#2c3150]/60">
                   {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
                 </p>
               </div>
@@ -366,10 +366,10 @@ const Matchmaking = () => {
               />
             </div>
             <div className="flex items-center gap-3">
-              <Languages className="w-4 h-4 text-slate-500" />
+              <Languages className="w-4 h-4 text-[#2c3150]/60" />
               <div>
                 <p className="text-sm font-medium text-[#2c3150]">Same language</p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#2c3150]/60">
                   {currentProfile?.spokenLanguages?.length
                     ? currentProfile.spokenLanguages.join(", ")
                     : "Add languages to enable"}
@@ -406,9 +406,9 @@ const Matchmaking = () => {
         )}
 
         {!loading && !error && !hasAnyMatches && (
-          <div className="rounded-xl border border-slate-200 bg-white p-8">
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
-              icon={<Users className="w-6 h-6 text-slate-500" />}
+              icon={<Users className="w-6 h-6 text-[#2c3150]/50" />}
               title="No matches yet"
               description="Complete your Zone of Genius to find your people."
             />
@@ -420,12 +420,12 @@ const Matchmaking = () => {
             <section>
               <div className="mb-3">
                 <h2 className="text-lg font-semibold text-[#2c3150]">Similar Genius</h2>
-                <p className="text-sm text-slate-500">People who think and operate like you.</p>
+                <p className="text-sm text-[#2c3150]/60">People who think and operate like you.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {filteredGroups.similarGenius.map(renderMatch)}
                 {filteredGroups.similarGenius.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
+                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
                     No similar genius matches yet.
                   </div>
                 )}
@@ -435,12 +435,12 @@ const Matchmaking = () => {
             <section>
               <div className="mb-3">
                 <h2 className="text-lg font-semibold text-[#2c3150]">Complementary Genius</h2>
-                <p className="text-sm text-slate-500">Great co-founder or collaborator fit.</p>
+                <p className="text-sm text-[#2c3150]/60">Great co-founder or collaborator fit.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {filteredGroups.complementaryGenius.map(renderMatch)}
                 {filteredGroups.complementaryGenius.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
+                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
                     No complementary matches yet.
                   </div>
                 )}
@@ -450,12 +450,12 @@ const Matchmaking = () => {
             <section>
               <div className="mb-3">
                 <h2 className="text-lg font-semibold text-[#2c3150]">Similar Mission</h2>
-                <p className="text-sm text-slate-500">People aligned with your current mission.</p>
+                <p className="text-sm text-[#2c3150]/60">People aligned with your current mission.</p>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {filteredGroups.similarMission.map(renderMatch)}
                 {filteredGroups.similarMission.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
+                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
                     No mission matches yet.
                   </div>
                 )}
