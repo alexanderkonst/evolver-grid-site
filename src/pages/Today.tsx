@@ -373,7 +373,7 @@ export default function TodayPage() {
     // Loading state
     if (isLoading) {
         return (
-            <div className="min-h-dvh flex items-center justify-center bg-slate-50">
+            <div className="min-h-dvh flex items-center justify-center bg-[#f8f9fc]">
                 <PremiumLoader size="lg" />
             </div>
         );
@@ -410,7 +410,7 @@ export default function TodayPage() {
     }
 
     return (
-        <div className="min-h-dvh bg-slate-50">
+        <div className="min-h-dvh bg-[#f8f9fc]">
             <div className="max-w-2xl mx-auto px-4 py-8">
 
                 {/* Header */}
@@ -474,7 +474,7 @@ export default function TodayPage() {
                                     Main Quest
                                 </span>
                             </div>
-                            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+                            <span className="text-xs text-[#2c3150]/60 bg-[#f0f4ff] px-2 py-1 rounded-full">
                                 Stage {getStageNumber(mainQuestStage)} of {getTotalStages()}
                             </span>
                         </div>
@@ -521,7 +521,7 @@ export default function TodayPage() {
                     {/* 2. Side Quest (Practice) */}
                     <div className={`rounded-2xl border-2 p-5 ${sideQuestDoneToday
                         ? 'border-emerald-200 bg-emerald-50'
-                        : 'border-slate-200 bg-white'
+                        : 'border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${sideQuestDoneToday ? 'bg-emerald-500' : 'bg-emerald-600'
@@ -564,7 +564,7 @@ export default function TodayPage() {
                                 </Button>
                             </>
                         ) : loadingSideQuest ? (
-                            <div className="flex items-center gap-2 text-slate-500">
+                            <div className="flex items-center gap-2 text-[#2c3150]/60">
                                 <span className="premium-spinner w-4 h-4" />
                                 <span className="text-sm">Finding your practice...</span>
                             </div>
@@ -573,7 +573,7 @@ export default function TodayPage() {
                                 <h3 className="text-lg font-bold text-[#2c3150] mb-1">
                                     {sideQuest.practice.title}
                                 </h3>
-                                <p className="text-sm text-slate-500 mb-1">
+                                <p className="text-sm text-[#2c3150]/60 mb-1">
                                     {sideQuest.practice.duration_min} min • {sideQuest.domain}
                                 </p>
                                 <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
@@ -610,23 +610,23 @@ export default function TodayPage() {
 
                     {/* 3. Upgrade (Growth Path) */}
                     <div className={`rounded-2xl border-2 p-5 ${!upgradeUnlockStatus.unlocked
-                        ? 'border-slate-300 bg-slate-50'
-                        : 'border-slate-200 bg-white'
+                        ? 'border-[#a4a3d0]/30 bg-[#f0f4ff]/50'
+                        : 'border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${!upgradeUnlockStatus.unlocked ? 'bg-slate-400' : 'bg-purple-600'
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${!upgradeUnlockStatus.unlocked ? 'bg-[#a4a3d0]' : 'bg-purple-600'
                                 }`}>
                                 {!upgradeUnlockStatus.unlocked
                                     ? <Lock className="w-4 h-4 text-white" />
                                     : <Zap className="w-4 h-4 text-white" />
                                 }
                             </div>
-                            <span className={`text-xs font-semibold uppercase  ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-purple-600'
+                            <span className={`text-xs font-semibold uppercase  ${!upgradeUnlockStatus.unlocked ? 'text-[#2c3150]/60' : 'text-purple-600'
                                 }`}>
                                 Upgrade (Growth Path)
                             </span>
                             {!upgradeUnlockStatus.unlocked && (
-                                <span className="text-xs bg-slate-200 text-[rgba(44,49,80,0.7)] px-2 py-0.5 rounded-full">
+                                <span className="text-xs bg-[#a4a3d0]/20 text-[rgba(44,49,80,0.7)] px-2 py-0.5 rounded-full">
                                     Locked
                                 </span>
                             )}
@@ -634,17 +634,17 @@ export default function TodayPage() {
 
                         {nextUpgrade ? (
                             <>
-                                <h3 className={`text-lg font-bold mb-1 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-[#2c3150]'
+                                <h3 className={`text-lg font-bold mb-1 ${!upgradeUnlockStatus.unlocked ? 'text-[#2c3150]/60' : 'text-[#2c3150]'
                                     }`}>
                                     {nextUpgrade.title}
                                 </h3>
-                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-slate-500' : 'text-[rgba(44,49,80,0.7)]'
+                                <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-[#2c3150]/60' : 'text-[rgba(44,49,80,0.7)]'
                                     }`}>
                                     {nextUpgrade.description || 'Unlock this upgrade to level up.'}
                                 </p>
 
                                 {!upgradeUnlockStatus.unlocked ? (
-                                    <div className="text-sm text-slate-500">
+                                    <div className="text-sm text-[#2c3150]/60">
                                         <Lock className="w-4 h-4 inline mr-1" />
                                         Locked — requires: {upgradeUnlockStatus.missingPrereqs
                                             .map(code => prereqTitles[code] || code)
@@ -668,7 +668,7 @@ export default function TodayPage() {
                             </>
                         ) : (
                             <div className="text-center py-4">
-                                <p className="text-sm text-slate-500 mb-3">All upgrades complete!</p>
+                                <p className="text-sm text-[#2c3150]/60 mb-3">All upgrades complete!</p>
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -695,15 +695,15 @@ export default function TodayPage() {
                 {/* Logbook Preview */}
                 {todayQuestRuns.length > 0 && (
                     <div className="mt-8">
-                        <h3 className="text-sm font-semibold text-slate-500 uppercase  mb-3">
+                        <h3 className="text-sm font-semibold text-[#2c3150]/60 uppercase  mb-3">
                             Today's Log
                         </h3>
                         <div className="space-y-2">
                             {todayQuestRuns.map(run => (
-                                <div key={run.id} className="flex items-center justify-between bg-white rounded-lg border border-slate-200 px-4 py-3">
+                                <div key={run.id} className="flex items-center justify-between bg-white/85 backdrop-blur-sm rounded-lg border border-[#a4a3d0]/20 px-4 py-3 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                                     <div>
                                         <p className="font-medium text-[#2c3150]">{run.title}</p>
-                                        <p className="text-xs text-slate-500">{run.path} • {run.duration_minutes} min</p>
+                                        <p className="text-xs text-[#2c3150]/60">{run.path} • {run.duration_minutes} min</p>
                                     </div>
                                     <span className="text-sm font-semibold text-emerald-600">+{run.xp_awarded} XP</span>
                                 </div>
@@ -720,7 +720,7 @@ export default function TodayPage() {
                     <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold text-[#2c3150]">Capture Your Output</h2>
-                            <button onClick={() => setShowArtifactModal(false)} className="text-slate-500 hover:text-[#2c3150]">
+                            <button onClick={() => setShowArtifactModal(false)} className="text-[#2c3150]/60 hover:text-[#2c3150]">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
@@ -737,7 +737,7 @@ export default function TodayPage() {
                                 <select
                                     value={artifactType}
                                     onChange={(e) => setArtifactType(e.target.value as any)}
-                                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full rounded-md border border-[#a4a3d0]/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
                                     <option value="post">Post</option>
                                     <option value="pitch">Pitch</option>
@@ -753,7 +753,7 @@ export default function TodayPage() {
                                     Link (optional)
                                 </label>
                                 <div className="relative">
-                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#2c3150]/60" />
                                     <Input
                                         className="pl-10"
                                         placeholder="https://..."

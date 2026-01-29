@@ -164,7 +164,7 @@ const PublicProfile = () => {
       <div className="min-h-dvh flex items-center justify-center px-4">
         <div className="max-w-md text-center space-y-4">
           <h1 className="text-2xl font-semibold text-[#2c3150]">Profile Private</h1>
-          <p className="text-sm text-slate-500">This profile is not available right now.</p>
+          <p className="text-sm text-[#2c3150]/60">This profile is not available right now.</p>
           <BackButton />
         </div>
       </div>
@@ -185,7 +185,7 @@ const PublicProfile = () => {
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <div className="rounded-3xl bg-white/80 backdrop-blur p-6 sm:p-10 shadow-lg border border-white/60">
           <div className="flex flex-col items-center text-center">
-            <div className="w-28 h-28 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
+            <div className="w-28 h-28 rounded-full overflow-hidden bg-[#f0f4ff] flex items-center justify-center">
               {profile.avatar_url ? (
                 <img
                   src={profile.avatar_url}
@@ -197,7 +197,7 @@ const PublicProfile = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-2xl font-semibold text-slate-500">
+                <span className="text-2xl font-semibold text-[#2c3150]/60">
                   {fullName
                     .split(" ")
                     .map((part) => part[0])
@@ -212,7 +212,7 @@ const PublicProfile = () => {
               <p className="mt-3 text-lg font-medium text-[#2c3150]">✦ {archetypeTitle} ✦</p>
             )}
             {appleseed?.vibrationalKey?.tagline && (
-              <p className="mt-2 text-sm italic text-slate-500 max-w-xl">
+              <p className="mt-2 text-sm italic text-[#2c3150]/60 max-w-xl">
                 "{appleseed.vibrationalKey.tagline}"
               </p>
             )}
@@ -221,7 +221,7 @@ const PublicProfile = () => {
                 Core Vibration: <span className="text-slate-800">{coreVibration}</span>
               </p>
             )}
-            <div className="mt-4 space-y-2 text-sm text-slate-500">
+            <div className="mt-4 space-y-2 text-sm text-[#2c3150]/60">
               {canShowLocation && (
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4" />
@@ -251,15 +251,15 @@ const PublicProfile = () => {
           )}
 
           {mission?.intro_text && (
-            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 text-center">
-              <p className="text-sm uppercase tracking-wide text-slate-500">Bio</p>
+            <div className="mt-8 rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+              <p className="text-sm uppercase tracking-wide text-[#2c3150]/60">Bio</p>
               <p className="mt-2 text-[#2c3150]">{mission.intro_text}</p>
             </div>
           )}
 
           {canShowOffer && excalibur && (
-            <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-medium text-slate-500 mb-1">Unique Offer</p>
+            <div className="mt-8 rounded-2xl border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+              <p className="text-xs font-medium text-[#2c3150]/60 mb-1">Unique Offer</p>
               <h2 className="text-lg font-semibold text-[#2c3150]">{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
               <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.deliverable || ""}</p>
               <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.form || ""}</p>
