@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ZoGIntroScreenProps {
@@ -24,10 +24,14 @@ const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScr
             )}
 
             <div className="max-w-lg mx-auto text-center space-y-8">
-                {/* Icon */}
+                {/* Dodecahedron Icon */}
                 <div className="flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--wabi-lavender)] to-[var(--depth-violet)] flex items-center justify-center shadow-lg">
-                        <Sparkles className="w-8 h-8 text-white" />
+                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[var(--wabi-lavender)] to-[var(--depth-violet)] flex items-center justify-center shadow-lg">
+                        <img
+                            src="/dodecahedron.png"
+                            alt="Zone of Genius"
+                            className="w-12 h-12 object-contain"
+                        />
                     </div>
                 </div>
 
@@ -43,12 +47,6 @@ const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScr
                         Your Zone of Genius is where your natural talents meet your deepest passions —
                         what you do best without even trying.
                     </p>
-                </div>
-
-                {/* Time estimate */}
-                <div className="flex items-center justify-center gap-2 text-sm text-[var(--wabi-text-muted)]">
-                    <span className="w-2 h-2 rounded-full bg-[var(--depth-violet)]" />
-                    5-7 minutes
                 </div>
 
                 {/* CTA */}
