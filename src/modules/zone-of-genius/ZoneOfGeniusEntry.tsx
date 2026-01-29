@@ -313,10 +313,10 @@ const ZoneOfGeniusEntry = () => {
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
-                    onCreateBusiness={handleGenerateExcalibur}
                     isSaved={isSaved}
                     onSave={handleSaveClick}
                     isSaving={isSaving}
+                    onContinue={() => navigate("/game/profile/zone-of-genius")}
                 />
             </GameShellV2>
         );

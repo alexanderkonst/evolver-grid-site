@@ -40,13 +40,7 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
 
                 {/* Transformation promise */}
                 <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-                    <div className="flex items-center justify-center text-sm text-[var(--wabi-text-secondary)]">
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[var(--depth-violet)]" />
-                            7-10 minutes to discover yourself
-                        </span>
-                    </div>
-                    <div className="mt-4 text-sm text-[var(--wabi-text-secondary)] text-center">
+                    <div className="text-sm text-[var(--wabi-text-secondary)] text-center">
                         You'll discover who you really are and get your first personalized action.
                     </div>
                 </div>
@@ -61,11 +55,6 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
                     Begin Journey
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-
-                {/* Trust indicator */}
-                <p className="text-xs text-[var(--wabi-text-muted)]">
-                    No signup required to start
-                </p>
             </div>
         </div>
     );
