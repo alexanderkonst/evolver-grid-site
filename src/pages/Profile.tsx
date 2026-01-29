@@ -231,14 +231,14 @@ const Profile = () => {
 
                     <div className="space-y-6">
                         {/* Personal Info Section */}
-                        <Card>
+                        <Card className="bg-white/90 backdrop-blur-sm border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                             <CardHeader>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <User className="h-5 w-5 text-muted-foreground" />
+                                        <User className="h-5 w-5 text-[#2c3150]/60" />
                                         <div>
-                                            <CardTitle>Personal Information</CardTitle>
-                                            <CardDescription>Your basic account details</CardDescription>
+                                            <CardTitle className="text-[#2c3150]">Personal Information</CardTitle>
+                                            <CardDescription className="text-[#2c3150]/60">Your basic account details</CardDescription>
                                         </div>
                                     </div>
                                     {!isEditing && (
@@ -364,20 +364,20 @@ const Profile = () => {
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
-                                                <p className="text-sm text-muted-foreground">First Name</p>
-                                                <p className="font-medium">{profile?.first_name || "—"}</p>
+                                                <p className="text-sm text-[#2c3150]/60">First Name</p>
+                                                <p className="font-medium text-[#2c3150]">{profile?.first_name || "—"}</p>
                                             </div>
                                             <div>
-                                                <p className="text-sm text-muted-foreground">Last Name</p>
-                                                <p className="font-medium">{profile?.last_name || "—"}</p>
+                                                <p className="text-sm text-[#2c3150]/60">Last Name</p>
+                                                <p className="font-medium text-[#2c3150]">{profile?.last_name || "—"}</p>
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Email</p>
-                                            <p className="font-medium">{user?.email}</p>
+                                            <p className="text-sm text-[#2c3150]/60">Email</p>
+                                            <p className="font-medium text-[#2c3150]">{user?.email}</p>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Languages</p>
+                                            <p className="text-sm text-[#2c3150]/60">Languages</p>
                                             {profile?.spoken_languages && profile.spoken_languages.length > 0 ? (
                                                 <div className="mt-2 flex flex-wrap gap-2">
                                                     {profile.spoken_languages.map((language) => (
@@ -387,7 +387,7 @@ const Profile = () => {
                                                     ))}
                                                 </div>
                                             ) : (
-                                                <p className="font-medium">—</p>
+                                                <p className="font-medium text-[#2c3150]">—</p>
                                             )}
                                         </div>
                                     </div>
@@ -396,13 +396,13 @@ const Profile = () => {
                         </Card>
 
                         {/* Billing Section */}
-                        <Card>
+                        <Card className="bg-white/90 backdrop-blur-sm border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                             <CardHeader>
                                 <div className="flex items-center gap-3">
-                                    <CreditCard className="h-5 w-5 text-muted-foreground" />
+                                    <CreditCard className="h-5 w-5 text-[#2c3150]/60" />
                                     <div>
-                                        <CardTitle>Billing & Purchases</CardTitle>
-                                        <CardDescription>
+                                        <CardTitle className="text-[#2c3150]">Billing & Purchases</CardTitle>
+                                        <CardDescription className="text-[#2c3150]/60">
                                             Your purchase history and subscription management
                                         </CardDescription>
                                     </div>
@@ -412,28 +412,28 @@ const Profile = () => {
                                 <div className="space-y-6">
                                     {/* Purchases List */}
                                     <div>
-                                        <h4 className="text-sm font-medium mb-3">Purchase History</h4>
+                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Purchase History</h4>
                                         {purchases.length > 0 ? (
                                             <div className="space-y-2">
                                                 {purchases.map((purchase) => (
                                                     <div
                                                         key={purchase.id}
-                                                        className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                                                        className="flex items-center justify-between p-3 bg-[#f0f4ff]/50 rounded-lg"
                                                     >
                                                         <div>
-                                                            <p className="font-medium text-sm">AI Intelligence Boost</p>
-                                                            <p className="text-xs text-muted-foreground">
+                                                            <p className="font-medium text-sm text-[#2c3150]">AI Intelligence Boost</p>
+                                                            <p className="text-xs text-[#2c3150]/60">
                                                                 via {formatPurchaseSource(purchase.source)}
                                                             </p>
                                                         </div>
-                                                        <p className="text-sm text-muted-foreground">
+                                                        <p className="text-sm text-[#2c3150]/60">
                                                             {formatDate(purchase.created_at)}
                                                         </p>
                                                     </div>
                                                 ))}
                                             </div>
                                         ) : (
-                                            <p className="text-sm text-muted-foreground py-4 text-center">
+                                            <p className="text-sm text-[#2c3150]/60 py-4 text-center">
                                                 No purchases yet
                                             </p>
                                         )}
@@ -441,8 +441,8 @@ const Profile = () => {
 
                                     {/* Subscription Management */}
                                     <div className="pt-4 border-t">
-                                        <h4 className="text-sm font-medium mb-3">Subscription Management</h4>
-                                        <p className="text-sm text-muted-foreground mb-4">
+                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Subscription Management</h4>
+                                        <p className="text-sm text-[#2c3150]/60 mb-4">
                                             Manage your active subscriptions, update payment methods, or cancel.
                                         </p>
                                         <Button

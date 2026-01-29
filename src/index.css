@@ -374,14 +374,14 @@ All colors MUST be HSL.
 
   /* Glowing card - for hero/reveal moments */
   .glowing-card {
-    animation: glow-pulse 4s ease-in-out infinite;
+    animation: glow-pulse 8s ease-in-out infinite;
   }
 
   /* Combined: breathing + glow for premium feel */
   .alive-card {
     animation:
-      breathe 6s ease-in-out infinite,
-      glow-pulse 4s ease-in-out infinite;
+      breathe 8s ease-in-out infinite,
+      glow-pulse 8s ease-in-out infinite;
   }
 
   /* Scroll margin for anchor navigation */
@@ -493,7 +493,7 @@ All colors MUST be HSL.
 }
 
 .shimmer-card {
-  animation: glow-pulse 3s ease-in-out infinite;
+  animation: glow-pulse 6s ease-in-out infinite;
 }
 
 .shimmer-card .shimmer-overlay {
