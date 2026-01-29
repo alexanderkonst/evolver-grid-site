@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-01-28*
+> *Last updated: 2026-01-29*
 
 ---
 
@@ -11,19 +11,19 @@
 | # | Item | Category | Priority | Target |
 |---|------|----------|----------|--------|
 | **UX POLISH** |
-| 1 | Tour completion | UX | 🔴 HIGH | Today |
-| 2 | Deep UX/UI pass (blocks, templates, brandbook) | UX | 🔴 HIGH | This week |
+| 1 | Tour completion | UX | ✅ DONE | — |
+| 2 | Deep UX/UI pass (blocks, templates, brandbook) | UX | ✅ DONE | — |
 | 3 | Images instead of icons | UX | 🔴 HIGH | This week |
 | 4 | Premium visual research | UX | 🟡 MED | Backlog |
 | 5 | ZoG explainer + activation recording | UX | 🔴 HIGH | Today |
-| 6 | Upgrades in Profile (categories) | UX | 🔴 HIGH | Today |
+| 6 | Upgrades in Profile (categories) | UX | ✅ DONE | — |
 | 7 | Library: practices, combos, sequences | UX | 🟡 MED | This week |
-| 8 | Fast design workflow | UX | 🔴 HIGH | This week |
+| 8 | Fast design workflow | UX | ✅ DONE | — |
 | **DATA MODEL** |
 | 9 | User results to DB (missions, resources) | Data | 🔴 HIGH | Today |
 | 10 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This week |
 | **GENIUS BUSINESS** |
-| 11 | Genius Business sequence spec | Product | 🔴 HIGH | Today |
+| 11 | Genius Business sequence spec | Product | ✅ DONE | — |
 | 12 | Genius Business iteration flow | Product | 🔴 HIGH | February |
 | 13 | Smart packaging recommendations | Product | 🔴 HIGH | February |
 | 14 | How to enter the co-op | Product | 🟡 MED | Backlog |
@@ -33,7 +33,7 @@
 | 17 | Module landings (every module) | Marketing | 🔴 HIGH | This week |
 | 18 | Community leader value prop | Strategy | 🟡 MED | February |
 | 19 | Holonic landings for similar projects | Strategy | 🟡 MED | Backlog |
-| 20 | Monetization streams (5 mechanisms) | Strategy | 🔴 HIGH | Spec done |
+| 20 | Monetization streams (5 mechanisms) | Strategy | ✅ DONE | — |
 | **VERSIONING** |
 | 21 | Module versioning | Infra | 🔴 HIGH | This week |
 | 22 | User artifact versioning | Infra | 🔴 HIGH | This week |
@@ -56,28 +56,27 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | MVP Polish → Beta Ready |
-| **Focus** | Tour + Genius Business + Match-making |
-| **Next milestone** | 20 beta testers by Thursday |
+| **Current phase** | MVP Complete → Network Ready |
+| **Focus** | Landing Page + Matchmaking + Invites |
+| **Key milestone** | ✅ Architecture of Liberation crystallized |
 
 ---
 
-## 🎯 Today's Sprint (January 28, 2026)
+## 🎯 Today's Sprint (January 29, 2026)
 
-### Priority 1: UX Polish
-- [ ] **Tour completion** — 5-space walkthrough with tooltips
-- [ ] **ZoG explainer** — add activation recording + verb definitions
-- [ ] **Upgrades in Profile** — categories with dropdowns
+### ✅ Completed Today
+- [x] **Architecture of Liberation** — Core product essence documented
+- [x] **UI Color Updates** — 120+ files updated to brandbook equivalents
+- [x] **Documentation Integration** — Essence woven into pitch deck + marketing playbook
+- [x] **Build Verification** — 13.04s, all clear
 
-### Priority 2: Data Model
-- [ ] **User results to DB** — missions, resources (rename from assets)
-- [ ] **Matchmaking types spec** — resources, ZoG, missions
-
-### Priority 3: Genius Business
-- [ ] **Sequence spec** — ZoG → Seed → Product → Published
-
-### Nice to Have Today
+### Priority 1: Final Network School Tasks
 - [ ] **Solo user landing page** — one page for organic acquisition
+- [ ] **User results to DB** — missions, resources
+
+### Priority 2: Invite Readiness
+- [ ] **20 beta testers email list** — ready to invite
+- [ ] **Onboarding polish** — final walkthrough test
 
 ### My Next Move Follow-ups (from Jan 28 session)
 - [ ] **ZoG Profile Deep Dive module** — Upgrade after ZoG onboarding, user reads full profile → unlocks BUILD badge (spec: `docs/specs/zog-profile/`)
