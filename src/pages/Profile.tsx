@@ -221,10 +221,10 @@ const Profile = () => {
 
                     {/* Page Header */}
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-foreground">
+                        <h1 className="text-3xl font-bold text-[#2c3150]">
                             <BoldText>PROFILE</BoldText>
                         </h1>
-                        <p className="text-muted-foreground mt-1">
+                        <p className="text-[#2c3150]/60 mt-1">
                             Manage your account settings and subscriptions
                         </p>
                     </div>
@@ -237,8 +237,8 @@ const Profile = () => {
                                     <div className="flex items-center gap-3">
                                         <User className="h-5 w-5 text-[#2c3150]/60" />
                                         <div>
-                                            <CardTitle className="text-[#2c3150]">Personal Information</CardTitle>
-                                            <CardDescription className="text-[#2c3150]/60">Your basic account details</CardDescription>
+                                            <CardTitle className="text-[#2c3150] font-sans text-lg">Personal Information</CardTitle>
+                                            <CardDescription className="text-[#2c3150]/60 font-sans">Your basic account details</CardDescription>
                                         </div>
                                     </div>
                                     {!isEditing && (
@@ -401,8 +401,8 @@ const Profile = () => {
                                 <div className="flex items-center gap-3">
                                     <CreditCard className="h-5 w-5 text-[#2c3150]/60" />
                                     <div>
-                                        <CardTitle className="text-[#2c3150]">Billing & Purchases</CardTitle>
-                                        <CardDescription className="text-[#2c3150]/60">
+                                        <CardTitle className="text-[#2c3150] font-sans text-lg">Billing & Purchases</CardTitle>
+                                        <CardDescription className="text-[#2c3150]/60 font-sans">
                                             Your purchase history and subscription management
                                         </CardDescription>
                                     </div>

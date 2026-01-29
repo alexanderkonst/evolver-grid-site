@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Sparkles } from "lucide-react";
 
 interface AppleseedRitualLoadingProps {
     onComplete?: () => void;
@@ -53,9 +52,13 @@ const AppleseedRitualLoading = ({
                 {/* Inner ring */}
                 <div className="absolute inset-8 border-2 border-[#8460ea]/60 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
 
-                {/* Center glow */}
-                <div className="absolute inset-12 bg-[#8460ea]/20 rounded-full animate-pulse flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-[#8460ea]" />
+                {/* Center glow with dodecahedron */}
+                <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/30 to-[#8460ea]/20 rounded-full animate-pulse flex items-center justify-center">
+                    <img
+                        src="/dodecahedron.png"
+                        alt="Soul"
+                        className="w-12 h-12 object-contain"
+                    />
                 </div>
 
                 {/* Floating particles */}
