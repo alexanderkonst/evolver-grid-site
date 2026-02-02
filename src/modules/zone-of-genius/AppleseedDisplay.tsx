@@ -18,6 +18,7 @@ interface AppleseedDisplayProps {
     isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
     onContinue?: () => void; // Primary action to continue after ZoG
+    continueLabel?: string; // Custom label for continue button
 }
 
 /**
@@ -33,7 +34,8 @@ const AppleseedDisplay = ({
     onSave,
     isSaving = false,
     onResonanceRating,
-    onContinue
+    onContinue,
+    continueLabel = "Continue"
 }: AppleseedDisplayProps) => {
     const [copied, setCopied] = useState(false);
     const { toast } = useToast();
@@ -125,7 +127,7 @@ const AppleseedDisplay = ({
                 />
             </div>
 
-            {/* Continue to Profile - Shows after save (primary onboarding action) */}
+            {/* Continue - Shows after save (primary onboarding action) */}
             {isSaved && onContinue && (
                 <div className="flex justify-center">
                     <PremiumButton
@@ -133,7 +135,7 @@ const AppleseedDisplay = ({
                         className="px-8"
                         onClick={onContinue}
                     >
-                        Continue to My Profile
+                        {continueLabel}
                         <Sparkles className="w-4 h-4 ml-2" />
                     </PremiumButton>
                 </div>
