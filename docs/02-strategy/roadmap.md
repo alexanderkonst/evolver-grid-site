@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-01-29*
+> *Last updated: 2026-02-02*
 
 ---
 
@@ -13,42 +13,41 @@
 | **UX POLISH** |
 | 1 | Tour completion | UX | ✅ DONE | — |
 | 2 | Deep UX/UI pass (blocks, templates, brandbook) | UX | ✅ DONE | — |
-| 3 | Images instead of icons | UX | 🔴 HIGH | This week |
-| 4 | Premium visual research | UX | 🟡 MED | Backlog |
-| 5 | ZoG explainer + activation recording | UX | 🔴 HIGH | Today |
+| 3 | Bio-Light theme implementation | UX | ✅ DONE | — |
+| 4 | Premium visual research | UX | ✅ DONE | — |
+| 5 | ZoG explainer + activation recording | UX | 🔴 HIGH | This cycle |
 | 6 | Upgrades in Profile (categories) | UX | ✅ DONE | — |
-| 7 | Library: practices, combos, sequences | UX | 🟡 MED | This week |
+| 7 | Library: practices, combos, sequences | UX | 🟡 MED | This cycle |
 | 8 | Fast design workflow | UX | ✅ DONE | — |
+| 9 | Onboarding flow polish (button sequencing) | UX | 🔴 HIGH | This week |
 | **DATA MODEL** |
-| 9 | User results to DB (missions, resources) | Data | 🔴 HIGH | Today |
-| 10 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This week |
+| 10 | User results to DB (missions, resources) | Data | 🔴 HIGH | This week |
+| 11 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This cycle |
 | **GENIUS BUSINESS** |
-| 11 | Genius Business sequence spec | Product | ✅ DONE | — |
-| 12 | Genius Business iteration flow | Product | 🔴 HIGH | February |
-| 13 | Smart packaging recommendations | Product | 🔴 HIGH | February |
-| 14 | How to enter the co-op | Product | 🟡 MED | Backlog |
-| 15 | Why venture studios use this | Product | 🟡 MED | Backlog |
+| 12 | Genius Business sequence spec | Product | ✅ DONE | — |
+| 13 | Genius Business iteration flow | Product | 🔴 HIGH | This cycle |
+| 14 | Smart packaging recommendations | Product | 🔴 HIGH | This cycle |
+| 15 | Product Builder (Blueprint Generator) | Product | 🔴 HIGH | This cycle |
+| 16 | **Litmus test: Alexander through Product Builder** | Product | 🔴 HIGH | This cycle |
 | **PLATFORM STRATEGY** |
-| 16 | Solo user main landing page | Marketing | 🔴 HIGH | Today |
-| 17 | Module landings (every module) | Marketing | 🔴 HIGH | This week |
-| 18 | Community leader value prop | Strategy | 🟡 MED | February |
-| 19 | Holonic landings for similar projects | Strategy | 🟡 MED | Backlog |
+| 17 | Solo user main landing page | Marketing | 🔴 HIGH | This week |
+| 18 | Module landings (every module) | Marketing | 🟡 MED | This cycle |
+| 19 | Community leader value prop | Strategy | 🟡 MED | Backlog |
 | 20 | Monetization streams (5 mechanisms) | Strategy | ✅ DONE | — |
 | **VERSIONING** |
-| 21 | Module versioning | Infra | 🔴 HIGH | This week |
-| 22 | User artifact versioning | Infra | 🔴 HIGH | This week |
-| 23 | Holonic page navigation | Infra | 🟡 MED | This week |
+| 21 | Module versioning | Infra | 🟡 MED | This cycle |
+| 22 | User artifact versioning | Infra | 🟡 MED | This cycle |
+| 23 | Rename GROW → ME | Infra | 🔴 HIGH | This week |
 | **GROWTH** |
-| 24 | Invite system (modules) | Growth | 🟡 MED | February |
-| 25 | Doubling invites / waitlist | Growth | 🟡 MED | February |
-| 26 | Autonomous agent invites | Growth | 🔴 HIGH | March |
+| 24 | Pilot with 3-5 real users | Growth | 🔴 HIGH | This cycle |
+| 25 | Invite system (modules) | Growth | 🟡 MED | This cycle |
+| 26 | First paying client | Growth | 🔴 HIGH | This cycle |
 | **ECONOMICS** |
 | 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
 | 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
 | **PARKED** |
 | 29 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
 | 30 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
-| 31 | Loom video for onboarding | UX | 🟢 LOW | Deferred |
 
 ---
 
@@ -56,35 +55,49 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | MVP Complete → Network Ready |
-| **Focus** | Landing Page + Matchmaking + Invites |
-| **Key milestone** | ✅ Architecture of Liberation crystallized |
+| **Current phase** | MVP Complete → Revenue Ready |
+| **Current cycle** | February 2026 (until Chinese New Year) |
+| **Location** | Bali |
+| **Focus** | Onboarding polish + Landing page + Litmus test + First revenue |
+| **Key milestone** | ✅ Network School chapter complete (27 days) |
 
 ---
 
-## 🎯 Today's Sprint (January 29, 2026)
+## 🎯 February Cycle Goals (Feb 2 - Jan 29)
 
-### ✅ Completed Today
-- [x] **Architecture of Liberation** — Core product essence documented
+### Goal 1: Litmus Test — Take Yourself Through the Product Builder
+Use the platform to crystallize and monetize your own genius. Create one real offering born from your own platform journey.
+
+### Goal 2: Stabilize the Onboarding Flow
+Clean, complete user journey: Start → ZoG → QoL → First Action recommendation. No broken states, no confusing buttons, no dead ends.
+
+### Goal 3: Generate First Revenue Through the Platform
+Structure opportunities through the platform's capability map (workshops, 1:1 sessions, AI collaboration training).
+
+### Goal 4: Pilot with 3-5 Real Users
+3-5 people who've completed onboarding and received their first personalized action.
+
+---
+
+## ✅ Completed (Network School Sprint, Jan 3-29)
+
+- [x] **27 days of intensive building** — Functional MVP of Planetary OS
+- [x] **Zone of Genius** — Appleseed + Excalibur complete
+- [x] **Quality of Life Map** — Assessment + Priorities + Growth Recipe
+- [x] **Three-Panel Navigation** — Bio-Light theme
+- [x] **My Next Move logic** — Badge system
+- [x] **Architecture of Liberation** — Documented
 - [x] **UI Color Updates** — 120+ files updated to brandbook equivalents
-- [x] **Documentation Integration** — Essence woven into pitch deck + marketing playbook
-- [x] **Build Verification** — 13.04s, all clear
+- [x] **Module Taxonomy** — 18 modules across 6 spaces
+- [x] **Project Synthesis v3** — Updated for current state
 
-### Priority 1: Final Network School Tasks
-- [ ] **Solo user landing page** — one page for organic acquisition
-- [ ] **User results to DB** — missions, resources
+---
 
-### Priority 2: Invite Readiness
-- [ ] **20 beta testers email list** — ready to invite
-- [ ] **Onboarding polish** — final walkthrough test
+## 🔧 In Progress
 
-### My Next Move Follow-ups (from Jan 28 session)
-- [ ] **ZoG Profile Deep Dive module** — Upgrade after ZoG onboarding, user reads full profile → unlocks BUILD badge (spec: `docs/specs/zog-profile/`)
-- [ ] **Add `zog_profile_read_at` DB field** — tracks when user read their full ZoG profile
-- [ ] **Add DB fields for hasResources/hasMission** — currently hardcoded as false in myNextMoveLogic.ts
-- [ ] **BUILD badge triggers after ZoG Profile read** — not just ZoG onboarding (update GameShellV2.tsx)
-- [ ] **COLLABORATE badge after Resources mapping** — logic ready, needs hasResources DB field
-- [ ] **Library practices** — combos, sequences, rename "practice"
+- [ ] **Onboarding flow polish** — Button sequencing issues
+- [ ] **Solo user landing page** — One page for organic acquisition
+- [ ] **User results to DB** — Missions, resources
 
 ---
 
