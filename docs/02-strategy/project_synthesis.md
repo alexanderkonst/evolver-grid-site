@@ -1,5 +1,5 @@
-# Planetary OS — Project Synthesis v2
-> **Version**: 2026-01-13 | **Status**: Active Development | **Stage**: MVP+
+# Planetary OS — Project Synthesis v3
+> **Version**: 2026-02-02 | **Status**: MVP Complete | **Stage**: Network Ready
 
 ---
 
@@ -17,22 +17,18 @@
 
 > **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Avantgarde. One launch sequence across all movements — Sovereignty, Innovation, Regeneration, Awakening, Rooting, Creation. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future coordinate as one meta-ecosystem."*
 
-### The Evolutionary Avantgarde
+### Platform Slogan (The 6 Spaces)
 
-Communities at the **frontier of technology AND consciousness**. Not one movement — a constellation of subcultures unified by shared coordination infrastructure.
+> **GROW. LEARN. MEET. COLLABORATE. BUILD. BUY & SELL.**
 
-**Six Currents:**
-
-| Current | Core Drive |
-|---------|------------|
-| 🌐 **Sovereignty** | Decentralized governance, self-determination |
-| 🚀 **Innovation** | Building the future through ventures |
-| 🌱 **Regeneration** | Healing earth and systems |
-| ✨ **Awakening** | Consciousness evolution, spiritual growth |
-| 🏡 **Rooting** | Land-based intentional living |
-| 🎭 **Creation** | Art, culture, narrative as evolution vectors |
-
-📄 **Full taxonomy**: [evolutionary_avantgarde_taxonomy.md](./evolutionary_avantgarde_taxonomy.md)
+| Space | Purpose | Key Modules |
+|-------|---------|-------------|
+| 🪞 **GROW** | Know yourself, level up | ZoG, QoL, Resources, Mission, Personality Tests |
+| 📚 **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
+| 🎉 **MEET** | Events, gatherings | Events, Men's Circle |
+| 🤝 **COLLABORATE** | Find your people | Matchmaking, Connections |
+| 🛠️ **BUILD** | Create products | Genius Business, Product Builder, Business Incubator |
+| 🏪 **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
 ### What Each Citizen Gets
 
@@ -43,10 +39,6 @@ Communities at the **frontier of technology AND consciousness**. Not one movemen
 5. **Move** forward daily with AI guidance
 
 **Core Promise**: *"There's always a next move. And we'll always tell you what it is."*
-
-### Why This Is Bigger Than Balaji
-
-Balaji's Network State is one channel — crypto-native Sovereignty. Our infrastructure connects **all six currents of conscious innovation** into one coordination layer. Cross-pollination is the product.
 
 ---
 
@@ -59,33 +51,6 @@ These are non-negotiable:
 3. **AI amplifies, not replaces** — human agency is sacred
 4. **Simple beats complex** — "Absurd Simplicity" as design principle
 5. **Connection is the product** — the network creates value
-
----
-
-## The Problem We Solve
-
-### Individual Level
-- Unclear purpose
-- Untapped potential  
-- Scattered effort
-- No daily practice
-
-### Collective Level
-- Misaligned coordination
-- Wasted synergy between complementary people
-- Expertise locked in silos
-
-### Why Traditional Solutions Fail
-- **Coaching**: Expensive, doesn't scale
-- **Self-help**: Generic, no personalization
-- **Social platforms**: Optimize for engagement, not growth
-
-### Our Edge
-AI-powered personal development that:
-- Costs nothing to scale
-- Personalizes to each user's genius
-- Creates real human connections
-- Provides daily actionable guidance
 
 ---
 
@@ -126,61 +91,42 @@ PHASE 3: ACTION (Day 5+)
 └─────────────────────────────────────────┘
 ```
 
-**Key Insight**: Self-first, then others. Personal clarity enables collective contribution.
-
 ---
 
 ## Product Architecture
 
-### Three-Panel Navigation ("Discord-style")
+### Core Modules (18 Total)
 
-```
-┌──────────┬─────────────┬──────────────────────────────┐
-│ Panel 1  │  Panel 2    │         Panel 3              │
-│ SPACES   │  SECTIONS   │        CONTENT               │
-│          │             │                              │
-│ ○ Profile│ ▸ Overview  │  ┌────────────────────────┐  │
-│ ○ Growth │ ▸ Mission   │  │                        │  │
-│ ○ Move   │ ▸ Genius    │  │   SINGLE FOCUSED BOX   │  │
-│ ○ Collabs│   ├ Appleseed │  │                        │  │
-│ ○ Events │   └ Excalibur │  │   (One action at a    │  │
-│ ○ Market │ ▸ QoL       │  │    time. Always.)      │  │
-│ ○ Co-op  │ ▸ Assets    │  │                        │  │
-│          │             │  └────────────────────────┘  │
-│  240px   │   280px     │        FLEXIBLE              │
-└──────────┴─────────────┴──────────────────────────────┘
-```
+| Space | Module | Question | Output |
+|-------|--------|----------|--------|
+| **GROW** | Zone of Genius | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
+| **GROW** | Quality of Life | "Where am I now?" | 8-domain score, priorities |
+| **GROW** | Mission Discovery | "What's mine to do?" | Aligned mission from 800+ options |
+| **GROW** | Resource Mapping | "What assets do I have?" | Categorized assets with leverage scores |
+| **GROW** | Personality Tests | "My deep psychology?" | MBTI, Enneagram, HD integration |
+| **LEARN** | Daily Loop | "What's my next move?" | Personalized action recommendation |
+| **LEARN** | Library | "What practices exist?" | Curated practices and activations |
+| **LEARN** | Growth Paths | "How do I develop?" | 5 paths with sequential upgrades |
+| **LEARN** | Skill Trees | "What can I unlock?" | Visual progression system |
+| **MEET** | Events | "What's happening?" | Community gatherings |
+| **MEET** | Men's Circle | "Where's my tribe?" | Online circle for men |
+| **COLLABORATE** | Matchmaking | "Who complements me?" | Similar/complementary genius matches |
+| **COLLABORATE** | Connections | "Who's in my network?" | User relationship management |
+| **BUILD** | Genius Business | "How do I monetize?" | Business model from genius |
+| **BUILD** | Product Builder | "How do I package it?" | Product blueprints and builders |
+| **BUILD** | Business Incubator | "How do I scale?" | Venture studio support |
+| **BUY & SELL** | Marketplace | "What can I offer/find?" | Browse and purchase offerings |
+| **Special** | Onboarding + Tour | "How does this work?" | Guided introduction |
 
-**Design Constraints**:
-- **One-Box Rule**: Panel 3 shows ONE focused container only
-- **No Truncation**: All labels fully visible in Panel 2
-- **Progressive Reveal**: Features unlock as user progresses
+### Design System: Bio-Light Aesthetic
 
-### Core Modules
-
-| Module | Question | Output |
-|--------|----------|--------|
-| **Zone of Genius** | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
-| **Quality of Life** | "Where am I now?" | 8-domain score, priorities |
-| **Mission Discovery** | "What's mine to do?" | Aligned mission from 800+ options |
-| **Asset Mapping** | "What resources do I have?" | Categorized assets with leverage scores |
-| **Matchmaking** | "Who complements me?" | Similar/complementary genius matches |
-| **Transformation** | "How do I grow?" | 61 micro-modules across 5 paths |
-
-### The 5 Growth Paths
-
-| Path | Focus | Modules |
-|------|-------|---------|
-| **Body** | Physical vitality | 7 |
-| **Emotions** | Processing & mastery | 8 |
-| **Mind** | Perception & stages | 10 |
-| **Spirit** | Awareness & character | 10 |
-| **Genius** | Unique expression | 9 |
-
-Each module follows the **Flywheel Pattern**:
-```
-Microlearning (2-5 min) → Experience (1-2 min) → Integration (7 days)
-```
+| Element | Standard |
+|---------|----------|
+| **Primary Theme** | Pearl Mode (light, iridescent) |
+| **Motion** | 8s Anti-Anxiety Standard |
+| **Typography** | Display Serif (headlines) + UI Sans (body) |
+| **Colors** | Wabi-sabi palette with depth violets |
+| **Cards** | Glass morphism with subtle glow |
 
 ---
 
@@ -191,30 +137,9 @@ Microlearning (2-5 min) → Experience (1-2 min) → Integration (7 days)
 | **Frontend** | Vite + React 18 + TypeScript |
 | **Styling** | Tailwind CSS + shadcn/ui |
 | **Backend** | Supabase (Postgres, Auth, Edge Functions) |
-| **AI** | Lovable API Gateway → Gemini 2.5 Flash |
+| **AI** | Gemini 2.5 Flash via Edge Functions |
 | **Hosting** | Vercel (auto-deploy on git push) |
 | **Content** | NotebookLM → YouTube → Platform |
-
-### Key Files
-
-```
-src/
-├── components/game/
-│   ├── GameShellV2.tsx     # 3-panel layout
-│   ├── SpacesRail.tsx      # Panel 1
-│   └── SectionsPanel.tsx   # Panel 2
-├── modules/
-│   ├── zone-of-genius/     # Identity discovery
-│   ├── mission-discovery/  # 800+ missions
-│   └── asset-mapping/      # Resource mapping
-└── prompts/                # AI prompt templates
-
-supabase/functions/
-├── generate-appleseed/     # Talent synthesis
-├── generate-excalibur/     # Offer generation
-├── match-mission-to-excalibur/  # Mission matching
-└── suggest-asset-matches/  # Asset complementarity
-```
 
 ### Database Schema
 
@@ -229,35 +154,37 @@ supabase/functions/
 
 ---
 
-## Current Status
+## Current Status (February 2026)
 
 ### ✅ Complete
 
 - Zone of Genius (Appleseed + Excalibur)
-- Quality of Life Map (Assessment + Priorities)
-- Three-Panel Navigation
-- Progressive Onboarding
-- Asset Mapping (AI + manual)
+- Quality of Life Map (Assessment + Priorities + Growth Recipe)
+- Three-Panel Navigation (Bio-Light theme)
+- Progressive Onboarding with Tour
+- Resource Mapping (AI + manual)
 - Events System (CRUD, RSVP, Calendar)
 - Matchmaking v1 (Top-1 + Refresh)
 - Mission Matchmaking (Excalibur → 800+ missions)
 - Mobile Responsive
+- My Next Move logic (badge system)
+- Brand identity crystallized (Bio-Light aesthetic)
+- Architecture of Liberation documented
 
 ### 🔄 In Progress
 
-- Transformation Content: **40/61 modules** (65%)
-- Plain Language UI improvements
-- Onboarding Progress Bar
-- Panel 3 Button Standardization
+- Onboarding flow polish (button sequencing)
+- Landing page for organic acquisition
+- User results persistence (missions, resources to DB)
+- Invite system for beta testers
 
-### 📊 Success Metrics (Targets)
+### 📊 Current Phase
 
-| Metric | Target |
-|--------|--------|
-| Onboarding → Daily Loop | >70% |
-| Module Completion | >50% |
-| Match Acceptance | >30% |
-| NPS | >50 |
+| Metric | Value |
+|--------|-------|
+| **Current phase** | MVP Complete → Network Ready |
+| **Focus** | Landing Page + Invites + Onboarding Polish |
+| **Module count** | 18 modules across 6 spaces |
 
 ---
 
@@ -273,20 +200,43 @@ supabase/functions/
 | **Lead Engineer** | Codex | Volume UI tasks |
 | **DB Manager** | Lovable | Migrations only |
 
-### Protocols
-
-- **Language**: Russian (chat), English (code/docs)
-- **Deploy-First**: Not "done" until visible in production
-- **Plain Language**: No jargon in user-facing UI
-- **Task Queue**: `ai_tasks/PENDING_*.md` → `DONE_*`
-
 ### Workflows
 
 | Command | Action |
 |---------|--------|
 | `/deploy` | Commit + push to production |
-| `/ux-audit` | Browser-based UI walkthrough |
 | `/commit` | Stage + commit with message |
+| `/ux-audit` | Browser-based UI walkthrough |
+| `/feature` | Generate Feature Requirement Document |
+
+---
+
+## Documentation Architecture
+
+### Core Directories
+
+```
+docs/
+├── 01-vision/           # Why we exist
+├── 02-strategy/         # How we win
+├── 03-playbooks/        # How we execute
+├── 04-specs/            # What we build
+├── 05-reference/        # What we know
+├── 06-architecture/     # How it's structured
+├── 07-technology/       # How it works
+├── 08-content/          # What we say
+├── 09-logs/             # What happened
+└── 10-workshops/        # Teaching materials
+```
+
+### Key Documents
+
+| Doc | Path |
+|-----|------|
+| Module Taxonomy | `02-strategy/module_taxonomy.md` |
+| Roadmap | `02-strategy/roadmap.md` |
+| Game Spaces | `02-strategy/game_spaces.md` |
+| Brand Identity | Knowledge: `evolver_brand_identity` |
 
 ---
 
@@ -299,9 +249,9 @@ supabase/functions/
 | **Holonic** | Whole/part — each entity is both whole and part of larger whole |
 | **ZoG** | Zone of Genius — intersection of natural talent + joy |
 | **QoL** | Quality of Life Map — 8-domain life assessment |
-| **Flywheel** | Self-reinforcing cycle: Learn → Experience → Integrate |
+| **Bio-Light** | Design aesthetic — iridescent, alive, precise |
+| **Pearl Mode** | Light theme with wabi-sabi colors |
 | **L0-L5** | Planetary layers: Protocols → Member → Teams → DAOs → Networks → Civilization |
-| **Collabs** | Collaborations space for finding complementary people |
 | **Game Shell** | The 3-panel navigation wrapper (`GameShellV2`) |
 
 ---
@@ -311,8 +261,8 @@ supabase/functions/
 ### For AI Agents
 
 1. Read this document fully
-2. Check `ai_tasks/PENDING_*.md` for work
-3. Follow `GameShellV2` patterns
+2. Check `docs/02-strategy/roadmap.md` for current priorities
+3. Follow `GameShellV2` patterns for UI
 4. Deploy via `/deploy`
 
 ### For Developers
@@ -326,35 +276,12 @@ supabase/functions/
 
 - [ ] Follows "Absurd Simplicity"
 - [ ] Uses `h-dvh` not `h-screen`
-- [ ] No truncation in Panel 2
-- [ ] Single box in Panel 3
-- [ ] Plain language in UI
+- [ ] Bio-Light aesthetic (pearl theme)
+- [ ] 8s animation standard
 - [ ] Deployed to production
 
 ---
 
-## Reference Index
+*This is a living document. Last updated: February 2, 2026.*
 
-### Documentation
-
-| Doc | Path |
-|-----|------|
-| Status & Roadmap | `knowledge/project_status/status_and_roadmap_*.md` |
-| Navigation | `knowledge/planetary_os/systems/navigation_strategy.md` |
-| Onboarding | `knowledge/planetary_os/systems/onboarding.md` |
-| Curriculum | `knowledge/transformational_curriculum/curriculum_index.md` |
-| Collaboration | `knowledge/developer_ai_collaboration_model/ai_delegation_model.md` |
-
-### Knowledge Items
-
-- Planetary OS (L0-L5 architecture)
-- Transformational Curriculum (61 modules)
-- Developer-AI Collaboration
-- UI Design Standards
-- Holonic Economics
-
----
-
-*This is a living document. Last updated: January 13, 2026.*
-
-*For real-time status, check `knowledge/project_status/` or run `/ux-audit`.*
+*For real-time status, check `docs/02-strategy/roadmap.md` or run `/ux-audit`.*
