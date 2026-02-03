@@ -163,13 +163,13 @@ const PublishedScreen: React.FC = () => {
             <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
                     <PartyPopper className="w-8 h-8 text-yellow-500" />
-                    <Sparkles className="w-6 h-6 text-[#2c3150]" />
+                    <Sparkles className="w-6 h-6 text-foreground" />
                     <Star className="w-8 h-8 text-amber-500" />
                 </div>
-                <h1 className="text-4xl font-bold text-[#2c3150] mb-2">
+                <h1 className="text-4xl font-bold text-foreground mb-2">
                     Congratulations!
                 </h1>
-                <p className="text-xl text-[#2c3150] font-semibold mb-4">
+                <p className="text-xl text-foreground font-semibold mb-4">
                     Your Genius is Now Live
                 </p>
 
@@ -179,11 +179,11 @@ const PublishedScreen: React.FC = () => {
                         <span className="mr-2">🫀</span>
                         <strong>You just published your genius.</strong>
                     </p>
-                    <p className="text-sm text-[#2c3150]">
+                    <p className="text-sm text-foreground">
                         <span className="mr-2">🧠</span>
                         People can now find and buy from you.
                     </p>
-                    <p className="text-sm text-[#2c3150]">
+                    <p className="text-sm text-foreground">
                         <span className="mr-2">🔥</span>
                         Share it with the world.
                     </p>
@@ -193,7 +193,7 @@ const PublishedScreen: React.FC = () => {
             {/* Link Box */}
             <Card className="max-w-xl mx-auto mb-6">
                 <CardContent className="p-4">
-                    <p className="text-sm text-[#2c3150] mb-2">Your product URL:</p>
+                    <p className="text-sm text-foreground mb-2">Your product URL:</p>
                     <div className="flex items-center gap-2">
                         <div className="flex-1 bg-muted rounded-lg px-4 py-3 text-sm font-mono truncate">
                             {state.productUrl || productUrl}
@@ -242,7 +242,7 @@ const PublishedScreen: React.FC = () => {
 
             {/* Motivational Footer */}
             <div className="text-center mt-12 max-w-lg mx-auto">
-                <p className="text-[#2c3150] italic">
+                <p className="text-foreground italic">
                     "You did something most people never do. You made your gift available to the world."
                 </p>
             </div>
