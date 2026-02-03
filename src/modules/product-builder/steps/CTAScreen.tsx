@@ -77,10 +77,10 @@ const CTAScreen: React.FC = () => {
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
-                    <Target className="w-8 h-8 text-[#2c3150]" />
+                    <Target className="w-8 h-8 text-foreground" />
                 </div>
-                <h1 className="text-3xl font-bold text-[#2c3150] mb-2">Call to Action</h1>
-                <p className="text-[#2c3150]">
+                <h1 className="text-3xl font-bold text-foreground mb-2">Call to Action</h1>
+                <p className="text-foreground">
                     How will clients work with you?
                 </p>
             </div>
@@ -101,17 +101,17 @@ const CTAScreen: React.FC = () => {
                         <CardContent className="p-6 text-center">
                             <div className={cn(
                                 "inline-flex items-center justify-center w-12 h-12 rounded-full mb-4",
-                                selectedType === option.type ? "bg-primary text-[#2c3150]-foreground" : "bg-muted"
+                                selectedType === option.type ? "bg-primary text-foreground-foreground" : "bg-muted"
                             )}>
                                 <option.icon className="w-6 h-6" />
                             </div>
-                            <h3 className="font-semibold text-[#2c3150] mb-2">{option.title}</h3>
-                            <p className="text-sm text-[#2c3150] mb-4">{option.description}</p>
+                            <h3 className="font-semibold text-foreground mb-2">{option.title}</h3>
+                            <p className="text-sm text-foreground mb-4">{option.description}</p>
                             <div className={cn(
                                 "inline-block px-4 py-2 rounded-lg text-sm font-medium",
                                 selectedType === option.type
-                                    ? "bg-primary text-[#2c3150]-foreground"
-                                    : "bg-muted text-[#2c3150]"
+                                    ? "bg-primary text-foreground-foreground"
+                                    : "bg-muted text-foreground"
                             )}>
                                 {option.buttonText}
                             </div>
