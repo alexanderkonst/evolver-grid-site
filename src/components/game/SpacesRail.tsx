@@ -30,7 +30,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "grow",
-        label: "GROW",
+        label: "ME",
         icon: <User className="w-5 h-5 flex-shrink-0" />,
         path: "/game/grow",
     },

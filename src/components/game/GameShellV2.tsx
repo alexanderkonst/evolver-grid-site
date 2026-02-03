@@ -245,7 +245,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     const unlockStatus: Record<string, boolean> = {
         // My Next Move is always unlocked
         "next-move": true,
-        // GROW (profile) is always unlocked - it's where users manage their data
+        // ME (profile) is always unlocked - it's where users manage their data
         "grow": true,
         // LEARN (transformation) unlocks after QoL complete
         "learn": !isZogCompleteStage && qolComplete,
