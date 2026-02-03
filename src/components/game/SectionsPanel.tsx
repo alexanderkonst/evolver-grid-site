@@ -31,9 +31,9 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "recommended", label: "Recommended Action", path: "/game/next-move" },
         ],
     },
-    // GROW Space (was Profile)
+    // ME Space (was Profile/GROW)
     grow: {
-        title: "GROW",
+        title: "ME",
         sections: [
             { id: "overview", label: "Overview", path: "/game/grow" },
             { id: "mission", label: "My Mission", path: "/game/grow/mission" },

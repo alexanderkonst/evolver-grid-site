@@ -37,7 +37,7 @@
 | **VERSIONING** |
 | 21 | Module versioning | Infra | 🟡 MED | This cycle |
 | 22 | User artifact versioning | Infra | 🟡 MED | This cycle |
-| 23 | Rename GROW → ME | Infra | ✅ DONE | — |
+| 23 | Rename GROW → ME | Infra | 🔴 HIGH | This week |
 | **GROWTH** |
 | 24 | Pilot with 3-5 real users | Growth | 🔴 HIGH | This cycle |
 | 25 | Invite system (modules) | Growth | 🟡 MED | This cycle |
@@ -88,8 +88,7 @@ Structure opportunities through the platform's capability map (workshops, 1:1 se
 - [x] **My Next Move logic** — Badge system
 - [x] **Architecture of Liberation** — Documented
 - [x] **UI Color Updates** — 120+ files updated to brandbook equivalents
-- [x] **Module Taxonomy v2.0** — 19 modules + 121 submodules versioned
-- [x] **GROW → ME rename** — Space renamed across UI and docs
+- [x] **Module Taxonomy** — 18 modules across 6 spaces
 - [x] **Project Synthesis v3** — Updated for current state
 
 ---

@@ -37,7 +37,7 @@ const TOUR_STEPS: TourStep[] = [
         iconColor: "text-[var(--wabi-sage)]",
         iconBg: "bg-[var(--wabi-sage)]/10",
         title: "Transformation",
-        tagline: "This is where you GROW",
+        tagline: "This is ME — your self-knowledge, all in one place",
         description: "5 growth paths with transformational content. Your Genius Path unlocks the Business Incubator.",
         status: "unlocked",
     },
@@ -179,10 +179,10 @@ const TourStepsScreen = ({ onComplete, onBack, onSkip }: TourStepsScreenProps) =
                             <span
                                 key={index}
                                 className={`w-2 h-2 rounded-full transition-all ${index === currentStep
-                                        ? 'w-6 bg-[var(--depth-violet)]'
-                                        : index < currentStep
-                                            ? 'bg-[var(--wabi-sage)]'
-                                            : 'bg-[var(--wabi-lavender)]/40'
+                                    ? 'w-6 bg-[var(--depth-violet)]'
+                                    : index < currentStep
+                                        ? 'bg-[var(--wabi-sage)]'
+                                        : 'bg-[var(--wabi-lavender)]/40'
                                     }`}
                             />
                         ))}

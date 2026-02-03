@@ -19,11 +19,11 @@
 
 ### Platform Slogan (The 6 Spaces)
 
-> **GROW. LEARN. MEET. COLLABORATE. BUILD. BUY & SELL.**
+> **ME. LEARN. MEET. COLLABORATE. BUILD. BUY & SELL.**
 
 | Space | Purpose | Key Modules |
 |-------|---------|-------------|
-| 🪞 **GROW** | Know yourself, level up | ZoG, QoL, Resources, Mission, Personality Tests |
+| 🪞 **ME** | Know yourself, your profile | ZoG, QoL, Resources, Mission, Personality Tests |
 | 📚 **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
 | 🎉 **MEET** | Events, gatherings | Events, Men's Circle |
 | 🤝 **COLLABORATE** | Find your people | Matchmaking, Connections |
@@ -99,11 +99,11 @@ PHASE 3: ACTION (Day 5+)
 
 | Space | Module | Question | Output |
 |-------|--------|----------|--------|
-| **GROW** | Zone of Genius | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
-| **GROW** | Quality of Life | "Where am I now?" | 8-domain score, priorities |
-| **GROW** | Mission Discovery | "What's mine to do?" | Aligned mission from 800+ options |
-| **GROW** | Resource Mapping | "What assets do I have?" | Categorized assets with leverage scores |
-| **GROW** | Personality Tests | "My deep psychology?" | MBTI, Enneagram, HD integration |
+| **ME** | Zone of Genius | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
+| **ME** | Quality of Life | "Where am I now?" | 8-domain score, priorities |
+| **ME** | Mission Discovery | "What's mine to do?" | Aligned mission from 800+ options |
+| **ME** | Resource Mapping | "What assets do I have?" | Categorized assets with leverage scores |
+| **ME** | Personality Tests | "My deep psychology?" | MBTI, Enneagram, HD integration |
 | **LEARN** | Daily Loop | "What's my next move?" | Personalized action recommendation |
 | **LEARN** | Library | "What practices exist?" | Curated practices and activations |
 | **LEARN** | Growth Paths | "How do I develop?" | 5 paths with sequential upgrades |
