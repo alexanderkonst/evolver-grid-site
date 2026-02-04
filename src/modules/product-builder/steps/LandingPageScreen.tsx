@@ -123,10 +123,10 @@ const LandingPageScreen: React.FC = () => {
             {/* Header */}
             <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
-                    <FileText className="w-8 h-8 text-foreground" />
+                    <FileText className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Your Landing Page</h1>
-                <p className="text-foreground">
+                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Your Landing Page</h1>
+                <p className="text-primary-wabi">
                     Look what you've created.
                 </p>
             </div>
@@ -134,8 +134,8 @@ const LandingPageScreen: React.FC = () => {
             {/* Landing Page Preview */}
             <Card className="max-w-3xl mx-auto mb-8 overflow-hidden">
                 <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-foreground" />
-                    <span className="text-sm text-foreground">Preview</span>
+                    <Eye className="w-4 h-4 text-primary-wabi" />
+                    <span className="text-sm text-primary-wabi">Preview</span>
                 </div>
                 <CardContent className="p-0">
                     {/* Landing Page */}
@@ -209,7 +209,7 @@ const LandingPageScreen: React.FC = () => {
                             <h3 className="text-xl font-bold mb-2">
                                 {rawData.finalCtaHeadline || "Ready to transform?"}
                             </h3>
-                            <p className="text-muted-foreground text-sm mb-4 max-w-md mx-auto">
+                            <p className="text-secondary-wabi text-sm mb-4 max-w-md mx-auto">
                                 {rawData.finalCtaSubheadline || "Get started today."}
                             </p>
                             <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold">
@@ -240,7 +240,7 @@ const LandingPageScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.landing && (
-                    <p className="text-sm text-foreground mt-2">
+                    <p className="text-sm text-primary-wabi mt-2">
                         Rate the resonance to continue
                     </p>
                 )}

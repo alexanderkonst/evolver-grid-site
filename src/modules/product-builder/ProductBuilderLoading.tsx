@@ -37,8 +37,8 @@ const ProductBuilderLoading: React.FC<ProductBuilderLoadingProps> = ({
             </div>
 
             {/* Message */}
-            <h2 className="text-xl font-semibold text-foreground mb-2">{message}</h2>
-            <p className="text-foreground text-sm mb-6">{submessage}</p>
+            <h2 className="text-xl font-semibold text-primary-wabi mb-2">{message}</h2>
+            <p className="text-primary-wabi text-sm mb-6">{submessage}</p>
 
             {/* Progress bar (optional) */}
             {progress !== undefined && (

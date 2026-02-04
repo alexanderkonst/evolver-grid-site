@@ -122,8 +122,8 @@ const DeepPainScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 mb-4">
                     <Flame className="w-8 h-8 text-red-500" />
                 </div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Their Pain</h1>
-                <p className="text-foreground">
+                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Their Pain</h1>
+                <p className="text-primary-wabi">
                     This is what they're feeling right now.
                 </p>
             </div>
@@ -138,9 +138,9 @@ const DeepPainScreen: React.FC = () => {
                                     <section.icon className="w-5 h-5" />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-foreground">{section.title}</h3>
-                                    <p className="text-xs text-foreground mb-2">{section.subtitle}</p>
-                                    <p className="text-sm text-foreground leading-relaxed">
+                                    <h3 className="font-semibold text-primary-wabi">{section.title}</h3>
+                                    <p className="text-xs text-primary-wabi mb-2">{section.subtitle}</p>
+                                    <p className="text-sm text-primary-wabi leading-relaxed">
                                         {section.content}
                                     </p>
                                 </div>
@@ -170,7 +170,7 @@ const DeepPainScreen: React.FC = () => {
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.pain && (
-                    <p className="text-sm text-foreground mt-2">
+                    <p className="text-sm text-primary-wabi mt-2">
                         Rate the resonance to continue
                     </p>
                 )}

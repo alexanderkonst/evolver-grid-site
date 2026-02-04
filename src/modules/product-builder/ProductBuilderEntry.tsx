@@ -16,61 +16,61 @@ const ProductBuilderEntry: React.FC = () => {
             {/* Hero */}
             <div className="mb-8">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white border border-gray-200 mb-6">
-                    <Rocket className="w-10 h-10 text-foreground" />
+                    <Rocket className="w-10 h-10 text-primary-wabi" />
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-primary-wabi mb-4">
                     Launch Your Genius Business
                 </h1>
-                <p className="text-xl text-foreground max-w-2xl mx-auto">
+                <p className="text-xl text-primary-wabi max-w-2xl mx-auto">
                     Turn your Zone of Genius into a complete sales funnel — in 15 minutes.
                 </p>
             </div>
 
             {/* What you'll get */}
             <div className="bg-white border border-gray-200 rounded-xl p-8 max-w-xl mx-auto mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
-                    <Sparkles className="w-5 h-5 text-foreground" />
+                <h3 className="text-lg font-semibold text-primary-wabi mb-4 flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5 text-primary-wabi" />
                     What you'll create:
                 </h3>
                 <ul className="space-y-3 text-left">
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">
-                            <strong className="text-foreground">Deep client understanding</strong> — know exactly who needs your gift
+                        <span className="text-primary-wabi">
+                            <strong className="text-primary-wabi">Deep client understanding</strong> — know exactly who needs your gift
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">
-                            <strong className="text-foreground">Crystal-clear promise</strong> — articulate the transformation you create
+                        <span className="text-primary-wabi">
+                            <strong className="text-primary-wabi">Crystal-clear promise</strong> — articulate the transformation you create
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">
-                            <strong className="text-foreground">Landing page</strong> — a beautiful page that attracts ideal clients
+                        <span className="text-primary-wabi">
+                            <strong className="text-primary-wabi">Landing page</strong> — a beautiful page that attracts ideal clients
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">
-                            <strong className="text-foreground">Blueprint</strong> — a methodology gift they can download
+                        <span className="text-primary-wabi">
+                            <strong className="text-primary-wabi">Blueprint</strong> — a methodology gift they can download
                         </span>
                     </li>
                     <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground">
-                            <strong className="text-foreground">Live on marketplace</strong> — ready for your first customer
+                        <span className="text-primary-wabi">
+                            <strong className="text-primary-wabi">Live on marketplace</strong> — ready for your first customer
                         </span>
                     </li>
                 </ul>
             </div>
 
             {/* Bridge text */}
-            <p className="text-foreground mb-6 max-w-lg mx-auto">
+            <p className="text-primary-wabi mb-6 max-w-lg mx-auto">
                 You've discovered your genius. You've defined your business.
                 <br />
-                <strong className="text-foreground">Now let's make it real.</strong>
+                <strong className="text-primary-wabi">Now let's make it real.</strong>
             </p>
 
             {/* CTA */}
@@ -84,7 +84,7 @@ const ProductBuilderEntry: React.FC = () => {
             </Button>
 
             {/* Time estimate */}
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-secondary-wabi mt-4">
                 Takes about 15 minutes
             </p>
         </div>
