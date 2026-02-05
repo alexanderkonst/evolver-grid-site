@@ -5,7 +5,6 @@ import confetti from "canvas-confetti";
 
 interface TourCompleteScreenProps {
     hasZog: boolean;
-    hasQol: boolean;
     onFinish: () => void;
     saving?: boolean;
 }
@@ -14,7 +13,7 @@ interface TourCompleteScreenProps {
  * Tour Complete Screen - Final celebration before dashboard
  * Based on Product Playbook wireframe: "You're Ready!" with confetti
  */
-const TourCompleteScreen = ({ hasZog, hasQol, onFinish, saving = false }: TourCompleteScreenProps) => {
+const TourCompleteScreen = ({ hasZog, onFinish, saving = false }: TourCompleteScreenProps) => {
     const [showConfetti, setShowConfetti] = useState(false);
 
     useEffect(() => {
@@ -52,7 +51,7 @@ const TourCompleteScreen = ({ hasZog, hasQol, onFinish, saving = false }: TourCo
             <div className="px-6 py-4 flex items-center justify-end relative z-10">
                 <div className="flex items-center gap-2 text-sm text-[var(--wabi-text-muted)]">
                     <span className="w-2 h-2 rounded-full bg-[var(--wabi-sage)]" />
-                    <span>Step 4 of 4</span>
+                    <span>Final Step</span>
                 </div>
             </div>
 

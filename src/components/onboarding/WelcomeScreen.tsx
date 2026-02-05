@@ -52,7 +52,7 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
                     onClick={onStart}
                     disabled={saving}
                 >
-                    Begin Journey
+                    Begin My Journey
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
             </div>
