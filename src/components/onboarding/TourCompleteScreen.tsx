@@ -96,7 +96,7 @@ const TourCompleteScreen = ({ hasZog, onFinish, saving = false }: TourCompleteSc
 
                     {/* Next step hint */}
                     <p className="text-[var(--wabi-text-secondary)]">
-                        Your first recommended action is waiting.
+                        Your Zone of Genius is waiting on your profile.
                     </p>
 
                     {/* CTA */}
@@ -106,7 +106,7 @@ const TourCompleteScreen = ({ hasZog, onFinish, saving = false }: TourCompleteSc
                         onClick={onFinish}
                         disabled={saving}
                     >
-                        Go to My Dashboard
+                        See My Profile
                         <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                 </div>

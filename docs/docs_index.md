@@ -100,7 +100,17 @@ docs/
 
 ---
 
-## 📋 04-specs (Module Specifications)
+## ⚙️ 04-workflows (Standard Operating Procedures)
+
+*How we execute repeatable tasks — step-by-step SOPs.*
+
+| Doc | Purpose |
+|-----|---------|
+| [notebooklm_video_production.md](./04-workflows/notebooklm_video_production.md) | NotebookLM → Video → YouTube pipeline |
+
+---
+
+## 📋 05-specs (Module Specifications)
 
 *Detailed specs for each module.*
 

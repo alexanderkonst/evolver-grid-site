@@ -702,6 +702,57 @@ COMPLETED: __________
 
 ---
 
+# PHASE 5: POLISH (Iteration Cycle)
+
+> **Source:** `docs/11-workflows-sops/module_polish.md`
+> **Slash command:** `/polish [module-name]`
+
+## Overview
+
+**Purpose:** Iteratively improve modules after initial build. Apply "Build → Use → Audit → Polish" cycle until the module achieves "Fast, Clear, Easy, Useful, WOW."
+
+**When to run:**
+- After Phase 4 is complete and module is functional
+- When UX feels rough or repetitive
+- Before shipping to users
+
+## 5.1 Quick Roast Checklist
+
+| Check | Question |
+|-------|----------|
+| **Master Result** | Does the flow achieve the promised transformation? |
+| **Screen Count** | Are there unnecessary screens? |
+| **Message Duplication** | Does text repeat across screens? |
+| **Magic Buttons** | Do buttons say "what I get" not "what I do"? |
+| **UX Feeling** | Fast, Clear, Easy, Useful, WOW? |
+| **One Next Action** | Is it obvious what to do on each screen? |
+| **Unused Props** | Are there props/state no longer needed? |
+
+## 5.2 Apply Fixes
+
+- Read code and compare to playbook
+- Generate concrete fixes with file:line
+- Implement changes
+- Run build check
+
+## 5.3 Spot-Check (3 screens only)
+
+| Checkpoint | What to verify |
+|------------|----------------|
+| **Entry Point** | Does the module load correctly? |
+| **Master Result** | Is the WOW moment delivered? |
+| **Exit Transition** | Does it flow to the next step? |
+
+## 🔥 ROAST GATE 5: POLISH
+
+- [ ] All identified issues fixed
+- [ ] Build passes
+- [ ] UX Score: Fast ✅ | Clear ✅ | Easy ✅ | Useful ✅ | WOW ✅
+
+**✓ Checkpoint:** Module polished. Ready to ship.
+
+---
+
 # REFERENCED PLAYBOOKS
 
 | Playbook | Path |
@@ -709,6 +760,7 @@ COMPLETED: __________
 | Product | `docs/playbooks/product_playbook.md` |
 | Architecture | `docs/software_architecture_playbook.md` |
 | UI | `docs/playbooks/ui_playbook.md` |
+| **Polish** | `docs/11-workflows-sops/module_polish.md` |
 | Complete Stack | `docs/specs/complete_product_stack.md` |
 
 ---

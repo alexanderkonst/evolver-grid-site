@@ -22,10 +22,20 @@ interface TourStep {
 
 const TOUR_STEPS: TourStep[] = [
     {
-        id: "zog-applications",
-        icon: Eye,
+        id: "profile",
+        icon: User,
         iconColor: "text-[var(--depth-violet)]",
         iconBg: "bg-[var(--depth-violet)]/10",
+        title: "Your Profile",
+        tagline: "Your Zone of Genius lives here",
+        description: "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here.",
+        status: "unlocked",
+    },
+    {
+        id: "zog-applications",
+        icon: Eye,
+        iconColor: "text-[var(--wabi-aqua)]",
+        iconBg: "bg-[var(--wabi-aqua)]/10",
         title: "Your Genius Applications",
         tagline: "Explore how your genius applies",
         description: "Discover where your Zone of Genius shines — in work, relationships, and life. Read insights tailored to your unique pattern.",
@@ -49,16 +59,6 @@ const TOUR_STEPS: TourStep[] = [
         title: "Build Your Business",
         tagline: "Turn genius into income",
         description: "Create your unique offer, build your landing page, and launch your genius business to the world.",
-        status: "unlocked",
-    },
-    {
-        id: "profile",
-        icon: User,
-        iconColor: "text-[var(--wabi-aqua)]",
-        iconBg: "bg-[var(--wabi-aqua)]/10",
-        title: "Your Profile",
-        tagline: "Understand & describe yourself",
-        description: "Curate your public presence. Share your genius, resources, and mission so others can find and connect with you.",
         status: "unlocked",
     },
     {
