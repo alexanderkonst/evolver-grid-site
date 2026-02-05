@@ -50,10 +50,10 @@ const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScr
                 </div>
 
                 {/* CTA */}
-                <div className="space-y-6 pt-4">
+                <div className="space-y-3 pt-4 w-full max-w-sm mx-auto">
                     <Button
                         size="lg"
-                        className="w-full max-w-sm h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="w-full h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl"
                         onClick={onStart}
                         disabled={saving}
                     >
@@ -61,13 +61,15 @@ const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScr
                         <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
 
-                    <button
-                        className="text-sm text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-secondary)] transition-colors"
+                    <Button
+                        variant="ghost"
+                        size="lg"
+                        className="w-full h-12 text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-primary)] hover:bg-[var(--wabi-lavender)]/30"
                         onClick={onSkip}
                         disabled={saving}
                     >
-                        Skip
-                    </button>
+                        Skip for now
+                    </Button>
                 </div>
             </div>
         </div>
