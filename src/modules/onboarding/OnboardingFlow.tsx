@@ -193,7 +193,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     return (
       <TourCompleteScreen
         hasZog={hasZog}
-        hasQol={hasQol}
         onFinish={handleFinish}
         saving={saving}
       />
