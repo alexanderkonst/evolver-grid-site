@@ -21,8 +21,10 @@ export const shouldUnlockAfterQol = (returnTo: string | null): boolean => {
 };
 
 export const getPostZogRedirect = (returnPath: string | null): string | null => {
+  // After ZoG, return directly to onboarding (shows Tour)
+  // QoL is now in LEARN space, not part of onboarding
   if (returnPath === "/start") {
-    return "/quality-of-life-map/assessment?return=/start";
+    return "/start";
   }
   return null;
 };
