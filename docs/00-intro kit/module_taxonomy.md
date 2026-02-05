@@ -12,7 +12,7 @@
 
 | # | Word | Space Purpose | Modules |
 |---|------|---------------|---------|
-| 1 | **GROW** | Know yourself, level up | ZoG, QoL, Resources, Mission, Personality Tests |
+| 1 | **ME** | Know yourself, level up | ZoG, QoL, Resources, Mission, Personality Tests |
 | 2 | **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
 | 3 | **MEET** | Events, coffee chats | Events, Men's Circle |
 | 4 | **COLLABORATE** | Matchmaking, discover | Matchmaking, Connections |

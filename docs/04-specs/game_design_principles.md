@@ -60,6 +60,20 @@ Compound growth that accelerates: 1% better every day → every hour → every m
 - **Universality**: Use language that works for any community (spiritual, web3, crypto, corporate).
 - Example: "Growth Paths" not "Vectors", "Immersive Experience" not "Meditation"
 
+### 14. The Core UX Feeling
+
+Every moment on the platform should feel:
+
+| Quality | Meaning |
+|---------|---------|
+| **Fast** | No waiting, no friction, instant value |
+| **Clear** | Obvious what to do and why it matters |
+| **Easy** | Low effort, low cognitive load |
+| **Useful** | Tangible benefit in every interaction |
+| **WOW** | Each master result delivers a dopamine spike |
+
+> *"Fast, clear, easy, useful, WOW."* — This is the baseline. If any module fails this, it needs work.
+
 ---
 
 ## Growth Path Principles

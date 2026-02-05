@@ -5,6 +5,22 @@
 
 ---
 
+# ⚠️ UPDATED STRUCTURE (Feb 2026)
+
+**Key Change:** Onboarding = **Zone of Genius only**
+
+| Before | After |
+|--------|-------|
+| ZoG + QoL + Tour (~15 min) | ZoG + Tour (~5 min) |
+| QoL in onboarding | QoL in LEARN space |
+
+**Rationale:** 
+- Faster to value (Fast, Clear, Easy, Useful, WOW)
+- ZoG is the lead magnet — delivers WOW immediately
+- QoL naturally fits in LEARN space as "Map your current state"
+
+---
+
 # PHASE 1: MASTER RESULT
 
 ## Step 1: State the Master Result
@@ -12,7 +28,7 @@
 **Master Result of Onboarding:**
 
 > **From:** "I just signed up, I don't know what this is or what to do"
-> **To:** "I understand my Zone of Genius, see my Quality of Life baseline, and know exactly what to do next"
+> **To:** "I understand my Zone of Genius and see clear next possibilities"
 
 ---
 
@@ -21,7 +37,7 @@
 | Element | Content |
 |---------|---------|
 | **Headline** | "Discover Your Genius" |
-| **Subtext** | "In the next 10 minutes, you'll uncover your unique gift and get a clear path to transform your life." |
+| **Subtext** | "In 5 minutes, you'll uncover your unique gift and see how to apply it." |
 | **Magic Button** | "Begin My Journey →" |
 
 ---
@@ -30,9 +46,9 @@
 
 | Element | Content |
 |---------|---------|
-| **Result Display** | Zone of Genius + Quality of Life Overview |
-| **Celebration** | "🎉 You're Ready!" / "Your journey begins now" |
-| **Next Step** | "Go to My Dashboard" / "See My First Move" |
+| **Result Display** | Zone of Genius revealed |
+| **Celebration** | "🎉 Your Genius is Revealed!" |
+| **Next Step** | Tour showing 5 possibilities |
 
 ---
 
@@ -44,22 +60,20 @@
 |---|------------|-----------|
 | 1 | **Welcome Received** | "Just landed" → "I feel welcomed, I know the promise" |
 | 2 | **Zone of Genius Discovered** | "I don't know my genius" → "I see my 12-perspective ZoG statement" |
-| 3 | **Quality of Life Assessed** | "I don't know my baseline" → "I see my QoL across 5 vectors" |
-| 4 | **Tour Completed** | "I don't know how to use this" → "I understand main areas, ready to act" |
+| 3 | **Tour Completed** | "I don't know what's possible" → "I see 5 paths: Applications, Learn, Build, Profile, Meet" |
 
 ---
 
 ## Step 5: Sequence Sub-Results
 
 ```
-Welcome → Zone of Genius → Quality of Life → Tour → Dashboard
+Welcome → Zone of Genius → Tour → Game World
 ```
 
 **Logic:**
 1. Welcome = emotional grounding, promise
-2. ZoG = identity (WHO you are) — most important
-3. QoL = current state (WHERE you are)
-4. Tour = navigation (HOW to move)
+2. ZoG = identity (WHO you are) — the lead magnet, the WOW
+3. Tour = possibilities (WHAT you can do next)
 
 ---
 
