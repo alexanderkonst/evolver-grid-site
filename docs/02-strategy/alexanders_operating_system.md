@@ -284,6 +284,67 @@ ACTIVE ────────────────────────�
 
 ---
 
+## February 2026 — Horsepower Cycle
+
+**Location**: Bali, Indonesia  
+**Theme**: Revenue Activation
+
+### Primary Goal
+
+> **$10,000 ongoing monthly income by end of February 2026**
+
+### Active Opportunities
+
+| # | Opportunity | Status | Potential | Next Action |
+|---|-------------|--------|-----------|-------------|
+| **1** | Coaching Client (Glass Ceiling) | 🟡 Proposal Sent | $400-700/mo recurring | Await response, then onboard |
+| **2** | Genius Organizations | 🔵 Outreach Planned | Collaboration | Contact Genius City + Genius Group |
+| **3** | Founder Program | 🟡 Planning | Revenue share | Launch in ~4 weeks with Roso & Cory (Arendau) |
+| **4** | Mentor Profile Distribution | 🔵 Ready | Lead flow | Post on all mentor platforms |
+| **5** | Platform MVP Completion | 🟡 In Progress | Business model unlock | Finish to reveal next layer |
+| **6** | SOC AI Workshops | 🔵 Ideation | Workshop revenue | Define offers, pitch to SOC |
+
+### Opportunity Details
+
+**1. Coaching Client — Breaking Through the Glass Ceiling**
+- Client seeking next-level breakthrough
+- Proposal: $400/month (1x/week) or $700/month (2x/week)
+- Status: Awaiting her response
+
+**2. Genius Organizations**
+- **Genius City** — potential collaboration on genius-themed work
+- **Genius Group** — alignment with Zone of Genius technology
+- Action: Reach out for partnership exploration
+
+**3. Founder Program (Venture Studio)**
+- Partners: Roso & Cory from Arendau
+- Timeline: Launch in ~4 weeks
+- Journey: Zone of Genius → Excalibur → Packaging → Distribution Strategy → Web Coding → Product
+- Revenue: Sell as many seats as possible
+
+**4. Mentor Profile Distribution**
+- Take best-formulated mentor positioning
+- Distribute on all discoverable mentor platforms
+- Goal: Generate inbound leads
+
+**5. Platform MVP**
+- Complete to "shippable" point
+- Reveal next business model layer
+- Unlock serendipity channel
+
+**6. SOC AI Workshops** *(NEW)*
+Three flavors of collaboration with SOC:
+
+| Flavor | Description | Value Proposition |
+|--------|-------------|-------------------|
+| **A. Partnership Selling** | Partner with SOC to sell workshops together | Leverage their audience, share revenue |
+| **B. Deliver More Workshops** | Run additional workshops for their community | Recurring workshop revenue |
+| **C. Vibe Coding Setup** | Teach commercial/management teams to build software | Empower non-devs to create tools (TBD: clarify value for SOC) |
+
+*Next step: Analyze 1,250-person call transcript to define optimal workshop topics*
+
+---
+
 ## Quote to Remember
 
 > *"Don't push through the trough. Rest = incubation."*

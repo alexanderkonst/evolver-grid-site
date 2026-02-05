@@ -36,7 +36,6 @@ const TourCompleteScreen = ({ hasZog, hasQol, onFinish, saving = false }: TourCo
 
     const completedItems = [
         { label: "Zone of Genius articulated", done: hasZog },
-        { label: "Quality of Life baseline", done: hasQol },
         { label: "Platform tour complete", done: true },
     ];
 

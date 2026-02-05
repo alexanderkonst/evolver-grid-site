@@ -6,6 +6,62 @@
 
 ---
 
+## Journey Architecture Principles
+
+> *The path is not a line — it's a living tree with branches.*
+
+### 1. Structured Onboarding → Open Exploration
+
+| Phase | Structure | User Experience |
+|-------|-----------|-----------------|
+| **Onboarding** | Linear (ZoG → QoL) | Guided, focused |
+| **Game World** | Branching | Free, exploratory |
+
+After onboarding (ZoG + QoL + Tour), the user enters a **branching** journey — not a single track.
+
+### 2. The Branching Model
+
+```
+                    ┌─ Transformation Path (Learning + Growth)
+                    │
+    Onboarding ────►├─ Economic Path (Genius → Offer → Business)
+    (ZoG → QoL)     │
+                    └─ Social Path (Matchmaking → Teams → Events)
+                    
+    User can switch branches at any time
+    and return to previous branches.
+```
+
+### 3. Core Design Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Branches, not rails** | Multiple valid paths; user chooses direction |
+| **Freedom to switch** | Can jump between branches and return |
+| **One optimal step** | System recommends ONE action, optimized for quick value |
+| **Fractal exploration** | Each branch contains sub-branches; depth unfolds naturally |
+| **Fast to value** | Every path leads to tangible benefit quickly, without friction |
+
+### 4. Implementation Rules
+
+1. **After onboarding**: Show Tour with branch options, then recommend ONE first action
+2. **"My Next Move"**: Always suggests the single most valuable next step
+3. **"Explore more"**: Available for users who want to browse branches
+4. **Return paths**: Clear navigation to switch or return to any branch
+5. **No dead ends**: Every action leads to another possibility
+
+### 5. The Freedom Feeling
+
+> *"I'm exploring, not being pushed. I can go deep, go wide, or come back."*
+
+This gives users a sense of:
+- **Autonomy** — they choose their adventure
+- **Discovery** — new branches reveal as they grow
+- **Safety** — they can always return to familiar ground
+- **Fractality** — the system is rich and deep, not flat
+
+---
+
 ## Core Principle: Self-First, Then Others
 
 **Logic**: Clarity about self → Clarity about life → Clarity about action → Clarity about people

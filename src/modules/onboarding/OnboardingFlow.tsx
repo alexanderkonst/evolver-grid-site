@@ -7,7 +7,6 @@ import ProgressIndicator from "@/components/ProgressIndicator";
 import OnboardingProgress from "@/components/OnboardingProgress";
 import WelcomeScreen from "@/components/onboarding/WelcomeScreen";
 import ZoGIntroScreen from "@/components/onboarding/ZoGIntroScreen";
-import QoLIntroScreen from "@/components/onboarding/QoLIntroScreen";
 import TourOverviewScreen from "@/components/onboarding/TourOverviewScreen";
 import TourStepsScreen from "@/components/onboarding/TourStepsScreen";
 import TourCompleteScreen from "@/components/onboarding/TourCompleteScreen";
@@ -20,30 +19,31 @@ interface OnboardingFlowProps {
   onComplete: () => void;
 }
 
-const MAX_STEP = 6;
+const MAX_STEP = 5;
 
 const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: OnboardingFlowProps) => {
   const navigate = useNavigate();
   const startingStep = useMemo(() => {
-    if (hasQol) return MAX_STEP;
-    if (hasZog) return 3; // Skip to QoL intro
+    // After ZoG complete, go directly to Tour
+    if (hasZog) return 3; // Tour Overview
     return Math.min(initialStep ?? 0, MAX_STEP);
-  }, [hasQol, hasZog, initialStep]);
+  }, [hasZog, initialStep]);
 
   const [step, setStep] = useState(startingStep);
   const [saving, setSaving] = useState(false);
 
-  // Simplified 5-step flow:
+  // Simplified flow (no QoL in onboarding):
   // 0: Welcome
   // 1: ZoG Intro
   // 2: AI Choice (navigates to ZoG Entry/Assessment)
-  // 3: QoL Intro (returns here after ZoG)
-  // 4: Tour Overview
+  // 3: Tour Overview (returns here after ZoG)
+  // 4: Tour Steps
+  // 5: Tour Complete
   const steps = useMemo(
     () => [
       {
         title: "Discover who you really are.",
-        description: "7-10 minutes to transform your life.",
+        description: "5 minutes to transform your life.",
         icon: Sparkles,
       },
       {
@@ -55,11 +55,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
         title: "Do you have an AI that knows you well?",
         description: "Choose the path that fits you best.",
         icon: Bot,
-      },
-      {
-        title: "Map your life.",
-        description: "8 areas. 3-5 minutes.",
-        icon: Map,
       },
       {
         title: "Your 5 spaces",
@@ -135,6 +130,7 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
   const handleStartZog = async (path: "ai" | "manual") => {
     const stageUpdated = await updateStage("zog_started");
     if (!stageUpdated) return;
+    // After ZoG, user returns to step 3 (Tour Overview)
     const success = await persistStep(3);
     if (!success) return;
     setStep(3);
@@ -143,13 +139,6 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     } else {
       navigate("/zone-of-genius/assessment?return=/start");
     }
-  };
-
-  const handleStartQol = async () => {
-    const success = await persistStep(4);
-    if (!success) return;
-    setStep(4);
-    navigate("/quality-of-life-map/assessment?return=/start");
   };
 
   const current = steps[step];
@@ -177,41 +166,30 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
     );
   }
 
-  // Step 3: QoL Intro (after returning from ZoG - no back since ZoG is complete)
+  // Step 3: Tour Overview (after returning from ZoG)
   if (step === 3) {
     return (
-      <QoLIntroScreen
-        onStart={handleStartQol}
-        onSkip={handleSkip}
-        saving={saving}
-      />
-    );
-  }
-
-  // Step 4: Tour Overview
-  if (step === 4) {
-    return (
       <TourOverviewScreen
-        onStartTour={() => goToStep(5)}
+        onStartTour={() => goToStep(4)}
         onSkipTour={handleFinish}
         saving={saving}
       />
     );
   }
 
-  // Step 5: Tour Steps (5-space walkthrough)
-  if (step === 5) {
+  // Step 4: Tour Steps (5-space walkthrough)
+  if (step === 4) {
     return (
       <TourStepsScreen
-        onComplete={() => goToStep(6)}
-        onBack={() => goToStep(4)}
+        onComplete={() => goToStep(5)}
+        onBack={() => goToStep(3)}
         onSkip={handleFinish}
       />
     );
   }
 
-  // Step 6: Tour Complete (final celebration)
-  if (step === 6) {
+  // Step 5: Tour Complete (final celebration)
+  if (step === 5) {
     return (
       <TourCompleteScreen
         hasZog={hasZog}
