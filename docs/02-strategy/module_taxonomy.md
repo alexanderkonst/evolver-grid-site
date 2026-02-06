@@ -1,8 +1,8 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 2.0
+> **Version:** 2.1
 > **Created:** 2026-01-28
-> **Updated:** 2026-02-02
+> **Updated:** 2026-02-06
 > **Purpose:** Master reference for all modules organized by Spaces + Versioning
 
 ---
@@ -55,6 +55,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **ME** | Mission Discovery | 0.7 | Alpha |
 | **ME** | Resource Mapping | 0.7 | Alpha |
 | **ME** | Personality Tests | 0.5 | PoC |
+| **ME** | Art Piece | 0.1 | Concept |
 | **LEARN** | Daily Loop | 0.7 | Alpha |
 | **LEARN** | Library | 0.7 | Alpha |
 | **LEARN** | Growth Paths | 0.5 | PoC |
@@ -176,6 +177,23 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Manual Resource Entry | 0.9 | MVP |
 | Resource Categories | 0.7 | Alpha |
 | Leverage Scoring | 0.3 | Prototype |
+
+#### Module: Art Piece — v0.1
+
+| Field | Value |
+|-------|-------|
+| Version | **0.1** (Concept) |
+| Master Result | Abstract self → Visual expression of my essence |
+| Start | `/game/profile/art-piece` |
+| End | Art generated → saved to profile |
+| Dependencies | ZoG (uses archetype for generation) |
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| AI Art Generation | 0.1 | Concept |
+| Style Picker | 0.1 | Concept |
+| Profile Art Display | 0.1 | Concept |
 
 ---
 
@@ -516,14 +534,14 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 | Space | Modules | Submodules | Total Items |
 |-------|---------|------------|-------------|
-| ME | 5 | 27 | 32 |
+| ME | 6 | 30 | 36 |
 | LEARN | 4 | 62 | 66 |
 | MEET | 2 | 7 | 9 |
 | COLLABORATE | 2 | 6 | 8 |
 | BUILD | 3 | 8 | 11 |
 | BUY & SELL | 1 | 3 | 4 |
 | Special | 2 | 8 | 10 |
-| **TOTAL** | **19** | **121** | **140** |
+| **TOTAL** | **20** | **124** | **144** |
 
 ---
 
@@ -567,5 +585,5 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-*Module Taxonomy v2.0 — Versioned by Spaces*
-*Last updated: 2026-02-02*
+*Module Taxonomy v2.1 — Versioned by Spaces*
+*Last updated: 2026-02-06*
