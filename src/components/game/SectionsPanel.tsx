@@ -189,13 +189,24 @@ const SectionsPanel = ({
         const baseData = SPACE_SECTIONS[activeSpaceId];
         if (!baseData) return null;
 
-        // Add Art Piece section only for alexanderkonst@gmail.com in ME space
+        // Add Art section only for alexanderkonst@gmail.com in ME space
         if (activeSpaceId === "grow" && userEmail === "alexanderkonst@gmail.com") {
             return {
                 ...baseData,
                 sections: [
                     ...baseData.sections,
-                    { id: "art-piece", label: "🎨 Art Piece", path: "/game/grow/art-piece" },
+                    {
+                        id: "art",
+                        label: "🎨 Art",
+                        path: "/art",
+                        subSections: [
+                            { id: "art-gallery", label: "Gallery", path: "/art" },
+                            { id: "art-ceremonial", label: "Ceremonial Spaces", path: "/art/ceremonial-space-designs" },
+                            { id: "art-illustrations", label: "Illustrations", path: "/art/digital-illustrations-stickers" },
+                            { id: "art-starcodes", label: "Star Codes", path: "/art/star-code-jewellery" },
+                            { id: "art-webportals", label: "Webportals", path: "/art/webportals" },
+                        ],
+                    },
                 ],
             };
         }

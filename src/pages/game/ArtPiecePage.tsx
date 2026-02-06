@@ -38,7 +38,7 @@ const ArtPiecePage = () => {
                         <Sparkles className="w-8 h-8 text-[var(--depth-violet)]" />
                     </div>
                     <h1 className="text-3xl font-display font-bold text-[var(--wabi-text-primary)] mb-2">
-                        Art Piece
+                        Art
                     </h1>
                     <p className="text-[var(--wabi-text-secondary)]">
                         Visual expression of your unique essence
