@@ -99,6 +99,7 @@ import {
   CTAScreen,
   PublishedScreen
 } from "./modules/product-builder/steps";
+import ProductBuilderPage from "./pages/ProductBuilderPage";
 // Marketplace
 import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
@@ -249,6 +250,17 @@ const App = () => (
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
                   {/* BUILD Space (was Business Incubator/Co-op) */}
                   <Route path="/game/build" element={<BuildSpace />} />
+                  {/* Product Builder in GameShell */}
+                  <Route path="/game/build/product-builder" element={<ProductBuilderPage />}>
+                    <Route index element={<ProductBuilderEntry />} />
+                    <Route path="icp" element={<DeepICPScreen />} />
+                    <Route path="pain" element={<DeepPainScreen />} />
+                    <Route path="promise" element={<DeepTPScreen />} />
+                    <Route path="landing" element={<LandingPageScreen />} />
+                    <Route path="blueprint" element={<BlueprintScreen />} />
+                    <Route path="cta" element={<CTAScreen />} />
+                    <Route path="published" element={<PublishedScreen />} />
+                  </Route>
                   {/* Legacy redirects */}
                   <Route path="/game/coop" element={<Navigate to="/game/build" replace />} />
                   <Route path="/events" element={<Navigate to="/game/meet" replace />} />
@@ -289,17 +301,9 @@ const App = () => (
                   {/* Asset Mapping */}
                   <Route path="/asset-mapping" element={<AssetMappingLanding />} />
                   <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
-                  {/* Product Builder */}
-                  <Route path="/product-builder" element={<ProductBuilderLayout />}>
-                    <Route index element={<ProductBuilderEntry />} />
-                    <Route path="icp" element={<DeepICPScreen />} />
-                    <Route path="pain" element={<DeepPainScreen />} />
-                    <Route path="promise" element={<DeepTPScreen />} />
-                    <Route path="landing" element={<LandingPageScreen />} />
-                    <Route path="blueprint" element={<BlueprintScreen />} />
-                    <Route path="cta" element={<CTAScreen />} />
-                    <Route path="published" element={<PublishedScreen />} />
-                  </Route>
+                  {/* Product Builder - Legacy redirect to GameShell version */}
+                  <Route path="/product-builder" element={<Navigate to="/game/build/product-builder" replace />} />
+                  <Route path="/product-builder/*" element={<Navigate to="/game/build/product-builder" replace />} />
                   {/* Public Creator Pages */}
                   <Route path="/p/:slug" element={<CreatorPage />} />
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
