@@ -112,6 +112,7 @@ import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
+import ArtPage from "./pages/game/ArtPiecePage";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#1a1d2e]">
@@ -201,6 +202,7 @@ const App = () => (
                   <Route path="/game/grow/genius-business/vision" element={<GeniusBusinessVision />} />
                   <Route path="/game/grow/zone-of-genius" element={<ZoneOfGeniusOverview />} />
                   <Route path="/game/grow/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
+                  <Route path="/game/grow/art" element={<ArtPage />} />
                   {/* Legacy redirects */}
                   <Route path="/game/profile" element={<Navigate to="/game/grow" replace />} />
                   <Route path="/game/profile/*" element={<Navigate to="/game/grow" replace />} />
