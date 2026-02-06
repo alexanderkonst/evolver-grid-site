@@ -1,9 +1,9 @@
-# The Genius Venture-Building Playbook
+# The Integrated Genius Venture-Building Playbook
 ## From Human Uniqueness to Venture — An AI-Native System
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Created:** February 2026  
 **Purpose:** The master playbook for AI-assisted genius-based venture building
 
@@ -661,33 +661,78 @@ OUTPUT: Technology product specification (vibe-coding ready)
 CHECK:  "Does this deliver the promise?"
 ```
 
-**AI generates using Product Compiler:**
+> 📚 **Full Product Builder SOP:** [product_playbook.md](./product_playbook.md)
 
-**Phase 1: Master Result**
-- One-sentence transformation
-- The "magic button"
+**Key Distinction:** Result ≠ Feature
 
-**Phase 2: Sub-Results (3-5 spaces)**
-- What each section delivers
+| Term | Definition | Focus |
+|------|------------|-------|
+| **Feature** | A capability the product has | What the product *does* |
+| **Result** | A transformation the user receives | What the user *gets* |
 
-**Phase 3: Screen Specifications**
-- Screens needed per space
-- Data in / Data out
-- Navigation flow
+**AI generates using the 9-Phase Product Compiler:**
 
-**Phase 4: User Journey**
-- Entry point
-- Key decisions
-- Victory moment
+### Phase 1: Master Result
+- One-sentence transformation: "From [Point A] to [Point B]"
+- The "magic button" that delivers it
 
-**Phase 5: MVP Scope**
-- Essential for v1
-- What can wait
+### Phase 2: Sub-Results
+- Break master into 3-5 spaces
+- Each space = a sub-result with start/end screens
+
+### Phase 3: Nested Layers
+- Go deeper into each sub-result
+- Repeat until atomic screens (no further breakdown)
+
+### Phase 4: Screen Details
+For each screen, define 6 dimensions:
+
+| Dimension | Question |
+|-----------|----------|
+| Data Output | What does user see/learn? |
+| Data Input | What does user provide? |
+| Magic Button | Label with result, not action |
+| Beauty | Aesthetic harmony |
+| Relationships | Element groupings + logic |
+| Navigation | Back, Skip, Progress |
+
+### Phase 5: Roast & Iterate
+- **Cycle 1:** Obvious weaknesses
+- **Cycle 2:** Deeper patterns
+- **Cycle 3:** Edge cases
+- Minimum 3 cycles before code
+
+### Phase 6: Extension Modules
+
+| Module | Purpose |
+|--------|---------|
+| **Artifacts** | What tangible thing does user receive at each stage? |
+| **Emotional States** | How does user feel → how does next screen honor it? |
+| **Completion Signals** | When is each stage done → how do we celebrate? |
+| **Skip Paths** | What if user skips → what breaks → minimum viable? |
+| **Bridges** | How does this connect to other products/modules? |
+| **Ritual Frame** | Start screen (intention) → End screen (celebration) |
+
+### Phase 7: Wireframes
+- ASCII mockups of key screens
+- Navigation flow map
+- Transition definitions
+
+### Phase 8: Wireframe Roast
+- 3-cycle review (usability, hierarchy, edge cases)
+- Synthesize feedback
+- Refine before build
+
+### Phase 9: Build & Verify
+- Break into implementation tasks
+- Code according to spec
+- Test: screens match, buttons work, emotions honored
 
 **Prompt:**
 ```
-Transform this validated offer into a product blueprint.
-Use Product Compiler methodology: Master Result → Sub-Results → Screens → Journey → MVP scope.
+Transform this validated offer into a product blueprint using 9-phase Product Compiler:
+1. Master Result 2. Sub-Results 3. Nested Layers 4. Screen Details 
+5. Roast 3x 6. Extension Modules 7. Wireframes 8. Wireframe Roast 9. Build spec
 ```
 
 ---
@@ -721,9 +766,6 @@ ZONE OF GENIUS ARTICULATION (Seed)
            ↓
     FIRST REVENUE → SCALED VENTURE
 ```
-
-**Total time:** 4-8 hours of founder input across 10 sessions.
-**Output:** Complete business infrastructure ready for launch.
 
 ---
 
