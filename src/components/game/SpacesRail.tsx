@@ -196,6 +196,7 @@ const SpacesRail = ({
                     return (
                         <button
                             key={space.id}
+                            data-tour-id={space.id}
                             onClick={handleSpaceClick}
                             disabled={isLocked}
                             className={cn(
