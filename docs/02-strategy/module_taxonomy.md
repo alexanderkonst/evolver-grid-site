@@ -55,7 +55,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **ME** | Mission Discovery | 0.7 | Alpha |
 | **ME** | Resource Mapping | 0.7 | Alpha |
 | **ME** | Personality Tests | 0.5 | PoC |
-| **ME** | Art Piece | 0.1 | Concept |
+| **ME** | Art | 0.5 | PoC |
 | **LEARN** | Daily Loop | 0.7 | Alpha |
 | **LEARN** | Library | 0.7 | Alpha |
 | **LEARN** | Growth Paths | 0.5 | PoC |
@@ -178,22 +178,29 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Resource Categories | 0.7 | Alpha |
 | Leverage Scoring | 0.3 | Prototype |
 
-#### Module: Art Piece — v0.1
+#### Module: Art — v0.1
 
 | Field | Value |
 |-------|-------|
 | Version | **0.1** (Concept) |
 | Master Result | Abstract self → Visual expression of my essence |
-| Start | `/game/profile/art-piece` |
-| End | Art generated → saved to profile |
-| Dependencies | ZoG (uses archetype for generation) |
+| Start | `/art` (gallery) |
+| End | Art displayed |
+| Dependencies | None |
+
+> **Current Implementation Note:**  
+> Navigation to Art module in ME space is only visible to `alexanderkonst@gmail.com`.  
+> The `/art/*` routes remain publicly accessible via direct URL.  
+> Future: Each user will have their own art upload section.
 
 **Submodules:**
 | Submodule | Version | Status |
 |-----------|---------|--------|
-| AI Art Generation | 0.1 | Concept |
-| Style Picker | 0.1 | Concept |
-| Profile Art Display | 0.1 | Concept |
+| Gallery | 0.5 | PoC |
+| Ceremonial Spaces | 0.5 | PoC |
+| Illustrations | 0.5 | PoC |
+| Star Codes | 0.5 | PoC |
+| Webportals | 0.5 | PoC |
 
 ---
 
