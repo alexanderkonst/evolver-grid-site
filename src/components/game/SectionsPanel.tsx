@@ -2,6 +2,7 @@ import { ReactNode, memo, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 interface SubSection {
     id: string;
@@ -174,8 +175,35 @@ const SectionsPanel = ({
 }: SectionsPanelProps) => {
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+    const [userEmail, setUserEmail] = useState<string | null>(null);
 
-    const spaceData = SPACE_SECTIONS[activeSpaceId];
+    // Check user email for feature gating
+    useEffect(() => {
+        supabase.auth.getUser().then(({ data: { user } }) => {
+            setUserEmail(user?.email || null);
+        });
+    }, []);
+
+    // Build sections with conditional items based on user
+    const getSections = () => {
+        const baseData = SPACE_SECTIONS[activeSpaceId];
+        if (!baseData) return null;
+
+        // Add Art Piece section only for alexanderkonst@gmail.com in ME space
+        if (activeSpaceId === "grow" && userEmail === "alexanderkonst@gmail.com") {
+            return {
+                ...baseData,
+                sections: [
+                    ...baseData.sections,
+                    { id: "art-piece", label: "🎨 Art Piece", path: "/game/grow/art-piece" },
+                ],
+            };
+        }
+
+        return baseData;
+    };
+
+    const spaceData = getSections();
 
     const toggleExpand = (sectionId: string) => {
         setExpandedSections((prev) => ({
