@@ -1,0 +1,10 @@
+# NotebookLM Video URLs - Plain Text for Easy Download
+# Generated: 2026-02-07
+# 
+# Instructions: Open each URL, click Download button, rename file
+
+F01E04|Five Paths of Growth|https://notebooklm.google.com/notebook/01dd8e9d-0968-43ca-b32a-af5468a1d678?artifactId=a38a85b9-31a6-4031-a5fd-c0e6d91847fb
+S01E01|What is Spirit|https://notebooklm.google.com/notebook/d13f71b3-5503-4709-9237-b8950eb09caf?artifactId=61b2630e-f00f-4247-a1be-7d7b9a8291b2
+M01E02|Stages of Development|https://notebooklm.google.com/notebook/a6ebb80d-dac5-4b1b-8234-a7bde587f26e?artifactId=16fcce4d-df20-498e-8615-34985ee8beee
+M01E01|What is Mind|https://notebooklm.google.com/notebook/5d6d79b9-3aba-454e-b068-890125b07df7?artifactId=45fc6917-0f46-475c-9f88-1183a1345d16
+S01E10|States of Consciousness|https://notebooklm.google.com/notebook/ce8c91c9-d162-4b2a-90bb-ff201bcd8ee9?artifactId=79137efd-5916-48c9-956b-2d91a0a18a35
