@@ -75,37 +75,54 @@ Take screenshots and report what you see.
 
 ---
 
-## 🔴 PLAYBOOK META-STACK (CRITICAL)
+## 🔴 SCREEN LAYER MANDATE (NON-NEGOTIABLE)
 
-**Every feature MUST follow this complete stack before coding:**
+**Between User Journey and UI, there MUST exist an explicit Screen Layer governed by the Product Playbook.**
+
+If this layer is skipped or improvised → chaos: endless backtracking, constant rework, misaligned screens.
+If this layer is followed rigorously → methodical, predictable, massively faster development.
+
+### The Mandatory Stack
 
 ```
-Layer 1: Transformational Promise (Point A → Point B for ICP)
+User Journey (logical sequence of modules/results)
     ↓
-Layer 2: Product Playbook → Results, Sub-Results, Screens
+Product Playbook → SCREENS (the mandatory bridge)
     ↓
-Layer 3: Architecture Playbook → Modules, Routes, Data, Shell, State
+Architecture Playbook → Modules, Routes, Data, Shell, State
+    ↓  
+UI Playbook → Components, Tokens, Patterns
     ↓
-Layer 4: UI Playbook → Components, Tokens, Patterns
-    ↓
-Layer 5: Code Implementation
+Code Implementation
 ```
 
-**The Playbooks:**
+### How the Playbook Is Applied
+
+1. **Start from Master Result** — define first screen and last screen
+2. **Decompose into Sub-Results** — for each, define first and last screen
+3. **Continue holonically** — repeat recursively until all results → screens
+4. **Screen Construction** — each screen explicitly defines:
+   - Communication intent
+   - User input/output
+   - Actions and decisions
+   - Transitions
+5. **Only then** → UI components are implemented
+
+### The Playbooks
 - `product_playbook.md` — Results → Screens
 - `software_architecture_playbook.md` — Screens → Working Architecture
 - `ux_ui_playbook.md` — Architecture → UI Components
 
-**Why this matters:**
-- Skipping layers = backtracking, rewrites, bugs
-- Following layers = methodical, predictable, minimal human-in-loop
+### Standing Rules
 - Playbooks exist to AUTOMATE decision-making
-
-**When to escalate:** If Playbook doesn't cover a case → ask user before proceeding.
+- Follow the Playbook at EVERY level of nesting and modularity
+- If Playbook doesn't cover a case → flag explicitly, decide whether to extend
+- Until extended: execute exactly, without deviation
+- This is the mechanism that removes HITL bottlenecks and prevents architectural drift
 
 ---
 
-## Agent Hierarchy
+## Agent Hierarchy & Characteristics
 
 | Agent | Role | Task Type | Capacity |
 |-------|------|-----------|----------|
@@ -114,10 +131,33 @@ Layer 5: Code Implementation
 | **Codex** | Junior/Intern | Simple, unambiguous tasks | Unlimited |
 | **Lovable** | DB Specialist | Migrations only | As needed |
 
-**Task assignment rules:**
-- Codex: "Do X to file Y" — no ambiguity
-- Claude CLI: "Implement Z considering A, B, C" — needs judgment but bounded
-- Antigravity: Orchestration, planning, complex debugging
+### Agent Characteristics (Critical)
+
+**Claude CLI:**
+- Extremely intelligent and fast
+- Token-limited and "fatigues" — must be given well-scoped, non-open-ended, non-long-running tasks
+- Ideal for: sharp problem solving, architectural refinements, concise but difficult tasks
+
+**Codex:**
+- Tireless, effectively unlimited runtime
+- Performs POORLY on ambiguity or complexity
+- Must be given: crystal-clear, deterministic, step-by-step tasks
+- Ideal for: mechanical implementation, refactors with explicit instructions, repetitive/large-volume work
+
+**Antigravity (this chat):**
+- CTO/Architect level — translates Product Playbook + intent into agent-specific task specs
+- Decides which agent does what
+- Orchestration, planning, complex debugging
+
+### Task Execution Workflow
+1. Tasks are written in `ai_tasks/` section
+2. Each task has: clear owner (CLI or Codex), status = pending, wording tailored to that agent
+3. **Absolute requirement:** Extreme clarity and precision in task definition — mistakes multiply downstream
+
+### Current Codebase Reality
+- Modules exist in partially detached/floating state
+- Required: locate modules → understand connections → re-anchor onto explicit screens → assemble into intended user journey
+- This restructuring MUST follow the Product Playbook, not ad-hoc decisions
 
 ---
 
