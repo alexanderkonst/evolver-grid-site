@@ -234,7 +234,7 @@ const LandingPageScreen: React.FC = () => {
                     size="lg"
                     onClick={handleContinue}
                     disabled={!state.resonanceRatings.landing}
-                    className="px-8"
+                    className="px-8 bg-[#8460ea] hover:bg-[#7350d0] text-white disabled:opacity-40"
                 >
                     Add Blueprint
                     <ArrowRight className="w-4 h-4 ml-2" />
