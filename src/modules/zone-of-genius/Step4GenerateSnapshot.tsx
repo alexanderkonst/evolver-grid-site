@@ -304,22 +304,30 @@ GENERAL STYLE RULES:
 
     setIsDownloading(true);
     try {
-      // Temporarily show the hidden PDF content
-      snapshotRef.current.classList.remove('hidden');
+      // Temporarily show the hidden PDF content (position offscreen so it's renderable)
+      const el = snapshotRef.current;
+      el.style.display = 'block';
+      el.style.position = 'fixed';
+      el.style.left = '-9999px';
+      el.style.top = '0';
 
-      const canvas = await html2canvas(snapshotRef.current, {
-        scale: 1.5,
+      const canvas = await html2canvas(el, {
+        scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
         foreignObjectRendering: false,
+        width: el.scrollWidth,
+        height: el.scrollHeight,
       });
 
       // Hide it again
-      snapshotRef.current.classList.add('hidden');
+      el.style.display = 'none';
+      el.style.position = '';
+      el.style.left = '';
+      el.style.top = '';
 
-      // Use JPEG for smaller file size
-      const imgData = canvas.toDataURL('image/jpeg', 0.85);
+      const imgData = canvas.toDataURL('image/jpeg', 0.92);
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -599,87 +607,109 @@ GENERAL STYLE RULES:
             </div>
           </div>
 
-          {/* Hidden PDF content */}
-          <div ref={snapshotRef} className="hidden">
-            <div className="bg-white p-12" style={{ width: '800px' }}>
+          {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
+          <div ref={snapshotRef} style={{ display: 'none' }}>
+            <div style={{
+              width: '794px',
+              backgroundColor: '#ffffff',
+              padding: '48px 56px',
+              fontFamily: '"DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+              color: '#2c3150',
+              lineHeight: 1.6,
+            }}>
               {/* PDF Header */}
-              <div className="text-center mb-8 pb-6 border-b-2 border-[#a4a3d0]/30">
-                <p className="text-xs uppercase  text-[#2c3150]/60 mb-2">
+              <div style={{ textAlign: 'center', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #a4a3d020' }}>
+                <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(44,49,80,0.5)', marginBottom: '4px' }}>
                   Zone of Genius Character Card
                 </p>
-                <p className="text-xs text-[#2c3150]/60 mb-4">
+                <p style={{ fontSize: '11px', color: 'rgba(44,49,80,0.5)', marginBottom: '24px' }}>
                   Generated on: {currentDate}
                 </p>
 
-                {/* Top 3 talents prominently at top */}
-                <div className="flex flex-wrap justify-center gap-3 mb-6">
+                {/* Top 3 talent pills */}
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '28px', flexWrap: 'wrap' }}>
                   {top3Talents.map(talent => (
                     <span
                       key={talent.id}
-                      className="inline-flex items-center rounded-full bg-[#2c3150] px-6 py-3 text-sm font-bold text-white"
+                      style={{
+                        display: 'inline-block',
+                        backgroundColor: '#2c3150',
+                        color: '#ffffff',
+                        padding: '8px 20px',
+                        borderRadius: '999px',
+                        fontSize: '13px',
+                        fontWeight: 600,
+                      }}
                     >
                       {talent.name}
                     </span>
                   ))}
                 </div>
 
-                <h1 className="text-3xl font-bold text-[#2c3150] mb-3">
+                <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#2c3150', marginBottom: '16px', fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
                   {parsedSnapshot.archetypeTitle}
                 </h1>
 
-                <div className="max-w-2xl mx-auto">
-                  <p className="text-base text-[#2c3150] leading-relaxed">
-                    {parsedSnapshot.description}
-                  </p>
-                </div>
+                <p style={{ fontSize: '15px', color: '#2c3150', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>
+                  {parsedSnapshot.description}
+                </p>
               </div>
 
-              {/* PDF Body: Panels */}
-              <div className="space-y-6">
-                {/* Superpowers */}
-                <div>
-                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
-                    Superpowers in Action
-                  </h2>
-                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
-                    {formatBullets(parsedSnapshot.superpowers)}
-                  </ul>
-                </div>
+              {/* Superpowers */}
+              <div style={{ marginBottom: '24px' }}>
+                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                  Superpowers in Action
+                </h2>
+                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                  {formatBullets(parsedSnapshot.superpowers)}
+                </ul>
+              </div>
 
-                {/* Edge */}
-                <div>
-                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
-                    Your Edge (Where You Trip Yourself Up)
-                  </h2>
-                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
-                    {formatBullets(parsedSnapshot.edge)}
-                  </ul>
-                </div>
+              {/* Edge */}
+              <div style={{ marginBottom: '24px' }}>
+                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                  Your Edge (Where You Trip Yourself Up)
+                </h2>
+                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                  {formatBullets(parsedSnapshot.edge)}
+                </ul>
+              </div>
 
-                {/* Thrives */}
-                <div>
-                  <h2 className="text-lg font-bold text-[#2c3150] mb-2">
-                    Where This Genius Thrives
-                  </h2>
-                  <ul className="space-y-1.5 text-sm text-[#2c3150] list-disc list-inside">
-                    {formatBullets(parsedSnapshot.thrives)}
-                  </ul>
-                </div>
+              {/* Thrives */}
+              <div style={{ marginBottom: '24px' }}>
+                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                  Where This Genius Thrives
+                </h2>
+                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                  {formatBullets(parsedSnapshot.thrives)}
+                </ul>
+              </div>
 
-                {/* PDF Footer CTA */}
-                <div className="mt-8 pt-6 border-t border-[#a4a3d0]/20">
-                  <h3 className="text-base font-bold text-[#2c3150] mb-2">
-                    Ready to Turn Insight into Action?
-                  </h3>
-                  <p className="text-sm text-[#2c3150] mb-2">
-                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
-                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
-                    transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
-                  </p>
-                  <p className="text-sm font-semibold text-[#2c3150]">
-                    Book My Career Re-Ignition Session at calendly.com/konstantinov
+              {/* Mastery Action */}
+              {parsedSnapshot.masteryAction && (
+                <div style={{ marginBottom: '24px', padding: '16px 20px', backgroundColor: '#f0f4ff', borderRadius: '12px', border: '1px solid rgba(132,96,234,0.15)' }}>
+                  <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                    🔁 Your Mastery Action
+                  </h2>
+                  <p style={{ fontSize: '15px', color: '#2c3150', fontWeight: 500, lineHeight: 1.7 }}>
+                    {parsedSnapshot.masteryAction}
                   </p>
                 </div>
+              )}
+
+              {/* PDF Footer CTA */}
+              <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid rgba(164,163,208,0.2)' }}>
+                <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#2c3150', marginBottom: '8px' }}>
+                  Ready to Turn Insight into Action?
+                </h3>
+                <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
+                  This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
+                  confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
+                  transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                </p>
+                <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
+                  Book My Career Re-Ignition Session at calendly.com/konstantinov
+                </p>
               </div>
             </div>
           </div>
