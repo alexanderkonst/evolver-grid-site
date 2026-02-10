@@ -75,7 +75,7 @@ const SPACES: SpaceDefinition[] = [
                 version: "0.7",
                 stage: "Alpha",
                 masterResult: "Hidden assets → Visible superpowers ready to share",
-                route: "/game/grow/assets",
+                route: "/game/me/assets",
                 submoduleCount: 4,
             },
             {
@@ -208,7 +208,7 @@ const SPACES: SpaceDefinition[] = [
                 version: "0.7",
                 stage: "Alpha",
                 masterResult: "Hidden genius → Offer the world wants",
-                route: "/game/grow/genius-business",
+                route: "/game/me/genius-business",
                 dependencies: "ZoG complete",
                 submoduleCount: 4,
             },
