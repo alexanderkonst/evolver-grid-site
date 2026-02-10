@@ -1,7 +1,7 @@
 # Equilibrium — Progress Tracker
 
 **Started:** 2026-02-10 16:30
-**Status:** Phase 3: UI ← CURRENT
+**Status:** Phase 5: POLISH ← CURRENT
 **Spec:** [equilibrium_product_spec.md](./equilibrium_product_spec.md)
 
 ---
@@ -82,77 +82,56 @@
 
 ## PHASE 3: UI ✅ COMPLETE (6/6)
 
-- [x] 3.1 **Visual Rules:**
-  - [x] Colors: 17 tokens defined (--bg-void through --glow)
-  - [x] Typography: Cormorant Garamond (phase names) + Libre Baskerville italic (prompts) + DM Sans (utility)
-  - [x] Spacing: 6-step scale (4px → 48px)
-  - [x] Radius: 50% for circles, 12px for panels
-  - [x] Shadows: glow only, no box shadows. `box-shadow: 0 0 40px var(--glow)`
-- [x] 3.2 **Building Blocks:**
-  - [x] Breathing Circle: CSS animation, 11s ease-in-out, scale(0.85→1.0)
-  - [x] Ring Arc: SVG `<circle>` with stroke-dasharray/offset
-  - [x] Phase Label: Cormorant Garamond 300, uppercase, gold
-  - [x] Transition Prompt: Libre Baskerville italic, cream, fade-in
-  - [x] Status Bar: DM Sans, cream-muted, flex center
-  - [x] Settings Gear: 20px, cream-muted, slide-up overlay
-- [x] 3.3 **Layout Templates:**
-  - [x] iPad Landscape (≥1024px): 80vmin clock, all rings, bottom status
-  - [x] iPad Portrait (≥768px): 75vmin clock, all rings, bottom status
-  - [x] Phone Landscape (≥640px): 60vmin, breath→day visible
-  - [x] Phone Portrait (<640px): 85vw, breath→sprint only, top+bottom status
-- [x] 3.4 **Brandbook Integration:**
-  - [x] Bio-Light → dark variant, gold light on void
-  - [x] 8s Anti-Anxiety Motion → 11s breathing (close), all transitions ≥2s
-  - [x] Pearl Mode → NOT used (pure dark)
-  - [x] Charcoal Indigo → settings overlay background
-  - [x] Serif/Sans split → Cormorant headlines / DM Sans utility
-  - [x] Voice: Direct, Warm, Precise, Sacred → transition prompts
-  - [x] Sacred Spectrum aesthetic confirmed by Alexander's screenshot
-- [ ] 3.5 **Micro-interactions:**
-  - [x] Breathing circle: scale + opacity, 11s, ease-in-out
-  - [x] Phase transition: color shift + prompt fade-in, 2s
-  - [x] Sprint start: pulse arcs sequential fade-in, 1.5s
-  - [x] Sprint end: fill to 100% + gold pulse + dim, 3s
-  - [x] Ring hover/tap: glow + tooltip, 0.3s
-  - [x] Transition prompt: fade in 2s, auto-dismiss 30s
-  - [x] Settings open/close: slide up/down + backdrop blur
-  - [x] Moon indicator: 8s glow pulse (brand standard)
-  - [x] Anti-patterns defined: no shake/bounce/spring, no <200ms, no unsolicited sound
-- [x] 🔥 **ROAST GATE 3 — PASS:**
-  - ✅ First Impression: dark void + golden rings + breathing center = sacred
-  - ✅ Premium Feel: gold-on-black, Cormorant Garamond, no rogue elements
-  - ✅ Consistency: single palette (gold gradient), single motion standard
-  - ✅ Breathing Room: ring spacing defined, text minimal
-  - ✅ Cycle 1: cream-on-dark contrast ratio OK, gold not overwhelming
-  - ✅ Cycle 2: exceeds Cosmic Watch (simpler), matches Activity Rings (concentric clarity)
-  - ✅ Cycle 3: phase colors (blue→gold→violet) add emotional arc without breaking palette
+- [x] 3.1 **Visual Rules:** 17 color tokens, 3 font families, 6-step spacing, glow-only shadows
+- [x] 3.2 **Building Blocks:** Breathing circle, Ring Arc, Phase Label, Transition Prompt, Status Bar, Sprint CTA, Settings
+- [x] 3.3 **Layout Templates:** 4 responsive breakpoints (phone→iPad→desktop)
+- [x] 3.4 **Brandbook Integration:** Bio-Light dark variant, 8s Anti-Anxiety Motion, Serif/Sans split
+- [x] 3.5 **Micro-interactions:** Breathing scale, phase transitions, sprint start/end, ring hover, prompt fade
+- [x] 🔥 **ROAST GATE 3 — PASS**
 
 ---
 
 ## PHASE 4: CODE ✅ COMPLETE (6/6)
 
-- [x] 4.1 **Create Files:** `index.html`, `src/style.css`, `src/cycles.ts`, `src/clock.ts`, `src/main.ts`
-- [x] 4.2 **Implement Screens:** Ambient state (breathing + rings), Sprint state (phase labels + countdown + prompts), Settings overlay
-- [x] 4.3 **Connect Routes:** Single `/` route, settings overlay
-- [x] 4.4 **Connect Data:** localStorage (preferences, sprint state, sprint log), all cycles computed from `Date.now()`
-- [x] 4.5 **Verification:** TypeScript 0 errors, Vite build clean (13.4 KB JS + 7 KB CSS), browser test passed (ambient → sprint → settings)
-- [x] 🔥 **ROAST GATE 4 — PASS:**
-  - ✅ 3 states verified: ambient, sprint active, settings
-  - ✅ Breathing circle animates at 11s
-  - ✅ Concentric rings show correct progress for day/week/month/quarter
-  - ✅ Sprint tap → INCEPTION · ENTRY → 4:00 countdown
-  - ✅ Transition prompt: *"What is the one thing?"*
-  - ✅ Settings: slider, toggles, persist to localStorage
-  - ✅ Zero runtime errors
+- [x] 4.1 **Create Files:** `index.html`, `src/style.css`, `src/cycles.ts`, `src/clock.ts`, `src/main.ts`, `src/guidance.ts`
+- [x] 4.2 **Implement Screens:** Ambient (breathing + rings + CTA), Sprint (phases + countdown + prompts), Settings (breath, wake/sleep, toggles)
+- [x] 4.3 **Connect Routes:** Single `/` route, settings overlay, `/equilibrium` in main Evolver app
+- [x] 4.4 **Connect Data:** localStorage (preferences with wake/sleep, sprint state, sprint log), cycles from `Date.now()`, Energetic Week Blueprint
+- [x] 4.5 **Verification:** TypeScript 0 errors on both apps, browser tests passed
+- [x] 🔥 **ROAST GATE 4 — PASS**
+
+### v1.1 Additions (Energetic Intelligence):
+- Planetary days with emoji, energy, intelligence type, description
+- Chaldean planetary hours (24/day rotating)
+- Moon phase energies, season energies
+- Observational guidance (ambient) / supportive guidance (sprint)
+- Status bar shows energy essences, not labels
+
+### v1.2 Additions (Personalization & Integration):
+- "Begin Your Sprint" CTA button (gold outline pill)
+- Wake/Sleep time in settings
+- Work-window-aware guidance (rest messaging outside hours)
+- Long-press (3s) to end sprint early
+- Mobile CSS polish (wrap, resize)
+- Platform integration: `EquilibriumPage.tsx` iframe, `/equilibrium` route
+
+---
+
+## PHASE 5: POLISH ← CURRENT
+
+- [ ] 5.1 Quick Roast Checklist
+- [ ] 5.2 Apply Fixes
+- [ ] 5.3 Spot-Check (3 screens)
+- [ ] 🔥 ROAST GATE 5
 
 ---
 
 ## OUTPUT
 
-- [ ] User Journey (spec)
-- [ ] UX/UI (components)
-- [ ] Software Architecture (routes, data)
-- [ ] Working Code (verified)
+- [x] User Journey (spec) — `equilibrium_product_spec.md`
+- [x] UX/UI (components) — `style.css`, `clock.ts`, `guidance.ts`
+- [x] Software Architecture (routes, data) — `cycles.ts`, `main.ts`, localStorage
+- [x] Working Code (verified) — TypeScript clean, browser tested
 
 ---
 

@@ -1,30 +1,33 @@
 /**
- * Equilibrium Page — Full-screen iframe wrapper
+ * Equilibrium Page — Redirect to standalone app
  * 
- * Equilibrium is a standalone Vite + TypeScript app.
- * In dev, it runs on :5173. In production, it's served from /equilibrium/.
- * This page embeds it full-screen, no chrome, no navbar.
+ * Equilibrium is built as a standalone Vite + TypeScript app
+ * and served as static files from /equilibrium/.
+ * 
+ * This React route just redirects there.
  */
 
+import { useEffect } from 'react';
+
 const EquilibriumPage = () => {
-    // In dev, point to the standalone dev server; in production, serve from same origin
-    const src = import.meta.env.DEV
-        ? 'http://localhost:5173/'
-        : '/equilibrium/index.html';
+    useEffect(() => {
+        // Redirect to the standalone app served from public/equilibrium/
+        window.location.href = '/equilibrium/';
+    }, []);
 
     return (
-        <iframe
-            src={src}
-            title="Equilibrium — Living Clock"
-            style={{
-                position: 'fixed',
-                inset: 0,
-                width: '100vw',
-                height: '100vh',
-                border: 'none',
-                background: '#0a0a0f',
-            }}
-        />
+        <div style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#0a0a0f',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#c9a84c',
+            fontFamily: 'serif',
+        }}>
+            Loading Equilibrium...
+        </div>
     );
 };
 
