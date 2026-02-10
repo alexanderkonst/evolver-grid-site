@@ -17,10 +17,10 @@ export type Phase = 'entry' | 'focus' | 'exit';
 export type HolonicPhase = 'will' | 'emanation' | 'digestion' | 'enrichment';
 
 export const HOLONIC_PHASES: { id: HolonicPhase; label: string; emoji: string; color: string; action: string }[] = [
-    { id: 'will', label: 'WILL', emoji: '🔥', color: '#e07040', action: 'Set intention · Plant seeds' },
-    { id: 'emanation', label: 'EMANATION', emoji: '💧', color: '#5090c0', action: 'Build · Create · Execute' },
-    { id: 'digestion', label: 'DIGESTION', emoji: '🌍', color: '#60a060', action: 'Harvest · Polish · Ship' },
-    { id: 'enrichment', label: 'ENRICHMENT', emoji: '🌬️', color: '#a080c0', action: 'Integrate · Reflect · Rest' },
+    { id: 'will', label: 'PLANNING', emoji: '🎯', color: '#e07040', action: 'Set intention · Define the target' },
+    { id: 'emanation', label: 'BUILDING', emoji: '🔨', color: '#5090c0', action: 'Build · Create · Execute' },
+    { id: 'digestion', label: 'COMMUNICATING', emoji: '📡', color: '#60a060', action: 'Share · Polish · Ship' },
+    { id: 'enrichment', label: 'INTEGRATING', emoji: '🌀', color: '#a080c0', action: 'Integrate · Reflect · Rest' },
 ];
 
 export function getHolonicPhase(progress: number): typeof HOLONIC_PHASES[number] {
@@ -497,7 +497,7 @@ export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
     if (coherence >= 60) {
         insight = `${dominant.emoji} Strong ${dominant.label} energy — ${dominant.action.split('·')[0].trim()}`;
     } else {
-        insight = `${dayPhase.emoji} Day in ${dayPhase.label}, ${weekPhase.emoji} Week in ${weekPhase.label}`;
+        insight = `${dayPhase.emoji} Day: ${dayPhase.label}, ${weekPhase.emoji} Week: ${weekPhase.label}`;
     }
 
     return {
@@ -536,7 +536,7 @@ export function formatMinutes(min: number): string {
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-const PULSE_NAMES = ['INCEPTION', 'EMANATION', 'RETURN', 'INTEGRATION'];
+const PULSE_NAMES = ['PLANNING', 'BUILDING', 'COMMUNICATING', 'INTEGRATING'];
 
 export function getPulseName(pulseNumber: number): string {
     return PULSE_NAMES[Math.min(pulseNumber - 1, 3)] || 'INCEPTION';
