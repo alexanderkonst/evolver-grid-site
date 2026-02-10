@@ -107,9 +107,9 @@ const DeepTPScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
                     <Sparkles className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Promise</h1>
-                <p className="text-primary-wabi">
-                    This is the bridge you build for them.
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your USP</h1>
+                <p className="text-[#2c3150]/60">
+                    The one-liner that makes ideal clients say "that's exactly what I need."
                 </p>
             </div>
 
@@ -161,8 +161,8 @@ const DeepTPScreen: React.FC = () => {
             {/* Promise Statement */}
             <Card className="max-w-2xl mx-auto mb-8 bg-white border border-gray-200">
                 <CardContent className="p-6 text-center">
-                    <h3 className="text-sm font-semibold text-primary-wabi uppercase tracking-wide mb-3">
-                        Your Transformational Promise
+                    <h3 className="text-sm font-semibold text-[#8460ea] uppercase tracking-wide mb-3">
+                        Your Unique Selling Proposition
                     </h3>
                     <p className="text-xl font-medium text-primary-wabi leading-relaxed">
                         "{state.deepTP?.promiseStatement}"

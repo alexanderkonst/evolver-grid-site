@@ -166,7 +166,7 @@ const DeepPainScreen: React.FC = () => {
                     disabled={!state.resonanceRatings.pain}
                     className="px-8 bg-[#8460ea] hover:bg-[#7350d0] text-white disabled:opacity-40"
                 >
-                    Crystallize Your Promise
+                    Crystallize Your USP
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 {!state.resonanceRatings.pain && (

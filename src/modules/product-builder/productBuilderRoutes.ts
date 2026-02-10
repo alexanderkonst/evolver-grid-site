@@ -4,7 +4,7 @@ export const PRODUCT_BUILDER_STEPS = [
     { number: 0, label: "Get Started", path: `${PRODUCT_BUILDER_BASE}` },
     { number: 1, label: "Ideal Client", path: `${PRODUCT_BUILDER_BASE}/icp` },
     { number: 2, label: "Their Pain", path: `${PRODUCT_BUILDER_BASE}/pain` },
-    { number: 3, label: "Your Promise", path: `${PRODUCT_BUILDER_BASE}/promise` },
+    { number: 3, label: "Your USP", path: `${PRODUCT_BUILDER_BASE}/promise` },
     { number: 4, label: "Landing Page", path: `${PRODUCT_BUILDER_BASE}/landing` },
     { number: 5, label: "Blueprint", path: `${PRODUCT_BUILDER_BASE}/blueprint` },
     { number: 6, label: "Call to Action", path: `${PRODUCT_BUILDER_BASE}/cta` },
