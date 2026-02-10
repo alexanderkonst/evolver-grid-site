@@ -364,10 +364,238 @@ export const moduleLandings: Record<string, ModuleLandingData> = {
             { step: "Transform", description: "Your AI becomes fast, sharp, and insightful — immediately", time: "Instant" },
         ],
 
+
         story: "Built for the top 20% of operators who don't just use AI — they think with it. After working with hundreds of high-level strategists, founders, and coaches, it became clear: the problem wasn't the people, it was the AI. Standard models couldn't keep up. This upgrade fixes that. Your work deserves responses that match your pace, your depth, and your precision.",
 
         finalCtaHeadline: "Stop cleaning up after your AI. Upgrade it.",
         finalCtaSubheadline: "$33 · One-time · Works with any AI model · Instant access",
+    },
+
+    "genius-layer-matching": {
+        forAudience: "For venture studios and accelerators tired of co-founder breakups that could have been avoided",
+        headline: "Stop matching founders on CVs. Match them on how they're built to operate.",
+        subheadline: "Add a 'genius layer' to your founder matching — surface each person's deep operating pattern and generate smarter team pairings, without redesigning your program.",
+
+        ctaButtonText: "Book a Pilot Call",
+        ctaButtonLink: "https://www.calendly.com/konstantinov",
+
+        forWhom: [
+            "You run a venture studio and keep seeing promising teams fracture over working style, not ideas",
+            "You manage accelerator cohorts and want higher-signal matching than LinkedIn profiles can deliver",
+            "You facilitate founder matchmaking and need a tool that surfaces complementary patterns, not just shared interests",
+            "You're designing a new program and want team formation to be a competitive advantage from day one",
+        ],
+
+        painSectionHeader: "When co-founder chemistry looks right — until it doesn't",
+        painBullets: [
+            "Two brilliant founders join forces, then burn six months discovering they both need to be the architect — nobody wants to execute",
+            "Your matching process relies on pitch compatibility and sector overlap, but the real friction is always about HOW people work, not WHAT they work on",
+            "Post-matching surveys keep flagging 'communication issues' — a polite way of saying you paired people who operate on different frequencies",
+            "You know better matching would improve your portfolio outcomes, but you don't have a scalable way to assess operating patterns",
+        ],
+
+        solutionSectionHeader: "A genius layer adds depth your matching process is missing",
+        solutionSteps: [
+            { verb: "Assess", description: "each founder takes a 20-minute Zone of Genius assessment — revealing their deep operating pattern, not just their resume" },
+            { verb: "Surface", description: "complementary and conflicting patterns — see where genius pairs amplify and where they'll collide" },
+            { verb: "Match", description: "with real signal — pair founders based on how they naturally operate, not just what they say they want to build" },
+            { verb: "Debrief", description: "get clear recommendations on team composition and role clarity, backed by pattern data" },
+        ],
+
+        outcomes: [
+            "Genius profiles for every founder in your cohort",
+            "Pattern-based matching recommendations (complementary pairs, red flags)",
+            "Role-clarity frameworks so new teams start with 'who does what' already answered",
+            "A reusable assessment layer you can run on every future cohort",
+            "Higher founder satisfaction — 'they actually see me' beats 'they matched my pitch deck'",
+        ],
+
+        howItWorks: [
+            { step: "Exploratory Call", description: "30-minute call to understand your program and matching needs", time: "30 min" },
+            { step: "Pilot Assessment", description: "5-10 founders take the Zone of Genius assessment", time: "20 min each" },
+            { step: "A/B Pilot", description: "We match one cohort with genius data, compare results to your standard process", time: "1 cohort cycle" },
+        ],
+
+        story: "Most founder programs match on ideas and CVs. But 65% of startups fail because of people problems, not market problems. After years of running Zone of Genius assessments with individual founders, I realized the same tool could prevent team breakdowns before they start — by matching founders on how they actually operate, not just what they pitch.",
+
+        finalCtaHeadline: "Better teams start with better matching.",
+        finalCtaSubheadline: "Pilot program · Results-based · Talk to Aleksandr",
+
+        coreMessage: {
+            belief: "We believe the best teams are built on complementary operating patterns, not shared pitch decks.",
+            oneLiner: "Genius-Layer Matching helps venture studios and accelerators pair founders based on deep operating patterns — reducing co-founder friction before it starts.",
+            resonanceHook: "For program leaders who keep watching talented founder pairs implode over 'working style differences' and want a better way.",
+        },
+    },
+
+    "mens-circle": {
+        forAudience: "Для русскоязычных мужчин, которые переросли поверхностное общение и ищут настоящее",
+        headline: "Мужской круг. Место, где можно быть настоящим.",
+        subheadline: "Со-создаём душевное пространство для честного разговора, осознанности и глубокой мужской связи — без масок, без ролей, без суеты.",
+
+        ctaButtonText: "Записаться",
+        ctaButtonLink: "/mens-circle",
+
+        forWhom: [
+            "Ты успешен, но чувствуешь, что настоящего, глубокого общения с мужчинами не хватает",
+            "Ты хочешь расти — но не через очередной курс, а через живое присутствие и честный разговор",
+            "Ты открыт к каннабису как к растению силы — не для эскапизма, а для углубления",
+            "Ты ищешь пространство, где можно снять маску и говорить о том, что на самом деле важно",
+        ],
+
+        painSectionHeader: "Когда 'всё нормально' перестаёт быть правдой",
+        painBullets: [
+            "На работе ты — лидер. Дома — партнёр. В компании — весёлый. А внутри — один. И поговорить об этом не с кем.",
+            "Ты давно не чувствовал, что тебя видят по-настоящему — не роль, не достижения, а тебя самого",
+            "Друзья есть, но разговоры остаются на уровне новостей, спорта и бизнеса — глубина где-то потерялась",
+            "Ты понимаешь, что растёшь один — и это работает, но чего-то фундаментально не хватает",
+        ],
+
+        solutionSectionHeader: "Пространство, которое держит и раскрывает",
+        solutionSteps: [
+            { verb: "Медитация", description: "открытие круга через совместную практику — настройка, заземление, присутствие" },
+            { verb: "Живой разговор", description: "открытый формат: делишься тем, что живое сейчас. Без советов, без оценки. С поддержкой." },
+            { verb: "Совместное закрытие", description: "благодарность, интеграция, выход в мир с новым чувством связи" },
+        ],
+
+        outcomes: [
+            "Регулярное пространство для честного мужского общения",
+            "Глубокая связь с мужчинами, которые тоже выбрали расти",
+            "Опыт быть увиденным и принятым — без необходимости 'впечатлять'",
+            "Поддержка и подотчётность в жизненных переходах",
+            "Практика присутствия, которая меняет качество всех отношений",
+        ],
+
+        howItWorks: [
+            { step: "Запись", description: "Оставь заявку — мы свяжемся с тобой лично", time: "2 мин" },
+            { step: "Знакомство", description: "Короткий разговор, чтобы понять, подходит ли это пространство", time: "15 мин" },
+            { step: "Участие", description: "Присоединяйся к ежемесячному кругу онлайн", time: "90 мин" },
+        ],
+
+        story: "Этот круг родился из простой потребности: иметь место, где можно быть настоящим. Не коуч-сессия, не терапия, не клуб. Просто мужчины, которые выбрали честность. Каннабис здесь — не развлечение, а растение силы: инструмент для углубления разговора и присутствия. Мы со-создаём одно из самых качественных русскоязычных мужских пространств на планете.",
+
+        finalCtaHeadline: "Хватит нести всё одному.",
+        finalCtaSubheadline: "Онлайн · Ежемесячно · Русскоязычное пространство",
+
+        coreMessage: {
+            belief: "Мы верим, что настоящая сила мужчины раскрывается в присутствии других мужчин, которые тоже выбрали быть настоящими.",
+            oneLiner: "Мужской круг — регулярное онлайн-пространство для русскоязычных мужчин, которые хотят глубокого общения, честности и роста — с каннабисом как растением силы.",
+            resonanceHook: "Для мужчин, которые устали от поверхностного общения и хотят место, где можно наконец снять маску.",
+        },
+    },
+
+    "heartcraft-game": {
+        forAudience: "For people who want a meditation practice but can't make it stick — and secretly wish inner work felt more like a game",
+        headline: "Level up your consciousness. Literally.",
+        subheadline: "HeartCraft turns breathwork and meditation into a level-based game — so you actually do it, enjoy it, and keep coming back.",
+
+        ctaButtonText: "Join the Waitlist",
+        ctaButtonLink: "#",
+
+        forWhom: [
+            "You've downloaded meditation apps before and stopped after a week — you need structure, not ambient sounds",
+            "You believe in the power of breathwork but can't build a consistent practice on willpower alone",
+            "You're a gamer at heart and know that progression systems work on your brain — why not use that for growth?",
+            "You're curious about altered states of consciousness but want a safe, structured entry point",
+        ],
+
+        painSectionHeader: "When willpower isn't enough to build a practice",
+        painBullets: [
+            "You know breathwork works — you've felt it. But without external structure, the practice fades within days",
+            "Meditation apps feel passive and generic — you need something that responds to your level and pushes you forward",
+            "You've read the science on breathwork, HRV, and altered states, but you can't seem to bridge the gap from knowing to doing",
+            "You watch yourself level up in games for hours, then can't sit still for 10 minutes of breathwork — and you wonder why inner work can't feel that engaging",
+        ],
+
+        solutionSectionHeader: "Inner work, redesigned as a game you actually want to play",
+        solutionSteps: [
+            { verb: "Start", description: "at Level 1 with foundational coherent breathing — 5.5 seconds in, 5.5 seconds out. Master the basics." },
+            { verb: "Progress", description: "through increasingly profound techniques — each level unlocks new practices and deeper states of awareness" },
+            { verb: "Track", description: "your streaks, milestones, and consciousness expansion — real progress, not arbitrary badges" },
+            { verb: "Unlock", description: "advanced practices like holotropic breathing, energy work, and integration rituals as you level up" },
+        ],
+
+        outcomes: [
+            "A consistent breathwork practice that sticks — because the structure keeps you engaged",
+            "Progressive skill-building from basic coherence to advanced altered states",
+            "Measurable improvement in HRV, stress tolerance, and emotional regulation",
+            "Access to practices most people never discover — unlocked through genuine progression",
+            "A community of practitioners at different stages, supporting each other's growth",
+        ],
+
+        howItWorks: [
+            { step: "Join", description: "Sign up for the waitlist — early access opens soon", time: "1 min" },
+            { step: "Start Level 1", description: "Begin with coherent breathing fundamentals — no experience needed", time: "10 min/day" },
+            { step: "Level Up", description: "Progress through 10+ levels of increasingly profound practices", time: "Your pace" },
+        ],
+
+        story: "I spent years studying consciousness — breathwork, meditation, psychedelics, biofeedback. The techniques work. The problem was never the science. It was the delivery. People don't need another meditation app with whale sounds. They need a system that makes inner work as compelling as a game — because the brain doesn't distinguish between 'productive' and 'fun.' It just follows the better reward loop. HeartCraft is that loop.",
+
+        finalCtaHeadline: "Your consciousness has levels. Time to start climbing.",
+        finalCtaSubheadline: "Coming Soon · Free entry level · Premium tiers unlock advanced practices",
+
+        coreMessage: {
+            belief: "We believe inner work should be as engaging as the best games — because the brain follows the better reward loop.",
+            oneLiner: "HeartCraft turns breathwork and consciousness practices into a level-based game that makes inner work stick.",
+            resonanceHook: "For people who've tried meditation apps and quit after a week, but will grind through 50 game levels without blinking.",
+        },
+    },
+
+    "integral-mystery-school": {
+        forAudience: "For leaders and seekers who've outgrown piecemeal spiritual practices and want the whole map",
+        headline: "The complete map of human development. In 5 modules.",
+        subheadline: "A synthesis of ancient wisdom traditions and modern developmental psychology — designed for leaders who want to grow on every axis, not just the comfortable ones.",
+
+        ctaButtonText: "Join the Waitlist",
+        ctaButtonLink: "#",
+
+        forWhom: [
+            "You've done therapy, meditation, breathwork, and leadership training — but nobody gave you the framework that connects it all",
+            "You lead people and sense that your own ceiling is becoming their ceiling — you need to grow vertically, not just add skills",
+            "You're drawn to integral theory but want an embodied program, not just books and podcasts",
+            "You've had peak experiences and glimpses of higher awareness — now you want a reliable path, not random openings",
+        ],
+
+        painSectionHeader: "When growth feels fragmented",
+        painBullets: [
+            "You've done deep work in one dimension (body, mind, spirit) but feel underdeveloped in others — and the imbalance is starting to show",
+            "You understand shadow work intellectually but keep getting hijacked by the same patterns in high-pressure moments",
+            "Your spiritual practice makes you feel expanded — but your leadership, relationships, or body aren't keeping up with your awareness",
+            "You've read Wilber, spiral dynamics, and developmental theory — but you can't find a program that actually integrates all quadrants, not just talks about them",
+        ],
+
+        solutionSectionHeader: "Five modules. Every axis of development. No blind spots.",
+        solutionSteps: [
+            { verb: "Map", description: "your current developmental stage across all quadrants — see exactly where you are and where the growth edges are" },
+            { verb: "Integrate", description: "shadow material that's been blocking your next stage — not just awareness, but embodied resolution" },
+            { verb: "Embody", description: "higher stages of leadership consciousness — through practice, not just study" },
+            { verb: "Serve", description: "from integral awareness — align your contribution with the evolutionary impulse, not just personal ambition" },
+        ],
+
+        outcomes: [
+            "A clear developmental map showing your current stage and growth edges",
+            "Practical shadow-work skills that work under pressure, not just in retreat settings",
+            "Embodied capacity for higher-stage leadership — felt by others, not just claimed",
+            "Understanding of collective intelligence and how to facilitate group emergence",
+            "A peer community of integrally-informed leaders committed to ongoing development",
+        ],
+
+        howItWorks: [
+            { step: "Apply", description: "Share your background and intention — this program is for committed practitioners", time: "15 min" },
+            { step: "5 Modules", description: "Progressive journey from developmental mapping to emergence and service", time: "5 months" },
+            { step: "Integration", description: "Ongoing practice community and peer support beyond the program", time: "Ongoing" },
+        ],
+
+        story: "After years of studying wisdom traditions — Vedic, Buddhist, Christian mystical, Sufi, Taoist — alongside Wilber, Kegan, and Gebser, I saw the same architecture everywhere. Every tradition maps the same territory from a different angle. The Integral Mystery School is what happens when you stop treating them as separate paths and build one coherent journey through all of them. Not for tourists. For practitioners.",
+
+        finalCtaHeadline: "Stop growing in fragments. Get the whole map.",
+        finalCtaSubheadline: "Coming Soon · 5-month program · Application-based",
+
+        coreMessage: {
+            belief: "We believe human development is one unified process — and fragmented approaches produce fragmented leaders.",
+            oneLiner: "The Integral Mystery School gives leaders and seekers the complete developmental map — synthesizing ancient wisdom and modern psychology into 5 embodied modules.",
+            resonanceHook: "For people who've done therapy AND meditation AND leadership training, but nobody ever gave them the framework that connects it all.",
+        },
     },
 };
 

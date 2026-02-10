@@ -241,22 +241,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     const offerComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
     const fullUnlock = ["qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
 
-    // Unlock status for each space (using new space IDs matching SpacesRail)
+    // Unlock status for each space — all spaces are always unlocked
     const unlockStatus: Record<string, boolean> = {
-        // My Next Move is always unlocked
         "next-move": true,
-        // ME (profile) is always unlocked - it's where users manage their data
         "grow": true,
-        // LEARN (transformation) unlocks after QoL complete
-        "learn": !isZogCompleteStage && qolComplete,
-        // MEET (events) unlocks after full unlock
-        "meet": !isZogCompleteStage && fullUnlock,
-        // COLLABORATE (teams) unlocks after QoL complete
-        "collaborate": !isZogCompleteStage && qolComplete,
-        // BUILD (coop/incubator) unlocks after offer complete
-        "build": !isZogCompleteStage && offerComplete,
-        // BUY & SELL (marketplace) unlocks after offer complete
-        "buysell": !isZogCompleteStage && offerComplete,
+        "learn": true,
+        "meet": true,
+        "collaborate": true,
+        "build": true,
+        "buysell": true,
     };
 
     // Nudge badges - visual indicators for unlocked spaces

@@ -8,7 +8,10 @@ const ProductBuilderEntry: React.FC = () => {
     const navigate = useNavigate();
 
     const handleStart = () => {
-        navigate(PRODUCT_BUILDER_STEPS[1].path); // Go to ICP step
+        // PRODUCT_BUILDER_STEPS paths are relative (/product-builder/icp).
+        // Actual route lives under /game/build/product-builder/*, so prepend prefix.
+        const stepPath = PRODUCT_BUILDER_STEPS[1].path.replace("/product-builder", "/game/build/product-builder");
+        navigate(stepPath);
     };
 
     return (
