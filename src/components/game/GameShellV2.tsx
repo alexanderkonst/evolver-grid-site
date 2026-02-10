@@ -67,6 +67,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
             build: "build",
             marketplace: "buysell",
             // Legacy redirects (for backwards compatibility)
+            me: "grow",
             profile: "grow",
             transformation: "learn",
             teams: "collaborate",

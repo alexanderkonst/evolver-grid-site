@@ -43,7 +43,7 @@ const GeniusBusiness = () => {
                     </p>
                     <Button
                         variant="wabi-primary"
-                        onClick={() => navigate("/zone-of-genius/entry")}
+                        onClick={() => navigate("/zone-of-genius/entry?return=/game/me/genius-business")}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
                         Start Zone of Genius
