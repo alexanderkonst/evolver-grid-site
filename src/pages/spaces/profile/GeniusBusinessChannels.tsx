@@ -29,7 +29,7 @@ const GeniusBusinessChannels = () => {
                 {/* Header with back button */}
                 <div className="flex items-center gap-3">
                     <button
-                        onClick={() => navigate("/game/profile/genius-business")}
+                        onClick={() => navigate("/game/me/genius-business")}
                         className="p-2 hover:bg-[#a4a3d0]/10 rounded-lg transition-colors"
                     >
                         <ArrowLeft className="w-5 h-5 text-[#a4a3d0]" />

@@ -46,7 +46,7 @@ const ExcaliburView = () => {
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
               Create Offer
             </Button>
-            <BackButton to="/game/profile" />
+            <BackButton to="/game/me" />
           </div>
         </div>
       </GameShellV2>
@@ -56,7 +56,7 @@ const ExcaliburView = () => {
   return (
     <GameShellV2>
       <div className="px-4 pt-6">
-        <BackButton to="/game/profile" />
+        <BackButton to="/game/me" />
       </div>
       <ExcaliburDisplay
         excalibur={excalibur}

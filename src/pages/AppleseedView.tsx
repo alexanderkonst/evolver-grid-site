@@ -55,7 +55,7 @@ const AppleseedView = () => {
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
               Start Zone of Genius
             </Button>
-            <BackButton to="/game/profile" />
+            <BackButton to="/game/me" />
           </div>
         </div>
       </GameShellV2>
@@ -65,7 +65,7 @@ const AppleseedView = () => {
   return (
     <GameShellV2>
       <div className="px-4 pt-6">
-        <BackButton to="/game/profile" />
+        <BackButton to="/game/me" />
       </div>
       <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
       {!excalibur && (

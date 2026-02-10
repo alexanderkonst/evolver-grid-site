@@ -134,7 +134,7 @@ const MissionSelection = () => {
       }
 
       toast({ title: "Mission saved" });
-      navigate("/game/profile");
+      navigate("/game/me");
     } catch (err: any) {
       toast({
         title: "Save failed",
@@ -223,7 +223,7 @@ const MissionSelection = () => {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <Button variant="outline" onClick={() => navigate("/game/profile")}>Back</Button>
+            <Button variant="outline" onClick={() => navigate("/game/me")}>Back</Button>
             <Button onClick={handleSave} disabled={saving}>
               {saving ? "Saving..." : "Save Mission"}
             </Button>

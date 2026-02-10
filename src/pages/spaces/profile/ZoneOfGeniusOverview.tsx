@@ -78,10 +78,10 @@ const ZoneOfGeniusOverview = () => {
     }, []);
 
     const subPages = [
-        { id: "archetype", label: "My Archetype", icon: Star, path: "/game/profile/zone-of-genius/archetype", description: "Your unique genius type" },
-        { id: "talents", label: "Top Talents", icon: Zap, path: "/game/profile/zone-of-genius/talents", description: "Your natural strengths" },
-        { id: "driver", label: "Prime Driver", icon: Target, path: "/game/profile/zone-of-genius/driver", description: "What fuels you" },
-        { id: "action", label: "Action Statement", icon: Quote, path: "/game/profile/zone-of-genius/action", description: "Your core expression" },
+        { id: "archetype", label: "My Archetype", icon: Star, path: "/game/me/zone-of-genius/archetype", description: "Your unique genius type" },
+        { id: "talents", label: "Top Talents", icon: Zap, path: "/game/me/zone-of-genius/talents", description: "Your natural strengths" },
+        { id: "driver", label: "Prime Driver", icon: Target, path: "/game/me/zone-of-genius/driver", description: "What fuels you" },
+        { id: "action", label: "Action Statement", icon: Quote, path: "/game/me/zone-of-genius/action", description: "Your core expression" },
     ];
 
     if (loading) {

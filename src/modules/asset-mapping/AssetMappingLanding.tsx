@@ -69,7 +69,7 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
 const AssetMappingLanding = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/profile";
+    const returnPath = searchParams.get("return") || "/game/me";
 
     const [step, setStep] = useState<Step>("choice");
     const [aiResponse, setAiResponse] = useState("");

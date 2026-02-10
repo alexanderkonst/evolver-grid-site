@@ -136,7 +136,7 @@ const SpacesRail = ({
 
                 {/* User Profile */}
                 <Link
-                    to="/game/profile"
+                    to="/game/me"
                     className="flex items-center gap-2 hover:bg-[#29549f]/30 rounded-lg p-1.5 -m-1.5 transition-colors"
                 >
                     {avatarUrl ? (

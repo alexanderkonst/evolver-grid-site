@@ -114,7 +114,7 @@ const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null
 const MissionDiscoveryLanding = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/profile";
+    const returnPath = searchParams.get("return") || "/game/me";
 
     const [step, setStep] = useState<Step>("clarity-check");
     const [aiResponse, setAiResponse] = useState("");
