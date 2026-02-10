@@ -164,7 +164,7 @@ const GeniusBusiness = () => {
 
                 {/* Offer statement */}
                 {excaliburData.offer && (
-                    <div className="p-4 bg-white/60 rounded-xl border border-#a4a3d0]/20">
+                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
                         <p className="text-sm text-[#a4a3d0] mb-1">Your Unique Selling Proposition</p>
                         <p className="text-[#2c3150]">{excaliburData.offer.statement}</p>
                     </div>
