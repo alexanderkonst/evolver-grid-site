@@ -481,6 +481,7 @@ For each screen:
 - [ ] Standard Card variants — Outlined, filled, glass
 - [ ] Standard Input styles — From shadcn/ui
 - [ ] Standard Modal pattern — Dialog from shadcn/ui
+- [ ] ⚠️ **CSS Variable Override Check** — If module renders inside GameShell (`/game/*`), ALL shadcn/ui components (`Card`, `Button`, `CardContent`) inherit dark CSS variables. Must use explicit color overrides. See `brandbook.md` → "CSS Variable Override Trap" section.
 
 ---
 
@@ -505,6 +506,7 @@ For each screen:
 - [ ] Emotional mode — Warm (onboarding), Calm (dashboard), Celebration (completion)
 - [ ] Gradients appropriate — Match mode to gradient palette
 - [ ] Voice/copy matches brand — Friendly, clear, empowering
+- [ ] ⚠️ **Explicit color overrides** — Inside `/game/*` routes, never rely on CSS variable-based classes (`bg-primary`, `bg-card`, `text-muted-foreground`). Use hardcoded brandbook values: `bg-[#8460ea]` for primary buttons, `bg-white` for cards, `text-[#2c3150]` for text.
 
 ---
 
@@ -530,6 +532,7 @@ For each screen:
 - [ ] Premium Feel Test: "wow" or "meh"?
 - [ ] Consistency Test: same styles everywhere
 - [ ] Breathing Room Test: enough whitespace
+- [ ] ⚠️ **CSS Variable Bleed Test** — Open module in browser inside GameShell. Are any cards dark? Are any buttons invisible? Is text readable?
 
 ### Roast Cycles
 - [ ] **Cycle 1:** What looks off? Color harmony? Readability?
