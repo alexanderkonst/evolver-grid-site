@@ -3,7 +3,8 @@
  * 
  * "Your breath is the clock."
  * 
- * A living clock that replaces mechanical time with biological rhythm.
+ * A living clock that shows WHERE YOU ARE in every cycle,
+ * from breath to personal year.
  */
 
 import './style.css';
@@ -17,8 +18,9 @@ interface Preferences {
   breathDuration: number;
   transitionPrompts: boolean;
   showOuterRings: boolean;
-  wakeTime: string;   // "HH:MM" format
-  sleepTime: string;   // "HH:MM" format
+  wakeTime: string;
+  sleepTime: string;
+  birthday: string;  // "YYYY-MM-DD" or "" 
 }
 
 interface AppState {
@@ -40,16 +42,16 @@ function loadState(): AppState {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      // If sprint is stale (>96 min old), clear it
       if (parsed.sprintStartTime) {
         const elapsed = (Date.now() - parsed.sprintStartTime) / 60000;
         if (elapsed >= 96) {
           parsed.sprintStartTime = null;
         }
       }
-      // Ensure wake/sleep defaults
+      // Ensure defaults for newer fields
       if (!parsed.preferences.wakeTime) parsed.preferences.wakeTime = '07:00';
       if (!parsed.preferences.sleepTime) parsed.preferences.sleepTime = '23:00';
+      if (parsed.preferences.birthday === undefined) parsed.preferences.birthday = '';
       return parsed;
     }
   } catch (e) {
@@ -63,6 +65,7 @@ function loadState(): AppState {
       showOuterRings: true,
       wakeTime: '07:00',
       sleepTime: '23:00',
+      birthday: '',
     },
     sprintStartTime: null,
     sprintLog: [],
@@ -84,7 +87,6 @@ const clock = new Clock();
 const guidanceEl = document.getElementById('guidance')!;
 const sprintCta = document.getElementById('sprint-cta')!;
 
-// Apply breath duration from preferences
 document.documentElement.style.setProperty('--breath-duration', `${state.preferences.breathDuration}s`);
 
 // ─── SETTINGS UI ───────────────────────────────────
@@ -98,6 +100,7 @@ const togglePrompts = document.getElementById('toggle-prompts') as HTMLInputElem
 const toggleOuterRings = document.getElementById('toggle-outer-rings') as HTMLInputElement;
 const wakeTimeInput = document.getElementById('wake-time') as HTMLInputElement;
 const sleepTimeInput = document.getElementById('sleep-time') as HTMLInputElement;
+const birthdayInput = document.getElementById('birthday') as HTMLInputElement;
 
 // Initialize UI from state
 breathDurationInput.value = String(state.preferences.breathDuration);
@@ -106,6 +109,7 @@ togglePrompts.checked = state.preferences.transitionPrompts;
 toggleOuterRings.checked = state.preferences.showOuterRings;
 wakeTimeInput.value = state.preferences.wakeTime;
 sleepTimeInput.value = state.preferences.sleepTime;
+birthdayInput.value = state.preferences.birthday;
 
 settingsToggle.addEventListener('click', () => {
   settingsOverlay.classList.remove('hidden');
@@ -149,22 +153,23 @@ sleepTimeInput.addEventListener('change', () => {
   saveState(state);
 });
 
+birthdayInput.addEventListener('change', () => {
+  state.preferences.birthday = birthdayInput.value;
+  saveState(state);
+});
+
 // ─── SPRINT CONTROL ────────────────────────────────
 
-function startSprint() {
+// CTA button for starting sprint
+sprintCta.addEventListener('click', () => {
   if (!state.sprintStartTime) {
     state.sprintStartTime = Date.now();
     saveState(state);
+    sprintCta.classList.add('hidden');
   }
-}
-
-// CTA button starts sprint
-sprintCta.addEventListener('click', (e) => {
-  e.stopPropagation();
-  startSprint();
 });
 
-// Long-press (3s) on clock to end sprint early
+// Long-press to end sprint early (3 seconds)
 let longPressTimer: number | null = null;
 
 const clockContainer = document.getElementById('clock-container')!;
@@ -172,22 +177,11 @@ const clockContainer = document.getElementById('clock-container')!;
 clockContainer.addEventListener('pointerdown', (e) => {
   if (!state.sprintStartTime) return;
   if ((e.target as HTMLElement).id === 'settings-toggle') return;
-  if ((e.target as HTMLElement).id === 'sprint-cta') return;
 
   longPressTimer = window.setTimeout(() => {
-    // End sprint early
-    state.sprintLog.push({
-      date: new Date(state.sprintStartTime!).toISOString().slice(0, 10),
-      sprintNumber: state.sprintLog.filter(
-        s => s.date === new Date(state.sprintStartTime!).toISOString().slice(0, 10)
-      ).length + 1,
-      startTime: new Date(state.sprintStartTime!).toISOString(),
-      endTime: new Date().toISOString(),
-      completed: false,
-    });
     state.sprintStartTime = null;
     saveState(state);
-    longPressTimer = null;
+    sprintCta.classList.remove('hidden');
   }, 3000);
 });
 
@@ -209,39 +203,44 @@ clockContainer.addEventListener('pointerleave', () => {
 
 function tick() {
   const now = Date.now();
-  const cycles = getAllCycles(now, state.sprintStartTime, state.preferences.breathDuration);
 
-  // If sprint just ended, log it and clear
-  if (state.sprintStartTime && !cycles.sprint.active && cycles.sprint.progress >= 1) {
+  // Extract birthday in MM-DD format for cycles
+  let birthday: string | undefined;
+  if (state.preferences.birthday) {
+    const parts = state.preferences.birthday.split('-');
+    birthday = `${parts[1]}-${parts[2]}`;
+  }
+
+  const cycles = getAllCycles(now, state.sprintStartTime, state.preferences.breathDuration, birthday);
+
+  // Auto-end sprint
+  if (state.sprintStartTime && !cycles.sprint.active) {
     state.sprintLog.push({
-      date: new Date(state.sprintStartTime).toISOString().slice(0, 10),
-      sprintNumber: state.sprintLog.filter(
-        s => s.date === new Date(state.sprintStartTime!).toISOString().slice(0, 10)
-      ).length + 1,
-      startTime: new Date(state.sprintStartTime).toISOString(),
-      endTime: new Date(now).toISOString(),
+      date: new Date().toISOString().split('T')[0],
+      sprintNumber: state.sprintLog.filter(l => l.date === new Date().toISOString().split('T')[0]).length + 1,
+      startTime: new Date(state.sprintStartTime).toTimeString().slice(0, 5),
+      endTime: new Date().toTimeString().slice(0, 5),
       completed: true,
     });
     state.sprintStartTime = null;
     saveState(state);
-  }
-
-  // Show/hide sprint CTA
-  if (state.sprintStartTime) {
-    sprintCta.classList.add('hidden');
-  } else {
     sprintCta.classList.remove('hidden');
   }
 
+  // Show/hide CTA
+  if (state.sprintStartTime) {
+    sprintCta.classList.add('hidden');
+  }
+
+  // Update clock
   clock.update(cycles, state.preferences.showOuterRings, state.preferences.transitionPrompts);
 
-  // Update guidance line (pass wake/sleep for context)
+  // Update guidance
   const guidance = getGuidance(cycles, state.preferences.wakeTime, state.preferences.sleepTime);
   guidanceEl.textContent = guidance.message;
-  guidanceEl.className = `category-${guidance.category}`;
 
   requestAnimationFrame(tick);
 }
 
-// Start the living clock
-requestAnimationFrame(tick);
+// Start
+tick();

@@ -108,43 +108,29 @@ body {
   left: 0;
 }
 
-/* Ring track (background) */
-.ring-track {
+/* Ring segments (holonic phases) */
+.ring-segment {
   fill: none;
-  opacity: 0.15;
-  transition: opacity 0.3s ease;
-}
-
-/* Ring progress (foreground) */
-.ring-progress {
-  fill: none;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease;
+  transition: opacity 0.8s ease, stroke-width 0.8s ease;
 }
 
 /* Ring label text */
 .ring-label {
-  font-family: var(--font-display);
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  fill: var(--cream-muted);
-  font-size: 6px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-size: 7px;
   text-anchor: middle;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
-/* Show label on ring hover */
-.ring-group:hover .ring-label,
-.ring-group.active .ring-label {
-  opacity: 1;
+/* Ring group hover */
+.ring-group:hover .ring-segment {
+  opacity: 0.6 !important;
 }
 
-.ring-group:hover .ring-track {
-  opacity: 0.3;
-}
-
-/* Pulse arcs (4 segments) */
+/* Pulse arcs (4 segments for sprint) */
 .pulse-arc {
   fill: none;
   stroke-linecap: round;
@@ -160,10 +146,14 @@ body {
   opacity: 0.5;
 }
 
-/* Current position dot */
+/* Position dot on rings */
 .position-dot {
-  fill: var(--gold-bright);
-  filter: drop-shadow(0 0 4px var(--gold));
+  transition: cx 1s ease, cy 1s ease;
+}
+
+/* Phase legend in SVG corners */
+.phase-legend text {
+  pointer-events: none;
 }
 
 /* --- BREATHING CIRCLE --- */
@@ -249,7 +239,7 @@ body {
 /* --- PHASE DISPLAY --- */
 #phase-display {
   position: absolute;
-  bottom: calc(var(--space-2xl) + 2rem);
+  bottom: calc(var(--space-2xl) + 6rem);
   text-align: center;
   z-index: 3;
 }
@@ -271,10 +261,38 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* --- SYNTHESIS: THE ONE INSIGHT --- */
+#synthesis {
+  position: absolute;
+  bottom: calc(var(--space-2xl) + 4rem);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  letter-spacing: 0.08em;
+  max-width: 500px;
+  line-height: 1.4;
+  transition: color 2s ease;
+  z-index: 3;
+}
+
+/* --- MOON INFO --- */
+#moon-info {
+  position: absolute;
+  bottom: calc(var(--space-2xl) + 2.2rem);
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--cream-muted);
+  letter-spacing: 0.04em;
+  z-index: 3;
+  opacity: 0.8;
+}
+
 /* --- GUIDANCE LINE --- */
 #guidance {
   position: absolute;
-  bottom: calc(var(--space-2xl) + 5.5rem);
+  bottom: calc(var(--space-2xl) + 8.5rem);
   text-align: center;
   font-family: var(--font-voice);
   font-style: italic;
@@ -286,18 +304,6 @@ body {
   opacity: 0.85;
   transition: opacity 1.5s ease;
   z-index: 3;
-}
-
-#guidance.category-do {
-  color: var(--gold);
-}
-
-#guidance.category-be {
-  color: var(--cream);
-}
-
-#guidance.category-rest {
-  color: var(--phase-exit);
 }
 
 /* --- TRANSITION PROMPT --- */
@@ -526,8 +532,9 @@ input[type="checkbox"]:checked::before {
   background: rgba(201, 168, 76, 0.15);
 }
 
-/* Time input styling */
-input[type="time"] {
+/* Time & date input styling */
+input[type="time"],
+input[type="date"] {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 6px;
@@ -539,12 +546,14 @@ input[type="time"] {
   cursor: pointer;
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator {
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.7) sepia(1) hue-rotate(10deg);
   cursor: pointer;
 }
 
-input[type="time"]:focus {
+input[type="time"]:focus,
+input[type="date"]:focus {
   border-color: var(--gold);
 }
 
