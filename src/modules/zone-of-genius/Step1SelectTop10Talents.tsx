@@ -9,28 +9,27 @@ import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 const Step1SelectTop10Talents = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { yesTalentIds, selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
+  const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
   const basePath = getZogAssessmentBasePath(location.pathname);
   const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
   const [randomizedTalents, setRandomizedTalents] = useState<any[]>([]);
 
   useEffect(() => {
-    // Filter talents to only show those marked "Yes" in Step 0
-    const filteredTalents = TALENTS.filter(talent => yesTalentIds.includes(talent.id));
-    const shuffled = [...filteredTalents];
+    // Show all talents, randomized for fresh perspective
+    const shuffled = [...TALENTS];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     setRandomizedTalents(shuffled);
-  }, [yesTalentIds]);
+  }, []);
 
   useEffect(() => {
     setLocalSelected(selectedTop10TalentIds);
   }, [selectedTop10TalentIds]);
 
-  const maxSelectable = Math.min(yesTalentIds.length, 10);
+  const maxSelectable = 10;
 
   const handleTalentClick = (talentId: number) => {
     if (localSelected.includes(talentId)) {
@@ -56,7 +55,7 @@ const Step1SelectTop10Talents = () => {
   };
 
   const handleBack = () => {
-    navigate(getZogStepPath(basePath, 0));
+    navigate("/zone-of-genius");
   };
 
   const canContinue = localSelected.length === maxSelectable;
@@ -66,19 +65,14 @@ const Step1SelectTop10Talents = () => {
       {/* Page Title */}
       <div className="text-center space-y-3">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Choose Your Top {maxSelectable} Talents
+          Choose Your Top 10 Talents
         </h2>
         <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From the talents you just said <strong>YES</strong> to, choose the <strong>{maxSelectable}</strong> that feel most central to who you are.
+          Browse 81 talents and choose the <strong>10</strong> that feel most central to who you are.
         </p>
         <p className="text-sm text-muted-foreground">
           These are talents you rely on often and that others consistently notice in you.
         </p>
-        {yesTalentIds.length < 10 && (
-          <div className="bg-muted/50 border border-border rounded-lg p-3 mt-4 text-sm text-muted-foreground max-w-xl mx-auto">
-            You selected fewer than 10 talents in the previous step, so we'll use all of them here.
-          </div>
-        )}
       </div>
 
       {/* Progress Indicator */}
@@ -136,7 +130,7 @@ const Step1SelectTop10Talents = () => {
           onClick={handleBack}
           className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
         >
-          Back to Step 1
+          Back to Overview
         </button>
         <button
           onClick={handleContinue}
@@ -147,7 +141,7 @@ const Step1SelectTop10Talents = () => {
               ? "opacity-100 cursor-pointer"
               : "opacity-50 cursor-not-allowed"
           )}
-          style={{ 
+          style={{
             backgroundColor: 'hsl(210, 70%, 15%)',
             color: 'white'
           }}
@@ -184,7 +178,7 @@ const Step1SelectTop10Talents = () => {
               ? "opacity-100"
               : "opacity-50 cursor-not-allowed"
           )}
-          style={{ 
+          style={{
             backgroundColor: 'hsl(210, 70%, 15%)',
             color: 'white'
           }}
