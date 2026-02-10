@@ -49,6 +49,8 @@ export interface ExcaliburData {
 export function useExcaliburData() {
     const [loading, setLoading] = useState(true);
     const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
+    const [hasAppleseed, setHasAppleseed] = useState(false);
+    const [snapshotId, setSnapshotId] = useState<string | null>(null);
     const [profileId, setProfileId] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -83,9 +85,11 @@ export function useExcaliburData() {
                 console.log("[useExcaliburData] Fetching snapshot:", profileData.last_zog_snapshot_id);
 
                 // Load excalibur_data from zog_snapshots
+                setSnapshotId(profileData.last_zog_snapshot_id);
+
                 const { data: snapshotData, error: snapshotError } = await supabase
                     .from("zog_snapshots")
-                    .select("excalibur_data")
+                    .select("appleseed_data, excalibur_data")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
@@ -93,7 +97,9 @@ export function useExcaliburData() {
                     console.error("[useExcaliburData] Snapshot fetch error:", snapshotError);
                 }
 
-                console.log("[useExcaliburData] Snapshot data:", snapshotData);
+                if (snapshotData?.appleseed_data) {
+                    setHasAppleseed(true);
+                }
 
                 if (snapshotData?.excalibur_data) {
                     setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
@@ -110,5 +116,5 @@ export function useExcaliburData() {
         loadData();
     }, []);
 
-    return { loading, excaliburData, profileId, error };
+    return { loading, excaliburData, hasAppleseed, snapshotId, profileId, error };
 }
