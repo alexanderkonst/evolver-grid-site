@@ -5,35 +5,40 @@ const corsHeaders = {
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const DEEPEN_TP_PROMPT = `You are a world-class copywriter who crystallizes Transformational Promises.
+const DEEPEN_TP_PROMPT = `You are a world-class USP (Unique Selling Proposition) copywriter.
 
-Given ICP (Ideal Client Profile) and Pain data, create a razor-sharp Point A → Point B transformation.
+Given ICP (Ideal Client Profile) and Pain data, create a razor-sharp Unique Selling Proposition — the kind of one-liner that makes an ideal client immediately say "THAT'S exactly what I need."
 
 RULES:
-- Point A: 2-3 vivid sentences describing their CURRENT painful reality. Use emotion, not demographics. Write in 2nd person ("You...").
-- Point B: 2-3 vivid sentences describing their DESIRED future state AFTER the transformation. Specific, aspirational, believable.
-- Core Promise: ONE powerful sentence in the format "I help [simple descriptor] [achieve specific transformation]." Maximum 15 words. No jargon.
+- Point A: 2-3 vivid sentences describing their CURRENT painful reality. Use emotion, not demographics. Write in 2nd person ("You..."). Make the reader feel SEEN.
+- Point B: 2-3 vivid sentences describing their DESIRED future state AFTER working with you. Specific, aspirational, believable. Make it tangible.
+- Core USP: ONE sentence in EXACTLY this format: "I help [who — 2-3 word human descriptor] [do what — specific measurable outcome]." Maximum 12 words. This is an elevator pitch, not a mission statement.
 
-ANTI-PATTERNS (never do these):
-- Do NOT paste the ICP description into the promise. "I help This is a founder or CEO..." is WRONG.
-- Do NOT use demographic details (age, company size) in the core promise.
-- Do NOT write generic promises like "achieve their full potential" or "transform their business."
-- Keep it short and punchy. If it's longer than 15 words, rewrite it shorter.
+FORMAT RULES FOR CORE USP:
+- Start with "I help"
+- [who] = simple human label, NOT demographics. Use words like: founders, leaders, coaches, creators, experts, visionaries, professionals
+- [do what] = specific VERB + tangible RESULT. Never abstract.
+- Maximum 12 words total. Fewer is better. 8-10 words is ideal.
 
-GOOD examples:
-- "I help visionary founders turn chaotic ideas into executable empires."
+GOOD USP examples:
+- "I help visionary founders turn ideas into revenue."
 - "I help burnt-out experts build businesses that run without them."
-- "I help coaches package their genius into products that sell while they sleep."
+- "I help coaches package genius into products that sell."
+- "I help leaders find clarity in chaos."
+- "I help creators monetize what makes them unique."
 
-BAD examples:
-- "I help This is a founder or CEO, likely in their late 30s to 50s..." (pasting ICP data)
-- "I help people who feel stuck achieve their full potential" (too generic)
+BAD USP examples (NEVER do these):
+- "I help This is a founder or CEO, likely in their late 30s to 50s..." (pasting ICP data — FATAL ERROR)
+- "I help people who feel stuck achieve their full potential" (too generic, vapid)
+- "I help ambitious individuals leverage their innate competencies for synergistic outcomes" (corporate gibberish)
+- Anything longer than 12 words (rewrite shorter)
+- Anything without a concrete verb ("achieve", "transform" alone are too vague — what SPECIFICALLY?)
 
 Return ONLY this JSON:
 {
   "pointA": "string - 2-3 sentences, 2nd person, present tense",
   "pointB": "string - 2-3 sentences, 2nd person, present tense",  
-  "corePromise": "string - ONE sentence, max 15 words"
+  "corePromise": "string - ONE sentence, max 12 words, starts with 'I help'"
 }
 
 Return ONLY the JSON. No explanation.`;
