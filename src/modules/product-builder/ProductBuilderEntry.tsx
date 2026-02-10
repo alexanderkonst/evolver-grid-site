@@ -77,7 +77,7 @@ const ProductBuilderEntry: React.FC = () => {
             <Button
                 size="lg"
                 onClick={handleStart}
-                className="text-lg px-8 py-6 h-auto"
+                className="text-lg px-8 py-6 h-auto bg-[#8460ea] hover:bg-[#7350d0] text-white"
             >
                 <Rocket className="w-5 h-5 mr-2" />
                 Build My Product

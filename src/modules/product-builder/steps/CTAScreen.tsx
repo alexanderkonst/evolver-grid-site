@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Target, ArrowRight, Phone, Laptop } from "lucide-react";
 import { useProductBuilder, CTAConfig } from "../ProductBuilderContext";
 import { PRODUCT_BUILDER_STEPS } from "../productBuilderRoutes";
@@ -88,35 +87,33 @@ const CTAScreen: React.FC = () => {
             {/* CTA Options */}
             <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
                 {ctaOptions.map((option) => (
-                    <Card
+                    <div
                         key={option.type}
                         className={cn(
-                            "cursor-pointer transition-all",
+                            "cursor-pointer transition-all rounded-xl border bg-white p-6 text-center",
                             selectedType === option.type
-                                ? "border-[#8460ea] ring-2 ring-[#8460ea]/20"
-                                : "hover:border-[#8460ea]/50"
+                                ? "border-[#8460ea] ring-2 ring-[#8460ea]/20 shadow-sm"
+                                : "border-[#a4a3d0]/20 hover:border-[#8460ea]/50"
                         )}
                         onClick={() => handleSelect(option.type)}
                     >
-                        <CardContent className="p-6 text-center">
-                            <div className={cn(
-                                "inline-flex items-center justify-center w-12 h-12 rounded-full mb-4",
-                                selectedType === option.type ? "bg-[#8460ea] text-white" : "bg-[#a4a3d0]/10 text-[#2c3150]"
-                            )}>
-                                <option.icon className="w-6 h-6" />
-                            </div>
-                            <h3 className="font-semibold text-[#2c3150] mb-2">{option.title}</h3>
-                            <p className="text-sm text-[#2c3150]/70 mb-4">{option.description}</p>
-                            <div className={cn(
-                                "inline-block px-4 py-2 rounded-lg text-sm font-medium",
-                                selectedType === option.type
-                                    ? "bg-[#8460ea] text-white"
-                                    : "bg-[#a4a3d0]/10 text-[#2c3150]"
-                            )}>
-                                {option.buttonText}
-                            </div>
-                        </CardContent>
-                    </Card>
+                        <div className={cn(
+                            "inline-flex items-center justify-center w-12 h-12 rounded-full mb-4",
+                            selectedType === option.type ? "bg-[#8460ea] text-white" : "bg-[#8460ea]/10 text-[#8460ea]"
+                        )}>
+                            <option.icon className="w-6 h-6" />
+                        </div>
+                        <h3 className="font-semibold text-[#2c3150] mb-2">{option.title}</h3>
+                        <p className="text-sm text-[#2c3150]/60 mb-4">{option.description}</p>
+                        <div className={cn(
+                            "inline-block px-4 py-2 rounded-lg text-sm font-medium",
+                            selectedType === option.type
+                                ? "bg-[#8460ea] text-white"
+                                : "bg-[#8460ea]/10 text-[#8460ea]"
+                        )}>
+                            {option.buttonText}
+                        </div>
+                    </div>
                 ))}
             </div>
 
@@ -125,14 +122,14 @@ const CTAScreen: React.FC = () => {
                 <Button
                     variant="outline"
                     onClick={handleSkip}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto border-[#a4a3d0]/40 text-[#2c3150] hover:bg-[#8460ea]/5"
                 >
                     Skip — use "Book a session"
                 </Button>
                 <Button
                     size="lg"
                     onClick={handleContinue}
-                    className="px-8 w-full sm:w-auto"
+                    className="px-8 w-full sm:w-auto bg-[#8460ea] hover:bg-[#7350d0] text-white"
                 >
                     Publish
                     <ArrowRight className="w-4 h-4 ml-2" />
