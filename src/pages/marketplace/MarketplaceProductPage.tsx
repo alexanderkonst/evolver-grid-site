@@ -211,13 +211,6 @@ const MarketplaceProductPage: React.FC = () => {
                     )}
                 </div>
             </section>
-
-            {/* Minimal Footer */}
-            <footer className="py-8 px-6 text-center">
-                <p className="text-[#2c3150]/30 text-sm">
-                    Built with Evolver
-                </p>
-            </footer>
         </div>
     );
 };

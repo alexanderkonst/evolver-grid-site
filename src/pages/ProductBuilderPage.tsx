@@ -1,10 +1,8 @@
-import { useEffect } from "react";
+
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { ProductBuilderProvider } from "@/modules/product-builder/ProductBuilderContext";
-import { PRODUCT_BUILDER_STEPS, getStepFromPath, TOTAL_STEPS } from "@/modules/product-builder/productBuilderRoutes";
-import ProgressIndicator from "@/components/ProgressIndicator";
-import OnboardingProgress from "@/components/OnboardingProgress";
+import { PRODUCT_BUILDER_STEPS } from "@/modules/product-builder/productBuilderRoutes";
 import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -56,22 +54,15 @@ const ProductBuilderPage = () => {
                             </div>
                         )}
 
-                        {/* Progress Section */}
+                        {/* Progress Section — Circle indicators only */}
                         {showProgress && (
                             <div className="text-center mb-8">
-                                <ProgressIndicator current={currentStep} total={TOTAL_STEPS} className="text-primary-wabi/60" />
-                                <OnboardingProgress
-                                    current={currentStep}
-                                    total={TOTAL_STEPS}
-                                    className="mt-4 mb-0 max-w-lg"
-                                />
-                                {/* Step Indicator */}
-                                <div className="mt-4 flex items-center justify-center gap-2 text-xs">
+                                <div className="flex items-center justify-center gap-2 text-xs">
                                     {PRODUCT_BUILDER_STEPS.filter(s => s.number > 0 && s.number < 7).map((step, idx) => (
                                         <div key={step.number} className="flex items-center gap-2">
                                             <div
                                                 className={cn(
-                                                    "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all text-xs font-semibold",
+                                                    "flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all text-xs font-semibold",
                                                     currentStep >= step.number
                                                         ? "border-[#8460ea] bg-[#8460ea] text-white"
                                                         : "border-[#a4a3d0]/40 bg-white text-[#2c3150]/50"

@@ -1,13 +1,8 @@
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import { ProductBuilderProvider } from "./ProductBuilderContext";
 import { cn } from "@/lib/utils";
-import { PRODUCT_BUILDER_STEPS, getStepFromPath, TOTAL_STEPS } from "./productBuilderRoutes";
-import ProgressIndicator from "@/components/ProgressIndicator";
-import OnboardingProgress from "@/components/OnboardingProgress";
-import BackButton from "@/components/BackButton";
+import { PRODUCT_BUILDER_STEPS, getStepFromPath } from "./productBuilderRoutes";
 import { ChevronLeft } from "lucide-react";
 
 interface ProductBuilderLayoutProps {
