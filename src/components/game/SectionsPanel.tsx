@@ -145,7 +145,6 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
-            { id: "overview", label: "Overview", path: "/game/build" },
             { id: "product-builder", label: "Product Builder", path: "/game/build/product-builder" },
         ],
     },

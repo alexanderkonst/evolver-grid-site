@@ -131,6 +131,7 @@ const BuildSpace = lazy(() => import("./pages/spaces/CoopSpace")); // was Busine
 const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace")); // BUY & SELL
 const QualityOfLifeMapResults = lazy(() => import("./pages/QualityOfLifeMapResults"));
 const AdminGeniusOffers = lazy(() => import("./pages/AdminGeniusOffers"));
+const HolonicModulesPage = lazy(() => import("./pages/HolonicModulesPage"));
 
 const queryClient = new QueryClient();
 
@@ -249,8 +250,8 @@ const App = () => (
                   {/* Legacy redirects */}
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
-                  {/* BUILD Space (was Business Incubator/Co-op) */}
-                  <Route path="/game/build" element={<BuildSpace />} />
+                  {/* BUILD Space — redirects to Product Builder (no overview needed) */}
+                  <Route path="/game/build" element={<Navigate to="/game/build/product-builder" replace />} />
                   {/* Product Builder in GameShell */}
                   <Route path="/game/build/product-builder" element={<ProductBuilderPage />}>
                     <Route index element={<ProductBuilderEntry />} />
@@ -295,6 +296,7 @@ const App = () => (
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
                   <Route path="/m/:slug" element={<ModuleDetail />} />
+                  <Route path="/modules" element={<HolonicModulesPage />} />
                   <Route path="/modules/:slug" element={<ModuleLandingPage />} />
                   {/* Mission Discovery */}
                   <Route path="/mission-discovery" element={<MissionDiscoveryLanding />} />

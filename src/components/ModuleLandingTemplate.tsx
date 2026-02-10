@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ModuleLandingData } from "@/types/module";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { CheckCircle2, ArrowRight } from "lucide-react";
@@ -315,8 +314,6 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
                     </Button>
                 </div>
             </section>
-
-            <Footer />
         </div>
     );
 };

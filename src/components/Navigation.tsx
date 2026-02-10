@@ -102,7 +102,7 @@ const Navigation = () => {
 
   const navLinks = [
     { to: "/game/next-move", label: "game of life", isScroll: false, isPrimary: true },
-    { to: "/#modules", label: "tools", isScroll: true },
+    { to: "/modules", label: "tools", isScroll: false },
     { to: "/library", label: "library", isScroll: false },
     { to: "/contact", label: "contact", isScroll: false },
     { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },
