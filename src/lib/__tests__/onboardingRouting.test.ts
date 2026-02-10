@@ -17,6 +17,6 @@ describe("onboardingRouting", () => {
 
   it("returns post-ZoG redirect only for onboarding", () => {
     expect(getPostZogRedirect("/start")).toBe("/start");
-    expect(getPostZogRedirect("/game/profile")).toBe(null);
+    expect(getPostZogRedirect("/game/me")).toBe(null);
   });
 });

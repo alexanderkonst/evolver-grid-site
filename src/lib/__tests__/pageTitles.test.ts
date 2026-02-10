@@ -14,8 +14,8 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/library/breathwork")).toBe("Library");
   });
 
-  it("returns Profile for profile routes", () => {
-    expect(getPageTitle("/game/profile")).toBe("Profile");
+  it("returns ME for profile routes", () => {
+    expect(getPageTitle("/game/me")).toBe("ME");
   });
 
   it("falls back to Explore for unknown routes", () => {
