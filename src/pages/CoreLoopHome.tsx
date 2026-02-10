@@ -327,7 +327,7 @@ const CoreLoopHome = () => {
                         {/* Explore All Spaces Link */}
                         <div className="text-center pt-2">
                             <Link
-                                to="/game/grow"
+                                to="/game/me"
                                 className="text-sm text-[rgba(44,49,80,0.6)] hover:text-[#2c3150] transition-colors"
                             >
                                 ▼ Explore All Spaces

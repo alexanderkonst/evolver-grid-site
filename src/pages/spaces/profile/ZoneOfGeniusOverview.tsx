@@ -216,7 +216,7 @@ const ZoneOfGeniusOverview = () => {
                     <p className="text-sm text-[#a4a3d0] mb-3">Ready to turn your genius into an offer?</p>
                     <Button
                         variant="wabi-primary"
-                        onClick={() => navigate("/game/grow/genius-business")}
+                        onClick={() => navigate("/game/me/genius-business")}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
                         Create My Genius Business

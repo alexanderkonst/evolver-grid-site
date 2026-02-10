@@ -96,7 +96,7 @@ const ProfileOverviewContent = () => {
                     <span className="text-sm font-medium text-[#2c3150]">Zone of Genius</span>
                 </Link>
                 <Link
-                    to="/game/grow/genius-business"
+                    to="/game/me/genius-business"
                     className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Briefcase className="w-5 h-5 text-[#8460ea]" />
@@ -110,7 +110,7 @@ const ProfileOverviewContent = () => {
                     <span className="text-sm font-medium text-[#2c3150]">Quality of Life</span>
                 </Link>
                 <Link
-                    to="/game/grow/mission"
+                    to="/game/me/mission"
                     className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
                 >
                     <Target className="w-5 h-5 text-[#8460ea]" />
@@ -121,7 +121,7 @@ const ProfileOverviewContent = () => {
             {/* Settings Link */}
             <div className="text-center">
                 <Link
-                    to="/game/grow/settings"
+                    to="/game/me/settings"
                     className="inline-flex items-center gap-2 text-sm text-[#a4a3d0] hover:text-[#8460ea] transition-colors"
                 >
                     <Settings className="w-4 h-4" />

@@ -15,7 +15,7 @@ export const modules: Module[] = [
     space: "BUILD",
     versionNumber: "0.7",
     versionStage: "Alpha",
-    startRoute: "/game/grow/genius-business",
+    startRoute: "/game/me/genius-business",
     description: "<p>Destiny: Your Unique Genius Business is a transformative program designed to help you uncover your unique genius and crystallize it into a compelling core offer. Through a series of powerful exercises and frameworks, you'll discover what makes you irreplaceable and how to share that gift with the world.</p>",
     who_for: [
       "Coaches and consultants seeking clarity on their offer",

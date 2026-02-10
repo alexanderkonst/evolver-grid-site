@@ -77,7 +77,7 @@ export function getNextRecommendation(
                 space: 'grow',
                 title: 'Read Your Genius Profile',
                 description: 'Explore your full genius breakdown and understand how to leverage it',
-                path: '/game/grow/zone-of-genius',
+                path: '/game/me/zone-of-genius',
                 ctaLabel: 'Read Profile',
                 icon: 'sparkles',
                 estimatedTime: '5 min',
