@@ -12,6 +12,10 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Book an Excalibur Call",
     hero_CTA_link: "https://calendly.com/your-link", // Replace with actual Calendly link
+    space: "BUILD",
+    versionNumber: "0.7",
+    versionStage: "Alpha",
+    startRoute: "/game/grow/genius-business",
     description: "<p>Destiny: Your Unique Genius Business is a transformative program designed to help you uncover your unique genius and crystallize it into a compelling core offer. Through a series of powerful exercises and frameworks, you'll discover what makes you irreplaceable and how to share that gift with the world.</p>",
     who_for: [
       "Coaches and consultants seeking clarity on their offer",
@@ -43,6 +47,9 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Talk to Aleksandr about a pilot",
     hero_CTA_link: "https://www.calendly.com/konstantinov",
+    space: "BUILD",
+    versionNumber: "0.7",
+    versionStage: "Alpha",
     description: "<p>Add a 'genius layer' to your founder matching. We use Zone-of-Genius assessments to surface each founder's deep operating pattern, then generate smarter matches for venture studios, accelerators, and founder programs.</p>",
     who_for: [
       "Venture studios curating founder teams",
@@ -76,6 +83,10 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Claim Your Genius Offer",
     hero_CTA_link: "/genius-offer",
+    space: "BUILD",
+    versionNumber: "1.0",
+    versionStage: "Commercial",
+    startRoute: "/genius-offer",
     description: "<p>In 48 hours, get a one-page Genius Offer Snapshot that turns your complexity into one clear, concrete offer. Perfect for multi-talented founders, coaches, and creators who struggle to put their magic into one simple offer people actually understand and buy.</p>",
     who_for: [
       "Founders, coaches, and creators who are good at many things",
@@ -106,6 +117,9 @@ export const modules: Module[] = [
     version: "v4.02",
     hero_CTA_label: "Get the Upgrade",
     hero_CTA_link: "/ai-upgrade",
+    versionNumber: "4.02",
+    versionStage: "Commercial",
+    startRoute: "/ai-upgrade",
     description: `<p>Your mind moves fast. Your AI doesn't.</p>
     
     <p>Instead of keeping pace, default AI over-explains, loses nuance, breaks coherence, gives junior-level insights, interrupts your flow, and dilutes your clarity.</p>
@@ -149,6 +163,10 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Записаться",
     hero_CTA_link: "/mens-circle",
+    space: "MEET",
+    versionNumber: "1.0",
+    versionStage: "Commercial",
+    startRoute: "/mens-circle",
     description: "<p>Создаём один из самых душевных, качественных, трансформирующих и глобально ориентированных русскоязычных мужских кругов на планете с каннабисом как растением силы.</p>",
     who_for: [
       "Russian-speaking men seeking authentic connection",
@@ -182,6 +200,10 @@ export const modules: Module[] = [
     version: "v2.0",
     hero_CTA_label: "Start Assessment",
     hero_CTA_link: "/quality-of-life-map/assessment",
+    space: "ME",
+    versionNumber: "0.9",
+    versionStage: "MVP",
+    startRoute: "/quality-of-life-map/assessment",
     description: "<p>The Quality of Life Map is a practical assessment and upgrade framework covering the essential dimensions of your life. This tool helps you quickly identify areas needing attention and provides actionable pathways for improvement across all dimensions of wellbeing.</p>",
     who_for: [
       "Anyone feeling stuck or overwhelmed",
@@ -217,6 +239,10 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Open Tool",
     hero_CTA_link: "/zone-of-genius",
+    space: "ME",
+    versionNumber: "0.9",
+    versionStage: "MVP",
+    startRoute: "/zone-of-genius/entry",
     description: "<p>Zone of Genius Discovery is a free AI-powered assessment that reveals your core strengths and provides a clear path forward in your career. Get your personalized ZoG Snapshot PDF with strategic insights in just 5 minutes.</p>",
     who_for: [
       "Professionals in career transition",
@@ -252,6 +278,10 @@ export const modules: Module[] = [
     version: "v1.0",
     hero_CTA_label: "Take the Quick Test",
     hero_CTA_link: "/intelligences",
+    space: "ME",
+    versionNumber: "0.5",
+    versionStage: "PoC",
+    startRoute: "/intelligences",
     description: "<p>A fast way to see which forms of intelligence feel most natural to you right now — so we can better understand how your genius expresses itself.</p>",
     who_for: [
       "Anyone curious about their natural strengths",
