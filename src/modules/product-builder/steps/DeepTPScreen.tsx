@@ -40,15 +40,20 @@ const DeepTPScreen: React.FC = () => {
 
             if (fnError) throw fnError;
 
-            // Build a smart fallback promiseStatement if AI doesn't provide one
+            // Build a clean promise statement
             const buildPromiseStatement = () => {
-                if (data.promiseStatement && data.promiseStatement !== "The transformation you create") {
-                    return data.promiseStatement;
+                // AI returns 'corePromise' — use it if it exists and is meaningful
+                const aiPromise = data.corePromise || data.promiseStatement;
+                if (aiPromise && aiPromise !== "The transformation you create" && aiPromise.length > 10) {
+                    return aiPromise;
                 }
-                // Generate from ICP and Pain data
-                const who = state.deepICP?.who?.split('.')[0] || "people who feel stuck";
-                const desire = state.deepICP?.desires?.split('.')[0] || "achieve their full potential";
-                return `I help ${who} ${desire}.`;
+                // Fallback: craft from pointA/pointB if available
+                if (data.pointA && data.pointB) {
+                    return `Transform from ${data.pointA.split('.')[0].toLowerCase()} to ${data.pointB.split('.')[0].toLowerCase()}.`;
+                }
+                // Last resort: use ICP desires
+                const desires = state.deepICP?.desires?.split('.')[0] || "achieve their full potential";
+                return `I help you ${desires.charAt(0).toLowerCase() + desires.slice(1)}.`;
             };
 
             setDeepTP({
@@ -60,14 +65,13 @@ const DeepTPScreen: React.FC = () => {
         } catch (err: unknown) {
             console.error("Error generating TP:", err);
 
-            // Fallback mock data - but try to use real ICP data if available
-            const who = state.deepICP?.who?.split('.')[0] || "accomplished professionals who feel stuck";
-            const desire = state.deepICP?.desires?.split('.')[0] || "transform their unique genius into a thriving business";
+            // Fallback — construct from available ICP data
+            const desires = state.deepICP?.desires?.split('.')[0] || "transform their unique genius into a thriving business";
 
             setDeepTP({
                 pointA: state.deepPain?.consequences || "Successful on paper but unfulfilled inside. Trading time for money in a role that doesn't fit.",
                 pointB: state.deepICP?.desires || "Waking up excited to work. Serving clients who value their unique perspective.",
-                promiseStatement: `I help ${who} ${desire}.`,
+                promiseStatement: `I help you ${desires.charAt(0).toLowerCase() + desires.slice(1)}.`,
                 rawData: {},
             });
         } finally {
