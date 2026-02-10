@@ -244,7 +244,7 @@ describe("Mission Discovery", () => {
         });
 
         it("supports return path encoding", () => {
-            const returnPath = "/game/profile";
+            const returnPath = "/game/me";
             const encoded = encodeURIComponent(returnPath);
             expect(decodeURIComponent(encoded)).toBe(returnPath);
         });
