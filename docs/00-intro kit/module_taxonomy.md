@@ -1,8 +1,12 @@
-# Module Taxonomy — Holonic Map by Spaces
+# Module Taxonomy — Holonic Map by Spaces (DEPRECATED)
 
-> **Version:** 1.2
+> ⚠️ **DEPRECATED** — This is v1.2 (2026-01-28). The canonical version is:
+> **`docs/02-strategy/module_taxonomy.md` v2.2**
+> Do NOT update this file. All edits go to the canonical version.
+
+> **Version:** 1.2 (archived)
 > **Created:** 2026-01-28
-> **Purpose:** Master reference for all modules organized by Spaces
+> **Purpose:** Historical reference only
 
 ---
 

@@ -1,8 +1,8 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 2.1
+> **Version:** 2.2
 > **Created:** 2026-01-28
-> **Updated:** 2026-02-06
+> **Updated:** 2026-02-10
 > **Purpose:** Master reference for all modules organized by Spaces + Versioning
 
 ---
@@ -42,34 +42,41 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | 5 | **BUILD** | Create products | Genius Business, Product Builder, Business Incubator |
 | 6 | **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
+> **Note:** ME Space routes use `/game/grow/*` paths (legacy from "GROW" rename). SpacesRail displays "ME" label.
+
 ---
 
 ## 📊 MODULE VERSION MATRIX
 
 ### Overview by Space
 
-| Space | Module | Version | Status |
-|-------|--------|---------|--------|
-| **ME** | Zone of Genius | 0.9 | MVP |
-| **ME** | Quality of Life | 0.9 | MVP |
-| **ME** | Mission Discovery | 0.7 | Alpha |
-| **ME** | Resource Mapping | 0.7 | Alpha |
-| **ME** | Personality Tests | 0.5 | PoC |
-| **ME** | Art | 0.5 | PoC |
-| **LEARN** | Daily Loop | 0.7 | Alpha |
-| **LEARN** | Library | 0.7 | Alpha |
-| **LEARN** | Growth Paths | 0.5 | PoC |
-| **LEARN** | Skill Trees | 0.3 | Prototype |
-| **MEET** | Events | 0.9 | MVP |
-| **MEET** | Men's Circle | 1.0 | Commercial |
-| **COLLABORATE** | Matchmaking | 0.7 | Alpha |
-| **COLLABORATE** | Connections | 0.3 | Prototype |
-| **BUILD** | Genius Business | 0.7 | Alpha |
-| **BUILD** | Product Builder | 0.3 | Prototype |
-| **BUILD** | Business Incubator | 0.1 | Concept |
-| **BUY & SELL** | Marketplace | 0.3 | Prototype |
-| **Special** | Onboarding | 0.7 | Alpha |
-| **Special** | Tour | 0.5 | PoC |
+| Space | Module | Version | Status | Route |
+|-------|--------|---------|--------|-------|
+| **ME** | Zone of Genius | 0.9 | MVP | `/zone-of-genius` |
+| **ME** | Quality of Life | 0.9 | MVP | `/quality-of-life-map` |
+| **ME** | Mission Discovery | 0.7 | Alpha | `/mission-discovery` |
+| **ME** | Resource Mapping | 0.7 | Alpha | `/game/grow/assets` |
+| **ME** | Personality Tests | 0.5 | PoC | `/resources/personality-tests` |
+| **LEARN** | Daily Loop | 0.7 | Alpha | `/game/next-move` |
+| **LEARN** | Library | 0.7 | Alpha | `/library` |
+| **LEARN** | Growth Paths | 0.7 | Alpha | `/game/learn/paths` |
+| **LEARN** | Skill Trees | 0.3 | Prototype | `/game/skill-trees` |
+| **MEET** | Events | 0.9 | MVP | `/game/meet` |
+| **MEET** | Men's Circle | 1.0 | Commercial | `/mens-circle` |
+| **COLLABORATE** | Matchmaking | 0.7 | Alpha | `/game/collaborate/matches` |
+| **COLLABORATE** | Connections | 0.5 | PoC | `/game/collaborate/connections` |
+| **BUILD** | Genius Business | 0.7 | Alpha | `/game/grow/genius-business` ¹ |
+| **BUILD** | Product Builder | 0.7 | Alpha | `/game/build/product-builder` |
+| **BUILD** | Business Incubator | 0.3 | Prototype | `/game/build` |
+| **BUY & SELL** | Marketplace | 0.5 | PoC | `/game/marketplace` |
+| **Special** | Onboarding | 0.7 | Alpha | `/start` |
+| **Special** | Tour | 0.5 | PoC | (within onboarding) |
+| **Standalone** | Art | 0.5 | PoC | `/art` |
+| **Standalone** | Transcriber | 0.5 | PoC | `/transcriber` |
+| **Standalone** | Equilibrium | 0.1 | Concept | — |
+| **Standalone** | Clock | 0.1 | Concept | — |
+
+> ¹ Genius Business is routed under `/game/grow` (ME Space) but logically belongs to BUILD Space.
 
 ---
 
@@ -166,7 +173,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Hidden assets → Visible superpowers ready to share |
-| Start | `/game/resources` |
+| Start | `/game/grow/assets` |
 | End | Resources saved |
 | Dependencies | None |
 
@@ -177,30 +184,6 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Manual Resource Entry | 0.9 | MVP |
 | Resource Categories | 0.7 | Alpha |
 | Leverage Scoring | 0.3 | Prototype |
-
-#### Module: Art — v0.1
-
-| Field | Value |
-|-------|-------|
-| Version | **0.1** (Concept) |
-| Master Result | Abstract self → Visual expression of my essence |
-| Start | `/art` (gallery) |
-| End | Art displayed |
-| Dependencies | None |
-
-> **Current Implementation Note:**  
-> Navigation to Art module in ME space is only visible to `alexanderkonst@gmail.com`.  
-> The `/art/*` routes remain publicly accessible via direct URL.  
-> Future: Each user will have their own art upload section.
-
-**Submodules:**
-| Submodule | Version | Status |
-|-----------|---------|--------|
-| Gallery | 0.5 | PoC |
-| Ceremonial Spaces | 0.5 | PoC |
-| Illustrations | 0.5 | PoC |
-| Star Codes | 0.5 | PoC |
-| Webportals | 0.5 | PoC |
 
 ---
 
@@ -244,15 +227,17 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Practice Combos | 0.1 | Concept |
 | Practice Sequences | 0.1 | Concept |
 
-#### Module: Growth Paths (5 Vectors) — v0.5
+#### Module: Growth Paths (5 Vectors) — v0.7
 
 | Field | Value |
 |-------|-------|
-| Version | **0.5** (PoC) |
+| Version | **0.7** (Alpha) |
 | Master Result | Scattered efforts → Step-by-step mastery path |
-| Start | `/growth-paths` |
+| Start | `/game/learn/paths` |
 | End | Step complete → XP → unlock next |
 | Dependencies | Onboarding |
+
+> **v2.2 change:** Upgraded from v0.5 to v0.7 — has dedicated module folder, 5 path sections with upgrades, path detail pages.
 
 **Submodules (5 Growth Paths with 48 Upgrades):**
 
@@ -344,7 +329,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Alone → Matched with my people |
-| Start | `/matchmaking` |
+| Start | `/game/collaborate/matches` |
 | End | Matches displayed → intro sent |
 | Dependencies | ZoG, Resources |
 
@@ -357,15 +342,17 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Mission Match | 0.3 | Prototype |
 | Match Refresh | 0.7 | Alpha |
 
-#### Module: Connections — v0.3
+#### Module: Connections — v0.5
 
 | Field | Value |
 |-------|-------|
-| Version | **0.3** (Prototype) |
+| Version | **0.5** (PoC) |
 | Master Result | Invisible network → See who's aligned with me |
-| Start | `/connections` |
+| Start | `/game/collaborate/connections` |
 | End | Connection requested |
 | Dependencies | Profile complete |
+
+> **v2.2 change:** Upgraded from v0.3 to v0.5 — has people directory, mission selection, and connection management sub-routes.
 
 ---
 
@@ -377,7 +364,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.9** (MVP) |
 | Master Result | Solo journey → Part of live community |
-| Start | `/events` |
+| Start | `/game/meet` |
 | End | Event registered |
 | Dependencies | None |
 
@@ -408,7 +395,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-### 🛠️ BUILD SPACE (Marketplace)
+### 🛠️ BUILD SPACE (Creation)
 
 #### Module: Genius Business — v0.7
 
@@ -416,9 +403,11 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Hidden genius → Offer the world wants |
-| Start | `/zone-of-genius/entry?step=generating-excalibur` |
+| Start | `/game/grow/genius-business` |
 | End | Business saved |
 | Dependencies | ZoG complete |
+
+> **Route note:** Currently routed under `/game/grow` (ME Space) but logically belongs to BUILD.
 
 **Submodules:**
 | Submodule | Version | Status |
@@ -428,57 +417,62 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Distribution Channels | 0.5 | PoC |
 | Vision Statement | 0.7 | Alpha |
 
-#### Module: Product Builder — v0.3
+#### Module: Product Builder — v0.7
 
 | Field | Value |
 |-------|-------|
-| Version | **0.3** (Prototype) |
+| Version | **0.7** (Alpha) |
 | Master Result | Idea in my head → Working product |
-| Start | `/product-builder` |
+| Start | `/game/build/product-builder` |
 | End | Product deployed |
 | Dependencies | Genius Business recommended |
+
+> **v2.2 change:** Upgraded from v0.3 to v0.7 — has 7 working steps (ICP, Pain, Promise, Landing, Blueprint, CTA, Published), not just a prototype.
 
 **Submodules:**
 | Submodule | Version | Status |
 |-----------|---------|--------|
-| Blueprint Generator | 0.3 | Prototype |
-| Landing Page Builder | 0.1 | Concept |
-| Lead Magnet Builder | 0.1 | Concept |
-| SaaS Product Builder | 0.1 | Concept |
+| ICP Discovery | 0.7 | Alpha |
+| Pain Analysis | 0.7 | Alpha |
+| Promise Builder | 0.7 | Alpha |
+| Landing Page Builder | 0.7 | Alpha |
+| Blueprint Generator | 0.7 | Alpha |
+| CTA Configuration | 0.7 | Alpha |
+| Product Publishing | 0.5 | PoC |
 
----
-
-### 🚀 BUSINESS INCUBATOR SPACE
-
-#### Module: Business Incubator — v0.1
+#### Module: Business Incubator — v0.3
 
 | Field | Value |
 |-------|-------|
-| Version | **0.1** (Concept) |
+| Version | **0.3** (Prototype) |
 | Master Result | Building alone → Backed by a studio |
-| Start | `/coop` |
+| Start | `/game/build` |
 | End | Application complete → onboarded |
 | Dependencies | Genius Business |
+
+> **v2.2 change:** Upgraded from v0.1 to v0.3 — has a basic BuildSpace page.
 
 ---
 
 ### 🏪 BUY & SELL SPACE
 
-#### Module: Marketplace — v0.3
+#### Module: Marketplace — v0.5
 
 | Field | Value |
 |-------|-------|
-| Version | **0.3** (Prototype) |
+| Version | **0.5** (PoC) |
 | Master Result | No visibility → My offer discoverable |
 | Start | `/game/marketplace/browse` |
 | End | Purchase/listing complete |
 | Dependencies | Genius Offer |
 
+> **v2.2 change:** Upgraded from v0.3 to v0.5 — has browse, creator pages (`/p/:slug`), and product pages (`/mp/:slug`).
+
 **Submodules:**
 | Submodule | Version | Status |
 |-----------|---------|--------|
-| Browse Offerings | 0.3 | Prototype |
-| Public Profile Page | 0.3 | Prototype |
+| Browse Offerings | 0.5 | PoC |
+| Public Profile Page | 0.5 | PoC |
 | Genius Offer Listing | 0.5 | PoC |
 
 ---
@@ -523,32 +517,80 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
+## 🎨 STANDALONE MODULES
+
+> These modules exist outside the 6 Spaces. They are independent tools or creative projects not shown in the platform's main navigation.
+
+### Module: Art — v0.5
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | Abstract self → Visual expression of my essence |
+| Start | `/art` |
+| End | Art displayed |
+| Dependencies | None |
+
+> Previously listed under ME Space. Moved to Standalone in v2.2 per architectural decision.
+> Navigation to Art is only visible to `alexanderkonst@gmail.com`.
+> The `/art/*` routes remain publicly accessible via direct URL.
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Gallery | 0.5 | PoC |
+| Ceremonial Spaces | 0.5 | PoC |
+| Illustrations | 0.5 | PoC |
+| Star Codes | 0.5 | PoC |
+| Webportals | 0.5 | PoC |
+
+### Module: Transcriber — v0.5
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | Video content → Searchable text transcript |
+| Start | `/transcriber` |
+| End | Transcript generated |
+| Dependencies | None |
+
+### Module: Equilibrium — v0.1
+
+| Field | Value |
+|-------|-------|
+| Version | **0.1** (Concept) |
+| Master Result | TBD |
+| Start | — |
+| End | — |
+| Dependencies | None |
+
+### Module: Clock — v0.1
+
+| Field | Value |
+|-------|-------|
+| Version | **0.1** (Concept) |
+| Master Result | TBD |
+| Start | — |
+| End | — |
+| Dependencies | None |
+
+---
+
 ## 📈 VERSION STATISTICS
-
-### By Stage
-
-| Stage | Count | Percentage |
-|-------|-------|------------|
-| Concept (0.1) | 8 | 8% |
-| Prototype (0.3) | 12 | 12% |
-| PoC (0.5) | 18 | 18% |
-| Alpha (0.7) | 35 | 35% |
-| MVP (0.9) | 24 | 24% |
-| Commercial (1.0) | 3 | 3% |
-| **Total** | **100** | 100% |
 
 ### Module Count by Space
 
 | Space | Modules | Submodules | Total Items |
 |-------|---------|------------|-------------|
-| ME | 6 | 30 | 36 |
+| ME | 5 | 25 | 30 |
 | LEARN | 4 | 62 | 66 |
 | MEET | 2 | 7 | 9 |
 | COLLABORATE | 2 | 6 | 8 |
-| BUILD | 3 | 8 | 11 |
+| BUILD | 3 | 11 | 14 |
 | BUY & SELL | 1 | 3 | 4 |
 | Special | 2 | 8 | 10 |
-| **TOTAL** | **20** | **124** | **144** |
+| Standalone | 4 | 5 | 9 |
+| **TOTAL** | **23** | **127** | **150** |
 
 ---
 
@@ -571,7 +613,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 ### What's NOT in My Next Move
 
 | Space | Why Not |
-|-------|---------| 
+|-------|---------|
 | **MEET** | User discovers events naturally |
 | **BUY & SELL** | User browses anytime |
 | **BUILD** (ongoing) | One-time nudge only |
@@ -592,5 +634,30 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-*Module Taxonomy v2.1 — Versioned by Spaces*
-*Last updated: 2026-02-06*
+## 📝 CHANGELOG
+
+### v2.2 (2026-02-10)
+- **Art** moved from ME Space to new Standalone section (v0.5, confirmed by code)
+- **Growth Paths** upgraded v0.5 → v0.7 (dedicated module folder, 5 paths, detail pages)
+- **Product Builder** upgraded v0.3 → v0.7 (7 working steps, feature-complete flow)
+- **Connections** upgraded v0.3 → v0.5 (people directory, mission selection sub-routes)
+- **Marketplace** upgraded v0.3 → v0.5 (browse, creator pages, product pages)
+- **Business Incubator** upgraded v0.1 → v0.3 (basic BuildSpace page exists)
+- **Standalone section** added: Art (v0.5), Transcriber (v0.5), Equilibrium (v0.1), Clock (v0.1)
+- Added **route annotations** to version matrix for developer reference
+- Added **route discrepancy notes** (ME uses `/game/grow`, Genius Business under ME not BUILD)
+- ME Space module count: 6 → 5 (Art removed)
+- Total modules: 20 → 23 (4 standalone added)
+- Product Builder submodules rewritten to match actual 7-step implementation
+
+### v2.1 (2026-02-06)
+- Added versioning scheme and submodule detail tables
+- Added version statistics
+
+### v2.0 (2026-02-01)
+- Restructured by Spaces architecture
+
+---
+
+*Module Taxonomy v2.2 — Versioned by Spaces*
+*Last updated: 2026-02-10*
