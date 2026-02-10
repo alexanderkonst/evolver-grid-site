@@ -54,6 +54,24 @@
 | `text-2xl` | 24px | Page headings |
 | `text-3xl` | 30px | Hero/main titles |
 
+### Text Transforms
+
+| Class | Usage |
+|-------|-------|
+| `uppercase tracking-wide` | Page titles (H1), hero headings |
+| `uppercase tracking-wider text-xs` | Labels, meta captions (e.g., "MY ARCHETYPE") |
+| (none) | Body text, subtitles, descriptions |
+
+### Subtitle Contrast
+
+> **Anti-pattern:** Never use `text-[#a4a3d0]` or `text-slate-400` on pearl/light backgrounds — unreadable.
+
+| Context | Correct Color |
+|---------|---------------|
+| Subtitle on light/pearl bg | `text-[#2c3150]/70` (Charcoal Indigo @ 70%) |
+| Subtitle on dark bg | `text-white/80` |
+| Muted text on white bg | `text-slate-600` (not `text-slate-400`) |
+
 ### Font Weights
 
 | Class | Weight | Usage |

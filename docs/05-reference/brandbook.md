@@ -227,6 +227,27 @@ Options to explore:
 - Monospace for sacred quotes (precision)
 - Current sans-serif for utility
 
+### Capitalisation Rules
+
+| Element | Treatment | Example |
+|---------|-----------|---------|
+| **Page titles / H1** | `UPPERCASE` + `tracking-wide` | `YOUR GENIUS IS READY` |
+| **Section headings / H2** | Title Case or `UPPERCASE` | `My Top Talents` or `CRAFTING YOUR GENIUS BUSINESS` |
+| **Subtitles / descriptions** | Sentence case | `Let's transform your Zone of Genius into a business identity.` |
+| **Labels / meta** | `UPPERCASE` + `text-xs` + `tracking-wider` | `MY ARCHETYPE` |
+
+### Subtitle Contrast Rule
+
+> **Never** use grey text on a grey/pearl background. Subtitles must maintain readable contrast.
+
+| ✅ Correct | ❌ Wrong |
+|-----------|----------|
+| `text-[#2c3150]/70` (Charcoal Indigo @ 70%) on pearl | `text-[#a4a3d0]` (Lavender) on pearl — barely visible |
+| `text-[#2c3150]` (Full charcoal) on pearl | `text-slate-400` on `bg-slate-50` — washed out |
+| `text-white/80` on dark backgrounds | `text-slate-300` on `bg-slate-200` — invisible |
+
+**Rule:** Subtitle text must be **at least 4.5:1 contrast ratio** against its background. On light/pearl backgrounds, use `#2c3150` at 70–100% opacity.
+
 ### The Voice
 
 The platform speaks in:
@@ -333,9 +354,12 @@ After designing, ask:
 
 | Element | Font Treatment |
 |---------|----------------|
+| Page titles (H1) | `UPPERCASE tracking-wide` + bold (command presence) |
 | Archetype names, hero text | Consider serif (gravitas) |
+| Labels, meta | `UPPERCASE tracking-wider text-xs` |
 | Sacred quotes | Monospace (precision) |
 | Body, navigation, forms | Sans-serif (utility) |
+| Subtitles on light bg | `text-[#2c3150]/70` — **never** grey-on-grey |
 
 ---
 

@@ -51,8 +51,8 @@ const GeniusBusiness = () => {
                             <Sword className="w-6 h-6 text-violet-600" />
                         </div>
                     </div>
-                    <h2 className="text-xl font-bold text-[#2c3150] mb-2">Crafting Your Genius Business</h2>
-                    <p className="text-[#a4a3d0] animate-pulse">
+                    <h2 className="text-xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Crafting Your Genius Business</h2>
+                    <p className="text-[#2c3150]/70 animate-pulse">
                         Transforming your genius into a business identity...
                     </p>
                 </div>
@@ -68,8 +68,8 @@ const GeniusBusiness = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
                         <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Create Your Genius Business</h1>
-                    <p className="text-[#a4a3d0] mb-6">
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Create Your Genius Business</h1>
+                    <p className="text-[#2c3150]/70 mb-6">
                         Discover your Zone of Genius first to unlock your Genius Business.
                     </p>
                     <Button
@@ -122,8 +122,8 @@ const GeniusBusiness = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
                         <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Genius Is Ready</h1>
-                    <p className="text-[#a4a3d0] mb-6">
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Genius Is Ready</h1>
+                    <p className="text-[#2c3150]/70 mb-6">
                         Let's transform your Zone of Genius into a business identity.
                     </p>
                     <Button
