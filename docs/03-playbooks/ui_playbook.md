@@ -942,12 +942,32 @@ When working on ANY screen, verify:
 - [ ] Icons in hero positions use `HeroIcon`
 - [ ] Loading states use `PremiumLoader` or `premium-spinner`
 
-### 4. Interactivity
+### 4. ⚠️ CSS Variable Override Trap (Inside GameShell)
+
+> **Critical.** Any component inside `/game/*` routes inherits dark CSS variables from the GameShell theme. Components from shadcn/ui (`Card`, `Button`, `CardContent`) use these variables and will render as dark/invisible.
+
+- [ ] No bare `<Card>` usage — replace with `<div className="bg-white rounded-xl border border-[#a4a3d0]/20">`
+- [ ] No bare `<Button>` for primary CTAs — add `className="bg-[#8460ea] hover:bg-[#7350d0] text-white"`
+- [ ] No bare `<Button variant="outline">` — add `className="border-[#a4a3d0]/40 text-[#2c3150] hover:bg-[#8460ea]/5"`
+- [ ] No `text-muted-foreground` — use `text-[#2c3150]/50` instead
+- [ ] No `bg-card` — use explicit `bg-white`
+- [ ] No `text-card-foreground` — use explicit `text-[#2c3150]`
+- [ ] Disabled states use `disabled:opacity-40` (not inherited disabled styles)
+
+**Why this happens:** `index.css` defines dark-mode CSS variables (`:root` / `.dark`). The `GameShellV2` layout applies the `.dark` class or equivalent theming. All shadcn/ui primitives reference `--primary`, `--card`, `--input` etc. which resolve to dark navy colors. Content areas render on a light pearl background but inherit dark variables from the shell.
+
+**Where this applies:** Any component rendered inside:
+- `GameShellV2` (all game spaces)
+- `ProductBuilderLayout` (all builder steps)
+- `MarketplaceProductPage` (published pages)
+- Any page under `/game/*` routes
+
+### 5. Interactivity
 - [ ] Hover states defined (`hover:`)
 - [ ] Focus states for accessibility
 - [ ] Transitions smooth (`transition-all`)
 
-### 5. Layout
+### 6. Layout
 - [ ] Proper spacing (not cramped)
 - [ ] Max-width containers for readability
 - [ ] Responsive considerations
@@ -967,6 +987,15 @@ grep -r "Loader2" --include="*.tsx" src/
 
 # Find plain white cards (may need premium treatment)
 grep -r 'bg-white rounded' --include="*.tsx" src/
+
+# ⚠️ Find dangerous bare Card usage in game routes (CSS variable trap)
+grep -r '<Card' --include="*.tsx" src/modules/ src/pages/spaces/
+
+# ⚠️ Find buttons missing explicit colors in product builder
+grep -r '<Button' --include="*.tsx" src/modules/product-builder/
+
+# ⚠️ Find CSS variable references that will break in dark context
+grep -rn 'bg-card\|text-card-foreground\|bg-primary\b\|text-primary-foreground\|border-input' --include="*.tsx" src/modules/ src/pages/spaces/
 ```
 
 ---
@@ -1067,6 +1096,11 @@ grep -r 'bg-white rounded' --include="*.tsx" src/
 | `<Button>` (primary CTA) | `<PremiumButton>` |
 | `<Loader2 />` | `<PremiumLoader />` or `<span className="premium-spinner" />` |
 | `font-bold` (heading) | `font-semibold font-display` |
+| **⚠️ `<Card>`** (in GameShell) | **`<div className="bg-white rounded-xl border border-[#a4a3d0]/20">`** |
+| **⚠️ `<Button>`** (in GameShell) | **Add `className="bg-[#8460ea] hover:bg-[#7350d0] text-white"`** |
+| **⚠️ `<Button variant="outline">`** (in GameShell) | **Add `className="border-[#a4a3d0]/40 text-[#2c3150]"`** |
+| **⚠️ `bg-card`** | **`bg-white`** |
+| **⚠️ `text-muted-foreground`** | **`text-[#2c3150]/50`** |
 
 ---
 
@@ -1074,8 +1108,9 @@ grep -r 'bg-white rounded' --include="*.tsx" src/
 
 - [product_playbook.md](./product_playbook.md) — Source methodology
 - [design_framework.md](./design_framework.md) — Taxonomy and principles
-- [brandbook.md](./brandbook.md) — Visual identity
+- [brandbook.md](../05-reference/brandbook.md) — Visual identity (includes CSS Variable Override Trap)
 
 ---
 
 *UX before UI. Test as you go. Invisible interface is the goal.*
+*Updated: February 11, 2026 — Added CSS Variable Override Trap to checklist and quick reference*

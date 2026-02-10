@@ -383,5 +383,72 @@ Before shipping a screen:
 
 ---
 
+## ⚠️ CSS Variable Override Trap (Critical)
+
+> **This is the #1 recurring visual bug in the codebase.** Read this before writing any UI.
+
+### The Problem
+
+The `index.css` defines theming CSS variables (`:root` and `.dark` contexts). Components from `shadcn/ui` like `Card`, `Button`, and `CardContent` use these variables:
+
+| Component | CSS Class | Variable | Resolves To (in GameShell) |
+|-----------|-----------|----------|---------------------------|
+| `Card` | `bg-card` | `--card` | **Dark navy** (#1a1d2e) |
+| `Button` (default) | `bg-primary` | `--primary` | **Dark navy** |
+| `Button` (outline) | `border-input` | `--input` | **Dark border** |
+| `CardContent` | `text-card-foreground` | `--card-foreground` | White |
+
+**Result:** Cards are dark, buttons are invisible, text is unreadable.
+
+### The Rule
+
+> **NEVER use `Card`, `Button` without explicit color overrides inside the GameShell / Product Builder / Marketplace.**
+
+### The Fix Pattern
+
+```tsx
+// ❌ WRONG — inherits dark CSS variables
+<Card className="...">
+<Button size="lg">Click</Button>
+
+// ✅ CORRECT — explicit brandbook colors
+<div className="bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm p-6">
+<Button size="lg" className="bg-[#8460ea] hover:bg-[#7350d0] text-white">Click</Button>
+```
+
+### Component-Specific Overrides
+
+| Component | Override |
+|-----------|----------|
+| **Card/Container** | Replace `<Card>` with `<div className="bg-white rounded-xl border border-[#a4a3d0]/20">` |
+| **Primary Button** | Add `className="bg-[#8460ea] hover:bg-[#7350d0] text-white"` |
+| **Outline Button** | Add `className="border-[#a4a3d0]/40 text-[#2c3150] hover:bg-[#8460ea]/5"` |
+| **Disabled Button** | Add `disabled:opacity-40` |
+| **Destructive text** | Replace `text-destructive` with `text-red-600` |
+| **Muted text** | Replace `text-muted` with `text-[#2c3150]/50` |
+
+### Where This Applies
+
+Any component rendered inside:
+- `GameShellV2` (all game spaces)
+- `ProductBuilderLayout` (all builder steps)
+- `MarketplaceProductPage` (published pages)
+- Any page under `/game/*`
+
+### Verification
+
+After any UI change in `/game/*` routes, check:
+```bash
+# Find dangerous bare Card usage
+grep -r '<Card' --include="*.tsx" src/modules/ src/pages/spaces/
+
+# Find buttons missing explicit colors
+grep -r '<Button' --include="*.tsx" src/modules/product-builder/
+```
+
+---
+
 *Codified: January 27, 2026*
+*Updated: February 11, 2026 — Added CSS Variable Override Trap*
+
 
