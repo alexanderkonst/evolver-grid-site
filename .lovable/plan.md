@@ -1,168 +1,115 @@
 
 
-# Taxonomy Audit and Module Infrastructure Update
+# Apply Marketing Playbook to All Modules — Workflow + Execution
 
-## Overview
+## Understanding
 
-This plan covers three connected tasks:
-1. Fix `docs/02-strategy/module_taxonomy.md` to match code reality
-2. Update `src/types/module.ts` and `src/data/modules.ts` to align with the Spaces architecture
-3. Sync the older `docs/00-intro kit/module_taxonomy.md` with the canonical version
+You're absolutely right. The sequence is:
 
----
+1. **Product Playbook Phase 1** (per module) -- define Master Result, Sub-Results, transformation (Point A to Point B)
+2. **Marketing Playbook** (per module) -- using the Master Result as input, generate Core Belief, Packaging, ICP, Customer Forces, and Landing Page content
 
-## Part 1: Taxonomy Audit Findings
+Without the Master Result and its sub-results, we can't write a landing page -- we wouldn't know what transformation to promise.
 
-After auditing every route in `App.tsx`, every module folder in `src/modules/`, and the SpacesRail navigation, here is the comparison between `module_taxonomy.md` v2.1 and what actually exists in code:
+## What Already Exists
 
-### ME Space (/game/grow/*)
+Good news: the taxonomy (v2.2) already has Master Results for every module. For example:
+- ZoG: "Who am I?" to "I know my genius and how to use it"
+- QoL: "Fog about my life" to "Clear map of where I stand"
+- Men's Circle: "Alone in my journey" to "Held by brothers"
 
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Zone of Genius | v0.9 | Full: landing, entry, 5-step assessment, appleseed, excalibur, overview, perspectives | v0.9 correct |
-| Quality of Life | v0.9 | Full: assessment, results, priorities, growth-recipe | v0.9 correct |
-| Personality Tests | v0.5 | /resources/personality-tests + /game/learn/tests | v0.5 correct |
-| Mission Discovery | v0.7 | Dedicated module folder + landing + wizard | v0.7 correct |
-| Resource Mapping | v0.7 | /game/grow/assets + dedicated module folder (asset-mapping) | v0.7 correct |
-| Art | Matrix says v0.5, detail says v0.1 (conflict!) | /art, /art/:category, /game/grow/art | User says: move OUTSIDE spaces |
-
-### LEARN Space (/game/learn/*)
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Daily Loop | v0.7 | /game/next-move + /game/next-move-v2 + /game/learn/today | v0.7 correct |
-| Library | v0.7 | /library + /game/learn/library, dedicated module folder | v0.7 correct |
-| Growth Paths | v0.5 | /game/learn/paths + /game/learn/path/:pathId, dedicated module folder, 5 paths with upgrades | Upgrade to v0.7 -- more developed than PoC |
-| Skill Trees | v0.3 | No dedicated route visible | v0.3 correct |
-
-### MEET Space (/game/meet/*)
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Events | v0.9 | /game/meet + create + my-rsvps + /events/:id | v0.9 correct |
-| Men's Circle | v1.0 | /mens-circle + /mens-circle/thank-you (Stripe payment integrated) | v1.0 correct |
-
-### COLLABORATE Space (/game/collaborate/*)
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Matchmaking | v0.7 | /game/collaborate/matches | v0.7 correct |
-| Connections | v0.3 | /game/collaborate/connections + /game/collaborate/people + /game/collaborate/mission | Upgrade to v0.5 -- has more sub-routes than Prototype |
-
-### BUILD Space (/game/build/*)
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Genius Business | v0.7 | /game/grow/genius-business + 4 sub-pages (audience, promise, channels, vision) | v0.7 correct. Note: routed under /game/grow, not /game/build |
-| Product Builder | v0.3 | /game/build/product-builder with 7 steps (ICP, pain, promise, landing, blueprint, CTA, published) | Upgrade to v0.7 -- feature-complete flow, not just a prototype |
-| Business Incubator | v0.1 | /game/build (BuildSpace page exists) | Upgrade to v0.3 -- basic page exists |
-
-### BUY and SELL Space (/game/marketplace/*)
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Marketplace | v0.3 | /game/marketplace + /game/marketplace/browse + /p/:slug + /mp/:slug + /my-page | Upgrade to v0.5 -- browse, creator pages, product pages all working |
-
-### Special Modules
-
-| Module | Taxonomy | Code Reality | Verdict |
-|--------|----------|-------------|---------|
-| Onboarding | v0.7 | /start, dedicated module folder | v0.7 correct |
-| Tour | v0.5 | Tour steps within onboarding flow | v0.5 correct |
-
-### Standalone Modules (outside spaces -- per user directive)
-
-| Module | Currently in taxonomy? | Code Reality | Action |
-|--------|----------------------|-------------|--------|
-| Art | Listed in ME Space (wrong) | /art, /art/:category, /game/grow/art | Move to Standalone, set v0.5 |
-| Equilibrium | Not listed | Not in code | Add as v0.1 Concept |
-| Clock | Not listed | Not in code (created today) | Add as v0.1 Concept |
-| Transcriber | Not listed | /transcriber (working YouTube transcriber) | Add as v0.5 PoC |
-
-### Legacy Landing Page Modules (kept in src/data/modules.ts, NOT used)
-
-These 10 modules in `src/data/modules.ts` were for the old Index.tsx landing page (now replaced by LandingPage.tsx). They remain in code but are not actively used:
-- DESTINY: YOUR UNIQUE GENIUS BUSINESS
-- GENIUS-LAYER MATCHING
-- GENIUS OFFER SNAPSHOT
-- INTELLIGENCE BOOST FOR YOUR AI MODEL
-- Men's Circle (duplicate -- real one is in MEET space)
-- QUALITY OF LIFE ACTIVATION (duplicate)
-- ZONE OF GENIUS DISCOVERY (duplicate)
-- MULTIPLE INTELLIGENCES SELF-ASSESSMENT
-- Heartcraft (Coming Soon)
-- Integral Mystery School (Coming Soon)
-
-These will NOT be deleted per user instruction but are not part of the taxonomy.
-
-### Additional Discrepancies Found
-
-1. URL path naming: SpacesRail label says "ME" but routes use `/game/grow` (legacy from "GROW" rename)
-2. Genius Business routes are under `/game/grow/genius-business` but the taxonomy places it in BUILD Space
-3. Matchmaking submodules in taxonomy list 5 types (Genius, Complementary, Resource, Mission, Match Refresh) -- the code has `/game/collaborate/mission` and `/game/collaborate/people` as separate routes supporting this
-4. Multiple Intelligences (/intelligences) is a standalone assessment page -- in the taxonomy it appears as a submodule upgrade within Growth Paths > Genius Path but also as a standalone route
+But these are one-liners. To build a proper landing page, we need the full depth from both playbooks.
 
 ---
 
-## Part 2: Changes to module_taxonomy.md
+## Plan: Create a Reusable Workflow + Execute for Priority 1 Modules
 
-### File: `docs/02-strategy/module_taxonomy.md`
+### Part 1: Create the Workflow SOP
 
-Bump version from 2.1 to 2.2. Changes:
+**File:** `docs/04-workflows/module_landing_page_workflow.md`
 
-1. **Fix Art module**: Remove from ME Space, add to new "Standalone Modules" section at v0.5
-2. **Add Standalone section**: Art (v0.5), Equilibrium (v0.1), Clock (v0.1), Transcriber (v0.5)
-3. **Fix version inconsistency**: Art was 0.5 in matrix but 0.1 in detail -- resolve to 0.5 based on code (gallery, portfolios, subpages all implemented)
-4. **Update Growth Paths**: v0.5 to v0.7 (has dedicated module folder, path sections, 5 vectors)
-5. **Update Product Builder**: v0.3 to v0.7 (has 7 working steps, not just a prototype)
-6. **Update Connections**: v0.3 to v0.5 (has people directory, mission selection sub-routes)
-7. **Update Marketplace**: v0.3 to v0.5 (has browse, creator pages, product pages)
-8. **Update Business Incubator**: v0.1 to v0.3 (has a basic BuildSpace page)
-9. **Update ME Space module count**: 6 to 5 (Art moved out)
-10. **Update version statistics**: Recalculate percentages based on updated versions
-11. **Add route annotations**: Document actual URL paths next to each module for developer reference
-12. **Note route naming discrepancy**: ME Space uses `/game/grow` paths (legacy from GROW rename)
-13. **Note Genius Business placement**: Routed under ME (/game/grow) but logically belongs to BUILD
+A step-by-step SOP that can be applied to ANY module. It chains two playbooks:
 
-### File: `docs/00-intro kit/module_taxonomy.md`
+```text
+STEP 1: PRODUCT PLAYBOOK (Phase 1 only -- just the result layer)
+  1.1  Define Master Result (Point A to Point B -- one sentence)
+  1.2  List Sub-Results (3-7 intermediate wins)
+  1.3  Define Artifacts (what user walks away with)
+  1.4  Define Bridges (what comes before/after this module)
 
-Add deprecation header pointing to `docs/02-strategy/module_taxonomy.md` v2.2 as the canonical source. Keep the file for historical context but clearly mark it as outdated.
+STEP 2: MARKETING PLAYBOOK (Phases 0-4)
+  2.0  Core Belief (what we fundamentally believe about this domain)
+  2.1  Packaging (free/paid, format, value ladder position)
+  2.2  Frictionless Purchase (price, CTA, one-click readiness)
+  2.3  Core Message Stack (one-liner, resonance hook, anti-messages)
+  2.4  Messaging Ladder (hook, resonance, proof, action)
+  2.5  ICP Deep Dive -- Heart, Mind, Gut (Three Dan Tians)
 
----
+STEP 3: CUSTOMER FORCES ANALYSIS
+  3.1  PUSH (what drives them away from status quo)
+  3.2  PULL (what attracts them to this solution)
+  3.3  ANXIETY (what stops them from starting)
+  3.4  INERTIA (what keeps them stuck)
+  3.5  ENEMY (the status quo to fight)
 
-## Part 3: Code Type and Data Updates
+STEP 4: LANDING PAGE CONTENT
+  4.1  Hero (headline + subheadline + CTA)
+  4.2  For Whom section
+  4.3  Pain section (from Customer Forces PUSH)
+  4.4  Solution section (from Sub-Results)
+  4.5  Outcomes section (from Artifacts)
+  4.6  How It Works (from Sub-Results sequence)
+  4.7  Story/Origin (from Core Belief)
+  4.8  Final CTA
 
-### File: `src/types/module.ts`
-
-1. Expand `ModuleCategory` to include Space identifiers alongside legacy categories:
-
-```
-"AI" | "Growth" | "Business" | "Ceremonies" | "Tools" | "Apps" | "Other"
-| "ME" | "LEARN" | "MEET" | "COLLABORATE" | "BUILD" | "BUY_SELL" | "Special" | "Standalone"
+OUTPUT: One markdown file per module at:
+  docs/06-modules/[module-slug]/landing_page_content.md
 ```
 
-2. Add Space-aware fields to `Module` interface:
-   - `space?: string` -- which space this module belongs to
-   - `versionNumber?: string` -- semantic version (0.1-1.0+)
-   - `versionStage?: string` -- human-readable stage (Concept/Prototype/PoC/Alpha/MVP/Commercial)
-   - `startRoute?: string` -- the entry route for the module
-   - `dependencies?: string[]` -- module slugs this depends on
+### Part 2: Execute for Priority 1 Modules
 
-3. Keep all existing fields for backward compatibility
+Priority 1 modules are the free acquisition funnels:
 
-### File: `src/data/modules.ts`
+| Module | Why Priority 1 |
+|--------|---------------|
+| Zone of Genius | Free entry point, highest traffic, main acquisition funnel |
+| Quality of Life | Free entry point, second acquisition funnel |
 
-1. Keep all 10 existing legacy module entries unchanged (they compile and are technically still referenced by ModuleDetail.tsx via /m/:slug route)
-2. Add `space` field to modules that map to spaces (ZoG, QoL, Men's Circle, etc.)
-3. No entries removed
+For each of these two modules, we will:
+1. Run through the workflow above
+2. Output a complete `landing_page_content.md` with all marketing data filled in
+3. This content can later drive a universal `ModuleLandingTemplate` component
+
+### Part 3: Create Module Content Directory Structure
+
+```text
+docs/06-modules/
+  zone-of-genius/
+    landing_page_content.md    -- marketing data for ZoG landing
+  quality-of-life/
+    landing_page_content.md    -- marketing data for QoL landing
+```
+
+This structure scales: as we apply the workflow to more modules, each gets its own folder.
+
+---
+
+## Technical Deliverables
+
+| # | File | Description |
+|---|------|-------------|
+| 1 | `docs/04-workflows/module_landing_page_workflow.md` | Reusable SOP chaining Product Playbook to Marketing Playbook to Landing Page |
+| 2 | `docs/06-modules/zone-of-genius/landing_page_content.md` | Full marketing content for ZoG landing page |
+| 3 | `docs/06-modules/quality-of-life/landing_page_content.md` | Full marketing content for QoL landing page |
+
+No code changes in this step -- this is content/strategy work. The code implementation (ModuleLandingTemplate component, routes) comes after the content is approved.
 
 ---
 
 ## Execution Sequence
 
-1. Update `docs/02-strategy/module_taxonomy.md` -- the main deliverable
-2. Add deprecation note to `docs/00-intro kit/module_taxonomy.md`
-3. Update `src/types/module.ts` -- expand types
-4. Update `src/data/modules.ts` -- add space annotations to existing entries
-5. Verify build compiles successfully
+1. Write the workflow SOP (the reusable template)
+2. Apply it to Zone of Genius (using existing landing page content + taxonomy Master Result as input)
+3. Apply it to Quality of Life (same process)
+4. Review output -- these become the data source for future landing page components
 
