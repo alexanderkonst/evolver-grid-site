@@ -59,6 +59,7 @@
 | **PARKED** |
 | 35 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
 | 36 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
+| 37 | Remove `/game` prefix from URLs (`/game/me` → `/me`) | Infra | 🟡 MED | Backlog |
 
 ---
 
