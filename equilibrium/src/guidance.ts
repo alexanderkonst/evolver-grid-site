@@ -49,7 +49,7 @@ const RULES: GuidanceRule[] = [
     // User opted in — imperative voice is OK.
     {
         condition: (c) => c.sprint.active && c.sprint.pulse.phase === 'entry' && c.sprint.pulse.pulseNumber === 1,
-        message: 'Set your intention. What is the ONE thing this sprint?',
+        message: 'Breathe in. Set your intention.',
         category: 'be',
     },
     {

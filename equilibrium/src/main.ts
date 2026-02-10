@@ -17,7 +17,6 @@ interface Preferences {
   breathDuration: number;
   transitionPrompts: boolean;
   showOuterRings: boolean;
-  sound: boolean;
   wakeTime: string;   // "HH:MM" format
   sleepTime: string;   // "HH:MM" format
 }
@@ -62,7 +61,6 @@ function loadState(): AppState {
       breathDuration: 11,
       transitionPrompts: true,
       showOuterRings: true,
-      sound: false,
       wakeTime: '07:00',
       sleepTime: '23:00',
     },
@@ -98,7 +96,6 @@ const breathDurationInput = document.getElementById('breath-duration') as HTMLIn
 const breathDurationLabel = document.getElementById('breath-duration-label')!;
 const togglePrompts = document.getElementById('toggle-prompts') as HTMLInputElement;
 const toggleOuterRings = document.getElementById('toggle-outer-rings') as HTMLInputElement;
-const toggleSound = document.getElementById('toggle-sound') as HTMLInputElement;
 const wakeTimeInput = document.getElementById('wake-time') as HTMLInputElement;
 const sleepTimeInput = document.getElementById('sleep-time') as HTMLInputElement;
 
@@ -107,7 +104,6 @@ breathDurationInput.value = String(state.preferences.breathDuration);
 breathDurationLabel.textContent = `${state.preferences.breathDuration}s`;
 togglePrompts.checked = state.preferences.transitionPrompts;
 toggleOuterRings.checked = state.preferences.showOuterRings;
-toggleSound.checked = state.preferences.sound;
 wakeTimeInput.value = state.preferences.wakeTime;
 sleepTimeInput.value = state.preferences.sleepTime;
 
@@ -140,11 +136,6 @@ togglePrompts.addEventListener('change', () => {
 
 toggleOuterRings.addEventListener('change', () => {
   state.preferences.showOuterRings = toggleOuterRings.checked;
-  saveState(state);
-});
-
-toggleSound.addEventListener('change', () => {
-  state.preferences.sound = toggleSound.checked;
   saveState(state);
 });
 
