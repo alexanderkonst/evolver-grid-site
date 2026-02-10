@@ -17,6 +17,7 @@ This folder contains:
 | Workflow | Description | Slash Command |
 |----------|-------------|---------------|
 | [Module Polish](module_polish.md) | Audit and fix modules against playbook standards | `/polish` |
+| [Module Landing Page](module_landing_page_workflow.md) | Generate landing page content via Product→Marketing→Customer Forces pipeline | — |
 
 ---
 
