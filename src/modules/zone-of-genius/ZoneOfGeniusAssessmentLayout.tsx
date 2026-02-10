@@ -4,10 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
-import BoldText from "@/components/BoldText";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
-import ProgressIndicator from "@/components/ProgressIndicator";
-import OnboardingProgress from "@/components/OnboardingProgress";
 import BackButton from "@/components/BackButton";
 
 interface ZoneOfGeniusAssessmentLayoutProps {
@@ -23,43 +20,64 @@ const ZoneOfGeniusAssessmentLayout = ({
 
   const currentStepIndex = steps.findIndex(step => location.pathname.includes(step.path));
   const activeStep = currentStepIndex >= 0 ? currentStepIndex + 1 : 1;
+  const progress = (activeStep / steps.length) * 100;
 
   const stepIndicator = (
     <div className="text-center mb-8">
-      <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
-        Discover Your Zone of Genius Now:
+      {/* Aurora header */}
+      <h1 className="text-2xl sm:text-3xl font-semibold font-display aurora-text mb-3">
+        Discover Your Zone of Genius
       </h1>
-      <ProgressIndicator current={activeStep} total={steps.length} className="text-[#2c3150]/60" />
-      <OnboardingProgress
-        current={activeStep}
-        total={steps.length}
-        className="mt-4 mb-0 max-w-lg"
-      />
+      <p className="text-[var(--wabi-text-secondary)] text-sm mb-6">
+        Step {activeStep} of {steps.length}
+      </p>
 
-      {/* Step Indicator */}
-      <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm">
+      {/* Premium progress bar */}
+      <div className="max-w-md mx-auto mb-6">
+        <div className="h-1.5 bg-[var(--wabi-pearl)] rounded-full overflow-hidden border border-white/40">
+          <div
+            className="h-full rounded-full transition-all duration-700 ease-out"
+            style={{
+              width: `${progress}%`,
+              background: 'linear-gradient(90deg, #8460ea, #29549f)',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Step pills — minimal, wabi-sabi */}
+      <div className="flex items-center justify-center gap-1.5 sm:gap-2">
         {steps.map((step, idx) => (
           <React.Fragment key={step.number}>
-            <div className={cn(
-              "flex items-center gap-2 transition-all",
-              activeStep >= step.number ? "text-primary font-semibold" : "text-muted-foreground"
-            )}>
-              <div className={cn(
-                "flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 transition-all",
+            <div
+              className={cn(
+                "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] sm:text-xs transition-all",
                 activeStep >= step.number
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-background"
-              )}>
-                {step.number}
+                  ? "bg-[#8460ea]/10 text-[#8460ea] font-medium"
+                  : "bg-white/60 text-[var(--wabi-text-muted)]"
+              )}
+            >
+              <div
+                className={cn(
+                  "w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-semibold transition-all",
+                  activeStep > step.number
+                    ? "bg-[#8460ea] text-white"
+                    : activeStep === step.number
+                      ? "bg-[#8460ea]/20 text-[#8460ea] ring-1 ring-[#8460ea]/30"
+                      : "bg-white/80 text-[var(--wabi-text-muted)]"
+                )}
+              >
+                {activeStep > step.number ? "✓" : step.number}
               </div>
               <span className="hidden sm:inline">{step.label}</span>
-              <span className="sm:hidden">Step {step.number}</span>
             </div>
             {idx < steps.length - 1 && (
-              <div className={cn(
-                "hidden sm:block w-8 h-0.5 transition-all",
-                activeStep > step.number ? "bg-primary" : "bg-border"
-              )} />
+              <div
+                className={cn(
+                  "w-4 sm:w-6 h-px transition-all",
+                  activeStep > step.number ? "bg-[#8460ea]/40" : "bg-[var(--wabi-lavender)]/20"
+                )}
+              />
             )}
           </React.Fragment>
         ))}
@@ -82,17 +100,17 @@ const ZoneOfGeniusAssessmentLayout = ({
 
   return (
     <ZoneOfGeniusProvider>
-      <div className="min-h-dvh flex flex-col">
+      <div className="min-h-dvh flex flex-col bg-gradient-to-b from-white via-[var(--wabi-pearl)] to-white">
         <Navigation />
 
         <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-6xl">
-            {/* Back/Exit Link */}
+            {/* Back link */}
             <div className="mb-6">
               <BackButton
                 to="/zone-of-genius"
-                label={<BoldText>EXIT TO OVERVIEW</BoldText>}
-                className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
+                label="Back to Zone of Genius"
+                className="text-[var(--wabi-text-muted)] hover:text-[#8460ea] transition-colors text-sm"
               />
             </div>
 
