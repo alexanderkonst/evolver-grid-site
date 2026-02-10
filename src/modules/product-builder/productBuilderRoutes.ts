@@ -1,4 +1,4 @@
-export const PRODUCT_BUILDER_BASE = "/product-builder";
+export const PRODUCT_BUILDER_BASE = "/game/build/product-builder";
 
 export const PRODUCT_BUILDER_STEPS = [
     { number: 0, label: "Get Started", path: `${PRODUCT_BUILDER_BASE}` },
