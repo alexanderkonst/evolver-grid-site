@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
@@ -607,8 +606,8 @@ const ModuleCard = ({ module, space }: ModuleCardProps) => {
     const inner = (
         <div
             className={`rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 transition-all duration-300 group ${isNavigable
-                    ? "hover:bg-white/[0.08] hover:border-white/20 cursor-pointer"
-                    : "opacity-70"
+                ? "hover:bg-white/[0.08] hover:border-white/20 cursor-pointer"
+                : "opacity-70"
                 }`}
         >
             {/* Top row — space badge + version */}
@@ -682,14 +681,13 @@ const HolonicModulesPage = () => {
 
     return (
         <div className="min-h-dvh bg-[#0e1525]">
-            <Navigation />
 
             {/* ─── HERO ─── */}
             <section
                 ref={heroAnim.ref}
-                className={`relative pt-32 pb-10 px-6 text-center transition-all duration-1000 ${heroAnim.isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
+                className={`relative pt-20 pb-10 px-6 text-center transition-all duration-1000 ${heroAnim.isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                     }`}
             >
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(132,96,234,0.12)_0%,transparent_60%)]" />
@@ -733,8 +731,8 @@ const HolonicModulesPage = () => {
             <section
                 ref={mapAnim.ref}
                 className={`relative py-4 px-4 transition-all duration-1000 ${mapAnim.isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                     }`}
             >
                 <HolonicMap />
@@ -772,8 +770,8 @@ const HolonicModulesPage = () => {
             <section
                 ref={listAnim.ref}
                 className={`py-16 px-6 transition-all duration-1000 ${listAnim.isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                     }`}
             >
                 <div className="container mx-auto max-w-4xl space-y-14">
