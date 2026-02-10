@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
-import { ChevronUp, ChevronDown } from "lucide-react";
-import BoldText from "@/components/BoldText";
+import { ChevronUp, ChevronDown, ArrowLeft, GripVertical } from "lucide-react";
+import { PremiumButton } from "@/components/ui/PremiumButton";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step3OrderTalents = () => {
@@ -56,19 +56,19 @@ const Step3OrderTalents = () => {
     setDraggedIndex(index);
   };
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
   };
 
   const handleDrop = (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
     if (draggedIndex === null || draggedIndex === dropIndex) return;
-    
+
     const newOrder = [...localOrdered];
     const draggedItem = newOrder[draggedIndex];
     newOrder.splice(draggedIndex, 1);
     newOrder.splice(dropIndex, 0, draggedItem);
-    
+
     setLocalOrdered(newOrder);
     setDraggedIndex(null);
   };
@@ -77,70 +77,91 @@ const Step3OrderTalents = () => {
     setDraggedIndex(null);
   };
 
+  const rankLabels = ["Primary Genius", "Secondary Genius", "Supporting Genius"];
+
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-3">
-        <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="text-center space-y-2">
+        <h2 className="text-xl sm:text-2xl font-semibold font-display text-[#2c3150]">
           Order Your Top 3
         </h2>
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-2">
+        <p className="text-sm text-[var(--wabi-text-secondary)] max-w-xl mx-auto">
           Put your 3 core talents in order, from <strong>most defining</strong> (#1) to third (#3).
         </p>
-        <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-          Arrange them by how <BoldText>YOU TYPICALLY APPLY THEM IN YOUR LIFE</BoldText> — what you use <BoldText>MOST NATURALLY AND FREQUENTLY</BoldText>.
-        </p>
-        <p className="text-xs text-muted-foreground mt-2">
-          You can drag talents or use the arrow buttons to reorder them.
+        <p className="text-xs text-[var(--wabi-text-muted)]">
+          Drag or use arrows to reorder.
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-4">
+      {/* Ordered talent cards */}
+      <div className="max-w-lg mx-auto space-y-3">
         {orderedTalents.map((talent, index) => (
           <div
             key={talent.id}
             draggable
             onDragStart={() => handleDragStart(index)}
-            onDragOver={(e) => handleDragOver(e, index)}
+            onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, index)}
             onDragEnd={handleDragEnd}
             className={cn(
-              "flex items-center gap-4 p-5 rounded-xl border-2 border-border bg-card/60 cursor-move transition-all",
-              draggedIndex === index && "opacity-50",
-              "hover:border-primary/50"
+              "flex items-center gap-3 p-4 rounded-xl border cursor-move transition-all duration-200",
+              "bg-white/80 backdrop-blur-sm hover:shadow-md",
+              draggedIndex === index
+                ? "opacity-50 border-[#8460ea]/30"
+                : "border-white/40 hover:border-[var(--wabi-lavender)]/50"
             )}
           >
-            <div className="flex flex-col gap-1">
+            {/* Drag handle */}
+            <GripVertical size={16} className="text-[var(--wabi-text-muted)] shrink-0" />
+
+            {/* Arrows */}
+            <div className="flex flex-col gap-0.5 shrink-0">
               <button
                 onClick={() => moveUp(index)}
                 disabled={index === 0}
                 className={cn(
-                  "p-2 sm:p-1 rounded hover:bg-primary/10 transition-colors min-h-[44px] sm:min-h-0",
-                  index === 0 ? "opacity-30 cursor-not-allowed" : "opacity-100"
+                  "p-1.5 rounded hover:bg-[#8460ea]/10 transition-colors min-h-[40px] sm:min-h-0",
+                  index === 0 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
                 )}
               >
-                <ChevronUp size={20} className="text-primary" />
+                <ChevronUp size={16} className="text-[#8460ea]" />
               </button>
               <button
                 onClick={() => moveDown(index)}
                 disabled={index === orderedTalents.length - 1}
                 className={cn(
-                  "p-2 sm:p-1 rounded hover:bg-primary/10 transition-colors min-h-[44px] sm:min-h-0",
-                  index === orderedTalents.length - 1 ? "opacity-30 cursor-not-allowed" : "opacity-100"
+                  "p-1.5 rounded hover:bg-[#8460ea]/10 transition-colors min-h-[40px] sm:min-h-0",
+                  index === orderedTalents.length - 1 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
                 )}
               >
-                <ChevronDown size={20} className="text-primary" />
+                <ChevronDown size={16} className="text-[#8460ea]" />
               </button>
             </div>
 
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+            {/* Rank badge */}
+            <div
+              className={cn(
+                "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0",
+                index === 0
+                  ? "bg-[#8460ea] text-white"
+                  : index === 1
+                    ? "bg-[#8460ea]/20 text-[#8460ea]"
+                    : "bg-[var(--wabi-pearl)] text-[var(--wabi-text-secondary)]"
+              )}
+            >
               {index + 1}
             </div>
 
-            <div className="flex-1">
-              <h3 className="text-base font-semibold text-foreground mb-1">
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] uppercase tracking-wider text-[#8460ea]/60 font-medium mb-0.5">
+                {rankLabels[index]}
+              </p>
+              <h3 className="text-sm font-semibold text-[#2c3150] font-sans">
                 {talent.name}
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-[var(--wabi-text-muted)] truncate">
                 {talent.description}
               </p>
             </div>
@@ -148,44 +169,37 @@ const Step3OrderTalents = () => {
         ))}
       </div>
 
-      <div className="hidden sm:flex items-center justify-center gap-4 pt-8">
+      {/* Desktop nav */}
+      <div className="hidden sm:flex items-center justify-center gap-4 pt-4 pb-8">
         <button
           onClick={handleBack}
-          className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm
+                     text-[var(--wabi-text-secondary)] hover:text-[#2c3150]
+                     border border-white/40 bg-white/60 backdrop-blur-sm
+                     hover:bg-white/80 transition-all"
         >
-          Back to Step 3
+          <ArrowLeft size={14} />
+          Back
         </button>
-        <button
-          onClick={handleContinue}
-          className="px-8 py-3 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
-          style={{ 
-            backgroundColor: 'hsl(210, 70%, 15%)',
-            color: 'white'
-          }}
-        >
-          Continue to Generate My Zone of Genius Snapshot
-        </button>
+        <PremiumButton size="lg" onClick={handleContinue}>
+          Generate My Zone of Genius ✦
+        </PremiumButton>
       </div>
 
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg z-above">
+      {/* Mobile sticky */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-white/40 p-4 shadow-lg z-20">
         <div className="flex items-center justify-between gap-3 mb-3">
           <button
             onClick={handleBack}
-            className="text-xs px-3 py-2 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+            className="text-xs px-3 py-1.5 rounded-full text-[var(--wabi-text-secondary)]
+                       border border-white/40 bg-white/60 hover:bg-white/80 transition-colors"
           >
-            Back to Step 3
+            Back
           </button>
         </div>
-        <button
-          onClick={handleContinue}
-          className="w-full py-3 rounded-full font-bold transition-all text-sm"
-          style={{ 
-            backgroundColor: 'hsl(210, 70%, 15%)',
-            color: 'white'
-          }}
-        >
-          Generate My Snapshot
-        </button>
+        <PremiumButton className="w-full" size="lg" onClick={handleContinue}>
+          Generate My Snapshot ✦
+        </PremiumButton>
       </div>
 
       <div className="sm:hidden h-32" />

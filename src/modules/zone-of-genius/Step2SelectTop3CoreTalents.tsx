@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, ArrowLeft } from "lucide-react";
+import { PremiumButton } from "@/components/ui/PremiumButton";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step2SelectTop3CoreTalents = () => {
@@ -51,34 +52,62 @@ const Step2SelectTop3CoreTalents = () => {
   const canContinue = localSelected.length === 3;
 
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-3">
-        <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-          Choose Your Top 3 Core Talents
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="text-center space-y-2">
+        <h2 className="text-xl sm:text-2xl font-semibold font-display text-[#2c3150]">
+          Your Top 3
         </h2>
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-          From your Top 10, choose the <strong>3 talents</strong> that feel most essential — the ones you'd keep even if you had to drop the rest.
+        <p className="text-sm text-[var(--wabi-text-secondary)] max-w-xl mx-auto">
+          Now narrow it down. Which <strong>3</strong> do you love doing the most?
+          The ones you'd keep even if you had to drop the rest.
         </p>
       </div>
 
-      <div className="flex items-center justify-between bg-card/60 border border-border rounded-xl p-4">
-        <div className="flex items-center gap-3">
-          <div className={cn(
-            "text-2xl font-bold transition-colors",
-            localSelected.length === 3 ? "text-green-500" : "text-primary"
-          )}>
-            {localSelected.length} / 3
+      {/* Selection counter */}
+      <div className="sticky top-20 z-10">
+        <div
+          className={cn(
+            "flex items-center justify-between px-5 py-3 rounded-xl border transition-all duration-300",
+            "bg-white/90 backdrop-blur-md shadow-sm",
+            canContinue
+              ? "border-[#8460ea]/30 shadow-[0_0_20px_rgba(132,96,234,0.1)]"
+              : "border-white/40"
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className={cn(
+                "text-xl font-bold font-display transition-colors",
+                canContinue ? "text-[#8460ea]" : "text-[#2c3150]"
+              )}
+            >
+              {localSelected.length}<span className="text-[var(--wabi-text-muted)] font-normal text-sm"> / 3</span>
+            </div>
+            <span className="text-xs text-[var(--wabi-text-muted)]">core talents selected</span>
           </div>
-          <span className="text-sm text-muted-foreground">core talents selected</span>
+
+          {showMaxWarning && (
+            <div className="text-xs text-amber-600 animate-fade-in">
+              Deselect one to choose another
+            </div>
+          )}
+
+          <div className="hidden sm:block">
+            <PremiumButton
+              size="sm"
+              onClick={handleContinue}
+              disabled={!canContinue}
+              className={cn("transition-all", canContinue ? "opacity-100" : "opacity-40")}
+            >
+              Continue →
+            </PremiumButton>
+          </div>
         </div>
-        {showMaxWarning && (
-          <div className="text-xs sm:text-sm text-orange-500 animate-fade-in">
-            You can only select 3 core talents. Please deselect one to choose another.
-          </div>
-        )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Talent cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
         {top10Talents.map((talent) => {
           const isSelected = localSelected.includes(talent.id);
           return (
@@ -86,21 +115,22 @@ const Step2SelectTop3CoreTalents = () => {
               key={talent.id}
               onClick={() => handleTalentClick(talent.id)}
               className={cn(
-                "relative p-5 rounded-xl border-2 text-left transition-all hover:scale-[1.02] active:scale-[0.98]",
+                "relative p-4 rounded-xl border text-left transition-all duration-200",
+                "hover:scale-[1.02] active:scale-[0.98]",
                 isSelected
-                  ? "border-primary bg-primary/10 shadow-md"
-                  : "border-border bg-card/60 hover:border-primary/50"
+                  ? "border-[#8460ea]/40 bg-[#8460ea]/5 shadow-md shadow-[#8460ea]/8"
+                  : "border-white/40 bg-white/70 backdrop-blur-sm hover:border-[var(--wabi-lavender)]/50 hover:shadow-sm"
               )}
             >
               {isSelected && (
-                <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-                  <Check size={16} className="text-primary-foreground" />
+                <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[#8460ea] flex items-center justify-center">
+                  <Check size={12} className="text-white" />
                 </div>
               )}
-              <h3 className="text-base font-semibold text-foreground mb-2 pr-8">
+              <h3 className="text-sm font-semibold text-[#2c3150] mb-1 pr-7 font-sans">
                 {talent.name}
               </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <p className="text-xs text-[var(--wabi-text-secondary)] leading-relaxed">
                 {talent.description}
               </p>
             </button>
@@ -108,61 +138,53 @@ const Step2SelectTop3CoreTalents = () => {
         })}
       </div>
 
-      <div className="hidden sm:flex items-center justify-center gap-4 pt-8">
+      {/* Desktop nav */}
+      <div className="hidden sm:flex items-center justify-center gap-4 pt-4 pb-8">
         <button
           onClick={handleBack}
-          className="px-6 py-3 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm
+                     text-[var(--wabi-text-secondary)] hover:text-[#2c3150]
+                     border border-white/40 bg-white/60 backdrop-blur-sm
+                     hover:bg-white/80 transition-all"
         >
-          Back to Step 2
+          <ArrowLeft size={14} />
+          Back
         </button>
-        <button
+        <PremiumButton
+          size="lg"
           onClick={handleContinue}
           disabled={!canContinue}
-          className={cn(
-            "px-8 py-3 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]",
-            canContinue ? "opacity-100 cursor-pointer" : "opacity-50 cursor-not-allowed"
-          )}
-          style={{ 
-            backgroundColor: 'hsl(210, 70%, 15%)',
-            color: 'white'
-          }}
+          className={cn(canContinue ? "opacity-100" : "opacity-40 cursor-not-allowed")}
         >
-          Continue to Step 4
-        </button>
+          Continue to Step 3 →
+        </PremiumButton>
       </div>
 
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg z-above">
+      {/* Mobile sticky */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-white/40 p-4 shadow-lg z-20">
         <div className="flex items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-2">
-            <div className={cn(
-              "text-xl font-bold transition-colors",
-              localSelected.length === 3 ? "text-green-500" : "text-primary"
-            )}>
+            <span className={cn("text-lg font-bold font-display", canContinue ? "text-[#8460ea]" : "text-[#2c3150]")}>
               {localSelected.length} / 3
-            </div>
-            <span className="text-xs text-muted-foreground">selected</span>
+            </span>
+            <span className="text-xs text-[var(--wabi-text-muted)]">selected</span>
           </div>
           <button
             onClick={handleBack}
-            className="text-xs px-3 py-2 rounded-full border border-border bg-background hover:bg-muted transition-colors"
+            className="text-xs px-3 py-1.5 rounded-full text-[var(--wabi-text-secondary)]
+                       border border-white/40 bg-white/60 hover:bg-white/80 transition-colors"
           >
             Back
           </button>
         </div>
-        <button
+        <PremiumButton
+          className={cn("w-full", canContinue ? "" : "opacity-40 cursor-not-allowed")}
+          size="lg"
           onClick={handleContinue}
           disabled={!canContinue}
-          className={cn(
-            "w-full py-3 rounded-full font-bold transition-all text-sm",
-            canContinue ? "opacity-100" : "opacity-50 cursor-not-allowed"
-          )}
-          style={{ 
-            backgroundColor: 'hsl(210, 70%, 15%)',
-            color: 'white'
-          }}
         >
-          Continue to Step 4
-        </button>
+          Continue →
+        </PremiumButton>
       </div>
 
       <div className="sm:hidden h-32" />
