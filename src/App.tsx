@@ -108,6 +108,8 @@ import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
 import MarketplaceProductPage from "./pages/marketplace/MarketplaceProductPage";
+import MyGeniusBusinessPage from "./pages/spaces/MyGeniusBusinessPage";
+import RefineBusinessPage from "./pages/spaces/RefineBusinessPage";
 import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
@@ -252,8 +254,10 @@ const App = () => (
                   {/* Legacy redirects */}
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
-                  {/* BUILD Space — redirects to Product Builder (no overview needed) */}
-                  <Route path="/game/build" element={<Navigate to="/game/build/product-builder" replace />} />
+                  {/* BUILD Space */}
+                  <Route path="/game/build" element={<Navigate to="/game/build/my-business" replace />} />
+                  <Route path="/game/build/my-business" element={<MyGeniusBusinessPage />} />
+                  <Route path="/game/build/refine" element={<RefineBusinessPage />} />
                   {/* Product Builder in GameShell */}
                   <Route path="/game/build/product-builder" element={<ProductBuilderPage />}>
                     <Route index element={<ProductBuilderEntry />} />

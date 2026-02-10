@@ -1789,3 +1789,85 @@ This was a complete holonic cycle: theory → product → critique → integrati
 ---
 
 *Feb 10 session complete. Equilibrium v1 shipped. Playbook improved. Moving to next module.*
+
+---
+
+## Day 39 — Tuesday, Feb 11, 2026
+
+**Location**: Bali, Indonesia
+**Time**: Evening session (~23:30–01:50)
+**Theme**: Product Builder Polish + Genius Business Persistence
+
+### Context
+
+After building the Product Builder flow and getting it functionally working, this session focused on visual polish (brandbook alignment), bug fixes (garbled AI output), and persistence (published products surviving page reloads). The core insight: "the product works, but it doesn't look or feel right" — which is the classic Phase 3 (COMMUNICATING) of the holonic cycle.
+
+### What We Fixed
+
+| Issue | Root Cause | Fix |
+|-------|-----------|-----|
+| **Garbled Transformational Promise** | Field mismatch: edge function returns `corePromise`, screen reads `promiseStatement` | Fixed screen to read both fields + rewrote AI prompt with anti-patterns and examples |
+| **Dark mode bleed on all cards** | `Card` component inherits `bg-card` which resolves to dark in GameShellV2 | Replaced all `Card`/`bg-card` with explicit `bg-white` + brandbook borders |
+| **Off-brand colors everywhere** | Yellow/amber/red/green CSS tokens (`bg-primary`, `border-primary`, etc.) | Replaced 50+ instances with explicit brandbook hex values (`#8460ea`, `#2c3150`, `#a4a3d0`, etc.) |
+| **"Your Genius is Now Live"** | Wrong copy | → "Your **Genius Business** is Now Live" |
+| **MarketplaceProductPage header** | Full site navigation on published landing page | Removed Navigation/Footer — standalone page with brandbook gradient hero |
+| **Blueprint generator not receiving promise** | `generate-blueprint` reads `tp.corePromise` but state stores `tp.promiseStatement` | Fixed with fallback: `tp.promiseStatement \|\| tp.corePromise` |
+| **Products disappear after publish** | React state lost on navigation/reload | Added localStorage persistence for published products |
+
+### What We Built
+
+| Item | Impact |
+|------|--------|
+| **localStorage persistence** | Published products survive page reloads and navigation. `usePublishedGeniusBusiness` hook available globally. |
+| **My Genius Business page** | New page at `/game/build/my-business` — shows product card, quick stats (ICP, Promise, Blueprint), URL with copy, actions |
+| **Refine My Business page** | New page at `/game/build/refine` — 5 refinement options (3 active, 2 coming soon): ICP, Pain, Promise, Blueprint, Landing |
+| **Build space sidebar** | Added "My Genius Business" and "Refine My Business" to SectionsPanel |
+| **MarketplaceSpace update** | Shows "My Published Products" section when a published genius business exists |
+| **Build default route** | `/game/build` now redirects to `/game/build/my-business` instead of directly to Product Builder |
+
+### Files Created/Modified
+
+| File | What |
+|------|------|
+| `src/modules/product-builder/ProductBuilderContext.tsx` | Added localStorage persistence + `usePublishedGeniusBusiness` hook |
+| `src/pages/spaces/MyGeniusBusinessPage.tsx` | **NEW**: Published product dashboard |
+| `src/pages/spaces/RefineBusinessPage.tsx` | **NEW**: Refinement options menu |
+| `src/pages/spaces/MarketplaceSpace.tsx` | Shows published product in "Buy & Sell" |
+| `src/pages/marketplace/MarketplaceProductPage.tsx` | Removed Nav/Footer, brandbook redesign |
+| `src/modules/product-builder/steps/PublishedScreen.tsx` | Fixed copy + colors |
+| `src/modules/product-builder/steps/DeepTPScreen.tsx` | Fixed field mismatch + fallback logic |
+| `src/modules/product-builder/steps/BlueprintScreen.tsx` | White card, brandbook colors |
+| `src/modules/product-builder/steps/CTAScreen.tsx` | Electric Violet buttons |
+| `src/modules/product-builder/steps/LandingPageScreen.tsx` | White card, brandbook buttons |
+| `src/components/game/SectionsPanel.tsx` | Added build space sections |
+| `src/App.tsx` | Wired new routes |
+| `supabase/functions/deepen-tp/index.ts` | Rewrote AI prompt |
+| `supabase/functions/generate-blueprint/index.ts` | Fixed field name |
+
+### Key Decisions Made
+
+1. **localStorage for MVP persistence** — Good enough for single-user demo. DB persistence already exists via `marketplace_products` table but needs migration. localStorage bridges the gap.
+2. **Build space becomes the hub** — No longer redirects straight to Product Builder. Now shows "My Genius Business" overview first, with Product Builder as one section.
+3. **Refinement as separate flow** — Not just "re-run the builder." Future: targeted refinement flows for each component (ICP, Pain, Promise, etc.).
+4. **Standalone landing pages** — No site chrome. Published product pages are clean, standalone, visitor-facing.
+5. **Only published products persist** — In-progress builds are NOT saved to localStorage to avoid stale AI data.
+
+### Sprint Status
+
+| Metric | Value |
+|--------|-------|
+| Product Builder UI | ✅ Brandbook-aligned |
+| Product persistence | ✅ localStorage (MVP) |
+| Build space | ✅ Has overview + refine |
+| Marketplace integration | ✅ Shows published product |
+| TP generation | ✅ Fixed prompt + field mapping |
+| Next: Refinement flows | 🔜 Targeted ICP/Pain/Promise refinement |
+
+### Reflection
+
+This was a classic polish pass: the feature was functionally complete but visually broken. The brandbook alignment pass was necessary because the dark mode CSS variables in `index.css` were bleeding into every Product Builder component. The fix was systematic: grep for generic tokens → replace with explicit hex values → verify zero remaining instances. The persistence fix was equally important — a product builder that forgets your product on page reload is fundamentally broken.
+
+---
+
+*Feb 11 session complete. Product Builder polished and persistent. Build space has structure.*
+

@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-02-09*
+> *Last updated: 2026-02-11*
 
 ---
 
@@ -25,10 +25,10 @@
 | 11 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This cycle |
 | **GENIUS BUSINESS** |
 | 12 | Genius Business sequence spec | Product | ✅ DONE | — |
-| 13 | Genius Business iteration flow | Product | 🔴 HIGH | This cycle |
+| 13 | Genius Business iteration flow | Product | 🟡 IN PROGRESS | This cycle |
 | 14 | Smart packaging recommendations | Product | 🔴 HIGH | This cycle |
-| 15 | Product Builder (Blueprint Generator) | Product | 🔴 HIGH | This cycle |
-| 16 | **Litmus test: Alexander through Product Builder** | Product | 🔴 HIGH | This cycle |
+| 15 | Product Builder (Blueprint Generator) | Product | ✅ DONE | — |
+| 16 | **Litmus test: Alexander through Product Builder** | Product | ✅ DONE | — |
 | **PLATFORM STRATEGY** |
 | 17 | Solo user main landing page | Marketing | 🔴 HIGH | This week |
 | 18 | Module landings (every module) | Marketing | 🟡 MED | This cycle |
@@ -60,6 +60,7 @@
 | 35 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
 | 36 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
 | 37 | Remove `/game` prefix from URLs (`/game/me` → `/me`) | Infra | 🟡 MED | Backlog |
+| 38 | Genius Business refinement flows (targeted ICP/Pain/Promise/Blueprint/Landing) | Product | 🔴 HIGH | Next |
 
 ---
 
