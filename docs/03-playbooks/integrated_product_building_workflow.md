@@ -111,12 +111,18 @@ INPUT (5 elements — ALL required before starting)
 
 PHASE 1: PRODUCT PLAYBOOK                                    [░░░░░░░░] 0%
 ├─ [ ] 1.1 Master Result (Point A → Point B statement)
+├─ [ ] 🔥 ROAST 1.1 (Deep: 3 cycles × 3 sub-cycles)
 ├─ [ ] 1.2 Sub-Results (3-7 intermediate wins)
+├─ [ ] 🔥 ROAST 1.2 (Deep: 3 cycles × 3 sub-cycles)
 ├─ [ ] 1.3 Screens (atomic views for each sub-result)
+├─ [ ] 🔥 ROAST 1.3
 ├─ [ ] 1.4 Screen Details (🫀 Heart, 🧠 Mind, 🔥 Gut per screen)
+├─ [ ] 🔥 ROAST 1.4
 ├─ [ ] 1.5 Extensions (artifacts, emotions, completion, skip, bridges)
+├─ [ ] 🔥 ROAST 1.5
 ├─ [ ] 1.6 Wireframes (ASCII or visual, mobile-first)
-└─ [ ] 🔥 ROAST GATE 1: Flow walkthrough + 3 cycles + fix
+├─ [ ] 🔥 ROAST 1.6
+└─ [ ] 🔥 ROAST GATE 1: Final flow walkthrough + 3 cycles + fix
 
 ───────────────────────────────────────────────────────────────────────────────
 
@@ -277,6 +283,8 @@ What this process produces:
 > **Source:** `docs/playbooks/product_playbook.md`
 > **Output:** `[module]_product_spec.md`
 
+> ⚠️ **CRITICAL:** Phase 1 is the foundation everything builds on. Skimping here trickles down into unclear architecture, weak UI, and broken code. **Every task gets a roast.** Tasks 1.1 and 1.2 get deep roasts (3 cycles × 3 sub-cycles each) because they define WHAT you're building.
+
 ## 1.1 Master Result
 
 **Task:** Define the transformation this module delivers.
@@ -286,6 +294,27 @@ What this process produces:
 - [ ] Define Point A (current state) — What pain/confusion does user have?
 - [ ] Define Point B (transformed state) — What clarity/result do they gain?
 - [ ] Write one-sentence Master Result — "[Module] takes user from [A] to [B]"
+
+### 🔥 ROAST 1.1: Master Result (Deep — 3 cycles × 3 sub-cycles)
+
+> **This is the most important statement in the entire module. Get it wrong, everything downstream is wrong.**
+
+**Cycle 1 — Clarity**
+- [ ] 1.1a Is Point A specific enough? Could someone read it and say "that's me"?
+- [ ] 1.1b Is Point B measurable? How would you KNOW the user got there?
+- [ ] 1.1c Is the sentence ONE sentence, not a paragraph disguised as one?
+
+**Cycle 2 — Honesty**
+- [ ] 1.1d Does the module ACTUALLY deliver this? Or is it aspirational?
+- [ ] 1.1e Could you explain this to a 12-year-old? If not, simplify.
+- [ ] 1.1f Does the user WANT this result? Or do WE think they should want it?
+
+**Cycle 3 — What Cycles 1-2 Missed**
+- [ ] 1.1g Read the sentence aloud. Does it land? Does it excite?
+- [ ] 1.1h Is there a more visceral Point A? (pain should be felt, not abstract)
+- [ ] 1.1i Is there a more specific Point B? (result should be tangible, not vague)
+
+**→ Fix:** Apply all findings. Rewrite until it passes all 9 checks.
 
 ---
 
@@ -299,6 +328,27 @@ What this process produces:
 - [ ] Sequence them — What must come before what?
 - [ ] Define Start/End screen for each — Where does user enter and exit this sub-result?
 
+### 🔥 ROAST 1.2: Sub-Results (Deep — 3 cycles × 3 sub-cycles)
+
+> **Sub-results define the entire product architecture. Each one becomes screens, routes, data. Get these wrong = rebuild everything.**
+
+**Cycle 1 — Completeness**
+- [ ] 1.2a Do the sub-results, taken together, FULLY deliver the Master Result?
+- [ ] 1.2b Is anything missing between Point A and Point B?
+- [ ] 1.2c Is there a sub-result that doesn't actually contribute to the Master Result? (Cut it)
+
+**Cycle 2 — Sequence & Felt Experience**
+- [ ] 1.2d Is the sequence natural? Would a user intuitively go in this order?
+- [ ] 1.2e Does each sub-result feel like a WIN? Or does it feel like homework?
+- [ ] 1.2f Can you name each sub-result in 3 words or less? (If not, it's not clear)
+
+**Cycle 3 — What Cycles 1-2 Missed**
+- [ ] 1.2g Are any sub-results actually the SAME thing phrased differently? (Merge)
+- [ ] 1.2h Could any sub-result be split — it's doing too much? (Split)
+- [ ] 1.2i Walk through as a user: "I just finished sub-result 1, do I feel momentum toward sub-result 2?"
+
+**→ Fix:** Apply all findings. Reorder, merge, split, rename until it passes all 9 checks.
+
 ---
 
 ## 1.3 Screens
@@ -310,6 +360,13 @@ What this process produces:
 - [ ] Break each sub-result into atomic screens — One purpose per screen
 - [ ] Name each screen — Use pattern: `[Module][Purpose]Screen` (e.g., `TourOverviewScreen`)
 - [ ] Define screen purpose — One sentence describing what this screen accomplishes
+
+### 🔥 ROAST 1.3: Screens
+- [ ] Any screen doing TWO things? Split it.
+- [ ] Any two screens doing the SAME thing? Merge them.
+- [ ] Walk the sequence: is anything missing between screens?
+
+**→ Fix:** Apply findings.
 
 ---
 
@@ -323,6 +380,13 @@ For each screen:
 - [ ] 🫀 Heart: What user feels — The emotional state this screen creates
 - [ ] 🧠 Mind: What user understands — The key insight they gain
 - [ ] 🔥 Gut: What user does — The CTA label (verb + noun)
+
+### 🔥 ROAST 1.4: Screen Details
+- [ ] Are any Heart entries generic? ("Inspired" → be specific HOW)
+- [ ] Does every Mind entry teach ONE clear thing? (Not three)
+- [ ] Is every CTA a result verb? ("See My Genius" not "Continue")
+
+**→ Fix:** Apply findings.
 
 ---
 
@@ -338,6 +402,13 @@ For each screen:
 - [ ] Skip paths — What happens if user skips mid-flow?
 - [ ] Bridges — What other modules does this connect to?
 
+### 🔥 ROAST 1.5: Extensions
+- [ ] Is the completion criteria specific? (Not "user feels good" — what DATA proves it?)
+- [ ] Does the skip path make sense? Does user lose anything they can't get back?
+- [ ] Are bridges bidirectional? Can user return to this module from the connected one?
+
+**→ Fix:** Apply findings.
+
 ---
 
 ## 1.6 Wireframes
@@ -350,9 +421,16 @@ For each screen:
 - [ ] Mobile-first layout — Starts at 375px width
 - [ ] Key elements positioned — Hero, content, CTA order
 
+### 🔥 ROAST 1.6: Wireframes
+- [ ] Is the CTA above the fold on mobile?
+- [ ] Is there enough breathing room? (Not cramped)
+- [ ] Could you delete any element and the screen would still work? (If yes, delete it)
+
+**→ Fix:** Apply findings.
+
 ---
 
-## 🔥 ROAST GATE 1: PRODUCT
+## 🔥 ROAST GATE 1: PRODUCT (Final Gate)
 
 > **STOP. Do not proceed to Architecture until this passes.**
 
@@ -674,11 +752,17 @@ INPUT
 
 PHASE 1: PRODUCT           [░░░░░░░░]
 ├─ [ ] 1.1 Master Result
+├─ [ ] 🔥 ROAST 1.1 (Deep: 3×3)
 ├─ [ ] 1.2 Sub-Results
+├─ [ ] 🔥 ROAST 1.2 (Deep: 3×3)
 ├─ [ ] 1.3 Screens
+├─ [ ] 🔥 ROAST 1.3
 ├─ [ ] 1.4 Screen Details
+├─ [ ] 🔥 ROAST 1.4
 ├─ [ ] 1.5 Extensions
+├─ [ ] 🔥 ROAST 1.5
 ├─ [ ] 1.6 Wireframes
+├─ [ ] 🔥 ROAST 1.6
 └─ [ ] 🔥 ROAST GATE 1
 
 PHASE 2: ARCHITECTURE      [░░░░░░░░]
