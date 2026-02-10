@@ -205,7 +205,7 @@ export class Clock {
                 opacity: '0.5',
             });
             // Use abbreviations to fit
-            const abbr = ['WILL', 'EMAN.', 'DIG.', 'ENRICH.'];
+            const abbr = ['PLAN', 'BUILD', 'COMM.', 'INTEGR.'];
             text.textContent = abbr[i];
             legendGroup.appendChild(dot);
             legendGroup.appendChild(text);
