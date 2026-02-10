@@ -3,130 +3,118 @@
  * 
  * All time is computed from Date.now(). 
  * No state needed — just math.
+ * 
+ * CORE PRINCIPLE: Every cycle carries the same 4-phase holonic pattern:
+ *   WILL → EMANATION → DIGESTION → ENRICHMENT
+ * The clock shows WHERE YOU ARE in each cycle, right now.
  */
 
 // ─── TYPES ─────────────────────────────────────────
 
 export type Phase = 'entry' | 'focus' | 'exit';
 
+/** The universal 4-phase holonic pattern present in every cycle */
+export type HolonicPhase = 'will' | 'emanation' | 'digestion' | 'enrichment';
+
+export const HOLONIC_PHASES: { id: HolonicPhase; label: string; emoji: string; color: string; action: string }[] = [
+    { id: 'will', label: 'WILL', emoji: '🔥', color: '#e07040', action: 'Set intention · Plant seeds' },
+    { id: 'emanation', label: 'EMANATION', emoji: '💧', color: '#5090c0', action: 'Build · Create · Execute' },
+    { id: 'digestion', label: 'DIGESTION', emoji: '🌍', color: '#60a060', action: 'Harvest · Polish · Ship' },
+    { id: 'enrichment', label: 'ENRICHMENT', emoji: '🌬️', color: '#a080c0', action: 'Integrate · Reflect · Rest' },
+];
+
+export function getHolonicPhase(progress: number): typeof HOLONIC_PHASES[number] {
+    const idx = Math.min(Math.floor(progress * 4), 3);
+    return HOLONIC_PHASES[idx];
+}
+
 export interface BreathState {
-    /** 0→1 position in breath cycle (0=exhale empty, 0.5=inhale full, 1=exhale empty) */
     position: number;
-    /** true during inhale half */
     inhaling: boolean;
 }
 
 export interface PulseState {
-    /** 1-4 which pulse in the sprint */
     pulseNumber: number;
-    /** entry/focus/exit */
     phase: Phase;
-    /** minutes elapsed in current phase */
     phaseElapsed: number;
-    /** minutes remaining in current phase */
     phaseRemaining: number;
-    /** minutes elapsed in current pulse */
     pulseElapsed: number;
-    /** overall progress 0→1 within the pulse */
     pulseProgress: number;
 }
 
 export interface SprintState {
-    /** Minutes elapsed in sprint */
     elapsed: number;
-    /** Minutes remaining */
     remaining: number;
-    /** 0→1 overall sprint progress */
     progress: number;
-    /** Current pulse info */
     pulse: PulseState;
-    /** Is sprint active */
     active: boolean;
+    holonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface DayState {
-    /** Current hour (0-23) */
     hour: number;
-    /** Current minute */
     minute: number;
-    /** Progress through the day 0→1 */
     progress: number;
-    /** Which "quarter" of day: dawn/morning/afternoon/evening */
     quarter: 'dawn' | 'morning' | 'afternoon' | 'evening';
-    /** Which sprint slot we're in (1-based, up to ~5 per day) */
     sprintSlot: number;
+    holonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface PlanetaryDay {
-    /** Day name */
     name: string;
-    /** Planet ruler */
     planet: string;
-    /** Traditional astronomical symbol */
     symbol: string;
-    /** Human-readable emoji */
     emoji: string;
-    /** Short energy essence */
     energy: string;
-    /** Ken Wilber intelligence type */
     intelligence: string;
-    /** One-sentence founder-relevant description */
     description: string;
 }
 
 export interface PlanetaryHour {
-    /** Planet ruling this hour */
     planet: string;
-    /** Human-readable emoji */
     emoji: string;
-    /** Short energy essence */
     energy: string;
-    /** Hour index within day (0-23) */
     hourIndex: number;
 }
 
 export interface MoonState {
-    /** Phase name */
     phase: string;
-    /** Symbol */
     symbol: string;
-    /** 0→1 through lunar cycle */
     progress: number;
-    /** Day of lunar cycle (0-29.5) */
     day: number;
-    /** Energy description for this moon phase */
     energy: string;
+    holonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface WeekState {
-    /** Day of week 0-6 (0=Sunday) */
     dayOfWeek: number;
-    /** Progress through week 0→1 */
     progress: number;
-    /** Planetary day info */
     planetaryDay: PlanetaryDay;
-    /** Current planetary hour */
     planetaryHour: PlanetaryHour;
+    holonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface MonthState {
-    /** Current month 1-12 */
     month: number;
-    /** Day of month */
     day: number;
-    /** Progress through month 0→1 */
     progress: number;
+    holonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface QuarterState {
-    /** Quarter number 1-4 */
     quarter: number;
-    /** Season name */
     season: string;
-    /** Progress through quarter 0→1 */
     progress: number;
-    /** Energy description for this season */
     energy: string;
+    holonicPhase: typeof HOLONIC_PHASES[number];
+}
+
+export interface YearState {
+    progress: number;
+    holonicPhase: typeof HOLONIC_PHASES[number];
+    /** Personal year progress (birthday-based) */
+    personalProgress: number;
+    personalHolonicPhase: typeof HOLONIC_PHASES[number];
 }
 
 export interface AllCycles {
@@ -137,6 +125,7 @@ export interface AllCycles {
     month: MonthState;
     quarter: QuarterState;
     moon: MoonState;
+    year: YearState;
 }
 
 // ─── CONSTANTS ─────────────────────────────────────
@@ -149,10 +138,6 @@ const SPRINT_PULSES = 4;
 const SPRINT_TOTAL_MIN = PULSE_TOTAL_MIN * SPRINT_PULSES; // 96
 
 // ─── ENERGETIC WEEK BLUEPRINT ──────────────────────
-// Synthesized from 11 traditions: Western Astrology, Hermeticism,
-// Kabbalah, Christian Mysticism, Shamanic, Ayurveda, Sufism,
-// Anthroposophy, Taoism, Buddhism, Vedic Astrology.
-// Intelligence types: Ken Wilber's Integral Model.
 
 const PLANETARY_DAYS: PlanetaryDay[] = [
     {
@@ -199,11 +184,7 @@ const PLANETARY_DAYS: PlanetaryDay[] = [
     },
 ];
 
-// Chaldean order for planetary hours
 const CHALDEAN_ORDER = ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon'];
-
-// Starting planet index in Chaldean order for each day's first hour
-// Sunday=Sun(3), Mon=Moon(6), Tue=Mars(2), Wed=Mercury(5), Thu=Jupiter(1), Fri=Venus(4), Sat=Saturn(0)
 const DAY_HOUR_START = [3, 6, 2, 5, 1, 4, 0];
 
 const PLANET_ENERGY: Record<string, { emoji: string; energy: string }> = {
@@ -234,6 +215,16 @@ const SEASON_ENERGY: Record<string, string> = {
     Autumn: 'Gather & Release',
 };
 
+// Week holonic mapping from holonic_cycles.md:
+// Mon (Moon) → WILL, Tue-Wed → EMANATION, Thu-Fri → DIGESTION, Sat-Sun → ENRICHMENT
+function getWeekHolonicPhase(dayOfWeek: number): typeof HOLONIC_PHASES[number] {
+    // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+    if (dayOfWeek === 1) return HOLONIC_PHASES[0]; // Mon → WILL
+    if (dayOfWeek === 2 || dayOfWeek === 3) return HOLONIC_PHASES[1]; // Tue-Wed → EMANATION
+    if (dayOfWeek === 4 || dayOfWeek === 5) return HOLONIC_PHASES[2]; // Thu-Fri → DIGESTION
+    return HOLONIC_PHASES[3]; // Sat-Sun → ENRICHMENT
+}
+
 // ─── BREATH ────────────────────────────────────────
 
 export function getBreathState(now: number, cycleDuration: number = 11): BreathState {
@@ -254,13 +245,13 @@ export function getSprintState(sprintStartTime: number | null, now: number): Spr
             progress: 0,
             pulse: { pulseNumber: 1, phase: 'entry', phaseElapsed: 0, phaseRemaining: PULSE_ENTRY_MIN, pulseElapsed: 0, pulseProgress: 0 },
             active: false,
+            holonicPhase: HOLONIC_PHASES[0],
         };
     }
 
     const elapsedMs = now - sprintStartTime;
     const elapsedMin = elapsedMs / 60000;
 
-    // Sprint ended
     if (elapsedMin >= SPRINT_TOTAL_MIN) {
         return {
             elapsed: SPRINT_TOTAL_MIN,
@@ -268,12 +259,13 @@ export function getSprintState(sprintStartTime: number | null, now: number): Spr
             progress: 1,
             pulse: { pulseNumber: 4, phase: 'exit', phaseElapsed: PULSE_EXIT_MIN, phaseRemaining: 0, pulseElapsed: PULSE_TOTAL_MIN, pulseProgress: 1 },
             active: false,
+            holonicPhase: HOLONIC_PHASES[3],
         };
     }
 
-    // Current pulse
     const pulseIndex = Math.min(Math.floor(elapsedMin / PULSE_TOTAL_MIN), SPRINT_PULSES - 1);
     const pulseElapsed = elapsedMin - (pulseIndex * PULSE_TOTAL_MIN);
+    const progress = elapsedMin / SPRINT_TOTAL_MIN;
 
     let phase: Phase;
     let phaseElapsed: number;
@@ -296,7 +288,7 @@ export function getSprintState(sprintStartTime: number | null, now: number): Spr
     return {
         elapsed: elapsedMin,
         remaining: SPRINT_TOTAL_MIN - elapsedMin,
-        progress: elapsedMin / SPRINT_TOTAL_MIN,
+        progress,
         pulse: {
             pulseNumber: pulseIndex + 1,
             phase,
@@ -306,6 +298,7 @@ export function getSprintState(sprintStartTime: number | null, now: number): Spr
             pulseProgress: pulseElapsed / PULSE_TOTAL_MIN,
         },
         active: true,
+        holonicPhase: HOLONIC_PHASES[pulseIndex],
     };
 }
 
@@ -324,11 +317,10 @@ export function getDayState(now: number): DayState {
     else if (hour < 18) quarter = 'afternoon';
     else quarter = 'evening';
 
-    // Sprint slots: assume work starts at ~9am, each sprint 96min + 15min break ≈ 2h slots
-    const workMinutes = Math.max(0, totalMinutes - 540); // 9am = 540min
-    const sprintSlot = Math.floor(workMinutes / 111) + 1; // 96 + 15 break
+    const workMinutes = Math.max(0, totalMinutes - 540);
+    const sprintSlot = Math.floor(workMinutes / 111) + 1;
 
-    return { hour, minute, progress, quarter, sprintSlot };
+    return { hour, minute, progress, quarter, sprintSlot, holonicPhase: getHolonicPhase(progress) };
 }
 
 // ─── WEEK ──────────────────────────────────────────
@@ -338,25 +330,24 @@ function getPlanetaryHour(dayOfWeek: number, hour: number): PlanetaryHour {
     const planetIdx = (startIdx + hour) % 7;
     const planet = CHALDEAN_ORDER[planetIdx];
     const info = PLANET_ENERGY[planet];
-    return {
-        planet,
-        emoji: info.emoji,
-        energy: info.energy,
-        hourIndex: hour,
-    };
+    return { planet, emoji: info.emoji, energy: info.energy, hourIndex: hour };
 }
 
 export function getWeekState(now: number): WeekState {
     const d = new Date(now);
     const dayOfWeek = d.getDay();
     const hour = d.getHours();
-    const progress = (dayOfWeek * 24 + hour) / 168;
+    const minute = d.getMinutes();
+    // Week starts Monday: Mon=0, ..., Sun=6
+    const mondayBased = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    const progress = (mondayBased * 1440 + hour * 60 + minute) / (7 * 1440);
 
     return {
         dayOfWeek,
         progress,
         planetaryDay: PLANETARY_DAYS[dayOfWeek],
         planetaryHour: getPlanetaryHour(dayOfWeek, hour),
+        holonicPhase: getWeekHolonicPhase(dayOfWeek),
     };
 }
 
@@ -367,16 +358,16 @@ export function getMonthState(now: number): MonthState {
     const month = d.getMonth() + 1;
     const day = d.getDate();
     const daysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-    const progress = (day - 1) / daysInMonth;
+    const progress = (day - 1 + (d.getHours() * 60 + d.getMinutes()) / 1440) / daysInMonth;
 
-    return { month, day, progress };
+    return { month, day, progress, holonicPhase: getHolonicPhase(progress) };
 }
 
 // ─── QUARTER ───────────────────────────────────────
 
 export function getQuarterState(now: number): QuarterState {
     const d = new Date(now);
-    const month = d.getMonth(); // 0-11
+    const month = d.getMonth();
     const quarter = Math.floor(month / 3) + 1;
     const seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
     const season = seasons[quarter - 1];
@@ -386,41 +377,145 @@ export function getQuarterState(now: number): QuarterState {
     const quarterEnd = new Date(d.getFullYear(), quarterStartMonth + 3, 1).getTime();
     const progress = (now - quarterStart) / (quarterEnd - quarterStart);
 
-    return { quarter, season, progress, energy: SEASON_ENERGY[season] };
+    return { quarter, season, progress, energy: SEASON_ENERGY[season], holonicPhase: getHolonicPhase(progress) };
 }
 
 // ─── MOON ──────────────────────────────────────────
 
 export function getMoonState(now: number): MoonState {
-    // Simple lunar phase calculation
-    // Known new moon: Jan 6, 2000 18:14 UTC
     const knownNewMoon = new Date(2000, 0, 6, 18, 14).getTime();
-    const synodicMonth = 29.53058770576; // days
+    const synodicMonth = 29.53058770576;
 
     const daysSince = (now - knownNewMoon) / 86400000;
     const cyclesElapsed = daysSince / synodicMonth;
     const currentCycleDay = (cyclesElapsed % 1) * synodicMonth;
+    const progress = currentCycleDay / synodicMonth;
 
-    let phase = MOON_PHASES[0];
+    let moonPhase = MOON_PHASES[0];
     for (const p of MOON_PHASES) {
         if (currentCycleDay >= p.start && currentCycleDay < p.end) {
-            phase = p;
+            moonPhase = p;
             break;
         }
     }
 
+    // Moon holonic: New Moon (0-25%) = WILL, Waxing (25-50%) = EMANATION,
+    // Full Moon (50-75%) = DIGESTION, Waning (75-100%) = ENRICHMENT
     return {
-        phase: phase.name,
-        symbol: phase.symbol,
-        progress: currentCycleDay / synodicMonth,
+        phase: moonPhase.name,
+        symbol: moonPhase.symbol,
+        progress,
         day: currentCycleDay,
-        energy: phase.energy,
+        energy: moonPhase.energy,
+        holonicPhase: getHolonicPhase(progress),
+    };
+}
+
+// ─── YEAR ──────────────────────────────────────────
+
+export function getYearState(now: number, birthday?: string): YearState {
+    const d = new Date(now);
+    const yearStart = new Date(d.getFullYear(), 0, 1).getTime();
+    const yearEnd = new Date(d.getFullYear() + 1, 0, 1).getTime();
+    const progress = (now - yearStart) / (yearEnd - yearStart);
+
+    // Personal year: birthday-to-birthday
+    let personalProgress = progress;
+    if (birthday) {
+        const [bMonth, bDay] = birthday.split('-').map(Number);
+        const thisYearBday = new Date(d.getFullYear(), bMonth - 1, bDay).getTime();
+
+        if (now >= thisYearBday) {
+            const nextYearBday = new Date(d.getFullYear() + 1, bMonth - 1, bDay).getTime();
+            personalProgress = (now - thisYearBday) / (nextYearBday - thisYearBday);
+        } else {
+            const lastYearBday = new Date(d.getFullYear() - 1, bMonth - 1, bDay).getTime();
+            personalProgress = (now - lastYearBday) / (thisYearBday - lastYearBday);
+        }
+    }
+
+    return {
+        progress,
+        holonicPhase: getHolonicPhase(progress),
+        personalProgress,
+        personalHolonicPhase: getHolonicPhase(personalProgress),
+    };
+}
+
+// ─── SYNTHESIS: THE ONE INSIGHT ────────────────────
+
+export interface CycleSynthesis {
+    /** One sentence telling you WHERE YOU ARE */
+    insight: string;
+    /** What the dominant energy is doing right now */
+    action: string;
+    /** How many cycles agree on the same holonic phase */
+    coherence: number;
+    /** The dominant holonic phase */
+    dominant: typeof HOLONIC_PHASES[number];
+}
+
+export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
+    // Count how many cycles are in each holonic phase
+    const counts: Record<HolonicPhase, number> = { will: 0, emanation: 0, digestion: 0, enrichment: 0 };
+    const activeCycles = [
+        cycles.day.holonicPhase,
+        cycles.week.holonicPhase,
+        cycles.month.holonicPhase,
+        cycles.quarter.holonicPhase,
+        cycles.moon.holonicPhase,
+        cycles.year.holonicPhase,
+    ];
+
+    if (cycles.sprint.active) {
+        activeCycles.push(cycles.sprint.holonicPhase);
+    }
+
+    for (const phase of activeCycles) {
+        counts[phase.id]++;
+    }
+
+    // Find dominant
+    let maxCount = 0;
+    let dominantId: HolonicPhase = 'will';
+    for (const [id, count] of Object.entries(counts) as [HolonicPhase, number][]) {
+        if (count > maxCount) {
+            maxCount = count;
+            dominantId = id;
+        }
+    }
+
+    const dominant = HOLONIC_PHASES.find(p => p.id === dominantId)!;
+    const coherence = Math.round((maxCount / activeCycles.length) * 100);
+
+    // Build the insight
+    const moonAction = cycles.moon.energy;
+    const dayPhase = cycles.day.holonicPhase;
+    const weekPhase = cycles.week.holonicPhase;
+
+    let insight: string;
+    if (coherence >= 60) {
+        insight = `${dominant.emoji} Strong ${dominant.label} energy — ${dominant.action.split('·')[0].trim()}`;
+    } else {
+        insight = `${dayPhase.emoji} Day in ${dayPhase.label}, ${weekPhase.emoji} Week in ${weekPhase.label}`;
+    }
+
+    return {
+        insight,
+        action: moonAction,
+        coherence,
+        dominant,
     };
 }
 
 // ─── ALL CYCLES ────────────────────────────────────
 
-export function getAllCycles(now: number, sprintStartTime: number | null, breathDuration: number = 11): AllCycles {
+export function getAllCycles(
+    now: number,
+    sprintStartTime: number | null,
+    breathDuration: number = 11,
+    birthday?: string
+): AllCycles {
     return {
         breath: getBreathState(now, breathDuration),
         sprint: getSprintState(sprintStartTime, now),
@@ -429,6 +524,7 @@ export function getAllCycles(now: number, sprintStartTime: number | null, breath
         month: getMonthState(now),
         quarter: getQuarterState(now),
         moon: getMoonState(now),
+        year: getYearState(now, birthday),
     };
 }
 
@@ -440,7 +536,6 @@ export function formatMinutes(min: number): string {
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-/** Phase display names */
 const PULSE_NAMES = ['INCEPTION', 'EMANATION', 'RETURN', 'INTEGRATION'];
 
 export function getPulseName(pulseNumber: number): string {

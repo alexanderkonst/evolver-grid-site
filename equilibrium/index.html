@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0a0a0f" />
   <meta name="description"
-    content="Equilibrium — A living clock that replaces mechanical time with biological rhythm." />
+    content="Equilibrium — A living clock that shows where you are in every cycle, from breath to year." />
   <title>Equilibrium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,15 +33,14 @@
     </div>
     <!-- Transition Prompt -->
     <div id="transition-prompt"></div>
+    <!-- Synthesis: THE ONE INSIGHT -->
+    <div id="synthesis"></div>
+    <!-- Moon Phase -->
+    <div id="moon-info"></div>
     <!-- Guidance Line -->
     <div id="guidance"></div>
     <!-- Status Bar -->
-    <div id="status-bar">
-      <span id="planetary-day"></span>
-      <span id="planetary-hour"></span>
-      <span id="moon-phase"></span>
-      <span id="quarter-info"></span>
-    </div>
+    <div id="status-bar"></div>
     <!-- Settings -->
     <button id="settings-toggle" aria-label="Settings">⚙</button>
     <!-- Settings Overlay -->
@@ -53,6 +52,12 @@
           <div class="setting-value">
             <input type="range" id="breath-duration" min="8" max="16" step="1" value="11" />
             <span id="breath-duration-label">11s</span>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="birthday">Birthday</label>
+          <div class="setting-value">
+            <input type="date" id="birthday" />
           </div>
         </div>
         <div class="setting-group">
