@@ -30,9 +30,8 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: R
 function createSegmentedRing(
     radius: number,
     strokeWidth: number,
-    opacity: number,
-    labelAngleDeg: number = -45
-): { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement; label: SVGTextElement } {
+    opacity: number
+): { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement } {
     const group = createSvgElement('g', { class: 'ring-group' });
     const circumference = 2 * Math.PI * radius;
     const segmentLength = circumference / 4;
@@ -69,23 +68,7 @@ function createSegmentedRing(
     });
     group.appendChild(dot);
 
-    // Ring label — positioned along the ring at a given angle
-    const labelAngleRad = labelAngleDeg * (Math.PI / 180);
-    const lx = CENTER + (radius + 10) * Math.cos(labelAngleRad);
-    const ly = CENTER + (radius + 10) * Math.sin(labelAngleRad);
-    const label = createSvgElement('text', {
-        x: String(lx),
-        y: String(ly),
-        'text-anchor': labelAngleDeg > 0 && labelAngleDeg < 180 ? 'start' : 'end',
-        fill: '#e8dcc8',
-        'font-size': '7',
-        'font-family': "'DM Sans', sans-serif",
-        opacity: '0.4',
-        class: 'ring-label',
-    });
-    group.appendChild(label);
-
-    return { group, segments, dot, label };
+    return { group, segments, dot };
 }
 
 function updateDotPosition(dot: SVGCircleElement, radius: number, progress: number) {
@@ -103,23 +86,23 @@ interface RingConfig {
     radius: number;
     strokeWidth: number;
     baseOpacity: number;
-    labelPrefix: string;
+    label: string;
 }
 
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 85, strokeWidth: 5, baseOpacity: 0.3, labelPrefix: 'Sprint' },
-    { id: 'day', radius: 105, strokeWidth: 4, baseOpacity: 0.35, labelPrefix: 'Day' },
-    { id: 'week', radius: 123, strokeWidth: 3.5, baseOpacity: 0.25, labelPrefix: 'Week' },
-    { id: 'moon', radius: 139, strokeWidth: 3, baseOpacity: 0.25, labelPrefix: 'Moon' },
-    { id: 'quarter', radius: 154, strokeWidth: 2.5, baseOpacity: 0.2, labelPrefix: 'Quarter' },
-    { id: 'year', radius: 167, strokeWidth: 2, baseOpacity: 0.15, labelPrefix: 'Year' },
+    { id: 'sprint', radius: 85, strokeWidth: 5, baseOpacity: 0.3, label: 'Sprint' },
+    { id: 'day', radius: 105, strokeWidth: 4, baseOpacity: 0.35, label: 'Day' },
+    { id: 'week', radius: 123, strokeWidth: 3.5, baseOpacity: 0.25, label: 'Week' },
+    { id: 'moon', radius: 139, strokeWidth: 3, baseOpacity: 0.25, label: 'Moon' },
+    { id: 'quarter', radius: 154, strokeWidth: 2.5, baseOpacity: 0.2, label: 'Quarter' },
+    { id: 'year', radius: 167, strokeWidth: 2, baseOpacity: 0.15, label: 'Year' },
 ];
 
 // ─── CLOCK CLASS ───────────────────────────────────
 
 export class Clock {
     private svg: SVGSVGElement;
-    private rings: Map<string, { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement; label: SVGTextElement; config: RingConfig }>;
+    private rings: Map<string, { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement; config: RingConfig }>;
 
     // Pulse arcs (inner breathing ring)
     private pulseArcs: SVGCircleElement[];
@@ -263,12 +246,7 @@ export class Clock {
         this.updateRing('year', cycles.year.personalProgress, showOuterRings);
 
         // --- Ring labels ---
-        this.setRingLabel('sprint', cycles.sprint.active ? cycles.sprint.holonicPhase.label : '');
-        this.setRingLabel('day', cycles.day.holonicPhase.label);
-        this.setRingLabel('week', cycles.week.holonicPhase.label);
-        this.setRingLabel('moon', cycles.moon.holonicPhase.label);
-        this.setRingLabel('quarter', cycles.quarter.holonicPhase.label);
-        this.setRingLabel('year', cycles.year.personalHolonicPhase.label);
+
 
         // --- Phase Label ---
         if (cycles.sprint.active) {
@@ -336,11 +314,7 @@ export class Clock {
         ring.dot.setAttribute('fill', HOLONIC_PHASES[activeIdx].color);
     }
 
-    private setRingLabel(id: string, text: string) {
-        const ring = this.rings.get(id);
-        if (!ring) return;
-        ring.label.textContent = text ? `${ring.config.labelPrefix}: ${text}` : '';
-    }
+
 
     private showTransitionPrompt(phase: Phase, pulseNumber: number) {
         const prompts: Record<string, string[]> = {
