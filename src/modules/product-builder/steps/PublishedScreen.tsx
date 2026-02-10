@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
 import ProductBuilderLoading from "../ProductBuilderLoading";
@@ -31,14 +30,12 @@ const PublishedScreen: React.FC = () => {
     }, []);
 
     const triggerCelebration = () => {
-        // Fire confetti
         confetti({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 }
         });
 
-        // Second burst
         setTimeout(() => {
             confetti({
                 particleCount: 50,
@@ -62,11 +59,9 @@ const PublishedScreen: React.FC = () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) throw new Error("Not authenticated");
 
-            // Generate slug
             const slug = `genius-${Date.now().toString(36)}`;
             const url = `/mp/${slug}`;
 
-            // Build product data from state (matching marketplace_products schema)
             const productData = {
                 user_id: user.id,
                 slug,
@@ -78,7 +73,6 @@ const PublishedScreen: React.FC = () => {
                 published_at: new Date().toISOString(),
             };
 
-            // Try to save to database
             try {
                 const { error: dbError } = await supabase
                     .from("marketplace_products")
@@ -95,7 +89,6 @@ const PublishedScreen: React.FC = () => {
             triggerCelebration();
         } catch (err) {
             console.error("Error publishing:", err);
-            // Still show success for demo
             const demoSlug = `genius-demo-${Date.now().toString(36)}`;
             setPublished(`/mp/${demoSlug}`);
             triggerCelebration();
@@ -146,7 +139,6 @@ const PublishedScreen: React.FC = () => {
     };
 
     const handleEdit = () => {
-        // Go back to first step
         navigate(PRODUCT_BUILDER_STEPS[0].path);
         toast({
             title: "Edit Mode",
@@ -164,27 +156,27 @@ const PublishedScreen: React.FC = () => {
             <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
                     <PartyPopper className="w-8 h-8 text-[#c8b7d8]" />
-                    <Sparkles className="w-6 h-6 text-primary-wabi" />
+                    <Sparkles className="w-6 h-6 text-[#8460ea]" />
                     <Star className="w-8 h-8 text-[#8460ea]" />
                 </div>
-                <h1 className="text-4xl font-bold text-primary-wabi mb-2">
+                <h1 className="text-4xl font-bold text-[#2c3150] mb-2">
                     Congratulations!
                 </h1>
-                <p className="text-xl text-primary-wabi font-semibold mb-4">
-                    Your Genius is Now Live
+                <p className="text-xl text-[#2c3150] font-semibold mb-4">
+                    Your Genius Business is Now Live
                 </p>
 
                 {/* Heart/Mind/Gut Messages */}
-                <div className="max-w-md mx-auto space-y-2 text-left bg-card border rounded-lg p-4">
-                    <p className="text-sm">
+                <div className="max-w-md mx-auto space-y-2 text-left bg-white border border-[#a4a3d0]/20 rounded-lg p-4">
+                    <p className="text-sm text-[#2c3150]">
                         <span className="mr-2">🫀</span>
-                        <strong>You just published your genius.</strong>
+                        <strong>You just published your genius business.</strong>
                     </p>
-                    <p className="text-sm text-primary-wabi">
+                    <p className="text-sm text-[#2c3150]/70">
                         <span className="mr-2">🧠</span>
                         People can now find and buy from you.
                     </p>
-                    <p className="text-sm text-primary-wabi">
+                    <p className="text-sm text-[#2c3150]/70">
                         <span className="mr-2">🔥</span>
                         Share it with the world.
                     </p>
@@ -192,40 +184,36 @@ const PublishedScreen: React.FC = () => {
             </div>
 
             {/* Link Box */}
-            <Card className="max-w-xl mx-auto mb-6 bg-white border border-[#a4a3d0]/20">
-                <CardContent className="p-4">
-                    <p className="text-sm text-primary-wabi mb-2">Your product URL:</p>
-                    <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-muted rounded-lg px-4 py-3 text-sm font-mono truncate">
-                            {state.productUrl || productUrl}
-                        </div>
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            onClick={handleCopyLink}
-                            className="flex-shrink-0"
-                        >
-                            {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                        </Button>
+            <div className="max-w-xl mx-auto mb-6 bg-white border border-[#a4a3d0]/20 rounded-xl p-4">
+                <p className="text-sm text-[#2c3150]/70 mb-2">Your product URL:</p>
+                <div className="flex items-center gap-2">
+                    <div className="flex-1 bg-[#8460ea]/5 rounded-lg px-4 py-3 text-sm font-mono text-[#2c3150] truncate">
+                        {state.productUrl || productUrl}
                     </div>
-                </CardContent>
-            </Card>
+                    <button
+                        onClick={handleCopyLink}
+                        className="flex-shrink-0 w-10 h-10 rounded-lg border border-[#a4a3d0]/30 flex items-center justify-center hover:bg-[#8460ea]/5 transition-colors"
+                    >
+                        {copied ? <Check className="w-4 h-4 text-[#8460ea]" /> : <Copy className="w-4 h-4 text-[#2c3150]/60" />}
+                    </button>
+                </div>
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-3 max-w-xl mx-auto">
                 <Button
                     size="lg"
                     onClick={handleViewOnMarketplace}
-                    className="gap-2"
+                    className="gap-2 bg-[#8460ea] hover:bg-[#7350d0] text-white"
                 >
                     <ExternalLink className="w-4 h-4" />
-                    View on Marketplace
+                    View Your Page
                 </Button>
                 <Button
                     variant="outline"
                     size="lg"
                     onClick={handleShare}
-                    className="gap-2"
+                    className="gap-2 border-[#a4a3d0]/30 text-[#2c3150] hover:bg-[#8460ea]/5"
                 >
                     <Share2 className="w-4 h-4" />
                     Share
@@ -234,7 +222,7 @@ const PublishedScreen: React.FC = () => {
                     variant="ghost"
                     size="lg"
                     onClick={handleEdit}
-                    className="gap-2"
+                    className="gap-2 text-[#2c3150]/60 hover:text-[#2c3150] hover:bg-[#8460ea]/5"
                 >
                     <Edit className="w-4 h-4" />
                     Edit
@@ -243,7 +231,7 @@ const PublishedScreen: React.FC = () => {
 
             {/* Motivational Footer */}
             <div className="text-center mt-12 max-w-lg mx-auto">
-                <p className="text-primary-wabi italic">
+                <p className="text-[#2c3150]/60 italic">
                     "You did something most people never do. You made your gift available to the world."
                 </p>
             </div>
