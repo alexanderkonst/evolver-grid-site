@@ -171,7 +171,7 @@ const App = () => (
                   <Route path="/start" element={<OnboardingPage />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />
-                  <Route path="/profile" element={<Navigate to="/game/grow" replace />} />
+                  <Route path="/profile" element={<Navigate to="/game/me" replace />} />
                   <Route path="/settings" element={<Profile />} />
                   <Route path="/game/settings" element={<Settings />} />
                   <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
@@ -193,22 +193,24 @@ const App = () => (
                   <Route path="/game" element={<GameHome />} />
                   <Route path="/game/next-move" element={<CoreLoopHome />} />
                   <Route path="/game/next-move-v2" element={<DailyLoopV2 />} />
-                  {/* GROW Space (was Profile) */}
-                  <Route path="/game/grow" element={<ProfileOverview />} />
-                  <Route path="/game/grow/settings" element={<Profile />} />
-                  <Route path="/game/grow/mission" element={<ProfileMissionSection />} />
-                  <Route path="/game/grow/assets" element={<ProfileAssetsSection />} />
-                  <Route path="/game/grow/genius-business" element={<GeniusBusiness />} />
-                  <Route path="/game/grow/genius-business/audience" element={<GeniusBusinessAudience />} />
-                  <Route path="/game/grow/genius-business/promise" element={<GeniusBusinessPromise />} />
-                  <Route path="/game/grow/genius-business/channels" element={<GeniusBusinessChannels />} />
-                  <Route path="/game/grow/genius-business/vision" element={<GeniusBusinessVision />} />
-                  <Route path="/game/grow/zone-of-genius" element={<ZoneOfGeniusOverview />} />
-                  <Route path="/game/grow/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
-                  <Route path="/game/grow/art" element={<ArtPage />} />
+                  {/* ME Space (was Grow, was Profile) */}
+                  <Route path="/game/me" element={<ProfileOverview />} />
+                  <Route path="/game/me/settings" element={<Profile />} />
+                  <Route path="/game/me/mission" element={<ProfileMissionSection />} />
+                  <Route path="/game/me/assets" element={<ProfileAssetsSection />} />
+                  <Route path="/game/me/genius-business" element={<GeniusBusiness />} />
+                  <Route path="/game/me/genius-business/audience" element={<GeniusBusinessAudience />} />
+                  <Route path="/game/me/genius-business/promise" element={<GeniusBusinessPromise />} />
+                  <Route path="/game/me/genius-business/channels" element={<GeniusBusinessChannels />} />
+                  <Route path="/game/me/genius-business/vision" element={<GeniusBusinessVision />} />
+                  <Route path="/game/me/zone-of-genius" element={<ZoneOfGeniusOverview />} />
+                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
+                  <Route path="/game/me/art" element={<ArtPage />} />
                   {/* Legacy redirects */}
-                  <Route path="/game/profile" element={<Navigate to="/game/grow" replace />} />
-                  <Route path="/game/profile/*" element={<Navigate to="/game/grow" replace />} />
+                  <Route path="/game/profile" element={<Navigate to="/game/me" replace />} />
+                  <Route path="/game/profile/*" element={<Navigate to="/game/me" replace />} />
+                  <Route path="/game/grow" element={<Navigate to="/game/me" replace />} />
+                  <Route path="/game/grow/*" element={<Navigate to="/game/me" replace />} />
                   {/* LEARN Space (was Transformation) */}
                   <Route path="/game/learn" element={<LearnSpace />} />
                   <Route path="/game/learn/today" element={<TodaysPractice />} />
