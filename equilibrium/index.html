@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="description"
+    content="Equilibrium — A living clock that replaces mechanical time with biological rhythm." />
+  <title>Equilibrium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500&family=Libre+Baskerville:ital@1&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- Clock Face -->
+    <div id="clock-container">
+      <svg id="rings" viewBox="0 0 400 400"></svg>
+      <div id="breathing-circle">
+        <div id="breath-inner"></div>
+      </div>
+    </div>
+    <!-- Phase Label -->
+    <div id="phase-display">
+      <div id="phase-label"></div>
+      <div id="time-remaining"></div>
+    </div>
+    <!-- Transition Prompt -->
+    <div id="transition-prompt"></div>
+    <!-- Guidance Line -->
+    <div id="guidance"></div>
+    <!-- Status Bar -->
+    <div id="status-bar">
+      <span id="planetary-day"></span>
+      <span id="planetary-hour"></span>
+      <span id="moon-phase"></span>
+      <span id="quarter-info"></span>
+    </div>
+    <!-- Settings -->
+    <button id="settings-toggle" aria-label="Settings">⚙</button>
+    <!-- Settings Overlay -->
+    <div id="settings-overlay" class="hidden">
+      <div id="settings-panel">
+        <h2>Settings</h2>
+        <div class="setting-group">
+          <label for="breath-duration">Breath Cycle</label>
+          <div class="setting-value">
+            <input type="range" id="breath-duration" min="8" max="16" step="1" value="11" />
+            <span id="breath-duration-label">11s</span>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="toggle-prompts">Transition Prompts</label>
+          <input type="checkbox" id="toggle-prompts" checked />
+        </div>
+        <div class="setting-group">
+          <label for="toggle-outer-rings">Outer Rings</label>
+          <input type="checkbox" id="toggle-outer-rings" checked />
+        </div>
+        <div class="setting-group">
+          <label for="toggle-sound">Sound</label>
+          <input type="checkbox" id="toggle-sound" />
+        </div>
+        <button id="settings-close">Close</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

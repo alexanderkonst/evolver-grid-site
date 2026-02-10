@@ -477,6 +477,44 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
+### ⏰ STANDALONE PRODUCTS
+
+#### Module: Equilibrium — v0.9
+
+| Field | Value |
+|-------|-------|
+| Version | **0.9** (MVP) |
+| Master Result | Arbitrary willpower-driven work → Harmonious cycle-aware deep work |
+| Start | Standalone web app (iPad, desktop, phone) |
+| End | Continuous tool — success = daily use |
+| Dependencies | None (standalone, future Evolver integration) |
+| Tech | Vite + TypeScript, Vanilla CSS, localStorage, no backend |
+| Source | [Holonic Cycles Synthesis](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/holonic_cycles.md) |
+| Spec | [Product Spec](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_product_spec.md) |
+| Tracker | [Progress Tracker](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_tracker.md) |
+| Code | `equilibrium/` |
+
+> **Essence:** Replaces mechanical clock with biological clock. Your breath is the clock.
+> **Significance:** Infrastructure for a different relationship with time — time harmonization, not time management.
+> **Nth-Consequence:** Humanity returns from mechanical time to biological time. The 8-hour workday dies.
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Breathing Circle (11s animation) | 0.9 | MVP |
+| Sprint Timer (4×24min pulses) | 0.9 | MVP |
+| Day Ring (progress through day) | 0.9 | MVP |
+| Week Ring (planetary day) | 0.9 | MVP |
+| Month Ring | 0.9 | MVP |
+| Quarter Ring | 0.9 | MVP |
+| Moon Phase | 0.9 | MVP |
+| Transition Prompts | 0.9 | MVP |
+| Settings (breath duration, toggles) | 0.9 | MVP |
+| Actionable Guidance | 0.9 | MVP |
+| Sprint Logging (localStorage) | 0.9 | MVP |
+
+---
+
 ## 🗺️ SPECIAL MODULES
 
 ### Module: Onboarding — v0.7

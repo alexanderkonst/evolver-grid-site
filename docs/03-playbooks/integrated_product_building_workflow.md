@@ -1,4 +1,4 @@
-# Integrated Product Builder
+# Integrated Product Building Workflow
 ## Step-by-Step Execution Manual for Any Module
 
 *"From ICP + Pain → to Working Code in one linear path."*
@@ -32,6 +32,20 @@
 - AI executes full phase autonomously
 - Human reviews at Roast Gates
 - This enables 100x speed
+
+## ⚠️ MANDATORY: Progress Tracker
+
+> [!IMPORTANT]
+> **Before starting any module, create `docs/specs/[module]/[module]_tracker.md`** using the Progress Tracker template below.
+> 
+> **Rules:**
+> 1. **Create tracker FIRST** — before any Phase 1 work begins
+> 2. **Update after each sub-step** — mark `[x]` immediately, add brief result summary
+> 3. **Show current position** — use `← CURRENT` marker
+> 4. **Summarize each sub-phase result** — don't just check the box, write what was decided (e.g., "5 Sub-Results defined: Coherent Breathing, Sprint Awareness, Guided Transitions, Day Awareness, Cycle Awareness")
+> 5. **Human must see the tracker** — this is the primary visibility tool for supervision
+>
+> The tracker gives the human (and other AI agents) full visibility into where you are and what you decided at each step. Without it, the human is flying blind.
 
 ---
 

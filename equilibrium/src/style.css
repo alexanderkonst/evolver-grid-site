@@ -1,0 +1,542 @@
+/* ============================================
+   EQUILIBRIUM — Living Clock
+   "Your breath is the clock."
+   ============================================ */
+
+/* --- RESET --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- TOKENS --- */
+:root {
+  /* Backgrounds */
+  --bg-void: #0a0a0f;
+  --bg-surface: #12121a;
+
+  /* Gold spectrum */
+  --gold: #c9a84c;
+  --gold-dim: #8a7335;
+  --gold-bright: #e0c060;
+
+  /* Text */
+  --cream: #e8dcc8;
+  --cream-muted: #9a9080;
+
+  /* Ring colors (inner → outer = bright → dim) */
+  --ring-breath: #c9a84c;
+  --ring-pulse: #d4a853;
+  --ring-sprint: #a8853f;
+  --ring-day: #7a6830;
+  --ring-week: #5c4e25;
+  --ring-month: #3e351c;
+  --ring-quarter: #2a2414;
+
+  /* Phase accents */
+  --phase-entry: #6b8cae;
+  --phase-focus: #c9a84c;
+  --phase-exit: #8b6b8a;
+
+  /* Glow */
+  --glow: rgba(201, 168, 76, 0.15);
+  --glow-strong: rgba(201, 168, 76, 0.3);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-voice: 'Libre Baskerville', serif;
+  --font-ui: 'DM Sans', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Animation */
+  --breath-duration: 11s;
+}
+
+/* --- BASE --- */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-void);
+  color: var(--cream);
+  font-family: var(--font-ui);
+}
+
+#app {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* --- CLOCK CONTAINER --- */
+#clock-container {
+  position: relative;
+  width: 80vmin;
+  height: 80vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#rings {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Ring track (background) */
+.ring-track {
+  fill: none;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+/* Ring progress (foreground) */
+.ring-progress {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease;
+}
+
+/* Ring label text */
+.ring-label {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  fill: var(--cream-muted);
+  font-size: 6px;
+  text-anchor: middle;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show label on ring hover */
+.ring-group:hover .ring-label,
+.ring-group.active .ring-label {
+  opacity: 1;
+}
+
+.ring-group:hover .ring-track {
+  opacity: 0.3;
+}
+
+/* Pulse arcs (4 segments) */
+.pulse-arc {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0.3;
+  transition: opacity 0.5s ease, stroke 0.5s ease;
+}
+
+.pulse-arc.active {
+  opacity: 1;
+}
+
+.pulse-arc.completed {
+  opacity: 0.5;
+}
+
+/* Current position dot */
+.position-dot {
+  fill: var(--gold-bright);
+  filter: drop-shadow(0 0 4px var(--gold));
+}
+
+/* --- BREATHING CIRCLE --- */
+#breathing-circle {
+  position: relative;
+  width: clamp(100px, 22vmin, 180px);
+  height: clamp(100px, 22vmin, 180px);
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: breathe var(--breath-duration) ease-in-out infinite;
+  z-index: 2;
+}
+
+#breath-inner {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+      rgba(201, 168, 76, 0.08) 0%,
+      transparent 70%);
+  box-shadow:
+    0 0 60px var(--glow),
+    0 0 120px rgba(201, 168, 76, 0.05);
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(0.82);
+    opacity: 0.5;
+    box-shadow:
+      0 0 30px rgba(201, 168, 76, 0.08),
+      inset 0 0 15px rgba(201, 168, 76, 0.05);
+    border-color: var(--gold-dim);
+  }
+
+  50% {
+    transform: scale(1.0);
+    opacity: 1.0;
+    box-shadow:
+      0 0 60px var(--glow-strong),
+      inset 0 0 30px var(--glow);
+    border-color: var(--gold-bright);
+  }
+}
+
+/* --- PHASE DISPLAY --- */
+#phase-display {
+  position: absolute;
+  bottom: calc(var(--space-2xl) + 2rem);
+  text-align: center;
+  z-index: 3;
+}
+
+#phase-label {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-xl);
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+#time-remaining {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+}
+
+/* --- GUIDANCE LINE --- */
+#guidance {
+  position: absolute;
+  bottom: calc(var(--space-2xl) + 5.5rem);
+  text-align: center;
+  font-family: var(--font-voice);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  max-width: 400px;
+  line-height: 1.5;
+  opacity: 0.85;
+  transition: opacity 1.5s ease;
+  z-index: 3;
+}
+
+#guidance.category-do {
+  color: var(--gold);
+}
+
+#guidance.category-be {
+  color: var(--cream);
+}
+
+#guidance.category-rest {
+  color: var(--phase-exit);
+}
+
+/* --- TRANSITION PROMPT --- */
+#transition-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-voice);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--cream);
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.6;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 2s ease-in;
+}
+
+#transition-prompt.visible {
+  opacity: 1;
+}
+
+#transition-prompt.fading {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* --- STATUS BAR --- */
+#status-bar {
+  position: absolute;
+  bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+}
+
+#status-bar span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Status bar separator */
+#status-bar span:not(:last-child)::after {
+  content: '·';
+  margin-left: var(--space-sm);
+  color: var(--gold-dim);
+}
+
+/* --- SETTINGS TOGGLE --- */
+#settings-toggle {
+  position: absolute;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  background: none;
+  border: none;
+  color: var(--cream-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: var(--space-sm);
+  border-radius: 50%;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 5;
+  line-height: 1;
+}
+
+#settings-toggle:hover {
+  color: var(--gold-dim);
+  background: rgba(201, 168, 76, 0.05);
+}
+
+/* --- SETTINGS OVERLAY --- */
+#settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#settings-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#settings-panel {
+  background: var(--bg-surface);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 16px 16px 0 0;
+  padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+  width: 100%;
+  max-width: 420px;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#settings-overlay.hidden #settings-panel {
+  transform: translateY(100%);
+}
+
+#settings-panel h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-xl);
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xl);
+}
+
+.setting-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.setting-group label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--cream);
+}
+
+.setting-value {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.setting-value span {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--gold);
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* Range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 4px;
+  background: var(--gold-dim);
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  border: none;
+}
+
+/* Checkbox toggle */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cream-muted);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+  background: rgba(201, 168, 76, 0.3);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translateX(18px);
+  background: var(--gold);
+}
+
+#settings-close {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 8px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#settings-close:hover {
+  background: rgba(201, 168, 76, 0.15);
+}
+
+/* --- RESPONSIVE --- */
+
+/* Phone portrait */
+@media (max-width: 639px) {
+  #clock-container {
+    width: 85vw;
+    height: 85vw;
+  }
+
+  #phase-display {
+    bottom: calc(var(--space-xl) + 2rem);
+  }
+
+  #phase-label {
+    font-size: var(--text-lg);
+  }
+
+  /* Hide outer rings on small screens */
+  .ring-outer {
+    display: none;
+  }
+}
+
+/* Phone landscape */
+@media (min-width: 640px) and (max-width: 767px) {
+  #clock-container {
+    width: 60vmin;
+    height: 60vmin;
+  }
+}
+
+/* iPad portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #clock-container {
+    width: 75vmin;
+    height: 75vmin;
+  }
+}
+
+/* iPad landscape + Desktop */
+@media (min-width: 1024px) {
+  #clock-container {
+    width: 80vmin;
+    height: 80vmin;
+  }
+}
