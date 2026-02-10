@@ -32,19 +32,19 @@ const ProductBuilderLoading: React.FC<ProductBuilderLoadingProps> = ({
         >
             {/* Animated spinner */}
             <div className="relative mb-8">
-                <div className="w-16 h-16 border-4 border-primary/20 rounded-full" />
-                <div className="absolute top-0 left-0 w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                <div className="w-16 h-16 border-4 border-[#8460ea]/20 rounded-full" />
+                <div className="absolute top-0 left-0 w-16 h-16 border-4 border-[#8460ea] border-t-transparent rounded-full animate-spin" />
             </div>
 
             {/* Message */}
-            <h2 className="text-xl font-semibold text-primary-wabi mb-2">{message}</h2>
-            <p className="text-primary-wabi text-sm mb-6">{submessage}</p>
+            <h2 className="text-xl font-semibold text-[#2c3150] mb-2">{message}</h2>
+            <p className="text-[#2c3150]/70 text-sm mb-6">{submessage}</p>
 
             {/* Progress bar (optional) */}
             {progress !== undefined && (
-                <div className="w-64 h-2 bg-border rounded-full overflow-hidden">
+                <div className="w-64 h-2 bg-[#a4a3d0]/20 rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-primary transition-all duration-500 ease-out"
+                        className="h-full bg-gradient-to-r from-[#8460ea] to-[#a4a3d0] transition-all duration-500 ease-out"
                         style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
                     />
                 </div>
@@ -52,9 +52,9 @@ const ProductBuilderLoading: React.FC<ProductBuilderLoadingProps> = ({
 
             {/* Pulsing dots */}
             <div className="flex gap-1 mt-6">
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className="w-2 h-2 bg-[#8460ea] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                <div className="w-2 h-2 bg-[#8460ea] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                <div className="w-2 h-2 bg-[#8460ea] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
             </div>
         </div>
     );

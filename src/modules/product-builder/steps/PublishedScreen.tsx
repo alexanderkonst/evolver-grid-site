@@ -163,9 +163,9 @@ const PublishedScreen: React.FC = () => {
             {/* Celebration Header */}
             <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
-                    <PartyPopper className="w-8 h-8 text-yellow-500" />
+                    <PartyPopper className="w-8 h-8 text-[#c8b7d8]" />
                     <Sparkles className="w-6 h-6 text-primary-wabi" />
-                    <Star className="w-8 h-8 text-amber-500" />
+                    <Star className="w-8 h-8 text-[#8460ea]" />
                 </div>
                 <h1 className="text-4xl font-bold text-primary-wabi mb-2">
                     Congratulations!

@@ -126,7 +126,7 @@ const BlueprintScreen: React.FC = () => {
                     </div>
 
                     {/* CTA Section */}
-                    <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+                    <div className="bg-[#8460ea]/5 rounded-lg p-4 border border-[#8460ea]/20">
                         <p className="text-primary-wabi/80 text-sm">
                             {state.blueprintContent?.ctaSection}
                         </p>

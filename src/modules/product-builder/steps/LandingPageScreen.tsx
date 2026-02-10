@@ -157,7 +157,7 @@ const LandingPageScreen: React.FC = () => {
                             <p className="text-base text-slate-200 max-w-xl mx-auto mb-6">
                                 {state.landingContent?.subheadline}
                             </p>
-                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold">
+                            <Button size="lg" className="bg-[#8460ea] hover:bg-[#7350d0] text-white font-semibold">
                                 {state.landingContent?.ctaText}
                             </Button>
                         </div>
@@ -212,7 +212,7 @@ const LandingPageScreen: React.FC = () => {
                             <p className="text-secondary-wabi text-sm mb-4 max-w-md mx-auto">
                                 {rawData.finalCtaSubheadline || "Get started today."}
                             </p>
-                            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold">
+                            <Button size="lg" className="bg-[#8460ea] hover:bg-[#7350d0] text-white font-semibold">
                                 {state.landingContent?.ctaText}
                             </Button>
                         </div>
