@@ -113,6 +113,7 @@ import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
+import EquilibriumPage from "./pages/EquilibriumPage";
 import ArtPage from "./pages/game/ArtPiecePage";
 
 const PageLoader = () => (
@@ -315,6 +316,8 @@ const App = () => (
                   </Route>
                   {/* Tools */}
                   <Route path="/transcriber" element={<Transcriber />} />
+                  {/* Equilibrium — Standalone Living Clock */}
+                  <Route path="/equilibrium" element={<EquilibriumPage />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

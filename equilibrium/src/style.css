@@ -214,6 +214,38 @@ body {
   }
 }
 
+/* --- SPRINT CTA --- */
+#sprint-cta {
+  position: absolute;
+  z-index: 5;
+  padding: var(--space-md) var(--space-xl);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.1);
+}
+
+#sprint-cta:hover {
+  background: rgba(201, 168, 76, 0.08);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+
+#sprint-cta.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
 /* --- PHASE DISPLAY --- */
 #phase-display {
   position: absolute;
@@ -494,6 +526,28 @@ input[type="checkbox"]:checked::before {
   background: rgba(201, 168, 76, 0.15);
 }
 
+/* Time input styling */
+input[type="time"] {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 6px;
+  color: var(--gold);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  padding: var(--space-xs) var(--space-sm);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7) sepia(1) hue-rotate(10deg);
+  cursor: pointer;
+}
+
+input[type="time"]:focus {
+  border-color: var(--gold);
+}
+
 /* --- RESPONSIVE --- */
 
 /* Phone portrait */
@@ -509,6 +563,25 @@ input[type="checkbox"]:checked::before {
 
   #phase-label {
     font-size: var(--text-lg);
+  }
+
+  #guidance {
+    font-size: var(--text-sm);
+    max-width: 300px;
+    bottom: calc(var(--space-xl) + 5rem);
+  }
+
+  #status-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    max-width: 90vw;
+    font-size: 0.65rem;
+  }
+
+  #sprint-cta {
+    font-size: var(--text-sm);
+    padding: var(--space-sm) var(--space-lg);
   }
 
   /* Hide outer rings on small screens */
