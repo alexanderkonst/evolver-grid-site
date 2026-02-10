@@ -63,4 +63,52 @@ export interface Module {
   versionStage?: VersionStage;
   startRoute?: string; // entry route for the module
   dependencies?: string[]; // module slugs this depends on
+
+  // Landing page data (generated via Module Landing Page Workflow SOP)
+  landingData?: ModuleLandingData;
+}
+
+/**
+ * Marketing-grade landing page content for a module.
+ * Generated via docs/04-workflows/module_landing_page_workflow.md
+ * Rendered by ModuleLandingTemplate component.
+ */
+export interface ModuleLandingData {
+  // Hero
+  forAudience: string;
+  headline: string;
+  subheadline: string;
+  ctaButtonText: string;
+  ctaButtonLink: string;
+
+  // For Whom
+  forWhom: string[];
+
+  // Pain Section
+  painSectionHeader: string;
+  painBullets: string[];
+
+  // Solution Section
+  solutionSectionHeader: string;
+  solutionSteps: Array<{ verb: string; description: string }>;
+
+  // Outcomes
+  outcomes: string[];
+
+  // How It Works
+  howItWorks: Array<{ step: string; description: string; time?: string }>;
+
+  // Story / Origin
+  story: string;
+
+  // Final CTA
+  finalCtaHeadline: string;
+  finalCtaSubheadline: string;
+
+  // Core Message (for meta/SEO/internal reference)
+  coreMessage?: {
+    belief: string;
+    oneLiner: string;
+    resonanceHook: string;
+  };
 }

@@ -15,6 +15,7 @@ import LandingPage from "./pages/LandingPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
+import ModuleLandingPage from "./pages/ModuleLandingPage";
 import AIUpgrade from "./pages/AIUpgrade";
 import Destiny from "./pages/Destiny";
 import MensCircle from "./pages/MensCircle";
@@ -296,6 +297,7 @@ const App = () => (
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
                   <Route path="/m/:slug" element={<ModuleDetail />} />
+                  <Route path="/modules/:slug" element={<ModuleLandingPage />} />
                   {/* Mission Discovery */}
                   <Route path="/mission-discovery" element={<MissionDiscoveryLanding />} />
                   <Route path="/mission-discovery/wizard" element={<MissionDiscoveryWizard />} />
