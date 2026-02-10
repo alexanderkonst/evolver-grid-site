@@ -14,10 +14,10 @@ const GeniusBusiness = () => {
     const { loading, excaliburData, profileId } = useExcaliburData();
 
     const modules = [
-        { id: "audience", label: "Ideal Client", icon: Users, path: "/game/profile/genius-business/audience", description: "Who this is for" },
-        { id: "promise", label: "Promise", icon: Target, path: "/game/profile/genius-business/promise", description: "A to B transformation" },
-        { id: "channels", label: "Channels", icon: Radio, path: "/game/profile/genius-business/channels", description: "How to reach them" },
-        { id: "vision", label: "Vision", icon: Telescope, path: "/game/profile/genius-business/vision", description: "The bigger arc" },
+        { id: "audience", label: "Ideal Client", icon: Users, path: "/game/me/genius-business/audience", description: "Who this is for" },
+        { id: "promise", label: "Promise", icon: Target, path: "/game/me/genius-business/promise", description: "A to B transformation" },
+        { id: "channels", label: "Channels", icon: Radio, path: "/game/me/genius-business/channels", description: "How to reach them" },
+        { id: "vision", label: "Vision", icon: Telescope, path: "/game/me/genius-business/vision", description: "The bigger arc" },
     ];
 
     if (loading) {

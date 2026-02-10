@@ -16,7 +16,7 @@ type Step = 'type' | 'subtype' | 'category' | 'details' | 'done';
 const AssetMappingWizard = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/profile";
+    const returnPath = searchParams.get("return") || "/game/me";
     const { toast } = useToast();
 
     // Selection state

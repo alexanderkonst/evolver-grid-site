@@ -31,7 +31,7 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                 navigate(prevStep.path);
             }
         } else {
-            navigate("/zone-of-genius/excalibur");
+            navigate("/game/me/genius-business");
         }
     };
 

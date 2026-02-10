@@ -184,7 +184,7 @@ const Navigation = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
                       <DropdownMenuItem asChild>
-                        <Link to="/game/profile" className="flex items-center cursor-pointer">
+                        <Link to="/game/me" className="flex items-center cursor-pointer">
                           <User className="h-4 w-4 mr-2" />
                           Profile
                         </Link>
@@ -286,7 +286,7 @@ const Navigation = () => {
                   <p className="text-sm font-medium text-foreground">{getDisplayName()}</p>
                   <p className="text-xs text-muted-foreground">{user.email}</p>
                   <Link
-                    to="/game/profile"
+                    to="/game/me"
                     className="flex items-center py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     onClick={() => setIsOpen(false)}
                   >

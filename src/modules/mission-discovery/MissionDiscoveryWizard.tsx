@@ -53,7 +53,7 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
 const MissionDiscoveryWizard = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/profile";
+    const returnPath = searchParams.get("return") || "/game/me";
     const missionIdParam = searchParams.get("missionId");
     const readOnlyParam = searchParams.get("readOnly") === "true";
     const directCommitParam = searchParams.get("directCommit") === "true";

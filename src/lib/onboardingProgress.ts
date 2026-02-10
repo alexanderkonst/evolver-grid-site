@@ -49,7 +49,7 @@ export const getNextStepUrl = (stage: string | null | undefined): string => {
         case 7:
             return "/game/collabs";
         case 8:
-            return "/game/profile/mission";
+            return "/game/me/mission";
         default:
             return "/game";
     }

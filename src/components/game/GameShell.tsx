@@ -49,7 +49,7 @@ const SPACES: NavItem[] = [
         id: "profile",
         label: "Profile",
         icon: <User className="w-5 h-5" />,
-        path: "/game/profile",
+        path: "/game/me",
         description: "Know yourself",
         modules: [
             { id: "zog", label: "Zone of Genius", path: "/zone-of-genius/entry" },

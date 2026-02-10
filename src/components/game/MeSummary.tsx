@@ -54,7 +54,7 @@ export default function MeSummary({
 
             {/* View Profile Link */}
             <Link
-                to="/game/profile"
+                to="/game/me"
                 className="mt-4 text-sm text-[#8460ea] hover:underline flex items-center gap-1"
             >
                 View Profile →

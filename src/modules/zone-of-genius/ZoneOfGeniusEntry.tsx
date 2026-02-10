@@ -92,7 +92,7 @@ const ZoneOfGeniusEntry = () => {
 
             // If user has complete Excalibur data AND came from another page, redirect to profile
             if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && hasReturnParam) {
-                navigate("/game/profile");
+                navigate("/game/me");
                 return;
             }
 
@@ -194,7 +194,7 @@ const ZoneOfGeniusEntry = () => {
                 setIsSaved(true);
                 // No toast - user proceeds to signup silently
                 const redirectPath = getPostZogRedirect(returnPath);
-                if (redirectPath && returnPath !== "/game/profile") {
+                if (redirectPath && returnPath !== "/game/me") {
                     setTimeout(() => navigate(redirectPath), 600);
                 }
             } else {
