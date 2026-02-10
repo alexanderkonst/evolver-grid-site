@@ -12,10 +12,30 @@
 
 import type { AllCycles } from './cycles';
 
+// ─── HELPERS ───────────────────────────────────────
+
+/**
+ * Check if current time is within the user's work window.
+ */
+function isInWorkWindow(wakeTime: string, sleepTime: string): boolean {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const [wH, wM] = wakeTime.split(':').map(Number);
+    const [sH, sM] = sleepTime.split(':').map(Number);
+    const wakeMinutes = wH * 60 + wM;
+    const sleepMinutes = sH * 60 + sM;
+
+    if (sleepMinutes > wakeMinutes) {
+        return currentMinutes >= wakeMinutes && currentMinutes < sleepMinutes;
+    }
+    // Overnight window (e.g., wake 22:00, sleep 06:00)
+    return currentMinutes >= wakeMinutes || currentMinutes < sleepMinutes;
+}
+
 // ─── GUIDANCE MAP ──────────────────────────────────
 
 interface GuidanceRule {
-    condition: (cycles: AllCycles) => boolean;
+    condition: (cycles: AllCycles, wakeTime: string, sleepTime: string) => boolean;
     message: string | ((cycles: AllCycles) => string);
     category: 'do' | 'be' | 'rest';
 }
@@ -58,6 +78,16 @@ const RULES: GuidanceRule[] = [
         category: 'rest',
     },
 
+    // ── AMBIENT: OUTSIDE WORK WINDOW ───────────────
+    {
+        condition: (_c, wake, sleep) => !isInWorkWindow(wake, sleep),
+        message: (c) => {
+            const day = c.week.planetaryDay;
+            return `${day.emoji} Rest time · ${day.energy} will be here tomorrow`;
+        },
+        category: 'rest',
+    },
+
     // ── AMBIENT: ENERGY OBSERVATION ────────────────
     // No imperatives. Describe what's available, let the user decide.
     {
@@ -83,9 +113,13 @@ export interface Guidance {
     category: 'do' | 'be' | 'rest';
 }
 
-export function getGuidance(cycles: AllCycles): Guidance {
+export function getGuidance(
+    cycles: AllCycles,
+    wakeTime: string = '07:00',
+    sleepTime: string = '23:00'
+): Guidance {
     for (const rule of RULES) {
-        if (rule.condition(cycles)) {
+        if (rule.condition(cycles, wakeTime, sleepTime)) {
             const message = typeof rule.message === 'function' ? rule.message(cycles) : rule.message;
             return { message, category: rule.category };
         }
