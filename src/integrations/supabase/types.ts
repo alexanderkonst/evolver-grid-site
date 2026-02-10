@@ -261,6 +261,7 @@ export type Database = {
           main_quest_stage: string
           main_quest_status: string
           main_quest_updated_at: string
+          mission_discovered_at: string | null
           mission_id: string | null
           multiple_intelligences_completed: boolean | null
           onboarding_completed: boolean
@@ -270,6 +271,7 @@ export type Database = {
           practice_count: number
           qol_priorities: Json | null
           qol_priority_order: Json | null
+          resources_mapped_at: string | null
           show_location: boolean | null
           show_mission: boolean | null
           show_offer: boolean | null
@@ -285,6 +287,7 @@ export type Database = {
           xp_spirit: number
           xp_total: number
           xp_uniqueness: number
+          zog_profile_read_at: string | null
           zone_of_genius_completed: boolean | null
         }
         Insert: {
@@ -311,6 +314,7 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          mission_discovered_at?: string | null
           mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
@@ -320,6 +324,7 @@ export type Database = {
           practice_count?: number
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
+          resources_mapped_at?: string | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
@@ -335,6 +340,7 @@ export type Database = {
           xp_spirit?: number
           xp_total?: number
           xp_uniqueness?: number
+          zog_profile_read_at?: string | null
           zone_of_genius_completed?: boolean | null
         }
         Update: {
@@ -361,6 +367,7 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          mission_discovered_at?: string | null
           mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
@@ -370,6 +377,7 @@ export type Database = {
           practice_count?: number
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
+          resources_mapped_at?: string | null
           show_location?: boolean | null
           show_mission?: boolean | null
           show_offer?: boolean | null
@@ -385,6 +393,7 @@ export type Database = {
           xp_spirit?: number
           xp_total?: number
           xp_uniqueness?: number
+          zog_profile_read_at?: string | null
           zone_of_genius_completed?: boolean | null
         }
         Relationships: [

@@ -10,8 +10,10 @@ interface QoLInputScreenProps {
     saving?: boolean;
 }
 
+type VectorId = "spirit" | "mind" | "emotions" | "genius" | "body";
+
 interface Vector {
-    id: keyof QoLInputScreenProps["onSubmit"] extends (scores: infer S) => void ? keyof S : never;
+    id: VectorId;
     label: string;
     emoji: string;
     description: string;
