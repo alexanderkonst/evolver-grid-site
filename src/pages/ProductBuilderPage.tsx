@@ -31,8 +31,7 @@ const ProductBuilderPage = () => {
         if (currentStep > 0) {
             const prevStep = PRODUCT_BUILDER_STEPS.find(s => s.number === currentStep - 1);
             if (prevStep) {
-                const stepPath = prevStep.path.replace("/product-builder", "/game/build/product-builder");
-                navigate(stepPath);
+                navigate(prevStep.path);
             }
         } else {
             navigate("/game/build");
@@ -72,10 +71,10 @@ const ProductBuilderPage = () => {
                                         <div key={step.number} className="flex items-center gap-2">
                                             <div
                                                 className={cn(
-                                                    "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all",
+                                                    "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all text-xs font-semibold",
                                                     currentStep >= step.number
-                                                        ? "border-primary bg-primary text-primary-wabi-foreground"
-                                                        : "border-border bg-background text-primary-wabi"
+                                                        ? "border-[#8460ea] bg-[#8460ea] text-white"
+                                                        : "border-[#a4a3d0]/40 bg-white text-[#2c3150]/50"
                                                 )}
                                             >
                                                 {step.number}
@@ -84,7 +83,7 @@ const ProductBuilderPage = () => {
                                                 <div
                                                     className={cn(
                                                         "w-4 h-0.5 transition-all",
-                                                        currentStep > step.number ? "bg-primary" : "bg-border"
+                                                        currentStep > step.number ? "bg-[#8460ea]" : "bg-[#a4a3d0]/30"
                                                     )}
                                                 />
                                             )}
