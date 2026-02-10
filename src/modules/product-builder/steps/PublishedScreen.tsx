@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
 import ProductBuilderLoading from "../ProductBuilderLoading";
+import { PRODUCT_BUILDER_STEPS } from "../productBuilderRoutes";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -146,7 +147,7 @@ const PublishedScreen: React.FC = () => {
 
     const handleEdit = () => {
         // Go back to first step
-        navigate("/product-builder");
+        navigate(PRODUCT_BUILDER_STEPS[0].path);
         toast({
             title: "Edit Mode",
             description: "You can modify your product and republish.",
