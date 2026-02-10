@@ -192,7 +192,7 @@ const PublishedScreen: React.FC = () => {
             </div>
 
             {/* Link Box */}
-            <Card className="max-w-xl mx-auto mb-6">
+            <Card className="max-w-xl mx-auto mb-6 bg-white border border-[#a4a3d0]/20">
                 <CardContent className="p-4">
                     <p className="text-sm text-primary-wabi mb-2">Your product URL:</p>
                     <div className="flex items-center gap-2">

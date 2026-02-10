@@ -103,12 +103,12 @@ const BlueprintScreen: React.FC = () => {
             </div>
 
             {/* Blueprint Preview */}
-            <Card className="max-w-2xl mx-auto mb-8">
-                <CardContent className="p-6">
+            <div className="max-w-2xl mx-auto mb-8 bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm">
+                <div className="p-6">
                     {/* Title */}
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b">
-                        <Download className="w-6 h-6 text-primary-wabi" />
-                        <h2 className="text-xl font-bold text-primary-wabi">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#a4a3d0]/20">
+                        <Download className="w-6 h-6 text-[#8460ea]" />
+                        <h2 className="text-xl font-bold text-[#2c3150]">
                             {state.blueprintContent?.title}
                         </h2>
                     </div>
@@ -117,22 +117,22 @@ const BlueprintScreen: React.FC = () => {
                     <div className="space-y-4 mb-6">
                         {state.blueprintContent?.steps.map((step, index) => (
                             <div key={index} className="flex gap-4">
-                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center">
-                                    <span className="text-sm font-semibold text-primary-wabi">{index + 1}</span>
+                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#8460ea]/10 border border-[#8460ea]/20 flex items-center justify-center">
+                                    <span className="text-sm font-semibold text-[#8460ea]">{index + 1}</span>
                                 </div>
-                                <p className="text-primary-wabi/80 leading-relaxed pt-1">{step}</p>
+                                <p className="text-[#2c3150]/80 leading-relaxed pt-1">{step}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* CTA Section */}
                     <div className="bg-[#8460ea]/5 rounded-lg p-4 border border-[#8460ea]/20">
-                        <p className="text-primary-wabi/80 text-sm">
+                        <p className="text-[#2c3150]/80 text-sm">
                             {state.blueprintContent?.ctaSection}
                         </p>
                     </div>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
