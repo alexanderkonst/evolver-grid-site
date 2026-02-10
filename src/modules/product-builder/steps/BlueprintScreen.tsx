@@ -96,7 +96,7 @@ const BlueprintScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
                     <BookOpen className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Your Blueprint</h1>
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Blueprint</h1>
                 <p className="text-primary-wabi">
                     This is your gift to them — a lead magnet they can download.
                 </p>
@@ -139,14 +139,14 @@ const BlueprintScreen: React.FC = () => {
                 <Button
                     variant="outline"
                     onClick={handleSkip}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto border-[#a4a3d0]/40 text-[#2c3150] hover:bg-[#8460ea]/5"
                 >
                     Skip — use default
                 </Button>
                 <Button
                     size="lg"
                     onClick={handleContinue}
-                    className="px-8 w-full sm:w-auto"
+                    className="px-8 w-full sm:w-auto bg-[#8460ea] hover:bg-[#7350d0] text-white"
                 >
                     Set Your CTA
                     <ArrowRight className="w-4 h-4 ml-2" />

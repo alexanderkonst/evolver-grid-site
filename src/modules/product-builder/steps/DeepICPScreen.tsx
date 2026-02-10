@@ -132,7 +132,7 @@ const DeepICPScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
                     <User className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Your Ideal Client</h1>
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Ideal Client</h1>
                 <p className="text-primary-wabi">
                     Meet the person waiting for your gift.
                 </p>
@@ -178,7 +178,7 @@ const DeepICPScreen: React.FC = () => {
                     size="lg"
                     onClick={handleContinue}
                     disabled={!state.resonanceRatings.icp}
-                    className="px-8"
+                    className="px-8 bg-[#8460ea] hover:bg-[#7350d0] text-white disabled:opacity-40"
                 >
                     Deepen Their Pain
                     <ArrowRight className="w-4 h-4 ml-2" />

@@ -107,7 +107,7 @@ const DeepTPScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
                     <Sparkles className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Your Promise</h1>
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Promise</h1>
                 <p className="text-primary-wabi">
                     This is the bridge you build for them.
                 </p>
@@ -184,7 +184,7 @@ const DeepTPScreen: React.FC = () => {
                     size="lg"
                     onClick={handleContinue}
                     disabled={!state.resonanceRatings.tp}
-                    className="px-8"
+                    className="px-8 bg-[#8460ea] hover:bg-[#7350d0] text-white disabled:opacity-40"
                 >
                     Build Landing Page
                     <ArrowRight className="w-4 h-4 ml-2" />

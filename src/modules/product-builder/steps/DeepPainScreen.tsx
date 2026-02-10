@@ -122,7 +122,7 @@ const DeepPainScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#cea4ae]/10 mb-4">
                     <Flame className="w-8 h-8 text-[#cea4ae]" />
                 </div>
-                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Their Pain</h1>
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Their Pain</h1>
                 <p className="text-primary-wabi">
                     This is what they're feeling right now.
                 </p>
@@ -164,7 +164,7 @@ const DeepPainScreen: React.FC = () => {
                     size="lg"
                     onClick={handleContinue}
                     disabled={!state.resonanceRatings.pain}
-                    className="px-8"
+                    className="px-8 bg-[#8460ea] hover:bg-[#7350d0] text-white disabled:opacity-40"
                 >
                     Crystallize Your Promise
                     <ArrowRight className="w-4 h-4 ml-2" />

@@ -18,7 +18,7 @@ const ProductBuilderEntry: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white border border-gray-200 mb-6">
                     <Rocket className="w-10 h-10 text-primary-wabi" />
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-bold text-primary-wabi mb-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-[#2c3150] mb-4 uppercase tracking-wide">
                     Launch Your Genius Business
                 </h1>
                 <p className="text-xl text-primary-wabi max-w-2xl mx-auto">

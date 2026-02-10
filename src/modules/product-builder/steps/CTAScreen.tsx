@@ -79,7 +79,7 @@ const CTAScreen: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
                     <Target className="w-8 h-8 text-primary-wabi" />
                 </div>
-                <h1 className="text-3xl font-bold text-primary-wabi mb-2">Call to Action</h1>
+                <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Call to Action</h1>
                 <p className="text-primary-wabi">
                     How will clients work with you?
                 </p>
