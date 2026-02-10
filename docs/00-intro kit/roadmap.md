@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-02-02*
+> *Last updated: 2026-02-09*
 
 ---
 
@@ -37,7 +37,7 @@
 | **VERSIONING** |
 | 21 | Module versioning | Infra | 🟡 MED | This cycle |
 | 22 | User artifact versioning | Infra | 🟡 MED | This cycle |
-| 23 | Rename GROW → ME | Infra | 🔴 HIGH | This week |
+| 23 | Rename GROW → ME | Infra | ✅ DONE | — |
 | **GROWTH** |
 | 24 | Pilot with 3-5 real users | Growth | 🔴 HIGH | This cycle |
 | 25 | Invite system (modules) | Growth | 🟡 MED | This cycle |
@@ -45,9 +45,20 @@
 | **ECONOMICS** |
 | 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
 | 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
+| **BRAND & CONTENT** |
+| 29 | Logos (platform + modules) | Brand | 🔴 HIGH | This cycle |
+| 30 | Videos (explainer, onboarding, module intros) | Content | 🔴 HIGH | This cycle |
+| **LEARN SPACE** |
+| 31 | Experiential modules for Learn space | Product | 🟡 MED | This cycle |
+| **LANDING PAGES** |
+| 32 | Holonic landing pages per module | Marketing | 🟡 MED | This cycle |
+| **OPERATING SYSTEM** |
+| 33 | Alexander's OS: moon cycles, planet cycles, day cycle, ultradian cycle | Strategy | 🟡 MED | This cycle |
+| **AI** |
+| 34 | AI ideas: implementation, what people want/need, sell AI workshops | Revenue | 🔴 HIGH | This cycle |
 | **PARKED** |
-| 29 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
-| 30 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
+| 35 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
+| 36 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
 
 ---
 
@@ -56,14 +67,15 @@
 | Metric | Value |
 |--------|-------|
 | **Current phase** | MVP Complete → Revenue Ready |
-| **Current cycle** | February 2026 (until Chinese New Year) |
+| **Current cycle** | February 2026 — Horsepower Cycle |
 | **Location** | Bali |
-| **Focus** | Onboarding polish + Landing page + Litmus test + First revenue |
+| **Focus** | Screen Layer Mandate + Playbook-first development + First revenue |
 | **Key milestone** | ✅ Network School chapter complete (27 days) |
+| **Key decision** | Screen Layer Mandate: Playbook → Screens → UI (non-negotiable) |
 
 ---
 
-## 🎯 February Cycle Goals (Feb 2 - Jan 29)
+## 🎯 February Cycle Goals (Feb 2 – Chinese New Year)
 
 ### Goal 1: Litmus Test — Take Yourself Through the Product Builder
 Use the platform to crystallize and monetize your own genius. Create one real offering born from your own platform journey.
@@ -88,16 +100,21 @@ Structure opportunities through the platform's capability map (workshops, 1:1 se
 - [x] **My Next Move logic** — Badge system
 - [x] **Architecture of Liberation** — Documented
 - [x] **UI Color Updates** — 120+ files updated to brandbook equivalents
-- [x] **Module Taxonomy** — 18 modules across 6 spaces
+- [x] **Module Taxonomy v2.0** — 19 modules + 121 submodules versioned
+- [x] **GROW → ME rename** — Space renamed across UI and docs
 - [x] **Project Synthesis v3** — Updated for current state
 
 ---
 
 ## 🔧 In Progress
 
+- [ ] **Screen Layer Mandate adoption** — Re-anchor floating modules onto explicit screens
 - [ ] **Onboarding flow polish** — Button sequencing issues
 - [ ] **Solo user landing page** — One page for organic acquisition
 - [ ] **User results to DB** — Missions, resources
+- [ ] **Logos** — Platform + module logos
+- [ ] **Videos** — Explainer, onboarding, module intros
+- [ ] **AI workshops** — Package AI collaboration training for revenue
 
 ---
 
@@ -484,6 +501,8 @@ Initial ideas:
 | **Jan 30** | Testing | Full flow test, 20 beta invites ready |
 | **Jan 31** | Launch | First beta testers enter |
 | **February** | Growth | Matchmaking live, invite system, versioning |
+| **Feb 9** | Screen Layer Mandate | Playbook-first, re-anchor modules to screens |
+| **February** | Revenue | Logos, videos, AI workshops, landing pages, litmus test |
 | **March** | Autonomous | Agent-based invitations |
 
 ---
@@ -524,9 +543,69 @@ For unbuilt features, show:
 
 ---
 
+# NEW ITEMS (Added Feb 9, 2026)
+
+---
+
+## 🎨 BRAND & CONTENT
+
+### Logos (Priority: HIGH | Target: This Cycle)
+**What:** Platform logo + per-module logos. Brand identity at every touchpoint.
+**Why:** Premium perception. Shareability. Recognition.
+**Status:** 🔜 Queued
+
+---
+
+### Videos (Priority: HIGH | Target: This Cycle)
+**What:** Explainer videos, onboarding walkthroughs, per-module intros.
+**Why:** Reduces friction. Increases activation. Content for distribution.
+**Status:** 🔜 Queued
+
+---
+
+## 📚 LEARN SPACE
+
+### Experiential Modules for Learn Space (Priority: MEDIUM)
+**What:** Suggestions for experiential, embodied modules within Learn space. Not just content consumption — practices, rituals, micro-transformations.
+**Why:** Learn space needs to deliver felt experience, not just information.
+**Status:** 🔜 Ideation
+
+---
+
+## 🌐 LANDING PAGES
+
+### Holonic Landing Pages Per Module (Priority: MEDIUM)
+**What:** Every module gets its own resonant landing page — explaining result, inviting participation, showing social proof.
+**Why:** Each module is a holon. Each holon deserves its own entry point for distribution and virality.
+**Status:** 🔜 Queued (extends existing item 4.3)
+
+---
+
+## 🌙 OPERATING SYSTEM
+
+### Alexander's Operating System Cycles (Priority: MEDIUM)
+**What:** Encode moon cycles, planetary day cycles, ultradian rhythm (90-min deep work containers) into the platform's scheduling/recommendation engine.
+**Why:** The OS should model reality's rhythms, not just arbitrary calendars. Alexander already operates this way — platform should reflect it.
+**Status:** 🔜 Design exploration
+
+---
+
+## 🤖 AI
+
+### AI Ideas & Revenue (Priority: HIGH)
+**What:** Three-pronged AI strategy:
+1. **Implementation** — AI-powered features within the platform (already in progress)
+2. **Market research** — What do people actually want and need from AI assistance?
+3. **AI workshops** — Sell AI collaboration training as a standalone revenue stream
+
+**Why:** Immediate revenue opportunity. Alexander has unique AI-human collaboration expertise. Workshops fund platform development.
+**Status:** 🔜 Active ideation
+
+---
+
 ## Archived Sprints
 
-### Sprint: Jan 4-29, 2025 (Network School)
+### Sprint: Jan 4-29, 2026 (Network School)
 - ✅ 5 Growth Paths defined
 - ✅ 5 Game Spaces architecture
 - ✅ ZoG + QoL onboarding
@@ -535,4 +614,4 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-01-28 11:55. Original items preserved + 19 new items added.*
+*Roadmap updated: 2026-02-09. 6 new items added (Logos, Videos, Learn Space, Holonic Landings, OS Cycles, AI Ideas).*
