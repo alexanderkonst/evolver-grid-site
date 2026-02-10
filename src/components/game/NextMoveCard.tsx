@@ -29,8 +29,8 @@ export default function NextMoveCard({
     onExplore,
     isLoading = false,
 }: NextMoveCardProps) {
-    const icon = action?.vector
-        ? VECTOR_ICONS[action.vector.toLowerCase()] || VECTOR_ICONS.default
+    const icon = action?.growthPath
+        ? VECTOR_ICONS[action.growthPath.toLowerCase()] || VECTOR_ICONS.default
         : VECTOR_ICONS.default;
 
     if (isLoading) {
@@ -81,7 +81,7 @@ export default function NextMoveCard({
                             {action.title}
                         </h4>
                         <p className="text-sm text-[var(--wabi-text-muted)] mt-1">
-                            {action.vector} Path · {action.duration || 10} min
+                            {action.growthPath} Path · {action.duration || "sm"}
                         </p>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ export default function NextMoveCard({
                     className="w-full h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[#8460ea] to-[#6894d0] text-white shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                 >
                     START
-                    <span className="ml-2 text-sm opacity-80">+{action.xp || 15} XP</span>
+                    <span className="ml-2 text-sm opacity-80">+{action.completionPayload?.xp || 15} XP</span>
                 </Button>
             </div>
 
