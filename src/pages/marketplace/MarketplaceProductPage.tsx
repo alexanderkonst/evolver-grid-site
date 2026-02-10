@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Download, Phone, Laptop, Sparkles } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { ArrowLeft, Download, Phone, Laptop, Sparkles, ArrowRight } from "lucide-react";
 
 interface MarketplaceProduct {
     id: string;
@@ -75,139 +72,152 @@ const MarketplaceProductPage: React.FC = () => {
     };
 
     const handleCTA = () => {
-        // For now, just log
         console.log("CTA clicked:", product?.cta_config?.type);
     };
 
     const handleDownloadBlueprint = () => {
-        // For now, just log
         console.log("Download blueprint");
     };
 
     if (loading) {
         return (
-            <div className="min-h-dvh flex flex-col">
-                <Navigation />
-                <main className="flex-1 pt-24 flex items-center justify-center">
-                    <div className="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full" />
-                </main>
-                <Footer />
+            <div className="min-h-dvh bg-white flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="relative">
+                        <div className="w-12 h-12 border-4 border-[#8460ea]/20 rounded-full" />
+                        <div className="absolute top-0 left-0 w-12 h-12 border-4 border-[#8460ea] border-t-transparent rounded-full animate-spin" />
+                    </div>
+                    <p className="text-[#2c3150]/60 text-sm">Loading...</p>
+                </div>
             </div>
         );
     }
 
     if (error || !product) {
         return (
-            <div className="min-h-dvh flex flex-col">
-                <Navigation />
-                <main className="flex-1 pt-24 flex flex-col items-center justify-center px-4">
-                    <h1 className="text-2xl font-bold text-foreground mb-4">Product Not Found</h1>
-                    <p className="text-muted-foreground mb-6">{error}</p>
-                    <Button onClick={() => navigate("/game/marketplace")}>
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Marketplace
-                    </Button>
-                </main>
-                <Footer />
+            <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-4">
+                <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Product Not Found</h1>
+                <p className="text-[#2c3150]/60 mb-6">{error}</p>
+                <Button
+                    onClick={() => navigate("/")}
+                    className="bg-[#8460ea] hover:bg-[#7350d0] text-white"
+                >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Go Home
+                </Button>
             </div>
         );
     }
 
     return (
-        <div className="min-h-dvh flex flex-col">
-            <Navigation />
+        <div className="min-h-dvh bg-white">
+            {/* Hero Section — Brandbook gradient */}
+            <section className="relative overflow-hidden">
+                {/* Background gradient with brandbook colors */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2c3150] via-[#3a3f6a] to-[#8460ea]/80" />
+                {/* Subtle overlay pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(132,96,234,0.15),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(164,163,208,0.1),transparent_50%)]" />
 
-            <main className="flex-1 pt-24">
-                {/* Landing Section - Dark Theme */}
-                <section className="bg-gradient-to-b from-[#2c3150] to-[#1f2336] text-white py-16 px-4">
-                    <div className="container mx-auto max-w-3xl text-center">
-                        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                            {product.title}
-                        </h1>
+                <div className="relative container mx-auto max-w-3xl text-center px-6 py-24 sm:py-32">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+                        {product.title}
+                    </h1>
 
-                        {/* CTA Button */}
-                        {product.cta_config && (
-                            <Button
-                                size="lg"
-                                className="bg-amber-500 hover:bg-amber-600 text-[#2c3150] font-semibold px-8 mt-8"
-                                onClick={handleCTA}
-                            >
-                                {product.cta_config.type === "session" ? (
-                                    <Phone className="w-4 h-4 mr-2" />
-                                ) : (
-                                    <Laptop className="w-4 h-4 mr-2" />
-                                )}
-                                {product.cta_config.buttonText}
-                            </Button>
-                        )}
-                    </div>
-                </section>
+                    {product.cta_config && (
+                        <Button
+                            size="lg"
+                            className="bg-white hover:bg-white/90 text-[#2c3150] font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:scale-[1.02] mt-4"
+                            onClick={handleCTA}
+                        >
+                            {product.cta_config.type === "session" ? (
+                                <Phone className="w-5 h-5 mr-2" />
+                            ) : (
+                                <Laptop className="w-5 h-5 mr-2" />
+                            )}
+                            {product.cta_config.buttonText}
+                        </Button>
+                    )}
+                </div>
+            </section>
 
-                {/* Blueprint Section */}
-                {product.blueprint_content && (
-                    <section className="py-16 px-4 bg-muted/30">
-                        <div className="container mx-auto max-w-2xl">
-                            <Card>
-                                <CardContent className="p-6">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Sparkles className="w-6 h-6 text-primary" />
-                                        <h2 className="text-xl font-bold text-foreground">
-                                            {product.blueprint_content.title}
-                                        </h2>
-                                    </div>
-
-                                    <div className="space-y-4 mb-6">
-                                        {product.blueprint_content.steps.map((step, index) => (
-                                            <div key={index} className="flex gap-4">
-                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                    <span className="text-sm font-semibold text-primary">{index + 1}</span>
-                                                </div>
-                                                <p className="text-foreground/80 leading-relaxed pt-1">{step}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <Button
-                                        variant="outline"
-                                        className="w-full"
-                                        onClick={handleDownloadBlueprint}
-                                    >
-                                        <Download className="w-4 h-4 mr-2" />
-                                        Download Blueprint
-                                    </Button>
-                                </CardContent>
-                            </Card>
+            {/* Blueprint Section */}
+            {product.blueprint_content && (
+                <section className="py-20 px-6">
+                    <div className="container mx-auto max-w-2xl">
+                        <div className="text-center mb-10">
+                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#8460ea]/10 mb-4">
+                                <Sparkles className="w-6 h-6 text-[#8460ea]" />
+                            </div>
+                            <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-2">
+                                {product.blueprint_content.title}
+                            </h2>
+                            <p className="text-[#2c3150]/60">
+                                Your step-by-step transformation framework
+                            </p>
                         </div>
-                    </section>
-                )}
 
-                {/* CTA Section */}
-                <section className="py-16 px-4">
-                    <div className="container mx-auto max-w-lg text-center">
-                        <h3 className="text-2xl font-bold text-foreground mb-4">
-                            Ready to Transform?
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                            {product.cta_config?.description}
-                        </p>
-                        {product.cta_config && (
+                        <div className="bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm p-6 sm:p-8 mb-8">
+                            <div className="space-y-6">
+                                {product.blueprint_content.steps.map((step, index) => (
+                                    <div key={index} className="flex gap-4">
+                                        <div className="flex-shrink-0 w-9 h-9 rounded-full bg-[#8460ea]/10 border border-[#8460ea]/20 flex items-center justify-center">
+                                            <span className="text-sm font-semibold text-[#8460ea]">{index + 1}</span>
+                                        </div>
+                                        <p className="text-[#2c3150]/80 leading-relaxed pt-1">{step}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="text-center">
                             <Button
+                                variant="outline"
                                 size="lg"
-                                onClick={handleCTA}
+                                onClick={handleDownloadBlueprint}
+                                className="border-[#8460ea]/30 text-[#8460ea] hover:bg-[#8460ea]/5 px-8"
                             >
-                                {product.cta_config.type === "session" ? (
-                                    <Phone className="w-4 h-4 mr-2" />
-                                ) : (
-                                    <Laptop className="w-4 h-4 mr-2" />
-                                )}
-                                {product.cta_config.buttonText}
+                                <Download className="w-4 h-4 mr-2" />
+                                Download Blueprint
                             </Button>
-                        )}
+                        </div>
                     </div>
                 </section>
-            </main>
+            )}
 
-            <Footer />
+            {/* Final CTA Section */}
+            <section className="py-20 px-6 bg-gradient-to-b from-white to-[#8460ea]/5">
+                <div className="container mx-auto max-w-lg text-center">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-4">
+                        Ready to Transform?
+                    </h3>
+                    <p className="text-[#2c3150]/60 mb-8 leading-relaxed">
+                        {product.cta_config?.description}
+                    </p>
+                    {product.cta_config && (
+                        <Button
+                            size="lg"
+                            onClick={handleCTA}
+                            className="bg-[#8460ea] hover:bg-[#7350d0] text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-[#8460ea]/20 transition-all hover:shadow-xl hover:scale-[1.02]"
+                        >
+                            {product.cta_config.type === "session" ? (
+                                <Phone className="w-5 h-5 mr-2" />
+                            ) : (
+                                <Laptop className="w-5 h-5 mr-2" />
+                            )}
+                            {product.cta_config.buttonText}
+                            <ArrowRight className="w-5 h-5 ml-2" />
+                        </Button>
+                    )}
+                </div>
+            </section>
+
+            {/* Minimal Footer */}
+            <footer className="py-8 px-6 text-center">
+                <p className="text-[#2c3150]/30 text-sm">
+                    Built with Evolver
+                </p>
+            </footer>
         </div>
     );
 };

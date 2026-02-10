@@ -146,6 +146,8 @@ const SPACE_SECTIONS: SpaceSections = {
         title: "BUILD",
         sections: [
             { id: "product-builder", label: "Product Builder", path: "/game/build/product-builder" },
+            { id: "my-business", label: "My Genius Business", path: "/game/build/my-business" },
+            { id: "refine", label: "Refine My Business", path: "/game/build/refine" },
         ],
     },
     // BUY & SELL Space (was Marketplace)
