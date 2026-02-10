@@ -30,7 +30,8 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: R
 function createSegmentedRing(
     radius: number,
     strokeWidth: number,
-    opacity: number
+    opacity: number,
+    labelAngleDeg: number = -45
 ): { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement; label: SVGTextElement } {
     const group = createSvgElement('g', { class: 'ring-group' });
     const circumference = 2 * Math.PI * radius;
@@ -68,15 +69,18 @@ function createSegmentedRing(
     });
     group.appendChild(dot);
 
-    // Ring label (placed inside the ring)
+    // Ring label — positioned along the ring at a given angle
+    const labelAngleRad = labelAngleDeg * (Math.PI / 180);
+    const lx = CENTER + (radius + 10) * Math.cos(labelAngleRad);
+    const ly = CENTER + (radius + 10) * Math.sin(labelAngleRad);
     const label = createSvgElement('text', {
-        x: String(CENTER),
-        y: String(CENTER - radius + 14),
-        'text-anchor': 'middle',
+        x: String(lx),
+        y: String(ly),
+        'text-anchor': labelAngleDeg > 0 && labelAngleDeg < 180 ? 'start' : 'end',
         fill: '#e8dcc8',
-        'font-size': '8',
+        'font-size': '7',
         'font-family': "'DM Sans', sans-serif",
-        opacity: '0.7',
+        opacity: '0.4',
         class: 'ring-label',
     });
     group.appendChild(label);
@@ -196,26 +200,30 @@ export class Clock {
             this.svg.appendChild(ring.group);
         }
 
-        // 3. Phase legend in corners of SVG
+        // 3. Phase legend — centered at bottom of SVG, compact row
         const legendGroup = createSvgElement('g', { class: 'phase-legend' });
+        const legendY = 392;
+        const legendStartX = 100;
+        const legendSpacing = 58;
         HOLONIC_PHASES.forEach((phase, i) => {
-            const x = i < 2 ? 15 : 385;
-            const y = i % 2 === 0 ? 15 : 390;
+            const x = legendStartX + i * legendSpacing;
             const dot = createSvgElement('circle', {
                 cx: String(x),
-                cy: String(y - 3),
+                cy: String(legendY - 3),
                 r: '3',
                 fill: phase.color,
             });
             const text = createSvgElement('text', {
                 x: String(x + 6),
-                y: String(y),
+                y: String(legendY),
                 fill: phase.color,
-                'font-size': '7',
+                'font-size': '6.5',
                 'font-family': "'DM Sans', sans-serif",
-                opacity: '0.6',
+                opacity: '0.5',
             });
-            text.textContent = phase.label;
+            // Use abbreviations to fit
+            const abbr = ['WILL', 'EMAN.', 'DIG.', 'ENRICH.'];
+            text.textContent = abbr[i];
             legendGroup.appendChild(dot);
             legendGroup.appendChild(text);
         });
