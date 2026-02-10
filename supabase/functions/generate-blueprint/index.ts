@@ -52,7 +52,7 @@ serve(async (req) => {
 TRANSFORMATION:
 - Point A: ${tp.pointA || 'Unknown'}
 - Point B: ${tp.pointB || 'Unknown'}
-- Core Promise: ${tp.corePromise || 'Unknown'}
+- Core Promise: ${tp.promiseStatement || tp.corePromise || 'Unknown'}
 
 IDEAL CLIENT:
 - Who: ${icp?.who || 'Unknown'}

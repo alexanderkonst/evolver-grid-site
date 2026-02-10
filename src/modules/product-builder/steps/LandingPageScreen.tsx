@@ -132,10 +132,10 @@ const LandingPageScreen: React.FC = () => {
             </div>
 
             {/* Landing Page Preview */}
-            <Card className="max-w-3xl mx-auto mb-8 overflow-hidden">
-                <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-primary-wabi" />
-                    <span className="text-sm text-primary-wabi">Preview</span>
+            <Card className="max-w-3xl mx-auto mb-8 overflow-hidden bg-white border border-[#a4a3d0]/20">
+                <div className="bg-[#8460ea]/5 px-4 py-2 border-b border-[#a4a3d0]/20 flex items-center gap-2">
+                    <Eye className="w-4 h-4 text-[#8460ea]" />
+                    <span className="text-sm text-[#2c3150]">Preview</span>
                 </div>
                 <CardContent className="p-0">
                     {/* Landing Page */}
