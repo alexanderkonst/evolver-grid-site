@@ -584,9 +584,41 @@ For unbuilt features, show:
 ## 🌙 OPERATING SYSTEM
 
 ### Alexander's Operating System Cycles (Priority: MEDIUM)
-**What:** Encode moon cycles, planetary day cycles, ultradian rhythm (90-min deep work containers) into the platform's scheduling/recommendation engine.
+**What:** Encode moon cycles, planetary day cycles, ultradian rhythm (96-min deep work containers) into the platform's scheduling/recommendation engine.
 **Why:** The OS should model reality's rhythms, not just arbitrary calendars. Alexander already operates this way — platform should reflect it.
-**Status:** 🔜 Design exploration
+**Status:** ✅ v1 DONE (Equilibrium) — see below for v2 refinement
+
+---
+
+### Equilibrium v2: Conceptual Refinement (Priority: HIGH | Target: Next Cycle)
+**What:** Re-run the integrated product building playbook on the existing Equilibrium clock. The v1 was built end-to-end but the **Master Result and Sub-Results weren't deeply roasted**, causing fuzzy information hierarchy. The tech works — the concept needs sharpening.
+
+**Key issues to resolve:**
+1. **Master Result clarity** — "Cycle-aware deep work" is aspirational-vague. Needs a 12-year-old-understandable version.
+2. **Information hierarchy** — 6 rings + 4 phases + moon + planetary hours + synthesis + guidance = too much. What's the ONE thing a user sees in 3 seconds?
+3. **Phase naming** — Now uses PLANNING/BUILDING/COMMUNICATING/INTEGRATING (done, was WILL/EMANATION etc.)
+4. **Clean watch face** — Ring labels removed (done). But the bottom text area still has overlapping concerns.
+
+**Approach:** Re-run Phase 1 only (with new roast structure: 3×3 on Master Result + Sub-Results). Then see which existing code survives. Don't rebuild from scratch — refine the concept, reshape the UI.
+
+**What's already working (keep):**
+- Cycle math (cycles.ts) — all calculations correct
+- Sprint timer with 4-phase structure
+- Breathing circle animation
+- Planetary day/hour system
+- Moon phase tracking
+- Settings panel with personalization
+
+**Status:** 🔜 Queued for next cycle
+
+---
+
+## 📋 PLAYBOOK IMPROVEMENTS
+
+### Integrated Product Building Workflow — Roast Enhancement (Priority: ✅ DONE)
+**What:** Added roast cycles after every Phase 1 task. Tasks 1.1 (Master Result) and 1.2 (Sub-Results) get deep 3×3 roasts (9 checks each). Tasks 1.3-1.6 get lighter roasts.
+**Why:** The Equilibrium build proved that fuzzy foundations trickle down into fuzzy products. The first two tasks define WHAT you're building — they deserve the most scrutiny.
+**Status:** ✅ DONE (2026-02-10)
 
 ---
 
@@ -614,4 +646,4 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-02-09. 6 new items added (Logos, Videos, Learn Space, Holonic Landings, OS Cycles, AI Ideas).*
+*Roadmap updated: 2026-02-10. Equilibrium v2 refinement added. Playbook roast enhancement recorded. OS Cycles updated to reflect v1 completion.*
