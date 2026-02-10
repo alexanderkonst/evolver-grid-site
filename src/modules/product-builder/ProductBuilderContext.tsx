@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 // Types for Product Builder state
 interface DeepICP {
@@ -79,6 +79,8 @@ interface ProductBuilderContextType {
     resetState: () => void;
 }
 
+const STORAGE_KEY = "evolver_genius_business";
+
 const initialState: ProductBuilderState = {
     currentStep: 0,
     deepICP: null,
@@ -92,6 +94,38 @@ const initialState: ProductBuilderState = {
     productUrl: null,
 };
 
+/**
+ * Load persisted state from localStorage.
+ * Only restores published products (complete builds).
+ * In-progress builds are NOT restored to avoid stale AI data.
+ */
+const loadPersistedState = (): ProductBuilderState => {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const parsed = JSON.parse(saved) as ProductBuilderState;
+            // Only restore if it was published (complete product)
+            if (parsed.isPublished) {
+                return parsed;
+            }
+        }
+    } catch (e) {
+        console.warn("Failed to load persisted genius business:", e);
+    }
+    return initialState;
+};
+
+const persistState = (state: ProductBuilderState) => {
+    try {
+        // Only persist if published (complete product)
+        if (state.isPublished) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+    } catch (e) {
+        console.warn("Failed to persist genius business:", e);
+    }
+};
+
 const ProductBuilderContext = createContext<ProductBuilderContextType | undefined>(undefined);
 
 interface ProductBuilderProviderProps {
@@ -99,7 +133,12 @@ interface ProductBuilderProviderProps {
 }
 
 export const ProductBuilderProvider: React.FC<ProductBuilderProviderProps> = ({ children }) => {
-    const [state, setState] = useState<ProductBuilderState>(initialState);
+    const [state, setState] = useState<ProductBuilderState>(loadPersistedState);
+
+    // Persist to localStorage whenever published state changes
+    useEffect(() => {
+        persistState(state);
+    }, [state]);
 
     const setCurrentStep = (step: number) => {
         setState(prev => ({ ...prev, currentStep: step }));
@@ -141,6 +180,7 @@ export const ProductBuilderProvider: React.FC<ProductBuilderProviderProps> = ({ 
     };
 
     const resetState = () => {
+        localStorage.removeItem(STORAGE_KEY);
         setState(initialState);
     };
 
@@ -171,6 +211,30 @@ export const useProductBuilder = (): ProductBuilderContextType => {
         throw new Error("useProductBuilder must be used within a ProductBuilderProvider");
     }
     return context;
+};
+
+/**
+ * Standalone hook to check if a published genius business exists,
+ * usable OUTSIDE the ProductBuilderProvider (e.g. in sidebar, marketplace).
+ */
+export const usePublishedGeniusBusiness = () => {
+    const [data, setData] = useState<ProductBuilderState | null>(null);
+
+    useEffect(() => {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const parsed = JSON.parse(saved) as ProductBuilderState;
+                if (parsed.isPublished) {
+                    setData(parsed);
+                }
+            }
+        } catch {
+            // ignore
+        }
+    }, []);
+
+    return data;
 };
 
 export type {
