@@ -90,28 +90,28 @@ const DeepPainScreen: React.FC = () => {
             title: "Pressure",
             subtitle: "What's pushing them toward a decision",
             content: state.deepPain?.pressure,
-            color: "text-orange-500",
+            color: "text-[#cea4ae]",
         },
         {
             icon: Flame,
             title: "Consequences",
             subtitle: "What they experience daily because of this",
             content: state.deepPain?.consequences,
-            color: "text-red-500",
+            color: "text-[#cdaed2]",
         },
         {
             icon: DollarSign,
             title: "Cost of Inaction",
             subtitle: "The price of doing nothing",
             content: state.deepPain?.costOfInaction,
-            color: "text-amber-500",
+            color: "text-[#c8b7d8]",
         },
         {
             icon: Target,
             title: "Stakes",
             subtitle: "What's really at risk beyond the surface",
             content: state.deepPain?.stakes,
-            color: "text-rose-500",
+            color: "text-[#8460ea]",
         },
     ];
 
@@ -119,8 +119,8 @@ const DeepPainScreen: React.FC = () => {
         <div className="py-8">
             {/* Header */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 mb-4">
-                    <Flame className="w-8 h-8 text-red-500" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#cea4ae]/10 mb-4">
+                    <Flame className="w-8 h-8 text-[#cea4ae]" />
                 </div>
                 <h1 className="text-3xl font-bold text-primary-wabi mb-2">Their Pain</h1>
                 <p className="text-primary-wabi">

@@ -93,25 +93,25 @@ const CTAScreen: React.FC = () => {
                         className={cn(
                             "cursor-pointer transition-all",
                             selectedType === option.type
-                                ? "border-primary ring-2 ring-primary/20"
-                                : "hover:border-primary/50"
+                                ? "border-[#8460ea] ring-2 ring-[#8460ea]/20"
+                                : "hover:border-[#8460ea]/50"
                         )}
                         onClick={() => handleSelect(option.type)}
                     >
                         <CardContent className="p-6 text-center">
                             <div className={cn(
                                 "inline-flex items-center justify-center w-12 h-12 rounded-full mb-4",
-                                selectedType === option.type ? "bg-primary text-primary-wabi-foreground" : "bg-muted"
+                                selectedType === option.type ? "bg-[#8460ea] text-white" : "bg-[#a4a3d0]/10 text-[#2c3150]"
                             )}>
                                 <option.icon className="w-6 h-6" />
                             </div>
-                            <h3 className="font-semibold text-primary-wabi mb-2">{option.title}</h3>
-                            <p className="text-sm text-primary-wabi mb-4">{option.description}</p>
+                            <h3 className="font-semibold text-[#2c3150] mb-2">{option.title}</h3>
+                            <p className="text-sm text-[#2c3150]/70 mb-4">{option.description}</p>
                             <div className={cn(
                                 "inline-block px-4 py-2 rounded-lg text-sm font-medium",
                                 selectedType === option.type
-                                    ? "bg-primary text-primary-wabi-foreground"
-                                    : "bg-muted text-primary-wabi"
+                                    ? "bg-[#8460ea] text-white"
+                                    : "bg-[#a4a3d0]/10 text-[#2c3150]"
                             )}>
                                 {option.buttonText}
                             </div>

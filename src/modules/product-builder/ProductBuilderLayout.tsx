@@ -50,10 +50,10 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                     <React.Fragment key={step.number}>
                         <div
                             className={cn(
-                                "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all",
+                                "flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all text-xs font-semibold",
                                 currentStep >= step.number
-                                    ? "border-primary bg-primary text-primary-wabi-foreground"
-                                    : "border-border bg-background text-primary-wabi"
+                                    ? "border-[#8460ea] bg-[#8460ea] text-white"
+                                    : "border-[#a4a3d0]/40 bg-white text-[#2c3150]/50"
                             )}
                         >
                             {step.number}
@@ -62,7 +62,7 @@ const ProductBuilderLayout: React.FC<ProductBuilderLayoutProps> = ({
                             <div
                                 className={cn(
                                     "w-4 h-0.5 transition-all",
-                                    currentStep > step.number ? "bg-primary" : "bg-border"
+                                    currentStep > step.number ? "bg-[#8460ea]" : "bg-[#a4a3d0]/30"
                                 )}
                             />
                         )}

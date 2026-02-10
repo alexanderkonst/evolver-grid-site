@@ -113,10 +113,10 @@ const DeepTPScreen: React.FC = () => {
             <div className="max-w-3xl mx-auto mb-8">
                 <div className="grid md:grid-cols-2 gap-4 items-stretch relative">
                     {/* Point A */}
-                    <Card className="bg-white border border-gray-200 border-red-700">
+                    <Card className="bg-white border border-[#cea4ae]/40">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-primary-wabi font-bold text-sm">
+                                <div className="w-8 h-8 rounded-full bg-[#cea4ae] flex items-center justify-center text-white font-bold text-sm">
                                     A
                                 </div>
                                 <h3 className="font-semibold text-primary-wabi">Where They Are Now</h3>
@@ -133,10 +133,10 @@ const DeepTPScreen: React.FC = () => {
                     </div>
 
                     {/* Point B */}
-                    <Card className="bg-white border border-gray-200 border-green-700">
+                    <Card className="bg-white border border-[#8460ea]/40">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-primary-wabi font-bold text-sm">
+                                <div className="w-8 h-8 rounded-full bg-[#8460ea] flex items-center justify-center text-white font-bold text-sm">
                                     B
                                 </div>
                                 <h3 className="font-semibold text-primary-wabi">Where They Want To Be</h3>
