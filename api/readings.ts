@@ -12,7 +12,7 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 const PLANET_ENERGIES = ['Vision & Purpose', 'Intuition & Feeling', 'Action & Courage', 'Clarity & Communication', 'Expansion & Wisdom', 'Beauty & Harmony', 'Structure & Discipline'];
 const PLANET_SYMBOLS = ['☉', '☽', '♂', '☿', '♃', '♀', '♄'];
 const QUARTER_NAMES = ['Night', 'Morning', 'Afternoon', 'Evening'];
-const MOON_PHASE_ENERGIES = ['Seeding', 'Emerging', 'Building', 'Refining', 'Harvesting', 'Sharing', 'Releasing', 'Resting'];
+const MOON_PHASE_ENERGIES = ['Seeding', 'Emerging', 'Building', 'Refining', 'Harvesting', 'Sharing', 'Making Sense', 'Resting'];
 const MOON_SYMBOLS = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
 const YEAR_PHASE_NAMES = ['planning', 'building', 'harvesting', 'completing'];
 
