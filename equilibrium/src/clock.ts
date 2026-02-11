@@ -74,7 +74,7 @@ const RING_CONFIGS: RingConfig[] = [
     { id: 'sprint', radius: 80, strokeWidth: 16, label: '96-Min', color: '#e07040', gap: RING_GAP },
     { id: 'day', radius: 100, strokeWidth: 16, label: 'Day', color: '#c9a84c', gap: RING_GAP },
     { id: 'week', radius: 120, strokeWidth: 14, label: 'Week', color: '#4080c0', gap: RING_GAP },
-    { id: 'month', radius: 138, strokeWidth: 12, label: 'Month', color: '#a080c0', gap: RING_GAP },
+    { id: 'month', radius: 138, strokeWidth: 12, label: 'Moon', color: '#a080c0', gap: RING_GAP },
     { id: 'year', radius: 156, strokeWidth: 12, label: 'Year', color: '#c06080', gap: RING_GAP },
 ];
 
