@@ -1,18 +1,26 @@
 /**
- * Equilibrium — Clock Renderer v6
+ * Equilibrium - Clock Renderer v7
  * 
- * Five rings. Five identity colors. Phase = brightness.
- * Sprint · Day · Week · Month · Year
+ * Five rings. Five identity colors. 
+ * Sprint . Day . Week . Month . Year
  * 
- * Each ring has a FIXED color. The holonic phase shows
- * as brightness/opacity of that color.
- * Fill = how far through the cycle you are.
+ * VISUAL MODEL:
+ * Each ring shows its cycle's progress through 4 holonic quarters.
+ * Each quarter has a distinct brightness:
+ *   Q1 (Will/Planning)       = faintest  (0.25)
+ *   Q2 (Emanation/Building)  = medium    (0.50)
+ *   Q3 (Digestion/Sharing)   = bright    (0.75)
+ *   Q4 (Enrichment/Integration) = brightest (1.00)
+ * 
+ * Completed quarters show their full brightness.
+ * The active quarter fills proportionally.
+ * Transitions between quarters are softened by gradient stops.
  */
 
 import type { AllCycles, Phase } from './cycles';
-import { HOLONIC_PHASES, formatMinutes, getPulseName, synthesizeCycles } from './cycles';
+import { formatMinutes, getPulseName, synthesizeCycles } from './cycles';
 
-// ─── SVG HELPERS ───────────────────────────────────
+// --- SVG HELPERS ---
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const CENTER = 200;
@@ -25,26 +33,42 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: R
     return el;
 }
 
-// ─── RING DEFINITIONS ──────────────────────────────
+/**
+ * Generate an SVG arc path for a circle segment.
+ * startAngle and endAngle in degrees (0 = top, clockwise).
+ */
+function arcPath(cx: number, cy: number, r: number, startDeg: number, endDeg: number): string {
+    // Clamp to avoid rendering issues with full circles
+    const span = endDeg - startDeg;
+    if (span <= 0) return '';
+    const large = span > 180 ? 1 : 0;
+
+    const startRad = (startDeg - 90) * Math.PI / 180;
+    const endRad = (endDeg - 90) * Math.PI / 180;
+
+    const x1 = cx + r * Math.cos(startRad);
+    const y1 = cy + r * Math.sin(startRad);
+    const x2 = cx + r * Math.cos(endRad);
+    const y2 = cy + r * Math.sin(endRad);
+
+    return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
+}
+
+// --- RING DEFINITIONS ---
 
 interface RingConfig {
     id: string;
     radius: number;
     strokeWidth: number;
     label: string;
-    color: string; // fixed identity color
+    color: string;
     gap: number;
 }
 
-// Phase brightness: how bright the ring fill is based on holonic phase
-const PHASE_BRIGHTNESS: Record<string, number> = {
-    will: 0.4,       // Planning — dim, gathering
-    emanation: 0.7,  // Building — bright, peak energy
-    digestion: 1.0,  // Communicating — full brightness
-    enrichment: 0.55, // Integrating — settling
-};
+// Quarter brightness levels: Q1 = seed, Q4 = harvest
+const QUARTER_BRIGHTNESS = [0.25, 0.50, 0.75, 1.0];
 
-// 5 rings: Sprint (inner) to Year (outer)
+
 const RING_GAP = 4;
 const RING_CONFIGS: RingConfig[] = [
     { id: 'sprint', radius: 80, strokeWidth: 16, label: 'Sprint', color: '#e07040', gap: RING_GAP },
@@ -54,15 +78,19 @@ const RING_CONFIGS: RingConfig[] = [
     { id: 'year', radius: 156, strokeWidth: 12, label: 'Year', color: '#c06080', gap: RING_GAP },
 ];
 
+interface QuarterArc {
+    path: SVGPathElement;
+}
+
 interface RingElements {
     group: SVGGElement;
     track: SVGCircleElement;
-    fill: SVGCircleElement;
+    quarters: QuarterArc[];
     label: SVGTextElement;
     config: RingConfig;
 }
 
-// ─── CLOCK CLASS ───────────────────────────────────
+// --- CLOCK CLASS ---
 
 export class Clock {
     private svg: SVGSVGElement;
@@ -99,56 +127,53 @@ export class Clock {
         const defs = createSvgElement('defs', {});
         defs.innerHTML = `
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feGaussianBlur stdDeviation="2.5" result="blur"/>
                 <feComposite in="SourceGraphic" in2="blur" operator="over"/>
             </filter>
         `;
         this.svg.appendChild(defs);
 
-        // Build each ring: track + fill + label
+        // Build each ring
         for (const config of RING_CONFIGS) {
             const group = createSvgElement('g', { class: `ring-group ring-${config.id}` });
-            const circumference = 2 * Math.PI * config.radius;
 
-            // Background track (full circle, very dim, shows the unfilled portion)
+            // Background track
             const track = createSvgElement('circle', {
                 cx: String(CENTER),
                 cy: String(CENTER),
                 r: String(config.radius),
                 fill: 'none',
-                stroke: '#ffffff',
+                stroke: config.color,
                 'stroke-width': String(config.strokeWidth),
-                'stroke-linecap': 'round',
-                opacity: '0.10',
-                transform: `rotate(-90 ${CENTER} ${CENTER})`,
+                opacity: '0.06',
                 class: 'ring-track',
             });
 
-            // Fill arc (partial circle, colored by current phase)
-            const fill = createSvgElement('circle', {
-                cx: String(CENTER),
-                cy: String(CENTER),
-                r: String(config.radius),
-                fill: 'none',
-                stroke: '#c9a84c',
-                'stroke-width': String(config.strokeWidth),
-                'stroke-dasharray': `0 ${circumference}`,
-                'stroke-dashoffset': '0',
-                'stroke-linecap': 'round',
-                transform: `rotate(-90 ${CENTER} ${CENTER})`,
-                class: 'ring-fill',
-            });
+            // 4 quarter arc paths (filled progressively)
+            const quarters: QuarterArc[] = [];
+            for (let q = 0; q < 4; q++) {
+                const path = createSvgElement('path', {
+                    fill: 'none',
+                    stroke: config.color,
+                    'stroke-width': String(config.strokeWidth),
+                    'stroke-linecap': 'butt',
+                    opacity: '0',
+                    d: '',
+                    class: `ring-quarter ring-quarter-${q}`,
+                });
+                path.style.filter = 'url(#glow)';
+                quarters.push({ path });
+                group.appendChild(path);
+            }
 
-            // Label text — positioned at ~11 o'clock (330°) to avoid fill overlay
-            // Fill starts at 12 o'clock (0°/360°) going clockwise, so this position
-            // sits on the unfilled track for most progress values
-            const labelAngle = -60 * Math.PI / 180; // -60° from top = 11 o'clock
+            // Label
+            const labelAngle = -60 * Math.PI / 180;
             const labelX = CENTER + config.radius * Math.sin(labelAngle);
             const labelY = CENTER - config.radius * Math.cos(labelAngle);
             const label = createSvgElement('text', {
                 x: String(labelX),
                 y: String(labelY),
-                fill: '#ffffff',
+                fill: config.color,
                 'font-size': String(Math.max(config.strokeWidth * 0.55, 6)),
                 'font-family': "'DM Sans', sans-serif",
                 'font-weight': '500',
@@ -161,10 +186,9 @@ export class Clock {
             label.textContent = config.label.toUpperCase();
 
             group.appendChild(track);
-            group.appendChild(fill);
             group.appendChild(label);
 
-            this.rings.set(config.id, { group, track, fill, label, config });
+            this.rings.set(config.id, { group, track, quarters, label, config });
             this.svg.appendChild(group);
         }
     }
@@ -183,27 +207,29 @@ export class Clock {
         const isInSprint = cycles.sprint.active;
         const outerDimFactor = isInSprint ? 0.5 : 1;
 
-        // --- Update each ring: identity color, phase brightness, fill ---
-        this.updateRing('sprint', cycles.sprint.progress, cycles.sprint.holonicPhase, isInSprint);
-        this.updateRing('day', cycles.day.progress, cycles.day.holonicPhase, true, isInSprint ? outerDimFactor : 1);
-        this.updateRing('week', cycles.week.progress, cycles.week.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
-        this.updateRing('month', cycles.moon.progress, cycles.moon.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
-        this.updateRing('year', cycles.year.personalProgress, cycles.year.personalHolonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
+        // --- Update each ring with 4-brightness quarters ---
+        this.updateRing('sprint', cycles.sprint.progress, isInSprint);
+        this.updateRing('day', cycles.day.progress, true, isInSprint ? outerDimFactor : 1);
+        this.updateRing('week', cycles.week.progress, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('month', cycles.moon.progress, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('year', cycles.year.personalProgress, showOuterRings, isInSprint ? outerDimFactor : 1);
 
-        // --- Sprint Ring Dominance: grows during sprint ---
+        // --- Sprint Ring Dominance ---
         const sprintRing = this.rings.get('sprint');
         if (sprintRing) {
             const targetWidth = isInSprint ? 24 : sprintRing.config.strokeWidth;
             sprintRing.track.setAttribute('stroke-width', String(targetWidth));
-            sprintRing.fill.setAttribute('stroke-width', String(targetWidth));
+            for (const q of sprintRing.quarters) {
+                q.path.setAttribute('stroke-width', String(targetWidth));
+            }
         }
 
         // --- Phase Label + Time (Sprint mode only) ---
         if (isInSprint) {
             const pulseName = getPulseName(cycles.sprint.pulse.pulseNumber);
-            this.phaseLabel.textContent = `${pulseName} · ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
+            this.phaseLabel.textContent = `${pulseName} \u00B7 ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
             this.timeRemaining.textContent = '';
-            this.phaseLabel.style.color = '#e07040'; // Sprint identity color
+            this.phaseLabel.style.color = '#e07040';
             this.dayPosition.textContent = `Sprint ${todaySprintCount + 1}`;
             this.dayPosition.style.display = '';
             this.guidanceEl.style.display = 'none';
@@ -223,25 +249,26 @@ export class Clock {
             }
         }
 
-        // --- Status Bar: clean, minimal ---
+        // --- Status Bar: energy descriptions only, no planet/moon names ---
         const now = new Date();
         const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-        const pd = cycles.week.planetaryDay;
+        const dayEnergy = cycles.week.planetaryDay.energy;
+        const moonEnergy = cycles.moon.energy;
         this.statusBar.innerHTML = `
             <span class="status-time">${timeStr}</span>
-            <span>${pd.emoji} ${pd.planet} Day</span>
-            <span>${cycles.moon.symbol} ${cycles.moon.phase}</span>
+            <span>${dayEnergy}</span>
+            <span>${moonEnergy}</span>
         `;
     }
 
     /**
-     * Update a single ring: identity color + phase brightness + fill.
-     * Color is fixed per ring. Brightness varies by holonic phase.
+     * Update a ring with 4-brightness quarter arcs.
+     * Each completed quarter shows at its full brightness.
+     * The active quarter fills proportionally.
      */
     private updateRing(
         id: string,
         progress: number,
-        holonicPhase: typeof HOLONIC_PHASES[number],
         visible: boolean,
         dimFactor: number = 1
     ) {
@@ -254,26 +281,59 @@ export class Clock {
 
         if (!visible) return;
 
-        // Identity color (fixed per ring)
-        const color = ring.config.color;
+        const r = ring.config.radius;
+        const totalDeg = 360;
+        const quarterDeg = totalDeg / 4; // 90 degrees per quarter
+        // Small gap between quarters (in degrees)
+        const gapDeg = 1.5;
 
-        // Phase brightness
-        const brightness = PHASE_BRIGHTNESS[holonicPhase.id] ?? 0.7;
-        ring.fill.setAttribute('stroke', color);
-        ring.fill.style.opacity = String(brightness);
-        ring.fill.style.filter = 'url(#glow)';
+        for (let q = 0; q < 4; q++) {
+            const qStart = q * quarterDeg;
+            const brightness = QUARTER_BRIGHTNESS[q];
+            const quarterArc = ring.quarters[q];
 
-        // Fill = progress through the cycle (0..1 → 0..circumference)
-        const circumference = 2 * Math.PI * ring.config.radius;
-        const fillLength = progress * circumference;
-        ring.fill.setAttribute('stroke-dasharray', `${fillLength} ${circumference - fillLength}`);
+            // How much of this quarter is filled (0..1)
+            const quarterStartProgress = q / 4;
+            const quarterEndProgress = (q + 1) / 4;
 
-        // Track gets a subtle tint of identity color
-        ring.track.setAttribute('stroke', color);
-        ring.track.setAttribute('opacity', '0.08');
+            let fillFraction: number;
+            if (progress >= quarterEndProgress) {
+                // Quarter fully completed
+                fillFraction = 1;
+            } else if (progress <= quarterStartProgress) {
+                // Quarter not reached yet
+                fillFraction = 0;
+            } else {
+                // Partially filled
+                fillFraction = (progress - quarterStartProgress) / (quarterEndProgress - quarterStartProgress);
+            }
 
-        // Label color matches identity color (subtle)
-        ring.label.setAttribute('fill', color);
+            if (fillFraction <= 0) {
+                quarterArc.path.setAttribute('d', '');
+                quarterArc.path.setAttribute('opacity', '0');
+                continue;
+            }
+
+            // Arc degrees for this quarter
+            const arcStart = qStart + (q > 0 ? gapDeg / 2 : 0);
+            const arcEnd = qStart + fillFraction * quarterDeg - (q < 3 && fillFraction >= 1 ? gapDeg / 2 : 0);
+
+            if (arcEnd <= arcStart) {
+                quarterArc.path.setAttribute('d', '');
+                quarterArc.path.setAttribute('opacity', '0');
+                continue;
+            }
+
+            const d = arcPath(CENTER, CENTER, r, arcStart, arcEnd);
+            quarterArc.path.setAttribute('d', d);
+            quarterArc.path.setAttribute('opacity', String(brightness));
+            quarterArc.path.setAttribute('stroke', ring.config.color);
+        }
+
+        // Track and label
+        ring.track.setAttribute('stroke', ring.config.color);
+        ring.track.setAttribute('opacity', '0.06');
+        ring.label.setAttribute('fill', ring.config.color);
         ring.label.setAttribute('opacity', '0.5');
     }
 
