@@ -11,6 +11,7 @@
  */
 
 import type { AllCycles } from './cycles';
+import { synthesizeCycles } from './cycles';
 
 // ─── HELPERS ───────────────────────────────────────
 
@@ -85,17 +86,18 @@ const RULES: GuidanceRule[] = [
         category: 'rest',
     },
 
-    // ── AMBIENT: ENERGY OBSERVATION ────────────────
-    // No imperatives. Describe what's available, let the user decide.
+    // ── AMBIENT: SYNTHESIS-BASED GUIDANCE ──────────
+    // Shows the dominant holonic phase action verb.
+    // No planetary jargon — just what to do.
     {
         condition: () => true,
         message: (c) => {
-            const day = c.week.planetaryDay;
-            const hour = c.week.planetaryHour;
-            if (day.planet === hour.planet) {
-                return `${day.planet} day & hour — ${day.energy.toLowerCase()} amplified`;
+            const synthesis = synthesizeCycles(c);
+            const action = synthesis.dominant.action;
+            if (synthesis.coherenceLevel === 'strong') {
+                return `Strong: ${action}`;
             }
-            return `${day.planet} Day · ${hour.energy}`;
+            return action;
         },
         category: 'be',
     },

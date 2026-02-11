@@ -7,8 +7,8 @@
  * Like a Swiss watch: immediately graspable, however sophisticated.
  */
 
-import type { AllCycles, Phase } from './cycles';
-import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor } from './cycles';
+import type { AllCycles, Phase, CycleSynthesis } from './cycles';
+import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor, synthesizeCycles } from './cycles';
 
 // ─── SVG HELPERS ───────────────────────────────────
 
@@ -119,6 +119,7 @@ export class Clock {
 
     private lastPromptPhase: string = '';
     private promptTimeout: number | null = null;
+    private lastDominantColor: string = '';
 
     constructor() {
         this.svg = document.getElementById('rings') as unknown as SVGSVGElement;
@@ -215,6 +216,12 @@ export class Clock {
     }
 
     update(cycles: AllCycles, showOuterRings: boolean, showPrompts: boolean) {
+        // --- Compute synthesis (the harmonic of this moment) ---
+        const synthesis = synthesizeCycles(cycles);
+
+        // --- Harmonic Center: breathing circle color = dominant phase ---
+        this.updateHarmonicCenter(synthesis);
+
         // --- Pulse arcs (sprint-level) ---
         if (cycles.sprint.active) {
             this.pulseArcs.forEach((arc, i) => {
@@ -238,7 +245,7 @@ export class Clock {
             });
         }
 
-        // --- v2: Sprint mode dims outer rings for focus ---
+        // --- Sprint mode dims outer rings for focus ---
         const isInSprint = cycles.sprint.active;
         const outerDimFactor = isInSprint ? 0.25 : 1;
 
@@ -258,7 +265,7 @@ export class Clock {
             this.timeRemaining.textContent = formatMinutes(cycles.sprint.pulse.phaseRemaining) + ' remaining';
             this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
             // Show day position during sprint
-            const todaySprints = 3; // configurable in future
+            const todaySprints = 3;
             const currentSprint = Math.min(cycles.day.sprintSlot, todaySprints);
             this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints} today`;
             this.dayPosition.style.display = '';
@@ -281,15 +288,40 @@ export class Clock {
             }
         }
 
-        // --- Status Bar (simplified — always shows context) ---
-        const pd = cycles.week.planetaryDay;
-        const ph = cycles.week.planetaryHour;
+        // --- Status Bar: TIME + phase map ---
+        const now = new Date();
+        const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        const abbrev = (p: typeof HOLONIC_PHASES[number]) => {
+            const map: Record<string, string> = { will: 'PLAN', emanation: 'BUILD', digestion: 'COMM', enrichment: 'INTEGR' };
+            return map[p.id] || '?';
+        };
+        const pm = synthesis.phaseMap;
+        const dayName = cycles.week.planetaryDay.name.slice(0, 3);
         this.statusBar.innerHTML = `
-            <span>${pd.emoji} ${pd.planet} Day</span>
-            <span>${ph.emoji} ${ph.energy}</span>
-            <span>${cycles.moon.symbol} ${cycles.moon.phase}</span>
-            <span>Q${cycles.quarter.quarter} ${cycles.quarter.season}</span>
+            <span class="status-time">${timeStr}</span>
+            <span style="color:${pm.day.color}">${dayName} ${abbrev(pm.day)}</span>
+            <span style="color:${pm.moon.color}">${cycles.moon.symbol} ${abbrev(pm.moon)}</span>
+            <span style="color:${pm.quarter.color}">Q${cycles.quarter.quarter} ${abbrev(pm.quarter)}</span>
+            <span style="color:${pm.year.color}">YR ${abbrev(pm.year)}</span>
         `;
+    }
+
+    /**
+     * Update the breathing circle to show the dominant harmonic color.
+     * Brightness/glow intensity scales with coherence.
+     */
+    private updateHarmonicCenter(synthesis: CycleSynthesis) {
+        const color = synthesis.dominant.color;
+        if (color === this.lastDominantColor) return;
+        this.lastDominantColor = color;
+
+        // Set CSS custom properties for the breathing animation
+        document.documentElement.style.setProperty('--harmonic-color', color);
+
+        // Coherence controls the glow intensity
+        const glowStrength = synthesis.coherenceLevel === 'strong' ? 1.0
+            : synthesis.coherenceLevel === 'moderate' ? 0.6 : 0.35;
+        document.documentElement.style.setProperty('--harmonic-glow', String(glowStrength));
     }
 
     private updateRing(id: string, progress: number, visible: boolean, isSprintRing: boolean = false, dimFactor: number = 1) {
@@ -304,17 +336,17 @@ export class Clock {
 
         updateDotPosition(ring.dot, ring.config.radius, progress);
 
-        // Highlight the active segment
+        // v3: High contrast — active segment glows, inactive segments barely visible
         const activeIdx = Math.min(Math.floor(progress * 4), 3);
         ring.segments.forEach((seg, i) => {
             const baseWidth = isSprintRing && ring.config.sprintStrokeWidth
                 ? ring.config.sprintStrokeWidth
                 : ring.config.strokeWidth;
             if (i === activeIdx) {
-                seg.setAttribute('opacity', String(Math.min(ring.config.baseOpacity + 0.45, 1)));
-                seg.setAttribute('stroke-width', String(baseWidth + 1.5));
+                seg.setAttribute('opacity', '0.85');
+                seg.setAttribute('stroke-width', String(baseWidth + 2));
             } else {
-                seg.setAttribute('opacity', String(ring.config.baseOpacity));
+                seg.setAttribute('opacity', '0.12');
                 seg.setAttribute('stroke-width', String(baseWidth));
             }
         });

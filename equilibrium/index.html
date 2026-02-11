@@ -38,6 +38,15 @@
     </div>
     <!-- Status Bar -->
     <div id="status-bar"></div>
+    <!-- Birthday Prompt (shown on first visit if no birthday set) -->
+    <div id="birthday-prompt" class="hidden">
+      <div id="birthday-prompt-panel">
+        <p>When is your birthday?</p>
+        <input type="date" id="birthday-input" />
+        <small>Personalizes your yearly rhythm</small>
+        <button id="birthday-confirm">Start →</button>
+      </div>
+    </div>
     <!-- Settings -->
     <button id="settings-toggle" aria-label="Settings">⚙</button>
     <!-- Settings Overlay -->

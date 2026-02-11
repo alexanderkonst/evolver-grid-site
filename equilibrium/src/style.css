@@ -45,6 +45,10 @@
   --glow: rgba(201, 168, 76, 0.15);
   --glow-strong: rgba(201, 168, 76, 0.3);
 
+  /* Harmonic (set dynamically by JS) */
+  --harmonic-color: #c9a84c;
+  --harmonic-glow: 0.5;
+
   /* Typography */
   --font-display: 'Cormorant Garamond', serif;
   --font-voice: 'Libre Baskerville', serif;
@@ -156,18 +160,19 @@ body {
   pointer-events: none;
 }
 
-/* --- BREATHING CIRCLE --- */
+/* --- BREATHING CIRCLE (HARMONIC CENTER) --- */
 #breathing-circle {
   position: relative;
   width: clamp(100px, 22vmin, 180px);
   height: clamp(100px, 22vmin, 180px);
   border-radius: 50%;
-  border: 2px solid var(--gold);
+  border: 2px solid var(--harmonic-color);
   display: flex;
   align-items: center;
   justify-content: center;
   animation: breathe var(--breath-duration) ease-in-out infinite;
   z-index: 2;
+  transition: border-color 2s ease;
 }
 
 #breath-inner {
@@ -175,11 +180,12 @@ body {
   height: 70%;
   border-radius: 50%;
   background: radial-gradient(circle at center,
-      rgba(201, 168, 76, 0.08) 0%,
+      color-mix(in srgb, var(--harmonic-color) calc(var(--harmonic-glow) * 20%), transparent) 0%,
       transparent 70%);
   box-shadow:
-    0 0 60px var(--glow),
-    0 0 120px rgba(201, 168, 76, 0.05);
+    0 0 60px color-mix(in srgb, var(--harmonic-color) calc(var(--harmonic-glow) * 30%), transparent),
+    0 0 120px color-mix(in srgb, var(--harmonic-color) 5%, transparent);
+  transition: box-shadow 2s ease, background 2s ease;
 }
 
 @keyframes breathe {
@@ -189,18 +195,18 @@ body {
     transform: scale(0.82);
     opacity: 0.5;
     box-shadow:
-      0 0 30px rgba(201, 168, 76, 0.08),
-      inset 0 0 15px rgba(201, 168, 76, 0.05);
-    border-color: var(--gold-dim);
+      0 0 30px color-mix(in srgb, var(--harmonic-color) 10%, transparent),
+      inset 0 0 15px color-mix(in srgb, var(--harmonic-color) 5%, transparent);
+    border-color: color-mix(in srgb, var(--harmonic-color) 60%, #0a0a0f);
   }
 
   50% {
     transform: scale(1.0);
     opacity: 1.0;
     box-shadow:
-      0 0 60px var(--glow-strong),
-      inset 0 0 30px var(--glow);
-    border-color: var(--gold-bright);
+      0 0 60px color-mix(in srgb, var(--harmonic-color) 30%, transparent),
+      inset 0 0 30px color-mix(in srgb, var(--harmonic-color) 15%, transparent);
+    border-color: var(--harmonic-color);
   }
 }
 
@@ -333,6 +339,15 @@ body {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  opacity: 0.7;
+}
+
+#status-bar .status-time {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--cream);
+  opacity: 1;
+  letter-spacing: 0.08em;
 }
 
 /* Status bar separator */
@@ -511,6 +526,65 @@ input[type="checkbox"]:checked::before {
 }
 
 #settings-close:hover {
+  background: rgba(201, 168, 76, 0.15);
+}
+
+/* --- BIRTHDAY PROMPT --- */
+#birthday-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(20px);
+  transition: opacity 0.5s ease;
+}
+
+#birthday-prompt.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#birthday-prompt-panel {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+#birthday-prompt-panel p {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--cream);
+  letter-spacing: 0.08em;
+}
+
+#birthday-prompt-panel small {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+}
+
+#birthday-confirm {
+  margin-top: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#birthday-confirm:hover {
   background: rgba(201, 168, 76, 0.15);
 }
 
