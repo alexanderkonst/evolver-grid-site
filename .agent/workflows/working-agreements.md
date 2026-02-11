@@ -31,6 +31,26 @@ description: Working agreements for AI agents on this project
 3. **Progressive Unlock**: Nothing visible until earned
 4. **Plain Language UI**: No "Appleseed" or "Excalibur" in user-facing text
 
+## 🔴 SPEC FIDELITY RULE (NON-NEGOTIABLE)
+
+Before implementing ANY feature change, the agent MUST:
+
+1. **Check if a product spec exists** for this module (`docs/specs/[module]/`)
+2. **Read the spec** — specifically the Master Result, Sub-Results, and Wireframes
+3. **Compare each proposed change** against the spec:
+   - Does this change ADD elements the spec doesn't include? → Flag and ask.
+   - Does this change CONTRADICT a spec decision? → Stop. Spec must be updated first.
+   - Does this change align with the spec? → Proceed.
+4. **Conversational requests do not override specs.** If the user asks for something
+   in conversation that contradicts the approved spec, the agent MUST say:
+   "This contradicts the spec decision [X]. Should I update the spec first?"
+
+### The Subtraction Default
+When asked to "improve," "fix," or "make better," the agent's FIRST instinct
+must be to REMOVE, not to ADD. Before adding any new element:
+- State what existing element it REPLACES
+- If it replaces nothing, justify why the screen needs more elements
+
 ## Current Product State
 - URL: https://evolver-grid-site.vercel.app
 - Branding: "Evolver" (not "Game of Life")

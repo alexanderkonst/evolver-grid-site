@@ -15,9 +15,17 @@ description: Generate a Feature Requirement Document (FReD) before implementing 
 
 3. **Review with human** before implementation
 
-4. **Implement** following the FReD
+4. **Spec Alignment Check** (before ANY code)
+   - Open the product spec for this module: `docs/specs/[module]/`
+   - For each change in the FReD, verify:
+     - [ ] Change is within scope of the spec's Master Result
+     - [ ] Change doesn't add elements the spec doesn't include
+     - [ ] Change doesn't contradict any Roast Gate decision
+   - If any check fails → update spec first, then implement
 
-5. **Mark complete** when acceptance criteria pass
+5. **Implement** following the FReD
+
+6. **Mark complete** when acceptance criteria pass
 
 ---
 
