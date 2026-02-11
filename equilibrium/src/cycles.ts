@@ -445,14 +445,21 @@ export function getYearState(now: number, birthday?: string): YearState {
 // ─── SYNTHESIS: THE ONE INSIGHT ────────────────────
 
 export interface CycleSynthesis {
-    /** One sentence telling you WHERE YOU ARE */
-    insight: string;
-    /** What the dominant energy is doing right now */
-    action: string;
-    /** How many cycles agree on the same holonic phase */
-    coherence: number;
     /** The dominant holonic phase */
     dominant: typeof HOLONIC_PHASES[number];
+    /** 0-100: how many cycles agree on the dominant phase */
+    coherence: number;
+    /** 'strong' (>66%) | 'moderate' (>40%) | 'mixed' */
+    coherenceLevel: 'strong' | 'moderate' | 'mixed';
+    /** The holonic phase of each cycle, for the status bar phase map */
+    phaseMap: {
+        day: typeof HOLONIC_PHASES[number];
+        week: typeof HOLONIC_PHASES[number];
+        moon: typeof HOLONIC_PHASES[number];
+        quarter: typeof HOLONIC_PHASES[number];
+        year: typeof HOLONIC_PHASES[number];
+        sprint?: typeof HOLONIC_PHASES[number];
+    };
 }
 
 export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
@@ -487,24 +494,20 @@ export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
 
     const dominant = HOLONIC_PHASES.find(p => p.id === dominantId)!;
     const coherence = Math.round((maxCount / activeCycles.length) * 100);
-
-    // Build the insight
-    const moonAction = cycles.moon.energy;
-    const dayPhase = cycles.day.holonicPhase;
-    const weekPhase = cycles.week.holonicPhase;
-
-    let insight: string;
-    if (coherence >= 60) {
-        insight = `${dominant.emoji} Strong ${dominant.label} energy — ${dominant.action.split('·')[0].trim()}`;
-    } else {
-        insight = `${dayPhase.emoji} Day: ${dayPhase.label}, ${weekPhase.emoji} Week: ${weekPhase.label}`;
-    }
+    const coherenceLevel = coherence > 66 ? 'strong' : coherence > 40 ? 'moderate' : 'mixed';
 
     return {
-        insight,
-        action: moonAction,
-        coherence,
         dominant,
+        coherence,
+        coherenceLevel,
+        phaseMap: {
+            day: cycles.day.holonicPhase,
+            week: cycles.week.holonicPhase,
+            moon: cycles.moon.holonicPhase,
+            quarter: cycles.quarter.holonicPhase,
+            year: cycles.year.holonicPhase,
+            sprint: cycles.sprint.active ? cycles.sprint.holonicPhase : undefined,
+        },
     };
 }
 

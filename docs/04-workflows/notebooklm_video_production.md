@@ -36,19 +36,30 @@ Batch production of educational videos from micro-learning modules using Noteboo
 
 ### Video Overview Settings
 
-**Format:** Explainer (comprehensive overview)
+**⚠️ CRITICAL: 90-SECOND MAXIMUM DURATION**
 
-**Visual Style:** Custom
+When clicking "Generate" for Video Overview:
+1. Click the **edit icon (⚙️)** next to the Generate button
+2. Select **"Custom"** template option
+3. Fill in the two instruction fields below
 
-**Style Prompt:**
+**Visual Style Prompt:**
 ```
 Bio-luminescent, iridescent pastel gradients on dark background. Organic, alive, breathing aesthetic. Sacred geometry subtle accents.
 ```
 
-**Focus Prompt Template:**
+**Focus/Instructions Prompt Template:**
 ```
-Focus on the practical transformation message. [MODULE-SPECIFIC INSTRUCTION]. Maximum 90 seconds. Educational but inspiring tone.
+Focus on the practical transformation message. [MODULE-SPECIFIC INSTRUCTION]. 
+
+CRITICAL CONSTRAINT: Under no circumstances make this video longer than 90 seconds. Keep it concise, focused, and transformational. Educational but inspiring tone.
 ```
+
+**Why 90 seconds matters:**
+- Micro-learning engagement window
+- Prevents verbose explanations that cause dropoff
+- Forces clarity and focus
+- This is NON-NEGOTIABLE for curriculum quality
 
 ### Critical Optimization Rules
 

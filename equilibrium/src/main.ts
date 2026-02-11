@@ -89,6 +89,26 @@ const sprintCta = document.getElementById('sprint-cta')!;
 
 document.documentElement.style.setProperty('--breath-duration', `${state.preferences.breathDuration}s`);
 
+// ─── BIRTHDAY PROMPT ──────────────────────────────
+
+const birthdayPrompt = document.getElementById('birthday-prompt')!;
+const birthdayPromptInput = document.getElementById('birthday-input') as HTMLInputElement;
+const birthdayConfirm = document.getElementById('birthday-confirm')!;
+
+// Show birthday prompt on first visit if no birthday set
+if (!state.preferences.birthday) {
+  birthdayPrompt.classList.remove('hidden');
+}
+
+birthdayConfirm.addEventListener('click', () => {
+  const val = birthdayPromptInput.value;
+  if (val) {
+    state.preferences.birthday = val;
+    saveState(state);
+  }
+  birthdayPrompt.classList.add('hidden');
+});
+
 // ─── SETTINGS UI ───────────────────────────────────
 
 const settingsToggle = document.getElementById('settings-toggle')!;
