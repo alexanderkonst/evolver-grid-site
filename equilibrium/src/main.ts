@@ -3,6 +3,8 @@
  * 
  * "Your breath is the clock."
  * 
+ * AI-enhanced: fetches energy insights from generate-equilibrium-insight edge function.
+ *
  * A living clock that shows WHERE YOU ARE in every cycle,
  * from breath to personal year.
  */
@@ -11,6 +13,8 @@ import './style.css';
 import { getAllCycles } from './cycles';
 import { Clock } from './clock';
 import { getGuidance } from './guidance';
+import { fetchAIInsight, getFallbackInsight, type AIInsight } from './ai-insight';
+import { synthesizeCycles } from './cycles';
 
 // ─── STATE ─────────────────────────────────────────
 
@@ -119,7 +123,40 @@ themeToggle.addEventListener('click', () => {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
 const guidanceEl = document.getElementById('guidance')!;
+const activitiesEl = document.getElementById('activities')!;
 const sprintCta = document.getElementById('sprint-cta')!;
+
+// ─── AI INSIGHT STATE ─────────────────────────────
+let currentAIInsight: AIInsight | null = null;
+let aiInsightLoading = false;
+let lastInsightKey = '';
+
+async function maybeRefreshAIInsight(cycles: ReturnType<typeof getAllCycles>) {
+  const synthesis = synthesizeCycles(cycles);
+  const dayEnergy = cycles.week.planetaryDay.energy;
+  const moonEnergy = cycles.moon.energy;
+  const dominantPhase = synthesis.dominant.id;
+  const coherenceLevel = synthesis.coherenceLevel;
+  const intentionText = state.intentions.sprint?.text
+    || state.intentions.day?.text
+    || state.intentions.week?.text
+    || state.intentions.moon?.text
+    || null;
+
+  const key = `${dayEnergy}|${dominantPhase}`;
+  if (key === lastInsightKey && currentAIInsight) return;
+  if (aiInsightLoading) return;
+
+  lastInsightKey = key;
+  aiInsightLoading = true;
+
+  try {
+    currentAIInsight = await fetchAIInsight(dayEnergy, moonEnergy, dominantPhase, coherenceLevel, intentionText);
+  } catch {
+    currentAIInsight = getFallbackInsight(dominantPhase);
+  }
+  aiInsightLoading = false;
+}
 
 document.documentElement.style.setProperty('--breath-duration', `${state.preferences.breathDuration}s`);
 
@@ -360,19 +397,33 @@ function tick() {
     phaseBar.classList.add('hidden');
   }
 
-  // Update guidance with intention hierarchy
+  // Update guidance with intention hierarchy + AI insight
   const guidance = getGuidance(cycles, state.preferences.wakeTime, state.preferences.sleepTime);
-  // In ambient mode: show intention hierarchy, falling back to planetary guidance
+
   if (!cycles.sprint.active) {
+    // Trigger AI insight refresh (async, non-blocking)
+    maybeRefreshAIInsight(cycles);
+
     const intentionText = state.intentions.sprint?.text
       || state.intentions.day?.text
       || state.intentions.week?.text
       || state.intentions.moon?.text
       || null;
-    guidanceEl.textContent = intentionText
-      ? `"${intentionText}"`
-      : guidance.message;
+
+    if (currentAIInsight) {
+      guidanceEl.textContent = intentionText
+        ? `"${intentionText}" · ${currentAIInsight.insight}`
+        : currentAIInsight.insight;
+      activitiesEl.textContent = currentAIInsight.activities.join(' · ');
+      activitiesEl.style.display = '';
+    } else {
+      guidanceEl.textContent = intentionText
+        ? `"${intentionText}"`
+        : guidance.message;
+      activitiesEl.style.display = 'none';
+    }
   } else {
+    activitiesEl.style.display = 'none';
     // In sprint: show intention + time remaining
     if (state.intentions.sprint?.text) {
       const sprintRemaining = Math.ceil(96 - (Date.now() - state.sprintStartTime!) / 60000);

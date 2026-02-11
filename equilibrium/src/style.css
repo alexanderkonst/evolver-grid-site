@@ -339,6 +339,18 @@ body {
   transition: opacity 1.5s ease;
 }
 
+/* --- ACTIVITIES LINE (AI insight activities) --- */
+#activities {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  margin-top: 4px;
+  opacity: 0.6;
+  transition: opacity 1.5s ease;
+}
+
 /* --- TRANSITION PROMPT (sprint mode) --- */
 #transition-prompt {
   font-family: var(--font-voice);
