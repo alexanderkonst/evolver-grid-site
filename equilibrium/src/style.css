@@ -587,6 +587,41 @@ input[type="checkbox"]:checked::before {
   background: var(--gold);
 }
 
+.settings-section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--cream-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+#settings-panel input[type="text"] {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 6px;
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#settings-panel input[type="text"]::placeholder {
+  color: var(--cream-muted);
+  opacity: 0.5;
+}
+
+#settings-panel input[type="text"]:focus {
+  border-color: var(--gold);
+}
+
 #settings-close {
   display: block;
   width: 100%;
