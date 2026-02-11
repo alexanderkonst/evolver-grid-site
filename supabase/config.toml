@@ -86,3 +86,6 @@ verify_jwt = false
 
 [functions.generate-equilibrium-insight]
 verify_jwt = false
+
+[functions.equilibrium-telegram-bot]
+verify_jwt = false
