@@ -121,6 +121,30 @@ export type Database = {
         }
         Relationships: []
       }
+      equilibrium_users: {
+        Row: {
+          birthday: string
+          chat_id: number
+          created_at: string
+          id: string
+          timezone: number | null
+        }
+        Insert: {
+          birthday: string
+          chat_id: number
+          created_at?: string
+          id?: string
+          timezone?: number | null
+        }
+        Update: {
+          birthday?: string
+          chat_id?: number
+          created_at?: string
+          id?: string
+          timezone?: number | null
+        }
+        Relationships: []
+      }
       event_rsvps: {
         Row: {
           created_at: string | null
