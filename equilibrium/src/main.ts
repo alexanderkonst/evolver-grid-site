@@ -126,21 +126,6 @@ const guidanceEl = document.getElementById('guidance')!;
 const activitiesEl = document.getElementById('activities')!;
 const sprintCta = document.getElementById('sprint-cta')!;
 
-// Insight → Intention: tapping insight opens sprint entry
-guidanceEl.style.cursor = 'pointer';
-activitiesEl.style.cursor = 'pointer';
-guidanceEl.addEventListener('click', () => {
-  if (!state.sprintStartTime) {
-    sprintEntry.classList.remove('hidden');
-    sprintIntentionInput.focus();
-  }
-});
-activitiesEl.addEventListener('click', () => {
-  if (!state.sprintStartTime) {
-    sprintEntry.classList.remove('hidden');
-    sprintIntentionInput.focus();
-  }
-});
 
 // ─── AI INSIGHT STATE ─────────────────────────────
 let currentAIInsight: AIInsight | null = null;
@@ -290,6 +275,22 @@ function startSprint(intention: string) {
 
 // CTA button opens the sprint entry overlay
 sprintCta.addEventListener('click', () => {
+  if (!state.sprintStartTime) {
+    sprintEntry.classList.remove('hidden');
+    sprintIntentionInput.focus();
+  }
+});
+
+// Insight → Intention: tapping insight also opens sprint entry
+guidanceEl.style.cursor = 'pointer';
+activitiesEl.style.cursor = 'pointer';
+guidanceEl.addEventListener('click', () => {
+  if (!state.sprintStartTime) {
+    sprintEntry.classList.remove('hidden');
+    sprintIntentionInput.focus();
+  }
+});
+activitiesEl.addEventListener('click', () => {
   if (!state.sprintStartTime) {
     sprintEntry.classList.remove('hidden');
     sprintIntentionInput.focus();
