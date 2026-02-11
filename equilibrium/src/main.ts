@@ -23,6 +23,18 @@ interface Preferences {
   birthday: string;  // "YYYY-MM-DD" or "" 
 }
 
+interface Intention {
+  text: string;
+  setAt: number;
+}
+
+interface Intentions {
+  sprint: Intention | null;
+  day: Intention | null;
+  week: Intention | null;
+  moon: Intention | null;
+}
+
 interface AppState {
   preferences: Preferences;
   sprintStartTime: number | null;
@@ -33,6 +45,7 @@ interface AppState {
     endTime: string;
     completed: boolean;
   }>;
+  intentions: Intentions;
 }
 
 const STORAGE_KEY = 'equilibrium-state';
@@ -69,6 +82,7 @@ function loadState(): AppState {
     },
     sprintStartTime: null,
     sprintLog: [],
+    intentions: { sprint: null, day: null, week: null, moon: null },
   };
 }
 
@@ -180,12 +194,51 @@ birthdayInput.addEventListener('change', () => {
 
 // ─── SPRINT CONTROL ────────────────────────────────
 
-// CTA button for starting sprint
+// Sprint entry overlay
+const sprintEntry = document.getElementById('sprint-entry')!;
+const sprintIntentionInput = document.getElementById('sprint-intention-input') as HTMLInputElement;
+const sprintBegin = document.getElementById('sprint-begin')!;
+const sprintSkip = document.getElementById('sprint-skip')!;
+const phaseBar = document.getElementById('phase-bar')!;
+const phaseSegments = phaseBar.querySelectorAll('.phase-segment');
+
+function startSprint(intention: string) {
+  state.sprintStartTime = Date.now();
+  if (intention.trim()) {
+    state.intentions.sprint = { text: intention.trim(), setAt: Date.now() };
+  } else {
+    state.intentions.sprint = null;
+  }
+  saveState(state);
+  sprintCta.classList.add('hidden');
+  sprintEntry.classList.add('hidden');
+  sprintIntentionInput.value = '';
+}
+
+// CTA button opens the sprint entry overlay
 sprintCta.addEventListener('click', () => {
   if (!state.sprintStartTime) {
-    state.sprintStartTime = Date.now();
-    saveState(state);
-    sprintCta.classList.add('hidden');
+    sprintEntry.classList.remove('hidden');
+    sprintIntentionInput.focus();
+  }
+});
+
+// BEGIN starts the sprint with the intention
+sprintBegin.addEventListener('click', () => {
+  startSprint(sprintIntentionInput.value);
+});
+
+// Skip starts without intention
+sprintSkip.addEventListener('click', () => {
+  startSprint('');
+});
+
+// Enter key in the input acts as BEGIN
+sprintIntentionInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    startSprint(sprintIntentionInput.value);
+  } else if (e.key === 'Escape') {
+    sprintEntry.classList.add('hidden');
   }
 });
 
@@ -254,6 +307,7 @@ function tick() {
       completed: true,
     });
     state.sprintStartTime = null;
+    state.intentions.sprint = null; // Clear sprint intention on end
     saveState(state);
     sprintCta.classList.remove('hidden');
   }
@@ -264,14 +318,48 @@ function tick() {
   }
 
   // Update clock
-  // Compute today's actual sprint count from log
   const today = new Date().toISOString().split('T')[0];
   const todaySprintCount = state.sprintLog.filter(l => l.date === today).length;
   clock.update(cycles, state.preferences.showOuterRings, state.preferences.transitionPrompts, todaySprintCount);
 
-  // Update guidance
+  // Update phase bar (show during sprint)
+  if (cycles.sprint.active) {
+    phaseBar.classList.remove('hidden');
+    const pulseNum = cycles.sprint.pulse.pulseNumber;
+    const currentPhase = cycles.sprint.pulse.phase;
+    phaseSegments.forEach((seg, i) => {
+      const segPulse = i + 1;
+      seg.classList.remove('active', 'completed');
+      if (segPulse < pulseNum || (segPulse === pulseNum && currentPhase === 'exit')) {
+        seg.classList.add('completed');
+      } else if (segPulse === pulseNum) {
+        seg.classList.add('active');
+      }
+    });
+  } else {
+    phaseBar.classList.add('hidden');
+  }
+
+  // Update guidance with intention hierarchy
   const guidance = getGuidance(cycles, state.preferences.wakeTime, state.preferences.sleepTime);
-  guidanceEl.textContent = guidance.message;
+  // In ambient mode: show intention hierarchy, falling back to planetary guidance
+  if (!cycles.sprint.active) {
+    const intentionText = state.intentions.sprint?.text
+      || state.intentions.day?.text
+      || state.intentions.week?.text
+      || state.intentions.moon?.text
+      || null;
+    guidanceEl.textContent = intentionText
+      ? `"${intentionText}"`
+      : guidance.message;
+  } else {
+    // In sprint: show intention + time remaining
+    if (state.intentions.sprint?.text) {
+      const sprintRemaining = Math.ceil(96 - (Date.now() - state.sprintStartTime!) / 60000);
+      guidanceEl.textContent = `"${state.intentions.sprint.text}" · ${sprintRemaining}m left`;
+      guidanceEl.style.display = '';
+    }
+  }
 
   requestAnimationFrame(tick);
 }
