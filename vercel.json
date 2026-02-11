@@ -15,5 +15,11 @@
         }
       ]
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/equilibrium-cron",
+      "schedule": "0 22,4,10,16 * * *"
+    }
   ]
 }
