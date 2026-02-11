@@ -87,17 +87,12 @@ const RULES: GuidanceRule[] = [
     },
 
     // ── AMBIENT: SYNTHESIS-BASED GUIDANCE ──────────
-    // Shows the dominant holonic phase action verb.
-    // No planetary jargon — just what to do.
+    // Shows the dominant holonic phase as a single word.
     {
         condition: () => true,
         message: (c) => {
             const synthesis = synthesizeCycles(c);
-            const action = synthesis.dominant.action;
-            if (synthesis.coherenceLevel === 'strong') {
-                return `Strong: ${action}`;
-            }
-            return action;
+            return synthesis.dominant.label;
         },
         category: 'be',
     },

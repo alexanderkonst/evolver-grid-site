@@ -1,15 +1,16 @@
 /**
- * Equilibrium — Clock Renderer v3
+ * Equilibrium — Clock Renderer v4
  * 
  * Apple-style rings: each ring = ONE arc, ONE color, ONE fill.
+ * Thick enough to carry the cycle name inside the arc.
  * Color = holonic phase you're currently in for that cycle.
  * Fill = how far through the cycle you are.
  * 
- * Five rings. Five colors. Five fills. That IS the harmonic.
+ * Six rings. Six colors. Six fills. That IS the harmonic.
  */
 
 import type { AllCycles, Phase } from './cycles';
-import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor, synthesizeCycles } from './cycles';
+import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseColor, synthesizeCycles } from './cycles';
 
 // ─── SVG HELPERS ───────────────────────────────────
 
@@ -24,53 +25,6 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: R
     return el;
 }
 
-/**
- * Create a single-arc ring (Apple Activity Ring style).
- * One background track + one fill arc + no dots, no segments.
- */
-function createSingleArcRing(
-    radius: number,
-    strokeWidth: number,
-): { group: SVGGElement; track: SVGCircleElement; fill: SVGCircleElement } {
-    const group = createSvgElement('g', { class: 'ring-group' });
-    const circumference = 2 * Math.PI * radius;
-
-    // Background track (full circle, very dim)
-    const track = createSvgElement('circle', {
-        cx: String(CENTER),
-        cy: String(CENTER),
-        r: String(radius),
-        fill: 'none',
-        stroke: '#ffffff',
-        'stroke-width': String(strokeWidth),
-        'stroke-linecap': 'round',
-        opacity: '0.06',
-        transform: `rotate(-90 ${CENTER} ${CENTER})`,
-        class: 'ring-track',
-    });
-
-    // Fill arc (partial circle, colored by current phase)
-    const fill = createSvgElement('circle', {
-        cx: String(CENTER),
-        cy: String(CENTER),
-        r: String(radius),
-        fill: 'none',
-        stroke: '#c9a84c', // default, overridden per update
-        'stroke-width': String(strokeWidth),
-        'stroke-dasharray': `0 ${circumference}`,
-        'stroke-dashoffset': '0',
-        'stroke-linecap': 'round',
-        transform: `rotate(-90 ${CENTER} ${CENTER})`,
-        class: 'ring-fill',
-    });
-
-    group.appendChild(track);
-    group.appendChild(fill);
-
-    return { group, track, fill };
-}
-
-
 // ─── RING DEFINITIONS ──────────────────────────────
 
 interface RingConfig {
@@ -78,26 +32,34 @@ interface RingConfig {
     radius: number;
     strokeWidth: number;
     label: string;
+    gap: number; // gap between rings
 }
 
+// Rings go from inner (Sprint) to outer (Year)
+// Stroke widths are thick enough to carry text labels
+const RING_GAP = 4;
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 85, strokeWidth: 8, label: 'Sprint' },
-    { id: 'day', radius: 105, strokeWidth: 6, label: 'Day' },
-    { id: 'week', radius: 123, strokeWidth: 5, label: 'Week' },
-    { id: 'moon', radius: 139, strokeWidth: 4.5, label: 'Moon' },
-    { id: 'quarter', radius: 154, strokeWidth: 4, label: 'Quarter' },
-    { id: 'year', radius: 167, strokeWidth: 3.5, label: 'Year' },
+    { id: 'sprint', radius: 80, strokeWidth: 16, label: 'Sprint', gap: RING_GAP },
+    { id: 'day', radius: 100, strokeWidth: 16, label: 'Day', gap: RING_GAP },
+    { id: 'week', radius: 120, strokeWidth: 14, label: 'Week', gap: RING_GAP },
+    { id: 'moon', radius: 138, strokeWidth: 12, label: 'Moon', gap: RING_GAP },
+    { id: 'quarter', radius: 154, strokeWidth: 12, label: 'Quarter', gap: RING_GAP },
+    { id: 'year', radius: 170, strokeWidth: 10, label: 'Year', gap: RING_GAP },
 ];
+
+interface RingElements {
+    group: SVGGElement;
+    track: SVGCircleElement;
+    fill: SVGCircleElement;
+    label: SVGTextElement;
+    config: RingConfig;
+}
 
 // ─── CLOCK CLASS ───────────────────────────────────
 
 export class Clock {
     private svg: SVGSVGElement;
-    private rings: Map<string, { group: SVGGElement; track: SVGCircleElement; fill: SVGCircleElement; config: RingConfig }>;
-
-    // Pulse arcs (inner breathing ring)
-    private pulseArcs: SVGCircleElement[];
-    private pulseGroup: SVGGElement;
+    private rings: Map<string, RingElements>;
 
     // DOM elements
     private phaseLabel: HTMLElement;
@@ -120,16 +82,13 @@ export class Clock {
         this.guidanceEl = document.getElementById('guidance')!;
 
         this.rings = new Map();
-        this.pulseArcs = [];
-        this.pulseGroup = document.createElementNS(SVG_NS, 'g');
-
         this.buildClock();
     }
 
     private buildClock() {
         this.svg.innerHTML = '';
 
-        // Add glow filter
+        // Glow filter for ring fills
         const defs = createSvgElement('defs', {});
         defs.innerHTML = `
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -139,42 +98,63 @@ export class Clock {
         `;
         this.svg.appendChild(defs);
 
-        // 1. Pulse arcs (innermost — breathing rhythm, only during sprint)
-        this.pulseGroup = createSvgElement('g', { class: 'pulse-group' });
-        const pulseRadius = 68;
-        const circumference = 2 * Math.PI * pulseRadius;
-        const gapFraction = 0.03;
-        const segmentFraction = (1 - gapFraction * 4) / 4;
-        const segmentLength = circumference * segmentFraction;
-        const gapLength = circumference * gapFraction;
+        // Build each ring: track + fill + label
+        for (const config of RING_CONFIGS) {
+            const group = createSvgElement('g', { class: `ring-group ring-${config.id}` });
+            const circumference = 2 * Math.PI * config.radius;
 
-        for (let i = 0; i < 4; i++) {
-            const arc = createSvgElement('circle', {
+            // Background track (full circle, very dim, shows the unfilled portion)
+            const track = createSvgElement('circle', {
                 cx: String(CENTER),
                 cy: String(CENTER),
-                r: String(pulseRadius),
+                r: String(config.radius),
                 fill: 'none',
-                stroke: 'var(--ring-pulse)',
-                'stroke-width': '3',
-                'stroke-dasharray': `${segmentLength} ${circumference - segmentLength}`,
-                'stroke-dashoffset': String(-i * (segmentLength + gapLength)),
+                stroke: '#ffffff',
+                'stroke-width': String(config.strokeWidth),
+                'stroke-linecap': 'round',
+                opacity: '0.06',
+                transform: `rotate(-90 ${CENTER} ${CENTER})`,
+                class: 'ring-track',
+            });
+
+            // Fill arc (partial circle, colored by current phase)
+            const fill = createSvgElement('circle', {
+                cx: String(CENTER),
+                cy: String(CENTER),
+                r: String(config.radius),
+                fill: 'none',
+                stroke: '#c9a84c',
+                'stroke-width': String(config.strokeWidth),
+                'stroke-dasharray': `0 ${circumference}`,
+                'stroke-dashoffset': '0',
                 'stroke-linecap': 'round',
                 transform: `rotate(-90 ${CENTER} ${CENTER})`,
-                class: 'pulse-arc',
+                class: 'ring-fill',
             });
-            this.pulseArcs.push(arc);
-            this.pulseGroup.appendChild(arc);
-        }
-        this.svg.appendChild(this.pulseGroup);
 
-        // 2. Concentric Apple-style rings (single arc each)
-        for (const config of RING_CONFIGS) {
-            const ring = createSingleArcRing(config.radius, config.strokeWidth);
-            this.rings.set(config.id, { ...ring, config });
-            this.svg.appendChild(ring.group);
-        }
+            // Label text — placed at the start of the ring (12 o'clock, slightly offset right)
+            const label = createSvgElement('text', {
+                x: String(CENTER + 8),
+                y: String(CENTER - config.radius + 1),
+                fill: '#ffffff',
+                'font-size': String(Math.min(config.strokeWidth * 0.6, 9)),
+                'font-family': "'DM Sans', sans-serif",
+                'font-weight': '500',
+                'letter-spacing': '0.08em',
+                'text-anchor': 'start',
+                'dominant-baseline': 'central',
+                opacity: '0.4',
+                class: 'ring-label',
+            });
+            label.textContent = config.label.toUpperCase();
 
-        // NO phase legend — the colors speak for themselves
+            group.appendChild(track);
+            group.appendChild(fill);
+            group.appendChild(label);
+
+            this.rings.set(config.id, { group, track, fill, label, config });
+            this.svg.appendChild(group);
+        }
     }
 
     update(cycles: AllCycles, showOuterRings: boolean, showPrompts: boolean) {
@@ -186,29 +166,6 @@ export class Clock {
         const glowStrength = synthesis.coherenceLevel === 'strong' ? 1.0
             : synthesis.coherenceLevel === 'moderate' ? 0.6 : 0.35;
         document.documentElement.style.setProperty('--harmonic-glow', String(glowStrength));
-
-        // --- Pulse arcs (sprint-level) ---
-        if (cycles.sprint.active) {
-            this.pulseArcs.forEach((arc, i) => {
-                const pulseNum = i + 1;
-                const phase = HOLONIC_PHASES[i];
-                if (pulseNum < cycles.sprint.pulse.pulseNumber) {
-                    arc.setAttribute('stroke', phase.color);
-                    arc.setAttribute('opacity', '0.8');
-                } else if (pulseNum === cycles.sprint.pulse.pulseNumber) {
-                    arc.setAttribute('stroke', getPhaseColor(cycles.sprint.pulse.phase));
-                    arc.setAttribute('opacity', '1');
-                } else {
-                    arc.setAttribute('stroke', phase.color);
-                    arc.setAttribute('opacity', '0.15');
-                }
-            });
-        } else {
-            this.pulseArcs.forEach((arc, i) => {
-                arc.setAttribute('stroke', HOLONIC_PHASES[i].color);
-                arc.setAttribute('opacity', '0.15');
-            });
-        }
 
         // --- Sprint dims outer rings ---
         const isInSprint = cycles.sprint.active;
@@ -225,13 +182,12 @@ export class Clock {
         // --- Phase Label + Time (Sprint mode only) ---
         if (isInSprint) {
             const pulseName = getPulseName(cycles.sprint.pulse.pulseNumber);
-            const phaseLabel = getPhaseLabel(cycles.sprint.pulse.phase);
-            this.phaseLabel.textContent = `${pulseName} · ${phaseLabel}`;
-            this.timeRemaining.textContent = formatMinutes(cycles.sprint.pulse.phaseRemaining) + ' remaining';
+            this.phaseLabel.textContent = `${pulseName} · ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
+            this.timeRemaining.textContent = '';
             this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
             const todaySprints = 3;
             const currentSprint = Math.min(cycles.day.sprintSlot, todaySprints);
-            this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints} today`;
+            this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints}`;
             this.dayPosition.style.display = '';
             this.guidanceEl.style.display = 'none';
         } else {
@@ -263,7 +219,7 @@ export class Clock {
     }
 
     /**
-     * Update a single ring: one arc fill + one color.
+     * Update a single ring: one arc fill + one color + label.
      * Color = holonic phase for this cycle. Fill = progress through cycle.
      */
     private updateRing(
@@ -295,6 +251,10 @@ export class Clock {
         // Track gets a subtle tint of the phase color
         ring.track.setAttribute('stroke', color);
         ring.track.setAttribute('opacity', '0.08');
+
+        // Label color matches the phase (subtle)
+        ring.label.setAttribute('fill', color);
+        ring.label.setAttribute('opacity', '0.5');
     }
 
     private showTransitionPrompt(phase: Phase, pulseNumber: number) {
