@@ -98,6 +98,26 @@ function saveState(state: AppState) {
 
 const state = loadState();
 const clock = new Clock();
+
+// ─── THEME ─────────────────────────────────────────
+
+const THEME_KEY = 'equilibrium-theme';
+const themeToggle = document.getElementById('theme-toggle')!;
+
+function applyTheme(theme: 'dark' | 'light') {
+  document.documentElement.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'dark' ? '☽' : '☀';
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+// Load saved theme or default to dark
+const savedTheme = (localStorage.getItem(THEME_KEY) as 'dark' | 'light') || 'dark';
+applyTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
 const guidanceEl = document.getElementById('guidance')!;
 const sprintCta = document.getElementById('sprint-cta')!;
 

@@ -419,6 +419,27 @@ body {
   background: rgba(201, 168, 76, 0.05);
 }
 
+#theme-toggle {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: var(--space-lg);
+  background: none;
+  border: none;
+  color: var(--cream-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: var(--space-sm);
+  border-radius: 50%;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 5;
+  line-height: 1;
+}
+
+#theme-toggle:hover {
+  color: var(--gold-dim);
+  background: rgba(201, 168, 76, 0.05);
+}
+
 /* --- SETTINGS OVERLAY --- */
 #settings-overlay {
   position: fixed;
