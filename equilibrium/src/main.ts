@@ -250,6 +250,35 @@ birthdayInput.addEventListener('change', () => {
   saveState(state);
 });
 
+// ─── INTENTION INPUTS ──────────────────────────────
+
+const intentionDayInput = document.getElementById('intention-day') as HTMLInputElement;
+const intentionWeekInput = document.getElementById('intention-week') as HTMLInputElement;
+const intentionMoonInput = document.getElementById('intention-moon') as HTMLInputElement;
+
+// Load from state
+intentionDayInput.value = state.intentions.day?.text || '';
+intentionWeekInput.value = state.intentions.week?.text || '';
+intentionMoonInput.value = state.intentions.moon?.text || '';
+
+intentionDayInput.addEventListener('change', () => {
+  const val = intentionDayInput.value.trim();
+  state.intentions.day = val ? { text: val, setAt: Date.now() } : null;
+  saveState(state);
+});
+
+intentionWeekInput.addEventListener('change', () => {
+  const val = intentionWeekInput.value.trim();
+  state.intentions.week = val ? { text: val, setAt: Date.now() } : null;
+  saveState(state);
+});
+
+intentionMoonInput.addEventListener('change', () => {
+  const val = intentionMoonInput.value.trim();
+  state.intentions.moon = val ? { text: val, setAt: Date.now() } : null;
+  saveState(state);
+});
+
 // ─── SPRINT CONTROL ────────────────────────────────
 
 // Sprint entry overlay
