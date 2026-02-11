@@ -123,7 +123,6 @@ export interface AllCycles {
     day: DayState;
     week: WeekState;
     month: MonthState;
-    quarter: QuarterState;
     moon: MoonState;
     year: YearState;
 }
@@ -215,14 +214,15 @@ const SEASON_ENERGY: Record<string, string> = {
     Autumn: 'Gather & Release',
 };
 
-// Week holonic mapping from holonic_cycles.md:
-// Mon (Moon) → WILL, Tue-Wed → EMANATION, Thu-Fri → DIGESTION, Sat-Sun → ENRICHMENT
+// Week holonic mapping (Alexander's model):
+// Mon → WILL (Planning), Tue → EMANATION (Building),
+// Wed → DIGESTION (Communicating), Thu-Sun → ENRICHMENT (Integrating)
 function getWeekHolonicPhase(dayOfWeek: number): typeof HOLONIC_PHASES[number] {
     // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-    if (dayOfWeek === 1) return HOLONIC_PHASES[0]; // Mon → WILL
-    if (dayOfWeek === 2 || dayOfWeek === 3) return HOLONIC_PHASES[1]; // Tue-Wed → EMANATION
-    if (dayOfWeek === 4 || dayOfWeek === 5) return HOLONIC_PHASES[2]; // Thu-Fri → DIGESTION
-    return HOLONIC_PHASES[3]; // Sat-Sun → ENRICHMENT
+    if (dayOfWeek === 1) return HOLONIC_PHASES[0]; // Mon → Planning
+    if (dayOfWeek === 2) return HOLONIC_PHASES[1]; // Tue → Building
+    if (dayOfWeek === 3) return HOLONIC_PHASES[2]; // Wed → Communicating
+    return HOLONIC_PHASES[3]; // Thu-Sun → Integrating
 }
 
 // ─── BREATH ────────────────────────────────────────
@@ -455,8 +455,8 @@ export interface CycleSynthesis {
     phaseMap: {
         day: typeof HOLONIC_PHASES[number];
         week: typeof HOLONIC_PHASES[number];
+        month: typeof HOLONIC_PHASES[number];
         moon: typeof HOLONIC_PHASES[number];
-        quarter: typeof HOLONIC_PHASES[number];
         year: typeof HOLONIC_PHASES[number];
         sprint?: typeof HOLONIC_PHASES[number];
     };
@@ -469,7 +469,6 @@ export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
         cycles.day.holonicPhase,
         cycles.week.holonicPhase,
         cycles.month.holonicPhase,
-        cycles.quarter.holonicPhase,
         cycles.moon.holonicPhase,
         cycles.year.holonicPhase,
     ];
@@ -503,8 +502,8 @@ export function synthesizeCycles(cycles: AllCycles): CycleSynthesis {
         phaseMap: {
             day: cycles.day.holonicPhase,
             week: cycles.week.holonicPhase,
+            month: cycles.month.holonicPhase,
             moon: cycles.moon.holonicPhase,
-            quarter: cycles.quarter.holonicPhase,
             year: cycles.year.holonicPhase,
             sprint: cycles.sprint.active ? cycles.sprint.holonicPhase : undefined,
         },
@@ -525,7 +524,6 @@ export function getAllCycles(
         day: getDayState(now),
         week: getWeekState(now),
         month: getMonthState(now),
-        quarter: getQuarterState(now),
         moon: getMoonState(now),
         year: getYearState(now, birthday),
     };
