@@ -13,8 +13,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500&family=Libre+Baskerville:ital@1&display=swap"
     rel="stylesheet" />
-  <script type="module" crossorigin src="/equilibrium/assets/index-BtuvbZ1L.js"></script>
-  <link rel="stylesheet" crossorigin href="/equilibrium/assets/index-DSyb7FBV.css">
+  <script type="module" crossorigin src="/equilibrium/assets/index-CZdvp0dT.js"></script>
+  <link rel="stylesheet" crossorigin href="/equilibrium/assets/index-mPlJnvf1.css">
 </head>
 
 <body>
@@ -28,13 +28,33 @@
       <!-- Sprint CTA -->
       <button id="sprint-cta">Enter Deep Focus</button>
     </div>
+    <!-- Sprint Entry Overlay -->
+    <div id="sprint-entry" class="hidden">
+      <div id="sprint-entry-panel">
+        <label for="sprint-intention-input">What's your focus?</label>
+        <input type="text" id="sprint-intention-input" placeholder="e.g. Ship the pricing page" autocomplete="off"
+          maxlength="80" />
+        <div class="sprint-structure">96 minutes · 4 phases<br><span class="sprint-phases-label">Plan → Build →
+            Communicate → Integrate</span></div>
+        <button id="sprint-begin">BEGIN</button>
+        <button id="sprint-skip">skip →</button>
+      </div>
+    </div>
     <!-- Info Area (3 lines max) -->
     <div id="info-area">
       <div id="guidance"></div>
+      <div id="activities"></div>
       <div id="transition-prompt"></div>
       <div id="phase-display">
         <div id="phase-label"></div>
         <div id="time-remaining"></div>
+      </div>
+      <!-- Phase Bar: 4 segments during sprint -->
+      <div id="phase-bar" class="hidden">
+        <div class="phase-segment" data-phase="plan">P</div>
+        <div class="phase-segment" data-phase="build">B</div>
+        <div class="phase-segment" data-phase="comm">C</div>
+        <div class="phase-segment" data-phase="int">I</div>
       </div>
       <div id="day-position"></div>
     </div>
@@ -49,7 +69,8 @@
         <button id="birthday-confirm">Start →</button>
       </div>
     </div>
-    <!-- Settings -->
+    <!-- Controls -->
+    <button id="theme-toggle" aria-label="Toggle theme">☽</button>
     <button id="settings-toggle" aria-label="Settings">⚙</button>
     <!-- Settings Overlay -->
     <div id="settings-overlay" class="hidden">
@@ -87,6 +108,25 @@
         <div class="setting-group">
           <label for="toggle-outer-rings">Outer Rings</label>
           <input type="checkbox" id="toggle-outer-rings" checked />
+        </div>
+        <h3 class="settings-section-title">Intentions</h3>
+        <div class="setting-group">
+          <label for="intention-day">Today</label>
+          <div class="setting-value">
+            <input type="text" id="intention-day" placeholder="What's your focus today?" maxlength="80" />
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="intention-week">This Week</label>
+          <div class="setting-value">
+            <input type="text" id="intention-week" placeholder="What's your focus this week?" maxlength="80" />
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="intention-moon">This Moon Cycle</label>
+          <div class="setting-value">
+            <input type="text" id="intention-moon" placeholder="What's your focus this cycle?" maxlength="80" />
+          </div>
         </div>
         <button id="settings-close">Close</button>
       </div>
