@@ -72,6 +72,63 @@
   --breath-duration: 11s;
 }
 
+/* --- LIGHT THEME --- */
+[data-theme="light"] {
+  --bg-void: #f5f2ed;
+  --bg-surface: rgba(255, 255, 255, 0.85);
+  --gold: #8a6b20;
+  --gold-dim: #6b5518;
+  --gold-bright: #a07828;
+  --cream: #1a1810;
+  --cream-muted: #6a6050;
+  --glow: rgba(140, 110, 40, 0.1);
+  --glow-strong: rgba(140, 110, 40, 0.2);
+  --harmonic-color: #8a6b20;
+}
+
+[data-theme="light"] body {
+  background: var(--bg-void);
+}
+
+[data-theme="light"] #settings-toggle,
+[data-theme="light"] #theme-toggle {
+  color: var(--cream-muted);
+}
+
+[data-theme="light"] #settings-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-top-color: rgba(140, 110, 40, 0.15);
+}
+
+[data-theme="light"] #settings-panel h2,
+[data-theme="light"] .setting-group label {
+  color: var(--cream);
+}
+
+[data-theme="light"] input[type="range"] {
+  accent-color: var(--gold);
+}
+
+[data-theme="light"] #status-bar {
+  color: var(--cream-muted);
+}
+
+[data-theme="light"] #sprint-begin {
+  color: #fff;
+}
+
+[data-theme="light"] .phase-segment {
+  background: rgba(224, 112, 64, 0.12);
+}
+
+[data-theme="light"] .phase-segment.active {
+  background: rgba(224, 112, 64, 0.7);
+}
+
+[data-theme="light"] .phase-segment.completed {
+  background: rgba(224, 112, 64, 0.3);
+}
+
 /* --- BASE --- */
 html,
 body {
@@ -366,9 +423,9 @@ body {
 #settings-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 15, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(10, 10, 15, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -377,13 +434,19 @@ body {
   transition: opacity 0.3s ease;
 }
 
+[data-theme="light"] #settings-overlay {
+  background: rgba(245, 242, 237, 0.4);
+}
+
 #settings-overlay.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
 #settings-panel {
-  background: var(--bg-surface);
+  background: rgba(18, 18, 26, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   border-radius: 16px 16px 0 0;
   padding: var(--space-xl) var(--space-xl) var(--space-2xl);
@@ -520,9 +583,14 @@ input[type="checkbox"]:checked::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 10, 15, 0.92);
-  backdrop-filter: blur(20px);
+  background: rgba(10, 10, 15, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   transition: opacity 0.5s ease;
+}
+
+[data-theme="light"] #birthday-prompt {
+  background: rgba(245, 242, 237, 0.5);
 }
 
 #birthday-prompt.hidden {
@@ -536,6 +604,17 @@ input[type="checkbox"]:checked::before {
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
+  background: rgba(18, 18, 26, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 20px;
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+[data-theme="light"] #birthday-prompt-panel {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(140, 110, 40, 0.1);
 }
 
 #birthday-prompt-panel p {
@@ -602,13 +681,18 @@ input[type="date"]:focus {
 #sprint-entry {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 15, 0.92);
+  background: rgba(10, 10, 15, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   animation: fadeIn 0.3s ease;
+}
+
+[data-theme="light"] #sprint-entry {
+  background: rgba(245, 242, 237, 0.4);
 }
 
 #sprint-entry.hidden {
@@ -619,6 +703,17 @@ input[type="date"]:focus {
   text-align: center;
   max-width: 400px;
   width: 90%;
+  background: rgba(18, 18, 26, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(224, 112, 64, 0.1);
+  border-radius: 20px;
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+[data-theme="light"] #sprint-entry-panel {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(224, 112, 64, 0.15);
 }
 
 #sprint-entry-panel label {
