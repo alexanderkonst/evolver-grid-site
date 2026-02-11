@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0a0a0f" />
   <meta name="description"
-    content="Equilibrium — A living clock that replaces mechanical time with biological rhythm." />
+    content="Equilibrium — A living clock that shows where you are in every cycle, from breath to year." />
   <title>Equilibrium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500&family=Libre+Baskerville:ital@1&display=swap"
     rel="stylesheet" />
-  <script type="module" crossorigin src="/equilibrium/assets/index-C_BrAv4i.js"></script>
-  <link rel="stylesheet" crossorigin href="/equilibrium/assets/index-CFPh11Ww.css">
+  <script type="module" crossorigin src="/equilibrium/assets/index-Da4hX2U7.js"></script>
+  <link rel="stylesheet" crossorigin href="/equilibrium/assets/index-Dgl1Ovno.css">
 </head>
 
 <body>
@@ -28,21 +28,26 @@
       <!-- Sprint CTA -->
       <button id="sprint-cta">Enter Deep Focus</button>
     </div>
-    <!-- Phase Label -->
-    <div id="phase-display">
-      <div id="phase-label"></div>
-      <div id="time-remaining"></div>
+    <!-- Info Area (3 lines max) -->
+    <div id="info-area">
+      <div id="guidance"></div>
+      <div id="transition-prompt"></div>
+      <div id="phase-display">
+        <div id="phase-label"></div>
+        <div id="time-remaining"></div>
+      </div>
+      <div id="day-position"></div>
     </div>
-    <!-- Transition Prompt -->
-    <div id="transition-prompt"></div>
-    <!-- Guidance Line -->
-    <div id="guidance"></div>
     <!-- Status Bar -->
-    <div id="status-bar">
-      <span id="planetary-day"></span>
-      <span id="planetary-hour"></span>
-      <span id="moon-phase"></span>
-      <span id="quarter-info"></span>
+    <div id="status-bar"></div>
+    <!-- Birthday Prompt (shown on first visit if no birthday set) -->
+    <div id="birthday-prompt" class="hidden">
+      <div id="birthday-prompt-panel">
+        <p>When is your birthday?</p>
+        <input type="date" id="birthday-input" />
+        <small>Personalizes your yearly rhythm</small>
+        <button id="birthday-confirm">Start →</button>
+      </div>
     </div>
     <!-- Settings -->
     <button id="settings-toggle" aria-label="Settings">⚙</button>
@@ -55,6 +60,12 @@
           <div class="setting-value">
             <input type="range" id="breath-duration" min="8" max="16" step="1" value="11" />
             <span id="breath-duration-label">11s</span>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="birthday">Birthday</label>
+          <div class="setting-value">
+            <input type="date" id="birthday" />
           </div>
         </div>
         <div class="setting-group">
