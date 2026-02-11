@@ -87,6 +87,7 @@ interface RingElements {
     track: SVGCircleElement;
     quarters: QuarterArc[];
     label: SVGTextElement;
+    timeMarkers: SVGTextElement[];
     config: RingConfig;
 }
 
@@ -132,6 +133,12 @@ export class Clock {
             </filter>
         `;
         this.svg.appendChild(defs);
+
+        // Time marker definitions for specific rings
+        const TIME_MARKERS: Record<string, string[]> = {
+            sprint: ['24m', '48m', '72m'], // 3 markers at quarter boundaries (not at 0/96)
+            day: ['Dawn', 'Morning', 'Afternoon', 'Evening'], // 4 markers at quarter starts
+        };
 
         // Build each ring
         for (const config of RING_CONFIGS) {
@@ -185,10 +192,49 @@ export class Clock {
             });
             label.textContent = config.label.toUpperCase();
 
+            // Time markers (only for sprint and day rings)
+            const timeMarkers: SVGTextElement[] = [];
+            const markerLabels = TIME_MARKERS[config.id];
+            if (markerLabels) {
+                const isDay = config.id === 'day';
+                const markerCount = markerLabels.length;
+                for (let i = 0; i < markerCount; i++) {
+                    // Sprint: markers at 90°, 180°, 270° (quarter boundaries)
+                    // Day: markers at 0°, 90°, 180°, 270° (quarter starts)
+                    let angleDeg: number;
+                    if (isDay) {
+                        angleDeg = i * 90; // 0, 90, 180, 270
+                    } else {
+                        angleDeg = (i + 1) * 90; // 90, 180, 270
+                    }
+                    const angleRad = (angleDeg - 90) * Math.PI / 180;
+                    // Position just outside the ring
+                    const markerR = config.radius + config.strokeWidth / 2 + 8;
+                    const mx = CENTER + markerR * Math.cos(angleRad);
+                    const my = CENTER + markerR * Math.sin(angleRad);
+
+                    const marker = createSvgElement('text', {
+                        x: String(mx),
+                        y: String(my),
+                        fill: config.color,
+                        'font-size': '5.5',
+                        'font-family': "'DM Sans', sans-serif",
+                        'font-weight': '400',
+                        'text-anchor': 'middle',
+                        'dominant-baseline': 'central',
+                        opacity: '0.3',
+                        class: 'ring-time-marker',
+                    });
+                    marker.textContent = markerLabels[i];
+                    timeMarkers.push(marker);
+                    group.appendChild(marker);
+                }
+            }
+
             group.appendChild(track);
             group.appendChild(label);
 
-            this.rings.set(config.id, { group, track, quarters, label, config });
+            this.rings.set(config.id, { group, track, quarters, label, timeMarkers, config });
             this.svg.appendChild(group);
         }
     }
