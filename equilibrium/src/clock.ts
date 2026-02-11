@@ -112,7 +112,7 @@ export class Clock {
                 stroke: '#ffffff',
                 'stroke-width': String(config.strokeWidth),
                 'stroke-linecap': 'round',
-                opacity: '0.06',
+                opacity: '0.10',
                 transform: `rotate(-90 ${CENTER} ${CENTER})`,
                 class: 'ring-track',
             });
@@ -127,7 +127,7 @@ export class Clock {
                 'stroke-width': String(config.strokeWidth),
                 'stroke-dasharray': `0 ${circumference}`,
                 'stroke-dashoffset': '0',
-                'stroke-linecap': 'butt',
+                'stroke-linecap': 'round',
                 transform: `rotate(-90 ${CENTER} ${CENTER})`,
                 class: 'ring-fill',
             });
@@ -162,7 +162,7 @@ export class Clock {
         }
     }
 
-    update(cycles: AllCycles, showOuterRings: boolean, showPrompts: boolean) {
+    update(cycles: AllCycles, showOuterRings: boolean, showPrompts: boolean, todaySprintCount: number = 0) {
         const synthesis = synthesizeCycles(cycles);
 
         // --- Harmonic center: dominant phase color on breathing circle ---
@@ -174,7 +174,7 @@ export class Clock {
 
         // --- Sprint dims outer rings ---
         const isInSprint = cycles.sprint.active;
-        const outerDimFactor = isInSprint ? 0.3 : 1;
+        const outerDimFactor = isInSprint ? 0.5 : 1;
 
         // --- Update each ring: single arc, one color, one fill ---
         this.updateRing('sprint', cycles.sprint.progress, cycles.sprint.holonicPhase, isInSprint);
@@ -184,15 +184,21 @@ export class Clock {
         this.updateRing('quarter', cycles.quarter.progress, cycles.quarter.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
         this.updateRing('year', cycles.year.personalProgress, cycles.year.personalHolonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
 
+        // --- Sprint Ring Dominance: grows during sprint ---
+        const sprintRing = this.rings.get('sprint');
+        if (sprintRing) {
+            const targetWidth = isInSprint ? 24 : sprintRing.config.strokeWidth;
+            sprintRing.track.setAttribute('stroke-width', String(targetWidth));
+            sprintRing.fill.setAttribute('stroke-width', String(targetWidth));
+        }
+
         // --- Phase Label + Time (Sprint mode only) ---
         if (isInSprint) {
             const pulseName = getPulseName(cycles.sprint.pulse.pulseNumber);
             this.phaseLabel.textContent = `${pulseName} · ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
             this.timeRemaining.textContent = '';
             this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
-            const todaySprints = 3;
-            const currentSprint = Math.min(cycles.day.sprintSlot, todaySprints);
-            this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints}`;
+            this.dayPosition.textContent = `Sprint ${todaySprintCount + 1}`;
             this.dayPosition.style.display = '';
             this.guidanceEl.style.display = 'none';
         } else {

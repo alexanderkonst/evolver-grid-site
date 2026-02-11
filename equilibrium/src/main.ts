@@ -194,14 +194,23 @@ let longPressTimer: number | null = null;
 
 const clockContainer = document.getElementById('clock-container')!;
 
+// Hold-to-exit feedback element
+const holdFeedback = document.createElement('div');
+holdFeedback.id = 'hold-feedback';
+holdFeedback.textContent = 'Hold to exit sprint';
+clockContainer.appendChild(holdFeedback);
+
 clockContainer.addEventListener('pointerdown', (e) => {
   if (!state.sprintStartTime) return;
   if ((e.target as HTMLElement).id === 'settings-toggle') return;
+
+  holdFeedback.classList.add('visible');
 
   longPressTimer = window.setTimeout(() => {
     state.sprintStartTime = null;
     saveState(state);
     sprintCta.classList.remove('hidden');
+    holdFeedback.classList.remove('visible');
   }, 3000);
 });
 
@@ -210,6 +219,7 @@ clockContainer.addEventListener('pointerup', () => {
     clearTimeout(longPressTimer);
     longPressTimer = null;
   }
+  holdFeedback.classList.remove('visible');
 });
 
 clockContainer.addEventListener('pointerleave', () => {
@@ -217,6 +227,7 @@ clockContainer.addEventListener('pointerleave', () => {
     clearTimeout(longPressTimer);
     longPressTimer = null;
   }
+  holdFeedback.classList.remove('visible');
 });
 
 // ─── MAIN LOOP ─────────────────────────────────────
@@ -253,7 +264,10 @@ function tick() {
   }
 
   // Update clock
-  clock.update(cycles, state.preferences.showOuterRings, state.preferences.transitionPrompts);
+  // Compute today's actual sprint count from log
+  const today = new Date().toISOString().split('T')[0];
+  const todaySprintCount = state.sprintLog.filter(l => l.date === today).length;
+  clock.update(cycles, state.preferences.showOuterRings, state.preferences.transitionPrompts, todaySprintCount);
 
   // Update guidance
   const guidance = getGuidance(cycles, state.preferences.wakeTime, state.preferences.sleepTime);

@@ -11,7 +11,7 @@
  */
 
 import type { AllCycles } from './cycles';
-import { synthesizeCycles } from './cycles';
+
 
 // ─── HELPERS ───────────────────────────────────────
 
@@ -86,14 +86,11 @@ const RULES: GuidanceRule[] = [
         category: 'rest',
     },
 
-    // ── AMBIENT: SYNTHESIS-BASED GUIDANCE ──────────
-    // Shows the dominant holonic phase as a single word.
+    // ── AMBIENT: PLANETARY DAY ENERGY ─────────────
+    // Shows today's planetary energy — universally understandable.
     {
         condition: () => true,
-        message: (c) => {
-            const synthesis = synthesizeCycles(c);
-            return synthesis.dominant.label;
-        },
+        message: (c) => c.week.planetaryDay.energy,
         category: 'be',
     },
 ];
