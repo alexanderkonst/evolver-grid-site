@@ -127,23 +127,23 @@ export class Clock {
                 'stroke-width': String(config.strokeWidth),
                 'stroke-dasharray': `0 ${circumference}`,
                 'stroke-dashoffset': '0',
-                'stroke-linecap': 'round',
+                'stroke-linecap': 'butt',
                 transform: `rotate(-90 ${CENTER} ${CENTER})`,
                 class: 'ring-fill',
             });
 
-            // Label text — placed at the start of the ring (12 o'clock, slightly offset right)
+            // Label text — placed at the start of the ring (12 o'clock, offset right)
             const label = createSvgElement('text', {
-                x: String(CENTER + 8),
-                y: String(CENTER - config.radius + 1),
+                x: String(CENTER + 10),
+                y: String(CENTER - config.radius + 0.5),
                 fill: '#ffffff',
-                'font-size': String(Math.min(config.strokeWidth * 0.6, 9)),
+                'font-size': String(Math.min(config.strokeWidth * 0.55, 8)),
                 'font-family': "'DM Sans', sans-serif",
-                'font-weight': '500',
-                'letter-spacing': '0.08em',
+                'font-weight': '600',
+                'letter-spacing': '0.12em',
                 'text-anchor': 'start',
                 'dominant-baseline': 'central',
-                opacity: '0.4',
+                opacity: '0.6',
                 class: 'ring-label',
             });
             label.textContent = config.label.toUpperCase();
