@@ -1,13 +1,14 @@
 /**
- * Equilibrium — Clock Renderer v2
+ * Equilibrium — Clock Renderer v3
  * 
- * Each ring is segmented into 4 holonic phases (WILL → EMANATION → DIGESTION → ENRICHMENT)
- * with distinct colors, a position dot showing WHERE YOU ARE NOW, and a label.
+ * Apple-style rings: each ring = ONE arc, ONE color, ONE fill.
+ * Color = holonic phase you're currently in for that cycle.
+ * Fill = how far through the cycle you are.
  * 
- * Like a Swiss watch: immediately graspable, however sophisticated.
+ * Five rings. Five colors. Five fills. That IS the harmonic.
  */
 
-import type { AllCycles, Phase, CycleSynthesis } from './cycles';
+import type { AllCycles, Phase } from './cycles';
 import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor, synthesizeCycles } from './cycles';
 
 // ─── SVG HELPERS ───────────────────────────────────
@@ -24,59 +25,50 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(tag: K, attrs: R
 }
 
 /**
- * Create a segmented ring with 4 holonic phase arcs.
- * Each segment is 25% of the circle, colored by phase.
+ * Create a single-arc ring (Apple Activity Ring style).
+ * One background track + one fill arc + no dots, no segments.
  */
-function createSegmentedRing(
+function createSingleArcRing(
     radius: number,
     strokeWidth: number,
-    opacity: number
-): { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement } {
+): { group: SVGGElement; track: SVGCircleElement; fill: SVGCircleElement } {
     const group = createSvgElement('g', { class: 'ring-group' });
     const circumference = 2 * Math.PI * radius;
-    const segmentLength = circumference / 4;
-    const segments: SVGCircleElement[] = [];
 
-    for (let i = 0; i < 4; i++) {
-        const phase = HOLONIC_PHASES[i];
-        const arc = createSvgElement('circle', {
-            cx: String(CENTER),
-            cy: String(CENTER),
-            r: String(radius),
-            fill: 'none',
-            stroke: phase.color,
-            'stroke-width': String(strokeWidth),
-            'stroke-dasharray': `${segmentLength} ${circumference - segmentLength}`,
-            'stroke-dashoffset': String(-(i * segmentLength) + circumference / 4),
-            'stroke-linecap': 'butt',
-            transform: `rotate(-90 ${CENTER} ${CENTER})`,
-            opacity: String(opacity),
-            class: `ring-segment ring-segment-${phase.id}`,
-        });
-        segments.push(arc);
-        group.appendChild(arc);
-    }
-
-    // Position dot
-    const dot = createSvgElement('circle', {
+    // Background track (full circle, very dim)
+    const track = createSvgElement('circle', {
         cx: String(CENTER),
-        cy: String(CENTER - radius),
-        r: '4',
-        fill: '#ffffff',
-        class: 'position-dot',
-        filter: 'url(#glow)',
+        cy: String(CENTER),
+        r: String(radius),
+        fill: 'none',
+        stroke: '#ffffff',
+        'stroke-width': String(strokeWidth),
+        'stroke-linecap': 'round',
+        opacity: '0.06',
+        transform: `rotate(-90 ${CENTER} ${CENTER})`,
+        class: 'ring-track',
     });
-    group.appendChild(dot);
 
-    return { group, segments, dot };
+    // Fill arc (partial circle, colored by current phase)
+    const fill = createSvgElement('circle', {
+        cx: String(CENTER),
+        cy: String(CENTER),
+        r: String(radius),
+        fill: 'none',
+        stroke: '#c9a84c', // default, overridden per update
+        'stroke-width': String(strokeWidth),
+        'stroke-dasharray': `0 ${circumference}`,
+        'stroke-dashoffset': '0',
+        'stroke-linecap': 'round',
+        transform: `rotate(-90 ${CENTER} ${CENTER})`,
+        class: 'ring-fill',
+    });
+
+    group.appendChild(track);
+    group.appendChild(fill);
+
+    return { group, track, fill };
 }
-
-function updateDotPosition(dot: SVGCircleElement, radius: number, progress: number) {
-    const angle = (progress * 360 - 90) * (Math.PI / 180);
-    dot.setAttribute('cx', String(CENTER + radius * Math.cos(angle)));
-    dot.setAttribute('cy', String(CENTER + radius * Math.sin(angle)));
-}
-
 
 
 // ─── RING DEFINITIONS ──────────────────────────────
@@ -85,25 +77,23 @@ interface RingConfig {
     id: string;
     radius: number;
     strokeWidth: number;
-    baseOpacity: number;
-    sprintStrokeWidth?: number; // thicker during sprint mode
     label: string;
 }
 
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 85, strokeWidth: 5, sprintStrokeWidth: 7, baseOpacity: 0.3, label: 'Sprint' },
-    { id: 'day', radius: 105, strokeWidth: 4, baseOpacity: 0.35, label: 'Day' },
-    { id: 'week', radius: 123, strokeWidth: 3.5, baseOpacity: 0.25, label: 'Week' },
-    { id: 'moon', radius: 139, strokeWidth: 3, baseOpacity: 0.25, label: 'Moon' },
-    { id: 'quarter', radius: 154, strokeWidth: 2.5, baseOpacity: 0.2, label: 'Quarter' },
-    { id: 'year', radius: 167, strokeWidth: 2, baseOpacity: 0.15, label: 'Year' },
+    { id: 'sprint', radius: 85, strokeWidth: 8, label: 'Sprint' },
+    { id: 'day', radius: 105, strokeWidth: 6, label: 'Day' },
+    { id: 'week', radius: 123, strokeWidth: 5, label: 'Week' },
+    { id: 'moon', radius: 139, strokeWidth: 4.5, label: 'Moon' },
+    { id: 'quarter', radius: 154, strokeWidth: 4, label: 'Quarter' },
+    { id: 'year', radius: 167, strokeWidth: 3.5, label: 'Year' },
 ];
 
 // ─── CLOCK CLASS ───────────────────────────────────
 
 export class Clock {
     private svg: SVGSVGElement;
-    private rings: Map<string, { group: SVGGElement; segments: SVGCircleElement[]; dot: SVGCircleElement; config: RingConfig }>;
+    private rings: Map<string, { group: SVGGElement; track: SVGCircleElement; fill: SVGCircleElement; config: RingConfig }>;
 
     // Pulse arcs (inner breathing ring)
     private pulseArcs: SVGCircleElement[];
@@ -119,7 +109,6 @@ export class Clock {
 
     private lastPromptPhase: string = '';
     private promptTimeout: number | null = null;
-    private lastDominantColor: string = '';
 
     constructor() {
         this.svg = document.getElementById('rings') as unknown as SVGSVGElement;
@@ -144,13 +133,13 @@ export class Clock {
         const defs = createSvgElement('defs', {});
         defs.innerHTML = `
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="blur"/>
+                <feGaussianBlur stdDeviation="3" result="blur"/>
                 <feComposite in="SourceGraphic" in2="blur" operator="over"/>
             </filter>
         `;
         this.svg.appendChild(defs);
 
-        // 1. Pulse arcs (innermost — breathing rhythm)
+        // 1. Pulse arcs (innermost — breathing rhythm, only during sprint)
         this.pulseGroup = createSvgElement('g', { class: 'pulse-group' });
         const pulseRadius = 68;
         const circumference = 2 * Math.PI * pulseRadius;
@@ -178,49 +167,25 @@ export class Clock {
         }
         this.svg.appendChild(this.pulseGroup);
 
-        // 2. Concentric holonic rings
+        // 2. Concentric Apple-style rings (single arc each)
         for (const config of RING_CONFIGS) {
-            const ring = createSegmentedRing(config.radius, config.strokeWidth, config.baseOpacity);
+            const ring = createSingleArcRing(config.radius, config.strokeWidth);
             this.rings.set(config.id, { ...ring, config });
             this.svg.appendChild(ring.group);
         }
 
-        // 3. Phase legend — centered at bottom of SVG, compact row
-        const legendGroup = createSvgElement('g', { class: 'phase-legend' });
-        const legendY = 392;
-        const legendStartX = 100;
-        const legendSpacing = 58;
-        HOLONIC_PHASES.forEach((phase, i) => {
-            const x = legendStartX + i * legendSpacing;
-            const dot = createSvgElement('circle', {
-                cx: String(x),
-                cy: String(legendY - 3),
-                r: '3',
-                fill: phase.color,
-            });
-            const text = createSvgElement('text', {
-                x: String(x + 6),
-                y: String(legendY),
-                fill: phase.color,
-                'font-size': '6.5',
-                'font-family': "'DM Sans', sans-serif",
-                opacity: '0.5',
-            });
-            // Use abbreviations to fit
-            const abbr = ['PLAN', 'BUILD', 'COMM.', 'INTEGR.'];
-            text.textContent = abbr[i];
-            legendGroup.appendChild(dot);
-            legendGroup.appendChild(text);
-        });
-        this.svg.appendChild(legendGroup);
+        // NO phase legend — the colors speak for themselves
     }
 
     update(cycles: AllCycles, showOuterRings: boolean, showPrompts: boolean) {
-        // --- Compute synthesis (the harmonic of this moment) ---
         const synthesis = synthesizeCycles(cycles);
 
-        // --- Harmonic Center: breathing circle color = dominant phase ---
-        this.updateHarmonicCenter(synthesis);
+        // --- Harmonic center: dominant phase color on breathing circle ---
+        const dominantColor = synthesis.dominant.color;
+        document.documentElement.style.setProperty('--harmonic-color', dominantColor);
+        const glowStrength = synthesis.coherenceLevel === 'strong' ? 1.0
+            : synthesis.coherenceLevel === 'moderate' ? 0.6 : 0.35;
+        document.documentElement.style.setProperty('--harmonic-glow', String(glowStrength));
 
         // --- Pulse arcs (sprint-level) ---
         if (cycles.sprint.active) {
@@ -245,17 +210,17 @@ export class Clock {
             });
         }
 
-        // --- Sprint mode dims outer rings for focus ---
+        // --- Sprint dims outer rings ---
         const isInSprint = cycles.sprint.active;
-        const outerDimFactor = isInSprint ? 0.25 : 1;
+        const outerDimFactor = isInSprint ? 0.3 : 1;
 
-        // --- Update each ring ---
-        this.updateRing('sprint', cycles.sprint.progress, isInSprint, isInSprint);
-        this.updateRing('day', cycles.day.progress, true, false, isInSprint ? outerDimFactor : 1);
-        this.updateRing('week', cycles.week.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
-        this.updateRing('moon', cycles.moon.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
-        this.updateRing('quarter', cycles.quarter.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
-        this.updateRing('year', cycles.year.personalProgress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
+        // --- Update each ring: single arc, one color, one fill ---
+        this.updateRing('sprint', cycles.sprint.progress, cycles.sprint.holonicPhase, isInSprint);
+        this.updateRing('day', cycles.day.progress, cycles.day.holonicPhase, true, isInSprint ? outerDimFactor : 1);
+        this.updateRing('week', cycles.week.progress, cycles.week.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('moon', cycles.moon.progress, cycles.moon.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('quarter', cycles.quarter.progress, cycles.quarter.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('year', cycles.year.personalProgress, cycles.year.personalHolonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
 
         // --- Phase Label + Time (Sprint mode only) ---
         if (isInSprint) {
@@ -264,18 +229,15 @@ export class Clock {
             this.phaseLabel.textContent = `${pulseName} · ${phaseLabel}`;
             this.timeRemaining.textContent = formatMinutes(cycles.sprint.pulse.phaseRemaining) + ' remaining';
             this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
-            // Show day position during sprint
             const todaySprints = 3;
             const currentSprint = Math.min(cycles.day.sprintSlot, todaySprints);
             this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints} today`;
             this.dayPosition.style.display = '';
-            // Hide guidance during sprint (transition prompts take over)
             this.guidanceEl.style.display = 'none';
         } else {
             this.phaseLabel.textContent = '';
             this.timeRemaining.textContent = '';
             this.dayPosition.style.display = 'none';
-            // Show guidance in ambient mode
             this.guidanceEl.style.display = '';
         }
 
@@ -288,43 +250,29 @@ export class Clock {
             }
         }
 
-        // --- Status Bar: TIME + phase map ---
+        // --- Status Bar: clean, minimal ---
         const now = new Date();
         const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-        const abbrev = (p: typeof HOLONIC_PHASES[number]) => {
-            const map: Record<string, string> = { will: 'PLAN', emanation: 'BUILD', digestion: 'COMM', enrichment: 'INTEGR' };
-            return map[p.id] || '?';
-        };
-        const pm = synthesis.phaseMap;
-        const dayName = cycles.week.planetaryDay.name.slice(0, 3);
+        const pd = cycles.week.planetaryDay;
         this.statusBar.innerHTML = `
             <span class="status-time">${timeStr}</span>
-            <span style="color:${pm.day.color}">${dayName} ${abbrev(pm.day)}</span>
-            <span style="color:${pm.moon.color}">${cycles.moon.symbol} ${abbrev(pm.moon)}</span>
-            <span style="color:${pm.quarter.color}">Q${cycles.quarter.quarter} ${abbrev(pm.quarter)}</span>
-            <span style="color:${pm.year.color}">YR ${abbrev(pm.year)}</span>
+            <span>${pd.emoji} ${pd.planet} Day</span>
+            <span>${cycles.moon.symbol} ${cycles.moon.phase}</span>
+            <span>Q${cycles.quarter.quarter} ${cycles.quarter.season}</span>
         `;
     }
 
     /**
-     * Update the breathing circle to show the dominant harmonic color.
-     * Brightness/glow intensity scales with coherence.
+     * Update a single ring: one arc fill + one color.
+     * Color = holonic phase for this cycle. Fill = progress through cycle.
      */
-    private updateHarmonicCenter(synthesis: CycleSynthesis) {
-        const color = synthesis.dominant.color;
-        if (color === this.lastDominantColor) return;
-        this.lastDominantColor = color;
-
-        // Set CSS custom properties for the breathing animation
-        document.documentElement.style.setProperty('--harmonic-color', color);
-
-        // Coherence controls the glow intensity
-        const glowStrength = synthesis.coherenceLevel === 'strong' ? 1.0
-            : synthesis.coherenceLevel === 'moderate' ? 0.6 : 0.35;
-        document.documentElement.style.setProperty('--harmonic-glow', String(glowStrength));
-    }
-
-    private updateRing(id: string, progress: number, visible: boolean, isSprintRing: boolean = false, dimFactor: number = 1) {
+    private updateRing(
+        id: string,
+        progress: number,
+        holonicPhase: typeof HOLONIC_PHASES[number],
+        visible: boolean,
+        dimFactor: number = 1
+    ) {
         const ring = this.rings.get(id);
         if (!ring) return;
 
@@ -334,28 +282,20 @@ export class Clock {
 
         if (!visible) return;
 
-        updateDotPosition(ring.dot, ring.config.radius, progress);
+        // Color = current holonic phase for this cycle
+        const color = holonicPhase.color;
+        ring.fill.setAttribute('stroke', color);
+        ring.fill.style.filter = 'url(#glow)';
 
-        // v3: High contrast — active segment glows, inactive segments barely visible
-        const activeIdx = Math.min(Math.floor(progress * 4), 3);
-        ring.segments.forEach((seg, i) => {
-            const baseWidth = isSprintRing && ring.config.sprintStrokeWidth
-                ? ring.config.sprintStrokeWidth
-                : ring.config.strokeWidth;
-            if (i === activeIdx) {
-                seg.setAttribute('opacity', '0.85');
-                seg.setAttribute('stroke-width', String(baseWidth + 2));
-            } else {
-                seg.setAttribute('opacity', '0.12');
-                seg.setAttribute('stroke-width', String(baseWidth));
-            }
-        });
+        // Fill = progress through the cycle (0..1 → 0..circumference)
+        const circumference = 2 * Math.PI * ring.config.radius;
+        const fillLength = progress * circumference;
+        ring.fill.setAttribute('stroke-dasharray', `${fillLength} ${circumference - fillLength}`);
 
-        // Update dot color to match active phase
-        ring.dot.setAttribute('fill', HOLONIC_PHASES[activeIdx].color);
+        // Track gets a subtle tint of the phase color
+        ring.track.setAttribute('stroke', color);
+        ring.track.setAttribute('opacity', '0.08');
     }
-
-
 
     private showTransitionPrompt(phase: Phase, pulseNumber: number) {
         const prompts: Record<string, string[]> = {
