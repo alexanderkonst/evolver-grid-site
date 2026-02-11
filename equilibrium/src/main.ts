@@ -55,27 +55,7 @@ interface AppState {
 const STORAGE_KEY = 'equilibrium-state';
 
 function loadState(): AppState {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed.sprintStartTime) {
-        const elapsed = (Date.now() - parsed.sprintStartTime) / 60000;
-        if (elapsed >= 96) {
-          parsed.sprintStartTime = null;
-        }
-      }
-      // Ensure defaults for newer fields
-      if (!parsed.preferences.wakeTime) parsed.preferences.wakeTime = '07:00';
-      if (!parsed.preferences.sleepTime) parsed.preferences.sleepTime = '23:00';
-      if (parsed.preferences.birthday === undefined) parsed.preferences.birthday = '';
-      return parsed;
-    }
-  } catch (e) {
-    console.warn('Failed to load state:', e);
-  }
-
-  return {
+  const defaults: AppState = {
     preferences: {
       breathDuration: 11,
       transitionPrompts: true,
@@ -88,6 +68,34 @@ function loadState(): AppState {
     sprintLog: [],
     intentions: { sprint: null, day: null, week: null, moon: null },
   };
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+
+      // Merge preferences with defaults (handles missing fields from older versions)
+      const prefs = { ...defaults.preferences, ...(parsed.preferences || {}) };
+      const intentions = { ...defaults.intentions, ...(parsed.intentions || {}) };
+
+      let sprintStartTime = parsed.sprintStartTime || null;
+      if (sprintStartTime) {
+        const elapsed = (Date.now() - sprintStartTime) / 60000;
+        if (elapsed >= 96) sprintStartTime = null;
+      }
+
+      return {
+        preferences: prefs,
+        sprintStartTime,
+        sprintLog: parsed.sprintLog || [],
+        intentions,
+      };
+    }
+  } catch (e) {
+    console.warn('Failed to load state, using defaults:', e);
+  }
+
+  return defaults;
 }
 
 function saveState(state: AppState) {
