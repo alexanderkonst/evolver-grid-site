@@ -1,7 +1,7 @@
 # Equilibrium v2 — Progress Tracker
 
 **Started:** 2026-02-11 12:40
-**Status:** Phase 1: PRODUCT ✅ → Phase 2: ARCHITECTURE
+**Status:** ALL PHASES COMPLETE ✅
 **Previous version:** [equilibrium_tracker.md](./equilibrium_tracker.md) (v1 — all phases complete)
 **Spec:** [equilibrium_v2_product_spec.md](./equilibrium_v2_product_spec.md)
 
@@ -40,38 +40,38 @@
 
 ---
 
-## PHASE 2: ARCHITECTURE ← CURRENT
+## PHASE 2: ARCHITECTURE ✅ COMPLETE (no changes needed)
 
-- [ ] 2.1 Module Boundaries
-- [ ] 2.2 Routing
-- [ ] 2.3 Data Schema
-- [ ] 2.4 Shell & Layout
-- [ ] 2.5 State Management
-- [ ] 🔥 ROAST GATE 2
-
----
-
-## PHASE 3: UI `[░░░░░░░░]`
-
-- [ ] 3.1 Visual Rules
-- [ ] 3.2 Building Blocks
-- [ ] 3.3 Layout Templates
-- [ ] 3.4 Brandbook Integration
-- [ ] 3.5 Micro-interactions
-- [ ] 🔥 ROAST GATE 3
+- [x] 2.1 Module Boundaries — confirmed: standalone Vite app at `/equilibrium/`, no auth
+- [x] 2.2 Routing — confirmed: one route, two modes, settings as modal overlay
+- [x] 2.3 Data Schema — confirmed: all localStorage (preferences, active sprint, sprint log)
+- [x] 2.4 Shell & Layout — confirmed: fullscreen, no nav/header/footer, responsive
+- [x] 2.5 State Management — confirmed: preferences + sprint resume from localStorage, cycles computed from Date.now()
+- [x] 🔥 ROAST GATE 2 — PASS. Nav walkthrough clean. No broken states. Pure data flow.
 
 ---
 
-## PHASE 4: VIBE-CODING `[░░░░░░░░]`
+## PHASE 3: UI ✅ COMPLETE
 
-- [ ] 4.1 Create/Update Files
-- [ ] 4.2 Implement Screens
-- [ ] 4.3 Connect Routes
-- [ ] 4.4 Connect Data
-- [ ] 4.5 Verification
-- [ ] 4.6 AI Self-Test
-- [ ] 🔥 ROAST GATE 4
+- [x] 3.1 Visual Rules — Sprint ring prominence ↑, outer rings dim during sprint, text simplified to 3 lines max
+- [x] 3.2 Building Blocks — All existing, no new components
+- [x] 3.3 Layout Templates — No change, fullscreen centered
+- [x] 3.4 Brandbook Integration — Calm + purposeful, Bio-Light dark, quiet voice
+- [x] 3.5 Micro-interactions — Kept breathing + phase transitions. Added ring dim on sprint entry.
+- [x] 🔥 ROAST GATE 3 — PASS. Fix list: (1) remove synthesis line ✅ (2) simplify text ✅ (3) fade outer rings ✅ (4) thicker sprint ring ✅ (5) add "Sprint X of Y" ✅
 
 ---
 
-**Completed:** _________
+## PHASE 4: VIBE-CODING ✅ COMPLETE
+
+- [x] 4.1 Files modified: `clock.ts`, `main.ts`, `guidance.ts`, `style.css`, `index.html`
+- [x] 4.2 Implemented: removed synthesis, added day-position, simplified guidance text, ring dimming
+- [x] 4.3 Routes — no changes (same single route)
+- [x] 4.4 Data — no changes (same localStorage)
+- [x] 4.5 Verification — `npx tsc --noEmit` passes clean ✅
+- [x] 4.6 AI Self-Test — Browser screenshot confirms: synthesis removed, rings dim in sprint, "Sprint X of Y" visible, clean 3-line info area
+- [x] 🔥 ROAST GATE 4 — PASS
+
+---
+
+**Completed:** 2026-02-11

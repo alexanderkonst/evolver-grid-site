@@ -81,10 +81,7 @@ const RULES: GuidanceRule[] = [
     // ── AMBIENT: OUTSIDE WORK WINDOW ───────────────
     {
         condition: (_c, wake, sleep) => !isInWorkWindow(wake, sleep),
-        message: (c) => {
-            const day = c.week.planetaryDay;
-            return `${day.emoji} Rest time · ${day.energy} will be here tomorrow`;
-        },
+        message: () => `Rest time — let today settle`,
         category: 'rest',
     },
 
@@ -95,12 +92,10 @@ const RULES: GuidanceRule[] = [
         message: (c) => {
             const day = c.week.planetaryDay;
             const hour = c.week.planetaryHour;
-            // Combine day energy with hour energy into one observational sentence
             if (day.planet === hour.planet) {
-                // Same planet rules both — amplified energy
-                return `${day.emoji} ${day.planet} day & hour — ${day.energy.toLowerCase()} amplified`;
+                return `${day.planet} day & hour — ${day.energy.toLowerCase()} amplified`;
             }
-            return `${hour.emoji} ${hour.energy} flowing through ${day.emoji} ${day.energy}`;
+            return `${day.planet} Day · ${hour.energy}`;
         },
         category: 'be',
     },

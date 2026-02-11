@@ -8,7 +8,7 @@
  */
 
 import type { AllCycles, Phase } from './cycles';
-import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor, synthesizeCycles } from './cycles';
+import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseLabel, getPhaseColor } from './cycles';
 
 // ─── SVG HELPERS ───────────────────────────────────
 
@@ -86,11 +86,12 @@ interface RingConfig {
     radius: number;
     strokeWidth: number;
     baseOpacity: number;
+    sprintStrokeWidth?: number; // thicker during sprint mode
     label: string;
 }
 
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 85, strokeWidth: 5, baseOpacity: 0.3, label: 'Sprint' },
+    { id: 'sprint', radius: 85, strokeWidth: 5, sprintStrokeWidth: 7, baseOpacity: 0.3, label: 'Sprint' },
     { id: 'day', radius: 105, strokeWidth: 4, baseOpacity: 0.35, label: 'Day' },
     { id: 'week', radius: 123, strokeWidth: 3.5, baseOpacity: 0.25, label: 'Week' },
     { id: 'moon', radius: 139, strokeWidth: 3, baseOpacity: 0.25, label: 'Moon' },
@@ -112,9 +113,9 @@ export class Clock {
     private phaseLabel: HTMLElement;
     private timeRemaining: HTMLElement;
     private transitionPrompt: HTMLElement;
-    private synthesisLine: HTMLElement;
-    private moonInfo: HTMLElement;
+    private dayPosition: HTMLElement;
     private statusBar: HTMLElement;
+    private guidanceEl: HTMLElement;
 
     private lastPromptPhase: string = '';
     private promptTimeout: number | null = null;
@@ -124,9 +125,9 @@ export class Clock {
         this.phaseLabel = document.getElementById('phase-label')!;
         this.timeRemaining = document.getElementById('time-remaining')!;
         this.transitionPrompt = document.getElementById('transition-prompt')!;
-        this.synthesisLine = document.getElementById('synthesis')!;
-        this.moonInfo = document.getElementById('moon-info')!;
+        this.dayPosition = document.getElementById('day-position')!;
         this.statusBar = document.getElementById('status-bar')!;
+        this.guidanceEl = document.getElementById('guidance')!;
 
         this.rings = new Map();
         this.pulseArcs = [];
@@ -237,31 +238,42 @@ export class Clock {
             });
         }
 
+        // --- v2: Sprint mode dims outer rings for focus ---
+        const isInSprint = cycles.sprint.active;
+        const outerDimFactor = isInSprint ? 0.25 : 1;
+
         // --- Update each ring ---
-        this.updateRing('sprint', cycles.sprint.progress, cycles.sprint.active);
-        this.updateRing('day', cycles.day.progress, true);
-        this.updateRing('week', cycles.week.progress, showOuterRings);
-        this.updateRing('moon', cycles.moon.progress, showOuterRings);
-        this.updateRing('quarter', cycles.quarter.progress, showOuterRings);
-        this.updateRing('year', cycles.year.personalProgress, showOuterRings);
+        this.updateRing('sprint', cycles.sprint.progress, isInSprint, isInSprint);
+        this.updateRing('day', cycles.day.progress, true, false, isInSprint ? outerDimFactor : 1);
+        this.updateRing('week', cycles.week.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
+        this.updateRing('moon', cycles.moon.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
+        this.updateRing('quarter', cycles.quarter.progress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
+        this.updateRing('year', cycles.year.personalProgress, showOuterRings, false, isInSprint ? outerDimFactor : 1);
 
-        // --- Ring labels ---
-
-
-        // --- Phase Label ---
-        if (cycles.sprint.active) {
+        // --- Phase Label + Time (Sprint mode only) ---
+        if (isInSprint) {
             const pulseName = getPulseName(cycles.sprint.pulse.pulseNumber);
             const phaseLabel = getPhaseLabel(cycles.sprint.pulse.phase);
             this.phaseLabel.textContent = `${pulseName} · ${phaseLabel}`;
             this.timeRemaining.textContent = formatMinutes(cycles.sprint.pulse.phaseRemaining) + ' remaining';
             this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
+            // Show day position during sprint
+            const todaySprints = 3; // configurable in future
+            const currentSprint = Math.min(cycles.day.sprintSlot, todaySprints);
+            this.dayPosition.textContent = `Sprint ${currentSprint} of ${todaySprints} today`;
+            this.dayPosition.style.display = '';
+            // Hide guidance during sprint (transition prompts take over)
+            this.guidanceEl.style.display = 'none';
         } else {
             this.phaseLabel.textContent = '';
             this.timeRemaining.textContent = '';
+            this.dayPosition.style.display = 'none';
+            // Show guidance in ambient mode
+            this.guidanceEl.style.display = '';
         }
 
         // --- Transition Prompts ---
-        if (showPrompts && cycles.sprint.active) {
+        if (showPrompts && isInSprint) {
             const currentPhaseKey = `${cycles.sprint.pulse.pulseNumber}-${cycles.sprint.pulse.phase}`;
             if (currentPhaseKey !== this.lastPromptPhase) {
                 this.lastPromptPhase = currentPhaseKey;
@@ -269,29 +281,24 @@ export class Clock {
             }
         }
 
-        // --- Synthesis: THE ONE INSIGHT ---
-        const synthesis = synthesizeCycles(cycles);
-        this.synthesisLine.textContent = synthesis.insight;
-        this.synthesisLine.style.color = synthesis.dominant.color;
-
-        // --- Moon + Status ---
-        this.moonInfo.textContent = `${cycles.moon.symbol} ${cycles.moon.phase} · ${cycles.moon.energy}`;
-
+        // --- Status Bar (simplified — always shows context) ---
         const pd = cycles.week.planetaryDay;
         const ph = cycles.week.planetaryHour;
         this.statusBar.innerHTML = `
             <span>${pd.emoji} ${pd.planet} Day</span>
             <span>${ph.emoji} ${ph.energy}</span>
+            <span>${cycles.moon.symbol} ${cycles.moon.phase}</span>
             <span>Q${cycles.quarter.quarter} ${cycles.quarter.season}</span>
         `;
     }
 
-    private updateRing(id: string, progress: number, visible: boolean) {
+    private updateRing(id: string, progress: number, visible: boolean, isSprintRing: boolean = false, dimFactor: number = 1) {
         const ring = this.rings.get(id);
         if (!ring) return;
 
-        ring.group.style.opacity = visible ? '1' : '0';
-        ring.group.style.transition = 'opacity 0.5s ease';
+        const effectiveOpacity = visible ? dimFactor : 0;
+        ring.group.style.opacity = String(effectiveOpacity);
+        ring.group.style.transition = 'opacity 0.8s ease';
 
         if (!visible) return;
 
@@ -300,7 +307,9 @@ export class Clock {
         // Highlight the active segment
         const activeIdx = Math.min(Math.floor(progress * 4), 3);
         ring.segments.forEach((seg, i) => {
-            const baseWidth = ring.config.strokeWidth;
+            const baseWidth = isSprintRing && ring.config.sprintStrokeWidth
+                ? ring.config.sprintStrokeWidth
+                : ring.config.strokeWidth;
             if (i === activeIdx) {
                 seg.setAttribute('opacity', String(Math.min(ring.config.baseOpacity + 0.45, 1)));
                 seg.setAttribute('stroke-width', String(baseWidth + 1.5));
