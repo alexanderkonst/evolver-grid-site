@@ -71,7 +71,7 @@ const QUARTER_BRIGHTNESS = [0.25, 0.50, 0.75, 1.0];
 
 const RING_GAP = 4;
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 80, strokeWidth: 16, label: 'Sprint', color: '#e07040', gap: RING_GAP },
+    { id: 'sprint', radius: 80, strokeWidth: 16, label: '96-Min', color: '#e07040', gap: RING_GAP },
     { id: 'day', radius: 100, strokeWidth: 16, label: 'Day', color: '#c9a84c', gap: RING_GAP },
     { id: 'week', radius: 120, strokeWidth: 14, label: 'Week', color: '#4080c0', gap: RING_GAP },
     { id: 'month', radius: 138, strokeWidth: 12, label: 'Month', color: '#a080c0', gap: RING_GAP },
@@ -230,7 +230,7 @@ export class Clock {
             this.phaseLabel.textContent = `${pulseName} \u00B7 ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
             this.timeRemaining.textContent = '';
             this.phaseLabel.style.color = '#e07040';
-            this.dayPosition.textContent = `Sprint ${todaySprintCount + 1}`;
+            this.dayPosition.textContent = `96-min sprint ${todaySprintCount + 1}`;
             this.dayPosition.style.display = '';
             this.guidanceEl.style.display = 'none';
         } else {
@@ -249,15 +249,13 @@ export class Clock {
             }
         }
 
-        // --- Status Bar: energy descriptions only, no planet/moon names ---
+        // --- Status Bar: time + day energy only ---
         const now = new Date();
         const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
         const dayEnergy = cycles.week.planetaryDay.energy;
-        const moonEnergy = cycles.moon.energy;
         this.statusBar.innerHTML = `
             <span class="status-time">${timeStr}</span>
             <span>${dayEnergy}</span>
-            <span>${moonEnergy}</span>
         `;
     }
 
