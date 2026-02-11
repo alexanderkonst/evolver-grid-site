@@ -112,52 +112,16 @@ body {
   left: 0;
 }
 
-/* Ring segments (holonic phases) */
-.ring-segment {
-  fill: none;
-  transition: opacity 0.8s ease, stroke-width 0.8s ease;
-}
-
 /* Ring label text */
 .ring-label {
-  font-family: var(--font-ui);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  font-size: 7px;
-  text-anchor: middle;
   pointer-events: none;
   transition: opacity 0.5s ease;
 }
 
-/* Ring group hover */
-.ring-group:hover .ring-segment {
-  opacity: 0.6 !important;
-}
-
-/* Pulse arcs (4 segments for sprint) */
-.pulse-arc {
-  fill: none;
-  stroke-linecap: round;
-  opacity: 0.3;
-  transition: opacity 0.5s ease, stroke 0.5s ease;
-}
-
-.pulse-arc.active {
-  opacity: 1;
-}
-
-.pulse-arc.completed {
-  opacity: 0.5;
-}
-
-/* Position dot on rings */
-.position-dot {
-  transition: cx 1s ease, cy 1s ease;
-}
-
-/* Phase legend in SVG corners */
-.phase-legend text {
-  pointer-events: none;
+/* Ring tracks and fills — animate stroke-width for sprint dominance */
+.ring-track,
+.ring-fill {
+  transition: stroke-width 0.8s ease, opacity 0.8s ease;
 }
 
 /* --- BREATHING CIRCLE (HARMONIC CENTER) --- */
@@ -240,6 +204,26 @@ body {
   opacity: 0;
   pointer-events: none;
   transform: scale(0.9);
+}
+
+/* --- HOLD TO EXIT FEEDBACK --- */
+#hold-feedback {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+#hold-feedback.visible {
+  opacity: 0.7;
 }
 
 /* --- INFO AREA (3 lines max below clock) --- */
@@ -644,10 +628,6 @@ input[type="date"]:focus {
     padding: var(--space-sm) var(--space-lg);
   }
 
-  /* Hide outer rings on small screens */
-  .ring-outer {
-    display: none;
-  }
 }
 
 /* Phone landscape */
