@@ -9,12 +9,12 @@
  */
 
 const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
-const PLANET_EMOJIS = ['☀️', '🌙', '🔥', '🗣️', '✨', '🌹', '🪐'];
+const PLANET_ENERGIES = ['Vision & Purpose', 'Intuition & Feeling', 'Action & Courage', 'Clarity & Communication', 'Expansion & Wisdom', 'Beauty & Harmony', 'Structure & Discipline'];
+const PLANET_SYMBOLS = ['☉', '☽', '♂', '☿', '♃', '♀', '♄'];
 const QUARTER_NAMES = ['Night', 'Morning', 'Afternoon', 'Evening'];
-const MOON_NAMES = ['New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'];
+const MOON_PHASE_ENERGIES = ['Seeding', 'Emerging', 'Building', 'Refining', 'Harvesting', 'Sharing', 'Releasing', 'Resting'];
 const MOON_SYMBOLS = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
-const YEAR_PHASE_NAMES = ['seeding', 'building', 'harvesting', 'completing'];
+const YEAR_PHASE_NAMES = ['planning', 'building', 'harvesting', 'completing'];
 
 function ordinal(n: number): string {
     const s = ['th', 'st', 'nd', 'rd'];
@@ -203,20 +203,19 @@ export function getFullReading(now: Date, birthday?: string): string {
 
     // Context header
     let header = `⚡ ${timeStr} · ${DAY_NAMES[dayOfWeek]} ${QUARTER_NAMES[quarterIdx]}`;
-    header += `\n${PLANET_EMOJIS[dayOfWeek]} ${PLANET_NAMES[dayOfWeek]} · ${MOON_SYMBOLS[moonIdx]} ${MOON_NAMES[moonIdx]}`;
+    header += `\n${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGIES[dayOfWeek]} · ${MOON_SYMBOLS[moonIdx]} ${MOON_PHASE_ENERGIES[moonIdx]}`;
 
     if (birthday) {
         const parsed = parseBirthday(birthday);
         const yearIdx = getYearPhaseIndex(now, birthday);
         if (parsed.year) {
             const age = now.getFullYear() - parsed.year;
-            // If birthday hasn't happened yet this year, subtract 1
             const bdayThisYear = new Date(now.getFullYear(), parsed.month, parsed.day);
             const currentAge = now < bdayThisYear ? age - 1 : age;
-            const currentYear = currentAge + 1; // "1st year" = age 0, etc.
-            header += ` · ${ordinal(currentYear)} year (${YEAR_PHASE_NAMES[yearIdx]})`;
+            const currentYear = currentAge + 1;
+            header += ` · ☀️ ${ordinal(currentYear)} year (${YEAR_PHASE_NAMES[yearIdx]})`;
         } else {
-            header += ` · Year ${YEAR_PHASE_NAMES[yearIdx]}`;
+            header += ` · ☀️ Year ${YEAR_PHASE_NAMES[yearIdx]}`;
         }
     }
 
