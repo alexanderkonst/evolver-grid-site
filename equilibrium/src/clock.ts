@@ -1,16 +1,16 @@
 /**
- * Equilibrium — Clock Renderer v4
+ * Equilibrium — Clock Renderer v6
  * 
- * Apple-style rings: each ring = ONE arc, ONE color, ONE fill.
- * Thick enough to carry the cycle name inside the arc.
- * Color = holonic phase you're currently in for that cycle.
+ * Five rings. Five identity colors. Phase = brightness.
+ * Sprint · Day · Week · Month · Year
+ * 
+ * Each ring has a FIXED color. The holonic phase shows
+ * as brightness/opacity of that color.
  * Fill = how far through the cycle you are.
- * 
- * Six rings. Six colors. Six fills. That IS the harmonic.
  */
 
 import type { AllCycles, Phase } from './cycles';
-import { HOLONIC_PHASES, formatMinutes, getPulseName, getPhaseColor, synthesizeCycles } from './cycles';
+import { HOLONIC_PHASES, formatMinutes, getPulseName, synthesizeCycles } from './cycles';
 
 // ─── SVG HELPERS ───────────────────────────────────
 
@@ -32,19 +32,26 @@ interface RingConfig {
     radius: number;
     strokeWidth: number;
     label: string;
-    gap: number; // gap between rings
+    color: string; // fixed identity color
+    gap: number;
 }
 
-// Rings go from inner (Sprint) to outer (Year)
-// Stroke widths are thick enough to carry text labels
+// Phase brightness: how bright the ring fill is based on holonic phase
+const PHASE_BRIGHTNESS: Record<string, number> = {
+    will: 0.4,       // Planning — dim, gathering
+    emanation: 0.7,  // Building — bright, peak energy
+    digestion: 1.0,  // Communicating — full brightness
+    enrichment: 0.55, // Integrating — settling
+};
+
+// 5 rings: Sprint (inner) to Year (outer)
 const RING_GAP = 4;
 const RING_CONFIGS: RingConfig[] = [
-    { id: 'sprint', radius: 80, strokeWidth: 16, label: 'Sprint', gap: RING_GAP },
-    { id: 'day', radius: 100, strokeWidth: 16, label: 'Day', gap: RING_GAP },
-    { id: 'week', radius: 120, strokeWidth: 14, label: 'Week', gap: RING_GAP },
-    { id: 'moon', radius: 138, strokeWidth: 12, label: 'Moon', gap: RING_GAP },
-    { id: 'quarter', radius: 154, strokeWidth: 12, label: 'Quarter', gap: RING_GAP },
-    { id: 'year', radius: 170, strokeWidth: 10, label: 'Year', gap: RING_GAP },
+    { id: 'sprint', radius: 80, strokeWidth: 16, label: 'Sprint', color: '#e07040', gap: RING_GAP },
+    { id: 'day', radius: 100, strokeWidth: 16, label: 'Day', color: '#c9a84c', gap: RING_GAP },
+    { id: 'week', radius: 120, strokeWidth: 14, label: 'Week', color: '#4080c0', gap: RING_GAP },
+    { id: 'month', radius: 138, strokeWidth: 12, label: 'Month', color: '#a080c0', gap: RING_GAP },
+    { id: 'year', radius: 156, strokeWidth: 12, label: 'Year', color: '#c06080', gap: RING_GAP },
 ];
 
 interface RingElements {
@@ -176,12 +183,11 @@ export class Clock {
         const isInSprint = cycles.sprint.active;
         const outerDimFactor = isInSprint ? 0.5 : 1;
 
-        // --- Update each ring: single arc, one color, one fill ---
+        // --- Update each ring: identity color, phase brightness, fill ---
         this.updateRing('sprint', cycles.sprint.progress, cycles.sprint.holonicPhase, isInSprint);
         this.updateRing('day', cycles.day.progress, cycles.day.holonicPhase, true, isInSprint ? outerDimFactor : 1);
         this.updateRing('week', cycles.week.progress, cycles.week.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
-        this.updateRing('moon', cycles.moon.progress, cycles.moon.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
-        this.updateRing('quarter', cycles.quarter.progress, cycles.quarter.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
+        this.updateRing('month', cycles.moon.progress, cycles.moon.holonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
         this.updateRing('year', cycles.year.personalProgress, cycles.year.personalHolonicPhase, showOuterRings, isInSprint ? outerDimFactor : 1);
 
         // --- Sprint Ring Dominance: grows during sprint ---
@@ -197,7 +203,7 @@ export class Clock {
             const pulseName = getPulseName(cycles.sprint.pulse.pulseNumber);
             this.phaseLabel.textContent = `${pulseName} · ${formatMinutes(cycles.sprint.pulse.phaseRemaining)}`;
             this.timeRemaining.textContent = '';
-            this.phaseLabel.style.color = getPhaseColor(cycles.sprint.pulse.phase);
+            this.phaseLabel.style.color = '#e07040'; // Sprint identity color
             this.dayPosition.textContent = `Sprint ${todaySprintCount + 1}`;
             this.dayPosition.style.display = '';
             this.guidanceEl.style.display = 'none';
@@ -225,13 +231,12 @@ export class Clock {
             <span class="status-time">${timeStr}</span>
             <span>${pd.emoji} ${pd.planet} Day</span>
             <span>${cycles.moon.symbol} ${cycles.moon.phase}</span>
-            <span>Q${cycles.quarter.quarter} ${cycles.quarter.season}</span>
         `;
     }
 
     /**
-     * Update a single ring: one arc fill + one color + label.
-     * Color = holonic phase for this cycle. Fill = progress through cycle.
+     * Update a single ring: identity color + phase brightness + fill.
+     * Color is fixed per ring. Brightness varies by holonic phase.
      */
     private updateRing(
         id: string,
@@ -249,9 +254,13 @@ export class Clock {
 
         if (!visible) return;
 
-        // Color = current holonic phase for this cycle
-        const color = holonicPhase.color;
+        // Identity color (fixed per ring)
+        const color = ring.config.color;
+
+        // Phase brightness
+        const brightness = PHASE_BRIGHTNESS[holonicPhase.id] ?? 0.7;
         ring.fill.setAttribute('stroke', color);
+        ring.fill.style.opacity = String(brightness);
         ring.fill.style.filter = 'url(#glow)';
 
         // Fill = progress through the cycle (0..1 → 0..circumference)
@@ -259,11 +268,11 @@ export class Clock {
         const fillLength = progress * circumference;
         ring.fill.setAttribute('stroke-dasharray', `${fillLength} ${circumference - fillLength}`);
 
-        // Track gets a subtle tint of the phase color
+        // Track gets a subtle tint of identity color
         ring.track.setAttribute('stroke', color);
         ring.track.setAttribute('opacity', '0.08');
 
-        // Label color matches the phase (subtle)
+        // Label color matches identity color (subtle)
         ring.label.setAttribute('fill', color);
         ring.label.setAttribute('opacity', '0.5');
     }

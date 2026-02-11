@@ -9,16 +9,23 @@
 
 ---
 
-## The Core Insight
+## The Essence
 
-v5 is beautiful but passive. You look at it. It shows you colors. But:
-- You don't know what each ring MEANS at a glance (colors change with phase)
-- You don't know what YOU intended for this cycle
-- You can't tell how much time is left without doing mental math
-- Sprint is 96 minutes but that's never stated
+> *A clock that teaches you to feel time.*
 
-**v6 turns the clock from a display into a companion.**
-Each ring gets a fixed identity color. Each ring carries your intention. One glance = "I'm 14 min into Building, 3 sprints deep, my sprint goal is 'Ship the landing page'."
+v1–v5 answer **"What time is it?"** at every scale. v6 asks **"What are you doing with your time?"**
+
+That's a category shift. This is not a timer (Pomodoro counts minutes), not a calendar (Google organizes events), not a tracker (Apple Watch measures movement). This is a **purpose clock** — the first tool that shows you WHERE you are in nested cycles AND WHY you're there. The "why" is your own words, reflected back.
+
+The intention input is the product. Everything before it — rings, colors, fills, breathing circle — was infrastructure for the moment where you type *"Ship the pricing page"* and the clock holds it for you. The 5-second pause before a sprint starts creates a cognitive anchor (implementation intention) that filters distraction automatically. The clock doesn't make you productive. It makes you **intentional**. Productivity is the side effect.
+
+The hierarchy of intentions (sprint → day → week → moon) IS the holonic model made personal. You're always inside nested purpose. The auto-prompt at cycle boundaries (Monday morning, new moon, start of day) turns the clock into a ritual container. Over months, this builds the habit of living intentionally at every timescale.
+
+Fixed identity colors per ring turn the clock into body knowledge. Within a week: "my blue is almost full" = "almost the weekend" — no decoding needed. Phase-as-brightness deepens this: bright = peak energy, dim = gathering. One glance, zero thinking.
+
+The week mapping (Mon=Plan, Tue=Build, Wed=Communicate, Thu–Sun=Integrate) makes the clock an external energy pacer. The rings subtly reinforce what kind of work today is for. Because the same 4-phase pattern appears at EVERY scale, the user eventually internalizes the rhythm. They start to feel when they're in Planning vs. Building without looking.
+
+**End game: a clock that trains you to not need the clock.**
 
 ---
 
@@ -248,57 +255,138 @@ return HOLONIC_PHASES[3]; // Thu-Sun
 
 ---
 
-## Proposed Changes
+## Implementation Plan
 
-### Ring System
-
-#### [MODIFY] [cycles.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/cycles.ts)
-- Add `identityColor` to each cycle state (fixed color per ring)
-- Add `phaseBrightness` computed from progress (4 brightness levels)
-- Update `getWeekHolonicPhase()` to Alexander's model (Mon/Tue/Wed/Thu-Sun)
-
-#### [MODIFY] [clock.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/clock.ts)
-- `RING_CONFIGS`: add `color` field (fixed identity color per ring)
-- `updateRing()`: use identity color + phase brightness instead of holonic phase color
-- Add elapsed/remaining text elements to each ring
-- Sprint ring: add phase progress bar below phase label
+6 batches, ordered by dependency. Each batch produces a working build.
 
 ---
 
-### Intention System
+### Batch 1: Ring Identity Colors + Phase Brightness
 
-#### [MODIFY] [main.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/main.ts)
-- Add `intentions` to `AppState` (sprint, day, week, moon)
-- Sprint CTA click → show intention input overlay instead of immediately starting
-- Auto-clear intentions when cycle ends
-- Add intention fields to Settings overlay
+**Goal:** Each ring has a permanent color. Phase shows as brightness.
+
+#### [MODIFY] [clock.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/clock.ts)
+- Add `color` field to each `RING_CONFIG` entry (hex string)
+- `updateRing()`: set fill stroke to `config.color` instead of `getPhaseColor(phase)`
+- Compute brightness from holonic phase: `PHASE_BRIGHTNESS = { will: 0.4, emanation: 0.7, digestion: 1.0, enrichment: 0.55 }`
+- Apply brightness as fill opacity
+- Remove `getPhaseColor` dependency from ring rendering
+
+#### [MODIFY] [cycles.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/cycles.ts)
+- Export `PHASE_BRIGHTNESS` map
+- No structural changes to cycle computation
+
+**Verify:** Build clean. Rings show fixed colors with varying brightness.
+
+---
+
+### Batch 2: Week Mapping Update
+
+**Goal:** Mon=Plan, Tue=Build, Wed=Communicate, Thu–Sun=Integrate.
+
+#### [MODIFY] [cycles.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/cycles.ts)
+- `getWeekHolonicPhase()`: Mon→WILL, Tue→EMANATION, Wed→DIGESTION, Thu-Sun→ENRICHMENT
+
+**Verify:** Build clean. Wednesday shows Communicating phase.
+
+---
+
+### Batch 3: Sprint Entry Screen + Intention Input
+
+**Goal:** Tapping "Enter Deep Focus" shows a clean input screen with focus question, sprint structure info, and BEGIN button.
 
 #### [MODIFY] [index.html](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/index.html)
-- Add sprint intention input overlay HTML
-- Add intention fields to settings panel
+- Add `#sprint-entry` overlay: input field, "96 minutes · 4 phases" info, BEGIN button, skip link
 
 #### [MODIFY] [style.css](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/style.css)
-- Sprint intention input overlay styles
-- Phase progress bar styles
-- Intention display styles in info area
+- Sprint entry overlay styles (centered, dark, minimal, premium)
+
+#### [MODIFY] [main.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/main.ts)
+- Sprint CTA click → show `#sprint-entry` overlay instead of starting immediately
+- BEGIN click → store sprint intention in state, start sprint, hide overlay
+- Skip → start sprint without intention
+- Add `intentions: { sprint, day, week, moon }` to `AppState`
+- Auto-clear intentions when cycle ends (sprint end, midnight, Monday, new moon)
+
+**Verify:** Tap "Enter Deep Focus" → see input screen → type goal → BEGIN → sprint starts.
+
+---
+
+### Batch 4: The One Profound Line + Phase Bar
+
+**Goal:** Below the clock: intention text + time remaining. Plus a thin 4-phase progress bar during sprint.
+
+#### [MODIFY] [clock.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/clock.ts)
+- Create `#phase-bar` element: 4 segments (P · B · C · I), current highlighted
+- Show phase bar only during sprint
+- `update()`: accept intentions, display sprint intention + time as the "one line"
 
 #### [MODIFY] [guidance.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/guidance.ts)
-- Ambient fallback: show intention hierarchy (sprint → day → week → moon → planetary energy)
-- Sprint mode: show sprint intention + time remaining
+- Ambient mode: return intention hierarchy (sprint → day → week → moon → planetary energy)
+- The first non-empty intention in the hierarchy wins
+- Sprint mode: return sprint intention + formatted time remaining
+
+#### [MODIFY] [style.css](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/style.css)
+- Phase bar styles: thin horizontal bar, 4 colored segments, current highlighted
+- Intention display: italic serif, cream color, centered
+
+#### [MODIFY] [index.html](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/index.html)
+- Add `#phase-bar` container with 4 segment divs
+
+**Verify:** Sprint shows intention + time + phase bar. Ambient shows day/week intention.
+
+---
+
+### Batch 5: Ring Numbers (Sprint + Day)
+
+**Goal:** Sprint and Day rings show elapsed/remaining as small text on the ring.
+
+#### [MODIFY] [clock.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/clock.ts)
+- For sprint and day rings: create SVG text elements
+- Elapsed: positioned near fill endpoint, small, matches ring color
+- Remaining: positioned at 6 o'clock (bottom), slightly larger
+- Update each frame with computed values
+- Sprint: `"38m"` / `"58m left"`
+- Day: `"10h"` / `"6h left"`
+
+**Verify:** Sprint ring shows time numbers. Day ring shows hours.
+
+---
+
+### Batch 6: Cycle Intention Prompts (Day/Week/Moon)
+
+**Goal:** Auto-prompt for day, week, and moon intentions at cycle boundaries.
+
+#### [MODIFY] [main.ts](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/main.ts)
+- Track `lastPromptedDay`, `lastPromptedWeek`, `lastPromptedMoon` in state
+- On each frame: check if we crossed a boundary (new day, Monday, new moon)
+- If crossed: show intention overlay with cycle-appropriate prompt
+- Add intention fields to Settings overlay for manual editing
+
+#### [MODIFY] [index.html](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/index.html)
+- Generalize `#sprint-entry` overlay into `#intention-overlay` that works for any cycle
+- Prompt text changes based on cycle: "What's today about?" / "What's this week about?" / etc.
+
+#### [MODIFY] [style.css](file:///Users/alexanderkonst/evolver-grid-site/equilibrium/src/style.css)
+- Intention overlay styles (reuse sprint entry, with cycle-specific heading color matching ring identity)
+
+**Verify:** Open on Monday → week prompt. Open on new day → day prompt. Set intentions → they show as the "one line."
 
 ---
 
 ## Verification Plan
 
 ### Automated
-- `npx tsc --noEmit` — zero errors
+- `npx tsc --noEmit` — zero errors after each batch
 - `npm run build` — clean production build
 
-### Visual (browser subagent)
-1. **Ambient mode:** Each ring has its own fixed color. Brightness varies by phase. Numbers visible on sprint + day rings.
-2. **Sprint entry:** Tapping "Enter Deep Focus" shows intention input. Typing a goal and pressing Begin starts the sprint with the intention shown below.
-3. **Sprint mode:** Sprint ring thick + orange. Phase bar visible. Intention displayed. "Sprint 1" from real log.
-4. **Cycle boundary:** When day changes, day intention clears. When sprint ends, sprint intention clears.
+### Visual (browser subagent after each batch)
+1. **Batch 1:** Rings have fixed identity colors, brightness varies by phase
+2. **Batch 2:** Wednesday shows Communicating phase on week ring
+3. **Batch 3:** Sprint entry screen appears with intention input
+4. **Batch 4:** One profound line shows below clock, phase bar during sprint
+5. **Batch 5:** Sprint + Day rings show elapsed/remaining numbers
+6. **Batch 6:** Cycle boundary prompts appear at right times
 
 ### Manual
-- User verifies: ring colors feel right, brightness levels are distinct, intention flow is natural
+- User verifies: intention flow feels natural, colors feel right, the clock feels like a companion
