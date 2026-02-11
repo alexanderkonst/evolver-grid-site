@@ -89,3 +89,6 @@ verify_jwt = false
 
 [functions.equilibrium-telegram-bot]
 verify_jwt = false
+
+[functions.equilibrium-cron]
+verify_jwt = false
