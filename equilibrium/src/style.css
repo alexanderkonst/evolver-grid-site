@@ -598,6 +598,140 @@ input[type="date"]:focus {
 
 /* --- RESPONSIVE --- */
 
+/* --- SPRINT ENTRY OVERLAY --- */
+#sprint-entry {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+#sprint-entry.hidden {
+  display: none;
+}
+
+#sprint-entry-panel {
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+#sprint-entry-panel label {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--cream);
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+#sprint-intention-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(224, 112, 64, 0.4);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  padding: var(--space-sm) 0;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#sprint-intention-input:focus {
+  border-bottom-color: #e07040;
+}
+
+#sprint-intention-input::placeholder {
+  color: var(--cream-muted);
+  font-style: italic;
+}
+
+.sprint-structure {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  color: var(--cream-muted);
+  margin: var(--space-lg) 0;
+  line-height: 1.6;
+}
+
+.sprint-phases-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+#sprint-begin {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--bg-void);
+  background: #e07040;
+  border: none;
+  padding: var(--space-sm) var(--space-xl);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+#sprint-begin:hover {
+  background: #f08050;
+  transform: scale(1.02);
+}
+
+#sprint-skip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--cream-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  padding: var(--space-xs) var(--space-sm);
+}
+
+#sprint-skip:hover {
+  color: var(--cream);
+}
+
+/* --- PHASE BAR --- */
+#phase-bar {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-top: var(--space-xs);
+}
+
+#phase-bar.hidden {
+  display: none;
+}
+
+.phase-segment {
+  width: 32px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(224, 112, 64, 0.15);
+  font-size: 0;
+  overflow: hidden;
+  transition: background 0.5s ease;
+}
+
+.phase-segment.active {
+  background: rgba(224, 112, 64, 0.8);
+}
+
+.phase-segment.completed {
+  background: rgba(224, 112, 64, 0.35);
+}
+
 /* Phone portrait */
 @media (max-width: 639px) {
   #clock-container {
