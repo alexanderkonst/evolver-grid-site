@@ -21,6 +21,15 @@ Example: `/polish onboarding` or `/polish zone-of-genius`
 
 ## Phase 1: Code Audit (Token-Efficient)
 
+### Step 1.0: Spec Fidelity Audit
+Before checking UX quality, check spec alignment:
+1. Read the product spec for this module (`docs/specs/[module]/`)
+2. List every visible element currently on screen
+3. Compare against spec wireframe:
+   - Elements in code but NOT in spec → flag for removal
+   - Elements in spec but NOT in code → flag for addition
+4. Output: `Spec Drift Report` before proceeding to UX audit
+
 ### Step 1.1: Load Context
 Read the following in this order:
 1. Module's product spec: `docs/04-specs/[module]/` or similar
