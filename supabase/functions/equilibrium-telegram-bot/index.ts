@@ -78,8 +78,13 @@ const YEAR_MODIFIERS = [
 ];
 
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const PLANET_NAMES = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"];
-const PLANET_EMOJI = ["☀️", "🌙", "🔥", "🗣️", "✨", "🌹", "🪐"];
+const PLANET_SYMBOLS = ["☉", "☽", "♂", "☿", "♃", "♀", "♄"];
+const PLANET_ENERGY = ["Vision & Purpose", "Intuition & Feeling", "Action & Courage", "Clarity & Communication", "Expansion & Wisdom", "Beauty & Harmony", "Structure & Discipline"];
+const MOON_ENERGY: Record<string, string> = {
+  "New Moon": "Seeding", "Waxing Crescent": "Emerging", "First Quarter": "Building",
+  "Waxing Gibbous": "Refining", "Full Moon": "Harvesting", "Waning Gibbous": "Sharing",
+  "Last Quarter": "Releasing", "Waning Crescent": "Resting",
+};
 const MOON_SYMBOLS: Record<string, string> = {
   "New Moon": "🌑", "Waxing Crescent": "🌒", "First Quarter": "🌓",
   "Waxing Gibbous": "🌔", "Full Moon": "🌕", "Waning Gibbous": "🌖",
@@ -165,14 +170,14 @@ function buildReading(birthday: string, tzOffset: number): string {
   const { progress, age } = getYearProgress(birthday, shifted);
 
   const yearPhaseIdx = Math.min(3, Math.floor(progress * 4));
-  const yearPhaseName = ["planting", "building", "harvesting", "completing"][yearPhaseIdx];
+  const yearPhaseName = ["planning", "building", "harvesting", "completing"][yearPhaseIdx];
 
   const hh = String(hour).padStart(2, "0");
   const mm = String(shifted.getUTCMinutes()).padStart(2, "0");
 
   const lines = [
     `⚡ ${hh}:${mm} · ${DAY_NAMES[dayOfWeek]} ${quarter}`,
-    `${PLANET_EMOJI[dayOfWeek]} ${PLANET_NAMES[dayOfWeek]} · ${MOON_SYMBOLS[moonPhase]} ${moonPhase}${age > 0 ? ` · ${getOrdinal(age)} year (${yearPhaseName})` : ""}`,
+    `${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGY[dayOfWeek]} · ${MOON_SYMBOLS[moonPhase]} ${MOON_ENERGY[moonPhase]}${age > 0 ? ` · ☀️ ${getOrdinal(age)} year (${yearPhaseName})` : ""}`,
     "",
     CORE_READINGS[dayOfWeek][quarter],
     "",
