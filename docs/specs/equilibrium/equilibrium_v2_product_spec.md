@@ -342,3 +342,188 @@ The main fix from v1 → v2 concept:
 4. **Master Result sharpened:** From "harmonious, cycle-aware deep work" to "shows you exactly where you are in your work rhythm." Concrete, not aspirational.
 
 **✓ Checkpoint:** Phase 1 PRODUCT complete. The concept is sharp. Moving to Phase 2.
+
+---
+
+## PHASE 2: ARCHITECTURE
+
+> v1 architecture is solid. This section confirms what stays and what changes.
+
+### 2.1 Module Boundaries
+
+| Element | Value | Changed from v1? |
+|---------|-------|-------------------|
+| **Entry** | URL: `/equilibrium/` (standalone Vite app) | No |
+| **Exit** | Close tab (no exit flow) | No |
+| **Data in** | `Date.now()` (time), `localStorage` (preferences, sprint state) | No |
+| **Data out** | Sprint logs to `localStorage` | No |
+| **Auth** | None — standalone, no login | No |
+
+### 2.2 Routing
+
+| Route | Screen | Guards |
+|-------|--------|--------|
+| `/equilibrium/` | The Clock (Ambient + Sprint modes) | None |
+| Settings | Modal overlay (no route) | None |
+
+**No changes from v1.** One route, one page, two modes.
+
+### 2.3 Data Schema
+
+**No database — all localStorage.** No changes from v1.
+
+| Key | Type | Purpose |
+|-----|------|---------|
+| `eq-preferences` | JSON | Wake/sleep time, breath duration, outer rings toggle |
+| `eq-active-sprint` | JSON | Start time, current pulse, current phase, paused flag |
+| `eq-sprint-log` | JSON array | Completed sprints with timestamps |
+
+### 2.4 Shell & Layout
+
+- **No nav, no header, no footer** — fullscreen clock
+- **Always focus mode** — this IS a focus tool
+- **Responsive:** iPad landscape (primary), portrait, desktop, phone
+- **No scroll** — everything fits viewport
+
+**No changes from v1.**
+
+### 2.5 State Management
+
+| State | Storage | Resume logic |
+|-------|---------|--------------|
+| Preferences | `localStorage` — survives reboot | Load on init |
+| Active sprint | `localStorage` — survives refresh | If sprint exists and not expired (< 96 min), resume |
+| Sprint log | `localStorage` — indefinite | Append on sprint complete |
+| Cycle positions | **Computed from `Date.now()`** | No storage needed |
+
+**No changes from v1.**
+
+### 🔥 ROAST GATE 2: ARCHITECTURE
+
+**Navigation walkthrough:**
+- [x] User opens `/equilibrium/` → Clock loads in ambient mode ✅
+- [x] User clicks Back in browser → leaves app (expected) ✅
+- [x] User refreshes mid-sprint → sprint resumes from localStorage ✅
+- [x] User returns next day → sprint expired, ambient mode shows ✅
+
+**Roast cycles:**
+- [x] Cycle 1: Entry/exit clean. No broken states. ✅
+- [x] Cycle 2: Data flow is pure — everything from `Date.now()` + localStorage. No server dependencies. ✅
+- [x] Cycle 3: What about multiple tabs? → Last-write-wins on localStorage. Acceptable for v2.
+
+**✓ Checkpoint:** Architecture confirmed. No changes needed. Moving to Phase 3.
+
+---
+
+## PHASE 3: UI
+
+> This is where the v2 changes mostly happen. The CONCEPT has been sharpened in Phase 1 — now the UI must MATCH the new concept.
+
+### 3.1 Visual Rules (What changes)
+
+**KEEP:**
+- Dark background (`#0a0f1a`), gold accents, serif/sans split
+- Phase colors: orange (Planning), blue (Building), green (Communicating), purple (Integrating)
+- Breathing circle animation (5.5s in/out)
+
+**CHANGE:**
+1. **Sprint ring prominence** — During sprint mode, the sprint ring (innermost work ring showing 4 phases) should be CLEARLY the most prominent ring. Thicker, brighter, more saturated.
+2. **Outer rings opacity** — Outer rings (sprint/day/week/month/quarter/year) should be much more faint in sprint mode. They're context, not the focus.
+3. **Text area cleanup** — Too many text lines below the clock. Simplify to:
+   - Sprint mode: Phase name + time + day position (3 lines max)
+   - Ambient mode: Energy context + CTA (2 lines max)
+4. **Remove synthesis line** — "☀️ Vitality & Purpose flowing through 🗣️ Clarity & Communication" is poetic but adds noise. The status bar at the bottom already conveys this.
+
+### 3.2 Building Blocks
+
+All existing — no new components needed:
+- Breathing circle (SVG animation)
+- Segmented ring (SVG arcs)
+- Position dot (SVG circle)
+- Phase legend (4 colored dots + labels)
+- Status bar (bottom text)
+- CTA button ("Enter Deep Focus")
+- Settings panel (modal)
+
+### 3.3 Layout Templates
+
+**No change from v1.** Fullscreen, centered clock, text below, status bar at bottom.
+
+**Responsive priorities:**
+1. iPad landscape (primary) — full clock + text
+2. Desktop — same as iPad
+3. iPad portrait — squeeze text slightly
+4. Phone — outer rings collapse, text wraps
+
+### 3.4 Brandbook Integration
+
+**Emotional mode:** Calm + purposeful. Dark mode only. Bio-Light dark variant.
+**Voice:** Quiet, confident. Not motivational. Not nagging. Like a wise friend who stays calm.
+**Gradients:** Subtle — ring glows, not backgrounds.
+
+### 3.5 Micro-interactions
+
+**KEEP:**
+- Breathing circle scale animation
+- Phase transition color shifts on rings
+- Position dot smooth movement
+
+**ADD:**
+- Sprint start: rings subtly pulse once, outer rings dim
+- Phase transition: gentle glow on the transitioning ring segment
+- Sprint end: all rings briefly glow gold, then return to ambient
+
+### 🔥 ROAST GATE 3: UI
+
+**Gestalt check:**
+- [x] First impression: Dark, mysterious, purposeful. ✅
+- [x] Premium feel: Yes — the clock looks like a real instrument, not a prototype. ✅
+- [x] Consistency: All text is the same serif/sans system. All colors from the palette. ✅
+- [x] Breathing room: The key fix — reduce text lines below clock. Currently 5-6 lines → target 3 max.
+
+**Roast cycles:**
+- [x] Cycle 1: The synthesis line ("Vitality & Purpose flowing through Clarity & Communication") is noise. Remove it — the status bar already shows this info. ✅
+- [x] Cycle 2: Compare to a real watch — a Rolex doesn't show you the hour, the minute, AND a paragraph explaining them. Show time remaining LARGE, phase name MEDIUM, everything else SMALL or absent. ✅
+- [x] Cycle 3: The outer rings during sprint mode — do they distract? Answer: Currently yes. They should fade to 20-30% opacity during sprint to keep focus on the sprint ring.
+
+**Fix list for Phase 4 implementation:**
+1. Remove synthesis line from ambient mode
+2. Simplify text to 3 lines max (guidance, phase+time, day position)
+3. Fade outer rings during sprint mode (reduce opacity to 0.25)
+4. Make sprint ring thicker/brighter during sprint
+5. Add "Sprint X of Y" day-position text in sprint mode
+
+**✓ Checkpoint:** UI spec complete. Fix list ready for implementation.
+
+---
+
+## PHASE 4: VIBE-CODING
+
+### 4.1 Files to Modify
+
+No new files — all changes are in existing files:
+
+| File | Change |
+|------|--------|
+| `clock.ts` | Remove synthesis line rendering. Adjust ring opacity in sprint mode. Make sprint ring thicker. |
+| `main.ts` | Update text rendering to 3-line max. Add "Sprint X of Y" text. |
+| `guidance.ts` | No changes needed — guidance messages are already clean. |
+| `style.css` | Add transition for ring opacity changes. |
+| `cycles.ts` | No changes needed — cycle math is solid. |
+
+### 4.2-4.4 Implementation
+
+See code changes below.
+
+### 4.5 Verification
+
+- [ ] `npx tsc --noEmit` — zero errors
+- [ ] Browser visual check — ambient mode clean, sprint mode focused
+- [ ] Text area has ≤3 lines in both modes
+
+### 4.6 AI Self-Test
+
+- [ ] Browser screenshot of ambient mode
+- [ ] Browser screenshot of sprint mode
+- [ ] Visual comparison against v1 screenshot
+
