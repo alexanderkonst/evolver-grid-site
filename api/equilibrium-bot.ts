@@ -64,7 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         // /start command
         if (text === '/start') {
             await sendMessage(chatId,
-                '🔮 Equilibrium — your energy weather report.\n\n' +
+                '⚡ Equilibrium — your energy weather report.\n\n' +
                 'Four times a day, I\'ll tell you what energy is present based on planetary days, ' +
                 'moon phases, and your personal year cycle.\n\n' +
                 'Send me your date of birth in DD-MM-YYYY format to get started.\n' +
