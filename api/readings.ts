@@ -202,7 +202,7 @@ export function getFullReading(now: Date, birthday?: string): string {
     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
     // Context header
-    let header = `🔮 ${timeStr} · ${DAY_NAMES[dayOfWeek]} ${QUARTER_NAMES[quarterIdx]}`;
+    let header = `⚡ ${timeStr} · ${DAY_NAMES[dayOfWeek]} ${QUARTER_NAMES[quarterIdx]}`;
     header += `\n${PLANET_EMOJIS[dayOfWeek]} ${PLANET_NAMES[dayOfWeek]} · ${MOON_SYMBOLS[moonIdx]} ${MOON_NAMES[moonIdx]}`;
 
     if (birthday) {
