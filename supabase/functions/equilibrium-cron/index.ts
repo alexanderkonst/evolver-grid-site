@@ -83,7 +83,7 @@ const PLANET_ENERGY = ["Vision & Purpose", "Intuition & Feeling", "Action & Cour
 const MOON_ENERGY: Record<string, string> = {
   "New Moon": "Seeding", "Waxing Crescent": "Emerging", "First Quarter": "Building",
   "Waxing Gibbous": "Refining", "Full Moon": "Harvesting", "Waning Gibbous": "Sharing",
-  "Last Quarter": "Releasing", "Waning Crescent": "Resting",
+  "Last Quarter": "Making Sense", "Waning Crescent": "Resting",
 };
 const MOON_SYMBOLS: Record<string, string> = {
   "New Moon": "🌑", "Waxing Crescent": "🌒", "First Quarter": "🌓",
