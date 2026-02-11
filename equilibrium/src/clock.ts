@@ -132,18 +132,23 @@ export class Clock {
                 class: 'ring-fill',
             });
 
-            // Label text — placed at the start of the ring (12 o'clock, offset right)
+            // Label text — positioned at ~11 o'clock (330°) to avoid fill overlay
+            // Fill starts at 12 o'clock (0°/360°) going clockwise, so this position
+            // sits on the unfilled track for most progress values
+            const labelAngle = -60 * Math.PI / 180; // -60° from top = 11 o'clock
+            const labelX = CENTER + config.radius * Math.sin(labelAngle);
+            const labelY = CENTER - config.radius * Math.cos(labelAngle);
             const label = createSvgElement('text', {
-                x: String(CENTER + 10),
-                y: String(CENTER - config.radius + 0.5),
+                x: String(labelX),
+                y: String(labelY),
                 fill: '#ffffff',
-                'font-size': String(Math.min(config.strokeWidth * 0.55, 8)),
+                'font-size': String(Math.max(config.strokeWidth * 0.55, 6)),
                 'font-family': "'DM Sans', sans-serif",
-                'font-weight': '600',
-                'letter-spacing': '0.12em',
-                'text-anchor': 'start',
+                'font-weight': '500',
+                'letter-spacing': '0.08em',
+                'text-anchor': 'middle',
                 'dominant-baseline': 'central',
-                opacity: '0.6',
+                opacity: '0.5',
                 class: 'ring-label',
             });
             label.textContent = config.label.toUpperCase();
