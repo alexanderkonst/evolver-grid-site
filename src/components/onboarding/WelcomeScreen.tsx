@@ -31,18 +31,8 @@ const WelcomeScreen = ({ onStart, saving = false }: WelcomeScreenProps) => {
                 {/* Title */}
                 <div className="space-y-4">
                     <h1 className="text-4xl md:text-5xl font-bold text-[var(--wabi-text-primary)] leading-tight">
-                        Your Operating System for Life
-                    </h1>
-                    <p className="text-lg md:text-xl text-[var(--wabi-text-secondary)] max-w-md mx-auto">
                         Discover your genius. Grow yourself. Transform your life.
-                    </p>
-                </div>
-
-                {/* Transformation promise */}
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-lg">
-                    <div className="text-sm text-[var(--wabi-text-secondary)] text-center">
-                        You'll discover who you really are and get your first personalized action.
-                    </div>
+                    </h1>
                 </div>
 
                 {/* CTA */}
