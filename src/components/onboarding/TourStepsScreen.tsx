@@ -14,34 +14,46 @@ interface TourStepsScreenProps {
  */
 const TOUR_STEPS: TourStepConfig[] = [
     {
-        targetSpaceId: "grow",
-        title: "Your Profile",
-        tagline: "Your Zone of Genius lives here",
-        description: "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here.",
-    },
-    {
         targetSpaceId: "next-move",
         title: "My Next Move",
         tagline: "Your personalized recommendations",
         description: "This is your command center. See your recommended next action, track your progress, and stay focused on what matters most.",
     },
     {
+        targetSpaceId: "grow",
+        title: "Me",
+        tagline: "Your Zone of Genius lives here",
+        description: "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here.",
+    },
+    {
         targetSpaceId: "learn",
-        title: "Learn & Grow",
+        title: "Learn",
         tagline: "Your path of transformation",
-        description: "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow yourself.",
+        description: "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow.",
+    },
+    {
+        targetSpaceId: "meet",
+        title: "Meet",
+        tagline: "Find your people",
+        description: "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts.",
+    },
+    {
+        targetSpaceId: "collaborate",
+        title: "Collaborate",
+        tagline: "Work together",
+        description: "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact.",
     },
     {
         targetSpaceId: "build",
-        title: "Build Your Business",
+        title: "Build",
         tagline: "Turn genius into income",
         description: "Create your unique offer, build your landing page, and launch your genius business to the world.",
     },
     {
-        targetSpaceId: "meet",
-        title: "Meet Your People",
-        tagline: "Find collaborators",
-        description: "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts.",
+        targetSpaceId: "buysell",
+        title: "Buy & Sell",
+        tagline: "The marketplace",
+        description: "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged.",
     },
 ];
 
