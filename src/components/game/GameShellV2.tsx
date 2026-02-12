@@ -8,7 +8,7 @@ import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
-import { loadNudgeState } from "@/lib/myNextMoveLogic";
+// import { loadNudgeState } from "@/lib/myNextMoveLogic";
 
 interface GameShellV2Props {
     children: ReactNode;
@@ -253,20 +253,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
         "buysell": true,
     };
 
-    // Nudge badges - visual indicators for unlocked spaces
-    // Show BUILD badge when user has READ their ZoG profile (not just completed ZoG onboarding)
-    // Show COLLABORATE badge when resources mapped (not implemented yet)
-    const nudges = loadNudgeState();
+    // Nudge badges - visual indicators for unlocked spaces (disabled for now)
     const nudgeBadges: string[] = [];
-
-    // BUILD badge: triggers after user reads their ZoG Profile (Deep Dive module)
-    // TODO: Once zog_profile_read_at DB field exists, check that instead of just stage
-    // For now, we use stage as proxy (will be more accurate with DB field)
-    // Correct logic should be: if (hasReadZoGProfile && !nudges.buildNudgeSeen)
-    const hasZoGComplete = stage !== 'new' && stage !== 'zog_started';
-    if (hasZoGComplete && !nudges.buildNudgeSeen) {
-        nudgeBadges.push('build');
-    }
     // COLLABORATE nudge - will activate when hasResources is tracked
     // if (hasResources && !nudges.collaborateNudgeSeen) {
     //     nudgeBadges.push('collaborate');
