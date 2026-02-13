@@ -31,36 +31,43 @@ INPUT:
 - Initial ICP from Excalibur
 
 YOUR TASK:
-Project the ICP through the Pain Theory framework. For this ideal client:
+Project the ICP through the 5-Layer Pain Slicer. For this ideal client:
 
-1. PAIN MAPPING
-   - What specific pain do they feel DAILY?
-   - How does this pain manifest in their body, emotions, relationships?
-   - What words do THEY use to describe this pain? (not clinical terms)
+1. STRUGGLE (What They're Struggling With)
+   - What would they say if you asked "what's going on?"
+   - What do they complain about? What do they Google at midnight?
+   - What do they FEEL but won't say unprompted?
 
-2. DECISION PRESSURE
-   - What is making this problem urgent NOW?
-   - What recent event or realization created pressure?
-   - What deadline (real or felt) are they facing?
+2. PRESSURE (What's Pushing Toward a Decision)
+   - What external clocks are ticking? (financial, relational, market)
+   - What relationship dynamics are creating pressure?
+   - What self-image erosion is happening?
+   - Map the compound loop — how do pressure sources amplify each other?
 
-3. FELT CONSEQUENCES
-   - What are they experiencing RIGHT NOW because of this problem?
-   - What opportunities are they missing?
-   - How is this affecting their energy, mood, relationships?
+3. CONSEQUENCES (Daily Experience)
+   - What does a bad day feel like in their body?
+   - What is their inner dialogue when they're alone?
+   - How does this affect their most important relationship?
+   - Where is their energy going that it shouldn't?
 
 4. COST OF INACTION
-   - What happens if they don't solve this in 6 months? 1 year? 5 years?
-   - What is the financial/emotional/health cost of inaction?
-   - What will they regret?
+   - What happens in 6 months if nothing changes?
+   - What gets permanently lost (not just delayed)?
+   - What is the real cost? (Usually not bankruptcy — usually resignation)
 
-5. STAKES
-   - What is REALLY at stake beyond the surface problem?
-   - What does solving this mean for their identity?
-   - What becomes possible when this is solved?
+5. URGENCY LEVERS
+   - What countdown is already running?
+   - What tipping point is approaching in their relationships?
+   - What compounding cost are they paying per month of delay?
 
 6. AWARENESS STAGE
    - Where are they on the 5-stage awareness scale?
    - What do they already know? What are they blind to?
+   - Do they blame externals or recognize the root cause?
+
+7. SELF-LANGUAGE INVENTORY
+   - List 8-12 exact phrases they say to themselves
+   - These become your messaging foundation
 
 OUTPUT FORMAT:
 Provide a detailed narrative portrait of this ideal client, written as if you're describing a real person you know deeply. Include their inner dialogue, their fears, their hopes. Make it visceral and specific.
