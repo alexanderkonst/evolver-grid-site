@@ -33,45 +33,63 @@ The client is on the shore, looking at the island. They want to get there but do
 
 ---
 
-## The Anatomy of Pain
+## The 5-Layer Pain Slicer
 
-Pain has multiple components:
+Pain is not monolithic. It has **layers**, and each layer reveals messaging language. Apply these sequentially — each goes deeper.
 
-### 1. Decision Pressure (Давление к решению)
+> *Applied correctly, this slicer produces the exact phrases your ICP uses to describe their situation — their self-language. These phrases become your messaging.*
 
-The force pushing the person toward making a decision. Something MUST change.
+### Layer 1: What They're Struggling With (Борьба)
 
-**Questions to uncover:**
-- What is making this urgent NOW?
-- What has changed that created this pressure?
-- What deadline (real or felt) exists?
-
-### 2. Felt Consequences (Ощутимые последствия)
-
-The tangible, real effects of the problem on their life RIGHT NOW.
+The **surface problem** they'd name if you asked them directly. This is what they'd tell a friend.
 
 **Questions to uncover:**
-- What are you experiencing daily because of this?
-- How does this affect your energy/mood/relationships?
-- What opportunities are you missing?
+- What would they say if you asked "what's going on?"
+- What do they complain about?
+- What do they Google at midnight?
 
-### 3. Cost of Inaction (Цена бездействия)
+**What to listen for beneath it:** What they WON'T say unprompted but feel deeply.
 
-What happens if they DON'T solve this? The price of doing nothing.
+### Layer 2: Pressure (Давление)
 
-**Questions to uncover:**
-- What will your life look like in 1 year if nothing changes?
-- What is this problem costing you (money, time, health, relationships)?
-- What will you regret not doing?
-
-### 4. Stakes (Что на кону)
-
-What is REALLY at stake beyond the surface problem?
+What's **pushing them toward a decision**. External and internal forces creating a closing window.
 
 **Questions to uncover:**
-- Deep down, what does solving this mean to you?
-- What becomes possible when this is solved?
-- What are you fighting for?
+- What's making this urgent NOW (not "someday")?
+- What external clocks are ticking? (financial runway, deadlines, market windows)
+- What relationship dynamics are creating pressure?
+- What self-image erosion is happening?
+
+**Key insight:** Pressure compounds. Financial stress → partner tension → self-doubt → decreased output → slower progress → more financial stress. Map the **loop**, not just the sources.
+
+### Layer 3: Consequences (Последствия)
+
+What they **experience daily** because of this problem — body, mind, emotions, relationships, output, identity.
+
+**Questions to uncover:**
+- What does a bad day feel like in their body?
+- What is their inner dialogue when they're alone?
+- How does this affect their most important relationship?
+- Where is their energy going that it shouldn't?
+
+### Layer 4: Cost of Inaction (Цена бездействия)
+
+The price of doing **nothing**. Project forward 6-12 months.
+
+**Questions to uncover:**
+- What will their life look like in 6 months if nothing changes?
+- What gets permanently lost (not just delayed)?
+- What is the real cost — usually not bankruptcy, but **resignation**: settling for a misaligned life.
+
+### Layer 5: Urgency Levers (Рычаги срочности)
+
+The specific mechanisms that make **now** different from "eventually."
+
+**Questions to uncover:**
+- What countdown is already running? (savings, patience, market window)
+- What tipping point is approaching in their relationships?
+- What compounding cost are they paying per month of delay?
+- What upcoming life event forces self-assessment? (birthday, anniversary, end of year)
 
 ---
 
@@ -103,12 +121,13 @@ DENTIST vs PAINKILLER vs VODKA COTTON
 
 For ICP Deepening, map each dimension:
 
-| Dimension | Question | Client's Answer |
-|-----------|----------|-----------------|
-| **Decision Pressure** | What's making this urgent NOW? | |
-| **Felt Consequences** | What are you experiencing daily? | |
-| **Cost of Inaction** | What happens if you don't solve this? | |
-| **Stakes** | What's really at stake for you? | |
+| Dimension | Question | Client's Self-Language |
+|-----------|----------|------------------------|
+| **1. Struggle** | What would they say if asked "what's going on?" | |
+| **2. Pressure** | What's making this urgent NOW? | |
+| **3. Consequences** | What are they experiencing daily? | |
+| **4. Cost of Inaction** | What happens in 6 months if nothing changes? | |
+| **5. Urgency Levers** | What countdown is already running? | |
 | **Awareness Stage** | 1-5, where is your ideal client? | |
 
 ---
