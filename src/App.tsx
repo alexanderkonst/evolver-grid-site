@@ -117,6 +117,7 @@ import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
 import EquilibriumPage from "./pages/EquilibriumPage";
 import ArtPage from "./pages/game/ArtPiecePage";
+import FounderMarketFit from "./pages/FounderMarketFit";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#1a1d2e]">
@@ -326,6 +327,8 @@ const App = () => (
                   <Route path="/transcriber" element={<Transcriber />} />
                   {/* Equilibrium — Standalone Living Clock */}
                   <Route path="/equilibrium" element={<EquilibriumPage />} />
+                  {/* Founder-Market Fit Landing Page */}
+                  <Route path="/founder-market-fit" element={<FounderMarketFit />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
