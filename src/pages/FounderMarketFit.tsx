@@ -6,7 +6,6 @@ const CAL_LINK = "https://cal.com/aleksandrkonstantinov/fmf";
 const FounderMarketFit = () => {
     useEffect(() => {
         document.title = "Founder-Market Fit | Alexander Konstantinov";
-        // Force dark mode for this page
         document.documentElement.classList.add("dark");
         return () => {
             document.documentElement.classList.remove("dark");
@@ -15,7 +14,7 @@ const FounderMarketFit = () => {
 
     return (
         <div className="fmf-page">
-            {/* ===== HERO ===== */}
+            {/* ===== 1. HERO — you're seen ===== */}
             <section className="fmf-hero">
                 <div className="fmf-hero-bg" aria-hidden="true">
                     <div className="fmf-orb fmf-orb-1" />
@@ -23,7 +22,7 @@ const FounderMarketFit = () => {
                     <div className="fmf-orb fmf-orb-3" />
                 </div>
                 <div className="fmf-container fmf-hero-content">
-                    <p className="fmf-eyebrow">For founders in transition</p>
+                    <p className="fmf-eyebrow">For founders between ventures</p>
                     <h1 className="fmf-h1">
                         You know you're capable.
                         <br />
@@ -39,10 +38,11 @@ const FounderMarketFit = () => {
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
+                    <p className="fmf-hero-context">90-min diagnostic · $197</p>
                 </div>
             </section>
 
-            {/* ===== PROBLEM — THE WOUND ===== */}
+            {/* ===== 2. PAIN — it hurts, and it's getting worse ===== */}
             <section className="fmf-section fmf-problem">
                 <div className="fmf-container">
                     <h2 className="fmf-h2">If this is you, keep reading.</h2>
@@ -55,29 +55,9 @@ const FounderMarketFit = () => {
                     </ul>
                     <div className="fmf-reframe">
                         <p>
-                            You've probably blamed the usual suspects — resources, timing, the wrong team, not enough investment.
-                        </p>
-                        <p>
-                            But the real problem is simpler and harder: <strong>you're building something that isn't structurally built on who you are.</strong>
-                        </p>
-                        <p>
-                            That's why the energy dies. That's why traction stalls. That's why each new idea feels promising for a month then grinds to a halt.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* ===== COST OF INACTION ===== */}
-            <section className="fmf-section fmf-cost">
-                <div className="fmf-container">
-                    <h2 className="fmf-h2">The price of doing nothing</h2>
-                    <div className="fmf-reframe">
-                        <p>
-                            Every month you stay scattered costs you the compounding that month would have generated.
-                        </p>
-                        <p>
-                            In six months: savings hit the critical threshold. The relationship conversation
-                            shifts from concern to ultimatum. The dream doesn't die — it gets <strong>shelved</strong>.
+                            Every month this drags on costs you the compounding that month
+                            would have generated. The savings shrink. The conversations at home
+                            shift. The dream doesn't die — it gets <strong>shelved</strong>.
                         </p>
                         <p className="fmf-cost-kicker">
                             <em>"I'll come back to it when things settle down."</em>
@@ -88,7 +68,7 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== REVELATION — FMF AS DIAGNOSIS ===== */}
+            {/* ===== 3. DIAGNOSIS — here's why ===== */}
             <section className="fmf-section fmf-revelation">
                 <div className="fmf-container">
                     <h2 className="fmf-h2">You're not lost. You're in orbit.</h2>
@@ -97,9 +77,6 @@ const FounderMarketFit = () => {
                             You can see the opportunities. You've circled a few. Some looked right for a while.
                             But you haven't landed — because you've been choosing ventures from the outside,
                             based on what looks promising, instead of from the inside, based on who you are.
-                        </p>
-                        <p>
-                            There's a name for what's missing:
                         </p>
                     </div>
                     <div className="fmf-fmf-reveal">
@@ -113,7 +90,29 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== SOLUTION — HOW WE FIND IT ===== */}
+            {/* ===== 4. COMPASSION — not your fault, until it's obvious ===== */}
+            <section className="fmf-section fmf-compassion">
+                <div className="fmf-container">
+                    <h2 className="fmf-h2">This isn't a character flaw.</h2>
+                    <div className="fmf-reframe">
+                        <p>
+                            Founder-Market Fit is invisible from the inside. You can't see it
+                            the same way you can't read the label from inside the bottle.
+                        </p>
+                        <p>
+                            It's not about working harder, networking more, or finding
+                            the right co-founder. It's about seeing the one thing you can't see alone:
+                            <strong> where your genius meets the market.</strong>
+                        </p>
+                        <p>
+                            Once someone maps it for you, it becomes obvious. The kind of obvious
+                            that makes you wonder how you missed it.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== 5. METHOD — I got you ===== */}
             <section className="fmf-section fmf-solution">
                 <div className="fmf-container">
                     <h2 className="fmf-h2">Find yours in 90 minutes.</h2>
@@ -122,7 +121,7 @@ const FounderMarketFit = () => {
                             <div className="fmf-step-num">1</div>
                             <h3 className="fmf-step-title">Map</h3>
                             <p className="fmf-step-desc">
-                                We map your Zone of Genius — the intersection of what you're brilliant at, what energizes you, and what the world will pay for.
+                                Your genius — mapped. Brilliance, energy, and market demand in one picture.
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
@@ -130,7 +129,7 @@ const FounderMarketFit = () => {
                             <div className="fmf-step-num">2</div>
                             <h3 className="fmf-step-title">Match</h3>
                             <p className="fmf-step-desc">
-                                We test against market reality. Not "what sounds cool" — but where your specific genius creates value people will pay for <em>now</em>.
+                                Tested against market reality — where your genius meets money <em>now</em>.
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
@@ -138,7 +137,7 @@ const FounderMarketFit = () => {
                             <div className="fmf-step-num">3</div>
                             <h3 className="fmf-step-title">Move</h3>
                             <p className="fmf-step-desc">
-                                You leave with a direction, an offer, and your next 3 moves — not "think about it," but "do this Monday."
+                                A direction, a first offer, and your next 3 moves — Monday-ready.
                             </p>
                         </div>
                     </div>
@@ -148,90 +147,99 @@ const FounderMarketFit = () => {
                         <div className="fmf-deliverable-grid">
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <div>
-                                    <strong>Founder-Market Fit Statement</strong>
-                                    <p>One sentence naming the venture that's structurally yours</p>
-                                </div>
+                                <strong>Founder-Market Fit Statement</strong>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <div>
-                                    <strong>Zone of Genius Card</strong>
-                                    <p>Your unique genius articulated — the seed everything grows from</p>
-                                </div>
+                                <strong>Zone of Genius Card</strong>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <div>
-                                    <strong>30-Day Action Plan</strong>
-                                    <p>Not theory — the exact moves to make this week and next</p>
-                                </div>
+                                <strong>30-Day Action Plan</strong>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <div>
-                                    <strong>Session Recording</strong>
-                                    <p>The breakthroughs on tape — revisit as many times as you need</p>
-                                </div>
+                                <strong>Session Recording</strong>
                             </div>
                         </div>
                     </div>
+
+                    <p className="fmf-method-footnote">
+                        I'm Alexander Konstantinov. I designed this diagnostic on myself first,
+                        then ran it 250 more times. Same result every time.
+                    </p>
                 </div>
             </section>
 
-            {/* ===== FOR / NOT FOR ===== */}
-            <section className="fmf-section fmf-filter">
+            {/* ===== 6. PROOF — others trusted this ===== */}
+            <section className="fmf-section fmf-proof">
                 <div className="fmf-container">
-                    <div className="fmf-filter-grid">
-                        <div className="fmf-filter-col">
-                            <h3 className="fmf-h3 fmf-yes">This is for you if</h3>
-                            <ul>
-                                <li>You're in the <strong>transition</strong> — between what was and what's next</li>
-                                <li>You've felt the gap between your capability and your results</li>
-                                <li>You want structural clarity, not another motivational talk</li>
-                                <li>You're ready to stop exploring and <strong>commit</strong> — to the right thing</li>
-                            </ul>
+                    <div className="fmf-credentials">
+                        <div className="fmf-credential">
+                            <span className="fmf-credential-num">250+</span>
+                            <span className="fmf-credential-label">Founders mapped</span>
                         </div>
-                        <div className="fmf-filter-col">
-                            <h3 className="fmf-h3 fmf-no">This is not for you if</h3>
-                            <ul>
-                                <li>You want someone to hand you a business plan</li>
-                                <li>You're not willing to look honestly at who you are</li>
-                                <li>You're looking for validation, not direction</li>
-                                <li>You want comfort — this is about <strong>clarity</strong></li>
-                            </ul>
+                        <div className="fmf-credential-divider" aria-hidden="true" />
+                        <div className="fmf-credential">
+                            <span className="fmf-credential-num">10+</span>
+                            <span className="fmf-credential-label">Years in career transformation</span>
+                        </div>
+                        <div className="fmf-credential-divider" aria-hidden="true" />
+                        <div className="fmf-credential">
+                            <span className="fmf-credential-num">MIT</span>
+                            <span className="fmf-credential-label">Alum · AI & Human Potential</span>
+                        </div>
+                    </div>
+
+                    <div className="fmf-testimonials">
+                        <div className="fmf-testimonial">
+                            <p className="fmf-testimonial-quote">
+                                "This is a miracle of miracles. Other tools come at this half-baked and shallow;
+                                they've got no depth. Your approach, though — <strong>a tool that just plain works.</strong>"
+                            </p>
+                            <div className="fmf-testimonial-author">
+                                <span className="fmf-testimonial-name">Alexey</span>
+                                <span className="fmf-testimonial-result">Found Results</span>
+                            </div>
+                        </div>
+                        <div className="fmf-testimonial">
+                            <p className="fmf-testimonial-quote">
+                                "Truly profound. I am so inspired to lean into my talents
+                                and <strong>share them globally.</strong>"
+                            </p>
+                            <div className="fmf-testimonial-author">
+                                <span className="fmf-testimonial-name">Tshatiqua</span>
+                                <span className="fmf-testimonial-result">Found Purpose</span>
+                            </div>
+                        </div>
+                        <div className="fmf-testimonial">
+                            <p className="fmf-testimonial-quote">
+                                "I got into my zone of genius and <strong>launched my blockchain
+                                    wellness education project.</strong>"
+                            </p>
+                            <div className="fmf-testimonial-author">
+                                <span className="fmf-testimonial-name">Simba</span>
+                                <span className="fmf-testimonial-result">Launched Project</span>
+                            </div>
+                        </div>
+                        <div className="fmf-testimonial">
+                            <p className="fmf-testimonial-quote">
+                                "Getting unstuck. This is very valuable.
+                                Inspires & informs <strong>BRILLIANTLY!!</strong>"
+                            </p>
+                            <div className="fmf-testimonial-author">
+                                <span className="fmf-testimonial-name">Laura</span>
+                                <span className="fmf-testimonial-result">Found Clarity</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* ===== ABOUT ===== */}
-            <section className="fmf-section fmf-about">
-                <div className="fmf-container">
-                    <div className="fmf-about-inner">
-                        <div className="fmf-about-text">
-                            <h2 className="fmf-h2">Why I built this</h2>
-                            <p>
-                                I'm <strong>Alexander Konstantinov</strong>. I've been exactly where you are — capable,
-                                driven, running out of runway, wondering if I'm drilling through the wall or in the wrong tunnel entirely.
-                            </p>
-                            <p>
-                                I built this diagnostic on myself first. Mapped my own genius. Found where it meets the market.
-                                Designed this session because I know the cost of staying scattered — and I know what changes
-                                when you finally see the alignment.
-                            </p>
-                            <p>
-                                This isn't theory. It's the same process that ended my own extended transition.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ===== BOOK ===== */}
+            {/* ===== 7. CTA — do it ===== */}
             <section className="fmf-section fmf-book" id="book">
                 <div className="fmf-container fmf-book-inner">
-                    <h2 className="fmf-h2">Stop guessing. Start building what's yours.</h2>
+                    <h2 className="fmf-h2">Find yours.</h2>
                     <div className="fmf-book-details">
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">📅</span>
@@ -239,7 +247,7 @@ const FounderMarketFit = () => {
                         </div>
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">💰</span>
-                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">founding rate · first 10 sessions</span></span>
+                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">founding rate</span></span>
                         </div>
                     </div>
                     <a
@@ -253,14 +261,21 @@ const FounderMarketFit = () => {
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
-                    <p className="fmf-micro">No pitch. No upsell pressure. Just 90 minutes to discover what's yours to build — and the moves to start this week.</p>
+                    <div className="fmf-guarantee">
+                        <span className="fmf-guarantee-icon" aria-hidden="true">🛡️</span>
+                        <p>Clarity or your money back.</p>
+                    </div>
                 </div>
             </section>
 
             {/* ===== FOOTER ===== */}
             <footer className="fmf-footer">
-                <div className="fmf-container">
+                <div className="fmf-container fmf-footer-inner">
                     <p>© {new Date().getFullYear()} Alexander Konstantinov</p>
+                    <div className="fmf-footer-links">
+                        <a href="mailto:sasha@evolver.team">sasha@evolver.team</a>
+                        <a href="https://linkedin.com/in/aleksandrkonstantinov" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
                 </div>
             </footer>
         </div>
