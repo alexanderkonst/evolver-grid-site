@@ -6,7 +6,7 @@
 /* === PAGE RESET: Override platform styles === */
 .fmf-page {
     --fmf-bg: #0a0b0f;
-    --fmf-bg-section: #0f1015;
+    --fmf-bg-section: #111219;
     --fmf-bg-card: rgba(255, 255, 255, 0.04);
     --fmf-border: rgba(255, 255, 255, 0.08);
     --fmf-text: #e8e8ed;
@@ -229,6 +229,13 @@
     line-height: 1.6;
 }
 
+.fmf-hero-context {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--fmf-text-muted);
+    letter-spacing: 0.06em;
+}
+
 /* === CTA BUTTON === */
 .fmf-cta-primary {
     display: inline-flex;
@@ -360,6 +367,107 @@
     max-width: 600px;
     margin: 0 auto 48px;
     text-align: center;
+}
+
+/* === SOCIAL PROOF: CREDENTIALS === */
+.fmf-credentials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+}
+
+.fmf-credential {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.fmf-credential-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--fmf-text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.fmf-credential-label {
+    font-size: 0.8rem;
+    color: var(--fmf-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.fmf-credential-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--fmf-border);
+    flex-shrink: 0;
+}
+
+/* === SOCIAL PROOF: TESTIMONIALS === */
+.fmf-testimonials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.fmf-testimonial {
+    background: var(--fmf-bg-card);
+    border: 1px solid var(--fmf-border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.fmf-testimonial:hover {
+    border-color: rgba(124, 106, 239, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fmf-testimonial-quote {
+    font-size: 0.95rem;
+    color: var(--fmf-text-dim);
+    line-height: 1.7;
+    margin: 0;
+    font-style: italic;
+}
+
+.fmf-testimonial-quote strong {
+    color: var(--fmf-text);
+    font-style: normal;
+}
+
+.fmf-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fmf-testimonial-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--fmf-text);
+}
+
+.fmf-testimonial-result {
+    font-size: 0.75rem;
+    color: var(--fmf-accent-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(124, 106, 239, 0.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(124, 106, 239, 0.15);
 }
 
 /* === REVELATION === */
@@ -514,6 +622,22 @@
     line-height: 1.5;
 }
 
+/* === COMPASSION === */
+.fmf-compassion .fmf-reframe p {
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+/* === METHOD FOOTNOTE === */
+.fmf-method-footnote {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--fmf-text-muted);
+    max-width: 500px;
+    margin-inline: auto;
+}
+
 /* === FILTER === */
 .fmf-filter-grid {
     display: grid;
@@ -656,17 +780,63 @@
     max-width: 400px;
 }
 
+/* === GUARANTEE === */
+.fmf-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 24px;
+    background: rgba(78, 205, 196, 0.06);
+    border: 1px solid rgba(78, 205, 196, 0.15);
+    border-radius: 12px;
+    max-width: 420px;
+}
+
+.fmf-guarantee-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.fmf-guarantee p {
+    font-size: 0.9rem;
+    color: var(--fmf-text-dim);
+    margin: 0;
+    line-height: 1.5;
+}
+
 /* === FOOTER === */
 .fmf-footer {
     padding: 32px 0;
     border-top: 1px solid var(--fmf-border);
 }
 
+.fmf-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .fmf-footer p {
     font-size: 0.8rem;
     color: var(--fmf-text-muted);
-    text-align: center;
     margin: 0;
+}
+
+.fmf-footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.fmf-footer-links a {
+    font-size: 0.8rem;
+    color: var(--fmf-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.fmf-footer-links a:hover {
+    color: var(--fmf-accent-light);
 }
 
 /* ================================================
@@ -699,6 +869,25 @@
     .fmf-deliverable-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+    }
+
+    .fmf-testimonials {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .fmf-credential-divider {
+        display: none;
+    }
+
+    .fmf-credentials {
+        gap: 24px;
+    }
+
+    .fmf-footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
     }
 
     .fmf-filter-grid {
