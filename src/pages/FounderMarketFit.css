@@ -331,6 +331,37 @@
     font-style: italic;
 }
 
+/* === COST OF INACTION === */
+.fmf-cost .fmf-h2 {
+    color: #f0c27f;
+}
+
+.fmf-cost .fmf-reframe {
+    border-left-color: rgba(240, 194, 127, 0.5);
+}
+
+.fmf-cost-kicker {
+    padding-top: 8px;
+    font-size: 1.1rem !important;
+    color: var(--fmf-text) !important;
+    font-weight: 500;
+}
+
+.fmf-cost-kicker em {
+    color: rgba(240, 194, 127, 0.9) !important;
+    font-size: 1.05rem;
+}
+
+/* === SOLUTION INTRO === */
+.fmf-solution-intro {
+    font-size: 1.1rem;
+    color: var(--fmf-text-dim);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
 /* === SOLUTION: STEPS === */
 .fmf-steps {
     display: flex;

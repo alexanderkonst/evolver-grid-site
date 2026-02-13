@@ -23,17 +23,18 @@ const FounderMarketFit = () => {
                     <div className="fmf-orb fmf-orb-3" />
                 </div>
                 <div className="fmf-container fmf-hero-content">
-                    <p className="fmf-eyebrow">For founders &amp; aspiring founders</p>
+                    <p className="fmf-eyebrow">For founders in transition</p>
                     <h1 className="fmf-h1">
-                        Before Product-Market Fit,
+                        You know you're capable.
                         <br />
-                        <span className="fmf-gradient-text">There's Founder-Market Fit.</span>
+                        <span className="fmf-gradient-text">So why is this transition taking so long?</span>
                     </h1>
                     <p className="fmf-hero-sub">
-                        Find the venture that's built on who you actually are — not who you think you should be.
+                        You've got the skills, the vision, the drive. But somehow the breakthrough
+                        keeps being "right around the corner" — and the corner keeps moving.
                     </p>
                     <a href="#book" className="fmf-cta-primary">
-                        Find Your Fit
+                        End the Guessing
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -41,40 +42,70 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== PROBLEM ===== */}
+            {/* ===== PROBLEM — THE WOUND ===== */}
             <section className="fmf-section fmf-problem">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">Does this sound like you?</h2>
+                    <h2 className="fmf-h2">If this is you, keep reading.</h2>
                     <ul className="fmf-pain-list">
-                        <li>You have talent, drive, and ideas — but you can't tell which venture is <strong>the one</strong>.</li>
-                        <li>You've started things you believe in, then abandoned them when the energy died.</li>
-                        <li>Your business works, but it <strong>drains you</strong>. Something fundamental is off.</li>
-                        <li>You keep hearing "just pick one thing" — but nothing feels like <strong>the thing</strong>.</li>
-                        <li>You're chasing product-market fit — but you haven't answered the question before it.</li>
+                        <li>"I've been in this transition <strong>for too long</strong>."</li>
+                        <li>"I keep starting things that don't gain traction fast enough."</li>
+                        <li>"I can't figure out which venture to <strong>go all-in</strong> on."</li>
+                        <li>"I'm so much more capable than my results show."</li>
+                        <li>"Something fundamental is off — but I can't see what."</li>
                     </ul>
                     <div className="fmf-reframe">
                         <p>
-                            It's not a strategy problem. It's not a motivation problem. It's an <strong>alignment problem</strong>.
+                            You've probably blamed the usual suspects — resources, timing, the wrong team, not enough investment.
                         </p>
                         <p>
-                            <strong>Founder-Market Fit</strong> is the match between who you are at a structural level and what you're building.
-                            When it's off: burnout, endless pivots, mediocre traction.
-                            When it's on: <em>unfair advantage</em> — the venture compounds because it's built on who you actually are.
+                            But the real problem is simpler and harder: <strong>you're building something that isn't structurally built on who you are.</strong>
+                        </p>
+                        <p>
+                            That's why the energy dies. That's why traction stalls. That's why each new idea feels promising for a month then grinds to a halt.
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* ===== SOLUTION ===== */}
+            {/* ===== COST OF INACTION ===== */}
+            <section className="fmf-section fmf-cost">
+                <div className="fmf-container">
+                    <h2 className="fmf-h2">The price of doing nothing</h2>
+                    <div className="fmf-reframe">
+                        <p>
+                            Every month you stay scattered costs you the compounding that month would have generated.
+                        </p>
+                        <p>
+                            In six months: savings hit the critical threshold. The relationship conversation
+                            shifts from concern to ultimatum. The dream doesn't die — it gets <strong>shelved</strong>.
+                        </p>
+                        <p className="fmf-cost-kicker">
+                            <em>"I'll come back to it when things settle down."</em>
+                            <br />
+                            You know how that ends.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== THE SHIFT ===== */}
             <section className="fmf-section fmf-solution">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">Find yours in 90 minutes.</h2>
+                    <h2 className="fmf-h2">
+                        What if the problem isn't <em>which</em> venture —
+                        <br />
+                        but <em>whether</em> it's built on who you actually are?
+                    </h2>
+                    <p className="fmf-solution-intro">
+                        That's Founder-Market Fit. Not a strategy exercise. A structural diagnosis.
+                        In 90 minutes, we find the venture that's inevitable for you — because it's built on your genius, not someone else's playbook.
+                    </p>
                     <div className="fmf-steps">
                         <div className="fmf-step">
                             <div className="fmf-step-num">1</div>
                             <h3 className="fmf-step-title">Map</h3>
                             <p className="fmf-step-desc">
-                                We map your unique genius — the patterns, strengths, and edges that make you <em>you</em>.
+                                We map your Zone of Genius — the intersection of what you're brilliant at, what energizes you, and what the world will pay for.
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
@@ -82,7 +113,7 @@ const FounderMarketFit = () => {
                             <div className="fmf-step-num">2</div>
                             <h3 className="fmf-step-title">Match</h3>
                             <p className="fmf-step-desc">
-                                We cross-reference with market reality — where does your genius create the most value?
+                                We test against market reality. Not "what sounds cool" — but where your specific genius creates value people will pay for <em>now</em>.
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
@@ -90,7 +121,7 @@ const FounderMarketFit = () => {
                             <div className="fmf-step-num">3</div>
                             <h3 className="fmf-step-title">Move</h3>
                             <p className="fmf-step-desc">
-                                We design the direction — what to build, who it's for, and your next 3 concrete moves.
+                                You leave with a direction, an offer, and your next 3 moves — not "think about it," but "do this Monday."
                             </p>
                         </div>
                     </div>
@@ -102,28 +133,28 @@ const FounderMarketFit = () => {
                                 <span className="fmf-check" aria-hidden="true">✓</span>
                                 <div>
                                     <strong>Founder-Market Fit Statement</strong>
-                                    <p>One sentence that names your alignment</p>
+                                    <p>One sentence naming the venture that's structurally yours</p>
                                 </div>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
                                 <div>
-                                    <strong>Venture Direction</strong>
-                                    <p>The shape of the business that makes sense for you</p>
+                                    <strong>Zone of Genius Card</strong>
+                                    <p>Your unique genius articulated — the seed everything grows from</p>
                                 </div>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
                                 <div>
-                                    <strong>Next 3 Moves</strong>
-                                    <p>Concrete steps for this week</p>
+                                    <strong>30-Day Action Plan</strong>
+                                    <p>Not theory — the exact moves to make this week and next</p>
                                 </div>
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
                                 <div>
                                     <strong>Session Recording</strong>
-                                    <p>So you can revisit the insights</p>
+                                    <p>The breakthroughs on tape — revisit as many times as you need</p>
                                 </div>
                             </div>
                         </div>
@@ -138,17 +169,19 @@ const FounderMarketFit = () => {
                         <div className="fmf-filter-col">
                             <h3 className="fmf-h3 fmf-yes">This is for you if</h3>
                             <ul>
-                                <li>You're a founder, aspiring founder, or builder ready to go all-in — on the <strong>right thing</strong></li>
-                                <li>You've felt the gap between your potential and your traction</li>
-                                <li>You want structural clarity, not motivational pep talks</li>
+                                <li>You're in the <strong>transition</strong> — between what was and what's next</li>
+                                <li>You've felt the gap between your capability and your results</li>
+                                <li>You want structural clarity, not another motivational talk</li>
+                                <li>You're ready to stop exploring and <strong>commit</strong> — to the right thing</li>
                             </ul>
                         </div>
                         <div className="fmf-filter-col">
                             <h3 className="fmf-h3 fmf-no">This is not for you if</h3>
                             <ul>
                                 <li>You want someone to hand you a business plan</li>
-                                <li>You're not ready to look honestly at who you are</li>
-                                <li>You want comfort, not clarity</li>
+                                <li>You're not willing to look honestly at who you are</li>
+                                <li>You're looking for validation, not direction</li>
+                                <li>You want comfort — this is about <strong>clarity</strong></li>
                             </ul>
                         </div>
                     </div>
@@ -160,11 +193,18 @@ const FounderMarketFit = () => {
                 <div className="fmf-container">
                     <div className="fmf-about-inner">
                         <div className="fmf-about-text">
-                            <h2 className="fmf-h2">About</h2>
+                            <h2 className="fmf-h2">Why I built this</h2>
                             <p>
-                                <strong>Alexander Konstantinov</strong> builds integrative systems that help founders see the architecture of their genius.
-                                He built this method on himself first — mapped his own Founder-Market Fit, designed the offer, launched the system.
-                                What he offers is the documented, repeatable process.
+                                I'm <strong>Alexander Konstantinov</strong>. I've been exactly where you are — capable,
+                                driven, running out of runway, wondering if I'm drilling through the wall or in the wrong tunnel entirely.
+                            </p>
+                            <p>
+                                I built this diagnostic on myself first. Mapped my own genius. Found where it meets the market.
+                                Designed this session because I know the cost of staying scattered — and I know what changes
+                                when you finally see the alignment.
+                            </p>
+                            <p>
+                                This isn't theory. It's the same process that ended my own extended transition.
                             </p>
                         </div>
                     </div>
@@ -174,7 +214,7 @@ const FounderMarketFit = () => {
             {/* ===== BOOK ===== */}
             <section className="fmf-section fmf-book" id="book">
                 <div className="fmf-container fmf-book-inner">
-                    <h2 className="fmf-h2">Ready to find your Founder-Market Fit?</h2>
+                    <h2 className="fmf-h2">Stop guessing. Start building what's yours.</h2>
                     <div className="fmf-book-details">
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">📅</span>
@@ -182,7 +222,7 @@ const FounderMarketFit = () => {
                         </div>
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">💰</span>
-                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">pilot rate</span></span>
+                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">founding rate · first 10 sessions</span></span>
                         </div>
                     </div>
                     <a
@@ -196,7 +236,7 @@ const FounderMarketFit = () => {
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
-                    <p className="fmf-micro">No pitch. No upsell pressure. Just 90 minutes of structural clarity about what you should be building.</p>
+                    <p className="fmf-micro">No pitch. No upsell pressure. Just 90 minutes of structural clarity about what you should be building — and the moves to start this week.</p>
                 </div>
             </section>
 
