@@ -88,18 +88,35 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== THE SHIFT ===== */}
+            {/* ===== REVELATION — FMF AS DIAGNOSIS ===== */}
+            <section className="fmf-section fmf-revelation">
+                <div className="fmf-container">
+                    <h2 className="fmf-h2">You're not lost. You're in orbit.</h2>
+                    <div className="fmf-reframe">
+                        <p>
+                            You can see the opportunities. You've circled a few. Some looked right for a while.
+                            But you haven't landed — because you've been choosing ventures from the outside,
+                            based on what looks promising, instead of from the inside, based on who you are.
+                        </p>
+                        <p>
+                            There's a name for what's missing:
+                        </p>
+                    </div>
+                    <div className="fmf-fmf-reveal">
+                        <p className="fmf-reveal-before">Before Product-Market Fit —</p>
+                        <h3 className="fmf-reveal-headline">there's Founder-Market Fit.</h3>
+                        <p className="fmf-reveal-after">
+                            The structural match between who you are and what you build.
+                            When it's off, everything grinds. When it's on — unfair advantage.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== SOLUTION — HOW WE FIND IT ===== */}
             <section className="fmf-section fmf-solution">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">
-                        What if the problem isn't <em>which</em> venture —
-                        <br />
-                        but <em>whether</em> it's built on who you actually are?
-                    </h2>
-                    <p className="fmf-solution-intro">
-                        That's Founder-Market Fit. Not a strategy exercise. A structural diagnosis.
-                        In 90 minutes, we find the venture that's inevitable for you — because it's built on your genius, not someone else's playbook.
-                    </p>
+                    <h2 className="fmf-h2">Find yours in 90 minutes.</h2>
                     <div className="fmf-steps">
                         <div className="fmf-step">
                             <div className="fmf-step-num">1</div>
@@ -236,7 +253,7 @@ const FounderMarketFit = () => {
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
-                    <p className="fmf-micro">No pitch. No upsell pressure. Just 90 minutes of structural clarity about what you should be building — and the moves to start this week.</p>
+                    <p className="fmf-micro">No pitch. No upsell pressure. Just 90 minutes to discover what's yours to build — and the moves to start this week.</p>
                 </div>
             </section>
 

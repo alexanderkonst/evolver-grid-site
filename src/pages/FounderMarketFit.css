@@ -362,6 +362,42 @@
     text-align: center;
 }
 
+/* === REVELATION === */
+.fmf-fmf-reveal {
+    text-align: center;
+    margin-top: 48px;
+}
+
+.fmf-reveal-before {
+    font-size: 1.1rem;
+    color: var(--fmf-text-muted);
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+}
+
+.fmf-reveal-headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    background: var(--fmf-gradient-text);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fmf-gradient-shift 8s ease infinite;
+}
+
+.fmf-reveal-after {
+    font-size: 1.05rem;
+    color: var(--fmf-text-dim);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
 /* === SOLUTION: STEPS === */
 .fmf-steps {
     display: flex;
