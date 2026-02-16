@@ -7,8 +7,49 @@ const FounderMarketFit = () => {
     useEffect(() => {
         document.title = "Founder-Market Fit | Alexander Konstantinov";
         document.documentElement.classList.add("dark");
+
+        // SEO meta tags
+        const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
+        const origDesc = metaDesc.getAttribute('content') || '';
+        metaDesc.setAttribute('name', 'description');
+        metaDesc.setAttribute('content', 'Find the structural match between who you are and what you build. 90-minute diagnostic for founders between ventures. $197.');
+        if (!metaDesc.parentNode) document.head.appendChild(metaDesc);
+
+        // OG tags — update existing or create new
+        const ogTags: Record<string, string> = {
+            'og:title': 'Founder-Market Fit | Alexander Konstantinov',
+            'og:description': 'The breakthrough stays "right around the corner" — until someone maps where your genius meets the market.',
+            'og:type': 'website',
+            'og:url': 'https://evolver.team/founder-market-fit',
+            'twitter:card': 'summary_large_image',
+            'twitter:title': 'Founder-Market Fit | Alexander Konstantinov',
+            'twitter:description': 'Find the structural match between who you are and what you build.',
+        };
+        const originals: Record<string, string | null> = {};
+        const createdElements: HTMLMetaElement[] = [];
+        Object.entries(ogTags).forEach(([property, content]) => {
+            const existing = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+            if (existing) {
+                originals[property] = existing.getAttribute('content');
+                existing.setAttribute('content', content);
+            } else {
+                const el = document.createElement('meta');
+                el.setAttribute('property', property);
+                el.setAttribute('content', content);
+                document.head.appendChild(el);
+                createdElements.push(el);
+            }
+        });
+
         return () => {
             document.documentElement.classList.remove("dark");
+            // Restore originals
+            Object.entries(originals).forEach(([property, origContent]) => {
+                const el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+                if (el && origContent !== null) el.setAttribute('content', origContent);
+            });
+            createdElements.forEach(el => el.remove());
+            metaDesc.setAttribute('content', origDesc);
         };
     }, []);
 
@@ -57,7 +98,8 @@ const FounderMarketFit = () => {
                         <p>
                             Every month this drags on costs you the compounding that month
                             would have generated. The savings shrink. The conversations at home
-                            shift. The dream doesn't die — it gets <strong>shelved</strong>.
+                            shift. You start second-guessing yourself in rooms where you used to
+                            be the most confident person. The dream doesn't die — it gets <strong>shelved</strong>.
                         </p>
                         <p className="fmf-cost-kicker">
                             <em>"I'll come back to it when things settle down."</em>
@@ -96,11 +138,13 @@ const FounderMarketFit = () => {
                 <div className="fmf-container">
                     <h2 className="fmf-h2">This isn't a character flaw.</h2>
                     <div className="fmf-reframe">
-                        <p>
-                            Founder-Market Fit is invisible from the inside. You can't see it
-                            the same way you can't read the label from inside the bottle.
+                        <p className="fmf-core-belief">
+                            I believe every founder has one venture that's structurally theirs.
+                            Most never find it — not because they're not good enough,
+                            but because <strong>Founder-Market Fit is invisible from the inside.</strong>
                         </p>
                         <p>
+                            You can't read the label from inside the bottle.
                             It's not about working harder, networking more, or finding
                             the right co-founder. It's about seeing the one thing you can't see alone:
                             <strong> where your genius meets the market.</strong>
@@ -237,10 +281,33 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== 7. CTA — do it ===== */}
+            {/* ===== 7a. OBJECTIONS — quick answers ===== */}
+            <section className="fmf-section fmf-objections">
+                <div className="fmf-container">
+                    <div className="fmf-objection-grid">
+                        <div className="fmf-objection">
+                            <h4 className="fmf-objection-q">"What if I already have an idea?"</h4>
+                            <p>Then we stress-test it against your genius map. You'll know in 90 minutes if it's <em>the one</em> or a distraction.</p>
+                        </div>
+                        <div className="fmf-objection">
+                            <h4 className="fmf-objection-q">"What if I'm not ready to commit?"</h4>
+                            <p>This isn't a commitment to a venture. It's 90 minutes of clarity. You decide what to do with it after.</p>
+                        </div>
+                        <div className="fmf-objection">
+                            <h4 className="fmf-objection-q">"How is this different from coaching?"</h4>
+                            <p>Coaching is ongoing. This is a one-time diagnostic — a map, not a subscription.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ===== 7b. CTA — do it ===== */}
             <section className="fmf-section fmf-book" id="book">
                 <div className="fmf-container fmf-book-inner">
                     <h2 className="fmf-h2">Find yours.</h2>
+                    <p className="fmf-urgency">
+                        Every month without Founder-Market Fit is a month of compounding in the wrong direction.
+                    </p>
                     <div className="fmf-book-details">
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">📅</span>

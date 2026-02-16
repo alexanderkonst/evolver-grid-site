@@ -638,6 +638,59 @@
     margin-inline: auto;
 }
 
+/* === CORE BELIEF === */
+.fmf-core-belief {
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--fmf-text);
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+/* === OBJECTIONS === */
+.fmf-objections {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.fmf-objection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.fmf-objection-q {
+    font-size: 1rem;
+    color: var(--fmf-text);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.fmf-objection p {
+    font-size: 0.95rem;
+    color: var(--fmf-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .fmf-objection-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* === URGENCY === */
+.fmf-urgency {
+    color: var(--fmf-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-inline: auto;
+    text-align: center;
+}
+
 /* === FILTER === */
 .fmf-filter-grid {
     display: grid;
