@@ -71,20 +71,21 @@ const FounderMarketFit = () => {
             {/* ===== 3. DIAGNOSIS — here's why ===== */}
             <section className="fmf-section fmf-revelation">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">You're not lost. You're in orbit.</h2>
-                    <div className="fmf-reframe">
-                        <p>
-                            You can see the opportunities. You've circled a few. Some looked right for a while.
-                            But you haven't landed — because you've been choosing ventures from the outside,
-                            based on what looks promising, instead of from the inside, based on who you are.
-                        </p>
-                    </div>
                     <div className="fmf-fmf-reveal">
                         <p className="fmf-reveal-before">Before Product-Market Fit —</p>
                         <h3 className="fmf-reveal-headline">there's Founder-Market Fit.</h3>
                         <p className="fmf-reveal-after">
                             The structural match between who you are and what you build.
-                            When it's off, everything grinds. When it's on — unfair advantage.
+                            Without it, every venture feels like pushing uphill.
+                            The breakthrough stays "right around the corner" — and the corner keeps moving.
+                        </p>
+                        <p className="fmf-reveal-after">
+                            With it — unfair advantage. The thing that makes the hard parts feel like <em>your</em> hard parts.
+                        </p>
+                    </div>
+                    <div className="fmf-reframe">
+                        <p>
+                            <strong>You don't have yours yet.</strong> That's the whole problem.
                         </p>
                     </div>
                 </div>
