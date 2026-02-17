@@ -190,19 +190,18 @@ The myth is the bridge between unique gift and business: the founder's wound and
 
 | Artifact | Status |
 |----------|--------|
-| Myth | ✅ Crystallized (9-cycle roast + meta-roast, Feb 17) |
+| Myth | ✅ Crystallized — three forms (truth claim, founder experience, industry claim) |
 | Unique Gift | ✅ Articulated |
-| ICP + Life Situation | ✅ Deepened (5-layer slicer) |
-| Pain (4 dimensions) | ✅ Sliced |
-| Self-Language | ✅ Captured |
-| Dream Outcome | ✅ Crystallized ("not chosen — recognized") |
+| ICP | ✅ Situation-based ("knows what they're good at, can't turn it into a business") — "founders" as practical search term |
+| Pain (4 dimensions) | ✅ Sliced — self-language captured |
+| Dream Outcome | ✅ "Not chosen — recognized" |
 | Transformational Promise | ✅ One-sentence |
 | PMF Hypothesis | ✅ Formula filled |
-| Offer | ✅ Defined |
-| Method | ✅ Named (MAP→MATCH→MOVE) |
-| Proof | ✅ Embodied |
-| Channel | 🔴 Not activated — **this is the bottleneck** |
-| Landing Page | 🟡 Needs myth-infused iteration |
+| Offer | 🟡 Structure sound ($197/$397, value ladder), **name TBD** — needs Alexander's voice |
+| Method | ✅ Named (MAP→MATCH→MOVE) — needs validation in first sessions |
+| Proof | ✅ Embodied (ran on self first) |
+| Channel | 🟡 **Next step: write myth in own voice → send to 3 people** |
+| Landing Page | ⏸️ Paused — myth goes out first, page follows |
 
 ---
 
@@ -218,5 +217,5 @@ The myth is the bridge between unique gift and business: the founder's wound and
 
 ---
 
-*Canvas v3.0 — February 17, 2026*
-*Myth crystallized through sacred fire. 12/13 artifacts ✅. One bottleneck: channel activation.*
+*Canvas v4.0 — February 17, 2026*
+*Post-fire. What survived: the myth, the mirror, the pain. What's next: Alexander writes the myth in his own voice and sends it to 3 people.*
