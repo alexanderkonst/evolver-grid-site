@@ -142,7 +142,7 @@ The Mission Discovery Tool lets users:
 5. **Find a Mission** — What specific work can I do?
 6. **Join Projects** — Who's already doing this?
 
-At each level, the user narrows their focus until they find missions that align with their Zone of Genius.
+At each level, the user narrows their focus until they find missions that align with their Unique Gift.
 
 ---
 

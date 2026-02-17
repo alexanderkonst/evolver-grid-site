@@ -1,5 +1,7 @@
 # Planetary OS — The Vision
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > **I am building the nervous system of the emerging civilization.**
 
 ---

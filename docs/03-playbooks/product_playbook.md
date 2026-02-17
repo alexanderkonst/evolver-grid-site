@@ -165,7 +165,7 @@ PHASE 9: BUILD
 **Master Result of Product:**
 > "From [Point A] to [Point B]"
 
-Example: "From 'I don't know my genius' to 'I have a clear Zone of Genius statement'"
+Example: "From 'I don't know my genius' to 'I have a clear Unique Gift statement'"
 
 ### Step 2: Design First Screen
 
@@ -343,14 +343,14 @@ Each module becomes:
 | **Visual** | Clean, invitational | Rich, celebratory (confetti, gradient, glow) |
 | **Action** | "Begin" / "Start" | "Continue" / "Share" / "Go Deeper" |
 
-#### Example: Zone of Genius
+#### Example: Unique Gift
 
 ```
-START:  "Discover your Zone of Genius"
+START:  "Discover your Unique Gift"
         "In the next few minutes, you'll uncover what makes you uniquely brilliant."
         [Begin →]
 
-END:    "Your Zone of Genius: The Catalyst"
+END:    "Your Unique Gift: The Catalyst"
         "You've just discovered your unique genius..."
         • Share    • Reveal Business    • Continue
 ```
@@ -481,7 +481,7 @@ Therefore: You can run Product Playbook on itself.
 ### The Complete Stack:
 
 ```
-L1: Zone of Genius discovered
+L1: Unique Gift discovered
 L2: ZoG → productized via Product Playbook
 L3: Product → marketed via Marketing Playbook  
 L4: Marketing → distributed via Distribution Playbook

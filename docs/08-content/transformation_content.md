@@ -103,9 +103,9 @@ Each content unit follows the Flywheel:
 | G1 | Purpose vs Mission | ⬜ | — |
 | G2 | Path of Least Resistance | ⬜ | — |
 | G3 | Map of Uniqueness | ⬜ | — |
-| G4 | What is Zone of Genius? | ⬜ | — |
-| G5 | Zone of Genius Discovery | ⬜ | — |
-| G6 | Zone of Genius Activation | ⬜ | — |
+| G4 | What is Unique Gift? | ⬜ | — |
+| G5 | Unique Gift Discovery | ⬜ | — |
+| G6 | Unique Gift Activation | ⬜ | — |
 
 ---
 

@@ -27,13 +27,13 @@
 | 📚 **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
 | 🎉 **MEET** | Events, gatherings | Events, Men's Circle |
 | 🤝 **COLLABORATE** | Find your people | Matchmaking, Connections |
-| 🛠️ **BUILD** | Create products | Genius Business, Product Builder, Business Incubator |
+| 🛠️ **BUILD** | Create products | Unique Business, Product Builder, Business Incubator |
 | 🏪 **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
 ### What Each Citizen Gets
 
-1. **Discover** their unique genius (Zone of Genius → Appleseed)
-2. **Monetize** their value (Genius Business → Excalibur)
+1. **Discover** their unique genius (Unique Gift → Appleseed)
+2. **Monetize** their value (Unique Business → Excalibur)
 3. **Map** their quality of life (8 domains)
 4. **Connect** with complementary people across currents
 5. **Move** forward daily with AI guidance
@@ -99,7 +99,7 @@ PHASE 3: ACTION (Day 5+)
 
 | Space | Module | Question | Output |
 |-------|--------|----------|--------|
-| **ME** | Zone of Genius | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
+| **ME** | Unique Gift | "What's my unique value?" | Archetype, Core Vibration, Unique Offer |
 | **ME** | Quality of Life | "Where am I now?" | 8-domain score, priorities |
 | **ME** | Mission Discovery | "What's mine to do?" | Aligned mission from 800+ options |
 | **ME** | Resource Mapping | "What assets do I have?" | Categorized assets with leverage scores |
@@ -112,7 +112,7 @@ PHASE 3: ACTION (Day 5+)
 | **MEET** | Men's Circle | "Where's my tribe?" | Online circle for men |
 | **COLLABORATE** | Matchmaking | "Who complements me?" | Similar/complementary genius matches |
 | **COLLABORATE** | Connections | "Who's in my network?" | User relationship management |
-| **BUILD** | Genius Business | "How do I monetize?" | Business model from genius |
+| **BUILD** | Unique Business | "How do I monetize?" | Business model from genius |
 | **BUILD** | Product Builder | "How do I package it?" | Product blueprints and builders |
 | **BUILD** | Business Incubator | "How do I scale?" | Venture studio support |
 | **BUY & SELL** | Marketplace | "What can I offer/find?" | Browse and purchase offerings |
@@ -147,7 +147,7 @@ PHASE 3: ACTION (Day 5+)
 |-------|---------|
 | `profiles` | Auth-linked user data |
 | `game_profiles` | Level, XP, onboarding_stage |
-| `zog_snapshots` | Zone of Genius + Excalibur |
+| `zog_snapshots` | Unique Gift + Excalibur |
 | `qol_assessments` | Quality of Life scores |
 | `events` | Community gatherings |
 | `connections` | User relationships |
@@ -158,7 +158,7 @@ PHASE 3: ACTION (Day 5+)
 
 ### ✅ Complete
 
-- Zone of Genius (Appleseed + Excalibur)
+- Unique Gift (Appleseed + Excalibur)
 - Quality of Life Map (Assessment + Priorities + Growth Recipe)
 - Three-Panel Navigation (Bio-Light theme)
 - Progressive Onboarding with Tour
@@ -247,7 +247,7 @@ docs/
 | **Appleseed** | Talent discovery process (ZoG Step 1) |
 | **Excalibur** | Unique offer generation (ZoG Step 2) |
 | **Holonic** | Whole/part — each entity is both whole and part of larger whole |
-| **ZoG** | Zone of Genius — intersection of natural talent + joy |
+| **ZoG** | Unique Gift — intersection of natural talent + joy |
 | **QoL** | Quality of Life Map — 8-domain life assessment |
 | **Bio-Light** | Design aesthetic — iridescent, alive, precise |
 | **Pearl Mode** | Light theme with wabi-sabi colors |

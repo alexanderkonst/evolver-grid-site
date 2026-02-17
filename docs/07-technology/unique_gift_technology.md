@@ -1,4 +1,4 @@
-# Zone of Genius Technology Stack
+# Unique Gift Technology Stack
 
 > "The signal of somebody's uniqueness already exists. Each step maintains that signal-to-noise ratio as it refracts into form."
 
@@ -18,7 +18,7 @@
 |---|-------------|-----------------|----------|
 | 1 | **Bullseye Sentence** | Essence in one breath | ⭐⭐⭐⭐⭐ |
 | 2 | **Unique Vibrational Key** | Archetype name + tagline | ⭐⭐⭐⭐⭐ |
-| 3 | **Zone of Genius — Three Lenses** | Actions → Prime Driver → Archetype | ⭐⭐⭐⭐⭐ |
+| 3 | **Unique Gift — Three Lenses** | Actions → Prime Driver → Archetype | ⭐⭐⭐⭐⭐ |
 | 4 | **What You're Appreciated & Paid For** | Effect → Scene → Outcome | ⭐⭐⭐⭐ |
 | 5 | **Mastery Stages** | 7 evolutionary stages | ⭐⭐⭐⭐ |
 | 6 | **Professional Activities** | LinkedIn-searchable roles | ⭐⭐⭐ |
@@ -31,7 +31,7 @@
 
 **Top 5 for Appleseed → Excalibur flow:**
 1. Bullseye Sentence
-2. Zone of Genius — Three Lenses
+2. Unique Gift — Three Lenses
 3. Monetization Avenues
 4. Best Complementary Partner
 5. Elevator Pitch
@@ -53,7 +53,7 @@
 ## Apple Seed Technology
 
 ### What It Is
-The highest-accuracy "scanner" for human uniqueness. A technology to articulate someone's Zone of Genius with maximum signal-to-noise ratio.
+The highest-accuracy "scanner" for human uniqueness. A technology to articulate someone's Unique Gift with maximum signal-to-noise ratio.
 
 ### Components
 
@@ -74,7 +74,7 @@ The highest-accuracy "scanner" for human uniqueness. A technology to articulate 
 ### Why It's Frontier
 
 - Most assessments give 30-page reports with no action
-- Zone of Genius is the #1 thing AI models say is most useful for personalization
+- Unique Gift is the #1 thing AI models say is most useful for personalization
 - Combines: Enneagram + Jungian + Developmental + Integral Theory + experiential knowing
 
 ---
@@ -163,7 +163,7 @@ Offer the assessment → provides the signal that AI can then work with.
 
 | Platform Feature | Technology |
 |------------------|------------|
-| Zone of Genius Assessment | Apple Seed |
+| Unique Gift Assessment | Apple Seed |
 | Genius Offer Builder | Excalibur |
 | Public Page / Marketplace | Destiny |
 | Genius Growth Path | All three (upgrades per step) |
@@ -179,7 +179,7 @@ Genius Offer Builder (auto, magic button) → Unique Offering
         ↓
 Public Page unlocked (basic tier)
         ↓
-Genius Business Coaching (human-in-loop, paid) → MVGB
+Unique Business Coaching (human-in-loop, paid) → MVGB
         ↓
 Venture Co-op Marketplace (curated tier)
 ```
@@ -222,9 +222,9 @@ Venture Co-op Marketplace (curated tier)
 
 ---
 
-## Minimal Viable Genius Business (MVGB)
+## Minimal Viable Unique Business (MVGB)
 
-Definition: The smallest possible business structure that allows someone to monetize their Zone of Genius with paying clients.
+Definition: The smallest possible business structure that allows someone to monetize their Unique Gift with paying clients.
 
 Components:
 - Unique Offering (from Excalibur)
@@ -260,7 +260,7 @@ If no → recalibrate. Noise has entered.
 |------------|-------|--------|--------|
 | **Apple Seed** | Raw person data | Articulated ZoG | Accuracy of signal |
 | **Excalibur** | Articulated ZoG | Unique Offering | Usefulness + signal |
-| **Destiny** | Unique Offering | Genius Business | Revenue + signal |
+| **Destiny** | Unique Offering | Unique Business | Revenue + signal |
 
 ---
 

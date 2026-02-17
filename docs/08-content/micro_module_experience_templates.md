@@ -286,7 +286,7 @@ Ask 3 people: "What do you most value about me?" Collect answers.
 
 ---
 
-### G2: Discovering Your Zone of Genius
+### G2: Discovering Your Unique Gift
 
 **Experience (2 min):**
 List 3 things you do well. For each: Does it give me energy or drain me? The one that gives energy = closer to genius.
@@ -332,7 +332,7 @@ Daily: say one small truth you would normally hold back.
 Imagine your genius fully expressed in 5 years. What does that look like?
 
 **Integration (7 days):**
-Daily: take one action from your Zone of Genius.
+Daily: take one action from your Unique Gift.
 
 ---
 

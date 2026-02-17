@@ -21,7 +21,7 @@ Every data section shows visibility indicator:
 
 ```
 ┌─────────────────────────────────────┐
-│ My Zone of Genius                   │
+│ My Unique Gift                   │
 │ ─────────────────────────────────── │
 │ [Me ●] [Community ●] [Public ○]     │ ← Click to toggle
 │                                     │

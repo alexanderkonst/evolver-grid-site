@@ -12,7 +12,7 @@
 LANDING → ONBOARDING → GAME WORLD → DAILY LOOP
    │          │            │            │
    │          ▼            ▼            ▼
-   │    Zone of Genius   5 Spaces    My Next Move
+   │    Unique Gift   5 Spaces    My Next Move
    │    Quality of Life  Practice    Progress
    │    Game Unlock      Explore     Streak
 ```
@@ -32,10 +32,10 @@ LANDING → ONBOARDING → GAME WORLD → DAILY LOOP
 
 ---
 
-### Screen 1.2: Zone of Genius Intro
+### Screen 1.2: Unique Gift Intro
 
 **Elements:**
-- Brief explanation: "Your Zone of Genius is where you're naturally valuable"
+- Brief explanation: "Your Unique Gift is where you're naturally valuable"
 - Time commitment: "Takes ~3 minutes"
 - CTA: "Let's find yours"
 

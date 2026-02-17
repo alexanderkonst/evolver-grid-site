@@ -12,7 +12,7 @@
 
 | Module | Status | Optimization Needed? |
 |--------|--------|---------------------|
-| Zone of Genius Test | ✅ Built | Reveal moments, celebratory effects |
+| Unique Gift Test | ✅ Built | Reveal moments, celebratory effects |
 | QoL Assessment | ✅ Built | Slider UX, zoom-in feature |
 | Personality Tests Upload | ✅ Built | — |
 | XP + Streak | ✅ Built | Display logic, level-up moments |

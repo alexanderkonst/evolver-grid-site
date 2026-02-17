@@ -18,7 +18,7 @@
 
 ## Screen 2: ZoG Intro
 
-**Headline:** Your Zone of Genius
+**Headline:** Your Unique Gift
 
 **Body:** Where you're naturally valuable.
 

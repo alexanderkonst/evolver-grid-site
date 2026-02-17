@@ -18,7 +18,7 @@ Tonight, I have the solution: **One Button → Published Product**."
 
 **Show Excalibur screen**
 
-"This is Excalibur — our AI that helps people discover their Genius Business. It works. People love it. 10/10 resonance.
+"This is Excalibur — our AI that helps people discover their Unique Business. It works. People love it. 10/10 resonance.
 
 But there was a gap: *'I know my genius... now what?'*
 
@@ -57,7 +57,7 @@ How?
 - Pattern recognition across the codebase
 - Mock-first: ship now, perfect later
 
-This IS the Genius Venture Studio in action."
+This IS the Unique Business Studio in action."
 
 ---
 
@@ -68,7 +68,7 @@ Tomorrow: Full product generation + marketing materials
 
 The goal: **One button → Complete business**
 
-From Zone of Genius discovery to published, purchasable product.
+From Unique Gift discovery to published, purchasable product.
 
 The acorn becomes the oak."
 

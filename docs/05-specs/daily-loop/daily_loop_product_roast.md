@@ -14,7 +14,7 @@ Walking through the spec screen by screen:
 
 1. **User opens `/game`** → Sees Home with ME, MY LIFE, MY NEXT MOVE
    - ✅ Clear structure, three-section layout
-   - ⚠️ **GAP:** What if user has NO Zone of Genius completed? 
+   - ⚠️ **GAP:** What if user has NO Unique Gift completed? 
    - ⚠️ **GAP:** What if user has NO QoL data? 
    - The spec mentions "Getting to know you state" but doesn't define it
 

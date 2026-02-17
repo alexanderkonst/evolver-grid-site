@@ -7,7 +7,7 @@
 
 ## Overview
 
-The Product Compiler is a 6-step flow that transforms a person's Zone of Genius into a published, purchasable product on the marketplace.
+The Product Compiler is a 6-step flow that transforms a person's Unique Gift into a published, purchasable product on the marketplace.
 
 **Total steps:** 6
 **Estimated time:** 30-60 minutes (with AI acceleration)
@@ -42,7 +42,7 @@ The Product Compiler is a 6-step flow that transforms a person's Zone of Genius 
 
 ## Step-by-Step Specification
 
-### STEP 1: APPLESEED (Zone of Genius Discovery)
+### STEP 1: APPLESEED (Unique Gift Discovery)
 **Status:** ✅ Already implemented
 
 | Aspect | Details |
@@ -50,7 +50,7 @@ The Product Compiler is a 6-step flow that transforms a person's Zone of Genius 
 | **Screen** | `/appleseed` |
 | **Input** | 12 personality questions |
 | **Processing** | AI synthesis + 3x Roasting (invisible) |
-| **Output** | Zone of Genius card with Vibrational Key, Bullseye Sentence, Three Lenses |
+| **Output** | Unique Gift card with Vibrational Key, Bullseye Sentence, Three Lenses |
 | **Duration** | ~5 minutes |
 | **Validation** | Resonance Rating (1-10) |
 
@@ -62,20 +62,20 @@ The Product Compiler is a 6-step flow that transforms a person's Zone of Genius 
 
 ---
 
-### STEP 2: EXCALIBUR (Genius Business Generation)
+### STEP 2: EXCALIBUR (Unique Business Generation)
 **Status:** ✅ Already implemented
 
 | Aspect | Details |
 |--------|---------|
 | **Screen** | `/excalibur` or inline after Appleseed |
-| **Input** | Zone of Genius data |
+| **Input** | Unique Gift data |
 | **Processing** | AI generation of business identity, offer, ICP v1, TP v1 |
-| **Output** | Genius Business card with USP, Who This Is For, Transformational Promise |
+| **Output** | Unique Business card with USP, Who This Is For, Transformational Promise |
 | **Duration** | ~2 minutes |
 | **Validation** | Resonance Rating (1-10) |
 
 **User sees:**
-- "Reveal My Genius Business" button
+- "Reveal My Unique Business" button
 - Magical loading
 - Compact business card with key elements
 
@@ -190,7 +190,7 @@ User Input (12 questions)
         ▼
 ┌─────────────────────────────────────────┐
 │          EXCALIBUR ENGINE               │
-│  ZoG → AI → Roast 3x → Genius Business  │
+│  ZoG → AI → Roast 3x → Unique Business  │
 └─────────────────────────────────────────┘
         │
         ▼

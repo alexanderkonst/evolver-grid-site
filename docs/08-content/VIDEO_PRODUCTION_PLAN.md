@@ -174,7 +174,7 @@ Maximum 90 seconds. Educational but inspiring tone.
 | Episode | Title | Source | Steps 1-4 | Step 5-7 | Step 8 | Download | YouTube |
 |---------|-------|--------|-----------|----------|--------|----------|---------|
 | **G01E01** | What is Genius? | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| **G01E02** | Discovering Zone of Genius | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| **G01E02** | Discovering Unique Gift | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **G01E03** | Articulating Genius Offer | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **G01E04** | The Masks We Wear | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **G01E05** | Authentic Expression | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |

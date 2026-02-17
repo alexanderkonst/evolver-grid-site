@@ -1,5 +1,7 @@
 # Unified Humanity Manifesto
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > **v0.991** — A Living Invitation to the Co-Creation of a Unified Planetary Civilization
 
 ---

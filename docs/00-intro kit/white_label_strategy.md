@@ -29,7 +29,7 @@ The goal is a **black hole with gravity pull** — no visible brand, just magnet
 
 ## What Stays Shared (The Engine)
 
-- Zone of Genius assessment
+- Unique Gift assessment
 - Quality of Life Map
 - 5-vector transformation engine
 - XP, levels, streaks, gamification

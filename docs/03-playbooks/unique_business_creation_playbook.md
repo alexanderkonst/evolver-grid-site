@@ -1,4 +1,6 @@
-# Genius Business Creation — Integrated Playbook
+# Unique Business Creation — Integrated Playbook
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## From Self-Knowledge to First Revenue in 10 Steps
 
 > *"The moment you can articulate your genius precisely, the market crystallizes around it."*
@@ -30,9 +32,9 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 ┌──────────────────────────────────────────────────────────────────┐
 │                     GENIUS BUSINESS PIPELINE                     │
 │                                                                  │
-│  ① SEED ─→ ② OFFER ─→ ③ ICP ─→ ④ PAIN ─→ ⑤ TP                │
-│   Who am I?  What do I   Who needs  What hurts?  Point A → B    │
-│              sell?       this most?                               │
+│  ⓪ MYTH ─→ ① SEED ─→ ② OFFER ─→ ③ ICP ─→ ④ PAIN ─→ ⑤ TP     │
+│   What must   Who am I?  What do I   Who needs  What hurts?     │
+│   be true?               sell?       this most?       Point A→B  │
 │                                                                  │
 │  ⑥ BLUEPRINT ─→ ⑦ POSITIONING ─→ ⑧ LANDING PAGE                │
 │   3-step method   How I say it     Where they buy                │
@@ -42,29 +44,52 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-> **Critical sequence:** Steps 1-5 are **discovery** (inner → outer). Steps 6-10 are **expression** (outer → market). Skipping 1-5 is why most businesses fail.
+> **Critical sequence:** Step 0 (Myth) is the seed from which all others grow. Steps 1-5 are **discovery** (inner → outer). Steps 6-10 are **expression** (outer → market). Skipping 0-5 is why most businesses fail.
 
 ---
 
-## Step 1: SEED — Zone of Genius Articulation (Appleseed)
+## Step 0: MYTH — The Cosmological Claim
+
+**What:** Answer: *"What must be true about reality for my work to be inevitable?"*
+
+**Key Principle:**
+> The myth is not a marketing artifact. The myth is the acorn from which every business artifact grows. If the myth is true, every downstream artifact becomes self-evident. — February 17, 2026
+
+**How:**
+1. State the deepest truth your work embodies — not what you do, but what must be true for what you do to matter
+2. Test it: say it to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — not yours.
+3. Verify: does every artifact below (Unique Gift, Offer, Tribe, Pain, Promise, Method) trace back to this myth? If not, something is misaligned.
+
+**FMF Example:**
+> *"There exists a venture so structurally yours that building it IS your personal development, and developing yourself IS building it."*
+
+If that's true → finding FMF is the most important thing a founder can do → every founder in transition suffers from unfound FMF → the method must start with uniqueness → the offer writes itself.
+
+**Check:** *"If someone disproves this, does my entire business collapse?"* — If yes, it's your myth. If no, you're stating a preference, not a truth.
+
+**Source:** [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4, [Unique Business Canvas](../02-strategy/unique_business_canvas_template.md)
+
+---
+
+## Step 1: SEED — Unique Gift Articulation (Appleseed)
 
 **What:** Answer "Who am I at my brightest?" — Articulate your uniqueness in words.
 
 **Key Principle:**
-> "Until uniqueness is languaged, it cannot be communicated, encoded into products, or distributed at scale." — Genius Venture Playbook
+> "Until uniqueness is languaged, it cannot be communicated, encoded into products, or distributed at scale." — Unique Business Playbook
 
 **How:**
 1. Answer 12 perspective questions (values, strengths, experiences, what others say)
-2. AI synthesizes into Zone of Genius card
+2. AI synthesizes into Unique Gift card
 3. 3x Roasting cycles (invisible to user)
 4. Output: Vibrational Key, Bullseye Sentence, Compound Archetype
 
 **FMF Example:**
-> Alexander's Zone of Genius lives at the intersection of systems thinking, integral philosophy, and venture building. His vibrational key: *"Crystallizing invisible human potential into visible, tradeable structures."*
+> Alexander's Unique Gift lives at the intersection of systems thinking, integral philosophy, and venture building. His vibrational key: *"Crystallizing invisible human potential into visible, tradeable structures."*
 
 **Check:** *"Does this feel true?"* — Emotional resonance, not intellectual agreement.
 
-**Source:** [zone_of_genius_technology.md](../07-technology/zone_of_genius_technology.md)
+**Source:** [unique_gift_technology.md](../07-technology/unique_gift_technology.md)
 
 ---
 
@@ -76,7 +101,7 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 > "Value crystallization = energy flow becoming legible, countable, intentional, transactable." — ITFT
 
 **How:**
-1. From Zone of Genius → derive what transformation you deliver
+1. From Unique Gift → derive what transformation you deliver
 2. Define: form (session/container/product), promise, deliverable, pricing, channel
 3. Name the offer
 4. Define initial ICP hypothesis (v1, will deepen in Step 3)
@@ -87,13 +112,13 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 | **Offer** | Founder-Market Fit Session |
 | **Form** | 90-minute 1:1 session |
 | **Promise** | From scattered "what should I build?" → crystallized clarity on the one venture built on who you actually are |
-| **Deliverable** | Zone of Genius card, venture fit analysis, 30-day action plan |
+| **Deliverable** | Unique Gift card, venture fit analysis, 30-day action plan |
 | **Pricing** | $197 (pilot), $397 (standard) |
 | **Channel** | Cal.com booking from landing page |
 
 **Check:** *"Would you sell this tomorrow?"* — If the answer is "not yet", the offer isn't crystallized.
 
-**Source:** [genius_venture_playbook.md](./genius_venture_playbook.md) — Workflow 2
+**Source:** [unique_business_playbook.md](./unique_business_playbook.md) — Workflow 2
 
 ---
 
@@ -119,6 +144,8 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 **Awareness Stage:** Stage 2 (Problem Aware) — They know something's off, but blame externals (resources, team, timing).
 
 **The Recursive Insight:** *"I am my own most important client. By teaching and sharing, I also grow the fastest. Put the mask on yourself first."*
+
+**The Recursive Shadow:** Once uniqueness is articulated, watch for the shadow — the limiting belief that is the unique gift inverted. For a founder whose gift is clarity, the shadow will be: *"I don't have enough clarity yet to act."* The practitioner's role is to help them see that the condition for acting was met long ago — they kept looping because more depth was always available. (See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 1.)
 
 **Check:** *"Is this a real person you know?"* — You should be able to name 5 people who match.
 
@@ -217,14 +244,14 @@ dreaded partner conversations, and identity paradox (C).
 ```
 MAP → MATCH → MOVE
 
-Phase 1: MAP    — Map your Zone of Genius across 12 perspectives
+Phase 1: MAP    — Map your Unique Gift across 12 perspectives
 Phase 2: MATCH  — Match your genius to a market that needs it NOW
 Phase 3: MOVE   — Move with a 30-day action plan to first revenue
 ```
 
 **Check:** *"Could someone explain this in 30 seconds?"*
 
-**Source:** [genius_venture_playbook.md](./genius_venture_playbook.md) — Workflow 4
+**Source:** [unique_business_playbook.md](./unique_business_playbook.md) — Workflow 4
 
 ---
 
@@ -257,7 +284,10 @@ Generate 3 versions:
 
 **Check:** *"Can you say this naturally?"* — Must sound like you, not like a template.
 
-**Source:** [genius_venture_playbook.md](./genius_venture_playbook.md) — Workflow 5, [marketing_playbook.md](./marketing_playbook.md)
+> [!IMPORTANT]
+> **The Myth IS the Funnel.** The deepest positioning isn't pain-forward or result-forward — it's *myth-forward*: stating the underlying truth your work embodies. The myth: *"There exists a venture that is so structurally yours that building it IS your personal development, and developing yourself IS building it."* Anyone who feels that resonate in their bones — that's the client. They self-select by resonance. No persuasion needed. (See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4.)
+
+**Source:** [unique_business_playbook.md](./unique_business_playbook.md) — Workflow 5, [marketing_playbook.md](./marketing_playbook.md)
 
 ---
 
@@ -312,7 +342,7 @@ Generate 3 versions:
 
 **Check:** *"Is this sustainable for your capacity?"*
 
-**Source:** [genius_venture_playbook.md](./genius_venture_playbook.md) — Workflow 8
+**Source:** [unique_business_playbook.md](./unique_business_playbook.md) — Workflow 8
 
 ---
 
@@ -336,7 +366,7 @@ Daily:         ~3 messages per day for 2 weeks
 
 **Check:** *"Are daily actions achievable?"*
 
-**Source:** [genius_venture_playbook.md](./genius_venture_playbook.md) — Workflow 9
+**Source:** [unique_business_playbook.md](./unique_business_playbook.md) — Workflow 9
 
 ---
 
@@ -346,9 +376,12 @@ Once first revenue validates the offer, the pipeline extends:
 
 | Next Step | What | Source |
 |-----------|------|--------|
-| **Value Ladder** | Build 5-tier offer ecosystem | genius_venture_playbook.md — Workflow 7 |
+| **Value Ladder** | Build 5-tier offer ecosystem | unique_business_playbook.md — Workflow 7 |
 | **Product** | Turn validated offer into software | integrated_product_building_workflow.md |
 | **Scale** | Grow from 1:1 to 1:many | distribution_playbook.md |
+
+> [!NOTE]
+> **Venture Creation vs. Venture Building.** This playbook addresses *venture creation* — the upstream problem of identifying which venture is structurally the founder's. The difference matters: the entire venture building industry assumes the founder already knows what to build. They don't address the selection problem — which is the root cause of 90% of startup failure (building the wrong thing, for the wrong reasons, in the wrong sequence). Our unique contribution lives here.
 
 ---
 
@@ -360,7 +393,7 @@ Once first revenue validates the offer, the pipeline extends:
 | Pain Theory Playbook | 5-Layer Pain Slicer framework | docs/03-playbooks/ |
 | ICP Deepening Template | AI prompt system for ICP deepening | docs/02-strategy/ |
 | TP Deepening Template | AI prompt system for TP deepening (with 3x roasting) | docs/02-strategy/ |
-| Genius Venture Playbook | Full 10-workflow system, theory + ontology | docs/03-playbooks/ |
+| Unique Business Playbook | Full 10-workflow system, theory + ontology | docs/03-playbooks/ |
 | Marketing Playbook | Core Belief, Packaging, Messaging Ladder | docs/03-playbooks/ |
 | Integrated Product Building Workflow | Product → Architecture → UI → Code (downstream of this playbook) | docs/03-playbooks/ |
 | FMF ICP Deepened | Filled-in example for all steps | docs/02-strategy/ |

@@ -41,7 +41,7 @@ TO:   "I have a clear map of exactly where I stand across 8 life domains, and I 
 
 | Direction | Module | Connection |
 |-----------|--------|------------|
-| **Before (recommended)** | Zone of Genius | "Know WHO you are before mapping WHERE you stand" |
+| **Before (recommended)** | Unique Gift | "Know WHO you are before mapping WHERE you stand" |
 | **After** | Growth Paths | "Your lowest domain maps to a growth path" |
 | **After** | Daily Loop | "Your priorities feed into daily action recommendations" |
 | **After** | Library | "Practices tagged to specific domains" |

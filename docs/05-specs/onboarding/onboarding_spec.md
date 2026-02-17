@@ -12,7 +12,7 @@
 **To:** User ready to play daily loop
 
 **Done when:**
-- [x] User knows their Zone of Genius
+- [x] User knows their Unique Gift
 - [x] User knows their Quality of Life status
 - [x] User understands how the platform works (Tour)
 - [x] User is at Home screen, ready to take first action
@@ -75,7 +75,7 @@
 
 ---
 
-## Phase 2: Zone of Genius (3-5 min)
+## Phase 2: Unique Gift (3-5 min)
 
 ### Screen 2.0: ZoG Intro
 
@@ -84,7 +84,7 @@
 │                                                                 │
 │              "Let's discover who you really are"                │
 │                                                                 │
-│    Your Zone of Genius is where your natural talents meet      │
+│    Your Unique Gift is where your natural talents meet      │
 │    your deepest passions. It's what you do best without        │
 │    even trying.                                                 │
 │                                                                 │
@@ -286,7 +286,7 @@ User lands on Home, tooltips appear pointing to key areas:
 | Phase | Screens | Time | Status |
 |-------|---------|------|--------|
 | 1. Welcome | 1 | 10 sec | ⬜ Needs creation |
-| 2. Zone of Genius | 6+ | 3-5 min | ✅ Exists |
+| 2. Unique Gift | 6+ | 3-5 min | ✅ Exists |
 | 3. Quality of Life | 9+ | 2-3 min | ⚠️ Exists, needs placement |
 | 4. Tour | 4 | 1 min | ⬜ Needs creation |
 | 5. Home | 1 | — | ✅ Exists |

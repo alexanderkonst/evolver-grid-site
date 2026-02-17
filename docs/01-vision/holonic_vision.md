@@ -1,5 +1,7 @@
 # Holonic Vision & Stakeholder Map
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > Living document capturing the holonic operating system vision and multi-stakeholder communication
 > This is not a product — this is infrastructure for the Great Turning
 

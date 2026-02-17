@@ -428,7 +428,7 @@ The Playbook says: "Know your genius." The artifact is *what form that knowing t
 
 | Result | Artifact Example |
 |--------|------------------|
-| Zone of Genius | PDF + Archetype title + 3 talents + 6 environments + 1 mastery action |
+| Unique Gift | PDF + Archetype title + 3 talents + 6 environments + 1 mastery action |
 | Quality of Life | Spider chart + Growth priorities + Score |
 | Connection Made | Profile link exchanged + Message sent confirmation |
 
@@ -476,7 +476,7 @@ If there's no ✅, users don't know they've won. Neither do devs. Neither do ana
 
 | Section | Completion Condition | Celebration |
 |---------|---------------------|-------------|
-| Zone of Genius | Archetype generated + saved | "You are a {X}. Now you have words." |
+| Unique Gift | Archetype generated + saved | "You are a {X}. Now you have words." |
 | Quality of Life | All 8 rated + priorities set | "Your map is complete." |
 | First Practice | 1 practice logged | "Day 1. You're building momentum." |
 
@@ -492,7 +492,7 @@ What's the minimum viable profile? Can they still get value?
 
 | Section | If Skipped | Consequence |
 |---------|------------|-------------|
-| Zone of Genius | Empty archetype | Cannot match, cannot see profile |
+| Unique Gift | Empty archetype | Cannot match, cannot see profile |
 | Quality of Life | No QoL data | Transformation recommendations are generic |
 | Mission | No mission set | Cannot match by mission |
 
@@ -772,7 +772,7 @@ You give it source code (a transformational result) and it compiles it into a ru
 
 ### Implications
 
-1. **Venture Studios at Scale** — Generate 100 products from 100 genius businesses
+1. **Venture Studios at Scale** — Generate 100 products from 100 unique businesses
 2. **Platform for Platforms** — White-label for any community
 3. **Education** — Teach product thinking through the Playbook
 4. **The Playbook Becomes the Product** — Not what you build. How you build.
@@ -913,15 +913,15 @@ The Playbook defines Results. Features are derived from Results at build time.
 
 ### Result → Feature Example
 
-**Result:** "User knows their zone of genius"
+**Result:** "User knows their unique gift"
 
 **Feature Spec:**
 ```
-Feature: Zone of Genius Assessment
+Feature: Unique Gift Assessment
 
 Goal: Let user discover their archetype through talent selection
 
-Result: User knows their zone of genius (Playbook 1.1)
+Result: User knows their unique gift (Playbook 1.1)
 
 User Story: As a new user, I want to select my top talents,
 so that I can discover my archetype.
@@ -966,10 +966,10 @@ Acceptance Criteria:
 │  └───────────────────────────────────────────────────────────────────────┘  │
 │                                                                             │
 │  ┌─ PHASE 3: NESTED LAYERS ────────────────────────────────── [████] ✅ ─┐  │
-│  │  3.1 Zone of Genius (6 screens)                                 ✅    │  │
+│  │  3.1 Unique Gift (6 screens)                                 ✅    │  │
 │  │  3.2 Quality of Life (10 screens)                               ✅    │  │
 │  │  3.3 First Practice (3 screens)                                 ✅    │  │
-│  │  3.4 Genius Business (6 screens)                                ✅    │  │
+│  │  3.4 Unique Business (6 screens)                                ✅    │  │
 │  │  3.5 Mission (4 screens)                                        ✅    │  │
 │  │  3.6 Discover (3 screens)                                       ✅    │  │
 │  │  ─────────────────────────────────────────────────────────────────    │  │

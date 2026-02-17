@@ -7,7 +7,7 @@
 
 # ⚠️ UPDATED STRUCTURE (Feb 2026)
 
-**Key Change:** Onboarding = **Zone of Genius only**
+**Key Change:** Onboarding = **Unique Gift only**
 
 | Before | After |
 |--------|-------|
@@ -28,7 +28,7 @@
 **Master Result of Onboarding:**
 
 > **From:** "I just signed up, I don't know what this is or what to do"
-> **To:** "I understand my Zone of Genius and see clear next possibilities"
+> **To:** "I understand my Unique Gift and see clear next possibilities"
 
 ---
 
@@ -46,7 +46,7 @@
 
 | Element | Content |
 |---------|---------|
-| **Result Display** | Zone of Genius revealed |
+| **Result Display** | Unique Gift revealed |
 | **Celebration** | "🎉 Your Genius is Revealed!" |
 | **Next Step** | Tour showing 5 possibilities |
 
@@ -59,7 +59,7 @@
 | # | Sub-Result | From → To |
 |---|------------|-----------|
 | 1 | **Welcome Received** | "Just landed" → "I feel welcomed, I know the promise" |
-| 2 | **Zone of Genius Discovered** | "I don't know my genius" → "I see my 12-perspective ZoG statement" |
+| 2 | **Unique Gift Discovered** | "I don't know my genius" → "I see my 12-perspective ZoG statement" |
 | 3 | **Tour Completed** | "I don't know what's possible" → "I see 5 paths: Applications, Learn, Build, Profile, Meet" |
 
 ---
@@ -67,7 +67,7 @@
 ## Step 5: Sequence Sub-Results
 
 ```
-Welcome → Zone of Genius → Tour → Game World
+Welcome → Unique Gift → Tour → Game World
 ```
 
 **Logic:**
@@ -88,11 +88,11 @@ Welcome → Zone of Genius → Tour → Game World
 
 ---
 
-### Sub-Result 2: Zone of Genius
+### Sub-Result 2: Unique Gift
 
 | Screen | Content |
 |--------|---------|
-| **Start (ZoG Intro)** | "Now we'll discover your Zone of Genius" + "What is ZoG" + Button "Let's Find It" |
+| **Start (ZoG Intro)** | "Now we'll discover your Unique Gift" + "What is ZoG" + Button "Let's Find It" |
 | **Input Screen(s)** | Questions / Assessment / AI dialogue |
 | **End (ZoG Reveal)** | 12-perspective statement displayed + Celebration + Button "Continue" |
 
@@ -166,7 +166,7 @@ Welcome → Zone of Genius → Tour → Game World
 
 | Dimension | Content |
 |-----------|---------|
-| 🫀 **HEART** | "Your Zone of Genius is your unique frequency" |
+| 🫀 **HEART** | "Your Unique Gift is your unique frequency" |
 | 🧠 **MIND** | "We'll use AI to articulate what makes you irreplaceable" |
 | 🔥 **GUT** | Button: "Discover My Genius →" |
 
@@ -230,7 +230,7 @@ Welcome → Zone of Genius → Tour → Game World
 |----------|----------|--------|
 | **Consistency** | Same voice throughout? | ✅ Warm, clear, first-person |
 | **Usability** | Can steps be reduced? | Consider: Merge QoL Intro + Input? |
-| **Clarity** | Any confusion points? | "Zone of Genius" needs brief explanation |
+| **Clarity** | Any confusion points? | "Unique Gift" needs brief explanation |
 | **Magic Buttons** | All labeled with results? | ✅ Yes — all describe what user gets |
 | **Flow** | Natural progression? | ✅ Yes — identity → state → navigation |
 
@@ -248,7 +248,7 @@ Welcome → Zone of Genius → Tour → Game World
 
 | After Stage | User Receives |
 |-------------|---------------|
-| ZoG Reveal | Zone of Genius 12-perspective statement (saved to profile) |
+| ZoG Reveal | Unique Gift 12-perspective statement (saved to profile) |
 | QoL Reveal | Quality of Life baseline (5 vectors, saved to profile) |
 | Tour Complete | "Onboarding complete" badge / status |
 
@@ -294,7 +294,7 @@ Welcome → Zone of Genius → Tour → Game World
 | From | To | Bridge |
 |------|-----|--------|
 | Onboarding | Dashboard | "See My First Move" button |
-| Onboarding | Genius Business | If ZoG done, show "Create Offer" path |
+| Onboarding | Unique Business | If ZoG done, show "Create Offer" path |
 | Onboarding | Transformation | "Explore Upgrades" link |
 
 ---
@@ -348,7 +348,7 @@ Welcome → Zone of Genius → Tour → Game World
 │                                     │
 │               🔮                    │
 │                                     │
-│    "Zone of Genius"                │
+│    "Unique Gift"                │
 │                                     │
 │    Your unique frequency that      │
 │    makes you irreplaceable.        │
@@ -571,7 +571,7 @@ Welcome → Zone of Genius → Tour → Game World
 ┌─────────────────────────────────────┐
 │ ┌─────────────────────────────────┐ │
 │ │ 👤 Profile                      │ │
-│ │ Your identity & Zone of Genius │◄──┐
+│ │ Your identity & Unique Gift │◄──┐
 │ └─────────────────────────────────┘   │
 │                                       │
 │  ┌──────────────────────────────────┐ │
@@ -603,7 +603,7 @@ Welcome → Zone of Genius → Tour → Game World
 │                                     │
 │    You now have:                   │
 │                                     │
-│    ✅ Zone of Genius articulated   │
+│    ✅ Unique Gift articulated   │
 │    ✅ Quality of Life baseline     │
 │    ✅ Platform tour complete       │
 │                                     │

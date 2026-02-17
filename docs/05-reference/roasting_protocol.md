@@ -125,7 +125,7 @@ Generate v1 → Roast 1 → Roast 2 → Meta Roast → Generate v2
 ### Third-Degree Effects
 - Standard for the industry gets raised
 - Other tools feel shallow by comparison
-- Genius Venture Studio becomes known for "depth"
+- Unique Business Studio becomes known for "depth"
 
 ---
 
@@ -136,7 +136,7 @@ The Roasting Protocol is a **meta-technology** that can be applied to ANY genera
 | Domain | Application |
 |--------|-------------|
 | **Appleseed (ZoG)** | Already implemented (see `appleseed_roasting_protocol.md`) |
-| **Excalibur** | Apply to Genius Business generation |
+| **Excalibur** | Apply to Unique Business generation |
 | **ICP Deepening** | Apply to Ideal Client Profile |
 | **TP Crystallization** | Apply to Transformational Promise |
 | **Landing Page** | Apply to copy generation |
@@ -160,4 +160,4 @@ The Roasting Protocol encodes the principle:
 ---
 
 *Document created: January 24, 2026*
-*Core technology of the Genius Venture Studio*
+*Core technology of the Unique Business Studio*

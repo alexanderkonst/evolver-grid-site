@@ -1,5 +1,7 @@
 # The Holonic Cycles
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > *"We live inside nested rhythms. Every cycle carries the same pattern — creation through enrichment — but at a different scale of time, governed by a different celestial body."*
 
 *A synthesis of Alexander's Operating System × Universal Ontology*

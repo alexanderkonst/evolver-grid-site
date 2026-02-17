@@ -189,14 +189,14 @@ After completing an action:
 
 | From My Next Move | To |
 |-------------------|----|
-| Recommend ZoG | → GROW / Zone of Genius |
+| Recommend ZoG | → GROW / Unique Gift |
 | Recommend QoL | → GROW / Quality of Life |
 | Recommend Resources | → GROW / Asset Mapping |
 | Recommend Mission | → GROW / Mission Discovery |
 | Recommend Library | → LEARN / Practice Library |
 | Recommend Growth Paths | → LEARN / Growth Paths |
 | Nudge COLLABORATE | → COLLABORATE / Matchmaking |
-| Nudge BUILD | → BUILD / Genius Business |
+| Nudge BUILD | → BUILD / Unique Business |
 
 ---
 

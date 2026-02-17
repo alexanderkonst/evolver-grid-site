@@ -11,7 +11,7 @@
 | Module | Master Result | Screens |
 |--------|---------------|---------|
 | **Onboarding** | "I don't know what to do" → "I know my genius + baseline + next step" | 11 |
-| ↳ ZoG Assessment | Discover Zone of Genius | 5 (shared) |
+| ↳ ZoG Assessment | Discover Unique Gift | 5 (shared) |
 | ↳ QoL Assessment | Map Quality of Life baseline | 3 (shared) |
 
 ### Entry/Exit Points

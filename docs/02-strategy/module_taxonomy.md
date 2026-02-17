@@ -39,7 +39,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | 2 | **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
 | 3 | **MEET** | Events, coffee chats | Events, Men's Circle |
 | 4 | **COLLABORATE** | Matchmaking, discover | Matchmaking, Connections |
-| 5 | **BUILD** | Create products | Genius Business, Product Builder, Business Incubator |
+| 5 | **BUILD** | Create products | Unique Business, Product Builder, Business Incubator |
 | 6 | **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
 > **Note:** ME Space routes use `/game/grow/*` paths (legacy from "GROW" rename). SpacesRail displays "ME" label.
@@ -52,7 +52,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 | Space | Module | Version | Status | Route |
 |-------|--------|---------|--------|-------|
-| **ME** | Zone of Genius | 0.9 | MVP | `/zone-of-genius` |
+| **ME** | Unique Gift | 0.9 | MVP | `/zone-of-genius` |
 | **ME** | Quality of Life | 0.9 | MVP | `/quality-of-life-map` |
 | **ME** | Mission Discovery | 0.7 | Alpha | `/mission-discovery` |
 | **ME** | Resource Mapping | 0.7 | Alpha | `/game/grow/assets` |
@@ -65,7 +65,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **MEET** | Men's Circle | 1.0 | Commercial | `/mens-circle` |
 | **COLLABORATE** | Matchmaking | 0.7 | Alpha | `/game/collaborate/matches` |
 | **COLLABORATE** | Connections | 0.5 | PoC | `/game/collaborate/connections` |
-| **BUILD** | Genius Business | 0.7 | Alpha | `/game/grow/genius-business` ¹ |
+| **BUILD** | Unique Business | 0.7 | Alpha | `/game/grow/genius-business` ¹ |
 | **BUILD** | Product Builder | 0.7 | Alpha | `/game/build/product-builder` |
 | **BUILD** | Business Incubator | 0.3 | Prototype | `/game/build` |
 | **BUY & SELL** | Marketplace | 0.5 | PoC | `/game/marketplace` |
@@ -76,7 +76,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **Standalone** | Equilibrium | 0.1 | Concept | — |
 | **Standalone** | Clock | 0.1 | Concept | — |
 
-> ¹ Genius Business is routed under `/game/grow` (ME Space) but logically belongs to BUILD Space.
+> ¹ Unique Business is routed under `/game/grow` (ME Space) but logically belongs to BUILD Space.
 
 ---
 
@@ -84,7 +84,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ### 🪞 ME SPACE (Profile)
 
-#### Module: Zone of Genius (ZoG) — v0.9
+#### Module: Unique Gift (UG) — v0.9
 
 | Field | Value |
 |-------|-------|
@@ -244,14 +244,14 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 ##### Path: Genius (Showing Up) — v0.7
 | Upgrade | Version | Type | Status |
 |---------|---------|------|--------|
-| Zone of Genius Test | 0.9 | Assessment | `module` |
+| Unique Gift Test | 0.9 | Assessment | `module` |
 | Apply Your Genius | 0.1 | Assessment | `coming-soon` |
 | Upload Personality Tests | 0.5 | Assessment | `module` |
 | Micro: Genius Distinctions | 0.1 | Micro | `coming-soon` |
-| Zone of Genius Activation | 0.7 | Activation | `available` |
+| Unique Gift Activation | 0.7 | Activation | `available` |
 | Multiple Intelligences | 0.7 | Assessment | `module` |
 | Unique Offering | 0.9 | Paid | `module` |
-| Genius Business | 0.7 | Paid | `coming-soon` |
+| Unique Business | 0.7 | Paid | `coming-soon` |
 
 ##### Path: Spirit (Waking Up) — v0.5
 | Upgrade | Version | Type | Status |
@@ -397,7 +397,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ### 🛠️ BUILD SPACE (Creation)
 
-#### Module: Genius Business — v0.7
+#### Module: Unique Business — v0.7
 
 | Field | Value |
 |-------|-------|
@@ -425,7 +425,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Master Result | Idea in my head → Working product |
 | Start | `/game/build/product-builder` |
 | End | Product deployed |
-| Dependencies | Genius Business recommended |
+| Dependencies | Unique Business recommended |
 
 > **v2.2 change:** Upgraded from v0.3 to v0.7 — has 7 working steps (ICP, Pain, Promise, Landing, Blueprint, CTA, Published), not just a prototype.
 
@@ -448,7 +448,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Master Result | Building alone → Backed by a studio |
 | Start | `/game/build` |
 | End | Application complete → onboarded |
-| Dependencies | Genius Business |
+| Dependencies | Unique Business |
 
 > **v2.2 change:** Upgraded from v0.1 to v0.3 — has a basic BuildSpace page.
 
@@ -683,7 +683,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 - **Business Incubator** upgraded v0.1 → v0.3 (basic BuildSpace page exists)
 - **Standalone section** added: Art (v0.5), Transcriber (v0.5), Equilibrium (v0.1), Clock (v0.1)
 - Added **route annotations** to version matrix for developer reference
-- Added **route discrepancy notes** (ME uses `/game/grow`, Genius Business under ME not BUILD)
+- Added **route discrepancy notes** (ME uses `/game/grow`, Unique Business under ME not BUILD)
 - ME Space module count: 6 → 5 (Art removed)
 - Total modules: 20 → 23 (4 standalone added)
 - Product Builder submodules rewritten to match actual 7-step implementation

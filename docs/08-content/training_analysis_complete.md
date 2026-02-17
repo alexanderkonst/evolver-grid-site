@@ -6,7 +6,7 @@
 |---|----------|------------|
 | 1 | Human Development 101 | Map of human potential — 5 vectors |
 | 2 | Keys to Accelerating Growth | How to train across all 5 vectors |
-| 3 | Zone of Genius | Articulate, activate, monetize uniqueness |
+| 3 | Unique Gift | Articulate, activate, monetize uniqueness |
 
 ---
 
@@ -84,7 +84,7 @@ For EACH of 5 vectors:
 3. Learning to enter Flow State
 
 ### UNIQUENESS Practices:
-1. Zone of Genius (next training)
+1. Unique Gift (next training)
 2. Mission Discovery
 3. Creativity and Artistry expression
 
@@ -158,9 +158,9 @@ For EACH of 5 vectors:
 
 ---
 
-## Training 3: Zone of Genius
+## Training 3: Unique Gift
 
-### Practical Use of Zone of Genius:
+### Practical Use of Unique Gift:
 1. Communicate to world (jobs, roles)
 2. Competences grow faster
 3. Productive output grows
@@ -188,14 +188,14 @@ For EACH of 5 vectors:
 | 4 | Integration — finding where talents fit in world |
 | 5 | Embodiment — authentic self-expression, maximum impact |
 
-### Zone of Genius Articulation Process:
+### Unique Gift Articulation Process:
 1. Taxonomy of 81 talents (based on Enneagram)
 2. Select top 10 that excite you
 3. Narrow to top 3
 4. Put into one paragraph/sentence
 5. Identify sequence
 
-### Zone of Genius Activation:
+### Unique Gift Activation:
 - Meditation to recall episodes of being in ZoG
 - Feel the sensation in body
 - Describe the feeling
@@ -279,8 +279,8 @@ For EACH of 5 vectors:
 | G1 | Purpose vs Mission | Feminine/Masculine of uniqueness |
 | G2 | The Path of Least Resistance | Following excitement |
 | G3 | Map of Uniqueness | 5 stages |
-| G4 | Zone of Genius Discovery | 81 talents → top 3 |
-| G5 | Zone of Genius Activation | Episode + feeling |
+| G4 | Unique Gift Discovery | 81 talents → top 3 |
+| G5 | Unique Gift Activation | Episode + feeling |
 | G6 | Flow State | How to enter and stay |
 | G7 | Monetizing Genius | Dream job blueprint |
 
@@ -292,7 +292,7 @@ For EACH of 5 vectors:
 |----------|---------------------|
 | **1: Human Development 101** | The MAP — what's possible |
 | **2: Accelerating Growth** | The METHOD — shortcuts + practices per vector |
-| **3: Zone of Genius** | The UNIQUENESS — your specific expression |
+| **3: Unique Gift** | The UNIQUENESS — your specific expression |
 
 ---
 

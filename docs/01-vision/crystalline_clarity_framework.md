@@ -1,4 +1,6 @@
 # Crystalline Clarity Framework
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## The Question-Driven Architecture of Evolver
 
 > **Transmission Date**: January 11, 2026  
@@ -41,7 +43,7 @@ The journey from survival to thriving through genius monetization.
 |------|------|------------|--------------|
 | **1** | Articulate Genius | Appleseed | *What am I naturally best at?* |
 | **2** | Unique Genius Offer | Excalibur | *How do I bring most value to others?* |
-| **3** | Genius Business | Destiny | *What's the optimal business structure for me to thrive?* |
+| **3** | Unique Business | Destiny | *What's the optimal business structure for me to thrive?* |
 | **4** | Startup Coop | Holonic Venture Studio | *How do I build, sell, and scale my product?* |
 
 ### Flow Logic

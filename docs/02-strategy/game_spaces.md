@@ -40,7 +40,7 @@
 
 | Feature | Description | Available |
 |---------|-------------|-----------|
-| Zone of Genius Test | Discover your unique genius | From entry |
+| Unique Gift Test | Discover your unique genius | From entry |
 | QoL Assessment | Map your life across 8 domains | From entry |
 | Personality Tests Upload | MBTI, Enneagram, Human Design, etc. | From entry |
 | Mission Discovery | Deep purpose alignment | From entry |
@@ -73,7 +73,7 @@
 |---------|-------------|-----------|
 | Browse Offers | See what others offer | From entry |
 | Create Offer | Articulate your genius offer | After Unique Offering upgrade |
-| List Offer | Make it available | After Genius Business upgrade |
+| List Offer | Make it available | After Unique Business upgrade |
 | Revenue Tracking | See your earnings | When sales start |
 
 ---
@@ -103,7 +103,7 @@
 | Feature | Description | Available |
 |---------|-------------|-----------|
 | Browse Co-op | See what the studio offers | From entry |
-| Join Co-op | Revenue sharing, studio services | After Genius Business |
+| Join Co-op | Revenue sharing, studio services | After Unique Business |
 | AI/VIB Coding Setup | Tools and automations | After Co-op entry |
 | Collective Projects | Join group ventures | After Co-op entry |
 

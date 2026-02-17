@@ -1,4 +1,6 @@
 # Alexander's Operating System
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## A Fractal Framework for Life & Work
 
 > *"How the day is built determines how life unfolds. The day is the most important cycle — one turn of Earth around itself."*
@@ -250,6 +252,51 @@ This pattern appears at every scale:
 
 ---
 
+## The Concentric Domains — February 2026
+
+> *See [breakthrough_inventory.md](../01-vision/breakthrough_inventory.md) and [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md)*
+
+These are not separate skills. They are **concentric** — each one refracts through all the others. This is **concentric polymathy**, not a portfolio of excellences.
+
+| Domain | What it gives |
+|--------|---------------|
+| Prime Radiant / Cosmology | The origin pattern — how anything comes into being |
+| Embodied practice (basketball, Pravila, strength) | Direct physical knowing — not conceptual understanding |
+| Plant medicine / ceremony | Access to non-ordinary states where patterns become visible |
+| Integral Theory | The map of maps — how to locate any insight in developmental space |
+| Essence / Unique Gift | The technology to articulate uniqueness |
+| Venture building | The practical machinery to monetize articulated essence |
+| AI metacognition | The partnership layer — extending human cognition through synthetic holons |
+| Sacred geometry | The visual-spatial language that connects all the above |
+| Holomaps / systems view | The tool to see wholes within wholes in real time |
+
+### Current Focus: Layer 4 — Founder-Market Fit
+
+```
+Layer 0: Prime Radiant (cosmogenesis understanding)
+Layer 1: Universal Ontology (holonic architecture)
+Layer 2: Essence of Essence (dodecahedron, soul colors, names)
+Layer 3: Unique Gift (scanner/articulation technology) — ✅ sufficient
+Layer 4: Founder-Market Fit (structural matching) — 🔴 CURRENT FOCUS
+Layer 5: Unique Businesses (venture compilation) — follows naturally
+Layer 6: Venture Studio (scaling the methodology)
+Layer 7: Holomaps + AI Metacognition (system navigation)
+Layer 8: Planetary OS (the full integration)
+```
+
+### The Pacing Principle
+
+> *Not patience — pacing. The art of matching the speed of the horse to the terrain.*
+
+- The horse: Alexander's power — through the roof
+- The terrain: Layer 4, right now
+- The lesson: Five years of sprinting to Layers 6-8 while Layer 4 was unfinished
+- The shift: From unconscious pacing (programs as the brake) to conscious pacing (choosing Layer 4 deliberately)
+
+> *"I don't need to get anywhere I am not. I'm already here."* — February 17, 2026
+
+---
+
 ## Monetization Pathways (January 2026)
 
 > *Six streams — from active income to serendipity.*
@@ -313,13 +360,13 @@ ACTIVE ────────────────────────�
 
 **2. Genius Organizations**
 - **Genius City** — potential collaboration on genius-themed work
-- **Genius Group** — alignment with Zone of Genius technology
+- **Genius Group** — alignment with Unique Gift technology
 - Action: Reach out for partnership exploration
 
 **3. Founder Program (Venture Studio)**
 - Partners: Roso & Cory from Arendau
 - Timeline: Launch in ~4 weeks
-- Journey: Zone of Genius → Excalibur → Packaging → Distribution Strategy → Web Coding → Product
+- Journey: Unique Gift → Excalibur → Packaging → Distribution Strategy → Web Coding → Product
 - Revenue: Sell as many seats as possible
 
 **4. Mentor Profile Distribution**

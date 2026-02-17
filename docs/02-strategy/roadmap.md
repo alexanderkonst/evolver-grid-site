@@ -24,8 +24,8 @@
 | 10 | User results to DB (missions, resources) | Data | 🔴 HIGH | This week |
 | 11 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This cycle |
 | **GENIUS BUSINESS** |
-| 12 | Genius Business sequence spec | Product | ✅ DONE | — |
-| 13 | Genius Business iteration flow | Product | 🟡 IN PROGRESS | This cycle |
+| 12 | Unique Business sequence spec | Product | ✅ DONE | — |
+| 13 | Unique Business iteration flow | Product | 🟡 IN PROGRESS | This cycle |
 | 14 | Smart packaging recommendations | Product | 🔴 HIGH | This cycle |
 | 15 | Product Builder (Blueprint Generator) | Product | ✅ DONE | — |
 | 16 | **Litmus test: Alexander through Product Builder** | Product | ✅ DONE | — |
@@ -60,7 +60,7 @@
 | 35 | Events module (Luma-like) | Feature | 🟢 LOW | Parked |
 | 36 | Admin panel & dashboard | Feature | 🟢 LOW | Future |
 | 37 | Remove `/game` prefix from URLs (`/game/me` → `/me`) | Infra | 🟡 MED | Backlog |
-| 38 | Genius Business refinement flows (targeted ICP/Pain/Promise/Blueprint/Landing) | Product | 🔴 HIGH | Next |
+| 38 | Unique Business refinement flows (targeted ICP/Pain/Promise/Blueprint/Landing) | Product | 🔴 HIGH | Next |
 
 ---
 
@@ -96,7 +96,7 @@ Structure opportunities through the platform's capability map (workshops, 1:1 se
 ## ✅ Completed (Network School Sprint, Jan 3-29)
 
 - [x] **27 days of intensive building** — Functional MVP of Planetary OS
-- [x] **Zone of Genius** — Appleseed + Excalibur complete
+- [x] **Unique Gift** — Appleseed + Excalibur complete
 - [x] **Quality of Life Map** — Assessment + Priorities + Growth Recipe
 - [x] **Three-Panel Navigation** — Bio-Light theme
 - [x] **My Next Move logic** — Badge system
@@ -155,14 +155,14 @@ Create an underlying versioning scheme:
 **Idea #4:** Version each person's artifacts.
 
 Track evolution of user-generated content:
-- Zone of Genius v1.0, v1.1...
-- Genius Business v1.0, v1.1...
+- Unique Gift v1.0, v1.1...
+- Unique Business v1.0, v1.1...
 - Landing Page v1.0, v1.1...
 - Distribution Strategy v1.0...
 - Mission v1.0...
 - Assets v1.0...
 
-Creates feeling of progress and evolution. "Your Zone of Genius has evolved 3 times!"
+Creates feeling of progress and evolution. "Your Unique Gift has evolved 3 times!"
 
 **Status:** Part of module versioning scope
 
@@ -180,10 +180,10 @@ Visual representation of nested module structure:
 
 ---
 
-### Genius Business Iteration Flow (Priority: HIGH | Target: February)
-**Idea #9:** After first Genius Business iteration, prompt for improvement.
+### Unique Business Iteration Flow (Priority: HIGH | Target: February)
+**Idea #9:** After first Unique Business iteration, prompt for improvement.
 
-When user sees their first Genius Business version:
+When user sees their first Unique Business version:
 1. Ask: "Want to improve any aspects? Create next iteration?"
 2. Show dropdown/buttons: ICP, Transformational Promise, Methodology, etc.
 3. On selection → show quality prompts (e.g., for ICP: "Describe yourself, what subcultures, who do you really speak same language with?")
@@ -196,19 +196,19 @@ When user sees their first Genius Business version:
 ---
 
 ### Smart Packaging Recommendations (Priority: HIGH | Target: February)
-**Idea #10:** Recommend 2-3 packaging formats based on Genius Business type.
+**Idea #10:** Recommend 2-3 packaging formats based on Unique Business type.
 
 Different business types need different formats:
 - From books to SaaS products
 - Methodologies, playlists, 1-on-1 sessions, substacks, etc.
 
 The system will:
-1. Analyze user's Genius Business
+1. Analyze user's Unique Business
 2. Recommend 2-3 best-fit formats
 3. Explain WHY each format matches their business
 4. Start simple, grow complexity
 
-**Status:** February scope - after Genius Business flow works
+**Status:** February scope - after Unique Business flow works
 
 ---
 
@@ -394,10 +394,10 @@ Initial ideas:
 
 ## 💼 CLUSTER 3: GENIUS BUSINESS
 
-### 3.1 Genius Business Sequence (Priority: HIGH | TODAY)
+### 3.1 Unique Business Sequence (Priority: HIGH | TODAY)
 **What:** Clear progression:
-1. Zone of Genius → 
-2. Genius Business Seed → 
+1. Unique Gift → 
+2. Unique Business Seed → 
 3. Genius Product Creation → 
 4. Published Product → 
 5. (Later) Vibe-Coded Product
@@ -487,7 +487,7 @@ Initial ideas:
 - Meet  
 - Collaborate
 - Grow
-- Build your genius business
+- Build your unique business
 
 **Why:** User habit formation, DAU/MAU ratio
 **Status:** ✅ Defined in Daily Loop spec
@@ -498,7 +498,7 @@ Initial ideas:
 
 | Period | Focus | Key Deliverables |
 |--------|-------|-----------------|
-| **Jan 28** | Tour + Data Model | Tour, User DB, Genius Business Sequence |
+| **Jan 28** | Tour + Data Model | Tour, User DB, Unique Business Sequence |
 | **Jan 29** | UX Polish | Images, Brandbook application, Landing |
 | **Jan 30** | Testing | Full flow test, 20 beta invites ready |
 | **Jan 31** | Launch | First beta testers enter |

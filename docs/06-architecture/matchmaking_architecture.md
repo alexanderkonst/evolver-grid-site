@@ -26,7 +26,7 @@
 
 | Match Type | Description | Optimization Goal |
 |------------|-------------|-------------------|
-| **Genius Complementarity** | Zone of Genius alignment | Find partners with complementary strengths |
+| **Genius Complementarity** | Unique Gift alignment | Find partners with complementary strengths |
 | **Mission Alignment** | Shared mission/outcome interest | Find collaborators on same mission |
 | **Offer ↔ Need** | Excalibur meets someone's gap | Marketplace transactions |
 | **Geographic Proximity** | Same location/timezone | Local community building |

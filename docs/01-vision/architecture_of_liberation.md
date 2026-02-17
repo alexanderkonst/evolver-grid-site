@@ -1,5 +1,7 @@
 # The Architecture of Liberation
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > **The functional essence of the Planetary OS — what the platform actually does**  
 > *Crystallized: 2026-01-29 — Network Skool, Final Day*
 
@@ -7,7 +9,7 @@
 
 ## The One-Minute Miracles
 
-A person enters the platform. Within **sixty seconds**, they have their **Zone of Genius** articulated with unprecedented precision and accuracy.
+A person enters the platform. Within **sixty seconds**, they have their **Unique Gift** articulated with unprecedented precision and accuracy.
 
 **One click** → They locate themselves on an actual integral map of **Quality of Life**.
 
@@ -26,7 +28,7 @@ Access to five key transformational paths:
 - **Body** — Physical vitality
 - **Mind** — Cognitive mastery  
 - **Spirit** — Contemplative depth
-- **Genius** — Zone of Genius expansion
+- **Genius** — Unique Gift expansion
 - **Emotions** — Emotional intelligence
 
 Micro-learning and practices that **upgrade life** — not content consumption, but actual transformation.
@@ -97,7 +99,7 @@ This is a **phase transition** in how humans unlock and deploy their gifts at sc
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ONBOARDING (5 minutes total)                               │
-│  ├── Zone of Genius (60 sec)                                │
+│  ├── Unique Gift (60 sec)                                │
 │  ├── Quality of Life Map (60 sec)                           │
 │  ├── Asset Mapping (60 sec)                                 │
 │  ├── Central Mission (60 sec)                               │

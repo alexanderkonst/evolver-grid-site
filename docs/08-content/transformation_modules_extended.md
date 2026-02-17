@@ -979,13 +979,13 @@ Genius is your unique way of naturally creating value. The path is about uncover
 
 ---
 
-### Micro-module G2: Discovering Your Zone of Genius
+### Micro-module G2: Discovering Your Unique Gift
 
 **Key Question:** How do I discover what my genius actually is?
 
 **Script:**
 
-There's a framework called the **Zone of Genius**, and here's how to use it:
+There's a framework called the **Unique Gift**, and here's how to use it:
 
 Imagine four zones:
 
@@ -995,11 +995,11 @@ Imagine four zones:
 
 **Zone of Excellence** — Things you're really good at. You get paid well for them. But they don't light you up. This is the trap!
 
-**Zone of Genius** — Things that are easy for you AND give you energy AND create unique value. This is the target.
+**Unique Gift** — Things that are easy for you AND give you energy AND create unique value. This is the target.
 
 The Zone of Excellence is the trap because it's comfortable. You're successful there. But over time, it drains you.
 
-To find your Zone of Genius, ask:
+To find your Unique Gift, ask:
 - What do I do effortlessly?
 - What gives me energy rather than taking it?
 - What do people come to me for?
@@ -1007,7 +1007,7 @@ To find your Zone of Genius, ask:
 
 **Key Takeaway:**
 
-Zone of Genius = effortless + energizing + uniquely valuable. The Zone of Excellence is the trap — good but draining.
+Unique Gift = effortless + energizing + uniquely valuable. The Zone of Excellence is the trap — good but draining.
 
 **Next:** *"Okay, I know my zone. But how do I actually express it?"*
 
@@ -1019,7 +1019,7 @@ Zone of Genius = effortless + energizing + uniquely valuable. The Zone of Excell
 
 **Script:**
 
-Once you know your Zone of Genius, you need to **articulate it** in a way that others understand.
+Once you know your Unique Gift, you need to **articulate it** in a way that others understand.
 
 This is your **Genius Offer** — how you create value for others from your zone.
 

@@ -87,7 +87,7 @@ Users 3+ stages apart may struggle without bridge.
 ## Related Concepts
 
 - **Integrative Working Groups** = Stage 7-8 manifestation
-- **Zone of Genius + ICP matching** = finding collaboration partners
+- **Unique Gift + ICP matching** = finding collaboration partners
 - **Holonic architecture** = Stage 9 structural principle
 - **АРХАЗМ** = Stage 10 creative process
 
@@ -95,7 +95,7 @@ Users 3+ stages apart may struggle without bridge.
 
 ## Related Documents
 
-- [zone_of_genius_technology.md](./zone_of_genius_technology.md) — Inner lens for collaboration
+- [unique_gift_technology.md](./unique_gift_technology.md) — Inner lens for collaboration
 - [integral_transactional_field_theory.md](./integral_transactional_field_theory.md) — Transaction physics
 - [marketing_playbook.md](./marketing_playbook.md) — Holonic Landing Page architecture
 

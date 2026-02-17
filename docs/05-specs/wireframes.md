@@ -315,7 +315,7 @@
 │                                     │
 │  ┌── SELF-UNDERSTANDING ─────────┐  │
 │  │                               │  │
-│  │  ✅ Zone of Genius            │  │
+│  │  ✅ Unique Gift            │  │
 │  │  ✅ Quality of Life           │  │
 │  │  ○  Personality Tests         │  │
 │  │  ○  Asset Mapping             │  │
@@ -711,7 +711,7 @@
 │  │                               │  │
 │  │  ○ Not a Co-op member yet     │  │
 │  │                               │  │
-│  │  Complete Genius Business     │  │
+│  │  Complete Unique Business     │  │
 │  │  module to join.              │  │
 │  │                               │  │
 │  │  [Learn about Co-op →]        │  │

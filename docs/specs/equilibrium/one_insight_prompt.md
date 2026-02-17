@@ -123,7 +123,7 @@ Output:
 ### Edge Function
 
 Create Supabase edge function `generate-equilibrium-insight`:
-- Same pattern as Zone of Genius / Product Builder AI
+- Same pattern as Unique Gift / Product Builder AI
 - POST with data payload above
 - Use `gpt-4o-mini`
 - Return the JSON

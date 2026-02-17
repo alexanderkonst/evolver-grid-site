@@ -42,7 +42,7 @@ First actions must be:
 | **XP** | 15 |
 
 **Script:**
-> "Read your Zone of Genius profile. Let it sink in. This is who you are at your best."
+> "Read your Unique Gift profile. Let it sink in. This is who you are at your best."
 
 **Content:** Display user's genius profile (archetype, talents, statement)
 

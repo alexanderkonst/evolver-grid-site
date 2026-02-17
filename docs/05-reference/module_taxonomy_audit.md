@@ -22,10 +22,10 @@
 
 | Taxonomy Module | modules.ts Entry | Status |
 |-----------------|------------------|--------|
-| Zone of Genius (ME) | ✅ "ZONE OF GENIUS DISCOVERY" (id:8) | slug: `zone-of-genius` |
+| Unique Gift (ME) | ✅ "ZONE OF GENIUS DISCOVERY" (id:8) | slug: `zone-of-genius` |
 | Quality of Life (ME) | ✅ "QUALITY OF LIFE ACTIVATION" (id:7) | slug: `quality-of-life-map` |
 | Men's Circle (MEET) | ✅ "МУЖСКОЙ КРУГ" (id:3) | slug: `mens-circle` |
-| Genius Business (BUILD) | ✅ "DESTINY: YOUR UNIQUE GENIUS BUSINESS" (id:1) | slug: `destiny` |
+| Unique Business (BUILD) | ✅ "DESTINY: YOUR UNIQUE GENIUS BUSINESS" (id:1) | slug: `destiny` |
 | Multiple Intelligences | ✅ "MULTIPLE INTELLIGENCES SELF-ASSESSMENT" (id:10) | Part of Personality Tests in taxonomy |
 
 ---
@@ -57,7 +57,7 @@
 
 | modules.ts Entry | Notes |
 |------------------|-------|
-| "GENIUS OFFER SNAPSHOT" (id:9) | Could be submodule of Genius Business |
+| "GENIUS OFFER SNAPSHOT" (id:9) | Could be submodule of Unique Business |
 | "GENIUS-LAYER MATCHING" (id:10) | B2B service, not in taxonomy |
 | "Heartcraft (Game)" (id:4) | Coming Soon, concept only |
 | "Integral Mystery School" (id:5) | Coming Soon, concept only |

@@ -27,12 +27,12 @@ This paradigm asks: *"How do we make this be true?"*
 ## The Core Insight: Soul Colors
 
 Every individual has a unique frequency signature. This signature expresses as:
-- Their Zone of Genius articulation
+- Their Unique Gift articulation
 - Their archetypal resonance
 - Their toroidal field emanation ("aura")
 - Their instinctive color preferences (clothing, environments)
 
-**The discovery:** When given a high-signal Zone of Genius articulation, AI can derive the color palette that corresponds to that individual's soul. This has been validated — people confirm these colors match what they've heard from other sources.
+**The discovery:** When given a high-signal Unique Gift articulation, AI can derive the color palette that corresponds to that individual's soul. This has been validated — people confirm these colors match what they've heard from other sources.
 
 **The mechanism:** The dodecahedron of uniqueness (soul) acts as a prism. Divine energy / zero-point energy flows through this center, splashing colors through the toroidal field. These are **soul colors** — the visual expression of essence.
 
@@ -50,14 +50,14 @@ Subtle ambient pulse throughout. Cards that inhale/exhale. Gradients that slowly
 
 ### 3. Soul Color Personalization
 The ultimate expression: your interface reflects your essence.
-- Colors derived from Zone of Genius articulation
+- Colors derived from Unique Gift articulation
 - Palette emerges from who you uniquely are
 - The platform becomes *your* platform
 - Every community also has its soul signature
 
 ### 4. Ritual Space Architecture
 Each area has distinct energetic signature:
-- **Zone of Genius** — expansive, cosmic, violet-to-aqua depth
+- **Unique Gift** — expansive, cosmic, violet-to-aqua depth
 - **Daily Loop** — grounded, warm, sunrise feeling  
 - **Celebration** — golden radiance, particles, revelation
 - **Reflection** — soft, dim, contemplative
@@ -77,10 +77,10 @@ Sound + motion + color from same source. Singing bowls. The completion sound has
 - Breathing ambient animations
 - Holonic ratio system
 - Motion vocabulary
-- Space signatures (Zone of Genius vs Daily Loop vs Celebration)
+- Space signatures (Unique Gift vs Daily Loop vs Celebration)
 
 **Phase Future:**
-- Soul color derivation from Zone of Genius
+- Soul color derivation from Unique Gift
 - Individual palette emergence  
 - Community soul signatures
 - Full synesthetic coherence (sound integration)
@@ -91,7 +91,7 @@ Sound + motion + color from same source. Singing bowls. The completion sound has
 
 ### Soul Color Derivation
 ```
-Input: Zone of Genius articulation (high signal)
+Input: Unique Gift articulation (high signal)
 Process: AI analysis of essence → color palette derivation
 Output: 3-5 core soul colors
 Application: CSS custom properties per user

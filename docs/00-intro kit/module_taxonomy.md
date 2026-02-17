@@ -20,7 +20,7 @@
 | 2 | **LEARN** | Practices, growth paths | Library, Growth Paths, Skill Trees, Daily Loop |
 | 3 | **MEET** | Events, coffee chats | Events, Men's Circle |
 | 4 | **COLLABORATE** | Matchmaking, discover | Matchmaking, Connections |
-| 5 | **BUILD** | Create products | Genius Business, Product Builder, Business Incubator |
+| 5 | **BUILD** | Create products | Unique Business, Product Builder, Business Incubator |
 | 6 | **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
 ---
@@ -59,7 +59,7 @@
 
 ### 🪞 PROFILE SPACE
 
-#### Module: Zone of Genius (ZoG)
+#### Module: Unique Gift (UG)
 
 | Field | Value |
 |-------|-------|
@@ -192,7 +192,7 @@
 
 ### 🏪 MARKETPLACE SPACE
 
-#### Module: Genius Business
+#### Module: Unique Business
 
 | Field | Value |
 |-------|-------|
@@ -208,7 +208,7 @@
 | Master Result | Idea in my head → Working product |
 | Start | `/product-builder` |
 | End | Product deployed |
-| Dependencies | Genius Business recommended |
+| Dependencies | Unique Business recommended |
 
 ---
 
@@ -221,7 +221,7 @@
 | Master Result | Building alone → Backed by a studio |
 | Start | `/coop` |
 | End | Application complete → onboarded |
-| Dependencies | Genius Business |
+| Dependencies | Unique Business |
 
 ---
 
@@ -233,7 +233,7 @@
 | Transformation | 4 | Daily Loop, Library, Growth Paths, Skill Trees |
 | Teams | 2 | Matchmaking, Connections |
 | Events | 2 | Events, Men's Circle |
-| Marketplace | 2 | Genius Business, Product Builder |
+| Marketplace | 2 | Unique Business, Product Builder |
 | Business Incubator | 1 | Business Incubator |
 | Onboarding | 2 | Onboarding Entry, Tour |
 | **TOTAL** | **18** | |

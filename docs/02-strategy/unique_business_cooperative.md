@@ -1,4 +1,6 @@
-# Genius Venture Cooperative
+# Unique Business Cooperative
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.
 
@@ -46,7 +48,7 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 ### Stage 1: Articulate Genius (Group Session)
 **Tool:** Appleseed  
-**Output:** Zone of Genius profile — who you are at your best
+**Output:** Unique Gift profile — who you are at your best
 
 ### Stage 2: Unique Offering (Group Session)
 **Tool:** Excalibur  
@@ -122,7 +124,7 @@ For graduates who want to scale beyond 1-on-1:
 ## Program Structure (Draft)
 
 ### Week 1-2: Genius Discovery
-- Zone of Genius articulation (Appleseed)
+- Unique Gift articulation (Appleseed)
 - Unique Offering crystallization (Excalibur)
 
 ### Week 3: Business Design
@@ -172,14 +174,14 @@ This Venture Studio IS the **Genius → Destiny** pipeline in action:
 ```
 EVOLVER PLATFORM
 ├── Profile Space
-│   └── Zone of Genius (Appleseed) ← ALREADY BUILT
+│   └── Unique Gift (Appleseed) ← ALREADY BUILT
 ├── Transformation Space
 │   └── Growth Paths ← ALREADY BUILT
 ├── Marketplace Space
 │   └── Genius Offer (Excalibur) ← ALREADY BUILT
 │   └── Public Page ← ALREADY BUILT
 └── Venture Co-op Space ← THIS IS WHAT WE'RE DESIGNING
-    └── Genius Venture Cooperative
+    └── Unique Business Cooperative
 ```
 
 **The Venture Studio is the monetization of the entire platform journey.**
@@ -193,4 +195,4 @@ Users who complete:
 
 ---
 
-*Genius Venture Cooperative v1.0 — January 2026*
+*Unique Business Cooperative v1.0 — January 2026*

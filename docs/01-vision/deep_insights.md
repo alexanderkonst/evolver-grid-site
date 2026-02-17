@@ -1,5 +1,7 @@
 # Deep Insights: Psychological Patterns
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > The human truths that make this platform work
 
 *Started: 2025-01-06*
@@ -42,7 +44,7 @@ they promise to TELL YOU ABOUT YOU.
 
 | Moment | What We Say |
 |--------|-------------|
-| Zone of Genius | "Here's what makes YOU uniquely valuable" |
+| Unique Gift | "Here's what makes YOU uniquely valuable" |
 | QoL Assessment | "Here is YOUR life map" |
 | My Next Move | "Here's what YOU should do next" |
 | Game Entry | "This is YOUR game. This is YOUR story." |

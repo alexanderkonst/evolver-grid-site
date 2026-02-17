@@ -117,7 +117,7 @@
   <div className="flex items-center gap-3 mb-2">
     <HeroIcon icon={UserIcon} size="md" variant="soft" />
     <h1 className="font-display text-2xl text-[#2c3150]">
-      Zone of Genius
+      Unique Gift
     </h1>
   </div>
   <p className="text-[#2c3150]/70">

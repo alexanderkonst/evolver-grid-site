@@ -173,7 +173,7 @@ Return to Home with celebration
 
 **Purpose:** Handle users who are missing required data.
 
-#### No Zone of Genius (ME section)
+#### No Unique Gift (ME section)
 
 ```
 ┌─────────────────────────────────────────┐

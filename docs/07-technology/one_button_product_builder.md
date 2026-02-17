@@ -135,7 +135,7 @@ The Playbook forces you to think in **results first**, then derive features. Thi
 
 1. **Build your own product** (what we did with Evolver)
 2. **White-label for communities** (Priroda model)
-3. **Venture studio at scale** (generate products from genius businesses)
+3. **Venture studio at scale** (generate products from unique businesses)
 4. **Education** (teach product thinking via the Playbook)
 
 ---

@@ -128,7 +128,7 @@
 2. **Implement new recommendation logic:**
    ```typescript
    // GROW first
-   if (!hasZoG) return { action: 'Complete Zone of Genius', path: '/zone-of-genius/entry' };
+   if (!hasZoG) return { action: 'Complete Unique Gift', path: '/zone-of-genius/entry' };
    if (!hasQoL) return { action: 'Complete Quality of Life', path: '/quality-of-life-map/assessment' };
    if (!hasResources) return { action: 'Map Your Resources', path: '/asset-mapping' };
    if (!hasMission) return { action: 'Discover Your Mission', path: '/mission-discovery' };

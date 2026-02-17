@@ -1,4 +1,4 @@
-# Zone of Genius Language Improvement
+# Unique Gift Language Improvement
 
 ## 🎯 Проблема (простым языком)
 
