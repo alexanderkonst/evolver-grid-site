@@ -23,10 +23,20 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### Myth (The Bridge)
 
-*"There exists a venture so structurally yours that building it IS your personal development, and developing yourself IS building it."*
+**The truth claim:**
+> *"You've already been building your business. The thing you can't stop doing — the pattern you keep seeing, the problem you keep working on — that's not a detour. That IS the business. You just can't see it from inside the loop."*
 
-This is the hero's journey of the person — the bridge between unique gift and business. If this myth is true, every artifact below becomes self-evident.
+**The founder experience:**
+> *What you can't stop doing is what you should be building. The search for your business IS the building of it.*
 
+**The industry claim:**
+> *The startup world tells you to find product-market fit through iteration. But PMF isn't found — it's extracted from self-knowledge. The specification of your right business is already encoded in your unique gift. The ICP, the pain, the method, the offer — they don't need to be invented. They need to be extracted.*
+
+The myth is the bridge between unique gift and business: the founder's wound and the market's need are the same thing, seen from two sides. If this is true, every artifact below becomes self-evident.
+
+**Collapse test:** If someone proves that self-knowledge and business success are unrelated, this entire system collapses. ✅ Passes.
+
+> Crystallized: February 17, 2026 — 9 roasting cycles + meta-roast
 > Source: [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4
 
 ---
@@ -108,12 +118,13 @@ This is the hero's journey of the person — the bridge between unique gift and 
 *"I know exactly what to build and why it's mine to build."*
 
 - Clarity that feels like relief, not just intellectual understanding
-- The venture feels inevitable — not chosen, recognized
+- The venture feels inevitable — not chosen, **recognized**
+- The realization: "I was already building this. I just couldn't see it."
 - Partner sees the path too — the conversations shift from worry to planning
 - Energy redirected: from scattered exploration to focused building
 - Identity resolved: "This is who I am and this is what I build"
 
-> 🟡 This is the one artifact that needs deeper standalone crystallization
+> ✅ Crystallized through the myth roasting — the dream outcome IS the recognition
 
 ---
 
@@ -179,19 +190,19 @@ This is the hero's journey of the person — the bridge between unique gift and 
 
 | Artifact | Status |
 |----------|--------|
-| Myth | ✅ Crystallized |
+| Myth | ✅ Crystallized (9-cycle roast + meta-roast, Feb 17) |
 | Unique Gift | ✅ Articulated |
 | ICP + Life Situation | ✅ Deepened (5-layer slicer) |
 | Pain (4 dimensions) | ✅ Sliced |
 | Self-Language | ✅ Captured |
-| Dream Outcome | 🟡 Needs standalone crystallization |
+| Dream Outcome | ✅ Crystallized ("not chosen — recognized") |
 | Transformational Promise | ✅ One-sentence |
 | PMF Hypothesis | ✅ Formula filled |
 | Offer | ✅ Defined |
 | Method | ✅ Named (MAP→MATCH→MOVE) |
 | Proof | ✅ Embodied |
 | Channel | 🔴 Not activated — **this is the bottleneck** |
-| Landing Page | 🟡 Framework exists, needs rewrite to lead with wound |
+| Landing Page | 🟡 Needs myth-infused iteration |
 
 ---
 
@@ -207,5 +218,5 @@ This is the hero's journey of the person — the bridge between unique gift and 
 
 ---
 
-*Canvas v2.0 — February 17, 2026*
-*Grounded in existing work — nothing reinvented*
+*Canvas v3.0 — February 17, 2026*
+*Myth crystallized through sacred fire. 12/13 artifacts ✅. One bottleneck: channel activation.*

@@ -60,10 +60,15 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 2. Test it: say it to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — not yours.
 3. Verify: does every artifact below (Unique Gift, Offer, Tribe, Pain, Promise, Method) trace back to this myth? If not, something is misaligned.
 
-**FMF Example:**
-> *"There exists a venture so structurally yours that building it IS your personal development, and developing yourself IS building it."*
+**FMF Example (crystallized Feb 17, 2026 — 9 roasting cycles + meta-roast):**
 
-If that's true → finding FMF is the most important thing a founder can do → every founder in transition suffers from unfound FMF → the method must start with uniqueness → the offer writes itself.
+*The truth claim:*
+> *"You've already been building your business. The thing you can't stop doing — the pattern you keep seeing, the problem you keep working on — that's not a detour. That IS the business. You just can't see it from inside the loop."*
+
+*The industry claim:*
+> *PMF isn't found through iteration — it's extracted from self-knowledge. The specification of your right business is already encoded in your unique gift.*
+
+If that's true → finding FMF is the most important thing a founder can do → the method must start with uniqueness → the offer writes itself → the founder's wound and the market's need are the same thing, seen from two sides.
 
 **Check:** *"If someone disproves this, does my entire business collapse?"* — If yes, it's your myth. If no, you're stating a preference, not a truth.
 
