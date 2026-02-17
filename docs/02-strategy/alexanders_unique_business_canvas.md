@@ -23,21 +23,25 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### Myth (The Bridge)
 
-**The truth claim:**
-> *"You've already been building your business. The thing you can't stop doing — the pattern you keep seeing, the problem you keep working on — that's not a detour. That IS the business. You just can't see it from inside the loop."*
+**The piercing version (Alexander's voice, Feb 18 00:04):**
 
-**The founder experience:**
-> *What you can't stop doing is what you should be building. The search for your business IS the building of it.*
+> **YOU ARE THE PMF.**
+> **Self-knowledge is your bottleneck.**
+> **Get your FMF first. PMF follows.**
 
-**The industry claim:**
-> *The startup world tells you to find product-market fit through iteration. But PMF isn't found — it's extracted from self-knowledge. The specification of your right business is already encoded in your unique gift. The ICP, the pain, the method, the offer — they don't need to be invented. They need to be extracted.*
+**The attack:**
+> *The entire startup industry is a billion-dollar workaround for not knowing yourself. They teach you to find PMF by outgrinding 99.9% of people through 100s of pivots. Good luck with that.*
 
-The myth is the bridge between unique gift and business: the founder's wound and the market's need are the same thing, seen from two sides. If this is true, every artifact below becomes self-evident.
+**The reframe:**
+> *What if you ARE the product-market fit but your self-knowledge is the bottleneck? Every great company was built by a founder who couldn't NOT build it — because the business was the expression of who they already were.*
 
-**Collapse test:** If someone proves that self-knowledge and business success are unrelated, this entire system collapses. ✅ Passes.
+**The call:**
+> *Get your Founder-Market Fit first. PMF follows.*
 
-> Crystallized: February 17, 2026 — 9 roasting cycles + meta-roast
+**Collapse test:** If someone proves that who the founder is doesn't determine business success, this collapses. ✅ Passes — every iconic company proves the opposite.
+
 > Source: [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4
+> Crystallized: Feb 17-18, 2026 — sacred fire roasting → Alexander's own voice
 
 ---
 
@@ -217,5 +221,5 @@ The myth is the bridge between unique gift and business: the founder's wound and
 
 ---
 
-*Canvas v4.0 — February 17, 2026*
-*Post-fire. What survived: the myth, the mirror, the pain. What's next: Alexander writes the myth in his own voice and sends it to 3 people.*
+*Canvas v5.0 — February 18, 2026, 00:04*
+*Myth pierced through in Alexander's voice. Tomorrow: packaging, value ladder, distribution, first messages.*

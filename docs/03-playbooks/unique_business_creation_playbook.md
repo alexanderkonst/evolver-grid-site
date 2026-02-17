@@ -60,15 +60,22 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 2. Test it: say it to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — not yours.
 3. Verify: does every artifact below (Unique Gift, Offer, Tribe, Pain, Promise, Method) trace back to this myth? If not, something is misaligned.
 
-**FMF Example (crystallized Feb 17, 2026 — 9 roasting cycles + meta-roast):**
+**FMF Example (crystallized Feb 17-18, 2026 — sacred fire → Alexander's own voice):**
 
-*The truth claim:*
-> *"You've already been building your business. The thing you can't stop doing — the pattern you keep seeing, the problem you keep working on — that's not a detour. That IS the business. You just can't see it from inside the loop."*
+> **YOU ARE THE PMF.**
+> **Self-knowledge is your bottleneck.**
+> **Get your FMF first. PMF follows.**
 
-*The industry claim:*
-> *PMF isn't found through iteration — it's extracted from self-knowledge. The specification of your right business is already encoded in your unique gift.*
+*The attack:*
+> *The entire startup industry is a billion-dollar workaround for not knowing yourself. They teach you to find PMF by outgrinding 99.9% of people through 100s of pivots. Good luck with that.*
 
-If that's true → finding FMF is the most important thing a founder can do → the method must start with uniqueness → the offer writes itself → the founder's wound and the market's need are the same thing, seen from two sides.
+*The reframe:*
+> *What if you ARE the product-market fit but your self-knowledge is the bottleneck?*
+
+*The call:*
+> *Get your Founder-Market Fit first. PMF follows.*
+
+If that's true → FMF is the most important thing a founder can do → the method must start with self-knowledge → the offer writes itself.
 
 **Check:** *"If someone disproves this, does my entire business collapse?"* — If yes, it's your myth. If no, you're stating a preference, not a truth.
 
