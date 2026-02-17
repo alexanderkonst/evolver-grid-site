@@ -21,8 +21,8 @@
 
 ## MASTER RESULT
 
-> **FROM:** I have my Zone of Genius archetype but don't fully understand what it means  
-> **TO:** I deeply connect with my genius profile and know how to leverage it for a genius business
+> **FROM:** I have my Unique Gift archetype but don't fully understand what it means  
+> **TO:** I deeply connect with my genius profile and know how to leverage it for a unique business
 
 ### Transformation
 User moves from surface-level awareness of their archetype to deep understanding of:

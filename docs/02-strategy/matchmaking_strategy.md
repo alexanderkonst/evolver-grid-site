@@ -35,7 +35,7 @@
 - Filters: location, language
 
 **Data sources used:**
-- Zone of Genius (`appleseed_data`)
+- Unique Gift (`appleseed_data`)
 - Mission commitments (`mission_participants`)
 
 **Not yet used:**

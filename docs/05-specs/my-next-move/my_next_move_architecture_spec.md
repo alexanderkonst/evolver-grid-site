@@ -127,7 +127,7 @@ CREATE INDEX idx_recommendation_log_profile ON recommendation_log(profile_id);
 function getNextRecommendation(profile: GameProfile): Recommendation {
   // 1. GROW Phase — Profile Completion
   if (!profile.hasZoG) {
-    return { type: 'zog', action: 'Complete Zone of Genius', path: '/zone-of-genius/entry' };
+    return { type: 'zog', action: 'Complete Unique Gift', path: '/zone-of-genius/entry' };
   }
   if (!profile.hasQoL) {
     return { type: 'qol', action: 'Complete Quality of Life Map', path: '/quality-of-life-map/assessment' };

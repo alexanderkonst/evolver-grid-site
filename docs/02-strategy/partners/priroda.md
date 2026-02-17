@@ -27,7 +27,7 @@ Community: People who grow together
 |------------|------------------|
 | Onboarding system ("Academy of Continuous Development") | ZoG → QoL → First Practice flow |
 | Matching by complementary skills | Discover Space with genius matching |
-| Business environment for entrepreneurs | Marketplace + Genius Business |
+| Business environment for entrepreneurs | Marketplace + Unique Business |
 | Community platform | Evolver as white-label platform |
 
 ---
@@ -81,8 +81,8 @@ Valentin recognized this maps to his work: "Architect of Coherent Worlds" — br
 
 ---
 
-*Valentin's Zone of Genius: Architect of Coherent Worlds*
-*His Genius Business: Coaching leaders to ground abstract wisdom into functioning organizational realities*
+*Valentin's Unique Gift: Architect of Coherent Worlds*
+*His Unique Business: Coaching leaders to ground abstract wisdom into functioning organizational realities*
 
 ---
 

@@ -154,7 +154,7 @@ Most humans suffer "option blindness." Show them clear paths = existential relie
 
 | Moment | What We Say |
 |--------|-------------|
-| Zone of Genius | "Here's what makes YOU uniquely valuable" |
+| Unique Gift | "Here's what makes YOU uniquely valuable" |
 | QoL Assessment | "Here is YOUR life map" |
 | My Next Move | "Here's what YOU should do next" |
 | Game Entry | "This is YOUR game. This is YOUR story." |

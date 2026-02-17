@@ -104,7 +104,7 @@ Every genius-based offering can be packaged in different formats. This taxonomy 
 
 ## Format Selection Matrix
 
-Choose based on your Genius Business:
+Choose based on your Unique Business:
 
 | If you want... | Consider... |
 |----------------|-------------|
@@ -170,4 +170,4 @@ After Landing Page generation:
 ---
 
 *Document created: January 24, 2026*
-*Part of the Genius Venture Studio*
+*Part of the Unique Business Studio*

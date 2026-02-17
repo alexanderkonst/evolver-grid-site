@@ -57,7 +57,7 @@
 
 | Component | Function | Entry Point | Status |
 |-----------|----------|-------------|--------|
-| **Zone of Genius** | Who I am (direction) | Venture Coop | ✅ Built |
+| **Unique Gift** | Who I am (direction) | Venture Coop | ✅ Built |
 | **Quality of Life Map** | Where I am now (8 domains) | Academy | ✅ Built |
 | **Evolutionary Address** | Inner development state (5 lines) | Academy | 🔵 Planned |
 | **Chosen Missions** | What I contribute to | All | ✅ Tool exists |

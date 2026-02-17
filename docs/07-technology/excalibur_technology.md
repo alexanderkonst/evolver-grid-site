@@ -6,7 +6,7 @@
 
 ## What is Excalibur?
 
-Excalibur transforms Zone of Genius (Appleseed) into a monetizable, actionable offer.
+Excalibur transforms Unique Gift (Appleseed) into a monetizable, actionable offer.
 
 - **Appleseed** = WHO you are (essence)
 - **Excalibur** = WHAT you offer (sword)

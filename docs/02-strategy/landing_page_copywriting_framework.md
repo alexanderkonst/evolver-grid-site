@@ -27,7 +27,7 @@ Target Audience → Problem → Solution → Offer
 |-------|-------------|---------|
 | **Target Audience** | Who exactly | "Purpose coaches" |
 | **Problem** | As formulated | "Becoming outcompeted due to lack of specialization" |
-| **Solution** | What you offer | "Define, articulate, apply, monetize your Zone of Genius" |
+| **Solution** | What you offer | "Define, articulate, apply, monetize your Unique Gift" |
 | **Offer** | Value ladder | "Free definition → Paid system → 1:1 journey" |
 
 ---
@@ -52,7 +52,7 @@ What's pulling them TOWARD the solution?
 - The promise they can't ignore
 
 **Example:**
-> "They're drawn to a clear 'Zone of Genius' definition that finally names the thing they do that others can't replicate..."
+> "They're drawn to a clear 'Unique Gift' definition that finally names the thing they do that others can't replicate..."
 
 ### ANXIETY (Concerns)
 What stops them from buying?
@@ -109,7 +109,7 @@ FOR [AUDIENCE]
 [HEADLINE] - "Become the purpose coach clients remember"
 [SUBHEADLINE] - Define and monetize... without relying on fame or constant posting.
 
-[CTA BUTTON] - Get the Genius Business Blueprint
+[CTA BUTTON] - Get the Unique Business Blueprint
 
 WHEN YOUR WORK SOUNDS LIKE EVERYONE ELSE'S
 • Pain point 1 (with consequence)
@@ -125,7 +125,7 @@ A CLEAR SYSTEM TO [SOLUTION]
 ✓ Step 5: Monetize...
 
 [FINAL CTA SECTION]
-[Headline] - Stop blending in. Build your genius business.
+[Headline] - Stop blending in. Build your unique business.
 [Subhead] - Get the blueprint to...
 [Email input]
 [Button] - Send Me the Blueprint

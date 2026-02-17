@@ -88,7 +88,7 @@ QUALITY OF LIFE MAP (external measure)
 | **Stages** | Unawareness → Accepting → Integrating → Embodying → Flow Mastery |
 
 ### Terms people use:
-- Purpose, unique gift, superpower, medicine, craft, Zone of Genius
+- Purpose, unique gift, superpower, medicine, craft, Unique Gift
 - Mission, calling, tasks, projects
 
 ---
@@ -144,7 +144,7 @@ Based on what's NOT already covered in 1.1-1.3:
 
 ### Other Paths (future):
 - Training 2 (Acceleration Keys) will add acceleration practices
-- Training 3 (Zone of Genius) will deeply inform Genius Path
+- Training 3 (Unique Gift) will deeply inform Genius Path
 
 ---
 
@@ -171,7 +171,7 @@ Not a micro-module but a **self-assessment tool**:
 
 1. ✅ Analyzed transcript 1 (Human Development 101)
 2. ⏳ Receive transcript 2 (Keys to Accelerating Growth)
-3. ⏳ Receive transcript 3 (Zone of Genius)
+3. ⏳ Receive transcript 3 (Unique Gift)
 4. ⏳ Map how all three trainings complement existing 1.1-1.3
 5. ⏳ Write 1.4 and 1.5 based on combined content
 

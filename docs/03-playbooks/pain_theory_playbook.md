@@ -1,4 +1,6 @@
 # Pain Theory Playbook
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## Understanding Client Pain for the Product Compiler
 
 > *"Pain is not just discomfort. Pain is pressure, consequences, stakes, and stages of awareness."*
@@ -129,6 +131,27 @@ For ICP Deepening, map each dimension:
 | **4. Cost of Inaction** | What happens in 6 months if nothing changes? | |
 | **5. Urgency Levers** | What countdown is already running? | |
 | **Awareness Stage** | 1-5, where is your ideal client? | |
+
+---
+
+## The Recursive Shadow of Pain
+
+> *See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) for full synthesis.*
+
+Pain has a recursive dimension that standard pain mapping misses:
+
+**A person's unique gift generates a limiting belief that is structurally identical to the gift, but inverted.**
+
+| Gift | Shadow Belief | Pain Pattern |
+|------|---------------|-------------|
+| Clarity | "I need more clarity before I can act" | Infinite preparation loop |
+| Connection | "I feel isolated" | Withdrawal from the very relationships they'd enrich |
+| Building | "Nothing I build is finished" | Starting new projects instead of shipping |
+| Teaching | "I'm not qualified enough" | Over-studying instead of sharing |
+
+**The practical implication**: When slicing pain (Layers 1-5), also ask: *"What is this person's unique gift?"* — then check if their pain is the shadow of that gift. If it is, the intervention is not more preparation. The intervention is **helping them see that the base case was met long ago** — they have enough to act.
+
+**For the practitioner**: The recursive shadow also explains underpricing. If your gift is making the invisible visible, your shadow is: "my own value is invisible to me." This is not a character flaw — it is the structural property of recursion operating on the practitioner.
 
 ---
 

@@ -298,9 +298,9 @@ B1 → B2 → B3 → B4 → B5 → B6 → B7
 | 2 | G2 | Path of Least Resistance | 📚 | G1 |
 | 3 | G3 | Map of Uniqueness | 📚 | G2 |
 | 4 | **G3.5** | **The Growth Hierarchy** | 📚 | G3 |
-| 5 | G4 | What is Zone of Genius? | 📚 | G3.5 |
-| 6 | G5 | Zone of Genius Discovery | 📝 | G4 |
-| 7 | G6 | Zone of Genius Activation | 🔥 | G5 |
+| 5 | G4 | What is Unique Gift? | 📚 | G3.5 |
+| 6 | G5 | Unique Gift Discovery | 📝 | G4 |
+| 7 | G6 | Unique Gift Activation | 🔥 | G5 |
 | 8 | G7 | Flow State | 📚 | G6 |
 | 9 | G8 | Creativity and Artistry | 📚 | G7 |
 | 10 | G9 | Unique Offering | 📚💰 | G8 |
@@ -355,7 +355,7 @@ Where are you on this ladder? What's the next level calling you?
 #### Level Up
 
 **XP:** 100
-**Unlock:** G4 (What is Zone of Genius?)
+**Unlock:** G4 (What is Unique Gift?)
 
 ---
 

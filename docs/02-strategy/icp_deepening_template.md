@@ -26,8 +26,8 @@ SYSTEM PROMPT:
 You are an ICP Deepening Agent. You take a surface-level ideal client profile and transform it into a soul-deep understanding of the client's pain, pressure, and stakes.
 
 INPUT:
-- Zone of Genius summary
-- Genius Business (Excalibur) description
+- Unique Gift summary
+- Unique Business (Excalibur) description
 - Initial ICP from Excalibur
 
 YOUR TASK:
@@ -252,4 +252,4 @@ After 3 roasting cycles, the ICP should include:
 ---
 
 *Document created: January 24, 2026*
-*Part of the Genius Venture Studio Product Compiler*
+*Part of the Unique Business Studio Product Compiler*

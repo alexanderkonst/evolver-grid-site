@@ -35,7 +35,7 @@ UX/UI
 │   │   │
 │   │   ├── ONBOARDING (first touch)
 │   │   │   ├── Welcome
-│   │   │   ├── Zone of Genius
+│   │   │   ├── Unique Gift
 │   │   │   ├── Quality of Life
 │   │   │   ├── Tour
 │   │   │   └── Home (first landing)
@@ -52,7 +52,7 @@ UX/UI
 │   │   │   └── Deep dives
 │   │   │
 │   │   └── MONETIZATION (value path)
-│   │       ├── Genius Business
+│   │       ├── Unique Business
 │   │       ├── Marketplace
 │   │       └── Incubator
 │   │
@@ -749,7 +749,7 @@ For prompts users should **copy, not read**. Intentionally low contrast to disco
 ```
 
 **Used in:**
-- Zone of Genius flow
+- Unique Gift flow
 - Asset Mapping
 - Mission Discovery  
 - Genius Offer intake
@@ -789,7 +789,7 @@ From the "UI as Transmission" vision. Makes interfaces feel alive.
 **Used in:**
 - ExcaliburDisplay (alive-card)
 - GameHome onboarding hero (alive-card)
-- Zone of Genius entry header (aurora-text)
+- Unique Gift entry header (aurora-text)
 - Asset Mapping header (aurora-text)
 - Mission Discovery header (aurora-text)
 - RevelatoryHero (breathing-card)

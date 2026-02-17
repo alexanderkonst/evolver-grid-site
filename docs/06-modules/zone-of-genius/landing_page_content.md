@@ -1,6 +1,6 @@
-# Zone of Genius — Landing Page Content
+# Unique Gift — Landing Page Content
 
-> **Module:** Zone of Genius (ZoG)
+> **Module:** Unique Gift (UG)
 > **Version:** v0.9 (MVP)
 > **Space:** ME
 > **Generated via:** Module Landing Page Workflow SOP v1.0
@@ -14,7 +14,7 @@
 
 ```
 FROM: "I know I'm talented, but I can't name what makes me different — so I blend in."
-TO:   "I have a named, articulated Zone of Genius that I can explain to anyone in 30 seconds."
+TO:   "I have a named, articulated Unique Gift that I can explain to anyone in 30 seconds."
 ```
 
 ### 1.2 Sub-Results
@@ -31,7 +31,7 @@ TO:   "I have a named, articulated Zone of Genius that I can explain to anyone i
 
 | Artifact | Format | When received |
 |----------|--------|---------------|
-| Zone of Genius Snapshot PDF | Downloadable PDF report | After Step 4 (Generate) |
+| Unique Gift Snapshot PDF | Downloadable PDF report | After Step 4 (Generate) |
 | Archetype title + core pattern | On-screen + saved to profile | After Step 4 |
 | Top 3 talents (ordered) | Saved to profile | After Step 3 |
 | Mastery Action | Text insight | After Step 4 |
@@ -42,7 +42,7 @@ TO:   "I have a named, articulated Zone of Genius that I can explain to anyone i
 |-----------|--------|------------|
 | **After** | Quality of Life Map | "Now that you know WHO you are, map WHERE you stand" |
 | **After** | Mission Discovery | "Your genius points toward a mission — find it" |
-| **After** | Genius Business | "Turn your genius into an offer the world wants" |
+| **After** | Unique Business | "Turn your genius into an offer the world wants" |
 | **After** | Career Re-Ignition Session ($297) | "Go deeper with a live 90-min session with Aleksandr" |
 
 ---
@@ -52,7 +52,7 @@ TO:   "I have a named, articulated Zone of Genius that I can explain to anyone i
 ### 2.0 Core Belief
 
 ```
-We believe that every person has a Zone of Genius — a specific configuration of talents 
+We believe that every person has a Unique Gift — a specific configuration of talents 
 that makes them irreplaceably valuable. The problem isn't a lack of genius. 
 The problem is that most people have never had it named.
 ```
@@ -78,9 +78,9 @@ The problem is that most people have never had it named.
 ### 2.3 Core Message Stack
 
 ```
-1. CORE BELIEF: "We believe every person has a Zone of Genius waiting to be named."
+1. CORE BELIEF: "We believe every person has a Unique Gift waiting to be named."
 
-2. ONE-LINER: "Zone of Genius Discovery helps professionals who feel 'successful but off' 
+2. ONE-LINER: "Unique Gift Discovery helps professionals who feel 'successful but off' 
    name the exact work they were built to do — in 20 minutes, for free."
 
 3. RESONANCE HOOK: "For people who've done all the personality tests and still can't 
@@ -105,7 +105,7 @@ L2 — RESONANCE: "You've taken the personality tests. You've done the coaching.
 L3 — PROOF: "Built on a taxonomy of 81 distinct talents. Powered by AI pattern 
      recognition. Created by Aleksandr Konstantinov (MIT, 10+ years, 250+ people guided)."
 
-L4 — ACTION: "Reveal your Zone of Genius — free, 20 minutes, PDF included."
+L4 — ACTION: "Reveal your Unique Gift — free, 20 minutes, PDF included."
 ```
 
 ### 2.5 ICP Deep Dive
@@ -181,8 +181,8 @@ L4 — ACTION: "Reveal your Zone of Genius — free, 20 minutes, PDF included."
 |-------|-------|
 | **For audience** | "For professionals who know they're talented but can't name what makes them different" |
 | **Headline** | Name the work you were actually built to do |
-| **Subheadline** | Get your free Zone of Genius Snapshot in 20 minutes — without another generic personality test |
-| **CTA button text** | Reveal your Zone of Genius |
+| **Subheadline** | Get your free Unique Gift Snapshot in 20 minutes — without another generic personality test |
+| **CTA button text** | Reveal your Unique Gift |
 | **CTA button link** | `/zone-of-genius/entry` |
 
 ### 4.2 For Whom
@@ -211,7 +211,7 @@ L4 — ACTION: "Reveal your Zone of Genius — free, 20 minutes, PDF included."
 | **Step 1** | **Select** your top talents from a taxonomy of 81 — see which ones light up for you |
 | **Step 2** | **Narrow** to your core 3 — the talents that define your genius, not just your skills |
 | **Step 3** | **Order** them — because the sequence reveals the pattern |
-| **Step 4** | **Generate** your Zone of Genius Snapshot — AI reveals your archetype, core pattern, and 12 perspectives on your genius |
+| **Step 4** | **Generate** your Unique Gift Snapshot — AI reveals your archetype, core pattern, and 12 perspectives on your genius |
 | **Step 5** | **Download** your personalized PDF — share it, use it, build from it |
 
 ### 4.5 Outcomes (What you walk away with)
@@ -233,7 +233,7 @@ L4 — ACTION: "Reveal your Zone of Genius — free, 20 minutes, PDF included."
 
 ### 4.7 Story/Origin
 
-Built by Aleksandr Konstantinov — MIT alum, 10+ years guiding 250+ people through career transitions. After watching hundreds of talented professionals struggle to name what makes them different, he built the Zone of Genius taxonomy: 81 distinct talents organized into 9 categories. Not a personality type. Not a quiz. A talent map that gives you a name for the work you were built to do.
+Built by Aleksandr Konstantinov — MIT alum, 10+ years guiding 250+ people through career transitions. After watching hundreds of talented professionals struggle to name what makes them different, he built the Unique Gift taxonomy: 81 distinct talents organized into 9 categories. Not a personality type. Not a quiz. A talent map that gives you a name for the work you were built to do.
 
 ### 4.8 Final CTA
 
@@ -241,7 +241,7 @@ Built by Aleksandr Konstantinov — MIT alum, 10+ years guiding 250+ people thro
 |-------|-------|
 | **Headline** | Stop blending in. Name your genius. |
 | **Subheadline** | Free · 20 minutes · Personalized PDF included |
-| **Button text** | Reveal your Zone of Genius |
+| **Button text** | Reveal your Unique Gift |
 
 ---
 
@@ -249,11 +249,11 @@ Built by Aleksandr Konstantinov — MIT alum, 10+ years guiding 250+ people thro
 
 > **Not a hard sell.** Brief mention after main CTA:
 > 
-> "Want to go deeper? Book a 90-minute Career Re-Ignition Session with Aleksandr ($297) to turn your Zone of Genius into a concrete career strategy."
+> "Want to go deeper? Book a 90-minute Career Re-Ignition Session with Aleksandr ($297) to turn your Unique Gift into a concrete career strategy."
 > 
 > [Book a Session →](https://www.calendly.com/konstantinov)
 
 ---
 
 *Generated via Module Landing Page Workflow SOP v1.0*
-*Module: Zone of Genius | Space: ME | Priority: 1 (main acquisition funnel)*
+*Module: Unique Gift | Space: ME | Priority: 1 (main acquisition funnel)*

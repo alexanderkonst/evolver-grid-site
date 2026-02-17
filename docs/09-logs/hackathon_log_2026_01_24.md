@@ -33,8 +33,8 @@
 ### 0 → 1 Transformation
 
 **INPUT (what user has now):**
-- Zone of Genius (Appleseed) — works, 10/10 resonance
-- Genius Business (Excalibur) — works
+- Unique Gift (Appleseed) — works, 10/10 resonance
+- Unique Business (Excalibur) — works
 
 **OUTPUT (what user gets after today's module):**
 - Deepened ICP (with pain, pressure, consequences, stakes)
@@ -43,7 +43,7 @@
 - Marketing materials (ads, social posts)
 
 **FULL MODULE MASTER RESULT (for Product Compiler):**
-> "User goes from having a Genius Business card to having a published, purchasable PRODUCT on the marketplace."
+> "User goes from having a Unique Business card to having a published, purchasable PRODUCT on the marketplace."
 
 *Note: Today's hackathon delivers Landing Page. Full product generation is the next iteration.*
 
@@ -83,7 +83,7 @@ The **Product Compiler** can be applied to:
 
 ## Technologies Captured (Venture Studio Playbook)
 
-These are the key technologies for converting Genius Business into shippable products:
+These are the key technologies for converting Unique Business into shippable products:
 
 ### Pain → Pressure → Decision Technologies
 
@@ -134,7 +134,7 @@ The break between sprints allows **incubation** — a well-documented creativity
 
 **Validation:** 2 users in last 2 days rated ZoG resonance **10/10** — "matches my brightest self exactly."
 
-**The Gap:** Users get ZoG + Genius Business and resonate deeply, BUT don't know how to cross the chasm from "this is me" to "this is my working business."
+**The Gap:** Users get ZoG + Unique Business and resonate deeply, BUT don't know how to cross the chasm from "this is me" to "this is my working business."
 
 **What's Missing (The Bridge):**
 1. **ICP Deepening** — WHO needs this most? (Ideal Client Profile)
@@ -143,13 +143,13 @@ The break between sprints allows **incubation** — a well-documented creativity
 
 **Key Insight:** The technology works. The articulation is accurate. The gap is in the *operationalization* — making the sword actually cut.
 
-**Task Created:** `ai_tasks/PENDING_resonance_rating.md` — Add 1-10 rating after ZoG and Genius Business
+**Task Created:** `ai_tasks/PENDING_resonance_rating.md` — Add 1-10 rating after ZoG and Unique Business
 
 ### 11:39 — The Acorn Principle (Желудь)
 
 **What's Already Working:**
 - Appleseed (ZoG) → ✅ 10/10 resonance
-- Excalibur (Genius Business) → ✅ works
+- Excalibur (Unique Business) → ✅ works
 - ICP v1 (Ideal Client Profile) → ✅ first iteration
 - Point A → Point B → ✅ first iteration
 - USP (= ICP + Transformation) → ✅ composes from above
@@ -257,16 +257,16 @@ This is a meta-artifact — a playbook for how Alexander structures work across 
 
 **Application to Product Compiler:** User sees magic. Under the hood: 3 cycles of roasting before final output. Invisible, wow-effect inducing.
 
-**Genius Venture Studio Vision** documented: `docs/genius_venture_studio_vision.md`
+**Unique Business Studio Vision** documented: `docs/unique_business_studio_vision.md`
 
-> *"Vibe Coding Hackathons from Zone of Genius. Sacred holonic, under the hood."*
+> *"Vibe Coding Hackathons from Unique Gift. Sacred holonic, under the hood."*
 
 **Key insight:** The Venture Studio runs hackathons that start from genius, not from problems. All sophisticated technologies (Roasting Protocol, Holonic Architecture, Pain Theory) run invisibly — participants experience magic.
 
 ### 13:08 — Master Result Analysis (Heart / Mind / Gut)
 
 **MASTER RESULT DEFINED:**
-> "User goes from having a Genius Business card to having a published, purchasable landing page on the marketplace."
+> "User goes from having a Unique Business card to having a published, purchasable landing page on the marketplace."
 
 #### 🫀 HEART / ESSENCE — Что это по сути
 
@@ -373,7 +373,7 @@ Two GOLD elements appearing within less than a minute:
 **Document created:** `docs/monetization_evolution_ladder.md`
 
 **THE BREAKTHROUGH:**
-> "We're ALL already monetizing our Zone of Genius — just with different levels of awareness."
+> "We're ALL already monetizing our Unique Gift — just with different levels of awareness."
 
 **Key insight:** Work/Job = the simplest monetization format. We've been doing this all along.
 
@@ -387,7 +387,7 @@ Two GOLD elements appearing within less than a minute:
 | 4. Skill | Learnable ability | Orange | Programming |
 | 5. Expertise | Accumulated wisdom | Orange-Green | Consulting |
 | 6. Talent | Natural gift | Green | Music, art |
-| 7. Genius | Integrated essence | Teal | Genius Business |
+| 7. Genius | Integrated essence | Teal | Unique Business |
 | 8. Mastery | Integrated being | White | Steve Jobs, Naval |
 
 **Why this is original:**
@@ -416,18 +416,18 @@ Mastery (presence-as-value)
 
 **Location:** `docs/micro_module_curriculum.md` → Section 6 (Genius Path)
 
-**Sequence:** G3 (Map of Uniqueness) → **G3.5** → G4 (What is Zone of Genius?)
+**Sequence:** G3 (Map of Uniqueness) → **G3.5** → G4 (What is Unique Gift?)
 
 **Key insight from Alexander:**
 > "You can't skip steps. Like building a skyscraper on a weak foundation — it won't hold. Higher levels integrate the lower ones."
 
-This module introduces the 8-level Growth Hierarchy before diving into Zone of Genius, giving learners context for their current position.
+This module introduces the 8-level Growth Hierarchy before diving into Unique Gift, giving learners context for their current position.
 
 ---
 
 ### 15:02 — Template of Templates Breakthrough
 
-**The Universal Sales Funnel from Zone of Genius:**
+**The Universal Sales Funnel from Unique Gift:**
 
 ```
 LANDING PAGE (боль + обещание)
@@ -453,7 +453,7 @@ BLUEPRINT / LEAD MAGNET (методология)
 2. Blueprint (methodology PDF/page)
 3. CTA options (session or software)
 
-This is the **Template of Templates** — works for ANY Genius Business.
+This is the **Template of Templates** — works for ANY Unique Business.
 
 ---
 
@@ -570,7 +570,7 @@ Every intermediate screen now follows this pattern — keeps user clear and moti
 - Holonic Work Playbook
 - Pain Theory Playbook
 - Roasting Protocol
-- Genius Venture Studio Vision
+- Unique Business Studio Vision
 - ICP Deepening Template
 - TP Deepening Template
 - Product Compiler Flow Spec
@@ -663,7 +663,7 @@ Each can be reverse-engineered from a Master Result using the same 8-phase playb
 | 11:47 | Holonic Work Playbook | `docs/holonic_work_playbook.md` |
 | 12:01 | Pain Theory Playbook | `docs/pain_theory_playbook.md` |
 | 12:38 | Roasting Protocol | `docs/roasting_protocol.md` |
-| 12:38 | Genius Venture Studio Vision | `docs/genius_venture_studio_vision.md` |
+| 12:38 | Unique Business Studio Vision | `docs/unique_business_studio_vision.md` |
 | 12:40 | ICP Deepening Template | `docs/icp_deepening_template.md` |
 | 12:40 | TP Deepening Template | `docs/tp_deepening_template.md` |
 | 12:50 | Product Compiler Flow Spec | `docs/product_compiler_flow_spec.md` |
@@ -714,9 +714,9 @@ Each can be reverse-engineered from a Master Result using the same 8-phase playb
 Human Vision + AI Speed + Pre-planned Design = AI-Assisted Development
 ```
 
-**This IS the Genius Venture Studio in action:**
-- Your Zone of Genius: Vision and direction
-- AI Zone of Genius: Execution and pattern-matching
+**This IS the Unique Business Studio in action:**
+- Your Unique Gift: Vision and direction
+- AI Unique Gift: Execution and pattern-matching
 - Together: **One button → Complete product**
 
 ---
@@ -781,7 +781,7 @@ Human Vision + AI Speed + Pre-planned Design = AI-Assisted Development
 
 ---
 
-*Hackathon Day 1 — Building the Genius Venture Studio Product Builder*
+*Hackathon Day 1 — Building the Unique Business Studio Product Builder*
 
 ---
 

@@ -1,5 +1,7 @@
 # Design Framework — Fast Design for Planetary OS
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > How to make & develop design for the OS fast?
 
 *Last updated: 2026-01-27*

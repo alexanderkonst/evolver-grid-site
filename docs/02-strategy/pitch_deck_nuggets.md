@@ -15,7 +15,7 @@
 
 | Step | Time | Output |
 |------|------|--------|
-| Zone of Genius | 60 sec | Unprecedented precision articulation |
+| Unique Gift | 60 sec | Unprecedented precision articulation |
 | Quality of Life Map | 60 sec | Integral positioning |
 | Asset Mapping | 60 sec | Resources catalogued |
 | Central Mission | 60 sec | Life purpose identified |
@@ -100,7 +100,7 @@ When something feels designed specifically for YOU:
 This is why Netflix, Spotify, TikTok are addictive — they FEEL personal.
 
 **How this achieves it:**
-- Zone of Genius Test → "This GETS me"
+- Unique Gift Test → "This GETS me"
 - QoL Assessment → "This SEES my life"
 - Personalized recommendations → "This KNOWS what I need"
 - Unique growth path → "This is MY journey"

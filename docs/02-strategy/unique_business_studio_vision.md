@@ -1,5 +1,7 @@
-# Genius Venture Studio Vision
-## Vibe Coding Hackathons from Zone of Genius
+# Unique Business Studio Vision
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+## Vibe Coding Hackathons from Unique Gift
 
 > *"Sacred holonic, under the hood. Magic on the surface."*
 
@@ -7,9 +9,9 @@
 
 ## The Vision
 
-The Genius Venture Studio runs **Vibe Coding Hackathons** where participants:
+The Unique Business Studio runs **Vibe Coding Hackathons** where participants:
 
-1. **Start from Zone of Genius** — not from "what problem to solve" but from "who am I at my brightest"
+1. **Start from Unique Gift** — not from "what problem to solve" but from "who am I at my brightest"
 2. **Use the Product Compiler** — to transform genius into shippable products
 3. **Experience magic** — sophisticated technologies (like Roasting Protocol) run invisibly, creating wow-effect outputs
 
@@ -17,7 +19,7 @@ The Genius Venture Studio runs **Vibe Coding Hackathons** where participants:
 
 ## What Makes This Different
 
-| Traditional Hackathon | Genius Venture Studio Hackathon |
+| Traditional Hackathon | Unique Business Studio Hackathon |
 |-----------------------|---------------------------------|
 | Start with problem | Start with genius |
 | Random teams | Soul-resonance matching |
@@ -46,9 +48,9 @@ What's actually happening:
 
 ```
 DAY 1: DISCOVER
-├── Zone of Genius (Appleseed)
+├── Unique Gift (Appleseed)
 ├── Quality of Life Mapping
-└── Genius Business (Excalibur)
+└── Unique Business (Excalibur)
 
 DAY 2: DEEPEN
 ├── ICP via Pain Theory
@@ -91,4 +93,4 @@ DAY 4: LAUNCH
 ---
 
 *Document created: January 24, 2026*
-*Vision for the Genius Venture Studio*
+*Vision for the Unique Business Studio*

@@ -1,4 +1,6 @@
 # Integral Transactional Field Theory
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## The Energetics of Value, Exchange, and Business Design
 
 > *"Business is not persuasion. It is the deliberate shaping of conditions under which value collapses into transaction."*
@@ -105,13 +107,13 @@ A transaction happens ONLY when three conditions are simultaneously true in the 
 
 | Lens | What It Is | Nature | Function |
 |------|------------|--------|----------|
-| **Inner Lens** | Zone of Genius | Innate, timeless | DIRECTION — what wants to flow |
+| **Inner Lens** | Unique Gift | Innate, timeless | DIRECTION — what wants to flow |
 | **Outer Lens** | ICP | Constructed, time-bound | TARGET — what world can receive now |
 
-**Confusion happens** when people assume Zone of Genius implies ICP.
+**Confusion happens** when people assume Unique Gift implies ICP.
 It doesn't. Genius implies direction, not target.
 
-- Zone of Genius defines **what you offer**
+- Unique Gift defines **what you offer**
 - ICP defines **when it collapses**
 
 > Business happens when timeless essence meets temporal pressure.
@@ -218,7 +220,7 @@ This theory is the **foundational layer** under:
 - [marketing_playbook.md](./marketing_playbook.md) — ICP section, Messaging Ladder
 - [pain_theory_playbook.md](./pain_theory_playbook.md) — Pain as decision pressure
 - [icp_deepening_template.md](./icp_deepening_template.md) — Outer lens construction
-- [zone_of_genius_technology.md](./zone_of_genius_technology.md) — Inner lens
+- [unique_gift_technology.md](./unique_gift_technology.md) — Inner lens
 - [product_compiler_flow_spec.md](./product_compiler_flow_spec.md) — Step 3 ICP
 
 ---

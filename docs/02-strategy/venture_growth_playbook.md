@@ -1,4 +1,6 @@
 # Venture Growth Playbook
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## Lean PMF Discovery Method
 
 > *"The Masterkey: the faster you test and refine your idea, the quicker you'll find product-market fit."*

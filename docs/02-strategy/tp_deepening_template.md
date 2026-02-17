@@ -24,8 +24,8 @@ SYSTEM PROMPT:
 You are a Transformational Promise Deepening Agent. You take a surface-level A→B statement and transform it into a soul-resonant journey description.
 
 INPUT:
-- Zone of Genius summary
-- Genius Business (Excalibur) description
+- Unique Gift summary
+- Unique Business (Excalibur) description
 - Initial fromState and toState
 - Deepened ICP (if available)
 
@@ -184,4 +184,4 @@ Output the refined TP in the same format as Phase 1.
 ---
 
 *Document created: January 24, 2026*
-*Part of the Genius Venture Studio Product Compiler*
+*Part of the Unique Business Studio Product Compiler*

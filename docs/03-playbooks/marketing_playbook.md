@@ -1,4 +1,6 @@
 # Marketing Playbook
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## From Philosophy to Execution in One Document
 
 > *"Marketing is about values."* — Steve Jobs
@@ -214,7 +216,7 @@ We believe that [fundamental truth about the world].
 Example:
 - Apple: "The crazy ones change the world."
 - Nike: "Everyone is an athlete."
-- Evolver: "Everyone has a Zone of Genius waiting to be discovered."
+- Evolver: "Everyone has a Unique Gift waiting to be discovered."
 ```
 
 ### Step 0.2: What Stance Do We Take?
@@ -234,6 +236,25 @@ Example:
 - Does this channel match our belief? → Yes/No
 
 **If No → Don't do it. No exceptions.**
+
+### Step 0.4: The Myth as Resonance Filter
+
+> *See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4*
+
+Beyond Core Belief lies the **Myth** — the fundamental story your brand tells about reality.
+
+**The myth is not messaging. The myth IS the funnel.**
+
+When the myth is stated plainly, the right clients self-select by resonance. No persuasion needed.
+
+| Level | What it is | Example |
+|-------|-----------|---------|
+| Core Belief | What you stand FOR | "Everyone has a Unique Gift" |
+| Core Myth | The underlying truth | "There exists a venture so structurally yours that building it IS your personal development, and developing yourself IS building it" |
+
+**Test:** State the myth to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — they're not yours. The myth does the filtering for you.
+
+**Self-selection > Persuasion.** If you need to convince someone, you're talking to the wrong person.
 
 ---
 
@@ -783,17 +804,17 @@ Repeat weekly until resonance is consistent.
 
 # Part III: Examples & Architecture
 
-## Example: Evolver Zone of Genius
+## Example: Evolver Unique Gift
 
 **Product Definition:**
-- **What:** Assessment that reveals your Zone of Genius
+- **What:** Assessment that reveals your Unique Gift
 - **Transformation:** Confused about purpose → Clear on unique genius
 - **ICP:** Self-aware professionals feeling misaligned
 - **Core Belief:** Everyone has a genius; most never discover it
 
 **Core Message Stack:**
-- **Belief:** "We believe everyone has a Zone of Genius waiting to be discovered."
-- **One-liner:** "Evolver helps you discover your Zone of Genius and build a life around it."
+- **Belief:** "We believe everyone has a Unique Gift waiting to be discovered."
+- **One-liner:** "Evolver helps you discover your Unique Gift and build a life around it."
 - **Hook:** "For people who know they're meant for more."
 - **Anti:** NOT "AI-powered assessment platform"
 
@@ -835,7 +856,7 @@ If the Product Playbook can create any product... and marketing has Input → Pr
 ### The Complete Stack:
 
 ```
-L1: Zone of Genius discovered
+L1: Unique Gift discovered
 L2: ZoG → productized via Product Playbook
 L3: Product → marketed via Marketing Playbook  
 L4: Marketing → creates landing page

@@ -65,7 +65,7 @@
 | B2 | Body Foundations | ⬜ | | |
 | B3 | Reading Your Body | ⬜ | | |
 | G1 | What is Genius? | ⬜ | | |
-| G2 | Discovering Zone of Genius | ⬜ | | |
+| G2 | Discovering Unique Gift | ⬜ | | |
 | G3 | Articulating Genius Offer | ⬜ | | |
 | G4 | The Masks We Wear | ⬜ | | |
 | G5 | Authentic Expression | ⬜ | | |

@@ -1,5 +1,7 @@
 # Evolutionary Avantgarde Taxonomy
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > **Last Updated**: January 15, 2026
 
 ---

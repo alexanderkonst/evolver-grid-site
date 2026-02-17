@@ -42,7 +42,7 @@
 ### Phase 2 — IN PROGRESS
 - [x] First viral moment — ShareZoG placement
 - [ ] Quick win (Genius Spark) — 5-tap flow, 60-90 sec
-- [ ] Excalibur magic (Genius Business Kit)
+- [ ] Excalibur magic (Unique Business Kit)
 - [ ] TikTok demo — script ready
 
 ---
@@ -50,7 +50,7 @@
 ## Next Priorities
 
 1. **Genius Spark** — 5-tap interactive quick win before full ZoG
-2. **Genius Business Kit** — LinkedIn copy, offer card after Excalibur
+2. **Unique Business Kit** — LinkedIn copy, offer card after Excalibur
 3. **TikTok Demo** — record when ready
 
 ---

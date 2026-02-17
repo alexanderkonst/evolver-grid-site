@@ -54,7 +54,7 @@ Who to talk to about this module.
 
 ## Our Modules (Member Portal of the Planetary OS)
 
-### Zone of Genius Assessment
+### Unique Gift Assessment
 
 Source: Aleksandr / Member Portal
 Perspective: #4 Gamified OS Engine, #6 Consciousness Evolution Academy
@@ -69,7 +69,7 @@ Interactive assessment that helps users discover and articulate their unique gen
 - Optional: existing AI relationship for shortcut
 
 **Outputs**
-- Zone of Genius profile (archetype, talents, mastery action)
+- Unique Gift profile (archetype, talents, mastery action)
 - First element of user identity
 - Unlocks: matchmaking, personalized recommendations, genius offer creation
 

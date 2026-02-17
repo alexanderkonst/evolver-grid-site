@@ -111,10 +111,10 @@ SAME START ───────────────────────
 
 | Dimension | Concept | Definition |
 |-----------|---------|------------|
-| **BEING** | Purpose / Zone of Genius | To be authentically yourself — operating at your best |
+| **BEING** | Purpose / Unique Gift | To be authentically yourself — operating at your best |
 | **DOING** | Mission / Contribution | What you DO from that place — projects, causes, impact |
 
-**Purpose = Zone of Genius.** They are the same thing.
+**Purpose = Unique Gift.** They are the same thing.
 **Mission = Contribution.** What flows from being in your ZoG.
 
 ---
@@ -231,13 +231,13 @@ World Unlock (enter game world)
     ↓
 Onboarding (show what's possible + suggest 3 fun actions + rewards)
     ↓
-Quest: Genius Business Reveal (play/level up)
+Quest: Unique Business Reveal (play/level up)
     ↓
 Daily Loop (nudges: recommended practice + "best next action")
     ↓
 Next Best Profile Enhancement + Reward
     ↓
-Enter Economic Engine (Genius Business Build)
+Enter Economic Engine (Unique Business Build)
     ↓
 Co-op / Co-own the game (multiplayer economy)
 ```
@@ -294,7 +294,7 @@ Co-op / Co-own the game (multiplayer economy)
 
 ### Layer 2: Modules (reused, not replaced)
 Each module is a scene the game can send the player into:
-- Zone of Genius module
+- Unique Gift module
 - Quality of Life module
 - Library module
 - (Later) Mission Discovery, Asset Mapping, Destiny Pack
@@ -376,7 +376,7 @@ Each module is a scene the game can send the player into:
 |-------|------|-------|--------|
 | 0 | $1 Start (Gateway) | $1 | Initial Genius Profile seed |
 | 1 | Genius Discovery | — | Polished Genius Profile |
-| 2 | Genius Business | $33 | Ideal client, UVP, promise |
+| 2 | Unique Business | $33 | Ideal client, UVP, promise |
 | 3 | Build Your Genius Biz | ~$3k | Paid build container |
 | 4 | MVGB | — | 1 pain, 1 promise, 1 channel, 1 price |
 | 5 | Genius Coop / Scale | — | Co-founder matching, team scan |

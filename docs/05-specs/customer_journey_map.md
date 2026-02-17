@@ -68,7 +68,7 @@ This gives users a sense of:
 
 | Phase | Guiding Question | What User Gets |
 |-------|------------------|----------------|
-| **1. Zone of Genius** | *What am I naturally best at?* | Genius articulated |
+| **1. Unique Gift** | *What am I naturally best at?* | Genius articulated |
 | **2. Unique Offer** | *How do I bring most value to others?* | Offer crystallized |
 | **3. Quality of Life** | *Where am I now? Where do I want to go?* | Life mapped + priorities |
 | **4. Growth Recipe** | *How do I get there?* | 5 Growth Paths ranked |
@@ -89,18 +89,18 @@ Steps use hierarchical numbering:
 
 ---
 
-## Phase 1: Zone of Genius Discovery
+## Phase 1: Unique Gift Discovery
 
 ### 1.0 Entry
 
-User arrives at Zone of Genius module.
+User arrives at Unique Gift module.
 
 ### 1.1 AI Model Check
 
 > "Do you have an AI model (ChatGPT, Claude, etc.) that knows you well?"
 
 - **1.1.1 → YES**: Show prompt for user to paste into their AI
-  - AI generates Zone of Genius description
+  - AI generates Unique Gift description
   - User confirms result
   - **1.1.2** → Save to profile → Jump to **1.4**
   
@@ -183,7 +183,7 @@ Shows current step + upcoming opportunities:
 
 ```
 ┌─────────────────────────────────────────┐
-│ NOW: Discover your Zone of Genius       │
+│ NOW: Discover your Unique Gift       │
 │ "Find out who you are at your best"    │
 │                                         │
 │ NEXT:                                   │
@@ -370,7 +370,7 @@ When user is ready (level threshold or explicit choice):
 
 | Phase | Name | Duration | Result |
 |-------|------|----------|--------|
-| 1 | Zone of Genius | ~5 min | Profile created |
+| 1 | Unique Gift | ~5 min | Profile created |
 | 2 | Quality of Life | ~5 min | Map created, recommendations active |
 | 3 | First Action | 1-3 min | First win, XP earned |
 

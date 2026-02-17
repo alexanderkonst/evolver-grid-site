@@ -19,14 +19,14 @@
 
 | # | Upgrade | Type | The Shift | Unlocks After |
 |---|---------|------|-----------|---------------|
-| 1 | Zone of Genius Test | 📝 | Know your unique genius (~1 min) | — (entry point) |
+| 1 | Unique Gift Test | 📝 | Know your unique genius (~1 min) | — (entry point) |
 | 2 | Apply Your Genius | 📝 | See how your genius shows up in life | Step 1 |
 | 3 | Upload Personality Tests | 📝 | Enrich profile with MBTI, Enneagram, etc. | Step 1 |
 | 4 | Micro: Genius, Purpose, Mission, Traits, Talents | 📚 | Clarity on all the distinctions | Step 1 |
-| 5 | Zone of Genius Activation | 🔥 | Immersive experience of your genius | Step 4 |
+| 5 | Unique Gift Activation | 🔥 | Immersive experience of your genius | Step 4 |
 | 6 | Multiple Intelligences Assessment | 📝 | 3-min MI self-assessment | — (anytime) |
 | 7 | Unique Offering | 💰 | Articulate your genius offer | Steps 1, 4, 5 |
-| 8 | Genius Business | 💰 | Build your genius-based business | Step 7 |
+| 8 | Unique Business | 💰 | Build your genius-based business | Step 7 |
 
 ---
 

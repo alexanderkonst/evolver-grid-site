@@ -1,4 +1,6 @@
-# The Integrated Genius Venture-Building Playbook
+# The Integrated Unique Business Playbook
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## From Human Uniqueness to Venture — An AI-Native System
 
 > *"Work seen as sacred, executed as ceremony."*
@@ -72,7 +74,7 @@ Why? Because words are the bridge between inner knowing and outer manifestation.
 - Packaged for markets
 - Distributed at scale
 
-The Zone of Genius articulation isn't a nice-to-have. It's the **master key** that unlocks everything downstream.
+The Unique Gift articulation isn't a nice-to-have. It's the **master key** that unlocks everything downstream.
 
 This is so simple people skip it. They think: *"I'll figure out my positioning later, first let me build something."* But they're building without a seed. The structure has no soul.
 
@@ -152,6 +154,55 @@ Our job is not to give people a method. It's to help them articulate *their own*
 
 ---
 
+## The Law of the Recursive Shadow
+
+> *February 2026 discovery — see [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md)*
+
+**A person's unique gift will always generate a limiting belief that is structurally identical to the gift itself, but inverted.**
+
+| Unique Gift | Shadow (Inverted) | Limiting Belief Generated |
+|-------------|-------------------|--------------------------|
+| "I can see your Founder-Market Fit" | "I can't see my own" | "I need more clarity before I can act" |
+| "I help people articulate their uniqueness" | "My own uniqueness remains unarticulated" | "I need a better product before I can sell" |
+| "I make the invisible visible" | "My own value is invisible to me" | "I should charge less" |
+
+**Diagnostic use**: For any client, **predict the shadow from the unique gift.** The person whose gift is connection will feel isolated. The person whose gift is teaching will feel unqualified. The person whose gift is building will feel nothing they build is finished.
+
+This is not a character flaw — it is a structural property of recursion. A function that calls itself must hit a base case or it loops infinitely.
+
+---
+
+## The Base Case
+
+In recursion, the **base case** is the condition that says: *"Stop calling yourself. Return a value."*
+
+Without a base case, the function loops forever: "I need more clarity" → gets clarity → "I need MORE clarity" → stack overflow.
+
+**The base case for uniqueness work is not a knowledge threshold. It is a decision:**
+
+> *"The output at this level is sufficient to serve the person one level behind me. I act now."*
+
+The practitioner's job is not to push clients to act — it is to help them see that the condition for acting was met long ago. They kept looping because more depth was always available.
+
+---
+
+## The Recursive Container
+
+The traditional model: one session → clarity → done. 
+
+The problem: clients receive clarity at Level N and drift away, thinking they're done. But Level N+1 surfaces their programs within weeks.
+
+**The recursive container model**: The first session is the door. Not the room.
+
+- **Session 1**: Articulate uniqueness, identify FMF → clarity at Level N
+- **Weeks 1-4**: Programs surface (the Recursive Shadow activates)
+- **Session 2**: Identify the shadow from the gift → clarity at Level N+1
+- **Repeat**: Each cycle goes one level deeper
+
+This transforms a one-time diagnostic into an ongoing relationship — which is where real value lives.
+
+---
+
 ## The Greenhouse Metaphor
 
 AI has changed the game. Previously, even with clear uniqueness, you needed skills to build (code, design, marketing, ops). Now AI can generate all of that — IF it has the seed.
@@ -163,9 +214,9 @@ The water  = AI-human symbiosis
 The sun    = market reality (feedback loops)
 ```
 
-**Genius Venture Studio is the greenhouse.**
+**Unique Business Studio is the greenhouse.**
 
-Planetary OS, Zone of Genius → Excalibur → Product Builder → the whole stack — it's the infrastructure that takes the seed and grows the tree.
+Planetary OS, Unique Gift → Excalibur → Product Builder → the whole stack — it's the infrastructure that takes the seed and grows the tree.
 
 ---
 
@@ -184,9 +235,9 @@ Everyone already monetizes something. The question is: what, and how consciously
 | 7. **GENIUS** | Integrated essence | Teal |
 | 8. **MASTERY** | Presence as value | White |
 
-**The Genius Venture Studio operates at Level 7** — helping people:
+**The Unique Business Studio operates at Level 7** — helping people:
 1. Recognize they're already monetizing (usually Level 3-5)
-2. Articulate their Zone of Genius (Appleseed)
+2. Articulate their Unique Gift (Appleseed)
 3. Package it into an offer (Excalibur)
 4. Publish it as a product (Product Compiler)
 5. Evolve toward Mastery over time
@@ -217,7 +268,7 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 | Phase | Framework | Output |
 |-------|-----------|--------|
-| 1 | **Appleseed** | Zone of Genius card |
+| 1 | **Appleseed** | Unique Gift card |
 | 2 | **Excalibur** | Unique offer package |
 | 3 | **Pain Theory** | Deep ICP + TP |
 | 4 | **Product Compiler** | Landing page + blueprint |
@@ -233,13 +284,13 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 **Processing:** AI synthesis + 3x Roasting (invisible)
 
-**Output:** Zone of Genius card with:
+**Output:** Unique Gift card with:
 - Vibrational Key (one-sentence essence)
 - Bullseye Sentence
 - Three Lenses (how others experience you)
 - Compound Archetype
 
-> 📚 Full spec: [zone_of_genius_technology.md](../07-technology/zone_of_genius_technology.md)
+> 📚 Full spec: [unique_gift_technology.md](../07-technology/unique_gift_technology.md)
 
 ---
 
@@ -247,7 +298,7 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 **Purpose:** Transform genius into tradeable offer
 
-**Input:** Zone of Genius profile
+**Input:** Unique Gift profile
 
 **Output:**
 - One-sentence offer
@@ -323,9 +374,9 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 # Part III: AI-Executable Workflows
 
-> The complete 10-workflow system. Each workflow is AI-executable from the Zone of Genius seed.
+> The complete 10-workflow system. Each workflow is AI-executable from the Unique Gift seed.
 > 
-> **Master Input:** The Founder's Zone of Genius Articulation (Appleseed output)
+> **Master Input:** The Founder's Unique Gift Articulation (Appleseed output)
 > 
 > **From this seed, AI derives everything.**
 
@@ -335,7 +386,7 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 
 ```
 INPUT:  Raw human (voice, conversation, test results)
-OUTPUT: Zone of Genius profile (Appleseed card)
+OUTPUT: Unique Gift profile (Appleseed card)
 CHECK:  "Does this feel true to you?"
 ```
 
@@ -347,7 +398,7 @@ CHECK:  "Does this feel true to you?"
 
 **Prompt:**
 ```
-Synthesize these perspectives into a Zone of Genius card.
+Synthesize these perspectives into a Unique Gift card.
 Apply 3 roasting cycles internally, output refined version.
 ```
 
@@ -356,7 +407,7 @@ Apply 3 roasting cycles internally, output refined version.
 ## Workflow 2: Articulation → Offer
 
 ```
-INPUT:  Zone of Genius profile
+INPUT:  Unique Gift profile
 OUTPUT: Excalibur (offer, price, channel, ICP v1)
 CHECK:  "Would you sell this tomorrow?"
 ```
@@ -790,7 +841,7 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 | Stage | Quick Prompt |
 |-------|--------------|
-| 1 | "Synthesize into Zone of Genius card" |
+| 1 | "Synthesize into Unique Gift card" |
 | 2 | "Transform ZoG into Excalibur offer" |
 | 3 | "Deepen ICP with identity + situational markers + Point A/B" |
 | 4 | "Create 3-Step Blueprint with transformation mechanism" |
@@ -821,7 +872,7 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 ## Related Documents
 
-- [genius_venture_cooperative.md](../02-strategy/genius_venture_cooperative.md) — Venture program structure
+- [unique_business_cooperative.md](../02-strategy/unique_business_cooperative.md) — Venture program structure
 - [one_button_product_builder.md](../07-technology/one_button_product_builder.md) — Product Compiler details
 - [product_compiler_flow_spec.md](../07-technology/product_compiler_flow_spec.md) — Full user journey
 - [venture_growth_playbook.md](../02-strategy/venture_growth_playbook.md) — PMF discovery method
@@ -832,6 +883,6 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 ---
 
-*Genius Venture-Building Playbook v2.0 — February 2026*
+*Unique Business Playbook v2.0 — February 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 

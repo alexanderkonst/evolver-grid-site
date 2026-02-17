@@ -233,7 +233,7 @@ Options to explore:
 |---------|-----------|---------|
 | **Page titles / H1** | `UPPERCASE` + `tracking-wide` | `YOUR GENIUS IS READY` |
 | **Section headings / H2** | Title Case or `UPPERCASE` | `My Top Talents` or `CRAFTING YOUR GENIUS BUSINESS` |
-| **Subtitles / descriptions** | Sentence case | `Let's transform your Zone of Genius into a business identity.` |
+| **Subtitles / descriptions** | Sentence case | `Let's transform your Unique Gift into a business identity.` |
 | **Labels / meta** | `UPPERCASE` + `text-xs` + `tracking-wider` | `MY ARCHETYPE` |
 
 ### Subtitle Contrast Rule

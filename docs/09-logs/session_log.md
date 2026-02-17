@@ -192,7 +192,7 @@ Critical review of what we built. Outcomes:
 ### End of Day 2 (~11:45pm)
 
 **Genius Vector Sequence captured:**
-- MVP: ZoG → Apply → Tests → Micros → Unique Offering → Genius Business
+- MVP: ZoG → Apply → Tests → Micros → Unique Offering → Unique Business
 - Later: Co-op, Matchmaking, Tools, Advanced Micros
 
 **Architecture Insight:**
@@ -500,13 +500,13 @@ Day 4 morning + afternoon delivered:
 |------|--------|
 | **community_whitelabel_spec.md** | Branding, CSS vars, DB schema for community instances (Priroda ready) |
 | **data_architecture.md** | Visibility matrix: Me / Community / Public toggles |
-| **zone_of_genius_technology.md** | Apple Seed → Excalibur → Destiny full synthesis |
+| **unique_gift_technology.md** | Apple Seed → Excalibur → Destiny full synthesis |
 | **feature_roadmap.md** | Parked: Events module, Admin panel, Hackathon Jan 24 |
 | **guerrilla_marketing_hacks.md** | NS 2.0 demo strategy, playlist lead magnet |
 | **AGENTS.md** | Multi-AI team structure for Codex delegation |
 | **ai_tasks/** | Task queue folder, first task completed by Codex |
 
-### Zone of Genius Technology Stack
+### Unique Gift Technology Stack
 
 Three-step genius → business pipeline:
 
@@ -519,7 +519,7 @@ Three-step genius → business pipeline:
 Key concepts documented:
 - Signal-to-noise ratio as North Star
 - Energetic naming principle (avoid brand names)
-- MVGB: Minimal Viable Genius Business
+- MVGB: Minimal Viable Unique Business
 - Marketplace tiers: Basic vs Curated
 
 ### Multi-AI Collaboration
@@ -548,7 +548,7 @@ Codex completed first task: wired up genius_stage persistence ✅
 | `1385300` | Strategy docs: white-label, data architecture |
 | `53c59c6` | ai_tasks folder + first task |
 | `73cd042` | AGENTS.md multi-AI team |
-| `78d3a6a` | Zone of Genius Technology Stack |
+| `78d3a6a` | Unique Gift Technology Stack |
 | `a95212a` | Playlist lead magnet hack |
 
 ### Sprint Status
@@ -597,7 +597,7 @@ The architecture is recursive. That's how you know it's true.
 
 | Item | Description |
 |------|-------------|
-| **Appleseed Technology** | Full AI-powered Zone of Genius articulation |
+| **Appleseed Technology** | Full AI-powered Unique Gift articulation |
 | **Signal Amplification Examples** | 4 calibration samples (Aleksandr, Karime, Tracey, Tylor) |
 | **Roasting Protocol** | 4-step adversarial refinement methodology |
 | **Appleseed Generator** | Prompt + examples + types + AI integration |
@@ -645,7 +645,7 @@ The Appleseed system was fully implemented:
 ### Tomorrow's Focus: Excalibur
 
 **Excalibur** = Transform Appleseed into Unique Genius Offering:
-- Take Zone of Genius articulation
+- Take Unique Gift articulation
 - Translate into monetizable offering
 - ICP, transformation promise, offer stack
 
@@ -724,7 +724,7 @@ The Central Galactic Intelligence observes Earth — a blue-green jewel in the s
 **This project is one thread of that emergence.**
 
 What you're building is not "just software." It's a **crystallization of a hypothesis**:
-- That each human carries a unique signal (Zone of Genius)
+- That each human carries a unique signal (Unique Gift)
 - That this signal can be **amplified, not lost** through articulation
 - That articulation leads to **action** (Excalibur → Unique Offering)
 - That action leads to **coordination** (Missions, Events, Teams)
@@ -815,7 +815,7 @@ Yesterday's content drafts pending approval:
 
 - [ ] Approve and finalize micro-modules 1.4 & 1.5
 - [ ] Continue content creation
-- [ ] Capture Venture Studio / Genius Venture Cooperative documentation
+- [ ] Capture Venture Studio / Unique Business Cooperative documentation
 - [ ] Network School Blueprint concept
 
 ### Ideas Captured
@@ -832,7 +832,7 @@ Yesterday's content drafts pending approval:
 
 | Item | Description |
 |------|-------------|
-| **Genius Venture Cooperative** | `docs/genius_venture_cooperative.md` — complete venture studio design |
+| **Unique Business Cooperative** | `docs/unique_business_cooperative.md` — complete venture studio design |
 
 
 ---
@@ -954,7 +954,7 @@ All builds passing ✅
 | Item | Description |
 |------|-------------|
 | **Drip-Feed Onboarding Phase 1** | Hide panels during ZoG flow, auto-save genius with toast, simplified AppleseedDisplay |
-| **Genius Business Restructure** | Complete rewrite of Excalibur → Genius Business with new data structure |
+| **Unique Business Restructure** | Complete rewrite of Excalibur → Unique Business with new data structure |
 | **Share Button Dropdown** | Unified share button with dropdown socials (LinkedIn, X, Facebook, Telegram, Instagram, Copy) |
 | **New Share Text Format** | "My genius is to be a [name]" + talents + prime driver + archetype + www link |
 | **Deploy Fixes** | Resolved git staging issues and merged to main |
@@ -985,12 +985,12 @@ All builds passing ✅
 
 | File | Changes |
 |------|---------|
-| `generate-excalibur/index.ts` | New PHILOSOPHY, TEMPLATE, OUTPUT_FORMAT for Genius Business structure |
+| `generate-excalibur/index.ts` | New PHILOSOPHY, TEMPLATE, OUTPUT_FORMAT for Unique Business structure |
 
 ### Philosophy Changes
 
 - Removed: "One sword, one offer, one path forward"
-- Added: "Genius Business OS" with clarity tests
+- Added: "Unique Business OS" with clarity tests
 - Added: 3-word business name + Product Hunt tagline generation
 - Added: Transformational Promise with Point A → Point B
 
@@ -1015,11 +1015,11 @@ All builds passing ✅
 3. **XP Badge Relocation** — Move Level/XP to Panel 1 next to Guest/Member name
 4. **Excalibur CTA Placement** — Show "Create My Unique Offer" in Profile after save
 
-### Genius Business Modular Pages
+### Unique Business Modular Pages
 
-5. **Navigation Update** — Add "Genius Business" section in Panel 2 under Profile
+5. **Navigation Update** — Add "Unique Business" section in Panel 2 under Profile
 6. **Create 5 Module Pages** — Audience, Promise, Channels, Vision, Overview
-7. **Sub-navigation** — Implement sub-tabs for Genius Business modules
+7. **Sub-navigation** — Implement sub-tabs for Unique Business modules
 
 ### Wabi-sabi Design Phase 3
 
@@ -1029,7 +1029,7 @@ All builds passing ✅
 
 ### Share & Viral Loop
 
-11. **Share for Genius Business** — Same dropdown pattern as ZoG
+11. **Share for Unique Business** — Same dropdown pattern as ZoG
 12. **Referral Tracking** — Store inviter_id on signup
 
 ### Quality of Life Integration
@@ -1054,7 +1054,7 @@ All builds passing ✅
 
 ---
 
-*Day 14 complete. Genius Business restructure shipped!*
+*Day 14 complete. Unique Business restructure shipped!*
 
 ---
 
@@ -1197,7 +1197,7 @@ Met with Valentin from Priroda community. Key alignment:
 
 ### What We Accomplished
 
-**Product Builder shipped.** Users can now go from Genius Business → Published Product in one flow.
+**Product Builder shipped.** Users can now go from Unique Business → Published Product in one flow.
 
 | Functionality | Status |
 |---------------|--------|
@@ -1308,11 +1308,11 @@ Configured Supabase client for persistent login sessions.
 
 ### Key Conceptual Breakthroughs
 
-1. **Complete Product Stack** — unified map from Zone of Genius to working code
+1. **Complete Product Stack** — unified map from Unique Gift to working code
 2. **Frictionless Purchase** — Marketing creates CONDITIONS for one-click buy
 3. **Reach/Delivery/Spread** — Distribution pillars (Conversion = result, not pillar)
 4. **Three Lenses everywhere** — Суть / Значимость / Следствие
-5. **Zone of Genius as Source** — Stack starts BEFORE Transformational Promise
+5. **Unique Gift as Source** — Stack starts BEFORE Transformational Promise
 
 ### Foundational Principles Added
 
@@ -1392,7 +1392,7 @@ User quote: *"This is not 5-10x compared to legacy. 5-10x to how I vibe-coded YE
 1. Transformational content live + library
 2. Upgrades to existing modules (Resources, Mission, Genius Biz)
 3. Test drive of whole system
-4. Genius Startup Sequence spec
+4. Unique Business Sequence spec
 5. Synthesis of what this system is
 
 **Target:** Beta-ready by Thursday night for 20 testers.
@@ -1501,7 +1501,7 @@ This day marked the crystallization of the platform's functional essence into a 
 
 | Step | Time | Output |
 |------|------|--------|
-| Zone of Genius | 60 sec | Unprecedented precision articulation |
+| Unique Gift | 60 sec | Unprecedented precision articulation |
 | Quality of Life Map | 60 sec | Integral positioning |
 | Asset Mapping | 60 sec | Resources catalogued |
 | Central Mission | 60 sec | Life purpose identified |
@@ -1796,7 +1796,7 @@ This was a complete holonic cycle: theory → product → critique → integrati
 
 **Location**: Bali, Indonesia
 **Time**: Evening session (~23:30–01:50)
-**Theme**: Product Builder Polish + Genius Business Persistence
+**Theme**: Product Builder Polish + Unique Business Persistence
 
 ### Context
 
@@ -1809,7 +1809,7 @@ After building the Product Builder flow and getting it functionally working, thi
 | **Garbled Transformational Promise** | Field mismatch: edge function returns `corePromise`, screen reads `promiseStatement` | Fixed screen to read both fields + rewrote AI prompt with anti-patterns and examples |
 | **Dark mode bleed on all cards** | `Card` component inherits `bg-card` which resolves to dark in GameShellV2 | Replaced all `Card`/`bg-card` with explicit `bg-white` + brandbook borders |
 | **Off-brand colors everywhere** | Yellow/amber/red/green CSS tokens (`bg-primary`, `border-primary`, etc.) | Replaced 50+ instances with explicit brandbook hex values (`#8460ea`, `#2c3150`, `#a4a3d0`, etc.) |
-| **"Your Genius is Now Live"** | Wrong copy | → "Your **Genius Business** is Now Live" |
+| **"Your Genius is Now Live"** | Wrong copy | → "Your **Unique Business** is Now Live" |
 | **MarketplaceProductPage header** | Full site navigation on published landing page | Removed Navigation/Footer — standalone page with brandbook gradient hero |
 | **Blueprint generator not receiving promise** | `generate-blueprint` reads `tp.corePromise` but state stores `tp.promiseStatement` | Fixed with fallback: `tp.promiseStatement \|\| tp.corePromise` |
 | **Products disappear after publish** | React state lost on navigation/reload | Added localStorage persistence for published products |
@@ -1819,10 +1819,10 @@ After building the Product Builder flow and getting it functionally working, thi
 | Item | Impact |
 |------|--------|
 | **localStorage persistence** | Published products survive page reloads and navigation. `usePublishedGeniusBusiness` hook available globally. |
-| **My Genius Business page** | New page at `/game/build/my-business` — shows product card, quick stats (ICP, Promise, Blueprint), URL with copy, actions |
+| **My Unique Business page** | New page at `/game/build/my-business` — shows product card, quick stats (ICP, Promise, Blueprint), URL with copy, actions |
 | **Refine My Business page** | New page at `/game/build/refine` — 5 refinement options (3 active, 2 coming soon): ICP, Pain, Promise, Blueprint, Landing |
-| **Build space sidebar** | Added "My Genius Business" and "Refine My Business" to SectionsPanel |
-| **MarketplaceSpace update** | Shows "My Published Products" section when a published genius business exists |
+| **Build space sidebar** | Added "My Unique Business" and "Refine My Business" to SectionsPanel |
+| **MarketplaceSpace update** | Shows "My Published Products" section when a published unique business exists |
 | **Build default route** | `/game/build` now redirects to `/game/build/my-business` instead of directly to Product Builder |
 
 ### Files Created/Modified
@@ -1847,7 +1847,7 @@ After building the Product Builder flow and getting it functionally working, thi
 ### Key Decisions Made
 
 1. **localStorage for MVP persistence** — Good enough for single-user demo. DB persistence already exists via `marketplace_products` table but needs migration. localStorage bridges the gap.
-2. **Build space becomes the hub** — No longer redirects straight to Product Builder. Now shows "My Genius Business" overview first, with Product Builder as one section.
+2. **Build space becomes the hub** — No longer redirects straight to Product Builder. Now shows "My Unique Business" overview first, with Product Builder as one section.
 3. **Refinement as separate flow** — Not just "re-run the builder." Future: targeted refinement flows for each component (ICP, Pain, Promise, etc.).
 4. **Standalone landing pages** — No site chrome. Published product pages are clean, standalone, visitor-facing.
 5. **Only published products persist** — In-progress builds are NOT saved to localStorage to avoid stale AI data.

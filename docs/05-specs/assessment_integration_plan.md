@@ -15,7 +15,7 @@ We have two major assessments currently implemented as standalone pages with the
    - Back button goes to `/` (homepage)
    - After completion → Results page
 
-2. **Zone of Genius Assessment** (`ZoneOfGeniusAssessmentLayout.tsx`)
+2. **Unique Gift Assessment** (`ZoneOfGeniusAssessmentLayout.tsx`)
    - 5-step wizard for talent discovery
    - Currently opens with `/zone-of-genius/assessment/step-0`
    - Uses `Navigation` + `Footer` (old layout)
@@ -94,12 +94,12 @@ Create a special "focused assessment mode" where:
 
 ---
 
-### Phase 2: Zone of Genius Assessment Integration
+### Phase 2: Unique Gift Assessment Integration
 
 **Tasks:**
 1. Create `TransformationGeniusAssessment.tsx` wrapper
 2. Add route `/game/transformation/genius-assessment/*` for all steps
-3. Add "Zone of Genius" as a section in SectionsPanel
+3. Add "Unique Gift" as a section in SectionsPanel
 4. Modify `ZoneOfGeniusAssessmentLayout` to support embedded mode
 5. Update completion flow to navigate to results inside GameShell
 

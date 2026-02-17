@@ -9,7 +9,7 @@
 
 ### Part 1 — Raw Signal (Input)
 
-Your **zone of genius** is **turning complexity into a clear, usable map—and then using that map to unlock people, products, and movements.**
+Your **unique gift** is **turning complexity into a clear, usable map—and then using that map to unlock people, products, and movements.**
 
 **Core pillars**
 
@@ -45,7 +45,7 @@ Aleksandr awakens high-potentials to exponential soul-aligned impact by architec
 ✦ Architect of Integration Codes ✦
 "He who sees what wants to be whole — and builds the blueprint."
 
-#### 2) Zone of Genius — Three Lenses
+#### 2) Unique Gift — Three Lenses
 
 - **Level 1 — Talents as Actions:** Envision • Architect • Activate • Orchestrate • Translate
 - **Level 2 — Prime Driver:** Activate Dormant Potential
@@ -70,7 +70,7 @@ Aleksandr awakens high-potentials to exponential soul-aligned impact by architec
 
 - Strategic Consulting → Conscious founders & innovation teams → To clarify vision and translate into scalable systems
 - Venture Architecture → Early-stage ventures & regen studios → To accelerate product-market alignment and systemic design
-- Leadership Mentorship → High-performers in transition → To discover and monetize their Zone of Genius
+- Leadership Mentorship → High-performers in transition → To discover and monetize their Unique Gift
 - Integral Facilitation → DAO stewards & ecosystem builders → To map invisible dynamics and unlock collective coherence
 
 #### 6) Roles & Environments
@@ -105,7 +105,7 @@ On a rooftop in Lisbon, golden sun pouring over white stone, Aleksandr speaks a 
 
 #### 11) Elevator Pitch
 
-I help conscious founders and innovators unlock their zone of genius, architect aligned systems, and catalyze exponential soul-aligned impact.
+I help conscious founders and innovators unlock their unique gift, architect aligned systems, and catalyze exponential soul-aligned impact.
 
 ---
 
@@ -113,7 +113,7 @@ I help conscious founders and innovators unlock their zone of genius, architect 
 
 ### Part 1 — Raw Signal (Input)
 
-Karime's zone of genius is restoring Love and coherence in humans and groups by sensing what's unseen, reconnecting what's disconnected, and harmonizing the field until healing becomes natural.
+Karime's unique gift is restoring Love and coherence in humans and groups by sensing what's unseen, reconnecting what's disconnected, and harmonizing the field until healing becomes natural.
 
 **Core triad (her "native powers")**
 
@@ -154,7 +154,7 @@ Karime restores humans to the Love Source by sensing invisible flows, harmonizin
 ✦ Bridge of the Love Source ✦
 "She who plugs hearts back into the Source — and tends the field until love returns."
 
-#### 1) Zone of Genius — Three Lenses
+#### 1) Unique Gift — Three Lenses
 
 - **Level 1 — Talents as Actions:** Sense · Harmonize · Midwife · Reweave · Bless
 - **Level 2 — Prime Driver:** Restore Feminine Coherence
@@ -255,7 +255,7 @@ Tracey constellates right-time gatherings by mapping leaders and mirroring their
 ✦ Constellation Oracle ✦
 "She who sees the invisible pattern, senses the hour, and seats the soul in its appointed place."
 
-#### 2) Zone of Genius — Three Lenses
+#### 2) Unique Gift — Three Lenses
 
 - **Level 1 — Talents as Actions:** Map · Mirror · Weave · Prime · Fire
 - **Level 2 — Prime Driver:** Ignite Timed Alignment
@@ -331,7 +331,7 @@ Though she sits atop a potent mesh of humans and insight, she may delay firing i
 
 **Soul Purpose:** Create and support regenerative systems for humans to reconnect with self, the land, ancestors, and the wild, in service of a thriving future.
 
-**Zone of Genius:** My zone of genius is Crafting Visions and Conceptualizing Innovative Solutions to envision and strategize what is required to Build a Better World, and then Taking Leadership for implementation and to bring it to life.
+**Unique Gift:** My unique gift is Crafting Visions and Conceptualizing Innovative Solutions to envision and strategize what is required to Build a Better World, and then Taking Leadership for implementation and to bring it to life.
 
 **Missions:**
 - Build A Better World from the outside in (regenerative environments) and inside out (heart-centered humans building resilient, caring communities and capacities)
@@ -377,7 +377,7 @@ Tylor is a Temple Builder of Futures who listens to the land, aligns teams with 
 ✦ Temple Systems Builder ✦
 "He who hears the memory of the land and translates it into form, gathering teams to build what was once only felt."
 
-#### 1) Zone of Genius — Three Lenses
+#### 1) Unique Gift — Three Lenses
 
 - **Level 1 — Talents as Actions:** Map · Anchor · Ground · Ignite · Build
 - **Level 2 — Prime Driver:** Forge Sacred Form

@@ -1,5 +1,7 @@
 # Foundational Ontology
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > The Deepest Framework — The Primordial Architecture of Creation
 
 ![Holon Essential Qualities Diagram](./holon_essential_qualities_diagram.jpg)
@@ -80,7 +82,7 @@ Because the essential center is a unique prism, the energy that flows through it
 
 These colors are:
 - The visual expression of the unique essence
-- Derivable from Zone of Genius articulation (high signal)
+- Derivable from Unique Gift articulation (high signal)
 - What people instinctively choose in clothing and environments
 - Confirmable through multiple sources (aura readings, intuition, AI derivation)
 
@@ -223,7 +225,7 @@ Until it ripens to the point of creating the **next divine impulse**.
 
 Evolver is a **holonic ecosystem** — a product made of modules, each a holon.
 
-### For the Zone of Genius Module:
+### For the Unique Gift Module:
 
 | Phase | What It Looks Like |
 |-------|-------------------|

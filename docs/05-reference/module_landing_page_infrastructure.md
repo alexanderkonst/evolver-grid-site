@@ -100,7 +100,7 @@ interface ModuleLandingData {
 
 | Module | Space | Needs Landing | Marketing Priority |
 |--------|-------|---------------|-------------------|
-| Zone of Genius | ME | ✅ Create | 🔴 Highest — free entry point |
+| Unique Gift | ME | ✅ Create | 🔴 Highest — free entry point |
 | Quality of Life | ME | ✅ Create | 🔴 Highest — free entry point |
 | Multiple Intelligences | ME | ✅ Create | 🟡 Medium — supports ZoG |
 | Library | LEARN | ✅ Create | 🟡 Medium — free practice content |
@@ -109,7 +109,7 @@ interface ModuleLandingData {
 
 | Module | Space | Needs Landing | Marketing Priority |
 |--------|-------|---------------|-------------------|
-| Destiny (Genius Business) | BUILD | ✅ Update | 🔴 High — primary revenue |
+| Destiny (Unique Business) | BUILD | ✅ Update | 🔴 High — primary revenue |
 | Genius Offer Snapshot | Service | ✅ Update | 🔴 High — $111 product |
 | AI Intelligence Boost | Service | ✅ Update | 🟡 Medium — $33 product |
 | Men's Circle | MEET | ✅ Already v1.0 | ✅ Done |

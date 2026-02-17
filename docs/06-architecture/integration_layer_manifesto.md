@@ -42,7 +42,7 @@ The default solution is "federation" — let each platform exist, then connect t
 ├────────────────────────────────────────────────────────────┤
 │                    LAYER 2: MODULES                        │
 │                                                            │
-│   Zone of Genius    Integral Profile    Asset Mapping      │
+│   Unique Gift    Integral Profile    Asset Mapping      │
 │   Matchmaking       Transformation      Mission Discovery  │
 │   Quality of Life   [New modules]       ...               │
 │                                                            │
@@ -88,7 +88,7 @@ The mission is not to build another platform. It's to:
 Planetary OS is not "our platform." It's a contribution to THE platform.
 
 Our modules:
-- **Zone of Genius** — Genius articulation (unmatched simplicity)
+- **Unique Gift** — Genius articulation (unmatched simplicity)
 - **Asset Mapping** — Resource visibility
 - **Matchmaking** — Complementary connection
 - **Transformation Curriculum** — Growth pathways
@@ -157,7 +157,7 @@ For Hypothesis 1 to work, the backbone must:
 1. **Be universally understood** — By all evolutionary avant-garde, not just crypto or any subcultural language
 2. **Be simple** — Learnable on the go
 3. **Have core must-have apps:**
-   - ✅ **Profile creation** — Zone of Genius, Asset Mapping, Mission Discovery (best in class)
+   - ✅ **Profile creation** — Unique Gift, Asset Mapping, Mission Discovery (best in class)
    - 🔶 **Matchmaking/Discover** — Exists but needs refinement
    - 🔶 **Transformation Space** — 2-3 days from MVP
    - 🔶 **Onboarding + Gamification** — XP → Trust Tokens
@@ -183,7 +183,7 @@ With proven tribes, platform architects recognize the elephant. Integration laye
 ## What Success Looks Like
 
 A cohort becomes self-sufficient in their evolution:
-- ✅ Know who they are (Zone of Genius)
+- ✅ Know who they are (Unique Gift)
 - ✅ Know their resources (Asset Mapping)
 - 🔶 Know their complementary matches (Discover)
 - 🔶 Have growth paths (Transformation)

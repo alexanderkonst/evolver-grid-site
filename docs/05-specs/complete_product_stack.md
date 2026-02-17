@@ -166,7 +166,7 @@ This unified view combines multiple traditional roles:
 
 ---
 
-## The Complete Stack with Zone of Genius
+## The Complete Stack with Unique Gift
 
 ```
            ╔═══════════════════════════════════════╗
@@ -216,7 +216,7 @@ This unified view combines multiple traditional roles:
 
 ## Three Elements Per Layer
 
-### Zone of Genius (Source)
+### Unique Gift (Source)
 
 | Element | Суть | Значимость | Следствие |
 |---------|------|-----------|-----------|

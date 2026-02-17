@@ -33,7 +33,7 @@ Current onboarding:
 ### Phase 1: CORE PROFILE (Required)
 
 ```
-SCREEN 1: Zone of Genius
+SCREEN 1: Unique Gift
 ───────────────────────────────────
 "Discover who you really are"
 [12 questions → AI synthesis → Hero Card]
@@ -41,8 +41,8 @@ SCREEN 1: Zone of Genius
 WOW MOMENT: "You are The Synthesizer"
 
 UNLOCK MESSAGE:
-"With your Zone of Genius, you've unlocked:
-• Genius Business Builder (in Business Incubator)  
+"With your Unique Gift, you've unlocked:
+• Unique Business Builder (in Business Incubator)  
 • Personalized Growth Paths
 • Genius Matching with others"
 
@@ -100,7 +100,7 @@ SCREEN 5: Build Your Business
 
 PREVIEW: Business Incubator space
 
-"From Zone of Genius → Published Product"
+"From Unique Gift → Published Product"
 
 [Explore Later]
 ```
@@ -160,16 +160,16 @@ EXPLORE:
 
 ---
 
-## Scope Decision: Genius Business in Onboarding?
+## Scope Decision: Unique Business in Onboarding?
 
 **Current thinking:** NO
 
 - ZoG is enough for onboarding
-- Genius Business (Excalibur) = too much
+- Unique Business (Excalibur) = too much
 - Tell them it's unlocked, show where to find it
 - Let them go there when ready
 
-**Alternative:** Make it optional ("Want to see your Genius Business now?" [Yes] [Later])
+**Alternative:** Make it optional ("Want to see your Unique Business now?" [Yes] [Later])
 
 ---
 

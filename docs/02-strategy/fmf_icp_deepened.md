@@ -1,4 +1,6 @@
 # FMF Offer — Deepened ICP
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## The Founder in Extended Transition
 
 > *"I know my breakthrough is right around the corner. But the corner keeps moving."*
@@ -24,7 +26,7 @@ These are **recognition filters** — not outward messaging. They help us know w
 | Sense of planetary mission | Feel called to something bigger |
 | Growth-oriented | Investing in themselves is default |
 
-> **The recursive insight:** Alexander IS this person. The offer is built for himself first. Every genius business seller's most important client is themselves — by teaching and sharing, they also grow the fastest. "Put the mask on yourself first."
+> **The recursive insight:** Alexander IS this person. The offer is built for himself first. Every unique business seller's most important client is themselves — by teaching and sharing, they also grow the fastest. "Put the mask on yourself first."
 
 ---
 

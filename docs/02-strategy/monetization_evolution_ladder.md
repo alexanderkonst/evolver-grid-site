@@ -1,7 +1,9 @@
 # The Monetization Evolution Ladder
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## An Evolutionary Taxonomy of What We Monetize
 
-> *"We're all already monetizing our Zone of Genius — just with different levels of awareness."*
+> *"We're all already monetizing our Unique Gift — just with different levels of awareness."*
 
 ---
 
@@ -90,7 +92,7 @@ Each level represents a developmental stage of WHAT we monetize. Higher levels I
 **Examples:** Genius-based businesses, thought leadership, unique methodologies
 **Maslow:** Self-actualization
 
-**Characteristic:** All previous levels integrated + unique essence. Zone of Genius realized.
+**Characteristic:** All previous levels integrated + unique essence. Unique Gift realized.
 
 ---
 
@@ -121,10 +123,10 @@ Less Integrated ─────────────────────�
 
 ## Integration with Venture Studio
 
-The Genius Venture Studio operates at **Level 7 (Genius)** and aims to help people:
+The Unique Business Studio operates at **Level 7 (Genius)** and aims to help people:
 
 1. **Recognize** they're already monetizing something (usually Level 3-5)
-2. **Articulate** their Zone of Genius (Appleseed)
+2. **Articulate** their Unique Gift (Appleseed)
 3. **Package** it into an offer (Excalibur)
 4. **Publish** it as a product (Product Compiler)
 5. **Evolve** toward Mastery over time
@@ -135,7 +137,7 @@ Unconscious monetization (job hunting, Conformity)
            ↓
 Conscious monetization (freelancing, Skill/Expertise)
            ↓
-Genius monetization (Genius Business, Integrated Essence)
+Genius monetization (Unique Business, Integrated Essence)
            ↓
 Product monetization (Product Compiler)
            ↓
@@ -171,4 +173,4 @@ Mastery (all levels integrated, presence-as-value)
 
 *Document created: January 24, 2026*
 *Original insight by Alexander during Hackathon*
-*Part of the Genius Venture Studio intellectual property*
+*Part of the Unique Business Studio intellectual property*

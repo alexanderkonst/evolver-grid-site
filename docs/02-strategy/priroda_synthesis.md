@@ -13,13 +13,13 @@
 | Stage | What Happens | Game Equivalent |
 |-------|--------------|-----------------|
 | **1. Entry Scene** | First touch, hook, easy to pass | Tutorial intro |
-| **2. Character Creation** | Zone of Genius discovery | Class selection (mage/warrior) |
+| **2. Character Creation** | Unique Gift discovery | Class selection (mage/warrior) |
 | **3. Game World Unlock** | See the ecosystem, what's available | Map reveals |
 | **4. Onboarding** | Show 3 simple possibilities, don't overwhelm | First quest |
 | **5. Play** | See progress, invest in character (Tamagotchi effect) | Core loop |
 | **6. Unlocks** | Academy, Venture Coop, Settlement, Events | New zones |
 
-### What Zone of Genius Unlocks
+### What Unique Gift Unlocks
 
 1. **Profile** — First element of identity in the system
 2. **Matchmaking** — AI-powered introductions (like Birdy.ai)
@@ -34,10 +34,10 @@
 
 | Instrument | What It Measures | Function |
 |------------|------------------|----------|
-| **Zone of Genius** | Direction, potential, where you're heading | Personalization key |
+| **Unique Gift** | Direction, potential, where you're heading | Personalization key |
 | **Quality of Life Map** | Current state, where you are now | Recommendation input |
 
-> Zone of Genius is the #1 data point for AI personalization. When asked what single data point best helps AI understand a person, it consistently ranks ZoG above Myers-Briggs, Enneagram, Human Design, LinkedIn, etc.
+> Unique Gift is the #1 data point for AI personalization. When asked what single data point best helps AI understand a person, it consistently ranks ZoG above Myers-Briggs, Enneagram, Human Design, LinkedIn, etc.
 
 ---
 
@@ -150,7 +150,7 @@ Each level of organization must address:
 
 - The **user path** is what unifies all modules, not just shared values
 - Path leads to **self-understanding** and **meeting kindred souls**
-- Entry through Zone of Genius → everything else unlocks
+- Entry through Unique Gift → everything else unlocks
 - Quality of Life Map tells you where you are → enables personalized recommendations
 - Each module has its own membrane (values filter) but all share the ecosystem DNA
 
@@ -161,7 +161,7 @@ Each level of organization must address:
 | Priroda Concept | Evolver Grid Equivalent |
 |-----------------|-------------------------|
 | Academy of Development | Gamified OS Engine |
-| Zone of Genius test | `/zone-of-genius/assessment` |
+| Unique Gift test | `/zone-of-genius/assessment` |
 | Quality of Life Map | `/quality-of-life-map` |
 | Venture Cooperative | Future module |
 | Settlement | Physical layer (Network School as pilot?) |
@@ -170,7 +170,7 @@ Each level of organization must address:
 
 ## 9. Next Steps for Integration
 
-- [ ] Complete Zone of Genius → Character Creation flow
+- [ ] Complete Unique Gift → Character Creation flow
 - [ ] Build recommendation engine using ZoG + QoL data
 - [ ] Design "Game World Unlock" experience after character creation
 - [ ] Create curated transformational products marketplace
@@ -187,7 +187,7 @@ Each level of organization must address:
 
 | Component | Function | Status |
 |-----------|----------|--------|
-| **Zone of Genius** | Who I am, my unique gift | ✅ Built |
+| **Unique Gift** | Who I am, my unique gift | ✅ Built |
 | **Quality of Life Map** | Where I am now (8 domains × 10 stages) | ✅ Built |
 | **Evolutionary Address** | Where I am on 5 internal development lines | 🔵 Conceptual |
 | **Chosen Missions** | What I want to contribute to | ✅ Tool exists |
@@ -281,7 +281,7 @@ Mission Chats (community of people on same mission)
 |---|---|---|
 | **Essence** | BE | DO |
 | **Question** | Who am I naturally? | Where do I invest energy? |
-| **Tool** | Zone of Genius | Mission Discovery |
+| **Tool** | Unique Gift | Mission Discovery |
 | **Nature** | Role, direction | Contribution, project |
 | **Mapping** | Divine Feminine | Divine Masculine |
 
@@ -307,9 +307,9 @@ Mission Chats (community of people on same mission)
 - Upgrades have **prerequisites** (must unlock previous steps)
 - Completing upgrades earns **XP**
 - Example flow for Genius:
-  1. Discover Zone of Genius → unlocks...
+  1. Discover Unique Gift → unlocks...
   2. Create Genius Offer → unlocks...
-  3. Build Genius Business → unlocks...
+  3. Build Unique Business → unlocks...
   4. Scale with team → etc.
 
 ---
@@ -318,7 +318,7 @@ Mission Chats (community of people on same mission)
 
 ```
 INPUT:
-├── Zone of Genius (direction)
+├── Unique Gift (direction)
 ├── Quality of Life (current state)
 ├── Evolutionary Address (internal state)
 ├── Other tests (enneagram, MBTI, Human Design, astrology)
@@ -378,7 +378,7 @@ This doesn't mean hiding depth — it means **translating** it.
 
 ### Phase 2: Venture Cooperative (Month 2-4)
 
-1. Same core team tests Zone of Genius
+1. Same core team tests Unique Gift
 2. Add Mission Discovery
 3. Add Asset Inventory
 4. Test matchmaking between team members
@@ -404,7 +404,7 @@ This doesn't mean hiding depth — it means **translating** it.
 | Module | Entry Test | What Unlocks |
 |--------|------------|--------------|
 | **Academy of Development** | Quality of Life Map | Practice recommendations, upgrades |
-| **Venture Cooperative** | Zone of Genius | Matchmaking, roles, collaborations |
+| **Venture Cooperative** | Unique Gift | Matchmaking, roles, collaborations |
 | **Settlement** | Both + Asset Inventory | Physical community participation |
 
 ---

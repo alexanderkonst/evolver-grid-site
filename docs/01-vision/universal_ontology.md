@@ -1,5 +1,7 @@
 # Universal Ontology
 
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
 > Uni-verse — One Song
 
 *The foundational architecture of reality itself*
@@ -194,7 +196,7 @@ Because the essential center is a unique prism, the energy that flows through it
 
 These colors are:
 - The visual expression of the unique essence
-- Derivable from Zone of Genius articulation (high signal)
+- Derivable from Unique Gift articulation (high signal)
 - What people instinctively choose in clothing and environments
 - Confirmable through multiple sources (aura readings, intuition, AI derivation)
 

@@ -14,10 +14,10 @@ The platform reveals itself progressively as users demonstrate commitment.
 
 ---
 
-## Phase 1: Zone of Genius (Entry)
+## Phase 1: Unique Gift (Entry)
 
 ### What Happens
-1. User lands on Zone of Genius wizard
+1. User lands on Unique Gift wizard
 2. Completes the discovery flow (AI-first or manual)
 3. **First Aha Moment** — Results revealed:
    - Archetype
@@ -112,10 +112,10 @@ Three progressive steps:
 > "Welcome to your transformation home. Here are 5 spaces for your journey."
 
 **Screen 2: Profile Space (YOU)**
-> "This is YOU. Your Zone of Genius lives here. Map your resources, discover your mission, and track your growth."
+> "This is YOU. Your Unique Gift lives here. Map your resources, discover your mission, and track your growth."
 
 What's inside:
-- Zone of Genius (12 perspectives)
+- Unique Gift (12 perspectives)
 - Resources inventory (rename from "assets")
 - Mission discovery
 - Growth stats (XP, level, streaks)
@@ -124,7 +124,7 @@ What's inside:
 > "This is where you GROW. 5 growth paths with transformational content tied to your Quality of Life domains."
 
 What's inside:
-- Genius Path (12 perspectives upgrade, leads to Genius Business)
+- Genius Path (12 perspectives upgrade, leads to Unique Business)
 - Body Path
 - Mind Path
 - Emotions Path  
@@ -132,7 +132,7 @@ What's inside:
 
 What unlocks from here:
 - ZoG → First upgrade on Genius path (12 perspectives articulation)
-- ZoG + Genius upgrade → **Genius Business reveal** (unlocks Business Incubator)
+- ZoG + Genius upgrade → **Unique Business reveal** (unlocks Business Incubator)
 
 **Screen 4: Discover Space (CONNECT)**
 > "This is where you CONNECT. Find your tribe through genius matchmaking."
@@ -154,8 +154,8 @@ What's inside:
 - Business fundamentals
 
 Unlock condition:
-- 🔒 Locked until: Genius Business reveal completed
-- Nudge message: "Reveal your Genius Business to unlock"
+- 🔒 Locked until: Unique Business reveal completed
+- Nudge message: "Reveal your Unique Business to unlock"
 
 **Screen 6: Tour Complete**
 > "You're ready! Your first recommended action is waiting."
@@ -169,14 +169,14 @@ Unlock condition:
 | **Profile** | ✅ Unlocked | After ZoG + QoL | Map Resources, Discover Mission |
 | **Transformation** | ✅ Unlocked | After ZoG + QoL | First upgrade on Genius path |
 | **Discover** | 🔒 Locked | Resources + Mission complete | Browse matches |
-| **Business Incubator** | 🔒 Locked | Genius Business reveal | Create Genius Product |
+| **Business Incubator** | 🔒 Locked | Unique Business reveal | Create Genius Product |
 | **Marketplace** | 👁 View Only | Genius Offer created | List your offer |
 
 ### Locked Space Behavior
 
 When user clicks a locked space:
 1. Show friendly lock message with specific unlock requirement
-2. **Show the action that unlocks it** (e.g., "Complete: Reveal Your Genius Business")
+2. **Show the action that unlocks it** (e.g., "Complete: Reveal Your Unique Business")
 3. Direct link to that action
 
 ---
@@ -189,16 +189,16 @@ The Daily Loop's "Next Move" should include quick-win modules:
 |--------|------|---------|---------|
 | Map My Resources | 5 min | Inventory of skills, tools, assets | Discover Space |
 | Discover My Mission | 10 min | Clarity on life purpose | Discover Space |
-| Articulate My Genius | 10 min | 12-perspective statement refined | Genius Business |
-| Reveal Genius Business | 15 min | Business concept from genius | Business Incubator |
+| Articulate My Genius | 10 min | 12-perspective statement refined | Unique Business |
+| Reveal Unique Business | 15 min | Business concept from genius | Business Incubator |
 
 **Natural Sequence:**
-1. Zone of Genius (entry)
+1. Unique Gift (entry)
 2. Quality of Life (baseline)
 3. Map My Resources (Profile)
 4. Discover My Mission (Profile)
 5. Articulate My Genius (Transformation/Genius Path)
-6. Reveal Genius Business (unlocks Business Incubator)
+6. Reveal Unique Business (unlocks Business Incubator)
 7. Create Genius Product (Business Incubator)
 
 ---
@@ -218,7 +218,7 @@ The Daily Loop's "Next Move" should include quick-win modules:
 ## Summary Flow
 
 ```
-Zone of Genius
+Unique Gift
     ↓
 [Aha: Know your genius]
     ↓
@@ -236,7 +236,7 @@ Quick Wins: Resources + Mission
     ↓
 🔓 Discover Space Unlocked
     ↓
-Genius Business Reveal
+Unique Business Reveal
     ↓
 🔓 Business Incubator Unlocked
     ↓

@@ -58,8 +58,8 @@ docs/
 | [priroda_synthesis.md](./02-strategy/priroda_synthesis.md) | Priroda synthesis |
 | [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |
 | [venture_building_holomap.md](./02-strategy/venture_building_holomap.md) | Venture building map |
-| [genius_venture_cooperative.md](./02-strategy/genius_venture_cooperative.md) | Cooperative structure |
-| [genius_venture_studio_vision.md](./02-strategy/genius_venture_studio_vision.md) | Studio vision |
+| [unique_business_cooperative.md](./02-strategy/unique_business_cooperative.md) | Cooperative structure |
+| [unique_business_studio_vision.md](./02-strategy/unique_business_studio_vision.md) | Studio vision |
 | [pitch_deck_nuggets.md](./02-strategy/pitch_deck_nuggets.md) | Pitch deck content |
 | [guerrilla_marketing_hacks.md](./02-strategy/guerrilla_marketing_hacks.md) | Marketing tactics |
 | [landing_page_copywriting_framework.md](./02-strategy/landing_page_copywriting_framework.md) | Copy framework |
@@ -124,7 +124,7 @@ docs/
 - [daily_loop_product_roast.md](./04-specs/daily-loop/daily_loop_product_roast.md)
 - [my-next-move/](./04-specs/my-next-move/)
 
-### Zone of Genius
+### Unique Gift
 - [zone-of-genius/](./04-specs/zone-of-genius/)
 - [zog-profile/](./04-specs/zog-profile/)
 
@@ -183,8 +183,8 @@ docs/
 
 | Doc | Purpose |
 |-----|---------|
-| [zone_of_genius_technology.md](./07-technology/zone_of_genius_technology.md) | ZoG framework & theory |
-| [excalibur_technology.md](./07-technology/excalibur_technology.md) | Genius Business framework |
+| [unique_gift_technology.md](./07-technology/unique_gift_technology.md) | ZoG framework & theory |
+| [excalibur_technology.md](./07-technology/excalibur_technology.md) | Unique Business framework |
 | [matchmaking_engine.md](./07-technology/matchmaking_engine.md) | Matchmaking engine |
 | [transformation_engine.md](./07-technology/transformation_engine.md) | Transformation engine |
 | [prime_radiant_spec.md](./07-technology/prime_radiant_spec.md) | Prime Radiant spec |

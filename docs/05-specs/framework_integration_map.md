@@ -10,7 +10,7 @@
 | Framework | How It Applies |
 |-----------|---------------|
 | [collaboration_spectrum.md](./collaboration_spectrum.md) | Match users at similar stages (1-11) for optimal collaboration |
-| [zone_of_genius_technology.md](./zone_of_genius_technology.md) | Match by complementary genius profiles |
+| [unique_gift_technology.md](./unique_gift_technology.md) | Match by complementary genius profiles |
 | [integral_transactional_field_theory.md](./integral_transactional_field_theory.md) | Align inner lens (ZoG) with outer lens (ICP) for business matches |
 
 ---

@@ -40,7 +40,7 @@ These are the "tables of the universe" but alive — structured as holons. All h
 | Field Group | Fields |
 |-------------|--------|
 | **Identity & Symbiosis** | player_id, basic profile (name, location, language, time zone), AI relationship state |
-| **Zone of Genius** | Primary Genius archetype, top talents, Genius orientation text (Excalibur statement) |
+| **Unique Gift** | Primary Genius archetype, top talents, Genius orientation text (Excalibur statement) |
 | **Life Stats** | Current Quality of Life scores across key domains, history of snapshots (time-series) |
 | **Developmental Paths** | Which Paths they're on, which Upgrades completed, XP totals & levels by path |
 | **Missions** | Missions pledged to, role(s) in each, contribution history |
@@ -166,7 +166,7 @@ Each Path is a skill tree:
 - **Edges** = Prerequisite relationships (what unlocks what)
 
 **Example: Showing Up / Genius Path**
-1. Take Zone of Genius Assessment
+1. Take Unique Gift Assessment
 2. Receive AppleSeed (applications of Genius)
 3. Receive Excalibur (unique Genius offer)
 4. Design Destiny business (minimally viable Genius business)

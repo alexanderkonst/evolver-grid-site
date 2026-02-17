@@ -1,4 +1,6 @@
 # Sacred Transaction Field
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 ## The Energetics of Perceived Value and Exchange
 
 > *"People don't reciprocate proportional to actual value received. They reciprocate through a perception filter."*
