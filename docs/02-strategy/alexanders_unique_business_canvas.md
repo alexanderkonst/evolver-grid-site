@@ -38,10 +38,19 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 **The call:**
 > *Get your Founder-Market Fit first. PMF follows.*
 
+**Three layers of depth:**
+
+| Layer | Function | The line |
+|-------|----------|----------|
+| **Attack** | Stops the scroll, makes enemies | *"The entire startup industry is a billion-dollar workaround for not knowing yourself."* |
+| **Reframe** | The 2am moment, can't unsee | *"What if you ARE the PMF but your self-knowledge is the bottleneck?"* |
+| **Invitation** | Creates the tribe | *"YOU ARE THE PMF. Get your FMF first. PMF follows."* |
+
 **Collapse test:** If someone proves that who the founder is doesn't determine business success, this collapses. ✅ Passes — every iconic company proves the opposite.
 
 > Source: [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4
 > Crystallized: Feb 17-18, 2026 — sacred fire roasting → Alexander's own voice
+> Deepened: Feb 18, 2026 — three-layer structure + myth-driven company analysis
 
 ---
 
@@ -59,18 +68,17 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### Ideal Client Profile (ICP)
 
-**Recognition Filters** (not demographics — who they **are**):
+**Not demographics. Three situations** — people with **fuel but no direction:**
 
-| Qualifier | Signal |
-|-----------|--------|
-| Founders / entrepreneurs | Building or about to build |
-| Digital nomads, cosmopolits | Location-free, globally minded |
-| AI-fluent, good prompt writers | Tech-native, systems-oriented |
-| MBA-minded / structured thinkers | Framework-oriented, not woo-only |
-| Plant medicine / psychedelic path | Inner work is real, not performative |
-| Sense of planetary mission | Feels called to something bigger |
+| Situation | Who they are | Self-language | Why myth lands |
+|-----------|-------------|---------------|----------------|
+| **The Bruised Founder** | Tried 1-3 things, none worked. Followed playbooks.  Suspects the APPROACH is wrong, not just the idea. | *"I'm too capable for these results."* | They've exhausted symptom-level solutions. Ready to hear "the sequence is backwards." |
+| **The Skilled Non-Founder** | Deep expertise (coaching, design, engineering). Knows they have fuel. Never started a company. | *"I know what I'm good at but I don't know how to make money from it."* | Haven't been brainwashed by the startup industry. The myth validates their instinct. |
+| **The Post-Corporate Builder** | Left a career. Has resources, skills, network — but no direction. | *"I know HOW to build. I just don't know WHAT to build."* | They have building skills. Missing the WHAT — which is exactly what FMF provides. |
 
-> Source: [fmf_icp_deepened.md](./fmf_icp_deepened.md) · [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md.resolved)
+**Common thread:** The startup industry offers them direction (find a market) but ignores the fuel (who they are). **The fuel IS the direction.**
+
+> Source: [myth_deepening_feb18.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/myth_deepening_feb18.md) §3
 
 ---
 
@@ -221,5 +229,5 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ---
 
-*Canvas v5.0 — February 18, 2026, 00:04*
-*Myth pierced through in Alexander's voice. Tomorrow: packaging, value ladder, distribution, first messages.*
+*Canvas v5.1 — February 18, 2026, 12:15*
+*Three-layer myth depth added. ICP replaced with situation-based profiles. Myth broadcasts created.*
