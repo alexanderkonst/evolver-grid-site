@@ -56,9 +56,11 @@ The companion workflow (`.agent/workflows/genius-business.md`) turns this playbo
 > The myth is not a marketing artifact. The myth is the acorn from which every business artifact grows. If the myth is true, every downstream artifact becomes self-evident. — February 17, 2026
 
 **How:**
-1. State the deepest truth your work embodies — not what you do, but what must be true for what you do to matter
-2. Test it: say it to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — not yours.
-3. Verify: does every artifact below (Unique Gift, Offer, Tribe, Pain, Promise, Method) trace back to this myth? If not, something is misaligned.
+1. Find the **photon of truth** first — one sentence that can't be broken down further (the acorn from which the entire tree grows)
+2. State the deepest truth your work embodies — not what you do, but what must be true for what you do to matter
+3. Test it: say it to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — not yours.
+4. Verify: does every artifact below (Unique Gift, Offer, Tribe, Pain, Promise, Method) trace back to this myth? If not, something is misaligned.
+5. **Map it across communities** — if the same truth resonates in 3+ community languages (e.g. founders, healers, creators), you've found the atom
 
 **FMF Example (crystallized Feb 17-18, 2026 — sacred fire → Alexander's own voice):**
 
@@ -159,6 +161,8 @@ If that's true → FMF is the most important thing a founder can do → the meth
 
 **The Recursive Shadow:** Once uniqueness is articulated, watch for the shadow — the limiting belief that is the unique gift inverted. For a founder whose gift is clarity, the shadow will be: *"I don't have enough clarity yet to act."* The practitioner's role is to help them see that the condition for acting was met long ago — they kept looping because more depth was always available. (See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 1.)
 
+**Segment awareness:** Your myth speaks to different communities differently. Map which communities your ICP appears in. For example: Founders, Coaches/Healers, Creators, Life Transitioners. Founders have business instinct but need self-knowledge; Coaches/Healers have self-knowledge but need packaging. Same sequence, different speed.
+
 **Check:** *"Is this a real person you know?"* — You should be able to name 5 people who match.
 
 **Source:** [fmf_icp_deepened.md](../02-strategy/fmf_icp_deepened.md), [icp_deepening_template.md](../02-strategy/icp_deepening_template.md)
@@ -197,6 +201,9 @@ If that's true → FMF is the most important thing a founder can do → the meth
 | **Urgency** | Runway countdown, relationship tipping point, AI market window closing |
 
 **Self-Language:** "I've been in this transition for too long" / "I'm running out of runway" / "I'm so much more capable than my results show" / "I feel like I'm drilling hoping I'm almost through the wall"
+
+> [!IMPORTANT]
+> **The confabulation layer:** Your ICP cannot accurately diagnose their own root cause. They will say "the market wasn't ready" or "my co-founder was the problem" or "funding dried up." These are confabulated explanations — plausible but wrong. They lack the vocabulary to see the real root cause. The myth gives them that vocabulary. Design your pain discovery to listen for what they DON'T say, not just what they DO say.
 
 **Check:** *"Would they cry reading this?"* — If the description doesn't hit a nerve, you're still too abstract.
 
@@ -388,12 +395,16 @@ Once first revenue validates the offer, the pipeline extends:
 
 | Next Step | What | Source |
 |-----------|------|--------|
+| **Movement** | Grow your myth into a 7-layer movement (Mind, Exposure, Environment, Identity, Language, Rituals, Standards) | See [canvas template](../02-strategy/unique_business_canvas_template.md) — §13 Movement Layer |
 | **Value Ladder** | Build 5-tier offer ecosystem | unique_business_playbook.md — Workflow 7 |
 | **Product** | Turn validated offer into software | integrated_product_building_workflow.md |
 | **Scale** | Grow from 1:1 to 1:many | distribution_playbook.md |
 
 > [!NOTE]
 > **Venture Creation vs. Venture Building.** This playbook addresses *venture creation* — the upstream problem of identifying which venture is structurally the founder's. The difference matters: the entire venture building industry assumes the founder already knows what to build. They don't address the selection problem — which is the root cause of 90% of startup failure (building the wrong thing, for the wrong reasons, in the wrong sequence). Our unique contribution lives here.
+
+> [!NOTE]
+> **Products are artifacts of belonging.** The myth generates the movement. Products are not what you sell — they're artifacts of belonging that the myth generates. People buy to belong, not to acquire.
 
 ---
 
@@ -409,9 +420,11 @@ Once first revenue validates the offer, the pipeline extends:
 | Marketing Playbook | Core Belief, Packaging, Messaging Ladder | docs/03-playbooks/ |
 | Integrated Product Building Workflow | Product → Architecture → UI → Code (downstream of this playbook) | docs/03-playbooks/ |
 | FMF ICP Deepened | Filled-in example for all steps | docs/02-strategy/ |
+| Unique Gift Philosophy | 12 discoveries incl. photon of truth, myth-to-movement compiler | docs/01-vision/ |
 
 ---
 
-*Playbook v1.0 — February 14, 2026*
+*Playbook v2.0 — February 18, 2026*
+*Added: photon of truth (Step 0), segment morphing (Step 3), confabulation layer (Step 4), movement layer (post-Step 10)*
 *Author: Alexander Konstantinov + AI*
 *Running Example: Founder-Market Fit Session*

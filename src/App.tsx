@@ -329,6 +329,7 @@ const App = () => (
                   <Route path="/equilibrium" element={<EquilibriumPage />} />
                   {/* Founder-Market Fit Landing Page */}
                   <Route path="/founder-market-fit" element={<FounderMarketFit />} />
+                  <Route path="/fmf" element={<FounderMarketFit />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

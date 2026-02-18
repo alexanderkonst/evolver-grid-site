@@ -1,9 +1,52 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 2.2
+> **Version:** 3.0
 > **Created:** 2026-01-28
-> **Updated:** 2026-02-10
-> **Purpose:** Master reference for all modules organized by Spaces + Versioning
+> **Updated:** 2026-02-18
+> **Purpose:** Master reference for all modules organized by Spaces + Versioning + Divine Stack Architecture
+
+---
+
+## 🏛️ THE DIVINE STACK — Architecture of the Whole
+
+> **Feb 18, 2026 discovery:** The modules below are **applications** running on top of **operating systems** which emerge from **cosmogenesis.** This is the nested architecture.
+
+```
+╔═══════════════════════════════════════════════════════════════╗
+║  TIER 0: COSMOGENESIS (how anything comes into being)        ║
+║  ├── Prime Radiant (the origin pattern)                      ║
+║  └── Universal Ontology (holonic architecture of reality)    ║
+╠═══════════════════════════════════════════════════════════════╣
+║  TIER 1: OPERATING SYSTEMS (domain-specific architectures)   ║
+║  ├── Uniqueness OS      → scanner → essence → articulation   ║
+║  ├── Holomap OS         → seeing wholes within wholes        ║
+║  ├── Meta-Blueprint OS  → simplicity → blueprint → AI → loop ║
+║  └── Planetary OS       → full integration of all OSes       ║
+╠═══════════════════════════════════════════════════════════════╣
+║  TIER 2: APPLICATIONS (running on the OSes)                  ║
+║  ├── Unique Business OS   (FMF → myth → movement → $)       ║
+║  ├── Venture Cooperative  (multi-venture incubation)         ║
+║  ├── AI Matchmaking       (structural resonance matching)    ║
+║  ├── Equilibrium          (biological time OS)               ║
+║  ├── Transformation OS    (QoL → growth paths → embodiment)  ║
+║  ├── Community OS         (events → circles → connections)   ║
+║  └── Marketplace OS       (discover → buy → sell)            ║
+╚═══════════════════════════════════════════════════════════════╝
+```
+
+**Key insight:** The modules in Tier 2 are not independent products — they are applications running on shared infrastructure. The Uniqueness OS (Zone of Genius scanner) feeds into Unique Business OS, AI Matchmaking, and Transformation OS. The Meta-Blueprint OS enables all of them to be codified as AI-executable blueprints.
+
+**Mapping to Spaces:**
+
+| Tier 2 Application | Primary Space | OS Dependencies |
+|--------------------|---------------|------------------|
+| Unique Business OS | BUILD | Uniqueness OS, Meta-Blueprint OS |
+| Venture Cooperative | BUILD | Unique Business OS |
+| AI Matchmaking | COLLABORATE | Uniqueness OS |
+| Equilibrium | Standalone | Holomap OS |
+| Transformation OS | ME + LEARN | Uniqueness OS |
+| Community OS | MEET + COLLABORATE | — |
+| Marketplace OS | BUY & SELL | Unique Business OS |
 
 ---
 
@@ -71,9 +114,11 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **BUY & SELL** | Marketplace | 0.5 | PoC | `/game/marketplace` |
 | **Special** | Onboarding | 0.7 | Alpha | `/start` |
 | **Special** | Tour | 0.5 | PoC | (within onboarding) |
+| **Standalone** | Equilibrium (Web) | 0.9 | MVP | `/equilibrium` |
+| **Standalone** | Equilibrium (Bot) | 0.9 | MVP | Telegram |
+| **Standalone** | FMF Session | 0.5 | PoC | `/fmf` |
 | **Standalone** | Art | 0.5 | PoC | `/art` |
 | **Standalone** | Transcriber | 0.5 | PoC | `/transcriber` |
-| **Standalone** | Equilibrium | 0.1 | Concept | — |
 | **Standalone** | Clock | 0.1 | Concept | — |
 
 > ¹ Unique Business is routed under `/game/grow` (ME Space) but logically belongs to BUILD Space.
@@ -592,15 +637,47 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | End | Transcript generated |
 | Dependencies | None |
 
-### Module: Equilibrium — v0.1
+### Module: Equilibrium (Standalone Concept) — v0.1
+
+> ⚠️ **Superseded.** The Equilibrium concept has been fully realized — see the v0.9 entry above in Standalone Products.
+
+### Module: FMF Session — v0.5
 
 | Field | Value |
 |-------|-------|
-| Version | **0.1** (Concept) |
-| Master Result | TBD |
-| Start | — |
-| End | — |
-| Dependencies | None |
+| Version | **0.5** (PoC) |
+| Master Result | "I don't know what to build" → "I see my Founder-Market Fit" |
+| Start | `/fmf` |
+| End | Session booked |
+| Dependencies | None (entry point for founders) |
+| OS Layer | Unique Business OS (running on Uniqueness OS + Meta-Blueprint OS) |
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Landing Page | 0.5 | PoC |
+| Booking Flow | 0.3 | Prototype |
+| Session Methodology (MAP→MATCH→MOVE) | 0.5 | PoC |
+
+### Module: Equilibrium Bot — v0.9
+
+| Field | Value |
+|-------|-------|
+| Version | **0.9** (MVP) |
+| Master Result | Disconnected from cycles → Daily energy-aware living |
+| Start | Telegram `/start` |
+| End | Continuous tool — success = daily use |
+| Dependencies | None (standalone Telegram bot) |
+| Tech | Vercel Edge Functions, Supabase, Telegram Bot API |
+| OS Layer | Holomap OS (cycles, rhythms, planetary intelligence) |
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Onboarding (DOB capture) | 0.9 | MVP |
+| Daily Energy Reports | 0.9 | MVP |
+| On-demand `/energy` readings | 0.9 | MVP |
+| 4-layer context engine | 0.9 | MVP |
 
 ### Module: Clock — v0.1
 
@@ -627,8 +704,8 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | BUILD | 3 | 11 | 14 |
 | BUY & SELL | 1 | 3 | 4 |
 | Special | 2 | 8 | 10 |
-| Standalone | 4 | 5 | 9 |
-| **TOTAL** | **23** | **127** | **150** |
+| Standalone | 6 | 24 | 30 |
+| **TOTAL** | **25** | **146** | **171** |
 
 ---
 
@@ -674,6 +751,14 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ## 📝 CHANGELOG
 
+### v3.0 (2026-02-18)
+- **Divine Stack Architecture** added — Tier 0 (Cosmogenesis) → Tier 1 (Operating Systems) → Tier 2 (Applications)
+- **Tier 2 Application mapping** added — 7 applications mapped to Spaces and OS dependencies
+- **FMF Session** added as standalone product (v0.5)
+- **Equilibrium Bot** added as standalone product (v0.9) — Telegram bot for daily energy readings
+- **Equilibrium version fixed** — was showing 0.1 in standalone section, actual state is 0.9 (MVP)
+- Module count: 23 → 25, Submodule count: 127 → 146
+
 ### v2.2 (2026-02-10)
 - **Art** moved from ME Space to new Standalone section (v0.5, confirmed by code)
 - **Growth Paths** upgraded v0.5 → v0.7 (dedicated module folder, 5 paths, detail pages)
@@ -697,5 +782,5 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-*Module Taxonomy v2.2 — Versioned by Spaces*
-*Last updated: 2026-02-10*
+*Module Taxonomy v3.0 — Divine Stack Architecture*
+*Last updated: 2026-02-18*

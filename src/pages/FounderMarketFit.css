@@ -719,7 +719,7 @@
     color: var(--fmf-text);
 }
 
-.fmf-yes+ul li::before {
+.fmf-filter-yes li::before {
     content: '✓';
     position: absolute;
     left: 0;
@@ -728,7 +728,7 @@
     font-size: 0.85rem;
 }
 
-.fmf-no+ul li::before {
+.fmf-filter-no li::before {
     content: '✗';
     position: absolute;
     left: 0;
@@ -737,12 +737,23 @@
     font-size: 0.85rem;
 }
 
-.fmf-yes {
-    color: #4ecdc4 !important;
+.fmf-filter-col:first-child .fmf-h3 {
+    color: #4ecdc4;
 }
 
-.fmf-no {
-    color: rgba(239, 106, 106, 0.7) !important;
+.fmf-filter-col:last-child .fmf-h3 {
+    color: rgba(239, 106, 106, 0.7);
+}
+
+/* === MYTH SECTION === */
+.fmf-myth .fmf-reframe {
+    border-left-color: #4ecdc4;
+    max-width: 600px;
+}
+
+.fmf-myth .fmf-reframe p {
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 /* === ABOUT === */

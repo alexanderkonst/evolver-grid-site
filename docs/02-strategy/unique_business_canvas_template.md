@@ -32,6 +32,14 @@ they'd have no more _________________________.
 
 Your myth is the deepest claim your work rests on. If this myth were disproven, your entire business would collapse. It connects your unique gift to the world's need.
 
+### The Single Photon of Truth (the acorn)
+
+Before anatomy — find the irreducible truth. One sentence that can't be broken down further:
+
+> _______________________________________________________________
+
+*If this sentence is true, everything downstream becomes self-evident. If it's false, everything collapses. This is the acorn from which the entire tree grows.*
+
 ### Anatomy of a Myth
 
 Every myth that births a legendary business has four parts:
@@ -45,21 +53,32 @@ Every myth that births a legendary business has four parts:
 
 > **The test:** If someone disproves your reality claim, does your entire business collapse? If yes → correct myth. If no → you're stating a preference, not a truth.
 
-### Fill in yours:
+### Three layers of depth
 
-**Reality claim:**
-> _______________________________________________________________
+Express your myth at three escalating levels:
 
-**Enemy:**
-> _______________________________________________________________
+| Layer | Function | Fill in |
+|-------|----------|--------|
+| **Attack** | What's wrong with the status quo? | |
+| **Reframe** | What if the real answer is the opposite? | |
+| **Invitation** | What specifically do you offer? | |
 
-**Tribe:**
-> _______________________________________________________________
+### Collapse test
 
-**Invitation:**
-> _______________________________________________________________
+*"If someone proves [opposite of reality claim], my business collapses."* → ✅ / ❌
 
-**Collapse test:** *"If someone proves [opposite of reality claim], my business collapses."* → ✅ / ❌
+### Segment morphing (the atomic discovery)
+
+Your truth appears in multiple community languages. Map it:
+
+| Community | What they call it | Your myth in their language |
+|-----------|-------------------|---------------------------|
+| | | |
+| | | |
+| | | |
+| | | |
+
+> If the same truth resonates across 3+ communities, you've found the atom. You sit at the center of a hub.
 
 ---
 
@@ -87,6 +106,15 @@ Every myth that births a legendary business has four parts:
 | | |
 
 > *Key insight: Your most important client is yourself. If this doesn't describe YOU, something is off.*
+
+**Who this is NOT for** (filter explicitly):
+
+| Person | Why it won't land |
+|--------|------------------|
+| | |
+| | |
+
+> Knowing who you're NOT for sharpens who you ARE for.
 
 ---
 
@@ -189,18 +217,40 @@ How have you embodied this work?
 
 ---
 
+## 13. Movement Layer
+
+Your myth generates a movement. Track which layers you have:
+
+| # | Layer | Your Version | Status |
+|---|-------|-------------|--------|
+| 1 | **Mind** (ideology) | | |
+| 2 | **Exposure** (continuous education) | | |
+| 3 | **Environment** (shared reality) | | |
+| 4 | **Identity** (who they become) | | |
+| 5 | **Language** (unique vocabulary) | | |
+| 6 | **Rituals** (repeated actions) | | |
+| 7 | **Standards** (code of conduct) | | |
+
+> These layers emerge from the myth. Don't construct them — grow them from the acorn.
+
+> *Terminology: internally you may call this a "cult" (neutral technology of persuasion). Externally: "movement," "tribe," or "community."*
+
+---
+
 ## Theory Layer
 
 If you want to understand WHY this works, study these:
 
 | Theory | Reference |
 |--------|-----------|
-| Transaction physics | [ITFT](../01-vision/integral_transactional_field_theory.md) |
+| Transaction physics (legibility, countability, intentionality) | [ITFT](../01-vision/integral_transactional_field_theory.md) |
 | Perceived value filter | [Sacred Transaction Field](../01-vision/sacred_transaction_field.md) |
 | Pain slicing | [Pain Theory Playbook](../03-playbooks/pain_theory_playbook.md) |
 | Customer forces | [Landing Page Framework](./landing_page_copywriting_framework.md) |
+| Myth as seed | [Unique Gift Philosophy](../01-vision/unique_gift_philosophy.md) |
+| Movement mechanics (7-layer Cult OS) | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
 
 ---
 
-*Template v3.0 — February 18, 2026*
-*Added: Anatomy of a Myth framework (4-part structure: reality claim → enemy → tribe → invitation)*
+*Template v4.0 — February 18, 2026*
+*Added: photon of truth, 3-layer myth depth, segment morphing, who-it's-NOT-for, movement layer. Theory layer expanded.*
