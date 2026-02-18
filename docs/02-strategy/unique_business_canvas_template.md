@@ -32,13 +32,34 @@ they'd have no more _________________________.
 
 Your myth is the deepest claim your work rests on. If this myth were disproven, your entire business would collapse. It connects your unique gift to the world's need.
 
-> *"There exists a __________ so structurally __________ that __________ IS __________."*
+### Anatomy of a Myth
 
-**Your Myth:**
+Every myth that births a legendary business has four parts:
 
+| Part | Function | Apple example |
+|------|----------|---------------|
+| **Reality claim** | What must be true about the world for your work to be inevitable | *"The people crazy enough to think they can change the world are the ones who actually do."* |
+| **Enemy** | The force or status quo your myth opposes — this is what makes it polarizing | *Conventional thinking. Boring technology. The status quo.* |
+| **Tribe** | Who recognizes themselves in this myth — not a demographic, a felt identity | *"The crazy ones. The misfits. The rebels. The round pegs in square holes."* |
+| **Invitation** | The action or stance your myth asks people to take | *"Think Different."* |
+
+> **The test:** If someone disproves your reality claim, does your entire business collapse? If yes → correct myth. If no → you're stating a preference, not a truth.
+
+### Fill in yours:
+
+**Reality claim:**
 > _______________________________________________________________
 
-**Roast test:** If someone said "that's not true," would your entire business fall apart? If yes → correct myth.
+**Enemy:**
+> _______________________________________________________________
+
+**Tribe:**
+> _______________________________________________________________
+
+**Invitation:**
+> _______________________________________________________________
+
+**Collapse test:** *"If someone proves [opposite of reality claim], my business collapses."* → ✅ / ❌
 
 ---
 
@@ -181,4 +202,5 @@ If you want to understand WHY this works, study these:
 
 ---
 
-*Template v2.0 — February 17, 2026*
+*Template v3.0 — February 18, 2026*
+*Added: Anatomy of a Myth framework (4-part structure: reality claim → enemy → tribe → invitation)*
