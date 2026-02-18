@@ -45,6 +45,35 @@ The Distribution Playbook transforms a product with marketing into a working dis
 
 ---
 
+## The Myth-Driven Distribution Principle (Feb 18, 2026)
+
+> **Distribution is not a tactic you choose from a menu. It is a structural consequence of knowing where you sit in the ecosystem.**
+
+When the myth is clear and the meta-position is mapped, the distribution strategy becomes obvious. It emerges FROM the myth — it is not bolted on after.
+
+### The Partnership Distribution Model
+
+Every self-knowledge community has practitioners who deliver diagnosis but hit a wall at "now what?":
+
+| Community | Their Practitioners | What They Deliver | Their Wall |
+|-----------|--------------------|--------------------|------------|
+| Gene Keys | Gene Keys guides | Self-knowledge through sequences | "Now what do I DO with this?" |
+| Human Design | HD readers | Energetic type/strategy | "How do I make money from who I am?" |
+| Enneagram | Enneagram coaches | Type-based self-awareness | "OK I know my type, now what?" |
+| Ikigai | Ikigai facilitators | Purpose exploration | "I found my ikigai but can't monetize it" |
+
+**The strategy:** We ARE the "now what." We become the **infrastructure layer underneath all self-knowledge systems.** Partnership = their lens + our method (FMF → myth → movement → monetization). They send us qualified, self-aware clients.
+
+**Why this works:**
+- We don't compete for attention — we plug into existing flows
+- Clients arrive pre-qualified (already self-aware, already invested in growth)
+- Each partnership extends reach into a new community spoke (multiplicative, not additive)
+- The practitioner gains a completion story for their clients
+
+> **Generalized principle:** Every unique business has its own radically simple distribution channel that emerges from the myth and meta-position. When you know where you sit in the ecosystem, the upstream partners become obvious.
+
+---
+
 ## Master Result
 
 > **From:** Marketing готов (условия для мгновенного действия созданы), но 0 людей видят
@@ -838,8 +867,11 @@ Repeat weekly until 100 users.
 - [guerrilla_marketing_hacks.md](./guerrilla_marketing_hacks.md) — Tactical distribution plays
 - [integral_transactional_field_theory.md](./integral_transactional_field_theory.md) — Transaction physics
 - [sacred_transaction_field.md](./sacred_transaction_field.md) — Perceived value factors
+- [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discoveries 11-13 (photon of truth, compiler, meta-blueprint)
+- [alexanders_unique_business_canvas.md](../02-strategy/alexanders_unique_business_canvas.md) — v2.0 (partnership distribution, meta-blueprint)
 
 ---
 
 *Codified: January 27, 2026*
+*Updated: February 18, 2026 — partnership distribution model, myth-driven distribution principle*
 *This is the master blueprint for the Distribution Compiler*

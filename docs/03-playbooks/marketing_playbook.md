@@ -239,22 +239,49 @@ Example:
 
 ### Step 0.4: The Myth as Resonance Filter
 
-> *See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4*
+> *See [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discoveries 4, 11-12*
 
 Beyond Core Belief lies the **Myth** — the fundamental story your brand tells about reality.
 
-**The myth is not messaging. The myth IS the funnel.**
+**The myth is not messaging. The myth IS the funnel.** The myth is the acorn from which every marketing artifact grows.
+
+**Step 1: Find the photon of truth** — one sentence that can't be broken down further:
+> _______________________________________________________________
+
+If this sentence is true, everything downstream is self-evident. If false, everything collapses.
 
 When the myth is stated plainly, the right clients self-select by resonance. No persuasion needed.
 
 | Level | What it is | Example |
 |-------|-----------|---------|
 | Core Belief | What you stand FOR | "Everyone has a Unique Gift" |
-| Core Myth | The underlying truth | "There exists a venture so structurally yours that building it IS your personal development, and developing yourself IS building it" |
+| Photon of Truth | The atom that can't be broken down | "There is something irreducibly YOU. Your life's work is its expression." |
+| Core Myth | The underlying truth | "There exists a venture so structurally yours that building it IS your personal development" |
+
+**Step 2: Express at three layers of depth:**
+
+| Layer | Function |
+|-------|----------|
+| **Attack** | What's wrong with the status quo? |
+| **Reframe** | What if the real answer is the opposite? |
+| **Invitation** | What specifically do you offer? |
+
+**Step 3: Map across communities (the atomic discovery):**
+
+Your truth appears in multiple community languages. If it resonates in 3+ communities, you've found the atom.
+
+| Community | Your myth in their language |
+|-----------|---------------------------|
+| | |
+| | |
+| | |
 
 **Test:** State the myth to 10 people. The ones whose chest tightens — that's your tribe. The ones who nod politely — they're not yours. The myth does the filtering for you.
 
 **Self-selection > Persuasion.** If you need to convince someone, you're talking to the wrong person.
+
+> [!IMPORTANT]
+> **The confabulation layer:** Your ICP cannot accurately name their own root cause. They confabulate plausible explanations ("the market wasn't ready," "funding dried up"). The myth gives them the vocabulary to see the real root cause. Design messaging that names what they CAN'T name themselves.
 
 ---
 
@@ -872,3 +899,4 @@ This is **self-organizing infrastructure for mission manifestation**.
 
 *Unified: January 27, 2026*
 *Merged from: marketing_playbook.md + marketing_meta_playbook.md*
+*Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*

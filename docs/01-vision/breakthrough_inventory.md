@@ -73,7 +73,7 @@ The deepest layer of uniqueness:
 
 The practical technology to articulate and apply uniqueness:
 
-| System | Name for This |
+| System / Community | Name for This |
 |--------|--------------|
 | Venture Building | Founder-Market Fit |
 | Creator Economy | Uniqueness / Personal Brand |
@@ -89,8 +89,14 @@ The practical technology to articulate and apply uniqueness:
 | Integral Theory | Unique Self (Marc Gafni) |
 | Positive psychology | Signature Strengths (Seligman/Peterson) |
 | Design Thinking | Human-Centered Design (but applied inward) |
+| Shamanic / medicine | Your medicine, the medicine wheel |
+| Personality systems | Type/design/keys (Enneagram, Gene Keys, Human Design, MBTI) |
+| Life transitioners | "What should I do with my life?" |
+| Coaches / healers | "My gift IS the business" |
 
-**My craft**: building a scanner of uniqueness and a technology to apply it into a person's venture/craft. Essentially a **Unique Business Compiler** — from articulated essence to manifest business.
+> **The atomic discovery (Feb 18, 2026):** All of these systems and communities circle the same irreducible truth. The myth sits at the center. One photon of truth, many languages.
+
+**My craft**: building a scanner of uniqueness and a technology to apply it into a person's venture/craft. Essentially a **Myth-to-Movement Compiler** — from articulated essence to crystallized myth to living movement to monetized business.
 
 ### 6. Unique Businesses
 
@@ -118,21 +124,55 @@ I was at step 4 while step 3 wasn't finished. That's pushing the river.
 
 ---
 
-## The Stack (Correct Sequence)
+## The Divine Stack (Nested Architecture)
+
+> **Feb 18 discovery:** The old Layer 0-8 was *chronological* — the order things were built. The Tier 0/1/2 structure is *architectural* — how the pieces actually relate.
 
 ```
-Layer 0: Prime Radiant (cosmogenesis understanding)
-Layer 1: Universal Ontology (holonic architecture)
-Layer 2: Essence of Essence (dodecahedron, soul colors, names)
-Layer 3: Unique Gift (scanner/articulation technology)
-Layer 4: Founder-Market Fit (structural matching)
-Layer 5: Unique Businesses (venture compilation)
-Layer 6: Venture Studio (scaling the methodology)
-Layer 7: Holomaps + AI Metacognition (system navigation + AI partnership)
-Layer 8: Planetary OS (the full integration)
+╔═══════════════════════════════════════════════════════════════╗
+║  TIER 0: COSMOGENESIS                                        ║
+║  ├── Prime Radiant (the origin pattern)                      ║
+║  └── Universal Ontology (holonic architecture of reality)    ║
+╠═══════════════════════════════════════════════════════════════╣
+║  TIER 1: OPERATING SYSTEMS                                   ║
+║  ├── Uniqueness OS      (scanner → essence → articulation)   ║
+║  ├── Holomap OS         (seeing wholes within wholes)        ║
+║  ├── Meta-Blueprint OS  (simplicity → blueprint → AI → loop) ║
+║  └── Planetary OS       (full integration of all OSes)       ║
+╠═══════════════════════════════════════════════════════════════╣
+║  TIER 2: APPLICATIONS                                        ║
+║  ├── Unique Business OS   (FMF → myth → movement → $)       ║
+║  ├── Venture Cooperative  (multi-venture incubation)         ║
+║  ├── AI Matchmaking       (structural resonance matching)    ║
+║  ├── Equilibrium          (biological time OS)               ║
+║  ├── Transformation OS    (QoL → growth paths → embodiment)  ║
+║  ├── Community OS         (events → circles → connections)   ║
+║  └── Marketplace OS       (discover → buy → sell)            ║
+╚═══════════════════════════════════════════════════════════════╝
 ```
 
-**Current focus: Layer 4.** The scanner (Layer 3) is as good as it needs to be. Unique Businesses (Layer 5) will come once people flow through Layer 4. Everything else matures in parallel but does not consume primary energy.
+### How the Tiers Relate
+
+| Tier | Contains | Begets |
+|------|----------|--------|
+| **0 — Cosmogenesis** | Prime Radiant + Universal Ontology | The laws that make everything else possible |
+| **1 — Operating Systems** | Uniqueness OS, Holomap OS, Meta-Blueprint OS, Planetary OS | Domain-specific architectures that can run applications |
+| **2 — Applications** | Unique Business, Venture Co-op, Matchmaking, Equilibrium, etc. | User-facing products and services |
+
+### The Meta-Blueprint OS (Discovery 13)
+
+```
+Radical simplicity → Blueprint → AI workflow → AI training → Better AI → Loop
+```
+
+This is the OS that makes all the other applications *codifiable* and *AI-executable*. Without it, the knowledge stays in Alexander's head. With it, the knowledge becomes blueprints that AI can pattern-match against.
+
+**Current focus: Unique Business OS at Tier 2** — running on Uniqueness OS (scanner) + Meta-Blueprint OS (blueprints/AI). The scanner (Tier 1) is as good as it needs to be. The myth-to-movement compiler is being operationalized. First revenue before scaling.
+
+> **Old linear stack (for historical reference):**
+> L0: Prime Radiant → L1: Universal Ontology → L2: Essence of Essence → L3: Unique Gift → L4: FMF → L4.5: Myth-to-Movement Compiler → L5: Unique Businesses → L6: Venture Studio → L7: Holomaps + AI → L8: Planetary OS
+
+> See also: [module_taxonomy.md](../02-strategy/module_taxonomy.md) v3.0 for the full application mapping.
 
 ---
 
@@ -146,17 +186,16 @@ A hand-sculpted clay sphere — gold with blue diameter lines. The Prime Radiant
 
 ## Cross-References
 
-This document is the root. The deeper synthesis lives in [The Recursive Gift](./unique_gift_philosophy.md), which captures 10 discoveries including the Law of the Recursive Shadow, the Base Case, the Myth as Funnel, AI as amplification, and the Pacing Principle.
+This document is the root. The deeper synthesis lives in [The Recursive Gift](./unique_gift_philosophy.md), which captures 14 discoveries including the Law of the Recursive Shadow, the Base Case, the Myth as Funnel, AI as amplification, the Pacing Principle, the Photon of Truth, the Myth-to-Movement Compiler, the Meta-Blueprint for System Evolution with AI, and Partnership Distribution.
 
 These discoveries have been integrated into:
+- [Unique Business Canvas](../02-strategy/alexanders_unique_business_canvas.md) — v2.0, all 14 discoveries
+- [Canvas Template](../02-strategy/unique_business_canvas_template.md) — v4.0, photon prompt, movement layer
+- [Module Taxonomy](../02-strategy/module_taxonomy.md) — v3.0, Divine Stack Architecture
 - [Unique Business Playbook](../03-playbooks/unique_business_playbook.md) — §Recursive Shadow, §Base Case, §Recursive Container
-- [Unique Business Creation Playbook](../03-playbooks/unique_business_creation_playbook.md) — Recursive Shadow in Step 3, Myth as Funnel in Step 7, Venture Creation vs Building
-- [Marketing Playbook](../03-playbooks/marketing_playbook.md) — §0.4 Myth as Resonance Filter
+- [Unique Business Creation Playbook](../03-playbooks/unique_business_creation_playbook.md) — v2.0, photon/segments/confabulation/movement
+- [Marketing Playbook](../03-playbooks/marketing_playbook.md) — §0.4 expanded: photon, 3-layer myth, segments
+- [Distribution Playbook](../03-playbooks/distribution_playbook.md) — partnership distribution model
 - [Pain Theory Playbook](../03-playbooks/pain_theory_playbook.md) — §Recursive Shadow of Pain
 - [Universal Ontology](file:///Users/alexanderkonst/.gemini/antigravity/knowledge/universal_ontology/artifacts/core/universal_ontology_master.md) — §1c Law of the Recursive Shadow
-- [Alexander's Operating System](../02-strategy/alexanders_operating_system.md) — Concentric Domains, Layer 4 Focus, Pacing Principle
-
----
-
-*This document captures the state of awakening as of February 17, 2026.*
 *The Playing Small Social Club membership has been officially revoked.*
