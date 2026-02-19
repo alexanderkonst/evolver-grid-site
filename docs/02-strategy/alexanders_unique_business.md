@@ -53,38 +53,48 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### 1. Myth
 
-*Version: v1.4 · Feb 19, 2026 17:25*
+*Version: v2.1 · Feb 19, 2026 19:56*
 
-**The one sentence (the acorn):**
+> **Note:** Artifact #1 is actually the Uniqueness Articulation. The myth grows FROM the uniqueness, not the other way around. We worked on the myth first because it needed the most forging — but in the production sequence, uniqueness comes first.
 
-> *Every business you'll ever build is already encoded in who you are — the only bottleneck is seeing it.*
+**The worldview:**
+
+> **From grind to great.**
+>
+> We are taught we must grind our way to greatness.
+>
+> It is a lie.
+>
+> Greatness comes gracefully and simply through what we uniquely love doing.
+>
+> Doing what you love is meant to be abundant.
+>
+> The answer has been bubbling up inside all along but we avoided to admit it.
+>
+> There is a dream we can't stop dreaming about but we feel chronically unprepared to act.
+>
+> The seed of our unique business.
+>
+> There is nothing extra to learn before we can name it, and build it.
+>
+> Building a unique dream business is a simple path anyone can take right now.
 
 **Version history:**
 
-| Version | Date | Articulation |
-|---------|------|-------------|
-| v1.4 | Feb 19 17:25 | *"Every business you'll ever build is already encoded in who you are — the only bottleneck is seeing it."* |
-| v1.3 | Feb 19 | Three-liner: YOU ARE THE PMF / Self-knowledge is your bottleneck / Get your FMF first. PMF follows. |
-| v1.2 | Feb 18 14:37 | *"There is something irreducibly YOU. Your life's work is its expression. The search for what to build IS the act of recognizing what was always there."* |
-| v1.1 | Feb 18 00:04 | First crystallization in Alexander's voice (sacred fire roasting) |
-| v1.0 | Feb 17 | Initial discovery — myth as bridge between uniqueness and world |
-
-**The piercing 3-liner (v1.3):**
-
-> **YOU ARE THE PMF.**
-> **Self-knowledge is your bottleneck.**
-> **Get your FMF first. PMF follows.**
-
-*Myth version: v1.2 · Feb 18, 2026 14:37*
-
-**The attack:**
-> *The entire startup industry is a billion-dollar workaround for not knowing yourself. They teach you to find PMF by outgrinding 99.9% of people through 100s of pivots. Good luck with that.*
-
-**The reframe:**
-> *What if you ARE the product-market fit but your self-knowledge is the bottleneck? Every great company was built by a founder who couldn't NOT build it — because the business was the expression of who they already were.*
-
-**The call:**
-> *Get your Founder-Market Fit first. PMF follows.*
+| Version | Date | Core |
+|---------|------|------|
+| **v2.1** | **Feb 19 19:56** | **Polished distillation. Every hedge removed. "Greatness comes gracefully." Statement, not question.** |
+| v2.0 | Feb 19 19:46 | Alexander's distillation. "We are taught we must grind. It is a lie." |
+| v1.9 | Feb 19 19:28 | Ethos form — each persona on its own line, FMF 230% stat |
+| v1.8 | Feb 19 19:06 | Uniqueness is a birthright. We forgot. Tribe = king is naked. |
+| v1.7 | Feb 19 18:49 | Uniqueness is a birthright. The world forgot. Wake up. |
+| v1.6 | Feb 19 18:39 | "Great businesses aren't found. They're uncovered." |
+| v1.5 | Feb 19 18:27 | "Who the founder is determines what the business becomes." |
+| v1.4 | Feb 19 17:25 | "Every business is encoded in who you are." |
+| v1.3 | Feb 19 | YOU ARE THE PMF / Get your FMF first. |
+| v1.2 | Feb 18 | "Something irreducibly YOU." |
+| v1.1 | Feb 18 | First crystallization |
+| v1.0 | Feb 17 | Initial discovery |
 
 **Three layers of depth:**
 
