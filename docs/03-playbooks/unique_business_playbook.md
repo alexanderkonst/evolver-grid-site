@@ -109,6 +109,81 @@ This is why AI can now do what used to take teams of specialists: once the **see
 
 ---
 
+## The Myth — Anatomy of a World-Changing Claim
+
+> *v1.0 · Feb 19, 2026 — Discovered through live roasting of Alexander's myth articulations*
+
+**The myth is the bridge between your uniqueness and the world's need.** It's the claim about reality that, if true, makes your business inevitable. If someone disproves it, your business collapses — and that's the point. It's falsifiable, not fluffy.
+
+### What a myth IS NOT
+
+- **Not a tagline.** A tagline sells. A myth recruits.
+- **Not a mission statement.** A mission describes what you do. A myth describes what's wrong with the world.
+- **Not advice.** "Follow your passion" is advice. "Human potential is unlimited" (Nike) is a myth.
+- **Not about the individual.** "Your business is encoded in you" is a true observation. But it's addressed to YOU, which makes it counsel, not cosmology. Myths that change the world make claims about THE WORLD. Then the tribe self-selects.
+
+### The Myth Anatomy — 4 Components
+
+A myth is a living organism. It needs:
+
+| Component | Function | Question it answers |
+|-----------|----------|-------------------|
+| **Seed** (irreducible truth) | The claim about reality that everything grows from | *What is true about the world that nobody else sees?* |
+| **Soil** (the enemy) | What's wrong with the world that makes the seed necessary | *What are we fighting against?* |
+| **Sunlight** (the tribe) | Who recognizes themselves — the self-selection moment | *Who hears this and says "that's ME"?* |
+| **Water** (the call) | What the believer does next | *What action does the myth demand?* |
+
+> A seed without soil is a nice thought. A seed without sunlight grows in the dark. A seed without water dies waiting. The myth needs all four.
+
+### The 3-Layer Depth Model
+
+Every powerful myth operates on three layers of increasing depth:
+
+| Layer | Function | Example (our myth) |
+|-------|----------|--------------------|
+| **Attack** | Stops the scroll. Makes enemies. Polarizes. | *"The entire startup industry is a billion-dollar workaround for not knowing yourself."* |
+| **Reframe** | The 2am moment. Once you see it, you can't unsee it. | *"What if you ARE the product-market fit, but your self-knowledge is the bottleneck?"* |
+| **Invitation** | Creates the tribe. Self-selection. | *"Get your Founder-Market Fit first. PMF follows."* |
+
+**Test:** If your myth doesn't make enemies, it's an affirmation, not a movement.
+
+### The Collapse Test
+
+> If someone proves that [your myth's core claim] is false, does your entire business fall apart?
+
+- ✅ Nike: If human potential ISN'T unlimited → Nike is just shoes.
+- ✅ Apple: If the crazy ones DON'T change the world → Apple is just computers.
+- ✅ Ours: If who the founder is DOESN'T determine business success → we're just coaches.
+
+If your myth can be disproved without your business collapsing, it's not a myth — it's marketing.
+
+### Key Principles (discovered through roasting)
+
+1. **Myths claim about the WORLD, not about YOU.** "Your business is encoded in you" is advice. "The startup industry has it backwards" is a myth. The difference: one addresses an individual, the other rewrites reality.
+2. **Comfort doesn't start movements. Discomfort does.** If your myth is warm and agreeable, people will nod and scroll. If it names what's WRONG, they can't ignore it.
+3. **"Overclaim" kills credibility with smart people.** Your ICP is intelligent. If you say "every" or "always" or "the only," they'll find the exception. Be precise, not maximal.
+4. **No enemy = no movement.** Affirmations attract followers. Enemies create tribes. Name what you're against.
+5. **The myth IS the marketing.** Apple, Nike, Tesla, Patagonia — none have marketing separate from their myth. The myth generates the content, the tribe, the products. Marketing that isn't the myth is noise.
+
+### What Nobody Else Has Built
+
+A repeatable myth-creation workflow does not exist in any known marketing framework:
+
+| Framework | What it does | What it misses |
+|-----------|-------------|----------------|
+| **StoryBrand** (Miller) | 7-part messaging template | Makes the CUSTOMER the hero, not the founder. Never asks: what's YOUR myth? |
+| **Expert Secrets** (Brunson) | "Big Idea" + "Epiphany Bridge" | Closest to myth — but tactical and manipulative. No self-knowledge step. |
+| **Start With Why** (Sinek) | Identifies that WHY matters | No METHOD to discover your why. Diagnoses the disease, no cure. |
+| **Movement OS** (Ross) | 7-layer anatomy of movements | Describes what a movement LOOKS LIKE. No seed/myth generation method. |
+| **Tribes** (Godin) | Describes tribal dynamics | No method for finding YOUR tribe. Observes, doesn't create. |
+| **$100M Offers** (Hormozi) | Offer mechanics | Pure mechanics. No myth, no self-knowledge, no soul. |
+| **Positioning** (Trout & Ries) | Competitive positioning | Analytical, external. Positions against competitors, not from identity. |
+| **Blue Ocean** (Kim & Mauborgne) | Create uncontested markets | Analytical framework. Misses the founder entirely. |
+
+**The gap:** Everyone teaches what a myth/story/why LOOKS LIKE (anatomy) or how to COMMUNICATE (messaging). Nobody teaches how to DISCOVER AND CREATE a myth from the founder's irreducible truth. That's the unprecedented contribution: the **Myth-to-Movement Compiler**.
+
+---
+
 ## N-Degree Implications
 
 | Degree | Implication |

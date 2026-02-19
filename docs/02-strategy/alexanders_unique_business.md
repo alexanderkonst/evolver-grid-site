@@ -1,13 +1,41 @@
-# Alexander's Unique Business Canvas
+# Alexander's Unique Business
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *Case study — February 18, 2026 · v1.7*
-> *Template: [unique_business_canvas_template.md](./unique_business_canvas_template.md)*
+> *February 19, 2026 · v2.1*
+> *Playbook: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)*
+
+> **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.
+>
+> **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
 
 ---
 
-## One-Sentence Distillation (PMF Hypothesis)
+## Artifact Production Sequence
+
+The exact order artifacts get produced — each one is the seed for the next:
+
+```
+1. UNIQUENESS    → Who am I at my brightest?
+2. MYTH          → What must be true about the world for my work to be inevitable?
+3. TRIBE (ICP)   → Who recognizes themselves in this myth?
+4. PROMISE       → What's the master transformational result?
+   └── Point A   → Where are they now? (situation)
+   └── Point B   → Where do they arrive? (dream outcome)
+5. PAIN          → Why don't they want to be at Point A? (open their eyes)
+6. PAIN DEEPENING → Through transaction theory slicers (buying conditions check)
+7. LEAD MAGNET   → Step-by-step methodology: how they get from A to B
+8. LANDING PAGE  → Where they land and book
+9. VALUE LADDER  → Break the path into 5 ascending containers
+```
+
+> The production sequence IS the methodology. When you run this for a client, you take them through the same sequence.
+
+---
+
+## PMF Hypothesis
+
+*Version: v1.0 · Feb 17, 2026*
 
 ```
 If a capable founder in extended transition had structural clarity on WHICH
@@ -15,23 +43,37 @@ venture to go all-in on — the one built on who they actually are — they'd
 have no more grinding uncertainty, scattered energy, or identity paradox.
 ```
 
-> Source: [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md.resolved) · [ITFT formula](../01-vision/integral_transactional_field_theory.md)
+**Essence:** The hypothesis that makes the business falsifiable. If we deliver structural clarity and they still grind — the hypothesis is wrong.
+
+**Significance:** ITFT formula applied: If [ICP] had [transformation], they'd have no more [pain]. Predicts that uncertainty, scattered energy, and identity paradox all resolve from one intervention.
 
 ---
 
-## The Canvas
+## The Artifacts
 
-### Myth (The Bridge)
+### 1. Myth
 
-**The piercing version (Alexander's voice, Feb 18 00:04):**
+*Version: v1.4 · Feb 19, 2026 17:25*
+
+**The one sentence (the acorn):**
+
+> *Every business you'll ever build is already encoded in who you are — the only bottleneck is seeing it.*
+
+**Version history:**
+
+| Version | Date | Articulation |
+|---------|------|-------------|
+| v1.4 | Feb 19 17:25 | *"Every business you'll ever build is already encoded in who you are — the only bottleneck is seeing it."* |
+| v1.3 | Feb 19 | Three-liner: YOU ARE THE PMF / Self-knowledge is your bottleneck / Get your FMF first. PMF follows. |
+| v1.2 | Feb 18 14:37 | *"There is something irreducibly YOU. Your life's work is its expression. The search for what to build IS the act of recognizing what was always there."* |
+| v1.1 | Feb 18 00:04 | First crystallization in Alexander's voice (sacred fire roasting) |
+| v1.0 | Feb 17 | Initial discovery — myth as bridge between uniqueness and world |
+
+**The piercing 3-liner (v1.3):**
 
 > **YOU ARE THE PMF.**
 > **Self-knowledge is your bottleneck.**
 > **Get your FMF first. PMF follows.**
-
-**The single photon of truth (the acorn):**
-
-> *There is something irreducibly YOU. Your life's work is its expression. The search for what to build IS the act of recognizing what was always there.*
 
 *Myth version: v1.2 · Feb 18, 2026 14:37*
 
@@ -104,13 +146,22 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 > **The sequence is the same** (articulate uniqueness → myth → movement → monetization). The SPEED differs because coaches/healers start with more self-knowledge. Founders may be the deeper segment; coaches/healers may be the faster path to first revenue and testimonials.
 
+**Essence:** The myth names the root cause that 82% of failing founders can't articulate. Not "no market need" — wrong founder for wrong business.
+
+**Significance:** Myth-driven companies ($2T+ combined) prove: myth IS marketing. The myth filters for fit — those who resonate self-select. One truth across 8 communities.
+
+**Key Practical Implications:**
+1. Don't package the myth — let it work raw in conversations, posts, DMs
+2. The myth generates its own content — each layer IS a content piece
+3. The confabulation layer — founders who lacked FMF don't know that's why they failed. The myth gives them the vocabulary.
+
 > Source: [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 4
-> Crystallized: Feb 17-18, 2026 — sacred fire roasting → Alexander's own voice
-> Deepened: Feb 18, 2026 — three-layer structure, company proof, segment morphing
 
 ---
 
-### Unique Gift
+### 2. Unique Gift
+
+*Version: v1.0 · Feb 17, 2026*
 
 | Element | Content |
 |---------|---------|
@@ -118,11 +169,20 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 | **Core Vibration** | Awakening high-potentials to exponential soul-aligned impact by architecting living systems |
 | **Compound Archetype** | Visionary Architect — Evolutionary Mirror |
 
-> Source: Appleseed output · [alexander_venture_state.md](file:///Users/alexanderkonst/.gemini/antigravity/knowledge/genius_business_venture_incubator/artifacts/alexander_venture_state.md) §1
+**Essence:** Operating at an intersection with a population of one. The unfair advantage is untransferable — no one can reproduce this specific refraction pattern.
+
+**Significance:** Alexander's craft: building a scanner of uniqueness and a technology to apply it. The **Myth-to-Movement Compiler** — from articulated essence → crystallized myth → living movement → monetized business.
+
+**Key Practical Implications:**
+1. Not top 100 in any single domain — the value is the intersection
+2. This IS the thing being sold: the capacity to see someone's pattern and name it
+3. The proof is embodied — this document was produced by applying the method to its creator
 
 ---
 
-### Ideal Client Profile (ICP)
+### 3. ICP (Ideal Client Profile)
+
+*Version: v1.2 · Feb 18, 2026*
 
 **Not demographics. Three situations** — people with **fuel but no direction:**
 
@@ -143,9 +203,19 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 | "I just need funding" founder | Thinks the bottleneck is capital, not self-knowledge. |
 | Corporate dreaming of "someday" | Not in enough pain. The pressure hasn't built. |
 
+**Essence:** The fuel IS the direction. All three situations share one thing: capability without clarity on where to point it.
+
+**Significance:** Coaches/Healers ↔ Founders inversion: same sequence, different speed. Two priority segments for immediate outreach.
+
+**Key Practical Implications:**
+1. Lead with recognition, not diagnosis — they need to see themselves in the description
+2. The anti-ICP is equally important — wrong clients break the flywheel
+
 ---
 
-### Life Situation
+### 4. Life Situation
+
+*Version: v1.1 · Feb 17, 2026*
 
 **In extended transition.** Not starting. Not failing. *In between.*
 
@@ -159,7 +229,9 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### Pain (Point A) — 4 Dimensions
+### 5. Pain (Point A) — 4 Dimensions
+
+*Version: v1.1 · Feb 17, 2026*
 
 | Dimension | What they experience |
 |-----------|---------------------|
@@ -168,12 +240,20 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 | **Cost of Inaction** | Savings hit critical → forced to take misaligned work. Relationship hits breaking point. Dream doesn't die — it gets **shelved**. Self-image permanently recalibrates downward. |
 | **What's Really at Stake** | Not bankruptcy. Not divorce. **Resignation.** Settling for a life that's fundamentally misaligned. "I could have been…" |
 
-> Source: [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md.resolved) — 5-Layer Slicer
-> Code: [DeepPainScreen.tsx](file:///Users/alexanderkonst/evolver-grid-site/src/modules/product-builder/steps/DeepPainScreen.tsx) · [deepen-pain/index.ts](file:///Users/alexanderkonst/evolver-grid-site/supabase/functions/deepen-pain/index.ts)
+**Essence:** The core wound: **extremely capable AND stuck.** The identity paradox of someone who knows they can do extraordinary things but can't see which one.
+
+**Significance:** Pain is not "you lack FMF." Pain is the 3am moment when the savings number stares back.
+
+**Key Practical Implications:**
+1. Never name the solution in the pain — let the wound breathe first
+2. Self-language IS the copy — use their exact words
+3. "Resignation" is the deepest fear — not failure, not poverty
 
 ---
 
-### Self-Language (what they say to themselves)
+### 6. Self-Language
+
+*Version: v1.0 · Feb 17, 2026*
 
 - "I know my breakthrough is right around the corner"
 - "I just need to figure out the right thing to go all-in on"
@@ -188,7 +268,9 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### Dream Outcome (Point B)
+### 7. Dream Outcome (Point B)
+
+*Version: v1.1 · Feb 18, 2026*
 
 *"I know exactly what to build and why it's mine to build."*
 
@@ -203,7 +285,9 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### Transformational Promise (Point A → Point B)
+### 8. Transformational Promise (Point A → Point B)
+
+*Version: v1.0 · Feb 17, 2026*
 
 **From**: *"I know I'm close but I can't see the path"*
 **To**: *"I know exactly what to build and why it's mine to build"*
@@ -212,21 +296,30 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### Offer (Excalibur)
+### 9. Value Ladder
 
-| Element | Content |
-|---------|---------|
-| **Name** | Founder-Market Fit Session |
-| **Form** | 90-minute 1:1 diagnostic |
-| **Price** | $197 (pilot) / $397 (standard) |
-| **Booking** | Cal.com |
-| **Awareness Stage** | Stage 2: Problem Aware (lead with wound, not solution) |
+*Version: v1.0 · Feb 19, 2026*
 
-> Source: [alexander_venture_state.md](file:///Users/alexanderkonst/.gemini/antigravity/knowledge/genius_business_venture_incubator/artifacts/alexander_venture_state.md) §1
+> **Internal note:** We take people step by step. The value ladder is internal strategy — we don't necessarily show people all steps upfront. Showing the full commitment path may make it harder for people to say yes to the first step. Each step earns the next.
+
+| Step | Container | What Happens | Transformation | Price |
+|------|-----------|-------------|----------------|-------|
+| **1** | **Lead Magnet** | Methodology guide + explainer video. Shows the A→B path. | *Understanding* — "Oh, the sequence IS backwards." | Free |
+| **2** | **Initial Session** | 90-min 1:1 diagnostic (MAP→MATCH→MOVE) | *Clarity* — "I know what to build and why it's mine." | $197–$397 |
+| **3** | **Founder Program** | Group cohort container. Go deeper together. Build the thing. | *Building* — first revenue from their unique business | $1,500/mo |
+| **4** | **Ongoing Community** | Long-term container. Change is infinite. Hero's journey realization. | *Sustaining* — "This is my life's work, not a project." | Membership |
+| **5** | **Physical Immersion** | Co-living, co-working, playing, growing together. Guides. Collaboration. | *Embodying* — the life matches the work | Retreat/residency |
+
+**The ascending pattern:**
+- **Proximity**: async → 1:1 → group → community → physical
+- **Depth**: understanding → clarity → building → sustaining → embodying
+- **Identity shift**: "interesting idea" → "my next move" → "my business" → "my life's work" → "my life"
 
 ---
 
-### Method (MAP → MATCH → MOVE)
+### 10. Method (MAP → MATCH → MOVE)
+
+*Version: v1.0 · Feb 18, 2026*
 
 | Phase | What happens |
 |-------|-------------|
@@ -234,11 +327,11 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 | **MATCH** | Match your gift to a market that needs it NOW (Founder-Market Fit) |
 | **MOVE** | 30-day action plan to first revenue |
 
-> Source: Product Compiler Flow — [product_compiler_flow_spec.md](../07-technology/product_compiler_flow_spec.md)
-
 ---
 
-### Proof (Embodied Credibility)
+### 11. Proof (Embodied Credibility)
+
+*Version: v1.0 · Feb 19, 2026*
 
 - Ran this on myself — February 17, 2026. This document is the result.
 - +29% AI metacognition benchmark using a single cognitive upgrade document
@@ -249,7 +342,7 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### Channel
+### 12. Channel
 
 | Priority | Channel | Status |
 |----------|---------|--------|
@@ -261,15 +354,36 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-## Cult OS — The Movement Layer
+### Current Focus: Layer 4 — Founder-Market Fit
 
-> **Terminology note:** The word "cult" is used internally as a precise, technical term for movement-building mechanics. It describes a neutral technology of persuasion and belonging — one that can be used for exploitation OR for the well-being of all. We use it in the light: movements that spread love, awareness, and virtues. **Externally, we use "movement," "tribe," or "community."** In our work with founders, we help them build movements — we just happen to know the mechanics come from studying what makes cults work.
+**Architecture (updated Feb 19, 2026):**
 
-> Based on Jared T. Ross's 7-layer Cult Operating System
+| Tier | Name | Layers | Status |
+|------|------|--------|--------|
+| **Layer 0** | Cosmogenesis | Prime Radiant — the origin pattern | ✅ Understood |
+| **Layer 1 (OS)** | Operating Systems | Unique Gift (L3), FMF (L4), Unique Business | 🔴 CURRENT |
+| **Layer 2 (Apps)** | Applications | FMF Session, Landing Page, DMs, Content | 🟡 Building |
 
-**Our assessment of Ross's framework:** The 7 layers are a useful **diagnostic taxonomy** — they name the structural layers every successful movement has. But the Cult OS is a checklist, not a compass. It tells you WHAT to build but not how to discover what's authentically yours. **Our contribution: the myth is the seed that generates all 7 layers organically.** Without a real myth, the Cult OS is tactics. With a real myth, the layers emerge naturally.
+**Detailed layers:**
+```
+Layer 0: Prime Radiant (cosmogenesis understanding)
+Layer 1: Universal Ontology (holonic architecture)
+Layer 2: Essence of Essence (dodecahedron, soul colors, names)
+Layer 3: Unique Gift (scanner/articulation technology) — ✅ sufficient
+Layer 4: Founder-Market Fit (structural matching) — 🔴 CURRENT FOCUS
+Layer 5: Unique Businesses (venture compilation) — follows naturally
+Layer 6: Venture Studio (scaling the methodology)
+Layer 7: Holomaps + AI Metacognition (system navigation)
+Layer 8: Planetary OS (the full integration)
+```
 
-| # | Cult OS Layer | Our FMF Version | Status |
+## Movement OS — The Movement Layer
+
+> Based on Jared T. Ross's 7-layer Movement Operating System
+
+**Our assessment of Ross's framework:** The 7 layers are a useful **diagnostic taxonomy** — they name the structural layers every successful movement has. But the Movement OS is a checklist, not a compass. It tells you WHAT to build but not how to discover what's authentically yours. **Our contribution: the myth is the seed that generates all 7 layers organically.** Without a real myth, the Movement OS is tactics. With a real myth, the layers emerge naturally.
+
+| # | Movement Layer | Our FMF Version | Status |
 |---|--------------|----------------|--------|
 | 1 | **Mind** (ideology) | "The startup industry has it backwards. YOU ARE THE PMF." | ✅ Crystallized |
 | 2 | **Exposure** (continuous education) | Myth broadcasts, conversations, content from three myth layers | ✅ Created |
@@ -319,7 +433,7 @@ We call it the **myth-to-movement compiler.** It takes who someone irreducibly I
 
 | Framework | Creator | Their Myth | Gap (what they miss) |
 |-----------|---------|-----------|-----|
-| **Cult OS** (7 layers) | Jared T. Ross | "Brands are cults. Build one deliberately." | No seed/myth generation method |
+| **Movement OS** (7 layers) | Jared T. Ross | "Brands are movements. Build one deliberately." | No seed/myth generation method |
 | **StoryBrand** (7 elements) | Donald Miller | "People buy clarity, not complexity." | Customer is hero, not founder. Misses FMF. |
 | **Start With Why** | Simon Sinek | "People buy WHY, not WHAT." | Identifies the WHY but no method to discover it |
 | **Tribes** | Seth Godin | "Markets reward tribe leaders." | Describes dynamics but not how to find YOUR tribe |
@@ -388,26 +502,25 @@ Radical simplicity (collapse complexity into essence)
 
 ---
 
-## Current State
+## Artifact Index
 
-| Artifact | Status |
-|----------|--------|
-| Myth | ✅ Crystallized — three layers (attack/reframe/invitation) + company proof + segment morphing |
-| Unique Gift | ✅ Articulated |
-| ICP | ✅ Situation-based + who it's NOT for |
-| Pain (4 dimensions) | ✅ Sliced — self-language captured |
-| Dream Outcome | ✅ "Not chosen — recognized" |
-| Transformational Promise | ✅ One-sentence |
-| PMF Hypothesis | ✅ Formula filled |
-| Offer | 🟡 Structure sound ($197/$397), **name TBD** |
-| Method | ✅ Named (MAP→MATCH→MOVE) — needs validation |
-| Proof | ✅ Embodied (ran on self first) |
-| Channel | 🟡 Broadcasts ready — **next: send to 3 people** |
-| Distribution | ✅ Partnership strategy identified — self-knowledge practitioners as upstream |
-| Cult OS | 🟡 4/7 layers active (Mind, Exposure, Language, Standards) |
-| Segment Morphing | ✅ 8 communities mapped — atomic discovery: one truth, many languages |
-| Meta-Blueprint | ✅ System evolution with AI — blueprints as AI training data |
-| Landing Page | ⏸️ Paused — myth goes out first |
+| # | Artifact | Version | Status |
+|---|----------|---------|--------|
+| 1 | Myth | v1.3 | ✅ Crystallized — 3 layers + segment projections |
+| 2 | Unique Gift | v1.0 | ✅ Articulated |
+| 3 | ICP | v1.2 | ✅ Situation-based + anti-ICP |
+| 4 | Life Situation | v1.1 | ✅ Extended transition mapped |
+| 5 | Pain | v1.1 | ✅ 4 dimensions + self-language |
+| 6 | Self-Language | v1.0 | ✅ 8 phrases captured |
+| 7 | Dream Outcome | v1.1 | ✅ Recognition-based |
+| 8 | Transformational Promise | v1.0 | ✅ One sentence |
+| 9 | Offer | v1.1 | ✅ $197/$397 + 4 deliverables |
+| 10 | Method | v1.0 | ✅ MAP→MATCH→MOVE |
+| 11 | Proof | v1.0 | 🟡 Self-applied + first session today |
+| 12 | Channel | — | 🟡 Landing page live, **next: outreach** |
+| — | Distribution | — | ✅ Partnership strategy |
+| — | Movement OS | — | 🟡 4/7 layers active |
+| — | Landing Page | — | ✅ Live at [evolver.team/fmf](https://evolver.team/fmf) |
 
 ---
 
@@ -415,16 +528,15 @@ Radical simplicity (collapse complexity into essence)
 
 | Theory | Document |
 |--------|----------|
-| Transaction physics (3 conditions for collapse) | [ITFT](../01-vision/integral_transactional_field_theory.md) |
-| Perceived value filter (13 factors, 3 tiers) | [Sacred Transaction Field](../01-vision/sacred_transaction_field.md) |
-| Pain slicing (5 layers) | [Pain Theory Playbook](../03-playbooks/pain_theory_playbook.md) |
-| Customer forces (Push/Pull/Anxiety/Inertia/Enemy) | [Landing Page Framework](./landing_page_copywriting_framework.md) |
-| Recursive shadow + myth as seed | [Unique Gift Philosophy](../01-vision/unique_gift_philosophy.md) |
-| Movement mechanics (7-layer Cult OS) | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
-| Myth-driven company analysis | 7 companies: Apple, Nike, Harley, Patagonia, Tesla, Red Bull, CrossFit |
+| Transaction physics | [ITFT](../01-vision/integral_transactional_field_theory.md) |
+| Perceived value filter | [Sacred Transaction Field](../01-vision/sacred_transaction_field.md) |
+| Pain slicing | [Pain Theory Playbook](../03-playbooks/pain_theory_playbook.md) |
+| Customer forces | [Landing Page Framework](./landing_page_copywriting_framework.md) |
+| Myth as seed | [Unique Gift Philosophy](../01-vision/unique_gift_philosophy.md) |
+| Movement mechanics | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
 
 ---
 
-*Canvas v2.0 — February 18, 2026, 15:35*
-*Partnership distribution strategy. Meta-blueprint for system evolution with AI. "We are training AI on unique business creation."*
+*Alexander's Unique Business v2.1 — February 19, 2026*
+*Single source of truth. Each artifact versioned with essence/significance/implications inline.*
 

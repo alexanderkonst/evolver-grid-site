@@ -149,6 +149,34 @@ If the day is chaotic → everything leaks.
 
 ---
 
+### Sprint Integration Protocol — The Glue Between Sprints
+
+> *"If I skip the integration piece after the sprint, I degenerate — I don't know where I left off or where to start next."*
+> *— February 19, 2026*
+
+**Discovery:** The next layer of clarity is NOT available immediately after a sprint. It opens during movement — walk, ride, anything without screens. If skipped, the next session starts cold and requires expensive context switching. If done, the sprints become one continuous flow.
+
+**The protocol:**
+
+| Step | What | When | Duration |
+|------|------|------|----------|
+| 1 | **Close the sprint** | End of deep work | 5 min |
+| 2 | **Integration walk** — no screens, no inputs | Immediately after | 10-15 min |
+| 3 | **Record what surfaced** — voice note or quick text | After the walk | 2-5 min |
+| 4 | **Use that recording as the starting point** for the next sprint | Next session begins | — |
+
+**What this changes:**
+- **Before:** Each sprint is a separate island. Context switching costs 15-30 min to re-enter.
+- **After:** Each sprint is a continuation. The integration recording is the bridge. One flow.
+
+**The non-random next sprint:**
+
+The next workspace isn't chosen — life brings you into it. When you sit down available with creative energy, whatever appears IS the next sprint. It's part of the same flow. The integration walk is what makes this possible — it processes the last layer and prepares the next.
+
+> *"There's no context switching. You just plug back into what you were doing."*
+
+---
+
 ### Midday: INTEGRATION (12:00 - 14:00)
 
 | Activity | Duration | Purpose |

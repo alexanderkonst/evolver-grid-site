@@ -1,7 +1,7 @@
 # Myth Broadcasts — v1.0
 
 > 3 variations · Founder segment · Alexander's voice · Feb 18, 2026
-> Based on: [alexanders_unique_business_canvas.md](../02-strategy/alexanders_unique_business_canvas.md) §Myth
+> Based on: [alexanders_unique_business.md](../02-strategy/alexanders_unique_business.md) §Myth
 
 ---
 
