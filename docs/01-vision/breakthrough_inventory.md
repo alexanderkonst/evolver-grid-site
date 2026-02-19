@@ -189,7 +189,7 @@ A hand-sculpted clay sphere — gold with blue diameter lines. The Prime Radiant
 This document is the root. The deeper synthesis lives in [The Recursive Gift](./unique_gift_philosophy.md), which captures 14 discoveries including the Law of the Recursive Shadow, the Base Case, the Myth as Funnel, AI as amplification, the Pacing Principle, the Photon of Truth, the Myth-to-Movement Compiler, the Meta-Blueprint for System Evolution with AI, and Partnership Distribution.
 
 These discoveries have been integrated into:
-- [Unique Business Canvas](../02-strategy/alexanders_unique_business_canvas.md) — v2.0, all 14 discoveries
+- [Unique Business](../02-strategy/alexanders_unique_business.md) — v2.1, all 14 discoveries
 - [Canvas Template](../02-strategy/unique_business_canvas_template.md) — v4.0, photon prompt, movement layer
 - [Module Taxonomy](../02-strategy/module_taxonomy.md) — v3.0, Divine Stack Architecture
 - [Unique Business Playbook](../03-playbooks/unique_business_playbook.md) — §Recursive Shadow, §Base Case, §Recursive Container

@@ -3,7 +3,7 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > Fill this in order. Each artifact builds on the previous.
-> Example: [Alexander's Canvas](./alexanders_unique_business_canvas.md)
+> Example: [Alexander's Unique Business](./alexanders_unique_business.md)
 
 ---
 
@@ -233,7 +233,7 @@ Your myth generates a movement. Track which layers you have:
 
 > These layers emerge from the myth. Don't construct them — grow them from the acorn.
 
-> *Terminology: internally you may call this a "cult" (neutral technology of persuasion). Externally: "movement," "tribe," or "community."*
+
 
 ---
 
@@ -248,7 +248,7 @@ If you want to understand WHY this works, study these:
 | Pain slicing | [Pain Theory Playbook](../03-playbooks/pain_theory_playbook.md) |
 | Customer forces | [Landing Page Framework](./landing_page_copywriting_framework.md) |
 | Myth as seed | [Unique Gift Philosophy](../01-vision/unique_gift_philosophy.md) |
-| Movement mechanics (7-layer Cult OS) | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
+| Movement mechanics (7-layer Movement OS) | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
 
 ---
 
