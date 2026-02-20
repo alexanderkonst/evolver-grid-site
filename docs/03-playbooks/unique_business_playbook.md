@@ -182,6 +182,76 @@ A repeatable myth-creation workflow does not exist in any known marketing framew
 
 **The gap:** Everyone teaches what a myth/story/why LOOKS LIKE (anatomy) or how to COMMUNICATE (messaging). Nobody teaches how to DISCOVER AND CREATE a myth from the founder's irreducible truth. That's the unprecedented contribution: the **Myth-to-Movement Compiler**.
 
+### The Myth Forging Process (discovered Feb 19-20, 2026)
+
+> *v2.0 · Discovered by doing it live — 12 iterations from v1.0 to v2.1*
+
+**The process:** Articulate → Roast → Distill → Repeat until the bones show.
+
+```
+Ethos (verbose, all signal present)
+  ↓ distillation (compress signal, lose nothing)
+Myth (naked David — each word earns its place)
+  ↓ compression
+Ad (4 lines that stop the scroll)
+```
+
+**Critical distinction:** Simplification ≠ Simplicity.
+- **Simplification** cuts words and loses signal. Makes things shorter but emptier.
+- **Distillation** compresses signal into fewer words. Each word carries MORE weight.
+
+The myth at v1.0 was too intellectual. At v1.5-1.8 it was too framework-heavy. At the "bumper sticker" level it was too compressed. The naked David lives BETWEEN the ethos and the bumper sticker — that's where every word has skin on the bones.
+
+### The Master Lie / Master Belief Polarity
+
+Every myth has a structural backbone: a **master lie** it calls out and a **master belief** it installs:
+
+| | |
+|---|---|
+| **Master Lie** | The false belief the world runs on |
+| **Master Belief** | The truth your business is built on |
+
+- If you only have the belief → you're an affirmation, not a movement
+- If you only have the lie → you're a critic, not a builder
+- When you have BOTH → you have polarity, and polarity creates energy
+
+**Test:** Every decision in the business can be filtered through this polarity. Does this action reinforce the master belief or accidentally feed the master lie?
+
+### The Myth-Marketing Collapse
+
+When the myth is true enough and simple enough, **the myth and the marketing ARE the same thing.** No translation needed. The founder who forged their myth from v1.0 to v2.1 spontaneously wrote a complete 10-line sales message and a 4-line ad in the same sitting — not as separate exercises, but as natural expressions of the same truth at different compression levels.
+
+**Implication for practitioners:** If you need a "marketing team" to translate your myth into messaging, the myth isn't done yet. A finished myth generates its own marketing by being spoken.
+
+### The Tribe Is Revealed BY the Myth
+
+You don't define the tribe first, then write the myth for them. You forge the myth and watch who gets magnetized.
+
+**The filter methodology:**
+
+```
+MYTH (the claim about the world)
+  ↓ filters for...
+QUALIFIERS (who resonates — inner state, not demographics)
+  ↓ breaks into...
+SEGMENTS (distinct types who show up)
+  ↓ each with a specific...
+LIFE SITUATION (why NOW, not someday)
+```
+
+**Key principle: The myth is universal. The tribe is YOUR tribe.** The myth doesn't change for different audiences — the segments, language, and channels narrow to where the founder's credibility and natural energy are highest. This is the beachhead market (Bill Aulet, MIT): universal myth → specific beach.
+
+### The Mask-On-First Principle
+
+The founder IS the first client. By doing the full process on yourself — forging YOUR myth, defining YOUR tribe, articulating YOUR uniqueness — you simultaneously:
+
+1. **Build the product** (your own business clarity)
+2. **Test the methodology** (does the process actually work?)
+3. **Create embodied credibility** (you ARE the proof)
+4. **Generate the blueprint** (every discovery gets captured for clients)
+
+This is fractal: the process you use to build YOUR business IS the process you teach. The product and the production are the same thing.
+
 ---
 
 ## N-Degree Implications
