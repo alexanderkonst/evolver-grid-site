@@ -676,9 +676,12 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - Produce anti-tribe (who is NOT for this) with explanations
   - End with a one-paragraph tribe synthesis that's speakable
 - [ ] **4. PAIN (Point A)** → What is their situation and why is it unbearable?
-  - Output: 4 dimensions of pain (decision pressure, felt, cost of inaction, what's at stake) + self-talk per dimension
+  - Methodology: **5-Layer Pain Slicer** from [pain_theory_playbook.md](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/pain_theory_playbook.md)
+  - Layers: Struggle → Pressure → Consequences → Cost of Inaction → Urgency Levers
+  - Apply **per segment** — each segment has different pain texture from the same wound
+  - Each layer needs: what they experience + self-talk in THEIR words
+  - Add recursive shadow per segment (from Pain Theory: gift → inverted shadow belief → pain pattern)
   - Key principle: Never name the solution in the pain. Let the wound breathe.
-  - Deepen through slicers: readiness signals, objection patterns, decision triggers, buying conditions
   - Key principle: Success comes from deep understanding of the PROBLEM, not the solution. Point B is guaranteed by the founder's uniqueness — trust that. Go deep into Point A.
 - [ ] **5. PROMISE (Point A → Point B)** → What's the master transformational result?
   - Output: The transformational result we deliver — the journey from Point A to Point B

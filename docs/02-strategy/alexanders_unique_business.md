@@ -374,42 +374,61 @@ Self-Talk, Dream Outcomes, Felt Texture
 
 ---
 
-### 5. Pain (Point A) — 4 Dimensions
+### 5. Pain (Point A) — 5-Layer Slicer Per Segment
 
-*Version: v1.1 · Feb 17, 2026*
+*Version: v2.0 · Feb 20, 2026 — rewritten with 5-Layer Pain Slicer applied per segment*
 
-| Dimension | What they experience |
-|-----------|---------------------|
-| **Decision Pressure** | Financial runway declining monthly. Partner conversations escalating. Age/stage — this isn't their 20s. Self-image erosion with each month without traction. |
-| **Felt Consequences** | Chest tightness. Analysis paralysis masked as "exploring." Oscillation between visionary excitement and private despair. Working hard on wrong layers. |
-| **Cost of Inaction** | Savings hit critical → forced to take misaligned work. Relationship hits breaking point. Dream doesn't die — it gets **shelved**. Self-image permanently recalibrates downward. |
-| **What's Really at Stake** | Not bankruptcy. Not divorce. **Resignation.** Settling for a life that's fundamentally misaligned. "I could have been…" |
+> **Methodology:** [Pain Theory Playbook](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/pain_theory_playbook.md) — 5-Layer Slicer (Struggle → Pressure → Consequences → Cost of Inaction → Urgency Levers)
+>
+> **Rule:** Never name the solution in the pain. Let the wound breathe.
 
-**Essence:** The core wound: **extremely capable AND stuck.** The identity paradox of someone who knows they can do extraordinary things but can't see which one.
+#### The Pivot-Loop Founder — Pain
 
-**Significance:** Pain is not "you lack FMF." Pain is the 3am moment when the savings number stares back.
+| Layer | What they experience | Self-talk |
+|-------|---------------------|-----------|
+| **1. Struggle** | Can't figure out which venture to go all-in on. Keeps pivoting. Each new idea starts exciting and fades. Playbooks that work for others don't work for them. | "I just need to find the right idea." · "Maybe I haven't validated enough." · "One more pivot and I'll crack it." |
+| **2. Pressure** | Savings declining per pivot. Each failed attempt costs months. Partner sees the pattern. Peers are shipping and growing — they're still searching. | "Why does it work for them but not for me?" · "I can see the number going down." |
+| **3. Consequences** | Scattered energy. Too many ideas competing. Analysis paralysis masked as "exploring options." Oscillation between visionary excitement and private despair. Building tunnels they might abandon. | "I keep starting things that don't gain traction fast enough." · "I feel like I'm drilling hoping I'm almost through the wall." |
+| **4. Cost of Inaction** | Another pivot. Another 6 months. Savings hit critical → forced to take misaligned contract work that kills the momentum. The dream doesn't die — it gets **shelved**. "I'll come back to it when..." (They won't.) | "I've been in this transition for too long." · "If not now, when?" |
+| **5. Urgency** | Runway creates a real clock. Compounding delay — every month of misalignment costs not just the month but the compounding that month would have generated. The next birthday is a forcing function. | "I'm running out of runway." · "Another year and I'm still..." |
 
-**Key Practical Implications:**
-1. Never name the solution in the pain — let the wound breathe first
-2. Self-language IS the copy — use their exact words
-3. "Resignation" is the deepest fear — not failure, not poverty
+> **The recursive shadow:** Their gift IS pattern recognition — seeing what could work. The shadow: they see SO many possibilities that choosing one feels like killing the others. The intervention isn't more validation. It's helping them see that the pattern they keep missing is themselves.
+
+#### The Grinding Coach — Pain
+
+| Layer | What they experience | Self-talk |
+|-------|---------------------|-----------|
+| **1. Struggle** | Selling hours. Know it doesn't scale. Income is irregular — good months followed by drought. Underpricing because lead gen isn't abundant enough to justify high-ticket. | "I know I should charge more but I can't afford to lose clients." · "I know selling hours doesn't scale — why can't I change it?" |
+| **2. Pressure** | Exhaustion is grinding them down physically. Funnels follow playbooks that don't fit. Word of mouth is the only channel and it's unreliable. May already be scolding themselves for not having figured this out yet. | "I'm so tired." · "Other coaches have funnels that work, why doesn't mine?" |
+| **3. Consequences** | 60-hour weeks just to stay afloat. Energy depleted. Creative ideas dying on the vine. The quality of their actual work is high but no one sees it because they're too busy delivering to market. Relationships suffer from chronic busyness. | "I'm so much more capable than my results show." · "Something fundamental is off but I can't see what." |
+| **4. Cost of Inaction** | More of the same. Another year of grinding just to maintain. Body breaks down first — burnout isn't a metaphor, it's a medical event. May be forced to quit the thing they love because the container is unsustainable. The cruelest version: the gift survives but the person holding it doesn't. | "I can't keep going like this." · "If I burn out, I lose everything I've built." |
+| **5. Urgency** | Health is a real clock for this segment (not just finances). Energy is finite. The income irregularity creates constant anxiety — hard to plan, hard to invest, hard to grow. They see others packaging similar gifts into scalable containers and charging 5x more. | "I need this to change before I break." · "I watch others do what I do, worse, and make more." |
+
+> **The recursive shadow:** Their gift IS transformation — making others better. The shadow: they apply it to everyone except their own business model. They transform clients masterfully while their own business stays stuck in the hour-selling loop. The intervention isn't better marketing — it's helping them see that the gift they sell to others needs to be turned on their own container.
+
+#### The Caged Professional — Pain
+
+| Layer | What they experience | Self-talk |
+|-------|---------------------|-----------|
+| **1. Struggle** | Trapped in work that provides security but drains meaning. Or worse: already leapt and now in free fall with no direction. Don't know what's next. Have skills, savings, network — but nowhere to point them. | "What would I even do?" · "I want to be free but I can't risk everything." |
+| **2. Pressure** | If still in: loss of meaning is becoming unbearable. The quiet dread of "is this all there is?" is getting louder. If already out: savings are declining with no clear plan to replace income. Partner watching. | "What if I run out of money?" · "What if I can't come back?" |
+| **3. Consequences** | Sunday anxiety. Monday dread. Counting hours until Friday. Feeling like a replaceable cog. Energy depleted by 3pm. The gap between who they know they are and what their day looks like is generating hidden shame. If already out: the free-fall abyss of having no structure, no identity anchor. | "Is this all there is?" · "What if I can't find the next thing?" |
+| **4. Cost of Inaction** | If still in: another year disappears. The window narrows. The dream gets smaller to fit their shrinking courage. If already out: savings cross the point of no return → forced back into the cage, this time with less leverage and more despair. In both cases: **resignation.** Settling for a life that's fine but fundamentally misaligned. | "I could have been..." · "I should have left when I had the chance." / "I should have had a plan before I left." |
+| **5. Urgency** | Age. Responsibilities. This isn't their 20s. The golden window where they have savings + health + energy is finite. Their children are watching them model either courage or settling. Market is moving — AI is reshaping entire industries while they sit still. | "If not now, when?" · "My kids are watching what I do with my life." |
+
+> **The recursive shadow:** Their gift IS leadership — organizing, directing, building teams. The shadow: they can lead any organization except their OWN venture, because they've never had to build from zero. The corporate structure was the container; without it, the leadership gift has nothing to hold. The intervention isn't a business plan — it's showing them that the leadership skill they honed for others IS the foundation, not the obstacle.
 
 ---
 
-### 6. Self-Language
+**Pain essence (shared across all segments):**
 
-*Version: v1.0 · Feb 17, 2026*
+The core wound: **extremely capable AND stuck.** Three different journeys, same destination — the identity paradox of someone who knows they can do extraordinary things but can't see which one, or can't build the container that matches the gift.
 
-- "I know my breakthrough is right around the corner"
-- "I just need to figure out the right thing to go all-in on"
-- "I've been in this transition for too long"
-- "I'm running out of runway"
-- "My partner is starting to worry"
-- "I'm so much more capable than my results show"
-- "Something fundamental is off but I can't see what"
-- "I feel like I'm drilling hoping I'm almost through the wall"
+**Pain is not "you lack founder-market fit."** Pain is the 3am moment when the savings number stares back, or the body says no more, or the partner's silence is louder than words.
 
-> Source: [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md.resolved) §Self-Language
+**Awareness stage: Stage 2 (Problem Aware).** They KNOW something is off. They feel the pain daily. But they attribute it to external causes (wrong idea, wrong funnel, wrong timing, not enough resources) rather than the structural misalignment. They are NOT yet solution-aware.
+
+> Source: [pain_theory_playbook.md](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/pain_theory_playbook.md) · [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md)
 
 ---
 
