@@ -711,6 +711,10 @@ The myth and tribe are **80% of the work.** They're the nucleus — everything e
 
 Point A is where the **insight** lives. Success comes from deep understanding of the problem, not the solution. Point B is guaranteed by the founder's uniqueness — if you're here doing this work, there WILL be a Point B. Trust that. Go deep into Point A first. The promise becomes soul-level only when rooted in a Point A you've described so precisely they feel seen.
 
+**The Last Mile Principle (discovered Feb 20, 2026):**
+
+AI gets the articulation to **9**. The founder's embodied experience — writing the final draft from inside the tribe's skin — closes the gap to **10**. This applies to every synthesis artifact: tribe synthesis, pain description, promise, ad copy. The roast process (surface roast → meta roast → founder rewrite) is the mechanism. AI proposes, roasts, and iterates. The founder delivers the gut punch.
+
 ---
 
 ## Workflow 1: Genius → Articulation

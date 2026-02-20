@@ -336,9 +336,17 @@ Self-Talk, Dream Outcomes, Felt Texture
 
 ---
 
-**Tribe Synthesis (v2.2):**
+**Tribe Synthesis (v5 — founder-forged, 9.9/10):**
 
-> They are deeply capable people stuck in the wrong grind — pivoting through ideas that feel hollow, selling their gift by the hour until exhaustion, or staring at freedom from behind golden handcuffs wondering *what if I can't come back?* They all share the same wound: a dream that won't stop knocking and the nagging suspicion that who they are — not another playbook, not another pivot — is the answer. They've tried the hard way. Now the cost of NOT acting has become higher than the fear. They don't want therapy. They don't want clarity for clarity's sake. They want to BUILD — and they're ready.
+> Highly capable people stuck in the grind: pivoting through ideas that never quite click, selling their gift by the hour until they're exhausted, trading their days for someone else's dream wondering *what would I even do if I left?*
+>
+> They have a dream that feels so real but business formulas seem to work on others but not on them.
+>
+> They have a suspicion that something fundamental is off in their approach and no amount of pivoting, grinding, or prepping is going to fix it.
+>
+> They're more capable than their results show and they know it. The breakthrough feels close.
+>
+> And the voice that used to whisper *"I am not ready yet"* is starting to sound like a cheap and dangerous excuse.
 
 ---
 
@@ -348,6 +356,7 @@ Self-Talk, Dream Outcomes, Felt Texture
 2. **Articulation precision scale (1-10).** Every statement about the tribe: 10 = they'd screenshot it. 5 = true but generic. 3 = adjacent dartboard. Goal is 8+.
 3. **The founder IS all segments.** Getting emotional reading the tribe = passing the test.
 4. **Myth→Tribe is derivation, not invention.** Truth claims → reversed into qualifiers → life paths → segments. The tribe is structurally implied by the myth.
+5. **The last mile is the founder's voice.** AI gets the articulation to 9. The founder's embodied experience — writing the final draft from inside the tribe's skin — closes the gap to 10. The synthesis can only reach 10 when the person who IS the tribe puts their voice on the page.
 
 ### 4. Life Situation
 
