@@ -190,36 +190,46 @@ All 8 segments are variations of life transition. "Founders in transition" was a
 
 ---
 
-### 3. ICP (Ideal Client Profile)
+### 3. Tribe (ICP)
 
-*Version: v1.2 · Feb 18, 2026*
+*Version: v2.0 · Feb 20, 2026 — derived from myth v2.1*
 
-**Not demographics. Three situations** — people with **fuel but no direction:**
+**Qualifiers — all four must be true:**
 
-| Situation | Who they are | Self-language | Why myth lands |
-|-----------|-------------|---------------|----------------|
-| **The Bruised Founder** | Tried 1-3 things, none worked. Followed playbooks. Suspects the APPROACH is wrong, not just the idea. | *"I'm too capable for these results."* | They've exhausted symptom-level solutions. Ready to hear "the sequence is backwards." |
-| **The Skilled Non-Founder** | Deep expertise (coaching, design, engineering). Knows they have fuel. Never started a company. | *"I know what I'm good at but I don't know how to make money from it."* | Haven't been brainwashed by the startup industry. The myth validates their instinct. |
-| **The Post-Corporate Builder** | Left a career. Has resources, skills, network — but no direction. | *"I know HOW to build. I just don't know WHAT to build."* | They have building skills. Missing the WHAT — which is exactly what FMF provides. |
+1. **They have "the dream"** — a specific recurring pull toward something. Not vague. It keeps coming back — in the shower, on walks, at 3am.
+2. **They feel chronically unready** — despite being capable. Waiting for more knowledge, savings, credentials, or permission.
+3. **They suspect the grind is wrong** — haven't heard anyone say it out loud, but something inside already knows. The grind feels misaligned, not just hard.
+4. **They want a business, not just clarity** — they want to BUILD something real and monetize their uniqueness. Not therapy. Not journaling.
 
-**Common thread:** The fuel IS the direction.
+**Segments:**
+
+| Segment | How they arrived | The grind for them | The dream for them |
+|---------|-----------------|--------------------|--------------------|
+| **The Misaligned Founder** | Built 1-3 things. None felt right. Followed playbooks. | Iterating on products they have no soul connection to. Pivoting endlessly. | A business that grows from WHO they are. |
+| **The Gifted Non-Starter** | Deep skill (coaching, healing, design, engineering). Never built a business around it. | Working for someone else, or freelancing without a real offer. Undercharging. | Their specific gift — packaged, priced, and scaled. |
+| **The Corporate Escapee** | Left or about to leave a career. Has skills, savings, network. No direction. | Golden handcuffs. Or "freedom" with no clarity on what's next. | A venture that justifies the leap. Worth burning the boats for. |
+
+**Life situation — why NOW, not someday:**
+
+| Pressure | What it feels like |
+|----------|-------------------|
+| **Financial** | Savings declining. Runway visible. The math is getting real. |
+| **Identity** | The gap between "who I know I am" and "what I'm doing" is becoming unbearable. |
+| **Relational** | Partner is watching. "The talk" has happened. Support is conditional on progress. |
+| **Temporal** | Not 22 anymore. Window feels like it's narrowing. "If not now, when?" |
+| **The dream is getting louder** | They used to suppress it. Now it knocks every day. Something shifted. |
+
+**Common thread:** The cost of NOT acting has become higher than the fear of acting.
 
 **Who this is NOT for:**
 
-| Person | Why it won't land |
-|--------|------------------|
-| Founder locked into an idea they love | The myth competes with their current commitment. They need to fail first. |
-| Successful founder with PMF | Already found it (often through accidental FMF). Don't need us. |
+| Person | Why |
+|--------|-----|
+| Founder locked into an idea they love | The myth competes with their commitment. They need to fail first. |
+| People who love the grind | It works for them. They're aligned. |
 | "I just need funding" founder | Thinks the bottleneck is capital, not self-knowledge. |
-| Corporate dreaming of "someday" | Not in enough pain. The pressure hasn't built. |
-
-**Essence:** The fuel IS the direction. All three situations share one thing: capability without clarity on where to point it.
-
-**Significance:** Coaches/Healers ↔ Founders inversion: same sequence, different speed. Two priority segments for immediate outreach.
-
-**Key Practical Implications:**
-1. Lead with recognition, not diagnosis — they need to see themselves in the description
-2. The anti-ICP is equally important — wrong clients break the flywheel
+| Someone with no dream yet | They haven't felt the pull. Not ready. |
+| "Someday" dreamers | Not in enough pain. The pressure hasn't built. |
 
 ---
 
