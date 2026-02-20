@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | Myth Crystallized → Packaging & Distribution |
+| **Current phase** | Tribe + Pain forged → Promise + Packaging next |
 | **Current cycle** | February 2026 — Horsepower Cycle |
 | **Location** | Bali |
-| **Focus** | **FMF Launch: Value ladder + First outreach + Landing page** |
-| **Key milestone** | ✅ Myth crystallized through sacred fire (Feb 17-18) |
-| **Key decision** | Myth first, packaging follows. "YOU ARE THE PMF." |
+| **Focus** | **FMF Launch: Myth → Tribe → Pain ✅ → Promise → Value Ladder → First outreach** |
+| **Key milestone** | ✅ Tribe v2.2 (9.8/10) + Pain v2.0 (9/10) forged (Feb 20) |
+| **Key decision** | 5-Layer Pain Slicer applied per segment. Pain before Promise. |
 
 ---
 
@@ -687,4 +687,26 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-02-18. FMF Launch section added. Myth crystallized. Next: packaging and first outreach.*
+### Tribe Forging (Priority: ✅ DONE)
+**What:** Forged tribe v2.2 with 3 segments (Pivot-Loop Founder, Grinding Coach, Caged Professional), tribe synthesis v5 (founder-forged, 9.9/10), anti-tribe (6 exclusions), beachhead sequencing.
+**Methodology discovered:** Myth → truth claims → reversed into qualifiers → life paths → segments → self-talk.
+**Status:** ✅ DONE (2026-02-20)
+
+---
+
+### Pain Deep-Dive (Priority: ✅ DONE)
+**What:** 5-Layer Pain Slicer from Pain Theory Playbook applied per segment. Each segment got 5 layers (Struggle, Pressure, Consequences, Cost of Inaction, Urgency) + self-talk + recursive shadow.
+**Key discovery:** Pain Slicer must be applied per segment — same wound, different felt texture.
+**Status:** ✅ DONE (2026-02-20, AI draft ~9/10, Last Mile pending)
+
+---
+
+### Promise / Point B (Priority: 🔴 CRITICAL | Target: Next session)
+**What:** Define the master transformational result (Point A → Point B). Point A is now deeply understood. Point B is guaranteed by founder's uniqueness.
+**Why:** Promise unlocks lead magnet, methodology, value ladder — the domino effect.
+**Status:** 🔜 Next
+
+---
+
+*Roadmap updated: 2026-02-20. Tribe v2.2 + Pain v2.0 forged. Next: Promise (Point B) → Lead Magnet → Value Ladder.*
+

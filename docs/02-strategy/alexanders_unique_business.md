@@ -16,17 +16,13 @@
 The exact order artifacts get produced — each one is the seed for the next:
 
 ```
-1. UNIQUENESS    → Who am I at my brightest?
-2. MYTH          → What must be true about the world for my work to be inevitable?
-3. TRIBE (ICP)   → Who recognizes themselves in this myth?
-4. PROMISE       → What's the master transformational result?
-   └── Point A   → Where are they now? (situation)
-   └── Point B   → Where do they arrive? (dream outcome)
-5. PAIN          → Why don't they want to be at Point A? (open their eyes)
-6. PAIN DEEPENING → Through transaction theory slicers (buying conditions check)
-7. LEAD MAGNET   → Step-by-step methodology: how they get from A to B
-8. LANDING PAGE  → Where they land and book
-9. VALUE LADDER  → Break the path into 5 ascending containers
+1. UNIQUENESS        → Who am I at my brightest?
+2. MYTH              → What must be true about the world for my work to be inevitable?
+3. TRIBE (ICP)       → Who recognizes themselves in this myth?
+4. PAIN (Point A)    → What is their situation and why is it unbearable?
+5. PROMISE (A → B)   → What's the master transformational result?
+6. LEAD MAGNET       → Step-by-step methodology: how they get from A to B
+7. VALUE LADDER      → Break the path into ascending containers
 ```
 
 > The production sequence IS the methodology. When you run this for a client, you take them through the same sequence.
@@ -357,6 +353,8 @@ Self-Talk, Dream Outcomes, Felt Texture
 3. **The founder IS all segments.** Getting emotional reading the tribe = passing the test.
 4. **Myth→Tribe is derivation, not invention.** Truth claims → reversed into qualifiers → life paths → segments. The tribe is structurally implied by the myth.
 5. **The last mile is the founder's voice.** AI gets the articulation to 9. The founder's embodied experience — writing the final draft from inside the tribe's skin — closes the gap to 10. The synthesis can only reach 10 when the person who IS the tribe puts their voice on the page.
+6. **The founder is the litmus test (recursive validation).** Because the business is built from the founder's uniqueness, the founder IS the tribe — the quality of every artifact can be validated by the founder's own resonance. If the pain cards make the founder feel it in their body, every future founder will too. This is recursive: the method validates itself through the person who created it.
+7. **The product reflects the journey, not the other way around.** When tribe, pain, and promise are at 10/10, the product becomes a mirror of what they wanted all along. Every feature, every word produces goosebumps because it was derived from their own inner world. The product isn't imposed — it's recognized.
 
 ### 4. Life Situation
 
