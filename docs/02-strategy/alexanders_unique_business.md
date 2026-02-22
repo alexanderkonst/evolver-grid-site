@@ -493,14 +493,20 @@ The core wound: **extremely capable AND stuck.** Three different journeys, same 
 
 ### 11. Proof (Embodied Credibility)
 
-*Version: v1.0 · Feb 19, 2026*
+*Version: v1.1 · Feb 22, 2026*
 
 - Ran this on myself — February 17, 2026. This document is the result.
 - +29% AI metacognition benchmark using a single cognitive upgrade document
 - 15+ years of venture building across multiple domains
 - Concentric polymathy: cosmology × embodied practice × integral theory × AI × venture building
 
-> Source: [breakthrough_inventory.md](../01-vision/breakthrough_inventory.md) · [alexanders_operating_system.md](../02-strategy/alexanders_operating_system.md)
+**The recursive proof:**
+
+> *"I couldn't find my own PMF because finding other people's PMF IS my PMF. The searching was the finding."*
+
+Five years unable to see my own Founder-Market Fit while seeing everyone else's clearly. That loop was the research. The shadow doesn't disappear — it becomes **transparent**. The wound becomes the credential. The cobbler's kids went barefoot; the struggle taught how the shoe needs to fit.
+
+> Source: [breakthrough_inventory.md](../01-vision/breakthrough_inventory.md) · [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 15 · [alexanders_operating_system.md](../02-strategy/alexanders_operating_system.md)
 
 ---
 
