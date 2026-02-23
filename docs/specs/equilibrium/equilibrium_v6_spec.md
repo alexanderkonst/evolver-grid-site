@@ -94,6 +94,26 @@ The user sets an **intention** (1 sentence) for each active cycle:
 | Week | Monday (auto-prompt) or settings | "What's this week about?" | "Launch MVP" |
 | Moon | New moon (auto-prompt) or settings | "What's this lunar cycle about?" | "Build the foundation" |
 
+#### Moon Ring: The Lunar Holon Cycle
+
+> *February 22, 2026 — the Holon Cycle mapped to the 27-day lunar cycle*
+
+The four weeks of the lunar cycle ARE the four quadrants of the Holon Cycle. The sidereal cycle is **27.3 days** — the Pattern of 27 (3³).
+
+| Week | Moon Phase | Element | Energy | What the ring should feel like |
+|------|-----------|---------|--------|-------------------------------|
+| **1** | Full → Last Quarter | 🔥 Fire | Will / Impulse | Dim (40%) — seed igniting in the dark. Inner fire. |
+| **2** | Last Quarter → New | 💧 Water | Emanation / Flow | Medium (70%) — creative flow building. |
+| **3** | New → First Quarter | 🌍 Earth | Materialization | Full (100%) — results appearing. Growth visible. |
+| **4** | First Quarter → Full | 🌬️ Air | Harvest | Settling (55%) — receiving. Next intention forming. |
+
+The moon ring's **phase-brightness** should map to this cycle: dim during the fire/seed week, brightest during materialization, settling as harvest arrives.
+
+**Intention prompt at Full Moon**: "What came to fruition? What's forming next?"
+**Intention prompt at New Moon**: "What's this lunar cycle about?" (current behavior — keep)
+
+> *See [alexanders_operating_system.md](../../02-strategy/alexanders_operating_system.md) — The Month: Lunar Holon Cycle*
+
 **Quarter and Year: no intention prompt.** Too abstract. These rings are pure time context.
 
 **Auto-prompting at cycle boundaries:** The intention prompt appears automatically at natural transitions — start of day, Monday morning, new moon. This is the feature. If it's opt-in, it's dead. The user can always skip (empty Enter), but the prompt appears because the whole point is making the clock a companion, not a display.

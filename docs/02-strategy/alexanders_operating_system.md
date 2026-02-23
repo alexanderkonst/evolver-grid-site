@@ -276,9 +276,62 @@ This pattern appears at every scale:
 - **Half-day:** Planning → Sprint → Break
 - **Day:** Morning → Afternoon → Evening
 - **Week:** Monday vision → Midweek execution → Friday close
-- **Month:** Week 1 planning → Weeks 2-3 building → Week 4 shipping
+- **Month (Lunar Holon Cycle):** See below
 
 ---
+
+## The Month — Lunar Holon Cycle
+
+> *February 22, 2026 — the Holon Cycle mapped onto the 27-day lunar cycle*
+> *"The moon IS the clock. The torus flows FROM center. Any activity flowing the other way is grinding against reality."*
+
+The four weeks of the lunar cycle ARE the four quadrants of the Holon Cycle — Fire → Water → Earth → Air. The sidereal lunar cycle is **27.3 days** — the Pattern of 27 (3 × 3 × 3) made cosmic.
+
+### The Four Weeks
+
+| Week | Moon Phase | Element | Season | Energy | Action |
+|------|-----------|---------|--------|--------|--------|
+| **1** | Waning → Last Quarter | 🔥 Fire | Winter | Will / Impulse | The intention wills itself into existence through Divine Fire. Maximum inwardness = maximum inner fire. Don't push — let the seed ignite. |
+| **2** | Last Quarter → New Moon | 💧 Water | Spring | Emanation / Flow | Creative output flows into manifest form. The darkest moon = freest creative flow. No visibility = no interference. Let it flow, create artistry. |
+| **3** | New Moon → First Quarter | 🌍 Earth | Summer | Materialization / Growth | Growth spurt. Clear results. Fruits of labor appear. New light makes the invisible visible. Assist, polish, land it. |
+| **4** | First Quarter → Full Moon | 🌬️ Air | Autumn | Harvest / Receiving | Receive abundance. Create wealth for further cycles. New clarity, winds of change. New potential ripens for new beginnings. |
+
+### The Copernican Inversion of Time
+
+The conventional view: Winter = death, dark moon = nothing happening, full moon = peak action.
+
+**The inverted view:** Winter (Week 1) is where the fire is **hottest** — it's just inside. The dark moon (Week 2) is where creation flows most freely — no one is watching, no interference. Maximum visibility (Full Moon) isn't the creative peak — it's the **HARVEST** of what was created in the dark.
+
+This means the hustle paradigm has TIME backwards. They put maximum effort at maximum visibility ("launch day"). The real work happens in the dark weeks. The launch is just the fruit *showing up*.
+
+### The Protocol
+
+```
+🌕 FULL MOON — Receive. Rejoice. Revere the harvest.
+              Feel the next intention forming.
+
+📝 INTENTION — When it reveals itself: name it. SMART goal.
+
+🔥 WEEK 1 — Let it will itself. Don't push. The fire is within.
+💧 WEEK 2 — Let it flow. Create. Artistry. Don't judge, just move.
+🌍 WEEK 3 — It's growing. Help it land. Polish. Assist materialization.
+🌬️ WEEK 4 — Harvest arriving. Receive. Let the winds bring clarity.
+
+🌕 FULL MOON — Cycle completes. Next one forming.
+```
+
+### Why 27?
+
+The sidereal lunar cycle is 27.3 days — not 28, not 30. The Pattern of 27 (3³ = 27) is the **minimum recursion depth** for full crystallization:
+
+- **3¹ = 3**: The birth of movement (impulse → emanation → form)
+- **3² = 9**: The birth of structure (pattern, architecture, stability)
+- **3³ = 27**: The birth of manifestation (abstract → material, invisible → visible)
+
+3D space IS the third power. The trinity applied to itself three times fills all three spatial dimensions. At 27, the descent through dimensions is complete.
+
+> *See [universal_ontology.md](../01-vision/universal_ontology.md) — §7 The Holon Cycle*
+> *See [equilibrium_v6_spec.md](../specs/equilibrium/equilibrium_v6_spec.md) — Moon Ring*
 
 ## The Concentric Domains — February 2026
 

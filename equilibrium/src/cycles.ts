@@ -197,14 +197,14 @@ const PLANET_ENERGY: Record<string, { emoji: string; energy: string }> = {
 };
 
 const MOON_PHASES = [
-    { name: 'New Moon', symbol: '🌑', start: 0, end: 1.85, energy: 'Set intentions · Plant seeds' },
-    { name: 'Waxing Crescent', symbol: '🌒', start: 1.85, end: 5.53, energy: 'Emerge · Take first steps' },
-    { name: 'First Quarter', symbol: '🌓', start: 5.53, end: 9.22, energy: 'Build · Overcome resistance' },
-    { name: 'Waxing Gibbous', symbol: '🌔', start: 9.22, end: 12.91, energy: 'Refine · Trust the process' },
-    { name: 'Full Moon', symbol: '🌕', start: 12.91, end: 16.61, energy: 'Harvest · Celebrate completion' },
-    { name: 'Waning Gibbous', symbol: '🌖', start: 16.61, end: 20.30, energy: 'Share · Teach what you learned' },
-    { name: 'Last Quarter', symbol: '🌗', start: 20.30, end: 23.99, energy: 'Release · Let go of what\'s done' },
-    { name: 'Waning Crescent', symbol: '🌘', start: 23.99, end: 29.53, energy: 'Rest · Surrender · Renew' },
+    { name: 'New Moon', symbol: '🌑', start: 0, end: 1.85, energy: '🌍 Materialization · Results appearing' },
+    { name: 'Waxing Crescent', symbol: '🌒', start: 1.85, end: 5.53, energy: '🌍 Growth spurt · Assist, polish, land it' },
+    { name: 'First Quarter', symbol: '🌓', start: 5.53, end: 9.22, energy: '🌬️ Harvest begins · Receive what\'s growing' },
+    { name: 'Waxing Gibbous', symbol: '🌔', start: 9.22, end: 12.91, energy: '🌬️ Abundance arriving · Winds of change' },
+    { name: 'Full Moon', symbol: '🌕', start: 12.91, end: 16.61, energy: '🔥 Harvest peak · Rejoice · New intention forming' },
+    { name: 'Waning Gibbous', symbol: '🌖', start: 16.61, end: 20.30, energy: '🔥 Inner fire ignites · Let the seed will itself' },
+    { name: 'Last Quarter', symbol: '🌗', start: 20.30, end: 23.99, energy: '💧 Creative flow · Let it flow freely' },
+    { name: 'Waning Crescent', symbol: '🌘', start: 23.99, end: 29.53, energy: '💧 Deepest creation · No visibility, no interference' },
 ];
 
 const SEASON_ENERGY: Record<string, string> = {
@@ -399,15 +399,24 @@ export function getMoonState(now: number): MoonState {
         }
     }
 
-    // Moon holonic: New Moon (0-25%) = WILL, Waxing (25-50%) = EMANATION,
-    // Full Moon (50-75%) = DIGESTION, Waning (75-100%) = ENRICHMENT
+    // Lunar Holon Cycle (Feb 22, 2026):
+    // The cycle starts at FULL MOON, not New Moon.
+    // Full Moon → Last Quarter = WILL (Fire 🔥) — inner fire, seed igniting
+    // Last Quarter → New Moon = EMANATION (Water 💧) — creative flow, deepest creation
+    // New Moon → First Quarter = MATERIALIZATION (Earth 🌍) — results appearing, growth
+    // First Quarter → Full Moon = HARVEST (Air 🌬️) — receiving abundance, new clarity
+    //
+    // Full Moon is at ~44% of synodic cycle (12.91/29.53).
+    // We shift progress so Full Moon = 0, then map 4 quarters.
+    const fullMoonOffset = 12.91 / synodicMonth; // ~0.437
+    const lunarHolonProgress = (progress + (1 - fullMoonOffset)) % 1;
     return {
         phase: moonPhase.name,
         symbol: moonPhase.symbol,
         progress,
         day: currentCycleDay,
         energy: moonPhase.energy,
-        holonicPhase: getHolonicPhase(progress),
+        holonicPhase: getHolonicPhase(lunarHolonProgress),
     };
 }
 
