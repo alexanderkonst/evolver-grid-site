@@ -12,7 +12,7 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 const PLANET_ENERGIES = ['Vision & Purpose', 'Intuition & Feeling', 'Action & Courage', 'Clarity & Communication', 'Expansion & Wisdom', 'Beauty & Harmony', 'Structure & Discipline'];
 const PLANET_SYMBOLS = ['☉', '☽', '♂', '☿', '♃', '♀', '♄'];
 const QUARTER_NAMES = ['Night', 'Morning', 'Afternoon', 'Evening'];
-const MOON_PHASE_ENERGIES = ['Seeding', 'Emerging', 'Building', 'Refining', 'Harvesting', 'Sharing', 'Making Sense', 'Resting'];
+const MOON_PHASE_ENERGIES = ['🌍 Materializing', '🌍 Growing', '🌬️ Harvesting', '🌬️ Receiving', '🔥 Igniting', '🔥 Willing', '💧 Flowing', '💧 Creating'];
 const MOON_SYMBOLS = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
 const YEAR_PHASE_NAMES = ['planning', 'building', 'harvesting', 'completing'];
 
@@ -83,22 +83,22 @@ export const CORE_READINGS: string[][] = [
 // moonIndex from getMoonPhaseIndex()
 
 export const MOON_MODIFIERS: string[] = [
-    // New Moon
-    "The cycle is brand new — whatever you name right now becomes a seed.",
-    // Waxing Crescent
-    "Something new is just emerging — take one small step forward, don't force the full picture yet.",
-    // First Quarter
-    "Resistance is natural right now — push through the friction, it's building real strength.",
-    // Waxing Gibbous
-    "You're close to something — refine the details, don't start over. Trust what's already forming.",
-    // Full Moon
-    "Everything is illuminated — see clearly what actually is, not what you wish it were.",
-    // Waning Gibbous
-    "The harvest is in — share what you've learned with someone. Teach, give, pass it forward.",
-    // Last Quarter
-    "Name what's complete and stop carrying it — finished things get heavy when you don't put them down.",
-    // Waning Crescent
-    "The cycle is ending — rest is not laziness right now, it's preparation. Go gentle on yourself.",
+    // New Moon — 🌍 Earth / Materialization
+    "Results are appearing — what was created in the dark is now becoming visible. Assist it to land.",
+    // Waxing Crescent — 🌍 Earth / Growth
+    "Growth spurt — the invisible is becoming visible. Polish it, help it materialize.",
+    // First Quarter — 🌬️ Air / Harvest begins
+    "The harvest begins — receive what's growing. New clarity is arriving.",
+    // Waxing Gibbous — 🌬️ Air / Abundance
+    "Abundance is arriving — winds of change bring new potential. Receive.",
+    // Full Moon — 🔥 Fire / Harvest peak
+    "Harvest peak — rejoice, revere what came to fruition. A new intention is forming within.",
+    // Waning Gibbous — 🔥 Fire / Inner fire
+    "Inner fire ignites — a new seed is willing itself into existence. Don't push, let it will.",
+    // Last Quarter — 💧 Water / Creative flow
+    "Creative flow — let it move freely. The deepest artistry happens when no one is watching.",
+    // Waning Crescent — 💧 Water / Deepest creation
+    "Deepest creation — no visibility means no interference. Maximum creative freedom.",
 ];
 
 // ─── LOOKUP FUNCTIONS ─────────────────────────────
@@ -191,9 +191,61 @@ function parseBirthday(birthday: string): { month: number; day: number; year?: n
     return { month: parseInt(parts[0]) - 1, day: parseInt(parts[1]) };
 }
 
+// ─── PROGRESS BAR HELPERS ──────────────────────────
+
+function buildProgressBar(progress: number, segments: number = 12): string {
+    const filled = Math.round(progress * segments);
+    let bar = '';
+    for (let i = 0; i < segments; i++) {
+        bar += i < filled ? '▰' : '▱';
+    }
+    return bar;
+}
+
+const HOLONIC_ELEMENTS = ['🔥 Fire', '💧 Water', '🌍 Earth', '🌬️ Air'];
+const HOLONIC_LABELS = ['PLANNING', 'BUILDING', 'COMMUNICATING', 'INTEGRATING'];
+
+function getHolonicPhaseIndex(progress: number): number {
+    return Math.min(Math.floor(progress * 4), 3);
+}
+
+function getDayProgress(now: Date): number {
+    return (now.getHours() * 60 + now.getMinutes()) / 1440;
+}
+
+function getWeekProgress(now: Date): number {
+    const dayOfWeek = now.getDay();
+    const mondayBased = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    return (mondayBased * 1440 + now.getHours() * 60 + now.getMinutes()) / (7 * 1440);
+}
+
+function getMoonProgress(now: Date): number {
+    const knownNewMoon = new Date(2000, 0, 6, 18, 14).getTime();
+    const synodicMonth = 29.53058770576;
+    const daysSince = (now.getTime() - knownNewMoon) / 86400000;
+    return (daysSince / synodicMonth % 1);
+}
+
+function getMoonHolonicIndex(now: Date): number {
+    const synodicMonth = 29.53058770576;
+    const progress = getMoonProgress(now);
+    // Lunar Holon Cycle starts at Full Moon (~44% of synodic cycle)
+    const fullMoonOffset = 12.91 / synodicMonth;
+    const lunarHolonProgress = (progress + (1 - fullMoonOffset)) % 1;
+    return Math.min(Math.floor(lunarHolonProgress * 4), 3);
+}
+
+function getWeekHolonicLabel(dayOfWeek: number): string {
+    // Alexander's model: Mon=Planning, Tue=Building, Wed=Communicating, Thu-Sun=Integrating
+    if (dayOfWeek === 1) return `${HOLONIC_ELEMENTS[0]} · ${HOLONIC_LABELS[0]}`;
+    if (dayOfWeek === 2) return `${HOLONIC_ELEMENTS[1]} · ${HOLONIC_LABELS[1]}`;
+    if (dayOfWeek === 3) return `${HOLONIC_ELEMENTS[2]} · ${HOLONIC_LABELS[2]}`;
+    return `${HOLONIC_ELEMENTS[3]} · ${HOLONIC_LABELS[3]}`;
+}
+
 /**
- * Full reading with context header.
- * Shows raw cycle info first, then the hand-crafted reading.
+ * Full reading with summary quick look panel + progress bars.
+ * Shows cycle progress bars at top, then the hand-crafted reading.
  */
 export function getFullReading(now: Date, birthday?: string): string {
     const dayOfWeek = now.getDay();
@@ -201,9 +253,21 @@ export function getFullReading(now: Date, birthday?: string): string {
     const moonIdx = getMoonPhaseIndex(now);
     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-    // Context header
-    let header = `⚡ ${timeStr} · ${DAY_NAMES[dayOfWeek]} ${QUARTER_NAMES[quarterIdx]}`;
-    header += `\n${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGIES[dayOfWeek]} · ${MOON_SYMBOLS[moonIdx]} ${MOON_PHASE_ENERGIES[moonIdx]}`;
+    // ─── Summary Quick Look Panel ───
+    const dayProgress = getDayProgress(now);
+    const weekProgress = getWeekProgress(now);
+    const moonProgress = getMoonProgress(now);
+
+    const dayPhaseIdx = getHolonicPhaseIndex(dayProgress);
+    const moonHolonicIdx = getMoonHolonicIndex(now);
+
+    let panel = `⚡ ${timeStr} · ${DAY_NAMES[dayOfWeek]} ${QUARTER_NAMES[quarterIdx]}\n\n`;
+    panel += `☀️ Day  ${buildProgressBar(dayProgress)}  ${HOLONIC_ELEMENTS[dayPhaseIdx]}\n`;
+    panel += `🔵 Week ${buildProgressBar(weekProgress)}  ${getWeekHolonicLabel(dayOfWeek)}\n`;
+    panel += `${MOON_SYMBOLS[moonIdx]} Moon ${buildProgressBar(moonProgress)}  ${HOLONIC_ELEMENTS[moonHolonicIdx]}\n`;
+
+    // Context line
+    panel += `\n${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGIES[dayOfWeek]} · ${MOON_PHASE_ENERGIES[moonIdx]}`;
 
     if (birthday) {
         const parsed = parseBirthday(birthday);
@@ -213,9 +277,9 @@ export function getFullReading(now: Date, birthday?: string): string {
             const bdayThisYear = new Date(now.getFullYear(), parsed.month, parsed.day);
             const currentAge = now < bdayThisYear ? age - 1 : age;
             const currentYear = currentAge + 1;
-            header += ` · ☀️ ${ordinal(currentYear)} year (${YEAR_PHASE_NAMES[yearIdx]})`;
+            panel += ` · ☀️ ${ordinal(currentYear)} year (${YEAR_PHASE_NAMES[yearIdx]})`;
         } else {
-            header += ` · ☀️ Year ${YEAR_PHASE_NAMES[yearIdx]}`;
+            panel += ` · ☀️ Year ${YEAR_PHASE_NAMES[yearIdx]}`;
         }
     }
 
@@ -229,5 +293,5 @@ export function getFullReading(now: Date, birthday?: string): string {
         body += `\n\n${YEAR_MODIFIERS[yearIdx]}`;
     }
 
-    return `${header}\n\n${body}`;
+    return `${panel}\n\n${body}`;
 }
