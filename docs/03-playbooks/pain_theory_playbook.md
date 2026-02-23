@@ -37,61 +37,74 @@ The client is on the shore, looking at the island. They want to get there but do
 
 ## The 5-Layer Pain Slicer
 
-Pain is not monolithic. It has **layers**, and each layer reveals messaging language. Apply these sequentially — each goes deeper.
+*Version: v2.0 · Feb 23, 2026 — resequenced and deepened*
+
+Pain is not monolithic. It has **layers**, and each layer reveals messaging language and awareness stage. Apply these sequentially — each goes deeper.
 
 > *Applied correctly, this slicer produces the exact phrases your ICP uses to describe their situation — their self-language. These phrases become your messaging.*
 
-### Layer 1: What They're Struggling With (Борьба)
+**Each layer produces two outputs:**
+1. **What's seen from the outside** — the observable situation
+2. **Self-talk they're aware of** — revealing their current stage of problem awareness
 
-The **surface problem** they'd name if you asked them directly. This is what they'd tell a friend.
+### Layer 1: Pressure — What's pushing them toward a decision (Давление)
 
-**Questions to uncover:**
-- What would they say if you asked "what's going on?"
-- What do they complain about?
-- What do they Google at midnight?
-
-**What to listen for beneath it:** What they WON'T say unprompted but feel deeply.
-
-### Layer 2: Pressure (Давление)
-
-What's **pushing them toward a decision**. External and internal forces creating a closing window.
+External and internal forces creating a **closing window**. The compounding loop that makes "someday" collapse into "now."
 
 **Questions to uncover:**
 - What's making this urgent NOW (not "someday")?
 - What external clocks are ticking? (financial runway, deadlines, market windows)
 - What relationship dynamics are creating pressure?
 - What self-image erosion is happening?
+- When will this become a crisis if nothing changes?
 
 **Key insight:** Pressure compounds. Financial stress → partner tension → self-doubt → decreased output → slower progress → more financial stress. Map the **loop**, not just the sources.
 
-### Layer 3: Consequences (Последствия)
+### Layer 2: Consequences — What they experience daily as felt consequences (Последствия)
 
-What they **experience daily** because of this problem — body, mind, emotions, relationships, output, identity.
+What they **experience daily** because of this problem — body, mind, emotions, relationships, identity. Not the abstract problem but the **felt texture** of living inside it.
 
 **Questions to uncover:**
 - What does a bad day feel like in their body?
 - What is their inner dialogue when they're alone?
 - How does this affect their most important relationship?
 - Where is their energy going that it shouldn't?
+- What mask are they wearing and for whom?
 
-### Layer 4: Cost of Inaction (Цена бездействия)
+### Layer 3: Cost of Inaction — The price of not changing, procrastinating, and avoiding the discomfort of accepting their reality (Цена бездействия)
 
-The price of doing **nothing**. Project forward 6-12 months.
+The price of doing **nothing**. Project forward 6-12 months. This is where they confront the abyss — the future they're building by default.
 
 **Questions to uncover:**
 - What will their life look like in 6 months if nothing changes?
 - What gets permanently lost (not just delayed)?
 - What is the real cost — usually not bankruptcy, but **resignation**: settling for a misaligned life.
+- What are they procrastinating on and WHY? (Usually: avoiding the discomfort of accepting their reality.)
+- What is the abyss — the worst-case scenario they won't say out loud?
 
-### Layer 5: Urgency Levers (Рычаги срочности)
+### Layer 4: Urgency — What's really at stake and becoming more and more urgent (Рычаги срочности)
 
-The specific mechanisms that make **now** different from "eventually."
+What's really at stake **beyond the surface**. The specific mechanisms that make **now** different from "eventually." Stakes that compound with each passing month.
 
 **Questions to uncover:**
 - What countdown is already running? (savings, patience, market window)
 - What tipping point is approaching in their relationships?
 - What compounding cost are they paying per month of delay?
 - What upcoming life event forces self-assessment? (birthday, anniversary, end of year)
+- What is the WORST stake — the one they can't admit?
+
+### Layer 5: Struggle Synthesized — What they're struggling with (Борьба)
+
+The **synthesis**. After all layers have been sliced, the struggle becomes visible in its full architecture. Not the surface problem they'd tell a friend, but the **structural pattern** they can now name.
+
+**Questions to uncover:**
+- What would they say if forced to be honest about the full picture?
+- What is the REAL conflict (often different from what they'd name first)?
+- What pattern keeps repeating across their attempts?
+- What's the one sentence that would make them freeze and say "...yes, that's exactly it"?
+
+> **Why struggle is last, not first:** When you START with struggle, you get the surface complaint. When you ARRIVE at struggle through pressure → consequences → cost → urgency, you get the structural truth. The struggle is a synthesis, not a starting point.
+
 
 ---
 
