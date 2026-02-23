@@ -105,6 +105,13 @@ The **synthesis**. After all layers have been sliced, the struggle becomes visib
 
 > **Why struggle is last, not first:** When you START with struggle, you get the surface complaint. When you ARRIVE at struggle through pressure → consequences → cost → urgency, you get the structural truth. The struggle is a synthesis, not a starting point.
 
+### What Unlocks at 9.95 Pain Precision
+
+*Discovered Feb 23, 2026 — through recursive application of the slicer*
+
+**Inverse Pain = Automatic Product Spec.** At sufficiently high pain precision, Point B (the dream outcome) is the exact inversion of each pain layer. The product doesn't need to be designed top-down — the pain card designs it. Every feature is a "yes, and what if you could..." to a struggle they just named. This is the extreme fulfillment of: *success comes from a deeper understanding of the PROBLEM, not the solution.*
+
+**Near-zero false positives.** At 9.95, copy doesn't sell — it searches. The self-talk lines function as recognition triggers: the right person reads them and their body responds before their mind catches up. Everyone else scrolls past. The sale is made at the moment of bodily recognition. They don't need to be convinced — they need to be *found.*
 
 ---
 

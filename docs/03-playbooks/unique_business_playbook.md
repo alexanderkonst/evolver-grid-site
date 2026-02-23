@@ -684,6 +684,8 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - Add recursive shadow per segment (from Pain Theory: gift → inverted shadow belief → pain pattern)
   - Key principle: Never name the solution in the pain. Let the wound breathe.
   - Key principle: Success comes from deep understanding of the PROBLEM, not the solution. Point B is guaranteed by the founder's uniqueness — trust that. Go deep into Point A.
+  - **Breakthrough: Inverse Pain = Automatic Product Spec.** At 9.95 pain precision, Point B is the exact inversion of each pain layer. The product designs itself — every feature is a "yes, and what if you could..." to a struggle they just named.
+  - **Corollary: Near-zero false positives.** At 9.95, copy doesn't sell — it searches. Only the right people feel it (recognition trigger). Everyone else scrolls past. The sale is made at the moment of bodily recognition.
 - [ ] **5. PROMISE (Point A → Point B)** → What's the master transformational result?
   - Output: The transformational result we deliver — the journey from Point A to Point B
   - Key principle: Promise = the journey from Master Lie to Master Belief
