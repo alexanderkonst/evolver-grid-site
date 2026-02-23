@@ -409,6 +409,80 @@ body {
   color: var(--gold-dim);
 }
 
+/* --- SUMMARY QUICK LOOK PANEL --- */
+#summary-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-sm) var(--space-lg);
+  max-width: 420px;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+.cycle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.cycle-icon {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.cycle-label {
+  font-weight: 500;
+  color: var(--cream);
+  width: 36px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.cycle-bar {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+#cycle-day .cycle-bar {
+  color: #c9a84c;
+}
+
+#cycle-week .cycle-bar {
+  color: #4080c0;
+}
+
+#cycle-moon .cycle-bar {
+  color: #a080c0;
+}
+
+.cycle-phase {
+  color: var(--cream-muted);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="light"] .cycle-label {
+  color: var(--cream);
+}
+
+[data-theme="light"] .cycle-phase {
+  color: var(--cream-muted);
+}
+
 /* --- SETTINGS TOGGLE --- */
 #settings-toggle {
   position: absolute;

@@ -295,14 +295,83 @@ export class Clock {
             }
         }
 
-        // --- Status Bar: time + day energy only ---
+        // --- Status Bar: time + planetary energy + moon ---
         const now = new Date();
         const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
         const dayEnergy = cycles.week.planetaryDay.energy;
+        const moonSymbol = cycles.moon.symbol;
         this.statusBar.innerHTML = `
             <span class="status-time">${timeStr}</span>
-            <span>${dayEnergy}</span>
+            <span>${cycles.week.planetaryDay.emoji} ${dayEnergy}</span>
+            <span>${moonSymbol} ${cycles.moon.phase}</span>
         `;
+
+        // --- Summary Quick Look Panel: progress bars for Day, Week, Moon ---
+        this.updateSummaryPanel(cycles);
+    }
+
+    private buildProgressBar(progress: number, totalSegments: number = 12): string {
+        const filled = Math.round(progress * totalSegments);
+        let bar = '';
+        for (let i = 0; i < totalSegments; i++) {
+            bar += i < filled ? '▰' : '▱';
+        }
+        return bar;
+    }
+
+    private getElementEmoji(holonicPhaseId: string): string {
+        switch (holonicPhaseId) {
+            case 'will': return '🔥';
+            case 'emanation': return '💧';
+            case 'digestion': return '🌍';
+            case 'enrichment': return '🌬️';
+            default: return '';
+        }
+    }
+
+    private getElementLabel(holonicPhaseId: string): string {
+        switch (holonicPhaseId) {
+            case 'will': return 'Fire';
+            case 'emanation': return 'Water';
+            case 'digestion': return 'Earth';
+            case 'enrichment': return 'Air';
+            default: return '';
+        }
+    }
+
+    private updateSummaryPanel(cycles: AllCycles) {
+        // Day
+        const dayRow = document.getElementById('cycle-day');
+        if (dayRow) {
+            const dayBar = dayRow.querySelector('.cycle-bar')!;
+            const dayPhase = dayRow.querySelector('.cycle-phase')!;
+            dayBar.textContent = this.buildProgressBar(cycles.day.progress);
+            const dayElement = this.getElementEmoji(cycles.day.holonicPhase.id);
+            const dayLabel = this.getElementLabel(cycles.day.holonicPhase.id);
+            dayPhase.textContent = `${dayElement} ${cycles.day.holonicPhase.label} · ${dayLabel}`;
+        }
+
+        // Week
+        const weekRow = document.getElementById('cycle-week');
+        if (weekRow) {
+            const weekBar = weekRow.querySelector('.cycle-bar')!;
+            const weekPhase = weekRow.querySelector('.cycle-phase')!;
+            weekBar.textContent = this.buildProgressBar(cycles.week.progress);
+            const weekElement = this.getElementEmoji(cycles.week.holonicPhase.id);
+            const weekLabel = this.getElementLabel(cycles.week.holonicPhase.id);
+            weekPhase.textContent = `${weekElement} ${cycles.week.holonicPhase.label} · ${weekLabel}`;
+        }
+
+        // Moon
+        const moonRow = document.getElementById('cycle-moon');
+        if (moonRow) {
+            const moonBar = moonRow.querySelector('.cycle-bar')!;
+            const moonPhase = moonRow.querySelector('.cycle-phase')!;
+            moonBar.textContent = this.buildProgressBar(cycles.moon.progress);
+            const moonElement = this.getElementEmoji(cycles.moon.holonicPhase.id);
+            const moonLabel = this.getElementLabel(cycles.moon.holonicPhase.id);
+            moonPhase.textContent = `${moonElement} ${cycles.moon.holonicPhase.label} · ${moonLabel}`;
+        }
     }
 
     /**
