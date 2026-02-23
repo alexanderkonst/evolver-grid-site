@@ -60,14 +60,14 @@ const CORE_READINGS: Record<number, Record<string, string>> = {
 };
 
 const MOON_MODIFIERS: Record<string, string> = {
-  "New Moon": "The cycle is brand new — whatever you name right now becomes a seed.",
-  "Waxing Crescent": "Something new is just emerging — take one small step forward, don't force the full picture yet.",
-  "First Quarter": "Resistance is natural right now — push through the friction, it's building real strength.",
-  "Waxing Gibbous": "You're close to something — refine the details, don't start over. Trust what's already forming.",
-  "Full Moon": "Everything is illuminated — see clearly what actually is, not what you wish it were.",
-  "Waning Gibbous": "The harvest is in — share what you've learned with someone. Teach, give, pass it forward.",
-  "Last Quarter": "Name what's complete and stop carrying it — finished things get heavy when you don't put them down.",
-  "Waning Crescent": "The cycle is ending — rest is not laziness right now, it's preparation. Go gentle on yourself.",
+  "New Moon": "Results are appearing — what was created in the dark is now becoming visible. Assist it to land.",
+  "Waxing Crescent": "Growth spurt — the invisible is becoming visible. Polish it, help it materialize.",
+  "First Quarter": "The harvest begins — receive what's growing. New clarity is arriving.",
+  "Waxing Gibbous": "Abundance is arriving — winds of change bring new potential. Receive.",
+  "Full Moon": "Harvest peak — rejoice, revere what came to fruition. A new intention is forming within.",
+  "Waning Gibbous": "Inner fire ignites — a new seed is willing itself into existence. Don't push, let it will.",
+  "Last Quarter": "Creative flow — let it move freely. The deepest artistry happens when no one is watching.",
+  "Waning Crescent": "Deepest creation — no visibility means no interference. Maximum creative freedom.",
 };
 
 const YEAR_MODIFIERS = [
@@ -81,9 +81,9 @@ const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frid
 const PLANET_SYMBOLS = ["☉", "☽", "♂", "☿", "♃", "♀", "♄"];
 const PLANET_ENERGY = ["Vision & Purpose", "Intuition & Feeling", "Action & Courage", "Clarity & Communication", "Expansion & Wisdom", "Beauty & Harmony", "Structure & Discipline"];
 const MOON_ENERGY: Record<string, string> = {
-  "New Moon": "Seeding", "Waxing Crescent": "Emerging", "First Quarter": "Building",
-  "Waxing Gibbous": "Refining", "Full Moon": "Harvesting", "Waning Gibbous": "Sharing",
-  "Last Quarter": "Making Sense", "Waning Crescent": "Resting",
+  "New Moon": "🌍 Materializing", "Waxing Crescent": "🌍 Growing", "First Quarter": "🌬️ Harvesting",
+  "Waxing Gibbous": "🌬️ Receiving", "Full Moon": "🔥 Igniting", "Waning Gibbous": "🔥 Willing",
+  "Last Quarter": "💧 Flowing", "Waning Crescent": "💧 Creating",
 };
 const MOON_SYMBOLS: Record<string, string> = {
   "New Moon": "🌑", "Waxing Crescent": "🌒", "First Quarter": "🌓",
@@ -177,7 +177,12 @@ function buildReading(birthday: string, tzOffset: number): string {
 
   const lines = [
     `⚡ ${hh}:${mm} · ${DAY_NAMES[dayOfWeek]} ${quarter}`,
-    `${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGY[dayOfWeek]} · ${MOON_SYMBOLS[moonPhase]} ${MOON_ENERGY[moonPhase]}${age > 0 ? ` · ☀️ ${getOrdinal(age)} year (${yearPhaseName})` : ""}`,
+    "",
+    `☀️ Day  ${buildProgressBar(getDayProgress(hour, shifted.getUTCMinutes()))}  ${HOLONIC_ELEMENTS[getHolonicIdx(getDayProgress(hour, shifted.getUTCMinutes()))]}`,
+    `🔵 Week ${buildProgressBar(getWeekProgress(dayOfWeek, hour, shifted.getUTCMinutes()))}  ${getWeekHolonicLabel(dayOfWeek)}`,
+    `${MOON_SYMBOLS[moonPhase]} Moon ${buildProgressBar(getMoonProgressValue(utcNow))}  ${HOLONIC_ELEMENTS[getMoonHolonicIdx(utcNow)]}`,
+    "",
+    `${PLANET_SYMBOLS[dayOfWeek]} ${PLANET_ENERGY[dayOfWeek]} · ${MOON_ENERGY[moonPhase]}${age > 0 ? ` · ☀️ ${getOrdinal(age)} year (${yearPhaseName})` : ""}`,
     "",
     CORE_READINGS[dayOfWeek][quarter],
     "",
@@ -189,11 +194,66 @@ function buildReading(birthday: string, tzOffset: number): string {
   return lines.join("\n");
 }
 
+// ─── PROGRESS BAR + HOLONIC HELPERS ────────────────
+
+function buildProgressBar(progress: number, segments: number = 12): string {
+  const filled = Math.round(progress * segments);
+  let bar = '';
+  for (let i = 0; i < segments; i++) {
+    bar += i < filled ? '▰' : '▱';
+  }
+  return bar;
+}
+
+const HOLONIC_ELEMENTS = ['🔥 Fire', '💧 Water', '🌍 Earth', '🌬️ Air'];
+const HOLONIC_LABELS = ['PLANNING', 'BUILDING', 'COMMUNICATING', 'INTEGRATING'];
+
+function getDayProgress(h: number, m: number): number {
+  return (h * 60 + m) / 1440;
+}
+
+function getWeekProgress(dayOfWeek: number, h: number, m: number): number {
+  const mondayBased = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  return (mondayBased * 1440 + h * 60 + m) / (7 * 1440);
+}
+
+function getMoonProgressValue(date: Date): number {
+  const ref = new Date(Date.UTC(2000, 0, 6, 18, 14, 0));
+  const diff = (date.getTime() - ref.getTime()) / 86400000;
+  const syn = 29.53058770576;
+  return ((diff % syn) + syn) % syn / syn;
+}
+
+function getMoonHolonicIdx(date: Date): number {
+  const syn = 29.53058770576;
+  const progress = getMoonProgressValue(date);
+  const fullMoonOffset = 12.91 / syn;
+  const lunarHolonProgress = (progress + (1 - fullMoonOffset)) % 1;
+  return Math.min(Math.floor(lunarHolonProgress * 4), 3);
+}
+
+function getWeekHolonicLabel(dayOfWeek: number): string {
+  if (dayOfWeek === 1) return `${HOLONIC_ELEMENTS[0]} · ${HOLONIC_LABELS[0]}`;
+  if (dayOfWeek === 2) return `${HOLONIC_ELEMENTS[1]} · ${HOLONIC_LABELS[1]}`;
+  if (dayOfWeek === 3) return `${HOLONIC_ELEMENTS[2]} · ${HOLONIC_LABELS[2]}`;
+  return `${HOLONIC_ELEMENTS[3]} · ${HOLONIC_LABELS[3]}`;
+}
+
+function getHolonicIdx(progress: number): number {
+  return Math.min(Math.floor(progress * 4), 3);
+}
+
+const ENERGY_KEYBOARD = {
+  keyboard: [[{ text: '⚡ SEE CURRENT ENERGY' }]],
+  resize_keyboard: true,
+  is_persistent: true,
+};
+
 async function sendTelegram(chatId: number, text: string) {
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "Markdown" }),
+    body: JSON.stringify({ chat_id: chatId, text, reply_markup: ENERGY_KEYBOARD }),
   });
 }
 
@@ -222,8 +282,8 @@ Deno.serve(async (req) => {
       return new Response("ok", { headers: corsHeaders });
     }
 
-    // /energy
-    if (text === "/energy") {
+    // /energy or button tap
+    if (text === "/energy" || text === "⚡ SEE CURRENT ENERGY") {
       const { data: user } = await supabase
         .from("equilibrium_users")
         .select("*")
