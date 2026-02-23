@@ -14,11 +14,17 @@ const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_S
 
 // ─── TELEGRAM HELPERS ──────────────────────────────
 
+const ENERGY_KEYBOARD = {
+    keyboard: [[{ text: '⚡ SEE CURRENT ENERGY' }]],
+    resize_keyboard: true,
+    is_persistent: true,
+};
+
 async function sendMessage(chatId: number, text: string) {
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text }),
+        body: JSON.stringify({ chat_id: chatId, text, reply_markup: ENERGY_KEYBOARD }),
     });
 }
 
@@ -73,8 +79,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(200).json({ ok: true });
         }
 
-        // /energy command — on-demand reading
-        if (text === '/energy') {
+        // /energy command or button tap — on-demand reading
+        if (text === '/energy' || text === '⚡ SEE CURRENT ENERGY') {
             const user = await getUser(chatId);
             const tz = user?.timezone || 8;
             const now = new Date(Date.now() + tz * 3600000);
