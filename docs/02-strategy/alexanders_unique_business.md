@@ -452,6 +452,17 @@ The core wound: **extremely capable AND stuck.** Three different journeys, same 
 
 > **The recursive shadow — meta version:** Their gift IS polymathy — the ability to see across domains, speak multiple languages, connect dots that specialists can't see. The shadow: the polymathy has no container. Every existing business model, career path, and identity category was built for specialists. The polymath doesn't fit — not because they're broken, but because the models are. The intervention isn't simplification ("just pick one lane"). The intervention is showing them that the polymathy IS the lane — and building the container that holds all of it.
 
+**Segment name:** *TBD — needs to come from the founder. The name itself is an intervention: this segment has never been named. Whatever we call them should make them say "THAT'S what I am."*
+
+**Three problems, one condition:** They experience it as three separate issues — *(1)* "I build great things but I can't get reliable customer demand — it's not that nobody buys, it's that I can't count on it" *(2)* "The demand is unpredictable, I'm underpricing because of that, and my schedule is exhausting just to cover what life actually costs" *(3)* "I don't know my exact fit — what niche, what kind of role, what kind of organization — and if not what I'm doing now, then *what?*" What they can't see is that these three are ONE structural condition: they're a multi-gifted person without a container for the full gift. The variation within the segment is only in the MIX — some lean more founder, some more coach, some more professional-in-transition — but the underlying architecture is identical.
+
+**Awareness stage: Stage 2+ (Problem Aware, but fragmented).** They're problem-aware THREE TIMES OVER — for each facet separately. But they are NOT aware that the three problems ARE the same problem. They think they have a portfolio of issues. They actually have a single structural condition they can't see. This makes the segment **highly homogeneous** — regardless of which facet is loudest on any given day, the underlying truth is singular. You can speak to ALL of them with the same language because the structural truth is one.
+
+> [!IMPORTANT]
+> **Breakthrough: Inverse Pain = Automatic Product Spec.** At 9.95 pain precision, Point B (the dream outcome) is the exact inversion of each pain layer. The product doesn't need to be designed top-down — the pain card designs it. Every feature is a "yes, and what if you could..." to a struggle they just named. This is the extreme version of the principle: *success comes from a deeper understanding of the PROBLEM, not the solution.* Point B is guaranteed by the founder's uniqueness — the investment is in going deep into Point A.
+>
+> **Corollary: Near-zero false positives at 9.95.** At this precision, the copy doesn't sell — it searches. Only the right people feel it. Everyone else scrolls past. The self-talk lines function as recognition triggers: when someone reads "I may not survive believing in myself one more time and being wrong" and their body responds, the sale is already made. They don't need to be convinced. They need to be *found.*
+
 > Source: [pain_theory_playbook.md](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/pain_theory_playbook.md) · [fmf_deep_pain_analysis.md](file:///Users/alexanderkonst/.gemini/antigravity/brain/a872e31d-c282-4154-8c89-1af4e2451bf0/fmf_deep_pain_analysis.md)
 
 ---
