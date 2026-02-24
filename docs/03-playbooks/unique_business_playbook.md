@@ -750,18 +750,42 @@ Every tactical decision is evaluated on two axes:
 
 > **Strategy vs. Tactics:** Strategy is the ONE-strategy (ONE myth, ONE tribe, ONE Point A → B). Tactics are the many ways to deliver that ONE strategy to the world. Strategy is locked. Tactics are swappable, testable, and scored by Simplicity × Leverage.
 
-**The Two-Question Seed (discovered Feb 24, 2026):**
+### The Two-Question Seed — First-Level Artifact
 
-Everything — the myth, the pain card, the funnel, the session, all of it — reduces to TWO questions:
+*Version: v1.0 · Feb 24, 2026. Peers with Zone of Genius Assessment and Appleseed Technology in the methodology stack.*
 
-1. **What do you desire most** (professionally)?
-2. **Where are you most stuck?**
+The entire business — the myth, the pain card, the funnel, the session, all of it — reduces to TWO questions. This is the beginning of the waterfall.
 
-These are not two separate things. They are the same thing seen from two sides. The desire IS the direction. The stuck IS the shadow keeping someone in the **Savings-Draining Loop**. When you look at both and see they're one — the exit appears.
+**The questions (exact form):**
 
-The Mirror Session IS these two questions, held in a mirror. The assessment maps them. The 3 videos explain them. The tuning fork names them. One acorn. Two questions. Everything else is delivery.
+| # | English | Russian |
+|---|---------|---------|
+| **1** | What do you desire most — professionally? | Чего ты желаешь больше всего — профессионально? |
+| **2** | Where are you most stuck? | Где ты больше всего застрял? |
 
-> **The Readiness Illusion:** "There is no blocker. I made it all up." Full readiness does not exist. There is only degree of readiness. The belief that you need to be "fully ready" before acting IS the loop's final defense mechanism. The loop ends not when you're ready, but when you see that "ready" was the prison.
+**Essence (🫀):** These are not two separate questions. They are the same truth seen from two sides — one in light, one in shadow. The desire IS the direction of the unique business. The stuck IS the shadow keeping someone in the Savings-Draining Loop. When you look at both and see they are one — the exit appears. The thing you desire most is exactly what the stuck prevents. The desire is born FROM the stuck.
+
+**Significance (🧠):** This collapses the entire consulting/coaching/business-building approach. Industry standard: diagnose problems (separate process) → create solutions (separate process) → implement (separate process). Two-Question Seed: ask two questions → see they are one → the solution is already visible. The diagnosis IS the solution because the desire IS the direction and the stuck IS the obstacle on that specific direction.
+
+**Implications (🔥):**
+
+1. The Mirror Session reduces to: two questions → one mirror → one insight → one action
+2. The lead magnet can literally BE these two questions as the entry point
+3. Zone of Genius maps the DESIRE side. Pain card maps the STUCK side. Together they ARE the mirror
+4. Every piece of content does one of two things: names the desire (aspiration) or names the stuck (recognition). The best content does both simultaneously — that is the tuning fork
+5. This scales absolutely — two questions work for every person in the segment. Specific answers differ. Structure is identical
+6. This is the Copernican Inversion at the operational level: you don't need MORE information to help someone. You need LESS. Two questions. One truth
+
+**The two paths:**
+
+| Path | When | What happens |
+|------|------|-------------|
+| **A: They CAN answer** | Person says «I want X.» X already contains the business. Invisible to them (Möbius Strip topology) | Listen → reflect → «You just told me what your business is.» Answer was in their first sentence |
+| **B: They CAN'T answer** | Desire buried under stuck. Questions don't produce clear answer | Zone of Genius → Unique Business Flow → first draft → apply methodology → find the myth inside the draft → two questions now answerable |
+
+**AI answering possibility:** If an AI model knows the person deeply (their assessment data, ZoG profile, conversation history), it may be able to pre-generate draft answers to both questions. These drafts can be woven into the product technology — offering the person a starting point they refine, not an empty prompt. To be tested.
+
+> **The Readiness Illusion:** «There is no blocker. I made it all up.» Full readiness does not exist. There is only degree of readiness. The belief that you need to be «fully ready» before acting IS the loop's final defense mechanism. The loop ends not when you are ready, but when you see that «ready» was the prison.
 
 ---
 
