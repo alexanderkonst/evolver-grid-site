@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | Tribe + Pain forged → Promise + Packaging next |
-| **Current cycle** | February 2026 — Horsepower Cycle |
+| **Current phase** | Pain 9.95 forged → MTR + Packaging this week |
+| **Current cycle** | February 2026 — Horsepower Cycle, Week 4 (Harvest) |
 | **Location** | Bali |
-| **Focus** | **FMF Launch: Myth → Tribe → Pain ✅ → Promise → Value Ladder → First outreach** |
-| **Key milestone** | ✅ Tribe v2.2 (9.8/10) + Pain v2.0 (9/10) forged (Feb 20) |
-| **Key decision** | 5-Layer Pain Slicer applied per segment. Pain before Promise. |
+| **Focus** | **FMF Launch: Myth ✅ → Tribe ✅ → Pain ✅ (9.95) → MTR → Lead Magnet → Value Ladder → First outreach** |
+| **Key milestone** | ✅ Meta-segment pain at 9.95 + 6 breakthrough principles (Feb 23) |
+| **Key decision** | Promise = SALES (revenue is result, identity is method). Frankie sales model adopted. |
 
 ---
 
@@ -695,18 +695,23 @@ For unbuilt features, show:
 ---
 
 ### Pain Deep-Dive (Priority: ✅ DONE)
-**What:** 5-Layer Pain Slicer from Pain Theory Playbook applied per segment. Each segment got 5 layers (Struggle, Pressure, Consequences, Cost of Inaction, Urgency) + self-talk + recursive shadow.
-**Key discovery:** Pain Slicer must be applied per segment — same wound, different felt texture.
-**Status:** ✅ DONE (2026-02-20, AI draft ~9/10, Last Mile pending)
+**What:** 5-Layer Pain Slicer v2.0 applied per segment + meta-segment discovered and deepened to 9.95.
+**Key discoveries:**
+- 3 segments are ONE person cycling (meta-segment = beachhead)
+- Pain Slicer v2.0 resequenced: Pressure → Consequences → Cost → Urgency → Struggle Synthesized
+- At 9.95: inverse pain = product spec, near-zero false positives, pain card IS lead magnet
+- Self-talk at 9.95: "I may not survive believing in myself one more time and being wrong"
+**Status:** ✅ DONE (2026-02-23, 9.95 precision)
 
 ---
 
-### Promise / Point B (Priority: 🔴 CRITICAL | Target: Next session)
-**What:** Define the master transformational result (Point A → Point B). Point A is now deeply understood. Point B is guaranteed by founder's uniqueness.
-**Why:** Promise unlocks lead magnet, methodology, value ladder — the domino effect.
-**Status:** 🔜 Next
+### Promise / MTR (Priority: 🔴 CRITICAL | Target: Feb 24)
+**What:** Master Transformational Result. Roasted: identity/recognition/integration language = coaching-speak. Real result = SALES.
+**Key insight:** "I help you get paying clients for your unique business." Identity clarity is the METHOD, revenue is the RESULT.
+**Frankie model:** Hand raiser post (1-3 sentences, promise not service) + 5-min close video (demonstrate, don't describe) + NotebookLM custom videos.
+**Status:** 🔴 IN PROGRESS (Feb 24 sprint)
 
 ---
 
-*Roadmap updated: 2026-02-20. Tribe v2.2 + Pain v2.0 forged. Next: Promise (Point B) → Lead Magnet → Value Ladder.*
+*Roadmap updated: 2026-02-24. Pain 9.95 forged. MTR = SALES. Frankie model adopted. This week: MTR → Lead Magnet → First outreach.*
 
