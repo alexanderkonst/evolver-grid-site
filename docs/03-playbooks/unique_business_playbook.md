@@ -750,6 +750,19 @@ Every tactical decision is evaluated on two axes:
 
 > **Strategy vs. Tactics:** Strategy is the ONE-strategy (ONE myth, ONE tribe, ONE Point A → B). Tactics are the many ways to deliver that ONE strategy to the world. Strategy is locked. Tactics are swappable, testable, and scored by Simplicity × Leverage.
 
+**The Two-Question Seed (discovered Feb 24, 2026):**
+
+Everything — the myth, the pain card, the funnel, the session, all of it — reduces to TWO questions:
+
+1. **What do you desire most** (professionally)?
+2. **Where are you most stuck?**
+
+These are not two separate things. They are the same thing seen from two sides. The desire IS the direction. The stuck IS the shadow keeping someone in the **Savings-Draining Loop**. When you look at both and see they're one — the exit appears.
+
+The Mirror Session IS these two questions, held in a mirror. The assessment maps them. The 3 videos explain them. The tuning fork names them. One acorn. Two questions. Everything else is delivery.
+
+> **The Readiness Illusion:** "There is no blocker. I made it all up." Full readiness does not exist. There is only degree of readiness. The belief that you need to be "fully ready" before acting IS the loop's final defense mechanism. The loop ends not when you're ready, but when you see that "ready" was the prison.
+
 ---
 
 ### The Anatomy of Attention
@@ -928,7 +941,7 @@ They pay $27. The platform opens. They see ONLY the Zone of Genius space. Everyt
 | | **Video 1: The Heart (🫀)** — The pain, fully seen. What it actually feels like to be in the loop. The inner experience named at 9.95 precision | |
 | | **Video 2: The Mind (🧠)** — Why the loop exists. The structural explanation. The Copernican Inversion: YOU are the PMF. The startup industry has it backwards | |
 | | **Video 3: The Gut (🔥)** — What to do about it. The path from stuck to early PMF. What the Mirror Session will do. Why it works. How to prepare | |
-| **Implications** 🔥 | After watching the 3 videos, they do the Zone of Genius assessment. Their Appleseed card is generated and saved. They've absorbed the framework. They understand the inversion. They see the exit door clearly. They're READY for the session | They see the offer for the Mirror Session. They already know Alexander (from intro video or from Victoria's guidance). They know what MAP → MATCH → MOVE means. They know what they'll walk out with. The $555 decision is now natural, not cold |
+| **Implications** 🔥 | After watching the 3 videos, they do the Zone of Genius assessment. Their Appleseed card is generated and saved. They've absorbed the framework. They understand the inversion. They see the exit door clearly. They're READY for the session | They see the offer for the Mirror Session. They already know Alexander (from intro video or from Victoria's guidance). They know the session structure. They know what they'll walk out with. The $555 decision is now natural, not cold |
 
 **30-min Initiatory Digital Experience — Operational Spec:**
 
@@ -960,7 +973,10 @@ The entry product. They arrive PREPARED. Alexander already has their Appleseed c
 |--------|------|
 | **Duration** | 60 minutes |
 | **Format** | 1:1 Zoom (or in person if local) |
-| **Structure** | MAP → MATCH → MOVE |
+| **Structure** | The Two-Question Seed → Möbius Mirror → Articulation |
+| **Methodology** | LISTEN → REFLECT → THEY SEE. The answer is in their first answer. Alexander's primary skill = hearing what they said and reflecting it. Not advising — mirroring |
+| **The Two Paths** | **Path A:** They CAN answer "what do you desire most?" → their answer already contains their business (Möbius-invisible to them) → mirror: "You just told me. Listen to what you said." **Path B:** They CAN'T answer → go to ZoG profile → derive what business flows from uniqueness → project back onto the two questions |
+| **Container required** | Money paid (skin in game) + human presence (someone who expects a real answer) + weight of the moment. Without this container, the truth stays general and Möbius-invisible. This is WHY the value ladder exists — progressive construction of a container strong enough to hold the truth |
 | **Deliverables** | Written unique offer statement + first hand raiser post draft |
 | **Led by** | Alexander Konstantinov |
 | **Recommended price** | $555 |
@@ -999,7 +1015,7 @@ TUNING FORKS (Active / Passive / Static Resonance)
     │ 2-3 sentences. Mirror. Myth. Pain at 9.95
     │ They click the link
     ▼
-LEAD MAGNET LANDING PAGE  ← [domain].com
+LEAD MAGNET LANDING PAGE  ← myuniquebusiness.com
     │ 5-min NotebookLM video (mirrors, names the loop, shows exit door)
     │ Below video: "30 min + $27 → see why nothing stuck"
     │ Button = name of the result
@@ -1014,10 +1030,10 @@ INITIATORY DIGITAL EXPERIENCE  ← $27, platform opens
     ▼
 MIRROR SESSION  ← $555 (name your price, min $222)
     │ Alexander already has their Appleseed card
-    │ 60 min: MAP → MATCH → MOVE
+    │ 60 min: ARTICULATE → EXPRESS → MONETIZE
     │ Walk out with: unique offer + first hand raiser post
     ▼
-HERO'S JOURNEY  ← Group container, pricing TBD
+UNIQUE BUSINESS INCUBATOR  ← Group container, pricing TBD
     │ Build the unique business together
     │ First paying clients → early PMF achieved
     │ New spaces unlock on the platform
@@ -1034,34 +1050,192 @@ FULL PLATFORM  ← Ongoing membership
 
 ---
 
-### Platform Domain Name
+### Results Chain: What Each Step DELIVERS
 
-The platform needs its own domain. Not Alexander Konstantinov (too personal — this will outlive one person). Not Planetary OS (reveals the long-term play, could distract or generate unpredictable reactions). Something that says what it IS, without revealing what it BECOMES.
+Each step has ONE concrete result. That result earns the right to see the next step.
 
-**Criteria:**
-- Describes the offering (unique business incubation)
-- Neutral enough not to trigger skepticism
-- Memorable, clean, short
-- Doesn't reveal the long game (Planetary OS, Evolver)
-- .com available (ideally)
+| Step | Price | What they GET | Transformational promise | What opens |
+|------|-------|---------------|------------------------|------------|
+| **Tuning Fork** | Free | "Someone finally named my situation" | — | Link to landing page |
+| **Lead Magnet** | Free | "I understand my loop — and there's an exit" | "See why nothing stuck — in 5 minutes" | $27 experience |
+| **Initiatory Experience** | $27 | "I understand WHY I'm stuck + I have my Zone of Genius profile" | "In 30 min and $27, see the pattern behind everything that didn't stick" | Mirror Session |
+| **Mirror Session** | $333 avg ($222-555) | "I can SEE what my unique business is. I see that it will work for me. I see the path" | "In 60 min, you'll see your unique business clearly — and why THIS time it will work" | Incubator |
+| **Unique Business Incubator** | TBD | "I BUILT it. First paying clients. Early PMF. Proof" | "Build it alongside people who've been in the same loop — and reach your first paying clients" | Full platform |
+| **Full Platform** | Membership | "This is my life's work" | "Continue evolving" | ∞ |
 
-**Suggestions:**
+**Key insight on session result:** The Mirror Session does NOT get them to early PMF. It shows them clearly that early PMF is REAL and ACHIEVABLE for them personally. The session opens their eyes: everything the course taught is true, AND it applies to THEM. They ARTICULATE their unique offer. They SEE the path. The incubator is where they WALK it.
 
-| Domain | S×L | Notes |
-|--------|-----|-------|
-| **unique.business** | 9 | Uses .business TLD. Perfectly descriptive. "Your business should be as unique as you are" |
-| **geniusventure.co** | 8 | Bridges Zone of Genius → venture. Clean. May feel Silicon Valley |
-| **youarethepmf.com** | 7 | Bold. The myth AS the domain. Memorable. But only resonates with startup-literate people |
-| **theincubator.co** | 6 | Clean but generic. A thousand incubators exist. What makes this one unique? |
-| **unfold.business** | 8 | Verb-based. What happens here: things unfold. Beautiful. Not imposing |
-| **foundryou.com** | 7 | Wordplay: "found you" / "found (the) you." Clever but might be confusing |
-| **mirrorventure.com** | 7 | The method (mirror) + the result (venture). Descriptive |
-| **theuniqueincubator.com** | 7 | Says what it is. Longer but unambiguous |
-| **evolve.ventures** | 8 | Bridges the Evolver brand without revealing it fully. .ventures TLD |
-| **geniusbusiness.co** | 8 | Direct: your genius IS your business. Clean |
+**The door to the incubator:** After the session, with their unique offer articulated and their eyes open — the natural next question is "How do I actually build this?" The incubator is the answer: build it together, alongside others who've been in the same loop, with Alexander guiding. Not alone anymore.
 
-> [!TIP]
-> **Top 3 recommendation:** `unique.business`, `unfold.business`, `geniusbusiness.co` — each is descriptive, clean, and doesn't reveal the full vision. Check availability before committing.
+---
+
+### Funnel Conversion Math (v2 — roasted)
+
+*Working FORWARD from realistic month 1 traffic. Target: $10K in the moon cycle March 3 → March 31 (~28 days)*
+
+**Conversion rates — roasted and adjusted:**
+
+| Step | What happens | Conservative | Expected | Optimistic | Roast notes |
+|------|-------------|-------------|---------|-----------|------------|
+| **LP → Play video** | They press play | 70% | 80% | 85% | Page has ONLY the video. High play rate |
+| **Play → Watch to end** (5 min) | They stay | 55% | 65% | 75% | At 9.95, they can't stop. But some arrived by mistake or aren't target |
+| **Watch to end → Buy $27** | They pay | 20% | 30% | 40% | Industry best for warm low-ticket: 15-25%. We push to 30% because: $27 is nothing, pain is 9.95, and they just saw the exit door. But it IS still a credit card wall. 40% would be extraordinary |
+| **Buy → Complete experience** | 3 vids + assessment | 65% | 75% | 85% | They paid, so skin in game. But people are people. Some buy and don't open for days. 75% is honest |
+| **Complete → Buy session** | They pay $333 avg | 45% | 55% | 65% | $333 is 12x the first purchase. Big jump. But they're deeply prepared, they see the path, and they WANT it. 55% reflects real buying friction |
+| **Buy → Show up** | They come | 88% | 93% | 97% | High-intent, paid, prepared. Very few no-shows. Agreed — higher than 90% |
+| **Session → Buy incubator** ($1,500) | They commit | 25% | 35% | 50% | $1,500 after a powerful session = significant but not insane. Some need time to decide. Alexander IS very good at sales when aligned. 35% is honest. 50% is if he's on fire |
+
+---
+
+**March traffic estimate — week by week:**
+
+| Week | Key activities | Estimated LP visits |
+|------|---------------|-------------------|
+| **Wk 1 (Mar 3-9)** | Launch burst: deploy all real estate, first hand raiser post, 5 warm DMs/day, 30 new LinkedIn connections | 35-45 |
+| **Wk 2 (Mar 10-16)** | Steady: 5 DMs/day, second hand raiser post, connections start seeing content | 40-55 |
+| **Wk 3 (Mar 17-23)** | Compounding: network growing, commenting, voice notes, 2 warm intros | 45-60 |
+| **Wk 4 (Mar 24-31)** | Flywheel starting: first referrals from session clients, third post, profile views growing | 50-70 |
+| **March total** | | **170-230** |
+
+---
+
+**Funnel time lag — reality check:**
+
+The funnel is NOT instant. From landing page to session = 7-14 days:
+- Day 0: lands on page, watches video
+- Day 0-1: buys $27 experience
+- Day 1-3: completes 3 videos + assessment
+- Day 3-5: sees session offer, decides, books
+- Day 7-14: session happens (depending on availability)
+- Day 14-21: incubator decision
+
+This means **people who enter in weeks 1-2 generate session revenue in weeks 3-4.** People who enter in weeks 3-4 generate revenue in April.
+
+---
+
+**March revenue projection — 3 scenarios (200 LP visits):**
+
+| Funnel step | Conservative | Expected | Optimistic |
+|-------------|-------------|---------|-----------|
+| LP visits | 200 | 200 | 200 |
+| Play video | 140 (70%) | 160 (80%) | 170 (85%) |
+| Watch to end | 77 (55%) | 104 (65%) | 128 (75%) |
+| Buy $27 | 15 (20%) | 31 (30%) | 51 (40%) |
+| Complete exp | 10 (65%) | 23 (75%) | 43 (85%) |
+| Buy session | 5 (45%) | 13 (55%) | 28 (65%) |
+| Show up | 4 (88%) | 12 (93%) | 27 (97%) |
+| Buy incubator | 1 (25%) | 4 (35%) | 14 (50%) |
+
+**But: time lag reduces March sessions.** Not all 12 (expected) will happen in March. Realistic split:
+
+| | Expected sessions in March | Expected sessions that spill to April |
+|---|---|---|
+| From wk 1 entries | 3-4 sessions | 0 |
+| From wk 2 entries | 3-4 sessions | 1 |
+| From wk 3 entries | 1-2 sessions | 2-3 |
+| From wk 4 entries | 0 sessions | 3-4 |
+| **March total** | **7-10 sessions** | Rest flows to April |
+
+**March revenue (expected, with time lag):**
+
+| Stream | Expected | Notes |
+|--------|---------|-------|
+| **$27 Experience** | 31 × $27 = **$837** | Immediate — no time lag |
+| **Mirror Sessions** | 8 × $333 = **$2,664** | Time-lagged: only wk1-2 entries complete by March |
+| **Incubator** | 3 × $1,500 = **$4,500** | From the first 5-6 sessions (35% conversion) |
+| **March total** | **$8,001** | |
+
+**March revenue (optimistic, with time lag):**
+
+| Stream | Optimistic | Notes |
+|--------|---------|-------|
+| **$27 Experience** | 51 × $27 = **$1,377** | |
+| **Mirror Sessions** | 14 × $333 = **$4,662** | More sessions land in March due to faster booking |
+| **Incubator** | 5 × $1,500 = **$7,500** | 50% closing at higher volume |
+| **March total** | **$13,539** | |
+
+---
+
+**What gets March to $10K:**
+
+| Lever | How much it adds | Difficulty |
+|-------|-----------------|-----------|
+| **More traffic** (+50 LP visits) | ~3-4 more sessions, ~$1,500 | Send 8 DMs/day instead of 5, more aggressive connection |
+| **Faster booking** (3-5 day lag instead of 7-14) | 2-3 more sessions land in March | Keep calendar wide open first 2 weeks |
+| **Higher session price** ($444 avg instead of $333) | +$900 on 8 sessions | Energetically clean if positioned right |
+| **Incubator presales from session** | $1,500 per each new yes | Alexander's strongest lever — he's GOOD at this |
+
+> **Honest take:** $10K in March is within reach at the **expected-to-optimistic range.** It requires hitting ~200+ LP visits AND at least 3 incubator sales landing in-month. Without incubator revenue, sessions + $27 = ~$3,500. Incubator is the $10K-maker.
+>
+> **The incubator IS the lever.** 3 incubator sales at $1,500 = $4,500. Add 8 sessions ($2,664) + 31 experiences ($837) = $8,001. Fourth incubator sale = $9,501. One more session or experience = $10K. It's TIGHT but achievable.
+>
+> **Strategic implication:** The incubator doesn't just need to exist — it needs to be IRRESISTIBLE at the end of the Mirror Session. The session must end with "I now see exactly what my unique business is... and I want to build it with you." Alexander's sales fire during the session IS the $10K lever.
+
+---
+
+### Where Do 200 Landing Page Visits Come From?
+
+| Source | How | March visits | Notes |
+|--------|-----|-------------|-------|
+| **Warm DMs** (5-8/day) | 170/mo → 30% click | 50-55 | Highest intent. Start day 1 |
+| **Hand raiser posts** (3-4/mo) | 350+ connections see → 3-4% click | 35-50 | Post on launch day, then weekly |
+| **LinkedIn profile** (headline/banner/bio) | Profile views → click | 25-40 | Set once, compounds with activity |
+| **Connection + content** | 100+ new connections/mo → see posts | 20-35 | Takes 2-3 weeks to compound |
+| **Email signature** | All emails carry link | 10-15 | Passive |
+| **Other real estate** (WhatsApp, Telegram, socials) | Status/bio → clicks | 10-15 | Background hum |
+| **Warm intros** (2/week) | 8/mo → 65% click | 5 | Highest conversion of any source |
+| **Referrals** | From first session clients | 5-10 (late March) | Starts slow, compounds |
+| **Total** | | **~160-225** | Expected: ~200 |
+
+---
+
+### Platform Domain
+
+**Chosen: `myuniquebusiness.com`** ✅
+
+"My Unique Business" — it's theirs from the first moment. The name IS the promise: this is YOUR unique business. Not a generic incubator. Not someone else's framework. Yours.
+
+---
+
+### Realistic Launch Roadmap
+
+**Phase 1: Content (today)**
+
+| # | Task | Time | Who |
+|---|------|------|-----|
+| 1.1 | Lead magnet video script (content exists, package for NotebookLM) | 20 min | AI → Alexander approves |
+| 1.2 | 3 Initiatory Experience video scripts (Heart/Mind/Gut) | 20 min | AI → Alexander approves |
+| 1.3 | Tuning fork texts (hand raiser post × 3, warm DM, voice note script) | 15 min | AI → Alexander approves |
+| 1.4 | Real estate texts (email sig, LinkedIn headline/banner/bio, WhatsApp) | 10 min | AI → Alexander approves |
+
+**Phase 2: Infrastructure (same day)**
+
+| # | Task | Time | Who |
+|---|------|------|-----|
+| 2.1 | Buy `myuniquebusiness.com` | 5 min | Alexander |
+| 2.2 | Stripe Payment Links ($27 + name-your-price $222-555) | 3 min | Alexander |
+| 2.3 | Cal.com / Calendly session slot | 5 min | Alexander |
+
+**Phase 3: Platform (1 session)**
+
+| # | Task | Time | Who |
+|---|------|------|-----|
+| 3.1 | Landing page on new domain (video + next step + button) | 20 min | AI builds |
+| 3.2 | Progressive unlock — blur all spaces except ZoG | 30-60 min | AI builds |
+| 3.3 | Upload 3 videos to ZoG space | 10 min | Alexander |
+| 3.4 | Victoria welcome (can be added later, not blocking) | TBD | Victoria |
+| 3.5 | Notification automation (nice-to-have, not blocking) | TBD | AI builds |
+
+**Phase 4: Launch (go live)**
+
+| # | Task | Time | Who |
+|---|------|------|-----|
+| 4.1 | Deploy real estate (all surfaces updated) | 30 min | Alexander |
+| 4.2 | First tuning forks: 3 hand raiser posts + warm DMs | 15 min | Alexander |
+| 4.3 | Connection + content: add target people on LinkedIn | Ongoing | Alexander |
+| 4.4 | Resonance begins | — | The tuning forks |
+
+> **Total to MVP launch:** ~3-4 hours of concentrated work. Not days.
 
 ---
 
