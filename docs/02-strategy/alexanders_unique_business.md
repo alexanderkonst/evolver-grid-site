@@ -634,6 +634,73 @@ Direct to session booking OR $27 experience
 
 ---
 
+#### Master Tuning Fork
+
+*Version: v3 · Feb 25, 2026*
+
+**Definitions:**
+
+> **Tuning Fork** = a self-sufficient piece of information that, when encountered by a resonant person from this tribe, creates bodily resonance and moves them to act (click, DM, follow the link). Not a hook — a hook grabs. A tuning fork hums at a frequency, and strings tuned to the same note vibrate on their own.
+
+> **Master Tuning Fork** = the universal tuning fork from which all others are fractally derived. Contains the full purity of the message. All other tuning forks (posts, DMs, bios, community intros, ads) are derived from the master — different formats, different sizes, same purity.
+
+**Why pain is the right entry (doctor analogy):** The tuning fork names the pain, not the cause. Like a doctor: "Here's what's happening, and here's what happens if you don't address it." The cause (the lie) comes later — in the video, in the session. That's treatment. They already KNOW their pain. They're avoiding the doctor.
+
+**Three components of the Master Tuning Fork:**
+
+| Component | Body | What it does |
+|-----------|------|-------------|
+| **1** | 🫀 Heart | Names the pain — what hurts, directly |
+| **2** | 🧠 Mind | Illumination — how it shows up in their life |
+| **3** | 🔥 Gut | Consequences — what happens if unattended (the doctor's warning) |
+
+> **Format is open:** These three components may live in ONE post, THREE posts, a DM, a video, or any format. The structure is the content, not the delivery.
+
+**★ Master Tuning Fork v3:**
+
+> ❗️❗️❗️ Calling all entrepreneurs who are also coaches and former professionals
+>
+> Building your own business but nothing quite sticks?
+>
+> Check if you have any of these symptoms:
+>
+> 🔲 Your savings are melting.
+> 🔲 Your partner's belief in you is waning.
+> 🔲 Worst of all - you've broken your own promises to yourself enough times that building the business you think about before falling asleep starts to sound unrealistic.
+> 🔲 Friends & family are hinting in unsolicited ways that it may be your fantasy.
+>
+> Follow that slippery slope of belittling yourself, and you'll keep going in circles until you run out of savings and/or dignity and be forced to sell your life's hours.
+>
+> What if the dream business you long to build... isn't a fantasy at all?
+>
+> Find out what's really going on:
+>
+> 5-min video → link
+
+**What a tuning fork at ~9.9+ precision enables:**
+
+- **Self-qualifying content.** The right person cannot NOT recognize themselves. No sales calls needed. No qualification needed. No "are you a good fit" conversations. The tuning fork IS the qualification. Selection happens at the content level, not at the sales level. Zero wasted attention on either side.
+- **The Acorn Principle in action.** The 5-min video writes itself — each line of the TF UNFOLDS into a section of video. TF = compressed video. Video = expanded TF. The $27 experience, the session, the incubator — all expansions of one seed. Everything grows from here.
+- **Fractal content derivation.** All derivative content — community intros, DM texts, LinkedIn bio, email signature — are fractal children of one parent. Content strategy shifts from "what to invent" to "how to compress." Fundamentally simpler.
+- **Meaningful A/B testing.** We're not comparing random variations — we're testing which specific 9.95 phrasing converts at what rate.
+- **Iterative roasting to convergence** = part of the methodology. Transferable to clients' tuning forks in the incubator.
+- **9.9+ is NOT 10.** Live feedback from real people will add what we can't extract from our own heads. But a 9.9+ foundation means iterations will be polish, not rework.
+
+> **Internal tribe name (between us):** Conscious Renaissance Founders
+
+---
+
+#### Launch Identity
+
+| Element | Value |
+|---------|-------|
+| **Name** | Incubator of Unique Businesses |
+| **Domain** | myuniquebusiness.com |
+| **Tagline** | Shift from grind to greatness, together |
+| **Platform merge** | This IS Evolver. The incubator is not separate — it's the business layer of the platform. Everything Alexander built (ZoG, assessment, game, spaces) flows into this |
+
+---
+
 #### Value Ladder (collapsed)
 
 | Step | Container | What They Get | Felt Shift | Price |
