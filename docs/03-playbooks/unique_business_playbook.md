@@ -962,6 +962,24 @@ The tuning fork names the pain, not the cause. Like a doctor: "Good thing you ca
 | **Significance** 🧠 | This is the moment the three conditions converge: Attention (salience network fires), Pain (non-optional — can't unsee it), Purchasing Power (capable professionals) | The 4-phase attention sequence completes in seconds: STOP → MIRROR → WEIGH → DIVE. They click or DM |
 | **Implications** 🔥 | If the tuning fork hits all three bodies (gut + heart + mind), they click. If two, they bookmark. If one, they scroll | They arrive on landing page OR they DM. The power dynamic is set: THEY came. Nobody pushed |
 
+---
+
+#### NotebookLM Video Materialization Template
+
+*Universal template. Use for every NotebookLM video (lead magnet, micro-course, etc).*
+
+| Step | What | Output |
+|------|------|--------|
+| **1** | Essence, significance, implications | WHY this video exists. What layer of lie it removes. What result the person receives |
+| **2** | Structure + vibe | Sections (how many, what each does). Energetic tone |
+| **3** | Sequence of ideas | The specific beats within each section, in order. One idea = one movement of mind: "aha" → "aha" → "oh god" → "wait" → "I want to know more" |
+| **4** | Source text for NotebookLM | The text NotebookLM reads and turns into a two-voice conversation. Not a script — a deep, rich source document that gives NotebookLM enough material to generate the conversation naturally |
+| **5** | Generation | Upload to NotebookLM → audio → video (if needed) |
+
+> **Key:** Steps 1-3 require human involvement (Alexander + AI pair). Step 4 can be largely AI-generated from step 3. Step 5 is mechanical.
+
+---
+
 ### Step 2: Lead Magnet — "the rabbit hole opens" (significance deepens)
 
 They're on the landing page (or in the DM). They watch the 5-minute NotebookLM video.
