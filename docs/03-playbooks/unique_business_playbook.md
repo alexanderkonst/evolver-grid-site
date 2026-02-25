@@ -964,13 +964,26 @@ The tuning fork names the pain, not the cause. Like a doctor: "Good thing you ca
 
 ### Step 2: Lead Magnet — "the rabbit hole opens" (significance deepens)
 
-They're on the landing page. They watch the 5-minute NotebookLM video.
+They're on the landing page (or in the DM). They watch the 5-minute NotebookLM video.
 
 | Lens | Inner (experienced) | Outer (observable) |
-|------|--------------------|--------------------|
-| **Essence** 🫀 | "How do they know this about me?" The video does three things in 5 minutes: (1) MIRRORS — describes their exact situation gut-wrenchingly, (2) NAMES THE LOOP — the pattern they could never see from inside, (3) SHOWS THE EXIT DOOR — without opening it | A landing page with ONLY the video. Nothing else. After the video: the next step is presented. Ultra-specific, ultra-concrete, ultra-helpful. No ambiguity |
-| **Significance** 🧠 | This is where the first sale is made — not at the checkout, but HERE. The proof of understanding IS the proof of capability. If the video demonstrates 9.95 understanding, no testimonials are needed. The mirror speaks | The lead magnet is the acorn. Everything that follows is the same content, growing. The 5-min video contains the seed. The 3 videos inside the platform are the trunk. The session is the branches. The business is the tree |
+|------|--------------------|-------------------|
+| **Essence** 🫀 | "How do they know this about me?" The video names what they could never articulate: the hamster wheel (every "reasonable next step" is another revolution, but stopping looks like giving up), the fog (the dream is real but unnamed — they can't pitch it, can't describe the client, can't explain it even to themselves), and the readiness illusion (they're ALREADY doing it — coaching, helping, building — they just don't see it as a business, they're "still getting ready") | A landing page with ONLY the video. Nothing else. After the video: the next step is presented. Ultra-specific, ultra-concrete, ultra-helpful. No ambiguity |
+| **Significance** 🧠 | This is where the first sale is made — not at the checkout, but HERE. The video does NOT teach. It NAMES. It says: "this is what's happening to you." The lie is revealed for the first time: "the business I want is unrealistic." The person sees that this is a PATTERN, not a personal failure. And that they need a MIRROR, not a savior — someone outside the jar to read the label | The lead magnet is the acorn. Everything that follows is the same content, growing. The 5-min video contains the seed. The 3 videos inside the platform are the trunk. The session is the branches. The business is the tree |
 | **Implications** 🔥 | They see the next step. Not "buy a course." Not "sign up for a program." Ultra-specific: "In 30 minutes and $27, you'll see why nothing stuck — and what your PMF actually is. Ready?" Button = the name of the result they'll get. They click | The landing page shows: (1) Lead magnet video, (2) What the next step is (one sentence), (3) What they'll get (specific result), (4) How long it takes (30 min), (5) Investment ($27), (6) Button with the result as its name. Nothing else |
+
+**What the video does and doesn't do:**
+
+| ✅ Does | ❌ Does NOT |
+|---------|-----------|
+| Deepens the mirror (expanded tuning fork) | Teach how (that's the $27 experience) |
+| Names the hamster wheel and the fog | Reveal their uniqueness (that's ZoG assessment) |
+| Names the lie | Build their business (that's session + incubator) |
+| Shows they're already doing it | Give a method or framework |
+| Shows the door: mirror, not savior | Open the door (that's the entry product) |
+
+> **Layer of lie removed:** "This is a PATTERN, not my personal failure."
+> **Result:** Person shifts from "something is wrong with ME" → "this is a trap I'm in, and there's a way out."
 
 > **The Acorn Principle:** The content is not separate pieces — it's one acorn growing. The tuning fork contains the seed (2-3 sentences). The lead magnet video grows it (5 min). The 3 videos inside the platform grow it further (30 min). The session brings it to full bloom (60 min). Same truth, expanding. Not new information — deeper SEEING of the same information.
 

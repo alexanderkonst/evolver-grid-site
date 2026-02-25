@@ -712,6 +712,56 @@ Direct to session booking OR $27 experience
 
 ---
 
+#### 5-Min Video — Content Design
+
+*Version: v1 · Feb 25, 2026*
+
+**What the video does:**
+- Deepens the mirror (expanded tuning fork)
+- Names the hamster wheel and the fog
+- Names the lie: "the business I want is unrealistic"
+- Shows that they're ALREADY doing it — just unfocused or "still getting ready"
+- Shows the door: you need a mirror, not a savior
+
+**What the video does NOT do:**
+- Does NOT teach how (that's the $27 experience)
+- Does NOT reveal their uniqueness (that's the ZoG assessment)
+- Does NOT build their business (that's the session + incubator)
+
+**Layer of lie removed:** "This is a PATTERN, not my personal failure."
+
+**Result:** Person shifts from "something is wrong with ME" → "this is a trap I'm in, and there's a way out."
+
+**The hamster wheel + fog synthesis (Feb 25, 2026):**
+
+There is a dream — the business they think about before falling asleep. But it's in FOG. Not fully visible. They can't name the business, the client, the pitch. And because it's unnamed, it feels unrealistic. How can something you can't even articulate be real?
+
+So they take the "realistic" next step instead. Something more tangible, more defensible. And it doesn't work — not because it's a bad step, but because it's not THEIRS.
+
+Meanwhile, they are ALREADY doing the real thing — coaching, helping, building, sharing — in conversations, in chats, at coffee. But they don't see it as a business. They see it as "still getting ready." Teenagers, bloggers, influencers — they just DO it. The meta-segment is more qualified, more experienced, more capable. And they're the ones waiting.
+
+**The binary choice:** Commit to the fog (and let it clarify as you build) — or keep spinning the wheel. There is no third option. The hamster doesn't know how to stop because stopping looks like giving up. But stopping is the first real movement.
+
+**The mirror's job:** Not saving. Not adding anything new. Focusing. The dream was always there. The mirror brings it from fog to sharp. And once it's sharp — action becomes obvious. Nobody needs to be told what to do next. They SEE, and they move.
+
+**After the mirror — three accelerators of speed:**
+1. **Guide** — someone who's been there
+2. **Community** — others building their unique businesses too
+3. **Technologies** — tools that compress the timeline
+
+**Video structure (6 sections):**
+
+| # | Section | What it does |
+|---|---------|-------------|
+| **1** | Deepen the mirror | Same pain as tuning fork but larger. The life they don't talk about |
+| **2** | Name the wheel | You're not stuck — you're spinning. Every "reasonable next step" is another revolution. The problem isn't the step — it's the wheel |
+| **3** | Name the lie + the fog | "The business you dream about before falling asleep — you decided it's unrealistic. Because it's in fog. You can't name it clearly. So you pick something 'more realistic' each time. And it doesn't work — because it's not yours" |
+| **4** | You're already doing it | "You're already helping, coaching, building, sharing. You just don't see it as a business. You're 'still getting ready.' Meanwhile, teenagers monetize their uniqueness on TikTok" |
+| **5** | The door: mirror, not savior | "You can't read the label from inside the jar. You need someone outside. Not a savior — a mirror. When you see it — you'll know exactly what to do" |
+| **6** | CTA | Next step. One. Concrete |
+
+---
+
 ### 10. Method (MAP → MATCH → MOVE)
 
 *Version: v1.0 · Feb 18, 2026*
