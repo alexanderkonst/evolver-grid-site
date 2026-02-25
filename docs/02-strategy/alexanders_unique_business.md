@@ -749,16 +749,76 @@ Meanwhile, they are ALREADY doing the real thing — coaching, helping, building
 2. **Community** — others building their unique businesses too
 3. **Technologies** — tools that compress the timeline
 
-**Video structure (6 sections):**
+**Video structure v2 — sequence of ideas (22 beats):**
 
-| # | Section | What it does |
-|---|---------|-------------|
-| **1** | Deepen the mirror | Same pain as tuning fork but larger. The life they don't talk about |
-| **2** | Name the wheel | You're not stuck — you're spinning. Every "reasonable next step" is another revolution. The problem isn't the step — it's the wheel |
-| **3** | Name the lie + the fog | "The business you dream about before falling asleep — you decided it's unrealistic. Because it's in fog. You can't name it clearly. So you pick something 'more realistic' each time. And it doesn't work — because it's not yours" |
-| **4** | You're already doing it | "You're already helping, coaching, building, sharing. You just don't see it as a business. You're 'still getting ready.' Meanwhile, teenagers monetize their uniqueness on TikTok" |
-| **5** | The door: mirror, not savior | "You can't read the label from inside the jar. You need someone outside. Not a savior — a mirror. When you see it — you'll know exactly what to do" |
-| **6** | CTA | Next step. One. Concrete |
+**Секция 1: Углубить зеркало**
+1. You know this feeling. Lying in bed, thinking about the business that lights you up
+2. Morning — and you take the "reasonable" step. Reply to email. Tweak your website. Send an application
+3. Savings are melting. Your partner's tone has changed. You've promised yourself "this time for sure" too many times
+
+**Секция 2: Назвать колесо**
+4. Here's what nobody says: you're not stuck. You're SPINNING
+5. Every new attempt, every pivot — not progress. Another revolution
+6. And here's what's treacherous: it FEELS like the responsible thing. "I'm trying. I'm moving." The next freelance gig, another website redesign, starting a job search, launching yet another product, doing a collab. PARADOXICALLY, the most responsible-seeming step is the trap
+7. You blame everything around you: clients don't see the offer, market is wrong, partner doesn't get it. But quietly, inside, you know — it's not about them
+8. Stopping feels impossible — because stopping looks like giving up
+
+**Секция 3: Ложь + туман**
+9. There's a business you dream about before falling asleep. But it's in FOG
+10. You can't name it — not the business, not the client, not the pitch. How can something you can't even articulate be real?
+11. So every time you pick something "more understandable." And it doesn't work — not because the step is bad, but because it's not YOURS
+12. And yet the dream doesn't leave. It keeps knocking — again and again. No matter how many "realistic" things you try, it doesn't go quiet. Because it's not a project. It's you
+
+**Секция 4: Ты уже это делаешь**
+13. Here's what's truly stunning: you're ALREADY doing the real thing
+14. Coaching people. Helping friends. Building in conversations. Sharing what you know
+15. Life is SCREAMING at you: HERE IT IS! Here's the energy. Here are the people. You've ALWAYS been qualified. You've always been able to share
+16. But you call it "still getting ready." Meanwhile a 19-year-old on TikTok is monetizing without permission
+
+**Секция 5: Дверь**
+17. You can't read the label from inside the jar. Friends, family, partner — they're inside too
+18. Two things need to happen: you need to NAME this business — describe it clearly, see it. Not someone else's vision imposed on you — YOUR truth, MIRRORED back
+19. And then you need to BUILD it — with a guide who's been there, in a group of others building their unique businesses, using a proven template, with technologies and AI that compress the timeline
+20. The dream clarifies AS you build. You don't need to understand everything first. You need to SEE — and clarity comes with each step
+21. You are okay. You've always been okay
+
+**Секция 6: CTA**
+22. If you want to see what the fog is hiding — here's the next step
+
+---
+
+#### Pricing Philosophy
+
+*Version: v2 · Feb 25, 2026*
+
+**Premium at every level.** The energy of this work demands it. If we underprice, the magnetism forces people to undervalue.
+
+**The core insight (price-quality bias):**
+
+> People don't judge value and then justify the price. They SEE the price and then BUILD the value to protect themselves from regret. Value isn't discovered — it's constructed to match the price.
+
+Stanford wine study: same wine, different price labels. The higher-priced wine didn't just seem better — the brain's pleasure centers actually lit up MORE. The experience itself changed because of the number on the bottle.
+
+**What this means for us:**
+
+| Principle | Application |
+|-----------|------------|
+| **Never justify price** | The moment you justify, you admit it needs defending. State the price. Let them decide what it means |
+| **Price tells them how to THINK about you** | $27 says "another course." $55 says "this is different." $555 says "this person is serious" |
+| **Don't overexplain** | No list of features, no "you get X hours of Y." The video already proved understanding. The price proves authority |
+| **No "free" language** | "Free" cheapens. The lead magnet is free but we say "find out what's really going on" |
+| **1.2-2x market at every level** | This audience is capable professionals. Cheap signals noise. Premium signals signal |
+
+**The therapist principle:** A therapist with a million followers, a bestselling book, and a top podcast was charging £60/hour. Fully booked. No money. Raised to £300. Lost cheap clients. Gained the ones she wanted. Price didn't make her less approachable — it made her credible. The number didn't just change what people paid. It changed how they thought about her.
+
+> *"I'm not too expensive. You just can't afford me."*
+> *The only thing between "why is this so expensive" and "this must be excellent" — is the price itself.*
+
+| Step | Market range | Our price | Why |
+|------|------------|-----------|-----|
+| **Micro-course** | $27-33 | **$62** | Synchronistic price (100K IDR found during ceremony). Signals premium, triggers value construction |
+| **Mirror Session** | $200-350 | $555+ | "This person is serious. This must be real." Price creates the container for truth |
+| **Incubator** | TBD | TBD (premium) | Group of professionals building together — price signals caliber of the room |
 
 ---
 
