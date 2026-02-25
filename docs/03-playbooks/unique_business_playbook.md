@@ -931,16 +931,36 @@ They don't know you exist. They don't know they're in a loop. They think their p
 
 The signal reaches them. Their body responds before their mind.
 
-> **Tuning Fork = our word for outreach tactic.** Not hooks — tuning forks. A hook grabs. A tuning fork hums at a frequency, and strings tuned to the same note vibrate on their own. Three categories:
-> - **Active Tuning Forks** — Direct outreach: warm DMs, voice notes, warm intros, hand raiser posts
-> - **Passive Tuning Forks** — Always-on surfaces: email signature, LinkedIn headline/banner, social bios
-> - **Static Resonance Spots** — Set-and-forget field generators: stickers, QR codes, booking page text
+**Definitions:**
+
+> **Tuning Fork** = a self-sufficient piece of information that, when encountered by a resonant person from this tribe, creates bodily resonance and moves them to act (click, DM, follow the link). Not a hook — a hook grabs. A tuning fork hums at a frequency, and strings tuned to the same note vibrate on their own.
+
+> **Master Tuning Fork** = the universal tuning fork from which all others are fractally derived. Contains the full purity of the message. All other tuning forks (posts, DMs, bios, community intros, ads) are derived from the master — different formats, different sizes, same purity.
+
+**Why pain is the right entry point (doctor analogy):**
+
+The tuning fork names the pain, not the cause. Like a doctor: "Good thing you came in. Here's what's happening, and here's what happens if you don't address it." The cause (the lie) comes later — in the video, in the experience, in the session. That's treatment. The tuning fork is the consultation that makes them decide to get treated. They already KNOW their pain. They're avoiding the doctor. The tuning fork is the doctor saying: "Let me name what I see — and what happens if you keep avoiding it."
+
+**Three components of the Master Tuning Fork:**
+
+| Component | Body | What it does | Example energy |
+|-----------|------|-------------|----------------|
+| **1** | 🫀 Heart | Names the pain — what hurts, directly | "Your savings are melting. Your partner's tone is changing. You've broken your own promises to yourself" |
+| **2** | 🧠 Mind | Illumination — how it shows up in their life, what it looks like | "You tell different stories to different people. Nobody sees the full picture. Including you" |
+| **3** | 🔥 Gut | Consequences — what happens if unattended (the doctor's warning) | "Follow that thought and you'll keep going in circles until you run out of savings or belief and go sell your hours" |
+
+> **Format is open:** These three components may live in ONE post, THREE separate posts, a DM sequence, a video, or any other format. The structure is the content, not the delivery. How to fractalize the master tuning fork into specific formats is a tactical decision, not a strategic one.
+
+**Tuning fork categories:**
+- **Active Tuning Forks** — Direct outreach: warm DMs, voice notes, warm intros, hand raiser posts
+- **Passive Tuning Forks** — Always-on surfaces: email signature, LinkedIn headline/banner, social bios
+- **Static Resonance Spots** — Set-and-forget field generators: stickers, QR codes, booking page text
 
 | Lens | Inner (experienced) | Outer (observable) |
-|------|--------------------|--------------------|
-| **Essence** 🫀 | A jolt. "Wait." The body reacts before the mind. Something in those 2-3 sentences touches the exact nerve no one has ever named. It's not "interesting" — it's RECOGNITION | They see a LinkedIn post, a DM, or hear about you from someone. The content is 2-3 sentences. No pitch. No offer. Just a mirror. "If you've been cycling between building, coaching, and corporate..." |
-| **Significance** 🧠 | This is the moment the ITFT's three conditions converge: Attention (the salience network fires), Pain (the description is non-optional — they can't unsee it), Purchasing Power (they have it — these are capable professionals) | The 4-phase attention sequence completes in seconds: STOP → MIRROR → WEIGH → DIVE. They click the link |
-| **Implications** 🔥 | If the tuning fork hits all three bodies (gut + heart + mind), they click the link to the landing page. If it hits two, they bookmark. If one, they scroll | They arrive on [platform domain] — the landing page with the lead magnet video. The power dynamic is set: THEY came. Nobody pushed |
+|------|--------------------|-------------------|
+| **Essence** 🫀 | A jolt. "Wait." The body reacts before the mind. Something in those sentences touches the exact nerve no one has ever named. It's not "interesting" — it's RECOGNITION | They see a LinkedIn post, a DM, or hear about you from someone. The content is 2-3 sentences. No pitch. No offer. Just a mirror |
+| **Significance** 🧠 | This is the moment the three conditions converge: Attention (salience network fires), Pain (non-optional — can't unsee it), Purchasing Power (capable professionals) | The 4-phase attention sequence completes in seconds: STOP → MIRROR → WEIGH → DIVE. They click or DM |
+| **Implications** 🔥 | If the tuning fork hits all three bodies (gut + heart + mind), they click. If two, they bookmark. If one, they scroll | They arrive on landing page OR they DM. The power dynamic is set: THEY came. Nobody pushed |
 
 ### Step 2: Lead Magnet — "the rabbit hole opens" (significance deepens)
 

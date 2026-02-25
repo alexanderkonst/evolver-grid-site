@@ -580,12 +580,13 @@ These aren't separate dream outcomes — they're how the same arrival LOOKS depe
 
 #### Funnel Architecture
 
+**Variant A: Landing Page Path (classic)**
 ```
-ONE viscerally-engaging message (the myth + pain card)
+ONE viscerally-engaging message (pain + consequences)
     │
     ↓ self-selection ("that's me" or scroll past)
     │
-ONE lead magnet
+ONE lead magnet (landing page → 5-min video)
     │  Gut: gut-wrenching mirroring of their situation
     │  Heart: crack-opening recognition of the pain
     │  Mind: mind-blowing naming of the loop they're in
@@ -594,12 +595,12 @@ ONE lead magnet
     │
     ↓ hand raised ("me")
     │
-ONE entry product (initial aha = initiation)
+ONE entry product ($27 → initiatory experience)
     │
     ↓ "oh. OH. That's been there the whole time."
     │
-ONE second product (hero's journey together)
-    │  community + guide(s)
+ONE second product (Mirror Session → hero's journey)
+    │  + incubator (community + guide)
     │  build the business, get to early PMF
     │
     ↓ paying clients, revenue flowing
@@ -607,6 +608,27 @@ ONE second product (hero's journey together)
 ONE ongoing container
     → Evolver Platform (the full OS)
 ```
+
+**Variant B: DM Path (Frankie model, more intimate)**
+```
+ONE tuning fork post (pain + consequences)
+    │
+    ↓ "If this resonates, DM me the word 'stuck'"
+    │
+PRIVATE DM conversation begins
+    │  Human connection. Alexander responds personally
+    │  Sends the 5-min video IN the DM
+    │  "Watch this. Tell me what you think"
+    │
+    ↓ video watched, conversation deepens
+    │
+Direct to session booking OR $27 experience
+    │  (depending on readiness signal in DM)
+    │
+    → same path from here
+```
+
+> **Which to use:** Variant B is warmer, more personal, higher conversion per touch — but lower volume. Variant A scales without Alexander's time. **Start with B** (March ramp-up, every DM matters). Add A when volume justifies a landing page. Both can coexist: post has BOTH the link AND "DM me 'stuck'."
 
 > **The quiz fork (funnel optimization):** At the landing page, a quiz: "Do you identify more as a founder, a coach, a professional, or all three?" Each path gets segment-specific vocabulary but leads to the same funnel. This is not segmentation — it's vocabulary matching. Same medicine, different language.
 
