@@ -468,8 +468,7 @@ Their products follow the same pattern.
 > There is no end — only new impulses.
 
 After enrichment comes the next will.
-The product is never "done" — it evolves.
-That's why it's called **Evolver**.
+No product is never "done" — it evolves.
 
 ---
 
