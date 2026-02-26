@@ -966,17 +966,45 @@ The tuning fork names the pain, not the cause. Like a doctor: "Good thing you ca
 
 #### NotebookLM Video Materialization Template
 
-*Universal template. Use for every NotebookLM video (lead magnet, micro-course, etc).*
+*Universal template. Use for every NotebookLM video (lead magnet, micro-course, etc). Proven Feb 25, 2026.*
 
-| Step | What | Output |
-|------|------|--------|
-| **1** | Essence, significance, implications | WHY this video exists. What layer of lie it removes. What result the person receives |
-| **2** | Structure + vibe | Sections (how many, what each does). Energetic tone |
-| **3** | Sequence of ideas | The specific beats within each section, in order. One idea = one movement of mind: "aha" → "aha" → "oh god" → "wait" → "I want to know more" |
-| **4** | Source text for NotebookLM | The text NotebookLM reads and turns into a two-voice conversation. Not a script — a deep, rich source document that gives NotebookLM enough material to generate the conversation naturally |
-| **5** | Generation | Upload to NotebookLM → audio → video (if needed) |
+**The 5-Step Sequence:**
 
-> **Key:** Steps 1-3 require human involvement (Alexander + AI pair). Step 4 can be largely AI-generated from step 3. Step 5 is mechanical.
+| Step | What | Output | Who |
+|------|------|--------|-----|
+| **1** | Essence, significance, implications | WHY this video exists. Layer of lie removed. Result the person receives | Human + AI pair |
+| **2** | Structure + vibe | Sections (how many, what each does). Energetic tone | Human + AI pair |
+| **3** | Sequence of ideas (beats) | Specific ideas in order. One beat = one movement of mind: "aha" → "oh god" → "wait" → "I want to know more" | Human + AI pair |
+| **4** | Source text for NotebookLM | Deep document: each beat analyzed through 🫀 Essence / 🧠 Significance / 🔥 Implications × inner (felt) / outer (observable). Gives NotebookLM rich material to generate naturally | AI-generated from step 3, human-reviewed |
+| **5** | Generation | Upload to NotebookLM → choose format (Audio Overview / Video Overview / Slide Deck) | Mechanical |
+
+**Step 4 Architecture — the source text formula:**
+
+For each beat, write:
+- **🫀 Essence:** What IS this? Outer (how it looks in their life) + Inner (how it feels, in their voice)
+- **🧠 Significance:** Why does this matter? Outer + Inner
+- **🔥 Implication:** What follows from this? Outer + Inner
+
+> **Math:** N beats × 3 lenses × 2 sides = 6N dimensions per video. Lead magnet had 22 beats = 132 dimensions.
+
+**NotebookLM production inputs:**
+
+| Input | What to provide |
+|-------|----------------|
+| **Source document** | The step 4 source text (upload as file or paste into notebook) |
+| **Focus field** | "Focus on the HUMAN EXPERIENCE — how this FEELS from inside. Use inner monologue quotes as anchor. Warm, intimate, never preachy. Two friends discovering something, not experts lecturing. Build beat by beat. End with curiosity, not a sales pitch. Listener should feel SEEN, not sold to" |
+| **Production notes** (optional separate file) | Tone: two close friends who just discovered something about someone they care about. DO: use inner voice quotes, pause on hard-landing moments, build surprise. DON'T: lecture, use marketing language, rush beats, sound like an ad at CTA |
+| **Visual style** (for video/slides) | Clean dark background (#0A0A0F). Single accent color — soft white or cool blue glow. No gradients. No textures. Thin sans-serif (Inter/SF Pro). One visual element per frame. Glass panels 5-10% white opacity |
+
+**Format options by funnel step:**
+
+| Step | Recommended format | Why |
+|------|-------------------|-----|
+| **Lead magnet** | Video Overview or Audio Overview | Two voices discussing = intimate, non-salesy |
+| **Micro-course ($62)** | Slide Deck or Video Overview | Deeper, more structured, educational |
+| **Sales content** | Audio Overview | Conversational, can be sent in DM |
+
+> **Key principle:** The depth is in the source text. The lightness is in the delivery. NotebookLM drinks from a deep well and produces a natural, flowing conversation. The better the source text, the better the output. Invest 80% of time in steps 1-3.
 
 ---
 
