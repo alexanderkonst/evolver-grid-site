@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | Pain 9.95 forged → MTR + Packaging this week |
+| **Current phase** | Video source text done → $62 micro-course this week |
 | **Current cycle** | February 2026 — Horsepower Cycle, Week 4 (Harvest) |
 | **Location** | Bali |
-| **Focus** | **FMF Launch: Myth ✅ → Tribe ✅ → Pain ✅ (9.95) → MTR → Lead Magnet → Value Ladder → First outreach** |
-| **Key milestone** | ✅ Meta-segment pain at 9.95 + 6 breakthrough principles (Feb 23) |
-| **Key decision** | Promise = SALES (revenue is result, identity is method). Frankie sales model adopted. |
+| **Focus** | **FMF Launch: Myth ✅ → Tribe ✅ → Pain ✅ (9.95) → MTR ✅ → Lead Magnet Video ✅ → $62 Micro-Course → First outreach** |
+| **Key milestone** | ✅ 132-dimension video source text created + first NotebookLM asset generating (Feb 25) |
+| **Key decision** | Premium pricing at every level: $62 micro-course, $555+ Mirror Session. Price-quality bias: never justify. |
 
 ---
 
@@ -705,13 +705,48 @@ For unbuilt features, show:
 
 ---
 
-### Promise / MTR (Priority: 🔴 CRITICAL | Target: Feb 24)
+### Promise / MTR (Priority: ✅ DONE | Completed: Feb 24)
 **What:** Master Transformational Result. Roasted: identity/recognition/integration language = coaching-speak. Real result = SALES.
 **Key insight:** "I help you get paying clients for your unique business." Identity clarity is the METHOD, revenue is the RESULT.
 **Frankie model:** Hand raiser post (1-3 sentences, promise not service) + 5-min close video (demonstrate, don't describe) + NotebookLM custom videos.
-**Status:** 🔴 IN PROGRESS (Feb 24 sprint)
+**Status:** ✅ DONE
 
 ---
 
-*Roadmap updated: 2026-02-24. Pain 9.95 forged. MTR = SALES. Frankie model adopted. This week: MTR → Lead Magnet → First outreach.*
+### 5-Min Lead Magnet Video (Priority: ✅ DONE | Completed: Feb 25)
+**What:** NotebookLM video source text created — 22 beats × 3 lenses × 2 sides = 132 dimensions. Methodology crystallized (5-step template). First asset generating in NotebookLM.
+**Key discoveries:** Domain 12 (Hamster Wheel, Fog, Mirror, Binary Choice, Lived Möbius). Video names pattern, removes blame, shows door.
+**Status:** ✅ Source text done. Generating in NotebookLM.
+
+---
+
+### Pricing Philosophy (Priority: ✅ DONE | Completed: Feb 25)
+**What:** Premium at every level (1.2-2x market). Price-quality bias: people build value to match price. Never justify.
+**Prices:** Micro-course: $62 (synchronistic). Mirror Session: $555+.
+**Status:** ✅ DONE
+
+---
+
+### $62 Micro-Course (Priority: 🔴 CRITICAL | Target: This week)
+**What:** 3 NotebookLM videos (Heart/Mind/Gut) using the same video materialization template. Deeper than lead magnet — the paradigm shift in three movements.
+**Status:** 🔜 Next
+
+---
+
+### First Outreach (Priority: 🔴 CRITICAL | Target: This week)
+**What:** Write the myth in Alexander's own voice. Send to 3 people. See what comes back.
+**Why:** Real validation > landing page. The myth must be spoken before it's designed.
+**Status:** 🔜 Next
+
+---
+
+### FMF Landing Page (Priority: 🔴 HIGH | Target: After packaging)
+**What:** Landing page for the FMF session. Myth-infused. Draft spec exists (v2.0) but needs Alexander's voice pass.
+**Why:** Needed for booking. But myth goes out FIRST — page follows.
+**Status:** ⏸️ Paused until packaging clear
+
+---
+
+*Roadmap updated: 2026-02-25. Video source text (132 dimensions) complete. $62 micro-course price set. First asset generating in NotebookLM. Threshold crossed.*
+
 
