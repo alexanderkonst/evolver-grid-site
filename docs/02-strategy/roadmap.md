@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | Video source text done → $62 micro-course this week |
+| **Current phase** | R&D + funnel build. Pacing toward launch |
 | **Current cycle** | February 2026 — Horsepower Cycle, Week 4 (Harvest) |
-| **Location** | Bali |
-| **Focus** | **FMF Launch: Myth ✅ → Tribe ✅ → Pain ✅ (9.95) → MTR ✅ → Lead Magnet Video ✅ → $62 Micro-Course → First outreach** |
-| **Key milestone** | ✅ 132-dimension video source text created + first NotebookLM asset generating (Feb 25) |
-| **Key decision** | Premium pricing at every level: $62 micro-course, $555+ Mirror Session. Price-quality bias: never justify. |
+| **Location** | Bali → Bangkok → Istanbul → Mexico (landing March 4) |
+| **Focus** | **Build funnel capacity at each level. Video format polish. Clarify collaboration scope** |
+| **Key milestone** | ✅ All artifacts at 9.95. Roso & Cori call surfaced collaboration scope question (Feb 27) |
+| **Key decision** | Two parallel experiments. Must clarify: Innovator Program (shared) vs. Alexander's Unique Business (solo) |
 
 ---
 
@@ -747,6 +747,24 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-02-25. Video source text (132 dimensions) complete. $62 micro-course price set. First asset generating in NotebookLM. Threshold crossed.*
+### Roso & Cori — Collaboration Scope (Feb 27)
+**What:** Call revealed structural limits: R&C see partial value, don't share planetary vision, aren't the segment, don't want to go through program. Useful for operational work (funnels, landing pages), not for vision or methodology.
+**Critical decision:** Equal revenue split on Innovator Program ≠ ownership of Alexander's unique business. Methodology, IP, platform, content = 100% Alexander. Must clarify scope by March 4.
+**Status:** 🔴 Must clarify on next call
 
+---
 
+### Video Format Polish (Feb 27)
+**What:** Cori's format feedback valid: shorter (3.5 min), fewer repeats, human face somewhere. Philosophy unchanged: mirror = value, premium pricing, never justify.
+**Status:** 🔜 Quick wins during travel
+
+---
+
+### Two Parallel Funnels (Feb 25 call)
+**What:** Roso's employee-segment + Alexander's meta-segment. Same program, different entry points. Roso provides lead magnet structure, Alexander records. One landing page, different messaging.
+**Next call:** March 4
+**Status:** 🟡 Async during travel
+
+---
+
+*Roadmap updated: 2026-02-27. Collaboration scope is the critical question. R&D pacing, not rushing. Travel: Feb 28 – March 4.*
