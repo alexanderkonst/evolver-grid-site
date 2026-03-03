@@ -68,16 +68,27 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | R&D + funnel build. Pacing toward launch |
-| **Current cycle** | February 2026 — Horsepower Cycle, Week 4 (Harvest) |
-| **Location** | Bali → Bangkok → Istanbul → Mexico (landing March 4) |
-| **Focus** | **Build funnel capacity at each level. Video format polish. Clarify collaboration scope** |
-| **Key milestone** | ✅ All artifacts at 9.95. Roso & Cori call surfaced collaboration scope question (Feb 27) |
-| **Key decision** | Two parallel experiments. Must clarify: Innovator Program (shared) vs. Alexander's Unique Business (solo) |
+| **Current phase** | LAUNCH. First offers sent. Controlled momentum toward 10K |
+| **Current cycle** | March 2026 — New Moon Cycle. 20 ignition sessions target |
+| **Location** | Mexico (landed March 4) |
+| **Focus** | **Conduct first 2 calibration sessions (Ogi + Sergey). Wave 1 of 10 DMs. Set up Calendly/Stripe** |
+| **Key milestone** | ✅ Both first DMs sent (March 3). Pricing finalized: $277 Ignition + $1,100 Sprint |
+| **Key decision** | Ogi = co-founder (engine building). Sergey = first market client ($277). R&C = Founder Program only |
 
 ---
 
-## 🎯 February Cycle Goals (Feb 2 – Chinese New Year)
+## 🎯 March 2026 Goals
+
+| Goal | Target | Status |
+|------|--------|--------|
+| Ignition sessions | 20 | 🟡 0/20 — first 2 scheduled |
+| Sprint conversions | 6-7 (33%) | ⏳ waiting |
+| Revenue | $10K+ | ⏳ |
+| Proof cases | 3-5 | ⏳ |
+| Infrastructure | Calendly + Stripe + auto-reply | 🔴 TODO |
+| Workshop | 1 in Mexico hub | 🔴 TODO |
+
+---
 
 ### Goal 1: Litmus Test — Take Yourself Through the Product Builder
 Use the platform to crystallize and monetize your own genius. Create one real offering born from your own platform journey.
@@ -767,4 +778,5 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-02-27. Collaboration scope is the critical question. R&D pacing, not rushing. Travel: Feb 28 – March 4.*
+*Roadmap updated: 2026-03-04. LAUNCH phase. First offers sent March 3. 20 ignition target for March. Mexico base of operations.*
+
