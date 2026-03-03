@@ -1059,18 +1059,30 @@ Not "I build systems." Not "I teach frameworks." Not "I give clarity" (too abstr
 
 ## Mirror Session — First Offer (March 3, 2026)
 
-*v1.0 · The primitive form of the business*
+*v2.0 · Updated March 3-4 after ChatGPT strategy session*
 
-### Offer
+### Ignition Offer ($277)
 
 | Element | Value |
 |---------|-------|
-| **Name** | Mirror Session — Your Unique Business in 90 Minutes |
-| **Price** | $222 |
+| **Name** | Founder-Market Fit Ignition — Your Unique Business in 90 Minutes |
+| **Price** | $277 |
 | **Duration** | 90 minutes |
-| **Deliverables** | ONE unique offer on paper + ONE first message ready to send + ONE ideal client named |
-| **Refund** | If we don't land on one offer they commit to AND they don't make their first decisive move during the session (DM or voicenote sent) — full refund |
-| **ROI pitch** | "The message we craft together is like the one I just sent you. If your session costs $300+, you recover $222 with your first client" |
+| **Deliverables** | ONE founder-market fit articulated + ONE unique offer on paper + ONE first message ready to send + ONE ideal client named + ONE decisive move made in session |
+| **Refund** | If we don't land on one offer and one message ready to send — full refund |
+| **ROI pitch** | "The message we craft together is like the one I just sent you. If your session costs $300+, you recover $277 with your first client" |
+| **Framing** | Not about effort. About founder-market fit through uniqueness, not through pivots and validation loops |
+
+### Sprint Offer ($1,100)
+
+| Element | Value |
+|---------|-------|
+| **Name** | Monetization Sprint — First 10 Clients in 3 Weeks |
+| **Price** | $1,100 |
+| **Duration** | 3 weeks, 3×60-min sessions + WhatsApp support |
+| **Goal** | Land 3-10 paying clients, refine offer, stabilize confidence |
+| **Prerequisite** | Completed Ignition session |
+| **Conversion target** | 33% of Ignition clients |
 
 ### Session Flow (90 min)
 
@@ -1097,14 +1109,102 @@ Not "I build systems." Not "I teach frameworks." Not "I give clarity" (too abstr
 | **Uniqueness (ZoG)** | The ability to focus someone's scattered light into a laser beam. "I focus the lens" |
 | **Tribe** | Meta-segment: founder + coach + career-forged. Already doing, already capable — but diffused |
 | **Myth** | **Master Lie:** "Who you are is not enough" / "The business I want is unrealistic. Serious business is built from the market, not from me." **Myth:** "You can have a unique business. Professional. Not a hobby, not freelance. Exactly the one you want. And it scales." |
-| **Pain (9.95)** | Hamster wheel (spinning ≠ stuck), fog (dream unnamed → feels unrealistic), erosion of self-trust, cash flow PTSD, partner mirroring disbelief. Effort makes it worse because effort IS the wheel |
+| **Pain (9.95)** | Hamster wheel (spinning ≠ stuck), fog (dream unnamed → feels unrealistic), erosion of self-trust, cash flow PTSD, partner mirroring disbelief. Effort makes it worse because effort IS the wheel. Root: GRIND ADDICTION — the belief that effort → results is so ingrained that when strategy fails, people increase effort to restore identity, not to solve the problem |
 | **Transformational result** | Scattered effort → directed action through clarity. One offer, one client, one path |
-| **Value ladder** | $222 Mirror Session → $555+ deeper session → Incubator (group) → Platform (ongoing) |
-| **First offer** | Mirror Session: 90 min, $222, refund if no deliverables |
-| **First message** | DM to Oyi — crafted and ready |
-| **Action** | Sending March 3, 2026 — last day of moon cycle 🔥 |
+| **Value ladder** | $277 Ignition → $1,100 Sprint (3 weeks) → $1,500 Founder Program (group) → Venture Studio / Advisory / Retainer |
+| **First offer** | Ignition: 90 min, $277, refund if no deliverables |
+| **First messages sent** | DM to Oyi (co-founder dynamic, engine building) + DM to Sergey ($277 market offer) — March 3, 2026 |
+| **Action** | ✅ Both messages sent. Last day of moon cycle 🔥 |
 
 > **Why this matters:** Alexander IS proof of concept #1. The process he offers clients in 90 minutes is the compressed version of what he went through himself. Every deliverable is on paper. Living proof.
+
+---
+
+## March 2026 Strategy — 10K Engine (March 3-4, 2026)
+
+*Designed during ChatGPT strategy session. Target: $10K revenue in March + infrastructure for April growth.*
+
+### Target
+
+| Metric | Goal |
+|--------|------|
+| **Revenue** | $10K+ |
+| **Ignition sessions** | 20 |
+| **Sprint conversions** | 6-7 (33%) |
+| **Mode** | Controlled momentum, not aggressive expansion |
+
+### Value Ladder (Final)
+
+| Tier | Price | Format | Alexander's share |
+|------|-------|--------|------------------|
+| **Ignition** | $277 | 90 min, 1:1 | 100% |
+| **Sprint** | $1,100 | 3 weeks, 3×60 min + WhatsApp | 100% |
+| **Founder Program** | $1,500 | 6 weeks, group (with Roso & Cori) | 30% (~$500) |
+| **Collab Program** | $1,111 | With Ogi & Devon | 60% (~$666) |
+| **Venture Studio** | $3K-5K | Post-proof, for traction clients | 100% |
+| **Advisory / Retainer** | TBD | Equity + revenue share | Selective |
+
+### Funnel Math (Realistic Scenario)
+
+| Channel | Volume | Ignitions | Sprints | Revenue (Alexander) |
+|---------|--------|-----------|---------|--------------------|
+| Personal DMs (25-30 people) | 25 sent → 10 respond | 6 | 2 | $1,662 + $2,200 |
+| Workshop in Mexico hub (15 people) | 15 attend | 5 | 2 | $1,385 + $2,200 |
+| Social / QR / bio | Passive | 5 | 1 | $1,385 + $1,100 |
+| **Subtotal (core)** | | **16** | **5** | **≈ $9,932** |
+| Groups (15 communities) | Optional, April lever | +5-20 | +2-7 | +$3K-$13K |
+| Founder Program | 10 seats | — | — | +$5,000 |
+| Collab (Ogi/Devon) | 10 seats | — | — | +$6,666 |
+
+> **10K is achievable from core channels alone.** Programs and collabs are bonus, not necessity.
+
+### Channel Inventory
+
+| Priority | Channel | Type | Notes |
+|----------|---------|------|-------|
+| 🔥 Core | Personal DMs to warm contacts | Outbound | 25-30 people, sent in waves of 10 |
+| 🔥 Core | Workshop at Mexico hub | Event | 15 attendees, sell $277 at end |
+| 🔥 Core | Ignition → Sprint upsell | Conversion | 33% target. THE key lever |
+| ⚡ Amplify | Social bios / email signature | Passive | "Founder-Market Fit in 90 minutes" |
+| ⚡ Amplify | QR in coworking spaces | Guerrilla | Physical presence |
+| ⚡ Amplify | Mentorship platform profiles | Semi-passive | Intro video + clear positioning |
+| 🌱 April | Groups / communities (15) | Outbound | Second wave, save for later |
+| 🌱 April | Weekly 30-min live | Authority | Case study breakdowns |
+| 🌱 April | Case study posts | Content | After 3-5 proof cases |
+| 🌱 April | Partner collabs (Ogi, Devon) | Leverage | Revenue share, warm traffic |
+| 🔮 May+ | Targeted ads | Paid | Only after proven conversion |
+
+### 2-Week Action Plan
+
+| | Week 1 (March 4-10) | Week 2 (March 11-17) |
+|--|---------------------|---------------------|
+| **Sessions** | Ogi + Sergey (calibration) | 4-6 ignitions |
+| **Outreach** | 10 personal DMs (Wave 1) | 10-15 more DMs (Wave 2) |
+| **Infrastructure** | Calendly + Stripe + auto-reply | Standardize session script |
+| **Content** | — | Schedule workshop date |
+| **Sprint sales** | Clarify Sprint offer | Close 1-2 sprints |
+
+### Partnership Dynamics
+
+| Person | Role | Economic Logic |
+|--------|------|----------------|
+| **Ogi** | Co-founder, strategic partner | NOT a retail client. "We're building the engine we'll monetize together." 60/40 split on shared programs. No $277 invoice — partnership economics |
+| **Sergey** | First market client | Retail logic. $277 ignition. Clear container, clear boundary |
+| **Roso & Cori** | Operational collaborators | Founder Program only. Equal split on that program. No ownership of Alexander's methodology, IP, or brand |
+| **Devon** | Collab partner via Ogi | $1,111 program, 60/40 split (60% Alexander) |
+
+### Key Insight: Grind Addiction
+
+The deeper layer beneath the hamster wheel:
+
+> **Grind is not a work habit. It's a self-worth regulation mechanism.** When strategy fails, people increase effort not to solve the problem but to restore identity. Clarity cannot emerge inside a nervous system trying to prove itself.
+
+Three real blocks:
+1. **Addiction to effort** — confusion between intensity and precision
+2. **Blindness to essence** — business is too natural to see
+3. **Undervaluation reflex** — giving away what feels effortless for free
+
+The paradox: highest leverage move feels too simple to be valuable. So they abandon it and grind something harder.
 
 ---
 
@@ -1121,7 +1221,6 @@ Not "I build systems." Not "I teach frameworks." Not "I give clarity" (too abstr
 
 ---
 
-*Alexander's Unique Business v3.0 — March 3, 2026*
-*Updated: Domain 13 (effort vs. focus), Mirror Session offer, self-proof map. Single source of truth.*
-
+*Alexander's Unique Business v4.0 — March 4, 2026*
+*Updated: $277 Ignition + $1,100 Sprint pricing, March 10K strategy, funnel math, channel inventory, partnership dynamics, grind addiction insight. Single source of truth.*
 

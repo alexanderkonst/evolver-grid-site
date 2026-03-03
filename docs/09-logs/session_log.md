@@ -2382,3 +2382,62 @@ The deepest breakthrough of the entire journey. Not discovered through analysis,
 ---
 
 *March 2 session complete. ~4:30pm Bangkok. "I focus the lens." The primitive form arrived.*
+
+---
+
+## Session — March 3–4, 2026 (Continuation)
+
+**Location**: Bangkok → Istanbul transit
+**Time**: ~2pm March 3 – 6am March 4
+**Focus**: Strategy crystallization. Pricing, funnel math, Ogi/Sergey dynamics, 2-week plan. ChatGPT deep dialogue.
+
+### What Happened
+
+| Event | Detail |
+|-------|--------|
+| **Pricing refined** | $222 → $277 (Ignition). Added $1,100 Sprint (3 weeks, first 10 clients) |
+| **Both DMs sent** | Ogi (co-founder framing) + Sergey ($277 market offer with FMF framing). Last day of moon cycle |
+| **Grind addiction diagnosed** | Deeper layer: grind is identity maintenance, not work habit. People increase effort to restore identity, not to solve the problem |
+| **Ogi = co-founder, not client** | Partnership economics, not retail. "We're building the engine we'll monetize together." |
+| **Sergey = first market client** | Retail logic. $277 ignition. Already paid $5K+ prev. Warm, waiting for offer |
+| **March target: 10K** | 20 ignition → 6-7 sprints (33%) ≈ $10K from core channels alone |
+| **Self-sabotage identified** | The pull to not act, postpone, dodge. Fear of being "too simple." Identity calibrated to scale; doorway is microscopic |
+
+### Key Insight: Grind Addiction (Extension of Domain 13)
+
+Three real blocks:
+1. **Addiction to effort** — confusion between intensity and precision
+2. **Blindness to essence** — business is too natural to see
+3. **Undervaluation reflex** — giving away what feels effortless for free
+
+> Not laziness. Identity. The grind isn't about money — it's about proving worth. Clarity cannot emerge inside a nervous system trying to prove itself.
+
+### Value Ladder (Final)
+
+| Tier | Price | Conversion |
+|------|-------|------------|
+| Ignition | $277 | Entry |
+| Sprint | $1,100 | 33% of Ignition |
+| Founder Program | $1,500 (30% to Alexander) | Group, with R&C |
+| Collab Program | $1,111 (60% to Alexander) | With Ogi & Devon |
+| Venture Studio | $3K-5K | Post-proof |
+| Advisory/Retainer | TBD | Selective |
+
+### Artifacts Updated
+
+| File | What changed |
+|------|-------------|
+| `alexanders_unique_business.md` | v4.0: $277/$1,100 pricing, March strategy with funnel math, channel inventory, partnership dynamics, 2-week plan, grind addiction insight |
+
+### What's Next
+
+1. ✅ Land in Mexico (March 4)
+2. Conduct first 2 sessions (Ogi + Sergey) — calibration
+3. Wave 1: 10 personal DMs
+4. Set up Calendly + Stripe + auto-reply
+5. Schedule workshop date at Mexico hub
+
+---
+
+*March 3-4 session complete. Both DMs sent. "20 ignition sessions in March. Controlled momentum. 10K target."*
+
