@@ -1098,7 +1098,95 @@ Not "I build systems." Not "I teach frameworks." Not "I give clarity" (too abstr
 
 ---
 
-## Alexander's Self-Proof Map (March 3, 2026)
+## Ignition Methodology — Playbook Compression Map (March 4, 2026)
+
+*The Ignition session IS the [Artifact Production Sequence](../03-playbooks/unique_business_playbook.md) compressed into 90 minutes. Alexander conducts clients through the exact same process he went through himself — but in distilled form.*
+
+### Core Insight
+
+> The Unique Business Playbook describes a 7-step sequence where each artifact seeds the next. In full form, this takes weeks (articulatе → roast ×3 → distill → repeat). The Ignition session compresses all 7 into their **first iteration** in 90 minutes. The Sprint ($1,100) is where iterations 2-4 happen and the Recursive Shadow kicks in.
+
+### Playbook → Ignition Mapping
+
+| # | Artifact (Playbook Full) | Ignition (90 min) | What's compressed |
+|---|---|---|---|
+| 1 | **UNIQUENESS** · Appleseed: 12 questions + AI synthesis + 3× roast → Unique Gift Card | "Who got the most value from you?" + "What do you do best?" → **superpower named** | Quick extract, not full card. Enough to seed everything |
+| 2 | **MYTH** · Articulate → Roast → Distill → repeat → Master Lie/Belief polarity | "What lie does your business fight?" → **Master Lie + Master Belief** | First iteration, not naked David. Sufficient to identify tribe |
+| 3 | **TRIBE** · Qualifiers → Segments → Life Situation → Anti-tribe → Synthesis | "Who resonates?" → **one segment named** | One branch, not the full tree. Enough for first message |
+| 4 | **PAIN** · 5-Layer Pain Slicer v2.0, per segment | "What's their core pain?" → **main pain identified** | Intuitive, not 5-layer. But if Alexander's 9.95 calibration is live, precision is high |
+| 5 | **PROMISE** · Point A → Point B, transformational result | "What result do you give them?" → **result stated** | Present. Enough for offer |
+| 6 | **LEAD MAGNET** · Pain card as content | Together write the DM → **first message** | Present. DM ≈ pain card in personal format |
+| 7 | **VALUE LADDER** · Ascending containers | Sketch 2-3 steps → **v0.1 ladder** | Directional, enough to see next step |
+
+### What Powers the Compression
+
+Three playbook principles make 90-min compression viable:
+
+1. **Domino Principle:** Myth + Tribe = 80% of the work. Everything else cascades. 90 min gives the nucleus
+2. **Base Case:** Client doesn't need more clarity — they need the **decision to act** with the clarity they have. Session forces that decision (send the message before call ends)
+3. **Pain card IS the demonstration:** At 9.95, proof of understanding > proof of results. Naming the pain precisely in session IS the sale of the Sprint
+
+### Recursive Container: Why the Sprint Exists
+
+From the playbook: *"Session 1 is the door. Not the room."*
+
+| Phase | What happens | Playbook mechanism |
+|---|---|---|
+| **Ignition** (Session 1) | First iteration of all 7 artifacts. Clarity at Level N | Articulation |
+| **Weeks 1-2** | Programs surface. Shadow activates | Recursive Shadow: gift → inverted limiting belief → pain pattern |
+| **Sprint Session 2** | Shadow identified from gift. Artifacts deepen to Level N+1 | Roasting cycle 2 |
+| **Sprint Session 3** | Offer refined with market data. First clients landed | Roasting cycle 3 |
+
+**Key prediction tool:** For any client, **predict the shadow from the unique gift.** The person whose gift is vision will feel lost. The person whose gift is building will feel nothing is finished. The person whose gift is connection will feel isolated.
+
+### Alexander's Session Guidance (Reminders)
+
+| DO | DON'T |
+|---|---|
+| Listen, reflect, name | Teach theory |
+| Use THEIR words | Use framework language |
+| Force action inside session | Leave it as homework |
+| Predict shadow from gift | Over-explain integral frames |
+| Name pain with 9.95 precision | Promise mechanism instead of result |
+
+---
+
+## Strategy Staging — The Natural Ladder (March 4, 2026)
+
+*The strategy itself follows a progression. Each stage is maximally simple for its level. Moving to the next stage before completing the current one = grind.*
+
+### The Ladder
+
+| Stage | Goal | Strategy | Complexity |
+|---|---|---|---|
+| **0. Seed** | First 2 sessions (calibration) | Ogi + Sergey. Manual. Personal messages | Minimal |
+| **1. Ignition** | First 10 ignition sales | Warm DMs in waves of 10. Workshop. Word of mouth | Low |
+| **2. Sprint** | First 10K month | Ignition → Sprint upsell at 33%. Groups. Collabs | Medium |
+| **3. Automation** | Scalable sales | Frankie model: video → close → no sales calls. Landing page. Ads | Higher |
+| **4. Venture** | Revenue share + equity | Advisory. Retainer. Incubation. Platform | Full |
+
+### Key Insight: Premature Architecture
+
+> The FMF landing page, sales video, Frankie model — all were built before Stage 0 was complete. They aren't wrong — they're **premature.** The primary strategy is even simpler, even more distilled, even more laser-focused: personal message → session → action. No video. No page. No funnel. Just conversation.
+
+This maps exactly to the playbook's own advice:
+- **Mask-on-first rule:** The founder does this for THEMSELVES first → ✅ Done (Self-Proof Map)
+- **Base Case:** "The output at this level is sufficient to serve the person one level behind me. I act now." → ✅ Acting
+- **ONE-strategy collapse:** ONE segment, ONE myth, ONE pain, ONE funnel, ONE channel → ✅ DM only
+
+### When Each Stage Activates
+
+| Trigger | What unlocks |
+|---|---|
+| 2 calibration sessions done | Wave 1 of DMs (10 people) |
+| First 5 ignitions done | Sprint upsell, price confidence |
+| First 3 sprints closed | Case studies → content → groups |
+| First 3-5 proof cases | Frankie model (video replaces live session for qualification) |
+| Consistent $10K months | Ads, automation, venture studio |
+
+> **The Frankie model and the landing page are Stage 3, not Stage 0.** They are already built and waiting. But activating them before proof cases exist would be premature optimization.
+
+---
 
 *Alexander ran himself through the Mirror Session process. Results:*
 
@@ -1221,6 +1309,6 @@ The paradox: highest leverage move feels too simple to be valuable. So they aban
 
 ---
 
-*Alexander's Unique Business v4.0 — March 4, 2026*
-*Updated: $277 Ignition + $1,100 Sprint pricing, March 10K strategy, funnel math, channel inventory, partnership dynamics, grind addiction insight. Single source of truth.*
+*Alexander's Unique Business v4.1 — March 4, 2026*
+*Updated: Ignition Methodology (Playbook Compression Map), Strategy Staging (natural ladder from manual → automation). Single source of truth.*
 
