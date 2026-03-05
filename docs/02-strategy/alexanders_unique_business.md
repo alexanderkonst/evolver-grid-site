@@ -1281,18 +1281,22 @@ This maps exactly to the playbook's own advice:
 | **Roso & Cori** | Operational collaborators | Founder Program only. Equal split on that program. No ownership of Alexander's methodology, IP, or brand |
 | **Devon** | Collab partner via Ogi | $1,111 program, 60/40 split (60% Alexander) |
 
-### Key Insight: Grind Addiction
+### Key Insight: The Scatter Pattern (Domain 14)
 
-The deeper layer beneath the hamster wheel:
+The deeper layer beneath the hamster wheel — updated March 5 after Domain 14 breakthrough:
 
-> **Grind is not a work habit. It's a self-worth regulation mechanism.** When strategy fails, people increase effort not to solve the problem but to restore identity. Clarity cannot emerge inside a nervous system trying to prove itself.
+> **Scattering is not a failure of strategy. It's a defense mechanism against simplicity.** Effort goes in EVERY direction except the one that matters — because committing to the simple thing means losing the "hard-working professional" identity. Complexity is armor.
 
 Three real blocks:
-1. **Addiction to effort** — confusion between intensity and precision
-2. **Blindness to essence** — business is too natural to see
-3. **Undervaluation reflex** — giving away what feels effortless for free
+1. **Scatter as avoidance** — effort multiplies directions to dodge the ONE direction that would work
+2. **Identity terror** — simplicity feels unearned, undefendable, exposed. "I spent 15 years and THIS is all I do?"
+3. **Undervaluation reflex** — giving away what feels effortless for free, because effortless ≠ valuable (in the ego's math)
 
-The paradox: highest leverage move feels too simple to be valuable. So they abandon it and grind something harder.
+Two types of effort: **scattered** (defense against simplicity) vs. **focused** (expression of simplicity). Both look like work. One goes somewhere.
+
+The Ignition session doesn't add clarity — it **subtracts scatter.**
+
+> See full breakthrough: [Domain 14 — Scatter Pattern](../01-vision/breakthrough_inventory.md)
 
 ---
 
@@ -1306,9 +1310,10 @@ The paradox: highest leverage move feels too simple to be valuable. So they aban
 | Customer forces | [Landing Page Framework](./landing_page_copywriting_framework.md) |
 | Myth as seed | [Unique Gift Philosophy](../01-vision/unique_gift_philosophy.md) |
 | Movement mechanics | Jared T. Ross · [Contrarian Marketing](https://contrarian-marketing.com) |
+| Scatter pattern | [Breakthrough Inventory — Domain 14](../01-vision/breakthrough_inventory.md) |
 
 ---
 
-*Alexander's Unique Business v4.1 — March 4, 2026*
-*Updated: Ignition Methodology (Playbook Compression Map), Strategy Staging (natural ladder from manual → automation). Single source of truth.*
+*Alexander's Unique Business v4.2 — March 5, 2026*
+*Updated: Domain 14 (Scatter Pattern) linked. Grind Addiction → Scatter reframe. Ignition = subtract scatter, not add clarity. Single source of truth.*
 
