@@ -1139,15 +1139,158 @@ From the playbook: *"Session 1 is the door. Not the room."*
 
 **Key prediction tool:** For any client, **predict the shadow from the unique gift.** The person whose gift is vision will feel lost. The person whose gift is building will feel nothing is finished. The person whose gift is connection will feel isolated.
 
-### Alexander's Session Guidance (Reminders)
+### Ignition Session SOP v1.0 (March 5, 2026)
+
+*Practical workflow for live sessions. Decision-tree, not rigid script. Updated with Domain 14 corrections.*
+
+#### Three Core Principles (hold these, don't teach them)
+
+| Principle | What it means for the session |
+|---|---|
+| **They're already doing it** | The business exists. It's in the conversations they have, the help they give for free, the thing people thank them for. You're not finding something new — you're NAMING what's already happening |
+| **Scatter is active avoidance, not confusion** | They're not confused. They SENSE the answer but can't commit because it triggers identity terror. Each pivot is a defense against simplicity |
+| **Each pivot is a fragment** | Every business they tried captured 1/3 of who they are. None captured the whole. The session names the whole that all fragments point at |
+
+#### The Flow
+
+```
+OPEN (5-10 min)
+  │  Context. "Here's what I've found..."
+  │  Frame: scatter pattern, grind addiction, unique business
+  │  "This is the process I went through myself"
+  │
+  ▼
+TWO QUESTIONS (10-15 min)
+  │  1. "What do you desire most — professionally?"
+  │  2. "Where are you most stuck?"
+  │
+  ├─── Path A: THEY CAN ANSWER ──────────────────────┐
+  │    Answer contains the business (Möbius-invisible) │
+  │    Your move: LISTEN → REFLECT                     │
+  │    "You just told me what it is. Listen to          │
+  │     what you said."                                 │
+  │                                                     │
+  ├─── Path B: THEY CAN'T ANSWER ────────────────────┐│
+  │    Desire buried under stuck                      ││
+  │    Your move: Go to Uniqueness extraction ──────┐ ││
+  │    "Who got the MOST value from you?"            │ ││
+  │    "What do people thank you for?"               │ ││
+  │    "What's so easy for you it feels like         │ ││
+  │     nothing?"                                    │ ││
+  │    If still stuck → website tools (ZoG,          │ ││
+  │    Genius Business, Product Builder)             │ ││
+  │    Then return to two questions                  │ ││
+  │                                                  │ ││
+  ▼                                                  ▼ ▼▼
+NAME THE GIFT (5-10 min)
+  │  Superpower named. One sentence.
+  │  "You are the person who [X]."
+  │  
+  │  WATCH FOR SHADOW: "But that's too simple..."
+  │  "Everyone can do that..." "That can't be a business..."
+  │  → Name it gently: "That's the pattern. The thing
+  │     you do most naturally feels too simple to be 
+  │     valuable. That's structural, not true."
+  │
+  ▼
+PREDICT THE SHADOW (internal — don't teach, just note)
+  │  Gift → inverted shadow → pain pattern
+  │  Vision → "I feel lost"
+  │  Building → "Nothing's finished"  
+  │  Connection → "I feel isolated"
+  │  Focusing → "I can't see my own"
+  │
+  ▼
+MYTH (10 min)
+  │  "What lie does the world believe that your
+  │   work fights against?"
+  │  → Master Lie
+  │  
+  │  "And what's true instead?"
+  │  → Master Belief
+  │  
+  │  Share yours as example if needed:
+  │  Lie: "Who you are is not enough. Serious business
+  │        comes from the market, not from you."
+  │  Belief: "Your unique business is already inside you.
+  │           It just needs focusing, not building."
+  │
+  ▼
+TRIBE (10 min)
+  │  "Who do you feel genuinely CALLED to help?"
+  │  "Who got the most from you in the past?"
+  │  "Who do you light up around?"
+  │  
+  │  → One segment named (not demographics — inner state)
+  │  
+  │  Share your tribe as example:
+  │  "Part founder, part coach, part career-forged.
+  │   Already doing, already capable — but scattered."
+  │
+  ▼
+PAIN + RESULT (10 min)
+  │  "What are they going through? What does it feel
+  │   like to be in that situation?"
+  │  → Pain named (Point A)
+  │  
+  │  "And what do they get when this is solved?"
+  │  → Result named (Point B)
+  │  
+  │  The offer begins to form:
+  │  "I help [tribe] go from [pain] to [result]
+  │   through [gift]."
+  │
+  ▼
+FIRST MESSAGE (15 min)
+  │  Write the DM TOGETHER.
+  │  Same format as Alexander sent Sergey/Ogi.
+  │  For THEIR business, THEIR tribe.
+  │  
+  │  "Who is the ONE person you'd send this to?"
+  │  Name them. Write the message. NOW.
+  │
+  ▼
+ACTION + CLOSE (5-10 min)
+  │  SEND the message IN session.
+  │  Before call ends.
+  │  
+  │  If Sprint-appropriate:
+  │  "I'll be with you for the next 3 weeks while
+  │   you land your first clients. Want that?"
+  │  
+  │  If not:
+  │  "You have your first offer. Go."
+  │
+  ▼
+DONE
+```
+
+#### If-Stuck Cheat Sheet
+
+| Stuck at | Tool | What to do |
+|---|---|---|
+| Can't answer two questions | **ZoG Assessment** on website | Walk them through the 12 perspectives. Gift card seeds everything |
+| Gift named but no business form | **Genius Business** on website | Excalibur flow: gift → offer → form → pricing → channel |
+| Business form but no specifics | **Product Builder** on website | 9-phase compiler: result → sub-results → blueprint |
+| Myth won't crystallize | Alexander's myth as example | Share yours. "Here's mine — what's YOURS?" |
+| Tribe too broad | "Name 3 people" | Specific humans, not demographics. Who got the most value? |
+| Can't write the message | Alexander's DM as template | Show the Sergey/Ogi message. "Same structure, your words" |
+
+#### DO / DON'T
 
 | DO | DON'T |
 |---|---|
-| Listen, reflect, name | Teach theory |
-| Use THEIR words | Use framework language |
-| Force action inside session | Leave it as homework |
-| Predict shadow from gift | Over-explain integral frames |
-| Name pain with 9.95 precision | Promise mechanism instead of result |
+| Listen. Reflect. Name | Teach theory or frameworks |
+| Use THEIR words | Use playbook language |
+| Share YOUR journey as example | Position as expert above them |
+| Force action (send message in session) | Leave it as homework |
+| Name the shadow gently when it appears | Dig into it or do therapy |
+| Predict where they'll get stuck (internal) | Promise mechanism instead of result |
+| Show excitement when truth emerges | Stay neutral/clinical |
+
+#### Three-Word Summary
+
+**Listen. Name. Act.**
 
 ---
 
@@ -1314,6 +1457,6 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 
 ---
 
-*Alexander's Unique Business v4.2 — March 5, 2026*
-*Updated: Domain 14 (Scatter Pattern) linked. Grind Addiction → Scatter reframe. Ignition = subtract scatter, not add clarity. Single source of truth.*
+*Alexander's Unique Business v4.3 — March 5, 2026*
+*Updated: Ignition Session SOP v1.0 (decision-tree flow, three core principles, if-stuck cheat sheet). Domain 14 linked. Single source of truth.*
 
