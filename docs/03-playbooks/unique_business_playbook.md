@@ -1872,6 +1872,42 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 ---
 
+## Proof Cases — Live Session Data
+
+### Proof Case #1: Ogi — Ignition Session (March 5-6, 2026)
+
+**Full artifacts:** [oyis_unique_business.md](../02-strategy/oyis_unique_business.md)
+
+**Two-Question Seed → Path A.** Business was in the first sentence: "I teach through storytelling so people heal their inner child and land in their zone of genius."
+
+**Peak moment — The Shadow Landing:**
+
+> **"Sir, that's an 11.23. That's brutal. That's a cold plunge. You just pushed me into the ice lake while you're drinking vodka."**
+
+The shadow: "He heals playfulness in others but demands seriousness from himself." Somatic confirmation: "Lossum. In the gut. Very primal. Uh-huh."
+
+**This is what the Ignition session IS for:** naming the one thing the person can't see about themselves, the inverted gift that keeps them stuck.
+
+**Precision scores (assigned by client):**
+
+| Artifact | Score |
+|----------|-------|
+| Myth v1.0 | 8.9 |
+| Shadow | 11.23 (off the scale) |
+| Overall diagnostic | 10/10 |
+
+**Post-session feedback:**
+
+> "I'm moving and feeling a lot of confidence and clarity on the decisions I have made and actions I have initiated since our call today. Thank you. I owe you big time. I've never had a session like that before. Thank you for helping me face my fears."
+
+> "Tom is having a class and you are far superior. He's good but he ain't drilling down like you just did."
+
+> "Nobody can hold space for me. They're all afraid. You're very courageous, crazy too."
+
+**Methodology validated:** Two questions work. Shadow is the peak. Recursive structure confirmed. Proof of understanding > proof of results.
+
+---
+
 ## Related Documents
 
 - [unique_business_cooperative.md](../02-strategy/unique_business_cooperative.md) — Venture program structure
@@ -1885,6 +1921,7 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 ---
 
-*Unique Business Playbook v2.0 — February 2026*
+*Unique Business Playbook v2.1 — March 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
+*Updated: Proof Case #1 (Ogi session) documented.*
 

@@ -100,7 +100,16 @@ The crises:
 | **Spirit** | "I am my ancestors' wildest dream. I am God's funniest creation." Complete mystery and complete maze |
 | **Love** | "I love like no other. I am one of the greatest nurturers ever" |
 
-**The shadow, deepened:** Gift = inner child healing / play / nurturing / storytelling → Shadow = "I need to be the serious CEO / businessman first." Business skills are REAL (street smarts, closing, sales) — but they're shadow turned gold. They were survival tools, not the gift. The gift is the teaching. The business skills now SERVE the teaching, not replace it.
+**The shadow, deepened — dual hypothesis:**
+
+| Reading | Gift (what he gives) | Shadow (what he denies himself) |
+|---------|--------|--------|
+| **A: Safety/Nurturing** | He gives others the safety, nurturing, and protection HE never had as a child | He won't give it to himself. Instead he armors up — becomes the CEO, the businessman, the serious man — because that's how he survived |
+| **B: Playfulness/Storytelling** | He heals through play, storytelling, imagination — restoring aliveness | He demands seriousness from himself. Dismisses his own playfulness as "not real business" |
+
+Both readings may be true simultaneously — different faces of the same shadow. Session #2 will reveal which resonates deeper with Ogi.
+
+Business skills are REAL (street smarts, closing, sales) — but they're shadow turned gold. They were survival tools, not the gift. The gift is the teaching. The business skills now SERVE the teaching, not replace it.
 
 **The visibility-fear layer (discovered in session):** Ogi said: *"I am an enlightened being who is hiding because once it comes out they're going to try to kill me."* This is NOT just swagger — it's a childhood survival program still running. As a child, he had to hide and lie to survive. Visibility = danger. That program is STILL active: he scatters into CEO tasks, multiple projects, "posing as the businessman" — not just because he thinks he needs to be serious, but because **fully emerging as the teacher means being SEEN.** And being seen, in his nervous system, means being attacked. The scatter isn't just identity confusion. It's **protection through invisibility.** He stays scattered so he never fully arrives — because arriving means being a target.
 
@@ -165,6 +174,7 @@ Ogi's version, from his life: the lotus grows from the swamp. The crisis-child w
 **Real people named (session):**
 - **Dr. Sanal** — functional medicine doctor, California
 - **Alia** — pharmacist, Alaska
+- **Arletter** — (details TBD)
 
 **Who resonates — synthesized from Ogi's self-description:**
 
@@ -241,27 +251,73 @@ People who are creative, gifted, possibly spiritual — who have been trying to 
 ## Session Notes — Ignition #1
 
 **Date:** March 5-6, 2026
-**Duration:** ~90 min
+**Duration:** ~90 min (actual: 112 min with recording)
 **Facilitator:** Alexander Konstantinov
 
-**Key moments:**
-- Two questions → immediate Path A. Business was in the first sentence
-- "Who's posing as the businessman?" = the shadow speaking live
-- 10/10 resonance with the diagnosis: scatter = avoiding the simple thing
-- Recursive truth confirmed: Ogi's business IS what he went through himself
+### Peak Moment — The Shadow Landing
 
-**Artifacts produced:**
+> **"Sir, that's an 11.23. That's brutal. That's a cold plunge. You just pushed me into the ice lake while you're drinking vodka."**
+
+This is the moment the session earned its existence. The shadow — "He heals playfulness in others but demands seriousness from himself" — landed deeper than anything else. Ogi felt it in his gut. Not cognitive, somatic: "Lossum. In the gut. Very primal. Uh-huh."
+
+**This is what the Ignition session IS for:** naming the one thing the person can't see about themselves, the inverted gift that keeps them stuck. Everything else supports this moment.
+
+### Precision Scores (assigned by Ogi in session)
+
+| Artifact | Score | Notes |
+|----------|-------|-------|
+| Myth v1.0 | **8.9** | "Not 9.99 — that's not leaving space for iterations." Strong first pass |
+| Shadow | **11.23** | Ogi's words. Off the scale. The peak |
+| Overall diagnostic | **10/10** | "Scatter = avoiding the simple thing" resonated completely |
+
+### Key moments (timestamped from recording)
+
+| Time | Moment | Significance |
+|------|--------|-------------|
+| 24:23 | Ogi: "I have a fear coming up that I will fail" | Shadow arriving early. Named before Alexander did |
+| 49:14 | Ogi answers Q1 | Business in first sentence. Path A confirmed |
+| 53:28 | "Who's posing as a businessman?" | Ogi names his own shadow. Unprompted |
+| 1:01:43 | "Sir, that's an 11.23. That's brutal." | **PEAK.** Shadow landing. Gut-level |
+| 1:02:02 | "Lossum. In the gut. Very primal." | Somatic confirmation |
+| 1:20:49 | Myth at 8.9 | Strong first iteration |
+| 1:28:44 | Origin story: "I was a crisis magnet" | Raw material — the swamp → lotus |
+| 1:40:25 | "You work through your shadows to find your gifts" | His methodology stated without realizing it |
+| 1:50:56 | "Nobody can hold space for me. You're very courageous." | Testimonial from a medicine man |
+
+### Post-Session Feedback (Ogi's chat messages)
+
+> "Nobody can hold space for me. They're all afraid. You're very courageous, crazy too."
+
+> "I'm moving and feeling a lot of confidence and clarity on the decisions I have made and actions I have initiated since our call today. Thank you. I owe you big time. I've never had a session like that before. Thank you for helping me face my fears."
+
+> "Tom is having a class and you are far superior. He's good but he ain't drilling down like you just did."
+
+### Artifacts produced
+
 - [x] Two-Question Seed answered
-- [x] Uniqueness / Gift named
-- [x] Myth v1.0 (Master Lie + Master Belief)
-- [ ] Tribe deepened (needs 3 real names)
+- [x] Uniqueness / Gift named (Lotus Medicine Man — Storytelling Alchemist — Satori Guide)
+- [x] Myth v1.0 (Master Lie + Master Belief) — 8.9 precision
+- [x] Tribe — 3 names: Dr. Sanal (functional medicine, CA), Alia (pharmacist, AK), Arletter
+- [x] Origin story captured (The Swamp and The Lotus)
+- [x] Self-qualifiers — full inventory across 9 domains
+- [x] Shadow identified and landed (11.23)
 - [ ] Pain deepened (needs forensic trace per domain)
+- [ ] Dream outcome refined
 - [ ] First message written
 - [ ] First message sent
 
-**Next:** Myth roasting → Tribe → First message → SEND
+### Session Learnings
+
+1. **The shadow is the peak.** Build toward it. Everything supports this moment.
+2. **Two questions work.** Path A confirmed on first try. Business was in the first sentence.
+3. **Sharing your own recursive story builds trust.** Ogi: "This is the same evening" — he felt the continuity.
+4. **Asking for scores matters.** Ogi assigning "8.9" and "11.23" grounds the experience in specificity.
+5. **Opening can be compressed.** 22 minutes of context was appropriate for Session #1 with a business partner. For paying clients, 5-10 minutes maximum.
+6. **The AI mirror needs the facilitator's voice.** When the facilitator doesn't yet embody the insight (e.g., inner child ≠ playfulness), it's honest to read rather than fake it. But the goal is to develop the facilitator's own reading over time.
+
+**Next:** Session #2 — Pain deepening → Dream outcome → First message → SEND
 
 ---
 
-*Ogi's Unique Business v1.0 — March 6, 2026*
-*First Ignition session. Artifacts at first iteration. Single source of truth.*
+*Ogi's Unique Business v1.1 — March 6, 2026*
+*First Ignition session. Shadow landed. Methodology validated. Artifacts at first iteration.*

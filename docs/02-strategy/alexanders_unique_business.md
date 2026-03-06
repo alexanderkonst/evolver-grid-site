@@ -1294,6 +1294,84 @@ DONE
 
 ---
 
+### Session Flow v1.0 — As Actually Delivered (Session #1: Ogi, March 5-6, 2026)
+
+*What actually happened, step by step. The SOP as it crystallized in practice.*
+
+#### The Opening — Key Idea Flow (22 min as delivered)
+
+Alexander made 7 distinct moves in the opening. Each built on the previous. Together they created the soil for the shadow to land:
+
+| # | Move | What was said (essence) | Time | Function |
+|---|------|------------------------|------|----------|
+| **1** | **Energetic framing** | "This session is not free. It's part of our business partnership. Energetically it's clean." | 2 min | Sets the container. Serious. Sacred. Not casual |
+| **2** | **The world is broken** | "There is no incubator that reliably produces success. AI confirms: it doesn't exist." | 2 min | Stakes. What we're doing is unprecedented. Trust the gravity of it |
+| **3** | **The grind addiction** | "There is a major addiction to hustle and effort. We were made to believe success comes through grinding. When it doesn't work → we grind more → loop. The loop takes: savings, self-trust, self-image" | 4 min | Names the enemy. The client recognizes themselves in the loop. First mirror |
+| **4** | **The three-identity trap** | "We are coaches AND founders AND ex-career. We loop between these identities. Nobody names this. It creates a mind-fuck: how can I be this capable AND this stuck?" | 3 min | Names the structural confusion. The client feels seen. Second mirror |
+| **5** | **The avoidance of simplicity** | "We're dodging the easy thing — our zone of genius. Why? Because what's natural doesn't feel trustworthy. There's no grind involved, so it doesn't feel like real work. Effort goes to resistances, not to creating clarity. Clarity is effortless — it was always there" | 3 min | The paradigm shift. The scatter pattern exposed. Third mirror |
+| **6** | **The glass jar** | "We can't read the label from inside. The fish doesn't see the water. We need a mirror. And naming = clarity" | 2 min | Why THIS session. Why you need another person. Why naming matters |
+| **7** | **Alexander's recursive trap** | "My unique business is to assist with unique businesses → so I thought I needed MY unique business first → permanent not-ready state. But I already DO it. I always did. There was nothing to find out. I just hadn't NAMED it" | 4 min | The proof. The founder's own journey AS the demonstration. Recursive credibility |
+
+**Then:** Artifact sequence overview (uniqueness → myth → tribe → pain → promise → value ladder) with his own examples for each. Explained the iterative nature (it's never final, always deepening) and precision scale (1-10). Positioned the value ladder: "This session is just the seed. From here you can walk yourself, or we build together."
+
+**Then:** Two questions.
+
+#### What Each Move Actually Did
+
+| Move | Mirror function | Trust function | Value ladder function |
+|------|----------------|----------------|----------------------|
+| Energetic framing | — | Sets sacred container | — |
+| World is broken | — | "We're doing something unprecedented" | — |
+| Grind addiction | "That's me — I grind and nothing sticks" | "He understands the pattern" | — |
+| Three-identity trap | "I AM all three — no one's named that" | "He's one of us" | — |
+| Avoidance of simplicity | "Holy shit — I AM dodging the simple thing" | "He's seen this before" | — |
+| Glass jar | "That's why I can't see it myself" | "This is why I need him" | Why the session exists |
+| Recursive trap | "He went through this himself and came out" | Embodied proof > résumé | Sets up the journey |
+| Artifact sequence + precision | "Now I see how a unique business is built" | "There's a system, it's iterative, it works" | "This is just the beginning" — natural upsell |
+
+#### Essence, Significance, and Practical Implications
+
+**Essence (🫀):** The opening isn't context-setting. It's the first mirror. By the time the two questions arrive, the client already recognizes themselves in the pattern. The questions then extract the SPECIFIC version of the general pattern. The opening says "here's the water"; the questions say "what does YOUR water taste like?"
+
+**Significance (🧠):** Alexander's opening is NOT separable from the methodology. It IS the methodology's first act. Removing it would make the two questions land in a vacuum. The client needs to feel SEEN in their general pattern before they can trust the process with their specific details. This is why Ogi said "I have a fear coming up" at minute 24 — the opening had already activated the right emotional register.
+
+**Practical Implications (🔥):**
+1. **The opening can be compressed but not eliminated.** 7 moves in 8-10 minutes instead of 22. Each move is 60-90 seconds, not 3-4 minutes
+2. **Lead with YOUR EXPERIENCE, not theory.** "This is what happened to me" > "This is how the world works." The recursive trap story was the strongest move
+3. **The artifact sequence overview IS the value ladder setup.** It shows what a unique business consists of, that it's iterative, and that this session is the beginning — not the end. This is strategic, not filler
+4. **The precision scale is introduced WHEN you use it** (after myth, after shadow) — not upfront. Let them experience it, then name it
+5. **The grind addiction and three-identity naming IS the pain card delivered live.** The client is already feeling mirrored before a single question is asked
+
+#### Refined Version for Session #2+ (Experience-First)
+
+```
+OPENING (8-10 min)
+  │
+  "Let me tell you what happened to me."
+  │
+  → I was coaching, building, stuck between identities (2 min)
+  → I was grinding — trying strategy after strategy (1 min)
+  → I was avoiding the simple thing — my zone of genius —
+     because it felt too easy to be a real business (2 min)
+  → I couldn't see it from inside. I needed a mirror.
+     And then I named it: one sentence. And everything
+     changed (1 min)
+  → "That's what this session does. We name YOUR thing.
+     We get to these artifacts. And it's iterative —
+     today is the seed. Ready?" (2 min)
+  │
+  ▼
+TWO QUESTIONS
+  │
+  (rest of SOP as written)
+```
+
+**Delta from Session #1:** Same 7 moves, but told entirely through Alexander's personal experience. No Apple/Nike examples. No abstract psychology. Everything is "this happened to ME" → "now let's see what happens with YOU."
+
+**Recording link:** [Fathom recording — Ignition #1](https://fathom.video/share/JKnmr7n5_QqJivkzM5CCteX9E5xmZSPk)
+
+---
+
 ## Strategy Staging — The Natural Ladder (March 4, 2026)
 
 *The strategy itself follows a progression. Each stage is maximally simple for its level. Moving to the next stage before completing the current one = grind.*
