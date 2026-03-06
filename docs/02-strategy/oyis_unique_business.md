@@ -84,6 +84,7 @@ The crises:
 | **Unique Mechanism** | Inner child → zone of genius (not the conventional path of discipline → mastery → zone) |
 | **Compound Archetype** | Lotus Medicine Man — Storytelling Alchemist — Satori Guide |
 | **Vibrational Key** | "He who grew from the swamp into the lotus — and now grows lotuses in others" |
+| **Method in one sentence** | "You work through your shadows to find your gifts." *(Oyi's own words, stated without realizing it was his methodology)* |
 
 **Ogi's self-qualifiers (from session, his voice):**
 
@@ -101,7 +102,9 @@ The crises:
 
 **The shadow, deepened:** Gift = inner child healing / play / nurturing / storytelling → Shadow = "I need to be the serious CEO / businessman first." Business skills are REAL (street smarts, closing, sales) — but they're shadow turned gold. They were survival tools, not the gift. The gift is the teaching. The business skills now SERVE the teaching, not replace it.
 
-**Shadow prediction:** When Ogi commits to "just teaching," the shadow will say: "But who's running the business? Who's executing? You need a team first." Name it when it comes. Hold the mirror.
+**The visibility-fear layer (discovered in session):** Ogi said: *"I am an enlightened being who is hiding because once it comes out they're going to try to kill me."* This is NOT just swagger — it's a childhood survival program still running. As a child, he had to hide and lie to survive. Visibility = danger. That program is STILL active: he scatters into CEO tasks, multiple projects, "posing as the businessman" — not just because he thinks he needs to be serious, but because **fully emerging as the teacher means being SEEN.** And being seen, in his nervous system, means being attacked. The scatter isn't just identity confusion. It's **protection through invisibility.** He stays scattered so he never fully arrives — because arriving means being a target.
+
+**Shadow prediction:** When Ogi commits to "just teaching," the shadow will say: "But who's running the business? Who's executing? You need a team first." AND deeper: "If you show your full power, they'll come for you." Name it when it comes. Hold the mirror.
 
 ---
 
