@@ -1521,6 +1521,76 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 
 ---
 
+## Value Ladder v2.0 — Three Containers (March 10, 2026)
+
+*Source: Claude Opus strategy session. "This is the clearest I've ever seen this ever."*
+
+*Supersedes the earlier value ladder drafts. Previous versions preserved above for reference.*
+
+### The Three Containers
+
+| # | Container | What Happens | Entry | Exit | Pricing |
+|---|-----------|-------------|-------|------|---------|
+| **1** | **The Naming** | Context-setting (myth, lie, sovereignty frame) → two questions → AI-assisted uniqueness extraction → myth first draft. They walk out with the seed — they can't unsee it | Warm DM, referral, or resonance | "This is the seed. Everything else — your tribe, your pain, your promise, your first offer, your first paying client — that's the build. **Want to build it together?**" | Free (sessions 1-4) → $300-500 |
+| **2** | **The Build** | Complete business artifacts (tribe, pain, promise, methodology, value ladder, first session design) → deliver first session → first paid session → 10 sessions total → line of sight to recurring revenue | Invitation at the end of The Naming | They have 10 sessions delivered, recurring revenue emerging, proven model | **Hybrid:** $500-1,000 upfront + $2-3K from first $10K revenue |
+| **3** | **The Venture** | Scale: build tech product, systematize delivery, automation, grow team/AI infra. Venture studio engagement | Only when Container 2 complete (recurring revenue, PMF proven) | Scalable business running, node in the network. May start delivering The Naming to others (fractal replication) | 10% revenue share or equity |
+
+### Why "The Naming"
+
+| Option considered | Why it lost |
+|---|---|
+| "Diagnostic" | Undersells — implies something is broken. Nothing is broken; it's unnamed |
+| "Mirror Session" | Good but passive. The session doesn't just show — it NAMES |
+| "The Reveal" | Close but dramatic. The session is calmer than a reveal |
+| **"The Naming"** | **Winner.** "Naming creates clarity. If we can't name it, it's foggy." The session names the business they're already running. Most accurate description of what actually happens |
+
+### Session Boundaries (crystallized)
+
+| Rule | Rationale |
+|------|-----------|
+| Cap The Naming at 60-90 min | You're not doing them a favor by going 3 hours. You're overgiving and depleting |
+| One artifact focus: uniqueness + myth draft | Show them the map. Don't walk them through the territory for free |
+| Stop before tribe, pain, promise | Those are paid artifacts. That's The Build |
+| Practice the invitation and be quiet | "Want to build it together?" — then silence |
+
+### Milestones Inside The Build
+
+```
+1. All business artifacts complete (tribe, pain, promise, value ladder, methodology)
+2. First session DESIGNED (their own version of The Naming for their tribe)
+3. First session DELIVERED
+4. First PAID session delivered
+5. 10 sessions total (mix of free and paid)
+6. Recurring monthly revenue → PMF proven → Container 3 unlocks
+```
+
+### Current Session Status (March 10, 2026)
+
+| Person | Container | Status | Next Step |
+|--------|-----------|--------|-----------|
+| **Oyi** | Deep into The Build | Overgiven — 4+ hours, artifacts through Pain v2.0 | Land promise, sketch his first session, send him to DELIVER. Shift to biweekly light-touch advisory |
+| **Sergey** | Still in The Naming | Uniqueness at 7-8, myth not landed yet | March 11: nail uniqueness to 9+, land myth. Then invitation to The Build |
+| **Session 3** | Not started | Warm lead — friend/existing relationship | Execute clean Naming: 60-90 min, cap at uniqueness + myth |
+| **Session 4** | Not started | Warm lead — friend/existing relationship | Same. After this, WRITE PRICES DOWN. Session 5 = first fully paid |
+
+### The Shadow in the Business Model
+
+> "You told Oyi that giving away his genius as charity is the core trap. You told him his shadow is 'I need the team, the budget, the structure before I can teach.' And then you gave him 4+ hours of the most transformative work he's ever received — for free. You see the pattern?"
+
+The fear chain: "Am I being stupid? Am I playing charity? Is this going to work for everybody?" — that's the shadow speaking. The same "not ready yet" loop that IS Alexander's core block. The methodology is working. The evidence is real. The question isn't "will the fear stop" — it's "can I act clearly while afraid?"
+
+**Answer: yes. Two sessions in. Both produced breakthroughs. Acting.**
+
+### The Arc — Named Simply
+
+```
+Unique Business Creation → Venture Studio → Planetary OS
+```
+
+Each level runs the same pattern at its own scale. The first holon (Alexander) must prototype everything before it replicates. The vision becomes legible through demonstration, not explanation. Stop explaining the planetary OS — build 10 working unique businesses. The explanation writes itself.
+
+---
+
 ## Theory Layer
 
 | Theory | Document |
@@ -1535,6 +1605,6 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 
 ---
 
-*Alexander's Unique Business v4.3 — March 5, 2026*
-*Updated: Ignition Session SOP v1.0 (decision-tree flow, three core principles, if-stuck cheat sheet). Domain 14 linked. Single source of truth.*
+*Alexander's Unique Business v5.0 — March 10, 2026*
+*Updated: Three-container value ladder crystallized (The Naming → The Build → The Venture). Hybrid pricing model. Session boundaries defined. Domain 14 linked. Single source of truth.*
 

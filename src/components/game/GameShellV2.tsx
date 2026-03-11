@@ -14,6 +14,8 @@ interface GameShellV2Props {
     children: ReactNode;
     /** Force hide navigation panels (for onboarding flows) */
     hideNavigation?: boolean;
+    /** Force show navigation even during onboarding (for tour spotlight) */
+    showNavigation?: boolean;
 }
 
 /**
@@ -22,7 +24,7 @@ interface GameShellV2Props {
  * Panel 2: SectionsPanel (sections list)  
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: GameShellV2Props) => {
+export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation }: GameShellV2Props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -212,7 +214,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation }: G
     // Show sidebar by default, hide only during early onboarding or when explicitly requested
     // Early onboarding stages: "new", "zog_started" - user hasn't completed basic setup
     const earlyOnboardingStages = ["new", "zog_started"];
-    const hideNavigation = forceHideNavigation || (profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage));
+    const hideNavigation = !forceShowNavigation && (forceHideNavigation || (profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage)));
 
     if (hideNavigation) {
         return (
