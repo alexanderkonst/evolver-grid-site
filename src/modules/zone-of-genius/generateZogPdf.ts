@@ -159,7 +159,7 @@ function renderHeader(b: PdfBuilder, appleseed: AppleseedData) {
 
   b.doc.setFont("helvetica", "normal");
   b.doc.setFontSize(11);
-  b.doc.text(`✦ ${appleseed.vibrationalKey.name} ✦`, MARGIN, 26);
+  b.doc.text(`:: ${appleseed.vibrationalKey.name} ::`, MARGIN, 26);
 
   b.doc.setFontSize(8);
   b.doc.setTextColor(180, 200, 220);
@@ -198,11 +198,11 @@ function renderThreeLenses(b: PdfBuilder, appleseed: AppleseedData) {
   b.labelValue("Actions", appleseed.threeLenses.actions.join(" · "));
   b.labelValue("Prime Driver", appleseed.threeLenses.primeDriver);
   if (appleseed.threeLenses.primeDriver_meaning) {
-    b.body(`↳ ${appleseed.threeLenses.primeDriver_meaning}`, 4);
+    b.body(`>> ${appleseed.threeLenses.primeDriver_meaning}`, 6);
   }
   b.labelValue("Archetype", appleseed.threeLenses.archetype);
   if (appleseed.threeLenses.archetype_meaning) {
-    b.body(`↳ ${appleseed.threeLenses.archetype_meaning}`, 4);
+    b.body(`>> ${appleseed.threeLenses.archetype_meaning}`, 6);
   }
 }
 
