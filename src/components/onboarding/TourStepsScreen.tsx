@@ -81,7 +81,7 @@ const TourStepsScreen = ({ onComplete, onBack, onSkip }: TourStepsScreenProps) =
     };
 
     return (
-        <GameShellV2>
+        <GameShellV2 showNavigation>
             {/* Empty content - tour shows in spotlight overlay */}
             <div className="min-h-[60vh] flex items-center justify-center p-8">
                 <div className="text-center text-[var(--wabi-text-muted)]">
