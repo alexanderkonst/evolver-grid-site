@@ -3,7 +3,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useNavigate } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Download } from "lucide-react";
+import { generateZogPdf } from "./generateZogPdf";
 import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
 import SkeletonCard from "@/components/ui/SkeletonCard";
@@ -73,6 +74,23 @@ const ZoneOfGeniusLandingPage = () => {
                   </div>
                 )}
               </div>
+
+              {/* Download PDF */}
+              {appleseed && (
+                <div className="text-center pt-2">
+                  <button
+                    onClick={() => generateZogPdf(appleseed, excalibur)}
+                    className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg"
+                    style={{ backgroundColor: 'hsl(210, 70%, 15%)', color: 'white' }}
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Full PDF
+                  </button>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    All {excalibur ? '12 perspectives + Genius Business' : '12 perspectives'} in one clean document
+                  </p>
+                </div>
+              )}
             </section>
           )}
 
