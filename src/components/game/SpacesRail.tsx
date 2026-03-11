@@ -11,8 +11,10 @@ import {
     Lock,
     Settings,
     Rocket,
+    LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 interface SpaceItem {
     id: string;
@@ -247,7 +249,7 @@ const SpacesRail = ({
             </nav>
 
             {/* Settings Button */}
-            <div className="p-2 md:p-3 border-t border-[#29549f]/30">
+            <div className="p-2 md:p-3 border-t border-[#29549f]/30 space-y-1">
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
@@ -259,6 +261,21 @@ const SpacesRail = ({
                 >
                     <Settings className="w-5 h-5 flex-shrink-0" />
                     <span className="hidden md:block text-sm font-medium">Settings</span>
+                </button>
+                <button
+                    onClick={async () => {
+                        await supabase.auth.signOut();
+                        navigate("/");
+                    }}
+                    className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                        "justify-center md:justify-start",
+                        "text-[#a7cbd4]/60 hover:bg-red-500/20 hover:text-red-300"
+                    )}
+                    title="Log Out"
+                >
+                    <LogOut className="w-4 h-4 flex-shrink-0" />
+                    <span className="hidden md:block text-xs font-medium">Log Out</span>
                 </button>
             </div>
         </div>
