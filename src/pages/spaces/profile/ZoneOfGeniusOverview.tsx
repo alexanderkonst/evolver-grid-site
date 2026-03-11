@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap, Target, Quote, TrendingUp } from "lucide-react";
+import { Sparkles, Star, Zap, Target, Quote, TrendingUp, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import ShareZoG from "@/components/sharing/ShareZoG";
+import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
+import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
 interface AppleseedData {
     vibrationalKey?: {
@@ -33,6 +36,8 @@ const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
+    const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
+    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
     const [profileId, setProfileId] = useState<string | null>(null);
 
     useEffect(() => {
@@ -60,13 +65,17 @@ const ZoneOfGeniusOverview = () => {
                 // Load appleseed_data from zog_snapshots
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data")
+                    .select("appleseed_data, excalibur_data")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
                 if (snapshotData?.appleseed_data) {
                     console.log("[ZoGOverview] Loaded appleseed_data:", snapshotData.appleseed_data);
                     setAppleseedData(snapshotData.appleseed_data as unknown as AppleseedData);
+                    setFullAppleseed(snapshotData.appleseed_data as unknown as FullAppleseedData);
+                }
+                if (snapshotData?.excalibur_data) {
+                    setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
                 }
             } catch (err) {
                 console.error("Error loading Zone of Genius data:", err);
@@ -135,6 +144,20 @@ const ZoneOfGeniusOverview = () => {
                         </p>
                     )}
                 </div>
+
+                {/* Download PDF */}
+                {fullAppleseed && (
+                    <div className="flex justify-center">
+                        <button
+                            onClick={() => generateZogPdf(fullAppleseed, excaliburData)}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg"
+                            style={{ backgroundColor: 'hsl(210, 70%, 15%)', color: 'white' }}
+                        >
+                            <Download className="w-4 h-4" />
+                            Download Full PDF
+                        </button>
+                    </div>
+                )}
 
                 {/* Three Lenses Summary */}
                 {appleseedData.threeLenses && (
