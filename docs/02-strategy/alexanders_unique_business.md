@@ -9,6 +9,22 @@
 >
 > **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
 
+## Artifact Status
+
+| Artifact | Version | Precision | Status |
+|----------|---------|-----------|--------|
+| Uniqueness | **v1.0** (Evolutionary Mirror — Visionary Architect) | — | ✅ Landed |
+| Myth | **v2.1** (grind is a lie, uniqueness IS your business) | — | ✅ Crystallized |
+| Tribe | **v2.2** (meta-segment: founders in transition) | — | ✅ Deep, 3-segment map |
+| Pain | **v3.1** (5-layer slicer per segment, 9.95 calibration) | **9.95** | ✅ Landed |
+| Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
+| Promise | **v2.0** (collapsed from roasting) | — | ✅ Landed |
+| Strategy | **v1.0** (absurdly simple: DM → session → build) | — | ✅ Operational |
+| Lead Magnet | **v3** (NotebookLM video) | — | ✅ Designed |
+| Value Ladder | **v2.0** (3 containers: $27 → $555 → $5K+) | — | ✅ Defined |
+| Method | **v1.0** (MAP → MATCH → MOVE) | — | ✅ Articulated |
+| Proof | **v1.1** | — | 🔄 Building (live sessions in progress) |
+
 ---
 
 ## Artifact Production Sequence
