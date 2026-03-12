@@ -655,6 +655,37 @@ Every insight in the playbook must eventually find its home in a workflow step. 
 ## Artifact Production Sequence
 
 > *Feb 20, 2026 — The exact order artifacts get produced. Each one is the seed for the next.*
+>
+> 📚 Template: [unique_business_canvas_template.md](../02-strategy/unique_business_canvas_template.md) — Copy this file for each new founder. v5.0 reflects all breakthroughs through March 12, 2026.
+
+> [!IMPORTANT]
+> **Standard: Artifact Status Table.** Every unique business document MUST begin with an Artifact Status table — a dashboard showing version, precision score, and status of each artifact at a glance. This is the first thing anyone sees when opening the doc. Update it as artifacts deepen.
+>
+> **Template:**
+> ```markdown
+> ## Artifact Status
+>
+> | Artifact | Version | Precision | Status |
+> |----------|---------|-----------|--------|
+> | Uniqueness | **v1.0** | **X/10** | ✅ Landed / 🔄 In progress / ⏳ Not started |
+> | Myth | — | — | ⏳ Not started |
+> | Tribe | — | — | ⏳ Not started |
+> | Pain | — | — | ⏳ Not started |
+> | Promise | — | — | ⏳ Not started |
+> | Lead Magnet | — | — | ⏳ Not started |
+> | Value Ladder | — | — | ⏳ Not started |
+> ```
+
+> [!TIP]
+> **Breakthrough: The Unique Business Canvas (discovered March 12, 2026, Laylat al-Qadr).** Beyond the status table, each artifact should be distilled to its **most compressed form** — one sentence or a short paragraph that keeps maximum signal and minimum noise. When all 7 artifacts are distilled, the founder can see their **entire unique business on half a page**.
+>
+> **Why this matters:** The distilled cockpit is the interface between the founder's evolving consciousness and the living document. The flywheel: **live life → gain new clarity → glance at cockpit → tell AI the new insight → iterate the version → everything downstream sharpens automatically.** The cockpit makes iteration frictionless.
+>
+> **Two forms per artifact:**
+> 1. **Full-signal distillation** — the founder's language, their metaphors, maximum precision
+> 2. **Universal language version** — same signal, no terminology, a teenager understands it fully. No dumbing down, no noise added.
+>
+> **Rule:** A new version only replaces the previous if precision is HIGHER. Each iteration must earn its place.
 
 **Checklist:**
 
@@ -728,6 +759,40 @@ Point A is where the **insight** lives. Success comes from deep understanding of
 **The Last Mile Principle (discovered Feb 20, 2026):**
 
 AI gets the articulation to **9**. The founder's embodied experience — writing the final draft from inside the tribe's skin — closes the gap to **10**. This applies to every synthesis artifact: tribe synthesis, pain description, promise, ad copy. The roast process (surface roast → meta roast → founder rewrite) is the mechanism. AI proposes, roasts, and iterates. The founder delivers the gut punch.
+
+**The Two-Form Principle (discovered March 12, 2026, Laylat al-Qadr):**
+
+> [!IMPORTANT]
+> **Every artifact MUST exist in two forms:**
+> 1. **Full-signal distillation** — the founder's language, their metaphors, insider terminology, maximum precision. This is FOR the founder and the AI to iterate with.
+> 2. **Universal language version** — same signal, zero jargon, a teenager understands it fully. No dumbing down, no noise added. This is FOR the world.
+>
+> **Why this matters:** The universal language version IS the marketing. It IS the copy. It IS the DM. It IS the voice note. No marketing team, no copywriter, no funnel builder needed. When every artifact has a "teenager can understand and feel it" form, the myth writes the marketing at zero cost. Proven with Oyi session #3: "This is the closest AI has captured my voice so far."
+>
+> **The test:** Read the universal language version to someone outside the work. If they feel it in their body — it's done. If they need context — it's still insider language wearing a universal costume.
+
+**The Self-Sustaining Flywheel (discovered March 12, 2026, Laylat al-Qadr):**
+
+> [!IMPORTANT]
+> **Once all 7 artifacts exist in the Unique Business Canvas, the founder can iterate independently of the facilitator.**
+>
+> The flywheel: **live life → gain new clarity → glance at Canvas → tell AI the new insight → AI iterates the version → everything downstream sharpens automatically.**
+>
+> This means the Unique Business Canvas is not a deliverable — it's an **interface**. It's the connection point between the founder's evolving consciousness and their business architecture. The facilitator's job is to forge the first Canvas to sufficient precision (~9.5+). After that, the founder + AI can maintain and improve it indefinitely.
+>
+> **Implication for the business model:** The facilitator is not needed forever. The Build (6 weeks) exists to forge the Canvas to sufficient precision. After that, the founder enters The Container (light touch, advisory) or iterates independently. This is build-to-graduate, not build-to-depend.
+
+**The Organic Pipeline Principle (discovered March 12, 2026):**
+
+> [!TIP]
+> **When the myth is true enough, the pipeline builds itself with zero marketing spend.**
+>
+> Evidence: Alexander → Oyi (session 1) → Sergey (session 2) → 2 new names (day 9) → Karime (ready to receive + has 2 clients = first paid). Five founders in 9 days. Zero ads. Zero content marketing. Zero funnel. Each step lit up the next tile. The myth IS the marketing — this is not a slogan, it's an operational fact with a live data trail.
+>
+> **How it works:** The founder embodies the myth. People around them feel the shift. They ask what changed. The founder tells the story. The story IS the lead magnet. The tribe self-selects. No persuasion needed — recognition only.
+>
+> **Implication:** If you need to "market" your unique business, the myth isn't done yet. A finished myth markets itself by being lived.
+
 
 **The Simplicity × Leverage Principle (discovered Feb 24, 2026):**
 
