@@ -62,10 +62,10 @@ const ZoneOfGeniusOverview = () => {
                     return;
                 }
 
-                // Load appleseed_data from zog_snapshots
+                // Load appleseed_data AND basic snapshot fields from zog_snapshots
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data, excalibur_data")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
@@ -73,6 +73,22 @@ const ZoneOfGeniusOverview = () => {
                     console.log("[ZoGOverview] Loaded appleseed_data:", snapshotData.appleseed_data);
                     setAppleseedData(snapshotData.appleseed_data as unknown as AppleseedData);
                     setFullAppleseed(snapshotData.appleseed_data as unknown as FullAppleseedData);
+                } else if (snapshotData?.archetype_title) {
+                    // Fallback: construct minimal appleseed from basic snapshot fields
+                    const talents = (snapshotData.top_three_talents as unknown as string[]) || [];
+                    const fallback: AppleseedData = {
+                        vibrationalKey: {
+                            name: snapshotData.archetype_title,
+                            essence: snapshotData.core_pattern || "",
+                        },
+                        bullseyeSentence: snapshotData.core_pattern || undefined,
+                        threeLenses: talents.length > 0 ? {
+                            actions: talents,
+                            primeDriver: "",
+                            archetype: snapshotData.archetype_title,
+                        } : undefined,
+                    };
+                    setAppleseedData(fallback);
                 }
                 if (snapshotData?.excalibur_data) {
                     setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
@@ -146,18 +162,24 @@ const ZoneOfGeniusOverview = () => {
                 </div>
 
                 {/* Download PDF */}
-                {fullAppleseed && (
-                    <div className="flex justify-center">
-                        <button
-                            onClick={() => generateZogPdf(fullAppleseed, excaliburData)}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg"
-                            style={{ backgroundColor: 'hsl(210, 70%, 15%)', color: 'white' }}
-                        >
-                            <Download className="w-4 h-4" />
-                            Download Full PDF
-                        </button>
-                    </div>
-                )}
+                <div className="flex justify-center">
+                    <button
+                        onClick={() => {
+                            if (fullAppleseed) {
+                                generateZogPdf(fullAppleseed, excaliburData);
+                            } else {
+                                // Trigger Appleseed generation then download
+                                alert("Full PDF data is being generated. Please wait a moment and try again.");
+                                // For now, navigate to the assessment to trigger generation
+                            }
+                        }}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg"
+                        style={{ backgroundColor: 'hsl(210, 70%, 15%)', color: 'white' }}
+                    >
+                        <Download className="w-4 h-4" />
+                        {fullAppleseed ? 'Download Full PDF' : 'Generate & Download PDF'}
+                    </button>
+                </div>
 
                 {/* Three Lenses Summary */}
                 {appleseedData.threeLenses && (
