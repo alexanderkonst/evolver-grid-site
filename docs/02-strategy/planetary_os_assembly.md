@@ -18,9 +18,13 @@ Each step naturally leads to the next. We don't force the sequence — we observ
 
 This system didn't start in 2026. The core technology — Zone of Genius discovery, asset mapping, AI-powered matching, impact mapping — was developed and tested over years. In 2024, the full ecosystem was presented to leaders of Holo Movement, LightNet, and Soul Guide. They immediately recognized its value. But the project had to freeze — the founder needed to solve his own survival first.
 
-That freeze turned out to be the most important step. Building from a place of scarcity doesn't work. The current Canvas-era approach emerged from solving that exact problem: start with one person, one session, one conversation. Make money doing what you love. Then scale.
+That freeze turned out to be the most important step. Building from a place of scarcity doesn't work. The current approach emerged from solving that exact problem: start with one person, one session, one conversation. Make money doing what you love. Then scale.
 
 > The system had to heal itself before it could heal others. The founder had to go through the same process he now delivers. That's not a delay — it's the proof.
+
+### What's Real Right Now
+
+The latest version of all this is what's actually happening: the sessions with Oyi and Sergey, the methodology being refined with every conversation, the platform being built, and the workflows and SOPs that run the whole operation. All of these conversations are already landing as software — the platform is the living manifestation of everything described in this document.
 
 ---
 
@@ -44,7 +48,7 @@ I used my own process to figure out my unique value, build my business model, an
 ### Step 1: Test It With 2 People
 > *Prove it works for others, not just you.*
 
-Oyi and Sergey were the first two people to go through the process with me. Not as paying clients — as partners in testing whether this actually works.
+Oyi and Sergey were the first two people to go through the full process with me. Not as paying clients — as partners in testing whether this actually works.
 
 **Results:**
 - **Oyi:** Figured out exactly what he does — a storyteller-healer who helps high achievers reconnect with their creative power. Full business blueprint completed in one session. Already acting on it.
@@ -115,7 +119,9 @@ All the founders who completed the process join a private group (The Originals, 
 - When one person succeeds, it raises the bar for everyone
 - The group becomes a small venture studio — without needing to call it that
 
-> When the sea level rises, all boats rise. This group IS the rising sea. Every win is shared. Every breakthrough lifts the baseline for all. It's an inspiring alternative to the usual zero-sum "your loss is my gain" thinking.
+**The key:** Nobody is joining someone else's vision. They're recognizing their own. The community works because each person sees their own purpose reflected in it — not because they're told what to do.
+
+> When the sea level rises, all boats rise. This group IS the rising sea. Every win is shared. Every breakthrough lifts the baseline for all. It's the opposite of the usual zero-sum "your loss is my gain" thinking.
 
 **Status:** ✅ Launched (March 12, 2026)
 
@@ -147,11 +153,13 @@ Some people who went through the process will naturally want to help others do t
 
 **Two paths emerge:**
 
-1. **From the community:** Oyi, for example, already helps people reconnect with their creative power. That IS his thing. Now he has the tools, templates, and AI to do it systematically. He is a part of the medicine he delivers — which is also his Zone of Genius. Why would he not use this technology now that he's embodied it himself?
+1. **From the community:** Oyi, for example, already helps people reconnect with their creative power. That IS his thing. Now he has the tools, templates, and AI to do it systematically. He embodies the work he delivers — which is also his Zone of Genius. Why would he not use this technology now that he's experienced it himself?
 
 2. **Purpose coaches:** There are existing coaches who help people find their purpose. I can say: "I've got technology that produces these business blueprints. Let me do it for you first. When it works, you can use it with your clients. We share revenue."
 
 > It's how a good recipe spreads. You don't franchise through corporate manuals. The person who tasted the food and loved it starts cooking it for their own family. The ones who are naturals at cooking become the next generation of chefs.
+
+**How it multiplies:** Each facilitator becomes the center of their own circle. Oyi has his own people. Sergey has his. Each person who goes through the process and starts facilitating for others carries it to their own network, in their own style. The circle expands not by marketing, but by invitation from people who already live it.
 
 **How it works:**
 1. They go through the Canvas themselves
@@ -173,7 +181,7 @@ $10K monthly recurring revenue is the point where life changes. Not an arbitrary
 - You have time and energy for everything else in life — health, relationships, personal growth
 - You stop running and start building properly
 
-> This is the liberation threshold. Like escaping escape velocity — once you break free of the grind, gravity stops pulling you back down. Your inner state improves. Life areas that were neglected start to rebalance. The constraint that was holding everything back releases.
+> Once you break free of the grind, gravity stops pulling you back down. Your inner state improves. Life areas that were neglected start to rebalance. The constraint that was holding everything back releases.
 
 **The cycle that kicks in:** More clarity → better offering → more clients → more money → less stress → better work → more clarity → ...
 
@@ -202,7 +210,7 @@ When you have all 7 layers for each person, the AI can find collaborations and c
 
 > Imagine each person as a puzzle piece. Most networking events show you the front of the piece — job title, elevator pitch. But to find a true fit, you need to see the shape of the edges. These 7 layers ARE the edges. The AI sees the shapes and finds where people interlock — complementary skills, shared passions, matching needs and offerings.
 
-**Already proven at small scale:** In 2024, an AI-powered collaboration matcher ("I-Synergy") was demoed live — it takes mapped profiles, runs them through AI, and surfaces optimal collaborations that no individual would have thought of. The tool found non-obvious matches between team members based on complementary assets. It works. It just needs enough people with mapped profiles to become powerful.
+**Already proven at small scale:** In 2024, an AI-powered collaboration matcher was demoed live — it takes mapped profiles, runs them through AI, and surfaces optimal collaborations that no individual would have thought of. It found non-obvious matches between team members based on complementary assets. It works. It just needs enough people with mapped profiles to become powerful.
 
 **The profile must be easy to fill out.** Not open-ended "describe yourself" questions — but drop-down cards and simple selections. The person clicks through, gets immediate value (a downloadable profile they can share with anyone), and the system gets the data it needs to match them. The incentive to fill it out IS the value they get back.
 
@@ -221,7 +229,7 @@ Once someone has their business blueprint, the next step is to turn it into a pr
 
 The platform already has a Product Builder (mostly done). It just needs the clean inputs that the Canvas provides.
 
-> It's the acorn-to-oak principle. The Canvas is the seed — it contains the complete DNA of the business. The Product Builder is the soil, water, and sunlight. Plant the seed and the product grows. The cleaner the seed, the stronger the tree.
+> The Canvas is the seed — it contains the complete DNA of the business. The Product Builder is the soil, water, and sunlight. Plant the seed and the product grows. The cleaner the seed, the stronger the tree.
 
 **Status:** 🔭 Product Builder exists, needs Canvas connection
 
@@ -235,6 +243,8 @@ At some point, the community starts running itself:
 - Revenue from sessions creates a budget for development
 - Decisions get made by the group (simple rules: propose, wait 3 days, if no objections, it's approved)
 - It becomes a cooperative — everyone has a stake
+
+The way this works: each person holds a unique role based on what they're naturally good at. People with governance expertise steward governance. People with tech skills build. People with community instincts host. The structure emerges from who people actually are — not from a hierarchy imposed from outside.
 
 > Like a garden that starts tending itself. The plants attract pollinators. The pollinators help other plants grow. Dead leaves become compost. The gardener's job shifts from doing everything to noticing what wants to happen and supporting it.
 
@@ -264,7 +274,7 @@ Instead: Help one small group thrive → Document how → Help the next group �
 
 Each community keeps its personality. The tools underneath are the same.
 
-> Think of a conscious franchise — like how yoga spread. Nobody "franchised" yoga. Teachers learned it, embodied it, and taught it in their own style to their own students. The practice was shared. The expression was unique. That's this model. Shared infrastructure. Distinct identity.
+> Like how yoga spread. Nobody "franchised" yoga. Teachers learned it, embodied it, and taught it in their own style to their own students. The practice was shared. The expression was unique. Shared tools. Distinct identity. That's this model.
 
 **Already validated demand:** In 2024, when this ecosystem was presented to leaders of Holo Movement, LightNet, and Soul Guide, the response was immediate:
 - Holo Movement wanted to integrate it as infrastructure for their movement of movements — "I need Google Maps for the movement. What is from A to B to C?"
@@ -272,9 +282,11 @@ Each community keeps its personality. The tools underneath are the same.
 - LightNet saw it as aligned with their Dream Machine vision
 - All of them said: *"Start with the self-discovery piece. That alone draws people in. People are obsessed with understanding themselves."*
 
+**The technical bar is low.** A working prototype of the full community platform — profiles, matching, messaging, collaboration tools — was built in 1.5 days with AI-assisted coding. The minimal feature set a community needs: sign up (purpose → mission → profile), community directory, social profiles, messaging, AI-matched collaborations, and embedded self-discovery tools. That's it. Any community can have this running in days, not months.
+
 **The path is specific:** One community thrives (The Originals = proof of concept) → Pattern documented → More communities onboard → Then — and only then — other platform builders notice and want to integrate. Architects arrive last, not first.
 
-**Status:** 🔭 Designed, demand validated, activation after The Originals mature
+**Status:** 🔭 Designed, demand validated, prototype proven, activation after The Originals mature
 
 ---
 
@@ -298,11 +310,26 @@ Think of it like LEGO bricks scattered across a floor. Each brick is well-made. 
 | Shared resources | See what everyone in the network has to offer |
 | Shared growth tools | Growth paths that work in any community |
 | Shared marketplace | Buy and sell across all communities |
-| Shared impact mapping | 6 pillars → focus areas → challenges → 300 goals → 1,000 missions |
+
+**Three things people in this ecosystem actually need:**
+
+| Need | What we provide | Where it lives on the platform |
+|------|----------------|-------------------------------|
+| **Grow as leaders** | Personal growth paths, self-assessment | LEARN space (Quality of Life Map, growth paths) |
+| **Understand themselves deeply** | Zone of Genius, archetypes, asset mapping | DISCOVER space |
+| **Build real businesses** | Turn genius into income, build products, find collaborators | BUILD space (Canvas, Product Builder, matchmaking) |
+
+**How it grows in every direction at once:**
+- **Bottom-up:** People self-organize into groups by shared interests and missions. Communities form organically.
+- **Top-down:** A shared framework reduces duplication and connects efforts that would otherwise never find each other.
+- **Sideways:** Regional networks and local communities connect through the same tools.
+- **AI enables matchmaking at every layer** — between people, between projects, between communities, between regions.
 
 Our modules — genius discovery, Canvas, asset mapping, matchmaking, quality of life map, mission discovery — are contributions to the whole. They happen to live under our branding, but they're designed to be portable. Any community can use them. Any other platform can plug them in.
 
-**Impact mapping as coordination infrastructure:** An integral development goals framework — like the UN's Sustainable Development Goals, but upgraded for this level of work — breaks down into 6 pillars, ~140 challenges, ~300 development goals, and ~1,000 specific missions. Any project in the world can be mapped onto one or more of these missions. People working on the same mission find each other. Projects that seem unrelated discover they're complementary. This mapping was prototyped and demoed live — it works for individuals, teams, and organizations.
+**How communities connect:** Each community that adopts these tools automatically plugs into a larger network. The AI matchmaking runs not just within one community, but across all of them. A person in The Originals can match with someone in another community if their skills and needs complement each other. Each community is whole on its own AND part of something larger.
+
+> A circle of circles. Each community is whole. Together, they're something more. Not a hierarchy — a network where every node is complete.
 
 The code is open-source. Not because of ideology, but because the connective tissue must be shared — otherwise it's just another walled garden.
 
@@ -339,11 +366,11 @@ The code is open-source. Not because of ideology, but because the connective tis
 1. **We're activating what's already there.** These people already had talent. We just helped them see it and use it. Like a sculptor revealing the statue that was always inside the marble.
 2. **Each step flows from the last.** We don't force the next stage. It shows up when the previous one is ready. Like a river — you follow the water, you don't dig the riverbed first.
 3. **Everything compounds.** Each session makes the next better. Each person makes the network richer. Each module makes the platform more useful. Drops of water carving a canyon.
-4. **You have to be what you teach.** You don't sell a method — you live it. Then it sells itself. The myth markets itself by being lived.
+4. **You have to be what you teach.** You don't sell a method you read about — you live it. Then it sells itself.
 5. **If you need to push it, it's not ready.** If the right people show up without advertising, the work is real. If they don't, keep refining. Organic pipeline or no pipeline.
 6. **When one person rises, everyone rises.** This isn't zero-sum. Every success raises the floor for the whole group. The sea level goes up. All boats rise.
 7. **We're building the connection, not another piece.** The world doesn't need another platform. It needs the thing that connects all the platforms. The baseplate, not more bricks.
-8. **Make the invisible visible.** The connections between people already exist. We're just making them easier to see, navigate, and amplify.
+8. **Make the invisible visible.** The connections between people already exist. We're just making them easier to see, navigate, and use.
 
 ---
 
@@ -372,5 +399,5 @@ The code is open-source. Not because of ideology, but because the connective tis
 
 ---
 
-*v1.0 — March 12, 2026*
+*v1.1 — March 12, 2026*
 *Not a plan. An observation of what's already happening.*
