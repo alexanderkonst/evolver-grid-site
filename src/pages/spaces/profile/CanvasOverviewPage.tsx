@@ -132,9 +132,9 @@ const CanvasOverviewPage = () => {
         // Get the profile's last canvas snapshot ID
         const { data: profileData } = await supabase
           .from("game_profiles")
-          .select("last_canvas_snapshot_id" as any)
+          .select("last_canvas_snapshot_id")
           .eq("id", profileId)
-          .single() as any;
+          .single();
 
         if (!profileData?.last_canvas_snapshot_id) {
           setLoading(false);
@@ -143,7 +143,7 @@ const CanvasOverviewPage = () => {
 
         // Load canvas snapshot
         const { data: canvasData } = await supabase
-          .from("canvas_snapshots" as any)
+          .from("canvas_snapshots")
           .select("*")
           .eq("id", profileData.last_canvas_snapshot_id)
           .single();
