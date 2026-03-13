@@ -2,7 +2,7 @@
 
 > Capabilities available in each of the 5 game spaces
 
-*Updated: 2025-01-06*
+*Updated: 2026-03-12*
 
 ---
 
@@ -103,9 +103,10 @@
 | Feature | Description | Available |
 |---------|-------------|-----------|
 | Browse Co-op | See what the studio offers | From entry |
-| Join Co-op | Revenue sharing, studio services | After Unique Business |
+| Unique Business Canvas | 7-artifact Canvas with precision scoring, two-form output | After Unique Business |
+| Join Co-op (The Originals) | Peer community of founders building unique businesses | After first Canvas session |
 | AI/VIB Coding Setup | Tools and automations | After Co-op entry |
-| Collective Projects | Join group ventures | After Co-op entry |
+| Facilitator Mode | Guided session workflow for facilitators (planned) | After founder #10 |
 
 ---
 
@@ -131,5 +132,5 @@ SAME START ───────────────────────
 
 ---
 
-*Game Spaces v1.0*
-*Updated: 2025-01-06*
+*Game Spaces v2.0*
+*Updated: 2026-03-12*

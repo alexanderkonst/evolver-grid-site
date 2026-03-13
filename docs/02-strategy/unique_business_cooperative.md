@@ -2,6 +2,14 @@
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
+> [!WARNING]
+> **SUPERSEDED (March 12, 2026).** This v1.0 spec has been replaced by:
+> - [Unique Business Playbook v2.0](../03-playbooks/unique_business_playbook.md) — full methodology
+> - [Unique Business Canvas Template v5.0](./unique_business_canvas_template.md) — session-tested template
+> - [Venture Architecture](./alexanders_unique_business.md) — roadmap section in Alexander's doc
+>
+> Kept for historical reference. Core insight ("start with genius, not problems") remains foundational.
+
 > The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.
 
 ---

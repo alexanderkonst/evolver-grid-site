@@ -1,7 +1,7 @@
 # Documentation Index
 
 > **Holonic documentation structure — everything in its place**  
-> *Updated: 2026-01-29*
+> *Updated: 2026-03-12*
 
 ---
 
@@ -56,7 +56,7 @@ docs/
 | [monetization_evolution_ladder.md](./02-strategy/monetization_evolution_ladder.md) | Monetization strategy |
 | [project_synthesis.md](./02-strategy/project_synthesis.md) | Project synthesis overview |
 | [priroda_synthesis.md](./02-strategy/priroda_synthesis.md) | Priroda synthesis |
-| [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |
+| [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |\n| [planetary_os_assembly.md](./02-strategy/planetary_os_assembly.md) | **Assembly Instructions** — 12-stage emergence sequence for the Planetary OS |
 | [venture_building_holomap.md](./02-strategy/venture_building_holomap.md) | Venture building map |
 | [unique_business_cooperative.md](./02-strategy/unique_business_cooperative.md) | Cooperative structure |
 | [unique_business_studio_vision.md](./02-strategy/unique_business_studio_vision.md) | Studio vision |
@@ -74,6 +74,10 @@ docs/
 | [action_mapping.md](./02-strategy/action_mapping.md) | Action-to-outcome mapping |
 | [impact_mapping.md](./02-strategy/impact_mapping.md) | Impact measurement |
 | [alexanders_operating_system.md](./02-strategy/alexanders_operating_system.md) | Founder's operating system |
+| [alexanders_unique_business.md](./02-strategy/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture |
+| [oyis_unique_business.md](./02-strategy/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
+| [sergeys_unique_business.md](./02-strategy/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
+| [unique_business_canvas_template.md](./02-strategy/unique_business_canvas_template.md) | Canvas template v5.0 (session-tested) |
 
 ---
 
@@ -97,6 +101,7 @@ docs/
 | [mission_control.md](./03-playbooks/mission_control.md) | Mission control dashboard |
 | [natural_work_rhythms.md](./03-playbooks/natural_work_rhythms.md) | Work rhythm patterns |
 | [notebooklm_workflow.md](./03-playbooks/notebooklm_workflow.md) | NotebookLM workflow |
+| [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | Unique Business methodology v2.0 — session-tested, 10+ named principles |
 
 ---
 
