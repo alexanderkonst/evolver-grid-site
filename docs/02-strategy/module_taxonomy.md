@@ -108,7 +108,8 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **MEET** | Men's Circle | 1.0 | Commercial | `/mens-circle` |
 | **COLLABORATE** | Matchmaking | 0.7 | Alpha | `/game/collaborate/matches` |
 | **COLLABORATE** | Connections | 0.5 | PoC | `/game/collaborate/connections` |
-| **BUILD** | Unique Business | 0.7 | Alpha | `/game/grow/genius-business` ¹ |
+| **BUILD** | Unique Business | 0.7 | Alpha | `/game/grow/genius-business` |
+| **BUILD** | Unique Business Canvas | 0.5 | PoC | `/game/build/canvas` (planned) |
 | **BUILD** | Product Builder | 0.7 | Alpha | `/game/build/product-builder` |
 | **BUILD** | Business Incubator | 0.3 | Prototype | `/game/build` |
 | **BUY & SELL** | Marketplace | 0.5 | PoC | `/game/marketplace` |
@@ -461,6 +462,27 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Promise Statement | 0.7 | Alpha |
 | Distribution Channels | 0.5 | PoC |
 | Vision Statement | 0.7 | Alpha |
+
+#### Module: Unique Business Canvas — v0.5 (NEW)
+
+| Field | Value |
+|-------|───────|
+| Version | **0.5** (PoC — exists as proven template, not yet interactive platform module) |
+| Master Result | Scattered business ideas → One-page Canvas with 7 precision-scored artifacts |
+| Start | `/game/build/canvas` (planned) |
+| End | Canvas complete → feeds Product Builder + Marketplace |
+| Dependencies | ZoG complete (auto-populates Section 1: Uniqueness) |
+
+> **Context:** The Canvas has been session-tested with 2 founders (Oyi at 9.9, Sergey in progress). Template v5.0 proven. This module will be the interactive platform version of `unique_business_canvas_template.md`.
+
+**Key Features (planned):**
+| Feature | Description |
+|─────────|─────────────|
+| Two-Form Principle | Each artifact has full-signal + universal language versions |
+| Precision Scoring | Founder rates each artifact (somatic response = ground truth) |
+| Version History | Every iteration saved and comparable |
+| ZoG Feed | Uniqueness section auto-populated from Appleseed + Excalibur |
+| Product Builder Feed | Promise + Pain + Tribe → auto-generate landing page, lead magnet |
 
 #### Module: Product Builder — v0.7
 
