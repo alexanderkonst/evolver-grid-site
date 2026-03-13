@@ -91,6 +91,80 @@ export type Database = {
         }
         Relationships: []
       }
+      canvas_snapshots: {
+        Row: {
+          artifact_status: Json | null
+          created_at: string | null
+          facilitator: string | null
+          id: string
+          lead_magnet: Json | null
+          myth: Json | null
+          notes: string | null
+          pain: Json | null
+          profile_id: string | null
+          promise: Json | null
+          session_date: string | null
+          session_number: number | null
+          tagline: string | null
+          tribe: Json | null
+          uniqueness: Json | null
+          updated_at: string | null
+          user_id: string | null
+          value_ladder: Json | null
+          version: string | null
+        }
+        Insert: {
+          artifact_status?: Json | null
+          created_at?: string | null
+          facilitator?: string | null
+          id?: string
+          lead_magnet?: Json | null
+          myth?: Json | null
+          notes?: string | null
+          pain?: Json | null
+          profile_id?: string | null
+          promise?: Json | null
+          session_date?: string | null
+          session_number?: number | null
+          tagline?: string | null
+          tribe?: Json | null
+          uniqueness?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          value_ladder?: Json | null
+          version?: string | null
+        }
+        Update: {
+          artifact_status?: Json | null
+          created_at?: string | null
+          facilitator?: string | null
+          id?: string
+          lead_magnet?: Json | null
+          myth?: Json | null
+          notes?: string | null
+          pain?: Json | null
+          profile_id?: string | null
+          promise?: Json | null
+          session_date?: string | null
+          session_number?: number | null
+          tagline?: string | null
+          tribe?: Json | null
+          uniqueness?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          value_ladder?: Json | null
+          version?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canvas_snapshots_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       connections: {
         Row: {
           created_at: string | null
@@ -270,6 +344,7 @@ export type Database = {
           first_time_actions: Json | null
           genius_stage: string | null
           id: string
+          last_canvas_snapshot_id: string | null
           last_name: string | null
           last_practice_at: string | null
           last_qol_snapshot_id: string | null
@@ -323,6 +398,7 @@ export type Database = {
           first_time_actions?: Json | null
           genius_stage?: string | null
           id?: string
+          last_canvas_snapshot_id?: string | null
           last_name?: string | null
           last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
@@ -376,6 +452,7 @@ export type Database = {
           first_time_actions?: Json | null
           genius_stage?: string | null
           id?: string
+          last_canvas_snapshot_id?: string | null
           last_name?: string | null
           last_practice_at?: string | null
           last_qol_snapshot_id?: string | null
@@ -433,6 +510,13 @@ export type Database = {
             columns: ["last_zog_snapshot_id"]
             isOneToOne: false
             referencedRelation: "zog_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "game_profiles_last_canvas_snapshot_id_fkey"
+            columns: ["last_canvas_snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "canvas_snapshots"
             referencedColumns: ["id"]
           },
           {
