@@ -9,6 +9,8 @@
 >
 > **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
 
+**Tagline v1.0:** `Helps build ventures from who you already are`
+
 ## Artifact Status
 
 | Artifact | Version | Precision | Status |

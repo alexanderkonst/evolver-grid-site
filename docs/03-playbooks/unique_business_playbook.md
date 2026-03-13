@@ -691,6 +691,7 @@ Every insight in the playbook must eventually find its home in a workflow step. 
 
 - [ ] **1. UNIQUENESS** → Who am I at my brightest?
   - Output: Unique Gift card (Vibrational Key, Compound Archetype, Essence)
+  - Output: **Tagline (~7 words)** — reader-centric, universal language, captures uniqueness at highest SNR. The stranger test: someone in a group chat reads it and intuitively grasps who this person is. Not a description of service — a signal of essence. Forged through roasting (3 rounds + meta-roast), not drafted.
   - Key principle: The intersection, not any single domain
 - [ ] **2. MYTH** → What must be true about the world for my work to be inevitable?
   - Output: Worldview (attack + reframe + invitation) + tagline
