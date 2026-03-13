@@ -41,6 +41,7 @@ import GeniusBusinessPromise from "./pages/spaces/profile/GeniusBusinessPromise"
 import GeniusBusinessChannels from "./pages/spaces/profile/GeniusBusinessChannels";
 import GeniusBusinessVision from "./pages/spaces/profile/GeniusBusinessVision";
 import ZoneOfGeniusOverview from "./pages/spaces/profile/ZoneOfGeniusOverview";
+import CanvasOverviewPage from "./pages/spaces/profile/CanvasOverviewPage";
 import CharacterSnapshot from "./pages/CharacterSnapshot";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
@@ -209,6 +210,7 @@ const App = () => (
                   <Route path="/game/me/genius-business/vision" element={<GeniusBusinessVision />} />
                   <Route path="/game/me/zone-of-genius" element={<ZoneOfGeniusOverview />} />
                   <Route path="/game/me/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
+                  <Route path="/game/me/canvas" element={<CanvasOverviewPage />} />
                   <Route path="/game/me/art" element={<ArtPage />} />
                   {/* Legacy redirects */}
                   <Route path="/game/profile" element={<Navigate to="/game/me" replace />} />
