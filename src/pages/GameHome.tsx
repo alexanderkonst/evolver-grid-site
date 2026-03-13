@@ -15,6 +15,7 @@ import HeroIcon from "@/components/ui/HeroIcon";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import PowerfulWelcome from "@/components/game/PowerfulWelcome";
+import AssemblyTracker from "@/components/game/AssemblyTracker";
 import MyLifeSection, { DOMAIN_LABELS } from "@/components/game/MyLifeSection";
 import CelebrationModal from "@/components/game/CelebrationModal";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -763,6 +764,11 @@ const GameHome = () => {
                   />
                 </div>
               )}
+
+              {/* Assembly Progress - Community Journey */}
+              <div className="mb-8 max-w-md mx-auto">
+                <AssemblyTracker />
+              </div>
             </>
           )}
 

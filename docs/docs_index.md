@@ -56,7 +56,8 @@ docs/
 | [monetization_evolution_ladder.md](./02-strategy/monetization_evolution_ladder.md) | Monetization strategy |
 | [project_synthesis.md](./02-strategy/project_synthesis.md) | Project synthesis overview |
 | [priroda_synthesis.md](./02-strategy/priroda_synthesis.md) | Priroda synthesis |
-| [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |\n| [planetary_os_assembly.md](./02-strategy/planetary_os_assembly.md) | **Assembly Instructions** — 12-stage emergence sequence for the Planetary OS |
+| [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |
+| [planetary_os_assembly.md](./02-strategy/planetary_os_assembly.md) | **How This Business Grows** — 12-step emergence sequence from founder to ecosystem (v1.1) |
 | [venture_building_holomap.md](./02-strategy/venture_building_holomap.md) | Venture building map |
 | [unique_business_cooperative.md](./02-strategy/unique_business_cooperative.md) | Cooperative structure |
 | [unique_business_studio_vision.md](./02-strategy/unique_business_studio_vision.md) | Studio vision |

@@ -236,13 +236,13 @@ const ZoneOfGeniusOverview = () => {
 
                 {/* Create Genius Business CTA */}
                 <div className="text-center p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-xl border border-[#a4a3d0]/20">
-                    <p className="text-sm text-[#a4a3d0] mb-3">Ready to turn your genius into an offer?</p>
+                    <p className="text-sm text-[#a4a3d0] mb-3">Ready to turn your genius into a business?</p>
                     <Button
                         variant="wabi-primary"
                         onClick={() => navigate("/game/me/genius-business")}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
-                        Create My Genius Business
+                        Build My Unique Business
                     </Button>
                 </div>
 
