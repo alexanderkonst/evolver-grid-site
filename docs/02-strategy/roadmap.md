@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-02-18*
+> *Last updated: 2026-03-12*
 
 ---
 
@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | LAUNCH. First offers sent. Controlled momentum toward 10K |
-| **Current cycle** | March 2026 — New Moon Cycle. 20 ignition sessions target |
-| **Location** | Mexico (landed March 4) |
-| **Focus** | **Conduct first 2 calibration sessions (Ogi + Sergey). Wave 1 of 10 DMs. Set up Calendly/Stripe** |
-| **Key milestone** | ✅ Both first DMs sent (March 3). Pricing finalized: $277 Ignition + $1,100 Sprint |
-| **Key decision** | Ogi = co-founder (engine building). Sergey = first market client ($277). R&C = Founder Program only |
+| **Current phase** | CANVAS ERA. Unique Business methodology proven. Session-driven with AI co-facilitation |
+| **Current cycle** | March 2026 — Laylat al-Qadr cycle. 5 founders in 9 days |
+| **Location** | Mexico |
+| **Focus** | **Continue Canvas sessions (Alexa + Sandra next). Align strategic docs with reality. Build Canvas platform module** |
+| **Key milestone** | ✅ Oyi Canvas at 9.9 (all 7 artifacts). ✅ Sergey session 2 complete. ✅ The Originals launched (Telegram). ✅ Playbook v2.0 + Template v5.0. ✅ Venture architecture documented |
+| **Key decisions** | Cockpit Dashboard → Unique Business Canvas. Canvas = interface, not deliverable. Two-Form Principle (full-signal + universal language). Organic Pipeline Principle (myth IS marketing, zero ad spend) |
 
 ---
 
@@ -81,26 +81,26 @@
 
 | Goal | Target | Status |
 |------|--------|--------|
-| Ignition sessions | 20 | 🟡 0/20 — first 2 scheduled |
-| Sprint conversions | 6-7 (33%) | ⏳ waiting |
-| Revenue | $10K+ | ⏳ |
-| Proof cases | 3-5 | ⏳ |
-| Infrastructure | Calendly + Stripe + auto-reply | 🔴 TODO |
-| Workshop | 1 in Mexico hub | 🔴 TODO |
+| Canvas sessions | 5 founders through full Canvas | 🟡 2/5 (Oyi ✅, Sergey 🔄, Alexa/Sandra/Karime next) |
+| Playbook codification | All session principles documented | ✅ Done (10+ named principles in playbook v2.0) |
+| The Originals | Community launched, 4+ members | ✅ Launched March 12 |
+| Strategic alignment | All docs reflect Canvas era | 🔄 In progress |
+| Revenue | First paid session (Karime) | ⏳ Ready |
+| Platform: Canvas module | Interactive Canvas in BUILD space | 🔴 TODO |
 
 ---
 
-### Goal 1: Litmus Test — Take Yourself Through the Product Builder
-Use the platform to crystallize and monetize your own genius. Create one real offering born from your own platform journey.
+### Goal 1: ✅ Litmus Test — Take Yourself Through the Product Builder
+*Completed.* Alexander's own unique business forged. Methodology proven. Now proving it on others.
 
-### Goal 2: Stabilize the Onboarding Flow
-Clean, complete user journey: Start → ZoG → QoL → First Action recommendation. No broken states, no confusing buttons, no dead ends.
+### Goal 2: Connect Canvas to Platform (NEW — from System Integration Map)
+Build the Canvas as an interactive module in BUILD space. Connect ZoG → Canvas → Product Builder → Marketplace. The spine of the whole system. See [System Integration Map](../../.gemini/antigravity/brain/bc221545-7570-4510-9eb9-6170b0c3883a/system_integration_map.md) for 6 acupuncture points.
 
-### Goal 3: Generate First Revenue Through the Platform
-Structure opportunities through the platform's capability map (workshops, 1:1 sessions, AI collaboration training).
+### Goal 3: Revenue Through Canvas Sessions
+First paid Canvas session via Karime. Value ladder: $555 Mirror Session → $5K Build (6 weeks) → $500/mo Container.
 
-### Goal 4: Pilot with 3-5 Real Users
-3-5 people who've completed onboarding and received their first personalized action.
+### Goal 4: 5 Founders Through Full Canvas
+Oyi ✅, Sergey 🔄, Alexa → Sandra → Karime. Each session produces 5 outputs: service + case study + playbook refinement + AI calibration + platform user.
 
 ---
 
@@ -659,7 +659,7 @@ For unbuilt features, show:
 
 ---
 
-## 🔥 FMF LAUNCH (Added Feb 18, 2026)
+## 🔥 UNIQUE BUSINESS CANVAS LAUNCH (Updated March 12, 2026)
 
 ### Myth Crystallization (Priority: ✅ DONE)
 **What:** Crystallized the founding myth through sacred fire roasting — 9 cycles + meta-roast + assumption-burning.
@@ -758,16 +758,6 @@ For unbuilt features, show:
 
 ---
 
-### Roso & Cori — Collaboration Scope (Feb 27)
-**What:** Call revealed structural limits: R&C see partial value, don't share planetary vision, aren't the segment, don't want to go through program. Useful for operational work (funnels, landing pages), not for vision or methodology.
-**Critical decision:** Equal revenue split on Innovator Program ≠ ownership of Alexander's unique business. Methodology, IP, platform, content = 100% Alexander. Must clarify scope by March 4.
-**Status:** 🔴 Must clarify on next call
-
----
-
-### Video Format Polish (Feb 27)
-**What:** Cori's format feedback valid: shorter (3.5 min), fewer repeats, human face somewhere. Philosophy unchanged: mirror = value, premium pricing, never justify.
-**Status:** 🔜 Quick wins during travel
 
 ---
 
