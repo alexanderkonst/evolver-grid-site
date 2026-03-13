@@ -1,4 +1,4 @@
-# Ogi's Unique Business
+# Oyi's Unique Business
 
 > *© 2026 · Produced during Ignition Session with Alexander Konstantinov*
 > *March 5-6, 2026 · Session 1 (Calibration)*
@@ -21,6 +21,8 @@
 ## Unique Business Canvas
 
 *The entire unique business at a glance. Each artifact in its most distilled form. Iterate from here.*
+
+**Tagline v1.0:** `Restores what growing up took from you`
 
 | # | Artifact | Distillation |
 |---|----------|-------------|

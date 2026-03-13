@@ -6,6 +6,8 @@
 
 > **This file is a living document.** Each artifact is versioned. Newest versions appear first.
 
+**Tagline v1.0:** `Sees what your life is trying to become`
+
 ## Artifact Status
 
 | Artifact | Version | Precision | Status |
