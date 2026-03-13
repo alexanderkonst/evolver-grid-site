@@ -12,6 +12,7 @@ import {
     Users,
     Zap,
     RefreshCw,
+    Eye,
 } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -173,6 +174,22 @@ const MyGeniusBusinessPage: React.FC = () => {
                                     <ArrowRight className="w-4 h-4 ml-1" />
                                 </Button>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Canvas Link */}
+                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20 hover:border-[#8460ea]/30 transition-all cursor-pointer"
+                         onClick={() => navigate("/game/me/canvas")}
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-[#8460ea]/10 flex-shrink-0">
+                                <Eye className="w-5 h-5 text-[#8460ea]" />
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold text-[#2c3150] text-sm">View Your Canvas</h3>
+                                <p className="text-xs text-[#2c3150]/50">See all 7 artifacts from your session</p>
+                            </div>
+                            <ArrowRight className="w-4 h-4 text-[#a4a3d0]" />
                         </div>
                     </div>
                 </div>
