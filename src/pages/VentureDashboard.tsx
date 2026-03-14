@@ -167,7 +167,12 @@ const VentureDashboard = () => {
         {/* ─── 12-Perspective Radar ─────────────────────────────────────────── */}
         <section id="radar-section">
           <h2 className="text-2xl font-display text-center mb-2 text-white/80">12-Perspective Morphogenetic Map</h2>
-          <p className="text-sm text-white/30 text-center mb-8">Trinity (Essence · Significance · Implications) × 4 Quadrants (UL · UR · LL · LR)</p>
+          <p className="text-sm text-white/30 text-center mb-4">Trinity (Essence · Significance · Implications) × 4 Quadrants (UL · UR · LL · LR)</p>
+          <div className="text-center mb-8">
+            <a href="/holomap" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5 border border-[#6894d0]/30 px-3 py-1.5 rounded-full hover:border-[#8460ea]/40">
+              Open Full Navigation Instrument →
+            </a>
+          </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6">
             <ResponsiveContainer width="100%" height={420}>
