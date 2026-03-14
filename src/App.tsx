@@ -243,6 +243,8 @@ const App = () => (
                   {/* BUY & SELL Space (was Marketplace) */}
                   <Route path="/game/marketplace" element={<MarketplaceSpace />} />
                   <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
+                  <Route path="/game/marketplace/founders" element={<FoundersShowcase />} />
+                  <Route path="/game/marketplace/ignite" element={<IgniteSession />} />
                   {/* COLLABORATE Space (was Teams/Discover) */}
                   <Route path="/game/collaborate" element={<CollaborateSpace />} />
                   <Route path="/game/collaborate/matches" element={<Matchmaking />} />

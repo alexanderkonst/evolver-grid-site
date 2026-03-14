@@ -1,10 +1,16 @@
 import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 const IgniteSession = () => {
-  return (
+  const location = useLocation();
+  const inShell = location.pathname.startsWith("/game/");
+  const foundersPath = inShell ? "/game/marketplace/founders" : "/founders";
+
+  const content = (
     <div className="min-h-screen bg-[#0c1220] text-white font-sans" id="ignite-page">
       {/* Aurora */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#8460ea]/6 rounded-full blur-[150px] animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#6894d0]/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "3s" }} />
       </div>
@@ -12,7 +18,7 @@ const IgniteSession = () => {
       <div className="relative z-10 max-w-3xl mx-auto px-4 md:px-6 py-12 space-y-10">
         {/* Nav */}
         <div className="flex items-center justify-between">
-          <a href="/founders" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors">← All Founders</a>
+          <a href={foundersPath} className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors">← All Founders</a>
           <a href="/dashboard" className="text-xs text-white/20 hover:text-white/40 transition-colors">Dashboard</a>
         </div>
 
@@ -119,13 +125,16 @@ const IgniteSession = () => {
 
         {/* See the founders */}
         <div className="text-center pb-8">
-          <a href="/founders" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5 border border-[#6894d0]/20 px-4 py-2 rounded-full">
+          <a href={foundersPath} className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5 border border-[#6894d0]/20 px-4 py-2 rounded-full">
             See the Founders Who've Done It →
           </a>
         </div>
       </div>
     </div>
   );
+
+  if (inShell) return <GameShellV2>{content}</GameShellV2>;
+  return content;
 };
 
 export default IgniteSession;

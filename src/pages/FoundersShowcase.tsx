@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -543,7 +545,9 @@ const FoundersShowcase = () => {
     []
   );
 
-  return (
+  const inShell = useLocation().pathname.startsWith("/game/");
+
+  const content = (
     <div
       className="min-h-screen bg-[#0a0e1a] text-white font-sans relative"
       id="founders-showcase"
@@ -551,7 +555,7 @@ const FoundersShowcase = () => {
       <Starfield />
 
       {/* Aurora blobs */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
         <div
           className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[180px] animate-pulse"
           style={{ background: "rgba(132,96,234,0.04)" }}
@@ -743,6 +747,9 @@ const FoundersShowcase = () => {
       `}</style>
     </div>
   );
+
+  if (inShell) return <GameShellV2>{content}</GameShellV2>;
+  return content;
 };
 
 export default FoundersShowcase;
