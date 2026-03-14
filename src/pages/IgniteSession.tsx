@@ -86,7 +86,7 @@ const IgniteSession = () => {
           <p className="text-xs text-white/25 mb-6">One session. Full canvas. Yours forever.</p>
 
           <a
-            href="https://cal.com"
+            href="https://www.calendly.com/konstantinov"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-[#8460ea] text-white hover:bg-[#7350d8] transition-all duration-300 hover:shadow-xl hover:shadow-[#8460ea]/30 hover:scale-[1.02] active:scale-[0.98]"
@@ -97,7 +97,7 @@ const IgniteSession = () => {
           </a>
 
           <p className="text-[10px] text-white/15 mt-4">
-            Calendly / Cal.com link — session happens via Zoom or in-person
+            Session happens via Zoom or in-person
           </p>
         </section>
 
