@@ -235,7 +235,7 @@ const SPACES: SpaceDefinition[] = [
     },
     {
         id: "BUYSELL",
-        label: "BUY & SELL",
+        label: "OFFER",
         tagline: "Marketplace",
         emoji: "🏪",
         color: "#2B2342",

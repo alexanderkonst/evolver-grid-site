@@ -131,13 +131,13 @@ const PageLoader = () => (
   </div>
 );
 
-// Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, BUY & SELL
+// Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
 const BuildSpace = lazy(() => import("./pages/spaces/CoopSpace")); // was Business Incubator
-const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace")); // BUY & SELL
+const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace")); // OFFER
 const QualityOfLifeMapResults = lazy(() => import("./pages/QualityOfLifeMapResults"));
 const AdminGeniusOffers = lazy(() => import("./pages/AdminGeniusOffers"));
 const HolonicModulesPage = lazy(() => import("./pages/HolonicModulesPage"));
@@ -240,7 +240,7 @@ const App = () => (
                   {/* Legacy redirects */}
                   <Route path="/game/transformation" element={<Navigate to="/game/learn" replace />} />
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
-                  {/* BUY & SELL Space (was Marketplace) */}
+                  {/* OFFER Space (was Marketplace) */}
                   <Route path="/game/marketplace" element={<MarketplaceSpace />} />
                   <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
                   <Route path="/game/marketplace/founders" element={<FoundersShowcase />} />

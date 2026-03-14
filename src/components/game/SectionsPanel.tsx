@@ -150,9 +150,9 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "refine", label: "Refine My Business", path: "/game/build/refine" },
         ],
     },
-    // BUY & SELL Space (was Marketplace)
+    // OFFER Space (was Marketplace)
     buysell: {
-        title: "BUY & SELL",
+        title: "OFFER",
         sections: [
             { id: "founders", label: "The Originals", path: "/game/marketplace/founders" },
             { id: "ignite", label: "Ignition Session", path: "/game/marketplace/ignite" },

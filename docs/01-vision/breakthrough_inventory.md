@@ -1021,3 +1021,116 @@ The original 12-perspective analysis mapped the three layers as: Layer 1 Essence
 
 ---
 
+### 22. Canvas-as-Storefront — The Methodology IS the Marketplace Listing
+
+*March 14, 2026*
+
+When building the public Founders Showcase page, a structural insight emerged: **the Unique Business Canvas IS the marketplace listing.** There's no separate "storefront" needed — the canvas already contains everything a storefront would:
+
+| Canvas Element | Marketplace Equivalent |
+|---------------|----------------------|
+| **The Myth** | Positioning / "About Me" page |
+| **The Tribe** | Target audience / "Who I Serve" |
+| **The Pain → Promise** | Offer structure / "Services" |
+| **The Uniqueness** | Competitive moat / "Why Me" |
+
+**Why this is a breakthrough:** Most platforms require founders to build their marketing separately from their self-knowledge. Here, the process of discovering who you are IS the process of building your public presence. The methodology collapses the build-market gap to zero.
+
+**Implication:** Every founder who completes the Unique Business Canvas automatically has a marketplace-ready public page. The OFFER space in the platform is not a bolt-on — it's the natural output of the ME space.
+
+---
+
+### 23. Dual-Mode Rendering — Same Component, Two Contexts
+
+*March 14, 2026*
+
+The Founders Showcase and Ignition Session pages render in two modes from the same component:
+
+| Mode | Route | Shell | Use Case |
+|------|-------|-------|----------|
+| **Public** | `/founders`, `/ignite` | No shell | Public-facing, shareable, SEO-indexable |
+| **In-Platform** | `/game/marketplace/founders`, `/game/marketplace/ignite` | GameShellV2 three-panel | For logged-in users navigating the platform |
+
+The component auto-detects its context via `useLocation()` and conditionally wraps in `GameShellV2`.
+
+**Why this matters:** This pattern eliminates the "public vs. private" duplication problem. A single source of truth renders both the public showcase and the in-platform marketplace view. As the canvas data moves to the database, the same component can render ANY founder's page — whether they're browsing inside the platform or sharing their link externally.
+
+---
+
+### 24. The Payment Flow Shadow — P12 Shadow Fix
+
+*March 14, 2026*
+
+During the holomap roast, a critical structural shadow was identified:
+
+> *"There is no pricing page. No buy button. No invoice system. No 'click here to book your $277 session.' The platform has the Zone of Genius, the Canvas, the game shell, the dashboard, the holomap. It has EVERYTHING — except the one thing that converts attention into revenue. The system has unconsciously routed all building energy AROUND the money mechanism. Like a river flowing around a boulder it doesn't want to touch."*
+
+**The fix:** The Ignition Session page (`/ignite`) was built as the direct response — a clean, premium booking page with clear pricing ($277), session details, social proof, FAQ, and a direct CTA linking to Calendly.
+
+**Shadow pattern identified:** The founder (Alexander) is a natural builder of systems and structures. The unconscious tendency is to build the cathedral while leaving the door without a doorbell. This is the P12 shadow (System/Infrastructure) — the system becomes so beautiful that nobody thought to add the entrance.
+
+**Archetypal name:** "The Cathedral Without a Door."
+
+---
+
+### 25. Morphogenetic Holomap as Navigation Instrument
+
+*March 13–14, 2026*
+
+The Morphogenetic Navigation Holomap at `/holomap` is not a dashboard in the traditional sense. It's a **navigation instrument** — like the helm of a ship, not the speedometer.
+
+| Feature | What It Does |
+|---------|-------------|
+| **12 Perspectives × 7 Stages** | Maps where each dimension of the venture currently sits developmentally |
+| **Stage Scores** | 1–10 readiness score per perspective (assessed, not arbitrary) |
+| **Structural Triggers** | Highest-leverage interventions per perspective — the one move that shifts the whole |
+| **Timeline Scenarios** | Conservative / Baseline / Optimistic projections for each stage transition |
+| **Shadow Layer** | What each perspective is avoiding, denying, or inflating |
+| **Tension Maps** | Which perspective pairs are in creative vs. destructive tension |
+| **The 13th Perspective** | The perspective-less center — what the whole holon FEELS like |
+
+**Why "morphogenetic":** The term comes from biology — a morphogenetic field is what guides the development of form. The holomap is a morphogenetic field for the venture. It doesn't just track — it SHAPES. By making the developmental stage visible, it creates the conditions for the next stage to emerge.
+
+**Breakthrough:** This is arguably the first working implementation of a "consciousness map of a venture" — tracking not just metrics but developmental stages, shadows, and tensions. It operationalizes Integral Theory for venture building.
+
+---
+
+### 26. Venture Dashboard as Living Radar
+
+*March 13–14, 2026*
+
+The Venture Dashboard at `/dashboard` is a real-time holonic nerve center. It shows:
+
+| Widget | What It Shows |
+|--------|-------------|
+| **12-Perspective Radar** | Radial chart of all perspective scores at a glance |
+| **KPI Ticker** | Revenue, Founders, Stage, Runway — the vital signs |
+| **Timeline Bars** | Where each perspective sits on the 7-stage scale, with color coding |
+| **Shadow Markers** | Red-outlined indicators for perspectives with unresolved shadows |
+| **Phase State** | The current macro-phase of the venture (e.g., "Threshold → Ignition") |
+
+**Design language:** Dark theme, frosted glass panels, cosmic aesthetic — the visual language of "looking into a complex living system from above." Not a spreadsheet. A **radar.**
+
+**Why this matters:** Traditional dashboards show lagging indicators (revenue, churn, MRR). This dashboard shows **leading indicators** — developmental readiness, shadow states, structural tensions. It answers "what WILL happen" not "what DID happen."
+
+---
+
+### 27. OFFER Space — From Transactional to Resonant Language
+
+*March 14, 2026*
+
+The platform's marketplace space was originally named "BUY & SELL." This is transactional language from a paradigm the platform is deliberately transcending.
+
+| Candidate | Why Considered | Why Chosen / Not |
+|-----------|---------------|-----------------|
+| **BUY & SELL** (original) | Standard marketplace terminology | ❌ Transactional, commoditizing |
+| **SHINE** | Poetic, completes hero arc | ❌ Beautiful but slightly vague as navigation |
+| **EXCHANGE** | Elevated, bi-directional | ❌ Still transactional at root |
+| **OFFER** ✅ | Clean, one word, aligned | ✅ What you do when genius is ready — you offer it |
+
+**Why OFFER works:** In this platform, you don't "sell" your genius. You **offer** it. The Originals are offerings. The Ignition Session is an offering. Your public page is your offering. No buying, no selling — just putting your genius out there.
+
+**The space arc now reads:** MY NEXT MOVE → ME → LEARN → MEET → COLLABORATE → BUILD → **OFFER**. From inner discovery to outer expression. The journey of genius: find it, develop it, connect it, build it, offer it.
+
+---
+

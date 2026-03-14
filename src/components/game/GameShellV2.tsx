@@ -58,7 +58,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         if (!match) return undefined;
         const space = match[1];
         // Map URL path segments to space IDs
-        // New naming: grow, learn, meet, collaborate, build, marketplace (buysell)
+        // New naming: grow, learn, meet, collaborate, build, marketplace (offer)
         const spaceMap: Record<string, string> = {
             "next-move": "next-move",
             // New space names
