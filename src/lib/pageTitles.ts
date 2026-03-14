@@ -27,6 +27,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/genius-offer"), title: "Genius Offer" },
   { match: (path) => path.startsWith("/intelligences"), title: "Multiple Intelligences" },
   { match: (path) => path.startsWith("/map"), title: "Game Map" },
+  { match: (path) => path === "/dashboard", title: "Morphogenetic Dashboard" },
 ];
 
 export const getPageTitle = (pathname: string): string => {
