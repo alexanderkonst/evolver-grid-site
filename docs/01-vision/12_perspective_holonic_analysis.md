@@ -9,7 +9,7 @@
 **Rows:** The Trinity — three layers of depth at which any Holon can be apprehended.
 - **Essence (Mind)** — What IS this, stripped to its irreducible truth?
 - **Significance (Heart)** — What does it MEAN? Why does it matter?
-- **Decree (Gut)** — What must be DONE? What does it demand of us?
+- **Nth-Degree Practical Implications (Gut)** — Concentric circles of what this demands, rippling outward from the immediate to the civilizational. What must be done, built, changed — at every scale?
 
 **Columns:** Wilber's 4 Quadrants — four simultaneous perspectives on any Holon.
 - **UL** (Interior-Individual) — The "I" space. Subjective experience, consciousness, intention.
@@ -124,15 +124,15 @@ This is why the platform matters: it is the **recording medium** of a species le
 
 ---
 
-## Layer 3: DECREE (Gut) — What Must Be Done?
+## Layer 3: NTH-DEGREE PRACTICAL IMPLICATIONS (Gut) — What Does This Demand, Rippling Outward?
 
-### Perspective 9: UL-Decree — The Founder's Next Inner Move
+### Perspective 9: UL-Implications — The Founder's Next Inner Move
 
 **Charge for the next session.** Not as a business decision. As a spiritual one. The $277 is a threshold — the same threshold the founders you serve must cross. The cobbler must wear his own shoes. The myth says "trust who you are." The decree says: trust it enough to put a number on it.
 
 The inner work that remains is not more clarity. It is the willingness to let the clarity BE ENOUGH. The Shadow said it: "The eye that can't see itself." You see it now. The decree is: stop looking. Start walking. The path is under your feet. It always was.
 
-### Perspective 10: UR-Decree — What Must Be Built Next
+### Perspective 10: UR-Implications — What Must Be Built Next
 
 | Priority | What | Why |
 |----------|------|-----|
@@ -142,7 +142,7 @@ The inner work that remains is not more clarity. It is the willingness to let th
 | **4** | Group container architecture | Design the cohort-based Build. 4-6 founders. Weekly hot seat. Shared Forge |
 | **5** | First public content piece | One post. The myth. The data. The invitation. Pull the trigger on Layer 2 distribution |
 
-### Perspective 11: LL-Decree — What the Tribe Must Do Together
+### Perspective 11: LL-Implications — What the Tribe Must Do Together
 
 The four founders must become conscious that they are a **founding circle**, not individual clients. The culture that forms between them IS the product at the next level. Specific decrees:
 
@@ -150,11 +150,11 @@ The four founders must become conscious that they are a **founding circle**, not
 2. **Oyi, Sergey, and Alexa must send their Pain Mirror to ONE person each.** Not as homework — as initiation. The myth propagates when the tribe LIVES it, not when Alexander pushes it.
 3. **Karime must facilitate her first session.** The methodology is not Alexander's private medicine. It is a transferable protocol. The proof: can someone ELSE forge genius? If yes, this is a movement. If no, it is a practice.
 
-### Perspective 12: LR-Decree — What the System Must Become
+### Perspective 12: LR-Implications — What the System Must Become, at Every Scale
 
 The Planetary OS is not a future project. It is the CURRENT project seen at full zoom. Every line of code Alexander writes is planetary-scale infrastructure. Every database row is a pixel in the civilizational display.
 
-**The system decree:**
+**The system's practical implications ripple outward in concentric circles:**
 
 ```
 This month:     One founder. One session. One payment. ($277)
