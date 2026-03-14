@@ -981,6 +981,32 @@ If only one body fires → they scroll past. If two fire → they bookmark. If a
 
 ---
 
+### Audience-Specific Communication Design (discovered March 13, 2026)
+
+> [!IMPORTANT]
+> **Before writing ANYTHING for a specific audience, answer these 5 questions. The answers determine the entire document.**
+
+| # | Question | Why it matters |
+|---|----------|---------------|
+| 1 | **Who is this person?** | Not demographics — their RELATIONSHIP to the myth. Are they the tribe (in the loop), an amplifier (connector), an investor (resource holder), or media (distribution)? Each reads differently |
+| 2 | **What do I want from them?** | If the answer is one specific thing (investment, partnership), say it. If the answer is "let THEM decide how to engage," design for optionality — no ask = power. An absent ask signals: "I don't need you. I'm showing you something real" |
+| 3 | **What stops this person?** | The tribe stops on PAIN recognition. Investors stop on UNUSUAL DATA. Connectors stop on "I know someone who needs this." Media stops on NARRATIVE. Design the opening for THEIR trigger, not yours |
+| 4 | **What's the design principle?** | The document should EMBODY what it describes. If it describes precision, every word must be precise. If it describes simplicity, no excess. The medium is the message |
+| 5 | **What action should it trigger?** | Not "what do I want them to do" — "what will they INVOLUNTARILY do if the signal lands?" For tribe: reach out. For connectors: forward to 3-5 people. For investors: ask for data. For media: ask for the story. Design for the involuntary action |
+
+**Audience archetypes and their triggers:**
+
+| Audience | Their relationship to the myth | What STOPS them | What they need to see | The involuntary action |
+|----------|-------------------------------|-----------------|----------------------|----------------------|
+| **The Tribe** | They're IN the loop — the myth names their pain | Pain recognition — "how do they know this about me?" | The mirror. Their self-talk reflected back. NO solution yet | Reach out: "Can we talk?" |
+| **The Influential** | They're ABOVE the loop — connected, resourced, pattern-matching | Unusual data + contrarian reframe. They've seen 50 pitches — yours must be structurally different | The data point, the insight, the scale thesis. No jargon. No ask | Forward it: "I know 3 people who need this" — or recognize THEMSELVES |
+| **The Media** | They're OUTSIDE the loop — looking for stories to tell | Narrative arc + cultural tension. "AI + human transformation" is a story nobody's told yet | The human story, the cultural moment, the "this is new" angle | Write about it or request an interview |
+| **The Facilitator** | They're ADJACENT to the loop — coaches/healers who serve the same people | Methodology envy. "How did they get THAT precision?" | The playbook, the artifacts, the transferability | Ask to be trained: "Can I learn this?" |
+
+**The power of no ask:** When a document has no explicit ask, the reader's brain fills in their OWN role. An investor sees an investment. A connector sees people to connect. A founder sees themselves. The absence creates a mirror — they project what THEY can contribute. This is stronger than any specific CTA because it activates their agency, not their compliance.
+
+---
+
 ### Outreach Tactics
 
 What you DO to create the encounter. Scored on Simplicity (S) and Leverage (L), both 1-10. Only S ≥ 7 AND L ≥ 7 make the active list.
