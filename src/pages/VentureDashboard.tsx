@@ -329,7 +329,7 @@ const VentureDashboard = () => {
             First Paying Client
           </h3>
           <p className="text-white/40 max-w-lg mx-auto">
-            $277 Ignition Session. The methodology is proven. The pipeline is organic.
+            $555 Ignition Session. The methodology is proven. The pipeline is organic.
             The only remaining step: cross the threshold.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
@@ -337,7 +337,7 @@ const VentureDashboard = () => {
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span>2 more value exchanges</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>Then: $277</span>
+            <span>Then: $555</span>
           </div>
         </section>
 
