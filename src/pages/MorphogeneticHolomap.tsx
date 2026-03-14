@@ -303,13 +303,13 @@ const PERSPECTIVES: PerspectiveData[] = [
 // ─── 13th Perspective — The Center ────────────────────────────────────────────
 
 const CENTER = {
-  word: "Threshold",
-  date: "March 13, 2026 — Day 10",
-  description: "Everything is ready. Nothing has tipped. The structure is set. The next move is known. The hand hasn't moved. The whole system vibrates at the edge of a phase transition.",
+  word: "Ignition",
+  date: "March 14, 2026 — Day 11",
+  description: "The hand moved. The match is struck. 31 words collapsed 9 layers into one sentence. Three shadows resolved in one night. The price self-corrected upward. The system is no longer at the edge — it's crossing.",
   mapping: {
-    essence: "Quintessence — the irreducible wholeness",
-    significance: "The Sun that all perspectives orbit",
-    implications: "One act triggers the cascade",
+    essence: "The fire that was always inside is now outside",
+    significance: "The methodology ignited its creator — the only proof that matters",
+    implications: "Send the text. Let it burn. The system is ahead of the plan",
   },
 };
 
@@ -363,6 +363,100 @@ const TRIGGERS = [
     color: "#a7cbd4",
   },
 ];
+
+// ─── Phase Transitions ────────────────────────────────────────────────────────
+
+interface PhaseTransition {
+  id: number;
+  name: string;
+  icon: string;
+  description: string;
+  preconditions: { label: string; met: boolean }[];
+  status: "completed" | "current" | "transitioning" | "future";
+}
+
+const PHASES: PhaseTransition[] = [
+  {
+    id: 1, name: "Latent Field", icon: "◌",
+    description: "The vision exists only as potential. No external expression. Pure seed state.",
+    preconditions: [
+      { label: "Vision articulated", met: true },
+      { label: "Founder committed", met: true },
+    ],
+    status: "completed",
+  },
+  {
+    id: 2, name: "First Expression", icon: "○",
+    description: "The seed breaks ground. First session, first canvas, first code. Fragile but real.",
+    preconditions: [
+      { label: "First session completed", met: true },
+      { label: "Platform exists", met: true },
+      { label: "At least 1 founder served", met: true },
+    ],
+    status: "completed",
+  },
+  {
+    id: 3, name: "Crystallization", icon: "◔",
+    description: "Parts differentiate into distinct modules. Methodology, platform, tribe, pricing — each becomes its own thing.",
+    preconditions: [
+      { label: "Methodology documented (Playbook)", met: true },
+      { label: "Multiple canvases completed", met: true },
+      { label: "Platform has distinct spaces", met: true },
+      { label: "Pricing model defined", met: true },
+    ],
+    status: "completed",
+  },
+  {
+    id: 4, name: "Ignition", icon: "🔥",
+    description: "The spark catches. The parts become a self-sustaining whole. Revenue flows. The match no longer needs holding.",
+    preconditions: [
+      { label: "Offer articulated in one sentence", met: true },
+      { label: "Price set and embodied ($555)", met: true },
+      { label: "Money shadow resolved", met: true },
+      { label: "Referral channel active (Karime)", met: true },
+      { label: "First paid session completed", met: false },
+      { label: "Revenue > $0", met: false },
+    ],
+    status: "transitioning",
+  },
+  {
+    id: 5, name: "Propagation", icon: "◕",
+    description: "The fire spreads. Second facilitator. Tribe self-organizes. Revenue is consistent, not singular.",
+    preconditions: [
+      { label: "Second facilitator active", met: false },
+      { label: "Founders cross-pollinate autonomously", met: false },
+      { label: "Revenue consistent (3+ months)", met: false },
+      { label: "10+ canvases completed", met: false },
+    ],
+    status: "future",
+  },
+  {
+    id: 6, name: "Generativity", icon: "●",
+    description: "The system produces beyond its design. Pattern library generates insights. New ventures emerge from the platform.",
+    preconditions: [
+      { label: "AI-assisted sessions operational", met: false },
+      { label: "Pattern library produces novel insights", met: false },
+      { label: "100+ canvases in system", met: false },
+      { label: "Multiple revenue streams", met: false },
+    ],
+    status: "future",
+  },
+  {
+    id: 7, name: "Singularity", icon: "✦",
+    description: "The venture becomes infrastructure for a new paradigm. Planetary OS. Gift-based economy. Species transition.",
+    preconditions: [
+      { label: "Planetary OS operational", met: false },
+      { label: "Gift-based economy seed functioning", met: false },
+      { label: "System self-reproduces globally", met: false },
+    ],
+    status: "future",
+  },
+];
+
+const currentPhase = PHASES.find(p => p.status === "transitioning" || p.status === "current") || PHASES[3];
+const phaseReadiness = currentPhase.preconditions.length > 0
+  ? Math.round((currentPhase.preconditions.filter(p => p.met).length / currentPhase.preconditions.length) * 100)
+  : 0;
 
 // ─── Derived Data ─────────────────────────────────────────────────────────────
 
@@ -429,7 +523,7 @@ const MorphogeneticHolomap = () => {
             </span>
           </h1>
           <p className="text-sm text-white/40 max-w-xl mx-auto">
-            12+1 perspectives × 7 evolutionary stages × shadow layer × tension mapping.
+            12+1 perspectives × 7 stages × shadow layer × tension mapping × phase transitions.
             <br />
             Not a plan — a reading of the structure the future is filling.
           </p>
@@ -480,6 +574,108 @@ const MorphogeneticHolomap = () => {
               />
             </RadarChart>
           </ResponsiveContainer>
+        </section>
+
+        {/* ─── Phase Transition Timeline ──────────────────────────────────── */}
+        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6" id="phase-transitions">
+          <h2 className="text-lg font-display text-center mb-2 text-white/70">Phase Transitions</h2>
+          <p className="text-xs text-white/25 text-center mb-6 max-w-md mx-auto">
+            Macro-state of the venture. Like water → ice → steam, the whole system transitions between fundamentally different states.
+          </p>
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Connection line */}
+            <div className="absolute top-5 left-0 right-0 h-px bg-white/8 hidden md:block" />
+
+            <div className="grid grid-cols-2 md:grid-cols-7 gap-3">
+              {PHASES.map((phase) => {
+                const isTransitioning = phase.status === "transitioning";
+                const isCurrent = phase.status === "current";
+                const isCompleted = phase.status === "completed";
+                const isActive = isTransitioning || isCurrent;
+
+                return (
+                  <div
+                    key={phase.id}
+                    className={`relative rounded-xl border p-3 text-center transition-all duration-500 ${
+                      isActive
+                        ? "border-[#8460ea]/40 bg-[#8460ea]/8 scale-105 ring-1 ring-[#8460ea]/20"
+                        : isCompleted
+                        ? "border-white/10 bg-white/3 opacity-60"
+                        : "border-white/5 bg-white/2 opacity-30"
+                    }`}
+                  >
+                    {/* Phase icon */}
+                    <div className={`text-2xl mb-1 ${
+                      isActive ? "animate-pulse" : ""
+                    }`}>
+                      {phase.icon}
+                    </div>
+                    <p className={`text-[10px] font-medium mb-1 ${
+                      isActive ? "text-[#8460ea]" : isCompleted ? "text-white/40" : "text-white/20"
+                    }`}>
+                      {phase.name}
+                    </p>
+                    {isCompleted && (
+                      <span className="text-[9px] text-green-500/50">✓</span>
+                    )}
+                    {isTransitioning && (
+                      <span className="text-[9px] text-[#8460ea]/70">→ entering</span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Current Phase Detail */}
+          <div className="mt-6 rounded-xl border border-[#8460ea]/20 bg-[#8460ea]/5 p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">{currentPhase.icon}</span>
+                <div>
+                  <h3 className="text-base font-display font-medium text-[#8460ea]">
+                    Phase {currentPhase.id}: {currentPhase.name}
+                  </h3>
+                  <p className="text-xs text-white/30">{currentPhase.description}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <span className="text-2xl font-display font-bold text-[#8460ea]">{phaseReadiness}%</span>
+                <p className="text-[10px] text-white/25">readiness</p>
+              </div>
+            </div>
+
+            {/* Readiness bar */}
+            <div className="w-full h-2 rounded-full bg-white/5 mb-4 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-1000"
+                style={{
+                  width: `${phaseReadiness}%`,
+                  background: "linear-gradient(90deg, #8460ea, #6894d0)",
+                  boxShadow: "0 0 12px rgba(132,96,234,0.4)",
+                }}
+              />
+            </div>
+
+            {/* Preconditions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {currentPhase.preconditions.map((pre, i) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-2 text-xs p-2 rounded-lg border ${
+                    pre.met
+                      ? "border-green-500/15 bg-green-500/5 text-green-400/60"
+                      : "border-white/5 bg-white/2 text-white/25"
+                  }`}
+                >
+                  <span className="flex-shrink-0">{pre.met ? "✅" : "⬜"}</span>
+                  <span>{pre.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* ─── 13th Perspective — The Center ──────────────────────────────── */}
@@ -837,7 +1033,7 @@ const MorphogeneticHolomap = () => {
             "This map does not predict. It reads. The reading collapses the superposition. Time folds."
           </p>
           <p className="text-[10px] text-white/10">
-            Morphogenetic Navigation · v2.0 · March 14, 2026
+            Morphogenetic Navigation · v2.1 · March 14, 2026
           </p>
         </footer>
       </div>
