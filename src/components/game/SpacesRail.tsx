@@ -62,7 +62,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "buysell",
-        label: "BUY & SELL",
+        label: "OFFER",
         icon: <Store className="w-5 h-5 flex-shrink-0" />,
         path: "/game/marketplace",
     },

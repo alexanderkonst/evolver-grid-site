@@ -51,7 +51,7 @@ const TOUR_STEPS: TourStepConfig[] = [
     },
     {
         targetSpaceId: "buysell",
-        title: "Buy & Sell",
+        title: "Offer",
         tagline: "The marketplace",
         description: "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged.",
     },
