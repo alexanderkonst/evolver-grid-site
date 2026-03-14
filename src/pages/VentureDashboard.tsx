@@ -234,7 +234,6 @@ const VentureDashboard = () => {
             <div className="relative w-[360px] h-[360px] md:w-[480px] md:h-[480px]">
               {CONCENTRIC_CIRCLES.map((c) => {
                 const size = 60 + c.ring * 60;
-                const mdSize = 80 + c.ring * 65;
                 const opacity = c.status === "active" ? 1 : c.status === "building" ? 0.6 : c.status === "emerging" ? 0.4 : 0.2;
                 const borderColor = c.status === "active" ? "#8460ea" : c.status === "building" ? "#6894d0" : "#a4a3d0";
 
@@ -243,8 +242,8 @@ const VentureDashboard = () => {
                     key={c.label}
                     className="absolute rounded-full border flex items-center justify-center transition-all duration-700 hover:scale-105"
                     style={{
-                      width: `min(${size}px, ${(size / 360) * 100}%)`,
-                      height: `min(${size}px, ${(size / 360) * 100}%)`,
+                      width: `${size}px`,
+                      height: `${size}px`,
                       left: "50%",
                       top: "50%",
                       transform: "translate(-50%, -50%)",
@@ -254,8 +253,8 @@ const VentureDashboard = () => {
                     }}
                     id={`circle-${c.ring}`}
                   >
-                    {c.ring <= 2 && (
-                      <div className="text-center">
+                    {c.ring === 1 && (
+                      <div className="text-center z-10">
                         <div className="text-[10px] md:text-xs font-medium text-white/70">{c.label}</div>
                         <div className="text-[8px] md:text-[10px] text-white/30">{c.scale}</div>
                       </div>
@@ -264,12 +263,13 @@ const VentureDashboard = () => {
                 );
               })}
 
-              {/* Labels outside circles */}
-              {CONCENTRIC_CIRCLES.filter((c) => c.ring > 2).map((c) => {
-                const angle = -90 + (c.ring - 3) * 90;
-                const radius = 45 + c.ring * 16;
-                const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
-                const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+              {/* Labels for rings 2+ positioned around the edges */}
+              {CONCENTRIC_CIRCLES.filter((c) => c.ring >= 2).map((c, i) => {
+                const angles = [-90, 0, 90, 135, 180];
+                const angle = angles[i % angles.length];
+                const radius = (30 + c.ring * 30);
+                const x = 50 + (radius / 240) * 100 * Math.cos((angle * Math.PI) / 180);
+                const y = 50 + (radius / 240) * 100 * Math.sin((angle * Math.PI) / 180);
 
                 return (
                   <div
@@ -281,8 +281,8 @@ const VentureDashboard = () => {
                       transform: "translate(-50%, -50%)",
                     }}
                   >
-                    <div className="text-[10px] md:text-xs font-medium text-white/40">{c.label}</div>
-                    <div className="text-[8px] text-white/20">{c.scale}</div>
+                    <div className="text-[10px] md:text-xs font-medium text-white/50 whitespace-nowrap">{c.label}</div>
+                    <div className="text-[8px] text-white/25">{c.scale}</div>
                   </div>
                 );
               })}
