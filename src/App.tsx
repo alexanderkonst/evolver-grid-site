@@ -21,6 +21,7 @@ import Destiny from "./pages/Destiny";
 import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
 import VentureDashboard from "./pages/VentureDashboard";
+import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
@@ -338,6 +339,7 @@ const App = () => (
                   <Route path="/the-originals" element={<TheOriginalsPage />} />
                   {/* Venture Dashboard — Public morphogenetic dashboard */}
                   <Route path="/dashboard" element={<VentureDashboard />} />
+                  <Route path="/holomap" element={<MorphogeneticHolomap />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
