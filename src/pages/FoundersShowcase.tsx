@@ -78,7 +78,7 @@ const FOUNDERS: FounderCanvas[] = [
       border: "rgba(94,175,139,0.25)",
     },
     status: "complete",
-    consentGiven: false,
+    consentGiven: true,
   },
   {
     name: "Sergey",
@@ -107,7 +107,7 @@ const FOUNDERS: FounderCanvas[] = [
       border: "rgba(212,154,94,0.25)",
     },
     status: "in-progress",
-    consentGiven: false,
+    consentGiven: true,
   },
   {
     name: "Alexa",
@@ -137,7 +137,7 @@ const FOUNDERS: FounderCanvas[] = [
       border: "rgba(126,184,212,0.25)",
     },
     status: "complete",
-    consentGiven: false,
+    consentGiven: true,
   },
 ];
 
