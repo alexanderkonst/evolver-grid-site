@@ -719,14 +719,29 @@ Direct to session booking OR $27 experience
 
 ---
 
-#### Value Ladder (collapsed)
+#### Value Ladder (crystallizing — March 13, 2026)
+
+> *"The value ladder crystallizes AS you deliver your medicine. Don't run ahead of the locomotive."*
 
 | Step | Container | What They Get | Felt Shift | Price |
 |------|-----------|-------------|------------|-------|
 | **0** | **Lead Magnet** | Pain card as content (NotebookLM video, hand raiser post). Mirroring + naming + exit door visible | *Recognition* — "Someone sees me. How do they know this?" | Free |
-| **1** | **Entry Product** | Mirror session. See their full pattern for the first time. Walk out with their unique offer + first hand raiser post | *Initiation* — "Oh. It was always there. I just couldn't see it." | TBD |
-| **2** | **Hero's Journey** | Group container. Build the business. Get to first paying clients. Community + guide(s) | *Building* — "It's working. People are paying. The terror is quieting." | TBD |
-| **3** | **Ongoing Container** | Evolver Platform. The full OS. Lifelong growth, community, venture support | *Embodiment* — "This is my life, not a project." | Membership |
+| **1** | **The Ignition Session** | Discovery session → Uniqueness → Shadow → Myth. Walk out with the SEED of the entire business, named and visible | *Initiation* — "Oh. It was always there. I just couldn't see it." | **$277** (first 2 paid clients — then increase) |
+| **2** | **The Build** | 6-week container. Full canvas: Tribe → Pain → Promise → Lead Magnet → Value Ladder. Touch base 1-2x/week. Goal: first paying client by Week 6 | *Building* — "It's working. People are paying. The terror is quieting." | **Upfront + success-linked revenue share** |
+| **3** | **The Container** | Group setting. Multiple founders moving together. Monthly Genius Forging sessions. Peer support + guide | *Embodiment* — "This is my life, not a project." | **$277/mo** |
+
+**Pricing philosophy:** Start at $277 for first 2 paid clients. Easy yes, removes friction. "They have good budgets, but maybe that's where we start — it's an easy sell." Always go up in price from there.
+
+**Group container consideration (March 13, 2026):**
+
+> *"Maybe I should put all these people into the same container — one session for everybody and everybody for everybody that is moving together."*
+
+Three reasons for group:
+1. **Sustainability** — 14 hours of 1:1 sessions in one weekend = unsustainable at scale
+2. **Affordability** — group reduces individual cost for clients
+3. **Fun** — the tribe forms in real life, not just on paper
+
+The Ignition stays 1:1 (the shadow needs privacy). The Build can become cohort-based.
 
 ---
 
@@ -867,6 +882,43 @@ Stanford wine study: same wine, different price labels. The higher-priced wine d
 
 Five years unable to see my own Founder-Market Fit while seeing everyone else's clearly. That loop was the research. The shadow doesn't disappear — it becomes **transparent**. The wound becomes the credential. The cobbler's kids went barefoot; the struggle taught how the shoe needs to fit.
 
+**Pipeline data (March 4-13, 2026):**
+
+| Day | Client | Type | Key Moment |
+|-----|--------|------|------------|
+| 1 | Alexander (client 0) | Mask-on-first | Ran the process on myself. This document is the result |
+| 2 | Oyi (#1) | Value exchange | First external delivery. Full canvas. Myth discovery |
+| 4 | Sergey (#2) | Value exchange | Methodology refinement. Shadow → myth connection tested |
+| 9 | Alexa (#3) | Value exchange | Full canvas in single 2.5-hour session (fastest yet). Shadow formalized as Step 1.5 |
+| 9 | Sandra (#4) | Queue | Next in line |
+| 9 | Karime (#5) | Queue + 2 clients | First facilitator track. Bridge to first paid sessions |
+
+**5 founders in 9 days. Zero ads. Zero content. Zero funnel.**
+
+> *"I've never had this many clients in a given week ever in my life. I feel like I just barely moved a feather and all of these already lined up and happened."*
+
+All sessions recorded via Fathom. Assets secured.
+
+**Distribution cornucopia (mapped March 13, 2026):**
+
+Currently active: personal network, one person at a time. "I haven't even returned to my socials yet. I have literally done very little. I am the bottleneck."
+
+What's available (not yet activated):
+
+| Layer | Channel | Status |
+|-------|---------|--------|
+| 1 | **DMs** — 20-30 people from TRIBE description | 🔜 Next |
+| 2 | **Socials** — the myth as content | 🔴 Not activated |
+| 3 | **QR codes + real estate** — physical, local (Mexico) | 🔴 Not activated |
+| 4 | **Client referrals** — birds of a feather flock together | 🟢 Happening organically |
+| 5 | **Collaborations** — joint sessions, cross-promotion | 🔴 Not activated |
+| 6 | **Content production** — zero content produced yet | 🔴 Not activated |
+| 7 | **Viral mechanisms + guerrilla marketing** — not yet designed | 🔴 Not activated |
+
+**The compounding effect:** "Soon my first clients will have advanced with me and soon have their first clients. They just need to follow the playbook. We are co-creating that playbook."
+
+> *"Lead generation is supposed to be easy, natural, organic, flowy."*
+
 > Source: [breakthrough_inventory.md](../01-vision/breakthrough_inventory.md) · [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md) — Discovery 15 · [alexanders_operating_system.md](../02-strategy/alexanders_operating_system.md)
 
 ---
@@ -875,11 +927,12 @@ Five years unable to see my own Founder-Market Fit while seeing everyone else's 
 
 | Priority | Channel | Status |
 |----------|---------|--------|
-| ① | Warm network (30-50 founders) | 🔴 Not activated |
-| ② | LinkedIn (founders in transition) | 🔴 Not activated |
-| ③ | Referral loop ("Who else is in this situation?") | Follows from ① |
+| ① | Warm network (30-50 founders) | 🟢 Active — producing 1 client / 2 days |
+| ② | DMs to 20-30 tribe members | 🔜 Next |
+| ③ | LinkedIn (founders in transition) | 🔴 Not activated |
+| ④ | Referral loop ("Who else is in this situation?") | 🟢 Happening organically |
 
-**Current bottleneck: Channel activation.** Myth broadcasts ready (LinkedIn post, DM, voice note).
+**Current status: Layer 1 (warm network only). Already producing 5 founders / 9 days.** The methodology is proven. The pipeline is organic. The only remaining question is pricing the next session.
 
 ---
 
