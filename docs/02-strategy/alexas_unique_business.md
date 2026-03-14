@@ -96,8 +96,7 @@
 If a pattern-reader who naturally sees the invisible architecture — in systems,
 in people, in civilizations — had clarity on how to package and deliver that
 sight as a service, he'd stop doubting whether his gift is "sufficient" and
-start helping people see (and redesign) the very structures that keep them
-from their own future.
+start helping people see (and redesign) the very structures that keep them from their own future.
 ```
 
 ---
