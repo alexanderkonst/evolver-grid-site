@@ -87,7 +87,7 @@ const IgniteSession = () => {
         <section className="rounded-2xl border border-[#8460ea]/20 bg-gradient-to-br from-[#8460ea]/8 to-[#0c1220] p-8 text-center" id="pricing-section">
           <p className="text-xs uppercase tracking-[0.3em] text-[#a4a3d0] mb-2">Investment</p>
           <div className="flex items-baseline justify-center gap-1 mb-1">
-            <span className="text-4xl md:text-5xl font-display font-bold text-white/90">$277</span>
+            <span className="text-4xl md:text-5xl font-display font-bold text-white/90">$555</span>
           </div>
           <p className="text-xs text-white/25 mb-6">One session. Full canvas. Yours forever.</p>
 

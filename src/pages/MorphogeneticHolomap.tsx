@@ -71,7 +71,7 @@ const PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Jun '26", baseline: "Apr '26", optimistic: "Mar '26" },
       { conservative: "Q2 '27", baseline: "Q4 '26", optimistic: "Q2 '26" },
     ],
-    shadow: { name: "The Polymathic Dodge", description: "Leaping to later layers (holomaps, planetary OS) to avoid sitting still with the one move: charge $277.", status: "integrating" },
+    shadow: { name: "The Polymathic Dodge", description: "Was leaping to later layers (holomaps, planetary OS) to avoid the one move. Shadow cleared: price set at $555, text sent to Karime.", status: "resolved" },
     nextMilestone: "Train first facilitator",
   },
   {
@@ -224,7 +224,7 @@ const PERSPECTIVES: PerspectiveData[] = [
       { name: "Latency", icon: "◌", desc: "Unconscious of the gift", status: "done" },
       { name: "Emergence", icon: "○", desc: "Gift recognized. First shadow confronted", status: "done" },
       { name: "Differentiation", icon: "◔", desc: "Gift, shadow, and method as distinct internal realities", status: "done" },
-      { name: "Integration", icon: "◑", desc: "Full clarity. The only move: charge $277. Gift + action unified", status: "current" },
+      { name: "Integration", icon: "◑", desc: "Full clarity. Charged $555. Gift + action unified", status: "current" },
       { name: "Maturation", icon: "◕", desc: "Revenue flowing. Myth embodied. Identity = contribution", status: "future" },
       { name: "Generativity", icon: "●", desc: "Teaching effortless. Produces beyond personal needs", status: "future" },
       { name: "Transcendence", icon: "✦", desc: "Consciousness encoded in artifacts. Legacy", status: "future" },
@@ -233,9 +233,9 @@ const PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Apr '26", baseline: "Mar '26", optimistic: "This week" },
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "Apr '26" },
     ],
-    trigger: "Charge $277 for next session",
-    shadow: { name: "The Money Avoidance", description: "Doing everything EXCEPT the one move: putting a price on the gift. Building beautifully while leaving the doorbell off.", status: "integrating" },
-    nextMilestone: "First paid session ($277)",
+    trigger: "Charge $555 for next session ✓",
+    shadow: { name: "The Money Avoidance", description: "Was doing everything EXCEPT the one move. Shadow cleared: $555 price set, text written for Karime to share. Doorbell installed.", status: "resolved" },
+    nextMilestone: "First paid session ($555) — Monday",
   },
   {
     id: "p10", shortId: "UR-Imp", quadrant: "UR", layer: "Implications",
@@ -254,7 +254,7 @@ const PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "May '26" },
       { conservative: "Q2 '27", baseline: "Q4 '26", optimistic: "Q3 '26" },
     ],
-    shadow: { name: "Build Addiction", description: "The dopamine of shipping features substitutes for the harder work of selling. Every build is a way to delay the ask.", status: "active" },
+    shadow: { name: "Build Addiction", description: "The dopamine of shipping features substitutes for the harder work of selling. Partially cleared: the ask has been made ($555). Still needs vigilance.", status: "integrating" },
     nextMilestone: "SOP v2 + facilitator guide",
   },
   {
@@ -295,8 +295,8 @@ const PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "Apr '26" },
       { conservative: "2028", baseline: "2027", optimistic: "Q4 '26" },
     ],
-    shadow: { name: "The Cathedral Without a Door", description: "System becomes so beautiful that nobody remembered to add the entrance. All building energy routes around the money mechanism.", status: "integrating" },
-    nextMilestone: "First revenue ($277 session)",
+    shadow: { name: "The Cathedral Without a Door", description: "System was so beautiful nobody added the entrance. Shadow cleared: Ignite page live at $555, Calendly linked, text sent to Karime. The door is on.", status: "resolved" },
+    nextMilestone: "First revenue ($555 session) — Monday",
   },
 ];
 
@@ -334,7 +334,7 @@ const TENSIONS: TensionPair[] = [
   {
     pair: ["p9", "p10"], pairLabels: ["Inner Move", "What Must Be Built"],
     gap: 1, type: "creative",
-    desc: "Both demand 'now' — charge $277 AND build SOP. Risk of substituting one for the other. The inner move must lead.",
+    desc: "Both demand 'now' — charge $555 AND build SOP. The inner move led: price set first. Build follows.",
   },
 ];
 
@@ -342,9 +342,9 @@ const TENSIONS: TensionPair[] = [
 
 const TRIGGERS = [
   {
-    title: "Charge $277",
+    title: "Charge $555",
     emoji: "💰",
-    desc: "Not a business decision — a phase transition. The Cathedral gets its door.",
+    desc: "Done. $555 set. Text sent to Karime. The Cathedral has its door. Phase transition triggered.",
     perspectives: ["P1", "P6", "P9", "P12"],
     color: "#8460ea",
   },
