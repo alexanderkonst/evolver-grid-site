@@ -154,9 +154,7 @@ const SPACE_SECTIONS: SpaceSections = {
     buysell: {
         title: "OFFER",
         sections: [
-            { id: "founders", label: "The Originals", path: "/game/marketplace/founders" },
             { id: "ignite", label: "Ignition Session", path: "/game/marketplace/ignite" },
-            { id: "browse", label: "Browse Guides", path: "/game/marketplace/browse" },
             { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
         ],
     },

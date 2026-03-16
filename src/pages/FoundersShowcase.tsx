@@ -23,7 +23,7 @@ interface FounderCanvas {
 
 // ─── Founders ─────────────────────────────────────────────────────────────────
 
-const FOUNDERS: FounderCanvas[] = [
+export const FOUNDERS: FounderCanvas[] = [
   {
     name: "Alexander",
     archetype: "The Focus Lens",
@@ -206,7 +206,7 @@ const Starfield = () => {
 
 // ─── Scroll-reveal hook ───────────────────────────────────────────────────────
 
-const useReveal = () => {
+export const useReveal = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -226,11 +226,11 @@ const useReveal = () => {
 
 // ─── Light-mode tint intensities (darkest → lightest) ─────────────────────────
 
-const LIGHT_TINT = [0.18, 0.13, 0.09, 0.06]; // Card bg opacity per founder index
+export const LIGHT_TINT = [0.18, 0.13, 0.09, 0.06]; // Card bg opacity per founder index
 
 // ─── Founder Card ─────────────────────────────────────────────────────────────
 
-const FounderCard = ({
+export const FounderCard = ({
   founder,
   index,
   isExpanded,

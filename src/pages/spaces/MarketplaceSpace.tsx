@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     Sparkles,
     ExternalLink,
-    Plus,
-    ArrowRight,
     Copy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,12 +11,20 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBuilderContext";
 import { useToast } from "@/hooks/use-toast";
 import { FoundersHero, FoundersCTA } from "@/components/founders/FoundersShared";
+import { FOUNDERS, FounderCard } from "@/pages/FoundersShowcase";
 
 
 const MarketplaceSpace = () => {
     const navigate = useNavigate();
     const business = usePublishedGeniusBusiness();
     const { toast } = useToast();
+    const [expandedFounder, setExpandedFounder] = useState<string | null>(null);
+
+    const toggle = useCallback(
+        (name: string) =>
+            setExpandedFounder((prev) => (prev === name ? null : name)),
+        []
+    );
 
     const handleCopyLink = async () => {
         if (business?.productUrl) {
@@ -31,9 +38,6 @@ const MarketplaceSpace = () => {
         <GameShellV2>
             <ErrorBoundary>
                 <div className="p-4 lg:p-6 max-w-4xl mx-auto space-y-10">
-                    {/* ─── Hero ──────────────────────────────────── */}
-                    <FoundersHero lightMode />
-
                     {/* My Published Product (if exists) */}
                     {business && (
                         <div>
@@ -83,44 +87,21 @@ const MarketplaceSpace = () => {
                         </div>
                     )}
 
-                    {/* My Offers Section */}
-                    <div>
-                        <h2 className="text-lg font-semibold text-[#2c3150] mb-4">
-                            {business ? "Create More" : "My Offers"}
-                        </h2>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            {/* Create Genius Offer */}
-                            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                                <div className="flex items-start justify-between mb-3">
-                                    <div className="p-2 rounded-lg bg-[#8460ea]/20">
-                                        <Sparkles className="w-6 h-6 text-[#8460ea]" />
-                                    </div>
-                                </div>
-                                <h3 className="font-semibold text-[#2c3150] mb-1">Genius Offer</h3>
-                                <p className="text-sm text-[#2c3150]/70 mb-4">Create your signature offer based on your Zone of Genius</p>
-                                <Button asChild variant="outline" size="sm" className="w-full">
-                                    <Link to="/genius-offer?from=marketplace">
-                                        Create Offer <ArrowRight className="w-4 h-4 ml-2" />
-                                    </Link>
-                                </Button>
-                            </div>
+                    {/* ─── Hero ──────────────────────────────────── */}
+                    <FoundersHero lightMode />
 
-                            {/* Create Public Page */}
-                            <div className="rounded-xl border border-dashed border-[#a4a3d0]/40 bg-[#f0f4ff]/50 p-5 hover:border-[#a4a3d0]/60 transition-colors">
-                                <div className="flex items-start justify-between mb-3">
-                                    <div className="p-2 rounded-lg bg-[#a4a3d0]/20">
-                                        <Plus className="w-6 h-6 text-[#2c3150]/70" />
-                                    </div>
-                                </div>
-                                <h3 className="font-semibold text-[#2c3150] mb-1">Create Public Page</h3>
-                                <p className="text-sm text-[#2c3150]/70 mb-4">Build your creator page with your brand and products</p>
-                                <Button asChild variant="outline" size="sm" className="w-full">
-                                    <Link to="/marketplace/create-page">
-                                        Get Started <ArrowRight className="w-4 h-4 ml-2" />
-                                    </Link>
-                                </Button>
-                            </div>
-                        </div>
+                    {/* ─── Founder Cards ─────────────────────────── */}
+                    <div className="space-y-6" id="founders-grid">
+                        {FOUNDERS.map((f, i) => (
+                            <FounderCard
+                                key={f.name}
+                                founder={f}
+                                index={i}
+                                isExpanded={expandedFounder === f.name}
+                                onToggle={() => toggle(f.name)}
+                                lightMode
+                            />
+                        ))}
                     </div>
 
                     {/* ─── CTA ──────────────────────────────────── */}
