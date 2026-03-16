@@ -114,6 +114,7 @@ import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
 import MarketplaceProductPage from "./pages/marketplace/MarketplaceProductPage";
 import MyGeniusBusinessPage from "./pages/spaces/MyGeniusBusinessPage";
+import MyProductsPage from "./pages/spaces/MyProductsPage";
 import RefineBusinessPage from "./pages/spaces/RefineBusinessPage";
 import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
@@ -242,6 +243,7 @@ const App = () => (
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
                   {/* OFFER Space (was Marketplace) */}
                   <Route path="/game/marketplace" element={<MarketplaceSpace />} />
+                  <Route path="/game/marketplace/my-products" element={<MyProductsPage />} />
                   <Route path="/game/marketplace/founders" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/browse" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/ignite" element={<IgniteSession />} />
