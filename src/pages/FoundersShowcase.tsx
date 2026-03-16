@@ -224,6 +224,10 @@ const useReveal = () => {
   return { ref, visible };
 };
 
+// ─── Light-mode tint intensities (darkest → lightest) ─────────────────────────
+
+const LIGHT_TINT = [0.18, 0.13, 0.09, 0.06]; // Card bg opacity per founder index
+
 // ─── Founder Card ─────────────────────────────────────────────────────────────
 
 const FounderCard = ({
@@ -231,15 +235,18 @@ const FounderCard = ({
   index,
   isExpanded,
   onToggle,
+  lightMode,
 }: {
   founder: FounderCanvas;
   index: number;
   isExpanded: boolean;
   onToggle: () => void;
+  lightMode?: boolean;
 }) => {
   const { ref, visible } = useReveal();
   const f = founder;
   const isLocked = !f.consentGiven;
+  const tint = LIGHT_TINT[index] ?? 0.06;
 
   return (
     <div
@@ -255,36 +262,48 @@ const FounderCard = ({
       <div
         className="relative rounded-3xl p-[1px] transition-shadow duration-500 group"
         style={{
-          boxShadow: isExpanded
-            ? `0 0 60px ${f.colors.glow}, 0 0 120px ${f.colors.glow}`
-            : `0 0 0px transparent`,
+          boxShadow: lightMode
+            ? (isExpanded ? `0 0 30px ${f.colors.primary}15` : 'none')
+            : (isExpanded
+              ? `0 0 60px ${f.colors.glow}, 0 0 120px ${f.colors.glow}`
+              : `0 0 0px transparent`),
         }}
       >
         {/* Animated border gradient */}
-        <div
-          className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          style={{
-            background: `linear-gradient(135deg, ${f.colors.primary}40, transparent 40%, transparent 60%, ${f.colors.primary}30)`,
-          }}
-        />
+        {!lightMode && (
+          <div
+            className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+            style={{
+              background: `linear-gradient(135deg, ${f.colors.primary}40, transparent 40%, transparent 60%, ${f.colors.primary}30)`,
+            }}
+          />
+        )}
         <div
           className="absolute inset-0 rounded-3xl"
           style={{
-            background: `linear-gradient(135deg, ${f.colors.border}, transparent 30%, transparent 70%, ${f.colors.border})`,
+            background: lightMode
+              ? `linear-gradient(135deg, ${f.colors.primary}20, ${f.colors.primary}10)`
+              : `linear-gradient(135deg, ${f.colors.border}, transparent 30%, transparent 70%, ${f.colors.border})`,
           }}
         />
 
         {/* Card body */}
         <div
           className="relative rounded-3xl overflow-hidden"
-          style={{ background: "#0e1528" }}
+          style={{
+            background: lightMode
+              ? `rgba(255,255,255,0.95)`
+              : "#0e1528",
+          }}
         >
           {/* Internal aurora */}
           <div
             className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none transition-opacity duration-500"
             style={{
               background: f.colors.primary,
-              opacity: isExpanded ? 0.08 : 0.03,
+              opacity: lightMode
+                ? (isExpanded ? tint * 1.2 : tint)
+                : (isExpanded ? 0.08 : 0.03),
             }}
           />
 
@@ -352,8 +371,8 @@ const FounderCard = ({
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-white/35 italic">{f.tagline}</p>
-                <div className="text-[10px] text-white/15 mt-1.5 font-mono">
+                <p className={`text-sm italic ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>{f.tagline}</p>
+                <div className={`text-[10px] mt-1.5 font-mono ${lightMode ? 'text-[#2c3150]/30' : 'text-white/15'}`}>
                   {f.sessionNumber} · {f.date}
                 </div>
               </div>
@@ -364,8 +383,8 @@ const FounderCard = ({
                 style={{
                   borderColor: isExpanded
                     ? f.colors.border
-                    : "rgba(255,255,255,0.06)",
-                  color: isExpanded ? f.colors.primary : "rgba(255,255,255,0.15)",
+                    : (lightMode ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)'),
+                  color: isExpanded ? f.colors.primary : (lightMode ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.15)'),
                   transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               >
@@ -386,8 +405,8 @@ const FounderCard = ({
               <blockquote
                 className="relative pl-4 py-2 text-lg md:text-xl font-display italic leading-relaxed transition-colors duration-300"
                 style={{
-                  color: `${f.colors.primary}cc`,
-                  borderLeft: `2px solid ${f.colors.border}`,
+                  color: lightMode ? f.colors.primary : `${f.colors.primary}cc`,
+                  borderLeft: `2px solid ${lightMode ? f.colors.primary + '40' : f.colors.border}`,
                 }}
               >
                 "{f.myth.line}"
@@ -419,12 +438,12 @@ const FounderCard = ({
                   >
                     🔒
                   </div>
-                  <p className="text-sm text-white/35">
+                  <p className={`text-sm ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>
                     Full canvas will be visible once{" "}
                     <span style={{ color: f.colors.primary }}>{f.name}</span>{" "}
                     gives consent.
                   </p>
-                  <p className="text-xs text-white/15 mt-2">
+                  <p className={`text-xs mt-2 ${lightMode ? 'text-[#2c3150]/30' : 'text-white/15'}`}>
                     The myth above is shown for illustration.
                   </p>
                 </div>
@@ -449,16 +468,16 @@ const FounderCard = ({
                         <span className="text-[10px] font-mono text-red-400/50 tracking-wide">
                           LIE
                         </span>
-                        <p className="text-sm text-white/35 leading-relaxed mt-0.5">
+                        <p className={`text-sm leading-relaxed mt-0.5 ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>
                           {f.myth.lie}
                         </p>
                       </div>
-                      <div className="h-px bg-white/5" />
+                      <div className={`h-px ${lightMode ? 'bg-[#2c3150]/8' : 'bg-white/5'}`} />
                       <div>
                         <span className="text-[10px] font-mono text-emerald-400/50 tracking-wide">
                           TRUTH
                         </span>
-                        <p className="text-sm text-white/55 leading-relaxed mt-0.5">
+                        <p className={`text-sm leading-relaxed mt-0.5 ${lightMode ? 'text-[#2c3150]/70' : 'text-white/55'}`}>
                           {f.myth.truth}
                         </p>
                       </div>
@@ -476,8 +495,8 @@ const FounderCard = ({
                         key={item.label}
                         className="p-5 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.01]"
                         style={{
-                          background: "rgba(255,255,255,0.02)",
-                          border: `1px solid rgba(255,255,255,0.06)`,
+                          background: lightMode ? `${f.colors.primary}08` : 'rgba(255,255,255,0.02)',
+                          border: `1px solid ${lightMode ? f.colors.primary + '15' : 'rgba(255,255,255,0.06)'}`,
                         }}
                       >
                         <div className="flex items-center gap-2 mb-2">
@@ -494,7 +513,7 @@ const FounderCard = ({
                             {item.label}
                           </p>
                         </div>
-                        <p className="text-sm text-white/50 leading-relaxed">
+                        <p className={`text-sm leading-relaxed ${lightMode ? 'text-[#2c3150]/60' : 'text-white/50'}`}>
                           {item.content}
                         </p>
                       </div>
@@ -517,7 +536,7 @@ const FounderCard = ({
                           The Promise
                         </p>
                       </div>
-                      <p className="text-sm text-white/60 leading-relaxed">
+                      <p className={`text-sm leading-relaxed ${lightMode ? 'text-[#2c3150]/70' : 'text-white/60'}`}>
                         {f.promise}
                       </p>
                     </div>
@@ -549,12 +568,17 @@ const FoundersShowcase = () => {
 
   const content = (
     <div
-      className="min-h-screen bg-[#0a0e1a] text-white font-sans relative"
+      className={`min-h-screen font-sans relative ${
+        inShell
+          ? 'bg-transparent text-[#2c3150]'
+          : 'bg-[#0a0e1a] text-white'
+      }`}
       id="founders-showcase"
     >
-      <Starfield />
+      {!inShell && <Starfield />}
 
-      {/* Aurora blobs */}
+      {/* Aurora blobs — only in dark mode */}
+      {!inShell && (
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
         <div
           className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[180px] animate-pulse"
@@ -575,6 +599,7 @@ const FoundersShowcase = () => {
           }}
         />
       </div>
+      )}
 
       <div
         className="relative max-w-4xl mx-auto px-4 md:px-6 py-12 space-y-10"
@@ -592,6 +617,7 @@ const FoundersShowcase = () => {
           }}
           id="showcase-header"
         >
+          {!inShell && (
           <nav className="flex justify-between text-xs">
             <a
               href="/dashboard"
@@ -606,6 +632,7 @@ const FoundersShowcase = () => {
               Holo Map →
             </a>
           </nav>
+          )}
 
           <p className="text-[11px] font-medium tracking-[0.4em] uppercase text-[#8460ea]/60">
             The Originals
@@ -616,17 +643,17 @@ const FoundersShowcase = () => {
               Founders Who Found
             </span>
             <br />
-            <span className="text-white/85">Their Genius</span>
+            <span className={inShell ? 'text-[#2c3150]/85' : 'text-white/85'}>Their Genius</span>
           </h1>
 
-          <p className="text-sm text-white/30 max-w-md mx-auto leading-relaxed">
+          <p className={`text-sm max-w-md mx-auto leading-relaxed ${inShell ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
             Each person went through the Unique Business Canvas process.
             Their myth was discovered. Their business was designed
             around who they already are.
           </p>
 
           {/* Stats ribbon */}
-          <div className="flex justify-center gap-6 text-[11px] text-white/15 pt-2">
+          <div className={`flex justify-center gap-6 text-[11px] pt-2 ${inShell ? 'text-[#2c3150]/25' : 'text-white/15'}`}>
             {[
               { val: "4", label: "canvases" },
               { val: "10", label: "days" },
@@ -635,7 +662,7 @@ const FoundersShowcase = () => {
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-0.5">
                 <span
-                  className="text-sm font-display font-medium bg-gradient-to-b from-white/40 to-white/15 bg-clip-text text-transparent"
+                  className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${inShell ? 'from-[#2c3150]/60 to-[#2c3150]/30' : 'from-white/40 to-white/15'}`}
                 >
                   {s.val}
                 </span>
@@ -654,6 +681,7 @@ const FoundersShowcase = () => {
               index={i}
               isExpanded={expandedFounder === f.name}
               onToggle={() => toggle(f.name)}
+              lightMode={inShell}
             />
           ))}
         </div>
@@ -665,7 +693,7 @@ const FoundersShowcase = () => {
             opacity: 0.6,
           }}
         >
-          <p className="text-xs text-white/25 italic max-w-sm mx-auto leading-relaxed">
+          <p className={`text-xs italic max-w-sm mx-auto leading-relaxed ${inShell ? 'text-[#2c3150]/25' : 'text-white/25'}`}>
             "The myth IS the marketing. Operational fact, not theory."
           </p>
         </div>
@@ -690,10 +718,10 @@ const FoundersShowcase = () => {
                 "linear-gradient(135deg, #8460ea40, #5eaf8b30, #d49a5e30, #7eb8d430, #8460ea40)",
             }}
           >
-            <div className="rounded-3xl bg-[#0e1528] p-10 md:p-14 text-center relative overflow-hidden">
+            <div className={`rounded-3xl p-10 md:p-14 text-center relative overflow-hidden ${inShell ? 'bg-white' : 'bg-[#0e1528]'}`}>
               {/* Internal glow */}
               <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[120px] bg-[#8460ea]/6" />
+                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[120px] ${inShell ? 'bg-[#8460ea]/8' : 'bg-[#8460ea]/6'}`} />
               </div>
 
               <div className="relative z-10">
@@ -706,10 +734,10 @@ const FoundersShowcase = () => {
                     Your Uniqueness IS
                   </span>
                   <br />
-                  <span className="text-white/80">Your Business</span>
+                  <span className={inShell ? 'text-[#2c3150]/80' : 'text-white/80'}>Your Business</span>
                 </h3>
 
-                <p className="text-sm text-white/30 max-w-sm mx-auto mb-8">
+                <p className={`text-sm max-w-sm mx-auto mb-8 ${inShell ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
                   One session. Your myth discovered. Your canvas complete.
                   The business you were always meant to build — revealed.
                 </p>
@@ -731,7 +759,7 @@ const FoundersShowcase = () => {
         <footer className="text-center pb-12">
           <a
             href="/the-originals"
-            className="text-[10px] text-white/10 hover:text-white/25 transition-colors"
+            className={`text-[10px] transition-colors ${inShell ? 'text-[#2c3150]/15 hover:text-[#2c3150]/30' : 'text-white/10 hover:text-white/25'}`}
           >
             Join the community →
           </a>
