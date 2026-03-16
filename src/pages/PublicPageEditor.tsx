@@ -241,7 +241,6 @@ const PublicPageEditor = () => {
                     <div>
                         <Label htmlFor="slug">Page URL</Label>
                         <div className="flex items-center gap-2 mt-1">
-                            <span className="text-sm text-[#2c3150]/60">evolver.app/p/</span>
                             <Input
                                 id="slug"
                                 value={slug}

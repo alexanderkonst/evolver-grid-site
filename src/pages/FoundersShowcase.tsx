@@ -602,13 +602,13 @@ const FoundersShowcase = () => {
       )}
 
       <div
-        className="relative max-w-4xl mx-auto px-4 md:px-6 py-12 space-y-10"
+        className={`relative max-w-4xl mx-auto px-4 md:px-6 space-y-10 ${inShell ? 'py-4' : 'py-12'}`}
         style={{ zIndex: 2 }}
       >
         {/* ─── Header ──────────────────────────────────── */}
         <header
           ref={heroReveal.ref}
-          className="text-center space-y-5 pt-6 transition-all duration-1000"
+          className={`text-center space-y-5 transition-all duration-1000 ${inShell ? 'pt-2' : 'pt-6'}`}
           style={{
             opacity: heroReveal.visible ? 1 : 0,
             transform: heroReveal.visible
