@@ -242,8 +242,8 @@ const App = () => (
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
                   {/* OFFER Space (was Marketplace) */}
                   <Route path="/game/marketplace" element={<MarketplaceSpace />} />
-                  <Route path="/game/marketplace/browse" element={<BrowseGuides />} />
-                  <Route path="/game/marketplace/founders" element={<FoundersShowcase />} />
+                  <Route path="/game/marketplace/founders" element={<Navigate to="/game/marketplace" replace />} />
+                  <Route path="/game/marketplace/browse" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/ignite" element={<IgniteSession />} />
                   {/* COLLABORATE Space (was Teams/Discover) */}
                   <Route path="/game/collaborate" element={<CollaborateSpace />} />
