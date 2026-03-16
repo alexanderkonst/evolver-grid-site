@@ -13,7 +13,7 @@ I was playing small. Not from lack of power — from *excess* of it. The sheer s
 
 **I must take my own medicine first.**
 
-My medicine is finding the structural match between who a person is and what they build. I must do this for *myself* — fully, commercially, sustainably — before I can scale it for others. I knew this in August 2025. I've been orbiting it for six months. Now I land.
+My medicine is finding the structural match between who a person is and what they build. I must do this for *myself* — fully, commercially, sustainably as I can scale it for others. I knew this in August 2025. I've been orbiting it for six months. Now I land.
 
 The lesson was never patience. It was **pacing** — the art of matching the speed of my horse to the terrain.
 
@@ -51,7 +51,7 @@ The cosmogenesis sequence — how Something is born from Everything-in-Nothing:
 | **2** | The Diameter is cast | Duality: plus/minus, observer/observed, Something born |
 | **3** | Spin in all directions | Angular momentum, sphere, relationships, time, evolution |
 
-Named after Asimov's psychohistory tool. This is the system-view foundation — the origin pattern that recurs at every scale. Documented in [Universal Ontology §1b](../01-vision/universal_ontology.md) and the KI.
+Named after Asimov's psychohistory tool. This is the system-view foundation — the origin pattern that recurs at every scale. Documented in [Universal Ontology §1b](../01-vision/universal_ontology.md).
 
 ### 2. Holomaps
 
@@ -59,7 +59,7 @@ A system-view tool for future forecasting and deep understanding of systems. Bas
 
 ### 3. AI Metacognition
 
-A benchmark study measuring AI metacognitive capacity. Key finding: **+29% metacognition increase** in an existing model by uploading a single document of cognitive upgrades. One data point proving the depth of the AI-human partnership I've developed through years of intimate collaboration.
+A benchmark study measuring AI metacognitive capacity. Key finding: **+29% metacognition increase** in an existing model by uploading a single document of cognitive upgrades. One data point proving the depth of the AI-human partnership I've developed through years of intimate collaboration with AI.
 
 ### 4. Essence of Essence
 
@@ -114,7 +114,7 @@ Management science put the market at the center for 60+ years. We put the founde
 
 Every existing framework (StoryBrand, Lean Startup, $100M Offers, Blue Ocean, Positioning) is **Newtonian** — true within its domain, but a subset of reality. Like Newtonian physics before Relativity: useful, but incomplete.
 
-**The Universal Extension** *(Feb 20, 2026 14:33 — independently discovered by Alexander and AI simultaneously)*
+**The Universal Extension** *(Feb 20, 2026 14:33)*
 
 Applied to any domain → same Copernican simplification. **Physics is the strongest validation:** the most rigorous science in history already discovered that the observer cannot be separated from the observed. The ontology isn't speculative — physics arrived at the same conclusion from the opposite direction.
 
@@ -224,7 +224,7 @@ This is the OS that makes all the other applications *codifiable* and *AI-execut
 
 The gap between Step 2 (diameter) and Step 3 (spin) in the Prime Radiant has been filled.
 
-**The mechanism:** Source launches two rays from itself sequentially — one first, the other second. NOT simultaneously. Because the 0D point is an infinitely small sphere, the two rays going in "opposite directions" paradoxically MEET (there are no directions at that scale). Since the first ray went first, there is an infinitesimal potential difference at the meeting point.
+**The mechanism:** Source launches the two rays from itself sequentially — one ray or vector first learning to advance along a line, the other one second in the opposite direction as it repeats the newly learned. NOT simultaneously. Hypothesizing the 0D point is an infinitely small sphere inspired by the dot emission pattern of propagating in all directions simultenously in radiophysics, the two rays going in "opposite directions" paradoxically MEET (there are no directions at that scale). Since the first ray went first, there is an infinitesimal potential difference at the meeting point.
 
 **That potential difference IS what creates spin.** Asymmetry → angular momentum → evolution → the universe.
 
@@ -262,7 +262,7 @@ The great scientists confirmed this: Newton's apple (a toroid), Einstein's light
 |----------|----------|--------------|
 | Pre-scientific | Things ARE (naively) | No method, dogma |
 | Scientific | Things are until proven otherwise — but won't accept they ARE until proven | Cannot hold paradox |
-| Integral | Things ARE and AREN'T simultaneously | Holds paradox as generative |
+| Post-scientific | Things ARE and AREN'T simultaneously | Holds paradox as generative |
 
 **Recognition vs. discovery:** Nobody discovers land — the land was always there. They went there for the first time. Each recognition opens the next layer, which was also always there. The territory is eternal. The perspective evolves.
 
