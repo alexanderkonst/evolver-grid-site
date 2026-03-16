@@ -1,8 +1,8 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 3.0
+> **Version:** 3.1
 > **Created:** 2026-01-28
-> **Updated:** 2026-02-18
+> **Updated:** 2026-03-16
 > **Purpose:** Master reference for all modules organized by Spaces + Versioning + Divine Stack Architecture
 
 ---
@@ -113,6 +113,9 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **BUILD** | Product Builder | 0.7 | Alpha | `/game/build/product-builder` |
 | **BUILD** | Business Incubator | 0.3 | Prototype | `/game/build` |
 | **BUY & SELL** | Marketplace | 0.5 | PoC | `/game/marketplace` |
+| **BUY & SELL** | Founders Showcase | 0.7 | Alpha | `/game/marketplace/founders` |
+| **System** | Holomap | 0.7 | Alpha | `/holomap` |
+| **System** | Dashboard | 0.5 | PoC | `/dashboard` |
 | **Special** | Onboarding | 0.7 | Alpha | `/start` |
 | **Special** | Tour | 0.5 | PoC | (within onboarding) |
 | **Standalone** | Equilibrium (Web) | 0.9 | MVP | `/equilibrium` |
@@ -534,6 +537,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Dependencies | Genius Offer |
 
 > **v2.2 change:** Upgraded from v0.3 to v0.5 — has browse, creator pages (`/p/:slug`), and product pages (`/mp/:slug`).
+> **v3.1 change:** Marketplace now auto-populated via holonic sequencing. Sessions conducted in Antigravity → Canvas created → Marketplace listing generated automatically.
 
 **Submodules:**
 | Submodule | Version | Status |
@@ -541,6 +545,75 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Browse Offerings | 0.5 | PoC |
 | Public Profile Page | 0.5 | PoC |
 | Genius Offer Listing | 0.5 | PoC |
+| Founders Showcase ("The Originals") | 0.7 | Alpha |
+| Auto-Population Pipeline | 0.3 | Prototype |
+
+#### Module: Founders Showcase — v0.7
+
+| Field | Value |
+|-------|-------|
+| Version | **0.7** (Alpha) |
+| Master Result | "Who are these people?" → Living proof that unique businesses emerge from genius |
+| Start | `/game/marketplace/founders` (in-platform) or `/founders` (public) |
+| End | Inspiration → Book Ignition Session |
+| Dependencies | Unique Business Canvas complete |
+
+> **Dual-mode rendering:** In-platform version renders with light-mode styling (white bg, tinted cards). Public version renders with dark starfield and aurora effects. Both share the same component.
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Founder Cards (expandable) | 0.7 | Alpha |
+| Hero Section (reusable) | 0.7 | Alpha |
+| CTA Section (reusable) | 0.7 | Alpha |
+| Dual-mode styling (light/dark) | 0.7 | Alpha |
+
+---
+
+### 🧭 SYSTEM-LEVEL MODULES
+
+> These modules span across spaces. They provide system-wide views of holonic emergence — one per person, one for the whole.
+
+#### Module: Holomap — v0.7
+
+| Field | Value |
+|-------|-------|
+| Version | **0.7** (Alpha) |
+| Master Result | Scattered progress → Holonic view of the whole system |
+| Start | `/holomap` (public) or `/game/holomap` (in-platform) |
+| End | Continuous — success = whole-system awareness |
+| Dependencies | Data from all spaces |
+| OS Layer | Holomap OS |
+
+> **Holonic Dashboard insight:** The Holomap is both per-person and per-system. Each founder has their own holonic reading. The system has a meta-holomap showing the emergence of the collective. This is a *holonic dashboard* — not just metrics, but nested awareness at every level.
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| 12-Perspective Compass | 0.7 | Alpha |
+| Shadow Layer | 0.5 | PoC |
+| Tension Mapping | 0.5 | PoC |
+| 13th Perspective (Center) | 0.5 | PoC |
+| Per-person instance | 0.3 | Prototype |
+
+#### Module: Dashboard — v0.5
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | No overview → Clear view of my journey and the whole |
+| Start | `/dashboard` |
+| End | Continuous — success = clarity on what matters |
+| Dependencies | ZoG, QoL, Unique Business |
+
+> **Holonic Dashboard:** A unique business per person, a unique business canvas per person, and a dashboard for the entire emergence as well as per person. This is a holonic dashboard — nested views of the same living system at different scales.
+
+**Submodules:**
+| Submodule | Version | Status |
+|-----------|---------|--------|
+| Personal Dashboard | 0.5 | PoC |
+| System Dashboard (meta-view) | 0.3 | Prototype |
+| Founder Progress Cards | 0.5 | PoC |
 
 ---
 
@@ -724,10 +797,11 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | MEET | 2 | 7 | 9 |
 | COLLABORATE | 2 | 6 | 8 |
 | BUILD | 3 | 11 | 14 |
-| BUY & SELL | 1 | 3 | 4 |
+| BUY & SELL | 2 | 7 | 9 |
+| System | 2 | 8 | 10 |
 | Special | 2 | 8 | 10 |
 | Standalone | 6 | 24 | 30 |
-| **TOTAL** | **25** | **146** | **171** |
+| **TOTAL** | **28** | **158** | **186** |
 
 ---
 
@@ -773,6 +847,15 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ## 📝 CHANGELOG
 
+### v3.1 (2026-03-16)
+- **Founders Showcase** added to BUY & SELL (v0.7) — dual-mode rendering (light/dark), reusable hero + CTA
+- **Holomap** added as System-level module (v0.7) — holonic dashboard per person and per system
+- **Dashboard** added as System-level module (v0.5) — nested views at different scales
+- **System-Level Modules** section created — modules that span across spaces
+- **Automated Holonic Sequencing** documented — sessions → canvas → marketplace auto-population
+- **Marketplace** submodules expanded (3 → 5) with Founders Showcase and Auto-Population Pipeline
+- Module count: 25 → 28, Submodule count: 146 → 158
+
 ### v3.0 (2026-02-18)
 - **Divine Stack Architecture** added — Tier 0 (Cosmogenesis) → Tier 1 (Operating Systems) → Tier 2 (Applications)
 - **Tier 2 Application mapping** added — 7 applications mapped to Spaces and OS dependencies
@@ -804,5 +887,5 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-*Module Taxonomy v3.0 — Divine Stack Architecture*
-*Last updated: 2026-02-18*
+*Module Taxonomy v3.1 — Holonic Dashboard Architecture*
+*Last updated: 2026-03-16*
