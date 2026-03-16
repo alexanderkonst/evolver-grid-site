@@ -657,7 +657,7 @@ const FoundersShowcase = () => {
             {[
               { val: "4", label: "canvases" },
               { val: "10", label: "days" },
-              { val: "$0", label: "spent" },
+              { val: "$0", label: "ad spend" },
               { val: "100%", label: "conversion" },
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-0.5">
