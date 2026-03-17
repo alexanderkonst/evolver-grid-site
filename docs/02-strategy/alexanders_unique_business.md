@@ -674,7 +674,139 @@ Direct to session booking OR $27 experience
 
 > **Format is open:** These three components may live in ONE post, THREE posts, a DM, a video, or any format. The structure is the content, not the delivery.
 
-**★ Master Tuning Fork v3:**
+**★ Master Tuning Fork v4 — LinkedIn Post (first public deployment):**
+
+*Version: v4 · March 16, 2026 · Precision: 9.6-9.7 (founder-rated)*
+
+> ❗ Calling all ENTREPRENEURS who started in corporate who also do coaching or consulting.
+>
+> Building your own business but nothing has truly clicked?
+>
+> Check if any of these sound familiar:
+>
+> 🔲 Savings melting
+> 🔲 Partner's belief in you waning
+> 🔲 You've broken your own promises enough times that your dream business starts to sound unrealistic
+> 🔲 Friends hinting — unsolicited — that maybe it's a fantasy
+>
+> Brutally honest truth for you:
+>
+> You're not failing. You're succeeding at starting things that aren't yours.
+>
+> And your dream business? You're already secretly running it. For free:
+>
+> 📋 That 2-hour coffee where you solved someone's crisis — FREE
+> 📋 The group chat where your one comment shifted everything — UNPAID
+> 📋 Helping a friend with their launch — AS A VOLUNTEER
+>
+> That IS the business. You just haven't named it, and haven't monetized it YET.
+>
+> Here's why:
+>
+> You can solve everyone else's problem quickly and naturally.
+>
+> But you can't read the label of a jar from inside the jar. You need a mirror.
+>
+> That's what I do.
+>
+> One 90-minute Unique Business Ignition Session by Zoom or in person.
+>
+> We create your unique product by describing your uniqueness with precision, and then we package your product to attract clients.
+>
+> All from who you already are, nothing to bring to the session but yourself.
+>
+> $555. One session. Your Unique Product & Your Unique Marketing. Yours forever.
+>
+> You were never broken. You were just using an outdated map from the industrial age.
+>
+> If this is you → DM me the word "ready".
+
+**What changed from v3 → v4:**
+
+| Change | v3 | v4 | Why |
+|--------|----|----|-----|
+| Targeting | "entrepreneurs who are also coaches and former professionals" | "ENTREPRENEURS who started in corporate who also do some form of coaching" | More specific, removes barrier to self-identify as coach |
+| Structure | Pain → Consequences → CTA (video) | Pain → Reframe → Evidence → Mirror → Offer → Price → CTA (DM) | Complete funnel in one post, no video dependency |
+| LOG entries | Not present | Three specific examples (coffee, chat, launch) | Body-level recognition — they see their OWN free work |
+| CTA | "5-min video → link" | "DM me the word 'ready'" | Pull, not push. They come to you. Frankie model |
+| Price | Not shown | $555 in the post | Transparent. Filters for seriousness |
+| Closing | Consequence warning | "You were never broken. Outdated map from the industrial age." | Externalizes blame, emotional landing pad |
+
+---
+
+**Karime's Mirror Feedback on v4 (March 16, 2026, ~10pm):**
+
+> Karime reviewed v4 as the first external reader. Three critical flags:
+
+| Flag | v4 phrase | Problem | Fix direction |
+|------|-----------|---------|---------------|
+| 1 | "Nothing has truly clicked" | Imprecise. Some things DO work for the reader | "Spinning your wheels — thinking more effort will fix it" |
+| 2 | "You're succeeding at starting things that aren't yours" | Creates failing/succeeding confusion. "Where am I succeeding?" | "Your focus is scattered — grinding harder won't fix it" |
+| 3 | "Already secretly running it" | Too cryptic. Reader has no context | Explicit bridge: "That thing you do naturally... THAT is your business. Hiding in plain sight" |
+
+**Golden rule:** *"Tell them about THEIR life. Your keys come later."* The person reading has zero context. First: recognition (describe their experience). Then: methodology (later, or in the session).
+
+---
+
+**★ Master Tuning Fork v5 (emerging — needs energetic adjustment, March 17):**
+
+*Status: Draft. Incorporating Karime's feedback. To be finalized and posted Tuesday.*
+
+> ❗ Calling all ENTREPRENEURS who started in corporate who also do coaching or consulting.
+>
+> You've been building your own business. You've put in the work, the thought, the energy. But you're still spinning your wheels — and deep down you think if you just push harder, it'll finally click.
+>
+> Check if any of these sound familiar:
+>
+> 🔲 Savings melting
+> 🔲 Partner's belief in you waning
+> 🔲 You've broken your own promises enough times that your dream business starts to sound unrealistic
+> 🔲 Friends hinting — unsolicited — that maybe it's a fantasy
+>
+> Here's the truth:
+>
+> You're not stuck because you lack effort. Your focus is scattered — and you believe that grinding harder is what will fix it.
+>
+> It won't.
+>
+> Because the business you're trying to force isn't the right one.
+>
+> The right one? You're already doing it. Every day. For free:
+>
+> 📋 That 2-hour coffee where you solved someone's crisis — you didn't charge
+> 📋 The group chat where your one comment shifted everything — you didn't invoice
+> 📋 Helping a friend with their launch — you called it "just helping out"
+>
+> That thing you do naturally, that people keep coming to you for, that you've never thought to monetize — THAT is your business. It's been hiding in plain sight.
+>
+> But you can't see it from the inside. You can't read the label from inside the jar. You need someone to mirror it back.
+>
+> That's what I do.
+>
+> One 90-minute Unique Business Ignition Session by Zoom or in person.
+>
+> We name your unique gift with precision — the thing you've been doing for free that others can't do at all — and we package it into a product that attracts clients.
+>
+> Nothing to bring but yourself.
+>
+> $555. One session. Your Unique Product & Your Unique Marketing. Yours forever.
+>
+> You were never broken. You were just using an outdated map from the industrial age.
+>
+> If this is you → DM me the word "ready".
+
+**What changed from v4 → v5:**
+
+| Change | v4 | v5 | Source |
+|--------|----|----|--------|
+| Hook | "Nothing has truly clicked" | "Spinning your wheels — pushing harder" | Karime: "some things work, it's imprecise" |
+| Reframe | "Succeeding at starting things that aren't yours" | "Focus is scattered — grinding harder won't fix it" | Karime: "don't create succeeding/failing confusion" |
+| Bridge | "Already secretly running it" | Explicit: "That thing you do naturally... THAT is your business. Hiding in plain sight" | Karime: "connect the dots FOR them" |
+| LOG entries | Setup implied | Setup explicit: "The right one? You're already doing it. Every day. For free:" | Reader needs the bridge BEFORE the evidence |
+
+---
+
+**★ Master Tuning Fork v3 (previous — Feb 25, 2026):**
 
 > ❗️❗️❗️ Calling all entrepreneurs who are also coaches and former professionals
 >
@@ -694,6 +826,8 @@ Direct to session booking OR $27 experience
 > Find out what's really going on:
 >
 > 5-min video → link
+
+---
 
 **What a tuning fork at ~9.9+ precision enables:**
 
@@ -726,11 +860,11 @@ Direct to session booking OR $27 experience
 | Step | Container | What They Get | Felt Shift | Price |
 |------|-----------|-------------|------------|-------|
 | **0** | **Lead Magnet** | Pain card as content (NotebookLM video, hand raiser post). Mirroring + naming + exit door visible | *Recognition* — "Someone sees me. How do they know this?" | Free |
-| **1** | **The Ignition Session** | Discovery session → Uniqueness → Shadow → Myth. Walk out with the SEED of the entire business, named and visible | *Initiation* — "Oh. It was always there. I just couldn't see it." | **$277** (first 2 paid clients — then increase) |
+| **1** | **The Ignition Session** | 90-min session → Unique Product (uniqueness articulated) + Unique Marketing (myth, tribe, pain, promise). Walk out with the Unique Business Canvas | *Initiation* — "Oh. It was always there. I just couldn't see it." | **$555** |
 | **2** | **The Build** | 6-week container. Full canvas: Tribe → Pain → Promise → Lead Magnet → Value Ladder. Touch base 1-2x/week. Goal: first paying client by Week 6 | *Building* — "It's working. People are paying. The terror is quieting." | **Upfront + success-linked revenue share** |
 | **3** | **The Container** | Group setting. Multiple founders moving together. Monthly Genius Forging sessions. Peer support + guide | *Embodiment* — "This is my life, not a project." | **$277/mo** |
 
-**Pricing philosophy:** Start at $277 for first 2 paid clients. Easy yes, removes friction. "They have good budgets, but maybe that's where we start — it's an easy sell." Always go up in price from there.
+**Pricing philosophy:** $555 for the Ignition Session — a harmonious exchange that reflects the depth and precision of the triple delivery (unique product + unique marketing + unique distribution). The price filters for seriousness while remaining accessible to founders with savings.
 
 **Group container consideration (March 13, 2026):**
 
