@@ -875,6 +875,36 @@ This is not laziness or avoidance. This is the methodology applied to itself. Th
 
 This IS the flywheel. It doesn't require a plan. It requires delivery.
 
+**The Triple-Delivery Principle (discovered March 16, 2026):**
+
+> [!IMPORTANT]
+> **The Ignition Session delivers three things in one sitting: unique product, unique marketing, and unique distribution.**
+>
+> | Delivery | What the founder walks out with |
+> |----------|--------------------------------|
+> | **Unique Product** | Their uniqueness articulated with precision — the thing they've been doing for free, named and visible |
+> | **Unique Marketing** | Myth, Tribe, Pain, Promise, Method — the complete narrative architecture that attracts the right people |
+> | **Unique Distribution** | ONE laser-focused strategy: one channel, one tuning fork post, one lead magnet, one linear value ladder, one path from first non-paid client → first paid client → 10 paid clients → MRR → PMF |
+>
+> **Why this is one thing, not three:** The Copernican Inversion collapses them. When built from the founder's uniqueness, the product IS the articulated gift, the marketing IS the myth that emanates from that gift, and the distribution IS the channel where the tribe already lives. Three faces of one diamond.
+>
+> **Implication for positioning:** Most founders need three different consultants for product, marketing, and distribution. The Ignition Session replaces all three because they're not three problems — they're one problem refracted through three lenses.
+
+**The Copy Mirror Principle (discovered March 16, 2026 — from Karime's feedback):**
+
+> [!TIP]
+> **Tell them about THEIR life first. Your keys come later.**
+>
+> Karime reviewed the first LinkedIn post (Tuning Fork v4) and identified three places where the copy assumed context the reader doesn't have:
+> 1. **"Nothing has truly clicked"** → Imprecise. Some things DO work. The real feeling: spinning wheels + thinking more effort will fix it
+> 2. **"Succeeding at starting things that aren't yours"** → Creates confusion. The reader wonders "where am I succeeding? Where am I failing?" Don't split attention. Stay on ONE emotional line
+> 3. **"Already secretly running it"** → Too cryptic. The reader has no context for this claim. Needs explicit bridge: what you do for free IS the business, hiding in plain sight
+>
+> **The rule:** The person reading has ZERO prior context. You are telling them about their life — describing their experience so precisely they feel seen. Methodology, framework, and keys come AFTER recognition. Don't assume they will connect dots you haven't drawn.
+>
+> **Evidence:** Every phrase Karime flagged was a place where the founder's context leaked into the copy. The fix in each case: make the bridge explicit. Don't require the reader to make a cognitive leap that only makes sense to someone who already understands the Copernican Inversion.
+
+
 
 **The Simplicity × Leverage Principle (discovered Feb 24, 2026):**
 
