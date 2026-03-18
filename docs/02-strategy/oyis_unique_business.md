@@ -16,7 +16,8 @@
 | Pain | **v2.0** (5-layer slicer, sovereignty lens) | **9.9/10** | ✅ Landed |
 | Promise | **v1.0** (inverse pain, universal language) | **9.9/10** | ✅ Landed |
 | Lead Magnet | **v0.1** (pain card as DM) | — | 🔄 Ready to deploy |
-| Value Ladder | **v0.1** (4-step: Free → $555 → $5K → $500/mo) | — | 🔄 Ready to deploy |
+| Value Ladder | **v0.1** (4-step: Free → $444 → $555 → $5K → $500/mo) | — | 🔄 Ready to deploy |
+| River Step | **Candice DM sent** (March 17, live) | — | ✅ Sent |
 
 ## Unique Business Canvas
 
@@ -716,10 +717,24 @@ They become what they swore they'd never become: someone who gave up on the thin
 
 > Open your messenger. Write Alia one message. "Hey, I have a whole new layer of clarity." Whatever comes in the moment. That's it. The next tile lights up when you step on this one."
 
-**Targets (in order):**
+**Original targets (in order):**
 1. **Alia** — first DM
 2. **Dr. Sanal** — second
-3. **Arletter** — third
+3. **Arletter** — third (already had $550 session — confirmed client)
+
+**What actually happened (March 12-17):**
+
+1. Instead of individual DMs, Oyi posted an invitation to his Skool group "We Good Ova Here" (180 members). Invited people in cities with highest concentration (NY, DC, Atlanta, Texas, LA). 13 likes, no DMs. Spontaneous energy — broadcast, not surgical strike.
+2. **Candice** emerged as the ONE name during Session #4 (March 17). She'd been asking about bufo; Oyi had already told her to do his Tiny Challenge first. Warm, ready, not yet sessioned.
+3. **Oyi sent Candice a DM live on the call (March 17, 8:45pm CT).** River Step complete.
+
+> "What up Candice, long time no talk. I got something that I wanted to share with you and you were on my mind. I'm going through it myself and you were the first person that came up when my coach was talking to me so let me know a good time to connect and let's talk. Peace."
+
+**Named people (updated):**
+1. **Candice** — River Step sent ✅ (March 17, live)
+2. **Alia** — next
+3. **Dr. Sanal** — after Alia
+4. **Arletter** — already sessioned ($550)
 
 ---
 
@@ -794,5 +809,50 @@ This is the moment the session earned its existence. The shadow — "He heals pl
 
 ---
 
-*Ogi's Unique Business v1.1 — March 6, 2026*
-*First Ignition session. Shadow landed. Methodology validated. Artifacts at first iteration.*
+### Session #4 — Re-Confirmation + River Step (March 17, 2026)
+
+**Date:** March 17, 2026
+**Duration:** ~40 min
+**Facilitator:** Alexander Konstantinov
+**AI:** Antigravity (Claude)
+
+**Purpose:** Re-confirm all artifacts after 3 days of distance. Execute River Step.
+
+**Re-confirmation scores:** All artifacts read aloud by Oyi. All confirmed at 9.9+ precision. Emotional response: "I don't want to start crying." "This just makes me so proud." The precision survived time — it's settling into bone.
+
+**Key signals captured:**
+
+| Signal | What it means |
+|--------|---------------|
+| "I can put this in a non-profit and just help communities around the country like this" | Scale vision awakening — the gift wants to go wide |
+| "I'm just gonna do an inner child Monday, baby, or inner child Friday" | Format ideas emerging naturally — the container is forming itself |
+| "I see the God in you" (namaskar) | Deepening of the myth: the inner child IS the God in you. Healing the inner child = seeing God in someone. Namaskar = "the light in my soul bows to the light in your soul" |
+| Podcasts feel RIGHT as channel | "People drop their guard." "I intimidate people sometimes." On a podcast, the host holds the frame, the guest delivers medicine. **Podcasts may be Oyi's primary distribution channel** — not LinkedIn, not DMs |
+|"The Tiny Challenge" book reference | 5-day challenge format: 30 min/day, days 1-4 drilling down, day 5 make an offer. Oyi was already using this framework with Candice before the session |
+| Skool group post (13 likes, no DMs) | Broadcast energy, not surgical. Good signal but different from the River Step |
+
+**River Step: COMPLETED.**
+- Candice DM sent live on call, 8:45pm CT
+- Phone down. Done.
+
+**Podcast channel insight (new — not yet in value ladder):**
+
+Oyi's natural distribution may not be DMs or social posts. His medicine lands best in CONVERSATION — drawn out by a host, not pitched by himself. Podcast appearances = Tier 0 lead magnet. People hear the medicine → DM him → he offers a session. The lead magnet isn't a card he sends — it's a podcast episode where HE is the lead magnet.
+
+> "You're such a good guest. You're so easy to interview. Your story is so crazy." — someone told Oyi this
+
+**Podmatch.com** — platform where guests pay to be matched with podcast hosts. Noted for after LinkedIn post (Alexander's advice: do the LinkedIn post and bios first, then podcasts).
+
+**Session learnings:**
+
+1. **3-day persistence test passed.** All artifacts survived time and distance at full precision. This is rare and confirms the architecture is real.
+2. **The River Step needed a live witness.** Oyi didn't send individual DMs after March 12 — he posted to a group instead (broadcast, not surgical). The 1:1 DM happened when Alexander held space for it live. The shadow resists the intimate reach-out; the broadcast feels safer.
+3. **Channel discovery: podcasts over posts.** Oyi's gift activates in live conversation more than in written posts. The Skool group post (13 likes, no DMs) vs. the live session energy confirms this. His marketing channel should lean into conversation formats.
+4. **"I see the God in you" = myth deepener.** The namaskar connection to inner child healing is a layer beneath the current myth. Not a new version — a rootstock that feeds the existing one.
+
+**Next:** Wait for Candice's reply. When she responds, schedule the Tiny Challenge (5 days, 30 min/day). That IS the first session.
+
+---
+
+*Oyi's Unique Business v2.1 — March 17, 2026*
+*Four sessions complete. All core artifacts at 9.9+. River Step sent live (Candice). Podcast channel discovered. Architecture complete — now in execution phase.*
