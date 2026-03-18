@@ -849,10 +849,24 @@ Oyi's natural distribution may not be DMs or social posts. His medicine lands be
 2. **The River Step needed a live witness.** Oyi didn't send individual DMs after March 12 — he posted to a group instead (broadcast, not surgical). The 1:1 DM happened when Alexander held space for it live. The shadow resists the intimate reach-out; the broadcast feels safer.
 3. **Channel discovery: podcasts over posts.** Oyi's gift activates in live conversation more than in written posts. The Skool group post (13 likes, no DMs) vs. the live session energy confirms this. His marketing channel should lean into conversation formats.
 4. **"I see the God in you" = myth deepener.** The namaskar connection to inner child healing is a layer beneath the current myth. Not a new version — a rootstock that feeds the existing one.
+5. **Methodology design = DNA explosion.** When AI mapped the 5-stage A-to-B journey from the existing artifacts (Name the Lie → Meet the Shadow → Meet the Inner Child → Restore the Car → Claim Sovereignty), Oyi had a breakthrough: "I didn't know we could design an opening session from all the artifacts we have." The artifacts aren't just diagnostic — they're the BLUEPRINT for the session itself.
+6. **The acupressure principle (Oyi's formula):** "Two ears, two eyes, one mouth. God's formula. You're supposed to listen and watch four times as much as you talk." In a session: press the point (deliver the insight), then HOLD SILENCE. Let them pour out. The medicine works when you stop talking.
+7. **Don't overgive.** "You could get punch drunk." Sometimes the first hit is enough. The session doesn't need to cover all five stages — sometimes naming the lie is the whole session. "$100 and just stop right here."
+8. **SPARK as universal container.** Oyi saw that this methodology works in business, tech, wellness — any setting. "This is why this formula works inside of SPARK." The gift is setting-agnostic.
+9. **Co-working spaces as natural venue.** Oyi's delivery mode: "I like three times a week at a co-work." He reads people naturally in shared spaces — the coder behind him, the zodiac sign conversation. 30-minute sessions by the pool. Writing on the window. The medicine happens in casual proximity, not scheduled formality.
 
-**Next:** Wait for Candice's reply. When she responds, schedule the Tiny Challenge (5 days, 30 min/day). That IS the first session.
+**New prospect:** **Eric** — "I want to talk to Eric right now. Eric needs one of these sessions."
+
+**Named people (updated):**
+1. **Candice** — River Step sent ✅ (March 17, live)
+2. **Eric** — next, identified during session
+3. **Alia** — on deck
+4. **Dr. Sanal** — on deck
+5. **Arletter** — already sessioned ($550)
+
+**Next:** Wait for Candice's reply. When she responds, schedule the Tiny Challenge (5 days, 30 min/day). Next session with Alexander: **Friday, March 21.** Oyi needs integration time + has a grant to work on.
 
 ---
 
 *Oyi's Unique Business v2.1 — March 17, 2026*
-*Four sessions complete. All core artifacts at 9.9+. River Step sent live (Candice). Podcast channel discovered. Architecture complete — now in execution phase.*
+*Four sessions complete. All core artifacts at 9.9+. River Step sent live (Candice). Podcast channel discovered. Session methodology designed from artifacts (DNA explosion). Architecture complete — now in execution phase.*

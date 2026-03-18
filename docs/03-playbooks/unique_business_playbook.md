@@ -904,6 +904,35 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 >
 > **Evidence:** Every phrase Karime flagged was a place where the founder's context leaked into the copy. The fix in each case: make the bridge explicit. Don't require the reader to make a cognitive leap that only makes sense to someone who already understands the Copernican Inversion.
 
+**The Artifacts-as-Blueprint Principle (discovered March 17, 2026 — from Oyi's session):**
+
+> [!IMPORTANT]
+> **The artifacts aren't just diagnostic — they're the BLUEPRINT for the founder's first session.**
+>
+> When Pain and Promise land at high precision (9.9+), the A-to-B journey maps directly into the session methodology:
+>
+> | Pain layer | → | Session stage | What happens |
+> |-----------|---|--------------|-------------|
+> | The lie they've been living | → | **Name the Lie** | Mirror their life back. "Here's what I see." |
+> | The shadow running right now | → | **Meet the Shadow** | Show where they're still living it. The cold plunge |
+> | The suppressed self | → | **Meet the [suppressed element]** | Bring them back to before. Who they were before the lie |
+> | The unnamed gift | → | **Restore the Gift** | Name it with precision. The thing they've been doing for free |
+> | The sovereign path | → | **Claim Power** | First step toward building from the gift |
+>
+> **Why this works:** Each pain layer inverts into a transformation stage. The founder doesn't need to invent a methodology — the methodology IS the inversion of the pain, delivered in sequence. The artifacts write the session.
+>
+> **Evidence:** Oyi saw the 5-stage journey mapped from his Pain and Promise artifacts and had a DNA explosion: "I didn't know we could design an opening session from all the artifacts we have." He immediately saw how to deliver this to his first prospect (Candice) as a 5-day Tiny Challenge (30 min/day).
+
+**The Acupressure Principle (discovered March 17, 2026 — Oyi's formula):**
+
+> [!TIP]
+> **Deliver the insight, then HOLD SILENCE. The medicine works when you stop talking.**
+>
+> Oyi: "Two ears, two eyes, one mouth. God's formula. You're supposed to listen and watch four times as much as you talk."
+>
+> In a session: press the point (name the lie, mirror the shadow), then go silent. Let them pour out. Don't overgive — "you could get punch drunk." Sometimes naming the lie IS the whole session. The founder's instinct is to keep going, keep adding value, keep talking. The medicine is in the silence after the hit.
+>
+> **Corollary: don't overgive.** The session doesn't need to cover all stages. Sometimes one precision hit at the right pressure point is worth more than a complete journey. Know when to stop.
 
 
 **The Simplicity × Leverage Principle (discovered Feb 24, 2026):**
