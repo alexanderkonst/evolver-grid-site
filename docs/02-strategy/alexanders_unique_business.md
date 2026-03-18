@@ -999,6 +999,26 @@ Stanford wine study: same wine, different price labels. The higher-priced wine d
 | **MATCH** | Match your gift to a market that needs it NOW (Founder-Market Fit) |
 | **MOVE** | 30-day action plan to first revenue |
 
+#### Pain → Session Blueprint (discovered March 17, 2026)
+
+> [!IMPORTANT]
+> **The artifacts write the session.** Each pain layer maps to a stage of the Ignition Session. The methodology doesn't need to be invented — it's encoded in the Pain and Promise artifacts.
+
+| Pain layer (Meta-Segment) | → | Session stage | What happens in the Ignition Session |
+|--------------------------|---|--------------|--------------------------------------|
+| **The Lie:** "My unique business is unrealistic. Serious business = market-first" | → | **MAP: Name the Lie** | Two-Question Seed. Q1 answer already contains their business (Möbius). Hold the mirror: "You just described your entire business in 60 seconds. You already know" |
+| **The Loop:** Build → coach → corporate → repeat. Nothing sticks because every path asks them to amputate | → | **MAP: Break the Loop** | Show the STRUCTURAL condition: not three problems, ONE. A polymath without a container. Every path failed because each held only 1/3 of who they are |
+| **The Triple Mask:** Can't name what they are. "Too much and not enough" | → | **MATCH: Name the Gift** | Mirror their uniqueness with Appleseed + Excalibur precision. "You're not three things — you're ONE thing refracted through three lenses. HERE is the one thing" |
+| **The Shadow:** See the pattern in everything except themselves. The cobbler's shoes | → | **MATCH: Show the Shadow** | Name the recursive inversion specific to THEIR segment. "You transform others but can't transform your own container." The cobbler sees it for the first time |
+| **Signal Death:** "I may not survive believing in myself one more time and being wrong" | → | **MOVE: Restore the Signal** | The Copernican Inversion lands. "You ARE the PMF." The grind is a lie. Your uniqueness IS your business. First step: ONE DM to ONE person. Self-trust restored because the signal now has a NAME |
+
+**What makes this Alexander's methodology (not anyone else's):**
+
+1. **Mirror, don't advise.** The answer is in their first 60 seconds. You reorganize what they said until they see the pattern they couldn't see from inside
+2. **The pain at 9.95 IS the selling.** The pain card does the work. Bodily recognition = sale made. They need to be FOUND, not convinced
+3. **Triple Delivery in one sitting.** Product (uniqueness named), Marketing (myth + pain + promise), Distribution (one channel, one strategy). Three consultants collapsed into 90 minutes — because they were never three things
+4. **The Copernican Inversion is structural, not motivational.** Not "believe in yourself" — a correction of orientation. Like Copernicus: the sun didn't move. Your perspective did
+
 ---
 
 ### 11. Proof (Embodied Credibility)

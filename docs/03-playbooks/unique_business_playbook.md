@@ -934,6 +934,23 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 >
 > **Corollary: don't overgive.** The session doesn't need to cover all stages. Sometimes one precision hit at the right pressure point is worth more than a complete journey. Know when to stop.
 
+**Same Principle, Different Medicine (discovered March 17, 2026 — Alexander × Oyi comparison):**
+
+> [!NOTE]
+> **The Artifacts-as-Blueprint principle produces unique session architectures for each founder — same structural logic, completely different medicine.**
+>
+> | | **Alexander's Ignition Session** | **Oyi's Tiny Challenge** |
+> |---|---|---|
+> | **Lie named** | "Serious business = market-first, not me-first" | "To succeed you must grow up" |
+> | **What's mirrored** | The polymath gift they can't see from inside | The inner child who was dethroned |
+> | **What's restored** | Signal trust — "I AM the PMF" | Sovereignty — "the child IS the sovereign" |
+> | **Session mechanism** | Two Questions → Möbius → Mirror → Copernican Inversion | Storytelling → DNA explosion → inner child recognition |
+> | **The metaphor** | "THE MIRROR — can't read the label from inside the jar" | "THE CAR — get the rust off, restore to original form" |
+> | **Delivery style** | Mirror — reorganize what they said until they see the pattern | Acupressure — press the point, hold silence, let them pour |
+>
+> **The structural identity:** Both sessions follow the same arc (Name the Lie → Meet the Shadow → Name the Gift → Restore → Claim Power). But the CONTENT of each stage is completely different because it comes from the founder's own Pain and Promise artifacts. The principle is universal. The medicine is unique.
+>
+> **Implication for the playbook:** When a founder completes Pain and Promise at 9.9+ precision, their session methodology IS already written. The facilitator's job is to help them see it — which is itself an application of the same principle (mirroring the pattern they can't see from inside).
 
 **The Simplicity × Leverage Principle (discovered Feb 24, 2026):**
 
