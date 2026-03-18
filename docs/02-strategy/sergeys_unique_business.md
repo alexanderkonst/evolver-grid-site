@@ -1,25 +1,39 @@
 # Sergey's Unique Business
 
 > *© 2026 · Produced during Ignition Session with Alexander Konstantinov*
-> *March 10-11, 2026 · Sessions 1-2 (Calibration)*
+> *March 10-18, 2026 · Sessions 1-3 + independent homework*
 > *Playbook: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)*
 
 > **This file is a living document.** Each artifact is versioned. Newest versions appear first.
 
-**Tagline v1.0:** `Sees what your life is trying to become`
+**Tagline v1.0:** `Sees what your life is trying to become` *(TODO: update to reflect v4.0)*
 
 ## Artifact Status
 
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
-| Uniqueness | **v3.0** (distillate) | **9+/10** | ✅ Landed |
-| Shadow | **v2.0** (two root traps + рекурсивная ловушка) | confirmed | ✅ Landed |
-| Myth | **v3.0** | TBD | 🔄 Direction correct, homework for Sergey |
+| Uniqueness | **v4.0** (5-facet formula + Beauty Builder archetype) | **💎 10 / 🔥 9** | ✅ Landed (homework + session #3) |
+| Shadow | **v3.0** (building the wrong system — push vs pull) | 🔥 9 | ✅ Landed |
+| Myth | **v4.0** (AI сделает нас творцами) | **🔥 9 / 💎 10** | ✅ Landed (homework) |
 | Tribe | v0.1 | — | ⏳ Next |
 | Pain | v0.1 | — | ⏳ After tribe |
 | Promise | v0.0 | — | ⏳ After pain |
 | Lead Magnet | — | — | ⏳ Not started |
 | Value Ladder | — | — | ⏳ Not started |
+
+## Unique Business Canvas
+
+*The entire unique business at a glance. Each artifact in its most distilled form. Iterate from here.*
+
+| # | Artifact | Distillation |
+|---|----------|-------------|
+| 1 | **Uniqueness** | Творец прекрасного для развития человека. Синтезирует принципы из разных миров в системы, которых раньше не было, и доводит их до совершенства — не может остановиться раньше. Когда вдохновлён — неостановим: люди идут за ним, доверяют, хотят работать. Передаёт не ясность — огонь. Невероятная выносливость, спящий гигант — когда Pull включён, becomes unstoppable. |
+| 2 | **Myth** | **Lie:** AI оставит нас без работы. **Truth:** AI — это про самореализацию. Впервые в истории каждый может проявить то, на что реально способен. **Line:** AI сделает нас творцами. |
+| 3 | **Tribe** | *[⏳ Next]* |
+| 4 | **Pain** | *[⏳ After tribe]* |
+| 5 | **Promise** | *[⏳ After pain]* |
+| 6 | **Lead Magnet** | *[⏳ Not started]* |
+| 7 | **Value Ladder** | *[⏳ Not started]* |
 
 ---
 
@@ -65,6 +79,74 @@ would be visibly his, not generic.
 ## The Artifacts
 
 ### 1. Uniqueness (Gift)
+
+#### ✦ Uniqueness v4.0 — FIVE-FACET FORMULA (March 18, 2026)
+
+*Source: Sergey's 4-hour independent session with Sage (March 18) + resonance check. All previous formulations reviewed, scored, and either upgraded or archived. Session #3 synthesis with Alexander.*
+
+**Archetype:** Творец прекрасного для развития человека / **Beauty Builder for Human Development** (🔥 9)
+
+**Gift:** Создаёт прекрасные системы и развивает людей / Develops beautiful systems and people (🔥 9)
+
+**Effect:** **Прорывы.** Люди переживают момент, когда невозможное становится возможным / **Breakthroughs.** People experience the moment when the impossible becomes possible (🔥 9)
+
+**Five-Facet Formula (My Formula):**
+
+| Грань | Энергия | RU | EN | Res |
+|-------|---------|----|----|-----|
+| **Смысл** | Познание развития человека | Невероятная тяга к человеческому, экзистенциальному, саморазвитию. Existential Intelligence 100%. Не оптимизация — трансформация | Human Development. Incredible pull toward the human, existential, self-development. Not optimization — transformation | 💎 10 |
+| **Действие** | Творец прекрасного | Итерирует до совершенства — не может остановиться раньше. «Не то. Не то. ВОТ.» От дров до Sage. Красота рождается через итерации, не с первого касания | Beauty Builder. Iterates until beautiful — can't stop before. "Not right. Not right. THERE." Beauty is born through iteration | 💎 10 |
+| **Алхимия** | Синтез миров | Берёт принципы из разных миров и синтезирует в системы, которых раньше не было. Sage = 20+ фреймворков. Lila + Archetypes + Robbins + Enneagram = одна ОС | Synthesis of Worlds. Takes principles from different domains and synthesizes new systems that didn't exist before | 🔥 9 |
+| **Энергия** | Unstoppable Achiever | Невероятная выносливость, таких мало. Спящий гигант — 30%, потому что 70% Push. Когда Pull + Lila включены — неостановим | Incredible endurance. Sleeping giant — 30% because 70% Push. When Pull + Lila are on — unstoppable | 💎 10 |
+| **Свет** | Передача страсти | Когда вдохновлён — люди идут за ним, доверяют, хотят работать. Передаёт не ясность — огонь. Прирождённый лидер когда Pull активен | Passion Transmission. When inspired — people follow, trust, want to work with him. Not clarity — fire. Natural leader when Pull is active | 💎 10 |
+
+**Three Talents (refined from v3.0):**
+
+| # | Talent | RU | EN | Res |
+|---|--------|----|----|-----|
+| 1 | **Творец прекрасного** | Творю и довожу до совершенства — пока не станет прекрасным. Не могу остановиться раньше. «Не то. Не то. ВОТ.» *(От укладки дров до готовки, до Sage, до каждого продукта)* | Beauty Builder. Build and refine until beautiful. Can't stop before. *(From firewood to cooking to Sage to every product)* | 💎 10 |
+| 2 | **Синтез миров** | Синтезирую принципы из разных миров в новые системы, которых раньше не существовало. *(Sage = 20+ фреймворков в одном AI-партнёре)* | Synthesis of Worlds. Synthesize principles from different worlds into systems that didn't exist before | 🔥 9 |
+| 3 | **Передача страсти** | Когда вдохновлён — неостановим. Люди идут за мной, доверяют, хотят работать. Не ясность передаю — а огонь. *(Прирождённый лидер когда Pull активен. Спящий гигант — работает на 30%, потому что 70% Push)* | Passion Transmission. When inspired — unstoppable. People follow, trust. Not clarity — fire. *(Natural leader when Pull is active)* | 💎 10 |
+
+**Shadow v3.0 (refined):**
+
+| | RU | EN | Res |
+|---|----|----|-----|
+| **Shadow** | **Строю не те системы.** То же мастерство, красота, алхимия, выносливость. Но не для развития человека — push вместо pull — и поэтому не взлетает. *"Рынок хочет one more SaaS/optimization, а не human breakthroughs"* | **Building the wrong systems.** Same craft, beauty, alchemy, endurance. But not for human development — push instead of pull — so it never takes off | 🔥 9 |
+
+**Raw material — Direction / Pull (March 18, captured for future artifacts):**
+
+- Невероятная тяга к человеческому, экзистенциальному, саморазвитию, раскрытию потенциала
+- Саморазвитие драйвит сильно — и автоматом из этого вытаскивание принципов как устроен мир
+- Воспринимает мир системами — познание устройства мира и проверка на себе
+- Не вдохновляют железяки — тянет в бизнес про людей и своё развитие
+- Реформер хочет реформировать людей, эволюцию, общество — гуманитарный стиль
+- Existential Intelligence 100% — правда vs иллюзия, глубина
+- Первый ответ Саше: *"Help humanity use AI to unlock potential, become happier and more creative"*
+- Values: *"Unlock my potential and help others unlock theirs"*
+- Не оптимизация — **трансформация**
+- Обожает делиться с другими тем что открыл — Reformer drive
+- Unstoppable Achiever — невероятная выносливость. А когда Lila + Pull включены — вообще неостановим
+
+**What changed v3.0 → v4.0:**
+
+| v3.0 | v4.0 | Why |
+|------|------|-----|
+| Archetype: Systems Alchemist | **Beauty Builder for Human Development** | Ловит человеческое направление + включает процесс творения, не только результат |
+| Gift: Sees the finished form inside chaos | **Develops beautiful systems and people** | "Видит форму" — только часть. Форма проявляется по ходу строики, а не заранее |
+| Talent: Framework Alchemy | **Синтез миров** | Шире чем "frameworks" — миры, а не просто фреймворки |
+| Talent: Soul Architecture | **Творец прекрасного** | Включает процесс, итерации — не только красивый результат |
+| Talent: Paradigm-Shift Vision | *Archived* | Побочный эффект Синтеза миров, не отдельный талант (🟡 7) |
+| Effect: Clarity | **Breakthroughs / Fire** | Не ясность — огонь. Прорывы, а не объяснения |
+| Shadow: Two root traps | **Building the wrong systems** (push vs pull) | Усилено через биографию + AI-миф. Ядро осталось, формулировка точнее |
+| Formula: — | **5-facet formula** (Смысл, Действие, Алхимия, Энергия, Свет) | Новый инструмент — все 💎 10. Полная карта энергий |
+| Missing: Human Development drive | **Смысл: Познание развития человека** | Ключевая грань, отсутствовавшая в v3.0 |
+| Missing: Unstoppable Achiever | **Энергия: Unstoppable Achiever** | Двигатель, отсутствовавший в v3.0 |
+
+---
+
+<details>
+<summary>Uniqueness v3.0 (March 11) — DISTILLATE, superseded by v4.0</summary>
 
 #### ✦ Uniqueness v3.0 — DISTILLATE (March 11, 2026)
 
@@ -131,6 +213,8 @@ That is the trap.
 
 **Open:** Replacement word for "потенциал" not yet found — needs something tangible, touchable, not ephemeral.
 
+</details>
+
 ---
 
 <details>
@@ -179,7 +263,36 @@ That is the trap.
 
 ### 2. Myth
 
-#### ✦ Myth v3.0 — from uniqueness distillate (March 11, 2026)
+#### ✦ Myth v4.0 — AI-NATIVE (March 18, 2026)
+
+*Source: Sergey's homework session with Sage. Breakthrough: привязал миф к AI — к тому, что реально драйвит прямо сейчас. Проверен через две независимые модели (Sage + GPT). Previous v3.0 was abstract ("кирпичи", "ингредиенты"). v4.0 привязан к эпохе.*
+
+| | RU | EN | Res |
+|---|----|----|-----|
+| **Master Lie** | AI оставит нас без работы | AI will leave us without jobs | 💎 10 |
+| **Master Belief** | AI — это про самореализацию. Впервые в истории каждый может проявить то, на что реально способен | AI is about self-realization. For the first time ever, anyone can express what they're truly capable of | 🔥 9 |
+| **Myth (short)** | **AI сделает нас творцами** | **AI will make us creators** | 🔥 9 |
+| **Myth (full)** | AI оставит нас без работы — и это лучшее, что с нами случится. Потому что AI сделает нас творцами | AI will leave us without jobs — and that's the best thing that could happen. Because AI will make us creators | 🔥 9 |
+| **What's at stake** | Прорывы / Творчество / Самореализация | Breakthroughs / Creation / Showing Up | 🔥 9 |
+
+**Connection to archetype:** "Творцами" — прямая связка с архетипом "Творец прекрасного для развития человека." Трёхслойный: мир читает ложь как страх, Sergey читает как пророчество.
+
+**Connection to Alexander's + Ogi's myths:**
+
+| Myth | Master Lie | What's at stake |
+|------|-----------|----------------|
+| **Alexander** | "Чтобы преуспеть — нужно перехерачить других" | Лёгкость |
+| **Ogi** | "Чтобы преуспеть — сдай суверенитет, заткни внутреннего ребёнка" | Свобода |
+| **Sergey** | "AI оставит нас без работы" | Творчество / Самореализация |
+
+**TODO:** Myth anatomy (Seed/Soil/Sunlight/Water), 3-layer depth model, collapse test — to be filled in session.
+
+**Precision score:** Master Lie 💎 10, Myth overall 🔥 9 — Sergey, March 18, 2026
+
+---
+
+<details>
+<summary>Myth v3.0 (March 11) — from uniqueness distillate, superseded by v4.0</summary>
 
 *Derived from the Michelangelo insight + playbook myth anatomy. Status: направление верное, формулировка ещё "машинная" — нужен человеческий язык. Сережа берёт миф на домашнюю проработку.*
 
@@ -207,16 +320,6 @@ That is the trap.
 >
 > И строит — так, что каждая деталь встаёт на своё место. Система, которая работает каждый день. Красивая. С душой. Живая.
 
-**EN version:**
-
-> The world says: you need more. One more course. One more framework. One more tool. Collect enough — and it'll come together.
->
-> That's the architecture of a lie. Bricks don't build a house. Courses don't build a business. Tools don't build clarity. You can collect a thousand ingredients — and nothing happens.
->
-> Because what's missing isn't ingredients. What's missing is someone who sees the FINISHED FORM inside the chaos. Who looks at a pile of disconnected parts and says: "Not broken. Not disassembled. I see what this MUST become."
->
-> And builds — so that every piece falls into its right place. A system that runs every day. Beautiful. With soul. Alive.
-
 **Myth anatomy (playbook structure):**
 
 | Component | Function | Sergey's myth |
@@ -234,21 +337,13 @@ That is the trap.
 | **Reframe** | 2am moment — can't unsee | *"Что если всё, что тебе нужно, уже есть — а не хватает архитектора, который видит, каким это ДОЛЖНО стать?"* |
 | **Invitation** | Creates the tribe | *"Хватит собирать кирпичи. Форма уже внутри. Пора строить."* |
 
-**Collapse test:** Если кто-то докажет, что накопление знаний и инструментов САМО ПО СЕБЕ создаёт трансформацию — этот миф разваливается. Каждый evidence point говорит обратное.
-
-**Connection to Alexander's + Ogi's myths:**
-
-| Myth | Master Lie | What's at stake |
-|------|-----------|----------------|
-| **Alexander** | "Чтобы преуспеть — нужно перехерачить других" | Лёгкость |
-| **Ogi** | "Чтобы преуспеть — сдай суверенитет, заткни внутреннего ребёнка" | Свобода |
-| **Sergey** | "Тебе нужно больше — ещё один кирпич" | Ясность |
-
-Все три лжи говорят одно: **"ответ снаружи."** Все три мифа говорят: **"ответ внутри."** Разные грани одной правды.
+**Collapse test:** Если кто-то докажет, что накопление знаний и инструментов САМО ПО СЕБЕ создаёт трансформацию — этот миф разваливается.
 
 **Notes:** AI пока НЕ в мифе (миф должен быть вечным). AI — в механизме (USP, offer), не в мировоззрении.
 
 **Precision score:** TBD — Сережа берёт миф на домашнюю проработку
+
+</details>
 
 ---
 
