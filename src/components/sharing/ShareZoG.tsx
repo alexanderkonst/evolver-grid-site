@@ -21,18 +21,16 @@ const buildShareText = (params: {
   archetype?: string;
   profileUrl: string;
 }) => {
-  const { archetypeName, tagline, primeDriver, talents, archetype, profileUrl } = params;
+  const { archetypeName, tagline, primeDriver, talents, profileUrl } = params;
 
-  let text = `My genius is to be a ${archetypeName}.\n"${tagline}"\n\n`;
+  let text = `I just discovered my Zone of Genius in 15 minutes.\n\n`;
+  text += `My genius: ${archetypeName}\n"${tagline}"\n\n`;
 
   if (talents && talents.length > 0) {
-    text += `My top talents: ${talents.join(" • ")}\n`;
+    text += `Top talents: ${talents.join(" · ")}\n`;
   }
-  text += `My prime driver: ${primeDriver}\n`;
-  if (archetype) {
-    text += `My archetype: ${archetype}\n`;
-  }
-  text += `\nDiscover yours for free at ${profileUrl}`;
+  text += `Prime driver: ${primeDriver}\n`;
+  text += `\nDiscover yours for free → ${profileUrl}`;
 
   return text;
 };
