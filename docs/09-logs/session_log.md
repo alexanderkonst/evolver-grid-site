@@ -2207,7 +2207,7 @@ The roast methodology proved essential: two meta-roasts in one session uncovered
 | File | What changed |
 |------|-------------|
 | `alexanders_unique_business.md` | TF insights, video content design v2, 22-beat sequence, pricing philosophy v2 |
-| `breakthrough_inventory.md` | Domain 12 (12a-12e): hamster wheel, fog, mirror, binary choice, lived Möbius |
+| `phase_shift_technology_library.md` | Domain 12 (12a-12e): hamster wheel, fog, mirror, binary choice, lived Möbius |
 | `unique_business_playbook.md` | Step 2 updated (hamster wheel/fog/readiness illusion), NotebookLM methodology template, pricing philosophy |
 | `video_source_text.md` | NEW — full 22-beat source text (132 dimensions) for NotebookLM lead magnet |
 
@@ -2366,7 +2366,7 @@ AI's "ship fast" meta-roast was wrong. Alexander's correction stands: this is un
 
 | File | What changed |
 |------|-------------|
-| `breakthrough_inventory.md` | Domain 13 (13a-13e): Effort vs. Clarity, compression, practicing medicine publicly |
+| `phase_shift_technology_library.md` | Domain 13 (13a-13e): Effort vs. Clarity, compression, practicing medicine publicly |
 
 ### What's Next
 
@@ -2685,7 +2685,7 @@ Three real blocks:
 
 | File | What changed |
 |------|-------------|
-| `breakthrough_inventory.md` | 6 new domains added (28-33): Structural Validation, Fractal Nestedness, Dual Prediction Engine, Quantum Collapse, Per-Founder Holomaps, Agency as Gradient |
+| `phase_shift_technology_library.md` | 6 new domains added (28-33): Structural Validation, Fractal Nestedness, Dual Prediction Engine, Quantum Collapse, Per-Founder Holomaps, Agency as Gradient |
 | `morphogenetic_navigation.md` | 3 new sections: Self-Aware System (AI capabilities table), Per-Founder Holomaps (product feature), Autodidact Convergence |
 | `morphogenetic_holomap.md` | Updated with Day 11 delta, Alexa addition, 5-founder status |
 | `roadmap.md` | Updated current status, March goals, new roadmap items |
@@ -2744,7 +2744,7 @@ Three real blocks:
 
 | File | What changed |
 |------|-------------|
-| `breakthrough_inventory.md` | 5 refinements + 2 new domains (34: Holonic Dashboard, 35: Triple-Delivery Session). Total: 35 domains |
+| `phase_shift_technology_library.md` | 5 refinements + 2 new domains (34: Holonic Dashboard, 35: Triple-Delivery Session). Total: 35 domains |
 | `module_taxonomy.md` | v3.1: 3 system-level modules, Holonic Dashboard architecture, 28 modules / 158 submodules |
 | `alexanders_unique_business.md` | Master Tuning Fork v4 (LinkedIn post, first public deployment), Value Ladder updated ($555), v3→v4 changelog |
 

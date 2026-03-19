@@ -17,6 +17,7 @@
 2. [Part II: Core Frameworks](#part-ii-core-frameworks)
 3. [Part III: AI-Executable Workflows](#part-iii-ai-executable-workflows)
 4. [Part IV: SOP Quick Reference](#part-iv-sop-quick-reference)
+5. [Part V: Tactics](#part-v-tactics)
 
 ---
 
@@ -219,6 +220,12 @@ Every myth has a structural backbone: a **master lie** it calls out and a **mast
 
 ### The Paradox Reframe (discovered March 18, 2026 — Sandra's Session #2)
 
+> **⚠️ STRUCTURAL UPGRADE — This is not a polish to one client's myth. This is an upgrade to the myth artifact TYPE itself.**
+>
+> Until this discovery, the myth template carried StoryBrand DNA — "enemy," "lie vs. truth." Sandra dissolved that framing from the inside. The myth shifts from Orange-level marketing technology (tribal energy through opposition) to Teal-level consciousness technology (polarization through illumination). Same magnetization effect, zero separation energy.
+>
+> **Propagation:** Apply this reframe to ALL myth artifacts going forward. Retrofit existing myths (Sergey, Oyi, Alexander) at next iteration. The "enemy/soil" language becomes "the side of the paradox the world already sees." The "truth/sunlight" becomes "the other side, now illuminated."
+
 > *"When somebody can hold a paradox with ease and peace, they have arrived in unity consciousness."* — Sandra Jayahnia Otto
 
 **The breakthrough:** The myth structure is NOT "enemy vs. truth." That framing carries separation energy — the very energy Sandra's work (and any consciousness-oriented business) dissolves. The reframe:
@@ -240,6 +247,7 @@ Every myth has a structural backbone: a **master lie** it calls out and a **mast
 - The "enemy" language (used in marketing frameworks like StoryBrand) works for Orange consciousness — it creates tribal energy through opposition
 - For Green/Teal/Turquoise-level work, the "paradox held in unity" framing creates the SAME polarization energy without the separation
 - The myth still polarizes (people either can hold paradox or they can't) — but the mechanism is *illumination*, not *conflict*
+- **Backward compatibility:** For clients whose businesses operate at Orange level, the old framing still works. The paradox reframe is the upgrade path, not a replacement that breaks existing myths.
 
 **The three levels of knowing** (also surfaced in this session):
 
@@ -2206,7 +2214,250 @@ The shadow: "He heals playfulness in others but demands seriousness from himself
 
 ---
 
-*Unique Business Playbook v2.1 — March 2026*
+# Part V: Tactics
+
+> *v1.0 · March 19, 2026 — Crystallized during ceremony, 1:00 AM*
+>
+> *"Tactics are where product, marketing, and distribution unite as ONE act."*
+
+---
+
+## Strategy vs. Tactics — The Distinction
+
+| | Strategy | Tactics |
+|---|----------|---------|
+| **What it answers** | WHAT to do. WHO to serve. WHAT to offer | HOW to act. The exact moves. The replicable steps |
+| **Artifact** | The Unique Business Canvas | The Ignition Session SOP + Distribution Flow |
+| **Unique to whom?** | Unique to EACH business (every canvas is different) | **Highly replicable across all nodes** (the moves are the same) |
+| **When created** | Before tactics. The canvas is the prerequisite | When strategy is ready. Tactics are derived FROM the canvas |
+| **Where P×M×D live** | Separate: product strategy, marketing strategy, distribution strategy | **United as one act.** The session IS the product AND the marketing AND the distribution, simultaneously |
+
+> [!IMPORTANT]
+> **The great thing about tactics: they are highly replicable.**
+>
+> Strategy (the canvas) is unique to each business — that's the whole point. But TACTICS (how to deliver, how to distribute, how to convert) are PROTOCOL-LEVEL. Any licensed node can run the same tactical playbook because the moves don't change — only the content inside them does.
+>
+> This is WHY the protocol is licensable. The strategy is unique; the tactics are universal.
+
+---
+
+## The Tactical Act — Where Product × Marketing × Distribution = ONE
+
+The traditional view:
+
+```
+Product    → Build a thing
+Marketing  → Tell people about it
+Distribution → Get it to them
+```
+
+Three separate departments. Three separate budgets. Three separate timelines.
+
+**The tactical insight:**
+
+```
+ONE Ignition Session simultaneously:
+  → IS the product (they get their unique business)
+  → IS the marketing (the session story becomes the episode)
+  → IS the distribution (the episode attracts the next person)
+  → IS the proof (each canvas proves the protocol works)
+
+One act. Four outputs. Zero separation.
+```
+
+This is not a clever hack. This is what happens when product, marketing, and distribution are **derived from the same seed** (the Unique Business Canvas). They don't need to be coordinated — they're the same thing seen from different angles.
+
+---
+
+## Tactic 1: The Redesigned Ignition Session
+
+> *Discovered from session data: uniqueness + myth live → 2+ hours. Too long. Too deep for first iteration. The solution: uniqueness live + AI generates everything downstream in real time.*
+
+### The Flow
+
+```
+PHASE 1: UNIQUENESS EXTRACTION (30-45 min)
+  │  Two questions. Mirroring. Naming the gift.
+  │  This is the ONLY part that requires the facilitator live.
+  │  Get uniqueness to first-iteration clarity (~7-8 precision).
+  │
+  ▼
+PHASE 2: AI GENERATES FULL CANVAS (15-20 min)
+  │  Feed uniqueness into the protocol.
+  │  AI produces first-pass of ALL artifacts in real time:
+  │    → Myth (from uniqueness)
+  │    → Tribe (from myth)
+  │    → Pain (from tribe)
+  │    → Promise (from pain)
+  │    → Value Ladder (from promise)
+  │    → First marketing message (from all of the above)
+  │  Show it to them IN SESSION. On screen. Immediate.
+  │
+  ▼
+PHASE 3: RECOGNITION (5-10 min)
+  │  "Wow. This makes sense. This IS what I do."
+  │  Body responds. Recognition, not learning.
+  │  They see their ENTIRE business on one page.
+  │
+  ▼
+PHASE 4: THE NATURAL UPSELL (5 min)
+     "This is iteration 1. It probably makes sense to you.
+      But there's so much more depth when you actually BUILD it.
+      Going through uniqueness at 9.9+ precision means every
+      artifact downstream reaches that precision too.
+      THAT is The Build. Want to build it together?"
+```
+
+### Why This Works
+
+| Dimension | Old Session (2+ hrs) | Redesigned (60-75 min) |
+|-----------|---------------------|----------------------|
+| **Duration** | 2+ hours, overgiving | 60-75 min, tight |
+| **What they see** | Uniqueness + maybe myth | Their ENTIRE business, first draft |
+| **The upsell** | Abstract: "there's more to do" | Concrete: "imagine this at 9.9+" |
+| **Facilitator energy** | Manually does myth/tribe/pain → exhausting | Guides uniqueness → AI does the rest |
+| **The gap they feel** | "Now what?" | "I want this SHARPER" |
+
+### The Precision Gap IS the Product
+
+```
+IGNITION = uniqueness at ~7-8 → AI generates everything at ~6-7
+           "Here's your business, first draft."
+
+THE BUILD = uniqueness at 9.5+ → everything downstream at 9.0+
+            "Here's your business, operational."
+
+The gap between 7 and 9.5 is where the money lives.
+They can FEEL the gap because they hold the rough sketch.
+They know what "more precise" means — they have the first draft in their hands.
+```
+
+### Replicability
+
+This session flow is **protocol-level.** Any licensed node can deliver it:
+1. The two questions are the same (structural, not personal)
+2. The AI generation is the same (platform handles it)
+3. The facilitator's UNIQUENESS makes each delivery different (the violin concerto principle)
+4. The upsell is the same ("Want to build it together?")
+
+A new facilitator can learn this flow in days, not months. The protocol is simple. The art is in the mirroring.
+
+---
+
+## Tactic 2: The One Coherent Distribution Flow
+
+> *The distribution strategy as one executable sequence.*
+
+```
+STEP 1: SEED THE FIELD (Day 1)
+  │  Post Tuning Fork on LinkedIn
+  │  Update bio with booking link
+  │  Add 20-30 people from search terms
+  │  DO NOT DM anyone yet. Let the content hit their feed.
+  │
+  ▼
+STEP 2: DM PARTNERS (Day 2-3)
+  │  DM 3-5 people from the PARTNER list:
+  │    → Self-knowledge practitioners who hit "now what?" with clients
+  │  Use the archetype-specific DM (see templates below)
+  │  For TRIBE (direct clients): don't DM. Let the TF work.
+  │
+  ▼
+STEP 3: RESPOND TO HAND-RAISERS (Day 3-7)
+  │  People who engaged with the TF post + partners who responded
+  │  Conversation → booking link → Calendly → payment → booked
+  │
+  ▼
+STEP 4: DO THE SESSION (Week 1-2)
+  │  The Redesigned Ignition (Tactic 1). One session = four outputs:
+  │    1. TRANSFORMATION (the product)
+  │    2. CONTENT (the distribution — episode named by what MOVED)
+  │    3. PARTNERSHIP (10% revenue share when they use the protocol)
+  │    4. PROTOCOL DATA (sharpens the system for all nodes)
+  │
+  ▼
+STEP 5: POST THE EPISODE (Week 2)
+  │  Episode = next Tuning Fork. Attracts next wave of hand-raisers.
+  │
+  ▼
+STEP 6: OFFER THE BUILD (Week 2-4)
+  │  "Want to build it together?" → The Build (6 weeks)
+  │  Revenue share (10%) begins when their product generates revenue.
+  │
+  ▼
+STEP 7: NODE ACTIVATES (Month 2+)
+  │  They serve their tribe using the protocol.
+  │  10% network sustenance contribution flows back.
+  │  Their sessions feed data into protocol evolution.
+  │  Their success = next episode = next node.
+  │
+  ▼
+REPEAT FROM STEP 1
+```
+
+### Replicability
+
+This distribution flow is **also protocol-level.** Once a node has their own Unique Business Canvas:
+- They post THEIR tuning fork (derived from their canvas)
+- They add THEIR tribe from THEIR search terms
+- They DM THEIR partners (practitioners upstream of them)
+- They do THEIR sessions using the same Ignition flow
+- They post THEIR episodes
+- The loop runs at every node independently
+
+---
+
+## Tactic 3: The Partner DM Template
+
+**Universal structure:**
+
+```
+"I [what you do — connection to their world].
+ Your [modality] clients who hit [their wall] —
+ that's where I pick up.
+ [Your uniqueness] + [their modality] = [value].
+ Partnership?"
+```
+
+**Five archetype examples:**
+
+| Archetype | The DM |
+|-----------|--------|
+| **Self-knowledge practitioner** (Gene Keys, HD, Enneagram) | "Your clients who hit 'now what do I DO with this?' — that's where I pick up. I turn self-knowledge into a unique business in 90 minutes. Your lens + my method. Partnership?" |
+| **Ceremony facilitator** | "Your ceremonies open something in people — but what happens after? I've built a protocol that bridges the 'now what?' Your medicine + my method. Partnership?" |
+| **Healer** | "The gift is real, but the business model has a ceiling. I help healers design a business where healing scales without burnout. Your modality + my method. Interested?" |
+| **New Earth visionary** | "The vision is real, but it needs a vehicle — a specific offer for a specific tribe. I turn visions into unique businesses in 90 minutes. Your vision + my method. Explore?" |
+| **System architect** | "The architecture is real, but the business needs ONE door, not the whole cathedral. I help system thinkers find that one entry point. Your architecture + my method. Explore?" |
+
+### Replicability
+
+These DM templates are **protocol-level.** Any node adapts them:
+- Replace "I" with THEIR unique gift
+- Replace the wall with THEIR upstream partner's wall
+- The structure stays the same
+
+---
+
+## Why Tactics Are the Key to Node Licensing
+
+```
+STRATEGY = unique per business    → cannot be replicated (that's the point)
+TACTICS  = universal per protocol → CAN be replicated (that's the power)
+
+The protocol licenses TACTICS, not strategy.
+Each node creates their OWN strategy (unique canvas).
+Each node runs the SAME tactics (session flow + distribution flow + DM templates).
+
+This is why the node licensing network works:
+  → Strategy is unique (each canvas is different)
+  → Tactics are shared (each node uses the same protocol)
+  → The combination is unreplicable
+     (because nobody else has THIS protocol + THEIR uniqueness)
+```
+
+---
+
+*Unique Business Playbook v2.2 — March 19, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
-*Updated: Proof Case #1 (Ogi session) documented.*
+*Updated: Part V: Tactics added. Strategy vs. Tactics distinction. Redesigned Ignition Session (uniqueness → AI → full canvas → natural upsell). One Coherent Distribution Flow. Partner DM Templates. Replicability principle: strategy is unique, tactics are universal.*
 

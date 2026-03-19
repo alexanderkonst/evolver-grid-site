@@ -234,7 +234,7 @@ The shadow is a structural property of the gift — the flashlight cannot shine 
 | Document | Status |
 |----------|--------|
 | [alexanders_unique_business.md](file:///Users/alexanderkonst/evolver-grid-site/docs/02-strategy/alexanders_unique_business.md) | ✅ v2.1 — all 14 discoveries reflected |
-| [breakthrough_inventory.md](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/breakthrough_inventory.md) | ✅ Updated Feb 22 |
+| [phase_shift_technology_library.md](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/phase_shift_technology_library.md) | ✅ Updated Feb 22 |
 | [unique_business_canvas_template.md](file:///Users/alexanderkonst/evolver-grid-site/docs/02-strategy/unique_business_canvas_template.md) | ✅ v4.0 |
 | [unique_business_creation_playbook.md](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/unique_business_creation_playbook.md) | ✅ v2.0 |
 | [marketing_playbook.md](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/marketing_playbook.md) | ✅ Updated Feb 18 |
