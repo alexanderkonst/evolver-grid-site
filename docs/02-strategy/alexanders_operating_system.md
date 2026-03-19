@@ -335,7 +335,7 @@ The sidereal lunar cycle is 27.3 days — not 28, not 30. The Pattern of 27 (3³
 
 ## The Concentric Domains — February 2026
 
-> *See [breakthrough_inventory.md](../01-vision/breakthrough_inventory.md) and [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md)*
+> *See [phase_shift_technology_library.md](../01-vision/phase_shift_technology_library.md) and [unique_gift_philosophy.md](../01-vision/unique_gift_philosophy.md)*
 
 These are not separate skills. They are **concentric** — each one refracts through all the others. This is **concentric polymathy**, not a portfolio of excellences.
 

@@ -4,7 +4,7 @@
 > *Updated: March 14, 2026 · Day 11 (originally generated Day 10)*
 > *Holon: The Unique Business Methodology Emergence*
 
-> **Lineage:** [12-Perspective Framework](../01-vision/breakthrough_inventory.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → **This Instrument**
+> **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → **This Instrument**
 
 ---
 

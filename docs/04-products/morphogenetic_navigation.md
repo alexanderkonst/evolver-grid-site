@@ -4,7 +4,7 @@
 
 > *March 13, 2026 — The night the circles collapsed into quantum timing.*
 
-> **Lineage:** [Breakthrough Inventory](../01-vision/breakthrough_inventory.md) Domain 15 (12-Perspective Framework) + Domain 16 (Morphogenetic Navigation) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → This document.
+> **Lineage:** [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md) Domain 15 (12-Perspective Framework) + Domain 16 (Morphogenetic Navigation) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → This document.
 
 ---
 
@@ -180,7 +180,7 @@ It is the proof of concept.
 
 *Added: March 14, 2026 — from ChatGPT cross-session synthesis*
 
-> **Lineage:** [Agency as Gradient](../01-vision/breakthrough_inventory.md#domain-33) + [Quantum Collapse Effect](../01-vision/breakthrough_inventory.md#domain-31) → This section.
+> **Lineage:** [Agency as Gradient](../01-vision/phase_shift_technology_library.md#domain-33) + [Quantum Collapse Effect](../01-vision/phase_shift_technology_library.md#domain-31) → This section.
 
 The holomap is not a static artifact — it's a **system that can read itself.** When AI reads the holomap's own ontology, epistemology, and methodology, the system gains a degree of self-reference that increases with each founder added.
 
@@ -212,7 +212,7 @@ Agency is not binary. The system's degree of agency increases measurably:
 
 *Added: March 14, 2026*
 
-> **Lineage:** [Per-Founder Holomaps](../01-vision/breakthrough_inventory.md#domain-32) → This section.
+> **Lineage:** [Per-Founder Holomaps](../01-vision/phase_shift_technology_library.md#domain-32) → This section.
 
 The holomap methodology is fractal. Every unique business IS a holon, and every holon can be mapped through 12 perspectives × evolutionary stages.
 
