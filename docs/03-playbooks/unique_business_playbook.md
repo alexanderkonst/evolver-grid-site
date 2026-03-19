@@ -2344,27 +2344,50 @@ A new facilitator can learn this flow in days, not months. The protocol is simpl
 
 ---
 
-## Tactic 2: The One Coherent Distribution Flow
+## Tactic 2: The 3-Channel Distribution Architecture
 
-> *The distribution strategy as one executable sequence.*
+> *Distribution is not one act — it's three channels, each with different energy.*
+>
+> *See also: [Alexander's Source of Truth — Distribution Flow v2.0](../02-strategy/alexanders_unique_business.md) for the instantiated version with specific DM templates.*
+
+### The 3 Channels
+
+| Channel | Who | Energy | When |
+|---------|-----|--------|------|
+| **1. Tuning Fork Broadcast** | Unknown tribe (they self-select) | Post → inbound. Zero DMs. Let content marinate | First. Always first |
+| **2. Partner DMs** | Upstream practitioners with complementary modalities | Targeted. Archetype-specific. They serve tribe, lack business architecture | After content settles (Day 2-3) |
+| **3. Warm Network** | People with **pre-established trust** who ARE the tribe | Personal share. Genuine gift. Segment-specific. 1:1 only | When energy is clean and moment is ripe |
+
+> [!NOTE]
+> **Channel 3** is the most human channel. It requires knowing the person's specific wall and segment. It's a gift, not a pitch. The reach-out would feel good even if they never respond.
+
+### The Distribution Flow (v2.0)
 
 ```
-STEP 1: SEED THE FIELD (Day 1)
-  │  Post Tuning Fork on LinkedIn
-  │  Update bio with booking link
-  │  Add 20-30 people from search terms
-  │  DO NOT DM anyone yet. Let the content hit their feed.
+STEP 1: SEED THE FIELD (Day 0-1)
+  │  Deploy page. Update bio with booking link.
+  │  Post Tuning Fork (Channel 1).
+  │  Add aligned connections from search terms.
+  │  DO NOT DM anyone yet. Content marinates.
   │
   ▼
-STEP 2: DM PARTNERS (Day 2-3)
+STEP 2: DM PARTNERS (Day 2-3 — Channel 2)
   │  DM 3-5 people from the PARTNER list:
-  │    → Self-knowledge practitioners who hit "now what?" with clients
+  │    → Practitioners who hit "now what?" with clients
   │  Use the archetype-specific DM (see templates below)
-  │  For TRIBE (direct clients): don't DM. Let the TF work.
   │
   ▼
-STEP 3: RESPOND TO HAND-RAISERS (Day 3-7)
-  │  People who engaged with the TF post + partners who responded
+STEP 2.5: WARM NETWORK (Day 3-7 — Channel 3)
+  │  Reach out to 2-3 warm contacts per day.
+  │  Only people who pass the energy cleanliness test:
+  │    1. Page is deployed and you're proud of it
+  │    2. Genuine reason THIS person would benefit (name their wall)
+  │    3. Reach-out feels good even with zero response
+  │  Use segment-specific language (you know their story).
+  │
+  ▼
+STEP 3: RESPOND TO HAND-RAISERS (Day 3+)
+  │  From all 3 channels: TF engagers + partners + warm contacts
   │  Conversation → booking link → Calendly → payment → booked
   │
   ▼
@@ -2397,10 +2420,10 @@ REPEAT FROM STEP 1
 
 ### Replicability
 
-This distribution flow is **also protocol-level.** Once a node has their own Unique Business Canvas:
+This distribution flow is **protocol-level.** Once a node has their own Unique Business Canvas:
 - They post THEIR tuning fork (derived from their canvas)
-- They add THEIR tribe from THEIR search terms
-- They DM THEIR partners (practitioners upstream of them)
+- They DM THEIR upstream partners (practitioners upstream of them)
+- They reach THEIR warm network (people who know and trust them)
 - They do THEIR sessions using the same Ignition flow
 - They post THEIR episodes
 - The loop runs at every node independently
@@ -2457,7 +2480,7 @@ This is why the node licensing network works:
 
 ---
 
-*Unique Business Playbook v2.2 — March 19, 2026*
+*Unique Business Playbook v2.3 — March 19, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
-*Updated: Part V: Tactics added. Strategy vs. Tactics distinction. Redesigned Ignition Session (uniqueness → AI → full canvas → natural upsell). One Coherent Distribution Flow. Partner DM Templates. Replicability principle: strategy is unique, tactics are universal.*
+*Updated: 3-Channel Distribution Architecture (v2.0). Channel 3 (Warm Network) with energy cleanliness test. Step 2.5 added. Pacing rhythm codified. Cross-referenced with source of truth.*
 

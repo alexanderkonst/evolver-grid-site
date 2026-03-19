@@ -1607,23 +1607,78 @@ They can FEEL it because they hold the first draft.
 >
 > **See also:** [Unique Business Playbook — Part V: Tactics](../03-playbooks/unique_business_playbook.md#part-v-tactics)
 
+#### The 3-Channel Distribution Architecture (v2.0 — March 19, 2026)
+
+| Channel | Who | Energy | When |
+|---------|-----|--------|------|
+| **1. Tuning Fork Broadcast** | Unknown tribe (they self-select) | Post → inbound. Zero DMs. Let content marinate | Day 1. Always first |
+| **2. Partner DMs** | The 5 archetypes (upstream practitioners) | Targeted. Archetype-specific scripts. They serve tribe, lack business architecture | Day 2-3. After content settles |
+| **3. Warm Network** | Friends, clients, collaborators with **pre-established trust** who ARE the tribe | Personal share. Genuine gift. Segment-specific | When page is live, energy is clean, and the moment is ripe |
+
+> [!NOTE]
+> **Channel 3 is not a "launch blast."** It is a personal, 1:1 share with people you KNOW belong to a specific segment. You can speak to their exact wall because you know their story. The reach-out would feel good even if they never respond.
+
+#### Channel 3: Warm Network — The Energy Cleanliness Test
+
+Before reaching out to anyone in your warm network, three conditions must be true:
+
+1. **The page is deployed and you're proud of it.** (You would show it to anyone, unprompted.)
+2. **You have a genuine reason to believe THIS person would benefit.** (Not "they might be interested" — you can name their wall.)
+3. **The reach-out would feel good even if they never respond.** (No attachment to outcome. Pure gift energy.)
+
+If all three are true → reach out. If any one fails → wait.
+
+#### Warm Network DM — Template by Segment
+
+> **Structure:** [Personal context] → [What you built] → [Why it maps to them specifically] → [The link] → [Zero pressure]
+
+**Example (for someone you know is in the Polymath Segment):**
+> "Hey [Name] — built something I think maps to where you are. We just launched a page that helps multi-talented founders name their genius and design a business around who they already are. I know you've been sitting at that intersection of [their specific domains]. If it resonates, take a look: [link]. No pressure at all."
+
+**Example (for someone in a conscious ecosystem):**
+> "Hey [Name] — I know your community has people who've done the inner work but struggle to translate it into a sustainable livelihood. We just launched something for exactly that overlap. The free test is genuinely useful, and the session is for people ready to build. Thought you'd want to see it: [link]."
+
+#### The Pacing Rhythm (All 3 Channels)
+
 ```
-STEP 1: SEED THE FIELD (Day 1)
-  │  Post Tuning Fork on LinkedIn
-  │  Update LinkedIn bio with /ignite link
-  │  Add 20-30 people from search terms (see HIGHLY RESONANT list)
-  │  DO NOT DM anyone yet. Let the content marinate.
+Day 0: DEPLOY. Update LinkedIn bio. Done for the day.
+Day 1: POST Tuning Fork v5 on LinkedIn (Channel 1). Let it sit.
+Day 2-3: DM 3-5 PARTNERS (Channel 2) using archetype scripts.
+Day 3-5: RESPOND to hand-raisers from Channel 1 + 2.
+Day 3-7: WARM NETWORK (Channel 3) — 2-3 people per day MAX.
+         Only when energy test passes. Segment-specific language.
+Week 2+: DO SESSIONS (SOP v2.0). Each session = 4 outputs.
+         Post episode → next cycle begins.
+
+BREATHING RHYTHM: One act per day. Not more.
+Each act compounds. The system does the work.
+```
+
+#### The Full 7-Step Flow
+
+```
+STEP 1: SEED THE FIELD (Day 0-1)
+  │  Deploy /ignite page. Update LinkedIn bio with link.
+  │  Post Tuning Fork on LinkedIn (Channel 1).
+  │  Add 20-30 people from search terms (see HIGHLY RESONANT list).
+  │  DO NOT DM anyone yet. Content marinates.
   │
   ▼
-STEP 2: DM PARTNERS (Day 2-3)
+STEP 2: DM PARTNERS (Day 2-3 — Channel 2)
   │  DM 3-5 people from the PARTNER list (not tribe):
   │    → Self-knowledge practitioners who hit "now what?" with clients
   │  Use archetype-specific DM (see 5 Archetype Offer Cards)
-  │  For TRIBE: don't DM. Let the TF do the filtering.
   │
   ▼
-STEP 3: RESPOND TO HAND-RAISERS (Day 3-7)
-  │  People who engaged with TF + partners who responded
+STEP 2.5: WARM NETWORK (Day 3-7 — Channel 3)
+  │  Reach out to 2-3 warm contacts per day.
+  │  Only people who pass the energy cleanliness test.
+  │  Use segment-specific language (you know their wall).
+  │  This is a gift, not a pitch. Free ZoG test or /ignite page.
+  │
+  ▼
+STEP 3: RESPOND TO HAND-RAISERS (Day 3+)
+  │  People who engaged with TF + partners who responded + warm contacts
   │  Conversation → /ignite link → Calendly → $555 → booked
   │
   ▼
@@ -1658,7 +1713,7 @@ REPEAT FROM STEP 1
 
 **One sentence:**
 
-> **Post the tuning fork → add people → DM partners → respond to hand-raisers → do sessions (v2.0) → name episodes → post episodes → offer The Build → nodes activate → network compounds → repeat.**
+> **Deploy → post → DM partners → reach warm network → respond to hand-raisers → do sessions (v2.0) → name episodes → post episodes → offer The Build → nodes activate → network compounds → repeat.**
 
 ---
 
