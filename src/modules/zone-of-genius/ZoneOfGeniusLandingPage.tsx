@@ -397,42 +397,40 @@ const ZoneOfGeniusLandingPage = () => {
                 After your snapshot
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-                Want help turning this into your next concrete move?
+                Want to turn your genius into a unique business?
               </h2>
             </div>
 
             <div className="space-y-4 text-foreground/90 leading-relaxed">
-              <p>The free snapshot gives you clarity.</p>
-              <p>If you want support turning that clarity into a specific decision or pivot, you can book a Career Re-Ignition Session with me.</p>
-              <p>In 90 minutes we will:</p>
+              <p>The free snapshot gives you clarity — your genius named, your strengths articulated.</p>
+              <p>If you want to build a <strong>unique business</strong> around that genius, the Ignition Session takes you from words to canvas.</p>
+              <p>In 60–90 minutes we will:</p>
               <ul className="space-y-2 pl-6">
                 <li className="flex items-start gap-3">
                   <span className="text-primary">•</span>
-                  <span>Look at your current role, options, and constraints through the lens of your Zone of Genius.</span>
+                  <span>Extract your uniqueness with deep mirroring — naming what you've been doing for free.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary">•</span>
-                  <span>Identify 1–2 promising directions that fit both your genius and your reality.</span>
+                  <span>AI compiles your full Unique Business Canvas in real time — myth, tribe, pain, promise, value ladder, first message.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary">•</span>
-                  <span>Design a simple 3-step action plan for the next 30–60 days.</span>
+                  <span>You walk out with your entire business on one page — first draft, ready to iterate.</span>
                 </li>
               </ul>
-              <p className="pt-2">Many people use the snapshot on their own. Some choose to go deeper with a guide. Both are valid.</p>
+              <p className="pt-2">10 sessions delivered. 100% conversion. 5 unique businesses built.</p>
             </div>
 
             <div className="text-center pt-6">
               <a
-                href="https://www.calendly.com/konstantinov"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/ignite"
                 className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-full transition-all border-2 border-primary/30 bg-card/60 hover:bg-card hover:border-primary/50 text-primary shadow-sm"
               >
-                Explore a Career Re-Ignition Session
+                Book an Ignition Session
                 <ExternalLink size={18} />
               </a>
-              <p className="text-sm text-muted-foreground mt-3">$297 · 90 minutes</p>
+              <p className="text-sm text-muted-foreground mt-3">$555 · 60–90 minutes · Full Unique Business Canvas</p>
             </div>
           </section>
 
