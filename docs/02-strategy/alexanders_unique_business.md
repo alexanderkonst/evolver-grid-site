@@ -1788,22 +1788,22 @@ EXHALE: Respond. Next session. Offer The Build.
 
 ---
 
-### Sales Pipeline & Forecast v3.0 (March 23 → April 6, 2026)
+### Sales Pipeline & Forecast v4.0 (March 23 → April 6, 2026)
 
 > *"Data-driven AND soul-aligned. The soul tells you WHERE to go. The data tells you IF you arrived."*
-> *Rest days: March 20-22. Earn them. Launch refreshed.*
+> *Rest days: March 20-22. Launch refreshed. Post-roast corrections applied.*
 
 ---
 
 #### Revenue Model — Complete Pricing Architecture
 
-| Container | Upfront | Revenue Share | Alexander Receives | Client Keeps |
-|-----------|---------|---------------|-------------------|-------------|
-| **Ignition Session** | $555 | — | $555 | Their canvas — forever |
-| **The Build** | $1,111 upfront | + $2,500 from first $10K revenue | $3,611 total | $7,500 of first $10K revenue |
-| **Node License** (future) | Included in Build | 10% of ongoing revenue | Recurring | 90% of all revenue |
+| Container | Upfront | Revenue Share | Alexander Receives (net) | Client Keeps |
+|-----------|---------|---------------|-------------------------|-------------|
+| **Ignition Session** | $555 | — | ~$455 (after Stripe 2.9% + 15% tax) | Their canvas — forever |
+| **The Build** | $1,111 upfront | + $2,500 from first $10K revenue | ~$2,960 net | $7,500 of first $10K revenue |
+| **Node License** (future) | Included in Build | 10% of ongoing revenue | Recurring (net of platform fees) | 90% of all revenue |
 
-> **Why hybrid Build:** Client pays $1,111 to start — serious but accessible. Alexander receives $2,500 more ONLY when it works. Skin in the game on both sides. Client keeps the majority. Soul-aligned: payment is tied to results.
+> **Cost of doing business:** Stripe takes 2.9% + $0.30 per transaction. ~15% set aside for tax. Net on a $555 session: ~$455. Net on Build upfront ($1,111): ~$910. These are REAL numbers.
 
 **Client ROI on The Build:**
 
@@ -1811,120 +1811,119 @@ EXHALE: Respond. Next session. Offer The Build.
 CLIENT INVESTS:     $1,111 upfront + $2,500 from first $10K = $3,611 total
 CLIENT RECEIVES:    A unique business generating $10K+/month
 CLIENT KEEPS:       $7,500 of first $10K + 90% of all subsequent revenue
-
-Year 1 at $10K/mo:  $120,000 gross → $12,000 to Alexander (10%) → CLIENT KEEPS $108,000
-ROI:                $108,000 / $3,611 invested = 29.9x return
-
-The value ratio is asymmetrically in THEIR favor at every level.
-If it ever inverts, the system self-corrects — the client leaves.
+Year 1 ROI:         29.9x return. Value ratio asymmetrically in THEIR favor.
 ```
 
 ---
 
 #### Historical Conversion Data (Proved)
 
-| Metric | Value | Source |
-|--------|-------|--------|
-| Sessions delivered | 10 | Lived proof |
-| Conversion to session (from hand-raisers) | ~100% | Every hand-raiser booked |
-| Conversion to Build (from Ignition) | 2/2 (100%) | Oyi, Sergey |
-| Sessions per week (capacity) | 3-5 | Energy-sustainable rhythm |
-| LinkedIn connections | ~5,000 | Actual network size |
+| Metric | Value | Source | Caveat |
+|--------|-------|--------|--------|
+| Sessions delivered | 10 | Lived proof | Most were free/gifted — $555 conversion from cold is UNTESTED |
+| Conversion (warm hand-raisers) | ~100% | Every warm hand-raiser booked | Warm only. Cold rate unknown |
+| Conversion to Build | 2/2 (100%) | Oyi, Sergey | Small sample. Working model: 30-50% |
+| Sessions per week (capacity) | **10** | Alexander's confirmed capacity | Energy permitting at this depth |
+| LinkedIn connections | **~5,000** | Actual network size | Algorithm shows post to 10-20%, not all |
+| Warm contacts who pass energy test | **~30** | Alexander named them | These are the high-conversion core |
+| Past LinkedIn post reach | 500-1,000+ views | Historical data | Dormant account may suppress early |
 
 ---
 
-#### Full Channel Inventory (14 Channels)
+#### Corrected Channel Inventory (12 Active Channels)
 
-| # | Channel | Type | Expected Reach | Timing |
-|---|---------|------|----------------|--------|
-| **1** | **LinkedIn bio + headline update** → broadcasts to entire network | Broadcast impulse | ~5,000 connections notified | Day 0 |
-| **2** | **LinkedIn description update** → pushed to all connections | Broadcast impulse | Same ~5,000 see the update | Day 0 |
-| **3** | **Instagram bio + profile overhaul** | Broadcast | Followers + profile visitors | Day 0 |
-| **4** | **Other socials** (Facebook, etc.) — cross-post TF + bio update | Broadcast | Network-dependent | Day 0-1 |
-| **5** | **Tuning Fork post on LinkedIn** | Broadcast content | 1,000-5,000 views (5K network) | Day 1 |
-| **6** | **Add 20-30 connections/day** (Frankie model, 5-segment search terms) | Curated expansion | 200-300 new connections in 2 weeks | Daily |
-| **7** | **Partner DMs** (5 archetypes) | Outbound 1:1 | 10-15 practitioners | Day 1-3 |
-| **8** | **Warm Network DMs** (30-50 people, energy test) | Outbound 1:1 | 30-50 contacted | Day 1-5 |
-| **9** | **Referral pipeline** (already in motion) | Inbound | Known: 2 referrers + Sergey + Karime (2) | Organic |
-| **10** | **Workshop at CDMX hub** | Event | 15 attendees | Week 2 |
-| **11** | **QR sticker at co-workings** | Guerrilla / passive | Ambient | Day 0 |
-| **12** | **Email signature update** | Passive | Every email | Day 0 |
-| **13** | **ZoG PDF viral share** | Viral mechanic | Each ZoG taker shares with 1-3 | Ongoing |
-| **14** | **Social profile overhaul** (LinkedIn + Instagram reflect uniqueness) | Profile transformation | Every profile visitor sees the offer | Day 0 |
+| # | Channel | Type | HONEST Reach | Conv. Rate | Notes |
+|---|---------|------|-------------|------------|-------|
+| **1** | **LinkedIn bio/headline update** | Broadcast | 500-1,000 see in feed (10-20% of 5K) | Very low — ambient | NOT 5,000. Algorithm decides who sees it |
+| **2** | **Tuning Fork post** (reposted weekly) | Broadcast | 500-1,500 per post × 2 posts in 2 weeks | **2-3x generic** (precision instrument) | Weekly repost = compounding. Historical: 500-1,000+ |
+| **3** | **Add 15-20 connections/day** (Frankie model) | Curated expansion | ~150-200 new connections in 2 weeks | 20% engage with content | LinkedIn rate limit: 15-20/day max |
+| **4** | **Instagram/other socials** cross-post | Broadcast | 200-500 (if dormant, could be near 0) | Low unless active | Secondary. Don't count on this |
+| **5** | **Partner DMs** (5 archetypes) | Outbound 1:1 | 10-15 sent | **25-35% respond** (semi-cold) | NOT 50%. These are practitioners you haven't partnered with |
+| **6** | **Warm Network DMs** (30 named) | Outbound 1:1 | 30 contacted | **50-70% engage, 30-40% hand-raise** | HIGHEST CONVERSION. Trust exists. These are your first clients |
+| **7** | **Referral pipeline** (known) | Inbound | 4-6 (2 referrers + Sergey + Karime 2) | 30-50% convert with lag | Real but unpredictable. Multi-week delay |
+| **8** | **Workshop at CDMX hub** | Event | 15 attendees | 30% interested | Week 2 if scheduled |
+| **9** | **QR sticker at co-workings** | Guerrilla | Ambient | Very low, compounds | Long game |
+| **10** | **Email signature** | Passive | Every email | Near zero, ambient | Costs nothing |
+| **11** | **ZoG PDF viral** | Viral | Each taker shares with 1-3 | Slow compound | Growth engine, not immediate |
+| **12** | **Social profile overhaul** (LI + IG) | Profile optimization | Every profile visitor | Supports all other channels | Day 0 action |
 
 ---
 
-#### Source-Attributed Funnel Table (2 Weeks)
+#### Source-Attributed Funnel Table (2 Weeks) — Corrected
 
-| Source | Top of Funnel (Impressions) | Engaged | Hand-Raisers | Sessions | Notes |
-|--------|---------------------------|---------|-------------|----------|-------|
-| **LinkedIn bio/headline broadcast** | 5,000 | 100-250 (2-5%) | 5-15 (5-10% of engaged) | 2-8 | Biggest single impulse — 5K connections notified |
-| **LinkedIn description push** | 5,000 (overlap) | +50-100 | +2-5 | +1-3 | Stacks with bio update |
-| **Tuning Fork post** | 1,000-5,000 | 50-250 (5%) | 3-12 | 1-6 | Higher engagement from new connections |
-| **Add connections (Frankie)** | 200-300 added | 40-60 (20% engage with content) | 2-6 | 1-3 | They think THEY found you |
-| **Partner DMs** | 10-15 sent | 5-8 respond (50%) | 2-4 referrals | 1-3 | Pre-qualified referrals |
-| **Warm Network DMs** | 30-50 sent | 15-30 conversations (50%) | 5-12 | 3-8 | Highest conversion — trust exists |
-| **Instagram/other socials** | 500-2,000 | 25-100 | 1-5 | 0-2 | Secondary, stacks |
-| **Referral pipeline (known)** | 4-6 people (direct) | 3-5 conversations | 2-4 | 1-3 | Already warm: 2 referrers, Sergey, Karime |
-| **Workshop** | 15 | 5-8 | 2-3 | 1-2 | If scheduled |
-| **Passive (QR, email sig, profiles)** | Ambient | 5-15 | 1-3 | 0-1 | Compounds over time |
-| **ZoG viral** | Variable | Variable | 1-3 | 0-1 | Slow but compounding |
-| **TOTAL** | **6,000-12,000+** | **300-900** | **25-70+** | **10-40** (cap: 6-10/week) | |
+| Source | Impressions | Engaged | Hand-Raisers (warm) | Hand-Raisers (cold) | → Sessions | Notes |
+|--------|------------|---------|--------------------|--------------------|-----------|-------|
+| **LinkedIn bio update** | 500-1,000 | 50-100 | — | 2-5 | 1-2 | Ambient, not the driver |
+| **Tuning Fork post ×2** | 1,000-3,000 | 50-150 | — | 3-8 | 1-4 | Tuning Fork power: 2-3x generic = 5-10% of engagers hand-raise |
+| **Add connections (Frankie)** | 150-200 | 30-40 | — | 1-4 | 0-2 | They see your content AFTER connecting |
+| **Partner DMs** | 10-15 sent | 3-5 respond (25-35%) | — | 1-3 referrals | 0-2 | Semi-cold. Referrals are warm |
+| **Warm Network (30 named)** | 30 contacted | **15-20 (50-70%)** | **9-12 (30-40%)** | — | **5-8** | 🔥 THIS IS YOUR ENGINE. Warm → ~70% booking |
+| **Referrals (known pipeline)** | 4-6 | 3-5 | **2-4** | — | **1-3** | Already warm. Lag 1-3 weeks |
+| **Instagram/socials** | 200-500 | 10-25 | — | 0-2 | 0-1 | Don't count on if dormant |
+| **Workshop** | 15 | 5-8 | 1-2 | 1-2 | 1-2 | If scheduled |
+| **Passive channels** | Ambient | 5-10 | — | 0-1 | 0 | Slow build |
+| **TOTAL** | **2,000-5,000** | **170-360** | **12-18 (warm)** | **8-25 (cold)** | **9-22** |  |
+
+**Conversion rate split:**
+- Warm hand-raiser → session: **70-80%** (trust exists, price accepted)
+- Cold hand-raiser → session: **30-50%** ($555 from stranger = higher bar)
 
 ---
 
-#### Three Scenarios with Funnel Drops
+#### Three Scenarios with Funnel Drops (Corrected)
 
-| Funnel Stage | 🟡 Conservative | Drop % | 🟢 Baseline | Drop % | 🔵 Optimistic | Drop % |
+| Funnel Stage | 🟡 Conservative | Drop | 🟢 Baseline | Drop | 🔵 Optimistic | Drop |
 |---|---|---|---|---|---|---|
-| **Top of funnel** | 6,000 | — | 8,000 | — | 12,000+ | — |
-| **Engaged (profile visits, likes, DMs)** | 300 | 5% | 500 | 6% | 900 | 7.5% |
-| **Hand-raisers (asked about sessions)** | 15 | 5% | 30 | 6% | 50+ | 5.5% |
-| **Sessions booked** | 6 | 40% | 10 | 33% | 14+ | 28% |
-| **Sessions delivered** (capacity cap) | **6** | 100% | **10** | 100% | **10** (capped) | 71% |
-| **Build conversations started** | 1 | 17% | 3 | 30% | 4+ | 40% |
-| **Build upfront paid** | 1 | 100% | 2 | 67% | 3 | 75% |
+| **Top of funnel** | 2,000 | — | 3,500 | — | 5,000 | — |
+| **Engaged** | 170 | 8.5% | 280 | 8% | 360 | 7.2% |
+| **Warm hand-raisers** | 9 | 5.3% of engaged | 14 | 5% | 18 | 5% |
+| **Cold hand-raisers** | 5 | 3% | 12 | 4.3% | 20 | 5.6% |
+| **Total hand-raisers** | **14** | — | **26** | — | **38** | — |
+| **Sessions (warm, 75% conv.)** | 7 | — | 10 | — | 14 | — |
+| **Sessions (cold, 40% conv.)** | 2 | — | 5 | — | 8 | — |
+| **Total sessions** | **9** | — | **15** | — | **20** (cap at 20) | — |
+| **Build conversations** | 2 (22%) | — | 5 (33%) | — | 7 (35%) | — |
+| **Build upfront paid** | 1 | 50% | 3 | 60% | 4 | 57% |
 
-| Revenue | 🟡 Conservative | 🟢 Baseline | 🔵 Optimistic |
+| Revenue (2 weeks) | 🟡 Conservative | 🟢 Baseline | 🔵 Optimistic |
 |---|---|---|---|
-| **Ignition** | 6 × $555 = $3,330 | 10 × $555 = $5,550 | 10 × $555 = $5,550 |
-| **Build upfront** | 1 × $1,111 = $1,111 | 2 × $1,111 = $2,222 | 3 × $1,111 = $3,333 |
-| **2-Week Total** | **$4,441** | **$7,772** | **$8,883** |
-| **+ Rev Share (Month 2-3)** | 1 × $2,500 | 2 × $2,500 = $5,000 | 3 × $2,500 = $7,500 |
-| **+ Node License (Month 3+)** | — | 1 node × 10% | 2 nodes × 10% |
-| **Pipeline (next period)** | 10+ leads, 1 Build | 20+ leads, 3 Builds | 30+ leads, 4+ Builds |
+| **Ignition (gross)** | 9 × $555 = $4,995 | 15 × $555 = $8,325 | 20 × $555 = $11,100 |
+| **Build upfront (gross)** | 1 × $1,111 = $1,111 | 3 × $1,111 = $3,333 | 4 × $1,111 = $4,444 |
+| **Gross Total** | **$6,106** | **$11,658** | **$15,544** |
+| **- Stripe (2.9% + $0.30)** | -$180 | -$345 | -$455 |
+| **- Tax provision (15%)** | -$889 | -$1,697 | -$2,263 |
+| **Net Total** | **$5,037** | **$9,616** | **$12,826** |
+| **+ Rev share (Month 2-4)** | 1 × $2,500 | 3 × $2,500 = $7,500 | 4 × $2,500 = $10,000 |
+| **+ Node license (Month 4+)** | — | 1 node × 10% | 2 nodes × 10% |
+| **Pipeline** | 5+ leads, 1 Build | 11+ leads, 3 Builds | 18+ leads, 4+ Builds |
 
 ---
 
 #### Path to "$10K+ Regular and Growing Income Stream"
 
-> *March 19, 2026 insight: "I will be able to claim that I have a $10K-plus regular and growing stream of income — meaning in the next month I will get $10K-plus and in all subsequent months I will also get $10K-plus."*
+> *"The claim is not 'I made $10K in March.' The claim is 'I now have a $10K+/month income stream that is regular and growing.'"*
 
 ```
-THE CLAIM IS NOT: "I made $10K in March."
-THE CLAIM IS:     "I now have a $10K+/month income stream that is regular and growing."
-
 WHAT MAKES THIS TRUE:
-1. The methodology is proven (10 sessions, 100% hand-raiser conversion, 2/2 Build)
-2. The funnel is built and deployed (/ignite, ZoG bridge, viral share)
-3. The 3-channel + referral + broadcast architecture is activated
-4. Every session produces 4 outputs that compound the next cycle
-5. Revenue share + node licensing creates recurring, not one-time, income
+1. The methodology is proven (10 sessions, named referrers, 2/2 Build)
+2. The funnel is built and deployed
+3. 14 channels activated, warm network = high-conversion core
+4. Every session = 4 outputs that compound the next cycle
+5. Revenue share + node licensing = recurring, not one-time
+6. Tuning Fork reposted weekly = compounding reach
 
-MONTH 1 (March 23 → April 19):
-  Ignition: 10-14 × $555      = $5,550 - $7,770
-  Build upfront: 2-3 × $1,111 = $2,222 - $3,333
-  SUBTOTAL:                      $7,772 - $11,103
+MONTH 1 (March 23 → April 19, net after Stripe + tax):
+  Conservative: 15 Ignitions + 1 Build = ~$8,300 net
+  Baseline:     25 Ignitions + 3 Builds = ~$16,000 net
+  Optimistic:   35 Ignitions + 5 Builds = ~$22,000 net
 
 MONTH 2 (compounding):
-  Ignition: same or growing
-  Build upfront: same or growing
-  + Revenue shares: 2-3 × $2,500 = $5,000 - $7,500
-  + Node licensing begins (10% from node revenue)
-  SUBTOTAL:                        $12,000 - $18,000+
+  Same session volume (or growing)
+  + Revenue shares kicking in: 2-5 × $2,500 = $5,000-$12,500
+  + Node licensing begins
 
-$10K/month BASELINE = 6 Ignitions ($3,330) + 2 Build upfronts ($2,222) + 2 rev shares ($5,000) = $10,552
-This is CONSERVATIVE at the baseline scenario volume.
+$10K/month NET = ~12 Ignitions ($5,460 net) + 2 Builds ($1,820 net) + 2 rev shares ($5,000)
+               = $12,280 net. This is the baseline Monthly Run Rate.
 ```
 
 ---
