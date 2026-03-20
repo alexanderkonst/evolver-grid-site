@@ -903,15 +903,15 @@ The knowledge system has the same holonic structure as everything else. Three me
 
 > Related vision-level documents: [manifesto.md](../01-vision/manifesto.md), [integration_layer_manifesto.md](../06-architecture/integration_layer_manifesto.md), [prime_radiant_spec.md](../07-technology/prime_radiant_spec.md)
 
-### The Methodology vs The Machinery
+### The Methodology & The Technology
 
 Two kinds of playbooks exist. The distinction is profound:
 
-| | **Business Playbooks** (The Methodology) | **Platform Playbooks** (The Machinery) |
+| | **Business Playbooks** (The Methodology) | **Platform Playbooks** (The Technology) |
 |---|---|---|
-| **Purpose** | Teach someone how to build THEIR unique business | Tell our team how to build the TECHNOLOGY that runs the protocol |
+| **Purpose** | Teach someone how to build THEIR unique business | Build the TECHNOLOGY that runs the protocol |
 | **Audience** | Clients, founders, anyone | Engineers, AI agents, the dev team |
-| **Can be open-sourced?** | YES — that's the [Open Blueprint Paradox](../03-playbooks/unique_business_playbook.md#principle-2-the-open-blueprint-paradox) | No — this is proprietary infrastructure |
+| **Can be open-sourced?** | YES — that's the [Open Blueprint Paradox](../03-playbooks/unique_business_playbook.md#principle-2-the-open-blueprint-paradox) | Not yet — this is the proprietary infrastructure |
 | **Simple test** | *"Would I put this in a NotebookLM video for a client?"* → **Yes** | *"Would I put this in a NotebookLM video for a client?"* → **No** |
 
 **Business Playbooks (The Methodology):**

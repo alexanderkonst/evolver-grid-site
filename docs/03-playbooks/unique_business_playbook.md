@@ -2594,6 +2594,66 @@ These DM templates are **protocol-level.** Any node adapts them:
 
 ---
 
+## Tactic 4: The Universal Launch Sequence
+
+> *"14 steps from 'ready' to 'sessions running.' One act per day."*
+
+This sequence works for ANY node launching their unique business — the specific channels (LinkedIn, Instagram, email) vary by person, but the structure is universal.
+
+### Phase 1: MAKE THE PATH WORK (Days 0-1)
+
+These steps MUST be done before any outreach. The money and booking path must function.
+
+| Step | Action | Why |
+|------|--------|-----|
+| **1** | Set up payment (link, invoice, or checkout) | If they can't pay, the session can't happen |
+| **2** | Set up calendar booking (Calendly or equivalent) | If they can't book, momentum dies |
+| **3** | Verify the flow: landing page → payment → calendar → confirmation | Walk the path yourself. Every broken link costs a hand-raiser |
+| **4** | Write or update your bio on your primary platform | People WILL check your profile after seeing your content |
+
+### Phase 2: TURN ON THE CHANNELS (Days 1-7)
+
+One act per day. Not more. Each act compounds.
+
+| Step | Action | Channel | Pacing |
+|------|--------|---------|--------|
+| **5** | Post the Tuning Fork content | Broadcast (Channel 1) | Day 1 |
+| **6** | Add 20-30 aligned connections (don't DM yet — let content marinate) | Broadcast (Channel 1) | Day 1-2 |
+| **7** | DM 3-5 upstream partners using archetype-specific templates | Partner DMs (Channel 2) | Day 2-3 |
+| **8** | Reach out to 2-3 warm contacts per day (energy test MUST pass) | Warm Network (Channel 3) | Day 3-7 |
+| **9** | Respond to hand-raisers from all 3 channels | All channels | Day 3+ |
+
+### Phase 3: DO THE WORK (Week 1-2+)
+
+| Step | Action | P × M × D = ONE |
+|------|--------|----------------|
+| **10** | Take the session | Product (they get their canvas) |
+| **11** | Name the episode from what MOVED in the session | Marketing (the story IS the content) |
+| **12** | Post/share the episode | Distribution (attracts the next person) |
+| **13** | Offer The Build to Ignition graduates who want to go deeper | Revenue expansion |
+| **14** | Repeat from Step 5 with the new episode as content | The loop runs itself |
+
+### The Breathing Rhythm
+
+```
+INHALE: Post. Add connections. Wait.
+EXHALE: Respond to hand-raisers. Take the session.
+INHALE: Name the episode. Post it.
+EXHALE: Respond. Next session. Offer The Build.
+→ REPEAT. The rhythm IS the growth.
+```
+
+> **Soul-alignment check:** If any step feels heavy, extractive, or performative — pause. Return to [The Soul-Alignment Test](#the-soul-alignment-test) in Part 0. The constraint IS the amplifier.
+
+### Replicability
+
+This sequence is **protocol-level.** Any node adapts it:
+- Replace "LinkedIn" with THEIR primary platform
+- Replace the DM templates with THEIR archetype-specific versions
+- The 14-step structure stays the same
+
+---
+
 ## Why Tactics Are the Key to Node Licensing
 
 ```
@@ -2602,7 +2662,7 @@ TACTICS  = universal per protocol → CAN be replicated (that's the power)
 
 The protocol licenses TACTICS, not strategy.
 Each node creates their OWN strategy (unique canvas).
-Each node runs the SAME tactics (session flow + distribution flow + DM templates).
+Each node runs the SAME tactics (session flow + distribution flow + DM templates + launch sequence).
 
 This is why the node licensing network works:
   → Strategy is unique (each canvas is different)
@@ -2613,7 +2673,10 @@ This is why the node licensing network works:
 
 ---
 
-*Unique Business Playbook v2.3 — March 19, 2026*
+*Unique Business Playbook v2.4 — March 19, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
-*Updated: 3-Channel Distribution Architecture (v2.0). Channel 3 (Warm Network) with energy cleanliness test. Step 2.5 added. Pacing rhythm codified. Cross-referenced with source of truth.*
+
+**Changelog:**
+- **v2.4:** Part 0 (Soul-Aligned Foundation) added — 7 Principles, soul-alignment test, 5 drift signals. Tactic 4 (Universal Launch Sequence) added — protocol-level 14-step launch. Competition framing removed (there are no competitors in a unique business system).
+- **v2.3:** 3-Channel Distribution Architecture (v2.0). Channel 3 (Warm Network) with energy cleanliness test. Step 2.5 added. Pacing rhythm codified. Cross-referenced with source of truth.
 
