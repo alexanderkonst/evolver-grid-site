@@ -1788,6 +1788,80 @@ EXHALE: Respond. Next session. Offer The Build.
 
 ---
 
+### Sales Pipeline & Forecast (March 19 → April 2, 2026)
+
+> *"Data-driven AND soul-aligned. The soul tells you WHERE to go. The data tells you IF you arrived."*
+
+#### Historical Conversion Data (Proved)
+
+| Metric | Value | Source |
+|--------|-------|--------|
+| Sessions delivered | 10 | Lived proof |
+| Conversion to session (from hand-raisers) | ~100% | Every hand-raiser booked |
+| Conversion to Build (from Ignition) | 2/2 (100%) | Oyi, Sergey |
+| Ignition price | $555 | Value ladder v2.0 |
+| Build price | $5,000 | Value ladder v2.0 |
+| Sessions per week (capacity) | 3-5 | Energy-sustainable rhythm |
+
+#### Channel Yield Estimates (2 Weeks)
+
+| Channel | Outreach Volume | Expected Engagement | Hand-Raisers | Sessions |
+|---------|----------------|--------------------|--------------|---------| 
+| **1. Broadcast** (post + connections) | 1 post + 20-30 connections | 10-50 engagers (2-5%) | 1-5 | 0-2 |
+| **2. Partner DMs** | 3-5 practitioners | 2-3 respond (~50%) | 0-2 referrals | 0-1 |
+| **3. Warm Network** | 14-21 contacts (2-3/day × 7 days) | 7-12 resonate (~50%) | 2-5 | 1-4 |
+| **TOTAL** | | | **3-12** | **1-7** |
+
+> Channel 3 is the highest-yield in the first 2 weeks — these people already trust you. Channels 1-2 compound over time.
+
+#### The Three Scenarios (March 19 → April 2)
+
+| | 🟡 Conservative | 🟢 Baseline | 🔵 Optimistic |
+|---|---|---|---|
+| **Ignition Sessions** | 1 | 3 | 5 |
+| **Ignition Revenue** | $555 | $1,665 | $2,775 |
+| **Build Conversations** | 0 | 1 started | 2 started |
+| **Build Revenue** | $0 | $0-$2,500 (deposit) | $5,000 |
+| **2-Week Total** | **$555** | **$1,665-$4,165** | **$7,775** |
+| **Pipeline for next period** | 2-3 warm leads | 5+ leads + 1 Build in progress | 7+ leads + 2 Builds |
+
+#### Path to $10K/Month
+
+```
+MONTH 1 (March 19 → April 19):
+  Ignition: 4-6 × $555    = $2,220 - $3,330
+  Build:    1-2 × $5,000   = $5,000 - $10,000
+  TOTAL:                     $7,220 - $13,330
+
+$10K/month = 2 Ignitions + 2 Builds = $11,110
+OR:          6 Ignitions + 1 Build   = $8,330
+
+The Build is the leverage.
+Every Ignition is a potential Build.
+The loop compounds: more sessions → more episodes → more hand-raisers.
+```
+
+#### Sequenced Action Calendar
+
+| Day | Date | Action | Channel | Dual Signal |
+|-----|------|--------|---------|-------------|
+| **0** | Mar 20 | Stripe + Calendly + walk the flow | — | DATA: flow works? |
+| **1** | Mar 21 | LinkedIn bio. Post Tuning Fork | Ch 1 | SOUL: true? DATA: engagement? |
+| **2** | Mar 22 | Add 20-30 connections. DM 2 partners | Ch 1+2 | SOUL: clean? DATA: responses? |
+| **3** | Mar 23 | DM 3 more partners. Warm network starts (2-3) | Ch 2+3 | SOUL: energy test? DATA: replies? |
+| **4-5** | Mar 24-25 | Warm network (2-3/day). Respond to hand-raisers | Ch 3 | SOUL: gift? DATA: bookings? |
+| **6-7** | Mar 26-27 | Continue warm. First session(s) | Ch 3 | SOUL: alive? DATA: canvas 7+? |
+| **8-10** | Mar 28-30 | Sessions. Name episodes. Post 1st episode | All | SOUL: story true? DATA: engagement? |
+| **11-14** | Mar 31 - Apr 2 | Episode cycle. Offer Build to grads | All | Loop runs itself |
+
+#### Soul-Alignment Checkpoint
+
+> Before each day: *"Does this feel clean even if nothing comes of it?"*
+> After each day: *"Did anything convert? What moved? What didn't?"*
+> Both signals. Always.
+
+---
+
 ### Session Flow v1.0 — As Actually Delivered (Session #1: Ogi, March 5-6, 2026)
 
 *What actually happened, step by step. The SOP as it crystallized in practice.*
