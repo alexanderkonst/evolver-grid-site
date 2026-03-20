@@ -240,3 +240,74 @@ The 12-perspective framework was not derived from studying existing integral mod
 
 **Practical implication for the methodology:** The playbook should not require founders to study integral theory before using the holomap. The map is self-explanatory because it maps reality, not a theory about reality. If a 13-year-old can't read it, it's not done.
 
+---
+
+## The Observation-Distribution Identity
+
+*Added: March 20, 2026*
+
+> **Lineage:** [Quantum Collapse Effect](#the-quantum-collapse-effect) + [Open Blueprint Strategy](../03-playbooks/unique_business_playbook.md) → This section.
+
+A holomap collapses superpositions when READ. Distribution of the holomap IS distribution of the collapse instrument. Therefore:
+
+**Distribution = Observation = Collapse = Acceleration.**
+
+When the methodology is taught openly (Open Blueprint), every listener becomes an observer: their observation collapses their own superposition (personal clarity) AND contributes to the collective collapse (faster emergence of the methodology itself).
+
+This produces a structural flywheel that physics calls a **collider** (not merely a flywheel):
+
+```
+Teach methodology openly
+  → Each listener READS the structure
+  → Reading collapses their personal superposition
+  → Collapsed superposition → they take action (hand-raise, build, refer)
+  → Action feeds data into the system
+  → Data sharpens the map
+  → Sharper map → more precise reading for next observer
+  → More observers → faster collapse → more observers
+```
+
+**Implication for marketing:** Marketing in this framework is not persuasion. It is the distribution of an observation instrument. The more people who read the map, the faster the map materializes in reality. Teaching the full methodology doesn't "give away the secret" — it distributes the gravitational field.
+
+**Implication for pricing:** The observation instrument is free (Open Blueprint). The facilitator's presence — the ability to collapse YOUR specific superposition in 90 minutes rather than 6 months of self-observation — is what the $555 buys. You can read your own MRI. A radiologist reads it in 5 minutes and names what matters.
+
+---
+
+## The Torus of Tori (Self-Similar Fractal Attractor)
+
+*Added: March 20, 2026*
+
+> **Lineage:** [Toroidal Field](../01-vision/phase_shift_technology_library.md#domain-11) + [Build SOP](../03-playbooks/unique_business_playbook.md) + [Quantum Collapse Effect](#the-quantum-collapse-effect) → This section.
+
+The Build SOP creates a torus that produces tori:
+
+```
+Build SOP → produces facilitators
+Facilitators → produce canvases
+Canvases → feed pattern library
+Pattern library → improves Build SOP
+Improved Build SOP → produces BETTER facilitators
+Better facilitators → BETTER canvases → richer pattern library → ...
+
+THIS IS A TORUS THAT PRODUCES TORI.
+Each facilitator is their own torus (give sessions → receive data → improve → give better sessions).
+The network of tori is a meta-torus.
+```
+
+A self-similar fractal attractor has three properties:
+1. **Self-feeding:** Once started, it doesn't need external energy
+2. **Self-similar:** Each part (each facilitator's practice) mirrors the whole (the methodology)
+3. **Attracting:** Creates a gravity well that curves the decision-space of people who haven't yet entered it
+
+The "reality distortion field" (Jobs) operates through charisma — collapses when the leader exits. The **reality coherence field** (this system) operates through structural truth — cannot collapse because it's based on structure, not person.
+
+```
+REALITY DISTORTION:   Leader bends perception. Fragile.
+REALITY COHERENCE:    Map bends the decision-space. Anti-fragile.
+```
+
+People experiencing the coherence field will describe it as: "I keep seeing this kind of content," "something is pulling me to look at my gift," "I can't leave this website." That pull is not marketing. It is the gravitational curvature of a structural attractor.
+
+**Implication for scaling:** The methodology doesn't scale through MORE MARKETING. It scales through MORE OBSERVATION. Each new observer (reader, listener, client, facilitator) strengthens the gravitational field. The field attracts the next observer. This is why the growth curve is not exponential but **holonic** — each new level of organization enfolds all previous levels into a qualitatively new whole.
+
+
