@@ -887,5 +887,86 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-*Module Taxonomy v3.1 — Holonic Dashboard Architecture*
-*Last updated: 2026-03-16*
+## 📐 KNOWLEDGE ARCHITECTURE — The Full System Map
+
+> *v1.0 · March 19, 2026 — The map of the maps*
+
+The knowledge system has the same holonic structure as everything else. Three meta-documents form a Trinity. Everything else nests inside them.
+
+### The Trinity of Meta-Documents
+
+| Document | Face | Trinity | What it answers |
+|----------|------|---------|----------------|
+| [holonic_vision.md](../01-vision/holonic_vision.md) | **VISION** | 🫀 Heart / Essence | *"What IS the PlanetaryOS? Why does it exist?"* |
+| [morphogenetic_holomap.md](../02-strategy/morphogenetic_holomap.md) | **INTELLIGENCE** | 🧠 Mind / Significance | *"How does the system see itself and improve itself?"* |
+| **module_taxonomy.md** (this document) | **CODE** | 🔥 Gut / Consequences | *"What actual modules get built and shipped?"* |
+
+> Related vision-level documents: [manifesto.md](../01-vision/manifesto.md), [integration_layer_manifesto.md](../06-architecture/integration_layer_manifesto.md), [prime_radiant_spec.md](../07-technology/prime_radiant_spec.md)
+
+### The Methodology vs The Machinery
+
+Two kinds of playbooks exist. The distinction is profound:
+
+| | **Business Playbooks** (The Methodology) | **Platform Playbooks** (The Machinery) |
+|---|---|---|
+| **Purpose** | Teach someone how to build THEIR unique business | Tell our team how to build the TECHNOLOGY that runs the protocol |
+| **Audience** | Clients, founders, anyone | Engineers, AI agents, the dev team |
+| **Can be open-sourced?** | YES — that's the [Open Blueprint Paradox](../03-playbooks/unique_business_playbook.md#principle-2-the-open-blueprint-paradox) | No — this is proprietary infrastructure |
+| **Simple test** | *"Would I put this in a NotebookLM video for a client?"* → **Yes** | *"Would I put this in a NotebookLM video for a client?"* → **No** |
+
+**Business Playbooks (The Methodology):**
+
+| Playbook | What it teaches |
+|----------|----------------|
+| [unique_business_playbook.md](../03-playbooks/unique_business_playbook.md) | The master methodology: from uniqueness to venture (Parts 0-V) |
+| [product_playbook.md](../03-playbooks/product_playbook.md) | How to create a unique product |
+| [marketing_playbook.md](../03-playbooks/marketing_playbook.md) | How to express it authentically |
+| [distribution_playbook.md](../03-playbooks/distribution_playbook.md) | How to deliver it soul-aligned |
+| [unique_business_creation_playbook.md](../03-playbooks/unique_business_creation_playbook.md) | The integrated 10-step version (Zero to Revenue) |
+
+**Platform Playbooks (The Machinery):**
+
+| Playbook | What it governs |
+|----------|----------------|
+| [ux_playbook.md](../03-playbooks/ux_playbook.md) | User experience standards |
+| [ui_playbook.md](../03-playbooks/ui_playbook.md) | Visual design system |
+| [software_architecture_playbook.md](../03-playbooks/software_architecture_playbook.md) | Technical architecture |
+| [integrated_product_building_workflow.md](../03-playbooks/integrated_product_building_workflow.md) | AI-human co-creation workflow for modules |
+
+### Holonic Theories (the universal principles underneath)
+
+| Theory | What it grounds |
+|--------|----------------|
+| [universal_ontology.md](../01-vision/universal_ontology.md) | The cosmogenesis pattern — how anything comes into being |
+| [integral_transactional_field_theory.md](../01-vision/integral_transactional_field_theory.md) | How value exchange works at every scale |
+| [sacred_transaction_field.md](../01-vision/sacred_transaction_field.md) | Why clean transactions create trust and momentum |
+| [pain_theory_playbook.md](../03-playbooks/pain_theory_playbook.md) | The 5-layer pain slicer — how to articulate what hurts |
+
+### The Living Source of Truth
+
+| Document | What it is |
+|----------|-----------|
+| [alexanders_unique_business.md](../02-strategy/alexanders_unique_business.md) | The methodology applied to its own creator. Recursively informs all playbooks. The proof that the system works |
+
+### How It All Nests
+
+```
+LEVEL 0: Universal Ontology (how anything comes into being)
+   ↓ informs
+LEVEL 1: Holonic Theories (pain, transaction, sacred exchange)
+   ↓ informs
+LEVEL 2: Modular Playbooks (product, marketing, distribution)
+   ↓↑ mirrors
+LEVEL 3: Integrators
+   ├── unique_business_playbook.md  (THE METHODOLOGY — human-facing)
+   └── integrated_product_building_workflow.md  (THE MACHINERY — AI-native)
+   ↓↑ recursively informs
+LEVEL 4: alexanders_unique_business.md  (THE LIVING PROOF)
+```
+
+> **The Recursive Proof (Phase Shift #40):** Level 4 is not just an application — it feeds back into Levels 2-3. Every session sharpens the playbooks. Every sharper playbook produces a better session. The methodology improves through use.
+
+---
+
+*Module Taxonomy v3.2 — Knowledge Architecture added*
+*Last updated: 2026-03-19*
