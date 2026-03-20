@@ -1717,6 +1717,77 @@ REPEAT FROM STEP 1
 
 ---
 
+### Alexander's Instantiated Launch Plan (March 19, 2026)
+
+> *Instantiation of [Tactic 4](../03-playbooks/unique_business_playbook.md#tactic-4-the-universal-launch-sequence) + [Tactic 5](../03-playbooks/unique_business_playbook.md#tactic-5-the-open-blueprint-amplifiers) from the Universal Playbook*
+
+#### What's Done and Proved ✅
+
+| What | Evidence | Status |
+|------|----------|--------|
+| 10 Ignition Sessions delivered | 100% conversion to sessions, 2/2 to Build | ✅ PROVED |
+| Unique Business Playbook v2.5 | 7 Principles, 5 Tactics, Soul-Aligned Foundation | ✅ WRITTEN |
+| Homepage → ZoG → /ignite funnel | Story-based homepage, two clear paths | ✅ DEPLOYED |
+| /ignite page with Open Blueprints | 3 YouTube videos + DIY vs Guided comparison | ✅ DEPLOYED |
+| ZoG → Ignite bridge ($555) | Bridge CTA after ZoG results | ✅ DEPLOYED |
+| Viral share text | Updated for speed + social currency | ✅ DEPLOYED |
+| 3-Channel Distribution Architecture | Broadcast + Partners + Warm Network | ✅ DOCUMENTED |
+| DM templates for all 5 archetypes | Segment-specific, energy-clean language | ✅ DOCUMENTED |
+| Warm network energy cleanliness test | 3-condition test before any reach-out | ✅ DOCUMENTED |
+| NotebookLM videos (3 Blueprints) | Product, Marketing, Distribution reveals | ✅ PUBLISHED ON YOUTUBE |
+
+#### Phase 1: MAKE THE PATH WORK (Next)
+
+| Step | Alexander's specific action | Status |
+|------|---------------------------|--------|
+| **1** | Set up Stripe payment link ($555 Ignition Session) | ⬜ TODO |
+| **2** | Verify Calendly works and links from /ignite | ⬜ TODO |
+| **3** | Walk the path: alexandrkonstantinov.com → /ignite → Pay → Book → Confirmation | ⬜ TODO |
+| **4** | Update LinkedIn bio with /ignite link | ⬜ TODO |
+
+#### Phase 2: TURN ON THE CHANNELS (This Week)
+
+| Step | Alexander's specific action | Channel | Status |
+|------|---------------------------|---------|--------|
+| **5** | Post latest Tuning Fork on LinkedIn | Broadcast | ⬜ TODO |
+| **6** | Add 20-30 connections (CDMX founders, conscious leaders, event peers) | Broadcast | ⬜ TODO |
+| **7** | DM 3-5 upstream practitioners (purpose coaches, Gene Keys readers, ceremony facilitators) | Partners | ⬜ TODO |
+| **8** | Warm network: 2-3 per day. People I know, whose segment I know, whose wall I can name | Warm | ⬜ TODO |
+| **9** | Respond to hand-raisers. Conversation → /ignite → Calendly → $555 → booked | All | ⬜ TODO |
+
+#### Phase 3: DO THE WORK (Week 1-2+)
+
+| Step | Alexander's specific action | Status |
+|------|---------------------------|--------|
+| **10** | Take Ignition Sessions (SOP v2.0) | ⬜ READY |
+| **11** | Name the episode from what MOVED | ⬜ REPEATING |
+| **12** | Post/share the episode on LinkedIn | ⬜ REPEATING |
+| **13** | Offer The Build ($5,000) to Ignition graduates | ⬜ REPEATING |
+| **14** | Repeat from Step 5 with new episode as content | ⬜ LOOP |
+
+#### Amplifiers Being Activated
+
+| Amplifier | Alexander's specific plan | Priority | Status |
+|-----------|--------------------------|----------|--------|
+| **NotebookLM Cinematic Video** | Feed UB Playbook v2.5 + source of truth → produce 5-min methodology reveal per segment | HIGH | ⬜ PLANNED |
+| **Open-Source the Playbooks** | Playbooks are ALREADY on GitHub. Announce it. "The entire methodology is free." | HIGH | ⬜ PLANNED |
+| **Livestream Sessions** | Stream Ignition Sessions live. Audience watches a real business get built | MEDIUM | ⬜ PLANNED |
+| **Laptop Sticker** | QR code → alexandrkonstantinov.com. Viral tech for co-workings in CDMX | MEDIUM | ⬜ PLANNED |
+| **"I Dare You" Move** | "I'm publishing the $5,000 playbook for free. Do it yourself — or sit with me for 90 minutes." | HIGH | ⬜ PLANNED |
+| **5-Segment Quiz Funnel** | Quiz on landing page → segment identification → personalized video/page | LOW (next iteration) | ⬜ PLANNED |
+
+#### Pacing (Breathing Rhythm)
+
+```
+INHALE: Post. Add connections. Wait.
+EXHALE: Respond to hand-raisers. Take the session.
+INHALE: Name the episode. Post it.
+EXHALE: Respond. Next session. Offer The Build.
+→ REPEAT. One act per day. The constraint IS the amplifier.
+```
+
+---
+
 ### Session Flow v1.0 — As Actually Delivered (Session #1: Ogi, March 5-6, 2026)
 
 *What actually happened, step by step. The SOP as it crystallized in practice.*
