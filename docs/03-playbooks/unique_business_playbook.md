@@ -94,9 +94,35 @@ The facilitator doesn't teach — they hold a mirror. The client doesn't learn �
 | Level | What they get | Precision |
 |-------|--------------|-----------|
 | **Ignition** ($555) | Their entire business on one page. First draft. | ~7 |
-| **The Build** ($5,000) | Every artifact polished. First client by week 6. Operational. | ~9.5+ |
+| **The Build** ($1,111 + $2,500 rev share) | Every artifact polished. First 10 clients. Operational. | ~9.5+ |
 
 They HOLD the rough sketch. It makes sense. But they can FEEL that it could be sharper. That feeling is the product. The gap is real, not manufactured. Going deeper genuinely takes more time, more witnessing, more iteration.
+
+### The Build SOP — From Canvas to $10K MRR
+
+> *"5 phases. Each one is a gate. Don't skip. Don't rush."*
+
+The Build bridges "I have my canvas" (Ignition output) to "I have a $10K+/month income stream." Not a course — a co-creation.
+
+**Pricing:** $1,111 upfront + $2,500 from first $10K revenue. Client keeps $7,500 of first $10K. Year 1 ROI at $10K/mo: 29.9x.
+
+| Phase | What happens | Duration | Gate |
+|-------|-------------|----------|------|
+| **1. Polish** | All Canvas artifacts to 9.5+ precision with facilitator + AI | 1-2 weeks | Canvas passes "bet your year on this?" test |
+| **2. First Delivery** | Deliver their medicine to the FIRST PERSON who comes to mind | 1 session | They witness themselves delivering |
+| **3. Training** | 10 free sessions with specific learning objectives per session | 2-4 weeks | 10 data points. They know what works |
+| **4. First Sale** | Sell first paid session using proven tactics | 1-2 weeks | Money hits account. Identity shift |
+| **5. Foundation** | 10 paid sessions = product-market fit = $10K MRR foundation | 2-4 weeks | 10 sales. Conversion known. Revenue established |
+
+**Total:** 6-12 weeks. After Phase 5: 10 clients served, PMF, $10K MRR trajectory, content library, node licensing eligibility.
+
+### The Scale-Up — From $10K MRR to Venture
+
+| Stage | Founder builds | Facilitator provides | Revenue |
+|-------|---------------|---------------------|---------|
+| **Build** (1-5) | Canvas → 10 clients → PMF | Hands-on co-creation, training | $1,111 + $2,500 |
+| **Scale-Up** | Systems, team, automation | Orchestration, blueprints, talent | 10% ongoing |
+| **Venture** | Organization, fundraising | Advisory, introductions | Equity + advisory |
 
 ## Principle 6: The Breathing Rhythm
 

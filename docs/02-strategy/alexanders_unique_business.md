@@ -1975,6 +1975,66 @@ The methodology scales through PEOPLE, not through Alexander's hours.
 
 ---
 
+#### Alexander's Build SOP — Instantiated (March 19, 2026)
+
+> *Instantiation of [The Build SOP](../03-playbooks/unique_business_playbook.md#the-build-sop--from-canvas-to-10k-mrr) from the Universal Playbook*
+
+**What Alexander delivers in The Build ($1,111 + $2,500 from first $10K):**
+
+| Phase | Alexander's specific delivery | Examples from lived proof |
+|-------|------------------------------|-------------------------|
+| **1. Polish** | Sit together (live or async). All artifacts to 9.5+ using AI + Alexander's facilitation. Product, Marketing, Distribution as one coherent system | Oyi: canvas went from ~7 to 9.5+ in 3 sessions. Sergey: same |
+| **2. First Delivery** | "Who comes to mind RIGHT NOW? Message them. Today." Alexander coaches through the resistance in real time | Oyi messaged his first prospect same day |
+| **3. Training** | 10 free sessions. After each, debrief with Alexander: what landed? what didn't? what skill to sharpen next? | Specific objectives: holding space, reading the wall, naming the shadow, structuring the offer |
+| **4. First Sale** | Alexander shares exact tactics that worked: Tuning Fork, DM templates, Launch Sequence. Coaches through the pricing fear | "Set the price. Say it out loud. Now send the message." |
+| **5. Foundation** | Track 10 paid sessions together. Measure conversion rate. Identify which segments convert best. Build the value ladder | At 10 sales: product-market fit. Known conversion. Upsell path clear |
+
+**What the founder has at Phase 5 completion:**
+
+```
+✅ 10 paid clients served (the foundation is PROVED)
+✅ Conversion rate known (which channels, which segments, which messages work)
+✅ $10K MRR trajectory (visible, measurable, growing)
+✅ Value ladder emerging (some of the 10 want to go deeper — THEIR Build)
+✅ 10 episodes (content library started — each one IS distribution)
+✅ Node licensing eligible (they CAN now facilitate for their tribe)
+```
+
+#### The Scale-Up Play — Alexander as Venture Enabler
+
+> *"At 10 sales, they have product-market fit. With product-market fit, they are venture-fundable. Alexander is the enabler of those ventures."*
+
+| Stage | What Alexander provides | What founder builds | Revenue to Alexander |
+|-------|------------------------|-------------------|--------------------|
+| **Build** (Phase 1-5) | Hands-on facilitation, coaching, tactics | Canvas → 10 clients → PMF | $1,111 + $2,500 |
+| **Scale-Up** | Orchestration, team curation, venture blueprints | Systems, automation, team, next products | 10% ongoing revenue |
+| **Venture** | Advisory, intro to investors/talent, strategic guidance | Organization, fundraising, leadership | Equity + advisory |
+
+**Alexander's existing assets for Scale-Up delivery:**
+- Venture-building holomaps (PMF → Round B blueprint)
+- Access to curated talent (engineers, designers, operators)
+- AI-human symbiotic workflows for product buildout
+- Organizational capacity frameworks
+- Network of aligned investors and ecosystem builders
+
+**The VC play:**
+```
+Each Build graduate = a venture with:
+  → Proved PMF (10 sales)
+  → Unique business model (not replicable)
+  → Embedded AI infrastructure
+  → Node in a growing network
+
+Alexander goes to VCs not as a founder seeking funding,
+but as a venture ENABLER with a pipeline of validated ventures.
+
+"I produce venture-ready businesses using a protocol.
+ Here are 10. They all have PMF. They all have revenue.
+ Fund the ones you like. I'm the common thread."
+```
+
+---
+
 #### Soul-Alignment Checkpoint
 
 > Before each day: *"Does this feel clean even if nothing comes of it?"*
