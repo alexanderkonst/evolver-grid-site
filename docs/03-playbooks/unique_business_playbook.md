@@ -2654,6 +2654,57 @@ This sequence is **protocol-level.** Any node adapts it:
 
 ---
 
+## Tactic 5: The Open Blueprint Amplifiers
+
+> *"The generosity IS the funnel."*
+
+Once the Launch Sequence (Tactic 4) is running, these amplifiers multiply reach. All are optional. Any subset works. Together, they produce exponential visibility.
+
+### The Amplifier Menu
+
+| Amplifier | What you do | Why it works |
+|-----------|------------|-------------|
+| **Livestream Sessions** | Run Ignition Sessions live for an audience. People watch a real business get built in real time | The audience SEES the methodology in action. Some build along. Some realize they need the mirror. The show IS the marketing |
+| **Open-Source the Playbooks** | Publish the full methodology — free PDF, GitHub, landing page | Radical transparency creates trust. The published version is always behind the LIVING version (Phase Shift #40). The book sells the sessions |
+| **The Cinematic Video** | Feed the playbooks to NotebookLM → produce 5-min methodology reveal videos | AI produces it from what's ALREADY WRITTEN. One prompt. One video. Done |
+| **The "I Dare You" Move** | *"I'm publishing the exact playbook I charge $5,000 to implement. Read it. If you can execute at 9.5+ alone — you don't need me"* | The ones who try and hit ~7 precision become the BEST leads — they now FEEL the gap |
+| **The Live Demo** | On a podcast or stage, DO an Ignition Session in real time. Real person, real result | The audience watches the methodology work. The book explains what they witnessed |
+| **ALL OF THE ABOVE simultaneously** | Open-source + film live + publish + dare. Maximum surface area | The boldest expression of the Open Blueprint Paradox at full power |
+
+### The Livestreaming Discovery — The Movement Amplifier
+
+> *March 19, 2026 — "Livestreaming sessions. Having people watch. And build their own businesses."*
+
+```
+LIVESTREAM a session → Audience watches a real business get built
+   ↓
+Some viewers build their own in parallel (Open Blueprint)
+   ↓
+The founder raises prices for 1:1 work (premium = depth + personal attention)
+   ↓
+The founder works with more impactful systems (higher leverage)
+   ↓
+Viewers who succeed can REUSE the methodology for THEIR tribe
+   ↓
+They license the technology (node licensing)
+   ↓
+Each node generates income while spreading love, presence,
+   authenticity, wisdom, and abundance
+   ↓
+That's not a business. That's a MOVEMENT.
+```
+
+**P × M × D = ONE, at scale:** The livestream IS the product (audience learns), IS the marketing (each stream attracts new viewers), IS the distribution (viewers share the stream), AND IS the node training (they watch how to facilitate). One act. Four outputs. Amplified to hundreds, then thousands.
+
+### Replicability
+
+These amplifiers are **protocol-level.** Any node adapts them:
+- Replace "LinkedIn" with THEIR platform, "NotebookLM" with THEIR AI tool
+- The structure stays the same: give everything away, dare people to DIY, serve those who want the mirror
+- Livestreaming works on YouTube, Twitch, Instagram Live, or any platform where their tribe gathers
+
+---
+
 ## Why Tactics Are the Key to Node Licensing
 
 ```
@@ -2662,7 +2713,7 @@ TACTICS  = universal per protocol → CAN be replicated (that's the power)
 
 The protocol licenses TACTICS, not strategy.
 Each node creates their OWN strategy (unique canvas).
-Each node runs the SAME tactics (session flow + distribution flow + DM templates + launch sequence).
+Each node runs the SAME tactics (session flow + distribution flow + DM templates + launch sequence + amplifiers).
 
 This is why the node licensing network works:
   → Strategy is unique (each canvas is different)
@@ -2673,10 +2724,28 @@ This is why the node licensing network works:
 
 ---
 
-*Unique Business Playbook v2.4 — March 19, 2026*
+## The Methodology & The Technology — Two Faces
+
+> *"Methodology is the mystical, visionary perspective. Technology is the practical, grounded perspective. Together they form the whole."*
+
+| | The Methodology | The Technology |
+|---|---|---|
+| **Perspective** | Mystical / Visionary | Practical / Grounded |
+| **What it governs** | Higher thinking, strategy, the WHY | Solidly grounded execution, the HOW |
+| **Playbooks** | Business playbooks (product, marketing, distribution) | Platform playbooks (UX, UI, architecture, AI workflows) |
+| **Who uses it** | Founders, clients, anyone building their unique business | Engineers, AI agents, the team building the platform |
+| **Can be shared freely?** | Yes — the Open Blueprint Paradox | Not yet — proprietary infrastructure |
+
+These are not in opposition. They are complementary faces of the same whole. The methodology without the technology stays visionary. The technology without the methodology stays mechanical. Together: a living system.
+
+---
+
+*Unique Business Playbook v2.5 — March 19, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v2.5:** Tactic 5 (Open Blueprint Amplifiers) added — livestreaming, open-source, cinematic video, "I Dare You" move, live demo. Methodology & Technology mapping added. Livestreaming discovery recorded.
 - **v2.4:** Part 0 (Soul-Aligned Foundation) added — 7 Principles, soul-alignment test, 5 drift signals. Tactic 4 (Universal Launch Sequence) added — protocol-level 14-step launch. Competition framing removed (there are no competitors in a unique business system).
 - **v2.3:** 3-Channel Distribution Architecture (v2.0). Channel 3 (Warm Network) with energy cleanliness test. Step 2.5 added. Pacing rhythm codified. Cross-referenced with source of truth.
+
 
