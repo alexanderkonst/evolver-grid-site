@@ -1788,9 +1788,18 @@ EXHALE: Respond. Next session. Offer The Build.
 
 ---
 
-### Sales Pipeline & Forecast (March 19 → April 2, 2026)
+### Sales Pipeline & Forecast v2.0 (March 20 → April 2, 2026)
 
 > *"Data-driven AND soul-aligned. The soul tells you WHERE to go. The data tells you IF you arrived."*
+
+#### Revised Build Pricing — Hybrid Model
+
+| Container | Upfront | Revenue Share | Alexander Receives | Total to Client |
+|-----------|---------|---------------|-------------------|----------------|
+| **Ignition Session** | $555 | — | $555 | — |
+| **The Build** | $1,111 upfront | + $2,500 from first $10K revenue | $3,611 total | They keep $7,500 of first $10K |
+
+> **Why hybrid:** Enticing entry. Client pays $1,111 to start (serious but accessible). Alexander receives $2,500 more ONLY when it works. Skin in the game on both sides. Client keeps the majority of early revenue. Soul-aligned: the payment is tied to results.
 
 #### Historical Conversion Data (Proved)
 
@@ -1799,60 +1808,111 @@ EXHALE: Respond. Next session. Offer The Build.
 | Sessions delivered | 10 | Lived proof |
 | Conversion to session (from hand-raisers) | ~100% | Every hand-raiser booked |
 | Conversion to Build (from Ignition) | 2/2 (100%) | Oyi, Sergey |
-| Ignition price | $555 | Value ladder v2.0 |
-| Build price | $5,000 | Value ladder v2.0 |
 | Sessions per week (capacity) | 3-5 | Energy-sustainable rhythm |
 
-#### Channel Yield Estimates (2 Weeks)
+#### Full Channel Inventory — All Documented Strategies
 
-| Channel | Outreach Volume | Expected Engagement | Hand-Raisers | Sessions |
-|---------|----------------|--------------------|--------------|---------| 
-| **1. Broadcast** (post + connections) | 1 post + 20-30 connections | 10-50 engagers (2-5%) | 1-5 | 0-2 |
-| **2. Partner DMs** | 3-5 practitioners | 2-3 respond (~50%) | 0-2 referrals | 0-1 |
-| **3. Warm Network** | 14-21 contacts (2-3/day × 7 days) | 7-12 resonate (~50%) | 2-5 | 1-4 |
-| **TOTAL** | | | **3-12** | **1-7** |
+| # | Channel | Type | Expected Reach | Source |
+|---|---------|------|----------------|--------|
+| **1** | **LinkedIn bio update → pushes to entire network** | Broadcast impulse | ~2,000+ connections notified | alexanders_unique_business.md |
+| **2** | **Tuning Fork post on LinkedIn** | Broadcast content | 500-2,000 views | alexanders_unique_business.md |
+| **3** | **Add 20-30 target connections** (Frankie model) | Curated expansion | They see TF post → think they found you | Frankie strategy, L594 |
+| **4** | **LinkedIn search: 5 segment archetypes** | Curated expansion | 100+ connections per segment | 5-segment search terms |
+| **5** | **Partner DMs** (5 archetypes) | Outbound 1:1 | 5-10 practitioners, ~50% respond | 3-Channel Architecture |
+| **6** | **Warm Network DMs** | Outbound 1:1 | 30-50 people, energy test first | 3-Channel Architecture |
+| **7** | **Other social networks** (Instagram, Facebook) | Broadcast content | Cross-post TF + bio update | Distribution playbook |
+| **8** | **Workshop at CDMX hub** | Event | 15 attendees | Channel inventory L2115 |
+| **9** | **QR sticker at co-workings** | Guerrilla / passive | Continuous ambient reach | Channel inventory L2118 |
+| **10** | **Email signature update** | Passive | Every email = touchpoint | Channel inventory L2117 |
+| **11** | **Mentorship platform profiles** | Semi-passive | Discoverable by seekers | Channel inventory L2119 |
+| **12** | **ZoG PDF share (viral)** | Viral mechanic | Each ZoG taker → shares with 1-3 people | viral share text |
 
-> Channel 3 is the highest-yield in the first 2 weeks — these people already trust you. Channels 1-2 compound over time.
+#### Full Funnel Math (2 Weeks)
 
-#### The Three Scenarios (March 19 → April 2)
+```
+TOP OF FUNNEL — Total Reach
+├── LinkedIn bio broadcast:       ~2,000 connections see the update
+├── Tuning Fork post:             500-2,000 views
+├── Add 20-30 connections/day × 10 days: 200-300 new connections
+├── Other social cross-posts:     200-500 views
+├── Warm network DMs:             30-50 people directly contacted
+├── Partner DMs:                  5-10 people directly contacted
+├── Workshop:                     15 people
+├── Passive (QR, email sig, profiles): ambient
+└── TOTAL TOP OF FUNNEL:          3,000-5,000+ impressions
+
+MIDDLE OF FUNNEL — Engagement
+├── Post engagers (likes, comments): 2-5% = 60-250 people
+├── Bio/profile visitors:           1-2% of broadcast = 20-40 people
+├── Warm DM conversations:          50% of contacted = 15-25 conversations
+├── Partner responses:              50% = 3-5 responded
+├── Workshop interested:            30% = 5 people
+└── TOTAL ENGAGED:                 100-325 people
+
+BOTTOM OF FUNNEL — Hand-Raisers
+├── From LinkedIn engagement:       5-10% of engagers DM you = 3-12 people
+├── From warm DMs:                  20-30% convert to hand-raisers = 3-8 people
+├── From partner referrals:         1-3 referred people
+├── From workshop:                  2-3 people
+├── From passive channels:          1-2 people
+└── TOTAL HAND-RAISERS:            10-28 people
+
+CONVERSION — Sessions Booked
+├── Hand-raiser to booking:         ~50-80% (historical: ~100% from warm)
+└── TOTAL SESSIONS (2 weeks):      5-22 sessions
+    (capped by capacity: 3-5/week = 6-10 max)
+
+REVENUE
+├── Ignition Sessions:              6-10 × $555 = $3,330-$5,550
+├── Build Conversations Started:    2-4 started (from best sessions)
+├── Build Upfront (this period):    1-2 × $1,111 = $1,111-$2,222
+├── Build Revenue Share (later):    1-2 × $2,500 = when they earn
+└── TOTAL 2-WEEK REVENUE:          $4,441-$7,772 + pipeline
+```
+
+#### The Three Scenarios (March 20 → April 2)
 
 | | 🟡 Conservative | 🟢 Baseline | 🔵 Optimistic |
 |---|---|---|---|
-| **Ignition Sessions** | 1 | 3 | 5 |
-| **Ignition Revenue** | $555 | $1,665 | $2,775 |
-| **Build Conversations** | 0 | 1 started | 2 started |
-| **Build Revenue** | $0 | $0-$2,500 (deposit) | $5,000 |
-| **2-Week Total** | **$555** | **$1,665-$4,165** | **$7,775** |
-| **Pipeline for next period** | 2-3 warm leads | 5+ leads + 1 Build in progress | 7+ leads + 2 Builds |
+| **Top of funnel** | 2,000 | 3,500 | 5,000+ |
+| **Hand-raisers** | 8 | 15 | 25+ |
+| **Sessions (capacity-capped)** | 4 | 7 | 10 |
+| **Ignition Revenue** | $2,220 | $3,885 | $5,550 |
+| **Build Conversations** | 1 | 2 | 3-4 |
+| **Build Upfront Revenue** | $1,111 | $2,222 | $3,333-$4,444 |
+| **2-Week Total** | **$3,331** | **$6,107** | **$8,883-$9,994** |
+| **Pipeline for Month 2** | 5+ warm leads, 1 Build in progress | 10+ leads, 2 Builds | 15+ leads, 3-4 Builds |
+| **+ Revenue Share (Month 2-3)** | +$2,500 | +$5,000 | +$7,500-$10,000 |
 
 #### Path to $10K/Month
 
 ```
-MONTH 1 (March 19 → April 19):
-  Ignition: 4-6 × $555    = $2,220 - $3,330
-  Build:    1-2 × $5,000   = $5,000 - $10,000
-  TOTAL:                     $7,220 - $13,330
+WITH HYBRID BUILD PRICING:
 
-$10K/month = 2 Ignitions + 2 Builds = $11,110
-OR:          6 Ignitions + 1 Build   = $8,330
+MONTH 1 (March 20 → April 19):
+  Ignition: 8-12 × $555    = $4,440 - $6,660
+  Build upfront: 2-4 × $1,111 = $2,222 - $4,444
+  SUBTOTAL:                    $6,662 - $11,104
 
-The Build is the leverage.
-Every Ignition is a potential Build.
-The loop compounds: more sessions → more episodes → more hand-raisers.
+  + Build revenue share kicks in Month 2-3:
+    2-4 × $2,500 = $5,000 - $10,000 (as their businesses launch)
+
+$10K/month = 6 Ignitions ($3,330) + 2 Build upfronts ($2,222) + 2 revenue shares ($5,000)
+           = $10,552
 ```
 
-#### Sequenced Action Calendar
+#### Sequenced Action Calendar (Compressed)
 
-| Day | Date | Action | Channel | Dual Signal |
-|-----|------|--------|---------|-------------|
-| **0** | Mar 20 | Stripe + Calendly + walk the flow | — | DATA: flow works? |
-| **1** | Mar 21 | LinkedIn bio. Post Tuning Fork | Ch 1 | SOUL: true? DATA: engagement? |
-| **2** | Mar 22 | Add 20-30 connections. DM 2 partners | Ch 1+2 | SOUL: clean? DATA: responses? |
-| **3** | Mar 23 | DM 3 more partners. Warm network starts (2-3) | Ch 2+3 | SOUL: energy test? DATA: replies? |
-| **4-5** | Mar 24-25 | Warm network (2-3/day). Respond to hand-raisers | Ch 3 | SOUL: gift? DATA: bookings? |
-| **6-7** | Mar 26-27 | Continue warm. First session(s) | Ch 3 | SOUL: alive? DATA: canvas 7+? |
-| **8-10** | Mar 28-30 | Sessions. Name episodes. Post 1st episode | All | SOUL: story true? DATA: engagement? |
-| **11-14** | Mar 31 - Apr 2 | Episode cycle. Offer Build to grads | All | Loop runs itself |
+| Day | Date | Actions (multiple per day) | Channels |
+|-----|------|---------------------------|----------|
+| **0** | Mar 20 | Stripe setup · Calendly verify · Walk the flow · Roast/polish landing page · Ready landing page · Update LinkedIn bio (BROADCASTS to network) · Update other social bios · Email signature | Setup + Ch 1 |
+| **1** | Mar 21 | Post Tuning Fork on LinkedIn · Cross-post to other socials · Add 20-30 connections (CDMX archetypes) · DM 5 upstream partners | Ch 1 + Ch 2 |
+| **2** | Mar 22 | Add 20-30 more connections · 20-30 warm network DMs (energy test) · Respond to hand-raisers from Day 0-1 | Ch 1 + Ch 3 |
+| **3** | Mar 23 | DM 5 more partners · Warm network wave 2 (10-20 more) · Respond to hand-raisers | Ch 2 + Ch 3 |
+| **4-5** | Mar 24-25 | Continue adding connections · Respond to all hand-raisers · First session(s) · QR sticker at co-working | All |
+| **6-7** | Mar 26-27 | Sessions · Name first episode · Warm network wave 3 if not saturated | All |
+| **8-10** | Mar 28-30 | Post episode on LinkedIn · Sessions · Offer Build to best-fit Ignition grads | All |
+| **11-14** | Mar 31 - Apr 2 | Loop running: episode → hand-raisers → sessions → next episode · Workshop if scheduled | All |
 
 #### Soul-Alignment Checkpoint
 
