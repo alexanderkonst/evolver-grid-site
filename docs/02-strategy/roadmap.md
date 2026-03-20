@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | CANVAS ERA. Step 2→3 transition — Ignition → First Public Signal. USP crystallized at $555. Tuning Fork v4 ready (9.6-9.7 precision) |
-| **Current cycle** | March 2026 — 5 founders active, 3 sessions scheduled Tuesday (incl. Karime). First LinkedIn post imminent |
-| **Location** | Mexico |
-| **Focus** | **Post Tuning Fork v5 on LinkedIn (first public signal). Deliver 3 sessions Tuesday. Record lead magnet video. Await first $555 booking** |
-| **Key milestone** | ✅ Oyi Canvas at 9.9. ✅ Alexa full canvas in 2.5 hours (fastest). ✅ Founders Showcase at `/founders`. ✅ Ignition page at `/ignite`. ✅ **35 breakthrough domains documented** (was 33). ✅ USP v1.0 crystallized ($555). ✅ Tuning Fork v4 drafted + v5 emerging (Karime's feedback). ✅ Trigger 2 sent (founders cross-reading canvases). ✅ Module Taxonomy v3.1 (28 modules / 158 submodules). ✅ Triple-Delivery Session breakthrough (Product × Marketing × Distribution) |
-| **Key decisions** | Frankie model activated: pull not push (post signal → they DM you). Price in the post ($555 — transparent, filters for seriousness). Karime is co-creator, not just future facilitator. Holonic authorship: sign it AND hold it lightly |
+| **Current phase** | CANVAS ERA. Step 3 — Branching. Build SOP documented. Forecast v4 (post-roast). 10 sessions delivered. 8 audience frequencies named |
+| **Current cycle** | March 2026 — 10 founders served, rest days Mar 20-22, Day 0 (launch) = Mar 23. Holomap center reading: "Branching" |
+| **Location** | Mexico City |
+| **Focus** | **Day 0 launch (Mar 23): Stripe + Calendly + bio update + TF post. First $555 session. Warm DMs to 30 named contacts** |
+| **Key milestone** | ✅ 10 sessions delivered. ✅ Build SOP v1 (5 phases). ✅ Forecast v4 (roasted, corrected). ✅ 6-month trajectory. ✅ 8 NotebookLM audience prompts. ✅ Holomap Day 19 "Branching". ✅ Scale-Up + VC enabler play documented. ✅ Distribution playbook Tactics 4+5. ✅ Open Blueprint strategy. ✅ Soul-Aligned Tactics (Part 0). ✅ Build pricing: $1,111 + $2,500 rev share |
+| **Key decisions** | Open Blueprint: teach everything, hold nothing back. Hybrid Build pricing (skin in the game). 10 sessions/week capacity (T/W/Th). Node licensing at 10% revenue. Weekly TF repost cadence |
 
 ---
 
@@ -796,5 +796,5 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-03-16 (evening). CANVAS ERA — Step 2→3 transition. 5 founders active, 3 sessions Tuesday. 35 breakthrough domains. USP crystallized ($555). Tuning Fork v4 ready, v5 emerging. First public signal imminent. Center word: Mirror → Signal.*
+*Roadmap updated: 2026-03-19 (midnight). CANVAS ERA — Step 3 (Branching). 10 sessions delivered. Build SOP documented. Forecast v4 post-roast. 8 audience frequencies named. Day 0 = March 23. Center word: Signal → Branching.*
 

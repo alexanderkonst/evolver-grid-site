@@ -2790,5 +2790,68 @@ Thursday:   Regroup. Read what the world said back.
 
 *Day 12 complete. ~10:50pm Mexico. Mirror Day. The founder faced the money shadow, received three 13th-perspective initiations, drafted the first public signal, and was mirrored by Karime on the copy. The tuning fork is tuned. Tomorrow the fork strikes.*
 
+---
+
+## Day 19 — Wednesday, March 19, 2026 (Evening → Midnight)
+
+**Location**: Mexico City
+**Time**: ~10pm → midnight
+**Theme**: Branching Day — The replication code is written
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Build SOP (universal)** | 5 gated phases: Polish → First Delivery → Training → First Sale → Foundation. Added to `unique_business_playbook.md` |
+| **Build SOP (instantiated)** | Alexander's version with Oyi/Sergey examples, VC enabler play. Added to `alexanders_unique_business.md` |
+| **Forecast v4** | Post-roast, post-meta-roast. Corrected LinkedIn reach (500-1K), warm/cold split, Stripe fees + 15% tax, weekly TF repost |
+| **6-month trajectory** | March→August with MoM growth model and node handoff timeline |
+| **Weekly rhythm** | Mon=Imagination, T/W/Th=Sessions (3-5/day), Fri=Pleasure, Sat=Fun, Sun=Holy |
+| **2026 endgame vision** | 13th perspective: $35-50K/month net, 200+ canvases, 8-12 nodes, 20-25 hrs/week |
+| **8 NotebookLM prompts** | Audience-specific with Open Blueprint strategy → aleksandrkonstantinov.com |
+| **Holomap Day 19** | Center reading: "Branching" (was "Ignition"). 10 perspectives updated |
+| **Roadmap update** | Current status refreshed for Day 19 |
+
+### Key Insights
+
+- **Open Blueprint Paradox**: Teaching full methodology IS the sales mechanism. Generosity = credibility
+- **Build SOP as replication code**: Without it, scales through Alexander only. With it, scales through people
+- **8 archetypes = addressing system**: Same truth, 8 access points for 8 kinds of ears
+- **The Handoff**: Months 1-3 solo → 4-5 nodes emerge → 6+ Alexander selective, nodes absorb volume
+
+### Build Pricing Crystallized
+
+```
+Ignition:    $555 upfront (net ~$455)
+The Build:   $1,111 upfront + $2,500 from first $10K revenue
+Node:        10% ongoing revenue share
+```
+
+### Holomap Movement (Day 11 → Day 19)
+
+| Perspective | Day 11 | Day 19 | What moved it |
+|-------------|--------|--------|---------------|
+| P1 (Founder) | 9/10 | **9.5/10** | Held entire system, corrected flaws, stayed clean |
+| P2 (Observable) | 7.5/10 | **8/10** | Build SOP, Forecast v4, 10 sessions |
+| P3 (Shared Field) | 6.5/10 | **7/10** | 8 archetypes named, speaking TO the tribe |
+| P7 (Movement) | 4/10 | **5.5/10** | Movement declared in 8 frequencies |
+| P9 (Inner Move) | 7/10 | **8/10** | Pricing committed, capacity confirmed |
+| P10 (Build) | 5/10 | **6.5/10** | Build SOP, launch sequence, NotebookLM system |
+| P12 (Scale) | 3/10 | **3.5/10** | Replication code: Build SOP → nodes → network |
+
+### Where We Are Now
+
+| Metric | Value |
+|--------|-------|
+| **Phase** | Canvas Era — Step 3: Branching |
+| **Sessions** | 10 delivered. 100% warm conversion. 2/2 Build |
+| **Holomap** | Center: Branching. Average +1.06 across all perspectives |
+| **Next** | Rest Mar 20-22. Day 0 = March 23 |
+
+---
+
+*Day 19 complete. ~midnight Mexico. Branching Day. The trunk wrote its branching code: Build SOP, 8 frequencies, 6-month trajectory, 2026 vision. Rest three days. Day 0 is March 23.*
+
+
 
 
