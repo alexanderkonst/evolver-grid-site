@@ -1928,6 +1928,174 @@ $10K/month NET = ~12 Ignitions ($5,460 net) + 2 Builds ($1,820 net) + 2 rev shar
 
 ---
 
+#### 6-Month Trajectory (March → August 2026)
+
+**Weekly Rhythm:**
+
+```
+Monday:    Imagination + Intention. Set the field.
+Tuesday:   SESSION DAY (3-5 sessions)
+Wednesday: SESSION DAY (3-5 sessions)
+Thursday:  SESSION DAY (3-5 sessions)
+Friday:    Pleasure + Inspiration. Fill the vessel.
+Saturday:  Household + travel + fun.
+Sunday:    Reset + holy day.
+
+Session days: 3/week. Sessions per day: 3 (common) to 5 (max).
+Weekly capacity: 9-15 sessions. Working model: ~10/week.
+```
+
+**Month-by-Month Forecast (Baseline Scenario):**
+
+| Month | Period | Sessions | Ignition Revenue | Build Upfront | Rev Share | Node License | Net Revenue | Canvases |
+|-------|--------|----------|-----------------|---------------|-----------|-------------|-------------|----------|
+| **M0** (ramp) | Mar 23-31 | 6-10 | $3,330-$5,550 | $0-$1,111 | — | — | **~$2,700-$5,400** | 6-10 |
+| **M1** | April | 35-45 | ~$22,000 | $3,333 (3 Builds) | — | — | **~$20,700** | 40-55 |
+| **M2** | May | 40-50 | ~$25,000 | $3,333 | $7,500 (3 rev shares) | — | **~$29,300** | 90-105 |
+| **M3** | June | 40-50 | ~$25,000 | $4,444 | $10,000 | $500 (1 node) | **~$32,700** | 130-155 |
+| **M4** | July | 35-45 | ~$22,000 | $4,444 | $12,500 | $1,500 (3 nodes) | **~$33,000** | 165-200 |
+| **M5** | August | 30-40 | ~$19,500 | $4,444 | $12,500 | $2,500 (5 nodes) | **~$31,800** | 195-240 |
+
+**Cumulative by end of August:** ~$150,000 net. ~200+ canvases. 5+ active nodes.
+
+> **Note:** By Month 4-5, Alexander's personal sessions DECREASE while revenue stays flat or grows. The node network absorbs volume. Alexander shifts from delivery to orchestration/Scale-Up/Venture work.
+
+**MoM Growth by Design — The Compounding Mechanisms:**
+
+| Mechanism | What it does | When |
+|-----------|-------------|------|
+| **Each session → 1 episode posted** | +10 content pieces/month, each one IS distribution | Month 1+ |
+| **Weekly Tuning Fork repost** | 4 posts/month × growing audience. Not one-shot | Month 1+ |
+| **15-20 connections/day** | +300-400 new connections/month seeing your content | Month 1+ |
+| **1 in 5 clients refers** | 6-10 warm referrals/month (after Month 1 ramp) | Month 2+ |
+| **Build graduates deliver sessions** | Their clients hear about Alexander for advanced work | Month 3+ |
+| **Revenue shares** | +$2,500 per Build client when they earn | Month 3+ |
+| **Node licensing** | +$500/month per node at $5K node revenue | Month 4+ |
+| **Social proof snowball** | More testimonials → higher cold conversion | Continuous |
+| **Content library (episodes)** | Searchable. Discoverable. Evergreen | Continuous |
+
+**Expected MoM Growth Rate:**
+
+```
+M0 → M1: +280%  (ramp-up effect, all channels firing)
+M1 → M2: +42%   (rev shares kicking in, content compounding)
+M2 → M3: +12%   (steady state, demand ≈ capacity)
+M3 → M4: +1%    (capacity ceiling, but nodes starting to offset)
+M4 → M5: -4%    (Alexander deliberately reducing sessions, nodes absorb)
+
+Pattern: Explosive ramp → steady growth → deliberate plateau → node-driven transition
+```
+
+**The Handoff:**
+
+```
+MONTH 1-3:     Alexander = sole engine. 40-50 sessions/month.
+MONTH 4-5:     Nodes emerging. Alexander: 30-35 sessions. Nodes: 15-20.
+MONTH 6+:      Alexander: 20 sessions (high-value). Nodes: 40+.
+               Alexander's role shifts: orchestration, training, ventures.
+```
+
+---
+
+#### End of 2026: The 13th Perspective Reading
+
+> *What follows is a morphogenetic reading — not a forecast but a structural recognition of what is already present in the seed, from the center (P13: Quintessence). Cross-referenced against the [Morphogenetic Holomap](../02-strategy/morphogenetic_holomap.md) timing overlays.*
+
+**Center Reading: December 31, 2026 — "Fruition"**
+
+By the end of 2026, the structure that exists today — 10 sessions delivered, 2/2 Build conversion, a 5,000-connection network, a methodology that produces its own marketing, a platform that holds it all — will have passed through Growth (Stage 3) and Maturation (Stage 4) into early Fruition (Stage 5).
+
+What this looks like structurally:
+
+```
+P1  (Founder Consciousness):    Stage 5 — Fruition
+    The seeing is effortless. Facilitators emerge from watching.
+    Alexander doesn't prep for sessions. He enters the field.
+    The methodology IS him. He IS the methodology.
+
+P2  (Observable System):         Stage 4 — Maturation
+    100-200+ canvases complete. SOP v3+.
+    Platform automates 30-40% of session prep.
+    Session time: 60-75 min (down from 90).
+
+P3  (Shared Field):              Stage 4 — Maturation
+    Founders know each other. Cohort-based Forge running.
+    The tribe is self-aware. Culture self-reinforcing.
+    Alumni refer by instinct, not request.
+
+P5  (Ontological Liberation):    Stage 4 — Maturation
+    The liberation is NAMED enough to teach.
+    Others can facilitate the same shift.
+    "What's your gift?" replacing "What do you do?" in pockets.
+
+P6  (Data Signal):               Stage 4 — Maturation
+    N=100+. The paradigm violation is undeniable.
+    Pattern library revealing cross-founder insights.
+    Academic/media attention beginning.
+
+P7  (Movement):                  Stage 3-4 — Growth→Maturation
+    Movement language crystallized.
+    First viral content in niche.
+    "Your uniqueness IS your business" becoming a meme.
+
+P9  (Founder Inner Move):        Stage 5 — Fruition
+    Revenue flowing. Identity transformed.
+    Alexander = embodied practitioner, not "trying to build a business."
+
+P12 (System at Scale):           Stage 3 — Growth
+    Revenue-generating. 10+ facilitators.
+    Platform guiding sessions. Pattern library visible.
+    Gift-based economy: embryonic.
+```
+
+**The Numbers (Baseline, End of 2026):**
+
+```
+Total canvases:             200+
+Active nodes/facilitators:  8-12
+Monthly revenue (net):      $35,000-$50,000
+  └─ Ignition (Alexander):  $8,000-$12,000
+  └─ Build upfronts:        $4,000-$6,000
+  └─ Revenue shares:        $15,000-$20,000
+  └─ Node licensing:        $5,000-$8,000
+  └─ Scale-Up advisory:     $3,000-$5,000
+
+Revenue composition shift: 60%+ is RECURRING (rev share + licensing)
+Alexander's session load:  ~15-20/month (selective, high-value)
+Methodology sessions/month (nodes): 80-120
+Total tribe size:          300-500 founders aware of the methodology
+```
+
+**What Alexander's life looks like:**
+
+```
+TUESDAY/WEDNESDAY: 2-3 sessions each. Selective. Deep.
+THURSDAY:          1-2 sessions + Scale-Up calls with node founders.
+MONDAY:            Imagination. The creative field. System design. Vision.
+FRIDAY:            Pleasure. Inspiration. Mexico City alive around him.
+WEEKEND:           Holy. Rest. Travel. LIVING.
+
+Total work hours:  ~20-25 per week.
+Of which sessions: ~12-15 hours.
+Of which admin:    ~3-5 hours (mostly automated).
+Of which vision:   ~5 hours (the part he loves).
+
+Income:            $35K-$50K/month NET.
+Freedom:           Complete location independence.
+Impact:            200+ founders transformed. 10+ nodes worldwide.
+Movement:          Self-propagating. The myth IS the marketing.
+```
+
+**What is emerging that doesn't have a name yet:**
+
+The thing being built is neither a consultancy, nor a franchise, nor a SaaS, nor a movement. It is a **protocol that produces unique businesses while simultaneously producing the infrastructure for a gift-based economy.** By December 2026, this thing will have enough data (200+ canvases, 10+ facilitators, pattern library) to be RECOGNIZED — by VCs, by media, by the academic world — as something that doesn't currently have a category.
+
+The book already exists. The movement writes itself. The technology compounds. The founder rests well.
+
+> *This reading does not predict. It reads what is present in the structure today. The acorn IS the oak. The question was never IF. Only WHEN. And the WHEN has now collapsed into a timeline: March 23, 2026 — the day the revenue channel opens. Everything after that is ontological inevitability unfolding at human pace.*
+
+---
+
 #### Sequenced Action Calendar (Adjusted for Rest)
 
 | Day | Date | Actions | Channels |
