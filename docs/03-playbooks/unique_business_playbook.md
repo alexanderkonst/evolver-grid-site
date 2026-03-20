@@ -152,6 +152,39 @@ All five true → soul-aligned. Any one false → recalibrate.
 
 **The recovery:** Return to the seed. What is your uniqueness? Speak from THAT. The rest re-aligns.
 
+## The Dual Signal Principle — Data-Driven AND Soul-Aligned
+
+> *"You check: does this feel clean? AND you check: is this working? Both signals matter."*
+
+Every action in this methodology passes through **two filters simultaneously:**
+
+| Signal | What it checks | How you check it |
+|--------|---------------|-----------------|
+| **Soul-Alignment** | Does this feel clean, generative, gift-like? | The 5-condition test above. Body response. Energy |
+| **Data** | Is this actually producing results? | Metrics. Conversion rates. Precision scores. Repeat patterns |
+
+**Why both?**
+
+| Soul-aligned but no data | Data-driven but not soul-aligned |
+|---|---|
+| Feels great, but nobody's buying | Converts well, but drains your energy |
+| Beautiful sessions, zero distribution | Aggressive DMs, high reply rate, feels extractive |
+| Pure gift energy, unsustainable | Pure grind energy, burns out |
+
+**Neither signal alone is sufficient.** The methodology works when BOTH are green:
+
+```
+SOUL: ✅ (feels clean, generative, I'd do it for free)
+DATA: ✅ (conversion happening, precision rising, system compounding)
+→ PROCEED. You're on the path.
+
+SOUL: ✅  DATA: ❌ → Recalibrate TACTICS, not principles.
+SOUL: ❌  DATA: ✅ → STOP. Something is misaligned. Return to the seed.
+SOUL: ❌  DATA: ❌ → Full reset. Go back to Part 0, Principle 1.
+```
+
+This is the bridge between the Methodology (mystical/visionary) and the Technology (practical/grounded). The soul tells you WHERE to go. The data tells you IF you arrived. Both are alive. Both evolve.
+
 ---
 
 # Part I: Philosophy & Ontology
