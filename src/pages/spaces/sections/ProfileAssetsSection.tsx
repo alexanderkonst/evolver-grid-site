@@ -55,7 +55,7 @@ const ProfileAssetsSection = () => {
                         primaryLabel={savedAssets.length > 0 ? "Find Matches" : "Add more"}
                         primaryIcon={savedAssets.length > 0 ? <Users className="w-4 h-4" /> : undefined}
                         primaryAction={() =>
-                            navigate(savedAssets.length > 0 ? "/game/network/matches" : "/asset-mapping")
+                            navigate(savedAssets.length > 0 ? "/game/collaborate/matches" : "/asset-mapping")
                         }
                         primaryClassName={savedAssets.length > 0 ? "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600" : undefined}
                         secondaryLabel={savedAssets.length > 0 ? "Add more" : undefined}
