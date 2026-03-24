@@ -103,7 +103,7 @@ export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> =
   // Backfill missing assets to DB
   if (missingFromDb.length > 0) {
     const inserts = missingFromDb.map(a => localToDb(a, userId));
-    const { error: insertError } = await supabase
+    const { error: insertError } = await (supabase as any)
       .from("user_assets")
       .insert(inserts);
 
