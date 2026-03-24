@@ -105,7 +105,7 @@ export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> =
     const inserts = missingFromDb.map(a => localToDb(a, userId));
     const { error: insertError } = await (supabase as any)
       .from("user_assets")
-      .insert(inserts);
+      .upsert(inserts, { ignoreDuplicates: true });
 
     if (insertError) {
       console.warn("Failed to sync localStorage assets to DB:", insertError.message);
@@ -142,10 +142,10 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
     writeLocalAssets(userId, existing);
   }
 
-  // Save to DB
+  // Save to DB (upsert to handle unique constraint gracefully)
   const { error } = await (supabase as any)
     .from("user_assets")
-    .insert(localToDb(asset, userId));
+    .upsert(localToDb(asset, userId), { ignoreDuplicates: true });
 
   if (error) {
     // DB might not be available yet; localStorage is the fallback
@@ -186,11 +186,11 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
   const updated = [...existing, ...newAssets];
   writeLocalAssets(userId, updated);
 
-  // Save to DB
+  // Save to DB (upsert to handle unique constraint gracefully)
   const inserts = newAssets.map(a => localToDb(a, userId));
   const { error } = await (supabase as any)
     .from("user_assets")
-    .insert(inserts);
+    .upsert(inserts, { ignoreDuplicates: true });
 
   if (error) {
     console.warn("Failed to save assets to DB:", error.message);

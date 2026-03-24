@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface MatchCardProps {
   user: {
@@ -15,6 +16,10 @@ interface MatchCardProps {
   matchLabel?: string;
   secondaryReason?: string;
   secondaryLabel?: string;
+  tertiaryReason?: string;
+  tertiaryLabel?: string;
+  matchTypeBadge?: string;
+  connectLabel?: string;
   onPass: () => void;
   onConnect: () => void;
 }
@@ -25,6 +30,10 @@ const MatchCard = ({
   matchLabel,
   secondaryReason,
   secondaryLabel,
+  tertiaryReason,
+  tertiaryLabel,
+  matchTypeBadge,
+  connectLabel,
   onPass,
   onConnect,
 }: MatchCardProps) => {
@@ -52,6 +61,11 @@ const MatchCard = ({
             {user.firstName} {user.lastName}
           </h2>
           <p className="text-[#2c3150] mt-1">✦ {user.archetype} ✦</p>
+          {matchTypeBadge && (
+            <Badge variant="secondary" className="mt-2 bg-emerald-100 text-emerald-800 border-emerald-200">
+              {matchTypeBadge}
+            </Badge>
+          )}
           {user.tagline && (
             <p className="text-sm text-[#2c3150]/60 mt-2 italic break-words">"{user.tagline}"</p>
           )}
@@ -73,13 +87,22 @@ const MatchCard = ({
           </div>
         )}
 
+        {tertiaryReason && (
+          <div className="w-full border-t border-[#a4a3d0]/20 pt-4">
+            <p className="text-xs uppercase text-[#2c3150]/60 mb-2">
+              {tertiaryLabel || "Context"}
+            </p>
+            <p className="text-sm text-[#2c3150]/70 break-words">{tertiaryReason}</p>
+          </div>
+        )}
+
         <div className="flex w-full gap-3 pt-4">
           <Button variant="outline" className="flex-1" onClick={onPass}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Pass
           </Button>
           <Button className="flex-1" onClick={onConnect}>
-            Connect
+            {connectLabel || "Connect"}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
@@ -96,7 +119,10 @@ const areEqual = (prev: MatchCardProps, next: MatchCardProps) => (
   prev.matchReason === next.matchReason &&
   prev.matchLabel === next.matchLabel &&
   prev.secondaryReason === next.secondaryReason &&
-  prev.secondaryLabel === next.secondaryLabel
+  prev.secondaryLabel === next.secondaryLabel &&
+  prev.tertiaryReason === next.tertiaryReason &&
+  prev.connectLabel === next.connectLabel &&
+  prev.matchTypeBadge === next.matchTypeBadge
 );
 
 export default memo(MatchCard, areEqual);
