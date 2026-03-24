@@ -318,24 +318,33 @@ const Matchmaking = () => {
   useEffect(() => {
     const loadAssetMatches = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
+      if (!user) {
+        console.log("[AssetMatching] No user session, skipping");
+        return;
+      }
 
+      console.log("[AssetMatching] Calling suggest-asset-matches for user:", user.id);
       setAssetMatchesLoading(true);
       try {
         const { data, error } = await supabase.functions.invoke("suggest-asset-matches", {
           body: { userId: user.id },
         });
 
+        console.log("[AssetMatching] Response:", { data, error });
+
         if (error) {
-          console.warn("Asset matching not available:", error.message);
+          console.warn("[AssetMatching] Edge function error:", error.message);
           return;
         }
 
         if (data?.matches) {
+          console.log("[AssetMatching] Got matches:", data.matches.length, data.matches);
           setAssetMatches(data.matches);
+        } else {
+          console.log("[AssetMatching] No matches in response:", data);
         }
       } catch (err) {
-        console.warn("Asset matching failed:", err);
+        console.warn("[AssetMatching] Exception:", err);
       } finally {
         setAssetMatchesLoading(false);
       }
@@ -375,7 +384,8 @@ const Matchmaking = () => {
     filteredGroups.similarGenius.length > 0 ||
     filteredGroups.complementaryGenius.length > 0 ||
     filteredGroups.similarMission.length > 0 ||
-    assetMatches.length > 0;
+    assetMatches.length > 0 ||
+    assetMatchesLoading;
 
   const renderMatch = (match: MatchCandidate) => (
     <div key={match.id} className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
