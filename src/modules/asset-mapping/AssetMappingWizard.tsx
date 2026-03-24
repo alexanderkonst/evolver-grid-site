@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES, AssetTypeId } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
 import { ASSET_CATEGORIES } from "./data/assetCategories";
+import { saveAsset } from "./assetSync";
 
 type Step = 'type' | 'subtype' | 'category' | 'details' | 'done';
 
@@ -88,13 +89,11 @@ const AssetMappingWizard = () => {
                 title: title.trim(),
                 description: description.trim() || undefined,
                 savedAt: new Date().toISOString(),
+                source: "manual" as const,
             };
 
-            // Save to localStorage (until DB migration is ready)
-            const key = `user_assets_${user.id}`;
-            const existing = JSON.parse(localStorage.getItem(key) || '[]');
-            existing.push(asset);
-            localStorage.setItem(key, JSON.stringify(existing));
+            // Save via sync layer (localStorage + DB)
+            await saveAsset(user.id, asset);
 
             setAddedAssets(prev => [...prev, { title: asset.title, type: selectedType?.title || '' }]);
 

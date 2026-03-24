@@ -9,6 +9,7 @@ import { ASSET_TYPES } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
 import { ASSET_CATEGORIES } from "./data/assetCategories";
 import { ASSET_MAPPING_PROMPT } from "@/prompts";
+import { saveAssets, type SavedAsset } from "./assetSync";
 import {
     Tooltip,
     TooltipContent,
@@ -101,13 +102,8 @@ const AssetMappingLanding = () => {
                 return;
             }
 
-            const key = `user_assets_${user.id}`;
-            const existing = JSON.parse(localStorage.getItem(key) || "[]");
-            const existingTitles = new Set(
-                existing.map((asset: { title?: string }) => normalizeText(asset.title))
-            );
-
-            let savedCount = 0;
+            // Map matched assets to SavedAsset shape
+            const toSave: SavedAsset[] = [];
             let skippedCount = 0;
 
             for (const asset of matchedAssets) {
@@ -134,13 +130,12 @@ const AssetMappingLanding = () => {
                         : undefined;
 
                 const title = asset.title.trim();
-                const normalizedTitle = normalizeText(title);
-                if (!normalizedTitle || existingTitles.has(normalizedTitle)) {
+                if (!title) {
                     skippedCount += 1;
                     continue;
                 }
 
-                existing.push({
+                toSave.push({
                     typeId: type.id,
                     subTypeId: subType?.id,
                     categoryId: category?.id,
@@ -149,16 +144,16 @@ const AssetMappingLanding = () => {
                     savedAt: new Date().toISOString(),
                     source: "ai",
                 });
-                existingTitles.add(normalizedTitle);
-                savedCount += 1;
             }
 
-            localStorage.setItem(key, JSON.stringify(existing));
+            // Save via sync layer (localStorage + DB)
+            const result = await saveAssets(user.id, toSave);
 
             setHasSaved(true);
+            const totalSkipped = skippedCount + result.skipped;
             toast({
                 title: "Assets saved",
-                description: `Saved ${savedCount} assets${skippedCount ? `, skipped ${skippedCount}` : ""}.`,
+                description: `Saved ${result.saved} assets${totalSkipped ? `, skipped ${totalSkipped}` : ""}.`,
             });
         } catch (err) {
             toast({ title: "Something went wrong", variant: "destructive" });
