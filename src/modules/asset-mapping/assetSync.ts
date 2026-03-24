@@ -79,7 +79,7 @@ const localToDb = (asset: SavedAsset, userId: string) => ({
  */
 export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> => {
   // Try to read from DB
-  const { data: dbRows, error } = await supabase
+  const { data: dbRows, error } = await (supabase as any)
     .from("user_assets")
     .select("*")
     .eq("user_id", userId)
@@ -103,7 +103,7 @@ export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> =
   // Backfill missing assets to DB
   if (missingFromDb.length > 0) {
     const inserts = missingFromDb.map(a => localToDb(a, userId));
-    const { error: insertError } = await supabase
+    const { error: insertError } = await (supabase as any)
       .from("user_assets")
       .insert(inserts);
 
@@ -143,7 +143,7 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
   }
 
   // Save to DB
-  const { error } = await supabase
+  const { error } = await (supabase as any)
     .from("user_assets")
     .insert(localToDb(asset, userId));
 
@@ -188,7 +188,7 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
 
   // Save to DB
   const inserts = newAssets.map(a => localToDb(a, userId));
-  const { error } = await supabase
+  const { error } = await (supabase as any)
     .from("user_assets")
     .insert(inserts);
 
