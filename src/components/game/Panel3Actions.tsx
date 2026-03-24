@@ -6,6 +6,7 @@ interface Panel3ActionsProps {
   primaryLabel: string;
   primaryAction: () => void;
   primaryIcon?: ReactNode;
+  primaryClassName?: string;
   secondaryLabel?: string;
   secondaryAction?: () => void;
   variant?: "default" | "sticky";
@@ -15,6 +16,7 @@ const Panel3Actions = ({
   primaryLabel,
   primaryAction,
   primaryIcon,
+  primaryClassName,
   secondaryLabel,
   secondaryAction,
   variant = "default",
@@ -37,7 +39,7 @@ const Panel3Actions = ({
             {secondaryLabel}
           </Button>
         )}
-        <Button className="h-12 rounded-xl px-6 font-semibold" onClick={primaryAction}>
+        <Button className={cn("h-12 rounded-xl px-6 font-semibold", primaryClassName)} onClick={primaryAction}>
           {primaryIcon && <span className="mr-2 inline-flex">{primaryIcon}</span>}
           {primaryLabel}
         </Button>
@@ -50,7 +52,7 @@ const Panel3Actions = ({
         )}
       >
         <div className="flex flex-col gap-2">
-          <Button className="w-full h-12 rounded-xl px-6 font-semibold" onClick={primaryAction}>
+          <Button className={cn("w-full h-12 rounded-xl px-6 font-semibold", primaryClassName)} onClick={primaryAction}>
             {primaryIcon && <span className="mr-2 inline-flex">{primaryIcon}</span>}
             {primaryLabel}
           </Button>

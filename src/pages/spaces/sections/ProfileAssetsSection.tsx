@@ -7,16 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
 import { ASSET_SUB_TYPES } from "@/modules/asset-mapping/data/assetSubtypes";
 import Panel3Actions from "@/components/game/Panel3Actions";
+import { loadAndSyncAssets, type SavedAsset } from "@/modules/asset-mapping/assetSync";
 
-interface SavedAsset {
-    typeId: string;
-    subTypeId?: string;
-    categoryId?: string;
-    title: string;
-    description?: string;
-    savedAt: string;
-    source: string;
-}
 
 const ProfileAssetsSection = () => {
     const navigate = useNavigate();
@@ -26,21 +18,15 @@ const ProfileAssetsSection = () => {
     useEffect(() => {
         let isMounted = true;
 
-        const loadAssets = async () => {
+        const load = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user || !isMounted) return;
 
-            const assetsKey = `user_assets_${user.id}`;
-            const storedAssets = localStorage.getItem(assetsKey);
-            if (!storedAssets) return;
-            try {
-                const parsed = JSON.parse(storedAssets);
-                if (isMounted) setSavedAssets(parsed);
-            } catch (err) {
-            }
+            const assets = await loadAndSyncAssets(user.id);
+            if (isMounted) setSavedAssets(assets);
         };
 
-        loadAssets();
+        load();
         return () => {
             isMounted = false;
         };
@@ -71,6 +57,7 @@ const ProfileAssetsSection = () => {
                         primaryAction={() =>
                             navigate(savedAssets.length > 0 ? "/game/network/matches" : "/asset-mapping")
                         }
+                        primaryClassName={savedAssets.length > 0 ? "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600" : undefined}
                         secondaryLabel={savedAssets.length > 0 ? "Add more" : undefined}
                         secondaryAction={savedAssets.length > 0 ? () => navigate("/asset-mapping") : undefined}
                     />

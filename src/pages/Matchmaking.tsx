@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { MapPin, Users, Languages } from "lucide-react";
+import { MapPin, Users, Languages, Boxes } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
@@ -33,6 +33,17 @@ interface MatchGroups {
   similarGenius: MatchCandidate[];
   complementaryGenius: MatchCandidate[];
   similarMission: MatchCandidate[];
+}
+
+interface AssetMatchResult {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  archetype: string | null;
+  tagline: string | null;
+  matchScore: number;
+  matchReasons: string[];
+  theirAssets: { typeId: string; title: string }[];
 }
 
 interface CurrentProfile {
@@ -97,6 +108,8 @@ const Matchmaking = () => {
   const [currentProfile, setCurrentProfile] = useState<CurrentProfile | null>(null);
   const [sameLocationOnly, setSameLocationOnly] = useState(false);
   const [sameLanguageOnly, setSameLanguageOnly] = useState(false);
+  const [assetMatches, setAssetMatches] = useState<AssetMatchResult[]>([]);
+  const [assetMatchesLoading, setAssetMatchesLoading] = useState(false);
 
   const Skeleton = ({ className }: { className?: string }) => (
     <div className={`animate-pulse bg-[#a4a3d0]/20 rounded ${className || ""}`} />
@@ -280,6 +293,36 @@ const Matchmaking = () => {
     loadMatches();
   }, []);
 
+  // Load asset matches from edge function
+  useEffect(() => {
+    const loadAssetMatches = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      setAssetMatchesLoading(true);
+      try {
+        const { data, error } = await supabase.functions.invoke("suggest-asset-matches", {
+          body: { userId: user.id },
+        });
+
+        if (error) {
+          console.warn("Asset matching not available:", error.message);
+          return;
+        }
+
+        if (data?.matches) {
+          setAssetMatches(data.matches);
+        }
+      } catch (err) {
+        console.warn("Asset matching failed:", err);
+      } finally {
+        setAssetMatchesLoading(false);
+      }
+    };
+
+    loadAssetMatches();
+  }, []);
+
   const locationBlocked = sameLocationOnly && !currentProfile?.location;
   const languageBlocked = sameLanguageOnly && (!currentProfile || currentProfile.spokenLanguages.length === 0);
 
@@ -310,7 +353,8 @@ const Matchmaking = () => {
   const hasAnyMatches =
     filteredGroups.similarGenius.length > 0 ||
     filteredGroups.complementaryGenius.length > 0 ||
-    filteredGroups.similarMission.length > 0;
+    filteredGroups.similarMission.length > 0 ||
+    assetMatches.length > 0;
 
   const renderMatch = (match: MatchCandidate) => (
     <div key={match.id} className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
@@ -460,6 +504,71 @@ const Matchmaking = () => {
                   </div>
                 )}
               </div>
+            </section>
+
+            <section>
+              <div className="mb-3">
+                <div className="flex items-center gap-2">
+                  <Boxes className="w-5 h-5 text-emerald-600" />
+                  <h2 className="text-lg font-semibold text-[#2c3150]">Asset Matches</h2>
+                </div>
+                <p className="text-sm text-[#2c3150]/60">Win-win collaboration opportunities based on complementary assets.</p>
+              </div>
+              {assetMatchesLoading ? (
+                <div className="grid gap-4 md:grid-cols-2">
+                  {Array.from({ length: 2 }).map((_, idx) => (
+                    <Skeleton key={idx} className="h-32 w-full" />
+                  ))}
+                </div>
+              ) : assetMatches.length > 0 ? (
+                <div className="grid gap-4 md:grid-cols-2">
+                  {assetMatches.map((match) => (
+                    <div key={match.userId} className="rounded-2xl border border-emerald-200/40 bg-gradient-to-br from-white/90 to-emerald-50/40 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h3 className="text-lg font-semibold text-[#2c3150]">
+                            {match.firstName} {match.lastName}
+                          </h3>
+                          {match.archetype && (
+                            <p className="text-sm text-[rgba(44,49,80,0.7)]">✦ {match.archetype} ✦</p>
+                          )}
+                          {match.tagline && (
+                            <p className="text-xs text-[#2c3150]/60 mt-1 italic">"{match.tagline}"</p>
+                          )}
+                        </div>
+                        <Badge variant="secondary" className="bg-emerald-100 text-emerald-800 border-emerald-200">
+                          {match.matchScore}% match
+                        </Badge>
+                      </div>
+                      <div className="mt-3 space-y-1">
+                        {match.matchReasons.map((reason, i) => (
+                          <p key={i} className="text-sm text-[rgba(44,49,80,0.7)]">
+                            {i === 0 ? "🤝 " : "• "}{reason}
+                          </p>
+                        ))}
+                      </div>
+                      {match.theirAssets.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1">
+                          {match.theirAssets.slice(0, 4).map((asset, i) => (
+                            <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-emerald-100/60 text-emerald-800">
+                              {asset.title}
+                            </span>
+                          ))}
+                          {match.theirAssets.length > 4 && (
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#a4a3d0]/10 text-[#2c3150]/60">
+                              +{match.theirAssets.length - 4} more
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="rounded-xl border border-dashed border-emerald-300/30 bg-emerald-50/30 p-6 text-sm text-[#2c3150]/60">
+                  No asset matches yet. Map your assets to discover collaboration opportunities.
+                </div>
+              )}
             </section>
           </div>
         )}
