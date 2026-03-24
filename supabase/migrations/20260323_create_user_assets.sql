@@ -40,6 +40,10 @@ CREATE POLICY "Users can delete own assets"
 CREATE INDEX idx_user_assets_user ON public.user_assets(user_id);
 CREATE INDEX idx_user_assets_type ON public.user_assets(type_id);
 
+-- Prevent duplicate assets per user
+CREATE UNIQUE INDEX idx_user_assets_unique
+  ON public.user_assets(user_id, type_id, LOWER(TRIM(title)));
+
 -- Trigger for updated_at
 CREATE TRIGGER update_user_assets_updated_at
   BEFORE UPDATE ON public.user_assets

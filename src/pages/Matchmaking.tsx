@@ -7,6 +7,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
+import MatchCard from "@/components/matchmaking/MatchCard";
 
 interface MatchCandidate {
   id: string;
@@ -41,10 +42,30 @@ interface AssetMatchResult {
   lastName: string;
   archetype: string | null;
   tagline: string | null;
-  matchScore: number;
-  matchReasons: string[];
+  resonanceScore: number;
+  matchType: string;
+  collaborationProposal: string;
+  suggestedAction: string;
+  alignment: string;
+  complementarity: string;
+  friction: string;
   theirAssets: { typeId: string; title: string }[];
 }
+
+const SUGGESTED_ACTION_LABELS: Record<string, string> = {
+  intro: "📨 Request Intro",
+  "micro-collab": "🤝 Start Project",
+  "practice-together": "🧘 Practice Together",
+  wait: "⏳ Revisit Later",
+};
+
+const MATCH_TYPE_LABELS: Record<string, string> = {
+  "co-founder": "Co-founder Fit",
+  collaborator: "Collaborator",
+  peer: "Peer",
+  mentor: "Mentor",
+  "client-fit": "Client Fit",
+};
 
 interface CurrentProfile {
   id: string;
@@ -510,63 +531,44 @@ const Matchmaking = () => {
               <div className="mb-3">
                 <div className="flex items-center gap-2">
                   <Boxes className="w-5 h-5 text-emerald-600" />
-                  <h2 className="text-lg font-semibold text-[#2c3150]">Asset Matches</h2>
+                  <h2 className="text-lg font-semibold text-[#2c3150]">AI-Powered Matches</h2>
                 </div>
-                <p className="text-sm text-[#2c3150]/60">Win-win collaboration opportunities based on complementary assets.</p>
+                <p className="text-sm text-[#2c3150]/60">Win-win collaboration proposals powered by your full profile.</p>
               </div>
               {assetMatchesLoading ? (
                 <div className="grid gap-4 md:grid-cols-2">
                   {Array.from({ length: 2 }).map((_, idx) => (
-                    <Skeleton key={idx} className="h-32 w-full" />
+                    <Skeleton key={idx} className="h-48 w-full" />
                   ))}
                 </div>
               ) : assetMatches.length > 0 ? (
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2">
                   {assetMatches.map((match) => (
-                    <div key={match.userId} className="rounded-2xl border border-emerald-200/40 bg-gradient-to-br from-white/90 to-emerald-50/40 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h3 className="text-lg font-semibold text-[#2c3150]">
-                            {match.firstName} {match.lastName}
-                          </h3>
-                          {match.archetype && (
-                            <p className="text-sm text-[rgba(44,49,80,0.7)]">✦ {match.archetype} ✦</p>
-                          )}
-                          {match.tagline && (
-                            <p className="text-xs text-[#2c3150]/60 mt-1 italic">"{match.tagline}"</p>
-                          )}
-                        </div>
-                        <Badge variant="secondary" className="bg-emerald-100 text-emerald-800 border-emerald-200">
-                          {match.matchScore}% match
-                        </Badge>
-                      </div>
-                      <div className="mt-3 space-y-1">
-                        {match.matchReasons.map((reason, i) => (
-                          <p key={i} className="text-sm text-[rgba(44,49,80,0.7)]">
-                            {i === 0 ? "🤝 " : "• "}{reason}
-                          </p>
-                        ))}
-                      </div>
-                      {match.theirAssets.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1">
-                          {match.theirAssets.slice(0, 4).map((asset, i) => (
-                            <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-emerald-100/60 text-emerald-800">
-                              {asset.title}
-                            </span>
-                          ))}
-                          {match.theirAssets.length > 4 && (
-                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#a4a3d0]/10 text-[#2c3150]/60">
-                              +{match.theirAssets.length - 4} more
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </div>
+                    <MatchCard
+                      key={match.userId}
+                      user={{
+                        id: match.userId,
+                        firstName: match.firstName,
+                        lastName: match.lastName,
+                        archetype: match.archetype || "Community Member",
+                        tagline: match.tagline,
+                      }}
+                      matchLabel="Collaboration Proposal"
+                      matchReason={match.collaborationProposal}
+                      matchTypeBadge={MATCH_TYPE_LABELS[match.matchType] || match.matchType}
+                      secondaryLabel="Why this works"
+                      secondaryReason={`${match.alignment} ${match.complementarity}`}
+                      tertiaryLabel={match.friction !== "None identified" ? "Watch out for" : undefined}
+                      tertiaryReason={match.friction !== "None identified" ? match.friction : undefined}
+                      connectLabel={SUGGESTED_ACTION_LABELS[match.suggestedAction] || "Connect"}
+                      onPass={() => { /* TODO: track pass */ }}
+                      onConnect={() => { /* TODO: initiate connection */ }}
+                    />
                   ))}
                 </div>
               ) : (
                 <div className="rounded-xl border border-dashed border-emerald-300/30 bg-emerald-50/30 p-6 text-sm text-[#2c3150]/60">
-                  No asset matches yet. Map your assets to discover collaboration opportunities.
+                  No collaboration matches yet. Complete your Zone of Genius and map your assets to unlock AI-powered matching.
                 </div>
               )}
             </section>
