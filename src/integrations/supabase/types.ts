@@ -1273,6 +1273,45 @@ export type Database = {
         }
         Relationships: []
       }
+      user_assets: {
+        Row: {
+          category_id: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          source: string | null
+          sub_type_id: string | null
+          title: string
+          type_id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          source?: string | null
+          sub_type_id?: string | null
+          title: string
+          type_id: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          source?: string | null
+          sub_type_id?: string | null
+          title?: string
+          type_id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
