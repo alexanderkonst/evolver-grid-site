@@ -188,7 +188,7 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
 
   // Save to DB
   const inserts = newAssets.map(a => localToDb(a, userId));
-  const { error } = await supabase
+  const { error } = await (supabase as any)
     .from("user_assets")
     .insert(inserts);
 
