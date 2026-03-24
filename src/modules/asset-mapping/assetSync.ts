@@ -143,7 +143,7 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
   }
 
   // Save to DB
-  const { error } = await supabase
+  const { error } = await (supabase as any)
     .from("user_assets")
     .insert(localToDb(asset, userId));
 
