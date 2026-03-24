@@ -79,7 +79,7 @@ const localToDb = (asset: SavedAsset, userId: string) => ({
  */
 export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> => {
   // Try to read from DB
-  const { data: dbRows, error } = await supabase
+  const { data: dbRows, error } = await (supabase as any)
     .from("user_assets")
     .select("*")
     .eq("user_id", userId)
