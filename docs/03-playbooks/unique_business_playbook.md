@@ -1018,6 +1018,19 @@ Every insight in the playbook must eventually find its home in a workflow step. 
 >
 > **Operational principle:** When an artifact feels stuck or "off," check the artifact ABOVE it. The error is probably there.
 
+**The Acupressure Principle (discovered March 24, Alexander × Oyi Session #5):**
+
+> [!TIP]
+> **ONE precision hit at the right point. Then HOLD SILENCE. The medicine works when you stop talking.**
+>
+> In sessions, in copy, in DMs — resist the urge to overgive. A medicine man doesn't give a 90-day roadmap. He gives ONE prescription: "Do this practice for 5 days." That one step reveals the next.
+>
+> **The formula:** Press the point → hold silence → let them pour out → prescribe ONE next action. The facilitator who says one devastating truth and then stops talking creates more transformation than the one who fills every silence with more content.
+>
+> **Oyi's formula:** "Two ears, two eyes, one mouth. God's formula. Listen and watch FOUR TIMES as much as you talk."
+>
+> **The danger:** "You could get punch drunk." Sometimes naming the lie IS the entire session. Not every session needs all five stages. The point of the first session is to deliver one hit clean enough that they can never unsee it.
+
 **Mask-on-first rule:** The founder does this for THEMSELVES first. Every discovery becomes a reusable blueprint.
 
 **Tribe forging rules (discovered Feb 20, 2026):**
@@ -1116,6 +1129,24 @@ AI gets the articulation to **9**. The founder's embodied experience — writing
 
 **Why it's new:** Coaching doesn't produce artifacts. Consulting doesn't read the shadow. Therapy doesn't crystallize a business. AI alone doesn't hold the container. The triad is unprecedented.
 
+**Same Architecture, Different Medicine (discovered March 24, Alexander × Oyi Session #5):**
+
+> [!IMPORTANT]
+> **The playbook creates STRUCTURE. Each founder fills it with their unique MEDICINE.**
+>
+> Alexander's Ignition Session and Oyi's Mirror Session follow the same structural arc — recognition → shadow naming → prescription → invitation to the Build. But the CONTENT is completely different: Alexander uses AI-assisted uniqueness extraction; Oyi uses astrology + human design + first-person testimony. Same 7 artifacts. Same value ladder shape. Same A→B journey structure. Different medicine in every cell.
+>
+> | | Alexander's Ignition | Oyi's Mirror |
+> |---|---|---|
+> | **Tool** | AI-assisted uniqueness extraction | Astrology (North/South Node) + Human Design + Storytelling |
+> | **The "wow" moment** | "You just described your business in 60 seconds" | "How does he know that? I didn't say a word" |
+> | **Deliverable** | Unique Business Canvas | Sovereignty Map |
+> | **Mechanism** | Reorganize their words until they see the pattern | Read their chart + tell their story through his own |
+>
+> **Operational principle:** When onboarding a new founder, don't prescribe Alexander's tools or Oyi's tools. Ask: *what is YOUR medicine?* The structure (artifacts → A→B journey → value ladder → first session → build → container) stays constant. The medicine changes every time.
+>
+> **Replicability proof:** This validates that the playbook is not a one-person methodology. It's a universal architecture that each founder fills with their lineage, their tools, their testimony. Two wildly different founders. Same structure. Both at 9.9+ precision. The structure works.
+
 **The Journey to First Revenue (discovered March 13, 2026):**
 
 > [!TIP]
@@ -1153,6 +1184,10 @@ AI gets the articulation to **9**. The founder's embodied experience — writing
 
 > [!IMPORTANT]
 > **The value ladder crystallizes AS you deliver your medicine. Don't run ahead of the locomotive.**
+>
+> **Corollary: Artifacts → Product Design (discovered March 24, Oyi Session #5).** The A→B journey mapped from Pain→Promise artifacts becomes the literal session blueprint. The artifacts aren't just diagnostic — they ARE the product design. Oyi's 5-stage A→B journey (Name the Lie → Meet the Shadow → Restore the Car → Claim Sovereignty → Teacher Becomes Business) derived directly from inverting the pain layers. Each stage mapped to a container. The first session blueprint derived from the first two stages. The product designed itself — no separate "product development" needed.
+>
+> **Operational principle:** When the founder asks "but what do I actually DO in the session?" — the answer is already in their artifacts. Map the A→B journey from pain→promise inversion. The stages ARE the session. The containers ARE the value ladder. The artifacts wrote the product.
 
 > *"Hold your horses. It will all reveal itself. Trust the process. Focus on delivering your medicine. That's really what you need. Life has got you with clients. The value ladder reveals itself and crystallizes. Just deliver your medicine. Your job is to deliver your medicine, enjoy the process, and work through the programs and the viruses and the doubts and the self-sabotage that comes up."*
 
@@ -3060,10 +3095,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v2.8 — March 24, 2026*
+*Unique Business Playbook v2.9 — March 24, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v2.9:** Oyi Session #5 methodology upgrades. Acupressure Facilitation Principle added (one hit + silence). Same Architecture, Different Medicine principle added — replicability proof across Alexander's Ignition and Oyi's Mirror. Artifacts→Product Design corollary added to Crystallization Principle.
 - **v2.8:** Sandra Session #3 + Sergey Session #4 methodology upgrades. Empathy-First Pain Naming principle added to Pain checklist. Precision Threshold Scale (8+/9.2+/9.5+/9.9+) codified. Error Detection From Below principle added. Myth documented as trickiest artifact with multiple-myths-one-uniqueness rule. B2B=B2C and Holonic Business Scaling principles added. Fibonacci growth data added to Organic Pipeline.
 - **v2.7:** Noble = Free Antidote principle added — the universal pricing program running in every Source Path Builder, its two layers (noble=free + romantic giving), and the two-part resolution (Gift vs. System + Facilitation). Discovered March 23-24 across Alexander × Oyi sessions.
 - **v2.6:** Tactic 3.5 (Universal Tuning Fork Formula) added — 8-beat formula, energetic architecture (Water/Fire/Earth/Air), key principles from 8 rounds of roasting, customer journey separation. Discovered through v3→v7.1 iteration of Alexander's Master Tuning Fork.
