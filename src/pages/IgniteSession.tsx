@@ -1,7 +1,10 @@
-import { ArrowRight, Check, Sparkles, MapPin, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, Sparkles, MapPin, ChevronDown, Play, ShieldCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState } from "react";
+
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
+const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 
 const IgniteSession = () => {
   const location = useLocation();
@@ -63,10 +66,23 @@ const IgniteSession = () => {
           </div>
         </header>
 
+        {/* Hero Video — 8-Beat Tuning Fork (NotebookLM) */}
+        <section className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden" id="hero-video">
+          <div className="aspect-video bg-[#0c1220] flex items-center justify-center">
+            {/* TODO: Replace with YouTube embed once 8-beat video is uploaded */}
+            <div className="text-center space-y-3">
+              <div className="w-16 h-16 rounded-full bg-[#8460ea]/15 border border-[#8460ea]/30 flex items-center justify-center mx-auto">
+                <Play className="w-7 h-7 text-[#8460ea] ml-1" />
+              </div>
+              <p className="text-sm text-white/40">Video coming soon</p>
+            </div>
+          </div>
+        </section>
+
         {/* Social Proof */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center" id="proof-stats">
           {[
-            { num: "10", label: "Sessions delivered" },
+            { num: "15+", label: "Sessions delivered" },
             { num: "100%", label: "Conversion rate" },
             { num: "90", label: "Minutes per session" },
             { num: "5", label: "Unique businesses built" },
@@ -255,7 +271,7 @@ const IgniteSession = () => {
           <p className="text-xs text-white/25 mb-6">One session. Full canvas. Yours forever.</p>
 
           <a
-            href="https://www.calendly.com/konstantinov"
+            href={STRIPE_PAYMENT_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-[#8460ea] text-white hover:bg-[#7350d8] transition-all duration-300 hover:shadow-xl hover:shadow-[#8460ea]/30 hover:scale-[1.02] active:scale-[0.98]"
@@ -265,9 +281,19 @@ const IgniteSession = () => {
             <ArrowRight className="w-5 h-5" />
           </a>
 
-          <p className="text-[10px] text-white/15 mt-4">
-            In-person in Mexico City or via Zoom worldwide
-          </p>
+          <div className="flex items-center justify-center gap-1.5 mt-4 text-[10px] text-white/20">
+            <ShieldCheck className="w-3 h-3" />
+            <span>Secure payment via Stripe · In-person in CDMX or Zoom worldwide</span>
+          </div>
+
+          <a
+            href={CALCOM_BOOKING_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-3 text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors underline underline-offset-2"
+          >
+            Already paid? Book your session here →
+          </a>
         </section>
 
         {/* Testimonial */}
@@ -308,15 +334,23 @@ const IgniteSession = () => {
         {/* Bottom CTA */}
         <div className="text-center space-y-3 pb-8">
           <a
-            href="https://www.calendly.com/konstantinov"
+            href={STRIPE_PAYMENT_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-[#8460ea] text-white hover:bg-[#7350d8] transition-all duration-300 hover:shadow-xl hover:shadow-[#8460ea]/30 hover:scale-[1.02] active:scale-[0.98]"
           >
-            Book Your Ignition Session
+            Book Your Ignition Session — $555
             <ArrowRight className="w-5 h-5" />
           </a>
-          <div className="flex items-center justify-center gap-4">
+          <a
+            href={CALCOM_BOOKING_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors underline underline-offset-2"
+          >
+            Already paid? Book your session here →
+          </a>
+          <div className="flex items-center justify-center gap-4 pt-1">
             <a href={foundersPath} className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors">
               See the Founders →
             </a>
