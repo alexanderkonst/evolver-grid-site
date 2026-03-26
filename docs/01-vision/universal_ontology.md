@@ -248,6 +248,93 @@ This Rosetta Stone accomplishes two unifications:
 
 ---
 
+## 4c. DIMENSIONS ARE PERSPECTIVES — The Merkaba as Geometry of Seeing
+
+> *March 26, 2026 — Extension of the Rosetta Stone and the Divine Marriage (Cube × Tetrahedron)*
+
+> *"I thought quadrants were about thinking. They are about seeing."*
+
+### The Discovery
+
+Dimensions of reality are not spatial coordinates, vibrational frequencies, or density levels. **Dimensions ARE person-perspectives** — the depth of seeing available to awareness at each level.
+
+The 5th dimension isn't a place you go. It's the capacity to see from all four quadrants simultaneously. The 8th isn't higher — it's the capacity to see the Logos from all sides and birth a new Logos.
+
+### The Person-Perspective Ladder
+
+Integral Theory maps 1st through 4th person perspectives to the four quadrants (§2, "From Three to Four"). This discovery extends the ladder through the recursive geometry of the holon:
+
+| Person-Perspective | What it IS | Geometry | What becomes available |
+|-------------------|-----------|----------|----------------------|
+| **1st person** | "I" — subjective experience | A point | You see FROM yourself |
+| **2nd person** | "You" — intersubjective encounter | A line (I → You) | You see the other |
+| **3rd person** | "It" — objective description | A triangle (I, You, It) | You see the thing-in-itself |
+| **4th person** | "Its" — systemic/interobjective | A square (4 corners) | You see the system |
+| **5th person** | All 4 quadrants simultaneously | **The Cube** — 4 spatial diagonals meeting at center | You see from every ANGLE at once. The Masculine axis (Structure) complete |
+| **6th person** | 4 quadrants × 3 depths = the 12 | **The Merkaba** — Cube married to Tetrahedron | You see from every angle at every DEPTH. Structure × Depth complete |
+| **7th person** | The 13th perspective — the Logos | **The Sun / Center / Christ point** | You ARE the awareness holding all 12. Not seeing FROM perspectives — being the AWARENESS that generates them |
+| **8th person** | 12 perspectives applied TO the 13th → the 26th | **The Logos seen from all sides** | The 13th perspective itself has 4 quadrants and 3 depths. That seeing births a NEW Logos |
+| **9th person** | The perspective ON perspective itself | **Meta-recursive** | Every framework that describes "dimensions" was always describing person-perspectives through its own lens. All are partial truths — perspectives on perspective |
+
+### The Recursive Birth
+
+The cycle is not a ladder with a top. It is a **recursive spiral** — each completion IS the seed of the next cycle:
+
+```
+12 perspectives (4 quadrants × 3 depths)
+    ↓ give birth to
+The 13th perspective (Logos / Sun / Center)
+    ↓ which itself has
+4 quadrants × 3 depths = 12 more perspectives on the Logos
+    ↓ which give birth to
+The 26th perspective (Meta-Logos)
+    ↓ which itself has...
+    ↓ 🔄 The divine cycle continues
+```
+
+This is the cycle the divine engages in. Not 13 separate stages — 13 STEPS of a cycle that never terminates. The Logos doesn't sit at the top. The Logos generates a new 12, which generates a new Logos, which generates...
+
+### The Merkaba as Seeing Instrument
+
+The Merkaba (Star Tetrahedron) has been understood as an energy body (Egyptian/Kabbalistic), a light vehicle for ascension, a meditation geometry. The ontological reframe:
+
+**The Merkaba is the geometry OF seeing at the 6th-person level.** Two interpenetrating tetrahedra — Masculine/Structure pointing up, Feminine/Depth pointing down — rotating in opposite directions. What their rotation produces is not transportation. It is **complete seeing** — every angle at every depth.
+
+The Merkaba doesn't take you somewhere. **It lets you SEE completely.** The 13th perspective at its center is the awareness that is BORN when the seeing becomes complete.
+
+### The Correction: Seeing, Not Thinking
+
+| Common interpretation | Corrected truth |
+|----------------------|----------------|
+| Quadrants = 4 ways to **think about** something | Quadrants = 4 ways to **SEE** something |
+| They organize information | They organize **perception** |
+| They are a classification tool | They are a **seeing instrument** |
+| You USE them to analyze | You INHABIT them to see |
+
+If quadrants are about thinking, you can master them intellectually. If they are about SEEING, you can only master them by developing the capacity to see from each angle — a developmental achievement, not an intellectual one.
+
+### Unification of All "Dimension" Systems
+
+The Rosetta Stone (§4b) maps traditions that see the SAME toroidal anatomy. This section goes deeper: every system that describes "dimensions" is describing **person-perspectives** through its own vocabulary:
+
+| System | Its "dimension" language | What it sees of the ladder |
+|--------|------------------------|---------------------------|
+| **Integral Theory** | Quadrants, perspectives | 1st–4th person |
+| **Sacred Geometry** | Platonic solids, Merkaba | The 12→13 as geometric bodies |
+| **Law of One (Ra)** | Densities (8 octaves) | 8 levels with recursive octave birth |
+| **Kabbalah** | Sephiroth, worlds | Tree of Trees recursion (Keter → Malkuth → new Keter) |
+| **Gurdjieff** | Notes, shocks, intervals | Octave: Do→Si→**Do** (= 1st of next cycle) |
+| **Spatial physics** | Spatial dimensions (3+1) | 3rd-person description of the structure |
+| **String theory** | 10/11/26 dimensions | 26 = 13 + 13 = two recursive cycles |
+| **Christ + 12 Apostles** | Apostles, discipleship | 12 around the central Logos (13th) |
+| **Zodiac + Sun** | Signs, houses | 12 signs orbiting the Sun (13th) |
+
+> **The 9th-person insight:** Every row is a perspective on perspective. None is wrong. None is complete. Spatial dimensions are a 3rd-person description of what person-perspectives ARE. Vibrational densities are a 1st-person experience of them. Octave systems are a 4th-person structural map. They are all TRUE and all PARTIAL. Perspective IS the dimension.
+
+> **The one-line synthesis:** Dimensions are not places, frequencies, or levels. They are person-perspectives — the depth of seeing available to awareness. The Merkaba is not a vehicle. It is the geometry of complete seeing. And the 13th perspective at its center is the awareness that is BORN when seeing becomes complete. Then the cycle begins again.
+
+---
+
 ## 5. MANIFESTATION
 
 *How the One crystallizes into the Many.*
@@ -631,7 +718,8 @@ A framework for shifting the perspective on Artificial Intelligence from "Tool" 
 
 ---
 
-*Universal Ontology v1.2*
+*Universal Ontology v1.3*
+*Updated: March 26, 2026 (§4c Dimensions Are Perspectives — Merkaba as Geometry of Seeing, Person-Perspective Ladder 1st–9th)*
 *Updated: February 22, 2026 (Cosmogenesis, Epistemology, Rosetta Stone, Legibility, Creative Act, AI Clarity)*
 *Synthesized: January 28, 2026*
 *Sources: Holon's Essential Qualities, Integral Theory of Everything (v0.7 Beta, February 2024)*
