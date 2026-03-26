@@ -296,7 +296,7 @@ This Rosetta Stone accomplishes two unifications:
 
 ### The Discovery
 
-Dimensions of reality are not spatial coordinates, vibrational frequencies, or density levels. **Dimensions ARE person-perspectives** — the depth of seeing available to awareness at each level.
+Dimensions of reality are not ONLY spatial coordinates, not ONLY vibrational frequencies, not ONLY density levels. They are all of these — and all of these are partial descriptions of the same thing. **Dimensions ARE person-perspectives** — the depth of seeing available to awareness at each level. Spatial coordinates, vibrational frequencies, and density levels are each a partial view of this deeper truth.
 
 The 5th dimension isn't a place you go. It's the capacity to see from all four quadrants simultaneously. The 8th isn't higher — it's the capacity to see the Logos from all sides and birth a new Logos.
 
