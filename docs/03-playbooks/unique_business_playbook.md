@@ -2247,7 +2247,15 @@ Match to ICP watering holes + founder's natural style.
 Maximum 3 channels to maintain focus.
 ```
 
+> [!IMPORTANT]
+> **Realistic Projections (March 26, 2026):** Before finalizing the distribution strategy, apply the cold-start projections from [Distribution Playbook — Part V: Realistic Projections](./distribution_playbook.md#part-v-realistic-projections--the-cold-start-truth).
+>
+> **Working hypothesis:** In most cold-start scenarios, warm network outreach has the highest month-1 conversion probability. Content and partnerships are typically seed-planting for months 2-6. The right sequence depends on the founder's authentic energy — the channel that feels clean will outperform a theoretically optimal channel that feels forced.
+>
+> **Diagnostic question:** If the founder is planning more infrastructure (pages, calendars, funnels) instead of listing humans to talk to — gently check whether distribution has become procrastination.
+
 ---
+
 
 ## Workflow 9: Distribution → Launch Sequence
 

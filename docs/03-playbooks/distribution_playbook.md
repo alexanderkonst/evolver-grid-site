@@ -860,6 +860,75 @@ Repeat weekly until 100 users.
 
 ---
 
+---
+
+# Part V: Realistic Projections — The Cold Start Truth
+
+> *Added March 26, 2026. Based on Alexander's own distribution stress-test across 7 channels.*
+
+## The Honest Math
+
+Most founders overestimate month-1 results from content-based distribution. The following projections are calibrated for a **1-person service business with <1K followers, no ad spend, and a proven product:**
+
+### Channel Archetypes — Realistic Month-1 Performance
+
+| Channel Type | Examples | Month-1 Expectation | Real Time Horizon |
+|-------------|---------|---------------------|-------------------|
+| **Warm network DMs** | Personal messages to trusted contacts | 60-80% reply, 5-10 conversations, 1-2 sales | **Month 1 revenue** |
+| **Partnership DMs** | Targeted outreach to upstream practitioners | 30-50% reply, 2-3 conversations, 0 referrals | Month 3+ revenue (2-3 touchpoints to convert) |
+| **Content broadcast** | LinkedIn posts, social media UTF variations | 200-500 impressions, 3-8 likes, 0-1 DMs | Month 3-6 (audience compound) |
+| **Audience building** | Adding connections via keywords, profile SEO | <1% engagement from new adds | Month 3-6 (seed planting) |
+| **Digital real estate** | Landing page, optimized profiles | 1-5 organic visitors/week, converts whoever arrives | Background (always-on destination) |
+
+### The 80/20 Hypothesis for Cold Start
+
+> **Analytical assessment suggests: 80% of launch energy → Warm Network.** In most cold-start scenarios, warm DMs are the highest-probability channel for month-1 revenue. Other channels are seed-planting for months 2-6. However, the right activation sequence depends on the founder's authentic energy — forcing a channel that doesn't feel clean will produce worse results than a slightly less optimal channel that feels right.
+
+| Function | Energy Allocation | Why |
+|----------|------------------|-----|
+| **Immediate revenue** | 80% | Warm DMs to people who already trust you |
+| **Pipeline building** | 15% | Partner DMs (long-term leverage) |
+| **Audience building** | 5% | Content + adds (compounds later) |
+
+### Revenue Reality Check
+
+For any service priced at $X with a warm network of N people:
+
+```
+Conservative month-1 projection:
+  Warm DMs sent:          10-20
+  Reply rate:             60-80%
+  Conversations:          6-16
+  Conversion rate:        10-15% of conversations
+  Sales:                  1-2
+  Revenue:                1-2 × $X
+
+All other channels combined: 0-1 additional sale
+```
+
+### Anti-Pattern: Infrastructure as Procrastination
+
+> [!WARNING]
+> **The most common distribution failure mode for unique business founders:**
+> Every time distribution surfaces as the next action, the founder builds more infrastructure (pages, strategies, frameworks, roasts, content calendars) instead of talking to humans.
+>
+> **Diagnostic question:** "Have I sent a personal message to a real human about what I do this week?"
+>
+> If the answer is no, stop building and send one message.
+
+### When to Diversify Channels
+
+Only add a second channel when the first is working:
+
+| Signal | Action |
+|--------|--------|
+| Warm DMs producing 2+ conversations/week | Add content broadcast (Channel 1 of 3-Channel Architecture) |
+| First 5 paying clients achieved | Add partnership outreach |
+| First partner sends a referral | Formalize the partnership model |
+| Content producing inbound DMs | Scale content frequency |
+
+---
+
 ## Related Documents
 
 - [product_playbook.md](./product_playbook.md) — Product design first principles (upstream)
@@ -874,4 +943,6 @@ Repeat weekly until 100 users.
 
 *Codified: January 27, 2026*
 *Updated: February 18, 2026 — partnership distribution model, myth-driven distribution principle*
+*Updated: March 26, 2026 — Part V: Realistic Projections (cold-start truth, anti-patterns, channel sequencing)*
 *This is the master blueprint for the Distribution Compiler*
+

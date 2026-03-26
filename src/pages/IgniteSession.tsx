@@ -1,12 +1,43 @@
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import geniusLogo from "@/assets/logo.png";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
+
+/* ─── Lazy YouTube Embed ──────────────────────────────────── */
+const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="aspect-video bg-[#1a1a2e]/5">
+      {visible ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${id}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-xs text-[#1a1a2e]/20">Loading...</div>
+      )}
+    </div>
+  );
+};
 
 const IgniteSession = () => {
   const location = useLocation();
@@ -18,7 +49,7 @@ const IgniteSession = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-12 space-y-10">
 
         {/* ═══════════════════════════════════════════════
-            HERO — Logo + Headline + CTA
+            HERO — Recognition Trigger + CTA
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-5 pt-2" id="ignite-hero">
           <img
@@ -26,19 +57,25 @@ const IgniteSession = () => {
             alt=""
             className="w-16 h-16 mx-auto"
           />
+
+          {/* Recognition trigger — makes the visitor feel SEEN, not informed */}
           <h1 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-[#1a1a2e] leading-tight">
-            Your genius is already there.<br />
-            <span className="bg-gradient-to-r from-[#8460ea] to-[#6894d0] bg-clip-text text-transparent">
-              I name it. You build from it.
-            </span>
+            You've been giving your best work away for free.
           </h1>
-          <p className="text-sm text-[#1a1a2e]/50 max-w-md mx-auto leading-relaxed">
+          <p className="text-base text-[#1a1a2e]/60 max-w-md mx-auto leading-relaxed">
+            You know it. The people around you know it.<br />
+            You just haven't{" "}
+            <span className="bg-gradient-to-r from-[#8460ea] to-[#6894d0] bg-clip-text text-transparent font-medium">
+              named it
+            </span>{" "}yet.
+          </p>
+          <p className="text-sm text-[#1a1a2e]/40 max-w-sm mx-auto leading-relaxed">
             90 minutes. One session. You walk out with your uniqueness named
             and your entire business on one page. Yours forever.
           </p>
 
-          {/* CTA in Hero */}
-          <div className="flex flex-col items-center gap-3 pt-1">
+          {/* Single primary CTA — no competing clarity call */}
+          <div className="flex flex-col items-center gap-2 pt-1">
             <a
               href={STRIPE_PAYMENT_LINK}
               target="_blank"
@@ -49,30 +86,38 @@ const IgniteSession = () => {
               Book Your Ignition Session — $555
               <ArrowRight className="w-5 h-5" />
             </a>
-            <div className="flex items-center gap-4 text-xs text-[#1a1a2e]/30">
-              <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3 h-3" />
-                Money-back guarantee
-              </span>
-              <a
-                href={CALCOM_CLARITY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-[#8460ea] transition-colors"
-              >
-                <MessageCircle className="w-3 h-3" />
-                Free 15-min call first
-              </a>
-            </div>
+            <span className="flex items-center gap-1 text-xs text-[#1a1a2e]/30">
+              <ShieldCheck className="w-3 h-3" />
+              Money-back guarantee
+            </span>
           </div>
         </header>
 
         {/* ═══════════════════════════════════════════════
-            VIDEO — with introduction
+            WHO IS THIS FOR — Self-selection qualifier
+            ═══════════════════════════════════════════════ */}
+        <section className="text-center space-y-3" id="qualifier">
+          <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider">This session is for you if</p>
+          <div className="space-y-2 max-w-sm mx-auto">
+            {[
+              "You're stuck between your dream, coaching, and \"getting a job\"",
+              "People keep coming to you for help — you never charge",
+              "You suspect you ARE the product but can't see the label from inside",
+            ].map((item, i) => (
+              <p key={i} className="text-sm text-[#1a1a2e]/55 leading-relaxed flex items-start gap-2">
+                <span className="text-[#8460ea] mt-0.5 flex-shrink-0">→</span>
+                {item}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            VIDEO — with compelling intro
             ═══════════════════════════════════════════════ */}
         <section id="hero-video">
           <p className="text-xs text-[#1a1a2e]/40 text-center mb-3">
-            Watch: what a Unique Business is and how the Ignition Session works
+            Hear the exact methodology in 8 minutes
           </p>
           <div className="rounded-2xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
             <div className="aspect-video">
@@ -100,7 +145,7 @@ const IgniteSession = () => {
               },
               {
                 title: "Your entire business on one page",
-                desc: "Your worldview, your audience, their deepest struggle, your promise to them, and your offer — compiled in real time by AI, on screen, while we work. A complete first draft you can build from."
+                desc: "Your worldview, your audience, their deepest struggle, your promise to them, and your offer — compiled in real time by AI, on screen, while we work. Not a first draft. A naming."
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -117,27 +162,32 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            TESTIMONIALS
+            TESTIMONIALS — with "before" context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials">
+          <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider text-center mb-1">What they said after</p>
           {[
             {
               quote: "I've never had a session like that before. Thank you for helping me face my fears. Nobody can hold space for me. They're all afraid. You're very courageous.",
               name: "Oyi",
+              before: "Came in after years of doing his best work for free, unable to charge for what he gives naturally",
               context: "after Ignition Session #1"
             },
             {
               quote: "I was on 100% in your structure, and I never wanted or needed to change the methodology or approach. While building my business, I caught an error in my own story that was invisible at the higher level but obvious once I went deeper. That's the precision.",
               name: "Sergey",
+              before: "Had a business that felt structurally wrong — successful on paper, misaligned inside",
               context: "after Session #4"
             },
             {
               quote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
               name: "Alexey",
+              before: "Tried multiple frameworks to articulate his work — none captured the full picture",
               context: "on the uniqueness extraction"
             },
           ].map((t, i) => (
             <div key={i} className="rounded-2xl border border-[#1a1a2e]/6 bg-white/50 p-5">
+              <p className="text-[10px] text-[#1a1a2e]/25 mb-2 leading-relaxed">{t.before}</p>
               <blockquote className="text-sm text-[#1a1a2e]/55 italic leading-relaxed">
                 "{t.quote}"
               </blockquote>
@@ -147,7 +197,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            ABOUT ALEXANDER
+            ABOUT ALEXANDER — moved up for trust
             ═══════════════════════════════════════════════ */}
         <section className="rounded-2xl border border-[#1a1a2e]/6 bg-white/50 p-6 md:p-8" id="about-section">
           <p className="text-sm text-[#1a1a2e]/55 leading-relaxed">
@@ -161,7 +211,7 @@ const IgniteSession = () => {
             Every session is a mirror. I don't teach you anything new. I show you what was always there.
           </p>
           <p className="text-xs text-[#1a1a2e]/30 mt-4 italic">
-            — Alexander Konstantinov · 15+ sessions delivered · 5 unique businesses in active development
+            — Alexander Konstantinov · Every participant left with their business named
           </p>
         </section>
 
@@ -187,6 +237,11 @@ const IgniteSession = () => {
             </p>
           </div>
 
+          {/* "Most clients don't stop here" hint */}
+          <p className="text-xs text-[#1a1a2e]/25 italic">
+            Most clients who ignite don't stop here.
+          </p>
+
           {/* Primary CTA */}
           <a
             href={STRIPE_PAYMENT_LINK}
@@ -201,15 +256,6 @@ const IgniteSession = () => {
 
           <div className="flex flex-col items-center gap-2 pt-1">
             <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#1a1a2e]/40 hover:text-[#8460ea] transition-colors"
-            >
-              <MessageCircle className="w-3 h-3" />
-              Not sure yet? Book a free 15-min call
-            </a>
-            <a
               href={CALCOM_BOOKING_LINK}
               target="_blank"
               rel="noopener noreferrer"
@@ -221,7 +267,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            FAQ
+            FAQ — with clarity call moved here
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section">
           <h2 className="text-lg font-display text-[#1a1a2e]/80 text-center mb-4">Questions</h2>
@@ -254,10 +300,23 @@ const IgniteSession = () => {
               )}
             </div>
           ))}
+
+          {/* Clarity call moved here — where hesitant visitors naturally congregate */}
+          <div className="text-center pt-3">
+            <a
+              href={CALCOM_CLARITY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-[#1a1a2e]/40 hover:text-[#8460ea] transition-colors"
+            >
+              <MessageCircle className="w-3 h-3" />
+              Still have questions? Book a free 15-min clarity call
+            </a>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            THE OPEN BLUEPRINTS
+            THE OPEN BLUEPRINTS — lazy-loaded
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4" id="blueprints-section">
           <div className="text-center space-y-1">
@@ -284,15 +343,7 @@ const IgniteSession = () => {
               },
             ].map((video, i) => (
               <div key={i} className="rounded-xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
-                <div className="aspect-video">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
-                </div>
+                <LazyYouTube id={video.youtubeId} title={video.title} />
                 <div className="px-4 py-3">
                   <p className="text-sm text-[#1a1a2e]/65 font-medium">{video.title}</p>
                   <p className="text-xs text-[#1a1a2e]/35">{video.subtitle}</p>
@@ -316,15 +367,6 @@ const IgniteSession = () => {
             <ArrowRight className="w-5 h-5" />
           </a>
           <div className="flex flex-col items-center gap-2">
-            <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#1a1a2e]/40 hover:text-[#8460ea] transition-colors"
-            >
-              <MessageCircle className="w-3 h-3" />
-              Not sure yet? Book a free 15-min call
-            </a>
             <a
               href={CALCOM_BOOKING_LINK}
               target="_blank"
