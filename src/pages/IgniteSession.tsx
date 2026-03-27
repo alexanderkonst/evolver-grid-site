@@ -125,7 +125,7 @@ const IgniteSession = () => {
       <HlsBackground />
 
       {/* Dark overlay for text readability */}
-      <div className="fixed inset-0 bg-black/40 z-[1]" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/60 z-[1]" aria-hidden="true" />
 
       {/* ═══════════════════════════════════════════════
           CONTENT LAYER — all sections float above video
