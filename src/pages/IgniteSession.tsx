@@ -278,20 +278,26 @@ const IgniteSession = () => {
         {/* ═══════════════════════════════════════════════
             S5: ABOUT ALEXANDER — trust anchor
             ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass rounded-3xl p-6 md:p-8" id="about-section" aria-label="About Alexander">
-          <p className="text-sm text-white/60 leading-relaxed">
-            I spent five years helping other founders find their uniqueness while unable to see my own.
-            I studied entrepreneurship at MIT, spent four years in Silicon Valley,
-            and helped 200+ people articulate what makes them irreplaceable.
-          </p>
-          <p className="text-sm text-white/60 leading-relaxed mt-3">
-            What I do best — naming the gift that hides in plain sight —
-            was the business I couldn't name for myself. Now I do this full-time.
-            Every session is a mirror. I don't teach you anything new. I show you what was always there.
-          </p>
-          <div className="flex items-center gap-3 mt-4">
-            <img src={aleksandrPhoto} alt="Aleksandr Konstantinov" className="w-12 h-12 rounded-full object-cover opacity-90" />
-            <p className="text-xs text-white/40">
+        <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
+          {/* Photo centered on top edge */}
+          <img
+            src={aleksandrPhoto}
+            alt="Aleksandr Konstantinov"
+            className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
+          />
+          {/* Glass box pulled up under the photo */}
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-12 -mt-10 text-center">
+            <p className="text-sm text-white/60 leading-relaxed">
+              I spent five years helping other founders find their uniqueness while unable to see my own.
+              I studied entrepreneurship at MIT, spent four years in Silicon Valley,
+              and helped 200+ people articulate what makes them irreplaceable.
+            </p>
+            <p className="text-sm text-white/60 leading-relaxed mt-3">
+              What I do best — naming the gift that hides in plain sight —
+              was the business I couldn't name for myself. Now I do this full-time.
+              Every session is a mirror. I don't teach you anything new. I show you what was always there.
+            </p>
+            <p className="text-xs text-white/40 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
             </p>
           </div>
