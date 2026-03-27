@@ -7,7 +7,7 @@ import geniusLogo from "@/assets/ignite-logo.png";
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
-const BG_VIDEO_URL = "https://stream.mux.com/rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy/high.mp4";
+
 
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
@@ -84,18 +84,16 @@ const IgniteSession = () => {
     <div className="relative min-h-screen bg-black text-white overflow-hidden" id="ignite-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
 
       {/* ═══════════════════════════════════════════════
-          VIDEO BACKGROUND — full-screen, muted, looping
+          VIDEO BACKGROUND — Mux player in background mode
           ═══════════════════════════════════════════════ */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="fixed inset-0 w-full h-full object-cover z-0"
+      <iframe
+        src="https://player.mux.com/rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy?autoplay=muted&loop=true&background=true"
+        className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+        style={{ border: "none", objectFit: "cover" }}
+        allow="autoplay; fullscreen"
         aria-hidden="true"
-      >
-        <source src={BG_VIDEO_URL} type="video/mp4" />
-      </video>
+        tabIndex={-1}
+      />
 
       {/* Dark overlay for text readability */}
       <div className="fixed inset-0 bg-black/40 z-[1]" aria-hidden="true" />
