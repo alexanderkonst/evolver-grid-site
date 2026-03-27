@@ -284,9 +284,13 @@ PHASE 3: UI PLAYBOOK                                         [░░░░░░
 ├─ [ ] 3.1 Visual Rules (colors, typography, spacing, radius, shadows)
 ├─ [ ] 3.2 Building Blocks (Button, Card, Input, Modal variants)
 ├─ [ ] 3.3 Layout Templates (mobile-first, breakpoints, containers)
-├─ [ ] 3.4 Brandbook Integration (emotional mode, gradients, voice)
+├─ [ ] 3.4 Brandbook Integration (semantic colors, voice matrix, imagery, gradients)
 ├─ [ ] 3.5 Micro-interactions (hover, active, transitions, success)
-└─ [ ] 🔥 ROAST GATE 3: Gestalt check + 3 cycles + fix
+├─ [ ] 3.6 Accessibility (WCAG 2.2 AA: contrast, keyboard, focus, motion safety)
+├─ [ ] 3.7 Component States (all 9 states: default→hover→focus→active→disabled→loading→error→empty→skeleton)
+├─ [ ] 3.8 Design Tokens Audit (verify JSON tokens match implementation)
+├─ [ ] 3.9 Design Critique (Nielsen's 10 heuristics scored 1–5, prioritized fixes)
+└─ [ ] 🔥 ROAST GATE 3: Gestalt check + accessibility pass + 3 cycles + fix
 
 ───────────────────────────────────────────────────────────────────────────────
 
@@ -690,70 +694,141 @@ For each screen:
 
 # PHASE 3: UI PLAYBOOK
 
-> **Source:** `docs/playbooks/ui_playbook.md`
+> **Source:** `docs/playbooks/ui_playbook.md` (Parts I–VII)
+> **References:** `docs/05-reference/brandbook.md` (Parts I–III), `docs/01-vision/new_ui_paradigm_vision.md`
 > **Output:** Screen components in `src/components/[module]/`
 
 ## 3.1 Visual Rules
 
 **Task:** Audit that all styling uses design tokens.
 
-> *"No hardcoded colors, sizes, or styles. Everything from the token system."*
+> *"No hardcoded colors, sizes, or styles. Everything from the token system. See UI Playbook Part VI for the full JSON token set."*
 
 - [ ] Colors from token palette only — Check for any `#` hex or hardcoded rgb()
-- [ ] Typography from scale — Check for rogue font-size values
-- [ ] Spacing uses tokens — Check for random px values
-- [ ] Border radius consistent — Only use defined radius tokens
-- [ ] Shadows from defined set — shadow-sm, shadow, shadow-lg, shadow-xl
+- [ ] Semantic colors used correctly — success (#22c55e), warning (#f59e0b), error (#ef4444), info (#6894d0)
+- [ ] Typography from scale — 9 levels (hero → micro), check for rogue font-size values
+- [ ] Spacing uses 8px base unit — Check for random px values
+- [ ] Border radius consistent — Only use defined radius tokens (sm/md/lg/xl/2xl/full)
+- [ ] Shadows from defined set — sm, md, lg, xl, glow
+- [ ] Animation tokens used — duration (instant→gentle), easing (default/spring)
 
 ---
 
 ## 3.2 Building Blocks
 
-**Task:** Use existing components, don't reinvent.
+**Task:** Use existing components, don't reinvent. See UI Playbook Part V for required states per component.
 
-> *"Check what UI components already exist. Use them. Don't create duplicates."*
+> *"Check what UI components already exist. Use them. Don't create duplicates. Every component needs ALL 9 states defined."*
 
-- [ ] Standard Button variants — Primary, secondary, ghost, destructive
-- [ ] Standard Card variants — Outlined, filled, glass
-- [ ] Standard Input styles — From shadcn/ui
+- [ ] Standard Button variants — PremiumButton for CTAs, Button for secondary
+- [ ] Standard Card variants — PremiumCard (glass/glass-strong/solid)
+- [ ] Standard Input styles — From shadcn/ui with override colors in GameShell
 - [ ] Standard Modal pattern — Dialog from shadcn/ui
+- [ ] **All 9 states defined** — default, hover, focus, active, disabled, loading, error, empty, skeleton
+- [ ] **Component anatomy documented** — variants, sizes, spacing, accessibility, do's/don'ts
 
 ---
 
 ## 3.3 Layout Templates
 
-**Task:** Ensure responsive mobile-first layouts.
+**Task:** Ensure responsive mobile-first layouts per brandbook breakpoints.
 
 > *"Start at 375px. Add complexity at breakpoints. Use standard containers."*
 
-- [ ] Mobile-first — Base styles for 375px
-- [ ] Responsive breakpoints — sm:640, md:768, lg:1024, xl:1280
-- [ ] Container widths — max-w-md, max-w-lg, max-w-xl patterns
+- [ ] Mobile-first — Base styles for < 640px
+- [ ] Responsive breakpoints — Mobile (<640) → Tablet (640–1023) → Desktop (1024–1279) → Wide (≥1280)
+- [ ] Container widths — Reading: max-w-2xl, Forms: max-w-md, Dashboards: max-w-6xl
+- [ ] Touch targets — Minimum 44×44px on mobile
+- [ ] CTAs in reachable zones — Bottom 40% of screen on mobile
 
 ---
 
 ## 3.4 Brandbook Integration
 
-**Task:** Match emotional mode and voice.
+**Task:** Match emotional mode, voice matrix, and imagery standards.
 
-> *"Is this screen warm? Calm? Celebratory? Does the copy sound like our brand?"*
+> *"Every screen has a context in the voice matrix. Use the right tone. Apply the imagery style guide."*
 
-- [ ] Emotional mode — Warm (onboarding), Calm (dashboard), Celebration (completion)
-- [ ] Gradients appropriate — Match mode to gradient palette
-- [ ] Voice/copy matches brand — Friendly, clear, empowering
+- [ ] **Emotional mode** — Warm (onboarding), Calm (dashboard), Celebration (completion)
+- [ ] **Semantic colors** — Correct functional mapping (success/warning/error/info per brandbook Part III)
+- [ ] **Dark mode mapping** — If applicable, correct light→dark color pairs
+- [ ] **Voice matrix applied** — Copy matches context tone (onboarding=warm, error=kind, CTA=result-first)
+- [ ] **Four voice constants** — Direct, Warm, Precise, Sacred (check every text element)
+- [ ] **Messaging hierarchy** — Tagline → Value Prop → Story → Proof used at correct levels
+- [ ] **Imagery style** — Wabi-sabi × Apple, not stock photos. Gold/stone/sacred geometry textures
+- [ ] **Gradients appropriate** — Match mode to gradient palette (Strip 1 or Strip 2)
 
 ---
 
 ## 3.5 Micro-interactions
 
-**Task:** Add life with subtle animations.
+**Task:** Add life with subtle animations. Respect motion safety.
 
-> *"Every button should respond. Every transition should feel smooth."*
+> *"Every button should respond. Every transition should feel smooth. Honor prefers-reduced-motion."*
 
 - [ ] Hover: scale(1.02) — Slight grow on hover
 - [ ] Active: scale(0.98) — Slight shrink on click
 - [ ] Transitions: fade + slide — 200-300ms durations
 - [ ] Success: pulse/confetti — Celebrate wins
+- [ ] **Motion safety** — All animations wrapped in `prefers-reduced-motion` check
+- [ ] Breathing UI — alive-card, breathing-card where appropriate (see UI Paradigm Vision)
+
+---
+
+## 3.6 Accessibility (WCAG 2.2 AA)
+
+**Task:** Audit against accessibility standards. See UI Playbook Part IV.
+
+> *"Accessibility is a floor, not a feature. Every screen must pass before shipping."*
+
+- [ ] **Perceivable** — Color contrast ≥ 4.5:1 (text), ≥ 3:1 (UI elements), alt text on images
+- [ ] **Operable** — Full keyboard navigation, visible focus ring, no keyboard traps
+- [ ] **Understandable** — `<html lang="en">`, form labels, consistent navigation
+- [ ] **Robust** — Valid HTML, semantic elements, ARIA only when needed
+- [ ] **Mobile** — Works in both orientations, touch/keyboard/assistive tech
+- [ ] **Motion safety** — `prefers-reduced-motion` disables all breathing/aurora/glowing animations
+
+---
+
+## 3.7 Component States
+
+**Task:** Verify all component states are designed and implemented. See UI Playbook Part V.
+
+> *"Default state is not enough. What does it look like when loading? When empty? When broken?"*
+
+- [ ] **Empty states** — Illustration + action for zero-data screens
+- [ ] **Loading states** — Skeleton placeholders shaped like content (not spinners in empty pages)
+- [ ] **Error states** — Specific error text + suggested fix + icon (not just color)
+- [ ] **Disabled states** — Clear visual indication with `opacity-40`
+- [ ] **Skeleton states** — Content-shaped loading placeholders
+
+---
+
+## 3.8 Design Tokens Audit
+
+**Task:** Verify implementation matches JSON token spec. See UI Playbook Part VI.
+
+> *"Every style decision is a token, not a magic number."*
+
+- [ ] All colors match token JSON — No rogue hex values
+- [ ] Typography scale matches — 9 levels from hero (30px) to micro (9px)
+- [ ] Spacing follows 8px grid — No random px values
+- [ ] Shadows from token set — sm/md/lg/xl/glow
+- [ ] Animation durations from token set — instant/fast/normal/slow/gentle
+
+---
+
+## 3.9 Design Critique
+
+**Task:** Score against Nielsen's 10 heuristics. See UI Playbook Part VII.
+
+> *"Walk the flow, score each heuristic, fix highest-priority issues first."*
+
+- [ ] Score all 10 heuristics 1–5
+- [ ] Identify issues: Critical → Important → Polish
+- [ ] Fix Critical issues before proceeding
+- [ ] Fix Important issues if time permits
+- [ ] Log Polish items for Phase 5
 
 ---
 
@@ -766,6 +841,7 @@ For each screen:
 - [ ] Premium Feel Test: "wow" or "meh"?
 - [ ] Consistency Test: same styles everywhere
 - [ ] Breathing Room Test: enough whitespace
+- [ ] Accessibility Pass: `npx @axe-core/cli` + manual keyboard/VoiceOver test
 
 ### Roast Cycles
 - [ ] **Cycle 1:** What looks off? Color harmony? Readability?
@@ -918,11 +994,15 @@ PHASE 2: ARCHITECTURE      [░░░░░░░░]
 └─ [ ] 🔥 ROAST GATE 2
 
 PHASE 3: UI                [░░░░░░░░]
-├─ [ ] 3.1 Visual Rules
-├─ [ ] 3.2 Building Blocks
-├─ [ ] 3.3 Layout Templates
-├─ [ ] 3.4 Brandbook
-├─ [ ] 3.5 Micro-interactions
+├─ [ ] 3.1 Visual Rules (tokens + semantic colors)
+├─ [ ] 3.2 Building Blocks (all 9 states)
+├─ [ ] 3.3 Layout Templates (breakpoints + containers)
+├─ [ ] 3.4 Brandbook (voice matrix + imagery + semantic colors)
+├─ [ ] 3.5 Micro-interactions (+ motion safety)
+├─ [ ] 3.6 Accessibility (WCAG 2.2 AA)
+├─ [ ] 3.7 Component States (empty/loading/error/skeleton)
+├─ [ ] 3.8 Design Tokens Audit
+├─ [ ] 3.9 Design Critique (Nielsen's 10)
 └─ [ ] 🔥 ROAST GATE 3
 
 PHASE 4: CODE              [░░░░░░░░]
@@ -997,18 +1077,20 @@ COMPLETED: __________
 
 # REFERENCED PLAYBOOKS
 
-| Playbook | Path |
-|----------|------|
-| Product | `docs/playbooks/product_playbook.md` |
-| Architecture | `docs/software_architecture_playbook.md` |
-| UI | `docs/playbooks/ui_playbook.md` |
-| **Polish** | `docs/11-workflows-sops/module_polish.md` |
-| Complete Stack | `docs/specs/complete_product_stack.md` |
+| Playbook | Path | Key additions (March 2026) |
+|----------|------|---------------------------|
+| Product | `docs/playbooks/product_playbook.md` | — |
+| Architecture | `docs/software_architecture_playbook.md` | — |
+| UI | `docs/playbooks/ui_playbook.md` | Parts IV–VII: Accessibility, Component States, Design Tokens JSON, Critique Framework |
+| UI Paradigm Vision | `docs/01-vision/new_ui_paradigm_vision.md` | 2026 Design Trend Synthesis, Design-to-Code Translation |
+| Brandbook | `docs/05-reference/brandbook.md` | Part III: Semantic Colors, Voice Matrix, Imagery Guide, Breakpoints |
+| **Polish** | `docs/11-workflows-sops/module_polish.md` | — |
+| Complete Stack | `docs/specs/complete_product_stack.md` | — |
 
 ---
 
-*v1.1 — Integrated Product Builder*
-*With Holonic Iteration Principle and AI Self-Test*
+*v1.2 — Integrated Product Builder*
+*With Holonic Iteration Principle, AI Self-Test, and Full Design Standards*
 *Copy the Progress Tracker for each module*
 *AI and Human always know where they are*
 
@@ -1020,9 +1102,10 @@ COMPLETED: __________
 > For Market Path, see:
 
 | Playbook | Path | Purpose |
-|----------|------|---------||
+|----------|------|--------|
 | Marketing | `docs/playbooks/marketing_playbook.md` | ICP deepening, pain articulation, framing |
 | Distribution | `docs/playbooks/distribution_playbook.md` | Channels, virality, growth mechanics |
-| Brandbook | *integrated into UI + Marketing* | Visual identity, voice, energy |
+| Brandbook | `docs/05-reference/brandbook.md` | Visual identity, semantic colors, voice matrix, imagery guide, responsive breakpoints |
+| UI Paradigm | `docs/01-vision/new_ui_paradigm_vision.md` | Design trend positioning, vision-to-code translation |
 
 **When to use:** After Product Path is complete, or in parallel for full product launch.
