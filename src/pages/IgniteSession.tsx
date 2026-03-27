@@ -151,8 +151,8 @@ const IgniteSession = () => {
             away for free
           </h1>
 
-          <p className="text-base text-white/80 max-w-md mx-auto leading-relaxed">
-            You know it, the people around you know it, you just haven't named it yet
+          <p className="text-base text-white/80 max-w-lg mx-auto leading-relaxed">
+            You've been undercharging, overdelivering, and wondering why it still feels like a grind — not because something's wrong with you, but because the thing you do best still sounds like a long-winded riddle, not yet one sentence
           </p>
 
           <p className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed">
@@ -173,7 +173,7 @@ const IgniteSession = () => {
             S2: QUALIFIER — Self-selection pills
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="qualifier" aria-label="Who this session is for">
-          <p className="text-xs text-white/30 uppercase tracking-widest">This session is for you if</p>
+          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
               "Stuck between dream and \"getting a job\"",
@@ -194,9 +194,9 @@ const IgniteSession = () => {
             S3: VIDEO — Methodology demonstration
             ═══════════════════════════════════════════════ */}
         <section id="hero-video" aria-label="Methodology video">
-          <p className="text-xs text-white/40 text-center mb-3">
+          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             The exact methodology disclosed in 4 minutes
-          </p>
+          </h2>
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
           </div>
@@ -246,8 +246,9 @@ const IgniteSession = () => {
         {/* ═══════════════════════════════════════════════
             S4: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass-strong rounded-3xl p-6 md:p-8" id="deliverables" aria-label="Session deliverables">
-          <h2 className="text-lg font-medium text-white/80 mb-5 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
+        <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
+          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
+          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
           <div className="space-y-4">
             {[
               {
@@ -269,6 +270,7 @@ const IgniteSession = () => {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </section>
 
@@ -295,7 +297,7 @@ const IgniteSession = () => {
             S6: TESTIMONIALS — glass cards with before-context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <p className="text-xs text-white/30 uppercase tracking-widest text-center mb-1">What they said after</p>
+          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {([
               {
@@ -348,7 +350,7 @@ const IgniteSession = () => {
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-white/30">One session. Full canvas. Yours forever.</p>
+            <p className="text-xs text-white/30">One session. Fully filled unique business canvas. Yours forever.</p>
           </div>
 
           {/* Guarantee */}
@@ -362,9 +364,7 @@ const IgniteSession = () => {
             </p>
           </div>
 
-          <p className="text-xs text-white/20" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>
-            Most clients who ignite don't stop here.
-          </p>
+
 
           <PrimaryCTA id="book-session-btn" showPrice={false} />
 
@@ -414,14 +414,15 @@ const IgniteSession = () => {
             </div>
           ))}
 
-          <div className="text-center pt-3">
+          <div className="text-center pt-4">
             <a
               href={CALCOM_CLARITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded"
+              className="liquid-glass inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm text-white/80 hover:text-white hover:scale-105 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <MessageCircle className="w-3 h-3" aria-hidden="true" />
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
               Still have questions? Book a free 15-min clarity call
             </a>
           </div>
@@ -476,6 +477,16 @@ const IgniteSession = () => {
             ))}
           </div>
         </section>
+
+        {/* ═══════════════════════════════════════════════
+            S11: FINAL CTA — very end of page
+            ═══════════════════════════════════════════════ */}
+        <div className="text-center space-y-3" id="final-cta">
+          <PrimaryCTA id="final-cta-btn" />
+          <div className="flex flex-col items-center gap-2">
+            <AlreadyPaidLink />
+          </div>
+        </div>
 
         {/* Bottom spacing */}
         <div className="h-8" />
