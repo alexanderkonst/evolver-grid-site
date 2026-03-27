@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
+import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 
 /**
  * Story-based landing page — the funnel entry point.

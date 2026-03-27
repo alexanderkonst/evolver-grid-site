@@ -1,4 +1,5 @@
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
+import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
