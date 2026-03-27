@@ -148,12 +148,11 @@ const IgniteSession = () => {
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
               best work
             </span>{" "}
-            away for free.
+            away for free
           </h1>
 
           <p className="text-base text-white/80 max-w-md mx-auto leading-relaxed">
-            You know it. The people around you know it.{" "}
-            You just haven't named it yet.
+            You know it, the people around you know it, you just haven't named it yet
           </p>
 
           <p className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed">
