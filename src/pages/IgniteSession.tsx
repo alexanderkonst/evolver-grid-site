@@ -127,7 +127,7 @@ const IgniteSession = () => {
       <HlsBackground />
 
       {/* Dark overlay for text readability */}
-      <div className="fixed inset-0 bg-black/60 z-[1]" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/45 z-[1]" aria-hidden="true" />
 
       {/* ═══════════════════════════════════════════════
           CONTENT LAYER — all sections float above video
@@ -152,22 +152,22 @@ const IgniteSession = () => {
             <br />You Just Can't Name What You Do—Yet.
           </h1>
 
-          <p className="text-base text-white/80 max-w-lg mx-auto leading-relaxed">
+          <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
             You've been undercharging and overexplaining—because your answer to "so what do you do?" still sounds like a riddle.
           </p>
 
-          <p className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed">
-            In 90 minutes, we name it, structure it, and show you exactly how it becomes a business.
+          <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
+            In 90 minutes, we name it, package it, and see exactly how it becomes a business.
           </p>
 
-          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">
+          <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed">
             If you can't explain what you do in one sentence, this is for you.
           </p>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/35">Limited sessions per week. First come, first serve.</span>
-            <span className="flex items-center gap-1.5 text-xs text-white/30">
+            <span className="text-xs text-white/50">Limited sessions per week. First come, first serve.</span>
+            <span className="flex items-center gap-1.5 text-xs text-white/45">
               <ShieldCheck className="w-3 h-3" aria-hidden="true" />
               Money-back guarantee
             </span>
@@ -178,7 +178,7 @@ const IgniteSession = () => {
             S2: QUALIFIER — Self-selection pills
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="qualifier" aria-label="Who this session is for">
-          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
               "You've been giving your best work away for free — not because it's not valuable, but because you can't explain it cleanly enough to charge",
@@ -187,7 +187,7 @@ const IgniteSession = () => {
             ].map((item, i) => (
               <span
                 key={i}
-                className="liquid-glass rounded-full px-4 py-2 text-xs text-white/80"
+                className="liquid-glass rounded-full px-4 py-2 text-xs text-white/90"
               >
                 {item}
               </span>
@@ -199,7 +199,7 @@ const IgniteSession = () => {
             S3: VIDEO — Methodology demonstration
             ═══════════════════════════════════════════════ */}
         <section id="hero-video" aria-label="Methodology video">
-          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             The exact methodology disclosed in 4 minutes
           </h2>
           <div className="liquid-glass rounded-2xl p-1">
@@ -211,14 +211,14 @@ const IgniteSession = () => {
             S3.5: HOW IT WORKS — 3 glass step cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 emoji: "🔮",
                 step: "1",
                 title: "We name your genius in one sentence",
-                desc: "You talk. I listen for patterns you can't see from inside.",
+                desc: "You talk. I guide you through the Zone of Genius articulation. AI synthesizes it live.",
               },
               {
                 emoji: "📦",
@@ -240,9 +240,9 @@ const IgniteSession = () => {
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto text-xl">
                   <span aria-hidden="true">{item.emoji}</span>
                 </div>
-                <p className="text-xs text-white/50 font-medium uppercase tracking-widest">Step {item.step}</p>
+                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">Step {item.step}</p>
                 <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                {item.desc && <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>}
+                {item.desc && <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>}
               </div>
             ))}
           </div>
@@ -252,7 +252,7 @@ const IgniteSession = () => {
             S4: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
           <div className="space-y-4">
             {[
@@ -278,8 +278,8 @@ const IgniteSession = () => {
                   <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-white/90 font-medium">{item.title}</p>
-                  <p className="text-xs text-white/40 leading-relaxed mt-0.5">{item.desc}</p>
+                  <p className="text-sm text-white/95 font-medium">{item.title}</p>
+                  <p className="text-xs text-white/55 leading-relaxed mt-0.5">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -299,19 +299,19 @@ const IgniteSession = () => {
           />
           {/* Glass box pulled up under the photo */}
           <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center">
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="text-sm text-white/70 leading-relaxed">
               &nbsp;
             </p>
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="text-sm text-white/70 leading-relaxed">
               I've spent years helping founders articulate what makes them irreplaceable—while struggling to name my own.
             </p>
-            <p className="text-sm text-white/60 leading-relaxed mt-3">
-              What I do best is simple: I hear what people can't hear in themselves—and give it back to them clearly.
+            <p className="text-sm text-white/70 leading-relaxed mt-3">
+              What I do best is simple: I see what people can't see in themselves—and give it back to them clearly.
             </p>
-            <p className="text-sm text-white/60 leading-relaxed mt-3">
+            <p className="text-sm text-white/70 leading-relaxed mt-3">
               Now I do this full-time.
             </p>
-            <p className="text-xs text-white/40 mt-4">
+            <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
             </p>
           </div>
@@ -321,8 +321,8 @@ const IgniteSession = () => {
             S6: TESTIMONIALS — glass cards with before-context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <p className="text-sm text-white/50 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
-          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
+          <p className="text-sm text-white/60 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {([
               {
@@ -375,8 +375,8 @@ const IgniteSession = () => {
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-white/30">One session. Fully filled unique business canvas. Yours forever.</p>
-            <p className="text-xs text-white/35 mt-1">Limited sessions per week. First come, first serve.</p>
+            <p className="text-xs text-white/45">One session. Fully filled unique business canvas. Yours forever.</p>
+            <p className="text-xs text-white/50 mt-1">Limited sessions per week. First come, first serve.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" showPrice={false} />
@@ -385,9 +385,9 @@ const IgniteSession = () => {
           <div className="px-5 py-2 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
               <ShieldCheck className="w-4 h-4 text-white/40" aria-hidden="true" />
-              <p className="text-xs font-medium text-white/40 uppercase tracking-widest">The Ignition Guarantee</p>
+              <p className="text-xs font-medium text-white/55 uppercase tracking-widest">The Ignition Guarantee</p>
             </div>
-            <p className="text-xs text-white/35 leading-relaxed">
+            <p className="text-xs text-white/50 leading-relaxed">
               You leave with your genius named and your business on one page—or you don't pay.
             </p>
           </div>
@@ -411,7 +411,7 @@ const IgniteSession = () => {
             S8: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-lg font-medium text-white/80 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
               q: "What if I don't know my genius yet?",
@@ -433,8 +433,8 @@ const IgniteSession = () => {
                 aria-expanded={openFaq === i}
                 aria-controls={`faq-answer-${i}`}
               >
-                <p className="text-sm text-white/60 font-medium">{faq.q}</p>
-                <ChevronDown className={`w-4 h-4 text-white/30 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
+                <p className="text-sm text-white/75 font-medium">{faq.q}</p>
+                <ChevronDown className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <div
                 id={`faq-answer-${i}`}
@@ -442,7 +442,7 @@ const IgniteSession = () => {
                 className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
               >
                 <div className="px-4 pb-4">
-                  <p className="text-xs text-white/35 leading-relaxed">{faq.a}</p>
+                  <p className="text-xs text-white/50 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             </div>
@@ -466,7 +466,7 @@ const IgniteSession = () => {
             S9: BOTTOM CTA — above blueprints
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
-          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed">
+          <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
             If you've been circling this for months…<br />this is where it clicks.
           </p>
           <PrimaryCTA id="bottom-cta-btn" />
@@ -480,8 +480,8 @@ const IgniteSession = () => {
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4 pt-6" id="blueprints-section" aria-label="Free methodology blueprints">
           <div className="text-center space-y-1">
-            <p className="text-xs text-white/25 uppercase tracking-widest">The Open Blueprints</p>
-            <h2 className="text-lg font-medium text-white/80 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The entire methodology. Free.</h2>
+            <p className="text-xs text-white/40 uppercase tracking-widest">The Open Blueprints</p>
+            <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The entire methodology. Free.</h2>
           </div>
 
           <div className="space-y-4">
@@ -507,8 +507,8 @@ const IgniteSession = () => {
                   <LazyYouTube id={video.youtubeId} title={video.title} />
                 </div>
                 <div className="px-4 py-3">
-                  <p className="text-sm text-white/60 font-medium">{video.title}</p>
-                  <p className="text-xs text-white/30">{video.subtitle}</p>
+                  <p className="text-sm text-white/75 font-medium">{video.title}</p>
+                  <p className="text-xs text-white/45">{video.subtitle}</p>
                 </div>
               </div>
             ))}

@@ -193,7 +193,7 @@ See `VIDEO_REGENERATION_90S.md` for complete list (36 entries).
 
 This is part of the Planetary Operating System micro-learning curriculum.
 
-Learn more: https://evolver.world/learn
+Learn more: [landing page link]
 
 #PlanetaryOS #HumanDevelopment #TransformationalLearning
 ```
