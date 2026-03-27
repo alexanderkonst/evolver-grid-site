@@ -1699,6 +1699,16 @@ Aleks / Sasha
 | **Landing page link** | No | Yes (www.aleksandrkonstantinov.com) | Closes the loop — DM → landing page → booking |
 | **Personal vulnerability** | Moderate | Maximum (debt, childlessness, fights, migraines, fear) | The confession IS the filter. Anti-tribe bounces. Tribe feels "this is me" |
 
+**v2.0 Methodology insights — March 27, 2026 (Sandra Session #4):**
+
+| Discovery | What it means | Protocol impact |
+|-----------|--------------|----------------|
+| **Golden DM must be handwritten** | Zero AI. Alexander wrote v2.0 in 3-4 hours with no AI assistance. "AI detaches authenticity energy. Humans sniff inauthenticity like a dog." The crystallization process of writing it yourself IS the value — you earn clarity by doing it. | AI assists all artifacts EXCEPT the Golden DM. The DM is the founder's final exam |
+| **Resonance Permission Principle** | Sandra's 2010 Koala School memory: "Do not sign up if your heart is not resonating with this." Every landing page needs explicit permission NOT to buy — this opens the space for honest self-inquiry | Added to Playbook Part 0. Every landing page includes this permission |
+| **Purity Check / Fear-Free Copy** | Any fear in the copy = frequency interference. "If it's bad enough, it's like TV ants — no transmission." AI should scan for fear/anxiety as a quality gate | Added to Playbook Part 0. AI runs Purity Check on all copy before publishing |
+| **Divine Timing Opt-In** | "Not now but later" — offer option to re-contact in 3/6/12 months. Respects that resonance + timing are both required | Added to Playbook Part 0. Landing pages include "not now" option |
+| **Distribution simplicity** | The simplest thing: send ONE direct message to people from ONE tribe already in your network. Word of mouth follows. No complex targeting, no automation, no repetitive campaigns | Confirmed through live practice. 5 free sessions → clarity → first paid client → Golden DM to warm network |
+
 ---
 
 ### Current Focus: Layer 4 — Founder-Market Fit
