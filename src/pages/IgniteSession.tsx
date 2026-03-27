@@ -2,13 +2,49 @@ import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Sparkles, T
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
+import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
+
+const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZPtENsX2F9QI.m3u8";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
 
 
+/* ─── HLS Background Video ────────────────────────────────── */
+const HlsBackground = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({ autoStartLoad: true });
+      hls.loadSource(HLS_VIDEO_URL);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
+      return () => hls.destroy();
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // Safari native HLS support
+      video.src = HLS_VIDEO_URL;
+      video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
+    }
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="fixed inset-0 w-full h-full object-cover z-0"
+      aria-hidden="true"
+    />
+  );
+};
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -84,16 +120,9 @@ const IgniteSession = () => {
     <div className="relative min-h-screen bg-black text-white overflow-hidden" id="ignite-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
 
       {/* ═══════════════════════════════════════════════
-          VIDEO BACKGROUND — Mux player in background mode
+          VIDEO BACKGROUND — HLS stream via hls.js
           ═══════════════════════════════════════════════ */}
-      <iframe
-        src="https://player.mux.com/rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy?autoplay=muted&loop=true&background=true"
-        className="fixed inset-0 w-full h-full z-0 pointer-events-none"
-        style={{ border: "none", objectFit: "cover" }}
-        allow="autoplay; fullscreen"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
+      <HlsBackground />
 
       {/* Dark overlay for text readability */}
       <div className="fixed inset-0 bg-black/40 z-[1]" aria-hidden="true" />
