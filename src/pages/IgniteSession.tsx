@@ -378,7 +378,17 @@ const IgniteSession = () => {
 
           <PrimaryCTA id="book-session-btn" showPrice={false} />
 
-          <div className="flex flex-col items-center gap-2 pt-1">
+          <div className="flex flex-col items-center gap-3 pt-1">
+            <a
+              href={CALCOM_CLARITY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm text-white/80 hover:text-white hover:scale-105 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
+              Still have questions? Book a free 15-min clarity call
+            </a>
             <AlreadyPaidLink />
           </div>
         </section>
