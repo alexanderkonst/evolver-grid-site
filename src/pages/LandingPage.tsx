@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
+import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 
 /**
  * Story-based landing page — the funnel entry point.
@@ -102,25 +103,19 @@ const LandingPage = () => {
             {/* Social Proof */}
             <section className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
+                {([
                   {
-                    quote: "This is a miracle of miracles. Other tools come at this half-baked and shallow. Your approach, though, I love it.",
+                    shortQuote: "This is a miracle of miracles. A tool that just plain works.",
+                    fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
                     name: "Alexey Utkin, serial founder, Stanford MBA",
                   },
                   {
-                    quote: "I finally had language for something I'd felt my whole life. This is very valuable. Inspires & informs brilliantly!",
-                    name: "Laura",
+                    shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
+                    fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough ... I physically feel chills, and I feel unfolding ... I see this as life changing.",
+                    name: "Oyi Sun, Medicine Man, Ye Ming Zhu keeper",
                   },
-                ].map((t, i) => (
-                  <div
-                    key={i}
-                    className="p-5 rounded-xl border border-[#2c3150]/8 bg-white/50"
-                  >
-                    <p className="text-sm text-[#2c3150]/60 leading-relaxed italic">
-                      "{t.quote}"
-                    </p>
-                    <p className="text-xs font-semibold text-[#8460ea] mt-3">— {t.name}</p>
-                  </div>
+                ] as import("@/components/ExpandableTestimonial").TestimonialData[]).map((t, i) => (
+                  <ExpandableTestimonial key={i} t={t} variant="light" />
                 ))}
               </div>
 
