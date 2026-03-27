@@ -473,6 +473,62 @@ Three flavors of collaboration with SOC:
 
 ---
 
+## Human Design — Energetic Operating Spec
+
+*Added: March 28, 2026*
+
+> **Type:** Manifestor · **Profile:** 6/2 (Role Model / Hermit) · **Authority:** Emotional
+> **Definition:** Single · **Cross:** Left Angle of Individualism (38/39 | 57/51)
+> **Not-Self Theme:** Anger · **Strategy:** Inform
+
+### Drift-Correction Card
+
+*When you're off-center, scan this and name which one you're violating.*
+
+| Energy | When you drift, remember |
+|--------|------------------------|
+| **Manifestor** | You don't ask permission — you inform, then move. If you're waiting for someone to greenlight you, you're off-center. |
+| **6/2 Profile** | You already know what's right — stop researching and start living it; the hermit sees before the world catches up. |
+| **Emotional Authority** | Never say yes or no in the spike — sleep on every decision that costs more than a day of your time. |
+| **Single Definition** | You don't need a co-founder, a team, or a consensus to feel whole — if you're polling people before acting, stop. |
+| **38/39 Individualism** | Provocation is your fuel, not your flaw — when someone pushes back, that's your cross doing its job. |
+| **Not-Self (Anger)** | When anger rises, you're being blocked from initiating — name what's blocking you and inform your way through it. |
+| **Strategy (Inform)** | Tell people what you're about to do *before* you do it — not to get approval, but to clear the field so impact lands clean. |
+
+### Single Definition — Deep Teaching
+
+*Applied through Alexander's own framework: Essence, Significance, Consequences.*
+
+#### Essence (What it IS)
+
+In Human Design, "definition" refers to how the defined centers in your bodygraph connect to each other. **Single Definition** means all your defined centers form one continuous, unbroken circuit. There are no gaps. No bridges needed.
+
+Most people have Split Definition (two separate circuits that need an external bridge — another person, a transit, an environment — to feel "whole"). Some have Triple Split or Quadruple Split — meaning they walk through life feeling like they need multiple people or contexts just to feel internally connected.
+
+You don't. Your circuit is already complete. The signal flows from center to center without interruption. You process internally — one continuous stream from sensing to knowing to deciding to acting.
+
+#### Significance (What it MEANS)
+
+**You are self-contained.** Not in the cold sense — in the sovereignty sense. Your decisional architecture doesn't require external completion. When you're confused, it's not because you're missing a piece from someone else — it's because the emotional wave hasn't finished its pass through your single circuit. The clarity is coming. It's already inside. It just needs the wave to settle.
+
+This is why polling people for opinions before acting feels wrong to you — because it IS wrong for your design. When you ask five people what they think, you're introducing noise into a circuit that was already processing the answer. You don't need their piece. You need your wave to complete.
+
+This is also why your best work happens in hermit mode (2nd line). The hermit isn't avoiding people — he's protecting the single circuit from interference while it processes. When the circuit is done, you come down from the roof with the answer already formed. That's the 6th line role model: the answer arrives complete because the circuit is complete.
+
+#### Consequences (What it DEMANDS)
+
+1. **Stop waiting for the team to feel ready.** You'll never feel "more ready" because someone else showed up. The readiness is already inside. The 5 builders aren't completing your circuit — they're reflecting it.
+
+2. **Trust the solo processing.** When a big question hits — pricing, launching, changing direction — your instinct to go walk alone and think is CORRECT. That's your single definition doing what it does. Don't interrupt it with calls, messages, or external input until it's done.
+
+3. **Your emotional wave IS the timer.** Single definition + emotional authority means: the wave passes through the whole circuit at once. High → low → clarity. The clarity at the end is YOURS — not a compromise, not a synthesis of other people's views. Sleep on it. If it still rings true when the wave is calm, act.
+
+4. **Beware the false split.** The only time your single definition "breaks" is when you take in someone else's confusion and mistake it for your own. You can feel other people's splits (empathy, open centers absorbing). The drift-correction: *"Is this mine, or am I carrying someone else's gap?"*
+
+5. **The Ignition Session is your single definition in action.** You sit with someone for 90 minutes. You don't need them to complete you. You see them complete. That's why it works: your wholeness mirrors their wholeness back to them. The single circuit IS the facilitation technology.
+
+---
+
 ## Quote to Remember
 
 > *"Don't push through the trough. Rest = incubation."*
@@ -481,6 +537,8 @@ Three flavors of collaboration with SOC:
 
 ---
 
-*Document created: January 26, 2026*  
-*Updated: January 30, 2026 — Monetization pathways added*  
+*Document created: January 26, 2026*
+*Updated: January 30, 2026 — Monetization pathways added*
+*Updated: March 28, 2026 — Human Design energetic operating spec added*
 *Part of Alexander's Operating System*
+
