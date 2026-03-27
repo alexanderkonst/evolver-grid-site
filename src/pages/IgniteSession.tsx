@@ -144,9 +144,9 @@ const IgniteSession = () => {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
             You've been giving your{" "}
-            <em className="not-italic text-white/80" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
               best work
-            </em>{" "}
+            </span>{" "}
             away for free.
           </h1>
 
