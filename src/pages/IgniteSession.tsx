@@ -7,7 +7,7 @@ import geniusLogo from "@/assets/ignite-logo.png";
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
-const BG_VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4";
+const BG_VIDEO_URL = "https://stream.mux.com/rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy/high.mp4";
 
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
