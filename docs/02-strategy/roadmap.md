@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-03-16 (evening)*
+> *Last updated: 2026-03-26 (evening)*
 
 ---
 
@@ -30,7 +30,7 @@
 | 15 | Product Builder (Blueprint Generator) | Product | ✅ DONE | — |
 | 16 | **Litmus test: Alexander through Product Builder** | Product | ✅ DONE | — |
 | **PLATFORM STRATEGY** |
-| 17 | Solo user main landing page | Marketing | 🔴 HIGH | This week |
+| 17 | Solo user main landing page | Marketing | ✅ DONE | — |
 | 18 | Module landings (every module) | Marketing | 🟡 MED | This cycle |
 | 19 | Community leader value prop | Strategy | 🟡 MED | Backlog |
 | 20 | Monetization streams (5 mechanisms) | Strategy | ✅ DONE | — |
@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | CANVAS ERA. Step 3 — Branching. Build SOP documented. Forecast v4 (post-roast). 10 sessions delivered. 8 audience frequencies named |
-| **Current cycle** | March 2026 — 10 founders served, rest days Mar 20-22, Day 0 (launch) = Mar 23. Holomap center reading: "Branching" |
+| **Current phase** | CANVAS ERA. Step 3 — Branching. Landing page productized + liquid glass redesign. Playbooks upgraded (WCAG, tokens, voice matrix). Workflow v1.2 shipped |
+| **Current cycle** | March 2026 — Landing page live with liquid glass morphism. DM link previews optimized. 6 testimonials integrated. Ignition logo deployed |
 | **Location** | Mexico City |
-| **Focus** | **Day 0 launch (Mar 23): Stripe + Calendly + bio update + TF post. First $555 session. Warm DMs to 30 named contacts** |
-| **Key milestone** | ✅ 10 sessions delivered. ✅ Build SOP v1 (5 phases). ✅ Forecast v4 (roasted, corrected). ✅ 6-month trajectory. ✅ 8 NotebookLM audience prompts. ✅ Holomap Day 19 "Branching". ✅ Scale-Up + VC enabler play documented. ✅ Distribution playbook Tactics 4+5. ✅ Open Blueprint strategy. ✅ Soul-Aligned Tactics (Part 0). ✅ Build pricing: $1,111 + $2,500 rev share |
-| **Key decisions** | Open Blueprint: teach everything, hold nothing back. Hybrid Build pricing (skin in the game). 10 sessions/week capacity (T/W/Th). Node licensing at 10% revenue. Weekly TF repost cadence |
+| **Focus** | **Landing page DONE. Next: warm DM campaign with optimized link preview. Push to first $555 payment.** |
+| **Key milestone** | ✅ All previous milestones + ✅ Landing page through full 5-phase product workflow + ✅ 6 improvements from roast + ✅ Liquid glass redesign + ✅ SEO/OG meta for DM sharing + ✅ Design system upgrade (WCAG, tokens, semantic colors, voice matrix, critique) + ✅ Workflow v1.2 (Phase 3: 5→9 steps) + ✅ 6 client testimonials with before-context + ✅ Golden star ignition logo |
+| **Key decisions** | Landing page = product (full workflow, not just design). Liquid glass > flat design. Trust before proof (About before Testimonials). Blueprints below CTA (don't give free before asking to buy). DM link preview IS first impression |
 
 ---
 
@@ -127,7 +127,7 @@ Oyi ✅, Sergey 🔄, Alexa → Sandra → Karime. Each session produces 5 outpu
 
 - [ ] **Screen Layer Mandate adoption** — Re-anchor floating modules onto explicit screens
 - [ ] **Onboarding flow polish** — Button sequencing issues
-- [ ] **Solo user landing page** — One page for organic acquisition
+- [x] **Solo user landing page** — Ignition Session at `/`, liquid glass design, 5-phase product workflow, SEO/OG optimized
 - [ ] **User results to DB** — Missions, resources
 - [ ] **Logos** — Platform + module logos
 - [ ] **Videos** — Explainer, onboarding, module intros
@@ -796,5 +796,5 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-03-19 (midnight). CANVAS ERA — Step 3 (Branching). 10 sessions delivered. Build SOP documented. Forecast v4 post-roast. 8 audience frequencies named. Day 0 = March 23. Center word: Signal → Branching.*
+*Roadmap updated: 2026-03-26 (evening). CANVAS ERA. Landing page productized + liquid glass redesign. Design system upgraded (WCAG, tokens, voice). Workflow v1.2. Next: warm DM campaign.*
 
