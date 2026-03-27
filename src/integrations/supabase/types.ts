@@ -334,6 +334,87 @@ export type Database = {
           },
         ]
       }
+      founder_canvases: {
+        Row: {
+          archetype: string
+          color_bg: string
+          color_border: string
+          color_glow: string
+          color_primary: string
+          consent_given: boolean
+          created_at: string
+          id: string
+          is_active: boolean
+          myth_lie: string
+          myth_line: string
+          myth_truth: string
+          name: string
+          pain: string
+          promise: string
+          session_date: string
+          session_number: string
+          sigil: string
+          sort_order: number
+          status: string
+          tagline: string
+          tribe: string
+          uniqueness: string
+          updated_at: string
+        }
+        Insert: {
+          archetype: string
+          color_bg?: string
+          color_border?: string
+          color_glow?: string
+          color_primary?: string
+          consent_given?: boolean
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          myth_lie: string
+          myth_line: string
+          myth_truth: string
+          name: string
+          pain: string
+          promise: string
+          session_date: string
+          session_number: string
+          sigil?: string
+          sort_order?: number
+          status?: string
+          tagline: string
+          tribe: string
+          uniqueness: string
+          updated_at?: string
+        }
+        Update: {
+          archetype?: string
+          color_bg?: string
+          color_border?: string
+          color_glow?: string
+          color_primary?: string
+          consent_given?: boolean
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          myth_lie?: string
+          myth_line?: string
+          myth_truth?: string
+          name?: string
+          pain?: string
+          promise?: string
+          session_date?: string
+          session_number?: string
+          sigil?: string
+          sort_order?: number
+          status?: string
+          tagline?: string
+          tribe?: string
+          uniqueness?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       game_profiles: {
         Row: {
           ai_upgrade_access: boolean | null
@@ -1230,6 +1311,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      testimonials: {
+        Row: {
+          created_at: string
+          full_quote: string
+          id: string
+          is_active: boolean
+          person_name: string
+          short_quote: string
+          sort_order: number
+          surface: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_quote: string
+          id?: string
+          is_active?: boolean
+          person_name: string
+          short_quote: string
+          sort_order?: number
+          surface?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_quote?: string
+          id?: string
+          is_active?: boolean
+          person_name?: string
+          short_quote?: string
+          sort_order?: number
+          surface?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       upgrade_catalog: {
         Row: {
