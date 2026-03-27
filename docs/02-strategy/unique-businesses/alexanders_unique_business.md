@@ -1657,7 +1657,7 @@ People have said:
 — Sergey Jay Makarov, Serial Founder & System Architect
 
 "When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this."
-— Sandra Otto, New Earth deep conscious tech leader, ex-corporate global executive
+— Sandra Otto, New Earth conscious deep tech leader, ex-corporate global consultant
 
 "Wow, wow, wow, wow, wow. I've been working on this since 2011. You've changed the dynamic. This is a major breakthrough. I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? I'd like another shot of the good vodka that you're pouring. I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax. I am in awe right now of the accuracy and the amount of freedom that it is letting me have. My guides, they like you. I see this as life changing."
 — Oyi Sun, Medicine Man, Ye Ming Zhu keeper
@@ -2364,7 +2364,7 @@ Not a pitch. Not a hook. Not a funnel. A true story — your story, told raw —
 > — Sergey Jay Makarov, Serial Founder & System Architect
 >
 > "I knew, I just knew — "this is a door that you need to go through." I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this."
-> — Sandra Otto, New Earth deep conscious tech leader, and an ex-corporate global executive
+> — Sandra Otto, New Earth conscious deep tech leader, and an ex-corporate global consultant
 >
 > "The whole journey feels really beautiful."
 >
