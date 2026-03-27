@@ -1,4 +1,4 @@
-import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Sparkles, Target, Zap } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
@@ -210,34 +210,34 @@ const IgniteSession = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
-                icon: Sparkles,
+                emoji: "🔮",
                 step: "1",
-                title: "Answer two questions",
+                title: "We articulate your genius in ONE sentence",
                 desc: "No prep needed. You arrive. The questions do the work.",
               },
               {
-                icon: Target,
+                emoji: "📦",
                 step: "2",
-                title: "AI + facilitator mirror you",
+                title: "We turn that sentence into a product, and package it as a unique business",
                 desc: "I listen for what you can't see. AI compiles it in real time.",
               },
               {
-                icon: Zap,
+                emoji: "🚀",
                 step: "3",
-                title: "Walk out with your business",
-                desc: "Your craft named. Your business on one page. Your first move clear.",
+                title: "You walk out with your craft named, your business on one page, your first move clear and exciting",
+                desc: "",
               },
             ].map((item, i) => (
               <div
                 key={i}
                 className="liquid-glass rounded-3xl p-5 text-center space-y-3 hover:scale-105 transition-transform duration-200"
               >
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto">
-                  <item.icon className="w-5 h-5 text-white/80" aria-hidden="true" />
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto text-xl">
+                  <span aria-hidden="true">{item.emoji}</span>
                 </div>
                 <p className="text-xs text-white/50 font-medium uppercase tracking-widest">Step {item.step}</p>
                 <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>
+                {item.desc && <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>}
               </div>
             ))}
           </div>
