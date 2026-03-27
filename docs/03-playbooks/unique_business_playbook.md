@@ -3140,7 +3140,7 @@ These amplifiers are **protocol-level.** Any node adapts them:
 
 ---
 
-## Tactic 6: The Psychoactive Information Doctrine
+## Tactic 6: The Psychoactive Information Principle
 
 > *v1.0 · March 28, 2026 — Surfaced during Godfather Offer probe*
 
@@ -3268,7 +3268,7 @@ These are not in opposition. They are complementary faces of the same whole. The
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
-- **v3.0:** Godfather Offer Probe workflow added (7-question offer stress test between canvas and go-to-market). Tactic 6: Psychoactive Information Doctrine added — the principle that every touchpoint is part of ONE continuous initiation field, and marketing IS the product. Tactic 7: Golden DM First Contact Protocol added — warm outreach as testimony, sent to tribe members with consent-first architecture. $1,111 Flagship pricing anchor surfaced. Transformation Snapshot artifact type established.
+- **v3.0:** Godfather Offer Probe workflow added (7-question offer stress test between canvas and go-to-market). Tactic 6: Psychoactive Information Principle added — the principle that every touchpoint is part of ONE continuous initiation field, and marketing IS the product. Tactic 7: Golden DM First Contact Protocol added — warm outreach as testimony, sent to tribe members with consent-first architecture. $1,111 Flagship pricing anchor surfaced. Transformation Snapshot artifact type established.
 - **v2.9:** Oyi Session #5 methodology upgrades. Acupressure Facilitation Principle added (one hit + silence). Same Architecture, Different Medicine principle added — replicability proof across Alexander's Ignition and Oyi's Mirror. Artifacts→Product Design corollary added to Crystallization Principle.
 - **v2.8:** Sandra Session #3 + Sergey Session #4 methodology upgrades. Empathy-First Pain Naming principle added to Pain checklist. Precision Threshold Scale (8+/9.2+/9.5+/9.9+) codified. Error Detection From Below principle added. Myth documented as trickiest artifact with multiple-myths-one-uniqueness rule. B2B=B2C and Holonic Business Scaling principles added. Fibonacci growth data added to Organic Pipeline.
 - **v2.7:** Noble = Free Antidote principle added — the universal pricing program running in every Source Path Builder, its two layers (noble=free + romantic giving), and the two-part resolution (Gift vs. System + Facilitation). Discovered March 23-24 across Alexander × Oyi sessions.

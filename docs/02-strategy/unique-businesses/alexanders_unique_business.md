@@ -1433,7 +1433,7 @@ What's available (not yet activated):
 
 > **Core insight:** The Golden DM is NOT cold outreach. It is sent **TO tribe members** — people already in the same situation. The DM is a mirror, not a pitch. It works because it describes the reader's own life back to them.
 
-#### The Psychoactive Information Doctrine
+#### The Psychoactive Information Principle
 
 The marketing IS the product. Every touchpoint — DM, landing page, video, post, session — is part of ONE continuous initiation field:
 
