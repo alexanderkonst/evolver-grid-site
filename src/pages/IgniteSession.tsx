@@ -114,7 +114,7 @@ const IgniteSession = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    document.title = "You've been giving your best work away for free — Ignition Session";
+    document.title = "You're Not Confused. You Just Can't Name What You Do—Yet — Ignition Session";
     return () => { document.title = "Evolver"; };
   }, []);
 
@@ -145,24 +145,28 @@ const IgniteSession = () => {
           />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            You've been giving your{" "}
+            You're Not{" "}
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              best work
-            </span>{" "}
-            away for free
+              Confused.
+            </span>
+            <br />You Just Can't Name What You Do—Yet.
           </h1>
 
           <p className="text-base text-white/80 max-w-lg mx-auto leading-relaxed">
-            You've been undercharging, overdelivering, and wondering why it still feels like a grind — not because something's wrong with you, but because the thing you do best still sounds like a long-winded riddle, not yet one sentence
+            You've been undercharging and overexplaining—because your answer to "so what do you do?" still sounds like a riddle.
           </p>
 
           <p className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed">
-            In 90 minutes, we name your craft, discover the business built on
-            who you already are, and get you the first easy move to your first paying client.
+            In 90 minutes, we name it, structure it, and show you exactly how it becomes a business.
+          </p>
+
+          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">
+            If you can't explain what you do in one sentence, this is for you.
           </p>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
+            <span className="text-xs text-white/35">Limited sessions per week. First come, first serve.</span>
             <span className="flex items-center gap-1.5 text-xs text-white/30">
               <ShieldCheck className="w-3 h-3" aria-hidden="true" />
               Money-back guarantee
@@ -177,9 +181,9 @@ const IgniteSession = () => {
           <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You're frozen between the dream project, a coaching/consulting business, and \"getting a job\"",
-              "People come to you for advice — you don't charge since it's easy & entertaining",
-              "You suspect you ARE the product but can't see the product label from inside yourself",
+              "You've been giving your best work away for free — not because it's not valuable, but because you can't explain it cleanly enough to charge",
+              "Conversations drag, pricing feels random, and opportunities slip",
+              "Your answer to \"so what do you do?\" still sounds like a riddle",
             ].map((item, i) => (
               <span
                 key={i}
@@ -213,20 +217,20 @@ const IgniteSession = () => {
               {
                 emoji: "🔮",
                 step: "1",
-                title: "We articulate your genius in ONE sentence",
-                desc: "No prep needed. You arrive. The questions do the work.",
+                title: "We name your genius in one sentence",
+                desc: "You talk. I listen for patterns you can't see from inside.",
               },
               {
                 emoji: "📦",
                 step: "2",
-                title: "We turn that sentence into a product, and package it as a unique business",
-                desc: "I listen for what you can't see. AI compiles it in real time.",
+                title: "We turn it into a product",
+                desc: "Your sentence becomes an offer people can understand—and buy.",
               },
               {
                 emoji: "🚀",
                 step: "3",
-                title: "You walk out with your craft named, your business on one page, your first move clear and exciting",
-                desc: "",
+                title: "We map your business + next move",
+                desc: "You leave with direction, structure, and momentum.",
               },
             ].map((item, i) => (
               <div
@@ -253,12 +257,20 @@ const IgniteSession = () => {
           <div className="space-y-4">
             {[
               {
-                title: "Your uniqueness named",
-                desc: "Two questions. Deep mirroring. I name the thing you've been doing for free — the gift people thank you for that feels too natural to be valuable. You hear it and your body knows: \"That's it.\""
+                title: "Your genius named in one sentence",
+                desc: "The thing you've been doing for free — named clearly enough that anyone can understand and buy it."
               },
               {
                 title: "Your entire business on one page",
-                desc: "Your worldview, your audience, their deepest struggle, your promise to them, and your offer — compiled in real time by AI, on screen, while we work. Not a first draft. A naming."
+                desc: "Product, audience, pain, promise, and offer — structured and compiled in real time."
+              },
+              {
+                title: "A clear, immediate next step",
+                desc: "You leave knowing exactly who to talk to, what to say, and what to charge."
+              },
+              {
+                title: "The ability to explain what you do — without overthinking",
+                desc: "No more riddles. One sentence that lands."
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -288,14 +300,16 @@ const IgniteSession = () => {
           {/* Glass box pulled up under the photo */}
           <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center">
             <p className="text-sm text-white/60 leading-relaxed">
-              I spent five years helping other founders find their uniqueness while unable to see my own.
-              I studied entrepreneurship at MIT, spent four years in Silicon Valley,
-              and helped 200+ people articulate what makes them irreplaceable.
+              &nbsp;
+            </p>
+            <p className="text-sm text-white/60 leading-relaxed">
+              I've spent years helping founders articulate what makes them irreplaceable—while struggling to name my own.
             </p>
             <p className="text-sm text-white/60 leading-relaxed mt-3">
-              What I do best — naming the gift that hides in plain sight —
-              was the business I couldn't name for myself. Now I do this full-time.
-              Every session is a mirror. I don't teach you anything new. I show you what was always there.
+              What I do best is simple: I hear what people can't hear in themselves—and give it back to them clearly.
+            </p>
+            <p className="text-sm text-white/60 leading-relaxed mt-3">
+              Now I do this full-time.
             </p>
             <p className="text-xs text-white/40 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
@@ -307,6 +321,7 @@ const IgniteSession = () => {
             S6: TESTIMONIALS — glass cards with before-context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
+          <p className="text-sm text-white/50 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
           <h2 className="text-lg font-medium text-white/80 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {([
@@ -361,6 +376,7 @@ const IgniteSession = () => {
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
             <p className="text-xs text-white/30">One session. Fully filled unique business canvas. Yours forever.</p>
+            <p className="text-xs text-white/35 mt-1">Limited sessions per week. First come, first serve.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" showPrice={false} />
@@ -372,7 +388,7 @@ const IgniteSession = () => {
               <p className="text-xs font-medium text-white/40 uppercase tracking-widest">The Ignition Guarantee</p>
             </div>
             <p className="text-xs text-white/35 leading-relaxed">
-              You walk out with your uniqueness named and your business on one page — or full refund. No questions.
+              You leave with your genius named and your business on one page—or you don't pay.
             </p>
           </div>
 
@@ -399,7 +415,7 @@ const IgniteSession = () => {
           {[
             {
               q: "What if I don't know my genius yet?",
-              a: "That's exactly what this session is for. You don't prepare — you arrive. The two questions do the work. Every person who's sat in this session walked out with their uniqueness named. That's the guarantee."
+              a: "Perfect. That's exactly who this is for. You don't prepare — you arrive. The questions do the work."
             },
             {
               q: "What if I already have a business?",
@@ -407,7 +423,7 @@ const IgniteSession = () => {
             },
             {
               q: "How is this different from coaching?",
-              a: "I don't give advice. I mirror back what you already said until you see the pattern you couldn't see from inside. Then AI compiles your entire business canvas in real time. You walk out with a business on a page, not a pep talk."
+              a: "Coaching explores. This names and structures. You walk out with a business on a page, not a pep talk."
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -450,6 +466,9 @@ const IgniteSession = () => {
             S9: BOTTOM CTA — above blueprints
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
+          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed">
+            If you've been circling this for months…<br />this is where it clicks.
+          </p>
           <PrimaryCTA id="bottom-cta-btn" />
           <div className="flex flex-col items-center gap-2">
             <AlreadyPaidLink />
