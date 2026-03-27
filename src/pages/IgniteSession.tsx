@@ -297,21 +297,45 @@ const IgniteSession = () => {
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
           <p className="text-xs text-white/30 uppercase tracking-widest text-center mb-1">What they said after</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {[
-              { quote: "Wow, wow, wow, wow, wow. My guides, they like you.", name: "Oyi Sun", before: "Medicine Man, Ye Ming Zhu keeper" },
-              { quote: "A tool that just plain works.", name: "Alexey Utkin", before: "Serial founder, Stanford MBA, ex-management consultant" },
-              { quote: "I was applying force, but the vector was wrong.", name: "Sergey Jay Makarov", before: "Serial Founder & System Architect" },
-              { quote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.", name: "Sandra Otto", before: "New Earth deep conscious tech leader, ex-corporate global executive" },
-              { quote: "The whole journey feels really beautiful.", name: "Aleksa Stojanovic", before: "Web3 System Architect" },
-              { quote: "I feel caught. Wonderful. This is great work.", name: "Karime Kuri", before: "Healer of Healers, ex-WEF leader, Oxford alum" },
-            ].map((t, i) => (
-              <div key={i} className="liquid-glass rounded-2xl p-4 hover:scale-[1.02] transition-transform duration-200">
-                <p className="text-[10px] text-white/20 mb-1.5" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>{t.before}</p>
-                <blockquote className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>
-                  "{t.quote}"
-                </blockquote>
-                <p className="text-xs text-white/40 mt-2">— {t.name}</p>
-              </div>
+            {([
+              {
+                shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
+                fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough. I really hope your AI is recording this ... I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? ... I'd like another shot of the good vodka that you're pouring ... What you're doing is not vertically integrated. It's mycelially integrated ... I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax ... I am in awe right now of the accuracy and the amount of freedom that it is letting me have ... This stuff is really, really sharp ... My guides, they like you ... I see this as life changing.",
+                name: "Oyi Sun",
+                before: "Medicine Man, Ye Ming Zhu keeper",
+              },
+              {
+                shortQuote: "This is a miracle of miracles. A tool that just plain works.",
+                fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
+                name: "Alexey Utkin",
+                before: "Serial founder, Stanford MBA, ex-management consultant",
+              },
+              {
+                shortQuote: "I was applying force, but the vector was wrong.",
+                fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+                name: "Sergey Jay Makarov",
+                before: "Serial Founder & System Architect",
+              },
+              {
+                shortQuote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.",
+                fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+                name: "Sandra Otto",
+                before: "New Earth deep conscious tech leader, ex-corporate global executive",
+              },
+              {
+                shortQuote: "The whole journey feels really beautiful.",
+                fullQuote: "Wow. Wow. This is beautiful, man. You know what the testimonial page should say? One word for every person: \"Wow\". And you wouldn't be wrong ... It flips the whole situation. Thank you for enabling me this opportunity — or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said — I remember, and it resonated, and it helped at that moment a lot. So yeah, thanks for all of that, man. I appreciate it. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. I think it's a wonderful thing to do. it was — transformative. Full of high truths, or at least discoveries for me.",
+                name: "Aleksa Stojanovic",
+                before: "Web3 System Architect",
+              },
+              {
+                shortQuote: "I feel caught. Wonderful. This is great work.",
+                fullQuote: "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away — to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go.",
+                name: "Karime Kuri",
+                before: "Healer of Healers, ex-WEF leader, Oxford alum",
+              },
+            ] as import("@/components/ExpandableTestimonial").TestimonialData[]).map((t, i) => (
+              <ExpandableTestimonial key={i} t={t} variant="dark" />
             ))}
           </div>
         </section>
