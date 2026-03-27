@@ -434,7 +434,9 @@ Self-Talk, Dream Outcomes, Felt Texture
 
 ---
 
-**Tribe Synthesis (v5 — founder-forged, 9.9/10):**
+**Tribe Synthesis (v6 — founder-forged, 9.9/10):**
+
+**Energetic Tribe Name: Original Truth Rebels**
 
 > Highly capable people stuck in the grind: pivoting through ideas that never quite click, selling their gift by the hour until they're exhausted, trading their days for someone else's dream wondering *what would I even do if I left?*
 >
@@ -445,6 +447,8 @@ Self-Talk, Dream Outcomes, Felt Texture
 > They're more capable than their results show and they know it. The breakthrough feels close.
 >
 > And the voice that used to whisper *"I am not ready yet"* is starting to sound like a cheap and dangerous excuse.
+
+> **Why "Original Truth Rebels":** They rebel against the grind narrative. They carry an original truth — their unnamed gift — that won't be suppressed. They're not contrarian for the sake of it. They rebel because the conventional path doesn't fit who they actually are. *March 28, 2026.*
 
 ---
 
