@@ -2414,6 +2414,47 @@ Transform this validated offer into a product blueprint using 9-phase Product Co
 
 ---
 
+## Workflow: The Godfather Offer Probe
+
+> *v1.0 · March 28, 2026 — Adapted from Oyi Sun's "Godfather Offer" framework*
+
+**When to use:** After the Unique Business Canvas is complete, BEFORE distribution begins. This probe stress-tests the offer against 7 questions that expose gaps between the founder's gift, their packaging, and their pricing.
+
+**Positioning:** This sits BETWEEN canvas completion and go-to-market. Think of it as the final offer inspection before launch.
+
+### The 7-Question Probe
+
+| # | Question | What you're testing | Red flag if... |
+|---|----------|--------------------|-----------------|
+| **1** | **What do you do better than most?** What result do people come to you for (even free)? What's undervalued/underpackaged? | **Zone of Genius clarity.** Can they describe their gift in plain language? | They describe process instead of result. They can't name what people come to them for. They don't know what's underpackaged |
+| **2** | **"They come in as ________ and leave as ________"** (Identity shift, not vague results) | **Transformation Snapshot.** Can they name the before/after in ONE sentence? | The snapshot is vague ("they get clarity"), uses jargon, or describes a process rather than an identity shift |
+| **3** | **What convo are you entering in their head?** 🚀 High-energy leveling up, 🌊 Deep pain, 🧘 Calm clarity | **Emotional Loop.** Do they know what frequency to broadcast on? | They pick all three (scattered), or they pick the wrong one (broadcasting at a frequency their tribe doesn't listen to) |
+| **4** | **What's the most you've charged? How did it feel (1–10)?** | **Pricing confidence.** Is there a gap between value delivered and price charged? | Score under 7 = underpricing. They can't name their highest ticket. The feel score doesn't match the result quality |
+| **5** | **Optimizing for 💰 cash or 👥 people?** | **Target clarity.** Which lever comes first? | They say "both" without sequencing. No number attached |
+| **6** | **Can your current value justify $1K–$9K? If yes, what number feels like "damn… but I'd take it"?** | **4-Digit Flagship Check.** Is there a premium tier waiting to emerge? | They immediately lower the price instead of raising the value. Or they can't name the number |
+| **7** | **Optional: modalities/type systems?** | **Depth anchors.** What deeper frameworks inform their work? | N/A — optional |
+
+### How to Use the Probe Output
+
+1. **If all 7 clean** → Offer is ready. Proceed to distribution
+2. **If 1-3 have gaps** → Return to relevant canvas artifact and deepen
+3. **If Transformation Snapshot is weak** → The promise needs more roasting
+4. **If pricing confidence < 7** → Address the "noble = free" shadow program (see [Noble = Free Antidote](#the-noble--free-shadow-program))
+5. **If Emotional Loop is scattered** → The tribe definition needs more precision
+
+**AI prompt for probe execution:**
+
+```
+Given the completed Unique Business Canvas for [founder name], run the Godfather Offer Probe:
+
+1. Based on the canvas artifacts, answer each of the 7 questions
+2. Flag any answers that show red flags
+3. Recommend which artifact to revisit if gaps exist
+4. Produce a Transformation Snapshot in the format: "They come in as _______ and leave as _______"
+```
+
+---
+
 # Part IV: SOP Quick Reference
 
 ## The Master Execution Sequence
@@ -3099,6 +3140,95 @@ These amplifiers are **protocol-level.** Any node adapts them:
 
 ---
 
+## Tactic 6: The Psychoactive Information Doctrine
+
+> *v1.0 · March 28, 2026 — Surfaced during Godfather Offer probe*
+
+**The principle:** Every touchpoint is part of ONE continuous initiation field. The client is already being served the moment they read the first message. The marketing IS the product.
+
+**What this changes:**
+
+Traditional view:
+```
+Marketing (awareness)  →  Sales (conversion)  →  Product (delivery)
+     separate                  separate               separate
+```
+
+Psychoactive Information view:
+```
+Golden DM  →  Landing page  →  Video  →  Session  →  The Build
+    |              |            |           |            |
+    └──────────────┴────────────┴───────────┴────────────┘
+              ONE CONTINUOUS INITIATION FIELD
+```
+
+**What the information field delivers at each touch:**
+
+| Element | At each touchpoint |
+|---------|--------------------|
+| **Illumination** | Seeing what was hidden in plain sight |
+| **Healing** | The wound of being unnamed begins to close |
+| **Activation** | Energy shifts from scattered to directed |
+| **Initiation** | Crossing a threshold from confusion to clarity |
+| **Reality distortion field** | The myth begins to rewrite their internal story |
+| **Magnetic myth-based marketing** | The information pulls them, not pushes |
+
+**Practical implications for any unique business:**
+
+1. **Design your DMs, posts, and landing pages AS delivery vehicles** — not as "top of funnel" that leads to the "real" product. The DM IS the product at that stage
+2. **The tribe member starts transforming from the first sentence** — if your information isn't psychoactive, the offer isn't precise enough
+3. **Pricing tiers can reflect depth of self-selection** — a client who arrived through the full information field (DM → page → video → body response) has already received value. The session is the culmination, not the beginning
+4. **The soul-alignment test (Part 0) applies to every touchpoint** — if the DM doesn't feel like giving, it's not psychoactive — it's manipulative
+
+**Protocol-level application:** Every node can apply this. The DM text changes (unique to each business), but the ARCHITECTURE is the same: testimony first, consent before content, information as initiation.
+
+---
+
+## Tactic 7: The Golden DM — First Contact Protocol
+
+> *v1.0 · March 28, 2026 — Codified from live warm DM campaign*
+
+**What it is:** A warm DM sent directly to tribe members — people in the same situation as the founder. Not cold outreach. Not a pitch. A mirror.
+
+**Who you send it to:** Your tribe members. People like you in a similar situation. That's the targeting. No audience building needed. Find the people who ARE you from two years ago.
+
+### The Golden DM Formula
+
+| Beat | What it does | Example |
+|------|-------------|--------|
+| **1. Greeting + consent** | Ask before sending content | "I had a shift and wanted to share — only if you'd like to read it" |
+| **2. Visual threshold** | Create a micro-initiation | An emoji pair, a line break, a symbol that says "crossing into different territory" |
+| **3. Testimony** | Tell YOUR story, not describe THEIR pain | "I realized I was overpreparing for something I already had" |
+| **4. Name the Master Lie** | From inside, as testimony | "I believed I had not had success yet" |
+| **5. The recognition LOG** | Specific examples from YOUR life | "Those 2-hour coffees, the group chat message, helping a friend launch" |
+| **6. The reframe** | What you found on the other side | "I'm not selling my gift. I'm selling a system" |
+| **7. Soft close** | No hard CTA. Their move is theirs | "That's what I do now. If you want to know more..." |
+
+### Why It Works
+
+| Principle | How the Golden DM embodies it |
+|-----------|------------------------------|
+| **Consent** | They opt in before seeing content |
+| **Testimony > diagnosis** | "I've been there" > "Here's what's wrong with you" |
+| **Psychoactive** | The information itself begins the transformation |
+| **Mirror** | Describes the reader's experience through the founder's story |
+| **No CTA** | The story ends at the revelation. Their next move is theirs |
+| **Tribe targeting** | Sent to people in the same situation — not cold leads |
+
+### Three Possible Responses
+
+| Response | What happens |
+|----------|-------------|
+| **"This is exactly me"** | Organic conversation → you mention what you do now |
+| **"My friend needs this"** | Referral you didn't ask for |
+| **"Thanks for sharing"** | Relationship deepened, zero damage |
+
+**Energy test (from Part 0, Principle 6):** This reach-out passes all conditions — the message feels good even with zero response. It's a share, not an extraction.
+
+**Protocol-level application:** Every node adapts this. Change the story (it's THEIR story), keep the architecture (consent → testimony → recognition → soft close).
+
+---
+
 ## Why Tactics Are the Key to Node Licensing
 
 ```
@@ -3134,10 +3264,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v2.9 — March 24, 2026*
+*Unique Business Playbook v3.0 — March 28, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v3.0:** Godfather Offer Probe workflow added (7-question offer stress test between canvas and go-to-market). Tactic 6: Psychoactive Information Doctrine added — the principle that every touchpoint is part of ONE continuous initiation field, and marketing IS the product. Tactic 7: Golden DM First Contact Protocol added — warm outreach as testimony, sent to tribe members with consent-first architecture. $1,111 Flagship pricing anchor surfaced. Transformation Snapshot artifact type established.
 - **v2.9:** Oyi Session #5 methodology upgrades. Acupressure Facilitation Principle added (one hit + silence). Same Architecture, Different Medicine principle added — replicability proof across Alexander's Ignition and Oyi's Mirror. Artifacts→Product Design corollary added to Crystallization Principle.
 - **v2.8:** Sandra Session #3 + Sergey Session #4 methodology upgrades. Empathy-First Pain Naming principle added to Pain checklist. Precision Threshold Scale (8+/9.2+/9.5+/9.9+) codified. Error Detection From Below principle added. Myth documented as trickiest artifact with multiple-myths-one-uniqueness rule. B2B=B2C and Holonic Business Scaling principles added. Fibonacci growth data added to Organic Pipeline.
 - **v2.7:** Noble = Free Antidote principle added — the universal pricing program running in every Source Path Builder, its two layers (noble=free + romantic giving), and the two-part resolution (Gift vs. System + Facilitation). Discovered March 23-24 across Alexander × Oyi sessions.
