@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
+import { supabase } from "@/integrations/supabase/client";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -21,7 +22,7 @@ interface FounderCanvas {
   consentGiven: boolean;
 }
 
-// ─── Founders ─────────────────────────────────────────────────────────────────
+// ─── Founders (FALLBACK — used when DB unavailable) ──────────────────────────
 
 export const FOUNDERS: FounderCanvas[] = [
   {
@@ -142,6 +143,52 @@ export const FOUNDERS: FounderCanvas[] = [
     consentGiven: true,
   },
 ];
+
+/* ─── Hook: fetch canvases from Supabase, fallback to hardcoded ─── */
+const useFounderCanvases = (): FounderCanvas[] => {
+  const [canvases, setCanvases] = useState<FounderCanvas[]>(FOUNDERS);
+
+  useEffect(() => {
+    const fetchCanvases = async () => {
+      try {
+        const { data, error } = await (supabase as any)
+          .from('founder_canvases')
+          .select('*')
+          .eq('is_active', true)
+          .order('sort_order', { ascending: true });
+
+        if (error || !data || data.length === 0) return; // Keep fallback
+
+        setCanvases(data.map(row => ({
+          name: row.name,
+          archetype: row.archetype,
+          tagline: row.tagline,
+          date: row.session_date,
+          sessionNumber: row.session_number,
+          sigil: row.sigil,
+          uniqueness: row.uniqueness,
+          myth: { lie: row.myth_lie, truth: row.myth_truth, line: row.myth_line },
+          tribe: row.tribe,
+          pain: row.pain,
+          promise: row.promise,
+          colors: {
+            primary: row.color_primary,
+            glow: row.color_glow,
+            bg: row.color_bg,
+            border: row.color_border,
+          },
+          status: row.status as "complete" | "in-progress",
+          consentGiven: row.consent_given,
+        })));
+      } catch {
+        // Silently fall back to hardcoded
+      }
+    };
+    fetchCanvases();
+  }, []);
+
+  return canvases;
+};
 
 // ─── Starfield ────────────────────────────────────────────────────────────────
 
@@ -557,6 +604,7 @@ const FoundersShowcase = () => {
   const [expandedFounder, setExpandedFounder] = useState<string | null>(null);
   const heroReveal = useReveal();
   const ctaReveal = useReveal();
+  const founders = useFounderCanvases();
 
   const toggle = useCallback(
     (name: string) =>
@@ -655,8 +703,8 @@ const FoundersShowcase = () => {
           {/* Stats ribbon */}
           <div className={`flex justify-center gap-6 text-[11px] pt-2 ${inShell ? 'text-[#2c3150]/25' : 'text-white/15'}`}>
             {[
-              { val: "4", label: "canvases" },
-              { val: "10", label: "days" },
+              { val: String(founders.length), label: "canvases" },
+              { val: founders.length > 0 ? `${Math.ceil((Date.now() - new Date('2026-02-19').getTime()) / (1000 * 60 * 60 * 24))}` : "0", label: "days" },
               { val: "$0", label: "ad spend" },
               { val: "100%", label: "conversion" },
             ].map((s, i) => (
@@ -674,7 +722,7 @@ const FoundersShowcase = () => {
 
         {/* ─── Founder Cards ──────────────────────────── */}
         <div className="space-y-6" id="founders-grid">
-          {FOUNDERS.map((f, i) => (
+          {founders.map((f, i) => (
             <FounderCard
               key={f.name}
               founder={f}

@@ -1,11 +1,85 @@
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
+import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
+import { supabase } from "@/integrations/supabase/client";
+
+/* ─── Hardcoded fallback testimonials (used if DB unavailable) ─── */
+const FALLBACK_TESTIMONIALS: TestimonialData[] = [
+  {
+    shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
+    fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough. I really hope your AI is recording this ... I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? ... I'd like another shot of the good vodka that you're pouring ... What you're doing is not vertically integrated. It's mycelially integrated ... I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax ... I am in awe right now of the accuracy and the amount of freedom that it is letting me have ... This stuff is really, really sharp ... My guides, they like you ... I see this as life changing.",
+    name: "Oyi Sun",
+    before: "Medicine Man, Ye Ming Zhu keeper",
+  },
+  {
+    shortQuote: "This is a miracle of miracles. A tool that just plain works.",
+    fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
+    name: "Alexey Utkin",
+    before: "Serial founder, Stanford MBA, ex-management consultant",
+  },
+  {
+    shortQuote: "I was applying force, but the vector was wrong.",
+    fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+    name: "Sergey Jay Makarov",
+    before: "Serial Founder & System Architect",
+  },
+  {
+    shortQuote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.",
+    fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+    name: "Sandra Otto",
+    before: "New Earth deep conscious tech leader, ex-corporate global executive",
+  },
+  {
+    shortQuote: "The whole journey feels really beautiful.",
+    fullQuote: "Wow. Wow. This is beautiful, man. You know what the testimonial page should say? One word for every person: \"Wow\". And you wouldn't be wrong ... It flips the whole situation. Thank you for enabling me this opportunity — or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said — I remember, and it resonated, and it helped at that moment a lot. So yeah, thanks for all of that, man. I appreciate it. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. I think it's a wonderful thing to do. it was — transformative. Full of high truths, or at least discoveries for me.",
+    name: "Aleksa Stojanovic",
+    before: "Web3 System Architect",
+  },
+  {
+    shortQuote: "I feel caught. Wonderful. This is great work.",
+    fullQuote: "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away — to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go.",
+    name: "Karime Kuri",
+    before: "Healer of Healers, ex-WEF leader, Oxford alum",
+  },
+];
+
+/* ─── Hook: fetch testimonials from Supabase, fallback to hardcoded ─── */
+const useTestimonials = (): TestimonialData[] => {
+  const [testimonials, setTestimonials] = useState<TestimonialData[]>(FALLBACK_TESTIMONIALS);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const { data, error } = await (supabase as any)
+          .from('testimonials')
+          .select('person_name, title, short_quote, full_quote, sort_order')
+          .eq('surface', 'ignite')
+          .eq('is_active', true)
+          .order('sort_order', { ascending: true });
+
+        if (error || !data || data.length === 0) return; // Keep fallback
+
+        setTestimonials(data.map(row => ({
+          shortQuote: row.short_quote,
+          fullQuote: row.full_quote,
+          name: row.person_name,
+          before: row.title,
+        })));
+      } catch {
+        // Silently fall back to hardcoded
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
+  return testimonials;
+};
 
 const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZPtENsX2F9QI.m3u8";
 
@@ -112,6 +186,7 @@ const IgniteSession = () => {
   const location = useLocation();
   const inShell = location.pathname.startsWith("/game/");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const testimonials = useTestimonials();
 
   useEffect(() => {
     document.title = "You're Not Confused. You Just Can't Name What You Do—Yet — Ignition Session";
@@ -328,44 +403,7 @@ const IgniteSession = () => {
           <p className="text-sm text-white/60 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {([
-              {
-                shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
-                fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough. I really hope your AI is recording this ... I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? ... I'd like another shot of the good vodka that you're pouring ... What you're doing is not vertically integrated. It's mycelially integrated ... I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax ... I am in awe right now of the accuracy and the amount of freedom that it is letting me have ... This stuff is really, really sharp ... My guides, they like you ... I see this as life changing.",
-                name: "Oyi Sun",
-                before: "Medicine Man, Ye Ming Zhu keeper",
-              },
-              {
-                shortQuote: "This is a miracle of miracles. A tool that just plain works.",
-                fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
-                name: "Alexey Utkin",
-                before: "Serial founder, Stanford MBA, ex-management consultant",
-              },
-              {
-                shortQuote: "I was applying force, but the vector was wrong.",
-                fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
-                name: "Sergey Jay Makarov",
-                before: "Serial Founder & System Architect",
-              },
-              {
-                shortQuote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.",
-                fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
-                name: "Sandra Otto",
-                before: "New Earth deep conscious tech leader, ex-corporate global executive",
-              },
-              {
-                shortQuote: "The whole journey feels really beautiful.",
-                fullQuote: "Wow. Wow. This is beautiful, man. You know what the testimonial page should say? One word for every person: \"Wow\". And you wouldn't be wrong ... It flips the whole situation. Thank you for enabling me this opportunity — or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said — I remember, and it resonated, and it helped at that moment a lot. So yeah, thanks for all of that, man. I appreciate it. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. I think it's a wonderful thing to do. it was — transformative. Full of high truths, or at least discoveries for me.",
-                name: "Aleksa Stojanovic",
-                before: "Web3 System Architect",
-              },
-              {
-                shortQuote: "I feel caught. Wonderful. This is great work.",
-                fullQuote: "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away — to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go.",
-                name: "Karime Kuri",
-                before: "Healer of Healers, ex-WEF leader, Oxford alum",
-              },
-            ] as import("@/components/ExpandableTestimonial").TestimonialData[]).map((t, i) => (
+            {testimonials.map((t, i) => (
               <ExpandableTestimonial key={i} t={t} variant="dark" />
             ))}
           </div>
