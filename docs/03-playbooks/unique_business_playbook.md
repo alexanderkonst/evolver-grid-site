@@ -979,6 +979,23 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - **Breakthrough: Point B / Dream Outcome / Transformational Promise are ONE thing.** Two lenses: outer (how it looks — demonstrable, Frankie-testable) and inner (how it's experienced — felt, embodied). Don't create three separate artifacts.
   - **Breakthrough: Promise the RESULT, not the MECHANISM.** The result = SALES (paying clients, revenue). The mechanism = self-knowledge, mirror, pattern recognition. Frankie's rule: demonstrate the after, don't describe the process.
   - **Breakthrough: The pain card IS the demonstration.** At 9.95 pain precision, proof of understanding beats proof of results. "I see you" > "I've helped 500 people." The sale is made at bodily recognition of the pain description.
+- [ ] **5.5. TRANSFORMATIONAL RESULT** → The hero's journey from A to B stated as one deliverable sentence
+  - Pain + Promise IS already the hero's journey. The Transformational Result = A → B restated as a deliverable: "From [Point A in their exact pain language] to [Point B in their exact promise language]."
+  - This step is nearly automatic when pain is at 9.5+. The precision of the pain IS the precision of the promise IS the precision of the transformational result.
+  - **Key:** This is NOT a new artifact — it's a RESTATEMENT of the promise as something a session can deliver. It becomes the Master Result for the product workflow (Phase 1, Step 1.1).
+- [ ] **5.6. TRINITY SUB-RESULTS** → Break the transformational result into 3 felt wins
+  - Each sub-result is a mini hero's journey: mini A → mini B
+  - Each can be further broken into a trinity (3×3×3 = 27 for full landing), but for 1st session stay at the first level — 3 only
+  - **AI applies holonic 26+ vision** to the Transformational Result to discover the natural trinity already implicit in the promise. The sub-results are not invented — they are DISCOVERED by looking at the transformation from enough perspectives.
+  - **Example (Alexander's Ignition Session):** (1) Name your craft, (2) See your business, (3) Know your first move
+  - See: [The Bridge: Pain + Promise → 1st Session](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session) for full methodology
+- [ ] **5.7. 1st SESSION DESIGN** → Where guaranteed results are delivered without overwhelming
+  - **The 1st session is NOT the full transformation.** It is where guaranteed results meet the tribe without overwhelm.
+  - **Condition 1 — Universal language:** Name results so people unmistakably understand what they're getting. No insider terminology. The test: would a stranger reading a landing page immediately know what they walk away with?
+  - **Condition 2 — Silhouette of the full journey:** The client leaves seeing just enough of A → B to feel the path exists. Still foggy, but palpable and tangible. Just enough to say YES to the next step.
+  - **The sweet spot:** Too much clarity → overwhelm, freeze. Too little → drift. Just enough → ground under their feet AND horizon ahead.
+  - **Then: deliver sessions → collect testimonials → write the Sovereign Story (Domain 46) → distribute.**
+  - See: [The Bridge](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session) and [Domain 46: The Sovereign Story](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/phase_shift_technology_library.md)
 - [ ] **6. LEAD MAGNET** → The pain card as content, delivered through the channel
   - Output: The piece of content that makes the right person say "how do they know this about me?"
   - At 9.95 pain precision, the pain card IS the lead magnet. Not a methodology guide. Not an explainer video. The PAIN — mirrored back with devastating accuracy.
