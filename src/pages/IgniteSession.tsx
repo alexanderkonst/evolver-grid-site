@@ -363,8 +363,10 @@ const IgniteSession = () => {
             <p className="text-xs text-white/30">One session. Fully filled unique business canvas. Yours forever.</p>
           </div>
 
+          <PrimaryCTA id="book-session-btn" showPrice={false} />
+
           {/* Guarantee */}
-          <div className="px-5 py-4 max-w-md mx-auto">
+          <div className="px-5 py-2 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
               <ShieldCheck className="w-4 h-4 text-white/40" aria-hidden="true" />
               <p className="text-xs font-medium text-white/40 uppercase tracking-widest">The Ignition Guarantee</p>
@@ -373,10 +375,6 @@ const IgniteSession = () => {
               You walk out with your uniqueness named and your business on one page — or full refund. No questions.
             </p>
           </div>
-
-
-
-          <PrimaryCTA id="book-session-btn" showPrice={false} />
 
           <div className="flex flex-col items-center gap-3 pt-1">
             <a
