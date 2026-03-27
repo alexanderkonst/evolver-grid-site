@@ -139,7 +139,7 @@ const IgniteSession = () => {
           <img
             src={geniusLogo}
             alt="Evolver — Unique Business Ignition"
-            className="w-16 h-16 mx-auto opacity-90"
+            className="w-20 h-auto mx-auto opacity-90"
           />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
