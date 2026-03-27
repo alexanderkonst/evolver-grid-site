@@ -70,6 +70,11 @@ const IgniteSession = () => {
   const inShell = location.pathname.startsWith("/game/");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  useEffect(() => {
+    document.title = "You've been giving your best work away for free — Ignition Session";
+    return () => { document.title = "Evolver"; };
+  }, []);
+
   const content = (
     <div className="min-h-screen bg-[#faf9f7] text-[#1a1a2e] font-sans" id="ignite-page">
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-12 space-y-10">
@@ -137,15 +142,7 @@ const IgniteSession = () => {
             The exact methodology disclosed in 4 minutes
           </p>
           <div className="rounded-2xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
-            <div className="aspect-video">
-              <iframe
-                src="https://www.youtube.com/embed/pnQzKNJyP0A"
-                title="The Ignition Session — Methodology Overview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
+            <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
           </div>
         </section>
 
