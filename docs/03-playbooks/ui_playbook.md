@@ -1112,5 +1112,269 @@ grep -rn 'bg-card\|text-card-foreground\|bg-primary\b\|text-primary-foreground\|
 
 ---
 
+# Part IV: Accessibility Standards (WCAG 2.2 AA)
+
+> *Informed by Apple Accessibility Specialist audit methodology. March 26, 2026.*
+>
+> **Rule:** Accessibility is not a feature — it's a floor. Every screen must pass before shipping.
+
+## Perceivable
+
+| Check | Standard | How to verify |
+|-------|----------|---------------|
+| **Color contrast** | Text ≥ 4.5:1 ratio (AA), large text ≥ 3:1 | Use Chrome DevTools contrast checker or axe extension |
+| **Non-text contrast** | UI components & borders ≥ 3:1 against adjacent colors | Check PremiumButton, PremiumCard borders |
+| **Color not sole indicator** | Never use color alone to convey info | Error states need icons + text, not just red |
+| **Text resize** | Readable at 200% zoom | Test every page at `ctrl +` × 4 |
+| **Alt text** | All images have descriptive alt (or `alt=""` for decorative) | `grep -r '<img' --include="*.tsx" src/ | grep -v 'alt='` |
+| **Captions** | Video/audio content has captions | All NotebookLM videos, YouTube embeds |
+
+## Operable
+
+| Check | Standard | How to verify |
+|-------|----------|---------------|
+| **Keyboard navigation** | All interactive elements reachable via Tab | Tab through every flow start-to-finish |
+| **Focus visible** | Focus ring visible on all interactive elements | Check for `focus:ring` or `focus-visible:outline` |
+| **Focus order** | Tab order matches visual order | No `tabindex` values > 0 |
+| **Skip to content** | Skip link on pages with nav | First focusable element should be skip link |
+| **No keyboard traps** | Can always Tab out of any component | Test modals, dropdowns, accordions |
+| **Touch targets** | Minimum 44×44px on mobile | All buttons, links, interactive elements |
+| **Motion control** | Respect `prefers-reduced-motion` | All breathing/aurora animations must check this |
+
+### Motion Safety Rule
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .breathing-card,
+  .alive-card,
+  .aurora-gradient,
+  .aurora-text,
+  .glowing-card {
+    animation: none !important;
+  }
+}
+```
+
+## Understandable
+
+| Check | Standard |
+|-------|----------|
+| **Language declared** | `<html lang="en">` set |
+| **Error identification** | Form errors identified with specific text, not just color |
+| **Labels** | All form inputs have associated `<label>` or `aria-label` |
+| **Consistent navigation** | Same nav pattern on every page |
+| **Help text** | Complex inputs have help text or placeholder guidance |
+
+## Robust
+
+| Check | Standard |
+|-------|----------|
+| **Valid HTML** | No duplicate IDs, proper nesting |
+| **ARIA when needed** | Use semantic HTML first, ARIA only when semantics can't express it |
+| **Name, Role, Value** | All custom components expose correct role and state |
+
+## Mobile-Specific
+
+| Check | Standard |
+|-------|----------|
+| **Orientation** | Works in both portrait and landscape |
+| **Input method** | Works with touch, keyboard, and assistive tech |
+| **Reachable zones** | Critical CTAs in thumb-friendly zones (bottom 40% of screen) |
+
+## Pre-Ship Audit Command
+
+```bash
+# Install axe for automated checks
+npx @axe-core/cli http://localhost:5173
+
+# Manual checks
+# 1. Tab through entire flow — can you reach everything?
+# 2. Use VoiceOver (Mac: Cmd+F5) — does it make sense?
+# 3. Zoom to 200% — does layout hold?
+# 4. Check prefers-reduced-motion — do animations stop?
+```
+
+---
+
+# Part V: Component States & Anatomy
+
+> *Every component must define all visual states — not just the default.*
+
+## Required States per Component
+
+| State | Description | Required for |
+|-------|-------------|-------------|
+| **Default** | Resting state | All components |
+| **Hover** | Mouse over (desktop) | Buttons, cards, links |
+| **Focus** | Keyboard focus ring | All interactive elements |
+| **Active/Pressed** | Being clicked/tapped | Buttons, cards |
+| **Disabled** | Not available | Buttons, inputs |
+| **Loading** | Async operation in progress | Buttons, cards, pages |
+| **Error** | Validation or system error | Inputs, forms, pages |
+| **Empty** | No data available | Lists, grids, dashboards |
+| **Skeleton** | Content loading placeholder | Cards, text blocks |
+
+## Component Anatomy Template
+
+When documenting a new component:
+
+```
+COMPONENT: [Name]
+├── Anatomy: [visual parts — icon, label, container, border]
+├── Variants: [glass, solid, outline, etc.]
+├── Sizes: [sm, md, lg]
+├── States: [default, hover, focus, active, disabled, loading, error]
+├── Spacing: [internal padding, margins between elements]
+├── Accessibility: [role, aria-label, keyboard behavior]
+├── Do's: [correct usage examples]
+└── Don'ts: [anti-patterns to avoid]
+```
+
+## Do's and Don'ts (Universal)
+
+| ✅ Do | ❌ Don't |
+|-------|---------|
+| Use `PremiumButton` for primary CTAs | Use plain `<button>` or shadcn `Button` without overrides |
+| Use semantic HTML (`<nav>`, `<main>`, `<section>`) | Use only `<div>` for everything |
+| Show empty states with illustration + action | Show a blank page or "No data" |
+| Show loading skeletons shaped like content | Show a spinner in an empty page |
+| Use `transition-all duration-200` on interactive elements | Use instant state changes with no transition |
+| Apply `cursor-pointer` to all clickable elements | Leave default cursor on interactive elements |
+| Use `focus-visible:` for keyboard-only focus styles | Show focus ring on every click |
+
+---
+
+# Part VI: Design Tokens (JSON Format)
+
+> *Machine-readable design tokens for consistency across AI agents, design tools, and code.*
+
+```json
+{
+  "color": {
+    "primary": { "value": "#8460ea", "description": "Electric Violet — CTAs, highlights, energy" },
+    "primary-hover": { "value": "#7350d8", "description": "Darkened primary for hover states" },
+    "text": {
+      "primary": { "value": "#2c3150", "description": "Charcoal Indigo — headings, important text" },
+      "secondary": { "value": "rgba(44,49,80,0.7)", "description": "Body text, descriptions" },
+      "muted": { "value": "rgba(44,49,80,0.5)", "description": "Hints, subtle labels" },
+      "on-dark": { "value": "#ffffff", "description": "Text on dark backgrounds" }
+    },
+    "accent": {
+      "lavender": { "value": "#a4a3d0", "description": "Soft accent, icons, borders" },
+      "aqua": { "value": "#a7cbd4", "description": "Secondary options, clarity" },
+      "royal": { "value": "#29549f", "description": "Trust, depth, authority" }
+    },
+    "semantic": {
+      "success": { "value": "#22c55e", "description": "Positive outcomes, completed states" },
+      "warning": { "value": "#f59e0b", "description": "Caution, requires attention" },
+      "error": { "value": "#ef4444", "description": "Errors, destructive actions" },
+      "info": { "value": "#6894d0", "description": "Informational, neutral" }
+    },
+    "surface": {
+      "page": { "value": "#faf9f7", "description": "Light mode page background" },
+      "card": { "value": "rgba(255,255,255,0.85)", "description": "Glass card background" },
+      "card-strong": { "value": "rgba(255,255,255,0.95)", "description": "Strong glass card" },
+      "dark-page": { "value": "#0f1019", "description": "Dark mode page background" },
+      "dark-card": { "value": "#1a1d2e", "description": "Dark mode card background" }
+    }
+  },
+  "typography": {
+    "font-display": { "value": "'Cormorant Garamond', serif", "description": "Headings, hero text" },
+    "font-sans": { "value": "'DM Sans', sans-serif", "description": "Body, UI elements" },
+    "font-mono": { "value": "'JetBrains Mono', monospace", "description": "Code, prompts" },
+    "scale": {
+      "hero": { "size": "30px", "line-height": "1.2", "weight": "600", "class": "text-3xl" },
+      "h1": { "size": "24px", "line-height": "1.3", "weight": "600", "class": "text-2xl" },
+      "h2": { "size": "20px", "line-height": "1.4", "weight": "600", "class": "text-xl" },
+      "h3": { "size": "18px", "line-height": "1.5", "weight": "500", "class": "text-lg" },
+      "body": { "size": "16px", "line-height": "1.6", "weight": "400", "class": "text-base" },
+      "body-sm": { "size": "14px", "line-height": "1.5", "weight": "400", "class": "text-sm" },
+      "caption": { "size": "12px", "line-height": "1.4", "weight": "400", "class": "text-xs" },
+      "label": { "size": "10px", "line-height": "1.3", "weight": "500", "class": "text-[10px]" },
+      "micro": { "size": "9px", "line-height": "1.2", "weight": "500", "class": "text-[9px]" }
+    }
+  },
+  "spacing": {
+    "unit": "8px",
+    "scale": {
+      "0": "0px", "1": "4px", "2": "8px", "3": "12px", "4": "16px",
+      "5": "20px", "6": "24px", "8": "32px", "10": "40px", "12": "48px",
+      "16": "64px", "20": "80px", "24": "96px"
+    }
+  },
+  "radius": {
+    "sm": "6px", "md": "8px", "lg": "12px", "xl": "16px", "2xl": "20px", "full": "9999px"
+  },
+  "shadow": {
+    "sm": "0 1px 2px rgba(44,49,80,0.05)",
+    "md": "0 4px 6px rgba(44,49,80,0.07)",
+    "lg": "0 10px 15px rgba(44,49,80,0.1)",
+    "xl": "0 20px 25px rgba(44,49,80,0.1)",
+    "glow": "0 0 20px rgba(132,96,234,0.2)"
+  },
+  "animation": {
+    "duration": {
+      "instant": "100ms", "fast": "150ms", "normal": "200ms",
+      "slow": "300ms", "gentle": "400ms"
+    },
+    "easing": {
+      "default": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "breathing": { "duration": "6s", "easing": "ease-in-out" },
+    "aurora": { "duration": "15s", "easing": "ease-in-out" }
+  }
+}
+```
+
+---
+
+# Part VII: Design Critique Framework
+
+> *Adapted from Nielsen's 10 usability heuristics for the Evolver context (March 26, 2026).*
+
+## The 10 Heuristics (Applied)
+
+| # | Heuristic | Evolver application | Score 1–5 |
+|---|-----------|---------------------|-----------|
+| 1 | **System status visibility** | Does the user always know where they are in the journey? Progress bars, breadcrumbs, space indicators | |
+| 2 | **Match real world** | Does copy use the user's language, not internal terms? "Uniqueness" vs "Zone of Genius extraction" | |
+| 3 | **User control & freedom** | Can user go back, undo, skip? No dead ends? | |
+| 4 | **Consistency & standards** | Same patterns everywhere? PremiumButton consistent across all modules? | |
+| 5 | **Error prevention** | Are destructive actions confirmed? Form inputs validated before submit? | |
+| 6 | **Recognition over recall** | Can user recognizes options rather than remembering? Labels visible, not hidden? | |
+| 7 | **Flexibility & efficiency** | Power users have shortcuts? Common tasks are fast? | |
+| 8 | **Aesthetic & minimalist** | Every element carries signal? No noise? (The "Not-Decoration" Rule) | |
+| 9 | **Help users with errors** | Errors are specific, constructive, and suggest a fix? | |
+| 10 | **Help & documentation** | FAQ visible? Tooltips on complex elements? Clarity call accessible? | |
+
+## Critique Workflow
+
+```
+1. Walk through key flow — screenshot every screen
+2. Score each heuristic 1–5
+3. Identify issues: Critical (blocks user) → Important (degrades experience) → Polish (nice-to-have)
+4. Propose fixes with specific file:line references
+5. Implement top-priority fixes first
+6. Re-score after fix
+```
+
+## Quick Critique Checklist
+
+Before shipping any screen to production:
+
+- [ ] **Visual hierarchy clear?** — Can you identify the #1 most important element in < 1 second?
+- [ ] **Typography consistent?** — All headings `font-display`, body `font-sans`?
+- [ ] **Color carries meaning?** — Is Electric Violet only used for primary actions?
+- [ ] **Empty states designed?** — What does this page look like with zero data?
+- [ ] **Error states designed?** — What happens when the API fails?
+- [ ] **Loading states designed?** — What does the user see during async operations?
+- [ ] **Cognitive load minimal?** — Could you remove any element and the page still works?
+- [ ] **Accessible?** — Passes keyboard nav, contrast, and focus checks?
+- [ ] **Differentiated?** — Does this feel like Evolver, not like a generic SaaS?
+
+---
+
 *UX before UI. Test as you go. Invisible interface is the goal.*
-*Updated: February 11, 2026 — Added CSS Variable Override Trap to checklist and quick reference*
+*Updated: March 26, 2026 — Added Accessibility Standards, Component States, Design Tokens JSON, and Design Critique Framework (informed by Apple/Pentagram design standards)*
+

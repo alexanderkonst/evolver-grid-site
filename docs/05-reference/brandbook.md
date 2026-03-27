@@ -448,7 +448,143 @@ grep -r '<Button' --include="*.tsx" src/modules/product-builder/
 
 ---
 
+# Part III: Extended Brand System (March 26, 2026)
+
+> *Upgrades informed by Pentagram Creative Director and Apple Principal Designer methodologies.*
+
+## Semantic Color System
+
+> Colors carry functional meaning. Use the right color for the right job.
+
+| Function | Color | HEX | When to use |
+|----------|-------|-----|-------------|
+| **Primary action** | Electric Violet | `#8460ea` | CTAs, links, highlights, progress |
+| **Primary hover** | Deep Violet | `#7350d8` | Hover/active state of primary |
+| **Success** | Emerald | `#22c55e` | Completed, confirmed, positive |
+| **Warning** | Amber | `#f59e0b` | Needs attention, caution, pending |
+| **Error** | Red | `#ef4444` | Failed, invalid, destructive |
+| **Info** | Cornflower | `#6894d0` | Neutral guidance, informational |
+| **Text primary** | Charcoal Indigo | `#2c3150` | Headings, important text |
+| **Text secondary** | Charcoal 70% | `rgba(44,49,80,0.7)` | Body text, descriptions |
+| **Text muted** | Charcoal 50% | `rgba(44,49,80,0.5)` | Hints, metadata, labels |
+| **Surface light** | Warm White | `#faf9f7` | Page backgrounds |
+| **Surface dark** | Deep Space | `#0f1019` | Dark mode backgrounds |
+
+### Dark Mode Color Mapping
+
+| Light mode | Dark mode | Purpose |
+|------------|-----------|---------|
+| `#faf9f7` (warm white) | `#0f1019` (deep space) | Page background |
+| `#ffffff` at 85% (glass) | `#1a1d2e` at 85% | Card background |
+| `#2c3150` (charcoal) | `#e7e9e5` (pearl) | Primary text |
+| `#8460ea` (violet) | `#a480ff` (lighter violet) | Primary actions |
+| `rgba(44,49,80,0.7)` | `rgba(231,233,229,0.7)` | Secondary text |
+
+---
+
+## Voice & Tone Matrix
+
+> The brand speaks differently in different contexts — but ALWAYS from the same source.
+
+| Context | Voice | Tone | Example |
+|---------|-------|------|---------|
+| **Onboarding** | Warm, inviting | Gentle, curious | "Who are you, really?" |
+| **Assessment** | Calm, focused | Neutral, supportive | "Take your time. There are no wrong answers." |
+| **Result reveal** | Confident, precise | Celebratory, grounding | "Your craft has always been here." |
+| **Error state** | Direct, kind | Reassuring, actionable | "Something went wrong. Let's try again." |
+| **Session marketing** | Honest, sovereign | Courageous, no-hype | "In 90 minutes, we name your craft." |
+| **CTA buttons** | Action-oriented | Result-first | "See My Genius" not "Continue" |
+| **Empty state** | Encouraging | Forward-looking | "Nothing here yet — your first step starts it." |
+
+### The Four Voice Constants (across all contexts)
+
+| Constant | Meaning | Anti-pattern |
+|----------|---------|-------------|
+| **Direct** | No unnecessary words, no filler | Verbose, hedging, over-explaining |
+| **Warm** | Human, caring, no corporate tone | Cold, clinical, robotic |
+| **Precise** | Every word chosen, high SNR | Vague, generic, placeholder copy |
+| **Sacred** | Acknowledges depth without pretension | Either sterile or over-mystical |
+
+### Messaging Hierarchy
+
+```
+Level 1: TAGLINE (7 words or less)
+  → "Name your genius. Build your business."
+
+Level 2: VALUE PROPOSITION (1 sentence)
+  → "In 90 minutes, we name your craft, discover the business built on
+     who you already are, and get you the first easy move to your 
+     first paying client."
+
+Level 3: STORY (the Sovereign Story)
+  → Full narrative — true, personal, with an ask
+
+Level 4: PROOF (testimonials)
+  → "Wow, wow, wow." — Oyi
+  → "A tool that just plain works." — Alexey
+```
+
+---
+
+## Imagery Style Guide
+
+### Photography Direction
+
+| Element | Guideline |
+|---------|-----------|
+| **Style** | Wabi-sabi × Apple Industrial Design — beauty in imperfection + precision |
+| **Depth of field** | Shallow (bokeh backgrounds), subject sharp |
+| **Color treatment** | Muted, desaturated, warm undertones |
+| **Composition** | Ultra-minimalist, negative space dominant |
+| **Lighting** | Soft, diffused, natural or warm studio |
+| **Mood** | Serene, high-trust, contemplative |
+| **Subjects** | Textures (stone, gold leaf, water), sacred geometry, natural forms |
+
+### Imagery Do's & Don'ts
+
+| ✅ Do | ❌ Don't |
+|-------|---------|
+| Gold on dust/stone (transformation metaphor) | Generic stock photos of "happy business people" |
+| Macro textures (wood grain, water surface) | Cluttered, busy compositions |
+| Sacred geometry rendered in light | Clip art or illustrated icons for hero imagery |
+| Soft focus with one sharp element | Everything in sharp focus (looks like documentation) |
+| Warm, organic color grading | Saturated, punchy "social media" color grading |
+
+### Generated Image Prompts (for AI)
+
+When generating images for the brand:
+
+```
+Style: Wabi-sabi minimalism meets Apple product photography.
+Color palette: Muted pastels — lavender, seafoam, blush, champagne.
+Background: Soft negative space, warm white or deep charcoal.
+Texture: Organic — stone, water, light, gold leaf.
+Mood: Serene, precise, sacred but accessible.
+Never: Stock photo aesthetic, corporate, bright/punchy colors.
+```
+
+---
+
+## Responsive Breakpoints
+
+| Name | Width | Columns | Behavior |
+|------|-------|---------|----------|
+| **Mobile** | < 640px | 1 | Single column, stacked layout |
+| **Tablet** | 640–1023px | 2 | Two-column where appropriate |
+| **Desktop** | 1024–1279px | 3 | Full layout, sidebar visible |
+| **Wide** | ≥ 1280px | 3+ | Max-width containers, centered content |
+
+### Container Widths
+
+| Context | Max-width | Usage |
+|---------|-----------|-------|
+| **Reading content** | `max-w-2xl` (672px) | Landing pages, articles, session page |
+| **Forms** | `max-w-md` (448px) | Input forms, assessments |
+| **Dashboards** | `max-w-6xl` (1152px) | Multi-panel layouts |
+| **Full-bleed** | none | Hero sections, backgrounds |
+
+---
+
 *Codified: January 27, 2026*
 *Updated: February 11, 2026 — Added CSS Variable Override Trap*
-
-
+*Updated: March 26, 2026 — Added Semantic Color System, Voice & Tone Matrix, Imagery Style Guide, and Responsive Breakpoints*
