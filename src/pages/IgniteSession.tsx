@@ -70,8 +70,8 @@ const IgniteSession = () => {
             </span>{" "}yet.
           </p>
           <p className="text-sm text-[#1a1a2e]/40 max-w-sm mx-auto leading-relaxed">
-            90 minutes. One session. You walk out with your uniqueness named
-            and your entire business on one page. Yours forever.
+            In 90 minutes, we name your craft, discover the business built on
+            who you already are, and get you the first easy move to your first paying client.
           </p>
 
           {/* Single primary CTA — no competing clarity call */}
