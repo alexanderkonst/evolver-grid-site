@@ -176,8 +176,8 @@ const IgniteSession = () => {
           <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "Stuck between dream and \"getting a job\"",
-              "People come to you — you never charge",
+              "You're frozen between the dream project, a coaching/consulting business, and \"getting a job\"",
+              "People come to you for advice — you don't charge since it's easy & entertaining",
               "You suspect you ARE the product but can't see the product label from inside yourself",
             ].map((item, i) => (
               <span
