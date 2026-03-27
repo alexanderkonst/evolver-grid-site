@@ -286,7 +286,7 @@ const IgniteSession = () => {
             className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
           />
           {/* Glass box pulled up under the photo */}
-          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-12 -mt-10 text-center">
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center">
             <p className="text-sm text-white/60 leading-relaxed">
               I spent five years helping other founders find their uniqueness while unable to see my own.
               I studied entrepreneurship at MIT, spent four years in Silicon Valley,
@@ -364,12 +364,12 @@ const IgniteSession = () => {
           </div>
 
           {/* Guarantee */}
-          <div className="liquid-glass rounded-2xl px-5 py-4 max-w-md mx-auto">
+          <div className="px-5 py-4 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck className="w-4 h-4 text-white/50" aria-hidden="true" />
-              <p className="text-xs font-medium text-white/50 uppercase tracking-widest">The Ignition Guarantee</p>
+              <ShieldCheck className="w-4 h-4 text-white/40" aria-hidden="true" />
+              <p className="text-xs font-medium text-white/40 uppercase tracking-widest">The Ignition Guarantee</p>
             </div>
-            <p className="text-xs text-white/40 leading-relaxed">
+            <p className="text-xs text-white/35 leading-relaxed">
               You walk out with your uniqueness named and your business on one page — or full refund. No questions.
             </p>
           </div>
