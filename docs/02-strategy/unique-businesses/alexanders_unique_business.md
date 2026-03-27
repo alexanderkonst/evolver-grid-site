@@ -2008,13 +2008,73 @@ Not a pitch. Not a hook. Not a funnel. A true story — your story, told raw —
 
 | Component | What it does | Why it works at 9.99 |
 |-----------|-------------|---------------------|
-| **1. STORY** | Opens with genuine vulnerability, not a pitch | The reader is reading a LIFE, not a sales message. Guard drops completely |
+| **1. STORY** | Opens with honesty, courage, sovereignty — not a pitch | The reader is reading a LIFE, not a sales message. Guard drops completely |
 | **2. TRUE** | Every sentence is embodied — the reader can feel it was lived | Zero false notes. No copywriting. No "hooks." Just a human being honest about their journey |
 | **3. THE PIVOT** | "I saw my craft has always been..." | The reader watches the hero arrive at their own answer in real time. Not told — witnessed |
 | **4. THE PROOF** | Testimonials IN THE STORY, not on a landing page | The social proof is INSIDE the narrative. By the time they read it, they're already believers |
 | **5. THE ASK** | Two options: for themselves, or forward | Zero pressure. The forward option makes it SAFE. And viral |
 
 > **Meta-insight:** This DM IS the lead magnet, IS the proof, IS the conversion event. One artifact doing all three jobs. The precision of the story replaces the need for funnels, pages, and sequences. STORY + TRUE STORY + ASK.
+
+---
+
+#### The Replicable DM Structure (Distribution Technology — March 26, 2026)
+
+> **For every founder in the methodology.** This is not a template to fill in. It is a STRUCTURE to write inside. AI proposes the first draft using the structure and the founder's example below as inspiration. Then the founder rewrites it in their own words, their own story. The structure provides containment without rigidity.
+
+**The 7 movements of the Warm Network DM:**
+
+```
+1. THE DOOR
+   "I had [something real happen] and wanted to share it with you."
+   → Personal. Honest. No pitch energy. The reader chooses to enter.
+
+2. THE HONEST LOOK BACK
+   What was actually happening. The loop. The pain.
+   Not performed vulnerability — sovereign honesty. Courage to name
+   what was real without self-pity or dramatization.
+   → The reader recognizes their own loop in yours.
+
+3. THE PARADOX
+   "I had [extraordinary capability] AND [the opposite of success]."
+   The impossible coexistence that defines the stuck state.
+   → The reader feels seen. This is THEIR paradox too.
+
+4. THE PIVOT
+   "I saw that my craft has always been [what you actually do]."
+   The moment the hero sees what was always there.
+   Not a realization you designed — one you witnessed in yourself.
+   → The reader watches the resolution happen in real time.
+
+5. THE PROOF
+   What others said. In their words. With their names.
+   Testimonials INSIDE the story, not on a separate page.
+   → By the time they read these, the reader is already a believer.
+
+6. THE ASK
+   Two options:
+   (a) "If you are in this situation..."
+   (b) "If you know someone... forward this message."
+   → Zero pressure. The forward option makes every reader a node.
+
+7. THE LANDING
+   Gratitude. Warmth. Sign off as a human, not a brand.
+   → The reader feels they just had a real conversation, not
+   received a marketing message.
+```
+
+**How to use this with a founder:**
+
+| Step | Who does it | What happens |
+|------|------------|-------------|
+| **1** | AI | Takes the founder's story (from session notes, uniqueness artifact, pain card) and proposes a first draft following the 7 movements |
+| **2** | Founder | Reads the draft, feels where it's true and where it's "AI-accurate-but-not-mine," then rewrites in their own voice |
+| **3** | AI + Founder | Iterate until every line passes the test: "Would I say this to a friend over coffee?" If yes → keep. If no → rewrite |
+| **4** | Founder | Sends to 3-5 people. Reads the responses. Adjusts based on what resonates |
+
+> **The precision test:** If the founder wouldn't send it to their closest friend — it's not ready. If they feel proud sending it — it's at 9.9+.
+
+> **What makes this DIFFERENT from marketing templates:** Templates start from structure and fill in content. This starts from TRUTH and lets structure emerge. The 7 movements are not a formula — they are the natural shape of an honest story about finding your craft. Alexander's DM wasn't designed using this structure. This structure was EXTRACTED from Alexander's DM. The structure IS the story. The story IS the structure.
 
 ---
 
