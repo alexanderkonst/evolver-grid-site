@@ -353,7 +353,9 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 **Common thread:** The cost of NOT acting has become higher than the fear of acting.
 
-**Who this is NOT for:**
+**Anti-Tribe — Who This Is NOT For:**
+
+*Version: v3.0 · March 28, 2026 — sharpened with Godfather Offer AI session*
 
 | Person | Who they are | Why not |
 |--------|-------------|--------|
@@ -363,6 +365,43 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 | **The Dreamless** | No recurring pull toward anything specific. Content, or haven't woken up yet. | They haven't felt THE dream. No dream = no urgency = no entry point for the myth. |
 | **The "Someday" Dreamer** | Has the dream but no pain. "I'll get to it after X." Comfortable enough to postpone. | Not in enough pain. The pressure hasn't built. They'll come back when it does. |
 | **The Never-Builder** | Has never tried to build anything — no side project, no freelancing, no business attempt. | Not serious enough yet. Our tribe has skin in the game. They've tried and struggled. |
+
+**Anti-Tribe Behavioral Signals (March 28, Godfather Offer AI):**
+
+❌ **What anti-tribe people want:**
+
+- Step-by-step frameworks
+- Passive income fantasies
+- "Tell me what niche to pick"
+- Cheap info instead of clarity
+- Long-term hand-holding
+
+❌ **What anti-tribe people say:**
+
+- "I'm still figuring things out" (but not actually doing anything)
+- "Can I just watch a course instead?"
+- "Why is this so expensive?"
+
+🧬 **What anti-tribe people will do:**
+
+They will feel slightly uncomfortable, not fully understand, say "this isn't for me," and leave.
+
+👉 **GOOD.** Because the real buyers will feel: *"Wait… this is exactly my problem."*
+
+**The Corporate Filter Principle (March 28, Godfather Offer AI):**
+
+The question arose: "Will corporate people click?" The answer is a filter, not an exclusion:
+
+- **The RIGHT corporate people** feel *"Oh shit… this is exactly me."* They give advice at work, they're the "go-to person," they feel underutilized, they know they're sitting on something.
+- **The WRONG corporate people** feel *"This seems cool but I'm not there yet."* They leave. **Good.**
+
+The filter isn't about excluding corporate identity. It's about filtering for **people already in motion** — people who have the gift, have been using it, and just can't name it yet.
+
+> **Key reframe:** "This isn't about finding something new. It's about naming what's already there." / "You don't need a new idea. You need language for what you already do." — This keeps the precision filter but opens the door for corporate people who ARE ready. Less exclusion, same filter, feels safer for corporate identity.
+
+**Anti-Dilution Principle (March 28, Godfather Offer AI):**
+
+If you try to serve "idea seekers" (people who don't have the gift yet), you must: add a discovery phase, add ideation, increase session time (90 min won't cut it), lower clarity speed (no more "instant sentence" moments), and shift positioning from *precision clarity* to *guided discovery*. **That's a different business.** Don't dilute what's rare: **fast clarity for people already in motion.** That's a premium lane.
 
 **Beachhead sequencing:** All three segments are valid. The question isn't WHICH but WHICH FIRST. Start where your distribution advantage is highest, let the myth pull the others in. The Grinding Coach may be the fastest beachhead: the gift is already right (speed to value), they're already in your network, and you ARE one.
 

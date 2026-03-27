@@ -164,6 +164,10 @@ const IgniteSession = () => {
             If you can't explain what you do in one sentence, this is for you.
           </p>
 
+          <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed italic">
+            You don't need a new idea.<br />You need language for what you already do.
+          </p>
+
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
             <span className="text-xs text-white/50">Limited sessions per week. First come, first serve.</span>
