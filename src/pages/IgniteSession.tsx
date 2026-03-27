@@ -497,7 +497,7 @@ const IgniteSession = () => {
               },
               {
                 title: "Blueprint 2: Unique Marketing",
-                subtitle: "From Fog to Reality Distortion Field",
+                subtitle: "From Fog to Reality Cohering Field",
                 youtubeId: "wjcD5r9iq8A",
               },
               {

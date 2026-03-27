@@ -1450,7 +1450,7 @@ What's available (not yet activated):
 |---|-------|--------|
 | **1** | **What do you do better than most?** | Name the unnamed. Sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends |
 | **1b** | **What result do people come for (even free)?** | Clarity. They come confused about what they do — "I do a lot of things" — and leave with their craft named, their tribe identified, and their first move obvious |
-| **1c** | **What's undervalued/underpackaged?** | **The information itself is psychoactive.** People start transforming from the DM, the landing page, the marketing copy. The session is the peak, but the journey starts at first contact. Not selling a session — selling entry into a reality distortion field that begins the moment they read the message |
+| **1c** | **What's undervalued/underpackaged?** | **The information itself is psychoactive.** People start transforming from the DM, the landing page, the marketing copy. The session is the peak, but the journey starts at first contact. Not selling a session — selling entry into a reality cohering field that begins the moment they read the message |
 | **2** | **Transformation Snapshot** | "They come in as someone who can't explain what they do in one sentence, and leave as someone whose genius is named, business is on one page, and first paying client is one move away" |
 | **3** | **Emotional Loop** | 🌊 Deep pain (soothing kind). "I know I'm good at this thing but I can't name it, I can't charge for it, and I'm running out of ways to explain why I'm not further along." Not angry pain. Quiet exhaustion. The ache of the unnamed |
 | **4** | **Highest Ticket** | Ignition: $555. The Build: $1,111 + $2,500 rev share = **$3,611 total**. Feel: **9/10** |
@@ -1460,7 +1460,7 @@ What's available (not yet activated):
 
 **Key discoveries from the probe:**
 
-1. **Psychoactive information.** The marketing IS the product. Illumination + healing + activation + initiation + reality distortion field + universal ontology + magnetic myth-based marketing — these are not separate activities. They ARE the product. People are already journeying the moment they engage with the information
+1. **Psychoactive information.** The marketing IS the product. Illumination + healing + activation + initiation + reality cohering field + universal ontology + magnetic myth-based marketing — these are not separate activities. They ARE the product. People are already journeying the moment they engage with the information
 2. **The $1,111 flagship is real.** The gap between $555 and $1,111 is not features — it's the depth of self-selection. The person who arrived through the full DM → landing page → video → body response → "I already know" chain has already been served by the information field. The session is the culmination, not the beginning
 3. **The emotional loop is soothing, not poking.** This is not "I'm tired of this shit" energy. It's "I know I'm good at this thing but I can't name it." The marketing must match this frequency — soothing nurturing empathy, not aggressive pain-poking
 
@@ -1493,7 +1493,7 @@ The Build          → embodiment (the building)
 - **Healing** — the wound of being unnamed begins to close
 - **Activation** — energy shifts from scattered to directed
 - **Initiation** — crossing a threshold from "I don't know what I do" to "I see it"
-- **Reality distortion field** — the myth begins to rewrite their internal story
+- **Reality cohering field** — the myth begins to rewrite their internal story
 - **Universal ontology** — the deeper architecture underneath the naming
 - **Magnetic myth-based marketing** — the information pulls them, not pushes
 
@@ -1532,7 +1532,7 @@ All of this is collapsed into ONE message. Not seven separate activities. ONE se
 
 ```
 illumination + healing + activation + initiation
-+ reality distortion field + universal ontology
++ reality cohering field + universal ontology
 + magnetic myth-based marketing
 = THE GOLDEN DM
 ```
