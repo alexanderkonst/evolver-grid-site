@@ -298,12 +298,12 @@ const IgniteSession = () => {
           <p className="text-xs text-white/30 uppercase tracking-widest text-center mb-1">What they said after</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {[
-              { quote: "Wow, wow, wow, wow, wow. My guides, they like you.", name: "Oyi", before: "Healer, couldn't translate her gift into a business" },
-              { quote: "A tool that just plain works.", name: "Alexey", before: "Technical founder, needed to name his approach" },
-              { quote: "I was applying force, but the vector was wrong.", name: "Sergey", before: "Entrepreneur, pushing hard in the wrong direction" },
-              { quote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.", name: "Sandra", before: "Searching for her calling amidst life transitions" },
-              { quote: "The whole journey feels really beautiful.", name: "Aleksa", before: "Designer, seeing her craft for the first time" },
-              { quote: "I feel caught. Wonderful. This is great work.", name: "Karime", before: "Energy healer, struggled to articulate her medicine" },
+              { quote: "Wow, wow, wow, wow, wow. My guides, they like you.", name: "Oyi Sun", before: "Medicine Man, Ye Ming Zhu keeper" },
+              { quote: "A tool that just plain works.", name: "Alexey Utkin", before: "Serial founder, Stanford MBA, ex-management consultant" },
+              { quote: "I was applying force, but the vector was wrong.", name: "Sergey Jay Makarov", before: "Serial Founder & System Architect" },
+              { quote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.", name: "Sandra Otto", before: "New Earth deep conscious tech leader, ex-corporate global executive" },
+              { quote: "The whole journey feels really beautiful.", name: "Aleksa Stojanovic", before: "Web3 System Architect" },
+              { quote: "I feel caught. Wonderful. This is great work.", name: "Karime Kuri", before: "Healer of Healers, ex-WEF leader, Oxford alum" },
             ].map((t, i) => (
               <div key={i} className="liquid-glass rounded-2xl p-4 hover:scale-[1.02] transition-transform duration-200">
                 <p className="text-[10px] text-white/20 mb-1.5" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>{t.before}</p>

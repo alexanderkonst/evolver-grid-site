@@ -105,7 +105,7 @@ const LandingPage = () => {
                 {[
                   {
                     quote: "This is a miracle of miracles. Other tools come at this half-baked and shallow. Your approach, though, I love it.",
-                    name: "Alexey",
+                    name: "Alexey Utkin, serial founder, Stanford MBA",
                   },
                   {
                     quote: "I finally had language for something I'd felt my whole life. This is very valuable. Inspires & informs brilliantly!",
