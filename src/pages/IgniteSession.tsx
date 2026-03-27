@@ -2,7 +2,7 @@ import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Sparkles, T
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
-import geniusLogo from "@/assets/logo.png";
+import geniusLogo from "@/assets/ignite-logo.png";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
