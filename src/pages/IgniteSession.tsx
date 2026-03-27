@@ -5,6 +5,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
+import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
 
 const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZPtENsX2F9QI.m3u8";
 
@@ -288,9 +289,12 @@ const IgniteSession = () => {
             was the business I couldn't name for myself. Now I do this full-time.
             Every session is a mirror. I don't teach you anything new. I show you what was always there.
           </p>
-          <p className="text-xs text-white/25 mt-4">
-            — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Alexander Konstantinov</em> · Every participant left with their business named
-          </p>
+          <div className="flex items-center gap-3 mt-4">
+            <img src={aleksandrPhoto} alt="Aleksandr Konstantinov" className="w-12 h-12 rounded-full object-cover opacity-90" />
+            <p className="text-xs text-white/40">
+              — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
+            </p>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
