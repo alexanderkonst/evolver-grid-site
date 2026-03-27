@@ -7,6 +7,7 @@ import geniusLogo from "@/assets/logo.png";
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
+const BG_VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4";
 
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
@@ -23,43 +24,47 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   }, []);
 
   return (
-    <div ref={ref} className="aspect-video bg-[#1a1a2e]/5 rounded-lg">
+    <div ref={ref} className="aspect-video rounded-2xl overflow-hidden">
       {visible ? (
         <iframe
           src={`https://www.youtube.com/embed/${id}`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className="w-full h-full rounded-lg"
+          className="w-full h-full"
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center text-xs text-[#1a1a2e]/20">Loading…</div>
+        <div className="w-full h-full flex items-center justify-center text-xs text-white/20 bg-white/5">Loading…</div>
       )}
     </div>
   );
 };
 
-/* ─── Primary CTA Button (reusable) ─────────────────────── */
+/* ─── Primary CTA Button (liquid glass) ──────────────────── */
 const PrimaryCTA = ({ id, showPrice = true }: { id: string; showPrice?: boolean }) => (
   <a
     href={STRIPE_PAYMENT_LINK}
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-[#8460ea] text-white hover:bg-[#7350d8] transition-all duration-300 hover:shadow-xl hover:shadow-[#8460ea]/20 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8460ea]"
+    className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+    style={{ fontFamily: "'Poppins', sans-serif" }}
     id={id}
   >
     Book Your Ignition Session{showPrice && " — $555"}
-    <ArrowRight className="w-5 h-5" />
+    <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+      <ArrowRight className="w-4 h-4" />
+    </span>
   </a>
 );
 
-/* ─── Already Paid Link (reusable) ──────────────────────── */
+/* ─── Already Paid Link ─────────────────────────────────── */
 const AlreadyPaidLink = () => (
   <a
     href={CALCOM_BOOKING_LINK}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-xs text-[#1a1a2e]/25 hover:text-[#8460ea] transition-colors underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8460ea] rounded"
+    className="text-xs text-white/25 hover:text-white/50 transition-colors underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded"
+    style={{ fontFamily: "'Poppins', sans-serif" }}
   >
     Already paid? Book your session here →
   </a>
@@ -76,39 +81,61 @@ const IgniteSession = () => {
   }, []);
 
   const content = (
-    <div className="min-h-screen bg-[#faf9f7] text-[#1a1a2e] font-sans" id="ignite-page">
-      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-12 space-y-10">
+    <div className="relative min-h-screen bg-black text-white overflow-hidden" id="ignite-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
+
+      {/* ═══════════════════════════════════════════════
+          VIDEO BACKGROUND — full-screen, muted, looping
+          ═══════════════════════════════════════════════ */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed inset-0 w-full h-full object-cover z-0"
+        aria-hidden="true"
+      >
+        <source src={BG_VIDEO_URL} type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for text readability */}
+      <div className="fixed inset-0 bg-black/40 z-[1]" aria-hidden="true" />
+
+      {/* ═══════════════════════════════════════════════
+          CONTENT LAYER — all sections float above video
+          ═══════════════════════════════════════════════ */}
+      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
 
         {/* ═══════════════════════════════════════════════
             S1: HERO — Recognition Trigger + CTA
             ═══════════════════════════════════════════════ */}
-        <header className="text-center space-y-5 pt-2" id="ignite-hero">
+        <header className="text-center space-y-6 pt-4" id="ignite-hero">
           <img
             src={geniusLogo}
             alt="Evolver — Unique Business Ignition"
-            className="w-16 h-16 mx-auto"
+            className="w-16 h-16 mx-auto opacity-90"
           />
 
-          {/* Recognition trigger — makes the visitor feel SEEN */}
-          <h1 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-[#1a1a2e] leading-tight">
-            You've been giving your best work away for free.
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            You've been giving your{" "}
+            <em className="not-italic text-white/80" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              best work
+            </em>{" "}
+            away for free.
           </h1>
-          <p className="text-base text-[#1a1a2e]/60 max-w-md mx-auto leading-relaxed">
-            You know it. The people around you know it.<br />
-            You just haven't{" "}
-            <span className="bg-gradient-to-r from-[#8460ea] to-[#6894d0] bg-clip-text text-transparent font-medium">
-              named it
-            </span>{" "}yet.
+
+          <p className="text-base text-white/60 max-w-md mx-auto leading-relaxed">
+            You know it. The people around you know it.{" "}
+            You just haven't named it yet.
           </p>
-          <p className="text-sm text-[#1a1a2e]/40 max-w-sm mx-auto leading-relaxed">
+
+          <p className="text-sm text-white/40 max-w-sm mx-auto leading-relaxed">
             In 90 minutes, we name your craft, discover the business built on
             who you already are, and get you the first easy move to your first paying client.
           </p>
 
-          {/* Single primary CTA */}
-          <div className="flex flex-col items-center gap-2 pt-1">
+          <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="flex items-center gap-1 text-xs text-[#1a1a2e]/30">
+            <span className="flex items-center gap-1.5 text-xs text-white/30">
               <ShieldCheck className="w-3 h-3" aria-hidden="true" />
               Money-back guarantee
             </span>
@@ -116,20 +143,22 @@ const IgniteSession = () => {
         </header>
 
         {/* ═══════════════════════════════════════════════
-            S2: QUALIFIER — Self-selection
+            S2: QUALIFIER — Self-selection pills
             ═══════════════════════════════════════════════ */}
-        <section className="text-center space-y-3" id="qualifier" aria-label="Who this session is for">
-          <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider">This session is for you if</p>
-          <div className="space-y-2 max-w-sm mx-auto">
+        <section className="text-center space-y-4" id="qualifier" aria-label="Who this session is for">
+          <p className="text-xs text-white/30 uppercase tracking-widest">This session is for you if</p>
+          <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You're stuck between your dream, coaching, and \"getting a job\"",
-              "People keep coming to you for help — you never charge",
-              "You suspect you ARE the product but can't see the product label from inside yourself",
+              "Stuck between dream and \"getting a job\"",
+              "People come to you — you never charge",
+              "You ARE the product but can't see the label",
             ].map((item, i) => (
-              <p key={i} className="text-sm text-[#1a1a2e]/55 leading-relaxed flex items-start gap-2">
-                <span className="text-[#8460ea] mt-0.5 flex-shrink-0" aria-hidden="true">→</span>
+              <span
+                key={i}
+                className="liquid-glass rounded-full px-4 py-2 text-xs text-white/80"
+              >
                 {item}
-              </p>
+              </span>
             ))}
           </div>
         </section>
@@ -138,21 +167,20 @@ const IgniteSession = () => {
             S3: VIDEO — Methodology demonstration
             ═══════════════════════════════════════════════ */}
         <section id="hero-video" aria-label="Methodology video">
-          <p className="text-xs text-[#1a1a2e]/40 text-center mb-3">
+          <p className="text-xs text-white/40 text-center mb-3">
             The exact methodology disclosed in 4 minutes
           </p>
-          <div className="rounded-2xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
+          <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3.5: HOW IT WORKS — 3-step visual (NEW)
-            Phase 1 Priority #1 improvement
+            S3.5: HOW IT WORKS — 3 glass step cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-display text-[#1a1a2e]/80 text-center">How it works</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <h2 className="text-lg font-medium text-white/80 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 icon: Sparkles,
@@ -175,14 +203,14 @@ const IgniteSession = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="rounded-xl border border-[#1a1a2e]/6 bg-white/60 p-5 text-center space-y-2.5 hover:border-[#8460ea]/20 hover:shadow-sm transition-all duration-200"
+                className="liquid-glass rounded-3xl p-5 text-center space-y-3 hover:scale-105 transition-transform duration-200"
               >
-                <div className="w-10 h-10 rounded-full bg-[#8460ea]/8 border border-[#8460ea]/10 flex items-center justify-center mx-auto">
-                  <item.icon className="w-5 h-5 text-[#8460ea]" aria-hidden="true" />
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto">
+                  <item.icon className="w-5 h-5 text-white/80" aria-hidden="true" />
                 </div>
-                <p className="text-xs text-[#8460ea] font-medium uppercase tracking-wider">Step {item.step}</p>
-                <p className="text-sm text-[#1a1a2e]/80 font-medium leading-snug">{item.title}</p>
-                <p className="text-xs text-[#1a1a2e]/40 leading-relaxed">{item.desc}</p>
+                <p className="text-xs text-white/50 font-medium uppercase tracking-widest">Step {item.step}</p>
+                <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
+                <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -191,8 +219,8 @@ const IgniteSession = () => {
         {/* ═══════════════════════════════════════════════
             S4: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
-        <section className="rounded-2xl border border-[#1a1a2e]/8 bg-white/70 p-6 md:p-8 shadow-sm" id="deliverables" aria-label="Session deliverables">
-          <h2 className="text-lg font-display text-[#1a1a2e]/80 mb-5">What You Walk Out With</h2>
+        <section className="liquid-glass-strong rounded-3xl p-6 md:p-8" id="deliverables" aria-label="Session deliverables">
+          <h2 className="text-lg font-medium text-white/80 mb-5 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
           <div className="space-y-4">
             {[
               {
@@ -205,12 +233,12 @@ const IgniteSession = () => {
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#8460ea]/10 border border-[#8460ea]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3 h-3 text-[#8460ea]" aria-hidden="true" />
+                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-[#1a1a2e]/80 font-medium">{item.title}</p>
-                  <p className="text-xs text-[#1a1a2e]/40 leading-relaxed mt-0.5">{item.desc}</p>
+                  <p className="text-sm text-white/90 font-medium">{item.title}</p>
+                  <p className="text-xs text-white/40 leading-relaxed mt-0.5">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -218,32 +246,29 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: ABOUT ALEXANDER — moved UP per Phase 1 finding
-            Trust before testimonials for credibility anchor
+            S5: ABOUT ALEXANDER — trust anchor
             ═══════════════════════════════════════════════ */}
-        <section className="rounded-2xl border border-[#1a1a2e]/6 bg-white/50 p-6 md:p-8" id="about-section" aria-label="About Alexander">
-          <p className="text-sm text-[#1a1a2e]/55 leading-relaxed">
+        <section className="liquid-glass rounded-3xl p-6 md:p-8" id="about-section" aria-label="About Alexander">
+          <p className="text-sm text-white/60 leading-relaxed">
             I spent five years helping other founders find their uniqueness while unable to see my own.
             I studied entrepreneurship at MIT, spent four years in Silicon Valley,
             and helped 200+ people articulate what makes them irreplaceable.
           </p>
-          <p className="text-sm text-[#1a1a2e]/55 leading-relaxed mt-3">
+          <p className="text-sm text-white/60 leading-relaxed mt-3">
             What I do best — naming the gift that hides in plain sight —
             was the business I couldn't name for myself. Now I do this full-time.
             Every session is a mirror. I don't teach you anything new. I show you what was always there.
           </p>
-          <p className="text-xs text-[#1a1a2e]/30 mt-4 italic">
-            — Alexander Konstantinov · Every participant left with their business named
+          <p className="text-xs text-white/25 mt-4">
+            — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Alexander Konstantinov</em> · Every participant left with their business named
           </p>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S6: TESTIMONIALS — with "before" context
-            Phase 1 Priority #2: added before-state
-            Phase 1 Priority #4: single-column on mobile
+            S6: TESTIMONIALS — glass cards with before-context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider text-center mb-1">What they said after</p>
+          <p className="text-xs text-white/30 uppercase tracking-widest text-center mb-1">What they said after</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {[
               { quote: "Wow, wow, wow, wow, wow. My guides, they like you.", name: "Oyi", before: "Healer, couldn't translate her gift into a business" },
@@ -253,45 +278,43 @@ const IgniteSession = () => {
               { quote: "The whole journey feels really beautiful.", name: "Aleksa", before: "Designer, seeing her craft for the first time" },
               { quote: "I feel caught. Wonderful. This is great work.", name: "Karime", before: "Energy healer, struggled to articulate her medicine" },
             ].map((t, i) => (
-              <div key={i} className="rounded-xl border border-[#1a1a2e]/6 bg-white/50 p-4 hover:border-[#8460ea]/15 transition-colors duration-200">
-                <p className="text-[10px] text-[#1a1a2e]/25 mb-1.5 italic">{t.before}</p>
-                <blockquote className="text-sm text-[#1a1a2e]/55 italic leading-relaxed">
+              <div key={i} className="liquid-glass rounded-2xl p-4 hover:scale-[1.02] transition-transform duration-200">
+                <p className="text-[10px] text-white/20 mb-1.5" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>{t.before}</p>
+                <blockquote className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>
                   "{t.quote}"
                 </blockquote>
-                <p className="text-xs text-[#8460ea] mt-2">— {t.name}</p>
+                <p className="text-xs text-white/40 mt-2">— {t.name}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: PRICING + GUARANTEE
+            S7: PRICING + GUARANTEE — strong glass panel
             ═══════════════════════════════════════════════ */}
-        <section className="rounded-2xl border border-[#8460ea]/15 bg-gradient-to-br from-[#8460ea]/5 to-white/80 p-8 text-center space-y-5 shadow-sm" id="pricing-section" aria-label="Pricing">
+        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Pricing">
           <div>
             <div className="flex items-baseline justify-center gap-1 mb-1">
-              <span className="text-4xl md:text-5xl font-display font-bold text-[#1a1a2e]">$555</span>
+              <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-[#1a1a2e]/30">One session. Full canvas. Yours forever.</p>
+            <p className="text-xs text-white/30">One session. Full canvas. Yours forever.</p>
           </div>
 
           {/* Guarantee */}
-          <div className="rounded-xl border border-[#8460ea]/10 bg-[#8460ea]/[0.04] px-5 py-4 max-w-md mx-auto">
+          <div className="liquid-glass rounded-2xl px-5 py-4 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck className="w-4 h-4 text-[#8460ea]" aria-hidden="true" />
-              <p className="text-xs font-medium text-[#8460ea]/80 uppercase tracking-wider">The Ignition Guarantee</p>
+              <ShieldCheck className="w-4 h-4 text-white/50" aria-hidden="true" />
+              <p className="text-xs font-medium text-white/50 uppercase tracking-widest">The Ignition Guarantee</p>
             </div>
-            <p className="text-xs text-[#1a1a2e]/45 leading-relaxed">
+            <p className="text-xs text-white/40 leading-relaxed">
               You walk out with your uniqueness named and your business on one page — or full refund. No questions.
             </p>
           </div>
 
-          {/* "Most clients don't stop here" hint */}
-          <p className="text-xs text-[#1a1a2e]/25 italic">
+          <p className="text-xs text-white/20" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: "italic" }}>
             Most clients who ignite don't stop here.
           </p>
 
-          {/* Primary CTA */}
           <PrimaryCTA id="book-session-btn" showPrice={false} />
 
           <div className="flex flex-col items-center gap-2 pt-1">
@@ -300,10 +323,10 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S8: FAQ — Objection resolution
+            S8: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-lg font-display text-[#1a1a2e]/80 text-center mb-4">Questions</h2>
+          <h2 className="text-lg font-medium text-white/80 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
               q: "What if I don't know my genius yet?",
@@ -318,15 +341,15 @@ const IgniteSession = () => {
               a: "I don't give advice. I mirror back what you already said until you see the pattern you couldn't see from inside. Then AI compiles your entire business canvas in real time. You walk out with a business on a page, not a pep talk."
             },
           ].map((faq, i) => (
-            <div key={i} className="rounded-xl border border-[#1a1a2e]/6 bg-white/60 overflow-hidden">
+            <div key={i} className="liquid-glass rounded-2xl">
               <button
-                className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#8460ea] rounded-xl"
+                className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white/50 rounded-2xl"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 aria-expanded={openFaq === i}
                 aria-controls={`faq-answer-${i}`}
               >
-                <p className="text-sm text-[#1a1a2e]/65 font-medium">{faq.q}</p>
-                <ChevronDown className={`w-4 h-4 text-[#1a1a2e]/30 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
+                <p className="text-sm text-white/60 font-medium">{faq.q}</p>
+                <ChevronDown className={`w-4 h-4 text-white/30 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <div
                 id={`faq-answer-${i}`}
@@ -334,19 +357,18 @@ const IgniteSession = () => {
                 className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
               >
                 <div className="px-4 pb-4">
-                  <p className="text-xs text-[#1a1a2e]/40 leading-relaxed">{faq.a}</p>
+                  <p className="text-xs text-white/35 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             </div>
           ))}
 
-          {/* Clarity call — for hesitant visitors */}
           <div className="text-center pt-3">
             <a
               href={CALCOM_CLARITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#1a1a2e]/40 hover:text-[#8460ea] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8460ea] rounded"
+              className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded"
             >
               <MessageCircle className="w-3 h-3" aria-hidden="true" />
               Still have questions? Book a free 15-min clarity call
@@ -355,8 +377,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: BOTTOM CTA — catches scrollers
-            Moved ABOVE Blueprints per Phase 1 finding #5
+            S9: BOTTOM CTA — above blueprints
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
           <PrimaryCTA id="bottom-cta-btn" />
@@ -366,12 +387,12 @@ const IgniteSession = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════
-            S10: OPEN BLUEPRINTS — lazy-loaded, BELOW final CTA
+            S10: OPEN BLUEPRINTS — glass video cards
             ═══════════════════════════════════════════════ */}
-        <section className="space-y-4 pt-4 border-t border-[#1a1a2e]/5" id="blueprints-section" aria-label="Free methodology blueprints">
+        <section className="space-y-4 pt-6" id="blueprints-section" aria-label="Free methodology blueprints">
           <div className="text-center space-y-1">
-            <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider">The Open Blueprints</p>
-            <h2 className="text-lg font-display text-[#1a1a2e]/80">The entire methodology. Free.</h2>
+            <p className="text-xs text-white/25 uppercase tracking-widest">The Open Blueprints</p>
+            <h2 className="text-lg font-medium text-white/80 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The entire methodology. Free.</h2>
           </div>
 
           <div className="space-y-4">
@@ -392,17 +413,21 @@ const IgniteSession = () => {
                 youtubeId: "XI2xqNO4Oek",
               },
             ].map((video, i) => (
-              <div key={i} className="rounded-xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
-                <LazyYouTube id={video.youtubeId} title={video.title} />
+              <div key={i} className="liquid-glass rounded-2xl">
+                <div className="p-1">
+                  <LazyYouTube id={video.youtubeId} title={video.title} />
+                </div>
                 <div className="px-4 py-3">
-                  <p className="text-sm text-[#1a1a2e]/65 font-medium">{video.title}</p>
-                  <p className="text-xs text-[#1a1a2e]/35">{video.subtitle}</p>
+                  <p className="text-sm text-white/60 font-medium">{video.title}</p>
+                  <p className="text-xs text-white/30">{video.subtitle}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Bottom spacing */}
+        <div className="h-8" />
       </div>
     </div>
   );
