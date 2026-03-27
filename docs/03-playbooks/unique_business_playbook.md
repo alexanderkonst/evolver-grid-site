@@ -2228,7 +2228,8 @@ CHECK:  "Is this sustainable for founder's capacity?"
 ### Channel 1: WARM NETWORK (always first)
 - List criteria (who to include)
 - Size target: 30-50 people
-- Message template + follow-up sequence
+- **The Sovereign Story (Domain 46):** The founder writes their true story using the 7-movement structure (Door → Honest Look Back → Paradox → Pivot → Proof → Ask → Landing). AI drafts first version from session artifacts; founder rewrites in their own voice. Not a template — a structure to write inside. Precision test: "Would I send this to my closest friend?"
+- **Launch sequence:** Send to existing clients FIRST — confirms testimonials AND activates distribution in one move. Then warm network. The resistance dissolves when the first send is to people who already believe
 
 ### Channel 2: CONTENT HOME (one platform mastered)
 - Platform (best match: ICP location + founder comfort)
@@ -2690,13 +2691,24 @@ STEP 2: DM PARTNERS (Day 2-3 — Channel 2)
   │  Use the archetype-specific DM (see templates below)
   │
   ▼
-STEP 2.5: WARM NETWORK (Day 3-7 — Channel 3)
-  │  Reach out to 2-3 warm contacts per day.
-  │  Only people who pass the energy cleanliness test:
+STEP 2.5: WARM NETWORK — THE SOVEREIGN STORY (Day 3-7 — Channel 3)
+  │  THE LAUNCH MOVE: Send to existing clients FIRST.
+  │  Why: (a) confirms their testimonial, (b) they see the ask
+  │  which applies to them too, (c) zero resistance — they
+  │  already believe. Then warm network.
+  │  
+  │  Use the Sovereign Story (Domain 46):
+  │    Image first → then the full story.
+  │    7 movements: Door → Honest Look Back → Paradox →
+  │    Pivot → Proof → Ask → Landing.
+  │    NOT a template. A structure to write inside.
+  │    AI drafts from session artifacts → founder rewrites.
+  │    Precision test: "Would I send this to my closest friend?"
+  │  
+  │  Energy cleanliness test still applies:
   │    1. Page is deployed and you're proud of it
-  │    2. Genuine reason THIS person would benefit (name their wall)
+  │    2. Genuine reason THIS person would benefit
   │    3. Reach-out feels good even with zero response
-  │  Use segment-specific language (you know their story).
   │
   ▼
 STEP 3: RESPOND TO HAND-RAISERS (Day 3+)
@@ -2734,9 +2746,11 @@ REPEAT FROM STEP 1
 ### Replicability
 
 This distribution flow is **protocol-level.** Once a node has their own Unique Business Canvas:
+- They write THEIR Sovereign Story (AI drafts from their session artifacts → they rewrite in their voice)
+- They send to THEIR existing clients first (confirms testimonials + activates distribution)
 - They post THEIR tuning fork (derived from their canvas)
 - They DM THEIR upstream partners (practitioners upstream of them)
-- They reach THEIR warm network (people who know and trust them)
+- They reach THEIR warm network with THEIR Sovereign Story
 - They do THEIR sessions using the same Ignition flow
 - They post THEIR episodes
 - The loop runs at every node independently

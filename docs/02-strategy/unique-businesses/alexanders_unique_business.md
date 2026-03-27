@@ -1870,7 +1870,15 @@ If all three are true → reach out. If any one fails → wait.
 
 > **STORY. A TRUE STORY. AND AN ASK. Is all it takes.**
 
-Not a pitch. Not a hook. Not a funnel. A true story — your story, told raw — and a simple ask at the end. The precision of the story IS the selling. The testimonials ARE the proof. The vulnerability IS the trust-builder. No framework required. Just truth.
+Not a pitch. Not a hook. Not a funnel. A true story — your story, told raw — and a simple ask at the end. The precision of the story IS the selling. The testimonials ARE the proof. Honesty, courage, and sovereignty ARE the trust-builders. No framework required. Just truth.
+
+**The launch move:** Send to existing clients FIRST. Why:
+1. **Confirms testimonials** — they see their own words, you ask if they're comfortable
+2. **They see the ask** — which applies to them too (referrals, or deeper engagement)
+3. **Zero resistance** — they already believe. The first send is to people who already know it works
+4. **Replicable** — every founder's first sends go to the people who already went through the session
+
+> **The sequence:** Image first → then the full story, all in one message. No split. No "can I share?" gate. The "only if you'd like to read it" IS the permission, built into the opening.
 
 #### ★ Warm Network DM v1.0 — The Real One (Founder-Written, March 26, 2026)
 
