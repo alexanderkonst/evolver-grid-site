@@ -102,7 +102,7 @@ const IgniteSession = () => {
             {[
               "You're stuck between your dream, coaching, and \"getting a job\"",
               "People keep coming to you for help — you never charge",
-              "You suspect you ARE the product but can't see the label from inside",
+              "You suspect you ARE the product but can't see the product label from inside yourself",
             ].map((item, i) => (
               <p key={i} className="text-sm text-[#1a1a2e]/55 leading-relaxed flex items-start gap-2">
                 <span className="text-[#8460ea] mt-0.5 flex-shrink-0">→</span>
@@ -117,7 +117,7 @@ const IgniteSession = () => {
             ═══════════════════════════════════════════════ */}
         <section id="hero-video">
           <p className="text-xs text-[#1a1a2e]/40 text-center mb-3">
-            Hear the exact methodology in 8 minutes
+            The exact methodology disclosed in 4 minutes
           </p>
           <div className="rounded-2xl border border-[#1a1a2e]/8 bg-white/60 overflow-hidden shadow-sm">
             <div className="aspect-video">
@@ -166,34 +166,23 @@ const IgniteSession = () => {
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials">
           <p className="text-xs text-[#1a1a2e]/30 uppercase tracking-wider text-center mb-1">What they said after</p>
-          {[
-            {
-              quote: "I've never had a session like that before. Thank you for helping me face my fears. Nobody can hold space for me. They're all afraid. You're very courageous.",
-              name: "Oyi",
-              before: "Came in after years of doing his best work for free, unable to charge for what he gives naturally",
-              context: "after Ignition Session #1"
-            },
-            {
-              quote: "I was on 100% in your structure, and I never wanted or needed to change the methodology or approach. While building my business, I caught an error in my own story that was invisible at the higher level but obvious once I went deeper. That's the precision.",
-              name: "Sergey",
-              before: "Had a business that felt structurally wrong — successful on paper, misaligned inside",
-              context: "after Session #4"
-            },
-            {
-              quote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
-              name: "Alexey",
-              before: "Tried multiple frameworks to articulate his work — none captured the full picture",
-              context: "on the uniqueness extraction"
-            },
-          ].map((t, i) => (
-            <div key={i} className="rounded-2xl border border-[#1a1a2e]/6 bg-white/50 p-5">
-              <p className="text-[10px] text-[#1a1a2e]/25 mb-2 leading-relaxed">{t.before}</p>
-              <blockquote className="text-sm text-[#1a1a2e]/55 italic leading-relaxed">
-                "{t.quote}"
-              </blockquote>
-              <p className="text-xs text-[#8460ea] mt-3">— {t.name}, {t.context}</p>
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { quote: "Wow, wow, wow, wow, wow. My guides, they like you.", name: "Oyi" },
+              { quote: "A tool that just plain works.", name: "Alexey" },
+              { quote: "I was applying force, but the vector was wrong.", name: "Sergey" },
+              { quote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.", name: "Sandra" },
+              { quote: "The whole journey feels really beautiful.", name: "Aleksa" },
+              { quote: "I feel caught. Wonderful. This is great work.", name: "Karime" },
+            ].map((t, i) => (
+              <div key={i} className="rounded-xl border border-[#1a1a2e]/6 bg-white/50 p-4">
+                <blockquote className="text-sm text-[#1a1a2e]/55 italic leading-relaxed">
+                  "{t.quote}"
+                </blockquote>
+                <p className="text-xs text-[#8460ea] mt-2">— {t.name}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
