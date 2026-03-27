@@ -504,39 +504,6 @@ Tier 0 (Free) → Tier 1 ($) → Tier 2 ($$) → Tier 3 ($$$)
 
 ---
 
-### 9. The Bridge: Pain + Promise → 1st Session (March 26, 2026)
-
-> *See: [The Bridge — Full Methodology](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session)*
-
-#### ✦ Transformational Result (derived from Pain v1.0 + Promise v1.0)
-
-> "From hiding the sight behind tech wrappings and wondering if it's even real — to delivering the raw seeing as the product, and getting paid for the most valuable thing you do."
-
-#### ✦ Trinity Sub-Results (proposed — awaiting session + founder assessment)
-
-*These are the three felt wins that make up the journey from A → B. Each is a mini transformation:*
-
-| # | Sub-Result | Mini A → Mini B | Universal language |
-|---|-----------|----------------|-------------------|
-| **1** | **Name what you see** | From "I notice patterns but can't explain what I do" → "I can say in one sentence what my sight IS" | "I show you what your actual gift is — not the tech, not the framework, the SEEING itself" |
-| **2** | **Map the invisible** | From "I sense the architecture but can't point to it" → "I see my invisible mapped — the gift, the trap, the way out" | "I hold up a mirror so precise that you see what you built around yourself — and how to rebuild it" |
-| **3** | **See your first move** | From "I have the sight but don't know how to start" → "I know who to talk to and what to say" | "I give you the exact first step — who to serve, what to offer, how to say it" |
-
-#### ✦ 1st Session Design (proposed — awaiting refinement)
-
-**Guaranteed results (what the client walks away with for sure):**
-1. Their invisible gift NAMED — in words they'd use, not jargon
-2. Their shadow MAPPED — why they hide the gift, and why the trap is structural, not personal
-3. Their first move CLEAR — one person to reach, one thing to say
-
-**Silhouette of the full journey (foggy but palpable):**
-The client sees the overall shape: "I have a gift. I now know what it is. I can see there's a path from here to a business built on it. I can't see every step, but I feel the path is real. And I know the very first step."
-
-**Named in universal language:**
-> "In 90 minutes, I name what you see that nobody else sees, show you why you've been hiding it, and give you the first move to start getting paid for it."
-
----
-
 ## Session Log
 
 | Date | Session | Duration | Key Moments |

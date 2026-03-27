@@ -1115,6 +1115,53 @@ The Ignition stays 1:1 (the shadow needs privacy). The Build can become cohort-b
 
 ---
 
+#### The Bridge: Pain + Promise → 1st Session (March 26, 2026)
+
+> *See: [The Bridge — Full Methodology](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session)*
+>
+> *This is the critical chain that every founder in the methodology follows to go from having pain and promise nailed to being able to deliver their first session with confidence.*
+
+**The chain:**
+```
+Pain + Promise = A → B = hero's journey = TRANSFORMATIONAL RESULT
+    ↓ break into a trinity (3 felt wins)
+TRINITY SUB-RESULTS = sequence of transformational sub-results
+    ↓ select what can be GUARANTEED without overwhelming
+1st SESSION = guaranteed results + universal language + silhouette
+```
+
+**✦ Transformational Result (Alexander's — lived, not theorized):**
+
+> "From doing your best work for free and not knowing what to charge for — to a named craft, a clear business, and paying clients."
+
+**✦ Trinity Sub-Results (Alexander's Ignition Session):**
+
+| # | Sub-Result | Mini A → Mini B | Universal language |
+|---|-----------|----------------|-------------------|
+| **1** | **Name your craft** | From "I don't know what I do" → "I see what was always there" | "I name the thing you've been doing for free that everyone else can see but you" |
+| **2** | **See your business** | From "I have a gift but no structure" → "I have a clear product, tribe, and path" | "I give you a business that's unmistakably yours — product, marketing, and distribution in one sitting" |
+| **3** | **Know your first move** | From "I don't know where to start" → "I know exactly who to talk to and what to say" | "You leave knowing your first client, your first message, and your first price" |
+
+**✦ 1st Session Design (The Ignition Session — what the client walks away with):**
+
+**Guaranteed results (what the client gets for sure):**
+1. Their craft NAMED — in their words, not jargon
+2. Their business VISIBLE — product, tribe, pain, promise, all on one page
+3. Their first move CLEAR — who to talk to, what to say, what to charge
+
+**Silhouette of the full journey (foggy but palpable):**
+The client sees the overall shape: "I have a craft. I now know what it is. I can see there's a path from here to paying clients and beyond. I can't see every step, but I feel the path is real. And I know the very next step."
+
+**Named in universal language:**
+> "In 90 minutes, I name your craft, show you a business built on who you already are, and give you the first move to your first paying client."
+
+**Why this works for Alexander's clients specifically:**
+- Alexander had years of facilitation experience, so his session structure was native. His clients DON'T have that.
+- The trinity sub-results + 1st session sweet spot gives every founder a **structure to deliver with confidence** — without rigidity.
+- The sub-results can be discovered by AI using 26+ holonic vision applied to the founder's specific transformational result.
+
+---
+
 #### 5-Min Video — Content Design
 
 *Version: v1 · Feb 25, 2026*
