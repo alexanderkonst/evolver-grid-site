@@ -3174,7 +3174,7 @@ Golden DM  →  Landing page  →  Video  →  Session  →  The Build
 | **Healing** | The wound of being unnamed begins to close |
 | **Activation** | Energy shifts from scattered to directed |
 | **Initiation** | Crossing a threshold from confusion to clarity |
-| **Reality distortion field** | The myth begins to rewrite their internal story |
+| **Reality cohering field** | The myth begins to rewrite their internal story |
 | **Magnetic myth-based marketing** | The information pulls them, not pushes |
 
 **Practical implications for any unique business:**
