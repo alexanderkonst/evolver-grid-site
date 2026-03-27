@@ -151,12 +151,12 @@ const IgniteSession = () => {
             away for free.
           </h1>
 
-          <p className="text-base text-white/60 max-w-md mx-auto leading-relaxed">
+          <p className="text-base text-white/80 max-w-md mx-auto leading-relaxed">
             You know it. The people around you know it.{" "}
             You just haven't named it yet.
           </p>
 
-          <p className="text-sm text-white/40 max-w-sm mx-auto leading-relaxed">
+          <p className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed">
             In 90 minutes, we name your craft, discover the business built on
             who you already are, and get you the first easy move to your first paying client.
           </p>
