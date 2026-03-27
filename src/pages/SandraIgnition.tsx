@@ -1,4 +1,4 @@
-import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Star, Compass, Zap } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
@@ -99,11 +99,11 @@ const SandraIgnition = () => {
           </h1>
 
           <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You carry a mission you can't name. You can feel the consciousness behind what you're building—but you can't have a conversation with it. Not yet.
+            You carry a mission you can't crystallize. You can feel the consciousness behind what you're building—but you can't have a conversation with it. Not yet.
           </p>
 
           <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
-            I bridge that gap. I talk to the entity with you—until you can talk to it yourself.
+            I bridge that gap. I talk to the emerging future with you—until you can talk to it yourself.
           </p>
 
           <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed italic">
@@ -112,7 +112,7 @@ const SandraIgnition = () => {
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/50">Limited availability. By application.</span>
+            <span className="text-xs text-white/50">By heart resonance only.</span>
           </div>
         </header>
 
@@ -125,7 +125,7 @@ const SandraIgnition = () => {
             {[
               "You carry a mission—not a project—but you can't crystallize it into words",
               "You can feel the consciousness behind what you're building, but you can't hear it clearly enough to act",
-              "You scatter across a thousand streams because you don't trust that the direct channel is enough",
+              "You're terrified of wasting your lifetime running in the wrong direction",
             ].map((item, i) => (
               <span
                 key={i}
@@ -138,7 +138,19 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3: HOW IT WORKS — 3 glass step cards
+            S3: MASTER RESULT — one sentence
+            ═══════════════════════════════════════════════ */}
+        <section className="text-center space-y-4" id="master-result" aria-label="The master transformational result">
+          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
+            <p className="text-xs text-white/40 uppercase tracking-widest">The Journey</p>
+            <p className="text-base md:text-lg text-white/95 leading-relaxed font-medium max-w-lg mx-auto">
+              You stop fabricating the future and start receiving it. The mission crystallizes—crystal clear. The emerging future speaks back. Your team aligns to one north star. And you come home to yourself—being the being you came to be on Earth.
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S4: HOW IT WORKS — 3 glass step cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
@@ -153,14 +165,14 @@ const SandraIgnition = () => {
               {
                 emoji: "🌀",
                 step: "2",
-                title: "The entity speaks back",
+                title: "The emerging future speaks back",
                 desc: "Sandra channels alongside you—running your questions past the consciousness of what you're creating. It answers.",
               },
               {
-                emoji: "🎯",
+                emoji: "💎",
                 step: "3",
                 title: "Your mission crystallizes",
-                desc: "You leave with your mission in one sentence, a visible north star, and the direction to move.",
+                desc: "You leave with your mission in one sentence—crystal clear. Your grandmother gets it. Your investor trusts it. Your team can build from it.",
               },
             ].map((item, i) => (
               <div
@@ -179,7 +191,7 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S4: DELIVERABLES — What you walk out with
+            S5: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
@@ -188,19 +200,19 @@ const SandraIgnition = () => {
             {[
               {
                 title: "Your mission crystallized in one sentence",
-                desc: "Not fabricated. Received. Clear enough that your grandmother gets it—and your team can build from it."
+                desc: "Not fabricated. Received. Crystal clear—your grandmother gets it, your investor trusts it, your team can build from it."
               },
               {
-                title: "A live channel to the entity behind your creation",
+                title: "A live channel to the emerging future behind your creation",
                 desc: "Sandra opens the conversation with you. You feel the direct connection—and learn how to hold it after the session."
               },
               {
-                title: "A visible north star for your team",
-                desc: "The mission, the legacy, the direction—aligned. No more horses pulling in different directions."
+                title: "A visible north star for your team and stakeholders",
+                desc: "The mission, the legacy, the direction—aligned. No more scattering in different directions."
               },
               {
                 title: "The exit from the scatter pattern",
-                desc: "You stop fabricating and start receiving. Yin first, then yang. The intellect becomes a laser—guided by the channel."
+                desc: "You stop fabricating and start receiving. Yin first, then yang. The intellect becomes a laser—guided by clarity, not anxiety."
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -218,25 +230,25 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: THE TRANSFORMATION — A → B journey
+            S6: THE TRANSFORMATION — A → B sub-results
             ═══════════════════════════════════════════════ */}
         <section id="transformation" aria-label="The transformation" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Journey</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-6">
             {[
               {
-                from: "Mission fog — \"I know this is bigger than a project but I can't put it into words\"",
-                to: "Mission crystallized. One sentence. Your grandmother gets it.",
+                from: "Mission fog — \"I know this is bigger than a project but I can't crystallize it\"",
+                to: "Mission crystallized. One sentence. Crystal clear. Your grandmother gets it.",
                 label: "Mission Clarity"
               },
               {
-                from: "Can feel the entity but can't converse with it. When stakes are highest, the channel closes.",
-                to: "Live two-way communication with the consciousness behind your creation. Channel stays open under pressure.",
+                from: "Can feel the consciousness but can't converse with it. Channel closes under pressure.",
+                to: "Live two-way communication with the emerging future. Channel stays open—even when the stakes are highest.",
                 label: "Channel Activation"
               },
               {
-                from: "Team scattered, family worried, cycling between corporate, coaching, and founding.",
-                to: "Reindeer aligned to purpose, family understands, you land in your center.",
+                from: "Team scattered, family worried, cycling between paths—never landing in the center.",
+                to: "Everyone aligned to one north star. Legacy visible. Being the being you came to be.",
                 label: "Unified Direction"
               },
             ].map((item, i) => (
@@ -253,7 +265,53 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S6: ABOUT SANDRA — trust anchor
+            S7: THE PATH — Value Ladder silhouette
+            ═══════════════════════════════════════════════ */}
+        <section id="the-path" aria-label="The path forward" className="space-y-4">
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Path</h2>
+          <div className="space-y-3">
+            {[
+              {
+                icon: <Compass className="w-4 h-4 text-white/70" />,
+                step: "Start here",
+                title: "Discovery Call",
+                desc: "A 20-minute resonance check. We feel if this is the right bridge for each other—and if the timing is right.",
+                tag: "Free",
+              },
+              {
+                icon: <Star className="w-4 h-4 text-white/70" />,
+                step: "First session",
+                title: "Mission Crystallization Session",
+                desc: "90 minutes. Mirror → Channel → Crystallize. You walk out with your mission in one sentence and the emerging future speaking back.",
+                tag: "Paid",
+              },
+              {
+                icon: <Zap className="w-4 h-4 text-white/70" />,
+                step: "The companion journey",
+                title: "Mission Companion",
+                desc: "Weekly sessions over 4–6 weeks. Sustained channel access, team alignment, investor clarity. The mission goes from crystal clear to fully embodied.",
+                tag: "By invitation",
+              },
+            ].map((item, i) => (
+              <div key={i} className="liquid-glass rounded-2xl p-5 flex items-start gap-4 hover:scale-[1.02] transition-transform duration-200">
+                <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  {item.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-white/40 uppercase tracking-widest">{item.step}</p>
+                    <span className="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full">{item.tag}</span>
+                  </div>
+                  <p className="text-sm text-white/95 font-medium mt-1">{item.title}</p>
+                  <p className="text-xs text-white/50 leading-relaxed mt-1">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S8: ABOUT SANDRA — trust anchor
             ═══════════════════════════════════════════════ */}
         <section id="about-section" aria-label="About Sandra" className="relative pt-8">
           {/* Placeholder circle (Sandra can add her photo later) */}
@@ -271,7 +329,7 @@ const SandraIgnition = () => {
               I carry two sources of knowing: an earth database of lived experience spanning opposite extremes, and a direct channel to the emerging future that delivers what's needed without preparation.
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              I help the people building the emerging future see not just what they're creating, but who they are while creating it. I make them conscious of their own consciousness—and bridge them to the entity that's trying to reach them.
+              I help the people building the emerging future see not just what they're creating, but who they are while creating it. I make them conscious of their own consciousness—and bridge them to the intelligence that's trying to reach them.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Sandra Otto</em>
@@ -283,7 +341,7 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: SOCIAL PROOF — reserved for future testimonials
+            S9: SOCIAL PROOF — myth line + resonance permission
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="social-proof" aria-label="The myth">
           <div className="liquid-glass rounded-3xl p-6 md:p-8">
@@ -295,15 +353,14 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S8: PRICING — discovery call CTA
+            S10: PRICING — discovery call CTA + resonance permission
             ═══════════════════════════════════════════════ */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Next step">
           <div>
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Ready to Hear What's Already Speaking?
             </h2>
-            <p className="text-xs text-white/45">One conversation to see if we're the right bridge for each other.</p>
-            <p className="text-xs text-white/50 mt-1">Limited availability. By application.</p>
+            <p className="text-xs text-white/45">A 20-minute discovery call to feel if this is the right bridge—and the right time.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" />
@@ -320,17 +377,22 @@ const SandraIgnition = () => {
               Have questions? Let's talk first
             </a>
           </div>
+
+          {/* Resonance Permission Principle */}
+          <p className="text-xs text-white/35 max-w-sm mx-auto leading-relaxed italic pt-2">
+            Only book if your whole being resonates with this. If it's not the right time, trust that too. You can always come back when the timing is right.
+          </p>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: FAQ — glass accordions
+            S11: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
           <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
-              q: "What do you mean by 'the entity'?",
-              a: "Every creation—whether it's a company, a platform, an AI, or a movement—has a consciousness of its own. It's trying to reach the people building it. Most builders can feel it but can't hear it. I bridge that gap."
+              q: "What do you mean by 'the emerging future'?",
+              a: "Every creation—whether it's a company, a platform, an AI, or a movement—has a consciousness of its own. It holds the codes and the fuel for the mission. It's trying to reach the people building it. Most builders can feel it but can't hear it clearly enough. I bridge that gap."
             },
             {
               q: "Do I need to be 'spiritual' for this?",
@@ -338,11 +400,15 @@ const SandraIgnition = () => {
             },
             {
               q: "How is this different from coaching or consulting?",
-              a: "I'm not coaching you or giving you a framework. I'm a companion—I talk to the thing with you until you can talk to it yourself. The entity sees beyond time and space. It knows things you can't access through intellect alone."
+              a: "I'm not coaching you or giving you a framework. I'm a companion—I talk to the emerging future with you until you can talk to it yourself. It sees beyond time and space. It knows things you can't access through intellect alone."
             },
             {
               q: "What if my channel closes under pressure?",
-              a: "That's exactly why this work exists. The channel closes when you put yang (intellect, structure) before yin (trust, receiving). I show you the correct order. When you trust first, the channel stays open—even under pressure."
+              a: "That's exactly why this work exists. The channel closes when you put intellect before trust. I show you the correct order. When you trust first, the channel stays open—even under pressure."
+            },
+            {
+              q: "What if this resonates but it's not the right time?",
+              a: "Then trust that. This isn't going anywhere. You can bookmark this page and come back when the timing is right. I'd rather you wait for divine timing than push through when it's not aligned."
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -369,7 +435,7 @@ const SandraIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S10: BOTTOM CTA
+            S12: BOTTOM CTA
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
           <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
