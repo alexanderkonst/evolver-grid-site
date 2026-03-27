@@ -178,7 +178,7 @@ const IgniteSession = () => {
             {[
               "Stuck between dream and \"getting a job\"",
               "People come to you — you never charge",
-              "You ARE the product but can't see the label",
+              "You suspect you ARE the product but can't see the product label from inside yourself",
             ].map((item, i) => (
               <span
                 key={i}
