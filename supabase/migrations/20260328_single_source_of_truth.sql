@@ -55,7 +55,7 @@ VALUES
 ),
 (
   'Sandra Otto',
-  'New Earth Deep Conscious Tech Leader, ex-Corporate Global Executive',
+  'New Earth Conscious Deep Tech Leader, ex-Corporate Global Consultant',
   'Brings tears in my eyes. It''s uplifting me so much and giving me psychological and emotional stability.',
   'I knew, I just knew — "this is a door that you need to go through." I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It''s uplifting me so much and giving me psychological and emotional stability. It''s a real breakthrough. Oh my God, it''s so profound. I''m loving this.',
   4,
