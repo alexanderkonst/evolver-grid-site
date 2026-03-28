@@ -1269,6 +1269,30 @@ Sandra has been doing this work for years. Examples from her practice:
 
 ---
 
+#### Session #4 Wrap-Up — Action Items (March 27, 2026)
+
+**Sandra's immediate next steps:**
+1. ✉️ **First Golden DM** — reach out to the first person who comes to mind. Offer the Mission Crystallization Session (gift or paid).
+2. 💳 **Send Stripe link + Calendar link** to Alexander → he'll plug them into the landing page (seconds of work).
+3. 📝 **Send testimonials** (when available) → Alexander drops them into the existing testimonial section.
+
+**Alexander's offers on the table:**
+- Landing page is live at `/sandra` — can rename the route to anything (e.g. `/mission-crystallization`)
+- Stripe → Calendar redirect flow (same as Alexander's own setup): click button → pay → redirect to booking page → email notification
+- Can hand over the landing page code to Sandra whenever she wants to self-host
+- Revenue share model from a previous conversation — needs to be looked up in chat history
+
+**Future session topics:**
+1. **Journey variations** — how the three triangle paths (investor / founder / builder) diverge and converge
+2. **Lead generation / tribe identification** — "How do I find my people?" (Sandra's question for next time)
+3. **Landing page portability** — moving the page to Sandra's own domain when ready
+4. **Score Pain v2.3 + Promise v1.1** — precision scores still pending
+
+**Next session:** ~March 30-31 (Alexander's March 30 = Sandra's March 31, NZ time)
+
+---
+
 *Template created March 17, 2026 · Based on Unique Business Canvas Template v5.0*
 *Playbook: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)*
+
 

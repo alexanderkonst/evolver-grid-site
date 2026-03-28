@@ -8,7 +8,7 @@ import Hls from "hls.js";
 const CALCOM_BOOKING_LINK = "#"; // Sandra's Cal.com link TBD
 const CALCOM_CLARITY_LINK = "#"; // Sandra's clarity call link TBD
 
-const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZPtENsX2F9QI.m3u8";
+const HLS_VIDEO_URL = "https://stream.mux.com/f7R901xPVirn4wi01FeaJ02XPvUJrylNdM3RGOiLs4RPBs.m3u8";
 
 /* ─── HLS Background Video ────────────────────────────────── */
 const HlsBackground = () => {
@@ -88,7 +88,7 @@ const SandraIgnition = () => {
             S1: HERO — Recognition Trigger
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="sandra-hero">
-          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Sandra Otto</p>
+          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Sandra Otto · for founders, investors & builders</p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
             The Future Is Already{" "}
@@ -99,7 +99,7 @@ const SandraIgnition = () => {
           </h1>
 
           <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You carry a mission you can't crystallize. You can feel the consciousness behind what you're building—but you can't have a conversation with it. Not yet.
+            You carry a mission you can't fully crystallize. Whether you're funding it, founding it, or building it—you can feel the consciousness behind it. But you can't have a conversation with it. Not yet.
           </p>
 
           <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
@@ -112,7 +112,7 @@ const SandraIgnition = () => {
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/50">By heart resonance only.</span>
+            <span className="text-xs text-white/50">Only if it resonates with your whole being.</span>
           </div>
         </header>
 
@@ -124,8 +124,8 @@ const SandraIgnition = () => {
           <div className="flex flex-wrap justify-center gap-2">
             {[
               "You carry a mission—not a project—but you can't crystallize it into words",
-              "You can feel the consciousness behind what you're building, but you can't hear it clearly enough to act",
-              "You're terrified of wasting your lifetime running in the wrong direction",
+              "You can feel the consciousness behind what you're building, funding, or supporting—but you can't hear it clearly enough to act",
+              "You and your surroundings are worried about investing your lifetime in the wrong direction",
             ].map((item, i) => (
               <span
                 key={i}
@@ -144,7 +144,7 @@ const SandraIgnition = () => {
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
             <p className="text-xs text-white/40 uppercase tracking-widest">The Journey</p>
             <p className="text-base md:text-lg text-white/95 leading-relaxed font-medium max-w-lg mx-auto">
-              You stop fabricating the future and start receiving it. The mission crystallizes—crystal clear. The emerging future speaks back. Your team aligns to one north star. And you come home to yourself—being the being you came to be on Earth.
+              You stop fabricating the future and start manifesting what's already emerging. Your mission becomes crystal clear—a living dialogue with the emerging future, back and forth. As an investor, you trust it. As a founder, you guide it. As a team, you build from it. And you come home to yourself—fulfilling the reason you came to be on Earth.
             </p>
           </div>
         </section>
@@ -165,14 +165,14 @@ const SandraIgnition = () => {
               {
                 emoji: "🌀",
                 step: "2",
-                title: "The emerging future speaks back",
-                desc: "Sandra channels alongside you—running your questions past the consciousness of what you're creating. It answers.",
+                title: "A living dialogue with the emerging future",
+                desc: "Sandra channels alongside you—a back-and-forth conversation with the consciousness of what you're creating. It speaks with you, not just to you.",
               },
               {
                 emoji: "💎",
                 step: "3",
                 title: "Your mission crystallizes",
-                desc: "You leave with your mission in one sentence—crystal clear. Your grandmother gets it. Your investor trusts it. Your team can build from it.",
+                desc: "You leave with your mission in one sentence—crystal clear. A seven-year-old would get it. As an investor, you trust it. As a founder, you guide it. As a team, you build from it.",
               },
             ].map((item, i) => (
               <div
@@ -200,19 +200,19 @@ const SandraIgnition = () => {
             {[
               {
                 title: "Your mission crystallized in one sentence",
-                desc: "Not fabricated. Received. Crystal clear—your grandmother gets it, your investor trusts it, your team can build from it."
+                desc: "Not fabricated. Received. Crystal clear—a seven-year-old would get it. Everyone in your ecosystem—investors, co-founders, builders—sees the same north star."
               },
               {
-                title: "A live channel to the emerging future behind your creation",
-                desc: "Sandra opens the conversation with you. You feel the direct connection—and learn how to hold it after the session."
+                title: "A living dialogue with the emerging future",
+                desc: "Sandra opens the conversation with you. You feel the direct connection—and learn how to hold it after the session, whether you're investing, leading, or building."
               },
               {
-                title: "A visible north star for your team and stakeholders",
-                desc: "The mission, the legacy, the direction—aligned. No more scattering in different directions."
+                title: "The whole triangle aligned",
+                desc: "Investor, founder, builder—all seeing and supporting the same mission. Capital, vision, and craft unified under one north star."
               },
               {
                 title: "The exit from the scatter pattern",
-                desc: "You stop fabricating and start receiving. Yin first, then yang. The intellect becomes a laser—guided by clarity, not anxiety."
+                desc: "You stop fabricating and start manifesting. Yin first, then yang. The intellect becomes a laser—guided by clarity, not anxiety."
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -238,18 +238,18 @@ const SandraIgnition = () => {
             {[
               {
                 from: "Mission fog — \"I know this is bigger than a project but I can't crystallize it\"",
-                to: "Mission crystallized. One sentence. Crystal clear. Your grandmother gets it.",
+                to: "Mission crystallized. One sentence. Crystal clear. A seven-year-old would get it. Everyone gets it.",
                 label: "Mission Clarity"
               },
               {
                 from: "Can feel the consciousness but can't converse with it. Channel closes under pressure.",
-                to: "Live two-way communication with the emerging future. Channel stays open—even when the stakes are highest.",
+                to: "A living dialogue with the emerging future—back and forth. Channel stays open, even when the stakes are highest.",
                 label: "Channel Activation"
               },
               {
-                from: "Team scattered, family worried, cycling between paths—never landing in the center.",
-                to: "Everyone aligned to one north star. Legacy visible. Being the being you came to be.",
-                label: "Unified Direction"
+                from: "Investor, founder, builder—pulling in different directions, unclear if the mission is the same.",
+                to: "The whole triangle aligned. As an investor, you trust it. As a founder, you guide it. As a team, you build from it.",
+                label: "Triangle Alignment"
               },
             ].map((item, i) => (
               <div key={i} className="space-y-2">
@@ -379,8 +379,8 @@ const SandraIgnition = () => {
           </div>
 
           {/* Resonance Permission Principle */}
-          <p className="text-xs text-white/35 max-w-sm mx-auto leading-relaxed italic pt-2">
-            Only book if your whole being resonates with this. If it's not the right time, trust that too. You can always come back when the timing is right.
+          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed italic pt-2">
+            Only proceed if something in your whole being says yes—whether that's a gut feeling, goosebumps, or a quiet knowing. If it's not the right time, trust that too. You can always come back when the timing is right.
           </p>
         </section>
 
