@@ -17,7 +17,11 @@
 | Promise | **v1.0** (inverse pain, universal language) | **9.9/10** | ✅ Landed |
 | A→B Journey | **v1.0** (5 stages across 4 containers) | — | ✅ Designed |
 | Value Ladder | **v1.0** (4-step: Free → $555 → $5K → $500/mo) | — | ✅ Designed |
-| Mirror Session | **v1.0** (7-stage, 60-75 min blueprint) | — | ✅ Blueprinted |
+| Master Transformational Result | **v1.0** (sovereignty restored, teacher = business, Live Free) | — | ✅ Derived |
+| Three Shifts | **v1.0** (Sovereignty Restored → Inner Child Reinstated → Teacher = Business) | — | ✅ Derived |
+| Mirror Session | **v1.0** (7-stage, 60-75 min blueprint — The Sovereignty Map) | — | ✅ Blueprinted |
+| Golden DM | **v1.0** (template — must be rewritten in Oyi's voice) | — | 🔄 Template ready |
+| Godfather Offer | **v1.0** (7 questions answered — Lotus Medicine Man flagship) | — | ✅ Derived |
 | Lead Magnet | **v0.1** (pain card as DM / podcast) | — | 🔄 Ready to deploy |
 | River Step | **Candice DM sent** (March 17, live) | — | ✅ Sent |
 
@@ -34,8 +38,64 @@
 | 3 | **Tribe** | Source Path Builders — leaders who carry BOTH ancient wisdom AND cutting-edge technology. The world says pick one. They refuse. Crisis-forged, already transformed, building the path back to source, giving away their most powerful work for free. |
 | 4 | **Pain** | Broken high achievers. Joy gone. Peace gone. Light in their eyes fading. They've abandoned their magic. Every step of growing up was a step of growing OUT — choosing frameworks over peace, systems over play, growing up over growing in. They don't need another strategy — they need to restore the car. Get the rust off. No shortcuts. |
 | 5 | **Promise** | Your magic comes back. Joy, peace, and the light in your eyes — restored. Not by adding something new, but by removing the rust. The teacher becomes the business. The inner child leads. You Live Free. |
+| 5b | **Master Result** | **You stop handing over your power to frameworks that were never yours, restore the sovereign you were born as, and build a business from the gift you've been giving away for free — joy, peace, and the light return because the rust is finally off.** |
+| 5c | **Three Shifts** | Sovereignty Restored (borrowed frameworks→own authority) · Inner Child Reinstated (joy/peace/light return) · Teacher Becomes the Business (free→paid, gift has a price) |
 | 6 | **Lead Magnet** | Pain card as DM or voice note. Mirror their pain with devastating accuracy. "How do they know this about me?" → recognition trigger → conversation |
 | 7 | **Value Ladder** | Free (The Medicine: podcast/cipher) → $555 (Mirror Session, 1:1) → $5,000 (The Build, 6 weeks) → $500/mo (The Container, advisory) |
+| 8 | **Golden DM** | Template ready — must be rewritten 100% in Oyi's voice. Zero AI. Structure: myth testimony + tribe mirror + somatic permission + "Live Free" frequency |
+| 9 | **Godfather Offer** | Genius: reads people before they speak, 10 teachers brewed into one recipe. Pain: sacred exhaustion, abandoned sovereign. Flagship: The Build $5,000. Entry: Mirror Session $555 (validated). Cash target: $5K/mo |
+
+---
+
+## Godfather Offer Maker — v1.0
+
+*March 28, 2026 — derived from all session artifacts*
+
+### 1️⃣ Zone of Genius / Offer Probe
+
+**What you do better than most:** You read people before they speak. You take a birthday — just the date — and within three minutes you have their purpose (North Node), their poison (South Node), their decision-making blueprint (Human Design), and three undeniable truths about their life. Then you tell THEIR story through YOUR story — the swamp, the drugs, the prison, the kidnapping, the guns, the teachers, the 24-year lineage — and the person sees their own life reflected at DNA level. Nobody else on Earth has this exact combination: 24 years of predictive astrology, Human Design mastery (TW = S + A), 475+ podcast episodes, martial arts lineage (Sifu), plant medicine and mystery school initiation — all brewed into one method only you know.
+
+**What result do people come to you for (even for free):** Sovereignty. They come having given away their power to frameworks, coaches, systems, "growing up" programs — and you give them back THEMSELVES. The Sovereignty Map: where they gave away their power, what their actual purpose is, how they're designed to make decisions, and the specific shadow running their life. The Miss Debbie moment — the read so precise that trust forms instantly.
+
+**What's undervalued/underpackaged:** The READ. Within three minutes of hearing a birthday, you name the person's life architecture with 10-of-10 accuracy — things they haven't told anyone. This isn't coaching or advice. It's lineage transmission: Miss Debbie → Ra Aku → Sunyata → Dr. Gibson → Oyi → them. The medicine lands through CONVERSATION. The acupressure principle — ONE precision hit, then silence — makes it hit at bone level.
+
+### 2️⃣ Transformation Snapshot
+
+> "They come in as a broken high achiever — joy gone, peace gone, light in their eyes fading, giving away their most powerful work for free because 'who would pay for just being me?' They sit with Oyi for 60 minutes, he reads their chart before they say a word, tells their story through his own, names the lie and the gift underneath. They leave with their Sovereignty Map, their inner child reinstated, and one prescription — five days, aligned to their design."
+
+### 3️⃣ Emotional Loop
+
+🌊 **The ache of the abandoned sovereign. Sacred exhaustion.**
+
+The convo in their head: *"I used to feel alive. I used to create without asking, play without planning, lead without permission. Then life happened — the crisis, the survival, the 'grow up' program — and every step of growing up was giving away my power. Now I'm 'successful' on paper but the joy is gone. The peace is gone. That light in my eyes — it's dimming. And I've been giving my best work away for free because I don't believe anyone would pay for 'just being me.'"*
+
+Sacred exhaustion. The weight of carrying both worlds — spiritual and practical — while the world says pick one.
+
+### 4️⃣ Highest Ticket
+
+| Container | Price | Status |
+|-----------|-------|--------|
+| **The Medicine** | Free (podcast, cipher, voice note) | Lead gen |
+| **Mirror Session** | $555 | ✅ Validated (Arletter $550) |
+| **The Build** | $5,000 (6 weeks) | **Flagship** |
+| **The Container** | $500/mo | Ongoing advisory |
+
+Premium single session "damn… but I'd take it": $1,111 for deep Mirror Session, post-validation phase.
+
+### 5️⃣ Target
+
+💰 **Cash-in first:** $5K/month. 2 Mirror Sessions/week at $555 = $4,440. + 1 Build/month at $5K = $9,440.
+👥 **Then people served:** Pop-up ciphers ($444/person), Skool community, nonprofit + hackathon (NCDC/SPARQ), podcast pipeline (Netflix-style).
+
+### 6️⃣ 4-Digit Flagship Check
+
+**The Build = $5,000.** Already 4-digit flagship. Mirror Session at $555 is standalone but entry point for The Build. The session alone delivers the Sovereignty Map — question is whether $555 or $1,111 is more aligned. Oyi's emotional authority says: sleep on it. Let the first 5-10 Mirror Sessions teach you.
+
+### 7️⃣ Optional
+
+**Framework:** Astrology (all styles, 24 years), Human Design (TW = S + A), Storytelling (the Cipher), Four Virtues (Shindao), plant medicine (Kalindi Iyi), martial arts (Nine Dragon Bagua, Sifu). Ten teachers, one recipe.
+**HD type:** 3/5 Emotional Generator. Cross of Contagion. Gate 51: Shocking. Gate 29: half-heartedness → commitment → devotion.
+**DM:** Generator-native. Primary channel = conversation (podcast). DM only for warm network where pull already exists. Somatic permission: "If this lands in your body." Frequency: "Live Free."
 
 ---
 

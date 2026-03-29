@@ -29,6 +29,8 @@ import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
 import AdminContentManager from "./pages/AdminContentManager";
 import SandraIgnition from "./pages/SandraIgnition";
+import SergeyIgnition from "./pages/SergeyIgnition";
+import OyiIgnition from "./pages/OyiIgnition";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
 import DailyLoopV2 from "./pages/DailyLoopV2";
@@ -201,6 +203,8 @@ const App = () => (
                   <Route path="/admin/mission-sync" element={<AdminMissionSync />} />
                   <Route path="/admin/content" element={<AdminContentManager />} />
                   <Route path="/sandra" element={<SandraIgnition />} />
+                  <Route path="/sergey" element={<SergeyIgnition />} />
+                  <Route path="/oyi" element={<OyiIgnition />} />
                   <Route path="/intelligences" element={<MultipleIntelligences />} />
                   <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
                   {/* Game Routes */}
