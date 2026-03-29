@@ -1,4 +1,4 @@
-import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Star, Compass, Zap, Flame } from "lucide-react";
+import { ArrowRight, Check, MessageCircle, ChevronDown, Star, Compass, Flame, Target, Zap, UserCheck } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
@@ -44,7 +44,7 @@ const HlsBackground = () => {
 };
 
 /* ─── Primary CTA Button (liquid glass) ──────────────────── */
-const PrimaryCTA = ({ id, label = "Book a Gift Session" }: { id: string; label?: string }) => (
+const PrimaryCTA = ({ id, label = "See My Leverage Map" }: { id: string; label?: string }) => (
   <a
     href={CALCOM_BOOKING_LINK}
     target="_blank"
@@ -77,7 +77,7 @@ const SergeyIgnition = () => {
           VIDEO BACKGROUND
           ═══════════════════════════════════════════════ */}
       <HlsBackground />
-      <div className="fixed inset-0 bg-black/50 z-[1]" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/55 z-[1]" aria-hidden="true" />
 
       {/* ═══════════════════════════════════════════════
           CONTENT LAYER
@@ -85,34 +85,47 @@ const SergeyIgnition = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — Recognition Trigger
+            S1: HERO — Godfather Recognition Trigger
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="sergey-hero">
           <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Sergey Jay Makarov · for tech leaders</p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            You're Pushing Harder.{" "}
+            You're Working 80 Hours—
+            <br />
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              It's Paying Off Less.
+              And Your Team Still Can't Keep Up.
             </span>
-            <br />What If the Answer Is the Opposite?
           </h1>
 
           <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You work 80 hours. Slack is on fire. You KNOW what truly drives you—but there's no time because "fires first." Push got you here. Push won't get you there.
+            It's not a workload problem. You're building the wrong thing.
           </p>
 
-          <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
-            What if the thing you do for free—the thing that lights you up—IS the business? And AI is the superpower that makes it unstoppable?
+          <p className="text-sm text-white/75 max-w-md mx-auto leading-relaxed">
+            You're solving fires all day. Slack never stops.
+            And the more you push—the worse the returns get.
           </p>
 
-          <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed italic">
-            Pull + AI = Breakthrough.<br />Not a theory. Tested on myself and others.
+          <p className="text-sm text-white/75 max-w-md mx-auto leading-relaxed">
+            You already know what actually drives results.
+            But it's buried under "fires first."
           </p>
+
+          <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto text-left space-y-3">
+            <p className="text-xs text-white/40 uppercase tracking-widest text-center">The inversion</p>
+            <p className="text-sm text-white/90 leading-relaxed">
+              The thing you do for free… <strong>is the business.</strong>
+              <br />And AI turns it into a force multiplier.
+            </p>
+            <p className="text-xs text-white/60 leading-relaxed">
+              In 60 minutes, you'll see how to turn your current team into a 2–5× output machine—without hiring. No theory. No slides. On your actual work.
+            </p>
+          </div>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/50">60 minutes. Your situation. No pitch.</span>
+            <span className="text-xs text-white/40">Private diagnostic. Limited spots monthly.</span>
           </div>
         </header>
 
@@ -123,10 +136,11 @@ const SergeyIgnition = () => {
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You're a tech leader—founder, executive, PM—and push is no longer paying off",
-              "You KNOW what lights you up, but there's no time because fires come first",
-              "AI is a 'helpful tool' for you—but you sense it could be a superpower",
-              "You feel: something has to change, and the window is now",
+              "You're a founder, exec, or PM—and you're still the bottleneck",
+              "You're working harder than ever, but results are flattening",
+              "Your team depends on you too much",
+              "AI feels useful—but nowhere near its full potential",
+              "You know something has to change—and soon",
             ].map((item, i) => (
               <span
                 key={i}
@@ -139,41 +153,32 @@ const SergeyIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3: MASTER RESULT — one sentence
+            S3: WHAT HAPPENS — Live diagnostic
             ═══════════════════════════════════════════════ */}
-        <section className="text-center space-y-4" id="master-result" aria-label="The master transformational result">
-          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
-            <p className="text-xs text-white/40 uppercase tracking-widest">The Journey</p>
-            <p className="text-base md:text-lg text-white/95 leading-relaxed font-medium max-w-lg mx-auto">
-              You stop pushing harder at the wrong thing and start building from what lights you up—with AI as your superpower—and both you and your team deliver results that push alone could never produce.
-            </p>
+        <section className="space-y-4" id="what-happens" aria-label="What happens in the session">
+          <div className="text-center space-y-2">
+            <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What Happens in 60 Minutes</h2>
+            <p className="text-xs text-white/50">This is not coaching. This is a live diagnostic + leverage rebuild.</p>
           </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S4: HOW IT WORKS — 3 glass step cards
-            ═══════════════════════════════════════════════ */}
-        <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
-                emoji: "🔍",
+                emoji: "🎯",
                 step: "1",
-                title: "Find your Pull",
-                desc: "In 60 minutes, we identify what truly drives you—the thing you do for free that IS the business. Not theory. On YOUR situation.",
+                title: "Find Your Pull",
+                desc: "We identify the exact function you should be building around—the thing you already do that drives disproportionate results. Not "passion." Leverage.",
               },
               {
                 emoji: "⚡",
                 step: "2",
-                title: "AI becomes your superpower",
-                desc: "Not a 'helpful assistant.' A force multiplier. You + AI = results a team of 15 couldn't produce. I show you how on your actual work.",
+                title: "AI as Force Multiplier",
+                desc: "We apply AI directly to your real work. You'll see what disappears from your workload, what gets amplified, and what gets automated instantly.",
               },
               {
-                emoji: "🚀",
+                emoji: "🔄",
                 step: "3",
-                title: "Your team transforms",
-                desc: "The same breakthrough scales to your team. Small team, burning eyes, AI-native. Outstanding—not just good. Pull + AI = breakthrough for everyone.",
+                title: "Team Reconfiguration",
+                desc: "We map how your team shifts around your pull + AI. Result: less control, less dependency, more output.",
               },
             ].map((item, i) => (
               <div
@@ -185,72 +190,73 @@ const SergeyIgnition = () => {
                 </div>
                 <p className="text-xs text-white/60 font-medium uppercase tracking-widest">Step {item.step}</p>
                 <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                {item.desc && <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>}
+                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: DELIVERABLES — What you walk out with
+            S4: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
-          <div className="space-y-4">
-            {[
-              {
-                title: "Your Pull identified—concretely, on your situation",
-                desc: "Not 'find your passion.' The specific thing you already do that drives results when you're lit up. Named. Seen. Undeniable."
-              },
-              {
-                title: "AI as superpower—demonstrated on YOUR work",
-                desc: "In the session, you see what AI does when paired with your pull. Not slides. Not theory. On your actual challenges."
-              },
-              {
-                title: "The path from 'most expensive executor' to breakthrough leader",
-                desc: "You stop towing the entire company on your back. Your team of 5 delivers what used to take 15. Push dissolves. Pull takes over."
-              },
-              {
-                title: "One clear next step: the Sprint",
-                desc: "If this lands, I bring the same breakthrough to your team. 3–6 weeks. AI-native. Pull-driven culture. Measurable results."
-              },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
+            <p className="text-xs text-white/45 mb-4">In 60 minutes, you'll have:</p>
+            <div className="space-y-4">
+              {[
+                {
+                  title: "The ONE function you should never be doing again",
+                  desc: ""
+                },
+                {
+                  title: "A live example of AI replacing 30–50% of your current workload",
+                  desc: ""
+                },
+                {
+                  title: "The bottleneck silently killing your team output",
+                  desc: ""
+                },
+                {
+                  title: "A clear 30-day path to double output without adding headcount",
+                  desc: ""
+                },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/95 font-medium">{item.title}</p>
+                    {item.desc && <p className="text-xs text-white/55 leading-relaxed mt-0.5">{item.desc}</p>}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-white/95 font-medium">{item.title}</p>
-                  <p className="text-xs text-white/55 leading-relaxed mt-0.5">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S6: THE TRANSFORMATION — A → B sub-results
+            S5: THE THREE SHIFTS — A → B
             ═══════════════════════════════════════════════ */}
-        <section id="transformation" aria-label="The transformation" className="space-y-4">
+        <section id="transformation" aria-label="The three shifts" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-6">
             {[
               {
-                from: "Day burns on fires and other people's tasks. Push harder = worse returns.",
-                to: "Pull activated. You spend your day on what truly drives results. AI handles the rest. You set the rhythm.",
-                label: "Pull Activated"
+                from: "You spend your day reacting. More effort = worse returns.",
+                to: "You operate from what actually drives results. Everything else gets handled.",
+                label: "From Push → Pull"
               },
               {
-                from: "AI = helpful assistant. Saves time on tasks. Nice to have.",
-                to: "AI = superpower. You're a superhero. One person + AI agents = a team that didn't exist before. 2–5× on what you do best.",
-                label: "AI as Superpower"
+                from: "AI saves time on tasks.",
+                to: "AI becomes your execution layer. You + AI = output that didn't exist before.",
+                label: "From AI Tool → AI Superpower"
               },
               {
-                from: "Team scattered, overloaded, executing without fire. \"More people + control = results.\"",
-                to: "Small team, burning eyes, AI-native. Outstanding—not good. Everyone doing their best work. Pull + AI = breakthrough.",
-                label: "Team Breakthrough"
+                from: "You are the system.",
+                to: "The system runs—with you as the multiplier, not the constraint.",
+                label: "From Bottleneck → Leveraged Leader"
               },
             ].map((item, i) => (
               <div key={i} className="space-y-2">
@@ -266,31 +272,76 @@ const SergeyIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: THE PATH — Value Ladder silhouette
+            S6: REALITY CHECK
+            ═══════════════════════════════════════════════ */}
+        <section className="text-center space-y-3" id="reality-check" aria-label="Reality check">
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-3">
+            <p className="text-sm text-white/80 font-medium leading-relaxed">
+              Push got you here.<br />Push will not get you there.
+            </p>
+            <p className="text-xs text-white/50 leading-relaxed">
+              More effort will not fix a structural problem.
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S7: CASE SNAPSHOT — social proof
+            ═══════════════════════════════════════════════ */}
+        <section className="space-y-4" id="case-snapshot" aria-label="Case study">
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Case Snapshot</h2>
+          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
+            <p className="text-sm text-white/70 leading-relaxed">
+              A PM I worked with was managing 9 people—and still drowning in execution.
+            </p>
+            <p className="text-sm text-white/80 leading-relaxed font-medium">
+              Within 2 weeks:
+            </p>
+            <div className="space-y-2 pl-1">
+              {[
+                "His team delivered what used to take 6",
+                "Without adding anyone",
+                "Without working more",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <Check className="w-3 h-3 text-white/60 flex-shrink-0" />
+                  <p className="text-xs text-white/70">{item}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-white/50 leading-relaxed italic mt-2">
+              The shift wasn't effort. It was structure + leverage.
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S8: THE SPRINT — next step if it lands
             ═══════════════════════════════════════════════ */}
         <section id="the-path" aria-label="The path forward" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Path</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Next Step (If This Lands)</h2>
+          <p className="text-xs text-white/50 text-center">We take the same transformation to your team.</p>
           <div className="space-y-3">
             {[
               {
                 icon: <Compass className="w-4 h-4 text-white/70" />,
                 step: "Start here",
-                title: "Gift Session",
-                desc: "60–90 minutes, 1-on-1. I show you your pull, how AI amplifies it, and what your first breakthrough looks like. On your situation—not theory.",
-                tag: "Free (first 10)",
+                title: "Leverage Map Session",
+                desc: "60 minutes, 1-on-1. Live diagnostic on your actual system. Walk out seeing the path.",
+                tag: "Free (limited)",
               },
               {
                 icon: <Flame className="w-4 h-4 text-white/70" />,
                 step: "For your team",
                 title: "The Sprint",
-                desc: "3–6 weeks. I bring the same breakthrough to your team. Every member finds their pull + AI. Measurable: team of 5 delivers what used to take 15.",
+                desc: "3–6 weeks. Every team member aligned to their highest leverage. AI embedded into daily execution. Measurable output increase. A team of 5 doing what used to take 15.",
                 tag: "$5K–15K",
               },
               {
                 icon: <Star className="w-4 h-4 text-white/70" />,
                 step: "Ongoing",
                 title: "Advisory",
-                desc: "Monthly. I help you scale pull + AI culture across teams and departments. Strategic partner for the AI-native transformation.",
+                desc: "Monthly strategic partner for scaling pull + AI culture across teams and departments.",
                 tag: "$2–5K/mo",
               },
             ].map((item, i) => (
@@ -312,7 +363,7 @@ const SergeyIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S8: ABOUT SERGEY — trust anchor
+            S9: ABOUT SERGEY — trust anchor
             ═══════════════════════════════════════════════ */}
         <section id="about-section" aria-label="About Sergey" className="relative pt-8">
           <div className="w-20 h-20 rounded-full bg-white/5 border-2 border-white/10 mx-auto relative z-10 flex items-center justify-center text-2xl">
@@ -323,44 +374,39 @@ const SergeyIgnition = () => {
               &nbsp;
             </p>
             <p className="text-sm text-white/70 leading-relaxed">
-              15 years building systems in tech—for startups, corporations, and everything between. I built beautifully. With soul. With precision. But I was building the wrong thing.
+              15 years building systems across startups and corporations. Built everything: clean, precise, high-performing.
+            </p>
+            <p className="text-sm text-white/80 leading-relaxed mt-3 font-medium">
+              But wrong.
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              I was selling boring workflow automation to clients while doing the real work—synthesizing frameworks for human development, helping people find their path—for free. "Who would pay for what I do for myself?"
+              I was optimizing systems that shouldn't exist. Meanwhile, the real work—helping people see what they should actually be building—I was doing for free.
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              Everyone, it turns out. Because that IS the business. Pull + AI = breakthrough. I lived it. Now I help other tech leaders see it—on their own situation, in 60 minutes.
+              That was the business.
+            </p>
+            <p className="text-sm text-white/70 leading-relaxed mt-3">
+              Now I help leaders find their pull, apply AI correctly, and build teams that outperform without burning out.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Sergey Jay Makarov</em>
             </p>
             <p className="text-xs text-white/35 mt-1">
-              Beauty Builder for Human Development · Serial Tech Founder · System Architect
+              Beauty Builder · System Architect · 15 Years in Tech
             </p>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: SOCIAL PROOF — myth line
-            ═══════════════════════════════════════════════ */}
-        <section className="text-center space-y-4" id="social-proof" aria-label="The myth">
-          <div className="liquid-glass rounded-3xl p-6 md:p-8">
-            <p className="text-sm text-white/70 leading-relaxed italic max-w-md mx-auto">
-              "Good work pays less each year. Push is a dead end. AI is not a helper—it's a superpower. Pull + AI = breakthrough."
-            </p>
-            <p className="text-xs text-white/40 mt-3">— The Work Ethic Myth, Inverted</p>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S10: PRICING — CTA + resonance permission
+            S10: FINAL CTA
             ═══════════════════════════════════════════════ */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Next step">
           <div>
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Ready to See What Pull + AI Looks Like—On You?
+              If you're still the hardest-working person on your team—
             </h2>
-            <p className="text-xs text-white/45">60 minutes. Your situation. Your team. No pitch. No strings.</p>
+            <p className="text-base text-white/70 font-medium">You're the bottleneck.</p>
+            <p className="text-xs text-white/45 mt-2">Let's fix that.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" />
@@ -378,37 +424,32 @@ const SergeyIgnition = () => {
             </a>
           </div>
 
-          {/* Resonance Permission Principle */}
           <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed italic pt-2">
-            Only proceed if something in you says "it's time." If it's not the right moment, trust that. The window will be here when you're ready.
+            Private diagnostic. Limited spots available.
           </p>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S11: FAQ — glass accordions
+            S11: FAQ — glass accordions (tightened)
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
           <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
-              q: "What do you mean by 'Pull + AI = Breakthrough'?",
-              a: "Push = working harder through force on things that drain you. Pull = doing what naturally drives you at a high level. AI = the force multiplier that makes one person's pull output what a team of 15 couldn't produce through push. Together: breakthrough results with less effort, more energy."
+              q: "Is this coaching?",
+              a: "No. This is a working session on your actual system."
             },
             {
-              q: "I'm an executive. How is this different from leadership coaching?",
-              a: "Coaching asks 'how do I do my current job better?' This asks 'what if the job itself should change?' I don't optimize your push. I help you find your pull, connect it to AI at superpower level, and show you what happens when your team does the same."
+              q: "Will this work for my team?",
+              a: "If your team depends on you too much—yes."
             },
             {
-              q: "Will this actually work for my team?",
-              a: "The Gift Session works on YOU first. You see the breakthrough on your own situation. Then—if you see it—the Sprint brings the same process to your team. Same tools, same framework. Team of 5 delivers what used to take 15."
+              q: "Do I need to be technical in AI?",
+              a: "No. That's the point."
             },
             {
-              q: "What if I don't have time for this right now?",
-              a: "That's the push talking. 'Fires first, always fires first.' The Gift Session is 60 minutes. If you genuinely don't have 60 minutes—that IS the problem this solves. But if the timing isn't right, trust that too."
-            },
-            {
-              q: "Is this only for tech?",
-              a: "The methodology works across industries—but my beachhead is tech leaders (founders, executives, PMs) because that's my world. 15 years. I speak the language. I know the pain. I've lived it."
+              q: "What if I don't have time?",
+              a: "That's exactly why this exists."
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -435,13 +476,14 @@ const SergeyIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S12: BOTTOM CTA
+            S12: FOOTER BRIDGE
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
-          <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
-            The rules changed.<br />Push won't save you. Pull + AI will.
-          </p>
-          <PrimaryCTA id="bottom-cta-btn" />
+          <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto">
+            <p className="text-xs text-white/50 leading-relaxed">
+              If your bottleneck isn't systems—but something deeper—<br />I'll point you to the right person.
+            </p>
+          </div>
         </div>
 
         {/* Bottom spacing */}
