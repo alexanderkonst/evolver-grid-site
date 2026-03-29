@@ -166,7 +166,7 @@ const SergeyIgnition = () => {
                 emoji: "🎯",
                 step: "1",
                 title: "Find Your Pull",
-                desc: "We identify the exact function you should be building around—the thing you already do that drives disproportionate results. Not "passion." Leverage.",
+                desc: "We identify the exact function you should be building around—the thing you already do that drives disproportionate results. Not 'passion.' Leverage.",
               },
               {
                 emoji: "⚡",
