@@ -189,7 +189,7 @@ const IgniteSession = () => {
   const testimonials = useTestimonials();
 
   useEffect(() => {
-    document.title = "You're Not Confused. You're Just Unnamed. — Ignition Session";
+    document.title = "Your Best Work? You've Been Giving It Away for Free. — Ignition Session";
     return () => { document.title = "Evolver"; };
   }, []);
 
@@ -210,7 +210,7 @@ const IgniteSession = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — Testimony-Led Recognition Trigger
+            S1: HERO — Punchy Recognition Trigger + CTA
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="ignite-hero">
           <img
@@ -220,62 +220,24 @@ const IgniteSession = () => {
           />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            You're Not{" "}
+            Your best work?{" "}
+            <br />
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              Confused.
-            </span>
-            <br />You're Just{" "}
-            <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              Unnamed.
+              You've been giving it away for free.
             </span>
           </h1>
 
-          {/* First-person testimony — Alexander's voice */}
-          <div className="text-left max-w-lg mx-auto space-y-3">
-            <p className="text-sm text-white/70 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              I know what that's like.
-            </p>
-            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              I spent years helping other founders see what made them irreplaceable—while I couldn't name my own thing. I was building something I believed in while the savings melted and stable revenue just wasn't coming.
-            </p>
-            <p className="text-sm text-white/55 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              People closest to me couldn't quite see what I envisioned. So I carried this tender part of myself in silence—because most times I tried to share it, it got met with worry, doubt, or that look that says <em>"when are you going to be realistic?"</em>
-            </p>
-            <p className="text-sm text-white/50 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              And underneath all of that was this hunch: <em>"What if I'm trapped in a repeating pattern—a videogame boss I can't pass?"</em>
-            </p>
-            <p className="text-sm text-white/65 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              That hunch was the rabbit hole to the way out.
-            </p>
-          </div>
+          <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
+            You know you're good at something. You just can't explain it in one sentence—so you undercharge, overexplain, and watch opportunities slip.
+          </p>
 
-          {/* The bridge — from testimony to offer */}
-          <div className="text-left max-w-lg mx-auto space-y-3 pt-2">
-            <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              Here's what I found: I'd been doing the thing for years. For free.
-            </p>
-            <div className="space-y-1.5 pl-1">
-              <p className="text-xs text-white/55 leading-relaxed">📋 Those 2-hour coffee chats where I untangled someone's entire situation — <span className="text-white/40 italic">didn't charge</span></p>
-              <p className="text-xs text-white/55 leading-relaxed">📋 The group chat where my one message shifted everything — <span className="text-white/40 italic">didn't invoice</span></p>
-              <p className="text-xs text-white/55 leading-relaxed">📋 Helping a friend with their launch — <span className="text-white/40 italic">called it "just being helpful"</span></p>
-            </div>
-            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              I didn't charge because I believed helping should be free because it's noble. Until I realized: I'm not selling my gift. I'm selling a system I've built across my entire career—and my facilitation of it.
-            </p>
-          </div>
+          <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
+            In 90 minutes, we name it, package it, and build your entire business on one page.
+          </p>
 
-          {/* The crystallization — what happens now */}
-          <div className="text-center space-y-2 pt-3">
-            <p className="text-base text-white/90 font-medium leading-relaxed">
-              That's what I do now.
-            </p>
-            <p className="text-sm text-white/70 max-w-md mx-auto leading-relaxed">
-              In 90 minutes, your genius becomes one sentence, your business fits on one page, and your first client becomes obvious.
-            </p>
-            <p className="text-xs text-white/50 italic">
-              Not theory. Not brainstorming. Not "let's explore." We lock it in.
-            </p>
-          </div>
+          <p className="text-xs text-white/50 italic max-w-sm mx-auto">
+            You don't need a new idea. You need language for what you already do.
+          </p>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
@@ -465,13 +427,10 @@ const IgniteSession = () => {
             You're not stuck because you lack ability.
           </p>
           <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto">
-            You're stuck because your ability is <span className="text-white/90 font-medium">unnamed.</span>
+            You're stuck because you can't <span className="text-white/90 font-medium">say what you do</span>—clearly enough for someone to buy it.
           </p>
           <p className="text-xs text-white/45 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            And unnamed things can't be explained, can't be sold, can't scale.
-          </p>
-          <p className="text-xs text-white/40 leading-relaxed max-w-sm mx-auto italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            The ache isn't confusion. It's the quiet exhaustion of carrying something extraordinary that the world can't see yet—because you haven't had the mirror to see it first.
+            And what can't be explained can't be sold, can't be scaled, can't become the business you know it should be.
           </p>
         </section>
 
