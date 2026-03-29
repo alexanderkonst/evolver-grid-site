@@ -12,40 +12,40 @@ import { supabase } from "@/integrations/supabase/client";
 /* ─── Hardcoded fallback testimonials (used if DB unavailable) ─── */
 const FALLBACK_TESTIMONIALS: TestimonialData[] = [
   {
-    shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
-    fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough. I really hope your AI is recording this ... I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? ... I'd like another shot of the good vodka that you're pouring ... What you're doing is not vertically integrated. It's mycelially integrated ... I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax ... I am in awe right now of the accuracy and the amount of freedom that it is letting me have ... This stuff is really, really sharp ... My guides, they like you ... I see this as life changing.",
-    name: "Oyi Sun",
-    before: "Medicine Man, Ye Ming Zhu keeper",
-  },
-  {
-    shortQuote: "This is a miracle of miracles. A tool that just plain works.",
-    fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow — they've got no depth. Your approach, though? A tool that just plain works.",
-    name: "Alexey Utkin",
-    before: "Serial founder, Stanford MBA, ex-management consultant",
-  },
-  {
-    shortQuote: "I was applying force, but the vector was wrong.",
-    fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+    shortQuote: "I was applying force, but the vector was wrong. Everything clicks.",
+    fullQuote: "I was applying force—but the vector was wrong. Myth was the missing piece. I knew nothing about this. Everything starts aligning. This is like a ten, nine-plus. There's nothing here that doesn't click. Absolutely everything clicks. I feel enormous value.",
     name: "Sergey Jay Makarov",
     before: "Serial Founder & System Architect",
   },
   {
-    shortQuote: "Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability.",
-    fullQuote: "I knew, I just knew — \"this is a door that you need to go through.\" I feel understood. When you can work with somebody where you can be a human — oh man. The gold is under the dust. It applies to everything — to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
+    shortQuote: "It's uplifting me so much. It's a real breakthrough.",
+    fullQuote: "When you can work with somebody where you can be a human—oh man. The gold is under the dust. It applies to everything—to my clients, your clients, to a country. Your prompts are super powerful. So cool that this collaboration with AI uses the technology as a true soul-driven companion. Brings tears in my eyes. It's uplifting me so much and giving me psychological and emotional stability. It's a real breakthrough. Oh my God, it's so profound. I'm loving this.",
     name: "Sandra Otto",
     before: "New Earth conscious deep tech leader, ex-corporate global consultant",
   },
   {
-    shortQuote: "The whole journey feels really beautiful.",
-    fullQuote: "Wow. Wow. This is beautiful, man. You know what the testimonial page should say? One word for every person: \"Wow\". And you wouldn't be wrong ... It flips the whole situation. Thank you for enabling me this opportunity — or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said — I remember, and it resonated, and it helped at that moment a lot. So yeah, thanks for all of that, man. I appreciate it. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. I think it's a wonderful thing to do. it was — transformative. Full of high truths, or at least discoveries for me.",
+    shortQuote: "I've been working on this since 2011. This is life changing.",
+    fullQuote: "Wow, wow, wow, wow, wow. I've been working on this since 2011. You've changed the dynamic. This is a major breakthrough. I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? I'd like another shot of the good vodka that you're pouring. I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax. I am in awe right now of the accuracy and the amount of freedom that it is letting me have. My guides, they like you. I see this as life changing.",
+    name: "Oyi Sun",
+    before: "Medicine Man, Ye Ming Zhu keeper",
+  },
+  {
+    shortQuote: "Thank you for opening my eyes. I appreciate that a lot.",
+    fullQuote: "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away—to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go.",
+    name: "Karime Kuri",
+    before: "Healer of Healers, ex-WEF leader, Oxford alum",
+  },
+  {
+    shortQuote: "It flips the whole situation. Transformative, full of high truths.",
+    fullQuote: "Wow. Wow. This is beautiful, man. It flips the whole situation. Thank you for enabling me this opportunity—or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said—I remember, and it resonated, and it helped at that moment a lot. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. Transformative, full of high truths, or at least discoveries for me.",
     name: "Aleksa Stojanovic",
     before: "Web3 System Architect",
   },
   {
-    shortQuote: "I feel caught. Wonderful. This is great work.",
-    fullQuote: "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away — to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go.",
-    name: "Karime Kuri",
-    before: "Healer of Healers, ex-WEF leader, Oxford alum",
+    shortQuote: "This is a miracle of miracles. A tool that just plain works.",
+    fullQuote: "This is a miracle of miracles. Other tools come at this half-baked and shallow—they've got no depth. Your approach, though? A tool that just plain works.",
+    name: "Alexey Utkin",
+    before: "Serial Founder, Stanford MBA",
   },
 ];
 
@@ -153,7 +153,7 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
 };
 
 /* ─── Primary CTA Button (liquid glass) ──────────────────── */
-const PrimaryCTA = ({ id, showPrice = true }: { id: string; showPrice?: boolean }) => (
+const PrimaryCTA = ({ id, label = "See My Business on One Page", showPrice = true }: { id: string; label?: string; showPrice?: boolean }) => (
   <a
     href={STRIPE_PAYMENT_LINK}
     target="_blank"
@@ -162,7 +162,7 @@ const PrimaryCTA = ({ id, showPrice = true }: { id: string; showPrice?: boolean 
     style={{ fontFamily: "'Poppins', sans-serif" }}
     id={id}
   >
-    Book Your Ignition Session{showPrice && " — $555"}
+    {label}{showPrice && " — $555"}
     <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
       <ArrowRight className="w-4 h-4" />
     </span>
@@ -189,7 +189,7 @@ const IgniteSession = () => {
   const testimonials = useTestimonials();
 
   useEffect(() => {
-    document.title = "You're Not Confused. You Just Can't Name What You Do—Yet — Ignition Session";
+    document.title = "You're Not Confused. You're Just Unnamed. — Ignition Session";
     return () => { document.title = "Evolver"; };
   }, []);
 
@@ -207,10 +207,10 @@ const IgniteSession = () => {
       {/* ═══════════════════════════════════════════════
           CONTENT LAYER — all sections float above video
           ═══════════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
+      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — Recognition Trigger + CTA
+            S1: HERO — Testimony-Led Recognition Trigger
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="ignite-hero">
           <img
@@ -224,24 +224,58 @@ const IgniteSession = () => {
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
               Confused.
             </span>
-            <br />You Just Can't Name What You Do—Yet.
+            <br />You're Just{" "}
+            <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
+              Unnamed.
+            </span>
           </h1>
 
-          <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You've been undercharging and overexplaining—because your answer to "so what do you do?" still sounds like a riddle.
-          </p>
+          {/* First-person testimony — Alexander's voice */}
+          <div className="text-left max-w-lg mx-auto space-y-3">
+            <p className="text-sm text-white/70 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              I know what that's like.
+            </p>
+            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              I spent years helping other founders see what made them irreplaceable—while I couldn't name my own thing. I was building something I believed in while the savings melted and stable revenue just wasn't coming.
+            </p>
+            <p className="text-sm text-white/55 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              People closest to me couldn't quite see what I envisioned. So I carried this tender part of myself in silence—because most times I tried to share it, it got met with worry, doubt, or that look that says <em>"when are you going to be realistic?"</em>
+            </p>
+            <p className="text-sm text-white/50 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              And underneath all of that was this hunch: <em>"What if I'm trapped in a repeating pattern—a videogame boss I can't pass?"</em>
+            </p>
+            <p className="text-sm text-white/65 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              That hunch was the rabbit hole to the way out.
+            </p>
+          </div>
 
-          <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
-            In 90 minutes, we name it, package it, and see exactly how it becomes a business.
-          </p>
+          {/* The bridge — from testimony to offer */}
+          <div className="text-left max-w-lg mx-auto space-y-3 pt-2">
+            <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              Here's what I found: I'd been doing the thing for years. For free.
+            </p>
+            <div className="space-y-1.5 pl-1">
+              <p className="text-xs text-white/55 leading-relaxed">📋 Those 2-hour coffee chats where I untangled someone's entire situation — <span className="text-white/40 italic">didn't charge</span></p>
+              <p className="text-xs text-white/55 leading-relaxed">📋 The group chat where my one message shifted everything — <span className="text-white/40 italic">didn't invoice</span></p>
+              <p className="text-xs text-white/55 leading-relaxed">📋 Helping a friend with their launch — <span className="text-white/40 italic">called it "just being helpful"</span></p>
+            </div>
+            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              I didn't charge because I believed helping should be free because it's noble. Until I realized: I'm not selling my gift. I'm selling a system I've built across my entire career—and my facilitation of it.
+            </p>
+          </div>
 
-          <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed">
-            If you can't explain what you do in one sentence, this is for you.
-          </p>
-
-          <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed italic">
-            You don't need a new idea.<br />You need language for what you already do.
-          </p>
+          {/* The crystallization — what happens now */}
+          <div className="text-center space-y-2 pt-3">
+            <p className="text-base text-white/90 font-medium leading-relaxed">
+              That's what I do now.
+            </p>
+            <p className="text-sm text-white/70 max-w-md mx-auto leading-relaxed">
+              In 90 minutes, your genius becomes one sentence, your business fits on one page, and your first client becomes obvious.
+            </p>
+            <p className="text-xs text-white/50 italic">
+              Not theory. Not brainstorming. Not "let's explore." We lock it in.
+            </p>
+          </div>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
@@ -254,24 +288,33 @@ const IgniteSession = () => {
         </header>
 
         {/* ═══════════════════════════════════════════════
-            S2: QUALIFIER — Self-selection pills
+            S2: QUALIFIER — Meta-segment recognition
             ═══════════════════════════════════════════════ */}
-        <section className="text-center space-y-4" id="qualifier" aria-label="Who this session is for">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This session is for you if</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+        <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
+          <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You've tried building. You've tried coaching. You've considered going back to corporate. Nothing held all of you.
+          </p>
+          <div className="space-y-2 max-w-md mx-auto">
             {[
-              "You've been giving your best work away for free — not because it's not valuable, but because you can't explain it cleanly enough to charge",
-              "Conversations drag, pricing feels random, and opportunities slip",
-              "Your answer to \"so what do you do?\" still sounds like a riddle",
+              '"Why is this still so hard to say?"',
+              '"I\'m a mix of things and none of the labels fit"',
+              '"I know I should charge more but I can\'t afford to lose the few clients I have"',
+              '"Something fundamental is off but I can\'t see what"',
+              '"I\'m so much more capable than my results show"',
             ].map((item, i) => (
-              <span
+              <div
                 key={i}
-                className="liquid-glass rounded-full px-4 py-2 text-xs text-white/90"
+                className="liquid-glass rounded-xl px-4 py-3 text-sm text-white/70 italic"
+                style={{ fontFamily: "'Source Serif 4', serif" }}
               >
                 {item}
-              </span>
+              </div>
             ))}
           </div>
+          <p className="text-xs text-white/45 text-center max-w-sm mx-auto leading-relaxed">
+            You know your work matters. You've proven it a hundred times—for other people. The thing you can't prove is: what is yours to build?
+          </p>
         </section>
 
         {/* ═══════════════════════════════════════════════
@@ -287,29 +330,30 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3.5: HOW IT WORKS — 3 glass step cards
+            S4: HOW IT WORKS — 3 glass step cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What happens in the session</h2>
+          <p className="text-xs text-white/45 text-center">This is not coaching. This is real-time crystallization.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 emoji: "🔮",
                 step: "1",
-                title: "We name your genius in one sentence",
-                desc: "You talk. I guide you through the Zone of Genius articulation. AI synthesizes it live.",
+                title: "Your genius gets named",
+                desc: "You talk. I listen for what's already there—but invisible to you. Then we land it in one sentence clear enough that a 7-year-old understands, an investor trusts, and a client buys.",
               },
               {
                 emoji: "📦",
                 step: "2",
-                title: "We turn it into a product",
-                desc: "Your sentence becomes an offer people can understand—and buy.",
+                title: "It becomes a product",
+                desc: "That sentence becomes a clear offer, a defined audience, a real problem, a real outcome. No guessing. No branding exercise. Just structure that holds.",
               },
               {
                 emoji: "🚀",
                 step: "3",
-                title: "We map your business + next move",
-                desc: "You leave with direction, structure, and momentum.",
+                title: "Your business appears",
+                desc: "AI compiles everything live into your entire business on one page. What you do, who it's for, why they pay, what to say next. You leave with a system.",
               },
             ].map((item, i) => (
               <div
@@ -328,7 +372,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S4: DELIVERABLES — What you walk out with
+            S5: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
@@ -336,20 +380,24 @@ const IgniteSession = () => {
           <div className="space-y-4">
             {[
               {
-                title: "Your genius named in one sentence",
-                desc: "The thing you've been doing for free — named clearly enough that anyone can understand and buy it."
+                title: "Your genius named in one undeniable sentence",
+                desc: "The thing you've been doing for free—named clearly enough that anyone can understand and buy it."
               },
               {
-                title: "Your entire business on one page",
-                desc: "Product, audience, pain, promise, and offer — structured and compiled in real time."
+                title: "A business people understand immediately",
+                desc: "Product, audience, pain, promise, and offer—structured and compiled in real time on one page."
               },
               {
-                title: "A clear, immediate next step",
-                desc: "You leave knowing exactly who to talk to, what to say, and what to charge."
+                title: "A structured offer you can charge for",
+                desc: "Not vague value. A concrete container with a clear price that makes sense."
               },
               {
-                title: "The ability to explain what you do — without overthinking",
-                desc: "No more riddles. One sentence that lands."
+                title: "The exact person to talk to next—and the exact words to say",
+                desc: "You leave knowing who, what, and how. No more guessing."
+              },
+              {
+                title: "The confidence that comes from finally being seen",
+                desc: "Not a pep talk. The structural clarity that makes confidence automatic."
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -367,7 +415,68 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: ABOUT ALEXANDER — trust anchor
+            S6: THREE SHIFTS — The transformation arc
+            ═══════════════════════════════════════════════ */}
+        <section className="space-y-4" id="three-shifts" aria-label="The three shifts">
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              {
+                num: "1",
+                label: "Scattered → Clear",
+                before: '"I do a lot of things…"',
+                after: "One sentence that lands instantly.",
+              },
+              {
+                num: "2",
+                label: "Free → Paid",
+                before: "Giving your best work away—because it felt noble, because it came naturally.",
+                after: "People understand it fast enough to pay. And you understand WHY it's worth paying for.",
+              },
+              {
+                num: "3",
+                label: "Looping → Moving",
+                before: "Building, coaching, considering corporate—round and round.",
+                after: "One container that doesn't ask you to amputate. Clear next move.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="liquid-glass rounded-3xl p-5 space-y-3">
+                <p className="text-xs text-white/60 font-medium uppercase tracking-widest text-center">{item.num}. {item.label}</p>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-[10px] text-white/40 uppercase tracking-wider">Before</p>
+                    <p className="text-xs text-white/50 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.before}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-white/40 uppercase tracking-wider">After</p>
+                    <p className="text-xs text-white/70 leading-relaxed">{item.after}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S7: REALITY CHECK — The ache named
+            ═══════════════════════════════════════════════ */}
+        <section className="text-center space-y-3 py-2" id="reality-check">
+          <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto">
+            You're not stuck because you lack ability.
+          </p>
+          <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto">
+            You're stuck because your ability is <span className="text-white/90 font-medium">unnamed.</span>
+          </p>
+          <p className="text-xs text-white/45 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            And unnamed things can't be explained, can't be sold, can't scale.
+          </p>
+          <p className="text-xs text-white/40 leading-relaxed max-w-sm mx-auto italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            The ache isn't confusion. It's the quiet exhaustion of carrying something extraordinary that the world can't see yet—because you haven't had the mirror to see it first.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S8: ABOUT ALEXANDER — Expanded trust anchor
             ═══════════════════════════════════════════════ */}
         <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
           {/* Photo centered on top edge */}
@@ -377,18 +486,24 @@ const IgniteSession = () => {
             className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
           />
           {/* Glass box pulled up under the photo */}
-          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center">
-            <p className="text-sm text-white/70 leading-relaxed">
-              &nbsp;
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center space-y-3">
+            <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              I spent years in the loop myself. Building startups that didn't stick. Consulting. Coaching friends for free. Circling the same question everyone in this situation circles:
             </p>
-            <p className="text-sm text-white/70 leading-relaxed">
-              I've spent years helping founders articulate what makes them irreplaceable—while struggling to name my own.
+            <p className="text-sm text-white/80 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              "What is mine to build?"
             </p>
-            <p className="text-sm text-white/70 leading-relaxed mt-3">
-              What I do best is simple: I see what people can't see in themselves—and give it back to them clearly.
+            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              The answer was embarrassingly close the whole time. I was already doing it—in every conversation, every session, every "just helping out" moment.
             </p>
-            <p className="text-sm text-white/70 leading-relaxed mt-3">
-              Now I do this full-time.
+            <p className="text-sm text-white/70 leading-relaxed mt-1">
+              What I do now is simple: I sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves.
+            </p>
+            <p className="text-sm text-white/55 leading-relaxed">
+              Then AI compiles their entire business on one page before the session ends.
+            </p>
+            <p className="text-xs text-white/40 leading-relaxed mt-2">
+              Hundreds of transformative sessions facilitated. The system is infused with Y&nbsp;Combinator, Silicon Valley, MIT, and New Earth methodologies. AI workflows at every step.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
@@ -397,7 +512,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S6: TESTIMONIALS — glass cards with before-context
+            S9: TESTIMONIALS — glass cards with before-context
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
           <p className="text-sm text-white/60 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
@@ -410,7 +525,7 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: PRICING + GUARANTEE — strong glass panel
+            S10: PRICING + GUARANTEE — strong glass panel
             ═══════════════════════════════════════════════ */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Pricing">
           <div>
@@ -421,7 +536,7 @@ const IgniteSession = () => {
             <p className="text-xs text-white/50 mt-1">Limited sessions per week. First come, first serve.</p>
           </div>
 
-          <PrimaryCTA id="book-session-btn" showPrice={false} />
+          <PrimaryCTA id="book-session-btn" label="Book Your Ignition Session" showPrice={false} />
 
           {/* Guarantee */}
           <div className="px-5 py-2 max-w-md mx-auto">
@@ -450,22 +565,44 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S8: FAQ — glass accordions
+            S10.5: THE BUILD — What happens after
+            ═══════════════════════════════════════════════ */}
+        <section className="liquid-glass rounded-3xl p-6 md:p-8 text-center space-y-3" id="the-build" aria-label="What comes next">
+          <p className="text-xs text-white/40 uppercase tracking-widest">If this clicks, we don't stop at clarity</p>
+          <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Build</h2>
+          <p className="text-sm text-white/60 leading-relaxed max-w-sm mx-auto">
+            6 weeks. From named genius → real business. From idea → first paying client. From clarity → execution.
+          </p>
+          <p className="text-xs text-white/70 font-medium">
+            Outcome: Your first revenue—from what you actually do best.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S11: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
           <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
               q: "What if I don't know my genius yet?",
-              a: "Perfect. That's exactly who this is for. You don't prepare — you arrive. The questions do the work."
+              a: "You do. You just can't see it from inside. That's literally why this works."
             },
             {
               q: "What if I already have a business?",
-              a: "Even better. Most businesses are built around a market gap, not the founder's uniqueness. I check if yours is aligned with who you are. If it is, we sharpen it. If it isn't, you'll finally see why it's felt like a grind."
+              a: "Then we sharpen it until it actually fits YOU—not a template someone else made."
             },
             {
-              q: "How is this different from coaching?",
-              a: "Coaching explores. This names and structures. You walk out with a business on a page, not a pep talk."
+              q: "What if I've tried other things—coaching, courses, frameworks—and they didn't work?",
+              a: "They probably served one part of you. This is for people who need a container that holds ALL of them."
+            },
+            {
+              q: "Is this coaching?",
+              a: "No. This is a working session that produces output. You leave with a document, not a feeling."
+            },
+            {
+              q: "What if this doesn't work for me?",
+              a: "Then you don't pay."
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -505,11 +642,15 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: BOTTOM CTA — above blueprints
+            S12: BOTTOM CTA — above blueprints
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
-          <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
-            If you've been circling this for months…<br />this is where it clicks.
+          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If you've been carrying this unnamed thing in silence—
+            <br />wondering why it's so hard to say, why nothing fully fits, why you keep circling—
+          </p>
+          <p className="text-sm text-white/70 font-medium">
+            This is where it clicks.
           </p>
           <PrimaryCTA id="bottom-cta-btn" />
           <div className="flex flex-col items-center gap-2">
@@ -518,7 +659,7 @@ const IgniteSession = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════
-            S10: OPEN BLUEPRINTS — glass video cards
+            S13: OPEN BLUEPRINTS — glass video cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4 pt-6" id="blueprints-section" aria-label="Free methodology blueprints">
           <div className="text-center space-y-1">
@@ -558,9 +699,12 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S11: FINAL CTA — very end of page
+            S14: FOOTER BRIDGE + FINAL CTA
             ═══════════════════════════════════════════════ */}
-        <div className="text-center space-y-3" id="final-cta">
+        <div className="text-center space-y-4" id="final-cta">
+          <p className="text-xs text-white/35 max-w-sm mx-auto leading-relaxed">
+            This page is the second mirror. If you arrived here from a message that resonated—trust that signal.
+          </p>
           <PrimaryCTA id="final-cta-btn" />
           <div className="flex flex-col items-center gap-2">
             <AlreadyPaidLink />
