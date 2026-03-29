@@ -285,35 +285,6 @@ const SergeyIgnition = () => {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S7: CASE SNAPSHOT — social proof
-            ═══════════════════════════════════════════════ */}
-        <section className="space-y-4" id="case-snapshot" aria-label="Case study">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Case Snapshot</h2>
-          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
-            <p className="text-sm text-white/70 leading-relaxed">
-              A PM I worked with was managing 9 people—and still drowning in execution.
-            </p>
-            <p className="text-sm text-white/80 leading-relaxed font-medium">
-              Within 2 weeks:
-            </p>
-            <div className="space-y-2 pl-1">
-              {[
-                "His team delivered what used to take 6",
-                "Without adding anyone",
-                "Without working more",
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <Check className="w-3 h-3 text-white/60 flex-shrink-0" />
-                  <p className="text-xs text-white/70">{item}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-white/50 leading-relaxed italic mt-2">
-              The shift wasn't effort. It was structure + leverage.
-            </p>
-          </div>
-        </section>
 
         {/* ═══════════════════════════════════════════════
             S8: THE SPRINT — next step if it lands
