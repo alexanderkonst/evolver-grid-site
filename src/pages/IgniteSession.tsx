@@ -220,10 +220,8 @@ const IgniteSession = () => {
           />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Your best work?{" "}
-            <br />
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              You've been giving it away for free.
+              You've been giving your best work away for free.
             </span>
           </h1>
 
