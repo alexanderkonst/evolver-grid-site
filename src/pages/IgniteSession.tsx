@@ -189,7 +189,7 @@ const IgniteSession = () => {
   const testimonials = useTestimonials();
 
   useEffect(() => {
-    document.title = "Your Best Work? You've Been Giving It Away for Free. — Ignition Session";
+    document.title = "You've Been Giving Your Best Work Away for Free — Ignition Session";
     return () => { document.title = "Evolver"; };
   }, []);
 
