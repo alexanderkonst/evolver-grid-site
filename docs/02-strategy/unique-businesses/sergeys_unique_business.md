@@ -54,7 +54,7 @@
 | 10 | **Worlds (Миры)** | 11 профессиональных миров для синтеза: AI, разработка, HR, консалтинг, руководители, продуктивность, бизнес-культура, стартапы, продукт/UX, личное развитие, осознанность. Используется как founder exercise для co-founders |
 | 11 | **BHAG** | 1 миллион осознаний (моментов фазового перехода) × $100 = $100M. North Star Metric = counted realization moments (как nights в Airbnb, rides в Uber) |
 | 12 | **Product Design Map** | **ГДЕ:** 11 областей прорывов. **ЧТО:** 10 функций. **КАК:** 3 оси (глубина продуктизации A1→A6, масштаб B1→B6, монетизация C1→C6). Текущая: A1×B1×C1. Цель: A6×B3×C3 |
-| 13 | **Product Kernel (Мультиварка)** | 3 кнопки: 🟢СРЕДА (Gift Session, free, A1B1C1) → 🔵СУПЕРСИЛА (Sprint Ph.1, $5-15K, A1-2×B1×C2) → 🔴КОМАНДА (Sprint Ph.2→Advisory, $2-5K/мес, A1-2×B4×C4). Sub-Result 1 = ближайший к self-serve. Acquisition test: Anthropic, Microsoft, LinkedIn, Notion |
+| 13 | **Product Kernel (Мультиварка)** | **Ядро:** 🟢СРЕДА (Gift Session, free, A1B1C1) → 🔵СУПЕРСИЛА модули 1-N (спираль, $5-15K, A1-2×B1×C2). Каждый модуль = фазовый переход для ОДНОГО человека. **Бонус v2.0+:** 🔴КОМАНДА (раскатка, Advisory, $2-5K/мес, A1-2×B4×C4). Sub-Result 1 = ближайший к self-serve. Acquisition test: Anthropic, Microsoft, LinkedIn, Notion |
 
 ---
 
