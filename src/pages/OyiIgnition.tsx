@@ -292,7 +292,7 @@ const OyiIgnition = () => {
               You don't need another framework.
             </p>
             <p className="text-xs text-white/50 leading-relaxed">
-              You need to see the truth you've been avoiding.
+              You need to see the truth everyone's been afraid to tell you.
             </p>
           </div>
         </section>
@@ -510,16 +510,7 @@ const OyiIgnition = () => {
           ))}
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S13: FOOTER BRIDGE
-            ═══════════════════════════════════════════════ */}
-        <div className="text-center space-y-3" id="bottom-cta">
-          <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto">
-            <p className="text-xs text-white/50 leading-relaxed">
-              If your gift is clear—but execution is still stuck—<br />I'll show you who to talk to next.
-            </p>
-          </div>
-        </div>
+
 
         {/* Bottom spacing */}
         <div className="h-8" />

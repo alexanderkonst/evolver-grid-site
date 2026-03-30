@@ -5,7 +5,7 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 2.4  
+**Version:** 3.2  
 **Created:** February 2026  
 **Purpose:** The master playbook for AI-assisted genius-based venture building
 
@@ -3306,6 +3306,134 @@ Golden DM  →  Landing page  →  Video  →  Session  →  The Build
 
 ---
 
+## Tactic 8: The Godfather Sales Funnel
+
+> *v1.0 · March 30, 2026 — Codified from holonic roast of Alexander's and Oyi's pages. Oyi's live diagnosis: "That is not a landing page. You have created a sales funnel — because a funnel directs people and gives them action to take."*
+
+**What it is:** A 12-section conversion page that IS the funnel. Not a landing page with a button — a psychoactive initiation sequence that guides the visitor from recognition → trust → clarity → booking in a single scroll. Each section does ONE job. Together they form a complete sales funnel.
+
+**What makes it a funnel, not a landing page:**
+
+| Landing page | Sales funnel |
+|---|---|
+| Describes what you offer | Guides the visitor through a transformation arc |
+| One CTA at the end | Multiple moments of recognition (each section earns the next scroll) |
+| Information delivery | Psychoactive: the page itself begins the work |
+| "Here's what I do" → "Book now" | Recognition → Trust → Proof → Decision → Action |
+
+### The 12-Section Architecture
+
+> *The architecture is universal. The CONTENT is unique to each founder.*
+
+```
+1. HERO            → One headline from myth at 9.9+ precision. One CTA.
+                      Job: instant recognition + "this is about me"
+2. QUALIFIER       → Self-talk pills (5-7 inner monologue statements)
+                      Job: self-selection. "Are these MY words?"
+3. ORIGIN HIT      → Compressed 3-sentence founder story
+                      Job: trust through raw testimony, not credentials
+4. SESSION STEPS   → Read → Mirror → Prescription (or founder's equivalent)
+                      Job: de-risk. "Here's exactly what happens"
+5. DELIVERABLES    → What they walk out with (concrete, named)
+                      Job: tangibility. "This is what I'm paying for"
+6. THREE SHIFTS    → Point A → Point B (from Pain to Promise)
+                      Job: transformation made visible
+7. REALITY CHECK   → One gut-punch line
+                      Job: break the scroll pattern, re-engage attention
+8. PROOF           → 3+ real testimonials (named, expandable)
+                      Job: social proof. "People like me have done this"
+9. PRICING         → Value ladder exposed ($X → $Y → $Z/mo)
+                      Job: decision clarity. No hidden costs
+10. ABOUT          → Full founder origin story (deep version)
+                      Job: deep trust anchor for people who need more
+11. FINAL CTA      → "If this made you pause" + booking + clarity call option
+                      Job: convert the ready AND nurture the almost-ready
+12. FAQ            → Glass accordions with substantive answers
+                      Job: handle remaining objections without sales pressure
+```
+
+### The Manifester vs. Generator Principle
+
+> *Discovered March 30, 2026 — Holonic roast of Oyi's page revealed that the SAME architecture must carry DIFFERENT energy based on the founder's Human Design type.*
+
+**The page is NOT one-size-fits-all.** The architecture is universal. The ENERGY is type-specific:
+
+| | Manifester page | Generator page |
+|---|---|---|
+| **Is this the first touchpoint?** | Yes — the page IS the first contact | No — people arrive warm from podcast/conversation |
+| **Hero energy** | Punchy, benefit-driven, initiating | Myth-level, evocative, confirming |
+| **Warm-arrival line** | Not needed (they arrive cold) | Essential: "You felt something that brought you here. Good." |
+| **Story placement** | About section (80% depth) | Origin HIT at 20% depth + full About at 80% |
+| **Proof density** | 6+ testimonials (cold traffic needs more proof) | 3 testimonials (warm traffic needs confirmation, not convincing) |
+| **Overall energy** | Initiates and sells | Confirms and invites |
+| **CTA language** | "Book your session" (directive) | "See My Map" (invitation) |
+| **Close style** | "Want to build it together?" | "There's more, when you're ready" |
+
+**Generator-specific insight:** A Generator's funnel should feel like CONTINUATION, not introduction. The people who arrive have already heard the medicine (podcast, cipher, storytelling). The page confirms what they already know. The energy is: *"You already felt it. Here's what's next."*
+
+**Protocol-level application:** When building a founder's funnel, check their HD type FIRST. The architecture stays the same. The energy shifts.
+
+### The Holonic Roast Protocol
+
+> *The 26-perspective analysis used to evaluate and uplevel any funnel.*
+
+**When to use:** After v1.0 of any funnel is built. The roast catches what mechanical review misses — felt truth, tribal resonance, and system fit.
+
+**The process:**
+
+1. **Build v1.0** from artifacts (myth, tribe, pain, promise, value ladder)
+2. **Run the holonic roast** — 26 perspectives across 4 quadrants × 3 depths + center + recursion
+3. **Score all 4 quadrants** independently:
+   - **UL (I):** Does the founder recognize their soul in this? Would they read it aloud and sound like themselves?
+   - **UR (It):** Is the structure sound? CTAs clear? Proof sufficient? FAQ substantive?
+   - **LL (We):** Does the tribe see themselves? Are the qualifiers tribal or generic?
+   - **LR (Its):** Does this fit the system? Value ladder correct? Distribution model honored?
+4. **Identify the weakest quadrant** — that's where the upgrade lives
+5. **Apply corrections ranked by impact** — fix the highest-impact gap first
+6. **Live-score with the founder** — precision scoring per section, in real-time
+
+**AI blind spot warning:** AI consistently over-indexes on UR (mechanics) and LR (systems) while under-indexing on UL (felt truth) and LL (tribal resonance). The holonic roast forces equal attention to all four.
+
+**Key diagnostic:** Have the founder read the page aloud. If it doesn't sound like them talking, the copy needs rewriting in their voice — not copywriter voice. The medicine IS the voice.
+
+### Headline Source Principle
+
+> *The headline comes from the myth, not from copywriting.*
+
+| Source | Result |
+|--------|--------|
+| Copywriting formula | Sharp but could belong to anyone |
+| Myth at 9.9+ precision | Instantly tribal, can't belong to anyone else |
+
+**Alexander's:** *"You've been giving your best work away for free."* → from Pain v2.0
+**Oyi's:** *"The kid who created without permission. Where did they go?"* → from Myth v2.1 at 9.97
+
+If the headline could appear on another coach's page, it's not from the myth. Rewrite from artifacts.
+
+### Qualifier Source Principle
+
+> *Qualifiers come from the tribe artifact, not from generic coaching language.*
+
+**Generic (fails):** "You feel stuck." "You're ready for change." "You want more purpose."
+**Tribal (lands):** "You've survived things most people can't imagine." "The people who should have protected you were the first to shut you down."
+
+The tribal qualifiers are the ones unique to THIS founder's audience. They come from Pain v2.0 and Tribe v2.1 — the specific inner monologue of the people this founder serves. Generic qualifiers signal "I don't really know who you are."
+
+### Proof Density Principle
+
+> *Anonymous proof is anti-proof. Named proof is medicine.*
+
+| Proof type | Trust level |
+|-----------|------------|
+| No proof | 0 — "why should I believe you?" |
+| Anonymous "micro proof" | 3 — feels fabricated |
+| Named testimonials with full quotes | 8 — credible |
+| Named testimonials from the founder's OWN journey | 10 — psychoactive (the proof IS the medicine) |
+
+**Every node MUST have real testimonials before the funnel goes live.** If there are only 1-2, use them with power — long quotes, specific moments, before/after. Three anonymous reviews = worse than one named story.
+
+---
+
 ## Why Tactics Are the Key to Node Licensing
 
 ```
@@ -3341,10 +3469,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v3.1 — March 27, 2026*
+*Unique Business Playbook v3.2 — March 30, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v3.2:** Tactic 8: The Godfather Sales Funnel added — 12-section psychoactive conversion architecture (not a landing page — a funnel). Manifester vs. Generator page energy principle discovered (same architecture, different energy based on HD type). Holonic Roast Protocol codified for evaluating any funnel across all 4 quadrants. Headline Source, Qualifier Source, and Proof Density principles added. Oyi's live insight: "That is not a landing page. You have created a sales funnel."
 - **v3.1:** Sandra Session #4 principles added to Part 0 foundation. Resonance Permission Principle — explicit permission NOT to buy on every landing page (Sandra's 2010 Koala School insight). Divine Timing Opt-In — "not now but later" option respecting divine timing. Purity Check / Fear-Free Copy Principle — AI quality gate scanning for fear/anxiety interference in copy; doubt = frequency interference. Golden DM Handwriting Principle — the first contact message must be written by the founder with zero AI, as the crystallization process IS the value.
 - **v3.0:** Godfather Offer Probe workflow added (7-question offer stress test between canvas and go-to-market). Tactic 6: Psychoactive Information Principle added — the principle that every touchpoint is part of ONE continuous initiation field, and marketing IS the product. Tactic 7: Golden DM First Contact Protocol added — warm outreach as testimony, sent to tribe members with consent-first architecture. $1,111 Flagship pricing anchor surfaced. Transformation Snapshot artifact type established.
 - **v2.9:** Oyi Session #5 methodology upgrades. Acupressure Facilitation Principle added (one hit + silence). Same Architecture, Different Medicine principle added — replicability proof across Alexander's Ignition and Oyi's Mirror. Artifacts→Product Design corollary added to Crystallization Principle.
