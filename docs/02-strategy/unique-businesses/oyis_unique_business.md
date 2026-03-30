@@ -24,6 +24,7 @@
 | Godfather Offer | **v1.0** (7 questions answered — Lotus Medicine Man flagship) | — | ✅ Derived |
 | Lead Magnet | **v0.1** (pain card as DM / podcast) | — | 🔄 Ready to deploy |
 | River Step | **Candice DM sent** (March 17, live) | — | ✅ Sent |
+| Landing Page | **v2.0** (holonic roast applied, 13-section architecture) | — | ✅ Live at /oyi |
 
 ## Unique Business Canvas
 
@@ -1242,5 +1243,62 @@ Oyi sits with one person. He tells them their story — the story of how they ga
 
 ---
 
-*Oyi's Unique Business v3.0 — March 24, 2026*
-*Five sessions complete. All core artifacts at 9.9+. Origin document fully synthesized (teacher lineage, HD profile, assets, philosophy). A→B journey designed (5 stages across 4 containers). Value ladder v1.0 crystallized. First session (The Mirror Session) blueprinted. Generator-native distribution confirmed. Next: product crystallization + distribution.*
+### Landing Page Architecture v2.0 (March 30, 2026)
+
+> *Emerged from a 26-perspective holonic roast of v1. Diagnosis: mechanically solid (UR: 8/10) but Oyi is at the bottom of his own page (UL: 6/10, LL: 6.5/10). The page was "Alexander's template with Oyi's content pasted in" — correct architecture, wrong energy for a Generator.*
+
+**Headline evolution:**
+
+| Version | Headline | Issue |
+|---------|----------|-------|
+| v1.0 | "You Didn't Lose Yourself. You Traded Yourself." | Sharp copywriting but blames the victim. "Traded" implies choice — the pain doc at 9.9 says it was survival, not a trade |
+| **v2.0** | **"The kid who created without permission. Where did they go?"** | **From the myth at 9.97 precision. Lands in recognition, not accusation. Evokes the inner child without naming it** |
+
+**Section architecture (13 sections, top to bottom):**
+
+```
+1. HERO            → Myth-level headline + warm-arrival line + sub-copy + CTA
+2. QUALIFIER       → 7 self-talk pills (crisis-forged + family-suppressed + tribal differentiators)
+3. ORIGIN HIT      → 3-sentence compressed origin story (NEW — moved 60% higher)
+4. SESSION STEPS   → Read → Mirror → Prescription (3 glass step cards)
+5. DELIVERABLES    → Sovereignty Map: 5 concrete outputs
+6. THREE SHIFTS    → Control→Sovereignty, Exhaustion→Aliveness, Hiding→Living
+7. REALITY CHECK   → "You don't need another framework"
+8. PROOF           → 3 real testimonials with expandable full quotes (replaced anonymous micro proof)
+9. PRICING         → $555 + $5K + $500/mo (value ladder exposed)
+10. ABOUT          → Full origin story (deep version with ten teachers + 475 episodes)
+11. FINAL CTA      → "If this made you pause" + See My Map + clarity call
+12. FAQ            → 5 glass accordions (expanded answers — not one-liners)
+13. FOOTER BRIDGE  → Venture Studio tease
+```
+
+**5 structural corrections from holonic roast:**
+
+| # | Correction | What changed |
+|---|-----------|-------------|
+| 1 | **Real testimonials** | Replaced anonymous "micro proof" with 3 named testimonials (expandable) from session feedback |
+| 2 | **Headline from myth** | "You Traded Yourself" (blame) → "The kid who created without permission" (recognition from myth v2.1 peak line at 9.97) |
+| 3 | **Origin story moved higher** | 3-sentence compressed origin hit placed at ~20% scroll depth (before session mechanics). Full About stays at bottom |
+| 4 | **Tribal qualifiers upgraded** | Added crisis-forged ("You've survived things..."), family-suppressed ("The people who should have protected you..."), inner child ("There's a version of you that used to create without asking—you miss them") |
+| 5 | **Warm-arrival energy** | Added "You felt something that brought you here. Good." — Generator distribution: people arrive from podcast/cipher, page confirms rather than sells from scratch |
+
+**Key design decision:** A Generator's landing page is NOT the first touchpoint — it's the LAST touchpoint before booking. People arrive from hearing the medicine (podcast, cipher, storytelling). The page should CONFIRM what they already feel, not sell from scratch. The energy is: "You already know. Here's what's next."
+
+**Manifester vs. Generator page architecture:**
+
+| | Alexander's page | Oyi's page |
+|---|---|---|
+| **First contact?** | Yes — page IS the first sell | No — people arrive warm from podcast/conversation |
+| **Hero energy** | Punchy CTA, benefit-driven | Myth-level recognition, evocative |
+| **Story placement** | About section (80% depth) | Origin HIT at 20% depth + full About at 80% |
+| **Proof density** | 6 testimonials | 3 testimonials (expandable) |
+| **Overall energy** | Initiates and sells | Confirms and invites |
+
+**Technical stack:** React + HLS video background (Mux) + liquid-glass CSS + Poppins/Source Serif 4 fonts.
+
+**Live at:** [/oyi route](https://www.aleksandrkonstantinov.com/oyi) (OyiIgnition.tsx)
+
+---
+
+*Oyi's Unique Business v3.1 — March 30, 2026*
+*Landing Page v2.0 documented. 26-perspective holonic roast applied. 5 structural corrections implemented. Headline evolution tracked. 13-section architecture codified. Generator-native page energy established.*

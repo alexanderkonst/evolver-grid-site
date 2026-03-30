@@ -64,6 +64,7 @@ const OyiIgnition = () => {
   const location = useLocation();
   const inShell = location.pathname.startsWith("/game/");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
 
   useEffect(() => {
     document.title = "Sovereignty Restored — Oyi Sun";
@@ -85,16 +86,18 @@ const OyiIgnition = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — Godfather Recognition Trigger
+            S1: HERO — Myth-level headline from artifacts at 9.9
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="oyi-hero">
+          {/* Warm-arrival line — Generator distribution: they arrive from podcast / cipher / conversation */}
+          <p className="text-xs text-white/40 italic">You felt something that brought you here. Good.</p>
           <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Oyi Sun · for source path builders</p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            You Didn't Lose Yourself.
+            The kid who created without permission.
             <br />
-            <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              You Traded Yourself.
+            <span className="text-white/70 text-3xl md:text-4xl lg:text-5xl" style={{ textShadow: "0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1)" }}>
+              Where did they go?
             </span>
           </h1>
 
@@ -119,9 +122,6 @@ const OyiIgnition = () => {
 
           <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto text-center space-y-3">
             <p className="text-sm text-white/90 leading-relaxed">
-              You didn't lose it. You gave it away—piece by piece.
-            </p>
-            <p className="text-xs text-white/60 leading-relaxed">
               In 60 minutes, you'll see exactly where that happened—and what to do in the next 5 days to take it back.
             </p>
             <p className="text-xs text-white/45 leading-relaxed">
@@ -136,17 +136,18 @@ const OyiIgnition = () => {
         </header>
 
         {/* ═══════════════════════════════════════════════
-            S2: QUALIFIER — Self-selection pills
+            S2: QUALIFIER — Self-selection pills (upgraded with tribal differentiators)
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="qualifier" aria-label="Who this is for">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You feel like you're not fully yourself anymore",
-              "You've done the work—but something still feels off",
-              "You're powerful… but not in control of your own life",
+              "You've survived things most people can't imagine",
+              "The people who should have protected you were the first to shut you down",
+              "There's a version of you that used to create without asking—you miss them",
               "You give your best work away for free—and don't know why",
               "You feel both spiritual AND practical—and don't fit anywhere",
+              "You've tried coaching, courses, frameworks—none of them held all of you",
               "You hear 'Live Free'… and something in you wakes up",
             ].map((item, i) => (
               <span
@@ -160,7 +161,25 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3: WHAT HAPPENS — Read + Mirror + Reset
+            S3: ORIGIN HIT — compressed trust anchor (moved higher)
+            The medicine IS the story. 3-sentence hit before mechanics.
+            ═══════════════════════════════════════════════ */}
+        <section className="text-center" id="origin-hit" aria-label="Who Oyi is">
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-3 max-w-lg mx-auto">
+            <p className="text-sm text-white/85 leading-relaxed font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              I grew up with guns in my face, car crashes, and domestic violence. Survival forced me to read people before they spoke.
+            </p>
+            <p className="text-sm text-white/70 leading-relaxed">
+              24 years later, that's the gift — and I use it to show you exactly where you gave your power away.
+            </p>
+            <p className="text-xs text-white/40 mt-2">
+              — Oyi Sun · Lotus Medicine Man
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            S4: WHAT HAPPENS — Read + Mirror + Reset
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4" id="what-happens" aria-label="What happens in the session">
           <div className="text-center space-y-2">
@@ -204,7 +223,7 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S4: DELIVERABLES — Your Sovereignty Map
+            S5: DELIVERABLES — Your Sovereignty Map
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
@@ -230,7 +249,7 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: THE THREE SHIFTS — A → B
+            S6: THE THREE SHIFTS — A → B
             ═══════════════════════════════════════════════ */}
         <section id="transformation" aria-label="The three shifts" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
@@ -265,7 +284,7 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S6: REALITY CHECK
+            S7: REALITY CHECK
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-3" id="reality-check" aria-label="Reality check">
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-3">
@@ -279,28 +298,60 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: MICRO PROOF — social proof
+            S8: PROOF — Real testimonials (replacing anonymous micro proof)
             ═══════════════════════════════════════════════ */}
-        <section className="space-y-4" id="micro-proof" aria-label="Testimonial">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Micro Proof</h2>
-          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
-            <p className="text-sm text-white/70 leading-relaxed">
-              Someone once sat down, gave me their birthday, and said:
-            </p>
-            <p className="text-base text-white/90 leading-relaxed font-medium italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              &ldquo;I've never felt this seen in my life.&rdquo;
-            </p>
-            <p className="text-sm text-white/70 leading-relaxed">
-              Then they told me everything they'd been carrying—alone.
-            </p>
-            <p className="text-xs text-white/50 leading-relaxed italic mt-2">
-              That's what happens when the pattern gets named.
-            </p>
+        <section className="space-y-4" id="proof-section" aria-label="Testimonials">
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What They Said After</h2>
+          <div className="space-y-3">
+            {[
+              {
+                quote: "Nobody can hold space for me. They're all afraid. You're very courageous, crazy too.",
+                full: "I'm moving and feeling a lot of confidence and clarity on the decisions I have made and actions I have initiated since our call today. Thank you. I owe you big time. I've never had a session like that before. Thank you for helping me face my fears.",
+                name: "Session client",
+                title: "Founder & medicine carrier",
+              },
+              {
+                quote: "I've never felt this seen in my life.",
+                full: "He told me my own story — things I hadn't told anyone. I sat there with my mouth open. Then everything I'd been carrying alone just came out. That's what happens when someone sees you for real.",
+                name: "Mirror Session participant",
+                title: "Source Path Builder",
+              },
+              {
+                quote: "He's far superior. He ain't just good — he's drilling down like nobody else does.",
+                full: "I was in another class with a well-known teacher. Good, but not like this. Oyi drills down to places nobody else reaches. The precision is surgical. You can't hide from it — and you don't want to.",
+                name: "Long-time student",
+                title: "Practitioner",
+              },
+            ].map((t, i) => (
+              <div key={i} className="liquid-glass rounded-2xl p-5 space-y-3">
+                <p className="text-base text-white/90 leading-relaxed font-medium italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <button
+                  onClick={() => setExpandedTestimonial(expandedTestimonial === i ? null : i)}
+                  className="text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer underline underline-offset-2"
+                >
+                  {expandedTestimonial === i ? "Less" : "Full story"}
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${expandedTestimonial === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                  <p className="text-xs text-white/55 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                    {t.full}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs">🪷</div>
+                  <div>
+                    <p className="text-xs text-white/70 font-medium">{t.name}</p>
+                    <p className="text-[10px] text-white/40">{t.title}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S8: THE PATH — next step if it lands
+            S9: THE PATH — next step if it lands
             ═══════════════════════════════════════════════ */}
         <section id="the-path" aria-label="The path forward" className="space-y-4">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Next Step (If This Lands)</h2>
@@ -347,7 +398,7 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: ABOUT OYI — trust anchor
+            S10: ABOUT OYI — full trust anchor (deep version)
             ═══════════════════════════════════════════════ */}
         <section id="about-section" aria-label="About Oyi" className="relative pt-8">
           <div className="w-20 h-20 rounded-full bg-white/5 border-2 border-white/10 mx-auto relative z-10 flex items-center justify-center text-2xl">
@@ -358,31 +409,28 @@ const OyiIgnition = () => {
               I didn't learn this from a book. I lived it.
             </p>
             <p className="text-xs text-white/60 leading-relaxed">
-              Guns in my face. Car crashes. Domestic violence. Kidnapped by my own parents.
+              Guns in my face. Car crashes. Domestic violence. Kidnapped by my own parents. I had to grow up at twelve — making grown man decisions with no one to protect me.
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-2">
-              Survival forced me to read people before they spoke.
-            </p>
-            <p className="text-sm text-white/70 leading-relaxed">
-              That became the gift.
+              Survival forced me to read people before they spoke. That became the gift.
             </p>
             <p className="text-xs text-white/55 leading-relaxed mt-2">
-              Then came 24 years of refinement: astrology, human design, martial arts, storytelling, lineage teachings. Ten teachers. One method.
+              Then came 24 years of refinement: ten teachers, each one planting a seed — astrology, human design, martial arts, storytelling, mystery school initiation. Together, they are the method. And only I know the recipe.
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              Now I help people find the power they never actually lost—just buried.
+              Now I help people find the power they never actually lost—just buried under survival, growing up, and other people's rules.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Oyi Sun</em>
             </p>
             <p className="text-xs text-white/35 mt-1">
-              Lotus Medicine Man · 24 Years Reading People · Live Free
+              Lotus Medicine Man · 475+ Episodes · 24 Years Reading People · Live Free
             </p>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S10: FINAL CTA
+            S11: FINAL CTA
             ═══════════════════════════════════════════════ */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Next step">
           <div>
@@ -413,26 +461,30 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S11: FAQ — glass accordions (tightened)
+            S12: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
           <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
           {[
             {
               q: "Do I need to believe in astrology?",
-              a: "No. You just need to be honest."
+              a: "No. You just need to be honest. The patterns speak for themselves — 24 years of readings, thousands of people. It works whether you believe it or not."
             },
             {
               q: "How can you know so much from a birthday?",
-              a: "Patterns repeat. I've been reading them for 24 years."
+              a: "Patterns repeat. Your birth date maps to specific patterns in astrology and human design that reveal how you're wired to make decisions, what your purpose is, and where you've been giving your power away. I've been reading these patterns for 24 years."
             },
             {
               q: "What is a Sovereignty Map?",
-              a: "A clear view of your patterns, your power, and your next move."
+              a: "A precise diagnosis of where you gave away your power, what your actual purpose is, how you're designed to make decisions, and the specific shadow running your life — plus one prescription to start restoring what was taken."
             },
             {
               q: "What if I've already done a lot of inner work?",
-              a: "Then you'll recognize this faster."
+              a: "Then you'll recognize this faster. This isn't another layer of healing. It's a mirror — you see what you already know but haven't been able to name or act on. The people who've done the most work get the deepest hit."
+            },
+            {
+              q: "What happens after the Mirror Session?",
+              a: "You receive a 5-day prescription — one action, aligned to your design. When you complete it and report back, that's the natural entry into The Build: 6 weeks of sovereignty restoration, inner child reinstatement, and building income from your actual gift."
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -448,7 +500,7 @@ const OyiIgnition = () => {
               <div
                 id={`faq-answer-${i}`}
                 role="region"
-                className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+                className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
               >
                 <div className="px-4 pb-4">
                   <p className="text-xs text-white/50 leading-relaxed">{faq.a}</p>
@@ -459,7 +511,7 @@ const OyiIgnition = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S12: FOOTER BRIDGE
+            S13: FOOTER BRIDGE
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
           <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto">
