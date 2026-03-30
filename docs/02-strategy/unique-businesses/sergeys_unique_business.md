@@ -1,7 +1,7 @@
 # Sergey's Unique Business
 
 > *© 2026 · Produced during Ignition Session with Alexander Konstantinov*
-> *March 10-23, 2026 · Sessions 1-4 + independent homework*
+> *March 10-30, 2026 · Sessions 1-5 + independent homework*
 > *Playbook: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)*
 
 > **This file is a living document.** Each artifact is versioned. Newest versions appear first.
@@ -19,13 +19,18 @@
 | Tribe | **v2.0** (B2B pivot: Executives, People Managers, PMs) | 🔥 9 | ✅ Landed (session #4) |
 | Pain | **v2.0** (5-layer slicer, B2B segments) | 🔥 9 | ✅ Landed (session #4) |
 | Promise | **v1.0** (pain inversion, B2C→B2B arc) | TBD | ✅ Written (session #4) |
-| Master Transformational Result | **v1.0** (Pull + AI = breakthrough, personal → team) | TBD | ✅ Derived |
-| Three Shifts | **v1.0** (Pull Activated → AI Superpower → Team Breakthrough) | TBD | ✅ Derived |
-| One-Session Result | **v1.0** (Gift Session: see YOUR pull + AI in 60 min) | TBD | ✅ Derived |
+| Master Transformational Result | **v2.0** (от самого дорогого исполнителя → к лидеру с AI-агентами, 2x) | 🔥 9 | ✅ Workflow pass (session #5) |
+| Three Shifts / Trinity Sub-Results | **v2.0** (СРЕДА → СУПЕРСИЛА → КОМАНДА — три фазовых перехода) | 🔥 9 | ✅ Workflow pass (session #5) |
+| One-Session Result | **v2.0** (Новая ОС + первый «О!» момент + силуэт пути) | 🔥 9 | ✅ Workflow pass (session #5) |
+| Product Kernel | **v1.0** (мультиварка: 3 кнопки × Value Ladder × 11 областей) | 🔥 9 | ✅ Written (session #5 workflow) |
 | Golden DM | **v1.0** (template — must be rewritten in Sergey's voice) | TBD | 🔄 Template ready |
 | Godfather Offer | **v1.0** (7 questions answered — Beauty Builder flagship) | TBD | ✅ Derived |
 | Lead Magnet | **v1.0** (pain card as content) | TBD | ✅ Written (session #4) |
 | Value Ladder | **v1.0** (3 containers: Gift Session → Sprint → Advisory) | TBD | ✅ Written (session #4) |
+| Worlds (Миры) | **v1.0** (11 professional domains for synthesis) | 🔥 9 | ✅ Written (session #5) |
+| BHAG / Vision | **v1.0** (1M realizations × $100 = $100M) | 💎 10 | ✅ Written (pre-session #5) |
+| Product Design Map | **v1.0** (11 areas × 10 functions × 3 axes) | 🔵 8 | 🔄 Navigation map (session #5) |
+| Gift Session Learnings | **v1.0** (3 sessions: Dima, Ruslan, Base Design) | 🔥 9 | ✅ Validated (week of March 24-30) |
 
 ## Unique Business Canvas
 
@@ -39,13 +44,17 @@
 | 3 | **Tribe** | Лидеры в tech: founders, executives, people managers, PMs/PjMs. Push трещит, pull жив. AI пока = помощник, но AI = суперсила. B2C→B2B одна арка: личный прорыв → прорыв команды |
 | 4 | **Pain** | Ритм ускоряется, давление нарастает. День на пожары вместо стратегии. Результат команды не тот. Push не спасает. Что-то надо менять |
 | 5 | **Promise** | **Просыпаешься с драйвом. Делаешь то, что зажигает, на высоком уровне с AI — и это двигает бизнес.** Push снят, pull + AI = прорыв. B2C→B2B: личный прорыв → командный прорыв |
-| 5b | **Master Result** | **You stop pushing harder at the wrong thing and start building from what lights you up — with AI as your superpower — and both you and your team deliver results that push alone could never produce.** |
-| 5c | **Three Shifts** | Pull Activated (fires→pull day) · AI as Superpower (helper→superhero) · Team Breakthrough (scattered→burning eyes, outstanding) |
-| 5d | **One-Session** | Gift Session: in 60 min see YOUR pull + AI breakthrough on YOUR situation. Walk out seeing the path from "most expensive executor" to breakthrough leader |
+| 5b | **Master Result v2.0** | **От самого дорогого исполнителя, который тушит пожары и жмёт push harder — к лидеру, у которого пачка AI-агентов делает рутину, а он и его команда фигачат то, от чего горят глаза. Результат 2x.** |
+| 5c | **Trinity Sub-Results** | 🟢 СРЕДА (60 мин, новая ОС, 1 осознание) → 🔵 СУПЕРСИЛА (2-4 нед, агенты на задачах, 3-5 осознаний) → 🔴 КОМАНДА (3-6 нед, раскатка, N×осознаний). Мультиварка: три кнопки, каждая = фазовый переход |
+| 5d | **Gift Session** | 60 мин: (1) Новая ОС установлена, (2) Первый «О!» момент на ТВОЕЙ задаче, (3) Видишь 11 зон где AI даёт x2-x10. Силуэт: туман, но пальпабельно. «Не вижу каждый шаг, но чувствую — это реально» |
 | 6 | **Lead Magnet** | Pain card as content: recognition trigger для tribe. Форматы: LinkedIn пост, warm DM, NotebookLM видео. Pain на 🔥9 = лид-магнит пишется сам |
 | 7 | **Value Ladder** | 0: Pain card (recognition) → 1: Gift Session (initiation) → 2: Sprint (building) → 3: Advisory (embodiment). One arc: B2C→B2B |
 | 8 | **Golden DM** | Template ready — must be rewritten 100% in Sergey's voice. Zero AI. Structure: shadow testimony + myth punchline + personal mirror + gift offer |
 | 9 | **Godfather Offer** | Genius: sees the FORM, builds beautiful, synthesizes across worlds. Pain: golden cage, quiet suffocation, «Я строил не то». Flagship: Sprint $5K-$15K. Entry: Gift Session free→$500-$1K. Cash target: $5K-$10K/mo |
+| 10 | **Worlds (Миры)** | 11 профессиональных миров для синтеза: AI, разработка, HR, консалтинг, руководители, продуктивность, бизнес-культура, стартапы, продукт/UX, личное развитие, осознанность. Используется как founder exercise для co-founders |
+| 11 | **BHAG** | 1 миллион осознаний (моментов фазового перехода) × $100 = $100M. North Star Metric = counted realization moments (как nights в Airbnb, rides в Uber) |
+| 12 | **Product Design Map** | **ГДЕ:** 11 областей прорывов. **ЧТО:** 10 функций. **КАК:** 3 оси (глубина продуктизации A1→A6, масштаб B1→B6, монетизация C1→C6). Текущая: A1×B1×C1. Цель: A6×B3×C3 |
+| 13 | **Product Kernel (Мультиварка)** | 3 кнопки: 🟢СРЕДА (Gift Session, free, A1B1C1) → 🔵СУПЕРСИЛА (Sprint Ph.1, $5-15K, A1-2×B1×C2) → 🔴КОМАНДА (Sprint Ph.2→Advisory, $2-5K/мес, A1-2×B4×C4). Sub-Result 1 = ближайший к self-serve. Acquisition test: Anthropic, Microsoft, LinkedIn, Notion |
 
 ---
 
@@ -972,7 +981,347 @@ Pain Card (recognition)
 
 ---
 
+## Product Kernel — v1.0 (Мультиварка)
+
+*March 30, 2026 — Result of running Sergey's product data through [Integrated Product Building Workflow](../../03-playbooks/integrated_product_building_workflow.md)*
+
+> **Inputs:** Pain v2.0 (🔥9) + Promise v1.0 + Gift Session Learnings v1.0 + Product Design Map v1.0 + 6_unique_product.md
+>
+> **Method:** Phase 1 Steps 1-2 of workflow: Master Result → Trinity Sub-Results → 1st Session Design
+
+### Master Result v2.0
+
+> **«От самого дорогого исполнителя, который тушит пожары и жмёт push harder — к лидеру, у которого пачка AI-агентов делает рутину, а он и его команда фигачат то, от чего горят глаза. Результат 2x.»**
+
+*Passed 9-point roast (3 cycles × 3 sub-cycles). Key upgrade from v1.0: replaced abstract «breakthrough leader» with concrete «пачка AI-агентов» + «горящие глаза» + measurable «2x».*
+
+### Trinity Sub-Results (три фазовых перехода)
+
+```
+ХАОС → [🟢 Среда] → [🔵 Суперсила] → [🔴 Команда] → ЗЕМЛЯ ОБЕТОВАННАЯ
+         60 мин         2-4 нед          3-6 нед
+         1 осознание    3-5 осознаний    N × осознаний
+         Gift Session   Sprint Ph.1      Sprint Ph.2 → Advisory
+```
+
+#### 🟢 Sub-Result 1: СРЕДА УСТАНОВЛЕНА («Новая ОС для AI»)
+
+| | |
+|---|---|
+| **A → B** | От ChatGPT/Perplexity → к Claude Code + VS Code. Первый агент работает |
+| **Felt win** | «Я установил новую ОС. Это не чат — это среда. И я уже вижу как это меняет всё» |
+| **Evidence** | Дима: RPG за вечер. Все gift sessions: установка среды = первый шаг |
+| **Areas** | Область 1 (Среда). Function 4 (Обучение) |
+| **NSM** | Осознание #1: «AI — это не чат, это операционная система» |
+| **Время** | 60-90 мин |
+| **Productization** | ✅ Repeatable prompts, ✅ Non-founder can deliver, ✅ Software can deliver |
+
+#### 🔵 Sub-Result 2: ПЕРВЫЕ ОСОЗНАНИЯ («Суперсила включена»)
+
+| | |
+|---|---|
+| **A → B** | От «круто, но куда бежать?» → к 3-5 конкретным осознаниям в СВОИХ задачах. Привычка формируется |
+| **Felt win** | «У меня уже работают агенты на МОИХ задачах. Экономлю часы. Не представляю как без этого» |
+| **Evidence** | Дима: 3 прорыва за 3 дня. Jake: pipeline за неделю. Jay: 10+ скиллов, ежедневные ритуалы |
+| **Areas** | Области 2-7 (коммуникации, знания, планирование, исследования, automation, подрядчики) |
+| **NSM** | Осознания #2-6: встречи, second brain, ритуалы, презентации, automation |
+| **Время** | 2-4 недели |
+| **Productization** | ✅ Repeatable prompts (частично), 🟡 Non-founder (нужен AI-уровень Jay), 🟡 Software (будущее) |
+
+#### 🔴 Sub-Result 3: КОМАНДА ЗАЖГЛАСЬ («Прорыв раскатан»)
+
+| | |
+|---|---|
+| **A → B** | От «мне бы для своих тоже так» → к команде с AI-агентами, early adopters видны, результат 2x |
+| **Felt win** | «Моя команда фигачит с AI. Вижу кто взлетел. Push не пришлось давить — сами захотели» |
+| **Evidence** | Base Design: Jake → хочет для BD-команды. B2C→B2B arc = двухступенчатая ракета |
+| **Areas** | Области 8-10 (контроль команды, работа с людьми, решения). B2B dashboard |
+| **NSM** | N × осознаний (каждый член команды × свои осознания) = мультипликатор |
+| **Время** | 3-6 недель → ongoing |
+| **Productization** | 🟡 Repeatable (зависит от команды), ❌ Non-founder (пока нет), 🟡 Software (далёкое будущее) |
+
+### Мультиварка: маппинг на Value Ladder
+
+| Sub-Result | Кнопка | Value Ladder | Pricing | Product axis |
+|-----------|--------|-------------|---------|-------------|
+| 🟢 СРЕДА | Первая, всегда | Gift Session (0→1) | Free → $500-$1K | A1 × B1 × C1 |
+| 🔵 СУПЕРСИЛА | Сразу после 🟢 | Sprint Ph.1 (1→2) | $5K-$15K | A1-A2 × B1 × C2 |
+| 🔴 КОМАНДА | Когда лидер сделал для себя | Sprint Ph.2 → Advisory (2→3) | $5K-$15K → $2-5K/мес | A1-A2 × B4 × C4 |
+
+### 1st Session Design (Gift Session — guaranteed)
+
+1. **Новая ОС установлена** — Claude Code работает, первый проект создан
+2. **Первый «О!» момент** — одна конкретная задача решена на уровне, который ChatGPT не может
+3. **Силуэт пути виден** — 11 зон, мультиварка, но без overwhelm. «Туманно, но пальпабельно»
+
+### Productization priority
+
+> [!IMPORTANT]
+> **Sergey's feedback (live review):** Sub-Result 3 (КОМАНДА) — это НЕ ядро. Это приятный бонус, раскатка на других, по сути другой продукт. **Ядро = Sub-Result 1 + Sub-Result 2, повторяющиеся спиралями для ОДНОГО человека.** Один фазовый переход → следующий → следующий. Каждый месяц новый огонь. Пока один человек не получит полный спектр спиралей — на команду не переходим.
+
+**Revised product structure:**
+
+```
+ЯДРО ПРОДУКТА (v1.0):
+🟢 СРЕДА (60 мин) → 🔵 СУПЕРСИЛА модуль 1 (2-4 нед)
+                    → 🔵 СУПЕРСИЛА модуль 2 (2-4 нед)
+                    → 🔵 СУПЕРСИЛА модуль 3 (2-4 нед)
+                    → ...
+                    → 🔵 СУПЕРСИЛА модуль N
+
+СПИРАЛЬ: каждый модуль = фазовый переход
+         в другой области (из 11)
+         для одного человека
+
+БОНУС (v2.0+):
+🔴 КОМАНДА = тот же продукт, раскатанный на сотрудников
+```
+
+**Ключевой сдвиг:** мультиварка — это не три кнопки последовательно. Это ОДНА кнопка (Среда), которая открывает СЕРИЮ кнопок (модули Суперсилы). Каждый модуль = фазовый переход = считается как одно осознание в NSM. Человек нажимает, получает, наслаждается, завтра ещё раз.
+
+### Meta-insight: старые артефакты × AI = космическая ценность
+
+> **Из сессии:** Темы, фреймворки, принципы, созданные за годы, не могли быть реализованы из-за сложности применения. Как Нобелевское открытие без технологии. Сейчас с AI порог входа резко понизился. 
+>
+> **Пример Ray Dalio:** Написал «Principles», предложил миру делать так же. Но какая уникальная особенность нужна, чтобы БЕЗ инструментария на бумаге всю жизнь структурировать и применять принципы? Один из миллиона. С AI — почти каждый сможет.
+>
+> **Пример Jay:** Sage собрал все артефакты за годы в одну мощнейшую систему. Знания, которые лежали в Google Docs, разговорах, картах — стали живой операционной системой.
+>
+> **Пример памяти:** «У меня хорошая оперативная память, но не могу удерживать долго. Теряю массив знаний за год-два-три. А если AI знает всё на диске — эта проблема тут же решается. Он как костыль для памяти.»
+>
+> **Implications для продукта:** Playbook без AI = умные документы. AI без Playbook = глупые ответы. **Playbook + AI = инструмент космического уровня.** Но только если ты владеешь playbook'ом. Это и есть unfair advantage: Jay + его принципы + AI = то, что невозможно повторить.
+### Acquisition Test
+
+| Компания | Интерес |
+|----------|--------|
+| Anthropic | AI-partner, built on Claude. Не конкурируем — дополняем |
+| Microsoft (Copilot) | Гиперперсонализация для leaders — то, что Copilot не делает |
+| LinkedIn Learning | Continuous AI upskilling для professionals |
+| Notion / Obsidian | Second brain + AI-native |
+
+**Verdict:** Проходит. Уникальность (забота о ЧЕЛОВЕКЕ) + интегрируемость (built on Claude/OpenAI).
+
+**Precision score:** 🔥 9 — workflow pass на данных 🔥9+. Требует валидации через следующие gift sessions.
+
+---
+
+## Gift Session Learnings — v1.0
+
+*March 24-30, 2026 — Sergey conducted 3 gift sessions between sessions 4-5*
+
+| # | Client | Profile | What happened | Key signal |
+|---|--------|---------|---------------|------------|
+| 1 | **Дима Некрасов** | Founder Jetmetrics, ecommerce metrics, LinkedIn 23k+ | Jay показал Sage. Дима за один вечер собрал RPG Character Sheet — свою систему second brain. За 3 дня: 3 прорыва (XP system, карта субличностей, автолинковка). Не копировал — построил СВОЁ | **Pull работает. Люди не копируют — персонализируют. Инструмент сам = breakthrough** |
+| 2 | **Руслан Юсупов** | Agile-коуч, ex-Scrumtrack, консалтинг | Jay показал Claude Code, Sage, проект, myth. Руслан подтвердил B2B миф: «согласен, чувствую себя безнадёжно отставшим». Дал позиционирование: **«Пачка трудолюбивых людей за $20/мес»**. Предложил связь с Cactus.io | **Миф резонирует когда говоришь честно. Cactus.io = upstream партнёр** |
+| 3 | **Base Design** (NYC, ~50 чел.) | Brand design agency, платный клиент через Talentway | Jake Post сам собрал Zapier + Claude pipeline. Конвертировал 5 лет документов в markdown. Хочет раскатать на BD-команду (Caroline, Adriana — non-technical) | **Двухступенчатая ракета в действии: B2C (Jake попробовал сам) → B2B (хочет для команды)** |
+
+**7 learnings из gift sessions:**
+
+1. **Pull работает.** Jay ничего не продавал. Люди сами просили — Jay показывал — они бежали строить
+2. **Инструмент сам по себе = breakthrough.** Claude Code + VS Code как ОС уже даёт breakthrough без готового продукта
+3. **Люди не копируют, а персонализируют.** Дима = RPG, Jay = Sage, каждый строит своё
+4. **Adoption = диагностика.** Кто пользуется — у того pull жив. Фильтр без опросников
+5. **Зоны прорывов — веер, не одна точка.** У разных людей breakthroughs в разных областях
+6. **Миф резонирует когда говоришь честно.** Руслан и Андрей Моор — оба подтвердили B2B миф без «продажи»
+7. **Non-technical users = настоящий тест.** Если Caroline (Base Design) сможет пользоваться — продукт работает
+
+---
+
+## Worlds (Миры) — v1.0
+
+*March 30, 2026 — Sergey's independent discovery, confirmed in session #5*
+
+> **Origin:** Сережа осознал: чтобы реализовать талант «Синтез миров», нужно определить КАКИЕ миры он хочет синтезировать. Выписал все профессиональные домены, к которым его тянет. Опустил личные (путешествия, кофе, кино). Оставил только те, что хочет интегрировать в бизнес.
+
+| # | Мир / Домен | Связь с 5-facet formula | В деле |
+|---|-------------|------------------------|--------|
+| 1 | **Искусственный интеллект** | Действие (строит с AI) | ✅ Sage, Claude Code, gift sessions |
+| 2 | **Мир разработки** | Действие (техническое мастерство) | ✅ 15 лет опыта |
+| 3 | **HR (несколько аспектов)** | Смысл (развитие человека) | ✅ Talentway, StartExam |
+| 4 | **Консалтинг** | Алхимия (синтез для клиентов) | ✅ Microsoft consulting |
+| 5 | **Мир руководителей** | Tribe (это его сегмент) | ✅ = Segment 1 (Executives) |
+| 6 | **Продуктивность** | Энергия (Unstoppable Achiever) | ✅ Личная система |
+| 7 | **Бизнес-культура и принципы управления** | Алхимия + Смысл | ✅ B2B Myth territory |
+| 8 | **Мир стартапов** | Энергия + Действие | ✅ PYLOT, StartExam, Talentway |
+| 9 | **Продукт и UX** | Действие (красота = суть) | ✅ Soul Architecture |
+| 10 | **Личное развитие / персонализация / типы личности** | Смысл (100%) | ✅ Enneagram, DISC, Robbins, Lila |
+| 11 | **Осознанность (Waking Up и т.д.)** | Смысл — глубинный слой | ✅ Существовательная практика |
+
+**Alexander's feedback (session #5):** Это одна из 12 граней додекаэдра уникальности в его методологии. Раньше использовал в Dream Job сессиях: профессиональные + личные интересы → AI → ниши и стартапы. Подтвердил: универсальный инструмент, любой человек может ответить на вопрос «какие области тебя тянут?»
+
+**Applied already:** Сережа отправил свой список миров потенциальным co-founders (Андрей Моор, Олег Кубышкин) как часть founder exercise — просил их: (1) отранжировать какие из Сережиных миров им нравятся, (2) написать свои миры. Цель: нащупать пересечение «химии на уровне миров».
+
+---
+
+## BHAG / Vision — v1.0
+
+*Pre-session #5 — пришло к Сереже естественно, за месяц до начала работы с Сашей*
+
+> **1 миллион осознаний × $100 = $100 миллионов**
+
+**Как это пришло:** Сережа в момент переосмысления подумал: «Мне хочется людям дарить осознания. Если смогу с помощью следующих продуктов обеспечить 1 миллион осознаний за какой-то период — сколько стоит одно осознание? Точно $100. Значит это $100M бизнес.»
+
+**North Star Metric:** Количество засчитанных моментов осознания — как проеханные поездки в Uber или прожитые ночи в Airbnb.
+
+**Определение «осознания»:** Момент, когда человек осознаёт что-то, что уже произошло как процесс. Мгновенный инсайт. «О! Да! Вот оно!» Процесс предшествует, но СЧИТАЕТСЯ именно момент.
+
+> [!NOTE]
+> **Слово «прорыв» (breakthrough)** используется 48 раз в файлах Сережи. Обнаружено в сессии #5: слово не резонирует у external audience. Несёт тонкую push-энергию (пробивание стены), что противоречит pull-мифу. Требуется замена.
+>
+> Кандидаты: **осознание** (момент), **фазовый переход** (процесс), **качественный скачок** (наблюдательное), **раскрытие** (pull-энергия).
+
+---
+
+## Product Design Map — v1.0
+
+*March 28-30, 2026 — Sergey + Sage, two design sessions*
+
+> **Контекст:** Все артефакты вокруг продукта (uniqueness, myth, tribe, pain, promise) на 🔥9+. Осталось понять: ЧТО конкретно продукт делает и КАК. Sergey называет это «дырка от бублика» — пространство вокруг ядра ясно, ядро пока нет.
+
+### Ось 1: ГДЕ — 11 областей потенциальных осознаний
+
+| # | Область | Суть |
+|---|---------|------|
+| 1 | Среда для AI-агентов | Claude Code как новая ОС. Prerequisites для всего остального |
+| 2 | Коммуникации | Встречи + email + мессенджеры в одном месте |
+| 3 | Знания и принципы (Second Brain) | Накопление и ПРИМЕНЕНИЕ знаний |
+| 4 | Планирование и приоритизация | Ритуалы, ретро, task management |
+| 5 | Исследования, анализ, презентации | Собрать → осмыслить → оформить → донести |
+| 6 | Автоматизация workflows | Рутина: управленка, учёт, маршрутизация |
+| 7 | Работа с подрядчиками | Quality control внешних людей |
+| 8 | Контроль и понимание команды | Oversight: кто как работает |
+| 9 | Работа с людьми (психология) | AI + методологии = коучинг на стероидах |
+| 10 | Принятие решений | Tradeoffs, scenarios, risk |
+| 11 | Wheel of Life (личное) | Здоровье, финансы, отношения |
+
+### Ось 2: ЧТО — 10 функций продукта
+
+| # | Функция | Суть |
+|---|---------|------|
+| 1 | Организация памяти и данных | Маховик: чем больше данных, тем ценнее |
+| 2 | Интеграции с внешним миром | Calendar, email, Slack, git |
+| 3 | Готовые скиллы/шаблоны для лидеров | Библиотека + кастомизация |
+| 4 | Стартовое обучение / Guidance | Одноразовый step-by-step |
+| 5 | Ongoing AI-апгрейд | Персонализированный поток новых инструментов |
+| 6 | Гиперперсонализация + забота | Core differentiator. Продукт вокруг ТЕБЯ |
+| 7 | Самообучение | AI строит модель твоей жизни сам |
+| 8 | Proactive AI-ментор | Сам замечает и подсказывает |
+| 9 | Ретроспективы и рефлексия | Паттерны во времени |
+| 10 | Measurement & Tracking | Метрики, commitments, динамика |
+
+### Ось 3: КАК — три координаты
+
+**A: Глубина продуктизации** (кто деливерит value)
+
+| Level | Описание |
+|-------|----------|
+| **A1** 📍 | Founder деливерит лично (concierge discovery) |
+| A2 | Founder + repeatable шаблоны (productized service) |
+| A3 | Software + founder заполняет gaps (concierge MVP) |
+| A4 | Software + операторы (operator-enabled) |
+| A5 | Software + лёгкая поддержка (MVP with backstop) |
+| A6 🎯 | Full self-serve (true product) |
+
+**B: Масштаб доставки**
+
+| Level | Описание |
+|-------|----------|
+| **B1** 📍 | 1-on-1 |
+| B2 | Малая группа (3-5) |
+| **B3** 🎯 | Self-serve (один человек сам) |
+| B4 | Команда (5-50) |
+| B5 | Компания (50-500) |
+| B6 | Платформа / экосистема |
+
+**C: Монетизация**
+
+| Level | Описание |
+|-------|----------|
+| **C1** 📍 | Бесплатно (gift, beta) |
+| C2 | Оплата за проект/сессию |
+| **C3** 🎯 | B2C подписка |
+| C4 | B2B подписка (per seat, usage-based) |
+| C5 | Enterprise контракт |
+| C6 | Hybrid (subscription + services) |
+
+**Сейчас:** A1 × B1 × C1 (founder лично, 1-on-1, бесплатно)
+**Цель:** A6 × B3 × C3 (full self-serve, individual, B2C подписка)
+
+**Alexander's feedback (session #5):** Продукт = сам путь от хаоса к «земле обетованной». Не отделяй продукт от journey. Value Ladder = шаги пользовательского пути. 110 клеток (11×10) — карта будущих возможностей, не задание на сегодня. Ядро кристаллизуется через delivery gift sessions, не через проектирование.
+
+---
+
+## Co-founder Search — v1.0
+
+*March 24-30, 2026*
+
+### Принцип выбора (из анализа трёх стартапов)
+
+| Стартап | Урок |
+|---------|------|
+| **PYLOT** | У Jay не было глубокой страсти к домену → результат Good, не Outstanding |
+| **StartExam** | Пока Jay = vision holder, Свечников = отличный #2. Когда Jay ушёл → CEO без собственного огня, выгорание |
+| **Talentway** | Jay передал страсть Олегу, оба фигачили. Но смысл был только Jay's → при пивотах оба потеряли смысл |
+
+**Вывод:** Co-founder без СВОЕГО огня = shadow. Передача страсти без собственной химии = push. Сначала найти химию — потом включать огонь.
+
+### Кандидаты
+
+| # | Кандидат | Профиль | Статус | Методика |
+|---|---------|---------|--------|----------|
+| 1 | **Андрей Моор** | Microsoft, AI-native, CTO-level | Получил founder exercise. Прочитал, резонирует. Берёт время сделать качественно | 5 граней + миры |
+| 2 | **Олег Кубышкин** | UX/CPO, ex-Talentway | Получил то же задание | 5 граней + миры |
+| 3 | **Сережа Свечников** | StartExam, CEO (выгорание) | Jay начал помогать неформально — «думать в нужную сторону» | Без структуры пока |
+
+**Founder exercise:** Формула 5 граней (Смысл, Действие, Алхимия, Энергия, Свет) + список миров Сережи как пример → просьба: (1) написать свои миры, (2) ранжировать которые из Сережиных резонируют. Цель: пересечение химии на уровне миров и смысла.
+
+---
+
 ## Session Notes
+
+### Session #5 — March 30, 2026
+
+**Duration:** ~60 min
+**Facilitator:** Alexander Konstantinov
+**Format:** Sergey presents homework + Alexander gives feedback and direction
+
+**Key developments:**
+
+- **Gift sessions validated pull:** 3 gift sessions (Dima, Ruslan, Base Design) — all confirmed pull + AI = breakthrough pattern. Nobody copied Sage — everyone built their own
+- **«Миры» (Worlds) as methodology tool:** Sergey independently discovered that listing professional domains he wants to synthesize = universally applicable exercise. Alexander confirmed: this is one of 12 facets of dodecahedron uniqueness methodology. Used in Dream Job sessions before
+- **Word «прорыв» problem:** 48 occurrences in files. Doesn't resonate externally. Push-word for pull-result. Alternatives proposed: осознание, фазовый переход, качественный скачок, раскрытие
+- **BHAG confirmed:** 1M realizations × $100 = $100M. Both Alexander and Sergey fully resonate. North Star Metric = counted realization moments
+- **Phase transitions / S-curves:** Deep mutual resonance — both see development as non-linear, occurring in phases with exponential curves. Catalyzing faster phase transitions = shared territory
+- **Hero's Journey as organizing principle:** Sergey organized all artifacts by Hero's Journey stages. Alexander confirmed: resonates powerfully with founders as archetype
+- **Product = journey, not point:** Alexander's key guidance — the product IS the user journey from chaos to promised land. Value Ladder = steps of this journey. Don't separate product from journey
+- **«Дырка от бублика» metaphor:** Space around product core is clear. Core itself (what exactly 1-on-1 product does) still forming. 11 areas × 10 functions × 3 axes = navigation map, not to-do list
+- **Co-founder search:** Founder exercise (5 facets + worlds) sent to Andrey Moor and Oleg Kubyshkin. Moor resonates, taking time. Key principle: co-founder without own fire = shadow
+- **Alexander shared 12-facet dodecahedron methodology:** Sacred geometry (5th element, dodecahedron = 12 pentagonal faces). 12 perspectives on one uniqueness. Sergey's «worlds» = one of these facets
+- **Breakdown of personal realizations:** Sergey identified 5 personal realizations in his own life, confirmed this is what he wants to help others experience
+
+**Key insight from Alexander:** «Всё очень просто — мы возвращаемся к истокам. Ты дал себе разрешение быть собой. И всё начало двигаться. Дальше есть миф — твой жизненный квест. Есть tribe — люди как ты. Есть pain → promise = путь. И продукт = этот путь. Value Ladder = шаги этого пути.»
+
+**Homework:** (1) Continue gift sessions — they ARE the product crystallization, (2) Watch for which MOMENT in sessions produces strongest realization, (3) Begin replacing «прорыв» with pull-native word
+
+### Session #5b — Live Review (March 30, 2026)
+
+**Duration:** ~15 min (immediately after session #5)
+**Format:** Alexander and Sergey review Product Kernel artifact together in VS Code
+
+**Key feedback:**
+
+- **Sub-Result 3 (КОМАНДА) ≠ ядро:** «Мне кажется, первая версия продукта — это one-on-one. Через все стадии. Sub-Result 3 — немножечко другой продукт, раскатка на других. Приятный бонус, но не ядро»
+- **Ядро = SR1 + SR2 в спиралях:** Один человек → среда → суперсила модуль 1 → суперсила модуль 2 → ... → N модулей. Каждый модуль = осознание. Спираль фазовых переходов. Тот же продукт, повторяющийся каждый месяц
+- **Gift Session design confirmed:** Сережа подтвердил — Sub-Result 1 (Среда) = уже big deal для людей. «Это всё меняет реально, люди тебе это говорят, доверие взлетает в небеса»
+- **Sub-Result 2 needs depth:** «В конкретном разрезе он нам не дал пока больше — какие именно из областей» — это то, что ищем через gift sessions
+- **«Non-founder» = кто-то ещё может заделиверить кроме тебя** — Сережа уточнил значение уровня продуктизации
+- **Meta-insight: Playbook + AI = космос.** Без playbook AI отвечает глупо. Без AI playbook — документы на полке. Вместе = инструмент космического уровня
+- **Ray Dalio parallel:** Один из миллиона способен без инструментария на бумаге структурировать принципы за жизнь. С AI — каждый сможет. «Порог входа для саморазвития резко понизился»
+- **AI как протез памяти:** «У меня хорошая оперативная, но не удерживаю долго. Если AI всё знает на диске — проблема решается»
+- **Acquisition test = пока непонятно** — Сережа хочет разобраться подробнее
+- **Workflow handoff:** Alexander отправляет Сереже `integrated_product_building_workflow.md` для самостоятельной работы с AI
+
+**Updated homework:** (1) Получить workflow от Alexander, прогнать свой продукт self-serve, (2) В gift sessions наблюдать: какие конкретно модули СУПЕРСИЛЫ включаются? Составить список, (3) Тест: может ли Sub-Result 1 (СРЕДА) работать без Jay?
 
 ### Session #4 — March 23, 2026
 
@@ -1045,5 +1394,5 @@ Pain Card (recognition)
 - Myth v0.1 not resonating — formulation needs deepening
 - Sergey's closing: "You just pulled me into some zone of new knowledge"
 
-*Sergey's Unique Business v4.0 — March 23, 2026*
-*Four sessions complete. All 7 playbook artifacts written (Uniqueness through Value Ladder). Myth v7.0 with Work Ethic enemy. B2B pivot: Executives, People Managers, PMs. Distribution strategy outlined. Next: polish to resonance + first Gift Session.*
+*Sergey's Unique Business v5.1 — March 30, 2026*
+*Five sessions complete. All playbook artifacts + Worlds + BHAG + Product Design Map + Gift Session Learnings + **Product Kernel (Мультиварка)**. Master Result v2.0 roasted. Trinity Sub-Results: 🟢СРЕДА → 🔵СУПЕРСИЛА → 🔴КОМАНДА. Sub-Result 1 = ближайший к self-serve. Acquisition test: Anthropic, Microsoft, LinkedIn, Notion. Next: validate Product Kernel through gift sessions + test Sub-Result 1 without Jay + replace «прорыв» with pull-native word.*
