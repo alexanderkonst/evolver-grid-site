@@ -1300,5 +1300,41 @@ Oyi sits with one person. He tells them their story — the story of how they ga
 
 ---
 
-*Oyi's Unique Business v3.1 — March 30, 2026*
-*Landing Page v2.0 documented. 26-perspective holonic roast applied. 5 structural corrections implemented. Headline evolution tracked. 13-section architecture codified. Generator-native page energy established.*
+#### Oyi's Live Review — March 30, 2026
+
+> *"That is not a landing page. You have created a sales funnel, my brother — because a funnel directs people and gives them action to take."* — Oyi Sun
+
+**Reframe:** What we call a "landing page" is actually a **sales funnel** — a psychoactive initiation sequence that guides the visitor from recognition → trust → clarity → booking in a single scroll. Each section does ONE job. Together they form a complete conversion arc.
+
+**Precision scores (assigned by Oyi in real-time):**
+
+| Section | Score | Oyi's reaction |
+|---------|-------|---------------|
+| Overall UX/UI | **9.5** | "I like the layouts" |
+| Hero + Qualifiers | **9.1** | "Come on, man! We are at 9.1" |
+| Origin Hit (3-sentence) | **9.5** | "Woo hoo hoo! That's 9.5 right there, that's action" |
+| Session Steps (Read → Mirror → Prescription) | **9.9** | "Like just that itself, 9.9" |
+| Deliverables (Sovereignty Map) | **9.39** | Specific, precise, immediate |
+| Three Shifts: Control → Sovereignty | **9.7** | "That's cold" |
+| Three Shifts: Exhaustion → Aliveness | **9.3** | "If the light comes back, I like that" |
+| Three Shifts: Hiding → Living From It | **9.3** | — |
+| Reality Check | **9.1** | Copy correction requested (see below) |
+| Final CTA ("If this made you pause") | **9.9** | — |
+| "Have questions? Let's talk first" | **9.9** | "I love that" |
+| Footer Bridge | **6** | "That was just AI trying to be crazy helpful" → removed |
+
+**Two live corrections applied:**
+
+| # | What changed | Why |
+|---|-------------|-----|
+| 1 | Reality Check: "the truth you've been avoiding" → **"the truth everyone's been afraid to tell you"** | Oyi's instinct: "you don't need another framework, you need to see the truth everyone's been afraid to tell you." Shifts from self-blame to external reality |
+| 2 | Footer bridge **removed** | Scored 6/10. "AI trying to be crazy helpful." The venture studio tease doesn't belong on a personal sales funnel |
+
+**Testimonials status:** Three real testimonials are placeholders awaiting Oyi's actual client quotes from his Go High Level CRM. The architecture is ready — the content needs Oyi's real words.
+
+**Methodology insight captured in playbook (v3.2):** The Manifester vs. Generator page energy principle — same 12-section architecture, different energy. The Holonic Roast Protocol codified as Tactic 8.
+
+---
+
+*Oyi's Unique Business v3.2 — March 30, 2026*
+*Sales Funnel v2.0 live-reviewed with Oyi. Precision scores captured per section (9.1–9.9 range, overall UX 9.5). "Sales funnel, not landing page" reframe applied. Two live corrections implemented. Three testimonial slots awaiting Oyi's real client quotes. Methodology contributions captured in playbook v3.2 as Tactic 8: The Godfather Sales Funnel.*
