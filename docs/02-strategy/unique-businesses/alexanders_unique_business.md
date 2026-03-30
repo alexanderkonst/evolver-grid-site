@@ -1031,6 +1031,56 @@ Direct to session booking OR $27 experience
 
 ---
 
+#### Landing Page Architecture v2.0 (March 28, 2026)
+
+> *Emerged from a 26-perspective holonic roast of v1. Diagnosis: mechanically sound (UR: 9/10) but emotionally sterile (UL/LL: 5/10). The page was "startup-generic" — it amputated the founder's testimony and the tribe's specific identity.*
+
+**Headline:** "You've been giving your best work away for free."
+
+**Headline evolution:**
+| Version | Headline | Issue |
+|---------|----------|-------|
+| v1.0 | "Your genius is already there. It just hasn't been named." | Generic, could be any coaching page |
+| v1.5 | "You're Not Confused. You're Just Unnamed." | Mechanical jargon — methodology insider language, not felt experience |
+| **v2.0** | **"You've been giving your best work away for free."** | **Lands in the body. Universally understood. Instant tribal recognition** |
+
+**Section architecture (13 sections, top to bottom):**
+
+```
+1. HERO            → Headline + 3-line sub-copy + CTA (punchy, no letter)
+2. QUALIFIER       → "This is for you if" + 5 self-talk glass cards
+3. VIDEO           → 4-min methodology disclosure (YouTube embed)
+4. HOW IT WORKS    → 3 glass step cards (Named → Product → Business)
+5. DELIVERABLES    → 5 concrete outputs with descriptions
+6. THREE SHIFTS    → Before/After cards (Scattered→Clear, Free→Paid, Looping→Moving)
+7. REALITY CHECK   → "You can't say what you do clearly enough for someone to buy it"
+8. ABOUT           → Alexander's testimony (moved from hero — this is where it belongs)
+9. TESTIMONIALS    → 6 expandable client quotes with names and titles
+10. PRICING        → $555 + guarantee + clarity call CTA
+11. THE BUILD      → 6-week follow-on teaser
+12. FAQ            → 5 glass accordions
+13. BLUEPRINTS     → 3 free methodology videos (full disclosure)
+14. FOOTER CTA     → Final resonance bridge + CTA
+```
+
+**5 structural shifts from v1 → v2:**
+
+| # | Shift | What changed |
+|---|-------|-------------|
+| 1 | **Self-talk qualifiers** | Replaced symptom bullets ("You overexplain") with first-person inner monologue ("Why is this still so hard to say?") |
+| 2 | **Three Shifts section** | Added before/after transformation arc: Scattered→Clear, Free→Paid, Looping→Moving |
+| 3 | **Meta-segment recognition** | Added "You've tried building. You've tried coaching. You've considered going back to corporate. Nothing held all of you." |
+| 4 | **Expanded proof** | 6 full testimonials with names, titles, and expandable full quotes |
+| 5 | **Testimony in About** | Alexander's hero journey (startups, coaching for free, "noble=free" realization) lives in About section, not the hero |
+
+**Key design decision:** Hero is a *landing page*, not a *letter*. The testimony is powerful but belongs in the About section where readers arrive with enough context to receive it. Hero does ONE job: recognition + CTA.
+
+**Technical stack:** React + HLS video background (Mux) + liquid-glass CSS + Poppins/Source Serif 4 fonts + Supabase testimonials with hardcoded fallback.
+
+**Live at:** [aleksandrkonstantinov.com](https://www.aleksandrkonstantinov.com) (routes to IgniteSession.tsx)
+
+---
+
 #### Warm Network Play — The 2-Step Consent DM (March 24, 2026)
 
 > *"The tuning fork is for broadcast. The warm network gets the STORY — no CTA, no pitch. Pure testimony. Their response is theirs."*
@@ -1877,7 +1927,7 @@ Radical simplicity (collapse complexity into essence)
 | 12 | Channel | — | 🟡 Landing page live, **next: outreach** |
 | — | Distribution | — | ✅ Partnership strategy |
 | — | Movement OS | — | 🟡 4/7 layers active |
-| — | Landing Page | — | ✅ Live at [evolver.team/fmf](https://evolver.team/fmf) |
+| — | Landing Page | **v2.0** | ✅ Live. Headline: "You've been giving your best work away for free." 13-section architecture. Holonic roast applied |
 
 ---
 
@@ -4178,6 +4228,6 @@ The thing being SOLD is the Ignition Session ($555) + The Build ($5K) + the Prot
 
 ---
 
-*Alexander's Unique Business v6.8 — March 26, 2026 (7 Activation Channels + Realistic Projections)*
-*Updated: Added 7 Activation Channels with honest month-1 projections. Strategic prioritization (80% warm DMs). Clean DM template. Cross-referenced to existing distribution architecture. Grounding facts documented.*
+*Alexander's Unique Business v6.9 — March 28, 2026 (Landing Page v2.0 + Holonic Roast)*
+*Updated: Landing Page v2.0 architecture documented. 26-perspective holonic roast applied. Headline evolution tracked. 13-section structure codified. 5 structural shifts from v1→v2. Status table updated.*
 
