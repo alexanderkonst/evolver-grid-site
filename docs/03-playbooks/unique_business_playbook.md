@@ -2520,6 +2520,26 @@ Maximum 3 channels to maintain focus.
 >
 > **Diagnostic question:** If the founder is planning more infrastructure (pages, calendars, funnels) instead of listing humans to talk to — gently check whether distribution has become procrastination.
 
+### GHL Ask AI — Operational Acceleration (March 31, 2026)
+
+> *Once the 3-channel strategy is defined, the founder can operationalize it via GoHighLevel's "Ask AI" from a single chat window. See [Distribution Playbook — Part VI](./distribution_playbook.md#part-vi-ai-native-distribution-infrastructure) for the full toolkit.*
+
+**4-Command Launch Sequence:**
+
+```
+1. "Build prospect list of 50 people matching [Tribe artifact]"
+2. "Create pipeline: Prospect → DM Sent → Responded → Booked → Done"
+3. "Draft personalized DMs for top 10. Template: [Golden DM]"
+4. "Schedule tuning fork post for [platform], [date]"
+```
+
+> [!WARNING]
+> **The Golden DM must be founder-written.** Ask AI personalizes delivery (subject lines, "I thought of you because..." lines), but the core message — the first-contact signal — is the founder's voice. AI drafts never carry the field resonance of lived testimony.
+>
+> **Purity Check required.** Every AI-drafted message must pass the 5-point Purity Check before deployment. See [Distribution Playbook — The Purity Check](./distribution_playbook.md#the-purity-check--ai-copy-cleanliness-protocol).
+>
+> **Agency View.** Always run Ask AI from GHL's Agency View (not sub-account) for higher token limits.
+
 ---
 
 
@@ -3060,6 +3080,41 @@ This distribution flow is **protocol-level.** Once a node has their own Unique B
 - They do THEIR sessions using the same Ignition flow
 - They post THEIR episodes
 - The loop runs at every node independently
+
+### Operational Layer: The Frankie Model + GHL
+
+> *The distribution flow above describes WHAT happens. The Frankie Model describes HOW the outreach funnel works. GHL provides the WITH-WHAT (tooling).*
+
+**The Frankie Model (hand-raiser architecture):**
+
+```
+HAND-RAISER POST → GOLDEN DM → 5-MIN VIDEO → CONVERSATION → CLOSE
+     (TF)         (founder)    (methodology)   (mirror)      (booking)
+```
+
+- **Hand-raiser post** = Tuning Fork. CTA: "DM me [keyword]"
+- **Golden DM** = Founder-written, one-to-one, human. NOT AI-generated
+- **5-min video** = Methodology disclosure (NotebookLM or face-to-camera)
+- **Conversation** = Listen, mirror, let them arrive organically
+- **Close** = Booking link, no pressure
+
+**GHL pipeline stages mirror this flow:**
+
+```
+Prospect → TF Engaged → DM Sent → Video Watched →
+Conversation → Booked → Session Done → Build Offered → Build Active
+```
+
+**Purity Check:** Every AI-drafted message in the flow must pass the 5-point filter (fear-based? scarcity? founder's voice? energy test? gift or extraction?). See [Distribution Playbook — Part VI](./distribution_playbook.md#the-purity-check--ai-copy-cleanliness-protocol).
+
+**Automation sequence (when to add):**
+
+| Clients | Manual | Automated |
+|---------|--------|-----------|
+| 0-10 | Everything | Nothing |
+| 10-25 | Golden DM, sessions | Prospect lists, scheduling, follow-ups |
+| 25-50 | Sessions, key conversations | Everything else |
+| 50+ | Quality control | Full pipeline |
 
 ---
 
@@ -3640,10 +3695,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v3.5 — March 30, 2026*
+*Unique Business Playbook v3.6 — March 31, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v3.6:** AI-Native Distribution Infrastructure integrated. GHL Ask AI 4-Command Launch Sequence added to Workflow 8 (Ladder → Distribution Strategy). Frankie Model (hand-raiser outreach architecture) documented as the soul-aligned alternative to cold outreach — Post → DM → Video → Conversation → Close. Purity Check requirement added as protocol-level gate for all AI-generated distribution copy (5-point filter: fear-based? scarcity? founder's voice? energy test? gift or extraction?). Automation scaling sequence codified (manual first 10 → assisted 10-25 → orchestrated 25-50 → scaled 50+). Agency View principle established for GHL token optimization. Cross-references to Distribution Playbook Part VI established.
 - **v3.5:** Oyi × Alexander × Karime Session methodology upgrades. Quiz-as-Lead-Magnet Principle added — the product quiz IS the lead capture engine for every founder in the venture studio (ZoG quiz = 4M profiles = distribution infrastructure). Two-Layer Platform Architecture Principle added — separate intelligence layer (genius mapping) from operational layer (CRM/automation). Upfront + Revenue Share pricing principle added — both parties need skin in the game from day one. Facilitator Emergence Principle added — facilitator transfer can happen in ANY dimension of the venture (distribution, operations, sessions), not just session facilitation. Go High Level integration documented as operational nervous system.
 - **v3.4:** Sandra Session #5 methodology upgrades. The Sovereignty Principle added — when a founder's personal, relational, business, and planetary challenges all collapse into ONE word, that word is the venture's north star (holonic fractal truth). Rescue Pattern as Shadow Layer 3 added — below Scatter (L1) and Provision Doubt (L2) lies Rescue: propping up others hoping they'll finally be available, which doubles provision anxiety and fuels the entire shadow stack. Both/And Career Principle added — never either/or; keep existing career as fuel, add unique business as compass. Landing page self-serve handoff to Lovable.dev codified.
 - **v3.3:** Sergey Session #5 methodology upgrades. AI × Playbook = Cosmic Instrument principle added (neither works alone, together = cosmos). Nobel Prize Parallel added — old artifacts × AI = dormant goldmine activated. AI as Memory Prosthetic. Product Core = SR1 + SR2 Spiral principle added — core product is NOT linear 3-step but repeating spiral of phase transitions for ONE person. SR3 (team) is v2.0+ bonus. First validation of playbook-as-self-serve-product: Sergey ran `integrated_product_building_workflow.md` independently with AI, produced Product Kernel v1.0 without facilitator. Ray Dalio parallel codified.
