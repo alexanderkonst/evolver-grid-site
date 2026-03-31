@@ -34,6 +34,8 @@ Instead of chasing market trends, we start from the individual's **Zone of Geniu
 
 **Core Promise**: *"There's always a next move. And we'll always tell you what it is."*
 
+> **📖 Start Here:** New to this project? Read [`docs/00-master/context.md`](docs/00-master/context.md) — a single document that synthesizes 16 core docs (~15,000 lines) into 574 lines. 80% understanding in ~28 minutes.
+
 ---
 
 ## The Architecture

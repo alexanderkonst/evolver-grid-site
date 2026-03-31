@@ -1378,3 +1378,16 @@ Before shipping any screen to production:
 *UX before UI. Test as you go. Invisible interface is the goal.*
 *Updated: March 26, 2026 — Added Accessibility Standards, Component States, Design Tokens JSON, and Design Critique Framework (informed by Apple/Pentagram design standards)*
 
+---
+
+# Agent Skills Reference (Optional Enhancements)
+
+> **Note:** The playbook above is the ground truth. These skills are supplementary resources for AI agents — use them for inspiration, not as dogma.
+
+| Skill | Path | When to use |
+|-------|------|-------------|
+| **frontend-design** | `.agent/skills/frontend-design/SKILL.md` | Before coding a new page — contains anti-"AI slop" aesthetics guidelines and bold design thinking prompts |
+| **canvas-design** | `.agent/skills/canvas-design/SKILL.md` | When creating static visual art (posters, PDFs, design philosophy documents) |
+
+*Source: [anthropics/skills](https://github.com/anthropics/skills) · Adapted for Evolver's Bio-Light aesthetic*
+
