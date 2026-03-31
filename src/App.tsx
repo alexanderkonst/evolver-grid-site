@@ -119,6 +119,7 @@ import BrowseGuides from "./pages/marketplace/BrowseGuides";
 import MarketplaceProductPage from "./pages/marketplace/MarketplaceProductPage";
 import MyGeniusBusinessPage from "./pages/spaces/MyGeniusBusinessPage";
 import MyProductsPage from "./pages/spaces/MyProductsPage";
+import BuildCanvasPage from "./pages/spaces/BuildCanvasPage";
 import RefineBusinessPage from "./pages/spaces/RefineBusinessPage";
 import ArtLayout from "./layouts/ArtLayout";
 import ArtGallery from "./pages/art/ArtGallery";
@@ -275,7 +276,8 @@ const App = () => (
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
                   {/* BUILD Space */}
-                  <Route path="/game/build" element={<Navigate to="/game/build/my-business" replace />} />
+                  <Route path="/game/build" element={<Navigate to="/game/build/canvas" replace />} />
+                  <Route path="/game/build/canvas" element={<BuildCanvasPage />} />
                   <Route path="/game/build/my-business" element={<MyGeniusBusinessPage />} />
                   <Route path="/game/build/refine" element={<RefineBusinessPage />} />
                   {/* Product Builder in GameShell */}

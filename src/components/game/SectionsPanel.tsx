@@ -145,6 +145,7 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
+            { id: "canvas", label: "Unique Business Canvas", path: "/game/build/canvas" },
             { id: "product-builder", label: "Product Builder", path: "/game/build/product-builder" },
             { id: "my-business", label: "My Genius Business", path: "/game/build/my-business" },
             { id: "refine", label: "Refine My Business", path: "/game/build/refine" },
