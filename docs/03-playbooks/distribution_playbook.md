@@ -929,6 +929,234 @@ Only add a second channel when the first is working:
 
 ---
 
+---
+
+# Part VI: AI-Native Distribution Infrastructure
+
+> *Added March 31, 2026. Based on GoHighLevel "Ask AI" capabilities, Oyi Sun's distribution methodology, and the Frankie Model outreach architecture.*
+
+> [!IMPORTANT]
+> **This section operationalizes distribution.** Parts I-V give you the WHAT (strategy, channels, cold-start truth). Part VI gives you the WITH-WHAT (the AI-powered operational layer that executes and scales it). This is the missing nervous system between your intelligence layer (the platform, the canvas) and the humans you serve.
+
+---
+
+## The Two-Layer Architecture
+
+```
+INTELLIGENCE LAYER              OPERATIONAL LAYER              HUMANS
+(Maps genius,                   (CRM, pipelines,               (Receives value,
+ produces canvases,              AI prospect building,           books sessions,
+ AI matchmaking,                 automated follow-up,            pays, refers)
+ pattern library)                content scheduling)
+         │                              │                           │
+    Evolver / Canvas ────────── Go High Level ────────────── Tribe Members
+```
+
+**Operational principle:** Don't rebuild your platform as a CRM. Add a SECOND layer that handles the operational plumbing. The platform does the THINKING. The operational layer does the TOUCHING.
+
+---
+
+## The GHL "Ask AI" Workflow — Single-Window Distribution
+
+> *GoHighLevel's "Ask AI" is an agency-level conversational AI that can execute distribution tasks from a single chat window. It replaces hours of manual list-building, pipeline management, and content creation with natural-language commands.*
+
+### What Ask AI Can Do (Distribution-Relevant)
+
+| Capability | Natural Language Command | Traditional Equivalent |
+|-----------|------------------------|----------------------|
+| **Build prospect list** | "Find 50 LinkedIn profiles matching [ICP description]" | Hours of manual LinkedIn search |
+| **Create pipeline** | "Create a pipeline: Cold → Warm → Booked → Converted" | Manual CRM setup |
+| **Personalize outreach** | "Draft a DM for [contact] based on their [profile data]" | Writing each DM from scratch |
+| **Schedule content** | "Schedule this post for LinkedIn on Tuesday at 9am" | Social media manager tool |
+| **Segment contacts** | "Tag all contacts who responded to the tuning fork post" | Manual tagging |
+| **Build forms/surveys** | "Create a 3-question intake form for warm leads" | Form builder tool |
+| **Automate follow-up** | "Send a follow-up to anyone who opened but didn't reply after 3 days" | Workflow builder |
+
+### Agency View Principle
+
+> [!TIP]
+> **Always run Ask AI from the AGENCY VIEW, not the sub-account view.** Agency-level access provides higher token limits and broader capabilities. Running from sub-account creates artificial throttling on the AI's output quality.
+
+### The 4-Command Launch Sequence
+
+For a founder who has completed their Unique Business Canvas and is entering distribution:
+
+```
+COMMAND 1: "Build me a prospect list of 50 people matching this
+            description: [paste Tribe artifact from canvas]"
+
+COMMAND 2: "Create a pipeline with stages: Prospect → DM Sent →
+            Responded → Call Booked → Session Done → Build Offered"
+
+COMMAND 3: "Draft a personalized DM for the top 10 prospects.
+            Use this template as the foundation: [paste Golden DM].
+            Personalize based on their profile."
+
+COMMAND 4: "Schedule my tuning fork post for LinkedIn.
+            Here's the copy: [paste Tuning Fork v7.1+]"
+```
+
+> [!WARNING]
+> **The Golden DM (Command 3) must be WRITTEN by the founder first.** AI personalizes the DELIVERY, but the core message — the first-contact signal — is the founder's voice. AI drafts never match the resonance of a founder who has lived the story. See Tactic 1 in the Unique Business Playbook.
+
+---
+
+## The Frankie Model — Hand-Raiser Outreach Architecture
+
+> *Named after the outreach pattern: Post → Hand-Raiser → DM → Short Video → Close. This is the soul-aligned alternative to cold outreach.*
+
+### The 5-Step Funnel
+
+```
+STEP 1: HAND-RAISER POST
+  │  Post content that describes the tribe's pain so precisely
+  │  that the right person cannot NOT recognize themselves.
+  │  CTA: "DM me the word [keyword]" or "Comment [keyword]"
+  │  
+  │  ✦ This is the Tuning Fork (see Unique Business Playbook Tactic 1)
+  │
+  ▼
+STEP 2: THE GOLDEN DM
+  │  Respond personally to every hand-raiser.
+  │  Written by the FOUNDER (not AI). One-to-one. Human.
+  │  "Hey [name], thanks for reaching out. Here's a quick 5-min
+  │  video that explains what I do and who it's for."
+  │
+  │  ✦ Energy test: This message would feel good even with zero response
+  │
+  ▼
+STEP 3: THE 5-MINUTE VIDEO
+  │  Short methodology disclosure.
+  │  NotebookLM audio overview OR face-to-camera.
+  │  Shows the architecture, not the magic.
+  │  "The blueprints show you the architecture. The session builds the house."
+  │
+  ▼
+STEP 4: THE CONVERSATION
+  │  They respond to the video with questions or recognition.
+  │  This is a CONVERSATION, not a sales call.
+  │  Listen. Mirror. Let them arrive at the decision organically.
+  │
+  ▼
+STEP 5: THE CLOSE
+  │  "Want to do a session? Here's the booking link."
+  │  No pressure. No scarcity tricks. No countdown timers.
+  │  The precision gap sells itself — they FEEL the gap between
+  │  their current state and what's possible.
+  │
+  ▼
+SESSION → EPISODE → NEXT POST (P × M × D = ONE)
+```
+
+### Why the Frankie Model Is Soul-Aligned
+
+| Traditional Outreach | Frankie Model |
+|---------------------|---------------|
+| Cold DM to strangers | Warm response to self-selected hand-raisers |
+| AI writes the first message | Founder writes the first message |
+| Pitch in the DM | Story in the DM, link only when asked |
+| Scarcity/urgency pressure | Precision gap creates organic urgency |
+| "Buy now" CTA | "Here's what's possible" CTA |
+| Extraction energy | Gift energy |
+
+---
+
+## The Purity Check — AI Copy Cleanliness Protocol
+
+> *Every piece of AI-generated distribution copy must pass this check before deployment.*
+
+### The 5-Point Filter
+
+Before publishing ANY AI-drafted outreach, content, or automation message, run this filter:
+
+| # | Check | Pass | Fail |
+|---|-------|------|------|
+| 1 | **Fear-based language?** | States what IS possible | Warns what will happen if they DON'T act |
+| 2 | **Scarcity manipulation?** | Transparent availability | "Only 3 spots left" (when it's not true) |
+| 3 | **Founder's voice?** | Sounds like a human wrote it | Sounds like ChatGPT wrote it |
+| 4 | **Energy test?** | Would feel good even with zero response | Requires response to feel complete |
+| 5 | **Gift or extraction?** | Reader receives value from reading alone | Reader must buy to receive value |
+
+> [!CAUTION]
+> **If ANY check fails, rewrite.** The operational layer (GHL, automations, AI copy) must maintain the same energetic frequency as the founder's live presence. Automation that feels clean scales trust. Automation that feels manipulative scales damage.
+
+### Purity Check Examples
+
+```
+❌ FAIL: "Don't miss this opportunity — spots are filling fast!"
+✅ PASS: "If this resonates, I'd love to chat. DM me 'ready'."
+
+❌ FAIL: "Are you tired of struggling? Stop wasting time and..."
+✅ PASS: "I've been where you are. Here's what I found."
+
+❌ FAIL: "This proven system guarantees $10K/month..."  
+✅ PASS: "One session. Your unique product + marketing. Yours forever."
+```
+
+---
+
+## GHL Operational Toolkit — Specific Configurations
+
+### Pipeline Setup for Unique Business Founders
+
+```
+PIPELINE: "Unique Business Distribution"
+
+STAGES:
+  1. PROSPECT        → ICP-matched contact (from Ask AI list or organic)
+  2. TUNING FORK     → Engaged with hand-raiser post (liked, commented, DM'd)
+  3. DM SENT         → Golden DM delivered (founder-written)
+  4. VIDEO WATCHED   → 5-min methodology video opened
+  5. CONVERSATION    → Active dialog (responded to video)
+  6. CALL BOOKED     → Calendly link clicked, session scheduled
+  7. SESSION DONE    → Ignition Session completed
+  8. BUILD OFFERED   → The Build (6-week container) presented
+  9. BUILD ACTIVE    → Currently in The Build
+```
+
+### Automation Workflows (Templates)
+
+| Workflow | Trigger | Action |
+|---------|---------|--------|
+| **Hand-raiser capture** | DM contains keyword ("ready") | Move to TUNING FORK stage, tag as "hand-raiser", notify founder |
+| **Post-DM follow-up** | 72 hours after DM sent, no response | Send gentle follow-up (founder-approved text only) |
+| **Post-session nurture** | Session completed | Send thank-you + 48-hour check-in + Build info |
+| **Referral trigger** | Client completes Build | Send "know anyone?" message (soft, gift-energy) |
+
+### Content Calendar Integration
+
+```
+WEEKLY RHYTHM (minimum viable):
+  Monday:    Tuning Fork variation (new angle, same truth)
+  Wednesday: Episode from latest session (what moved)
+  Friday:    Methodology disclosure (one blueprint video)
+
+SCHEDULING: GHL Social Planner → connected to LinkedIn + YouTube
+CREATION:   Ask AI drafts → Founder edits → Purity Check → Schedule
+```
+
+---
+
+## Scaling Sequence — When to Automate What
+
+> [!NOTE]
+> **Don't automate before you've done it manually.** The first 10 clients should be fully human-touched. Automation comes after you know what works.
+
+| Stage | Clients | What's Manual | What's Automated |
+|-------|---------|--------------|-----------------|
+| **1. Founder-only** | 0-10 | Everything | Nothing |
+| **2. Assisted** | 10-25 | Golden DM, sessions, closes | Prospect lists, scheduling, follow-ups |
+| **3. Orchestrated** | 25-50 | Sessions, key conversations | Everything else (prospect → booking) |
+| **4. Scaled** | 50+ | Quality control, facilitator training | Full pipeline (prospect → booking → session) |
+
+### The Automation Integrity Rule
+
+> *"If you wouldn't say it face to face, don't automate it."*
+
+Every automated message must pass the **Dinner Table Test**: Would you say this exact sentence to this person if they were sitting across from you at dinner? If not, it doesn't get automated.
+
+---
+
 ## Related Documents
 
 - [product_playbook.md](./product_playbook.md) — Product design first principles (upstream)
@@ -944,5 +1172,6 @@ Only add a second channel when the first is working:
 *Codified: January 27, 2026*
 *Updated: February 18, 2026 — partnership distribution model, myth-driven distribution principle*
 *Updated: March 26, 2026 — Part V: Realistic Projections (cold-start truth, anti-patterns, channel sequencing)*
+*Updated: March 31, 2026 — Part VI: AI-Native Distribution Infrastructure (GHL Ask AI, Frankie Model, Purity Check, scaling sequence)*
 *This is the master blueprint for the Distribution Compiler*
 

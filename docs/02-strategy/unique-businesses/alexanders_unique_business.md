@@ -4223,36 +4223,127 @@ The thing being SOLD is the Ignition Session ($555) + The Build ($5K) + the Prot
 5. **Distribution has not yet been cracked.** Multiple strategy rounds, multiple frameworks — all valuable but none executed at the "talk to humans" level.
 6. **Partnerships are the long-term play.** En masse partnerships with practitioners whose clients hit "now what?" = the non-grinding path to scale. But takes 2-3 months to activate.
 
-### The Clean Warm DM (not disguised sales — the truth)
+### Go High Level Integration
 
-> [!NOTE]
-> **This is NOT the 2-Step Consent DM (which sends the full tuning fork text as a story).** This is the even simpler version — for people in your warm network where you don't need a full story. One message. The truth.
+Oyi identified Go High Level as the missing operational layer:
 
-> *"Hey [name] — I've made a professional shift recently. I'm now helping founders in transition name their unique gift and build a business from it rather than from templates. If this is interesting to you, or if you know someone who'd want this, I'd love to talk. Here's the page if you're curious: [link]"*
+| Capability | Gap it fills |
+|-----------|-------------|
+| CRM / Contacts | Centralized lead database (currently scattered) |
+| Email / SMS automation | Behavioral triggers, follow-up sequences |
+| Funnel builder | Landing pages with integrated payment + booking |
+| Forms / Surveys / Quizzes | Lead capture that auto-populates CRM |
+| Social planner | LinkedIn, YouTube connected |
+| Chatbot | Real-time conversion on landing page |
 
-**Why this is clean:** It's direct. It's true. It's not disguised. The recipient knows exactly what you're offering and can say yes, no, or "I know someone." No manipulation, no hidden agenda.
+**The quiz-as-lead-magnet principle:** The ZoG quiz (already exists, already produces 4M unique profiles) is NOT just a product feature — it's the **lead magnet engine** for every founder in the venture studio.
 
-### Cross-reference to existing documentation
+#### GHL "Ask AI" — Alexander's Operational Playbook (March 31, 2026)
 
-| This section | Maps to | Location |
-|-------------|---------|----------|
-| Channels #1-#7 | 3-Channel Architecture v2.0 | [This doc, line 1806](#the-3-channel-distribution-architecture-v20--march-19-2026) |
-| Channel #3 | Warm Network DM templates | [This doc, line 1827](#warm-network-dm--template-by-segment) |
-| Channel #2 | Partnership Revenue Share Model | [This doc, line 2921](#-partnership-distribution--revenue-share-model) |
-| Pacing rhythm | The Full 7-Step Flow | [This doc, line 1853](#the-full-7-step-flow) |
-| Tuning fork content | Master Tuning Fork v7.1 | [This doc, line 815](#-master-tuning-fork-v71--the-final-instrument-march-23-24-2026) |
-| Landing page | Customer Journey Architecture v1.0 | [This doc, line 896](#customer-journey-architecture-v10-march-24-2026) |
+> *"Ask AI" is GHL's conversational AI that executes distribution tasks from a single chat window. Always run from AGENCY VIEW (higher token limits).*
 
----
+**The 4-Command Launch Sequence (Alexander's tribe-specific):**
 
-*Alexander's Unique Business v7.1 — March 30, 2026 (Oyi × Alexander × Karime Session — Revenue Realization)*
-*Updated: Revenue ≠ $0 documented (Oyi, Karime received; Sergey, Sandra, Tracy & Tyler linked). Pricing principle crystallized: upfront + revenue share. Oyi as distribution facilitator (Go High Level, quiz-as-lead-magnet). Moon cycle framework integrated.*
+```
+COMMAND 1: "Build me a prospect list of 50 LinkedIn profiles
+            matching: entrepreneurs who left corporate, do some form
+            of coaching or consulting, have been building for 1-3 years
+            without reliable revenue. Keywords: 'life coach',
+            'executive coach', 'business consultant', 'solopreneur',
+            'career transition', 'founder coach'."
 
----
+COMMAND 2: "Create a pipeline: Prospect → Tuning Fork Engaged →
+            DM Sent → Video Watched → Conversation → Call Booked →
+            Session Done → Build Offered → Build Active"
 
-## Session 6: Oyi × Alexander × Karime — "Seeing What's Already There" (March 30, 2026, 111 min)
+COMMAND 3: "Draft personalized DMs for the top 10 prospects.
+            Foundation template: [paste 2-Step Consent DM from above].
+            Personalize the 'I thought of you because...' line 
+            based on each person's LinkedIn headline."
 
-> *"I already made money with this and I'm just starting... I realized that even before, I already have an ongoing agreement with Tracy and Tyler."*
+COMMAND 4: "Schedule this post for LinkedIn, Tuesday 9am EST:
+            [paste Tuning Fork v7.1]"
+```
+
+> [!WARNING]
+> **The Golden DM (Step 1 of the 2-Step Consent DM) is ALWAYS founder-written.** Ask AI personalizes the delivery envelope, but the core message is Alexander's voice. AI drafts never carry the field resonance of lived testimony.
+
+**The Frankie Model — Applied to Alexander's Funnel:**
+
+```
+1. HAND-RAISER POST (Tuning Fork v7.1)
+   │  → "DM me 'ready'"
+   ▼
+2. GOLDEN DM (founder-written, 2-Step Consent)
+   │  → "I had a shift in my professional life recently.
+   │     Want me to send you a half-page story about it?"
+   ▼
+3. SOVEREIGN STORY (no CTA — pure testimony)
+   │  → Tuning fork text WITHOUT "DM me ready"
+   │     Ends at: "I am selling a system. Simple!"
+   ▼
+4. CONVERSATION (they respond to the story)
+   │  → Listen. Mirror. Let them arrive organically.
+   ▼
+5. CLOSE (if they ask)
+   │  → "Want to do a session? aleksandrkonstantinov.com"
+   ▼
+SESSION → EPISODE → NEXT POST (P × M × D = ONE)
+```
+
+**Purity Check — Required for all AI-drafted copy:**
+
+| # | Check | Alexander's Standard |
+|---|-------|---------------------|
+| 1 | Fear-based? | "I've been where you are" (testimony), NOT "Don't let this happen to you" |
+| 2 | Scarcity? | Transparent. No fake limits. No countdown timers |
+| 3 | Founder's voice? | Verbatim > polish. "A videogame boss I can't pass" > any AI metaphor |
+| 4 | Energy test? | Would feel good even with zero response |
+| 5 | Gift or extraction? | Reader receives value from reading alone |
+
+**Content Calendar (GHL Social Planner):**
+
+```
+WEEKLY RHYTHM:
+  Monday:    Tuning Fork variation (new angle on the same truth)
+  Wednesday: Episode from latest session (what MOVED)
+  Friday:    Methodology disclosure (one blueprint from the playbook)
+
+CREATION FLOW: Ask AI drafts → Alexander edits → Purity Check → Schedule
+```
+
+### Moon Cycle Integration
+
+Oyi's 8-phase lunar framework mapped to the annual seeing phase:
+
+| Phase | Moon phase | Energy | Current position |
+|-------|-----------|--------|-----------------|
+| 5 | First Quarter | SEEING — AHA moments | March 21 → April 5 |
+| 6 | Waxing Gibbous | LEADING — 90% admin, 10% work | April 5 → 19 |
+| 7 | Full Moon | HARVEST — 100% action, celebrate | April 19 → May 5 |
+
+The Seeing Phase is doing what it promised: every session produces recognition (re-cognition — knowing again).
+
+### The Michael Phoenix Signal
+
+External validation from Oyi's network: Michael Phoenix (Nike, CVS, project management black belt) described the founder's gift as: "thought → execution in less than 48 hours." This IS the unique gift — taking someone's invisible pattern and turning it into a visible, working, deployable system within one sitting. Worth a conversation as a potential venture studio node.
+
+### Actionable Next Steps — Distribution Activation (Updated March 31, 2026)
+
+| # | Action | Priority | Status |
+|---|--------|----------|--------|
+| 1 | Import contacts into Go High Level CRM | 🔴 Immediate | Pending |
+| 2 | Run Ask AI 4-Command Launch Sequence (from Agency View) | 🔴 Immediate | Pending |
+| 3 | Build quiz/survey for cold leads (from UB artifacts) | 🔴 This week | Pending |
+| 4 | Build warm lead intake form (name, email, 3 questions) | 🔴 This week | Pending |
+| 5 | Connect LinkedIn to GHL Social Planner | 🟡 This week | Pending |
+| 6 | Connect YouTube to GHL | 🟡 This week | Pending |
+| 7 | Add chatbot to aleksandrkonstantinov.com | 🟡 This week | Pending |
+| 8 | Buy GHL phone number ($1.15/mo) | 🟡 This week | Pending |
+| 9 | Set up automation workflows (hand-raiser capture, post-DM follow-up) | 🟠 Next week | Pending |
+| 10 | Deploy first Frankie Model cycle (post → DM → video → close) | 🔴 This week | Pending |
+
+> *"The only thing I know is that it's not about doing more. It's about seeing what's already there."*
 
 ### The Revenue Realization
 
