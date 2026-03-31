@@ -1109,3 +1109,17 @@ COMPLETED: __________
 | UI Paradigm | `docs/01-vision/new_ui_paradigm_vision.md` | Design trend positioning, vision-to-code translation |
 
 **When to use:** After Product Path is complete, or in parallel for full product launch.
+
+---
+
+# Agent Skills Reference (Optional Enhancements)
+
+> **Note:** The workflow above is the ground truth. These skills are supplementary resources for AI agents — use them for additional capability, not as replacements for the established process.
+
+| Skill | Path | Maps to Phase |
+|-------|------|---------------|
+| **frontend-design** | `.agent/skills/frontend-design/SKILL.md` | Phase 3 (UI) — Anti-"AI slop" aesthetic guidelines |
+| **webapp-testing** | `.agent/skills/webapp-testing/SKILL.md` | Phase 4.5–4.6 (Verification & AI Self-Test) — Playwright automation |
+| **canvas-design** | `.agent/skills/canvas-design/SKILL.md` | Marketing collateral — Visual art generation with design philosophy |
+
+*Source: [anthropics/skills](https://github.com/anthropics/skills) · Adapted for Evolver project*

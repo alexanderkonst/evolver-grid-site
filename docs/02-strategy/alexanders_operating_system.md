@@ -10,11 +10,48 @@
 ---
 
 ## Contents
+- [Founder Identity Card](#founder-identity-card)
 - [The Day](#the-day)
 - [The Week](#the-week)
-- [Bali Container (February)](#bali-container)
+- [The Month](#the-month--lunar-holon-cycle)
+- [Human Design](#human-design--energetic-operating-spec)
+- [Astrology Profile](#astrology-profile)
+- [Gene Keys](#gene-keys--hologenetic-profile)
+- [Areas of Expertise](#areas-of-expertise)
+- [Intellectual Frameworks](#intellectual-frameworks)
+- [Communication Style](#communication-style--operating-spec)
+- [Growth Edges](#growth-edges)
+- [Revenue & Monetization](#revenue--monetization-march-2026)
 
 ---
+
+## Founder Identity Card
+
+| Field | Value |
+|-------|-------|
+| **Full Name** | Aleksandr Konstantinov |
+| **Nickname** | Sasha (friends), Alexander (professional) |
+| **Born** | January 4, 1985, 23:11 — Moscow, Russia |
+| **Age** | 41 (2026) |
+| **Languages** | English, Russian |
+| **Core Statement** | *"I name your unique gift and turn it into a business."* |
+| **Tagline** | Helps build ventures from who you already are |
+
+### Role Archetypes
+
+- **Identity Architect** — sees and names the invisible pattern in a person
+- **Gift Revealer** — makes the unconscious gift conscious and speakable
+- **Business Strategist for Essence-Based Entrepreneurship** — translates essence into revenue
+- **Catalyst / Initiator** — Manifestor energy: ignites, then moves on
+- **Visionary Framework Builder** — creates the meta-structures others build on
+
+### Mission Statement
+
+> *Activate individuals to recognize and monetize their unique genius, thereby catalyzing planetary transformation through aligned entrepreneurship.*
+
+### Value Proposition
+
+> Sasha identifies a person’s deepest authentic capability or essence and translates it into clear positioning, messaging, and business architecture. The process takes 90 minutes. The output is a 7-artifact Unique Business Canvas with precision scores.
 
 ## The Week — Planetary Energy Cycle
 
@@ -473,6 +510,66 @@ Three flavors of collaboration with SOC:
 
 ---
 
+## Revenue & Monetization (March 2026)
+
+> *Updated March 30, 2026. The revenue engine has shifted from the January exploration phase to a validated methodology with active payment structures.*
+
+### Current Revenue Structure
+
+| Client | Structure | Status |
+|--------|-----------|--------|
+| Oyi | Sent money | ✅ Received |
+| Karime | Sent money | ✅ Received |
+| Sergey | Pays from first income | 🔄 Linked |
+| Sandra | Pays from first income | 🔄 Linked |
+| Tracy & Tyler | Ongoing agreement linked to future income | 🔄 Active |
+
+### Value Ladder (current)
+
+| Container | Price | What |
+|-----------|-------|------|
+| Mirror Session | $555 | 90-minute Ignition: MAP → MATCH → MOVE |
+| The Build | $5,000 | 6-week intensive (Canvas → Product → Launch) |
+| Monthly Container | $500/mo | Ongoing advisory + accountability |
+| Node License | 10% revenue share | For facilitators running the methodology independently |
+
+### Pricing Principle (March 30, 2026)
+
+**Upfront payment + revenue share** = both parties have skin in the game from day one.
+
+Linking payment solely to future revenue doesn’t give people skin in the game from the get-go. The resolution:
+- **Upfront** = commitment signal
+- **Revenue share** = incentive alignment
+- **Both together** = Noble = Free Antidote resolved in practice
+
+### Distribution Architecture (NEW — March 30, 2026)
+
+Two-layer system identified through Oyi’s Go High Level session:
+
+```
+EVOLVER PLATFORM         GO HIGH LEVEL              HUMANS
+(Intelligence Layer)     (Operational Layer)         (The Tribe)
+
+Maps genius              Captures contacts           Receives value
+Produces canvases        Segments by archetype       Takes quizzes
+AI matchmaking           Triggers automations        Gets follow-up
+Pattern library          Sends sequences             Books sessions
+                         Tracks conversions          Pays
+```
+
+**Quiz-as-lead-magnet:** The ZoG quiz (4M unique profiles) is NOT just a product feature — it’s the **lead magnet engine** for every founder in the venture studio.
+
+### Revenue Target
+
+| Milestone | Target | Timeline |
+|-----------|--------|----------|
+| First clean $555 upfront | $555 | April 2026 |
+| $10K/month | $10,000 MRR | Q4 2026 (baseline) |
+| 20 canvases complete | 20 | Q2 2026 |
+| 10 facilitators active | 10 | Q4 2026 |
+
+---
+
 ## Human Design — Energetic Operating Spec
 
 *Added: March 28, 2026*
@@ -529,16 +626,152 @@ This is also why your best work happens in hermit mode (2nd line). The hermit is
 
 ---
 
+## Astrology Profile
+
+*Birth: January 4, 1985, 23:11 — Moscow, Russia*
+
+| Planet | Sign | House | Significance |
+|--------|------|-------|--------------|
+| **Sun** | Capricorn ♂ | 4th | Deep foundation builder. Authority rooted in ancestry, home, the invisible ground |
+| **Moon** | Gemini ♊ | 9th | Emotional intelligence through communication, philosophy, and teaching. Restless curiosity |
+| **Rising** | Virgo ♍ | 1st | Precision, pattern recognition, service orientation. The world sees the analyst first |
+| **Midheaven** | Gemini ♊ | 10th | Public identity as a communicator, translator, articulator. Career = naming things |
+
+### Key Characteristics from the Chart
+
+- **Strategic thinker** — Capricorn Sun in the 4th: strategy emerges from deep roots, not surface tactics
+- **Identity architect** — Virgo Rising + Gemini MC: sees patterns, names them, makes them useful
+- **Pattern recognition** — Virgo Rising: the body itself is a scanner. First impression = analytical precision
+- **Communication-focused authority** — Gemini MC: the career IS the articulation. The naming IS the work
+- **Deep foundation builder** — 4th house Sun: everything is built from the inside out, from the root up
+
+### The Capricorn-Gemini Axis
+
+Sun (Capricorn / 4th) opposite Moon (Gemini / 9th): The tension between the solitary builder in the basement (Capricorn 4th) and the radiant communicator on the mountaintop (Gemini 9th). The life work is to BUILD foundations (Capricorn) and then ARTICULATE them (Gemini) — which is exactly what the Ignition Session does: it builds the invisible foundation (your gift), then names it so you can speak it.
+
+---
+
+## Gene Keys — Hologenetic Profile
+
+*The Gene Keys map the shadow-gift-siddhi spectrum of each genetic gate.*
+
+| Sphere | Gene Key | Shadow → Gift → Siddhi | Theme |
+|--------|----------|------------------------|-------|
+| **Life’s Work** | 38 | Struggle → Perseverance → Honor | Transform struggle into meaningful purpose |
+| **Evolution** | 39 | Provocation → Dynamism → Liberation | Provoke awakening in others through presence |
+| **Radiance** | 57 | Unease → Intuition → Clarity | Body-based knowing that pierces through noise |
+| **Purpose** | 51 | Agitation → Initiative → Awakening | Shock as initiation — the Manifestor’s purpose |
+| **Pearl** | 61 | Psychosis → Inspiration → Sanctity | The inner pressure that produces revelation |
+| **Vocation** | 10 | Self-Obsession → Naturalness → Being | Authentic behavior — being yourself IS the service |
+
+### Core Theme
+
+> **Transform struggle into meaningful purpose and awaken individuality.**
+
+The Gene Keys confirm the Human Design cross: **Left Angle Cross of Individualism** (38/39 | 57/51). The life work IS the struggle (38) transmuted into honor. The evolution IS the provocation (39) that liberates. The radiance IS the intuition (57) that cuts through. The purpose IS the initiative (51) that shocks awake.
+
+### The Pearl Sequence (Prosperity)
+
+Gene Key 61 (Pearl) = **Inspiration → Sanctity**. Prosperity arrives through inner pressure that produces revelation. The Pearl is NOT about marketing — it’s about the pressure cooker of insight that, when released, creates value for others. The Ignition Session IS the Pearl: 90 minutes of compressed insight that produces a 7-artifact canvas.
+
+---
+
+## Areas of Expertise
+
+> These are not separate skills. They are **concentric** — each one refracts through all the others. This is **concentric polymathy**, not a portfolio of excellences.
+
+| # | Domain | What it gives |
+|---|--------|---------------|
+| 1 | **Identity discovery** | Seeing and naming the invisible pattern in a person |
+| 2 | **Personal genius articulation** | Translating the unconscious gift into speakable, usable form |
+| 3 | **Brand positioning** | Placing the articulated essence into the market’s attention field |
+| 4 | **Purpose-driven entrepreneurship** | Building ventures from identity, not trends |
+| 5 | **Strategic thinking** | Systems-level architecture for decisions and direction |
+| 6 | **Framework design** | Creating the meta-structures others build on |
+| 7 | **Philosophical integration** | Connecting spiritual/mystical knowing to practical systems |
+| 8 | **Integral Theory** | The map of maps — locating any insight in developmental space |
+| 9 | **Holonic systems thinking** | Seeing wholes within wholes, fractals within fractals |
+| 10 | **Human development models** | Spiral Dynamics, Loevinger, Kegan — the altitude layer |
+| 11 | **Spiritual & psychological transformation** | Embodied state shifts, shadow work, ceremony |
+| 12 | **Narrative reframing** | Myth as medicine — the story you tell yourself IS the operating system |
+| 13 | **High-level business architecture** | Revenue models, venture studio design, scaling patterns |
+
+---
+
+## Intellectual Frameworks
+
+> *The meta-toolkit. These are the lenses through which everything is seen and synthesized.*
+
+| Framework | Role in the OS |
+|-----------|---------------|
+| **Integral Theory** (Ken Wilber) | The master map: 4 quadrants × levels × lines × states × types |
+| **Holonic systems thinking** | Every entity is simultaneously a whole AND a part of a larger whole |
+| **Fractal / recursive systems** | The same pattern at every scale — session = venture = civilization |
+| **Human Design** | Energetic operating specification: type, authority, strategy, profile |
+| **Gene Keys** | Shadow-gift-siddhi spectrum — the alchemical transmutation map |
+| **Astrology** | Cosmic timing and archetypal energy patterns |
+| **Evolutionary developmental psychology** | How consciousness develops through stages |
+| **Archetypal philosophy** | Universal patterns that repeat across all human systems |
+| **Spiritual metaphysics** | The invisible architecture behind visible reality |
+| **Mythic / symbolic thinking** | Myth as transmission — the story IS the technology |
+
+---
+
+## Communication Style — Operating Spec
+
+*For AI agents, collaborators, and anyone working with Sasha.*
+
+| Dimension | Preference |
+|-----------|------------|
+| **Verbosity** | Low. Say more with fewer words. Every sentence earns its place |
+| **Depth** | Deep. Surface-level explanation = waste of time |
+| **Tone** | Bold, direct, philosophical, integrative, visionary |
+| **Information format** | Frameworks, systems thinking, structured synthesis, strategic insights |
+| **Dislikes** | Generic motivational advice. Surface explanations. Verbose padding. Hedging |
+| **Decision style** | Emotional authority — never say yes/no in the spike. Sleep on it |
+| **Interaction pattern** | Calls the strategic direction. Expects execution and synthesis. Rapid iteration |
+| **Creative process** | Frameworks first → conversation-driven refinement → intellectual testing → implementation |
+
+### For AI Agents Specifically
+
+- **Be bold.** Don’t hedge. If you see it, say it
+- **Be structured.** Tables > paragraphs. Frameworks > narratives
+- **Be concise.** If it can be said in 1 line, don’t use 3
+- **Be deep.** Sasha thinks in civilizational terms. Match the altitude
+- **Be useful.** Every output should be actionable or synthesize something new
+- **Don’t explain what he already knows.** If he gave you context, don’t parrot it back
+
+---
+
+## Growth Edges
+
+*The active development areas — where the gift meets its shadow.*
+
+| Edge | Pattern | Correction |
+|------|---------|------------|
+| **Channeling insight into scalable structures** | Intense intellectual insight arrives faster than operational capacity can absorb | Sprint Integration Protocol. Document during integration walks. Let the artifacts hold the insight |
+| **Avoiding unnecessary battles** | 38/39 channel (Purposeful Struggle) can lock onto conflicts that don’t serve | Drift-correction: "Is this MY fight or am I carrying someone else’s provocation?" |
+| **Balancing vision with operations** | Layers 6-8 pull attention while Layer 4 needs finishing | Pacing Principle: match the horse to the terrain. Layer 4 (revenue) first |
+| **Emotional clarity before decisions** | Emotional authority + Manifestor urgency = risk of spike decisions | Sleep on every decision that costs more than a day. The wave completes |
+| **Consistent visibility without burnout** | The 6/2 hermit wants to disappear after each creation cycle | Schedule visibility rhythms. Tuesday/Wednesday/Thursday = session days. Hermit days protected |
+
+---
+
 ## Quote to Remember
 
 > *"Don't push through the trough. Rest = incubation."*
 
 > *"The quality of the container determines the quality of what emerges."*
 
+> *"I name your unique gift and turn it into a business."*
+
+> *"It's not about doing more. It's about seeing what's already there."* — March 30, 2026
+
 ---
 
 *Document created: January 26, 2026*
 *Updated: January 30, 2026 — Monetization pathways added*
 *Updated: March 28, 2026 — Human Design energetic operating spec added*
+*Updated: March 31, 2026 — Founder Identity Card, Astrology, Gene Keys, Areas of Expertise, Intellectual Frameworks, Communication Style, Growth Edges, Revenue update (March 2026), Distribution Architecture*
 *Part of Alexander's Operating System*
 
