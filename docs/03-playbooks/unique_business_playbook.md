@@ -1498,6 +1498,74 @@ The program has two layers:
 >
 > **Operational principle:** When a founder is anxious about choosing between existing career and unique business — name the both/and. The unique business is the compass. The existing career is the fuel. One day, the compass may become the vehicle. But that transition should be organic, not forced.
 
+**The Quiz-as-Lead-Magnet Principle (discovered March 30, 2026 — Oyi × Alexander × Karime Session):**
+
+> [!IMPORTANT]
+> **Your existing product quiz IS your lead magnet engine — not a separate thing you need to build.**
+>
+> The ZoG quiz (81 talents × intelligence type × dominant sense = 4M unique profiles) was built as a self-discovery PRODUCT feature. Oyi's Go High Level session revealed: it's simultaneously the **lead capture mechanism** for every founder in the venture studio.
+>
+> The path:
+> ```
+> Unique Business artifacts → GPT creates targeted quiz
+>   → quiz lives in Go High Level (or any CRM)
+>     → quiz captures lead (name, email, phone auto-upload)
+>       → automation nurtures (behavioral triggers)
+>         → funnel converts (booking, payment)
+> ```
+>
+> **Why this matters for all unique businesses:** Every founder's methodology contains a QUIZ waiting to be extracted. The Godfather Offer GPT already creates segmentation quizzes from unique business artifacts. The quiz is not marketing — it's a micro-experience of the transformation itself. When a lead takes the quiz, they're already INSIDE the founder's field.
+>
+> **Operational principle:** When a founder asks "How do I get leads?" — don't say "post on LinkedIn." Ask: "What quiz already exists inside your methodology? What micro-experience can someone have in 3 minutes that gives them a taste of the transformation?" That quiz IS the lead magnet. The CRM captures it. The automation nurtures it. The funnel converts it.
+
+**The Two-Layer Platform Architecture Principle (discovered March 30, 2026 — Oyi × Alexander × Karime Session):**
+
+> [!TIP]
+> **Separate the INTELLIGENCE layer from the OPERATIONAL layer.**
+>
+> Oyi's Go High Level walkthrough revealed the missing layer in the Planetary OS: an operational nervous system (CRM, automation, funnels) sitting BETWEEN the intelligence layer (the platform that maps genius) and the humans.
+>
+> ```
+> INTELLIGENCE LAYER          OPERATIONAL LAYER           HUMANS
+> (Maps genius,               (Captures contacts,         (Receives value,
+>  produces canvases,          segments by archetype,       takes quizzes,
+>  AI matchmaking,             triggers automations,        books sessions,
+>  pattern library)            tracks conversions)          pays)
+> ```
+>
+> **Operational principle:** When a founder has built a platform/tool but lacks distribution — they don't need to rebuild their platform as a CRM. They need a SECOND layer (Go High Level, ConvertKit, etc.) that handles the operational plumbing. The platform does the THINKING. The operational layer does the TOUCHING.
+
+**The Upfront + Revenue Share Pricing Principle (discovered March 30, 2026 — Oyi × Alexander × Karime Session):**
+
+> [!TIP]
+> **Linking payment solely to future revenue doesn't give people skin in the game from the get-go.**
+>
+> The Noble = Free Antidote (v2.7) describes the universal pricing program: "noble=free + romantic giving." This session crystallized the STRUCTURAL resolution:
+>
+> - **Upfront payment** = commitment signal. The client crosses the ontological line of investing FROM the start
+> - **Revenue share** = incentive alignment. The facilitator's success IS the client's success
+> - **Both together** = skin in the game for both parties from day one, with ongoing alignment
+>
+> Linking payment ONLY to future income ("pay me when you earn") is compassionate but creates a structural imbalance — the facilitator carries 100% of the financial risk. The resolution is not either/or — it's both.
+>
+> **Operational principle:** When pricing a unique business service — require both: a meaningful upfront payment (skin in the game) + a revenue share component (ongoing alignment). The upfront amount should be high enough to signal commitment but low enough not to block access.
+
+**The Facilitator Emergence Principle (discovered March 30, 2026 — Oyi × Alexander × Karime Session):**
+
+> [!IMPORTANT]
+> **Facilitator transfer can happen in ANY dimension of the venture — not just session facilitation.**
+>
+> The morphogenetic holomap predicted "Karime facilitates a session" as the facilitator emergence trigger. Instead, Oyi emerged as the first facilitator — in DISTRIBUTION, not sessions. He taught Go High Level, prescribed funnel architecture, and directed quiz strategy.
+>
+> This means the facilitator transfer was modeled too narrowly. The correct frame:
+> - **Session facilitation** = transferring the methodology (the WHAT)
+> - **Distribution facilitation** = transferring the go-to-market (the HOW)
+> - **Operations facilitation** = transferring the infrastructure (the WITH-WHAT)
+>
+> Each founder in the venture studio brings their unique genius to a DIFFERENT dimension. Oyi brings distribution. Sergey brings systematization. Sandra brings conscious deep tech. The venture studio is not one person teaching many — it's many people teaching each other, each in their domain of genius.
+>
+> **Operational principle:** When tracking facilitator emergence in a venture studio — don't restrict it to "who ran a session." Ask: "Who taught ANYTHING to someone else in the network?" That IS facilitation. That IS the transfer. The morphogenetic trigger has been collapsed.
+
 **The Simplicity × Leverage Principle (discovered Feb 24, 2026):**
 
 Every tactical decision is evaluated on two axes:
@@ -3572,10 +3640,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v3.4 — March 30, 2026*
+*Unique Business Playbook v3.5 — March 30, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v3.5:** Oyi × Alexander × Karime Session methodology upgrades. Quiz-as-Lead-Magnet Principle added — the product quiz IS the lead capture engine for every founder in the venture studio (ZoG quiz = 4M profiles = distribution infrastructure). Two-Layer Platform Architecture Principle added — separate intelligence layer (genius mapping) from operational layer (CRM/automation). Upfront + Revenue Share pricing principle added — both parties need skin in the game from day one. Facilitator Emergence Principle added — facilitator transfer can happen in ANY dimension of the venture (distribution, operations, sessions), not just session facilitation. Go High Level integration documented as operational nervous system.
 - **v3.4:** Sandra Session #5 methodology upgrades. The Sovereignty Principle added — when a founder's personal, relational, business, and planetary challenges all collapse into ONE word, that word is the venture's north star (holonic fractal truth). Rescue Pattern as Shadow Layer 3 added — below Scatter (L1) and Provision Doubt (L2) lies Rescue: propping up others hoping they'll finally be available, which doubles provision anxiety and fuels the entire shadow stack. Both/And Career Principle added — never either/or; keep existing career as fuel, add unique business as compass. Landing page self-serve handoff to Lovable.dev codified.
 - **v3.3:** Sergey Session #5 methodology upgrades. AI × Playbook = Cosmic Instrument principle added (neither works alone, together = cosmos). Nobel Prize Parallel added — old artifacts × AI = dormant goldmine activated. AI as Memory Prosthetic. Product Core = SR1 + SR2 Spiral principle added — core product is NOT linear 3-step but repeating spiral of phase transitions for ONE person. SR3 (team) is v2.0+ bonus. First validation of playbook-as-self-serve-product: Sergey ran `integrated_product_building_workflow.md` independently with AI, produced Product Kernel v1.0 without facilitator. Ray Dalio parallel codified.
 - **v3.2:** Tactic 8: The Godfather Sales Funnel added — 12-section psychoactive conversion architecture (not a landing page — a funnel). Manifester vs. Generator page energy principle discovered (same architecture, different energy based on HD type). Holonic Roast Protocol codified for evaluating any funnel across all 4 quadrants. Headline Source, Qualifier Source, and Proof Density principles added. Oyi's live insight: "That is not a landing page. You have created a sales funnel."

@@ -69,9 +69,9 @@ Oyi and Sergey were the first two people to go through the full process with me.
 
 | # | Name | Status |
 |---|------|--------|
-| 3 | Sandra | Next |
-| 4 | Alexa | Queued |
-| 5 | Karime | Queued |
+| 3 | Sandra | ✅ Session 5 complete |
+| 4 | Alexa | ✅ Canvas complete (2.5 hours, fastest ever) |
+| 5 | Karime | 🔄 In progress |
 | 6 | Patricia | Queued |
 | 7 | Chris | Queued |
 
@@ -84,9 +84,9 @@ Oyi and Sergey were the first two people to go through the full process with me.
 
 > It's like a fruit tree that produces not just fruit, but also seeds, shade, enriched soil, and a home for birds — all from the same act of growing. One session, five harvests.
 
-7 out of 10 spots are already filled organically. The river is flowing.
+7 out of 10 spots are already filled organically. 5 founders fully through the canvas. The river is flowing.
 
-**Status:** 🔄 **← WE ARE HERE**
+**Status:** 🔄 **← WE ARE HERE** (expanding rapidly — 8/10)
 
 ---
 
@@ -104,7 +104,7 @@ After 7 people have gone through the process and proven it works, the next 3 pay
 
 > You don't have to convince anyone the restaurant is good when there's already a line out the door. The proof walks and talks and recommends you to friends.
 
-**Status:** ⏳ Coming soon
+**Status:** 🔄 Partially underway — revenue is distributed across multiple structures (Oyi ✅, Karime ✅ received; Sergey, Sandra linked to first income; Tracy & Tyler ongoing agreement). The ontological line of charging has been crossed. What remains: clean $555 upfront, no deferral.
 
 ---
 
@@ -168,7 +168,7 @@ Some people who went through the process will naturally want to help others do t
 4. They start doing it for their own clients
 5. We share revenue
 
-**Status:** ⏳ Oyi likely first
+**Status:** 🔄 **Oyi already facilitating — distribution, not sessions.** (March 30, 2026: Oyi walked Alexander through Go High Level's full stack, prescribed funnel architecture, directed quiz-as-lead-magnet strategy. This is facilitator emergence in a DIFFERENT DIMENSION than predicted. Facilitator transfer can happen in any domain of the venture.)
 
 ---
 
@@ -344,11 +344,11 @@ The code is open-source. Not because of ideology, but because the connective tis
 ```
  ✅ Step 0:  Did it myself
  ✅ Step 1:  Tested with 2 people (both succeeded)
-→🔄 Step 2:  Growing through word of mouth (5 more lined up)  ← HERE
- ⏳ Step 3:  First paid clients coming
+→🔄 Step 2:  Growing through word of mouth (8/10 pipeline)  ← HERE
+ 🔄 Step 3:  First paid clients (revenue ≠ $0 — multiple structures active)
  ✅ Step 4:  Community launched
  🔄 Step 5:  Process improving with each session
- ⏳ Step 6:  First facilitators ripening
+ 🔄 Step 6:  First facilitators emerging (Oyi: distribution layer)
  🔭 Step 7:  People hitting $10K/month
  🔭 Step 8:  Smart matching kicks in
  🔭 Step 9:  People building products
@@ -399,5 +399,6 @@ The code is open-source. Not because of ideology, but because the connective tis
 
 ---
 
-*v1.1 — March 12, 2026*
+*v1.2 — March 30, 2026*
+*Updated: Revenue correction (≠ $0), Oyi as distribution facilitator, Go High Level operational layer, pipeline 8/10.*
 *Not a plan. An observation of what's already happening.*
