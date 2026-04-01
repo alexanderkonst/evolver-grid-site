@@ -361,7 +361,6 @@ const App = () => (
                   <Route path="/dashboard" element={<VentureDashboard />} />
                   <Route path="/holomap" element={<MorphogeneticHolomap />} />
                   <Route path="/founders" element={<FoundersShowcase />} />
-                  <Route path="/ignite" element={<Navigate to="/" replace />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
