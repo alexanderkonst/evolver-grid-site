@@ -31,7 +31,7 @@ in a way that's hard to see from the inside.
 
 You came to mind — curious if it lands for you.
 
-👉 https://aleksandrkonstantinov.com/game/collaborate/matches
+👉 https://aleksandrkonstantinov.com/zone-of-genius/entry
 ```
 
 ## Template A2: WhatsApp (English — shorter, more intimate)
@@ -44,7 +44,7 @@ surprisingly hard to see on your own.
 
 It's free. Curious what you get.
 
-👉 https://aleksandrkonstantinov.com/game/collaborate/matches
+👉 https://aleksandrkonstantinov.com/zone-of-genius/entry
 ```
 
 ## Template A3: WhatsApp (Russian — for Russian-speaking contacts)
