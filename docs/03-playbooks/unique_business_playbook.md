@@ -5,7 +5,7 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 3.2  
+**Version:** 3.7  
 **Created:** February 2026  
 **Purpose:** The master playbook for AI-assisted genius-based venture building
 
@@ -28,7 +28,7 @@
 
 > *"This was not designed and then built. It was built and then named. The doing IS the knowing."*
 
-These 7 principles are the philosophical foundation for everything in this playbook. If you only read one section, read this one. Everything else — the canvas, the frameworks, the workflows, the tactics — works BECAUSE of these principles. Violate them and the system stops working. Honor them and it becomes self-sustaining.
+These 8 principles are the philosophical foundation for everything in this playbook. If you only read one section, read this one. Everything else — the canvas, the frameworks, the workflows, the tactics — works BECAUSE of these principles. Violate them and the system stops working. Honor them and it becomes self-sustaining.
 
 ---
 
@@ -3812,10 +3812,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ---
 
-*Unique Business Playbook v3.6 — March 31, 2026*
+*Unique Business Playbook v3.7 — March 31, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v3.7:** Four-Quadrant System Download (March 31, 2026). Principle 8 added: The Organizing Principle of Sales — sales = love in a unique business. P × M × D × S = ONE (Sales completes the tetrad). Touchpoint-Offer Collapse codified: customer journey and value ladder are the same artifact. Premium Customer Service redefined as operational love (continuous high trust + useful assistance + gentle nudges). 5 Collaborator Segments mapped for partner-driven distribution. Cross-Pollination Technology (Domain 48) documented as venture studio Episode Zero protocol. One-Button Funnel Progression (Domain 49) and Digital Surface Holomap (Domain 50) established. Asset Matchmaking repositioned as standalone platform entry point.
 - **v3.6:** AI-Native Distribution Infrastructure integrated. GHL Ask AI 4-Command Launch Sequence added to Workflow 8 (Ladder → Distribution Strategy). Frankie Model (hand-raiser outreach architecture) documented as the soul-aligned alternative to cold outreach — Post → DM → Video → Conversation → Close. Purity Check requirement added as protocol-level gate for all AI-generated distribution copy (5-point filter: fear-based? scarcity? founder's voice? energy test? gift or extraction?). Automation scaling sequence codified (manual first 10 → assisted 10-25 → orchestrated 25-50 → scaled 50+). Agency View principle established for GHL token optimization. Cross-references to Distribution Playbook Part VI established.
 - **v3.5:** Oyi × Alexander × Karime Session methodology upgrades. Quiz-as-Lead-Magnet Principle added — the product quiz IS the lead capture engine for every founder in the venture studio (ZoG quiz = 4M profiles = distribution infrastructure). Two-Layer Platform Architecture Principle added — separate intelligence layer (genius mapping) from operational layer (CRM/automation). Upfront + Revenue Share pricing principle added — both parties need skin in the game from day one. Facilitator Emergence Principle added — facilitator transfer can happen in ANY dimension of the venture (distribution, operations, sessions), not just session facilitation. Go High Level integration documented as operational nervous system.
 - **v3.4:** Sandra Session #5 methodology upgrades. The Sovereignty Principle added — when a founder's personal, relational, business, and planetary challenges all collapse into ONE word, that word is the venture's north star (holonic fractal truth). Rescue Pattern as Shadow Layer 3 added — below Scatter (L1) and Provision Doubt (L2) lies Rescue: propping up others hoping they'll finally be available, which doubles provision anxiety and fuels the entire shadow stack. Both/And Career Principle added — never either/or; keep existing career as fuel, add unique business as compass. Landing page self-serve handoff to Lovable.dev codified.

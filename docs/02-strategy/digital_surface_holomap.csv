@@ -1,0 +1,172 @@
+Tier,Channel,Surface,Platform,Persistence,Reach type,Effort,Stage (current),Attention (1-10),Clout (1-10),Alignment (1-10),Energy cost (1-10),Yield,Next action,Notes
+Push,Warm DMs,LinkedIn DMs to warm contacts,LinkedIn,Semi-persistent,Push,Ongoing,3,9,7,10,5,126,2-Step Consent DM to 10-20 selected contacts,Highest conversion channel. Founder-written.
+Push,Warm DMs,WhatsApp direct messages,WhatsApp,Semi-persistent,Push,Ongoing,2,8,6,7,4,84,Personal share of professional shift,Testimony energy. Known contacts.
+Push,Warm DMs,Telegram direct messages,Telegram,Semi-persistent,Push,Ongoing,2,7,5,6,4,52.5,Personal message to specific contacts,Warm list from past containers
+Push,Warm DMs,Instagram DMs,Instagram,Semi-persistent,Push,Ongoing,1,6,2,4,4,12,Claim surface — low priority for push,Low existing clout on IG
+Push,Warm DMs,Facebook Messenger,Facebook,Semi-persistent,Push,Ongoing,1,5,3,4,4,15,Claim — secondary to LinkedIn/WhatsApp,Some warm contacts here
+Push,Warm DMs,X / Twitter DMs,X,Semi-persistent,Push,Ongoing,1,3,1,3,4,2.25,Skip for now — near-zero clout,Lowest priority push
+Push,Warm DMs,Signal messages,Signal,Semi-persistent,Push,Ongoing,1,4,2,3,4,6,Only if contacts are here,Privacy-first audience
+Push,Warm DMs,Discord DMs,Discord,Semi-persistent,Push,Ongoing,1,3,1,3,4,2.25,Only if relevant server contacts,Niche communities
+Push,Email broadcasts,ZoG past clients list (100-200),Email,Semi-persistent,Push,Periodic,2,6,7,9,3,126,Email: 'Built something from ZoG work',Warmest email list. They experienced your work.
+Push,Email broadcasts,Karime joint list (400-600),Email,Semi-persistent,Push,Periodic,2,5,4,5,3,33.33,Co-authored announcement. Ceremony angle.,Broader but less aligned. Co-write with Karime.
+Push,Email broadcasts,1:1 personal emails,Email,Semi-persistent,Push,Ongoing,3,8,7,8,6,74.67,Handcrafted emails to specific people,"Highest effort, highest resonance per unit"
+Push,Email broadcasts,Cold email outreach,Email,Semi-persistent,Push,Ongoing,1,3,1,5,6,2.5,Not priority — warm first,Low trust without relationship
+Push,Partner outreach,"Uniqueness workers (Dima, William, purpose coaches)",Multi,Semi-persistent,Push,Ongoing,1,7,3,9,5,37.8,Reach out: 'This is what I built. Your clients' now-what.',Segment 1. Highest alignment.
+Push,Partner outreach,"Ecosystem holders (Juan, Sasha Cosen, Zenka)",Multi,Semi-persistent,Push,Ongoing,1,6,3,8,6,24,Partnership conversation. One yes = channel opened.,Segment 2. Multiplicative leverage.
+Push,Partner outreach,"Parallel builders (William, Vladimir)",Multi,Semi-persistent,Push,Ongoing,1,5,2,7,5,14,"Peer conversation. Strategic, not pitch.",Segment 3. Co-creation potential.
+Push,Partner outreach,LinkedIn cold outreach via keywords,LinkedIn,Semi-persistent,Push,Ongoing,1,4,1,6,6,4,Keyword search + personalized DM,Segment 4. Long-term. Month 3+.
+Push,Community messages,Telegram ex-client groups,Telegram,Semi-persistent,Push,Periodic,3,7,7,8,2,196,Share shift announcement in past containers,Very warm. They know you.
+Push,Community messages,WhatsApp groups (relevant),WhatsApp,Semi-persistent,Push,Periodic,2,5,5,5,2,62.5,Share only where appropriate and genuine,Don't spam. Gift energy only.
+Push,Community messages,Slack communities,Slack,Semi-persistent,Push,Periodic,1,4,2,5,3,13.33,"Join relevant Slacks, contribute value first",Seed planting. Must earn standing.
+Push,Community messages,Facebook groups,Facebook,Semi-persistent,Push,Periodic,2,4,3,5,3,20,Share in 2-3 most aligned groups,Where you have standing. Not pitch.
+Push,Community messages,Discord servers,Discord,Semi-persistent,Push,Periodic,1,3,1,4,3,4,Share if relevant servers exist,Niche but deep engagement
+Push,Community messages,Circle / Mighty Networks communities,Multi,Semi-persistent,Push,Periodic,1,4,2,5,3,13.33,If member of relevant communities,Paid communities often higher quality
+Publish,LinkedIn content,Tuning fork post (UTF v7.1),LinkedIn,Semi-persistent,Broadcast,Ongoing,4,7,5,9,3,105,Post variations weekly. DM me 'ready' CTA.,Primary broadcast. UTF at 9.7 precision.
+Publish,LinkedIn content,Professional shift announcement,LinkedIn,Semi-persistent,Broadcast,One-time,1,6,5,8,2,120,One-time announcement. Triggers warm reactions.,Day 1 post. Different from UTF.
+Publish,LinkedIn content,Episode posts (session stories),LinkedIn,Semi-persistent,Broadcast,Ongoing,1,6,5,9,4,67.5,P×M×D=ONE. Each session becomes content.,The flywheel. Product IS marketing.
+Publish,LinkedIn content,Article / newsletter,LinkedIn,Permanent,Broadcast,Ongoing,1,5,5,8,6,33.33,Long-form methodology disclosure.,Open Blueprint Paradox in action.
+Publish,LinkedIn content,Comments on others' posts,LinkedIn,Semi-persistent,Broadcast,Ongoing,2,4,4,6,2,48,Comment on tribe members' and partners' posts,Low energy. Builds visibility in their feeds.
+Publish,LinkedIn content,Document post (carousel/PDF),LinkedIn,Semi-persistent,Broadcast,Periodic,1,6,5,8,4,60,Visual framework share. High save rate.,Canvas artifacts as shareable visuals.
+Publish,LinkedIn content,LinkedIn Live / Audio Event,LinkedIn,Ephemeral,Broadcast,Periodic,1,6,5,8,7,34.29,"Live session, Q&A, or cross-pollination demo",High effort but high trust signal
+Publish,Telegram content,Channel post,Telegram,Semi-persistent,Broadcast,Ongoing,3,6,5,7,2,105,UTF adaptation + link. Direct delivery.,No algorithm. 100% delivery to subscribers.
+Publish,Telegram content,Channel voice message,Telegram,Semi-persistent,Broadcast,Periodic,1,5,5,7,2,87.5,Voice note with personal update,Intimate. High trust.
+Publish,Facebook content,Feed post,Facebook,Semi-persistent,Broadcast,Ongoing,2,4,3,5,2,30,UTF variation or professional update,Lower tribe density than LinkedIn.
+Publish,Facebook content,Story,Facebook,Ephemeral,Broadcast,Ongoing,1,3,3,4,1,36,Reuse visual card. 24hr visibility.,Low effort. Cross-post from IG/WA.
+Publish,Facebook content,Reel / video,Facebook,Semi-persistent,Broadcast,Periodic,1,4,3,5,5,12,45-sec tuning fork video format,High effort. Cross-post from IG.
+Publish,Facebook content,Group posts (as member),Facebook,Semi-persistent,Broadcast,Periodic,2,4,3,5,3,20,Value-first contributions. Not pitch.,Gift energy. Earn standing.
+Publish,Facebook content,Facebook Live,Facebook,Ephemeral+,Broadcast,Periodic,1,5,3,5,7,10.71,Live teaching or Q&A,Saved as video after. Dual surface.
+Publish,Instagram content,Feed post / carousel,Instagram,Semi-persistent,Broadcast,Ongoing,1,3,2,4,4,6,Visual card with hero text + framework,Visual-first. Needs design effort.
+Publish,Instagram content,Story,Instagram,Ephemeral,Broadcast,Ongoing,1,3,2,4,1,24,Reuse visual card. Low effort.,24hr. Quick seed.
+Publish,Instagram content,Reel (45-sec tuning fork),Instagram,Semi-persistent,Broadcast+Viral,Periodic,1,4,2,5,5,8,Single-reel format already designed,High effort. High viral potential.
+Publish,Instagram content,IG Live,Instagram,Ephemeral,Broadcast,Periodic,1,3,2,4,6,4,"Live session, teaching, Q&A",Low priority given current IG clout
+Publish,YouTube content,5-min methodology video,YouTube,Permanent,Broadcast,One-time,2,5,3,8,7,17.14,22-beat script already designed. Evergreen.,Film once. Compounds forever.
+Publish,YouTube content,Shorts (reel repurpose),YouTube,Semi-persistent,Broadcast+Viral,Periodic,1,3,1,5,2,7.5,Repurpose IG/FB reel. Zero incremental effort.,Cross-post strategy.
+Publish,YouTube content,Long-form episode video,YouTube,Permanent,Broadcast,Periodic,1,4,3,8,8,12,Session recordings or methodology deep dives,Highest effort. Highest evergreen value.
+Publish,YouTube content,Community post,YouTube,Semi-persistent,Broadcast,Periodic,1,3,2,6,2,18,Text/image update to subscribers,Low effort. Keeps channel active.
+Publish,X / Twitter content,Tweet,X,Semi-persistent,Broadcast,Ongoing,1,2,1,3,2,3,Compressed tuning fork. Seed planting.,Near-zero clout. Low priority.
+Publish,X / Twitter content,Thread,X,Semi-persistent,Broadcast,Periodic,1,2,1,3,4,1.5,UTF as thread format,More effort. Same low reach.
+Publish,VK content,VK post (Russian),VK,Semi-persistent,Broadcast,Periodic,2,3,2,4,2,12,Russian-language UTF variation,Russian-speaking segment.
+Publish,Threads / BlueSky,Post,Threads/BlueSky,Semi-persistent,Broadcast,Periodic,1,1,0,2,1,0,Register + post if time allows,New soil. Zero clout. Lowest priority.
+Publish,Long-form publishing,Medium article,Medium,Permanent,Broadcast,Periodic,1,4,1,6,5,4.8,Methodology deep dive or founder story,SEO value. Discoverable by search.
+Publish,Long-form publishing,Substack newsletter,Substack,Permanent,Push+Broadcast,Ongoing,1,4,1,6,6,4,Regular newsletter. Builds owned list.,Could replace/complement email list.
+Publish,Long-form publishing,Personal blog post,Website,Permanent,Broadcast,Periodic,1,3,4,8,5,19.2,On aleksandrkonstantinov.com,SEO. Evergreen. Fully owned.
+Publish,Podcast / Audio,Guest podcast appearance,Multi,Permanent,Broadcast,Periodic,1,6,2,7,5,16.8,Apply to appear on relevant pods,Host's audience = your surface.
+Publish,Podcast / Audio,Own podcast episode,Multi,Permanent,Broadcast,Ongoing,1,4,1,7,7,4,If/when launched. High commitment.,Not priority for cold start.
+Publish,Podcast / Audio,NotebookLM audio overview,NotebookLM,Permanent,Broadcast,One-time,2,4,3,8,3,32,Already designed as lead magnet,AI-generated. Unique format.
+Publish,Community platforms,Reddit post (relevant subs),Reddit,Permanent,Broadcast,Periodic,1,4,1,5,4,5,"r/entrepreneur, r/solopreneur, etc.",Value-first. Reddit hates self-promo.
+Publish,Community platforms,Quora answer,Quora,Permanent,Broadcast,Periodic,1,4,1,5,4,5,Answer questions about purpose/uniqueness/PMF,SEO value. Long-tail discovery.
+Publish,Community platforms,IndieHackers post,IndieHackers,Permanent,Broadcast,Periodic,1,5,1,7,4,8.75,Founder journey + methodology share,Highly aligned community. Builders.
+Publish,Community platforms,Product Hunt launch,Product Hunt,Semi-persistent,Broadcast+Viral,One-time,1,5,1,6,7,4.29,When platform/quiz is ready for public launch,One-time high-impact event.
+Publish,Community platforms,Hacker News post,Hacker News,Semi-persistent,Broadcast,Periodic,1,3,1,4,3,4,If framed as tech/AI methodology,Technical audience. Niche.
+Presence,LinkedIn presence,Banner image,LinkedIn,Permanent,Passive,One-time,2,5,5,9,1,225,Hero visual: 'Overqualified? You're overprepared.',Every profile visitor sees this. One update.
+Presence,LinkedIn presence,Headline / tagline,LinkedIn,Permanent,Passive,One-time,3,7,5,9,1,315,'Overqualified? You're overprepared.' + description,"Seen in EVERY interaction. Search, comments, DMs."
+Presence,LinkedIn presence,About section,LinkedIn,Permanent,Passive,One-time,2,4,5,9,2,90,Methodology disclosure. Founder story.,For people who click deeper.
+Presence,LinkedIn presence,Featured section,LinkedIn,Permanent,Passive,One-time,2,4,5,9,1,180,"Pin landing page, video, or key post",Permanent visibility on profile.
+Presence,LinkedIn presence,Job/role title update,LinkedIn,Permanent,Passive+Push,One-time,2,6,5,9,1,270,Triggers notification to ALL connections,One-time but sends signal to entire network.
+Presence,LinkedIn presence,Skills & endorsements,LinkedIn,Permanent,Passive,One-time,1,2,5,5,1,50,Update to reflect current expertise,Low impact. Quick update.
+Presence,LinkedIn presence,Creator mode / topics,LinkedIn,Permanent,Passive,One-time,1,3,5,7,1,105,Activate creator mode. Set topics.,Increases discovery in topic feeds.
+Presence,Website,Landing page (current),Web,Permanent,Passive,Periodic,4,3,6,10,2,90,13-section funnel at aleksandrkonstantinov.com,THE destination. All surfaces point here.
+Presence,Website,New hero/funnel page (ceremony download),Web,Permanent,Passive,One-time,1,3,6,10,5,36,Dual-button: Quiz + Build. From ceremony.,V2 architecture. Needs building.
+Presence,Website,About page,Web,Permanent,Passive,One-time,1,2,6,9,3,36,Founder story. Testimony. Credibility.,Trust builder for deeper visitors.
+Presence,Website,Blog / articles section,Web,Permanent,Passive,Periodic,1,2,4,8,5,12.8,SEO-optimized methodology articles,Long-term organic discovery.
+Presence,Website,Open Graph / social card,Web,Permanent,Passive,One-time,1,4,6,9,1,216,What shows when URL is shared anywhere,Every share becomes a mini-billboard.
+Presence,Profile bios,WhatsApp about text,WhatsApp,Permanent,Passive,One-time,2,5,6,6,1,180,Hero line + link. Seen by all contacts.,2-minute update. Permanent surface.
+Presence,Profile bios,WhatsApp status (rotating),WhatsApp,Ephemeral,Passive,Periodic,2,5,6,6,1,180,Visual card. Refreshed weekly.,24hr but recurring. High passive reach.
+Presence,Profile bios,Instagram bio + link,Instagram,Permanent,Passive,One-time,2,3,2,4,1,24,Link in bio = only clickable IG surface,Essential even with low IG clout.
+Presence,Profile bios,Facebook cover + about,Facebook,Permanent,Passive,One-time,2,3,3,4,1,36,Hero visual as cover. About updated.,Catches anyone visiting profile.
+Presence,Profile bios,Telegram bio + channel description,Telegram,Permanent,Passive,One-time,2,4,5,7,1,140,First thing new people see,Gateway to channel/groups.
+Presence,Profile bios,X bio,X,Permanent,Passive,One-time,1,2,1,3,1,6,Low priority but 1-minute update,Complete the presence.
+Presence,Profile bios,VK profile,VK,Permanent,Passive,One-time,1,2,2,3,1,12,Russian-language presence,Regional surface.
+Presence,Profile bios,Threads / BlueSky bio,Multi,Permanent,Passive,One-time,1,1,0,2,1,0,Register and set bio if time,Zero clout. Lowest priority.
+Presence,Signatures & footers,Email signature,Email,Permanent,Passive,One-time,1,4,5,7,1,140,Hero line + landing page link,Every email = a billboard. Zero ongoing effort.
+Presence,Signatures & footers,Zoom display name,Zoom,Per-interaction,Passive,One-time,1,3,4,5,1,60,'Alexander Konstantinov | Overqualified? Overprepared.',Seen in every video call.
+Presence,Signatures & footers,Zoom virtual background,Zoom,Per-interaction,Passive,One-time,1,3,4,5,1,60,Branded background or clean with URL,Subtle but persistent.
+Presence,Signatures & footers,Calendar booking page,Calendly,Permanent,Passive,One-time,2,5,6,10,1,300,"Description, confirmation, reminder emails",The conversion endpoint.
+Presence,Signatures & footers,Invoice footer,Financial,Per-interaction,Passive,One-time,1,3,5,5,1,75,Add tagline + URL to all invoices,Every financial interaction carries signal.
+Presence,Directories,Google Business Profile,Google,Permanent,Passive,One-time,1,3,2,5,2,15,If applicable. Location-based discovery.,Shows in Google Maps and Search.
+Presence,Directories,Coach/consultant directories,Multi,Permanent,Passive,One-time,1,3,1,6,3,6,"Clarity.fm, Noomii, Coach.me, etc.",Long-tail discovery. Low maintenance.
+Presence,Directories,Crunchbase / AngelList,Multi,Permanent,Passive,One-time,1,2,1,4,2,4,If positioning as venture/startup,Tech/startup audience discovery.
+Presence,Directories,Polywork profile,Polywork,Permanent,Passive,One-time,1,3,1,7,2,10.5,Multi-hyphenate professional network,Very aligned with polymath tribe.
+Presence,Directories,Link-in-bio (Linktree/Bento),Multi,Permanent,Passive,One-time,1,3,3,7,1,63,Hub linking to all key surfaces,One link → many destinations.
+Presence,Tech presence,GitHub profile README,GitHub,Permanent,Passive,One-time,1,2,1,4,2,4,If sharing open-source methodology,Technical credibility signal.
+Presence,Tech presence,ChatGPT published GPT,OpenAI,Permanent,Passive,One-time,1,3,1,5,4,3.75,The ZoG quiz as a GPT?,AI-native discovery surface.
+Presence,Tech presence,Perplexity Page,Perplexity,Permanent,Passive,One-time,1,2,1,3,3,2,Methodology as discoverable page,Emerging. AI search surface.
+Physical,Body & person,Laptop stickers,Physical,Permanent,Passive,One-time,1,3,4,5,1,60,QR code + hero line on laptop,"Visible in every cafe, coworking, meeting."
+Physical,Body & person,Phone case,Physical,Permanent,Passive,One-time,1,2,3,4,1,24,QR code or URL on phone case,Subtle. Always visible.
+Physical,Body & person,T-shirt / hoodie,Physical,Per-interaction,Passive,One-time,1,3,3,4,2,18,Custom print with hero text,Walking billboard. Event wear.
+Physical,Body & person,Business cards (NFC),Physical,Per-interaction,Push,One-time,1,5,4,6,2,60,NFC tap → landing page. Physical-digital bridge.,"Conferences, meetups, ceremonies."
+Physical,Body & person,Branded tote bag,Physical,Permanent,Passive,One-time,1,2,2,3,2,6,"Visible at markets, gyms, cafes",Low-key ambient signal.
+Physical,Body & person,Notebook/journal cover,Physical,Per-interaction,Passive,One-time,1,2,3,3,1,18,Visible in meetings and coworking,Subtle signal.
+Physical,Spaces,Zoom-visible bookshelf,Physical,Per-interaction,Passive,One-time,1,3,4,5,1,60,Arrange relevant books visibly behind you,Signals depth and credibility on every call.
+Physical,Spaces,Coworking community board,Physical,Semi-persistent,Passive,One-time,1,3,2,4,1,24,Post card or flyer on physical board,Local discovery.
+Physical,Spaces,Wall art / poster in workspace,Physical,Per-interaction,Passive,One-time,1,2,3,4,2,12,Framework poster or branded art,Visible on video calls.
+Physical,Events,Speaker slot (conference/meetup),Physical,One-time,Broadcast,Periodic,1,8,3,9,7,30.86,THE highest-leverage physical surface,You ARE the signal. Apply proactively.
+Physical,Events,Workshop facilitation,Physical,One-time,Push,Periodic,1,7,3,9,6,31.5,Teach the methodology live,High trust. Experiential proof.
+Physical,Events,Meetup hosting,Physical,Recurring,Broadcast,Ongoing,1,6,2,8,5,19.2,Host founder circles or uniqueness workshops,You set the field. Recurring visibility.
+Physical,Events,Conference badge / lanyard,Physical,Per-event,Passive,One-time,1,3,2,5,1,30,Add tagline to badge if possible,Low effort. Event-specific.
+Physical,Events,Ceremony/retreat hosting,Physical,One-time,Push,Periodic,1,7,5,8,7,40,With Karime. Ceremony + business integration.,Deepest trust surface. Aligned with practice.
+Physical,Events,Photo backdrop with URL,Physical,Per-event,Viral,One-time,1,4,2,5,3,13.33,Every photo taken = distribution,Events and workshops.
+Physical,Community,Basketball court conversations,Physical,Recurring,Push,Ongoing,2,4,5,4,1,80,Organic conversations during play,Natural context. Altitude training.
+Physical,Community,Cafe/coworking regulars,Physical,Recurring,Passive,Ongoing,1,3,3,4,1,36,Being known at your regular spots,Organic word of mouth.
+Physical,Community,Ceremony circles (word of mouth),Physical,Recurring,Push,Ongoing,3,6,6,7,1,252,Your reputation in the medicine community,Deepest trust channel. Karime connection.
+Physical,Word of mouth,What others say about you,Physical,Permanent,Viral,Ongoing,3,7,6,8,1,336,Your verbal business card in others' minds,Cannot be directly controlled. Highest trust.
+Physical,Word of mouth,Client referrals,Physical,Recurring,Push,Ongoing,3,8,7,9,1,504,Satisfied clients describing you to others,100% session satisfaction → natural referral.
+Physical,Word of mouth,Partner introductions,Physical,Recurring,Push,Ongoing,1,7,3,8,2,84,'You should talk to Alexander',Requires relationship. Highest leverage.
+Physical,Printed artifacts,Book (self-published),Physical,Permanent,Passive+Push,One-time,1,5,2,8,9,8.89,The methodology as a physical book,Highest credibility object. Long-term project.
+Physical,Printed artifacts,One-pager / brochure,Physical,Per-interaction,Push,One-time,1,4,3,6,3,24,Canvas summary as printable artifact,"Events, meetings, ceremonies."
+Physical,Printed artifacts,Card deck (framework),Physical,Permanent,Push,One-time,1,4,2,7,6,9.33,Phase shift technologies as cards,Unique. Memorable. Gift-worthy.
+Paid,Social ads,LinkedIn Sponsored Content,LinkedIn,Ephemeral,Broadcast,Ongoing,1,7,5,9,8,39.38,Boost UTF post to matched audience,High cost but precise targeting.
+Paid,Social ads,Meta (FB/IG) ads,Meta,Ephemeral,Broadcast,Ongoing,1,5,3,6,7,12.86,Retarget website visitors or lookalike,Karime joint list = seed audience.
+Paid,Social ads,YouTube pre-roll,YouTube,Ephemeral,Broadcast,Ongoing,1,4,1,5,7,2.86,5-min video as ad to relevant audience,After organic video exists.
+Paid,Social ads,TikTok ads,TikTok,Ephemeral,Broadcast,Ongoing,1,3,0,3,7,0,Low priority. Wrong tribe density.,Skip for now.
+Paid,Search ads,Google Search ads,Google,Ephemeral,Push,Ongoing,1,5,1,6,7,4.29,"Keywords: 'find my zone of genius', etc.",After organic SEO foundation.
+Paid,Sponsorships,Podcast sponsorship,Multi,Semi-persistent,Broadcast,Periodic,1,5,1,7,6,5.83,"Sponsor relevant pods (purpose, founders)",Pay to reach aligned audiences.
+Paid,Sponsorships,Newsletter sponsorship,Multi,Ephemeral,Push,Periodic,1,5,1,7,5,7,Sponsor aligned Substacks/newsletters,Direct to inbox of tribe.
+Paid,Boosted content,LinkedIn boosted post,LinkedIn,Semi-persistent,Broadcast,Periodic,1,6,5,8,4,60,Boost top-performing organic UTF,Only after organic signal confirmed.
+Paid,Promoted profiles,Upwork/Clarity promoted,Multi,Permanent,Passive,Ongoing,1,3,1,5,4,3.75,Promoted listing in directories,Low priority. Background.
+Hidden,Communication metadata,Email 'From' name,Email,Permanent,Passive,One-time,1,3,5,5,1,75,'Alexander | Overqualified? Overprepared.',Every email carries the signal.
+Hidden,Communication metadata,Out-of-office / auto-reply,Email,Ephemeral,Passive,One-time,1,3,4,4,1,48,Include what you do + link,When traveling or in deep work.
+Hidden,Communication metadata,Voicemail greeting,Phone,Permanent,Passive,One-time,1,3,4,3,1,36,Brief: who you are + what you do,Everyone who calls and misses you.
+Hidden,Video call surfaces,Meeting title in calendar invite,Calendar,Per-interaction,Passive,One-time,1,3,4,4,1,48,Name meetings descriptively,Seen by all invitees.
+Hidden,Video call surfaces,Waiting room message,Zoom,Per-interaction,Passive,One-time,1,3,4,5,1,60,Custom message while people wait,Captive attention. 30-60 seconds.
+Hidden,Documents,PDF header/footer,Documents,Per-interaction,Passive,One-time,1,2,4,4,1,32,Every doc you send carries tagline + URL,"Proposals, worksheets, summaries."
+Hidden,Documents,Google Doc sharing page title,Google,Per-interaction,Passive,One-time,1,2,3,3,1,18,Document titles visible on share,Subtle but real.
+Hidden,Documents,Presentation title slide,Slides,Per-interaction,Passive,One-time,1,4,4,5,1,80,First slide = hero text on every presentation,Seen by everyone in the room.
+Hidden,Payment surfaces,Stripe payment description,Stripe,Per-interaction,Passive,One-time,1,3,5,5,1,75,What shows on their bank statement,Tiny but persistent surface.
+Hidden,Payment surfaces,Invoice line item descriptions,Financial,Per-interaction,Passive,One-time,1,3,5,5,1,75,Name services meaningfully,Every invoice is a micro-billboard.
+Hidden,Device surfaces,AirDrop name,Apple,Per-interaction,Passive,One-time,1,2,3,2,1,12,Visible to nearby Apple users,"Guerrilla. Cafes, events, transit."
+Hidden,Device surfaces,WiFi hotspot name,Device,Per-interaction,Passive,One-time,1,2,3,2,1,12,'Overqualified? Overprepared.' as hotspot,Visible to all nearby devices.
+Hidden,Device surfaces,Phone lock screen,Device,Per-interaction,Passive,One-time,1,1,3,2,1,6,Visible when phone face-up in meetings,Ultra-subtle.
+Hidden,Platform micro-surfaces,Spotify playlist names,Spotify,Permanent,Passive,One-time,1,1,1,2,1,2,Public playlists with meaningful names,Very niche. Creative surface.
+Hidden,Platform micro-surfaces,Google Maps reviewer profile,Google,Permanent,Passive,Ongoing,1,2,2,3,1,12,Your reviews link to your profile,Long-tail local discovery.
+Hidden,Platform micro-surfaces,Goodreads profile,Goodreads,Permanent,Passive,One-time,1,2,1,3,1,6,Book reviews + bio with link,Intellectual credibility signal.
+Hidden,Physical-digital bridges,QR code on physical surfaces,Multi,Permanent,Passive+Push,One-time,1,4,3,6,2,36,Bridge any physical surface to digital,"Laptop, card, poster, sticker → landing page."
+Hidden,Physical-digital bridges,"NFC tag (phone case, card)",Multi,Per-interaction,Push,One-time,1,4,3,6,2,36,Tap to share. Zero friction bridge.,"Conferences, 1:1 meetings."
+Hidden,Physical-digital bridges,Open Graph social card,Web,Permanent,Passive,One-time,1,4,6,9,1,216,What shows when URL is shared ANYWHERE,Every link share = branded preview.
+Publish,LinkedIn content,LinkedIn Newsletter,LinkedIn,Permanent,Push+Broadcast,Ongoing,1,7,5,9,4,78.75,Create newsletter — first edition auto-notifies ALL connections,NUCLEAR. First edition pushes to entire network. Very High coach-fit.
+Publish,LinkedIn content,LinkedIn Event listing,LinkedIn,Semi-persistent,Push+Broadcast,Periodic,1,6,5,8,3,80,Host 'Unique Business Live' or cross-pollination event,Push notification to connections + discoverable.
+Publish,WhatsApp content,WhatsApp Channel post,WhatsApp,Semi-persistent,Push+Broadcast,Ongoing,1,5,3,6,2,45,Create WhatsApp Channel — direct delivery,No algorithm. 100% delivery. Growing surface.
+Publish,Instagram content,Broadcast Channel message,Instagram,Semi-persistent,Push,Ongoing,1,4,2,5,2,20,Create broadcast channel for inner circle,One-to-many inbox surface. Very High coach-fit.
+Publish,Pinterest content,Pinterest Pin (methodology visual),Pinterest,Permanent,Broadcast+Passive,Periodic,1,3,1,6,4,4.5,Visual framework cards from canvas artifacts,Evergreen discovery. High save rate.
+Publish,Pinterest content,Pinterest Board (unique business),Pinterest,Permanent,Passive+Broadcast,One-time,1,3,1,6,2,9,Board: 'Build Your Unique Business' with methodology pins,Organized discovery surface.
+Publish,Substack content,Substack publication homepage,Substack,Permanent,Passive,One-time,1,4,1,6,3,8,Create publication with about + subscribe CTA,Owned list builder. Newsletter + Notes + Podcast.
+Presence,LinkedIn presence,Service Page (offer listing),LinkedIn,Permanent,Passive+Push,One-time,1,5,5,9,2,112.5,Create Service Page with Ignition Session listing,Lead-gen + reviews. Very High coach-fit.
+Presence,LinkedIn presence,Service Page reviews / testimonials,LinkedIn,Permanent,Passive,Periodic,1,4,5,9,1,180,Ask past clients to leave Service Page reviews,Trust surface attached to service listing. Very High.
+Presence,LinkedIn presence,Recommendations (given/received),LinkedIn,Permanent,Passive,Periodic,1,4,5,9,2,90,Write recommendations for founders — triggers reciprocation,High-trust testimonial surface. Giving triggers receiving.
+Presence,Instagram presence,Story Highlights,Instagram,Permanent,Passive,Periodic,1,3,2,4,1,24,Create highlights: Methodology / Founders / Proof,Turns ephemeral stories into permanent portfolio.
+Presence,Profile bios,WhatsApp Business profile + catalog,WhatsApp,Permanent,Passive,One-time,1,4,6,6,1,144,Set up Business profile with service catalog,Turns WhatsApp into a mini-storefront.
+Presence,Website,SEO title tags + meta descriptions,Web,Permanent,Passive,One-time,2,3,6,10,2,90,Optimize all page titles and meta for search,Every Google result = branded preview.
+Presence,Website,Checkout confirmation page,Web,Per-interaction,Passive,One-time,1,3,6,10,1,180,Custom post-payment page with 'what happens next',Captive moment. Perfect for onboarding start.
+Presence,Website,Post-purchase email copy,Web,Per-interaction,Push,One-time,1,3,6,10,1,180,Add PS with next action to confirmation email,Surprisingly effective micro-surface.
+Hidden,Communication metadata,Email branded subject prefix,Email,Per-send,Push,Ongoing,1,3,5,5,1,75,"[Unique Business] prefix pattern on emails",Pattern recognition across inbox.
+Hidden,Communication metadata,Email preheader text,Email,Per-send,Push,Ongoing,1,3,5,5,2,37.5,Optimize preview text for engagement,Many ignore it — high leverage for those who don't.
+Hidden,Video call surfaces,Screen-share desktop hygiene,Zoom,Per-interaction,Passive,One-time,1,3,4,5,1,60,"Curate wallpaper + bookmarks bar for screen sharing",Seen by everyone. Rarely designed intentionally.
+Hidden,Device surfaces,Bluetooth device name,Device,Per-interaction,Passive,One-time,1,2,3,2,1,12,'Overqualified? Overprepared.' as Bluetooth name,Visible to all nearby devices.
+Hidden,Communication metadata,SMS / iMessage contact card,Phone,Permanent,Passive,One-time,1,3,5,4,1,60,Update contact card with title + URL,Visible when anyone looks up your contact.
+Hidden,Communication metadata,Slack / Teams status message,Multi,Ephemeral,Passive,Ongoing,1,2,3,3,1,18,Rotating status with current focus + link,High visibility in workspaces.
+Physical,Body & person,Water bottle / coffee tumbler,Physical,Permanent,Passive,One-time,1,2,3,3,1,18,QR + hero text on tumbler,"Visible at gym, yoga, coworking, travel."
+Physical,Body & person,Wallet QR card,Physical,Semi-persistent,Passive+Push,One-time,1,4,3,6,1,72,QR card to booking page for 1:1 handoffs,Zero-friction physical-digital bridge.
+Physical,Body & person,Caps / hats / beanies,Physical,Permanent,Passive,One-time,1,3,3,4,1,36,Front patch with hero text or symbol,Visible in casual settings. Mexico sun = always wearing.
+Physical,Body & person,Pins / enamel badges,Physical,Permanent,Passive,One-time,1,2,3,4,1,24,"Micro-signal on jacket/bag for conferences, ceremonies",Signals in-group. Conversation starter.
+Physical,Spaces,Whiteboard / flipchart (on camera),Physical,Per-interaction,Passive,Per-event,1,3,4,5,1,60,Framework drawn live during sessions — URL on corner,Teaching authority via visible tool.
+Physical,Body & person,Thank-you insert (packaging media),Physical,Per-interaction,Push,Ongoing,1,3,4,6,2,36,QR card inside shipped/mailed materials,Received object bias. 'Scan for your next step.'

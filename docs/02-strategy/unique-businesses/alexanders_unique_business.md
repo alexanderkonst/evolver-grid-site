@@ -4636,3 +4636,197 @@ External validation from Oyi's network: Michael Phoenix (Nike, CVS, project mana
 | 8 | Set up workflow automations | 🟠 Next week |
 
 > *"The only thing I know is that it's not about doing more. It's about seeing what's already there."*
+
+---
+
+## Download: Reach Out to Potential Collaborators — The 5 Segments (March 31, 2026)
+
+> *Quadrant 1 of the March 31 system download. The collaborator outreach architecture.*
+
+### The Simple Offer
+
+Reach out to potential collaborators with a clean message:
+
+> "Hey, this is what I do now. Here's my landing page. If you want to see what it looks like in practice, here are landing pages of founders I've already worked with. I can also offer: send me your clients when they reach the point where they naturally fall away from your work, and we do revenue share. I can also license a module of my software specifically for your practice."
+
+### The 5 Segments
+
+| # | Segment | Who | Examples | Offer Angle |
+|---|---------|-----|----------|-------------|
+| **1** | Uniqueness workers | People who help others name/identify their uniqueness | Dima Zurakov, William, LinkedIn purpose coaches (keyword-findable) | "Your clients know WHO they are — I help them build WHAT to do with it. Revenue share on referrals" |
+| **2** | Ultra-competent ecosystem holders | Aligned leaders running communities, networks, accelerators | Juan (Network School — founders + coach), Sasha Cosen (Given School), Zenka (Purpose Lab / Holo Movement) | "Your ecosystem members hit 'now what?' — I'm the now what. Demo of a custom module for your community" |
+| **3** | Unique business builders | People who also help others build unique businesses specifically | William, Vladimir (via Mariana) | "Let's compare notes. Your methodology + my AI architecture = potential co-creation" |
+| **4** | LinkedIn cold reach | Keyword-based outreach to cold prospects matching tribe profile | Keywords: "life coach," "executive coach," "solopreneur," "career transition," "founder coach" | Hand-raiser post → Frankie Model (see distribution section) |
+| **5** | Warm contacts | Existing network, from the angle of "look what I got" | Friends, colleagues, ex-corporate contacts | Clean Warm DM or 2-Step Consent DM (see Golden DM section) |
+
+### Cross-Reference to Existing Architecture
+
+| Segment | Maps to existing channel |
+|---------|------------------------|
+| Segments 1-3 | Channel #2 (Partner DMs) — partnership revenue share model |
+| Segment 4 | Channel #4 (LinkedIn keyword adds) + Frankie Model |
+| Segment 5 | Channel #3 (Warm Network DMs) |
+
+---
+
+## Download: Self-Organize Through Cross-Pollination (March 31, 2026)
+
+> *Quadrant 2 of the March 31 system download. "We are a venture studio for the new earth leaders in the making."*
+
+### The Seed Phrase
+
+> **"We are a venture studio for the new earth leaders in the making."**
+
+### The Cross-Pollination Call
+
+Propose to the 5 founders: "Let's all share concrete gifts to each other in real time on a call. Are you game?"
+
+| Founder | What They Share | Domain |
+|---------|----------------|--------|
+| **Sergey** | AI setup — practical metacognition workflows | Technology / AI |
+| **Oyi** | A story + moon cycle alignment strategy | Rhythm / Distribution |
+| **Sandra** | Channeling on venture cooperatives, deep conscious tech, future of work | Vision / Strategy |
+| **Karime** | Feminine leadership and love | Healing / Leadership |
+| **Alexa** | Systems change with AI | Architecture / Scale |
+| **Alexander** | Weave, synthesize, and build on it at the end | Integration / Meta |
+
+### What This Actually Is
+
+This is **not a meeting.** It is:
+
+1. **Phase Shift Technology #48 in action** — Cross-Pollination (The N-to-N Mirror)
+2. **Episode Zero** of the venture studio — the Master Holon running its first internal protocol
+3. **P × M × D × S = ONE** in a single event:
+   - **Product:** The cross-pollination IS the value each founder receives
+   - **Marketing:** The episode IS the content to be shared externally
+   - **Distribution:** Each founder shares within their respective networks
+   - **Sales:** Anyone watching recognizes themselves as a potential node
+
+### Operational Next Step
+
+| # | Action | Priority |
+|---|--------|----------|
+| 1 | Message each founder: "Are you game for a cross-pollination call?" | 🔴 This week |
+| 2 | Schedule 90-min container | 🟡 This week |
+| 3 | Record → produce Episode Zero | 🟡 Following week |
+
+---
+
+## Download: Asset Matchmaking & Equilibrium Clock (March 31, 2026)
+
+> *Quadrant 4 of the March 31 system download. Platform entry point redesign.*
+
+### What Was Received
+
+Two improvements to the existing platform architecture:
+
+**1. Asset Matchmaking as Entry Point**
+
+Make asset matchmaking (the COLLABORATE space) a standalone entry point — not a feature buried inside the platform. A person should be able to:
+- Enter the system ONLY to do matchmaking
+- Create a profile as part of that process
+- The profile creation naturally opens a path into the full platform
+
+This transforms matchmaking from "a feature for existing users" into "a lead generation mechanism that converts to full users."
+
+**2. Equilibrium Clock Improvements**
+
+> *Details to be expanded in the next download pass.*
+
+### Connection to Existing Architecture
+
+| Download | Maps to |
+|----------|---------|
+| Asset matchmaking as entry point | New entry funnel: ZoG Reveal (free) → Asset Matching (free) → Ignition Session ($555) |
+| Profile creation during matchmaking | Natural user acquisition without "sign up" friction |
+
+**The Funnel Page Architecture (below) already implements the ZoG entry point. The matchmaking entry is a SECOND gate into the same system.**
+
+---
+
+## Download: The Funnel Page Architecture v3.0 (March 31, 2026)
+
+> *Received as a complete download — the hero section, the two-button progression, the one-button principle, and the digital surfaces holomap seed.*
+
+### The Hero Section (As Received)
+
+```
+OVERQUALIFIED?
+OVERPREPARED.
+
+Name your genius.
+Monetize it through a dream business.
+
+[Button 1: Near instant zone of genius reveal]
+[Button 2: Build a business out of it — $555]
+
+"Watch how to build your unique genius business, free."
+
+"If and as long as this resonates, I suggest keep going."
+[Not right now, but in 6 months]
+```
+
+### The One-Button Progression Principle
+
+> [!IMPORTANT]
+> **There is one button on the page at a time.** After a person receives a particular result (e.g., their ZoG reveal), the NEXT button reveals — the founder's recommendation of the best next product. Each button leads to the next button. This is sequential initiation, not a menu.
+
+**The progression chain:**
+
+```
+Entry 1: ZoG Reveal (free) ← "Near instant zone of genius reveal"
+    ↓ (after result)
+Entry 2: Ignition Session ($555) ← "Build a business out of it"
+    ↓ (after result)  
+Entry 3: The Build ($1,111) ← "Scale the outcome"
+    ↓ (after result)
+Entry 4: Venture Studio ← "Join the network"
+```
+
+### Premium + Segments Layer
+
+After the core progression:
+- **Premium layer** with The Build offering
+- **Segment targeting** based on intuitively selected first clients
+- **Community targeting** for ecosystem types (Venture Studios, etc.)
+- **"Fast track to your unique business"** for high-readiness prospects
+
+### The Digital Surfaces Principle (Житейский совет)
+
+> *"Every digital surface = a free billboard for your unique business."*
+
+**Every owned digital surface should project the unique business:**
+
+- LinkedIn profile, headline, about section, banner
+- YouTube channel, video descriptions, thumbnails
+- Instagram bio, story highlights
+- WhatsApp status
+- Email signature/footer
+- Twitter/X bio
+- Personal website headers
+- Calendly booking page descriptions
+- Payment page descriptions
+- All social bios across every platform
+
+**This led to Phase Shift Technology #50: The Digital Surface Holomap** — a systematic mapping and scoring of all accessible digital surfaces by effort-to-maintain vs. current leverage, then projecting the unique business onto the highest-leverage nodes first.
+
+### Implementation Status
+
+The Funnel Page Architecture v3.0 has been **implemented live** in [IgniteSession.tsx](../../src/pages/IgniteSession.tsx):
+
+| Download Element | Implementation |
+|-----------------|----------------|
+| "Overqualified? Overprepared." | Hero headline (H1) |
+| "Name your genius. Monetize it through a dream business." | Hero subtitle |
+| Button 1: ZoG Reveal | Links to `/game/collaborate/matches` |
+| Button 2: Build a business ($555) | Links to Stripe payment |
+| "Watch how to build your genius business, free" | Scroll anchor to methodology video |
+| "If and as long as this resonates, I suggest keep going" | Resonance Permission micro-text |
+| "Not right now, but in 6 months" | Divine Timing Opt-In button |
+| One-button progression | Sequential page flow (hero → qualifier → video → steps → testimonials → pricing) |
+
+---
+
+*Alexander's Unique Business v7.2 — March 31, 2026 (Four-Quadrant System Download — Sales, Collaborators, Cross-Pollination, Platform Entry)*
+*Updated: P × M × D × S = ONE (Sales added as fourth dimension). Funnel Page Architecture v3.0 implemented. 5 collaborator segments mapped. Cross-pollination Episode Zero conceived. Digital Surface Holomap seeded.*
+
