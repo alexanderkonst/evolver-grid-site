@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | CANVAS ERA. Step 3 — Branching. Landing page productized + liquid glass redesign. Playbooks upgraded (WCAG, tokens, voice matrix). Workflow v1.2 shipped |
-| **Current cycle** | March 2026 — Landing page live with liquid glass morphism. DM link previews optimized. 6 testimonials integrated. Ignition logo deployed |
+| **Current phase** | LAUNCH SPRINT. Funnel built. Liquid glass applied. Quiz deployed. Copy needs roasting. Surfaces need activating. DMs need sending. |
+| **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. |
 | **Location** | Mexico City |
-| **Focus** | **Landing page DONE. Next: warm DM campaign with optimized link preview. Push to first $555 payment.** |
-| **Key milestone** | ✅ All previous milestones + ✅ Landing page through full 5-phase product workflow + ✅ 6 improvements from roast + ✅ Liquid glass redesign + ✅ SEO/OG meta for DM sharing + ✅ Design system upgrade (WCAG, tokens, semantic colors, voice matrix, critique) + ✅ Workflow v1.2 (Phase 3: 5→9 steps) + ✅ 6 client testimonials with before-context + ✅ Golden star ignition logo |
-| **Key decisions** | Landing page = product (full workflow, not just design). Liquid glass > flat design. Trust before proof (About before Testimonials). Blueprints below CTA (don't give free before asking to buy). DM link preview IS first impression |
+| **Focus** | **Walk funnel end-to-end → Roast copy → Activate surfaces → Send first 10 DMs. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
+| **Key milestone** | ✅ All previous + ✅ Liquid glass morphism on both surface systems (dark funnel + light app) + ✅ Identity Disruptor quiz (6Q, 4 archetypes) + ✅ Customer Journey Playbook (15 sections) + ✅ Pre-launch checklist (Section 15) + ✅ ZoG assessment Steps 0-4 dark glass + ✅ ZoG Entry/Appleseed/Excalibur light glass |
+| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
 
 ---
 

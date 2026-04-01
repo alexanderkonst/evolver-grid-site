@@ -509,20 +509,55 @@ If that's what you've been missing — you can book a session below.
 ## 9. Surface Activation
 
 > Do these ONCE. Each one is permanent signal.
+> **Lead with feeling ("Overqualified? You're overprepared."), not capability ("I turn what you already do…").**
+
+### Copy-Paste Ready
+
+**LinkedIn headline:**
+```
+Overqualified? You're overprepared. | I help you name your genius and build a business from it
+```
+
+**LinkedIn about (first 3 lines — these show above the fold):**
+```
+I spent years doing my best work for free because I couldn't explain what I was doing.
+Now I help overqualified founders name their genius and build a business from it — in 90 minutes.
+15 sessions. 100% delivered what they came for. aleksandrkonstantinov.com
+```
+
+**WhatsApp about:**
+```
+Overqualified? You're overprepared. · aleksandrkonstantinov.com
+```
+
+**Email signature:**
+```
+Alexander Konstantinov
+Overqualified? You're overprepared.
+aleksandrkonstantinov.com
+```
+
+**Bio (all platforms):**
+```
+I turn what you already do into a one-sentence business.
+aleksandrkonstantinov.com
+```
+
+### Full Checklist
 
 | # | Surface | Time | Status | Action |
 |---|---------|------|--------|--------|
-| 1 | LinkedIn headline | 2 min | ⬜ | `I turn what you already do into a one-sentence business` |
-| 2 | LinkedIn banner | 10 min | ⬜ | Hero visual: "You can't explain what you do." + link |
-| 3 | LinkedIn about | 15 min | ⬜ | Story → what you do → proof → /ignite link |
+| 1 | LinkedIn headline | 2 min | ⬜ | Copy from above |
+| 2 | LinkedIn banner | 10 min | ⬜ | Hero visual: "Overqualified? You're overprepared." + link |
+| 3 | LinkedIn about | 15 min | ⬜ | Copy from above, expand below fold with story + proof |
 | 4 | LinkedIn featured | 3 min | ⬜ | Pin: (1) aleksandrkonstantinov.com (2) video |
 | 5 | LinkedIn job title | 2 min | ⬜ | ⚠️ Triggers notification to ALL connections |
-| 6 | Email signature | 5 min | ⬜ | `Alexander Konstantinov · aleksandrkonstantinov.com` |
-| 7 | WhatsApp about | 1 min | ⬜ | `I turn what you already do into a one-sentence business` |
+| 6 | Email signature | 5 min | ⬜ | Copy from above |
+| 7 | WhatsApp about | 1 min | ⬜ | Copy from above |
 | 8 | WhatsApp status | 2 min | ⬜ | Visual card + link |
 | 9 | Zoom display name | 30 sec | ⬜ | `Alexander Konstantinov` |
 | 10 | Cal.com description | 5 min | ⬜ | "In 90 min: your genius named, your business on one page, your next move" |
-| 11 | Profile bio (all) | 5 min | ⬜ | `I turn what you already do into a one-sentence business.` + link |
+| 11 | Profile bio (all) | 5 min | ⬜ | Copy from above |
 
 ---
 
