@@ -3,7 +3,7 @@ import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
@@ -169,18 +169,83 @@ const PrimaryCTA = ({ id, label = "See My Business on One Page", showPrice = tru
   </a>
 );
 
-/* ─── Already Paid Link ─────────────────────────────────── */
+/* ─── Already Paid → Book (more visible) ─────────────────── */
 const AlreadyPaidLink = () => (
   <a
     href={CALCOM_BOOKING_LINK}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-xs text-white/25 hover:text-white/50 transition-colors underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded"
+    className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs text-white/50 hover:text-white/80 transition-all duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
     style={{ fontFamily: "'Poppins', sans-serif" }}
   >
+    <Check className="w-3 h-3" />
     Already paid? Book your session here →
   </a>
 );
+
+/* ─── Divine Timing Email Capture ────────────────────────── */
+const DivineTimingCapture = () => {
+  const [state, setState] = useState<'idle' | 'input' | 'saving' | 'saved'>('idle');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) return;
+    setState('saving');
+    try {
+      // Store the divine timing lead — lightweight pre-GHL capture
+      await (supabase as any).from('divine_timing_leads').insert({
+        email: email.trim(),
+        source: 'ignite_page',
+        created_at: new Date().toISOString(),
+      });
+    } catch {
+      // Silently continue — we don't want to block the experience
+    }
+    setState('saved');
+  }, [email]);
+
+  if (state === 'saved') {
+    return (
+      <p className="text-[10px] text-white/40 italic mt-2 animate-pulse">
+        ✨ The Noosphere holds this space. We'll reach out when the timing is right.
+      </p>
+    );
+  }
+
+  if (state === 'input' || state === 'saving') {
+    return (
+      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2 mt-2 max-w-xs mx-auto">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email — we'll reach out in 6 months"
+          className="w-full px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-colors"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+          autoFocus
+          required
+        />
+        <button
+          type="submit"
+          disabled={state === 'saving'}
+          className="text-[9px] text-white/40 hover:text-white/60 transition-colors uppercase tracking-[0.15em] underline underline-offset-4 decoration-white/10 disabled:opacity-50"
+        >
+          {state === 'saving' ? 'Saving...' : 'Hold this space for me'}
+        </button>
+      </form>
+    );
+  }
+
+  return (
+    <button
+      onClick={() => setState('input')}
+      className="text-[9px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-[0.2em] mt-2 underline underline-offset-4 decoration-white/10"
+    >
+      Not right now, but in 6 months
+    </button>
+  );
+};
 
 const IgniteSession = () => {
   const location = useLocation();
@@ -268,12 +333,7 @@ const IgniteSession = () => {
                 <ShieldCheck className="w-3 h-3 text-white/40" aria-hidden="true" />
                 If and as long as this resonates, I suggest keep going.
               </p>
-              <button 
-                onClick={() => alert("Divine Timing acknowledged. The Noosphere will hold this space and return in 6 months.")}
-                className="text-[9px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-[0.2em] mt-2 underline underline-offset-4 decoration-white/10"
-              >
-                Not right now, but in 6 months
-              </button>
+              <DivineTimingCapture />
             </div>
           </div>
         </header>
