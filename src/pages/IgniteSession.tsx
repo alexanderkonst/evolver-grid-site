@@ -208,7 +208,7 @@ const DivineTimingCapture = () => {
   if (state === 'saved') {
     return (
       <p className="text-[10px] text-white/40 italic mt-2 animate-pulse">
-        ✨ The Noosphere holds this space. We'll reach out when the timing is right.
+        ✨ Saved. We'll reach out when the timing is right.
       </p>
     );
   }
@@ -275,7 +275,7 @@ const IgniteSession = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — The Funnel Page Architecture v3.0
+            S1: HERO
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
@@ -293,23 +293,26 @@ const IgniteSession = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            Name your genius.<br/>Monetize it through a dream business.
+            Name your genius.<br/>Monetize it through a business.
           </p>
 
           <div className="flex flex-col items-center gap-4 pt-6">
-            {/* Entry 2: The Matchmaking Quiz */}
+            {/* Free path: ZoG reveal */}
             <a
-              href="/game/collaborate/matches"
+              href="/zone-of-genius/entry"
               className="liquid-glass w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <span>Near instant zone of genius reveal</span>
+              <div>
+                <span>Near instant zone of genius reveal</span>
+                <span className="block text-[10px] text-white/40 mt-0.5">5 minutes. No signup. Find the words.</span>
+              </div>
               <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
               </span>
             </a>
 
-            {/* Entry 1: The Build Session */}
+            {/* Paid path: Ignition Session */}
             <a
               href={STRIPE_PAYMENT_LINK}
               target="_blank"
@@ -326,20 +329,16 @@ const IgniteSession = () => {
 
           <div className="pt-8 space-y-4">
             <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
-              Watch how to build your unique genius business, free.
+              Watch the 4-minute methodology breakdown, free.
             </a>
             <div className="flex flex-col items-center justify-center gap-1 pt-2">
-              <p className="text-[10px] text-white/30 italic uppercase tracking-widest flex items-center gap-2">
-                <ShieldCheck className="w-3 h-3 text-white/40" aria-hidden="true" />
-                If and as long as this resonates, I suggest keep going.
-              </p>
               <DivineTimingCapture />
             </div>
           </div>
         </header>
 
         {/* ═══════════════════════════════════════════════
-            S2: QUALIFIER — Meta-segment recognition
+            S2: QUALIFIER — the gold (untouched)
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
@@ -369,11 +368,11 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S3: VIDEO — Methodology demonstration
+            S3: VIDEO
             ═══════════════════════════════════════════════ */}
         <section id="hero-video" aria-label="Methodology video">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            The exact methodology disclosed in 4 minutes
+            The exact methodology in 4 minutes
           </h2>
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
@@ -381,30 +380,30 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S4: HOW IT WORKS — 3 glass step cards
+            S4: HOW IT WORKS — 3 steps + deliverables
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What happens in the session</h2>
-          <p className="text-xs text-white/45 text-center">This is not coaching. This is real-time crystallization.</p>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What happens in 90 minutes</h2>
+          <p className="text-xs text-white/45 text-center">This is not coaching. You leave with a document, not a feeling.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 emoji: "🔮",
                 step: "1",
                 title: "Your genius gets named",
-                desc: "You talk. I listen for what's already there—but invisible to you. Then we land it in one sentence clear enough that a 7-year-old understands, an investor trusts, and a client buys.",
+                desc: "You talk. I listen for what's already there—but invisible to you. We land it in one sentence a 7-year-old understands, an investor trusts, and a client buys.",
               },
               {
                 emoji: "📦",
                 step: "2",
                 title: "It becomes a product",
-                desc: "That sentence becomes a clear offer, a defined audience, a real problem, a real outcome. No guessing. No branding exercise. Just structure that holds.",
+                desc: "That sentence becomes a clear offer, a defined audience, a real problem, a real outcome. No guessing. Just structure that holds.",
               },
               {
                 emoji: "🚀",
                 step: "3",
-                title: "Your business appears",
-                desc: "AI compiles everything live into your entire business on one page. What you do, who it's for, why they pay, what to say next. You leave with a system.",
+                title: "Your business on one page",
+                desc: "AI compiles everything live. What you do, who it's for, why they pay, what to say next. You leave with a system.",
               },
             ].map((item, i) => (
               <div
@@ -423,117 +422,14 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S5: DELIVERABLES — What you walk out with
-            ═══════════════════════════════════════════════ */}
-        <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
-          <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
-          <div className="space-y-4">
-            {[
-              {
-                title: "The Sacred Trading Card (7.0 Precision Draft)",
-                desc: "Your entire business architecture structured and compiled live into a physically beautiful, inherently viral artifact."
-              },
-              {
-                title: "Your genius named in one undeniable sentence",
-                desc: "The thing you've been doing for free—named clearly enough that anyone can understand and buy it."
-              },
-              {
-                title: "A structured offer you can charge for",
-                desc: "Not vague value. A concrete container with a clear price that makes sense."
-              },
-              {
-                title: "The exact person to talk to next—and the exact words to say",
-                desc: "You leave knowing who, what, and how. No more guessing."
-              },
-              {
-                title: "The confidence that comes from finally being seen",
-                desc: "Not a pep talk. The structural clarity that makes confidence automatic."
-              },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="text-sm text-white/95 font-medium">{item.title}</p>
-                  <p className="text-xs text-white/55 leading-relaxed mt-0.5">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S6: THREE SHIFTS — The transformation arc
-            ═══════════════════════════════════════════════ */}
-        <section className="space-y-4" id="three-shifts" aria-label="The three shifts">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                num: "1",
-                label: "Scattered → Clear",
-                before: '"I do a lot of things…"',
-                after: "One sentence that lands instantly.",
-              },
-              {
-                num: "2",
-                label: "Free → Paid",
-                before: "Giving your best work away—because it felt noble, because it came naturally.",
-                after: "People understand it fast enough to pay. And you understand WHY it's worth paying for.",
-              },
-              {
-                num: "3",
-                label: "Looping → Moving",
-                before: "Building, coaching, considering corporate—round and round.",
-                after: "One container that doesn't ask you to amputate. Clear next move.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="liquid-glass rounded-3xl p-5 space-y-3">
-                <p className="text-xs text-white/60 font-medium uppercase tracking-widest text-center">{item.num}. {item.label}</p>
-                <div className="space-y-2">
-                  <div>
-                    <p className="text-[10px] text-white/40 uppercase tracking-wider">Before</p>
-                    <p className="text-xs text-white/50 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.before}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-white/40 uppercase tracking-wider">After</p>
-                    <p className="text-xs text-white/70 leading-relaxed">{item.after}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S7: REALITY CHECK — The ache named
-            ═══════════════════════════════════════════════ */}
-        <section className="text-center space-y-3 py-2" id="reality-check">
-          <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto">
-            You're not stuck because you lack ability.
-          </p>
-          <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto">
-            You're stuck because you can't <span className="text-white/90 font-medium">say what you do</span>—clearly enough for someone to buy it.
-          </p>
-          <p className="text-xs text-white/45 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            And what can't be explained can't be sold, can't be scaled, can't become the business you know it should be.
-          </p>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S8: ABOUT ALEXANDER — Expanded trust anchor
+            S5: ABOUT — trimmed, no jargon
             ═══════════════════════════════════════════════ */}
         <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
-          {/* Photo centered on top edge */}
           <img
             src={aleksandrPhoto}
             alt="Aleksandr Konstantinov"
             className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
           />
-          {/* Glass box pulled up under the photo */}
           <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center space-y-3">
             <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
               I spent years in the loop myself. Building startups that didn't stick. Consulting. Coaching friends for free. Circling the same question everyone in this situation circles:
@@ -541,17 +437,8 @@ const IgniteSession = () => {
             <p className="text-sm text-white/80 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
               "What is mine to build?"
             </p>
-            <p className="text-sm text-white/60 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              The answer was embarrassingly close the whole time. I was already doing it—in every conversation, every session, every "just helping out" moment.
-            </p>
             <p className="text-sm text-white/70 leading-relaxed mt-1">
-              What I do now is simple: I sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves.
-            </p>
-            <p className="text-sm text-white/55 leading-relaxed">
-              Then AI compiles their entire business on one page before the session ends.
-            </p>
-            <p className="text-xs text-white/40 leading-relaxed mt-2">
-              Hundreds of transformative sessions facilitated. The system is infused with Y&nbsp;Combinator, Silicon Valley, MIT, and New Earth methodologies. AI workflows at every step.
+              What I do now is simple: I sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
@@ -560,10 +447,9 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S9: TESTIMONIALS — glass cards with before-context
+            S6: TESTIMONIALS
             ═══════════════════════════════════════════════ */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <p className="text-sm text-white/60 text-center mb-1">People don't expect this to work this fast. Then it does.</p>
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {testimonials.map((t, i) => (
@@ -573,29 +459,28 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S10: PRICING + GUARANTEE — strong glass panel
+            S7: PRICING + GUARANTEE + FAQ — single section
             ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Pricing">
+        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Pricing">
+          {/* Guarantee first — the headline */}
+          <div className="px-5 max-w-md mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
+              <p className="text-sm font-medium text-white/70 uppercase tracking-widest">Guarantee</p>
+            </div>
+            <p className="text-base text-white/90 leading-relaxed font-medium">
+              Your genius named and your business on one page—or you don't pay.
+            </p>
+          </div>
+
           <div>
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-white/45">One session. Fully filled unique business canvas. Yours forever.</p>
-            <p className="text-xs text-white/50 mt-1">Limited sessions per week. First come, first serve.</p>
+            <p className="text-xs text-white/45">One session. Your entire business on one page. Yours forever.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" label="Book Your Ignition Session" showPrice={false} />
-
-          {/* Guarantee */}
-          <div className="px-5 py-2 max-w-md mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck className="w-4 h-4 text-white/40" aria-hidden="true" />
-              <p className="text-xs font-medium text-white/55 uppercase tracking-widest">The Ignition Guarantee</p>
-            </div>
-            <p className="text-xs text-white/50 leading-relaxed">
-              You leave with your genius named and your business on one page—or you don't pay.
-            </p>
-          </div>
 
           <div className="flex flex-col items-center gap-3 pt-1">
             <a
@@ -606,29 +491,14 @@ const IgniteSession = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Still have questions? Book a free 15-min clarity call
+              Not sure? Free 15-min call first
             </a>
             <AlreadyPaidLink />
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S10.5: THE BUILD — What happens after
-            ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass rounded-3xl p-6 md:p-8 text-center space-y-4" id="the-build" aria-label="What comes next">
-          <p className="text-xs text-white/40 uppercase tracking-widest">If this clicks, we don't stop at clarity</p>
-          <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Build (Outcome Scaling)</h2>
-          <div className="space-y-1 text-sm text-white/60 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            <p><strong className="text-white/80 font-medium">The Machine:</strong> $1,111 upfront.</p>
-            <p><strong className="text-white/80 font-medium">The Alignment:</strong> $2,500 backend extracted from your first $10K baseline.</p>
-          </div>
-          <p className="text-xs text-white/70 font-medium tracking-widest uppercase mt-4">
-            The Outcome: 10 clients. Early PMF. Done.
-          </p>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S11: FAQ — glass accordions
+            S8: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
           <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
@@ -640,10 +510,6 @@ const IgniteSession = () => {
             {
               q: "What if I already have a business?",
               a: "Then we sharpen it until it actually fits YOU—not a template someone else made."
-            },
-            {
-              q: "What if I've tried other things—coaching, courses, frameworks—and they didn't work?",
-              a: "They probably served one part of you. This is for people who need a container that holds ALL of them."
             },
             {
               q: "Is this coaching?",
@@ -675,90 +541,7 @@ const IgniteSession = () => {
               </div>
             </div>
           ))}
-
-          <div className="text-center pt-4">
-            <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="liquid-glass inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm text-white/80 hover:text-white hover:scale-105 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Still have questions? Book a free 15-min clarity call
-            </a>
-          </div>
         </section>
-
-        {/* ═══════════════════════════════════════════════
-            S12: BOTTOM CTA — above blueprints
-            ═══════════════════════════════════════════════ */}
-        <div className="text-center space-y-3" id="bottom-cta">
-          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            If you've been carrying this unnamed thing in silence—
-            <br />wondering why it's so hard to say, why nothing fully fits, why you keep circling—
-          </p>
-          <p className="text-sm text-white/70 font-medium">
-            This is where it clicks.
-          </p>
-          <PrimaryCTA id="bottom-cta-btn" />
-          <div className="flex flex-col items-center gap-2">
-            <AlreadyPaidLink />
-          </div>
-        </div>
-
-        {/* ═══════════════════════════════════════════════
-            S13: OPEN BLUEPRINTS — glass video cards
-            ═══════════════════════════════════════════════ */}
-        <section className="space-y-4 pt-6" id="blueprints-section" aria-label="Free methodology blueprints">
-          <div className="text-center space-y-1">
-            <p className="text-xs text-white/40 uppercase tracking-widest">The Open Blueprints</p>
-            <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The entire methodology. Free.</h2>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                title: "Blueprint 1: Unique Product",
-                subtitle: "From Zero to Sales",
-                youtubeId: "-eO36lBMPRo",
-              },
-              {
-                title: "Blueprint 2: Unique Marketing",
-                subtitle: "From Fog to Reality Cohering Field",
-                youtubeId: "wjcD5r9iq8A",
-              },
-              {
-                title: "Blueprint 3: Aligned Distribution",
-                subtitle: "From Manipulation to Soul-Aligned Tactics",
-                youtubeId: "XI2xqNO4Oek",
-              },
-            ].map((video, i) => (
-              <div key={i} className="liquid-glass rounded-2xl">
-                <div className="p-1">
-                  <LazyYouTube id={video.youtubeId} title={video.title} />
-                </div>
-                <div className="px-4 py-3">
-                  <p className="text-sm text-white/75 font-medium">{video.title}</p>
-                  <p className="text-xs text-white/45">{video.subtitle}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════
-            S14: FOOTER BRIDGE + FINAL CTA
-            ═══════════════════════════════════════════════ */}
-        <div className="text-center space-y-4" id="final-cta">
-          <p className="text-xs text-white/35 max-w-sm mx-auto leading-relaxed">
-            This page is the second mirror. If you arrived here from a message that resonated—trust that signal.
-          </p>
-          <PrimaryCTA id="final-cta-btn" />
-          <div className="flex flex-col items-center gap-2">
-            <AlreadyPaidLink />
-          </div>
-        </div>
 
         {/* Bottom spacing */}
         <div className="h-8" />
@@ -771,3 +554,4 @@ const IgniteSession = () => {
 };
 
 export default IgniteSession;
+

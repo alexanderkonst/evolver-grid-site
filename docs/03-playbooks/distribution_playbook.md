@@ -1318,11 +1318,62 @@ The 5-founder cross-pollination call is not just community building. It is distr
 
 ---
 
+# Part VIII: Operational Launch Kit — The First Campaign
+
+> *v1.0 · March 31, 2026 — "LETS GET TACTICAL AND LASER FOCUSED AND RESOLUTE."*
+
+---
+
+## Ready-to-Use Templates
+
+All outreach templates (3 campaigns, response handling, tracking sheet) live in:
+→ [outreach_templates.md](./outreach_templates.md)
+
+| Campaign | Segment | Channel | Volume | Launch |
+|----------|---------|---------|--------|--------|
+| **A: Warm Reconnection** | Warm contacts | LinkedIn DM + WhatsApp | 10-15 | **Tomorrow** |
+| **B: Upstream Partnership** | Uniqueness workers + ecosystem holders | LinkedIn DM | 5-8 | This week |
+| **C: Cross-Pollination** | 5 venture studio founders | WhatsApp/Telegram | 5 | This week |
+
+## Customer Journey Fixes (Implemented)
+
+| Fix | What Changed | Status |
+|-----|-------------|--------|
+| "Not right now" button | `alert()` → email capture form → `divine_timing_leads` table | ✅ In code |
+| "Already paid?" visibility | Barely-visible text link → glass pill button with ✓ icon | ✅ In code |
+| Post-payment email template | None → love-first email with booking + prep instructions | ✅ In templates |
+| Post-session follow-up | None → Sacred Trading Card delivery + The Build invitation | ✅ In templates |
+
+## Manual Steps (Stripe / Cal.com — Do These Today)
+
+| # | Action | Where | Time |
+|---|--------|-------|------|
+| 1 | Set Stripe payment link `success_url` to Cal.com booking page | Stripe Dashboard → Payment Links → Edit | 2 min |
+| 2 | Customize Cal.com booking confirmation email with prep note | Cal.com → Event Type → Notifications | 5 min |
+| 3 | Create `divine_timing_leads` table in Supabase (email, source, created_at) | Supabase Dashboard → Table Editor | 3 min |
+
+## The Purity Standard
+
+Every message, every email, every touchpoint passes this check:
+
+```
+□ Does this provide value regardless of purchase?
+□ Would I send this to someone I love?
+□ Is there any moment the energy shifts from "serving" to "selling"?
+□ Does every CTA respect sovereignty and divine timing?
+□ Is this something I'd say at a dinner table?
+```
+
+If any answer is wrong → rewrite until it's right.
+
+---
+
 *Codified: January 27, 2026*
 *Updated: February 18, 2026 — partnership distribution model, myth-driven distribution principle*
 *Updated: March 26, 2026 — Part V: Realistic Projections (cold-start truth, anti-patterns, channel sequencing)*
 *Updated: March 31, 2026 — Part VI: AI-Native Distribution Infrastructure (GHL Ask AI, Frankie Model, Purity Check, scaling sequence)*
 *Updated: March 31, 2026 — Part VII: The Organizing Principle of Sales (P × M × D × S = ONE, 5 collaborator segments, one-button funnel, digital surface holomap, cross-pollination distribution)*
+*Updated: March 31, 2026 — Part VIII: Operational Launch Kit (3 campaigns, customer journey fixes, purity standard)*
 *This is the master blueprint for the Distribution Compiler*
 
 
