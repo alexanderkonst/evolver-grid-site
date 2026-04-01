@@ -21,34 +21,30 @@ Below: three segment-specific templates refined from this seed.
 **Volume:** 10-15 people
 **Energy:** Personal, warm, gift energy — NOT pitch
 
-## Template A1: LinkedIn DM (English)
+## Template A1: LinkedIn DM (English — Godfather "mirror" version)
 
 ```
 Hey [Name] —
 
-Something shifted for me these past few months and I wanted to share it with you personally.
+I built something that shows you what you actually do
+in a way that's hard to see from the inside.
 
-I've been doing this thing where I sit with someone for 90 minutes, name their unique genius, and build their entire business on one page — live, with AI. The results have been... honestly surreal.
+You came to mind — curious if it lands for you.
 
-Here's the page: https://aleksandrkonstantinov.com/ignite
-And here's what it looked like for one of the founders: [founder landing page link]
-
-Not asking for anything. Just wanted you to see it.
-
-If it resonates — or if it reminds you of someone — I'm here.
+👉 https://aleksandrkonstantinov.com/game/collaborate/matches
 ```
 
 ## Template A2: WhatsApp (English — shorter, more intimate)
 
 ```
-Hey [Name] — wanted to share something with you.
+Hey [Name] — I've been working on something quietly.
 
-I've been building something new: I sit with a person for 90 minutes, name the thing they've been doing for free their whole life, and build their business from it. On one page. Live. With AI.
+It reveals what you actually do — in a way that's
+surprisingly hard to see on your own.
 
-The results have been kind of unreal. Here's the page if you're curious:
-https://aleksandrkonstantinov.com/ignite
+It's free. Curious what you get.
 
-No ask. Just wanted you to know what I'm up to. ❤️
+👉 https://aleksandrkonstantinov.com/game/collaborate/matches
 ```
 
 ## Template A3: WhatsApp (Russian — for Russian-speaking contacts)
@@ -74,15 +70,18 @@ https://aleksandrkonstantinov.com/ignite
 | 4 | Afternoon | Note who responds in tracking sheet (below) |
 | 5 | Evening | Reply to any responses with genuine conversation |
 
-## Response Handling
+## Response Handling — Godfather DM → Booking Flow
 
-| Response Type | Your Move |
-|--------------|-----------|
-| "This is amazing!" | "Thank you ❤️ — if anyone comes to mind who's in this spot, I'd love an intro" |
-| "Tell me more" | Share 1-2 testimonial screenshots + the 4-min video link |
-| "I might be interested for myself" | "Let's do a free 15-min clarity call — [cal.com link]" |
-| "Not right now" | "All good. The page is there whenever the timing is right." |
-| No response | Don't follow up for at least 7 days. Then a single soft touch: "Hey — just checking this landed. No rush." |
+> **Rule:** Don't pitch. Don't explain. Just deepen awareness.
+
+| Step | They say | You say |
+|------|----------|--------|
+| 1 — They engage | "This is me" / "Wow accurate" / "Interesting" | `That's usually where people realize something's still missing.` |
+| 2 — They lean in | "Yeah exactly" / "What do you mean?" / "What's missing?" | `You can see it… but you can't fully turn it into something real yet.` |
+| 3 — Invitation | They engage again | `If you want, I can help you finish it in one session.` |
+| 4 — They ask how | "How?" / "Tell me more" | `We take what you already do and turn it into a one-sentence business, a clear offer, and your next move—live.` → send /ignite link |
+| 5 — Hesitation | Silence / "I'll think about it" | `No rush. People usually know when they're ready.` |
+| — | No response (7+ days) | `Hey — just checking this landed. No rush.` |
 
 ---
 
@@ -175,20 +174,21 @@ Are you game? If yes, I'll coordinate the time.
 
 > The 10 actions that, if done THIS WEEK, make you 80% projected.
 
-| # | Surface | Yield | Time | Status | Exact Action |
-|---|---------|-------|------|--------|-------------|
-| 1 | **LinkedIn headline** | 315 | 2 min | ⬜ | Change to: `Overqualified? You're overprepared. · I name your genius and build your business in 90 minutes` |
-| 2 | **LinkedIn banner** | 225 | 10 min | ⬜ | Upload hero visual: "Overqualified? Overprepared." + `aleksandrkonstantinov.com/ignite` |
-| 3 | **LinkedIn about section** | 90 | 15 min | ⬜ | Rewrite: founder story → methodology → proof → CTA (booking link) |
-| 4 | **LinkedIn featured section** | 180 | 3 min | ⬜ | Pin: (1) landing page URL, (2) top UTF post, (3) methodology video |
-| 5 | **LinkedIn job title update** | 270 | 2 min | ⬜ | Update current role. **⚠️ This triggers a notification to ALL connections.** Time it right |
-| 6 | **Email signature** | 140 | 5 min | ⬜ | `Alexander Konstantinov · Overqualified? Overprepared. · aleksandrkonstantinov.com/ignite` |
-| 7 | **WhatsApp about text** | 180 | 1 min | ⬜ | `I name your genius and build your business in 90 min · aleksandrkonstantinov.com/ignite` |
-| 8 | **WhatsApp status** | 180 | 2 min | ⬜ | Visual card with hero text + link |
-| 9 | **Zoom display name** | 60 | 30 sec | ⬜ | `Alexander Konstantinov · Overqualified? Overprepared.` |
-| 10 | **Cal.com booking description** | 300 | 5 min | ⬜ | Add: "In 90 minutes: your genius named, your business on one page, your exact next move — with AI" |
+| # | Surface | Time | Status | Exact Action |
+|---|---------|------|--------|-------------|
+| 1 | **LinkedIn headline** | 2 min | ⬜ | Change to: `I turn what you already do into a one-sentence business` |
+| 2 | **LinkedIn banner** | 10 min | ⬜ | Upload hero visual: "You can't explain what you do. That's why it's not selling." + link |
+| 3 | **LinkedIn about section** | 15 min | ⬜ | Rewrite: founder story → methodology → proof → CTA (booking link) |
+| 4 | **LinkedIn featured section** | 3 min | ⬜ | Pin: (1) ZoG reveal link, (2) landing page URL, (3) methodology video |
+| 5 | **LinkedIn job title update** | 2 min | ⬜ | Update current role. **⚠️ Triggers notification to ALL connections.** |
+| 6 | **Email signature** | 5 min | ⬜ | `Alexander Konstantinov · aleksandrkonstantinov.com/ignite` |
+| 7 | **WhatsApp about text** | 1 min | ⬜ | `I turn what you already do into a one-sentence business · aleksandrkonstantinov.com` |
+| 8 | **WhatsApp status** | 2 min | ⬜ | Visual card with hero text + link |
+| 9 | **Zoom display name** | 30 sec | ⬜ | `Alexander Konstantinov` |
+| 10 | **Cal.com booking description** | 5 min | ⬜ | Add: "In 90 minutes: your genius named, your business on one page, your exact next move" |
+| 11 | **Profile bio** (all platforms) | 5 min | ⬜ | `I turn what you already do into a one-sentence business.` + ZoG link |
 
-**Total time: ~45 minutes. Total yield: permanent.**
+**Total time: ~50 minutes. Total yield: permanent.**
 
 ---
 

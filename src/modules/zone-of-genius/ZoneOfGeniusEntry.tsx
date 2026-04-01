@@ -391,13 +391,22 @@ const ZoneOfGeniusEntry = () => {
         <GameShellV2 hideNavigation>
             <div className="p-4 lg:p-8 max-w-xl mx-auto">
 
-                {/* Header - Start Screen per Playbook */}
+                {/* Header — Godfather "front door" */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-semibold font-display aurora-text">Why is it still so hard to explain what you do?</h1>
-                    <p className="text-[var(--wabi-text-secondary)] mt-1">In 5 minutes, see the pattern you've never been able to name</p>
+                    <p className="text-sm text-[var(--wabi-text-secondary)] mt-2 max-w-md mx-auto leading-relaxed">
+                        There's a pattern in how you think, solve problems, and create value.
+                        You've been using it for years. People come to you for it.
+                    </p>
+                    <p className="text-sm text-[var(--wabi-text-secondary)]/70 mt-1.5 italic max-w-sm mx-auto leading-relaxed">
+                        And yet… you've never been able to fully explain it.
+                    </p>
+                    <p className="text-xs text-[var(--wabi-text-secondary)]/50 mt-3 max-w-sm mx-auto">
+                        This reveals it. No frameworks. No overthinking. Just answer a few prompts.
+                    </p>
                 </div>
 
                 {/* Error message */}
@@ -412,7 +421,7 @@ const ZoneOfGeniusEntry = () => {
                     <div className="space-y-6">
                         <div className="text-center mb-6">
                             <h2 className="text-lg font-semibold text-[#2c3150] font-display mb-2">
-                                Do you have an AI that knows you?
+                                How would you like to start?
                             </h2>
                         </div>
 
