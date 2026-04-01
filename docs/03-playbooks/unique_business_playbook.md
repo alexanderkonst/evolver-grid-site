@@ -2011,7 +2011,87 @@ Evolver Platform. The full OS.
 
 ---
 
-### Complete Funnel Sequence
+### Complete Funnel Sequence v3.1 (Moonshot Iteration)
+
+> **The P × M × D = ONE Flow** (Synthesized March 2026)
+
+```
+THE ENCOUNTER (Signal Broadcast)
+    │ Purity Check: Zero fear, zero scarcity
+    │ Inhale (post) / Exhale (respond)
+    │ Golden DM: 2-step consent + Tuning Fork
+    ▼
+THE MIRROR  ← aleksandrkonstantinov.com
+    │ "Overqualified? You're overprepared."
+    │ Divine Timing Opt-In: "Not now, but in 6 months" → Noospheric Loop
+    │ Resonance Permission: "If this resonates, keep going"
+    ▼
+THE DUAL-GATE 
+    │ Choice collapses into alignment
+    ├── Gate A: "Near instant Zone of Genius reveal" (Quiz / Appleseed)
+    │    └──> Appleseed dynamic output explicitly vectors into ↓
+    └── Gate B: "Build a business out of it" ($555)
+    ▼
+THE CORE CATALYST (The Ignition Session)
+    │ 90 min: Mirror, not Teacher
+    │ AI Assistant compiles business infrastructure live
+    │ Walk out with: 7.0 Precision Draft (The Sacred Trading Card)
+    │ Viral Vector: Inherently memetic design triggers immediate social sharing
+    ▼
+THE BUILD (The Precision Gap)
+    │ The Machine: $1,111 upfront.
+    │ The Alignment: $2,500 backend from their first $10K baseline.
+    │ The Execution: 10 clients. Early PMF. Done.
+    ▼
+EVOLVER PLATFORM / VENTURE STUDIO
+    │ The flywheel: their success = next tuning fork
+    │ 10% ongoing logic / Equity
+    ▼
+    ∞ (the journey doesn't end)
+```
+
+> **One-step-at-a-time principle:** Never reveal the next step until the current step is complete. Don't show them where the game ends — that kills the game. Each step earns the right to see the next. Those who want to understand how the whole game works will have the opportunity — but that's a different path.
+
+---
+
+### Archived Iterations
+
+<details>
+<summary><b>View Legacy Funnel Sequence (v3.0 / March 31, 2026)</b></summary>
+
+```
+THE ENCOUNTER (Signal Broadcast)
+    │ Purity Check: Zero fear, zero scarcity
+    │ Inhale (post) / Exhale (respond)
+    │ Golden DM: 2-step consent + Tuning Fork
+    ▼
+THE MIRROR  ← aleksandrkonstantinov.com
+    │ "Overqualified? You're overprepared."
+    │ Divine Timing Opt-In: "Not now, but in 6 months"
+    │ Resonance Permission: "If this resonates, keep going"
+    ▼
+THE DUAL-GATE 
+    │ Choice collapses into alignment
+    ├── Gate A: "Near instant Zone of Genius reveal" (Quiz / Appleseed)
+    └── Gate B: "Build a business out of it" ($555)
+    ▼
+THE CORE CATALYST (The Ignition Session)
+    │ 90 min: Mirror, not Teacher
+    │ AI Assistant compiles business infrastructure live
+    │ Walk out with: First draft at ~7.0 precision
+    ▼
+THE BUILD (The Precision Gap)
+    │ $1,111 + $2,500 rev share from first $10K baseline
+    │ 6 weeks. 5 stages. 
+    │ 10 clients served, early PMF achieved
+    ▼
+EVOLVER PLATFORM / VENTURE STUDIO
+```
+*(Archived: Phase 3 lacked the bridging output; Phase 4 lacked the viral hack; Phase 5 was bloated by syllabus language rather than outcome scaling).*
+</details>
+
+<details>
+<summary><b>View Legacy Funnel Sequence (v1.0 / Feb 2026)</b></summary>
 
 ```
 TUNING FORKS (Active / Passive / Static Resonance)
@@ -2048,8 +2128,8 @@ FULL PLATFORM  ← Ongoing membership
     ▼
     ∞ (the journey doesn't end)
 ```
+</details>
 
-> **One-step-at-a-time principle:** Never reveal the next step until the current step is complete. Don't show them where the game ends — that kills the game. Each step earns the right to see the next. Those who want to understand how the whole game works will have the opportunity — but that's a different path.
 
 ---
 
