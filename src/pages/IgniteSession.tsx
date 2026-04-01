@@ -383,6 +383,9 @@ const IgniteSession = () => {
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
           </div>
+          <p className="text-xs text-white/40 text-center mt-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If you're still thinking about this after watching… you already know.
+          </p>
         </section>
 
         {/* ═══════════════════════════════════════════════
@@ -465,40 +468,74 @@ const IgniteSession = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════
-            S7: PRICING + GUARANTEE + FAQ — single section
+            S7: BOOKING — decision clarity + safety + inevitability
             ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Pricing">
-          {/* Guarantee first — the headline */}
-          <div className="px-5 max-w-md mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
-              <p className="text-sm font-medium text-white/70 uppercase tracking-widest">Guarantee</p>
-            </div>
-            <p className="text-base text-white/90 leading-relaxed font-medium">
-              If you don't leave with a clear one-sentence business, you don't pay.
-            </p>
+        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Book your session">
+
+          {/* What happens — 4 crisp bullets */}
+          <div className="space-y-2 max-w-sm mx-auto text-left">
+            <p className="text-xs text-white/40 uppercase tracking-widest text-center mb-3">What happens</p>
+            {[
+              { arrow: "Your genius", result: "named clearly" },
+              { arrow: "Turned into", result: "a real offer" },
+              { arrow: "Compiled into", result: "your business on one page" },
+              { arrow: "You leave knowing", result: "who to talk to and what to say" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-baseline gap-2">
+                <span className="text-xs text-white/50">{item.arrow} →</span>
+                <span className="text-sm text-white/90 font-medium">{item.result}</span>
+              </div>
+            ))}
           </div>
 
+          {/* Price — one session. one business. */}
           <div>
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-white/55">To turn this into something real.</p>
-            <p className="text-xs text-white/35 mt-1">Most people spend months figuring this out. You walk out with it.</p>
+            <p className="text-xs text-white/55">One session. One business.</p>
           </div>
 
-          <PrimaryCTA id="book-session-btn" label="Book Your Ignition Session" showPrice={false} />
+          {/* Guarantee — BIG */}
+          <div className="px-4 py-3 max-w-sm mx-auto rounded-xl border border-white/10">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
+            </div>
+            <p className="text-sm text-white/90 leading-relaxed font-medium">
+              If you don't leave with a clear one-sentence business, you don't pay.
+            </p>
+          </div>
 
-          <div className="flex flex-col items-center gap-3 pt-1">
+          {/* Micro social proof — 3 quotes */}
+          <div className="space-y-1.5 max-w-sm mx-auto">
+            {[
+              "\"I was applying force, but the vector was wrong.\"",
+              "\"This is a miracle of miracles.\"",
+              "\"I've never been able to say it like that before.\"",
+            ].map((quote, i) => (
+              <p key={i} className="text-xs text-white/40 italic text-center" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                {quote}
+              </p>
+            ))}
+          </div>
+
+          {/* Bridge line */}
+          <p className="text-xs text-white/55 font-medium">
+            You don't need more thinking. You need this finished.
+          </p>
+
+          {/* CTA */}
+          <PrimaryCTA id="book-session-btn" label="Book Your Session" showPrice={false} />
+
+          {/* Small text */}
+          <div className="flex flex-col items-center gap-2 pt-1">
             <a
               href={CALCOM_CLARITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="liquid-glass inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm text-white/80 hover:text-white hover:scale-105 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
+              className="text-xs text-white/40 hover:text-white/70 transition-colors underline underline-offset-4 decoration-white/10 hover:decoration-white/30"
             >
-              <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Not sure? Free 15-min call first
+              Not sure? Book a free 15-min call
             </a>
             <AlreadyPaidLink />
           </div>
