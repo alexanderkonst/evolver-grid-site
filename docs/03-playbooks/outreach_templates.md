@@ -31,7 +31,7 @@ in a way that's hard to see from the inside.
 
 You came to mind — curious if it lands for you.
 
-👉 https://aleksandrkonstantinov.com/zone-of-genius/entry
+👉 https://aleksandrkonstantinov.com/reveal
 ```
 
 ## Template A2: WhatsApp (English — shorter, more intimate)
@@ -44,20 +44,20 @@ surprisingly hard to see on your own.
 
 It's free. Curious what you get.
 
-👉 https://aleksandrkonstantinov.com/zone-of-genius/entry
+👉 https://aleksandrkonstantinov.com/reveal
 ```
 
-## Template A3: WhatsApp (Russian — for Russian-speaking contacts)
+## Template A3: WhatsApp (Russian — Godfather "mirror" version)
 
 ```
-Привет [Имя] — хотел поделиться.
+Привет [Имя] — я тут кое-что сделал.
 
-Последние месяцы я делаю одну штуку: сажусь с человеком на 90 минут, называю его уникальный гений, и прямо в сессии выстраиваю весь его бизнес на одной странице — с помощью ИИ.
+Штука, которая показывает тебе, что ты на самом деле делаешь —
+так, как самому изнутри сложно увидеть.
 
-Результаты поразительные. Вот страница, если интересно:
-https://aleksandrkonstantinov.com/ignite
+Бесплатно. Интересно, что выйдет у тебя.
 
-Ничего не прошу. Просто хотел, чтобы ты увидел(а). ❤️
+👉 https://aleksandrkonstantinov.com/reveal
 ```
 
 ## Tomorrow's Launch Sequence
