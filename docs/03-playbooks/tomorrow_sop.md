@@ -1,4 +1,11 @@
-# WEEKLY SOP — Updated April 1, 2026
+# ⚠️ ARCHIVED — Consolidated into [customer_journey_playbook.md](./customer_journey_playbook.md)
+
+> **This file is superseded.** Weekly SOP is now Section 12 of the Customer Journey Playbook.
+> Kept for reference only. Do not update this file.
+
+---
+
+# WEEKLY SOP (ARCHIVED)
 ## Your precision resonance engine. Not volume. Not hustle. Recognition → gap → resolution.
 
 ---
