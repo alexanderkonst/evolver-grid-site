@@ -940,6 +940,22 @@ Only add a second channel when the first is working:
 
 ---
 
+## Pre-Flight Protocol: The Digital Surface Holomap 
+
+> *The collapse of distribution guesswork into outcome-optimized physics.*
+
+Before touching a CRM or an AI automation tool, you must map the terrain. Traditional distribution asks "Where should I post?". The Holomap asks "Where is the structural geometric alignment?"
+
+### The Mapping Protocol:
+1. **Inventory:** List every digital surface you have access to (Personal LinkedIn, WhatsApp statuses, Email signatures, Community profile directories, Newsletters, etc).
+2. **The Meta-Metric Ranking:** Score each surface using this heuristic:
+   `Leverage Score = (Current Cultivated Trust / Clout) ÷ (Energy Required to Post)`
+3. **The Projection:** You do not adapt your message to the platform. You project your exact Unique Business Blueprint (Hero copy, Tuning Fork) directly onto the top 3 nodes with the highest Leverage Score. 
+
+By running this mapping *before* execution, you ensure your effort is laser-focused and your outcomes are structurally optimized by design.
+
+---
+
 ## The Two-Layer Architecture
 
 ```

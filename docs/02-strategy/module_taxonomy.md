@@ -378,6 +378,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Alone → Matched with my people |
+| Strategic Role | **Primary Acquisition Funnel (The Trojan Horse)** |
 | Start | `/game/collaborate/matches` |
 | End | Matches displayed → intro sent |
 | Dependencies | ZoG, Resources |
@@ -652,6 +653,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Settings (breath duration, toggles) | 0.9 | MVP |
 | Actionable Guidance | 0.9 | MVP |
 | Sprint Logging (localStorage) | 0.9 | MVP |
+| Watch UI Improvements | 0.5 | PoC |
 
 ---
 

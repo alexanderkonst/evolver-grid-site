@@ -210,40 +210,63 @@ const IgniteSession = () => {
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
         {/* ═══════════════════════════════════════════════
-            S1: HERO — Punchy Recognition Trigger + CTA
+            S1: HERO — The Funnel Page Architecture v3.0
             ═══════════════════════════════════════════════ */}
-        <header className="text-center space-y-6 pt-4" id="ignite-hero">
+        <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
             src={geniusLogo}
-            alt="Evolver — Unique Business Ignition"
-            className="w-[104px] h-auto mx-auto opacity-90"
+            alt="Evolver — Unique Business Engine"
+            className="w-[80px] h-auto mx-auto opacity-80"
           />
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              You've been giving your best work away for free.
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.05] max-w-3xl mx-auto" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            <span className="text-white/50">Overqualified?</span>
+            <br />
+            <span className="text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }}>
+              You're overprepared.
             </span>
           </h1>
 
-          <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You know you're good at something. You just can't explain it in one sentence—so you undercharge, overexplain, and watch opportunities slip.
+          <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            Name your genius.<br/>Monetize it through a dream business.
           </p>
 
-          <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
-            In 90 minutes, we name it, package it, and build your entire business on one page.
-          </p>
+          <div className="flex flex-col items-center gap-4 pt-6">
+            {/* Entry 2: The Matchmaking Quiz */}
+            <a
+              href="/matchmaking"
+              className="liquid-glass w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <span>Near instant zone of genius reveal</span>
+              <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            </a>
 
-          <p className="text-xs text-white/50 italic max-w-sm mx-auto">
-            You don't need a new idea. You need language for what you already do.
-          </p>
+            {/* Entry 1: The Build Session */}
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <span>Build a business out of it ($555)</span>
+              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            </a>
+          </div>
 
-          <div className="flex flex-col items-center gap-3 pt-2">
-            <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/50">Limited sessions per week. First come, first serve.</span>
-            <span className="flex items-center gap-1.5 text-xs text-white/45">
-              <ShieldCheck className="w-3 h-3" aria-hidden="true" />
-              Money-back guarantee
-            </span>
+          <div className="pt-8 space-y-4">
+            <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
+              Watch how to build your unique genius business, free.
+            </a>
+            <p className="text-[10px] text-white/30 italic uppercase tracking-widest pt-2 flex items-center justify-center gap-2">
+              <ShieldCheck className="w-3 h-3 text-white/40" aria-hidden="true" />
+              If and as long as this resonates, I suggest keep going.
+            </p>
           </div>
         </header>
 

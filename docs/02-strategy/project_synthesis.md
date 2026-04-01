@@ -17,6 +17,12 @@
 
 > **Thesis**: *"Planetary OS is the coordination layer for the Evolutionary Avantgarde. One launch sequence across all movements — Sovereignty, Innovation, Regeneration, Awakening, Rooting, Creation. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future coordinate as one meta-ecosystem."*
 
+### The Venture Studio Myth
+
+> *"We are a venture studio for the new earth leaders in the making."*
+
+This is the myth-level naming of the collective. The studio operates as the master holon, internally testing cross-pollination and proving the physics of syntropy before rolling it out to the wider Planetary OS network.
+
 ### Platform Slogan (The 6 Spaces)
 
 > **ME. LEARN. MEET. COLLABORATE. BUILD. BUY & SELL.**
@@ -119,7 +125,7 @@ PHASE 3: ACTION (Day 5+)
 | **BUILD** | Unique Business | "How do I monetize?" | Business model from genius |
 | **BUILD** | Unique Business Canvas | "What's my full business at a glance?" | 7 artifacts: Uniqueness, Myth, Tribe, Pain, Promise, Lead Magnet, Value Ladder — each in full-signal + universal language |
 | **BUILD** | Product Builder | "How do I package it?" | Product blueprints and builders |
-| **BUILD** | Business Incubator | "How do I scale?" | Venture studio support |
+| **BUILD** | Venture Cooperative | "How do we scale together?" | A venture studio for new earth leaders in the making |
 | **BUY & SELL** | Marketplace | "What can I offer/find?" | Browse and purchase offerings |
 | **Special** | Onboarding + Tour | "How does this work?" | Guided introduction |
 

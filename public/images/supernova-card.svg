@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A3B4C" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="1" />
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
+    </filter>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&amp;display=swap');
+      .title { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 85px; fill: white; text-anchor: middle; letter-spacing: -2px; }
+      .subtitle { font-family: 'Source Serif 4', serif; font-size: 38px; fill: rgba(255,255,255,0.85); text-anchor: middle; }
+      .faded { fill: rgba(255,255,255,0.4); }
+      .glow-text { text-shadow: 0 0 40px rgba(255,255,255,0.3); }
+      .badge { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; fill: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="#050505" />
+  <rect width="1080" height="1080" fill="url(#glow)" />
+
+  <!-- Abstract Bio-Light Orbs -->
+  <circle cx="200" cy="200" r="150" fill="#2E6B82" opacity="0.15" filter="url(#blur)" />
+  <circle cx="880" cy="880" r="200" fill="#184252" opacity="0.2" filter="url(#blur)" />
+  <circle cx="540" cy="540" r="400" fill="#0C1B24" opacity="0.3" filter="url(#blur)" />
+
+  <!-- Badge / Logo -->
+  <circle cx="540" cy="300" r="6" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="540" cy="300" r="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1" />
+  <text x="540" y="240" font-family="'Poppins', sans-serif" font-size="16" font-weight="500" fill="rgba(255,255,255,0.4)" letter-spacing="3" text-anchor="middle">aleksandrkonstantinov.com</text>
+
+  <!-- Hero Text -->
+  <text x="540" y="520" class="title faded">Overqualified?</text>
+  <text x="540" y="630" class="title glow-text">You're overprepared.</text>
+
+  <!-- Promise Text -->
+  <text x="540" y="780" class="subtitle">Name your genius.</text>
+  <text x="540" y="840" class="subtitle">Monetize it through a dream business.</text>
+
+  <!-- Divider -->
+  <line x1="440" y1="700" x2="640" y2="700" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1" />
+</svg>
