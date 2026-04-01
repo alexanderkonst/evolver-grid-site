@@ -14,6 +14,31 @@
 
 ---
 
+## Matchmaking as the Trojan Horse (Entry Point)
+
+> *March 2026 Shift — Quadrant 4 Discovery*
+
+### The Dual Entry Architecture (Double Funnel)
+
+With Matchmaking as an entry point, the system operates on a lower-friction, broader-aperture entry based on *need for connection* rather than *personal pain*. This introduces an entirely second funnel into the ecosystem:
+
+```text
+ENTRY 1 (Current):  Pain recognition → Session → Canvas → Build → Node
+ENTRY 2 (New):      Asset matchmaking → Profile → Connection → Recognition → Session → Canvas → Build → Node
+```
+
+**Where it lives:** This new funnel runs on the **intelligence layer (Evolver)**, distinct from the operational layer (GHL) which currently powers Entry 1. Asset matchmaking is a platform feature—the system reading profiles and connecting nodes. The matchmaking IS the product at this entry point, not the Session.
+
+**How it works structurally:**
+1. **The Pull:** "Find your missing piece / co-founder / complementary genius / asset."
+2. **The Gate:** To enter the matchmaking pool and see your matches, you *must* create a profile.
+3. **The Stealth Mapping:** Creating a profile implicitly maps your genius (Uniqueness OS) and your current assets.
+4. **The Trojan Horse:** The user entered for the network (MEET/COLLABORATE). But as the system reflects their own pattern back to them, they experience the intelligence of the platform. *THAT* creates the recognition that leads them to want the full session.
+
+*Distribution consequence:* The platform distributes itself. Every match creates two satisfied users who inherently bring others into the system.
+
+---
+
 ## Match Types (Priority Order)
 
 | Match Type | Signal | Question Answered | Status |

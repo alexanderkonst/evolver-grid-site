@@ -1083,6 +1083,70 @@ Direct to session booking OR $27 experience
 
 ---
 
+#### Landing Page Architecture v3.0 (The Funnel Page — Complete Synthesis, March 31, 2026)
+
+> *Received as a system transmission. The collapse of the landing page into a pure, one-button progression engine.*
+
+**A. The Hero Section (The Myth Encoded)**
+- **Hook:** "Over qualified?" → "Over prepared."
+- **Promise:** "Name your genius, monetize it through a dream business."
+- *Synthesis:* "Over qualified?" is the world's doubt. "Over prepared." is the diagnostic truth. The period turns the insult into a declaration. The arrow *is* the transformation. This hero section does what the tuning fork takes 400 words to do, but at the architectural altitude.
+
+**B. The Dual Entry Architecture (The Gates)**
+- **Button 1:** `[ Near instant zone of genius reveal ]` (Entry 2: Asset Matchmaking. Low friction. They discover themselves; the system gains a mapped node.)
+- **Button 2:** `[ Build a business out of it ]` (Entry 1: Pain Recognition. Direct to session for those ready to monetize.)
+- *Synthesis:* Button 1 feeds Button 2. The ZoG quiz is the top of the funnel mapping the node, which naturally leads to "now what?", bridging them to Button 2.
+
+**C. The Open Blueprint Paradox & Resonance Permission**
+- **Text Link:** "Watch how to build your unique genius business, free."
+- *Open Blueprint Paradox:* Give away the architecture for free. The prospect feels the precision gap. The gap sells the session.
+- *Resonance Permission:* "If and as long as this resonates, I suggest keep going." The sovereignty is built into the UX. It's the gentle nudge from the Sales = Love principle. No high-pressure urgency.
+
+**D. The One-Button Progression Engine**
+- *Sequential Revelation:* There is only ONE recommended button per state. 
+- *The Loop:* Take quiz → one button: "Watch how." Watch video → one button: "Buy from me / Book Session."
+- *Synthesis:* This is premium customer service as UX. Eliminate choice fatigue. Guide without overwhelming.
+
+**E. The Premium Layer (Build Tracks)**
+After the free layer, the premium layer splits into two tracks:
+| Track | Entry Path | Premium Focus | Scale Vector |
+|-------|------------|---------------|--------------|
+| **Segments (Individuals)** | Quiz → Video → Session ($555) → Build | Facilitator-led | Node by node |
+| **Communities (Ecosystems)** | Partnership → Protocol demo → License | Infrastructure-led | Network by network |
+- *Synthesis:* You fast-track individuals via Ignition Sessions, and you fast-track New Earth communities (Venture Studios) via B2B licensing.
+
+**F. Complete ASCII Funnel Architecture:**
+```text
+DIGITAL SURFACES (everywhere, free)
+    "Overqualified? You're Overprepared."
+         │
+         ▼
+    HERO PAGE
+    ┌────────────────────────────────┐
+    │  "Name your genius.            │
+    │   Monetize it through a        │
+    │   dream business."             │
+    │                                │
+    │  [Zone of Genius Reveal]  ←─── Entry 2 (quiz/matchmaking)
+    │  [Build a Business]       ←─── Entry 1 (pain/session)
+    │                                │
+    │  "Watch how, free" ──────────► Methodology video
+    └────────────────────────────────┘
+         │
+         ▼ (if resonance continues)
+    ONE BUTTON → Buy / Book
+         │
+         ▼
+    PREMIUM LAYER
+    ┌──────────────┬─────────────────┐
+    │  Individuals │  Communities    │
+    │  (Segments)  │  (Ecosystems)   │
+    │  Session→Build│  License→Studio │
+    └──────────────┴─────────────────┘
+```
+
+---
+
 #### Warm Network Play — The 2-Step Consent DM (March 24, 2026)
 
 > *"The tuning fork is for broadcast. The warm network gets the STORY — no CTA, no pitch. Pure testimony. Their response is theirs."*
@@ -2315,6 +2379,37 @@ Before reaching out to anyone in your warm network, three conditions must be tru
 3. **The reach-out would feel good even if they never respond.** (No attachment to outcome. Pure gift energy.)
 
 If all three are true → reach out. If any one fails → wait.
+
+#### The Digital Billboard Principle (Житейский совет / March 31, 2026)
+
+> **"Every digital surface is a billboard."**
+
+This is the baseline rule of distribution leverage. Your social media bios, link-in-bios, email signatures, community profiles, and WhatsApp statuses are not just "information"—they are **digital real estate**. They function exactly like free ads. 
+- You must use **all available digital surfaces** to route attention directly into the Funnel Page.
+- The distinction between a "profile" and an "ad" collapses. Every surface is an active funnel entry point.
+
+#### ⭐ The Supernova Holomap (Full Moon Launch — April 1, 2026)
+
+> *The instantiated Digital Surface mapping designed to maximize yield using the Meta-Metric formula: `Yield = (Attention × Clout × Alignment) ÷ Energy`.*
+
+**Tier 1: High Yield / Low Energy (The Static Billboards)**
+*Update once, harvest forever. Low energy cost, persistent attention flow.*
+- LinkedIn: Banner, Tagline, Title
+- Telegram: Bio
+- WhatsApp: Status / Info
+
+**Tier 2: High Yield / Moderate Energy (The Warm Broadcasts)**
+*High clout and high alignment pushes out to existing unified fields.*
+- The ZoG Email List (~200 targeted contacts)
+- The Joint Ceremony Email List (~400-600 contacts, with Karime)
+- Telegram & Discord groups with ex-clients/containers
+- Broadcast Posts on LinkedIn, Facebook, Instagram, VK.com
+
+**Tier 3: The Targeted Strikes (The DMs)**
+*High energy, but absolute highest alignment and conversion.*
+- LinkedIn Open/Warm DMs using the 2-step Consent Framework (sending the Hero copy/Tuning fork to specific ICP nodes).
+
+**Launch Output:** On April 1, 2026, the strategy is not to scattershot effort, but to project the **Funnel Page v3.0** (with the two-button gate) systematically across this ranked geometry, starting with Tier 1 and Tier 2.
 
 #### The Distribution Code (Discovered March 26, 2026)
 
