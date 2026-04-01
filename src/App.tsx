@@ -64,6 +64,7 @@ import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3
 import Step3OrderTalents from "./modules/zone-of-genius/Step3OrderTalents";
 import Step4GenerateSnapshot from "./modules/zone-of-genius/Step4GenerateSnapshot";
 import ZoneOfGeniusEntry from "./modules/zone-of-genius/ZoneOfGeniusEntry";
+import GeniusQuiz from "./modules/zone-of-genius/GeniusQuiz";
 
 import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
@@ -199,6 +200,7 @@ const App = () => (
                   <Route path="/mens-circle/thank-you" element={<MensCircleThankYou />} />
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
+                  <Route path="/quiz" element={<GeniusQuiz />} />
                   <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
                   <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
                   <Route path="/genius-admin" element={<AdminGeniusOffers />} />
