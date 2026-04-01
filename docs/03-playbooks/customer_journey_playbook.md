@@ -23,6 +23,7 @@
 12. [Weekly SOP](#12-weekly-sop)
 13. [Quiz — Full Specification](#13-quiz--full-specification)
 14. [Phase 2+ Roadmap](#14-phase-2-roadmap)
+15. [Pre-Launch Infrastructure Checklist](#15-pre-launch-infrastructure-checklist)
 
 ---
 
@@ -885,6 +886,61 @@ Quiz Result Page
 
 ---
 
-*Last updated: April 1, 2026*
+## 15. Pre-Launch Infrastructure Checklist
+
+> *The foundation work IS the launch work. But the foundation has a "good enough" threshold, not a "perfect" threshold.*
+
+### The Principle
+
+The funnel needs to work — no dead ends, logic flows, copy doesn't repel. But it doesn't need to be polished to 9.9 before the first DM goes out. It needs to be at **7-8**. The first 5 humans who go through it will show you exactly what's broken, what's confusing, what's missing. That data is worth more than another week of polishing.
+
+**Launch at 7-8. Polish with live data. Not before.**
+
+### Before First DM — Walk the Full Path
+
+- [ ] **Walk it yourself:** DM link → ZoG Reveal (/) → Result → Video → /ignite → Stripe → Confirmation → Cal.com
+- [ ] Fix any broken links, dead ends, or confusing transitions
+- [ ] ZoG Reveal loads fast (< 3 seconds) and produces a felt gap
+- [ ] Video exists on /ignite (even placeholder — raw face-to-camera is better than produced)
+- [ ] Stripe payment → confirmation page → email → Cal.com booking all flow
+- [ ] Landing page copy leads with **feeling** (pain-artifact language), not capability
+- [ ] "If your heart isn't resonating with this, don't sign up" — Resonance Permission visible on /ignite
+- [ ] LinkedIn headline + banner + featured updated with ceremony line
+- [ ] WhatsApp about + email signature updated
+- [ ] The diagnostic: "Have I sent a personal message to a real human about what I do this week?" — If no, everything above is procrastination
+
+### After First 5 Clients Go Through
+
+- [ ] Debrief: Where did they get confused? Where did they hesitate? What made them say yes?
+- [ ] Adjust based on real data, not projections
+- [ ] THEN polish copy, THEN add the quiz routing, THEN automate follow-ups
+
+### What Blocks Launch vs. What Can Wait
+
+| NOW (blocks launch) | LATER (Phase 2, after validation) |
+|---------------------|-----------------------------------|
+| Full warm path works end-to-end | Quiz routing for cold traffic |
+| Video exists (any quality) | Produced 4-min video |
+| Stripe + Cal.com connected | GHL migration + automation |
+| Copy leads with feeling | Behavioral routing by buyer type |
+| 10 presence surfaces updated | Automated follow-up sequences |
+| Manual CRM (Google Sheets) | Full CRM platform |
+
+### The Builder's Principle
+
+> **Every technical decision is a felt-experience decision.**
+
+This tribe — founders with extraordinary capability who've been let down by systems that promised transformation — is hypersensitive to inauthenticity. The page load speed is an emotional experience. The button color is trust. The confirmation email timing is care. A 404 page is abandonment.
+
+The technical quality of this infrastructure IS the product. Not a container for the product. Build it with that awareness and it carries the right frequency.
+
+This is why liquid glass matters. This is why copy tone matters. This is why "Sales = Love" isn't a slogan — it's a technical specification. If the infrastructure itself creates uncertainty, it contradicts the product at the deepest level.
+
+**The most important line in this playbook:** You are selling collapse of uncertainty. Make the path simple, clear, and warm. That's the whole job.
+
+---
+
+*Last updated: April 2, 2026*
 *This playbook consolidates: godfather_playbook, outreach_templates, tomorrow_sop, video_script_4min*
+*Section 15 distilled from holonic roasting session with Claude Opus 4.6 (April 1-2, 2026)*
 
