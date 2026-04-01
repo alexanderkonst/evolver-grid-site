@@ -582,6 +582,38 @@ const Matchmaking = () => {
                 </div>
               )}
             </section>
+
+            {/* ═══════════════════════════════════════════════
+                GATE A BRIDGE -> GATE B ($555 IGNITION)
+                ═══════════════════════════════════════════════ */}
+            <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-8 md:p-12 !text-white text-center shadow-xl space-y-5 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
+              <div className="relative z-10">
+                <div className="mx-auto w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-4 text-white/80">
+                  <Boxes className="w-6 h-6" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                  We found your people. <br className="hidden md:block"/> Now build a business out of it.
+                </h2>
+                <p className="text-white/70 max-w-lg mx-auto leading-relaxed text-sm md:text-base mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                  We have your precise Appleseed data. The only logical next step is to lock in your architecture. Bring your exact genius profile into the 90-minute Ignition Session.
+                </p>
+                <div className="pt-2">
+                  <a 
+                    href="https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 bg-white text-[#0F172A] px-8 py-4 rounded-full font-medium text-sm hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                  >
+                    Book your Ignition Session ($555)
+                    <span className="w-6 h-6 rounded-full bg-[#0F172A]/10 flex items-center justify-center">
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </section>
           </div>
         )}
       </div>

@@ -263,10 +263,18 @@ const IgniteSession = () => {
             <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
               Watch how to build your unique genius business, free.
             </a>
-            <p className="text-[10px] text-white/30 italic uppercase tracking-widest pt-2 flex items-center justify-center gap-2">
-              <ShieldCheck className="w-3 h-3 text-white/40" aria-hidden="true" />
-              If and as long as this resonates, I suggest keep going.
-            </p>
+            <div className="flex flex-col items-center justify-center gap-1 pt-2">
+              <p className="text-[10px] text-white/30 italic uppercase tracking-widest flex items-center gap-2">
+                <ShieldCheck className="w-3 h-3 text-white/40" aria-hidden="true" />
+                If and as long as this resonates, I suggest keep going.
+              </p>
+              <button 
+                onClick={() => alert("Divine Timing acknowledged. The Noosphere will hold this space and return in 6 months.")}
+                className="text-[9px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-[0.2em] mt-2 underline underline-offset-4 decoration-white/10"
+              >
+                Not right now, but in 6 months
+              </button>
+            </div>
           </div>
         </header>
 
@@ -363,12 +371,12 @@ const IgniteSession = () => {
           <div className="space-y-4">
             {[
               {
-                title: "Your genius named in one undeniable sentence",
-                desc: "The thing you've been doing for free—named clearly enough that anyone can understand and buy it."
+                title: "The Sacred Trading Card (7.0 Precision Draft)",
+                desc: "Your entire business architecture structured and compiled live into a physically beautiful, inherently viral artifact."
               },
               {
-                title: "A business people understand immediately",
-                desc: "Product, audience, pain, promise, and offer—structured and compiled in real time on one page."
+                title: "Your genius named in one undeniable sentence",
+                desc: "The thing you've been doing for free—named clearly enough that anyone can understand and buy it."
               },
               {
                 title: "A structured offer you can charge for",
@@ -547,14 +555,15 @@ const IgniteSession = () => {
         {/* ═══════════════════════════════════════════════
             S10.5: THE BUILD — What happens after
             ═══════════════════════════════════════════════ */}
-        <section className="liquid-glass rounded-3xl p-6 md:p-8 text-center space-y-3" id="the-build" aria-label="What comes next">
+        <section className="liquid-glass rounded-3xl p-6 md:p-8 text-center space-y-4" id="the-build" aria-label="What comes next">
           <p className="text-xs text-white/40 uppercase tracking-widest">If this clicks, we don't stop at clarity</p>
-          <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Build</h2>
-          <p className="text-sm text-white/60 leading-relaxed max-w-sm mx-auto">
-            6 weeks. From named genius → real business. From idea → first paying client. From clarity → execution.
-          </p>
-          <p className="text-xs text-white/70 font-medium">
-            Outcome: Your first revenue—from what you actually do best.
+          <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Build (Outcome Scaling)</h2>
+          <div className="space-y-1 text-sm text-white/60 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p><strong className="text-white/80 font-medium">The Machine:</strong> $1,111 upfront.</p>
+            <p><strong className="text-white/80 font-medium">The Alignment:</strong> $2,500 backend extracted from your first $10K baseline.</p>
+          </div>
+          <p className="text-xs text-white/70 font-medium tracking-widest uppercase mt-4">
+            The Outcome: 10 clients. Early PMF. Done.
           </p>
         </section>
 

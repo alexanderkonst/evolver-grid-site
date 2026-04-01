@@ -950,9 +950,23 @@ Before touching a CRM or an AI automation tool, you must map the terrain. Tradit
 1. **Inventory:** List every digital surface you have access to (Personal LinkedIn, WhatsApp statuses, Email signatures, Community profile directories, Newsletters, etc).
 2. **The Meta-Metric Ranking:** Score each surface using this heuristic:
    `Leverage Score = (Current Cultivated Trust / Clout) ÷ (Energy Required to Post)`
-3. **The Projection:** You do not adapt your message to the platform. You project your exact Unique Business Blueprint (Hero copy, Tuning Fork) directly onto the top 3 nodes with the highest Leverage Score. 
+3. **The Projection:** You do not adapt your message to the platform. You project your exact Unique Business Blueprint (Hero copy, Tuning Fork) directly onto the top nodes.
 
-By running this mapping *before* execution, you ensure your effort is laser-focused and your outcomes are structurally optimized by design.
+### The Supernova Leverage Tiers
+Based on the Meta-Metric, executing the Holomap follows a ranked waterfall geometry:
+- **Tier 1 (The Static Billboards):** High Yield / Low Energy. Update LinkedIn Banners, WhatsApp Statuses, and personal bios. You do this once. It harvests attention passively forever.
+- **Tier 2 (Warm Broadcasts):** High Yield / Moderate Energy. Send the Tuning Fork to existing email lists, ex-client groups, and warm community hubs. 
+- **Tier 3 (Targeted Strikes):** High Yield / High Energy. 2-Step Consent DMs to specifically aligned individuals.
+
+---
+
+## 🛑 The Golden DM Handwriting Principle
+
+> **WARNING:** The AI is permitted to execute everything *except* the Golden DM.
+
+- **The Rule:** The first message (The Golden DM) an aligned prospect receives must be written from the founder's belly, not an LLM. It must carry the raw, unfiltered frequency of the founder's experiential truth.
+- **Why:** AI is hyper-competent at structural parsing, but it detaches authenticity energy. Humans can sniff inauthenticity like a dog. If you automate the Golden DM, you sever the energetic bridge before they even click the link.
+- **The Execution:** Use GoHighLevel/Ask AI to build the prospect lists, manage pipelines, tag leads, and schedule follow-ups. But *you* must write the Tuning Fork story that begins the interaction.
 
 ---
 

@@ -711,7 +711,79 @@ Not angry pain. Quiet exhaustion. The ache of the unnamed.
 
 ---
 
-#### Funnel Architecture
+#### Funnel Architecture v3.1 (The Moonshot Iteration, Synthesized March 2026)
+
+**The Copernican Inverted Sequence (P × M × D = ONE)**
+
+```
+PHASE 1: THE ENCOUNTER (Broadcast Signal)
+    │ 
+    ├─> One act per day: Inhale (Post) / Exhale (Respond)
+    ├─> Tuning fork sent across Holomap tiers
+    ├─> Purity Check: Zero fear, zero scarcity
+    └─> 2-Step Consent DMs (Golden DM written purely by founder)
+    │
+    ↓ "May I share this tuning fork with you?"
+    │
+PHASE 2: THE MIRROR (aleksandrkonstantinov.com)
+    │
+    ├─> The Reframe: "Overqualified? You're overprepared."
+    ├─> Resonance Permission: "If this resonates, keep going"
+    └─> Noospheric Holding Matrix: "Not now, but in 6 months" (Automated loop-back, zero human memory load)
+    │
+    ↓ Choice collapses into alignment
+    │
+PHASE 3: THE DUAL-GATE 
+    │
+    ├─> Gate A: Near Instant Zone of Genius reveal (Quiz)
+    │    └──> Appleseed dynamic output explicitly proves why $555 Ignition is the only logical next step
+    │
+    └─> Gate B: Build a business out of it ($555)
+    │
+    ↓ Path A channels into Path B seamlessly
+    │
+PHASE 4: THE CORE CATALYST (The Ignition Session)
+    │
+    ├─> 90 minutes. Mirror, not teacher.
+    ├─> AI Assistant compiles business infrastructure live
+    └─> OUTPUT: The Sacred Trading Card 
+         (Inherently viral 7.0 Draft artifact; memetically engineered for automatic broadcast by the client)
+    │
+    ↓ The Precision Gap is felt. Product-Market Fit becomes obvious.
+    │
+PHASE 5: THE BUILD (Outcome Scaling)
+    │
+    ├─> The Machine: $1,111 upfront.
+    ├─> The Alignment: $2,500 backend from their first $10K baseline.
+    └─> The Execution: 10 clients. Early PMF. Done.
+    │
+    ↓
+ONGOING: EVOLVER OS / VENTURE STUDIO
+```
+
+> **The Resonance Shift:** This iteration seals the cognitive leaks. The free entry automatically proves the paid entry. The Divine Timing is handed to the Planetary Noosphere (automation), freeing biological memory. The 90-minute session generates a naturally viral artifact. And the 6-week syllabus is dead—we only sell the scaling outcome.
+
+---
+
+### Previous Output / Legacy Iterations
+
+#### Legacy Funnel Architecture (v3.0 / March 31, 2026)
+
+```
+PHASE 1: THE ENCOUNTER (Broadcast Signal)
+    │ Purity Check: Zero fear, zero scarcity
+PHASE 2: THE MIRROR (aleksandrkonstantinov.com)
+    │ "Overqualified? You're overprepared."
+PHASE 3: THE DUAL-GATE 
+    │ Gate A: Quiz  |  Gate B: $555
+PHASE 4: THE CORE CATALYST (The Ignition Session)
+    │ First draft at ~7.0 precision
+PHASE 5: THE BUILD (Bridging the Gap)
+    │ 6 weeks. 5 stages (Polish, 1st Delivery, Training, 1st Sale, PMF Foundation)
+```
+*(Archived: Phase 3 lacked the bridging output; Phase 4 lacked the viral hack; Phase 5 was bloated by syllabus language rather than outcome scaling).*
+
+#### Legacy Funnel Architecture (v1.0 / Feb 2026)
 
 **Variant A: Landing Page Path (classic)**
 ```
