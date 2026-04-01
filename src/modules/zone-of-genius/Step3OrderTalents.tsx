@@ -3,8 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { cn } from "@/lib/utils";
-import { ChevronUp, ChevronDown, ArrowLeft, GripVertical } from "lucide-react";
-import { PremiumButton } from "@/components/ui/PremiumButton";
+import { ChevronUp, ChevronDown, ArrowLeft, GripVertical, Sparkles } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step3OrderTalents = () => {
@@ -83,13 +82,13 @@ const Step3OrderTalents = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
-        <h2 className="text-xl sm:text-2xl font-semibold font-display text-[#2c3150]">
+        <h2 className="text-xl sm:text-2xl font-semibold text-white/90">
           Order Your Top 3
         </h2>
-        <p className="text-sm text-[var(--wabi-text-secondary)] max-w-xl mx-auto">
-          Put your 3 core talents in order, from <strong>most defining</strong> (#1) to third (#3).
+        <p className="text-sm text-white/50 max-w-xl mx-auto">
+          Put your 3 core talents in order, from <strong className="text-white/70">most defining</strong> (#1) to third (#3).
         </p>
-        <p className="text-xs text-[var(--wabi-text-muted)]">
+        <p className="text-xs text-white/30">
           Drag or use arrows to reorder.
         </p>
       </div>
@@ -105,15 +104,13 @@ const Step3OrderTalents = () => {
             onDrop={(e) => handleDrop(e, index)}
             onDragEnd={handleDragEnd}
             className={cn(
-              "flex items-center gap-3 p-4 rounded-xl border cursor-move transition-all duration-200",
-              "bg-white/80 backdrop-blur-sm hover:shadow-md",
-              draggedIndex === index
-                ? "opacity-50 border-[#8460ea]/30"
-                : "border-white/40 hover:border-[var(--wabi-lavender)]/50"
+              "flex items-center gap-3 p-4 rounded-xl cursor-move transition-all duration-200",
+              "liquid-glass hover:ring-1 hover:ring-white/15",
+              draggedIndex === index && "opacity-50 ring-1 ring-white/30"
             )}
           >
             {/* Drag handle */}
-            <GripVertical size={16} className="text-[var(--wabi-text-muted)] shrink-0" />
+            <GripVertical size={16} className="text-white/20 shrink-0" />
 
             {/* Arrows */}
             <div className="flex flex-col gap-0.5 shrink-0">
@@ -121,21 +118,21 @@ const Step3OrderTalents = () => {
                 onClick={() => moveUp(index)}
                 disabled={index === 0}
                 className={cn(
-                  "p-1.5 rounded hover:bg-[#8460ea]/10 transition-colors min-h-[40px] sm:min-h-0",
-                  index === 0 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
+                  "p-1.5 rounded hover:bg-white/10 transition-colors min-h-[40px] sm:min-h-0",
+                  index === 0 ? "opacity-20 cursor-not-allowed" : "opacity-50 hover:opacity-80"
                 )}
               >
-                <ChevronUp size={16} className="text-[#8460ea]" />
+                <ChevronUp size={16} className="text-white" />
               </button>
               <button
                 onClick={() => moveDown(index)}
                 disabled={index === orderedTalents.length - 1}
                 className={cn(
-                  "p-1.5 rounded hover:bg-[#8460ea]/10 transition-colors min-h-[40px] sm:min-h-0",
-                  index === orderedTalents.length - 1 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
+                  "p-1.5 rounded hover:bg-white/10 transition-colors min-h-[40px] sm:min-h-0",
+                  index === orderedTalents.length - 1 ? "opacity-20 cursor-not-allowed" : "opacity-50 hover:opacity-80"
                 )}
               >
-                <ChevronDown size={16} className="text-[#8460ea]" />
+                <ChevronDown size={16} className="text-white" />
               </button>
             </div>
 
@@ -144,10 +141,10 @@ const Step3OrderTalents = () => {
               className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0",
                 index === 0
-                  ? "bg-[#8460ea] text-white"
+                  ? "bg-white/25 text-white"
                   : index === 1
-                    ? "bg-[#8460ea]/20 text-[#8460ea]"
-                    : "bg-[var(--wabi-pearl)] text-[var(--wabi-text-secondary)]"
+                    ? "bg-white/12 text-white/70"
+                    : "bg-white/5 text-white/40"
               )}
             >
               {index + 1}
@@ -155,13 +152,13 @@ const Step3OrderTalents = () => {
 
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] uppercase tracking-wider text-[#8460ea]/60 font-medium mb-0.5">
+              <p className="text-[10px] uppercase tracking-wider text-white/30 font-medium mb-0.5">
                 {rankLabels[index]}
               </p>
-              <h3 className="text-sm font-semibold text-[#2c3150] font-sans">
+              <h3 className="text-sm font-semibold text-white/90">
                 {talent.name}
               </h3>
-              <p className="text-xs text-[var(--wabi-text-muted)] truncate">
+              <p className="text-xs text-white/35 truncate">
                 {talent.description}
               </p>
             </div>
@@ -173,33 +170,39 @@ const Step3OrderTalents = () => {
       <div className="hidden sm:flex items-center justify-center gap-4 pt-4 pb-8">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm
-                     text-[var(--wabi-text-secondary)] hover:text-[#2c3150]
-                     border border-white/40 bg-white/60 backdrop-blur-sm
-                     hover:bg-white/80 transition-all"
+          className="liquid-glass flex items-center gap-2 px-5 py-2.5 rounded-full text-sm text-white/50 hover:text-white/80 transition-all hover:scale-[1.02]"
         >
           <ArrowLeft size={14} />
           Back
         </button>
-        <PremiumButton size="lg" onClick={handleContinue}>
-          Generate My Zone of Genius ✦
-        </PremiumButton>
+        <button
+          onClick={handleContinue}
+          className="liquid-glass-strong flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-white transition-all hover:scale-[1.02] active:scale-95 ring-1 ring-white/20"
+        >
+          <Sparkles size={14} />
+          Generate My Zone of Genius
+        </button>
       </div>
 
       {/* Mobile sticky */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-white/40 p-4 shadow-lg z-20">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 p-4 z-20" style={{
+        background: 'linear-gradient(to top, rgba(10,10,26,0.98) 0%, rgba(10,10,26,0.9) 80%, transparent 100%)',
+      }}>
         <div className="flex items-center justify-between gap-3 mb-3">
           <button
             onClick={handleBack}
-            className="text-xs px-3 py-1.5 rounded-full text-[var(--wabi-text-secondary)]
-                       border border-white/40 bg-white/60 hover:bg-white/80 transition-colors"
+            className="text-xs px-3 py-1.5 rounded-full text-white/40 liquid-glass hover:text-white/60 transition-colors"
           >
             Back
           </button>
         </div>
-        <PremiumButton className="w-full" size="lg" onClick={handleContinue}>
-          Generate My Snapshot ✦
-        </PremiumButton>
+        <button
+          onClick={handleContinue}
+          className="w-full liquid-glass-strong px-6 py-3 rounded-full text-sm font-medium text-white transition-all ring-1 ring-white/20 active:scale-95 flex items-center justify-center gap-2"
+        >
+          <Sparkles size={14} />
+          Generate My Snapshot
+        </button>
       </div>
 
       <div className="sm:hidden h-32" />

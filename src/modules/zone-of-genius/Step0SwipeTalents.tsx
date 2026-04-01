@@ -2,9 +2,8 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
 import { TALENTS } from './talents';
-import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ThumbsUp, ThumbsDown, ArrowLeft } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getZogAssessmentBasePath, getZogStepPath } from './zogRoutes';
 
 const Step0SwipeTalents = () => {
@@ -88,17 +87,14 @@ const Step0SwipeTalents = () => {
     
     if (Math.abs(swipeDistance) > minSwipeDistance) {
       if (swipeDistance > 0) {
-        // Swiped left = "Not really me"
         handleNo();
       } else {
-        // Swiped right = "This feels like me"
         handleYes();
       }
     }
   };
 
   useEffect(() => {
-    // Reset touch positions when index changes
     touchStartX.current = 0;
     touchEndX.current = 0;
   }, [currentIndex]);
@@ -117,21 +113,21 @@ const Step0SwipeTalents = () => {
   if (isComplete) {
     return (
       <div className="max-w-2xl mx-auto">
-        <div className="bg-card border border-border rounded-lg p-6 sm:p-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-4">
+        <div className="liquid-glass rounded-2xl p-6 sm:p-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Quick Scan Complete
           </h2>
-          <p className="text-base sm:text-lg text-foreground mb-2">
-            You said <span className="font-bold text-primary">YES</span> to{' '}
+          <p className="text-base sm:text-lg text-white/80 mb-2">
+            You said <span className="font-bold text-white">YES</span> to{' '}
             <span className="font-bold">{yesTalentCount}</span> talents.
           </p>
-          <p className="text-sm sm:text-base text-muted-foreground mb-6">
+          <p className="text-sm sm:text-base text-white/50 mb-6">
             Next, you'll choose your Top 10 from these.
           </p>
           
           {yesTalentCount < 10 && (
-            <div className="bg-muted/50 border border-border rounded-lg p-4 mb-6 text-left">
-              <p className="text-sm text-muted-foreground">
+            <div className="liquid-glass rounded-xl p-4 mb-6 text-left">
+              <p className="text-sm text-white/60">
                 You selected fewer than 10 talents. That's okay — you might have a very focused pattern.
                 You can rescan, or continue with what you have.
               </p>
@@ -139,21 +135,18 @@ const Step0SwipeTalents = () => {
           )}
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Button
-              variant="outline"
-              size="lg"
+            <button
               onClick={handleRescan}
-              className="w-full sm:w-auto"
+              className="liquid-glass px-6 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white hover:scale-[1.02] active:scale-95 transition-all"
             >
               Rescan Talents
-            </Button>
-            <Button
-              size="lg"
+            </button>
+            <button
               onClick={handleContinue}
-              className="w-full sm:w-auto"
+              className="liquid-glass-strong px-6 py-3 rounded-full text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all ring-1 ring-white/20"
             >
-              Continue to Top 10
-            </Button>
+              Continue to Top 10 →
+            </button>
           </div>
         </div>
       </div>
@@ -165,31 +158,29 @@ const Step0SwipeTalents = () => {
       {/* Back Button */}
       {currentIndex > 0 && (
         <div className="mb-4">
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={handleBack}
-            className="gap-2"
+            className="flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
-          </Button>
+          </button>
         </div>
       )}
 
       {/* Instructions */}
       <div className="text-center mb-6 sm:mb-8">
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+        <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-4">
           You'll see each talent one by one.<br />
           <span className="sm:hidden">Swipe left for "Not really me", swipe right for "This feels like me".</span>
-          <span className="hidden sm:inline">Tap <strong>"This feels like me"</strong> if this is a natural part of you — something you're good at, 
+          <span className="hidden sm:inline">Tap <strong className="text-white/80">"This feels like me"</strong> if this is a natural part of you — something you're good at, 
           drawn to, or that people already recognize in you.<br />
-          Use <strong>"Not really me"</strong> otherwise.</span>
+          Use <strong className="text-white/80">"Not really me"</strong> otherwise.</span>
         </p>
-        <p className="text-xs sm:text-sm text-muted-foreground">
+        <p className="text-xs sm:text-sm text-white/40">
           <strong>Don't mark what you wish you were. Mark what you already are.</strong>
         </p>
-        <p className="text-xs sm:text-sm text-muted-foreground mt-2">
+        <p className="text-xs sm:text-sm text-white/30 mt-2">
           Go with your first instinct. This usually takes about 3–4 minutes.
         </p>
       </div>
@@ -197,14 +188,22 @@ const Step0SwipeTalents = () => {
       {/* Progress */}
       <div className="mb-6 sm:mb-8">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-xs sm:text-sm text-muted-foreground">
+          <span className="text-xs sm:text-sm text-white/40">
             Talent {currentIndex + 1} of {shuffledTalents.length}
           </span>
-          <span className="text-xs sm:text-sm text-primary font-semibold">
+          <span className="text-xs sm:text-sm text-white font-semibold">
             Yes selected: {yesTalentCount}
           </span>
         </div>
-        <Progress value={progressPercent} className="h-2" />
+        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-300"
+            style={{
+              width: `${progressPercent}%`,
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3))',
+            }}
+          />
+        </div>
       </div>
 
       {/* Talent Card with Swipe Support */}
@@ -213,19 +212,19 @@ const Step0SwipeTalents = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="bg-card border-2 border-primary/20 rounded-lg p-6 sm:p-8 mb-6 sm:mb-8 shadow-lg touch-pan-y select-none"
+        className="liquid-glass-strong rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 touch-pan-y select-none ring-1 ring-white/15"
       >
-        <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4 text-center">
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 text-center">
           {currentTalent.name}
         </h3>
-        <p className="text-sm sm:text-base text-foreground leading-relaxed text-center">
+        <p className="text-sm sm:text-base text-white/70 leading-relaxed text-center">
           {currentTalent.description}
         </p>
         
         {/* Visual feedback for previously answered talents */}
         {currentAnswer && (
           <div className="mt-4 text-center">
-            <span className={`text-xs font-semibold ${currentAnswer === 'yes' ? 'text-primary' : 'text-muted-foreground'}`}>
+            <span className={`text-xs font-semibold ${currentAnswer === 'yes' ? 'text-white/80' : 'text-white/30'}`}>
               Previously selected: {currentAnswer === 'yes' ? 'This feels like me' : 'Not really me'}
             </span>
           </div>
@@ -234,26 +233,23 @@ const Step0SwipeTalents = () => {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-        <Button
-          variant="outline"
-          size="lg"
+        <button
           onClick={handleNo}
-          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2 ${currentAnswer === 'no' ? 'border-primary/50' : ''}`}
+          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg flex items-center justify-center gap-2 rounded-xl liquid-glass text-white/60 hover:text-white/80 hover:scale-[1.01] active:scale-[0.98] transition-all ${currentAnswer === 'no' ? 'ring-1 ring-white/30' : ''}`}
         >
           <ThumbsDown className="w-5 h-5" />
           Not really me
-        </Button>
-        <Button
-          size="lg"
+        </button>
+        <button
           onClick={handleYes}
-          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg gap-2 ${currentAnswer === 'yes' ? 'ring-2 ring-primary' : ''}`}
+          className={`flex-1 h-14 sm:h-16 text-base sm:text-lg flex items-center justify-center gap-2 rounded-xl liquid-glass-strong text-white hover:scale-[1.01] active:scale-[0.98] transition-all ring-1 ring-white/20 ${currentAnswer === 'yes' ? 'ring-white/40 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : ''}`}
         >
           <ThumbsUp className="w-5 h-5" />
           This feels like me
-        </Button>
+        </button>
       </div>
       
-      <p className="text-xs text-center text-muted-foreground mt-4 sm:hidden">
+      <p className="text-xs text-center text-white/20 mt-4 sm:hidden">
         💡 Swipe left or right to answer
       </p>
     </div>
