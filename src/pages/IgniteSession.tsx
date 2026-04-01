@@ -284,16 +284,21 @@ const IgniteSession = () => {
             className="w-[80px] h-auto mx-auto opacity-80"
           />
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.05] max-w-3xl mx-auto" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            <span className="text-white/50">Overqualified?</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.1] max-w-2xl mx-auto" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            <span className="text-white/60">You can't explain what you do.</span>
             <br />
             <span className="text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }}>
-              You're overprepared.
+              That's why it's not selling.
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            Name your genius.<br/>Monetize it through a business.
+          <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            In 90 minutes, I turn what you've been doing your whole life into a one-sentence business people understand—and pay for.
+          </p>
+
+          {/* Emotional hook — pulled up from qualifier */}
+          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed mt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You're more capable than your results show.<br/>And you know it.
           </p>
 
           <div className="flex flex-col items-center gap-4 pt-6">
@@ -304,8 +309,8 @@ const IgniteSession = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               <div>
-                <span>Near instant zone of genius reveal</span>
-                <span className="block text-[10px] text-white/40 mt-0.5">5 minutes. No signup. Find the words.</span>
+                <span>Find out in 5 minutes — free</span>
+                <span className="block text-[10px] text-white/40 mt-0.5">Most people take 6–12 months. We start here.</span>
               </div>
               <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
@@ -320,7 +325,7 @@ const IgniteSession = () => {
               className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <span>Build a business out of it ($555)</span>
+              <span>Turn this into something real ($555)</span>
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
               </span>
@@ -329,7 +334,7 @@ const IgniteSession = () => {
 
           <div className="pt-8 space-y-4">
             <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
-              Watch the 4-minute methodology breakdown, free.
+              Watch this before you book — it explains why everything you've tried hasn't worked.
             </a>
             <div className="flex flex-col items-center justify-center gap-1 pt-2">
               <DivineTimingCapture />
@@ -371,9 +376,10 @@ const IgniteSession = () => {
             S3: VIDEO
             ═══════════════════════════════════════════════ */}
         <section id="hero-video" aria-label="Methodology video">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            The exact methodology in 4 minutes
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            Watch this before you book
           </h2>
+          <p className="text-xs text-white/45 text-center mb-3">This explains why insight alone never converts into income.</p>
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
           </div>
@@ -402,8 +408,8 @@ const IgniteSession = () => {
               {
                 emoji: "🚀",
                 step: "3",
-                title: "Your business on one page",
-                desc: "AI compiles everything live. What you do, who it's for, why they pay, what to say next. You leave with a system.",
+                title: "You leave with a business—not an idea",
+                desc: "AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
               },
             ].map((item, i) => (
               <div
@@ -469,7 +475,7 @@ const IgniteSession = () => {
               <p className="text-sm font-medium text-white/70 uppercase tracking-widest">Guarantee</p>
             </div>
             <p className="text-base text-white/90 leading-relaxed font-medium">
-              Your genius named and your business on one page—or you don't pay.
+              If you don't leave with a clear one-sentence business, you don't pay.
             </p>
           </div>
 
@@ -477,7 +483,8 @@ const IgniteSession = () => {
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
             </div>
-            <p className="text-xs text-white/45">One session. Your entire business on one page. Yours forever.</p>
+            <p className="text-xs text-white/55">To turn this into something real.</p>
+            <p className="text-xs text-white/35 mt-1">Most people spend months figuring this out. You walk out with it.</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" label="Book Your Ignition Session" showPrice={false} />
@@ -542,6 +549,20 @@ const IgniteSession = () => {
             </div>
           ))}
         </section>
+
+        {/* ═══════════════════════════════════════════════
+            EMOTIONAL CLOSE
+            ═══════════════════════════════════════════════ */}
+        <div className="text-center space-y-4 pt-2" id="final-close">
+          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You've been carrying something you can't name.
+            <br />That's why nothing has fully clicked.
+          </p>
+          <p className="text-sm text-white/80 font-medium">
+            This is where it does.
+          </p>
+          <PrimaryCTA id="final-close-btn" />
+        </div>
 
         {/* Bottom spacing */}
         <div className="h-8" />
