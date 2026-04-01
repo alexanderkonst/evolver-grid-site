@@ -132,14 +132,14 @@ const AppleseedDisplay = ({
                 {/* The blade */}
                 <div className="text-center">
                     <p className="text-xs text-[#2c3150]/50 leading-relaxed">
-                        Most people stop here. That's why nothing changes.
+                        You've seen this before. You knew it was true.
                     </p>
                     <p className="text-xs font-medium text-[#2c3150]/70 mt-1">
-                        Insight doesn't convert. Structure does.
+                        And still nothing changed.
                     </p>
                 </div>
 
-                {/* CTA: Watch the video — glass card */}
+                {/* CTA 1 (PRIMARY): Watch the video — glass card */}
                 <a
                     href="/ignite#hero-video"
                     className="w-full flex items-center justify-between p-4 rounded-xl
@@ -149,12 +149,34 @@ const AppleseedDisplay = ({
                                transition-all duration-200 hover:scale-[1.02] active:scale-95"
                 >
                     <div>
-                        <p className="text-sm font-semibold text-[#2c3150]">Watch this (4 min)</p>
+                        <p className="text-sm font-semibold text-[#2c3150]">Watch this — 4 minutes</p>
                         <p className="text-xs text-[#2c3150]/50 mt-0.5">See why this gap exists — and what resolves it</p>
                     </div>
                     <span className="w-8 h-8 rounded-full bg-[#8460ea]/10 flex items-center justify-center flex-shrink-0 ml-3">
                         <ArrowRight className="w-4 h-4 text-[#8460ea]" />
                     </span>
+                </a>
+
+                {/* CTA 2 (FAST): I already know — skip to booking */}
+                <a
+                    href="/ignite#pricing-section"
+                    className="w-full flex items-center justify-center gap-2 p-3
+                               rounded-xl border border-[#2c3150]/10
+                               hover:border-[#8460ea]/30 hover:bg-[#8460ea]/5
+                               transition-all duration-200 text-sm text-[#2c3150]/60
+                               hover:text-[#8460ea]"
+                >
+                    I already know — let's go
+                    <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+
+                {/* CTA 3 (CIRCLER): Not sure — take the quiz */}
+                <a
+                    href="/quiz"
+                    className="text-xs text-[#2c3150]/40 hover:text-[#8460ea]/60
+                               transition-colors text-center block"
+                >
+                    Not sure? See the pattern behind why this has been so hard
                 </a>
             </div>
 
