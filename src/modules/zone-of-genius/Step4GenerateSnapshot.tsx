@@ -4,7 +4,7 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Download, ExternalLink, ArrowLeft } from "lucide-react";
+import { Download, ExternalLink, ArrowLeft, RefreshCw, Sparkles } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -46,7 +46,6 @@ const Step4GenerateSnapshot = () => {
       })
       .catch(err => {
         setIsLoadingProfile(false);
-        // Don't block the UI, just log the error
       });
   }, []);
 
@@ -58,7 +57,6 @@ const Step4GenerateSnapshot = () => {
       return;
     }
 
-    // Only auto-generate once profileId is loaded
     if (!snapshotMarkdown && !isLoadingProfile && profileId) {
       handleGenerate();
     }
@@ -91,7 +89,6 @@ const Step4GenerateSnapshot = () => {
       setSnapshotMarkdown(generatedText);
       toast.success("Your Zone of Genius Snapshot is ready!");
 
-      // Save snapshot to database
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
       toast.error("Failed to generate snapshot. Please try again.");
@@ -109,11 +106,9 @@ const Step4GenerateSnapshot = () => {
     try {
       const parsed = parseSnapshotSections(snapshotText);
 
-      // Prepare talent arrays
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
 
-      // Insert snapshot
       const { data: snapshotData, error: snapshotError } = await supabase
         .from('zog_snapshots')
         .insert({
@@ -132,8 +127,6 @@ const Step4GenerateSnapshot = () => {
         throw snapshotError;
       }
 
-
-      // Award XP for completing ZoG (only if not already awarded)
       if (!snapshotData.xp_awarded) {
         const { data: profileData } = await supabase
           .from('game_profiles')
@@ -157,7 +150,6 @@ const Step4GenerateSnapshot = () => {
             })
             .eq('id', profileId);
 
-          // Mark snapshot as XP awarded
           await supabase
             .from('zog_snapshots')
             .update({ xp_awarded: true })
@@ -166,7 +158,6 @@ const Step4GenerateSnapshot = () => {
           toast.success("🎉 +100 XP (Genius)");
         }
       } else {
-        // Just update the reference without awarding XP again
         await supabase
           .from('game_profiles')
           .update({
@@ -277,7 +268,6 @@ GENERAL STYLE RULES:
   function parseSnapshotSections(text: string) {
     const sections: Record<string, string> = {};
 
-    // Extract sections by looking for labels
     const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Your Zone of Genius Description:|$)/s);
     sections.archetypeTitle = archetypeMatch?.[1]?.trim() || "";
 
@@ -304,7 +294,6 @@ GENERAL STYLE RULES:
 
     setIsDownloading(true);
     try {
-      // Temporarily show the hidden PDF content (position offscreen so it's renderable)
       const el = snapshotRef.current;
       el.style.display = 'block';
       el.style.position = 'fixed';
@@ -321,7 +310,6 @@ GENERAL STYLE RULES:
         height: el.scrollHeight,
       });
 
-      // Hide it again
       el.style.display = 'none';
       el.style.position = '';
       el.style.left = '';
@@ -337,11 +325,9 @@ GENERAL STYLE RULES:
       let heightLeft = imgHeight;
       let position = 0;
 
-      // Add first page
       pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
       heightLeft -= pdfHeight;
 
-      // Add additional pages if needed
       while (heightLeft > 0) {
         position = heightLeft - imgHeight;
         pdf.addPage();
@@ -384,338 +370,357 @@ GENERAL STYLE RULES:
   });
 
   return (
-    <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
-      {/* Step indicator */}
-      <div className="flex items-center justify-center mb-6">
-        <p className="text-xs font-medium uppercase  text-[#2c3150]/60">
-          STEP 5 OF 5 · LIFELINE SNAPSHOT
-        </p>
-      </div>
+    <div className="relative min-h-screen bg-black text-white overflow-hidden" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      {/* Dark gradient background */}
+      <div className="fixed inset-0 z-0" style={{
+        background: 'linear-gradient(180deg, #0a0a1a 0%, #0f1528 40%, #0a0a1a 100%)',
+      }} />
 
-      {/* Hero: Result Screen per UX Playbook */}
-      <section className="rounded-3xl bg-[#f0f4ff]/50 px-6 py-12 sm:px-12 sm:py-16 text-center border border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)] mb-12">
-        <p className="text-sm uppercase tracking-wide text-[#2c3150]/60 mb-4">
-          Your Zone of Genius
-        </p>
-        {parsedSnapshot ? (
-          <>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2c3150]">
-              You are a {parsedSnapshot.archetypeTitle}
-            </h1>
-            <p className="mt-4 text-lg sm:text-xl text-[#2c3150] max-w-2xl mx-auto font-medium">
-              Now you have words for what makes you, you.
-            </p>
-          </>
-        ) : (
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2c3150]">
-            Discovering Your Zone of Genius...
-          </h1>
-        )}
-        <p className="mt-4 text-sm text-[#2c3150]/60 max-w-2xl mx-auto">
-          This is your current character card — a starting point, not a final verdict.
-        </p>
-      </section>
+      {/* Subtle ambient glow */}
+      <div className="fixed inset-0 z-0 opacity-30" style={{
+        background: 'radial-gradient(ellipse at 50% 0%, rgba(132,96,234,0.15) 0%, transparent 60%)',
+      }} />
 
-      {/* Loading State */}
-      {isGenerating ? (
-        <div className="flex flex-col items-center justify-center py-16 space-y-4">
-          <PremiumLoader size="lg" text="Generating your personalized snapshot..." />
+      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+        {/* Step indicator */}
+        <div className="flex items-center justify-center mb-6">
+          <p className="text-xs font-medium uppercase tracking-widest text-white/30">
+            STEP 5 OF 5 · LIFELINE SNAPSHOT
+          </p>
         </div>
-      ) : parsedSnapshot ? (
-        <>
-          <InviteFriendPrompt
-            profileId={profileId}
-            source="src/modules/zone-of-genius/Step4GenerateSnapshot.tsx"
-            className="mb-8"
-          />
-          {/* Main Layout: Two columns */}
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
-            {/* LEFT COLUMN */}
-            <div className="space-y-6">
-              {/* Character Card */}
-              <article className="rounded-3xl border border-[#a4a3d0]/30 bg-white/85 backdrop-blur-sm p-8 sm:p-10 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <p className="text-xs uppercase  text-[#2c3150]/60 mb-1">
-                  Zone of Genius Character Card
-                </p>
-                <p className="text-xs text-[#2c3150]/60 mb-6">
-                  Generated on: {currentDate}
-                </p>
 
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3150] text-center mb-6">
-                  {parsedSnapshot.archetypeTitle}
-                </h2>
+        {/* Hero: Result reveal */}
+        <section className="liquid-glass rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center mb-12 ring-1 ring-white/10">
+          <p className="text-sm uppercase tracking-widest text-white/30 mb-4">
+            Your Zone of Genius
+          </p>
+          {parsedSnapshot ? (
+            <>
+              <h1
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white"
+                style={{ textShadow: '0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(255,255,255,0.08)' }}
+              >
+                You are a {parsedSnapshot.archetypeTitle}
+              </h1>
+              <p className="mt-4 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-medium">
+                Now you have words for what makes you, you.
+              </p>
+            </>
+          ) : (
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white"
+              style={{ textShadow: '0 0 30px rgba(255,255,255,0.3)' }}
+            >
+              Discovering Your Zone of Genius...
+            </h1>
+          )}
+          <p className="mt-4 text-sm text-white/30 max-w-2xl mx-auto">
+            This is your current character card — a starting point, not a final verdict.
+          </p>
+        </section>
 
-                <div className="prose prose-sm sm:prose-base max-w-none mb-6">
-                  <p className="text-sm sm:text-base text-[#2c3150] leading-relaxed">
+        {/* Loading State */}
+        {isGenerating ? (
+          <div className="flex flex-col items-center justify-center py-16 space-y-4">
+            <PremiumLoader size="lg" text="Generating your personalized snapshot..." />
+          </div>
+        ) : parsedSnapshot ? (
+          <>
+            <InviteFriendPrompt
+              profileId={profileId}
+              source="src/modules/zone-of-genius/Step4GenerateSnapshot.tsx"
+              className="mb-8"
+            />
+            {/* Main Layout: Two columns */}
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
+              {/* LEFT COLUMN */}
+              <div className="space-y-6">
+                {/* Character Card */}
+                <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10 ring-1 ring-white/10">
+                  <p className="text-xs uppercase tracking-widest text-white/25 mb-1">
+                    Zone of Genius Character Card
+                  </p>
+                  <p className="text-xs text-white/25 mb-6">
+                    Generated on: {currentDate}
+                  </p>
+
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6">
+                    {parsedSnapshot.archetypeTitle}
+                  </h2>
+
+                  <div className="mb-6">
+                    <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+                      {parsedSnapshot.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-white/10">
+                    {top3Talents.map(talent => (
+                      <span
+                        key={talent.id}
+                        className="inline-flex items-center rounded-full bg-white/15 px-4 py-2 text-xs sm:text-sm font-medium text-white/80"
+                      >
+                        {talent.name}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+
+                {/* Panel A: Superpowers in Action */}
+                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
+                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                    Superpowers in Action
+                  </h3>
+                  <p className="text-xs text-white/35 mb-3">
+                    How this genius tends to show up when you are on.
+                  </p>
+                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.superpowers)}
+                  </ul>
+                </article>
+
+                {/* Panel B: Your Edge */}
+                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
+                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                    Your Edge (Where You Trip Yourself Up)
+                  </h3>
+                  <p className="text-xs text-white/35 mb-3">
+                    Your supershadow — the flip side of your gift. Growth happens here.
+                  </p>
+                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.edge)}
+                  </ul>
+                </article>
+
+                {/* Panel C: Where This Genius Thrives */}
+                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
+                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                    Where This Genius Thrives
+                  </h3>
+                  <p className="text-xs text-white/35 mb-3">
+                    Environments and roles where this pattern tends to shine.
+                  </p>
+                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                    {formatBullets(parsedSnapshot.thrives)}
+                  </ul>
+                </article>
+
+                {/* Panel D: Mastery Action */}
+                {parsedSnapshot.masteryAction && (
+                  <article className="liquid-glass-strong rounded-2xl p-6 ring-1 ring-white/15">
+                    <h3 className="text-lg font-semibold text-white/90 mb-2">
+                      🔁 Your Mastery Action
+                    </h3>
+                    <p className="text-xs text-white/35 mb-3">
+                      One repeatable action that builds mastery over time.
+                    </p>
+                    <p className="text-base text-white/80 font-medium leading-relaxed">
+                      {parsedSnapshot.masteryAction}
+                    </p>
+                  </article>
+                )}
+
+              </div>
+
+              {/* RIGHT COLUMN */}
+              <aside className="space-y-6">
+                {/* Download PDF button */}
+                <button
+                  type="button"
+                  onClick={handleDownloadPDF}
+                  disabled={isDownloading}
+                  className="w-full liquid-glass-strong inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+                >
+                  {isDownloading ? (
+                    <>
+                      <span className="premium-spinner w-4 h-4" />
+                      <span>Generating PDF...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Download className="w-4 h-4" />
+                      <span>Download My Snapshot (PDF)</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Session card: If This Hit Home */}
+                <article className="liquid-glass rounded-2xl p-5 ring-1 ring-white/8">
+                  <h3 className="text-sm font-semibold text-white/90 mb-2">
+                    If This Hit Home
+                  </h3>
+                  <p className="text-xs text-white/50 mb-3">
+                    If this description feels uncannily accurate and you want help turning it into concrete career moves,
+                    Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
+                  </p>
+                  <p className="text-xs font-semibold text-white/70 mb-3">
+                    $297 · 90 minutes
+                  </p>
+                  <a
+                    href="https://www.calendly.com/konstantinov"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-white/80 liquid-glass-strong ring-1 ring-white/15 hover:ring-white/25 transition-all hover:scale-[1.02]"
+                  >
+                    Book a Deep-Dive Session
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </article>
+              </aside>
+            </div>
+
+            {/* Footer: Magic button */}
+            <div className="mt-16 pt-8 border-t border-white/10 text-center space-y-6">
+              <p className="text-sm text-white/40 max-w-2xl mx-auto">
+                Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                {returnTo === "genius-offer" ? (
+                  <button
+                    onClick={() => navigate("/genius-offer-intake?from=zog")}
+                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2"
+                  >
+                    <Sparkles size={16} />
+                    Continue to Genius Offer Creation
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
+                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95"
+                  >
+                    Save & Continue
+                  </button>
+                )}
+              </div>
+
+              <div className="flex items-center justify-center gap-4 text-sm">
+                <button
+                  onClick={handleBack}
+                  className="text-white/30 hover:text-white/60 transition-colors"
+                >
+                  ← Back
+                </button>
+                <span className="text-white/10">|</span>
+                <button
+                  onClick={handleStartNew}
+                  className="text-white/30 hover:text-white/60 transition-colors"
+                >
+                  Start Over
+                </button>
+              </div>
+            </div>
+
+            {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
+            <div ref={snapshotRef} style={{ display: 'none' }}>
+              <div style={{
+                width: '794px',
+                backgroundColor: '#ffffff',
+                padding: '48px 56px',
+                fontFamily: '"DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+                color: '#2c3150',
+                lineHeight: 1.6,
+              }}>
+                {/* PDF Header */}
+                <div style={{ textAlign: 'center', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #a4a3d020' }}>
+                  <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(44,49,80,0.5)', marginBottom: '4px' }}>
+                    Zone of Genius Character Card
+                  </p>
+                  <p style={{ fontSize: '11px', color: 'rgba(44,49,80,0.5)', marginBottom: '24px' }}>
+                    Generated on: {currentDate}
+                  </p>
+
+                  {/* Top 3 talent pills */}
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '28px', flexWrap: 'wrap' }}>
+                    {top3Talents.map(talent => (
+                      <span
+                        key={talent.id}
+                        style={{
+                          display: 'inline-block',
+                          backgroundColor: '#2c3150',
+                          color: '#ffffff',
+                          padding: '8px 20px',
+                          borderRadius: '999px',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                        }}
+                      >
+                        {talent.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#2c3150', marginBottom: '16px', fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
+                    {parsedSnapshot.archetypeTitle}
+                  </h1>
+
+                  <p style={{ fontSize: '15px', color: '#2c3150', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>
                     {parsedSnapshot.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-[#a4a3d0]/20">
-                  {top3Talents.map(talent => (
-                    <span
-                      key={talent.id}
-                      className="inline-flex items-center rounded-full bg-[#2c3150] px-4 py-2 text-xs sm:text-sm font-medium text-white"
-                    >
-                      {talent.name}
-                    </span>
-                  ))}
-                </div>
-              </article>
-
-              {/* Panel A: Superpowers in Action */}
-              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
-                  Superpowers in Action
-                </h3>
-                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
-                  How this genius tends to show up when you are on.
-                </p>
-                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
-                  {formatBullets(parsedSnapshot.superpowers)}
-                </ul>
-              </article>
-
-              {/* Panel B: Your Edge */}
-              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
-                  Your Edge (Where You Trip Yourself Up)
-                </h3>
-                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
-                  Your supershadow — the flip side of your gift. Growth happens here.
-                </p>
-                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
-                  {formatBullets(parsedSnapshot.edge)}
-                </ul>
-              </article>
-
-              {/* Panel C: Where This Genius Thrives */}
-              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
-                  Where This Genius Thrives
-                </h3>
-                <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
-                  Environments and roles where this pattern tends to shine.
-                </p>
-                <ul className="space-y-2 text-sm text-[#2c3150] list-disc list-inside">
-                  {formatBullets(parsedSnapshot.thrives)}
-                </ul>
-              </article>
-
-              {/* Panel D: Mastery Action */}
-              {parsedSnapshot.masteryAction && (
-                <article className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                  <h3 className="text-lg font-semibold text-[#2c3150] mb-2">
-                    🔁 Your Mastery Action
-                  </h3>
-                  <p className="text-xs text-[rgba(44,49,80,0.7)] mb-3">
-                    One repeatable action that builds mastery over time.
-                  </p>
-                  <p className="text-base text-[#2c3150] font-medium leading-relaxed">
-                    {parsedSnapshot.masteryAction}
-                  </p>
-                </article>
-              )}
-
-            </div>
-
-            {/* RIGHT COLUMN */}
-            <aside className="space-y-6">
-              {/* Download PDF button */}
-              <button
-                type="button"
-                onClick={handleDownloadPDF}
-                disabled={isDownloading}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#2c3150] px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#2c3150]/90 transition-colors disabled:opacity-50"
-              >
-                {isDownloading ? (
-                  <>
-                    <span className="premium-spinner w-4 h-4" />
-                    <span>Generating PDF...</span>
-                  </>
-                ) : (
-                  <>
-                    <Download className="w-4 h-4" />
-                    <span>Download My Zone of Genius Snapshot (PDF)</span>
-                  </>
-                )}
-              </button>
-
-              {/* Session card: If This Hit Home */}
-              <article className="rounded-2xl border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <h3 className="text-sm font-semibold text-[#2c3150] mb-2">
-                  If This Hit Home
-                </h3>
-                <p className="text-xs text-[#2c3150] mb-3">
-                  If this description feels uncannily accurate and you want help turning it into concrete career moves,
-                  Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
-                </p>
-                <p className="text-xs font-semibold text-[#2c3150] mb-3">
-                  $297 · 90 minutes
-                </p>
-                <a
-                  href="https://www.calendly.com/konstantinov"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#a4a3d0]/30 bg-white px-4 py-2 text-xs font-medium text-[#2c3150] hover:bg-[#f0f4ff] transition-colors"
-                >
-                  Book a Deep-Dive Session
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </article>
-            </aside>
-          </div>
-
-          {/* Footer: Magic button per UX Playbook */}
-          <div className="mt-16 pt-8 border-t border-[#a4a3d0]/20 text-center space-y-6">
-            <p className="text-sm text-[rgba(44,49,80,0.7)] max-w-2xl mx-auto">
-              Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              {returnTo === "genius-offer" ? (
-                <button
-                  onClick={() => navigate("/genius-offer-intake?from=zog")}
-                  className="px-8 py-3 text-base font-semibold rounded-full bg-[#2c3150] text-white hover:bg-[#2c3150]/90 transition-colors shadow-lg"
-                >
-                  Continue to Genius Offer Creation
-                </button>
-              ) : (
-                <button
-                  onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
-                  className="px-8 py-3 text-base font-semibold rounded-full bg-[#2c3150] text-white hover:bg-[#2c3150]/90 transition-colors shadow-lg"
-                >
-                  Save & Continue
-                </button>
-              )}
-            </div>
-
-            <div className="flex items-center justify-center gap-4 text-sm">
-              <button
-                onClick={handleBack}
-                className="text-[#2c3150]/50 hover:text-[#2c3150] transition-colors"
-              >
-                ← Back
-              </button>
-              <span className="text-[#a4a3d0]/50">|</span>
-              <button
-                onClick={handleStartNew}
-                className="text-[#2c3150]/50 hover:text-[#2c3150] transition-colors"
-              >
-                Start Over
-              </button>
-            </div>
-          </div>
-
-          {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
-          <div ref={snapshotRef} style={{ display: 'none' }}>
-            <div style={{
-              width: '794px',
-              backgroundColor: '#ffffff',
-              padding: '48px 56px',
-              fontFamily: '"DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
-              color: '#2c3150',
-              lineHeight: 1.6,
-            }}>
-              {/* PDF Header */}
-              <div style={{ textAlign: 'center', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #a4a3d020' }}>
-                <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(44,49,80,0.5)', marginBottom: '4px' }}>
-                  Zone of Genius Character Card
-                </p>
-                <p style={{ fontSize: '11px', color: 'rgba(44,49,80,0.5)', marginBottom: '24px' }}>
-                  Generated on: {currentDate}
-                </p>
-
-                {/* Top 3 talent pills */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '28px', flexWrap: 'wrap' }}>
-                  {top3Talents.map(talent => (
-                    <span
-                      key={talent.id}
-                      style={{
-                        display: 'inline-block',
-                        backgroundColor: '#2c3150',
-                        color: '#ffffff',
-                        padding: '8px 20px',
-                        borderRadius: '999px',
-                        fontSize: '13px',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {talent.name}
-                    </span>
-                  ))}
-                </div>
-
-                <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#2c3150', marginBottom: '16px', fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
-                  {parsedSnapshot.archetypeTitle}
-                </h1>
-
-                <p style={{ fontSize: '15px', color: '#2c3150', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>
-                  {parsedSnapshot.description}
-                </p>
-              </div>
-
-              {/* Superpowers */}
-              <div style={{ marginBottom: '24px' }}>
-                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
-                  Superpowers in Action
-                </h2>
-                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
-                  {formatBullets(parsedSnapshot.superpowers)}
-                </ul>
-              </div>
-
-              {/* Edge */}
-              <div style={{ marginBottom: '24px' }}>
-                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
-                  Your Edge (Where You Trip Yourself Up)
-                </h2>
-                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
-                  {formatBullets(parsedSnapshot.edge)}
-                </ul>
-              </div>
-
-              {/* Thrives */}
-              <div style={{ marginBottom: '24px' }}>
-                <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
-                  Where This Genius Thrives
-                </h2>
-                <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
-                  {formatBullets(parsedSnapshot.thrives)}
-                </ul>
-              </div>
-
-              {/* Mastery Action */}
-              {parsedSnapshot.masteryAction && (
-                <div style={{ marginBottom: '24px', padding: '16px 20px', backgroundColor: '#f0f4ff', borderRadius: '12px', border: '1px solid rgba(132,96,234,0.15)' }}>
+                {/* Superpowers */}
+                <div style={{ marginBottom: '24px' }}>
                   <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
-                    🔁 Your Mastery Action
+                    Superpowers in Action
                   </h2>
-                  <p style={{ fontSize: '15px', color: '#2c3150', fontWeight: 500, lineHeight: 1.7 }}>
-                    {parsedSnapshot.masteryAction}
+                  <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                    {formatBullets(parsedSnapshot.superpowers)}
+                  </ul>
+                </div>
+
+                {/* Edge */}
+                <div style={{ marginBottom: '24px' }}>
+                  <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                    Your Edge (Where You Trip Yourself Up)
+                  </h2>
+                  <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                    {formatBullets(parsedSnapshot.edge)}
+                  </ul>
+                </div>
+
+                {/* Thrives */}
+                <div style={{ marginBottom: '24px' }}>
+                  <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                    Where This Genius Thrives
+                  </h2>
+                  <ul style={{ fontSize: '14px', color: '#2c3150', paddingLeft: '20px', listStyleType: 'disc', lineHeight: 1.8 }}>
+                    {formatBullets(parsedSnapshot.thrives)}
+                  </ul>
+                </div>
+
+                {/* Mastery Action */}
+                {parsedSnapshot.masteryAction && (
+                  <div style={{ marginBottom: '24px', padding: '16px 20px', backgroundColor: '#f0f4ff', borderRadius: '12px', border: '1px solid rgba(132,96,234,0.15)' }}>
+                    <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#2c3150', marginBottom: '8px', fontFamily: '"DM Sans", sans-serif' }}>
+                      🔁 Your Mastery Action
+                    </h2>
+                    <p style={{ fontSize: '15px', color: '#2c3150', fontWeight: 500, lineHeight: 1.7 }}>
+                      {parsedSnapshot.masteryAction}
+                    </p>
+                  </div>
+                )}
+
+                {/* PDF Footer CTA */}
+                <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid rgba(164,163,208,0.2)' }}>
+                  <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#2c3150', marginBottom: '8px' }}>
+                    Ready to Turn Insight into Action?
+                  </h3>
+                  <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
+                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
+                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
+                    transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                  </p>
+                  <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
+                    Book My Career Re-Ignition Session at calendly.com/konstantinov
                   </p>
                 </div>
-              )}
-
-              {/* PDF Footer CTA */}
-              <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid rgba(164,163,208,0.2)' }}>
-                <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#2c3150', marginBottom: '8px' }}>
-                  Ready to Turn Insight into Action?
-                </h3>
-                <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
-                  This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
-                  confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
-                  transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
-                </p>
-                <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
-                  Book My Career Re-Ignition Session at calendly.com/konstantinov
-                </p>
               </div>
             </div>
-          </div>
-        </>
-      ) : null}
-    </main>
+          </>
+        ) : null}
+      </main>
+    </div>
   );
 };
 
