@@ -396,8 +396,8 @@ const ZoneOfGeniusEntry = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-semibold font-display aurora-text">Who are you, really?</h1>
-                    <p className="text-[var(--wabi-text-secondary)] mt-1">In 5 minutes, get words for your unique genius</p>
+                    <h1 className="text-2xl font-semibold font-display aurora-text">Why is it still so hard to explain what you do?</h1>
+                    <p className="text-[var(--wabi-text-secondary)] mt-1">In 5 minutes, see the pattern you've never been able to name</p>
                 </div>
 
                 {/* Error message */}
