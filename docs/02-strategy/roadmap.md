@@ -796,5 +796,58 @@ For unbuilt features, show:
 
 ---
 
-*Roadmap updated: 2026-03-26 (evening). CANVAS ERA. Landing page productized + liquid glass redesign. Design system upgraded (WCAG, tokens, voice). Workflow v1.2. Next: warm DM campaign.*
+*Roadmap updated: 2026-04-01. Quiz at /quiz live (6 questions, 4 archetypes). Customer journey playbook consolidated. Homepage = ZoG reveal, /ignite = landing page.*
+
+---
+
+## 🧭 DISTRIBUTION SURFACE PROJECTOR (Added April 1, 2026)
+
+### Vision: AI-Powered Distribution Strategy Tool
+
+**Priority:** 🔴 HIGH | **Target:** Q2-Q3 2026
+
+**What this is:**
+
+A platform tool where a founder who has completed their Product (Unique Business) and Packaging (Marketing) goes and creates their **tactical distribution plan** by projecting their unique business onto all available digital surfaces. The AI analyzes the founder's specific business, audience, and existing digital real estate, then matches them against the full surface inventory to identify the **highest-yield distribution tactics**.
+
+**How it works:**
+1. Founder completes Product Compiler + Marketing Playbook phase
+2. Tool ingests: their tribe profile, offer, price point, existing digital presence
+3. AI scores every surface in the Universal Digital Surface Map against their specific situation
+4. Output: **Personalized holomap** — prioritized list of surfaces to activate, with exact tactics, templates, and weekly volume targets
+
+**Existing assets to build on:**
+- `docs/02-strategy/digital_surface_holomap.md` — Alexander's personal projection matrix (scored)
+- `docs/02-strategy/digital_surface_holomap.csv` — Raw data (every surface with 4-dimension scoring)
+- `docs/02-strategy/universal_digital_surface_map.md` — The complete territory (every surface that EXISTS across ALL platforms)
+- `docs/02-strategy/paid_and_hidden_surfaces.md` — Buyable visibility + ambient always-on surfaces
+- `docs/03-playbooks/customer_journey_playbook.md` — Outreach templates, content engine, surface activation checklist
+
+**The AI does the work of:**
+- Matching business type to optimal surfaces (think: "You're a B2B strategist → LinkedIn > Instagram")
+- Generating personalized outreach templates per surface
+- Scoring yield per surface based on founder's specific clout/attention/alignment
+- Creating a weekly distribution cadence
+- Identifying the "nuclear" one-time activations (e.g., LinkedIn job title change)
+
+**Implementation phases:**
+1. **Phase 1 (now):** The human + AI does this manually using the existing docs as reference (Alexander's current process)
+2. **Phase 2 (next):** AI prompt workflow — structured prompt that ingests founder profile + outputs personalized holomap
+3. **Phase 3 (platform):** Interactive BUILD module — founder fills in profile, AI generates holomap in the app, founder can drag/activate surfaces
+
+**Status:** Phase 1 active (Alexander's own holomap complete). Phase 2 can be built with prompt engineering. Phase 3 = platform feature in Q2-Q3.
+
+---
+
+### Quiz Implementation (Priority: ✅ DONE | Completed: April 1, 2026)
+
+**What:** Fixed-question quiz at `/quiz` — 6 questions, 4 archetypes (The Invisible Genius, The Multi-Talent Trap, The Misaligned Vector, The Underpriced Operator). Each result follows Identity → Mirror → Gap → Stop → Bridge pattern. CTAs bridge to video (`/ignite#hero-video`) and deeper ZoG reveal (`/`).
+
+**Component:** `src/modules/zone-of-genius/GeniusQuiz.tsx`
+
+**Spec:** Section 13 of `docs/03-playbooks/customer_journey_playbook.md`
+
+**Status:** ✅ DONE — live at `/quiz`
+
+---
 
