@@ -7,7 +7,8 @@
 
 **Version:** 3.7  
 **Created:** February 2026  
-**Purpose:** The master playbook for AI-assisted genius-based venture building
+**Purpose:** The master playbook for AI-assisted genius-based venture building  
+**Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
 ---
 

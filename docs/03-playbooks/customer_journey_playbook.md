@@ -241,6 +241,32 @@ Because now it makes sense.
 **Channel:** LinkedIn DMs + WhatsApp
 **Volume:** 10-15 people/week
 
+**Template A0: Friend Share (warmest — just sharing what you built)**
+
+```
+Hey [Name] — I built something I'm excited about.
+
+It reveals what you actually do — in a way that's
+surprisingly hard to see from the inside.
+
+Curious what comes out for you:
+👉 aleksandrkonstantinov.com
+```
+
+**Template A0b: Reconnection (haven't talked in a while)**
+
+```
+Hey [Name] — haven't been in touch in a while,
+but I've been building something and you came to mind.
+
+It takes 3 minutes and shows you something about
+how you think that's surprisingly hard to see on your own.
+
+👉 aleksandrkonstantinov.com
+
+No pitch. Just curious what you get.
+```
+
 **Template A1: LinkedIn DM (English)**
 
 ```
@@ -592,6 +618,12 @@ prospect → dm_sent → responded → booking → ignited → building → alum
 - Post-payment onboarding email automation
 - Calendar booking (replaces Cal.com)
 - Lead capture from ZoG email gate
+
+### Live Pipeline Tracker
+
+> **Active contacts:** [tribe_outreach_tracker.md](../02-strategy/tribe_outreach_tracker.md)
+>
+> This is the operational data — real names, real statuses, real metrics. Update it after every outreach batch.
 
 ### Existing Digital Real Estate
 
@@ -974,6 +1006,17 @@ This is why liquid glass matters. This is why copy tone matters. This is why "Sa
 **The most important line in this playbook:** You are selling collapse of uncertainty. Make the path simple, clear, and warm. That's the whole job.
 
 ---
+
+### Cross-References
+
+| Document | Relationship |
+|----------|-------------|
+| [Unique Business Playbook](./unique_business_playbook.md) | The methodology this journey implements. Funnel architecture lives here; principles live there |
+| [Alexander's Unique Business](../02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's own artifacts — the first instance of this journey, fully documented |
+| [Tribe Outreach Tracker](../02-strategy/tribe_outreach_tracker.md) | Live operational data — names, statuses, metrics. Updates after every outreach batch |
+| [Digital Surface Holomap](../02-strategy/digital_surface_holomap.md) | Full inventory of digital real estate for surface activation |
+| [UI Playbook](./ui_playbook.md) | Design system (liquid glass, voice matrix, WCAG) that the funnel pages are built from |
+| [Glassmorphism Blueprint](./glassmorphism_blueprint.md) | The liquid glass design specification applied to the funnel |
 
 *Last updated: April 2, 2026*
 *This playbook consolidates: godfather_playbook, outreach_templates, tomorrow_sop, video_script_4min*
