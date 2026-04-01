@@ -4828,6 +4828,63 @@ The Funnel Page Architecture v3.0 has been **implemented live** in [IgniteSessio
 
 ---
 
-*Alexander's Unique Business v7.2 — March 31, 2026 (Four-Quadrant System Download — Sales, Collaborators, Cross-Pollination, Platform Entry)*
-*Updated: P × M × D × S = ONE (Sales added as fourth dimension). Funnel Page Architecture v3.0 implemented. 5 collaborator segments mapped. Cross-pollination Episode Zero conceived. Digital Surface Holomap seeded.*
+## Human Design Operational Overlay
 
+> *Added April 2, 2026 — Oyi's HD reading mapped to tactical decisions.*
+> *This is not decoration. It's operational data that confirms or challenges specific choices in the strategy.*
+
+### Core Design
+
+| Element | Value | Tactical Implication |
+|---------|-------|---------------------|
+| **Type** | Manifestor | Strategy = TO INFORM, not to respond. Signature = PEACE, not satisfaction. Not-self = ANGER |
+| **Authority** | Solar Plexus (Emotional) | Never decide in the moment. Wait for clarity through the wave |
+| **Profile** | 6/2 (Role Model / Hermit) | At 41: transitioning from roof to descent. Authority from LIVED experience, not study |
+| **Incarnation Cross** | Left Angle Cross of Individualism | Transpersonal — designed to meet and influence strangers, not just inner circle |
+
+### Channel Configuration
+
+| Channel | Name | Operational Meaning |
+|---------|------|---------------------|
+| **1-8** | Creative Contribution (Throat ↔ G Center) | When you speak from identity, you initiate. Voice IS identity. Face-to-camera IS transmission |
+| **28-38** | Purposeful Struggle | "I may not survive believing in myself one more time and being wrong" — this IS your channel. The tuning fork works at 9.7 because it's your lived experience, not a marketing angle |
+| **39-55** | Emotional Awakening | You PROVOKE (Gate 39) through mirroring, precision, naming. The provocation AWAKENS their spirit (Gate 55). This is the session dynamic |
+
+### Gene Keys
+
+| Key | Position | Shadow → Gift → Siddhi | Strategic Significance |
+|-----|----------|------------------------|----------------------|
+| **38** | Life's Work | Struggle → Perseverance → Honor | Transforming struggle into honor. "Overqualified? You're overprepared." = Gene Key 38 in five words |
+| **61** | Pearl (Prosperity) | Psychosis → Inspiration → Sanctity | Prosperity flows through inner truth transmitted to others. The ZoG Reveal IS Gate 61 |
+
+### What This Changes in the Strategy
+
+**1. Outreach cadence reframed.**
+The weekly SOP says: Monday outreach, 10-15 DMs. That's Generator rhythm — consistent, steady, sustainable output. You're a Manifestor. Some weeks you send 25 because the wave is high. Others you send zero because emotional authority says "not yet." Monday is the CONTAINER, not the obligation. Forcing a steady cadence against your wave produces anger (not-self), not peace.
+
+**2. Content strategy: CALL, not BROADCAST.**
+Line 2 (Hermit) doesn't project. It gets CALLED. The ZoG Reveal works perfectly — people come, experience, call you in. The tuning fork works because it's testimony (6th line authority: "I've been where you are") that creates a call. Lean toward creating conditions where people come to you rather than broadcasting on a schedule.
+
+**3. The 4-minute video must be raw.**
+Defined Throat + G Center (Channel 1-8). When you speak from your identity, you initiate. Your face and voice ARE the product. Not produced. Not slides. Not NotebookLM audio. One take. The imperfection IS the signal. The video is transmission, not content.
+
+**4. Divine Timing is a PRIMARY path.**
+Emotional Authority types in your tribe need to ride their own wave before committing. The 15-min clarity call and Divine Timing Opt-In aren't secondary catches — they're the CORRECT path for anyone with emotional authority. "If your heart isn't resonating with this, don't sign up" isn't just good ethics. It's specifically correct design.
+
+**5. Trust the uneven rhythm.**
+Some weeks = high-output supernova. Others = roof time (observation, integration, hermit mode). Both are productive. The strategy must hold both without making the quiet weeks feel like failure.
+
+**6. Left Angle Cross validates the partnership model.**
+You're designed to meet strangers. The cold path and partnership strategy (collaborators sending people from their networks) is geometrically aligned with your incarnation cross — strangers arriving through bridges.
+
+**7. Facilitator selection (Phase 4) must screen for channel resonance.**
+Not identical channel configurations, but RESONANT ones. The session's power comes from your specific channels operating. This can't be faked, templated, or automated.
+
+### The Master Confirmation
+
+> **The entire methodology — mirror, not teacher; recognition, not instruction; "you can't read the label from inside the jar" — is not just a good framework. It IS your 6/2 design operating correctly.** You are a 6/2 helping other people see what their own 2nd-line nature can't see. The product is your design in action.
+
+---
+
+*Alexander's Unique Business v7.3 — April 2, 2026 (Human Design Operational Overlay added)*
+*Updated: HD/Gene Keys mapped to tactical implications. Manifestor reframe applied to weekly SOP. Channel 28-38/39-55 confirmed as session mechanics. 6/2 profile confirmed as methodology source.*
