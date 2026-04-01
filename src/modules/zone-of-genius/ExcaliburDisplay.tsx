@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Copy, Check, Users, ArrowRight, User, Rocket, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PremiumCard } from "@/components/ui/PremiumCard";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import { HeroIcon } from "@/components/ui/HeroIcon";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { ExcaliburData } from "./excaliburGenerator";
@@ -19,8 +17,8 @@ interface ExcaliburDisplayProps {
 }
 
 /**
- * GeniusBusinessDisplay - My Unique Genius Business
- * Ultra-compact one-screen layout with Fraunces/Inter fonts
+ * ExcaliburDisplay — My Unique Genius Business (light-surface glass)
+ * Ultra-compact one-screen layout with glass card treatment
  */
 const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onResonanceRating, onLaunchProductBuilder, showProductBuilderButton = true }: ExcaliburDisplayProps) => {
     const [copiedOffer, setCopiedOffer] = useState(false);
@@ -49,12 +47,14 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
 
     return (
         <div className="max-w-2xl mx-auto px-3 py-1 space-y-3">
-            {/* Single Unified Box - Premium Glassmorphic Card */}
-            <PremiumCard variant="glass-strong" className="p-4 alive-card">
+            {/* Single Unified Box — Light-surface Glass Card */}
+            <div className="p-4 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-sm alive-card">
                 {/* Header: Icon + Title + Action Statement */}
-                <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/20">
+                <div className="text-center mb-3 pb-3 border-b border-[#a4a3d0]/15">
                     <div className="flex justify-center mb-2">
-                        <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#8460ea]/15 to-[#6894d0]/10 flex items-center justify-center">
+                            <Sparkles className="w-5 h-5 text-[#8460ea]" />
+                        </div>
                     </div>
                     <p className="text-[9px] text-[#a4a3d0] uppercase tracking-wider mb-1">My Unique Genius Business</p>
                     <h1 className="text-base lg:text-lg font-semibold text-[#2c3150] leading-snug font-display">
@@ -97,19 +97,19 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                     <div>
                         <p className="text-[9px] font-medium text-[#8460ea] uppercase tracking-wide mb-1">Transformational Promise</p>
                         <div className="flex items-center gap-1">
-                            <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
+                            <div className="flex-1 p-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-white/50">
                                 <p className="text-[8px] text-[#a4a3d0] uppercase">From</p>
                                 <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.fromState || "Where they are"}</p>
                             </div>
                             <ArrowRight className="w-3 h-3 text-[#8460ea] shrink-0" />
-                            <div className="flex-1 p-1.5 bg-white/80 rounded-lg">
+                            <div className="flex-1 p-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-white/50">
                                 <p className="text-[8px] text-[#a4a3d0] uppercase">To</p>
                                 <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.toState || "Where they want to be"}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </PremiumCard>
+            </div>
 
             {/* Resonance Rating - Validation metric */}
             {onResonanceRating && (
@@ -129,16 +129,18 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
 
             {/* Launch Product Builder - Bridge to Product Compiler */}
             {showProductBuilderButton && onLaunchProductBuilder && (
-                <Button
+                <button
                     type="button"
-                    variant="default"
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
+                    className="w-full py-3 px-6 rounded-xl text-sm font-semibold text-white
+                               bg-gradient-to-r from-[#8460ea] to-[#6894d0]
+                               hover:shadow-lg hover:shadow-[#8460ea]/15
+                               transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]
+                               flex items-center justify-center gap-2"
                     onClick={() => onLaunchProductBuilder()}
                 >
-                    <Rocket className="w-4 h-4 mr-2" />
+                    <Rocket className="w-4 h-4" />
                     Launch Product Builder
-                </Button>
+                </button>
             )}
 
             {/* Save Button */}

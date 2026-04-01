@@ -37,15 +37,15 @@ const RevelatoryHero = ({
 
     const palette = isAppleseed
         ? {
-            gradient: "from-[#c8b7d8] via-[#d4d1e8] to-[#e7e9f5]",
+            gradient: "from-white/70 via-[#f0f4ff]/80 to-white/60",
             icon: Sparkles,
-            iconBg: "bg-[#8460ea]/20",
+            iconBg: "bg-[#8460ea]/10",
             iconColor: "text-[#8460ea]",
             textPrimary: "text-[#2c3150]",
-            textSecondary: "text-[#2c3150]/80",
+            textSecondary: "text-[#2c3150]/70",
             textMuted: "text-[#8460ea]",
-            glowColor: "rgba(132,96,234,0.15)",
-            divider: "bg-[#a4a3d0]/30",
+            glowColor: "rgba(132,96,234,0.1)",
+            divider: "bg-[#a4a3d0]/20",
         }
         : {
             gradient: "from-[#7c3aed] via-[#6d28d9] to-[#5b21b6]",
@@ -62,7 +62,7 @@ const RevelatoryHero = ({
     const IconComponent = palette.icon;
 
     return (
-        <div className="relative overflow-hidden rounded-3xl mb-4 breathing-card">
+        <div className="relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md border border-white/40">
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${palette.gradient}`} />
 

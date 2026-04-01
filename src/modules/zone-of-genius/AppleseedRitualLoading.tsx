@@ -44,16 +44,16 @@ const AppleseedRitualLoading = ({
             {/* Sacred Geometry Animation */}
             <div className="relative w-32 h-32 mb-8">
                 {/* Outer ring */}
-                <div className="absolute inset-0 border-2 border-[#a4a3d0]/40 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                <div className="absolute inset-0 border-2 border-[#a4a3d0]/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
 
                 {/* Middle ring */}
-                <div className="absolute inset-4 border-2 border-[#8460ea]/40 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                <div className="absolute inset-4 border-2 border-[#8460ea]/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
 
                 {/* Inner ring */}
-                <div className="absolute inset-8 border-2 border-[#8460ea]/60 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                <div className="absolute inset-8 border-2 border-[#8460ea]/50 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
 
                 {/* Center glow with dodecahedron */}
-                <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/30 to-[#8460ea]/20 rounded-full animate-pulse flex items-center justify-center">
+                <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/20 to-[#8460ea]/15 backdrop-blur-sm rounded-full animate-pulse flex items-center justify-center">
                     <img
                         src="/dodecahedron.png"
                         alt="Soul"
@@ -65,7 +65,7 @@ const AppleseedRitualLoading = ({
                 {[...Array(6)].map((_, i) => (
                     <div
                         key={i}
-                        className="absolute w-2 h-2 bg-[#8460ea] rounded-full animate-ping"
+                        className="absolute w-2 h-2 bg-[#8460ea]/40 rounded-full animate-ping"
                         style={{
                             top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
                             left: `${50 + Math.cos(i * 60 * Math.PI / 180) * 40}%`,
@@ -78,21 +78,21 @@ const AppleseedRitualLoading = ({
 
             {/* Phase text */}
             <div className="h-8 mb-4">
-                <p className="text-lg text-[rgba(44,49,80,0.7)] animate-pulse transition-all duration-500">
+                <p className="text-lg text-[#2c3150]/60 animate-pulse transition-all duration-500">
                     {PHASES[phaseIndex]}
                 </p>
             </div>
 
-            {/* Progress bar */}
-            <div className="w-64 h-1 bg-[#a4a3d0]/20 rounded-full overflow-hidden">
+            {/* Progress bar — glass treatment */}
+            <div className="w-64 h-1.5 bg-white/50 backdrop-blur-sm rounded-full overflow-hidden border border-white/30">
                 <div
-                    className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] transition-all duration-100 ease-out"
+                    className="h-full bg-gradient-to-r from-[#8460ea]/60 to-[#6894d0]/50 transition-all duration-100 ease-out rounded-full"
                     style={{ width: `${progress}%` }}
                 />
             </div>
 
             {/* Decorative text */}
-            <p className="mt-8 text-sm text-[#2c3150]/60">
+            <p className="mt-8 text-sm text-[#2c3150]/40">
                 Your Zone of Genius is being articulated...
             </p>
         </div>
