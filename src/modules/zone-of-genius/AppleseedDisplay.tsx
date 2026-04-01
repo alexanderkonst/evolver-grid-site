@@ -1,12 +1,14 @@
-import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import { Sparkles, Share2, Copy, Check } from "lucide-react";
+import { Sparkles, ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
@@ -17,13 +19,13 @@ interface AppleseedDisplayProps {
     onSave?: () => void;
     isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
-    onContinue?: () => void; // Primary action to continue after ZoG
-    continueLabel?: string; // Custom label for continue button
+    onContinue?: () => void;
+    continueLabel?: string;
 }
 
 /**
- * AppleseedDisplay - For authenticated users only (signup-first flow)
- * Shows: RevelatoryHero + Share buttons + Reveal My Genius Business + ShareZoG dropdown
+ * AppleseedDisplay — ZoG result screen
+ * Flow: Genius reveal → Email gate → Save/Share + Build a business CTA
  */
 const AppleseedDisplay = ({
     appleseed,
@@ -37,46 +39,36 @@ const AppleseedDisplay = ({
     onContinue,
     continueLabel = "Continue"
 }: AppleseedDisplayProps) => {
-    const [copied, setCopied] = useState(false);
     const { toast } = useToast();
 
-    const handleShare = async () => {
-        const shareText = `My genius is to be a ${appleseed.vibrationalKey.name}. I ${appleseed.bullseyeSentence}`;
+    // Email gate state
+    const [email, setEmail] = useState('');
+    const [emailUnlocked, setEmailUnlocked] = useState(false);
+    const [emailSaving, setEmailSaving] = useState(false);
 
-        // Try native share first
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: `${appleseed.vibrationalKey.name} - Zone of Genius`,
-                    text: shareText,
-                    url: profileUrl
-                });
-                return;
-            } catch {
-                // Fall through to clipboard
-            }
-        }
-
-        // Fallback to clipboard
+    const handleEmailSubmit = useCallback(async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email.trim() || !email.includes('@')) return;
+        setEmailSaving(true);
         try {
-            await navigator.clipboard.writeText(shareText);
-            setCopied(true);
-            toast({
-                title: "Copied to clipboard!",
-                description: "Share your genius with others.",
+            await (supabase as any).from('divine_timing_leads').insert({
+                email: email.trim(),
+                source: 'zog_quiz_result',
+                created_at: new Date().toISOString(),
             });
-            setTimeout(() => setCopied(false), 2000);
         } catch {
-            toast({
-                title: "Share failed",
-                description: "Please try again.",
-                variant: "destructive"
-            });
+            // Silently continue
         }
-    };
+        setEmailUnlocked(true);
+        setEmailSaving(false);
+        toast({
+            title: "Saved!",
+            description: "You can now save and share your genius.",
+        });
+    }, [email, toast]);
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-2 space-y-4">
+        <div className="max-w-2xl mx-auto px-4 py-2 space-y-6">
             {/* Epic Revelatory Hero - The core genius reveal */}
             <RevelatoryHero
                 type="appleseed"
@@ -90,7 +82,7 @@ const AppleseedDisplay = ({
                 }}
             />
 
-            {/* Resonance Rating - Validation metric */}
+            {/* Resonance Rating */}
             {onResonanceRating && (
                 <ResonanceRating
                     question="From 1 to 10, how well does this match how you see yourself at your brightest?"
@@ -98,33 +90,99 @@ const AppleseedDisplay = ({
                 />
             )}
 
-            {/* Save to Profile CTA - Shows when not yet saved */}
-            {!isSaved && onSave && (
-                <div className="flex justify-center">
-                    <PremiumButton
-                        size="lg"
-                        onClick={onSave}
-                        loading={isSaving}
-                        disabled={isSaving}
-                    >
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        {isSaving ? 'Saving...' : 'Save to My Profile'}
-                    </PremiumButton>
+            {/* ═══════════════════════════════════════════════
+                THE GAP — controlled incomplete transformation
+                ═══════════════════════════════════════════════ */}
+            <div className="space-y-4 pt-4 max-w-md mx-auto">
+                <div className="text-center space-y-2">
+                    <p className="text-sm font-semibold text-[#2c3150]">
+                        This is your pattern.
+                        <span className="text-[#2c3150]/50"> Not your business.</span>
+                    </p>
+                    <p className="text-xs text-[#2c3150]/50 leading-relaxed">
+                        Most people stop here. That's why nothing changes.<br/>
+                        Turning this into something people understand and pay for is a different step entirely.
+                    </p>
                 </div>
-            )}
 
-            {/* Full Share dropdown with pre-written text for social networks */}
-            {/* Only showing the dropdown - removed simple Share button as it was duplicate */}
-            <div className="flex justify-center">
-                <ShareZoG
-                    archetypeName={appleseed.vibrationalKey.name}
-                    tagline={appleseed.bullseyeSentence}
-                    primeDriver={appleseed.threeLenses.primeDriver}
-                    talents={appleseed.threeLenses.actions}
-                    archetype={appleseed.threeLenses.archetype}
-                    profileId={profileId}
-                    profileUrl={profileUrl}
-                />
+                {/* CTA: Watch how → landing page video */}
+                <a
+                    href="/#hero-video"
+                    className="w-full flex items-center justify-between p-4 rounded-xl
+                               bg-gradient-to-r from-[#8460ea]/20 to-[#29549f]/20
+                               border border-[#8460ea]/30 hover:border-[#8460ea]/60
+                               hover:shadow-lg hover:shadow-[#8460ea]/10
+                               transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                >
+                    <div>
+                        <p className="text-sm font-semibold text-[#2c3150]">Watch how that actually works</p>
+                        <p className="text-xs text-[#2c3150]/50 mt-0.5">4 min · see the full transformation · free</p>
+                    </div>
+                    <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
+                        <ArrowRight className="w-4 h-4 text-[#8460ea]" />
+                    </span>
+                </a>
+            </div>
+
+            {/* ═══════════════════════════════════════════════
+                Save/Share (email gate) — secondary path
+                ═══════════════════════════════════════════════ */}
+            <div className="space-y-3 pt-2 max-w-md mx-auto">
+
+                {/* PATH 2: Save / Share (email-gated) */}
+                {!emailUnlocked && !isSaved ? (
+                    <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-2 p-4 rounded-xl border border-[var(--wabi-lavender)]/20 bg-[var(--wabi-pearl)]/50">
+                        <p className="text-xs text-[#2c3150]/60 text-center">Enter your email to save and share your result</p>
+                        <div className="flex w-full gap-2">
+                            <div className="relative flex-1">
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#2c3150]/30" />
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="your@email.com"
+                                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-white border border-[var(--wabi-lavender)]/30 text-sm text-[#2c3150] placeholder:text-[#2c3150]/25 focus:outline-none focus:border-[#8460ea]/50 transition-colors"
+                                    required
+                                />
+                            </div>
+                            <PremiumButton
+                                type="submit"
+                                size="sm"
+                                loading={emailSaving}
+                                disabled={emailSaving || !email.trim()}
+                            >
+                                {emailSaving ? '...' : 'Unlock'}
+                            </PremiumButton>
+                        </div>
+                    </form>
+                ) : (
+                    <div className="space-y-3">
+                        {/* Save to Profile CTA */}
+                        {!isSaved && onSave && (
+                            <PremiumButton
+                                size="lg"
+                                className="w-full"
+                                onClick={onSave}
+                                loading={isSaving}
+                                disabled={isSaving}
+                            >
+                                <Sparkles className="w-4 h-4 mr-2" />
+                                {isSaving ? 'Saving...' : 'Save to My Profile'}
+                            </PremiumButton>
+                        )}
+
+                        {/* Share dropdown — already w-full max-w-md internally */}
+                        <ShareZoG
+                            archetypeName={appleseed.vibrationalKey.name}
+                            tagline={appleseed.bullseyeSentence}
+                            primeDriver={appleseed.threeLenses.primeDriver}
+                            talents={appleseed.threeLenses.actions}
+                            archetype={appleseed.threeLenses.archetype}
+                            profileId={profileId}
+                            profileUrl={profileUrl}
+                        />
+                    </div>
+                )}
             </div>
 
             {/* Continue - Shows after save (primary onboarding action) */}
