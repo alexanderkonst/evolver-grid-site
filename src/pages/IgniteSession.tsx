@@ -220,7 +220,7 @@ const DivineTimingCapture = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email — we'll reach out in 6 months"
+          placeholder="Your email — I'll check in about a month"
           className="w-full px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-colors"
           style={{ fontFamily: "'Poppins', sans-serif" }}
           autoFocus
@@ -242,7 +242,7 @@ const DivineTimingCapture = () => {
       onClick={() => setState('input')}
       className="text-[9px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-[0.2em] mt-2 underline underline-offset-4 decoration-white/10"
     >
-      Not right now, but in 6 months
+      Not right now, but maybe in a month
     </button>
   );
 };
@@ -471,6 +471,8 @@ const IgniteSession = () => {
             S7: BOOKING — decision clarity + safety + inevitability
             ═══════════════════════════════════════════════ */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Book your session">
+          {/* Anchor for direct-link scrolling */}
+          <div id="booking" className="sr-only" aria-hidden="true" />
 
           {/* What happens — 4 crisp bullets */}
           <div className="space-y-2 max-w-sm mx-auto text-left">
@@ -522,6 +524,11 @@ const IgniteSession = () => {
           {/* Bridge line */}
           <p className="text-xs text-white/55 font-medium">
             You don't need more thinking. You need this finished.
+          </p>
+
+          {/* Resonance Permission — HD Emotional Authority principle */}
+          <p className="text-[10px] text-white/35 italic max-w-xs mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured.
           </p>
 
           {/* CTA */}
