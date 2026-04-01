@@ -234,7 +234,7 @@ const IgniteSession = () => {
           <div className="flex flex-col items-center gap-4 pt-6">
             {/* Entry 2: The Matchmaking Quiz */}
             <a
-              href="/matchmaking"
+              href="/game/collaborate/matches"
               className="liquid-glass w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
