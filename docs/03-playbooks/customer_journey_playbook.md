@@ -21,7 +21,8 @@
 10. [CRM & Pipeline](#10-crm--pipeline)
 11. [Conversion Math](#11-conversion-math)
 12. [Weekly SOP](#12-weekly-sop)
-13. [Phase 2 Roadmap](#13-phase-2-roadmap)
+13. [Quiz — Full Specification](#13-quiz--full-specification)
+14. [Phase 2+ Roadmap](#14-phase-2-roadmap)
 
 ---
 
@@ -51,6 +52,7 @@
 |-----|------|---------|
 | `aleksandrkonstantinov.com` | ZoG Reveal | Front door — recognition experience |
 | `aleksandrkonstantinov.com/ignite` | Landing Page | Decision page — video + booking ($555) |
+| `aleksandrkonstantinov.com/quiz` | Quiz | 6 questions → archetype → gap → video bridge |
 | `aleksandrkonstantinov.com/reveal` | Redirect → `/` | Vanity URL for sharing |
 
 ### Psychological Arc
@@ -638,14 +640,245 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 
 ---
 
-## 13. Phase 2 Roadmap
+## 13. Quiz — Full Specification
 
-> Do NOT build these until first sales validate the system.
+### What The Quiz IS
+
+A filter + amplifier. It catches people who would otherwise not move at all.
+
+- **NOT** a step everyone must take
+- **NOT** a full answer or transformation
+- **IS** a precise moment where someone sees themselves clearly enough to realize they're still stuck
+
+### Positioning Rules
+
+| Rule | Why |
+|------|-----|
+| Optional, not required | Instant recognizers skip it — don't slow them down |
+| Contextual | Offered to thinkers, skeptics, overthinkers |
+| "See the pattern" not "take a quiz" | Reframe: "See the pattern behind why this has been so hard to turn into something real" |
+
+### Friction Test
+
+> **Will the quiz create friction?**
+>
+> ❌ YES — if forced on everyone, feels like effort without payoff, feels like "just a quiz"
+> ✅ NO — if optional, contextual, and increases clarity of the problem
+>
+> Without quiz: "Maybe I need help…"
+> With quiz: "Oh. THIS is why I'm stuck."
+>
+> That makes booking easier, not harder.
+
+### Quiz vs ZoG (two different forces)
+
+| Component | Function | Output |
+|-----------|----------|--------|
+| Quiz | Classification — "This is your pattern" | Named archetype + felt gap |
+| ZoG | Revelation — "This is your expression of it" | Specific, personal, undeniable |
+
+Example:
+- Quiz says: *"You're The Invisible Genius"*
+- ZoG says: *"You help people clarify complex internal states into actionable direction"* (way more specific)
+
+### 6 Questions
+
+**Q1 — Identity friction**
+*When someone asks what you do, what happens?*
+- (a) I explain it differently every time
+- (b) I over-explain and lose them
+- (c) I simplify too much and it feels wrong
+- (d) I avoid the question entirely
+
+**Q2 — External validation mismatch**
+*What do people consistently come to you for?*
+- (a) Advice / clarity
+- (b) Strategy / direction
+- (c) Solving complex problems
+- (d) Something hard to describe
+
+**Q3 — Internal tension**
+*Which feels most true right now?*
+- (a) "I'm good at too many things to choose one"
+- (b) "I know what I do, I just can't explain it"
+- (c) "I'm working hard but the results don't match"
+- (d) "People get value from me but don't always pay for it"
+
+**Q4 — Past pattern**
+*Think about your best moments at work. What was happening?*
+- (a) I was solving a puzzle no one else could see
+- (b) I connected things that seemed unrelated
+- (c) I made someone feel seen and understood
+- (d) I built something from scratch that worked
+
+**Q5 — Pricing reality**
+*How do you currently price your work?*
+- (a) I don't — I mostly give it away
+- (b) I charge but always feel it's too low
+- (c) My pricing keeps changing — I can't find the right number
+- (d) I charge well for some things, but my real value isn't captured
+
+**Q6 — What's actually missing**
+*What would change everything for you right now?*
+- (a) Being able to explain what I do in one sentence
+- (b) Knowing exactly who to sell to
+- (c) Having a clear offer that feels right
+- (d) Charging what I'm worth without hesitation
+
+### Scoring Matrix
+
+| Archetype | Strongest signals |
+|-----------|------------------|
+| **The Invisible Genius** | Q1: a/b, Q2: d, Q3: b, Q6: a |
+| **The Multi-Talent Trap** | Q1: a, Q3: a, Q4: b, Q6: b/c |
+| **The Misaligned Vector** | Q3: c, Q4: d, Q5: c, Q6: c |
+| **The Underpriced Operator** | Q2: a/c, Q3: d, Q5: a/b, Q6: d |
+
+Scoring: Each answer adds weight to 1-2 archetypes. Highest total score wins.
+
+### 4 Result Types (complete copy)
+
+Each follows: **Identity → Mirror → Gap → Stop → Bridge**
+
+**Result test:** After reading, do they feel Seen? Slightly exposed? Still unresolved? If yes → correct.
+
+---
+
+#### 🧩 1. THE INVISIBLE GENIUS
+
+You create value in ways that are hard to explain.
+
+People leave conversations with you clearer, more focused, or unstuck.
+You don't always know how you do it—but it works.
+
+**The problem is:**
+
+You've never turned this into something others can quickly understand.
+
+So instead:
+- you explain it differently every time
+- people get value, but don't always pay
+- it feels obvious to you—but unclear to others
+
+This isn't a skill problem.
+
+It's a structure problem.
+
+Most people stop here.
+They understand themselves better… but nothing actually changes.
+
+**👉 Watch what's actually missing (4 min)**
+
+---
+
+#### 🧩 2. THE MULTI-TALENT TRAP
+
+You're good at many things—and none of them fully define you.
+
+You can adapt, solve, build, and create across different domains.
+That's your strength.
+
+**The problem is:**
+
+Without a clear center, nothing sticks.
+
+So instead:
+- you keep reshaping what you do
+- your offer keeps changing
+- people don't know how to place you
+
+You don't need to choose one skill.
+
+You need a structure that holds all of them.
+
+Most people stay in motion—without direction.
+
+**👉 Watch how this becomes something real (4 min)**
+
+---
+
+#### 🧩 3. THE MISALIGNED VECTOR
+
+You're putting in effort.
+
+A lot of it.
+
+But the results don't match.
+
+You've built things. Tried things. Moved forward.
+And still… something feels off.
+
+**The problem is:**
+
+You're applying force in the wrong direction.
+
+So instead:
+- you work harder, but don't gain traction
+- things almost click—but don't hold
+- progress feels inconsistent
+
+This isn't about effort.
+
+It's about alignment.
+
+Most people keep pushing—without correcting direction.
+
+**👉 Watch where this actually breaks (4 min)**
+
+---
+
+#### 🧩 4. THE UNDERPRICED OPERATOR
+
+You deliver real value.
+
+People get results from working with you.
+
+And still… you're not charging what that's worth.
+
+**The problem is:**
+
+People don't fully understand what you do—fast enough to pay.
+
+So instead:
+- you undercharge
+- you overdeliver
+- you hesitate to raise prices
+
+This isn't about confidence.
+
+It's about clarity.
+
+Most people stay stuck here—knowing they should charge more, but not knowing how.
+
+**👉 Watch how this shifts (4 min)**
+
+---
+
+### Quiz Route
+
+| URL | Page |
+|-----|------|
+| `/quiz` | Quiz experience (6 questions → result) |
+
+### Quiz → System Integration
+
+```
+Quiz Result Page
+  │
+  ├─ "Watch this (4 min)" → /ignite#hero-video
+  │
+  └─ "Want to go deeper?" → / (ZoG Reveal)
+```
+
+---
+
+## 14. Phase 2+ Roadmap
+
+> Items beyond the quiz that require validation first.
 
 | Item | Description | Trigger |
 |------|-------------|---------|
-| Fixed-question quiz | 6 questions, 4 archetypes (Multi-Talent Trap, Invisible Genius, Misaligned Vector, Underpriced Operator) | After 5 paid sessions |
-| ZoG output restructure | 6-part AI format: Name → Mirror → Distortion → Missed Link → Limitation → Bridge | After quiz is built |
+| ZoG output restructure | 6-part AI format: Name → Mirror → Distortion → Missed Link → Limitation → Bridge | After quiz validates |
 | Behavior-based routing | Conditional nudges based on user actions on result page | After CRM migration |
 | GHL migration | Full automation — sequences, follow-ups, re-engagement | After $5K/month |
 | Referral flywheel | Post-session: "If someone came to mind — send them the reveal" | After 3 testimonials |
@@ -654,3 +887,4 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 
 *Last updated: April 1, 2026*
 *This playbook consolidates: godfather_playbook, outreach_templates, tomorrow_sop, video_script_4min*
+
