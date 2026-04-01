@@ -333,25 +333,25 @@ const ZoneOfGeniusEntry = () => {
             <GameShellV2 hideNavigation>
                 <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
-                        <div className="absolute inset-0 border-2 border-violet-200 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-                        <div className="absolute inset-4 border-2 border-violet-300 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-                        <div className="absolute inset-8 border-2 border-violet-400 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
-                        <div className="absolute inset-12 bg-violet-200 rounded-full animate-pulse flex items-center justify-center">
-                            <Sword className="w-6 h-6 text-violet-600" />
+                        <div className="absolute inset-0 border-2 border-[#a4a3d0]/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                        <div className="absolute inset-4 border-2 border-[#8460ea]/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                        <div className="absolute inset-8 border-2 border-[#8460ea]/50 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                        <div className="absolute inset-12 bg-gradient-to-br from-[#a4a3d0]/20 to-[#8460ea]/15 rounded-full animate-pulse flex items-center justify-center backdrop-blur-sm">
+                            <Sword className="w-6 h-6 text-[#8460ea]" />
                         </div>
                     </div>
-                    <p className="text-lg text-[rgba(44,49,80,0.7)] animate-pulse">
+                    <p className="text-lg text-[#2c3150]/60 animate-pulse">
                         Creating your unique offer...
                     </p>
-                    <p className="mt-4 text-sm text-[#2c3150]/60">
+                    <p className="mt-4 text-sm text-[#2c3150]/40">
                         One clear offer, one path forward...
                     </p>
 
                     {/* Progress Bar */}
                     <div className="w-full max-w-xs mt-6">
-                        <div className="h-2 bg-violet-100 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-[#a4a3d0]/15 rounded-full overflow-hidden backdrop-blur-sm">
                             <div
-                                className="h-full bg-gradient-to-r from-[#8460ea] to-[#29549f] rounded-full animate-pulse"
+                                className="h-full bg-gradient-to-r from-[#8460ea]/60 to-[#6894d0]/40 rounded-full"
                                 style={{
                                     animation: 'progress-bar 3s ease-in-out infinite',
                                     width: '100%',
@@ -397,21 +397,21 @@ const ZoneOfGeniusEntry = () => {
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-semibold font-display aurora-text">Why is it still so hard to explain what you do?</h1>
-                    <p className="text-sm text-[var(--wabi-text-secondary)] mt-2 max-w-md mx-auto leading-relaxed">
+                    <p className="text-sm text-[#2c3150]/60 mt-2 max-w-md mx-auto leading-relaxed">
                         There's a pattern in how you think, solve problems, and create value.
                         You've been using it for years. People come to you for it.
                     </p>
-                    <p className="text-sm text-[var(--wabi-text-secondary)]/70 mt-1.5 italic max-w-sm mx-auto leading-relaxed">
+                    <p className="text-sm text-[#2c3150]/45 mt-1.5 italic max-w-sm mx-auto leading-relaxed">
                         And yet… you've never been able to fully explain it.
                     </p>
-                    <p className="text-xs text-[var(--wabi-text-secondary)]/50 mt-3 max-w-sm mx-auto">
+                    <p className="text-xs text-[#2c3150]/35 mt-3 max-w-sm mx-auto">
                         This reveals it. No frameworks. No overthinking. Just answer a few prompts.
                     </p>
                 </div>
 
                 {/* Error message */}
                 {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                    <div className="mb-6 p-4 bg-red-50/80 backdrop-blur-sm border border-red-200/50 rounded-xl text-red-700 text-sm">
                         {error}
                     </div>
                 )}
@@ -428,14 +428,17 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-5 rounded-xl border-2 border-[var(--wabi-lavender)]/40 
-                                           hover:border-[#8460ea] hover:shadow-lg hover:shadow-[#8460ea]/10
-                                           bg-white/80 backdrop-blur-sm transition-all duration-200 
-                                           text-left flex items-start gap-4 group"
+                                className="w-full p-5 rounded-xl border border-white/60
+                                           bg-white/60 backdrop-blur-md
+                                           hover:bg-white/80 hover:border-[#8460ea]/30
+                                           hover:shadow-lg hover:shadow-[#8460ea]/8
+                                           transition-all duration-200 
+                                           text-left flex items-start gap-4 group
+                                           hover:scale-[1.01] active:scale-[0.99]"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2.5 rounded-full bg-[var(--wabi-lavender)]/20 shrink-0
-                                                    group-hover:bg-[#8460ea]/20 transition-colors">
+                                    <div className="p-2.5 rounded-full bg-[#8460ea]/10 shrink-0
+                                                    group-hover:bg-[#8460ea]/15 transition-colors">
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
                                     <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
@@ -446,17 +449,20 @@ const ZoneOfGeniusEntry = () => {
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-5 rounded-xl border-2 border-[var(--wabi-aqua)]/40 
-                                           hover:border-[var(--depth-cornflower)] hover:shadow-lg hover:shadow-[var(--depth-cornflower)]/10
-                                           bg-white/80 backdrop-blur-sm transition-all duration-200 
-                                           text-left flex items-start gap-4 group"
+                                className="w-full p-5 rounded-xl border border-white/60
+                                           bg-white/60 backdrop-blur-md
+                                           hover:bg-white/80 hover:border-[#6894d0]/30
+                                           hover:shadow-lg hover:shadow-[#6894d0]/8
+                                           transition-all duration-200 
+                                           text-left flex items-start gap-4 group
+                                           hover:scale-[1.01] active:scale-[0.99]"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2.5 rounded-full bg-[var(--wabi-aqua)]/20 shrink-0
-                                                    group-hover:bg-[var(--depth-cornflower)]/20 transition-colors">
-                                        <ClipboardList className="w-5 h-5 text-[var(--depth-cornflower)]" />
+                                    <div className="p-2.5 rounded-full bg-[#6894d0]/10 shrink-0
+                                                    group-hover:bg-[#6894d0]/15 transition-colors">
+                                        <ClipboardList className="w-5 h-5 text-[#6894d0]" />
                                     </div>
-                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[var(--depth-cornflower)] transition-colors">
+                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#6894d0] transition-colors">
                                         No, I'll do the assessment
                                     </p>
                                 </div>
@@ -474,14 +480,14 @@ const ZoneOfGeniusEntry = () => {
                             </h2>
                         </div>
 
-                        <div className="relative rounded-xl border border-[var(--wabi-lavender)]/30 bg-[var(--wabi-pearl)]">
-                            <pre className="text-xs whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16 prompt-barely-visible">
+                        <div className="relative rounded-xl border border-white/60 bg-white/50 backdrop-blur-md">
+                            <pre className="text-xs whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16 text-[#2c3150]/30">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-2 right-2 bg-[#f0f4ff] border-[#a4a3d0]/30 text-[#2c3150] hover:bg-[#a4a3d0]/20 shadow-sm text-xs"
+                                className="absolute top-2 right-2 bg-white/80 backdrop-blur-sm border-[#a4a3d0]/20 text-[#2c3150] hover:bg-white shadow-sm text-xs"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
@@ -510,7 +516,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="text-center">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-xs text-[var(--wabi-text-muted)] hover:text-[#8460ea] transition-colors"
+                                className="text-xs text-[#2c3150]/35 hover:text-[#8460ea] transition-colors"
                             >
                                 Nevermind, I'll do the assessment →
                             </button>
@@ -531,7 +537,7 @@ const ZoneOfGeniusEntry = () => {
                             value={aiResponse}
                             onChange={(e) => setAiResponse(e.target.value)}
                             placeholder="Paste your AI's response here..."
-                            className="min-h-[200px] font-mono text-sm"
+                            className="min-h-[200px] font-mono text-sm bg-white/60 backdrop-blur-sm border-white/40 focus:border-[#8460ea]/30"
                         />
 
                         <PremiumButton
@@ -547,6 +553,13 @@ const ZoneOfGeniusEntry = () => {
                     </div>
                 )}
             </div>
+
+            {/* Signup Modal */}
+            <SignupModal
+                open={showSignupModal}
+                onOpenChange={setShowSignupModal}
+                onSuccess={handleSignupSuccess}
+            />
         </GameShellV2>
     );
 };

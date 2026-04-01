@@ -24,7 +24,7 @@ interface AppleseedDisplayProps {
 }
 
 /**
- * AppleseedDisplay — ZoG result screen
+ * AppleseedDisplay — ZoG result screen (light-surface glass)
  * Flow: Genius reveal → Email gate → Save/Share + Build a business CTA
  */
 const AppleseedDisplay = ({
@@ -139,20 +139,20 @@ const AppleseedDisplay = ({
                     </p>
                 </div>
 
-                {/* CTA: Watch the video */}
+                {/* CTA: Watch the video — glass card */}
                 <a
                     href="/ignite#hero-video"
                     className="w-full flex items-center justify-between p-4 rounded-xl
-                               bg-gradient-to-r from-[#8460ea]/20 to-[#29549f]/20
-                               border border-[#8460ea]/30 hover:border-[#8460ea]/60
-                               hover:shadow-lg hover:shadow-[#8460ea]/10
+                               bg-white/60 backdrop-blur-md border border-white/50
+                               hover:bg-white/80 hover:border-[#8460ea]/25
+                               hover:shadow-lg hover:shadow-[#8460ea]/8
                                transition-all duration-200 hover:scale-[1.02] active:scale-95"
                 >
                     <div>
                         <p className="text-sm font-semibold text-[#2c3150]">Watch this (4 min)</p>
                         <p className="text-xs text-[#2c3150]/50 mt-0.5">See why this gap exists — and what resolves it</p>
                     </div>
-                    <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
+                    <span className="w-8 h-8 rounded-full bg-[#8460ea]/10 flex items-center justify-center flex-shrink-0 ml-3">
                         <ArrowRight className="w-4 h-4 text-[#8460ea]" />
                     </span>
                 </a>
@@ -165,7 +165,7 @@ const AppleseedDisplay = ({
 
                 {/* PATH 2: Save / Share (email-gated) */}
                 {!emailUnlocked && !isSaved ? (
-                    <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-2 p-4 rounded-xl border border-[var(--wabi-lavender)]/20 bg-[var(--wabi-pearl)]/50">
+                    <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/50 bg-white/50 backdrop-blur-md">
                         <p className="text-xs text-[#2c3150]/60 text-center">Enter your email to save and share your result</p>
                         <div className="flex w-full gap-2">
                             <div className="relative flex-1">
@@ -175,7 +175,7 @@ const AppleseedDisplay = ({
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="your@email.com"
-                                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-white border border-[var(--wabi-lavender)]/30 text-sm text-[#2c3150] placeholder:text-[#2c3150]/25 focus:outline-none focus:border-[#8460ea]/50 transition-colors"
+                                    className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-white/80 backdrop-blur-sm border border-white/50 text-sm text-[#2c3150] placeholder:text-[#2c3150]/25 focus:outline-none focus:border-[#8460ea]/40 transition-colors"
                                     required
                                 />
                             </div>
