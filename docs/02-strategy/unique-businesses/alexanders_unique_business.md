@@ -3,7 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *February 19, 2026 · v2.1*
-> *Playbook: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)*
+> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md)*
+> *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
 > **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.
 >
