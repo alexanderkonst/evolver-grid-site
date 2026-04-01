@@ -93,19 +93,53 @@ const AppleseedDisplay = ({
             {/* ═══════════════════════════════════════════════
                 THE GAP — controlled incomplete transformation
                 ═══════════════════════════════════════════════ */}
-            <div className="space-y-4 pt-4 max-w-md mx-auto">
-                <div className="text-center space-y-2">
+            <div className="space-y-5 pt-6 max-w-md mx-auto">
+                {/* Validation first */}
+                <div className="text-center space-y-3">
                     <p className="text-sm font-semibold text-[#2c3150]">
-                        This is your pattern.
-                        <span className="text-[#2c3150]/50"> Not your business.</span>
+                        This is you.
                     </p>
-                    <p className="text-xs text-[#2c3150]/50 leading-relaxed">
-                        Most people stop here. That's why nothing changes.<br/>
-                        Turning this into something people understand and pay for is a different step entirely.
+                    <p className="text-xs text-[#2c3150]/55 leading-relaxed">
+                        You've been doing this for years.<br/>
+                        People come to you for it. You've delivered results through it.
+                    </p>
+                    <p className="text-xs text-[#2c3150]/55 leading-relaxed italic">
+                        And yet… you've never been able to clearly say what it is.
                     </p>
                 </div>
 
-                {/* CTA: Watch how → landing page video */}
+                {/* The break */}
+                <div className="text-center space-y-2">
+                    <p className="text-sm font-semibold text-[#2c3150]">
+                        This is your pattern.
+                        <span className="text-[#2c3150]/40"> Not your business.</span>
+                    </p>
+                    <p className="text-xs text-[#2c3150]/45 leading-relaxed">
+                        That's why nothing has fully clicked.
+                    </p>
+                </div>
+
+                {/* The three unanswered questions */}
+                <div className="text-center space-y-1">
+                    <p className="text-[11px] text-[#2c3150]/40">Because knowing this doesn't answer:</p>
+                    <div className="flex flex-col items-center gap-0.5">
+                        <p className="text-xs text-[#2c3150]/60 italic">What do I offer?</p>
+                        <p className="text-xs text-[#2c3150]/60 italic">Who is it for?</p>
+                        <p className="text-xs text-[#2c3150]/60 italic">Why would someone pay?</p>
+                    </div>
+                </div>
+
+                {/* The blade */}
+                <div className="text-center">
+                    <p className="text-xs text-[#2c3150]/50 leading-relaxed">
+                        Most people stop here. That's why nothing changes.
+                    </p>
+                    <p className="text-xs font-medium text-[#2c3150]/70 mt-1">
+                        Insight doesn't convert. Structure does.
+                    </p>
+                </div>
+
+                {/* CTA: Watch the video */}
                 <a
                     href="/#hero-video"
                     className="w-full flex items-center justify-between p-4 rounded-xl
@@ -115,8 +149,8 @@ const AppleseedDisplay = ({
                                transition-all duration-200 hover:scale-[1.02] active:scale-95"
                 >
                     <div>
-                        <p className="text-sm font-semibold text-[#2c3150]">Watch how that actually works</p>
-                        <p className="text-xs text-[#2c3150]/50 mt-0.5">4 min · see the full transformation · free</p>
+                        <p className="text-sm font-semibold text-[#2c3150]">Watch this (4 min)</p>
+                        <p className="text-xs text-[#2c3150]/50 mt-0.5">See why this gap exists — and what resolves it</p>
                     </div>
                     <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
                         <ArrowRight className="w-4 h-4 text-[#8460ea]" />
