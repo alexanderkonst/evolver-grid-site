@@ -1,4 +1,11 @@
-# 4-Minute Video Script — "Why Insight Alone Never Converts Into Income"
+# ⚠️ ARCHIVED — Consolidated into [customer_journey_playbook.md](./customer_journey_playbook.md)
+
+> **This file is superseded.** Video script is now Section 8 of the Customer Journey Playbook.
+> Kept for reference only. Do not update this file.
+
+---
+
+# 4-Minute Video Script — "Why Insight Alone Never Converts Into Income" (ARCHIVED)
 
 > **Purpose:** This video sits between the ZoG quiz result and the session booking.
 > It breaks "false completion" — the feeling that seeing your pattern = having a business.

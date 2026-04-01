@@ -1,4 +1,11 @@
-# Outreach Templates & Campaign Launch Kit
+# ⚠️ ARCHIVED — Consolidated into [customer_journey_playbook.md](./customer_journey_playbook.md)
+
+> **This file is superseded.** All content has been merged into the Customer Journey Playbook.
+> Kept for reference only. Do not update this file.
+
+---
+
+# Outreach Templates & Campaign Launch Kit (ARCHIVED)
 
 > *© 2026 Alexander Konstantinov · For personal use*
 >

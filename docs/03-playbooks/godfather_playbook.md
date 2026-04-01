@@ -1,4 +1,11 @@
-# Godfather Offer Architect — Complete System Architecture
+# ⚠️ ARCHIVED — Consolidated into [customer_journey_playbook.md](./customer_journey_playbook.md)
+
+> **This file is superseded.** All content has been merged into the Customer Journey Playbook.
+> Kept for reference only. Do not update this file.
+
+---
+
+# Godfather Offer Architect — System Playbook (ARCHIVED)
 
 > Synthesized from multiple Godfather GPT sessions, April 2026
 > This is the MASTER reference for the entire sales engine.
