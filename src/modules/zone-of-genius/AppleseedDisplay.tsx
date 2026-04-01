@@ -141,7 +141,7 @@ const AppleseedDisplay = ({
 
                 {/* CTA: Watch the video */}
                 <a
-                    href="/#hero-video"
+                    href="/ignite#hero-video"
                     className="w-full flex items-center justify-between p-4 rounded-xl
                                bg-gradient-to-r from-[#8460ea]/20 to-[#29549f]/20
                                border border-[#8460ea]/30 hover:border-[#8460ea]/60

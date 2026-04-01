@@ -1,88 +1,102 @@
-# TOMORROW'S SOP — April 1, 2026
-## Print this. Check items off. Do nothing else.
+# WEEKLY SOP — Updated April 1, 2026
+## Your precision resonance engine. Not volume. Not hustle. Recognition → gap → resolution.
 
 ---
 
-### ☀️ BLOCK 1: Surface Activation (30 min)
+### ☀️ BLOCK 1: Surface Activation (30 min) — ONE TIME
 
-Do these in order. Each one is permanent signal.
+Do these once. Each one is permanent signal.
 
-- [ ] **LinkedIn headline** → `Overqualified? You're overprepared. · I name your genius and build your business in 90 minutes`
-- [ ] **LinkedIn featured section** → Pin: (1) aleksandrkonstantinov.com/ignite (2) the 4-min methodology video
-- [ ] **LinkedIn about section** → Rewrite first 3 lines: your story → what you do → proof → booking link
-- [ ] **WhatsApp about text** → `I name your genius and build your business in 90 min · aleksandrkonstantinov.com/ignite`
-- [ ] **Email signature** → `Alexander Konstantinov · aleksandrkonstantinov.com/ignite`
-- [ ] **Zoom display name** → `Alexander Konstantinov · Overqualified? Overprepared.`
+- [ ] **LinkedIn headline** → `I turn what you already do into a one-sentence business`
+- [ ] **LinkedIn banner** → Upload hero visual: "You can't explain what you do. That's why it's not selling." + aleksandrkonstantinov.com
+- [ ] **LinkedIn featured section** → Pin: (1) aleksandrkonstantinov.com (ZoG reveal) (2) the 4-min methodology video
+- [ ] **LinkedIn about section** → Rewrite first 3 lines: your story → what you do → proof → booking link `/ignite`
+- [ ] **WhatsApp about text** → `I turn what you already do into a one-sentence business · aleksandrkonstantinov.com`
+- [ ] **Email signature** → `Alexander Konstantinov · aleksandrkonstantinov.com`
+- [ ] **Zoom display name** → `Alexander Konstantinov`
 - [ ] **Cal.com booking page description** → `In 90 minutes: your genius named, your business on one page, your exact next move`
+- [ ] **Profile bio (all platforms)** → `I turn what you already do into a one-sentence business.`
 
 ---
 
-### 📨 BLOCK 2: Warm Outreach (45 min)
+### 📨 BLOCK 2: Warm Outreach (45 min) — WEEKLY
 
 **Pick 10-15 people.** NOT cold. People who know your name.
 
-**Where to find them:**
-- LinkedIn connections you've had real conversations with
-- WhatsApp contacts from past projects/communities
-- Ex-clients who experienced your work informally
+**The message** (adapt in YOUR voice — this is a starting point):
 
-**The message** (adapt in YOUR voice — this is a starting point, not copy-paste):
-
-> Hey [Name] — something shifted for me and I wanted to share it with you.
+> I built something that shows you what you actually do
+> in a way that's hard to see from the inside.
 >
-> I've been doing this thing where I sit with someone for 90 min, name their unique genius, and build their entire business on one page — live, with AI.
+> You came to mind — curious if it lands for you.
 >
-> Here's the page: aleksandrkonstantinov.com/ignite
->
-> Not asking for anything. Just wanted you to see it.
+> 👉 aleksandrkonstantinov.com
 
 **Rules:**
-- Personalize the first line. Reference something REAL about your relationship.
+- Personalize the first line. Reference something REAL.
 - Do NOT send the same message to everyone.
 - LinkedIn DM for professional contacts. WhatsApp for personal.
 - Send ALL messages before noon. Then stop.
 
-**Track responses:**
+**Response handling** (the Godfather DM flow):
 
-| # | Name | Platform | Sent? | Response? |
-|---|------|----------|-------|-----------|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
-| 6 | | | | |
-| 7 | | | | |
-| 8 | | | | |
-| 9 | | | | |
-| 10 | | | | |
+| Step | They say | You say |
+|------|----------|--------|
+| 1 — They engage | "This is me" / "accurate" | `That's usually where people realize something's still missing.` |
+| 2 — They lean in | "Yeah exactly" / "what do you mean?" | `You can see it… but you can't fully turn it into something real yet.` |
+| 3 — Invitation | They engage again | `If you want, I can help you finish it in one session.` |
+| 4 — They ask how | "How?" | `We take what you already do and turn it into a one-sentence business, a clear offer, and your next move—live.` → /ignite |
+| 5 — Hesitation | Silence | `No rush. People usually know when they're ready.` |
 
 ---
 
-### 🤝 BLOCK 3: 3 Upstream Pings (20 min)
+### ✍️ BLOCK 3: Signal Posts (20 min) — WEEKLY
 
-Pick 3 people from these categories:
-- Someone who does coaching/discovery work (their clients need what comes AFTER)
-- Someone who holds a community (their members hit the "now what?" point)
-- An ex-client who became a friend (they've experienced your work)
+Post 2 signal + 1 frame/proof from the bank in `godfather_playbook.md`.
 
-**The message** (adapt in YOUR voice):
+**This week's 3:**
+
+**Signal:**
+```
+You're not confused.
+You're just unstructured.
+```
+
+**Signal:**
+```
+"I'm more capable than my results show."
+
+That's not a mindset problem.
+```
+
+**Proof:**
+```
+Sat with someone today who couldn't explain what they do.
+
+90 minutes later:
+one sentence
+one offer
+ready to sell
+```
+
+---
+
+### 🤝 BLOCK 4: 3 Upstream Pings (20 min) — WEEKLY
+
+Pick 3 people whose clients need what comes AFTER their work.
 
 > Hey [Name] — your clients hit a point where they know WHO they are but not WHAT to build. That's exactly where I pick up.
 >
 > Here's what I built: aleksandrkonstantinov.com/ignite
 >
-> I'm exploring partnerships — when someone in your world is ready for that next step, I'd love to be the person you send them to. Simple revenue share.
->
-> If this lands, 15 min to talk it through?
+> Simple revenue share if someone in your world is ready for that next step. 15 min to talk it through?
 
 ---
 
-### 🔧 BLOCK 4: Stripe + Cal.com Setup (10 min)
+### 🔧 BLOCK 5: Stripe + Cal.com (10 min) — ONE TIME
 
-- [ ] **Stripe Dashboard** → Payment Links → Edit the $555 link → Set success URL to `https://cal.com/aleksandrkonstantinov/unique-business-ignition-session`
-- [ ] **Cal.com** → Edit booking event → Customize confirmation email → Add: "No preparation needed. Come as you are."
-- [ ] **Deploy landing page** → `git add -A && git commit -m "landing page surgery + journey fixes" && git push`
+- [ ] **Stripe** → Payment Links → $555 link → Success URL → `https://cal.com/aleksandrkonstantinov/unique-business-ignition-session`
+- [ ] **Cal.com** → Customize confirmation email → "No preparation needed. Come as you are."
 
 ---
 
@@ -96,7 +110,27 @@ Pick 3 people from these categories:
 
 ---
 
-**Total time: ~2 hours.**
-**Expected outcome: 10-15 warm signals sent, 3 upstream pings, surfaces permanently updated, Stripe→booking flow connected.**
+### 📐 Weekly Targets (from $10K/month math)
 
-*Tomorrow you wake up with an active pipeline for the first time.*
+| Metric | Target |
+|--------|--------|
+| ZoG completions | 25-30 |
+| Video views | ~15 |
+| Session bookings | 2-3 |
+| Build upgrades | ~1 |
+
+**Total time per week: ~2.5 hours of outreach.**
+
+---
+
+### 🔗 Route Map (current)
+
+| URL | What's there |
+|-----|-------------|
+| `aleksandrkonstantinov.com` | ZoG Reveal (the front door) |
+| `aleksandrkonstantinov.com/ignite` | Landing page (decision page — video, booking, $555) |
+| `aleksandrkonstantinov.com/reveal` | Redirect → / |
+
+---
+
+*Reference: [godfather_playbook.md](./godfather_playbook.md) · [outreach_templates.md](./outreach_templates.md) · [tribe_outreach_tracker.md](../02-strategy/tribe_outreach_tracker.md)*

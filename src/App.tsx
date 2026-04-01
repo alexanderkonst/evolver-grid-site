@@ -175,7 +175,8 @@ const App = () => (
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
                 <Routes>
-                  <Route path="/" element={<IgniteSession />} />
+                  <Route path="/" element={<ZoneOfGeniusEntry />} />
+                  <Route path="/ignite" element={<IgniteSession />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:category" element={<Library />} />
                   <Route path="/contact" element={<ContactNew />} />
@@ -197,7 +198,7 @@ const App = () => (
                   <Route path="/mens-circle" element={<MensCircle />} />
                   <Route path="/mens-circle/thank-you" element={<MensCircleThankYou />} />
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
-                  <Route path="/reveal" element={<Navigate to="/zone-of-genius/entry" replace />} />
+                  <Route path="/reveal" element={<Navigate to="/" replace />} />
                   <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
                   <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
                   <Route path="/genius-admin" element={<AdminGeniusOffers />} />
