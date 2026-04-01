@@ -24,6 +24,11 @@
 13. [Quiz — Full Specification](#13-quiz--full-specification)
 14. [Phase 2+ Roadmap](#14-phase-2-roadmap)
 15. [Pre-Launch Infrastructure Checklist](#15-pre-launch-infrastructure-checklist)
+16. [Launch Sequence — 5 Phases](#16-launch-sequence--5-phases)
+17. ["Not Ready" Catches](#17-not-ready-catches)
+18. [What NOT to Build Yet](#18-what-not-to-build-yet)
+19. [Governing Principles](#19-governing-principles)
+20. [Complete Flow Implementation Spec](#20-complete-flow-implementation-spec)
 
 ---
 
@@ -644,7 +649,16 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 
 ## 11. Conversion Math
 
-### Revenue Model
+### Value Ladder
+
+| Container | Price | What they get |
+|-----------|-------|---------------|
+| **ZoG Reveal** | Free | Their genius named. The felt gap. |
+| **Ignition Session** | $555 | 90 min. Canvas built. Business on one page. First move clear. |
+| **The Build** | $1,111 + $2,500 from first $10K | 6 weeks. All artifacts to 9.5+. First 10 clients. Early PMF. |
+| **Venture Studio** | 10% ongoing | Scale, team, systems. Node licensing. |
+
+### Steady-State Revenue Model (Month 3-4 target)
 
 | Source | Price | Monthly Target | Revenue |
 |--------|-------|----------------|---------|
@@ -652,7 +666,7 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 | Build upgrades (30%) | $3,611 | 2 upgrades | $7,222 |
 | **TOTAL** | | | **$11,662** |
 
-### Traffic Math (backward from 8 bookings)
+### Steady-State Traffic Math
 
 ```
 110 ZoG completions
@@ -660,6 +674,19 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
     → 8 book session (15%)
       → 2 buy Build (25-30%)
 ```
+
+### ⚡ Honest Month-1 Projection
+
+```
+30-50 ZoG completions (mostly from warm DMs)
+  → 15-25 watch video
+    → 2-4 book session
+      → 1 buys Build
+
+Revenue: $1,100–$2,200 + potential Build = $1,100–$5,800
+```
+
+> This is the real number. Month 1 is signal-gathering, not revenue-maximizing. The data from these 2-4 sessions is worth more than the revenue.
 
 ### Weekly Targets
 
@@ -681,16 +708,22 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 
 ## 12. Weekly SOP
 
-### Monday: Outreach (1 hour)
+> **Design note (Manifestor with Emotional Authority):** This SOP is a CONTAINER, not an obligation. You are not a Generator grinding 10-15 DMs every Monday like clockwork. You are a Manifestor. Your strategy is to INFORM, not to respond. Your signature is PEACE, not satisfaction.
+>
+> Follow your emotional wave. When the wave is clear and the impulse to initiate is clean — move. When it's not — hold. Some weeks you send 25 messages. Other weeks you send zero. Both are correct. Track QUALITY of initiation, not quantity.
 
-- [ ] Pick 10-15 warm contacts
-- [ ] Send DMs (personalize first line, use templates above)
+### Monday: Outreach Container (1 hour)
+
+- [ ] Check emotional wave: is the impulse to initiate clean?
+- [ ] If yes: pick 10-15 warm contacts, send DMs (personalize first line)
 - [ ] Send 3 upstream partnership pings
-- [ ] Log all sends in tribe tracker
+- [ ] Log all sends in [tribe tracker](../02-strategy/tribe_outreach_tracker.md)
+- [ ] If wave says "not yet" — skip. This is not failure. This is design.
 
 ### Wednesday: Content (30 min)
 
 - [ ] Post 2 signal posts + 1 frame/proof post
+- [ ] Lead with TESTIMONY (6th line authority: "I've been where you are"), not observation
 - [ ] Engage with any replies (use DM conversion flow)
 
 ### Friday: Review (15 min)
@@ -700,6 +733,7 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 - [ ] Conversations started?
 - [ ] Bookings?
 - [ ] What felt right? What felt forced?
+- [ ] Did I initiate when it felt clean and hold back when it didn't?
 
 ### Wiring (ONE TIME)
 
@@ -1004,6 +1038,172 @@ The technical quality of this infrastructure IS the product. Not a container for
 This is why liquid glass matters. This is why copy tone matters. This is why "Sales = Love" isn't a slogan — it's a technical specification. If the infrastructure itself creates uncertainty, it contradicts the product at the deepest level.
 
 **The most important line in this playbook:** You are selling collapse of uncertainty. Make the path simple, clear, and warm. That's the whole job.
+
+---
+
+## 16. Launch Sequence — 5 Phases
+
+> **Phase 0 is NOW. Phase 1 starts with the first DM.**
+
+### Phase 0 — Infrastructure (NOW)
+
+Walk the full path yourself. Fix broken links. Ensure Stripe → confirmation → Cal.com flows. Update all presence surfaces. Record or place video on /ignite. **Launch at 7-8 quality, not 9.9.**
+
+### Phase 1 — Founder-Only (clients 0-10)
+
+Everything manual. You write every DM. You send every email. You run every session. You follow up personally. CRM = Google Sheets. **The personal touch IS the product at this stage.**
+
+### Phase 2 — Assisted (clients 10-25)
+
+Add the quiz for cold traffic. Build automated prospect lists. Automate scheduling and follow-ups. Keep DMs and sessions manual.
+
+### Phase 3 — Orchestrated (clients 25-50)
+
+GHL migration. Full automation from prospect to booking. Manual only for sessions and key conversations.
+
+### Phase 4 — Scaled (clients 50+)
+
+Facilitator training. Full pipeline automation. Quality control. Node licensing.
+
+---
+
+## 17. "Not Ready" Catches
+
+> Every person who enters the system and feels something must be held. Nobody falls through.
+
+| Where they are | What catches them | How it works |
+|----------------|-------------------|--------------|
+| Did ZoG, didn't click further | Email gate on result page | "Save your result" → email captured → follow-up in 1-2 weeks |
+| Took quiz, didn't watch video | Quiz result page CTA | Strong bridge to video: "Watch what's actually missing" |
+| Watched video, didn't book | Divine Timing Opt-In on /ignite | "Not my time? I'll check in with you in a month" |
+| Visited booking, hesitated | 15-min clarity call option | Free Cal.com call → human conversation |
+| Said "not now" in a DM | Alexander notes manually | Personal follow-up in 2-4 weeks |
+
+### CRM Tags
+
+| Tag | Meaning | Follow-up |
+|-----|---------|-----------|
+| `zog_completed` | Did the ZoG Reveal, saved email | Gentle email in 1-2 weeks: "You explored your genius. Here's what most people do next." |
+| `quiz_completed` | Took the quiz | Same follow-up as zog_completed if they didn't proceed |
+| `video_watched` | Visited /ignite (page view tracked) | No separate follow-up needed — they're in the funnel |
+| `divine_timing` | Opted in to "not now" | Check-in email at their selected interval (default: 1 month) |
+| `clarity_call` | Booked 15-min call | Alexander handles personally |
+| `session_booked` | Paid $555, booked on Cal.com | Post-session follow-up (see Section 7) |
+
+**Phase 1 (now):** All follow-ups are manual. Alexander sends them personally.
+**Phase 2 (after 20+ contacts):** Automate the `zog_completed` and `divine_timing` follow-ups.
+
+---
+
+## 18. What NOT to Build Yet
+
+| Don't build | Why | When to build |
+|-------------|-----|---------------|
+| Behavioral routing by buyer type | All four types work on the same path — self-routing via CTAs | After 20+ clients |
+| Automated email sequences | Manual follow-up is warmer at this scale | After $5K/month revenue |
+| GHL integration | Overkill for 0-20 contacts | After 50+ contacts |
+| Referral program mechanics | The P.S. line in confirmation email is enough | After 3+ testimonials |
+| A/B testing | Not enough traffic for meaningful data | After 100+ ZoG completions |
+| Produced 4-min video | Raw face-to-camera is better than waiting for production | After first 5 sessions validate the script |
+
+---
+
+## 19. Governing Principles
+
+> These five govern every tactical decision. When in doubt, return here.
+
+**1. P × M × D × S = ONE.** Every session produces the product, the marketing episode, the distribution content, and the sale. One act, four outputs. No separation.
+
+**2. Sales = Love.** Every touchpoint is service. The journey IS the value ladder. Premium customer service throughout = continuous high trust + useful assistance + gentle nudges.
+
+**3. Open Blueprint Paradox.** Give away the entire methodology freely. The precision gap sells itself. More transparency → more trust → more demand.
+
+**4. One act per day.** The breathing rhythm: INHALE (post, send, add). EXHALE (respond, session, offer the Build). Repeat. The constraint IS the amplifier.
+
+**5. Launch at 7-8.** The first 5 clients will teach you more than another week of polishing. Launch when it's good enough, not when it's perfect.
+
+---
+
+## 20. Complete Flow Implementation Spec
+
+> *Synthesized April 2, 2026 — the single source of truth for how every page connects.*
+
+### The Complete Flow
+
+```
+SIGNAL (DM, post, bio, share — any surface)
+    │
+    ▼
+ZoG REVEAL (aleksandrkonstantinov.com)
+    │  Person does the ZoG experience → receives result
+    │
+    ▼
+ZoG RESULT PAGE
+    │
+    ├── [PRIMARY]   "Watch this — 4 minutes"  ─────► /ignite#hero-video
+    ├── [FAST]      "I already know"           ─────► /ignite#booking
+    ├── [CIRCLER]   "Not sure? See the pattern" ───► /quiz
+    └── [SAVE]      "Save my result" (email gate) ─► captures email
+            │
+            ▼
+LANDING PAGE (/ignite)
+    │
+    ├── [BUY]       "Book Your Session" ($555) ─────► Stripe checkout
+    ├── [UNSURE]    "Not sure? 15-min call"    ─────► Cal.com (free)
+    └── [NOT NOW]   "Resonates but not now?"   ─────► Divine Timing email form
+            │
+            ▼
+POST-PAYMENT
+    │  Stripe → custom confirmation page → email → Cal.com booking
+    │
+    ▼
+SESSION (90 min) → Canvas delivered → The Build offered
+```
+
+### ZoG Result Page — CTA Spec
+
+| Priority | CTA | Destination | Design |
+|----------|-----|-------------|--------|
+| Primary | "Watch this — 4 minutes" | `/ignite#hero-video` | Largest, most prominent button |
+| Fast | "I already know — let's go" | `/ignite#booking` | Secondary/text-link style |
+| Circler | "Not sure yet? See the pattern" | `/quiz` | Subtle text link, not a button |
+| Save | "Want to save your result?" | Inline email input | Light, non-blocking, below CTAs |
+
+> **Critical:** The result page must create TENSION, not completion. The person should feel "this is accurate... but I still can't turn this into anything real." If the result page feels like a satisfying endpoint, the funnel dies here.
+
+### /ignite Booking Section — CTA Spec
+
+| Priority | CTA | Destination | Design |
+|----------|-----|-------------|--------|
+| Primary | "Book Your Session" ($555) | Stripe checkout | Primary action button |
+| Secondary | "Not sure? Let's talk — 15 minutes, free" | Cal.com free call | Secondary button. No shame — it's care, not downsell |
+| Tertiary | "This resonates but it's not my time?" | Email input + dropdown (1/3/6 months) | Quiet. Below booking options. Divine Timing Opt-In |
+| Permission | "If your heart isn't resonating with this, don't sign up" | Not a CTA — text only | Italic/muted. Resonance Permission Principle |
+
+### Video Note (Human Design: Throat + G Center)
+
+> The 4-minute video must be Alexander, face to camera, one take. Not produced. Not slides. Not NotebookLM audio. Channel 1-8 (Creative Contribution) means: when you speak from your identity, you initiate. Your face and voice ARE the product. The video is not content — it's transmission. Record it raw.
+
+### Wiring Checklist
+
+Before any DMs go out, this entire path must work end to end:
+
+- [ ] `aleksandrkonstantinov.com` → ZoG Reveal loads in < 3 seconds
+- [ ] ZoG result page shows three CTAs + email gate (as specified above)
+- [ ] Email gate captures email and stores it (Google Sheets or Supabase)
+- [ ] "Watch this" link → `/ignite#hero-video` lands correctly, video plays
+- [ ] "I already know" link → `/ignite#booking` scrolls to booking section
+- [ ] "See the pattern" link → `/quiz` loads quiz
+- [ ] `/ignite` has video section with nuclear line after: "If you're still thinking about this after watching, you already know."
+- [ ] `/ignite` booking section has all three options: Book ($555) / 15-min call / Not now
+- [ ] Resonance Permission text visible near booking
+- [ ] Divine Timing email form captures email + preferred check-in time
+- [ ] "Book Your Session" → Stripe checkout ($555)
+- [ ] Stripe success → redirects to custom confirmation page (NOT default Stripe receipt)
+- [ ] Confirmation page has Cal.com booking link prominently displayed
+- [ ] Confirmation email sends immediately + includes P.S. referral nudge
+- [ ] Cal.com confirmation says "No preparation needed. Come as you are."
+- [ ] **Walk the ENTIRE flow yourself, as a user, every click, every step**
 
 ---
 
