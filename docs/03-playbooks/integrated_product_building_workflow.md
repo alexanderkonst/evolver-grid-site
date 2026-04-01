@@ -711,6 +711,11 @@ For each screen:
 - [ ] Border radius consistent — Only use defined radius tokens (sm/md/lg/xl/2xl/full)
 - [ ] Shadows from defined set — sm, md, lg, xl, glow
 - [ ] Animation tokens used — duration (instant→gentle), easing (default/spring)
+- [ ] **Surface treatment decided** — Choose the glass system:
+  - **Light-surface** (PremiumCard, `--glass-bg`) → for platform app pages inside GameShell
+  - **Dark-surface** (`.liquid-glass`, `.liquid-glass-strong`) → for landing pages, marketing, video backgrounds
+  - See UI Playbook "Liquid Glass Morphism (Dark-Surface)" section for full CSS + layout pattern
+  - See `docs/03-playbooks/glassmorphism_blueprint.md` for portable instruction
 
 ---
 

@@ -818,13 +818,84 @@ From the "UI as Transmission" vision. Makes interfaces feel alive.
 | `--wabi-lavender` | `#a4a3d0` | Soft accent, icons |
 | `--wabi-aqua` | `#a7cbd4` | Secondary options |
 
-### Glassmorphism
+### Glassmorphism Tokens (Light-Surface)
+
+For glass effects on **light/pearl backgrounds** (platform app pages within GameShell):
 
 ```css
 --glass-bg: rgba(255, 255, 255, 0.85);
 --glass-bg-strong: rgba(255, 255, 255, 0.95);
 --glass-border: rgba(255, 255, 255, 0.3);
 ```
+
+### Liquid Glass Morphism (Dark-Surface)
+
+For glass effects on **dark backgrounds** (landing pages, marketing pages, video backgrounds).
+This is the system used on `/ignite` and `/quiz` result pages.
+
+**Two tiers:**
+
+| Class | Blur | Use case |
+|-------|------|----------|
+| `.liquid-glass` | 4px (subtle) | Cards, sections, pills, option buttons |
+| `.liquid-glass-strong` | 50px (heavy) | CTAs, pricing panels, hero buttons |
+
+**CSS definitions** (already in `src/index.css`):
+
+```css
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+/* ::before pseudo-element creates luminous edge gradient */
+
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.05),
+              inset 0 1px 1px rgba(255,255,255,0.15);
+  position: relative;
+  overflow: hidden;
+}
+```
+
+**What makes it work:** The `::before` pseudo-element on both classes creates a luminous edge gradient — a soft light-to-transparent border that makes the glass feel dimensional, not flat. The difference between `.liquid-glass` (4px blur, subtle) and `.liquid-glass-strong` (50px blur, heavy) creates depth hierarchy.
+
+**Dark-surface layout pattern:**
+
+```tsx
+{/* 1. Full-bleed background (video or gradient) */}
+<div className="relative min-h-screen bg-black text-white overflow-hidden">
+  <video ... className="fixed inset-0 w-full h-full object-cover z-0" />
+  
+  {/* 2. Dark overlay for readability */}
+  <div className="fixed inset-0 bg-black/45 z-[1]" />
+  
+  {/* 3. Content layer — all sections float above */}
+  <div className="relative z-10 max-w-2xl mx-auto px-4 py-16 space-y-14">
+    {/* Glass cards and CTAs go here */}
+    <a className="liquid-glass-strong rounded-xl px-6 py-4 ..." />
+  </div>
+</div>
+```
+
+**Text hierarchy on dark surfaces:**
+- `text-white` — headlines, key phrases
+- `text-white/80` — body paragraphs
+- `text-white/50` — secondary text, subheadings
+- `text-white/20` — hints, micro-labels
+
+**Headline glow (hero moments only):**
+```css
+text-shadow: 0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1);
+```
+
+**Portable blueprint:** See `docs/03-playbooks/glassmorphism_blueprint.md` for a copy-paste instruction you can hand to any AI agent.
 
 ---
 
@@ -1109,6 +1180,7 @@ grep -rn 'bg-card\|text-card-foreground\|bg-primary\b\|text-primary-foreground\|
 - [product_playbook.md](./product_playbook.md) — Source methodology
 - [design_framework.md](./design_framework.md) — Taxonomy and principles
 - [brandbook.md](../05-reference/brandbook.md) — Visual identity (includes CSS Variable Override Trap)
+- [glassmorphism_blueprint.md](./glassmorphism_blueprint.md) — Portable liquid glass instruction for external AI agents
 
 ---
 
@@ -1376,7 +1448,7 @@ Before shipping any screen to production:
 ---
 
 *UX before UI. Test as you go. Invisible interface is the goal.*
-*Updated: March 26, 2026 — Added Accessibility Standards, Component States, Design Tokens JSON, and Design Critique Framework (informed by Apple/Pentagram design standards)*
+*Updated: April 1, 2026 — Added Liquid Glass Morphism (dark-surface) documentation, linked glassmorphism portable blueprint*
 
 ---
 
