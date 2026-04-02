@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | LAUNCH SPRINT. Funnel built. Liquid glass applied. Quiz deployed. Copy needs roasting. Surfaces need activating. DMs need sending. |
-| **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. |
+| **Current phase** | LAUNCH SPRINT. Funnel built. Liquid glass applied. Quiz deployed. Ownership-first email gate live. Copy roasted. DMs being sent. |
+| **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. Ownership-first post-result flow deployed ("Don't lose this" → silent save → delayed share). |
 | **Location** | Mexico City |
-| **Focus** | **Walk funnel end-to-end → Roast copy → Activate surfaces → Send first 10 DMs. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
-| **Key milestone** | ✅ All previous + ✅ Liquid glass morphism on both surface systems (dark funnel + light app) + ✅ Identity Disruptor quiz (6Q, 4 archetypes) + ✅ Customer Journey Playbook (15 sections) + ✅ Pre-launch checklist (Section 15) + ✅ ZoG assessment Steps 0-4 dark glass + ✅ ZoG Entry/Appleseed/Excalibur light glass |
-| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
+| **Focus** | **Activate surfaces → Send first 10 DMs → Validate conversion on ownership-first gate. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
+| **Key milestone** | ✅ All previous + ✅ Ownership-first email gate ("Don't lose this" framing, Save → delayed Share sequence) + ✅ Dark liquid glass on all ZoG screens (entry, loading, result) + ✅ Hash-based scroll (#hero-video) fix + ✅ Dark glass ShareZoG + ✅ Godfather Offer Architect session codified (16 gold nuggets) |
+| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Ownership-first conversion: users save results, not "sign up." Silent account creation deferred to Phase 2. Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
 
 ---
 
@@ -851,3 +851,30 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
+### Ownership-First Email Gate (Priority: ✅ DONE | Completed: April 2, 2026)
+
+**What:** Replaced generic "Unlock" email gate on ZoG result screen with "Don't lose this" value-preservation frame. One intention per moment: Save (dominant) → Share (delayed, collapsed). Dark glass ShareZoG dropdown. Copy forensically aligned to spec.
+
+**Principle codified:** "Users don't join platforms. They keep things they don't want to lose."
+
+**Component:** `src/modules/zone-of-genius/AppleseedDisplay.tsx` (OwnershipSection) + `src/components/sharing/ShareZoG.tsx`
+
+**Status:** ✅ DONE — live at aleksandrkonstantinov.com
+
+---
+
+### Silent Account Creation + Magic Link (Priority: 🔴 HIGH | Target: Next)
+
+**What:** When user submits email on the "Don't lose this" gate:
+1. Create account silently in background (Supabase)
+2. Attach ZoG result to that user
+3. Email them a magic link or access link
+4. Persist result so they can return later
+
+**Constraint:** Do NOT say "create account," "profile," "sign up," "join," or "login" anywhere in the UI.
+
+**Status:** 🔜 Queued — frontend complete, backend needed
+
+---
+
+*Roadmap updated: 2026-04-02. Ownership-first email gate live ("Don't lose this"). Dark liquid glass on all ZoG screens. Godfather Offer Architect session codified. Silent account creation + magic link queued as next backend work.*
