@@ -403,15 +403,18 @@ const ZoneOfGeniusEntry = () => {
                         className="text-2xl lg:text-3xl font-semibold font-display text-white/90"
                         style={{ textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)' }}
                     >
-                        Why is it still so hard to explain what you do?
+                        Why is it still so hard to explain what you do—<br className="hidden sm:inline" />
+                        and turn it into something people actually pay for?
                     </h1>
                     <p className="text-sm text-white/55 mt-4 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
                         There's a unique way you think, solve problems, and create value.<br/>
-                        You've been using it your whole life—because it's natural to you.<br/>
-                        People already come to you for it—when they're stuck, unclear, or need direction.
+                        You've been using it your whole life — because it's natural to you.<br/>
+                        People already come to you for it — when they're stuck, unclear, or need direction.
                     </p>
                     <p className="text-sm text-white/35 mt-3 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                        And still… it hasn't turned into something clear, simple, and paid.
+                        And yet… it hasn't turned into something consistent.<br/>
+                        Not because it isn't real.<br/>
+                        Because it's never been structured into something people can quickly understand — and say yes to.
                     </p>
                 </div>
 
@@ -438,7 +441,7 @@ const ZoneOfGeniusEntry = () => {
                                            flex items-center justify-center gap-2"
                                 onClick={() => setStep("choice-route")}
                             >
-                                Reveal what I already do naturally
+                                Reveal the unique way I naturally create value
                                 <ArrowRight className="w-4 h-4" />
                             </button>
                         </div>
@@ -472,9 +475,9 @@ const ZoneOfGeniusEntry = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
-                                            🤖 Fast (1 min)
+                                            🤖 Faster (1 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Use AI to reflect your zone of genius instantly</p>
+                                        <p className="text-xs text-white/35 mt-0.5">Paste your situation → get your pattern instantly</p>
                                     </div>
                                 </div>
                             </button>
@@ -496,9 +499,9 @@ const ZoneOfGeniusEntry = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
-                                            📋 Guided (10–15 min)
+                                            📋 Guided (5–7 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Answer a few prompts — we extract it step-by-step</p>
+                                        <p className="text-xs text-white/35 mt-0.5">Answer a few prompts → we extract it together</p>
                                     </div>
                                 </div>
                             </button>

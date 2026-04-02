@@ -153,7 +153,7 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
 };
 
 /* ─── Primary CTA Button (liquid glass) ──────────────────── */
-const PrimaryCTA = ({ id, label = "See My Business on One Page", showPrice = true }: { id: string; label?: string; showPrice?: boolean }) => (
+const PrimaryCTA = ({ id, label = "Book Your Session", showPrice = true }: { id: string; label?: string; showPrice?: boolean }) => (
   <a
     href={STRIPE_PAYMENT_LINK}
     target="_blank"
@@ -342,27 +342,29 @@ const IgniteSession = () => {
           />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.1] max-w-2xl mx-auto" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            <span className="text-white/60">You can't explain what you do.</span>
+            <span className="text-white/60">You can't clearly explain what you do.</span>
             <br />
             <span className="text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }}>
-              That's why it's not selling.
+              That's why it's not turning into something people buy.
             </span>
           </h1>
 
           <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            In 90 minutes, I turn what you've been doing your whole life
-            into a business people understand—and pay for.
+            In 90 minutes, we take what you already do —<br/>
+            and turn it into:
           </p>
+          <div className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed space-y-1" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p>→ a clear one-sentence business</p>
+            <p>→ a real offer</p>
+            <p>→ something people understand — and pay for</p>
+          </div>
 
-          {/* Emotional hook — pulled up from qualifier */}
+          {/* Proximity reframe */}
           <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed mt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            You're more capable than your results show.<br/>And you know it.
+            You're not far off.
           </p>
-
-          {/* Proximity reframe — reduce overwhelm, increase readiness */}
-          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            You're not far away.<br/>
-            <span className="text-white/55 font-medium">You're one structural layer away.</span>
+          <p className="text-sm text-white/65 font-medium max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You're one structural layer away from something that works.
           </p>
 
           <div className="flex flex-col items-center gap-4 pt-6">
@@ -375,7 +377,7 @@ const IgniteSession = () => {
               className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <span>Give it a structure that holds—even when you're not there ($555)</span>
+              <span>Turn this into something real ($555)</span>
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
               </span>
@@ -384,7 +386,7 @@ const IgniteSession = () => {
 
           <div className="pt-8 space-y-4">
             <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
-              Watch this before you book — it explains why everything you've tried hasn't worked.
+              See why this hasn't worked yet (4 min)
             </a>
             <div className="flex flex-col items-center justify-center gap-1 pt-2">
               <DivineTimingCapture />
@@ -430,7 +432,7 @@ const IgniteSession = () => {
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Watch this before you book
           </h2>
-          <p className="text-xs text-white/45 text-center mb-3">This explains why insight alone never converts into income.</p>
+          <p className="text-sm text-white/55 text-center mb-3" style={{ fontFamily: "'Source Serif 4', serif" }}>This will show you why insight alone never converts into income — and what actually needs to happen instead.</p>
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
           </div>
@@ -461,20 +463,20 @@ const IgniteSession = () => {
               {
                 emoji: "🔮",
                 step: "1",
-                title: "Your genius gets named",
-                desc: "You talk. I listen for what's already there—but invisible to you. We land it in one sentence a 7-year-old understands, an investor trusts, and a client buys.",
+                title: "We name what you already do — clearly",
+                desc: "You talk. I listen for what's already there — but invisible to you. We land it in one sentence a 7-year-old understands, an investor trusts, and a client buys.",
               },
               {
                 emoji: "📦",
                 step: "2",
-                title: "It becomes a product",
+                title: "We structure it into something people can buy",
                 desc: "That sentence becomes a clear offer, a defined audience, a real problem, a real outcome. No guessing. Just structure that holds.",
               },
               {
                 emoji: "🚀",
                 step: "3",
-                title: "You leave with a clear business",
-                desc: "Not something to think about later. AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
+                title: "You leave with a real business",
+                desc: "Not something to 'figure out later.' AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
               },
             ].map((item, i) => (
               <div
@@ -541,23 +543,34 @@ const IgniteSession = () => {
           {/* Anchor for direct-link scrolling */}
           <div id="booking" className="sr-only" aria-hidden="true" />
 
-          {/* What happens — 4 crisp bullets */}
-          <div className="space-y-2 max-w-sm mx-auto text-left">
-            <p className="text-xs text-white/40 uppercase tracking-widest text-center mb-3">What happens</p>
-            {[
-              { arrow: "Your genius", result: "named clearly" },
-              { arrow: "Turned into", result: "a real offer" },
-              { arrow: "Compiled into", result: "your business on one page" },
-              { arrow: "You leave knowing", result: "who to talk to and what to say" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="text-xs text-white/50">{item.arrow} →</span>
-                <span className="text-sm text-white/90 font-medium">{item.result}</span>
-              </div>
-            ))}
+          {/* What happens — consequence-first */}
+          <div className="space-y-3 max-w-sm mx-auto">
+            <p className="text-lg font-medium text-white/90 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>One session. One clear business.</p>
+            <p className="text-xs text-white/45 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              If you don't turn this into something concrete:
+            </p>
+            <div className="text-xs text-white/50 space-y-1 text-center" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              <p>→ it stays something people benefit from — but don't pay for</p>
+              <p>→ you keep circling the same question</p>
+              <p>→ nothing fundamentally changes</p>
+            </div>
+            <p className="text-xs text-white/40 uppercase tracking-widest text-center pt-2">In 90 minutes</p>
+            <div className="space-y-2 text-left">
+              {[
+                { arrow: "We define", result: "exactly what you do" },
+                { arrow: "Who", result: "it's for" },
+                { arrow: "Why", result: "they pay" },
+                { arrow: "How to", result: "express it simply" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-baseline gap-2">
+                  <span className="text-xs text-white/50">{item.arrow} →</span>
+                  <span className="text-sm text-white/90 font-medium">{item.result}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Price — one session. one business. */}
+          {/* Price */}
           <div>
             <div className="flex items-baseline justify-center gap-1 mb-1">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
@@ -565,13 +578,13 @@ const IgniteSession = () => {
             <p className="text-xs text-white/55">One session. One business.</p>
           </div>
 
-          {/* Guarantee — BIG */}
+          {/* Guarantee */}
           <div className="px-4 py-3 max-w-sm mx-auto rounded-xl border border-white/10">
             <div className="flex items-center justify-center gap-2 mb-2">
               <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed font-medium">
-              If we don't land a clear, speakable business you can immediately use—you don't pay.
+              If you don't leave with a clear one-sentence business: you don't pay.
             </p>
           </div>
 
@@ -665,21 +678,26 @@ const IgniteSession = () => {
             EMOTIONAL CLOSE
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-4 pt-2" id="final-close">
-          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            You've been carrying something you can't name.
-            <br />That's why nothing has fully clicked.
+          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You've been carrying something real.
+          </p>
+          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            That's not the problem.
+          </p>
+          <p className="text-sm text-white/80 font-medium max-w-sm mx-auto leading-relaxed">
+            The problem is it hasn't been turned into something people can say yes to.
+          </p>
+          <p className="text-xs text-white/50 italic max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            This is where that changes.
           </p>
 
-          {/* Pressure line — the weapon */}
-          <p className="text-xs text-white/40 font-medium max-w-sm mx-auto">
-            Clarity without structure doesn't compound.<br/>
-            It leaks.
+          {/* Final Collapse Line */}
+          <p className="text-sm text-white/60 font-medium max-w-sm mx-auto pt-2">
+            It either becomes something real now —<br/>
+            or it stays something you keep thinking about.
           </p>
 
-          <p className="text-sm text-white/80 font-medium">
-            This is where it does.
-          </p>
-          <PrimaryCTA id="final-close-btn" />
+          <PrimaryCTA id="final-close-btn" showPrice={false} />
         </div>
 
         {/* Bottom spacing */}

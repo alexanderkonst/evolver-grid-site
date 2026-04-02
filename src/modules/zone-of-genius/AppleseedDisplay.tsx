@@ -67,11 +67,10 @@ const OwnershipSection = ({
             {/* EMAIL GATE — "Don't lose this" */}
             {!emailUnlocked && !isSaved && (
                 <div className="space-y-3 text-center">
-                    <p className="text-sm font-semibold text-white/80">Don't lose this</p>
+                    <p className="text-sm font-semibold text-white/80">Save this and come back to it anytime</p>
                     <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-3 p-5 rounded-xl liquid-glass ring-1 ring-white/10">
                         <p className="text-xs text-white/45 leading-relaxed">
-                            Enter your email to save your result<br/>
-                            and come back to it anytime
+                            Access your result later + build on it when you're ready
                         </p>
                         <div className="relative w-full">
                             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/25" />
@@ -265,81 +264,78 @@ const AppleseedDisplay = ({
                     THE GAP — controlled incomplete transformation
                     ═══════════════════════════════════════════════ */}
                 <div className="space-y-5 pt-6 max-w-md mx-auto">
-                    {/* Validation first */}
+                    {/* Validation */}
                     <div className="text-center space-y-3">
-                        <p className="text-sm font-semibold text-white/90">
-                            This is real.
-                        </p>
                         <p className="text-xs text-white/50 leading-relaxed">
                             You've been doing this for years.<br/>
-                            People already come to you for it.
-                        </p>
-                        <p className="text-xs text-white/40 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                            And it's exactly why this has been so hard to turn into something that works.
+                            People already come to you for it.<br/>
+                            You've delivered real results through this.
                         </p>
                     </div>
 
-                    {/* The break */}
+                    {/* Collapse Shift */}
                     <div className="text-center space-y-2">
                         <p className="text-xs text-white/45 leading-relaxed">
-                            Because this is the way you naturally think and create.
+                            But this — by itself — doesn't become a business.
+                        </p>
+                        <p className="text-xs text-white/45 leading-relaxed">
+                            Because this is:
+                        </p>
+                        <p className="text-sm text-white/60 leading-relaxed">
+                            👉 how you naturally think and create
                         </p>
                         <p className="text-sm font-semibold text-white/85">
-                            Not a business.
-                        </p>
-                        <p className="text-xs text-white/35 leading-relaxed">
-                            Insight alone doesn't get paid.<br/>
-                            Business structure around it does.
+                            Not something structured to be bought.
                         </p>
                     </div>
 
-                    {/* The blade */}
-                    <div className="text-center space-y-2">
-                        <p className="text-xs text-white/40 leading-relaxed">
-                            You've seen this before. You knew it was true.
-                        </p>
-                        <p className="text-xs font-medium text-white/60">
-                            And still nothing changed.
-                        </p>
-                    </div>
-
-                    {/* CONSEQUENCE BLOCK — converts abstract pain into felt, time-bound loss */}
+                    {/* Consequence Block */}
                     <div className="text-center space-y-2 py-2">
                         <p className="text-[11px] text-white/35 leading-relaxed">
-                            If nothing changes:
+                            And without turning this into something concrete:
                         </p>
                         <div className="flex flex-col items-center gap-1">
                             <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> you will keep explaining this differently every time
+                                <span className="text-white/25">→</span> you keep explaining it differently every time
                             </p>
                             <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> people will keep getting value without paying
+                                <span className="text-white/25">→</span> people get value — but don't always pay
                             </p>
                             <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> another 6–12 months will pass in the same loop
+                                <span className="text-white/25">→</span> you stay in the loop of "almost there"
                             </p>
                         </div>
-                        <p className="text-xs text-white/35 leading-relaxed mt-1">
-                            Not because you're wrong.
-                        </p>
-                        <p className="text-xs font-medium text-white/55">
-                            Because this isn't structured yet.
+                        <p className="text-xs font-medium text-white/55 mt-1">
+                            6–12 months pass. And nothing fundamentally changes.
                         </p>
                     </div>
 
-                    {/* The three unanswered questions */}
+                    {/* Clarity Bridge */}
                     <div className="text-center space-y-1">
-                        <p className="text-[11px] text-white/30">Because knowing this doesn't answer:</p>
+                        <p className="text-[11px] text-white/30">This doesn't answer:</p>
                         <div className="flex flex-col items-center gap-0.5">
-                            <p className="text-xs text-white/50 italic">What do I offer?</p>
+                            <p className="text-xs text-white/50 italic">What exactly do I offer?</p>
                             <p className="text-xs text-white/50 italic">Who is it for?</p>
-                            <p className="text-xs text-white/50 italic">Why would someone pay?</p>
+                            <p className="text-xs text-white/50 italic">Why would someone pay for this — consistently?</p>
                         </div>
                     </div>
 
-                    {/* CTA 1 (PRIMARY): Watch the video — liquid glass */}
+                    {/* Decision Line */}
+                    <div className="text-center space-y-1 py-2">
+                        <p className="text-xs text-white/40 leading-relaxed">
+                            This is where most people stop.
+                        </p>
+                        <p className="text-xs text-white/40 leading-relaxed">
+                            They recognize themselves…
+                        </p>
+                        <p className="text-xs font-medium text-white/60">
+                            but never turn it into something real.
+                        </p>
+                    </div>
+
+                    {/* CTA 1 (PRIMARY): Quiz — diagnostic intensifier */}
                     <a
-                        href="/ignite#hero-video"
+                        href="/quiz"
                         className="w-full flex items-center justify-between p-4 rounded-xl
                                    liquid-glass ring-1 ring-[#8460ea]/30
                                    hover:ring-[#8460ea]/60
@@ -347,14 +343,15 @@ const AppleseedDisplay = ({
                                    transition-all duration-200 hover:scale-[1.02] active:scale-95"
                     >
                         <div>
-                            <p className="text-sm font-semibold text-white/85">See why this hasn't turned into income — and what changes it (6 min)</p>
+                            <p className="text-sm font-semibold text-white/85">See exactly why this hasn't turned into income</p>
+                            <p className="text-xs text-white/40 mt-0.5">6-question diagnostic</p>
                         </div>
                         <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
                             <ArrowRight className="w-4 h-4 text-[#8460ea]" />
                         </span>
                     </a>
 
-                    {/* CTA 2 (FAST): Identity shift — stop circling */}
+                    {/* CTA 2 (SECONDARY): Identity shift — stop circling */}
                     <a
                         href="/ignite#pricing-section"
                         className="w-full flex items-center justify-center gap-2 p-3
@@ -363,17 +360,8 @@ const AppleseedDisplay = ({
                                    transition-all duration-200 text-sm text-white/45
                                    hover:text-white/80"
                     >
-                        I'm done circling this — let's build it
+                        I'm done circling this — let's make it real
                         <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-
-                    {/* CTA 3 (CIRCLER): Not sure — take the quiz */}
-                    <a
-                        href="/quiz"
-                        className="text-xs text-white/25 hover:text-white/50
-                                   transition-colors text-center block"
-                    >
-                        Not sure? See exactly why this has been so hard (6-question diagnostic)
                     </a>
                 </div>
 
