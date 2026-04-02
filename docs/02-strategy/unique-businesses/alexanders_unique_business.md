@@ -5688,9 +5688,9 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 
 | Element | Status |
 |---------|--------|
-| All screens | ✅ Live (v2.0 copy — v3.0 copy upgrade pending) |
+| All screens | ✅ Live (v3.0 — Decision Collapse + Micro-Collapse) |
 | Video embed | ✅ Live (correct video) |
-| Route Selection UI | ✅ Live (Fast / Guided) |
+| Route Selection UI | ✅ Live (Faster 1 min / Guided 5-7 min) |
 | Resonance Permission | ✅ Live |
 | Stripe → Cal.com | ✅ Confirmed |
 | No backward loops | ✅ Removed |
@@ -5698,9 +5698,10 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 | Dark liquid glass on all ZoG screens | ✅ Live |
 | Hash-based scroll (#hero-video) | ✅ Live |
 | Share section (dark glass, delayed) | ✅ Live |
-| **v3.0 copy (decision collapse)** | ✅ Implemented (April 2, 2026) |
-| **Guarantee** | ✅ Implemented ("you don't pay") |
-| **Quiz as main path** | ✅ Implemented (primary CTA from result page) |
+| **v3.0 copy (decision collapse)** | ✅ Live (April 2, 2026) |
+| **Guarantee** | ✅ Live ("you don't pay") |
+| **Quiz as main path** | ✅ Live (primary CTA from result page) |
+| **5 micro-collapse objection kills** | ✅ Live (think/ready/big/me/decide) |
 | Silent account creation | ❌ Not built (backend Phase 2) |
 | Magic link email | ❌ Not built (backend Phase 2) |
 
