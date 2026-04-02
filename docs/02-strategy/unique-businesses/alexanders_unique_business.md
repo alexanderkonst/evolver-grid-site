@@ -528,7 +528,17 @@ Self-Talk, Dream Outcomes, Felt Texture
 
 The three segments (Pivot-Loop Founder, Grinding Coach, Caged Professional) are all valid. But there is a **higher-order truth** cutting across all three:
 
-**The real through-line is FOUNDERS.** Actual, de facto founders — people who are building or are meant to build. The segments are life paths; the archetype is one: **the founder who hasn't collapsed into their real thing yet.**
+##### What You're Narrowing (Corrected)
+
+You're NOT narrowing the **market.** The market is still broad — founders in transition, solopreneurs, coaches, consultants, "I know I'm capable but it's not landing." That's millions of people.
+
+You're narrowing the **moment of readiness.** A phase of consciousness:
+
+> "I've tried things already."
+> "I know I'm close."
+> "This is frustrating enough now."
+
+That's not a niche. That's a **filter for who's ready to act.**
 
 ##### The 5 Archetypes of Highest Resonance
 
@@ -536,25 +546,60 @@ These are the calibers of people Alexander vibrates with most deeply — **lowes
 
 | Archetype | Who They Are | Why Resonance Is Maximal |
 |-----------|-------------|------------------------|
-| **Medicine Shaman Founders** | Healers, therapists, guides who are becoming business builders. Their medicine is real — their structure isn't | They HAVE the gift. They're doing the work. They just need the business to hold it |
+| **Medicine Shaman Entrepreneurs** | Healers, therapists, guides who are becoming business builders. Their medicine is real — their structure isn't | They HAVE the gift. They're doing the work. They just need the business to hold it |
 | **New Earth Ecosystem Leaders** | People building regenerative systems, communities, new paradigms. Visionaries who think in ecosystems, not products | They operate at the EXACT level Alexander operates at — systemic, holonic, planetary. But they can't name the offer |
 | **New Earth System Architects** | Engineers, designers, developers who see the broken system and want to build the new one. Technical + visionary | They have the builder skills AND the consciousness. They're stuck because the vision is too big to compress into a product |
-| **Uniqueness-Vibrating AI Founders** | People using AI not for efficiency but for AMPLIFICATION of their unique gift. AI-native builders | They intuitively know AI is the leverage layer. They don't know what to build with it. Alexander shows them: build from who you ARE |
+| **Uniqueness-Vibrating AI Entrepreneurs** | People using AI not for efficiency but for AMPLIFICATION of their unique gift. AI-native builders | They intuitively know AI is the leverage layer. They don't know what to build with it. Alexander shows them: build from who you ARE |
 | **New Earth Leaders** | Leaders in conscious organizations, regenerative agriculture, holistic education, community building. They lead — but the BUSINESS is the missing piece | They're already leading. The business is just the container for what's already happening |
 
 ##### The Unifying Truth
 
-All five archetypes share one thing: **they are already founders.** They just don't have the structure yet.
+All five archetypes share one thing: **they are already doing the work.** They just don't have the structure yet.
 
-- The healer who gives advice for free? **Founder** whose business hasn't been named
-- The ecosystem thinker building community? **Founder** whose offer hasn't been extracted
-- The system architect who sees the broken thing? **Founder** whose product hasn't been installed
-- The AI experimenter who knows this is the future? **Founder** whose uniqueness hasn't been plugged in
-- The new earth leader who already has followers? **Founder** whose revenue model hasn't been built
+- The healer who gives advice for free? **Entrepreneur** whose business hasn't been named
+- The ecosystem thinker building community? **Entrepreneur** whose offer hasn't been extracted
+- The system architect who sees the broken thing? **Entrepreneur** whose product hasn't been installed
+- The AI experimenter who knows this is the future? **Entrepreneur** whose uniqueness hasn't been plugged in
+- The new earth leader who already has followers? **Entrepreneur** whose revenue model hasn't been built
 
-**Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Every founder in this caliber polishes their surface while leaving decision conditions unbuilt. Naming this is a Tuning Fork moment for them.
+**Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Every entrepreneur in this caliber polishes their surface while leaving decision conditions unbuilt. Naming this is a Tuning Fork moment for them.
 
-**Implication for messaging:** Stop saying "coaches, consultants, healers." Start saying **"founders."** The word itself upgrades the identity from service-provider to builder. That identity upgrade IS the work.
+##### Narrowing the Moment, Not the Market
+
+> *"You don't need more people. You need the right people to recognize themselves."*
+
+| What you're NOT doing | What you ARE doing |
+|----------------------|-------------------|
+| Excluding coaches, consultants, solopreneurs | Filtering for those who've TRIED and are FRUSTRATED |
+| Picking one vertical | Picking one PHASE OF CONSCIOUSNESS across all verticals |
+| Reducing addressable market | Increasing conversion rate per impression |
+| Fishing with a narrower net | **Spearfishing people already in the water** |
+
+**The real danger** is not going too narrow. The real danger is going soft again after no immediate results.
+
+**Timeline (realistic):**
+
+| Phase | What happens |
+|-------|-------------|
+| Days 1-3 | Lower response than expected. Some silence. Testing phase |
+| Days 4-10 | First strong resonance. DMs like: "this is me" |
+| Days 7-14 | First conversions |
+
+**Hold the edge or soften when it gets quiet?** That's the only question.
+
+##### The Outbound Hybrid (How You'll Find Them)
+
+Messaging makes conversion work. **Outreach makes volume happen.**
+
+| Surface | Role |
+|---------|------|
+| LinkedIn | Daily signal. Primary public surface |
+| DMs | Direct outreach. Non-negotiable. 10-20/day warm people |
+| Past clients | Reactivation. "I've evolved what I do" |
+| Email | Nurture. Magic link returnees |
+| Communities | Presence. Not selling — signaling |
+
+**Not passive inbound.** This is amplified outbound + inbound hybrid.
 
 ---
 
