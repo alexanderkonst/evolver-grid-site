@@ -71,7 +71,7 @@
 | **Current phase** | LAUNCH SPRINT. Funnel built. Liquid glass applied. Quiz deployed. Ownership-first email gate live. Copy roasted. DMs being sent. |
 | **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. Ownership-first post-result flow deployed ("Don't lose this" → silent save → delayed share). |
 | **Location** | Mexico City |
-| **Focus** | **Activate surfaces → Send first 10 DMs → Validate conversion on ownership-first gate. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
+| **Focus** | **Post first signal. DM 5-10 people. Update surfaces. Observe reactions. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
 | **Key milestone** | ✅ All previous + ✅ ITFT Conversion Physics Upgrade (consequence block, micro-commitment, non-optionality, identity-shift CTAs, proximity reframe, pressure line) + ✅ Ownership-first email gate + ✅ Dark liquid glass on all ZoG screens |
 | **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Ownership-first conversion: users save results, not "sign up." Controlled Collapse Sequence: funnel is a 5-step collapse (Recognition → Consequence → Non-optionality → Simplicity → Action). Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
 
@@ -891,4 +891,21 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
-*Roadmap updated: 2026-04-02. ITFT Conversion Physics Upgrade deployed (consequence block, micro-commitment, non-optionality, identity-shift CTAs). Controlled Collapse Sequence documented across ITFT, UB Playbook, Marketing Playbook, Distribution Playbook. Silent account creation + magic link still queued as next backend work.*
+### The Build: Group Container (Priority: 🔴 HIGH | Target: Week 4 of outreach)
+
+**What:** Layer 2 of the Replication Engine. Group container for Ignition graduates: 4-6 people, 4 calls over 4 weeks (Extraction → Structure → Collapse → Integration). $1,111 upfront + capped $2,500 from first $10K revenue.
+
+**Prerequisite:** 4+ Ignition Session graduates from the new funnel.
+
+**Roso & Cori role:** Potential apprentice facilitators (15-20% revenue share) — Cori as The Precision Eye (truth-naming), Roso as The Needle (fog-piercing inquiry), Alexander as The Architect (structural seeing).
+
+**Timeline:**
+- Week 1-2: Ignition sessions from new funnel
+- Week 3: 4+ graduates accumulated → announce Cohort 1
+- Week 4: The Build begins
+
+**Status:** 🔜 Designed — awaiting first Ignition graduates
+
+---
+
+*Roadmap updated: 2026-04-02. Replication Engine architecture designed (Layer 2: The Build group container, Layer 3: The Transmission spec). Roso & Cori collaboration status documented. ITFT Conversion Physics live. Silent account creation + magic link still queued as next backend work.*
