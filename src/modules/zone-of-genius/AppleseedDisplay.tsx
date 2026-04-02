@@ -97,25 +97,38 @@ const AppleseedDisplay = ({
                 {/* Validation first */}
                 <div className="text-center space-y-3">
                     <p className="text-sm font-semibold text-[#2c3150]">
-                        This is you.
+                        This is real.
                     </p>
                     <p className="text-xs text-[#2c3150]/55 leading-relaxed">
                         You've been doing this for years.<br/>
-                        People come to you for it. You've delivered results through it.
+                        People already come to you for it.
                     </p>
                     <p className="text-xs text-[#2c3150]/55 leading-relaxed italic">
-                        And yet… you've never been able to clearly say what it is.
+                        And it's exactly why this has been so hard to turn into something that works.
                     </p>
                 </div>
 
                 {/* The break */}
                 <div className="text-center space-y-2">
+                    <p className="text-xs text-[#2c3150]/55 leading-relaxed">
+                        Because this is the way you naturally think and create.
+                    </p>
                     <p className="text-sm font-semibold text-[#2c3150]">
-                        This is your pattern.
-                        <span className="text-[#2c3150]/40"> Not your business.</span>
+                        Not a business.
                     </p>
                     <p className="text-xs text-[#2c3150]/45 leading-relaxed">
-                        That's why nothing has fully clicked.
+                        Patterns don't get paid.<br/>
+                        Business structure does.
+                    </p>
+                </div>
+
+                {/* The blade */}
+                <div className="text-center space-y-2">
+                    <p className="text-xs text-[#2c3150]/50 leading-relaxed">
+                        You've seen this before. You knew it was true.
+                    </p>
+                    <p className="text-xs font-medium text-[#2c3150]/70">
+                        And still nothing changed.
                     </p>
                 </div>
 
@@ -129,35 +142,24 @@ const AppleseedDisplay = ({
                     </div>
                 </div>
 
-                {/* The blade */}
-                <div className="text-center">
-                    <p className="text-xs text-[#2c3150]/50 leading-relaxed">
-                        You've seen this before. You knew it was true.
-                    </p>
-                    <p className="text-xs font-medium text-[#2c3150]/70 mt-1">
-                        And still nothing changed.
-                    </p>
-                </div>
-
                 {/* CTA 1 (PRIMARY): Watch the video — glass card */}
                 <a
                     href="/ignite#hero-video"
                     className="w-full flex items-center justify-between p-4 rounded-xl
-                               bg-white/60 backdrop-blur-md border border-white/50
-                               hover:bg-white/80 hover:border-[#8460ea]/25
+                               bg-gradient-to-r from-[#8460ea]/15 to-[#29549f]/15
+                               border border-[#8460ea]/25 hover:border-[#8460ea]/50
                                hover:shadow-lg hover:shadow-[#8460ea]/8
                                transition-all duration-200 hover:scale-[1.02] active:scale-95"
                 >
                     <div>
-                        <p className="text-sm font-semibold text-[#2c3150]">Watch this — 4 minutes</p>
-                        <p className="text-xs text-[#2c3150]/50 mt-0.5">See why this gap exists — and what resolves it</p>
+                        <p className="text-sm font-semibold text-[#2c3150]">See why this hasn't turned into income — and what changes it (4 min)</p>
                     </div>
                     <span className="w-8 h-8 rounded-full bg-[#8460ea]/10 flex items-center justify-center flex-shrink-0 ml-3">
                         <ArrowRight className="w-4 h-4 text-[#8460ea]" />
                     </span>
                 </a>
 
-                {/* CTA 2 (FAST): I already know — skip to booking */}
+                {/* CTA 2 (FAST): I see it — let's build it */}
                 <a
                     href="/ignite#pricing-section"
                     className="w-full flex items-center justify-center gap-2 p-3
@@ -166,7 +168,7 @@ const AppleseedDisplay = ({
                                transition-all duration-200 text-sm text-[#2c3150]/60
                                hover:text-[#8460ea]"
                 >
-                    I already know — let's go
+                    I see it — let's build it
                     <ArrowRight className="w-3.5 h-3.5" />
                 </a>
 
@@ -176,7 +178,7 @@ const AppleseedDisplay = ({
                     className="text-xs text-[#2c3150]/40 hover:text-[#8460ea]/60
                                transition-colors text-center block"
                 >
-                    Not sure? See the pattern behind why this has been so hard
+                    Not sure? See exactly why this has been so hard (6-question diagnostic)
                 </a>
             </div>
 

@@ -102,10 +102,10 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
     id: "invisible_genius",
     name: "The Invisible Genius",
     emoji: "🧩",
-    identity: "You create value in ways that are hard to explain.",
+    identity: "You create real value.",
     mirror: [
       "People leave conversations with you clearer, more focused, or unstuck.",
-      "You don't always know how you do it—but it works.",
+      "And yet… it hasn't turned into something others immediately understand—or pay for.",
     ],
     problem: "You've never turned this into something others can quickly understand.",
     symptoms: [
@@ -114,9 +114,9 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
       "it feels obvious to you—but unclear to others",
     ],
     reframe: "This isn't a skill problem. It's a structure problem.",
-    blade: "You've understood this for a while. Understanding alone didn't change it.",
-    cta: "Watch what's actually missing",
-    ctaSub: "See why insight alone never converts into income",
+    blade: "You don't need more insight. You need business structure around what's already true.",
+    cta: "Watch why insight alone never turns into income",
+    ctaSub: "See what changes when structure meets genius",
   },
   multi_talent_trap: {
     id: "multi_talent_trap",
@@ -338,20 +338,7 @@ function ResultView({
         </span>
       </a>
 
-      {/* Secondary: Go deeper (ZoG) */}
-      <a
-        href="/"
-        className="w-full flex items-center justify-center gap-2 p-3 mt-3
-                   rounded-xl border border-[#2c3150]/10
-                   hover:border-[#8460ea]/30 hover:bg-[#8460ea]/5
-                   transition-all duration-200 text-sm text-[#2c3150]/50
-                   hover:text-[#8460ea]"
-      >
-        Want to go deeper? See your full reveal
-        <ArrowRight className="w-3.5 h-3.5" />
-      </a>
-
-      {/* Restart */}
+      {/* Restart — no backward loops */}
       <button
         onClick={onRestart}
         className="flex items-center gap-1.5 mx-auto mt-6 text-xs text-[#2c3150]/30
@@ -410,10 +397,10 @@ export default function GeniusQuiz() {
           {!result ? (
             <>
               <h1 className="text-xl font-semibold font-display aurora-text leading-snug">
-                Why is it still so hard to turn what you do into something real?
+                Why hasn't this turned into something real?
               </h1>
               <p className="text-xs text-[var(--wabi-text-secondary)]/50 mt-2 max-w-sm mx-auto">
-                6 questions. No email required. See your pattern.
+                6 questions. No overthinking. See exactly where it breaks.
               </p>
             </>
           ) : (

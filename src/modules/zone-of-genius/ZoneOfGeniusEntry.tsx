@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 type Step =
     | "choice"
+    | "choice-route"
     | "ai-prompt"
     | "paste-response"
     | "generating-appleseed"
@@ -397,17 +398,18 @@ const ZoneOfGeniusEntry = () => {
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-2xl font-semibold font-display aurora-text">Why is it still so hard to explain what you do?</h1>
-                    <p className="text-sm text-[#2c3150]/60 mt-2 max-w-md mx-auto leading-relaxed">
-                        There's a pattern in how you think, solve problems, and create value.
-                        You've been using it for years. People come to you for it.
+                    <p className="text-sm text-[#2c3150]/60 mt-3 max-w-md mx-auto leading-relaxed">
+                        There's a unique way you think, solve problems, and create value.<br/>
+                        You've been using it your whole life—because it's natural to you.<br/>
+                        People already come to you for it—when they're stuck, unclear, or need direction.
                     </p>
-                    <p className="text-sm text-[#2c3150]/45 mt-1.5 italic max-w-sm mx-auto leading-relaxed">
-                        And yet… you've never been able to fully explain it.
-                    </p>
-                    <p className="text-xs text-[#2c3150]/35 mt-3 max-w-sm mx-auto">
-                        This reveals it. No frameworks. No overthinking. Just answer a few prompts.
+                    <p className="text-sm text-[#2c3150]/45 mt-2 italic max-w-sm mx-auto leading-relaxed">
+                        And still… it hasn't turned into something clear, simple, and paid.
                     </p>
                 </div>
+
+                {/* Primary CTA — before choice screen */}
+                {step !== "choice" ? null : null}
 
                 {/* Error message */}
                 {error && (
@@ -419,9 +421,26 @@ const ZoneOfGeniusEntry = () => {
                 {/* Step: Choice */}
                 {step === "choice" && (
                     <div className="space-y-6">
-                        <div className="text-center mb-6">
-                            <h2 className="text-lg font-semibold text-[#2c3150] font-display mb-2">
-                                How would you like to start?
+                        {/* Primary CTA — center, large */}
+                        <div className="text-center">
+                            <PremiumButton
+                                className="w-full max-w-sm mx-auto"
+                                size="lg"
+                                onClick={() => setStep("choice-route")}
+                            >
+                                Reveal what I already do naturally
+                                <ArrowRight className="w-4 h-4" />
+                            </PremiumButton>
+                        </div>
+                    </div>
+                )}
+
+                {/* Step: Route Selection */}
+                {step === "choice-route" && (
+                    <div className="space-y-6">
+                        <div className="text-center mb-4">
+                            <h2 className="text-lg font-semibold text-[#2c3150] font-display">
+                                How do you want to reveal it?
                             </h2>
                         </div>
 
@@ -441,9 +460,12 @@ const ZoneOfGeniusEntry = () => {
                                                     group-hover:bg-[#8460ea]/15 transition-colors">
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
-                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
-                                        Yes, my AI knows me
-                                    </p>
+                                    <div>
+                                        <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
+                                            🤖 Fast (1 min)
+                                        </p>
+                                        <p className="text-xs text-[#2c3150]/45 mt-0.5">Use AI to reflect your zone of genius instantly</p>
+                                    </div>
                                 </div>
                             </button>
 
@@ -462,9 +484,12 @@ const ZoneOfGeniusEntry = () => {
                                                     group-hover:bg-[#6894d0]/15 transition-colors">
                                         <ClipboardList className="w-5 h-5 text-[#6894d0]" />
                                     </div>
-                                    <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#6894d0] transition-colors">
-                                        No, I'll do the assessment
-                                    </p>
+                                    <div>
+                                        <p className="text-sm font-semibold text-[#2c3150] group-hover:text-[#6894d0] transition-colors">
+                                            📋 Guided (10–15 min)
+                                        </p>
+                                        <p className="text-xs text-[#2c3150]/45 mt-0.5">Answer a few prompts — we extract it step-by-step</p>
+                                    </div>
                                 </div>
                             </button>
                         </div>
