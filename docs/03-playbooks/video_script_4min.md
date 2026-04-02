@@ -1,40 +1,47 @@
-# 4-Minute Video Script v2.0 — "Why Insight Alone Never Converts Into Income"
+# 4-Minute Video Script v2.0 (LOCKED) — "Why Insight Alone Never Turns Into Income"
 
-> **Purpose:** This video sits between the ZoG quiz result and the session booking.
-> It breaks "false completion" — the feeling that seeing your pattern = having a business.
-> Page = fast. Video = understanding. Session = decision.
-> 
-> **Also referenced in:** [Customer Journey Playbook](./customer_journey_playbook.md) Section 8
+> **Title (internal):** Why Insight Alone Never Turns Into Income
+> **Length:** 3:30–4:30
+> **Tone:** Calm. Direct. Certain. No hype. No teaching energy. You're not convincing — you're naming what's already happening.
+> **Canonical source:** [alexanders_unique_business.md](../02-strategy/unique-businesses/alexanders_unique_business.md#video-script-v20-locked)
 
 ---
 
-## SPOKEN SCRIPT
+## 🧬 SCRIPT
 
-**[OPEN — calm, direct] (0:00–0:12)**
+**[OPEN — still, grounded]**
 
-If you're here, something probably felt… accurate.
+If you're here… something probably felt accurate.
 
-Like, "yeah—that's me."
+Like—
 
-But also incomplete.
+"Yeah. That's me."
 
-And that's the part I want to talk about.
+But also…
 
-Because most people think the problem is:
+incomplete.
 
-*"I don't know my zone of genius."*
+And that's the part most people miss.
 
-That's almost never true.
+Because the problem is not:
 
-**[PROBLEM REFRAME] (0:12–0:35)**
+"I don't know what I'm good at."
 
-**The real problem is this:**
+Most people do.
+
+*[BEAT]*
+
+The real problem is this:
 
 You know it…
 
-But you can't structure it in a way that other people understand—and pay for.
+But you've never turned it into something other people can immediately understand—
 
-**[CORE TENSION] (0:35–1:10)**
+and pay for.
+
+---
+
+**[LOOP — SLOW DESCENT INTO TRUTH]**
 
 So what happens?
 
@@ -44,124 +51,164 @@ You adjust the words.
 You add context.
 You simplify… then complicate again.
 
-And somehow…
+And the more you try to explain it—
 
-**The more you explain it, the less clear it becomes.**
-
-**[LOOP BREAK] (1:10–1:40)**
+**the less clear it becomes.**
 
 And you can feel it happening.
 
 Mid-sentence.
 
 You start clear…
-then you adjust…
-then you lose it.
+Then you adjust…
+Then you lose it.
 
-And by the end, it doesn't even sound true anymore.
+And by the end—
 
-**[ROOT CAUSE] (1:40–2:05)**
+it doesn't even sound true anymore.
+
+---
+
+**[SHIFT — NAME THE REAL PROBLEM]**
 
 That's not a communication issue.
 
-That's a structural issue.
+It's a structure issue.
 
-You don't have a container for what you are.
+You don't have a clear container for what you already are.
 
-And without that container:
+And without that—
 
-- You can't charge properly
-- You can't scale it
-- You can't even talk about it without friction
+you can't explain it cleanly
+you can't price it properly
+you can't scale it
+you can't even trust your own words when you say them
 
-**[CONSEQUENCE] (2:05–2:30)**
-
-So you stay in this loop:
+So you stay in the loop:
 
 *Working → adjusting → doubting → restarting*
 
 Over and over again.
 
-**[TRUTH DROP] (2:30–2:50)**
+---
 
-Here's the shift.
+**[BREAK — REFRAME]**
 
-**Insight alone doesn't get paid.**
-
-**Business structure does.**
+Now here's the shift.
 
 What if the problem isn't you?
 
-What if the problem is that no one has ever:
+What if the problem is:
 
-**Seen what you are from the outside**
-and turned it into something concrete
+No one has ever taken what you already do—
 
-That's the missing step.
+and turned it into something structurally clear.
 
-**[SOLUTION] (2:50–3:30)**
+Something that holds.
+Something that translates.
+Something that gets paid.
 
-Because once it's named properly…
+---
 
-Everything else becomes obvious.
+**[CORE TRUTH — DROP THE HAMMER]**
 
-- What to offer.
-- Who it's for.
-- What to say.
-- Why people pay.
+Because insight alone doesn't get paid.
 
-**That's what we do in the session.**
+**Business structure around it does.**
 
-Not coaching.
-Not theory.
+And until that happens—
 
-In 90 minutes:
+nothing fully clicks.
 
-We take what you already saw in your result…
+---
 
-And turn it into:
+**[RESOLUTION — INTRODUCE SESSION]**
 
-→ One clear sentence
-→ One structured offer
-→ One real business
+That's what happens in the session.
+
+Not coaching. Not theory.
+
+In 90 minutes—
+
+we take what you already saw…
+
+and turn it into:
+
+→ one clear sentence
+→ one real offer
+→ one business people understand
 
 Live.
 
-**[TIME COLLAPSE] (3:30–3:50)**
+No guessing.
+No "we'll figure it out later."
 
-Most people spend months — years — trying to figure this out.
+You leave with it done.
+
+---
+
+**[TIME COLLAPSE]**
+
+Most people stay in this loop for months.
+
+Sometimes years.
+
+Trying to figure out how to say what they already are.
 
 We finish it in one session.
 
-You leave with it.
+---
 
-**[CLOSE — quiet, direct] (3:50–4:00)**
+**[CLOSE — quiet, certain]**
 
-If you can feel this—
+If you can feel that this is the missing step—
 
-This is the missing step.
-
-You can book the session below.
+you can book the session below.
 
 ---
 
-## NUCLEAR LINE (final frame, hold 3 seconds)
+**[NUCLEAR LINE — on screen or final line]**
 
-> **"If you're still thinking about this… you already know."**
+> **If you're still thinking about this after watching…**
+> **you already know.**
 
 ---
 
-## HIGH-CONVERSION SUBTITLE OVERLAY v1.0
+## 🧠 DELIVERY NOTES
 
-> *April 2, 2026 — Godfather Offer Architect output. These are not captions.*
-> *They are controlled thought injections — designed to bypass reading mode and hit the body directly.*
+- No performance
+- No smiling for effect
+- No over-explaining
+- Slight pauses > perfect pacing
+- Let silence do work
+- **This should feel like: the first 5 minutes of your session — not a "video"**
 
-### Rules
+---
 
-1. **1–2 lines max** — never full sentences unless impact line
-2. **Sync with pauses**, not speech
-3. **Emphasize contrast words** (YOU / NOT / THIS) — bold or caps in editing
-4. **Never explain** — the subtitles CREATE the tension, the voice DELIVERS the context
+## 🔥 WHY THIS VERSION WORKS
+
+It does 4 things cleanly:
+
+| Quadrant | What it does | How |
+|----------|-------------|-----|
+| **UL (Interior-Individual)** | Validates insight | "that's me" — recognition, not instruction |
+| **UR (Exterior-Individual)** | Breaks false completion | "this didn't change anything" — structure is missing |
+| **LR (Exterior-Collective)** | Names structural gap | container / business / translation |
+| **LL (Interior-Collective)** | Creates inevitability | "this is the missing step" — shared knowing |
+
+> **This video is not persuasion. It is a mirror that removes every remaining excuse except action.**
+
+---
+
+## 🎬 HIGH-CONVERSION SUBTITLE OVERLAY v1.0
+
+> *These are NOT captions. They are controlled thought injections.*
+> 
+> **Rules:**
+> 1. 1–2 lines max
+> 2. Never full sentences unless impact line
+> 3. Sync with pauses, not speech
+> 4. Emphasize contrast words (YOU / NOT / THIS)
 
 ### Frame-by-Frame Spec
 
@@ -305,5 +352,5 @@ you already know
 
 ---
 
-*Video Script v2.0 — April 2, 2026 (Godfather Offer Architect subtitle overlay added)*
-*Updated from v1.0: Added frame-by-frame subtitle spec, timestamp alignment, BODY HIT insert, production notes for muted-autoplay optimization.*
+*Video Script v2.0 (LOCKED) — April 2, 2026*
+*Godfather Offer Architect final output. 4-quadrant validated. Subtitle overlay spec included.*

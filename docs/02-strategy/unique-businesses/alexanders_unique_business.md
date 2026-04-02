@@ -65,7 +65,7 @@
 - [The Noble = Free Antidote](#the-noble--free-antidote--deepened-march-24-2026)
 
 ### VI. Live Assets (Current)
-- [Video Script v2.0](#video-script-v20)
+- [Video Script v2.0 (LOCKED)](#video-script-v20-locked)
 - [Live Funnel Spec v2.0](#live-funnel-spec-v20)
 
 ### VII. Operational Overlays
@@ -4943,40 +4943,48 @@ The Funnel Page Architecture v3.0 has been **implemented live** in [IgniteSessio
 
 ---
 
-## Video Script v2.0
+## Video Script v2.0 (LOCKED)
 
-> *"Why Insight Alone Never Converts Into Income" — 4-minute face-to-camera*
-> *Purpose: sits between ZoG result and session booking. Breaks "false completion."*
-> *Production note (HD): Throat + G Center (Channel 1-8) — record raw, one take. Your face and voice ARE the transmission. Not produced. Not slides.*
-> *Full script + subtitle overlay: [video_script_4min.md](../../docs/03-playbooks/video_script_4min.md)*
+> *Title (internal): "Why Insight Alone Never Turns Into Income"*
+> *Length: 3:30–4:30 • Tone: Calm. Direct. Certain. No hype. No teaching energy.*
+> *You're not convincing — you're naming what's already happening.*
+> *Subtitle overlay: [video_script_4min.md](../../docs/03-playbooks/video_script_4min.md)*
 
-### Script (with v2.0 inserts)
+### Script
 
-**[OPEN — calm, direct] (0:00–0:12)**
+**[OPEN — still, grounded]**
 
-If you're here, something probably felt… accurate.
+If you're here… something probably felt accurate.
 
-Like, "yeah—that's me."
+Like—
 
-But also incomplete.
+"Yeah. That's me."
 
-And that's the part I want to talk about.
+But also…
 
-Because most people think the problem is:
+incomplete.
 
-*"I don't know my zone of genius."*
+And that's the part most people miss.
 
-That's almost never true.
+Because the problem is not:
 
-**[PROBLEM REFRAME] (0:12–0:35)**
+"I don't know what I'm good at."
 
-**The real problem is this:**
+Most people do.
+
+*[BEAT]*
+
+The real problem is this:
 
 You know it…
 
-But you can't structure it in a way that other people understand—and pay for.
+But you've never turned it into something other people can immediately understand—
 
-**[CORE TENSION] (0:35–1:10)**
+and pay for.
+
+---
+
+**[LOOP — SLOW DESCENT INTO TRUTH]**
 
 So what happens?
 
@@ -4986,112 +4994,151 @@ You adjust the words.
 You add context.
 You simplify… then complicate again.
 
-And somehow…
+And the more you try to explain it—
 
-**The more you explain it, the less clear it becomes.**
-
-**[LOOP BREAK → BODY HIT] (1:10–2:05)** ← *v2.0 INSERT*
+**the less clear it becomes.**
 
 And you can feel it happening.
 
 Mid-sentence.
 
 You start clear…
-then you adjust…
-then you lose it.
+Then you adjust…
+Then you lose it.
 
-And by the end, it doesn't even sound true anymore.
+And by the end—
 
-**[ROOT CAUSE] (2:05–2:30)**
+it doesn't even sound true anymore.
+
+---
+
+**[SHIFT — NAME THE REAL PROBLEM]**
 
 That's not a communication issue.
 
-That's a structural issue.
+It's a structure issue.
 
-You don't have a container for what you are.
+You don't have a clear container for what you already are.
 
-And without that container:
+And without that—
 
-- You can't charge properly
-- You can't scale it
-- You can't even talk about it without friction
+you can't explain it cleanly
+you can't price it properly
+you can't scale it
+you can't even trust your own words when you say them
 
-**[CONSEQUENCE] (2:30–2:50)**
-
-So you stay in this loop:
+So you stay in the loop:
 
 *Working → adjusting → doubting → restarting*
 
 Over and over again.
 
-**[TRUTH DROP] (2:50–3:10)** ← *v2.0 INSERT*
+---
 
-**Insight alone doesn't get paid.**
+**[BREAK — REFRAME]**
 
-**Business structure does.**
+Now here's the shift.
 
 What if the problem isn't you?
 
-What if the problem is that no one has ever:
+What if the problem is:
 
-**Seen what you are from the outside**
-and turned it into something concrete
+No one has ever taken what you already do—
 
-That's the missing step.
+and turned it into something structurally clear.
 
-**[SOLUTION] (3:10–3:40)**
+Something that holds.
+Something that translates.
+Something that gets paid.
 
-Because once it's named properly…
+---
 
-Everything else becomes obvious.
+**[CORE TRUTH — DROP THE HAMMER]**
 
-- What to offer.
-- Who it's for.
-- What to say.
-- Why people pay.
+Because insight alone doesn't get paid.
 
-**That's what we do in the session.**
+**Business structure around it does.**
 
-Not coaching.
-Not theory.
+And until that happens—
 
-In 90 minutes:
+nothing fully clicks.
 
-We take what you already saw in your result…
+---
 
-And turn it into:
+**[RESOLUTION — INTRODUCE SESSION]**
 
-→ One clear sentence
-→ One structured offer
-→ One real business
+That's what happens in the session.
+
+Not coaching. Not theory.
+
+In 90 minutes—
+
+we take what you already saw…
+
+and turn it into:
+
+→ one clear sentence
+→ one real offer
+→ one business people understand
 
 Live.
 
-**[TIME COLLAPSE] (3:40–3:50)**
+No guessing.
+No "we'll figure it out later."
 
-Most people spend months — years — trying to figure this out.
+You leave with it done.
+
+---
+
+**[TIME COLLAPSE]**
+
+Most people stay in this loop for months.
+
+Sometimes years.
+
+Trying to figure out how to say what they already are.
 
 We finish it in one session.
 
-You leave with it.
+---
 
-**[CLOSE — quiet, direct] (3:50–4:00)**
+**[CLOSE — quiet, certain]**
 
-If you can feel this—
+If you can feel that this is the missing step—
 
-This is the missing step.
+you can book the session below.
 
-You can book the session below.
+---
 
-### Nuclear Line (final frame, hold 3 seconds)
+**[NUCLEAR LINE — on screen or final line]**
 
-> **"If you're still thinking about this… you already know."**
+> **If you're still thinking about this after watching…**
+> **you already know.**
+
+### Delivery Notes
+
+- No performance
+- No smiling for effect
+- No over-explaining
+- Slight pauses > perfect pacing
+- Let silence do work
+- **This should feel like: the first 5 minutes of your session — not a "video"**
+
+### Why This Version Works (4-Quadrant Analysis)
+
+| Quadrant | What it does | How |
+|----------|-------------|-----|
+| **UL (Interior-Individual)** | Validates insight | "that's me" — recognition, not instruction |
+| **UR (Exterior-Individual)** | Breaks false completion | "this didn't change anything" — structure is missing |
+| **LR (Exterior-Collective)** | Names structural gap | container / business / translation |
+| **LL (Interior-Collective)** | Creates inevitability | "this is the missing step" — shared knowing |
+
+> **This video is not persuasion. It is a mirror that removes every remaining excuse except action.**
 
 ### High-Conversion Subtitle Overlay v1.0
 
 > *These are NOT captions. They are controlled thought injections.*
 > *Rules: 1-2 lines max. Sync with pauses, not speech. Emphasize contrast words (YOU / NOT / THIS).*
-> *Full frame-by-frame spec: [video_script_4min.md](../../docs/03-playbooks/video_script_4min.md)*
 
 | Timestamp | Subtitle |
 |-----------|----------|
