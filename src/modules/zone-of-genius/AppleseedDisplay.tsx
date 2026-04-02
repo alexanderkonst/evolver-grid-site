@@ -141,7 +141,7 @@ const OwnershipSection = ({
                         onClick={() => setShareExpanded(!shareExpanded)}
                         className="w-full flex items-center justify-center gap-2 py-2 text-xs text-white/40 hover:text-white/60 transition-colors"
                     >
-                        <span>Optional: Get perspective from others</span>
+                        <span>Want perspective? Share with someone who knows you well</span>
                         <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${shareExpanded ? 'rotate-180' : ''}`} />
                     </button>
 
