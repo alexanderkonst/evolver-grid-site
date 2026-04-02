@@ -201,21 +201,36 @@ const AppleseedDisplay = ({
         if (!email.trim() || !email.includes('@')) return;
         setEmailSaving(true);
         try {
-            await (supabase as any).from('divine_timing_leads').insert({
-                email: email.trim(),
-                source: 'zog_quiz_result',
-                created_at: new Date().toISOString(),
+            // Call edge function for silent account creation + result persistence
+            const { data, error } = await supabase.functions.invoke('save-zog-result', {
+                body: {
+                    email: email.trim(),
+                    appleseedData: appleseed,
+                    source: 'zog_ownership_save',
+                },
             });
+
+            if (error) {
+                console.error('[save-zog-result] Edge function error:', error);
+                // Fallback: save to divine_timing_leads directly
+                await (supabase as any).from('divine_timing_leads').insert({
+                    email: email.trim(),
+                    source: 'zog_save_fallback',
+                    created_at: new Date().toISOString(),
+                });
+            } else {
+                console.log('[save-zog-result] Success:', data);
+            }
         } catch {
-            // Silently continue
+            // Silently continue — UI should never break on save failure
         }
         setEmailUnlocked(true);
         setEmailSaving(false);
         toast({
-            title: "Saved!",
-            description: "You can now save and share your genius.",
+            title: "✓ Saved",
+            description: "You can come back to this anytime.",
         });
-    }, [email, toast]);
+    }, [email, toast, appleseed]);
 
     return (
         <>

@@ -70,6 +70,7 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import ZoGPerspectiveView from "./pages/spaces/profile/ZoGPerspectiveView";
 import NotFound from "./pages/NotFound";
+import MyResult from "./pages/MyResult";
 import OnboardingPage from "./pages/OnboardingPage";
 // Space pages for the Game Shell
 import TodaysPractice from "./pages/spaces/transformation/TodaysPractice";
@@ -361,6 +362,8 @@ const App = () => (
                   <Route path="/dashboard" element={<VentureDashboard />} />
                   <Route path="/holomap" element={<MorphogeneticHolomap />} />
                   <Route path="/founders" element={<FoundersShowcase />} />
+                  {/* Magic link result access — no auth required */}
+                  <Route path="/my-result" element={<MyResult />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
