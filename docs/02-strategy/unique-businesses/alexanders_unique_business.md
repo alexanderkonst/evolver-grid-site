@@ -3846,6 +3846,61 @@ DISTRIBUTION IS NOT: Marketing (handled) or Product (handled).
 
 **Natural referral rate target: 50%+** — no monetary incentive needed. The transformation IS the incentive.
 
+#### Curiosity Gap Sharing v1.0 (April 2026)
+
+> *The ZoG share text intentionally DOES NOT include the website link.*
+
+**The mechanism:**
+
+```
+Stage 1: USER SHARES RESULT
+  → Post reads like a genuine social moment, not marketing
+  → "Something just named what I do better than I ever could."
+  → "Do you actually see me this way? 👀"
+  → No link. No brand name. No CTA.
+
+Stage 2: FRIENDS ENGAGE
+  → Comments, reactions, debate ("yes!" / "you're also X!")
+  → Algorithm boosts the post because engagement = signal
+  → Post reaches 2nd-degree connections organically
+
+Stage 3: CURIOSITY FIRES
+  → "Where did you get this?"
+  → The sharer becomes the distribution channel
+  → Word-of-mouth > link click. Always.
+```
+
+**Why this works better than including a link:**
+
+| With link | Without link |
+|-----------|-------------|
+| Feels like an ad → friends scroll past | Feels like a real post → friends engage |
+| Platform deprioritizes (link = commercial) | Platform boosts (engagement = authentic) |
+| Click = cold, anonymous traffic | "Where'd you get this?" = warm, curious referral |
+| Conversion: ~2% of clicks | Conversion: ~30%+ of conversations |
+
+**The share text (verbatim from code):**
+
+```
+Something just named what I do better than I ever could.
+
+Apparently my genius is: [Archetype Name]
+"[Tagline]"
+
+Top talents: [talent 1] · [talent 2] · [talent 3]
+What drives me: [Prime Driver]
+
+Honestly? It hit hard.
+
+But I'm curious — do you actually see me this way? 👀
+Tell me if this lands or if I'm delusional 😂
+```
+
+**UI nudge above share button:** "Ask friends on socials — do they actually see you this way?"
+**Button text:** "Share & ask friends"
+
+**Implementation:** `src/components/sharing/ShareZoG.tsx`
+
 ### Lean Stack — NOTHING ELSE
 
 ```
