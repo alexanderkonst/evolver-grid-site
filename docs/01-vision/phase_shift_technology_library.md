@@ -2656,17 +2656,19 @@ Or shorter:
 
 > *"Stop building. Start collapsing."*
 
-### 55i. Why This Is a Founder Magnet
+### 55i. Why This Is an Entrepreneur Magnet
 
 Every person in Alexander's highest-resonance archetypes will recognize themselves:
-- The **Medicine Shaman Founder** refining their healing framework instead of selling the first session
+- The **Medicine Shaman Entrepreneur** refining their healing framework instead of selling the first session
 - The **New Earth Ecosystem Leader** designing community architecture instead of inviting the first 10 people
 - The **System Architect** building the platform instead of validating the first use case
-- The **AI Founder** adding features instead of charging the first user
+- The **AI Entrepreneur** adding features instead of charging the first user
 - The **New Earth Leader** creating content instead of offering the first container
 
 They read this and feel it in their body. Not because it's clever — because it describes the loop they've been living in, and **they couldn't name it until now.**
 
 Naming an unnamed loop = medicine. Not marketing.
+
+**Key correction (April 2, 2026):** The narrowing here is NOT the label (founder vs. entrepreneur vs. coach). The narrowing is the **moment of readiness** — a phase of consciousness: "I've tried. I'm close. I'm frustrated enough now." The market is broad. The filter is the phase.
 
 ---
