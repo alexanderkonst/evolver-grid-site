@@ -3778,6 +3778,74 @@ The tribal qualifiers are the ones unique to THIS founder's audience. They come 
 
 ---
 
+## Tactic 9: The Curiosity Gap Share (Algorithmic Aikido)
+
+> *The share text does NOT include the website link. On purpose. This is the highest-leverage distribution tactic in the system.*
+
+### The Principle
+
+When a person shares their Zone of Genius result on socials, the share message:
+1. Contains their personal result (archetype, tagline, talents)
+2. Asks friends "do you actually see me this way?"
+3. Does NOT include any link, brand name, or CTA
+
+### Why Algorithms Amplify This 10x
+
+Social media algorithms penalize posts with outbound links (commercial signal). Posts without links + high comment engagement = authentic content = maximum organic reach.
+
+| Signal | Weight | Triggered? |
+|--------|--------|-----------|
+| Comments | Highest | ✅ "Do you see me this way?" demands response |
+| Thread depth | Very high | ✅ Friends debate, affirm, expand |
+| Dwell time | High | ✅ Personal + vulnerable = careful reading |
+| No outbound link | High (avoids penalty) | ✅ No link = no throttle |
+| Saves | Very high | ✅ "I want to try this" |
+
+**Math:** Post with link → 200-500 reach. Post without link + engagement → 2,000-5,000 reach. **10x multiplier.**
+
+### The 3-Stage Viral Loop
+
+```
+Stage 1: SHARE → No link, no brand → algorithm treats as authentic
+Stage 2: ENGAGE → "Do you see me this way?" → comments → algorithmic amplification
+Stage 3: CURIOSITY → "Where did you get this?" → warm word-of-mouth → 30%+ conversion
+```
+
+### How to Apply to Any Founder
+
+Any product that produces a **personal result** can use this:
+
+1. Make the share about the PERSON, not the product
+2. Ask a question that invites engagement
+3. Remove the link entirely
+4. Let the sharer become the distribution channel
+
+### The Share Template (Proven)
+
+```
+Something just named what I do better than I ever could.
+
+Apparently my genius is: [Result]
+"[Tagline]"
+
+Top talents: [talents]
+What drives me: [prime driver]
+
+Honestly? It hit hard.
+
+But I'm curious — do you actually see me this way? 👀
+Tell me if this lands or if I'm delusional 😂
+```
+
+### Cross-Reference
+
+- **Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
+- **Guerrilla Playbook:** [Curiosity Gap Share](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
+- **Marketing Playbook:** [Curiosity Gap Sharing Pattern](./marketing_playbook.md#the-curiosity-gap-sharing-pattern-april-2026)
+- **Implementation:** `src/components/sharing/ShareZoG.tsx`
+
+---
+
 ## Why Tactics Are the Key to Node Licensing
 
 ```

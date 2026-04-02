@@ -940,8 +940,24 @@ Any product that produces a **personal result** can use this pattern:
 3. Remove the link entirely
 4. Let curiosity do the distribution
 
+### Why Algorithms AMPLIFY This (Not Just Tolerate)
+
+Social media ranking algorithms optimize for **dwell time × engagement depth.** This share pattern triggers EVERY high-weight signal simultaneously:
+
+| Signal | Weight | Why This Post Triggers It |
+|--------|--------|--------------------------|
+| Comments | Highest | "Do you see me this way?" literally demands a comment |
+| Thread depth | Very high | Friends reply to each other about the person |
+| Dwell time | High | Personal + vulnerable = careful reading |
+| No outbound link | High (avoids penalty) | LinkedIn, Facebook penalize links by 5-10x |
+| Saves/bookmarks | Very high | "I want to try this too" |
+
+**The n-th degree effect:** Each comment exposes the post to the commenter's network. 15 comments → 2,000-5,000 organic reach. Same post with a link → 200-500. **10x multiplier from removing four characters (a URL).** This is the same feedback loop that makes posts "go viral" — but triggered by structural design, not luck.
+
 **Implementation:** `src/components/sharing/ShareZoG.tsx`
-**Cross-reference:** [Guerrilla Marketing Hacks](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
+**Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
+**Guerrilla Hack:** [Curiosity Gap Share](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
+**Playbook Tactic:** Tactic 9 in [Unique Business Playbook](./unique_business_playbook.md)
 
 ---
 

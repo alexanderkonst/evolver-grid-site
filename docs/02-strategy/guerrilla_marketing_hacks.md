@@ -111,12 +111,25 @@ Tell me if this lands or if I'm delusional 😂
 
 **Key Insight:** A link converts ~2% of cold clicks. A conversation converts ~30%+ of warm curiosity. The link is an anti-pattern for virality.
 
+**Why Algorithms Amplify This 10x:**
+
+| Signal | Algorithmic Weight | Triggered? |
+|--------|-------------------|-----------|
+| Comments | Highest | ✅ "Do you see me this way?" demands response |
+| Thread depth | Very high | ✅ Friends reply to each other |
+| Dwell time | High | ✅ Vulnerable = careful reading |
+| No outbound link | High (avoids penalty) | ✅ LinkedIn throttles links 5-10x |
+| Saves | Very high | ✅ "I want to do this too" |
+
+**N-th degree effect:** LinkedIn shows posts to connections of people who commented. 15 comments → 2,000-5,000 reach. With a link → 200-500. The algorithm doesn't just tolerate this — it AMPLIFIES it exponentially because engagement begets reach begets more engagement. Same feedback loop that makes posts "go viral" — but triggered by design.
+
 **Principles Applied:**
 - Pull, don't push (they come asking for it)
 - Create the vacuum (the missing source creates desire)
 - Story-worthy (unique post their friends haven't seen)
 - Make it undeniable (the result is personal, accurate, shareable)
 
+**Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido)
 **Implementation:** `src/components/sharing/ShareZoG.tsx`
 
 ---
