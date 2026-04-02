@@ -78,6 +78,49 @@ Some guy managed to get knighted by the King through absurd social engineering. 
 
 ---
 
+## The Curiosity Gap Share — ZoG Viral Engine (April 2026)
+
+**The Hack:** The ZoG share text does NOT include the website link. On purpose.
+
+**Setup:**
+- User completes Zone of Genius → gets their archetype result
+- Share button says "Share & ask friends"
+- Nudge text: "Ask friends on socials — do they actually see you this way?"
+- The shared post reads like a genuine social moment — not marketing
+
+**The Share Text:**
+```
+Something just named what I do better than I ever could.
+
+Apparently my genius is: [Archetype Name]
+"[Tagline]"
+
+Top talents: [talent 1] · [talent 2] · [talent 3]
+What drives me: [Prime Driver]
+
+Honestly? It hit hard.
+
+But I'm curious — do you actually see me this way? 👀
+Tell me if this lands or if I'm delusional 😂
+```
+
+**Why It Works (3-Stage Viral Loop):**
+1. **Stage 1 — Genuine post:** No link, no brand = algorithm treats it as authentic content → higher reach
+2. **Stage 2 — Engagement magnet:** "Do you see me this way?" invites comments → algorithmic boost → 2nd-degree reach
+3. **Stage 3 — Curiosity fires:** Friends ask "where did you get this?" → sharer becomes the channel → warm word-of-mouth
+
+**Key Insight:** A link converts ~2% of cold clicks. A conversation converts ~30%+ of warm curiosity. The link is an anti-pattern for virality.
+
+**Principles Applied:**
+- Pull, don't push (they come asking for it)
+- Create the vacuum (the missing source creates desire)
+- Story-worthy (unique post their friends haven't seen)
+- Make it undeniable (the result is personal, accurate, shareable)
+
+**Implementation:** `src/components/sharing/ShareZoG.tsx`
+
+---
+
 ## Future Hacks
 
 (Add more as they emerge)

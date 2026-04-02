@@ -873,6 +873,78 @@ Platform (Evolver)
 ---
 
 
+## The Curiosity Gap Sharing Pattern (April 2026)
+
+> *Applied to Zone of Genius share flow. Generalizable to any lead magnet output.*
+
+### The Principle
+
+**Don't include the website link in user-shared content.** The absence of the source creates curiosity, and curiosity creates warm referrals.
+
+### Why This Is a Marketing Principle, Not a Trick
+
+| Lens | Why |
+|------|-----|
+| **Core Belief alignment** | "Self-selection > Persuasion" → let them come asking, don't push |
+| **Values-based** | The share is a genuine social moment (asking friends for feedback), not a marketing CTA |
+| **Anti-message** | No brand name, no CTA, no pitch in the share text |
+
+### The 3-Stage Viral Loop
+
+```
+Stage 1: SHARE AS GENUINE POST
+  → No link = algorithm treats as authentic
+  → Higher organic reach
+  → Friends see a real person being vulnerable, not an ad
+
+Stage 2: ENGAGEMENT
+  → "Do you see me this way?" invites comments
+  → Comments = algorithmic boost
+  → Post reaches 2nd/3rd-degree connections
+
+Stage 3: CURIOSITY → WARM REFERRAL
+  → "Where did you get this?"
+  → The sharer answers in DMs/comments
+  → Word-of-mouth conversion rate: ~30% vs ~2% for link clicks
+```
+
+### Conversion Comparison
+
+| Strategy | Reach | Engagement | Conversion |
+|----------|-------|------------|------------|
+| Share with link | Low (algorithmic penalty) | Low (looks like ad) | ~2% of clicks |
+| Share without link | High (authentic signal) | High (invites response) | ~30% of conversations |
+
+### Applied Template (ZoG)
+
+**UI nudge:** "Ask friends on socials — do they actually see you this way?"
+**Button:** "Share & ask friends"
+
+```
+Something just named what I do better than I ever could.
+
+Apparently my genius is: [Result]
+"[Tagline]"
+
+Honestly? It hit hard.
+
+But I'm curious — do you actually see me this way? 👀
+Tell me if this lands or if I'm delusional 😂
+```
+
+### How to Apply to Other Products
+
+Any product that produces a **personal result** can use this pattern:
+1. Make the share about the person, not the product
+2. Ask a question that invites engagement
+3. Remove the link entirely
+4. Let curiosity do the distribution
+
+**Implementation:** `src/components/sharing/ShareZoG.tsx`
+**Cross-reference:** [Guerrilla Marketing Hacks](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
+
+---
+
 
 # Part IV: The Recursive Insight
 

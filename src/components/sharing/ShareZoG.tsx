@@ -13,42 +13,47 @@ interface ShareZoGProps {
   profileUrl?: string;
 }
 
+/**
+ * Virality mechanism: "Curiosity Gap" sharing
+ *
+ * The share text does NOT include the website link.
+ * Instead it asks friends "do you see me this way?"
+ *
+ * This creates a two-stage viral loop:
+ * 1. Friends engage with the post (comments, reactions) → algorithmic boost
+ * 2. Friends ask "where did you get this?" → organic word-of-mouth
+ * 3. The original sharer becomes the distribution channel
+ *
+ * The link is intentionally absent. Curiosity > convenience.
+ */
 const buildShareText = (params: {
   archetypeName: string;
   tagline: string;
   primeDriver: string;
   talents?: string[];
   archetype?: string;
-  profileUrl: string;
 }) => {
-  const { archetypeName, tagline, primeDriver, talents, profileUrl } = params;
+  const { archetypeName, tagline, primeDriver, talents } = params;
 
-  let text = `I just discovered my Zone of Genius in 15 minutes.\n\n`;
-  text += `My genius: ${archetypeName}\n"${tagline}"\n\n`;
+  let text = `Something just named what I do better than I ever could.\n\n`;
+  text += `Apparently my genius is: ${archetypeName}\n`;
+  text += `"${tagline}"\n\n`;
 
   if (talents && talents.length > 0) {
     text += `Top talents: ${talents.join(" · ")}\n`;
   }
-  text += `Prime driver: ${primeDriver}\n`;
-  text += `\nDiscover yours for free → ${profileUrl}`;
+  text += `What drives me: ${primeDriver}\n\n`;
+  text += `Honestly? It hit hard.\n\n`;
+  text += `But I'm curious — do you actually see me this way? 👀\n`;
+  text += `Tell me if this lands or if I'm delusional 😂`;
 
   return text;
-};
-
-const buildShareUrl = (url: string, profileId?: string) => {
-  if (!profileId) return url;
-  const shareUrl = new URL(url);
-  shareUrl.searchParams.set("ref", profileId);
-  return shareUrl.toString();
 };
 
 const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, profileId, profileUrl }: ShareZoGProps) => {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const resolvedProfileUrl = profileUrl || "https://www.alexandrkonstantinov.com";
-  const shareUrl = buildShareUrl(resolvedProfileUrl, profileId);
 
   const shareText = useMemo(
     () =>
@@ -58,13 +63,13 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
         primeDriver,
         talents,
         archetype,
-        profileUrl: shareUrl,
       }),
-    [archetypeName, primeDriver, tagline, talents, archetype, shareUrl]
+    [archetypeName, primeDriver, tagline, talents, archetype]
   );
 
-  const encodedProfileUrl = encodeURIComponent(shareUrl);
   const encodedText = encodeURIComponent(shareText);
+  // For platforms that need a URL, use the correct domain
+  const siteUrl = encodeURIComponent("https://aleksandrkonstantinov.com");
 
   const shareLinks = [
     {
@@ -80,17 +85,17 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
     {
       label: "Facebook",
       icon: Facebook,
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedProfileUrl}&quote=${encodedText}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}&quote=${encodedText}`,
     },
     {
       label: "Telegram",
       icon: Send,
-      href: `https://t.me/share/url?url=${encodedProfileUrl}&text=${encodedText}`,
+      href: `https://t.me/share/url?url=${siteUrl}&text=${encodedText}`,
     },
     {
       label: "Instagram",
       icon: Instagram,
-      href: `https://www.instagram.com/`, // Instagram doesn't support direct share URLs, opens app
+      href: `https://www.instagram.com/`,
     },
   ];
 
@@ -110,6 +115,11 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 
   return (
     <div className="relative max-w-md mx-auto">
+      {/* Nudge — heart-open prompt */}
+      <p className="text-xs text-[#2c3150]/40 text-center mb-2 leading-relaxed">
+        Ask friends on socials — do they actually see you this way?
+      </p>
+
       {/* Main Share Button */}
       <Button
         variant="wabi-secondary"
@@ -118,7 +128,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
         onClick={() => setIsOpen(!isOpen)}
       >
         <Share2 className="w-5 h-5" />
-        <span>Share</span>
+        <span>Share & ask friends</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
 
@@ -164,3 +174,4 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 };
 
 export default ShareZoG;
+
