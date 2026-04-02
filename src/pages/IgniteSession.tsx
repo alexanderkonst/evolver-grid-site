@@ -383,7 +383,7 @@ const IgniteSession = () => {
           </h2>
           <p className="text-xs text-white/45 text-center mb-3">This explains why insight alone never converts into income.</p>
           <div className="liquid-glass rounded-2xl p-1">
-            <LazyYouTube id="pnQzKNJyP0A" title="The Ignition Session — Methodology Overview" />
+            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
           </div>
           <p className="text-xs text-white/40 text-center mt-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
             If you're still thinking about this after watching… you already know.
