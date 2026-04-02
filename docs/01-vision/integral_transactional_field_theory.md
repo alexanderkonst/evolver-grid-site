@@ -290,6 +290,96 @@ The system requires two outward movements (Reach and Matchmaking) and two inward
 
 ---
 
+## Part IX: The Controlled Collapse Sequence (Applied Conversion Physics)
+
+> *v1.0 · April 2, 2026 — The practical application of ITFT axioms into a 5-step funnel sequence. The missing LR (systemic pressure) layer.*
+
+### The Diagnosis
+
+The system was UL (truth) + LL (resonance) dominant, with strong UR (mechanics). But underpowered in **LR (systemic pressure → collapse conditions)**. 
+
+Translation: People SAW themselves. But not enough felt "I must act NOW."
+
+From the core equation: **Transaction = Attention + Pain + Purchasing Power**
+
+- ✅ Attention → very high (ZoG reveal hits)
+- ✅ Purchasing Power → present (right audience)
+- ⚠️ Pain → too elegant, not sharp enough. Intellectual, not felt
+
+### The 5-Step Collapse Sequence
+
+The funnel is NOT a funnel. It is a **controlled collapse sequence:**
+
+| Step | Name | ITFT Mapping | What Happens |
+|------|------|-------------|--------------|
+| 1 | **Recognition** | Attention coupling | "This is me" — ZoG reveal, archetype identification |
+| 2 | **Consequence** | Pain → felt consequence | "This will continue" — time-bound active loss framing |
+| 3 | **Non-optionality** | Pain → inevitability | "This must be solved" — binary frame, no neutral option |
+| 4 | **Simplicity** | Purchasing Power → agency | "This solves it" — one structural layer, relief not logic |
+| 5 | **Action** | Phase transition | "Book session" — identity snap, micro-commitment confirmation |
+
+### The 5 Money Secrets (Conversion-Physics Axioms)
+
+| # | Axiom | ITFT Principle | Implementation |
+|---|-------|---------------|----------------|
+| 1 | **Collapse requires edge** | Pain must feel already-happening, continuing automatically, costing identity | Consequence block after recognition: "→ another 6-12 months in the same loop" |
+| 2 | **The moment of non-optionality** | "You will keep paying for this until you fix it" | Binary frame: "It either becomes a business — or it stays something people benefit from for free" |
+| 3 | **Structure = Relief** | Relief is the felt sense of constraint meeting flow | "Give it a structure that holds — even when you're not there" |
+| 4 | **The 5-10% Edge** | Proximity reframe reduces overwhelm, increases readiness | "You're not far away. You're one structural layer away." |
+| 5 | **Transaction = Identity Snap** | Phase transition triggers "I am now the person who builds this" | CTA: "I'm done circling this — let's build it" |
+
+### Key Conversion Techniques
+
+**Consequence Block (replaces passive pain):**
+```
+If nothing changes:
+→ you will keep explaining this differently every time
+→ people will keep getting value without paying
+→ another 6–12 months will pass in the same loop
+
+Not because you're wrong.
+Because this isn't structured yet.
+```
+
+**Micro-Commitment Block (increases psychological ownership):**
+```
+Which of these feels most true right now?
+Just one question — nothing else.
+
+[ ] I struggle to explain what I do
+[ ] People get value but don't pay
+[ ] I've tried multiple directions
+[ ] I know I'm close but can't land it
+
+→ "Good. That's exactly what we solve in the session."
+```
+
+**The Weapon (pressure line):**
+> "Clarity without structure doesn't compound. It leaks."
+
+### The True Equation
+
+```
+Recognition + Consequence + Simplicity + Trust = Inevitable Transaction
+```
+
+### Connection to Existing Theory
+
+| ITFT Axiom | Extended by Controlled Collapse |
+|-----------|-------------------------------|
+| Pain = "not changing costs me" | Extended: Pain must be already happening, continuing automatically, costing identity — not just money |
+| Transaction = phase transition | Extended: The collapse sequence creates non-optionality BEFORE the offer appears. The offer is relief, not persuasion |
+| Micro-commitment = continues attention coupling | Extended: Self-diagnostic increases psychological ownership. The user names their own pain before the system names the solution |
+| Touchpoints = Offers | Extended: The funnel is not a funnel. It is a controlled collapse sequence. Each step removes one layer of ambiguity |
+
+### Implementation
+
+- **ZoG Result:** `src/modules/zone-of-genius/AppleseedDisplay.tsx` — Consequence block + identity-shift CTA
+- **Ignite Page:** `src/pages/IgniteSession.tsx` — Micro-commitment block + proximity reframe + non-optionality + pressure line
+- **Live at:** aleksandrkonstantinov.com
+
+---
+
 ## Related Documents
 
 This theory is the **foundational layer** under:
@@ -304,3 +394,5 @@ This theory is the **foundational layer** under:
 
 *Codified: January 27, 2026*
 *Source: Alexander Konst's Integral Transactional Field Theory synthesis*
+*Updated: April 2, 2026 — Part IX: Controlled Collapse Sequence (5 Money Secrets, Consequence Block, Micro-Commitment, Non-Optionality framing)*
+

@@ -72,8 +72,8 @@
 | **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. Ownership-first post-result flow deployed ("Don't lose this" → silent save → delayed share). |
 | **Location** | Mexico City |
 | **Focus** | **Activate surfaces → Send first 10 DMs → Validate conversion on ownership-first gate. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
-| **Key milestone** | ✅ All previous + ✅ Ownership-first email gate ("Don't lose this" framing, Save → delayed Share sequence) + ✅ Dark liquid glass on all ZoG screens (entry, loading, result) + ✅ Hash-based scroll (#hero-video) fix + ✅ Dark glass ShareZoG + ✅ Godfather Offer Architect session codified (16 gold nuggets) |
-| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Ownership-first conversion: users save results, not "sign up." Silent account creation deferred to Phase 2. Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
+| **Key milestone** | ✅ All previous + ✅ ITFT Conversion Physics Upgrade (consequence block, micro-commitment, non-optionality, identity-shift CTAs, proximity reframe, pressure line) + ✅ Ownership-first email gate + ✅ Dark liquid glass on all ZoG screens |
+| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Ownership-first conversion: users save results, not "sign up." Controlled Collapse Sequence: funnel is a 5-step collapse (Recognition → Consequence → Non-optionality → Simplicity → Action). Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
 
 ---
 
@@ -877,4 +877,18 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
-*Roadmap updated: 2026-04-02. Ownership-first email gate live ("Don't lose this"). Dark liquid glass on all ZoG screens. Godfather Offer Architect session codified. Silent account creation + magic link queued as next backend work.*
+### ITFT Conversion Physics Upgrade (Priority: ✅ DONE | Completed: April 2, 2026)
+
+**What:** Applied Integral Transactional Field Theory Part IX (Controlled Collapse Sequence) to the live funnel. The system was UL/LL/UR dominant but underpowered in LR (systemic pressure). This upgrade adds the missing decision pressure layer.
+
+**Changes deployed:**
+- **AppleseedDisplay.tsx:** Consequence block after ZoG reveal. Copy upgrade: "Insight alone doesn't get paid." Identity-shift CTA: "I'm done circling this — let's build it."
+- **IgniteSession.tsx:** Proximity reframe in hero ("You're one structural layer away"). Structure language CTA. Non-optionality after video. Micro-commitment self-diagnostic above pricing (1 question, nothing else). Pressure line at emotional close ("Clarity without structure doesn't compound. It leaks.").
+
+**Theory documented:** ITFT Part IX, UB Playbook Principle 9, Marketing Playbook Controlled Collapse Pattern, Distribution Playbook decision friction layer.
+
+**Status:** ✅ DONE — live at aleksandrkonstantinov.com
+
+---
+
+*Roadmap updated: 2026-04-02. ITFT Conversion Physics Upgrade deployed (consequence block, micro-commitment, non-optionality, identity-shift CTAs). Controlled Collapse Sequence documented across ITFT, UB Playbook, Marketing Playbook, Distribution Playbook. Silent account creation + magic link still queued as next backend work.*

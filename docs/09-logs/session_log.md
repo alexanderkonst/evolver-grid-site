@@ -3085,3 +3085,62 @@ Node:        10% ongoing revenue share
 *Session complete. Day 30+: The Codification. "Now I literally need to point AI agents to ONE doc." The invisible infrastructure continues: documentation synthesis, IP architecture, agent tooling. The root system deepens.*
 
 
+---
+
+## ITFT Conversion Physics Upgrade — Wednesday, April 2, 2026
+
+**Location**: Mexico City
+**Time**: ~afternoon session
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Consequence Block** | Inserted after ZoG reveal — converts abstract pain into time-bound, felt loss ("→ another 6-12 months in the same loop") |
+| **Micro-Commitment Block** | 1-question self-diagnostic above Ignite pricing — increases psychological ownership before purchase |
+| **Non-optionality Frame** | Binary frame after video — "It either becomes a business — or it stays something people benefit from for free" |
+| **Proximity Reframe** | Hero section — "You're one structural layer away" |
+| **Identity-Shift CTAs** | "I'm done circling this — let's build it" replaces "I see it — let's build it" |
+| **Structure Language** | "Give it a structure that holds — even when you're not there" replaces "Turn this into a business" |
+| **Pressure Line** | "Clarity without structure doesn't compound. It leaks." at emotional close |
+| **Post-Save Flow Fix** | Removed premature platform entry — Continue now scrolls to video CTA, not /game |
+
+### Key Insights Crystallized
+
+- **The funnel is NOT a funnel.** It is a Controlled Collapse Sequence: Recognition → Consequence → Non-optionality → Simplicity → Action
+- **The system was 80-90% aligned with ITFT** but underpowered in LR (systemic pressure / collapse conditions). People SAW themselves but didn't feel "I must act NOW"
+- **Pain was too elegant.** "This hasn't turned into income" is intellectual. "Another 6-12 months in the same loop" is felt
+- **Transaction = Attention + Pain + Purchasing Power.** Pain needed sharpening to time-bound, identity-threatening, already-happening consequences
+- **The 5 Money Secrets:** Collapse requires edge / Non-optionality moment / Structure = relief / 5-10% edge (proximity reframe) / Transaction = identity snap
+- **The True Equation:** Recognition + Consequence + Simplicity + Trust = Inevitable Transaction
+
+### Documentation Updated
+
+| File | Change |
+|------|--------|
+| `docs/01-vision/integral_transactional_field_theory.md` | Part IX added: Controlled Collapse Sequence |
+| `docs/02-strategy/unique-businesses/alexanders_unique_business.md` | v7.7 — ITFT Conversion Physics Upgrade |
+| `docs/03-playbooks/unique_business_playbook.md` | Principle 9 added, v3.7 changelog |
+| `docs/03-playbooks/marketing_playbook.md` | Controlled Collapse Conversion Pattern section |
+| `docs/03-playbooks/distribution_playbook.md` | Decision friction layer cross-reference |
+| `docs/02-strategy/roadmap.md` | ITFT upgrade marked DONE |
+
+### Code Changes
+
+| File | Change |
+|------|--------|
+| `src/modules/zone-of-genius/AppleseedDisplay.tsx` | Consequence block, copy upgrade, identity-shift CTA, post-save scroll fix |
+| `src/pages/IgniteSession.tsx` | Proximity reframe, structure CTA, non-optionality, MicroCommitmentBlock component, pressure line |
+
+### Where We Are Now
+
+| Metric | Value |
+|--------|-------|
+| **Phase** | LAUNCH SPRINT — Funnel at 9.9+, conversion physics complete |
+| **Controlled Collapse** | ✅ All 5 steps implemented and documented |
+| **Next** | Run traffic. Send DMs. Observe where they hesitate, drop, or click instantly. Refine from DATA, not wordsmithing |
+
+---
+
+*Session complete. The conversion physics upgrade is done. "You didn't change the product. You completed the field conditions for collapse." Next: group build + teacher training monetization layer.*
+

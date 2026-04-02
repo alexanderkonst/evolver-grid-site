@@ -5654,5 +5654,5 @@ The funnel is at 9.9+. The remaining 0.1% comes from DATA, not from more wordsmi
 
 ---
 
-*Alexander's Unique Business v7.6 — April 2, 2026 (Ownership-First Email Gate + Last Mile Polish)*
-*Updated: Live Funnel Spec v2.0 updated with ownership-first email gate ("Don't lose this"), dark liquid glass on all ZoG screens, 6min video CTA, hash-based scroll fix, delayed/collapsed share section, dark glass ShareZoG dropdown. Principle codified: "Users don't join platforms. They keep things they don't want to lose."*
+*Alexander's Unique Business v7.7 — April 2, 2026 (ITFT Conversion Physics Upgrade)*
+*Updated: Controlled Collapse Sequence deployed across funnel. Consequence Block inserted after ZoG reveal ("If nothing changes → another 6-12 months in the same loop"). Micro-Commitment Block added above pricing (1-question self-diagnostic). Non-optionality framing after video ("It either becomes a business — or it stays something people benefit from for free"). Proximity reframe in hero ("You're one structural layer away"). Identity-shift CTA ("I'm done circling this — let's build it"). Structure language upgrade ("Give it a structure that holds — even when you're not there"). Pressure line at close ("Clarity without structure doesn't compound. It leaks."). See ITFT Part IX for theory.*
