@@ -5232,11 +5232,40 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 - "Because knowing this doesn't answer:" *What do I offer? Who is it for? Why would someone pay?*
 
 **3 CTAs:**
-1. 🔥 **"See why this hasn't turned into income — and what changes it (4 min)"** → `/ignite#hero-video`
+1. 🔥 **"See why this hasn't turned into income — and what changes it (6 min)"** → `/ignite#hero-video`
 2. ⚡ **"I see it — let's build it →"** → `/ignite#pricing-section`
 3. 🔄 "Not sure? See exactly why this has been so hard (6-question diagnostic)" → `/quiz`
 
-**Email Gate:** "Enter your email to save and share your result"
+**Ownership-First Email Gate (v1.0 — April 2, 2026):**
+
+> **Principle:** Users don't join platforms. They keep things they don't want to lose.
+
+| Element | Copy | Design |
+|---------|------|--------|
+| **Header** | "Don't lose this" | `text-sm font-semibold text-white/80` — calm, not urgent |
+| **Subtext** | "Enter your email to save your result and come back to it anytime" | `text-xs text-white/45` |
+| **Input** | placeholder: `your@email.com` | Liquid glass input, mail icon |
+| **Primary button** | "Save my result" | `liquid-glass-strong rounded-full` — dominant, glowing |
+| **Success state** | "✓ Saved" + "You can come back to this anytime." | Replaces the form after submit |
+
+**Banned language in this gate:** "create account," "profile," "sign up," "join," "login." The value proposition is saving the result, not joining the platform.
+
+**Backend behavior (to implement):**
+- Create account silently in background
+- Attach ZoG result to that user
+- Email them a magic link or access link
+- Persist result so they can return later
+
+**Secondary share section (delayed, collapsed):**
+
+| Element | Copy |
+|---------|------|
+| **Collapsed label** | "Optional: Get perspective from others" |
+| **Expanded copy** | "Ask 2–3 people who know you well: *Does this actually sound like me?*" |
+| **Share button** | "Share with a friend" → dark glass dropdown (LinkedIn, X, Facebook, Telegram, Instagram, Copy) |
+| **Footer** | "Clarity gets stronger when it's reflected back." |
+
+**Sequence:** Save → [500ms delay] → Share appears (collapsed). Never before save. One intention per moment.
 
 ### SCREEN 3: Quiz → `/quiz`
 
@@ -5322,13 +5351,19 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 |---------|--------|
 | All screens | ✅ Live |
 | Video embed | ✅ Live (correct video) |
-| 3 CTAs on result page | ✅ Live (updated v2.0) |
+| 3 CTAs on result page | ✅ Live (updated v2.0, 6 min) |
 | Route Selection UI | ✅ Live (Fast / Guided) |
 | Resonance Permission | ✅ Live |
 | Divine Timing (1 month) | ✅ Live |
 | Stripe → Cal.com | ✅ Confirmed |
 | No backward loops | ✅ Removed |
 | Free call demoted | ✅ Footer only |
+| Ownership-first email gate | ✅ Live ("Don't lose this" framing) |
+| Dark liquid glass on all ZoG screens | ✅ Live (entry, loading, result) |
+| Hash-based scroll (#hero-video) | ✅ Live |
+| Share section (dark glass, delayed) | ✅ Live |
+| Silent account creation | ❌ Not built (backend Phase 2) |
+| Magic link email | ❌ Not built (backend Phase 2) |
 | Custom success page | ❌ Not built (not needed Phase 1) |
 
 ---
@@ -5619,5 +5654,5 @@ The funnel is at 9.9+. The remaining 0.1% comes from DATA, not from more wordsmi
 
 ---
 
-*Alexander's Unique Business v7.5 — April 2, 2026 (Godfather Session Notes documented)*
-*Updated: 16 gold nuggets extracted and codified. Ritual architecture, MEET principle, conversion principles, value ladder final form, true positioning, replication engine insight, 10/10 core block locked.*
+*Alexander's Unique Business v7.6 — April 2, 2026 (Ownership-First Email Gate + Last Mile Polish)*
+*Updated: Live Funnel Spec v2.0 updated with ownership-first email gate ("Don't lose this"), dark liquid glass on all ZoG screens, 6min video CTA, hash-based scroll fix, delayed/collapsed share section, dark glass ShareZoG dropdown. Principle codified: "Users don't join platforms. They keep things they don't want to lose."*
