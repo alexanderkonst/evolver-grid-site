@@ -3144,3 +3144,51 @@ Node:        10% ongoing revenue share
 
 *Session complete. The conversion physics upgrade is done. "You didn't change the product. You completed the field conditions for collapse." Next: group build + teacher training monetization layer.*
 
+---
+
+## Replication Engine Architecture — Wednesday, April 2, 2026 (afternoon)
+
+**Location**: Mexico City
+**Time**: ~afternoon session (continued from ITFT Conversion Physics session)
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Replication Engine (Layers 2-3)** | Full architecture for The Build (Group) + The Transmission (Teacher Training) |
+| **The Build: Getting to PMF** | Group container: 4-6 people, $1,111 + capped $2,500 rev share, 4-call flow over 4 weeks |
+| **4-Call Flow** | Extraction → Structure → Collapse → Integration |
+| **The Transmission (spec)** | Facilitator training layer, $3K-5K — SPEC ONLY, don't build yet |
+| **Witnessing Effect** | Codified the group's unfair advantage: people learn by seeing others collapse |
+| **5-Layer Ascension Ladder** | ZoG → Ignition → Build → Transmission → Venture Studio |
+| **Positioning Shift** | "Installs business structure into people" > "Helps find clarity" |
+| **Roso & Cori Medicines** | Truth-naming (Cori/Precision Eye) + Fog-piercing inquiry (Roso/Needle) + Structural seeing (Alexander/Architect) = facilitation triad |
+
+### Key Insights from Roso/Cori Call
+
+- **The Build IS the founders program** — same container, evolved form. Two months of the three of them circling = the program crystallizing through Alexander's own practice
+- **Roso needs income NOW** — commission-only gigs, financial pressure real. Apprentice facilitator role (15-20% of cohort revenue) solves this
+- **Cori's feedback was market data** — "Give me a TLDR, not your AI chat" = the ICP includes structured thinkers who need CLARITY ON ENTRY. All outreach must be TLDR-first
+- **They are not co-founders, they are potential first facilitators** — their medicines complement Alexander's
+- **Roso asked the key question** — "Does it mean we don't need a founders program?" Answer: you don't need it as originally conceived. The Build replaces it
+- **Cori set boundaries** — no more 3hr calls until validation exists. Healthy. Respectable
+
+### The Medicines Named (Alexander's words)
+
+> "Thank you Cori for naming things as they are brilliantly and helping us advance in more sovereignty."
+> "Thank you Roso for asking the questions that pierce through the fog by inquiring about the most pressing thing and inviting clarity by doing that."
+> "Thank you clarity boosters!"
+
+### Where We Are Now
+
+| Metric | Value |
+|--------|-------|
+| **Phase** | LAUNCH SPRINT — Layer 1 (Ignition) operational, Layer 2 (Build) designed |
+| **First action** | Post. DM 5-10 people. Update surfaces. TODAY |
+| **Group Build** | Designed, not yet launched — needs 4+ Ignition graduates first |
+| **Next call with Roso/Cori** | After first outreach results are in — they review the funnel and react |
+
+---
+
+*Session complete. "The Ignition is the spark. The Build is the fire. The Transmission is the fire teaching other fires how to burn." First action: send the DMs.*
+

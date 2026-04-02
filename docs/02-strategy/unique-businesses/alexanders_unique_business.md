@@ -47,6 +47,8 @@
 - [Value Ladder v2.0 — Three Containers](#value-ladder-v20--three-containers-march-10-2026)
 - [Sales Pipeline & Forecast v4.0](#sales-pipeline--forecast-v40-march-23--april-6-2026)
 - [7 Activation Channels — Realistic Projections](#7-activation-channels--realistic-projections-march-25-26-2026)
+- [⭐ The Replication Engine — Group Build + Teacher Training](#-the-replication-engine--group-build--teacher-training-april-2-2026)
+- [Collaboration: Roso & Cori — The Clarity Boosters](#collaboration-roso--cori--the-clarity-boosters-april-2-2026)
 
 ### IV. Distribution & Movement
 - [Distribution Strategy — Instantiated](#distribution-strategy--instantiated-march-18-2026-ceremony-night)
@@ -3725,6 +3727,149 @@ Each level runs the same pattern at its own scale. The first holon (Alexander) m
 
 ---
 
+## ⭐ The Replication Engine — Group Build + Teacher Training (April 2, 2026)
+
+> *"You've already built the hardest part: the moment of collapse. Now we scale the number of collapses per unit time."*
+>
+> *Source: Godfather Offer Architect session + Roso/Cori call + ITFT Part IX*
+
+### The Positioning Shift
+
+> **OLD:** "Someone who helps people find clarity"
+> **NEW:** "Someone who installs business structure into people"
+
+The output is no longer "aha moment." The output is **first paying client.**
+
+### The 5-Layer Ascension Ladder
+
+```
+ZoG → Insight (free)
+ ↓
+Ignition → Collapse ($555)                          ← LAYER 1: YOU HAVE THIS
+ ↓
+The Build → PMF ($1,111 + rev share)                ← LAYER 2: DESIGNING NOW
+ ↓
+The Transmission → Replication ($3K-5K)             ← LAYER 3: SPEC ONLY
+ ↓
+Venture Studio → Ecosystem (% / equity / rev share) ← LAYER 4: FUTURE
+```
+
+### Layer 2: The Build — Getting to PMF (Group Container)
+
+| Dimension | Spec |
+|-----------|------|
+| **Name** | The Build: Getting to PMF |
+| **Price** | $1,111 upfront + capped $2,500 from first $10K revenue |
+| **Cohort** | 4-6 people (intimacy matters for this depth of work) |
+| **Duration** | 4 weeks (3 live calls + 1 integration call) |
+| **Cadence** | Weekly |
+| **Entry** | Ignition Session completed ($555 is the qualifier) |
+| **Exit** | Artifacts at 9.5+, first delivery done, first sale path clear |
+
+#### The 4-Call Flow
+
+| Call | Name | What Happens | Duration |
+|------|------|-------------|----------|
+| **1** | **Extraction** | Each person shares Ignition canvas. Live mapping. Others witness. "Aha" moments from seeing OTHER people's collapses | 2 hours |
+| **2** | **Structure** | Canvas → ICP + offer + first delivery design. Group learns pattern recognition across different businesses | 2 hours |
+| **3** | **Collapse** | Each person lands sentence + offer + first delivery plan. Public articulation in front of group | 2 hours |
+| **4** | **Integration** | First delivery debrief. Messaging refinement. Next 10 sessions plan. Revenue path locked | 90 min |
+
+**Between calls:** AI-assisted artifact polishing (existing workflows). Async feedback in shared channel. 2-3 hours/week per participant.
+
+#### The Witnessing Effect (Group Unfair Advantage)
+
+When person A watches person B get their business named in real time:
+- Person A sees the PATTERN (how uniqueness→myth→tribe→offer works)
+- Person A self-corrects their OWN canvas ("oh, mine is too broad too")
+- Person A feels SEEN without being focus (indirect witnessing)
+- Person A's nervous system relaxes: "If it worked for them, it can work for me"
+
+**Group > 1:1 at this stage** because the Ignition creates the seed, but the group Build creates CONVICTION that the seed is real.
+
+#### Economics (Per Cohort)
+
+| Metric | Value |
+|--------|-------|
+| Participants | 4-6 |
+| Upfront revenue | 4 × $1,111 = $4,444 |
+| Rev share (over 3-6mo) | Up to 4 × $2,500 = $10,000 |
+| Total per cohort | ~$14,444 |
+| Run rate at 1/month | ~$14K/mo |
+| Time investment | 4 calls × 2h + async = ~12h/cohort |
+
+#### The Ignition → Build Close
+
+After the 90-min Ignition, the founder holds their canvas. Say:
+
+> *"This is your business. You can see it. But right now it's a sketch — a 7 out of 10. To get it to 9.5, to deliver your first session and get your first sale, you need the Build.*
+>
+> *Two paths: 1:1 Build (same work, deeper, your schedule) or Group Cohort (4-6 founders building together over 4 weeks — you learn from watching others collapse too). Which feels right?"*
+
+### Layer 3: The Transmission (SPEC ONLY — Don't Build Yet)
+
+> *"Not 'how to coach.' How to SEE and STRUCTURE someone's genius in real time."*
+
+| Phase | What They Learn |
+|-------|----------------|
+| **Seeing** | Detect pattern instantly. Ignore noise. Listen for structure |
+| **Translation** | Insight → sentence → offer → business |
+| **Delivery** | Run 90-min session. Hold authority without force. Navigate resistance |
+| **System** | Use YOUR workflows, AI infrastructure, funnel templates |
+
+**Price:** $3,000-5,000 first cohort. $5K-15K at scale.
+
+**Structure:** Venture Studio Model — they build WITHIN the system, shared upside, Alexander provides infrastructure. This IS the Planetary OS path.
+
+**When to build:** After 2+ successful Build cohorts. After 10+ graduates. After natural facilitator signals emerge (someone starts helping other participants spontaneously, or articulates a principle you hadn't named yet).
+
+### Status: Layer 2 Timeline
+
+```
+TODAY:     Post. DM 5-10 people. Update surfaces
+THIS WEEK: Observe. Who resonates? Who books?
+NEXT WEEK: First Ignition sessions from new funnel
+WEEK 3:    First 4+ Ignition graduates → announce Cohort 1
+WEEK 4:    The Build: Cohort 1 begins
+```
+
+---
+
+## Collaboration: Roso & Cori — The Clarity Boosters (April 2, 2026)
+
+> *"Thank you Cori for naming things as they are brilliantly and helping us advance in more sovereignty. Thank you Roso for asking the questions that pierce through the fog by inquiring about the most pressing thing and inviting clarity by doing that."*
+
+### Their Medicines
+
+| Person | Medicine | In Business | Role in The Build |
+|--------|---------|-------------|------------------|
+| **Cori (Corinna Schlicht)** | **Truth-naming** — sees through confusion, says it directly ("I feel like I'm reading your AI chat — give me a TLDR") | QA / Precision — reads a canvas and names exactly why it's not clear yet | **The Precision Eye** |
+| **Roso (RnD Ventures)** | **Fog-piercing inquiry** — asks the one question that matters most ("Does it mean we don't need a founders program?") | Discovery — asks the founder "what's the MOST pressing thing?" until they find it | **The Needle** |
+| **Alexander** | **Structural seeing** — maps the whole system, installs architecture | System design — sees the entire business in one sitting | **The Architect** |
+
+**Together:** Alexander sees the structure. Roso finds the entry point. Cori confirms the truth. This is a facilitation triad.
+
+### Collaboration Status (April 2, 2026)
+
+| Aspect | Status |
+|--------|--------|
+| **Original concept** | "Founders Program" — joint venture building a group program for founders |
+| **Current reality** | 2 months in, no test message deployed.  Roso needs income now. Cori is protective of time. Alexander's own funnel just went live |
+| **The realization** | The Build (value ladder step 2) IS the founders program — same container, evolved form |
+| **Recommended path** | Apprentice facilitators in Cohort 1 (15-20% revenue share each) → then go through The Build themselves in Cohort 2 → then Layer 3 (Transmission) |
+| **Key dynamic** | They are not co-founders. They are potential first facilitators. Their medicines complement Alexander's |
+
+### What Cori's Feedback Taught
+
+> *"I feel like I'm inside your brain reading this document. It doesn't work for me. Give me a TLDR."*
+
+This is NOT just feedback about a document format. This is market data:
+- The ICP includes structured thinkers (ex-corporate) who need CLARITY ON ENTRY, not a stream-of-consciousness
+- Alexander's natural communication mode (holonic, layered, iterative) is powerful for depth work but frustrating for first contact
+- **Implication:** All outreach materials, all first-contact messaging, all lead magnets must be TLDR-first, depth-optional
+
+---
+
 ## Distribution Strategy — Instantiated (March 18, 2026, Ceremony Night)
 
 > **Source:** [Distribution Playbook](../03-playbooks/distribution_playbook.md) 6-step compiler × this document at 9.9+
@@ -5654,5 +5799,6 @@ The funnel is at 9.9+. The remaining 0.1% comes from DATA, not from more wordsmi
 
 ---
 
-*Alexander's Unique Business v7.7 — April 2, 2026 (ITFT Conversion Physics Upgrade)*
-*Updated: Controlled Collapse Sequence deployed across funnel. Consequence Block inserted after ZoG reveal ("If nothing changes → another 6-12 months in the same loop"). Micro-Commitment Block added above pricing (1-question self-diagnostic). Non-optionality framing after video ("It either becomes a business — or it stays something people benefit from for free"). Proximity reframe in hero ("You're one structural layer away"). Identity-shift CTA ("I'm done circling this — let's build it"). Structure language upgrade ("Give it a structure that holds — even when you're not there"). Pressure line at close ("Clarity without structure doesn't compound. It leaks."). See ITFT Part IX for theory.*
+*Alexander's Unique Business v7.8 — April 2, 2026 (Replication Engine Architecture)*
+*Updated: The Replication Engine (Layers 2-3) documented. Layer 2: The Build — Getting to PMF (group container, 4-6 people, $1,111 + rev share, 4-call flow: Extraction → Structure → Collapse → Integration). Layer 3: The Transmission (spec only — facilitator training, $3K-5K). Witnessing Effect principle codified. Roso & Cori collaboration status documented — their medicines: Truth-naming (Cori/The Precision Eye), Fog-piercing inquiry (Roso/The Needle), Structural seeing (Alexander/The Architect). Positioning shift: "installs business structure" > "helps find clarity." Ascension ladder: ZoG → Ignition → Build → Transmission → Venture Studio. Cori's feedback as market data: TLDR-first for first contact.*
+
