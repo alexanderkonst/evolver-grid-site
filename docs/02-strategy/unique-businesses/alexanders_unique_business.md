@@ -522,6 +522,40 @@ Self-Talk, Dream Outcomes, Felt Texture
 
 > **Why "Original Truth Rebels":** They rebel against the grind narrative. They carry an original truth — their unnamed gift — that won't be suppressed. They're not contrarian for the sake of it. They rebel because the conventional path doesn't fit who they actually are. *March 28, 2026.*
 
+#### Highest Resonance → Lowest Resistance (April 2, 2026)
+
+> *"Solopreneurs become founders. Coaches become ones. Healers become ones. On their hero's journeys. That's who I am actually most aligned with."*
+
+The three segments (Pivot-Loop Founder, Grinding Coach, Caged Professional) are all valid. But there is a **higher-order truth** cutting across all three:
+
+**The real through-line is FOUNDERS.** Actual, de facto founders — people who are building or are meant to build. The segments are life paths; the archetype is one: **the founder who hasn't collapsed into their real thing yet.**
+
+##### The 5 Archetypes of Highest Resonance
+
+These are the calibers of people Alexander vibrates with most deeply — **lowest resistance, highest precision:**
+
+| Archetype | Who They Are | Why Resonance Is Maximal |
+|-----------|-------------|------------------------|
+| **Medicine Shaman Founders** | Healers, therapists, guides who are becoming business builders. Their medicine is real — their structure isn't | They HAVE the gift. They're doing the work. They just need the business to hold it |
+| **New Earth Ecosystem Leaders** | People building regenerative systems, communities, new paradigms. Visionaries who think in ecosystems, not products | They operate at the EXACT level Alexander operates at — systemic, holonic, planetary. But they can't name the offer |
+| **New Earth System Architects** | Engineers, designers, developers who see the broken system and want to build the new one. Technical + visionary | They have the builder skills AND the consciousness. They're stuck because the vision is too big to compress into a product |
+| **Uniqueness-Vibrating AI Founders** | People using AI not for efficiency but for AMPLIFICATION of their unique gift. AI-native builders | They intuitively know AI is the leverage layer. They don't know what to build with it. Alexander shows them: build from who you ARE |
+| **New Earth Leaders** | Leaders in conscious organizations, regenerative agriculture, holistic education, community building. They lead — but the BUSINESS is the missing piece | They're already leading. The business is just the container for what's already happening |
+
+##### The Unifying Truth
+
+All five archetypes share one thing: **they are already founders.** They just don't have the structure yet.
+
+- The healer who gives advice for free? **Founder** whose business hasn't been named
+- The ecosystem thinker building community? **Founder** whose offer hasn't been extracted
+- The system architect who sees the broken thing? **Founder** whose product hasn't been installed
+- The AI experimenter who knows this is the future? **Founder** whose uniqueness hasn't been plugged in
+- The new earth leader who already has followers? **Founder** whose revenue model hasn't been built
+
+**Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Every founder in this caliber polishes their surface while leaving decision conditions unbuilt. Naming this is a Tuning Fork moment for them.
+
+**Implication for messaging:** Stop saying "coaches, consultants, healers." Start saying **"founders."** The word itself upgrades the identity from service-provider to builder. That identity upgrade IS the work.
+
 ---
 
 **Meta-insights (blueprint-worthy):**
