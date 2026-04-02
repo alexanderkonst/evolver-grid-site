@@ -308,6 +308,9 @@ const AppleseedDisplay = ({
                         <p className="text-xs font-medium text-white/55 mt-1">
                             6–12 months pass. And nothing fundamentally changes.
                         </p>
+                        <p className="text-xs text-white/40 mt-2 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            And more time thinking about it hasn't been the thing that changes it.
+                        </p>
                     </div>
 
                     {/* Clarity Bridge */}
@@ -330,6 +333,16 @@ const AppleseedDisplay = ({
                         </p>
                         <p className="text-xs font-medium text-white/60">
                             but never turn it into something real.
+                        </p>
+                    </div>
+
+                    {/* Readiness reframe — kills "I'm not ready" */}
+                    <div className="text-center space-y-1 pb-2">
+                        <p className="text-xs text-white/45 leading-relaxed">
+                            You don't need to be more ready.
+                        </p>
+                        <p className="text-xs font-medium text-white/55">
+                            You need this to be structured.
                         </p>
                     </div>
 
