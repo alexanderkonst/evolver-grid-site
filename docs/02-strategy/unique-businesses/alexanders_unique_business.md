@@ -5479,26 +5479,27 @@ you can book the session below.
 
 ---
 
-## Live Funnel Spec v2.0
+## Live Funnel Spec v3.0 (Decision Collapse Rewrite)
 
-> *April 2, 2026 — Godfather Offer Architect upgrade. Every word rewritten for maximum precision.*
+> *April 2, 2026 — GFOA Deep Rewrite. Same structure. Decision collapse injected.*
 > *Walk the live screens against this document. Any mismatch = something to fix.*
 > *Domain: aleksandrkonstantinov.com*
+> *Diff from v2.0: copy only. No structural changes. Decision pressure + consequence + identity precision added.*
 
 ### The Flow
 
 ```
 SCREEN 1: Entry (/)
-    ↓ "Reveal what I already do naturally"
-    ↓ Route select: 🤖 Fast (1 min) / 📋 Guided (10-15 min)
+    ↓ "Reveal the unique way I naturally create value"
+    ↓ Route select: 🤖 Fast (1 min) / 📋 Guided (5-7 min)
     ↓ person completes the experience
 SCREEN 2: ZoG Result (AppleseedDisplay)
-    ↓ clicks one of 3 CTAs
-    PRIMARY → /ignite#hero-video
+    ↓ clicks one of 2 CTAs
+    PRIMARY → quiz (6-question diagnostic)
     SECONDARY → /ignite#pricing-section
-    TERTIARY → /quiz
-SCREEN 3: Quiz (/quiz) — optional circler path
-    ↓ completes quiz, gets archetype
+    + email capture (ownership-first)
+SCREEN 3: Quiz (/quiz) — diagnostic intensifier (now on main path)
+    ↓ completes quiz, gets archetype + collapse
     ↓ CTA → /ignite#hero-video
 SCREEN 4: Ignite Landing Page (/ignite)
     ↓ watches video, scrolls to pricing
@@ -5507,43 +5508,56 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 
 ### SCREEN 1: Entry → `/`
 
-**H1:** "Why is it still so hard to explain what you do?"
+**H1:** "Why is it still so hard to explain what you do — and turn it into something people actually pay for?"
 
-**Body:** "There's a unique way you think, solve problems, and create value. You've been using it your whole life—because it's natural to you. People already come to you for it—when they're stuck, unclear, or need direction."
+**Body:** "There's a unique way you think, solve problems, and create value. You've been using it your whole life — because it's natural to you. People already come to you for it — when they're stuck, unclear, or need direction."
 
-**Break:** *"And still… it hasn't turned into something clear, simple, and paid."*
+**Tension:** *"And yet… it hasn't turned into something consistent. Not because it isn't real. Because it's never been structured into something people can quickly understand — and say yes to."*
 
-**Primary CTA:** "Reveal what I already do naturally" → Route Selection
+**Primary CTA:** "Reveal the unique way I naturally create value" → Route Selection
 
 **Route Selection:**
-- H2: "How do you want to reveal it?"
-- 🤖 **"Fast (1 min)"** — "Use AI to reflect your zone of genius instantly"
-- 📋 **"Guided (10–15 min)"** — "Answer a few prompts — we extract it step-by-step"
+- 🤖 **"Faster (1 min)"** — "Paste your situation → get your pattern instantly"
+- 📋 **"Guided (5-7 min)"** — "Answer a few prompts → we extract it together"
 
 ### SCREEN 2: ZoG Result (AppleseedDisplay)
 
 **The Reveal:**
-- "MY GENIUS IS TO BE A" → **[Generated Archetype Name]**
-- "I [generated bullseye action statement]"
+- "This is how you naturally create value:" → **[Generated Archetype Name]**
+- "[Generated bullseye statement]"
 - Three Lenses: Top Talents • Prime Driver • Archetype
 
 **Resonance Rating:** "From 1 to 10, how well does this match how you see yourself at your brightest?"
 
-**The Gap (v2.0):**
-- "This is real."
-- "You've been doing this for years. People already come to you for it."
-- *"And it's exactly why this has been so hard to turn into something that works."*
-- "Because this is the way you naturally think and create."
-- **"Not a business."**
-- "Patterns don't get paid. Business structure does."
-- "You've seen this before. You knew it was true."
-- **"And still nothing changed."**
-- "Because knowing this doesn't answer:" *What do I offer? Who is it for? Why would someone pay?*
+**Validation (v3.0):**
+- "You've been doing this for years."
+- "People already come to you for it."
+- "You've delivered real results through this."
 
-**3 CTAs:**
-1. 🔥 **"See why this hasn't turned into income — and what changes it (6 min)"** → `/ignite#hero-video`
-2. ⚡ **"I see it — let's build it →"** → `/ignite#pricing-section`
-3. 🔄 "Not sure? See exactly why this has been so hard (6-question diagnostic)" → `/quiz`
+**Collapse Shift (NEW — CRITICAL):**
+- "But this — by itself — doesn't become a business."
+- "Because this is: 👉 how you naturally think and create"
+- **"Not something structured to be bought."**
+
+**Consequence Block (v3.0):**
+- "And without turning this into something concrete:"
+- "→ you keep explaining it differently every time"
+- "→ people get value — but don't always pay"
+- "→ you stay in the loop of 'almost there'"
+- **"6-12 months pass. And nothing fundamentally changes."**
+
+**Clarity Bridge (NEW):**
+- "This doesn't answer:"
+- *"What exactly do I offer? Who is it for? Why would someone pay for this — consistently?"*
+
+**Decision Line (NEW):**
+- "This is where most people stop."
+- "They recognize themselves…"
+- **"but never turn it into something real."**
+
+**2 CTAs:**
+1. 🔥 **"See exactly why this hasn't turned into income"** (6-question diagnostic) → `/quiz`
+2. ⚡ **"I'm done circling this — let's make it real"** → `/ignite#pricing-section`
 
 **Ownership-First Email Gate (v1.0 — April 2, 2026):**
 
@@ -5551,8 +5565,8 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 
 | Element | Copy | Design |
 |---------|------|--------|
-| **Header** | "Don't lose this" | `text-sm font-semibold text-white/80` — calm, not urgent |
-| **Subtext** | "Enter your email to save your result and come back to it anytime" | `text-xs text-white/45` |
+| **Header** | "Save this and come back to it anytime" | `text-sm font-semibold text-white/80` — calm, not urgent |
+| **Subtext** | "Access your result later + build on it when you're ready" | `text-xs text-white/45` |
 | **Input** | placeholder: `your@email.com` | Liquid glass input, mail icon |
 | **Primary button** | "Save my result" | `liquid-glass-strong rounded-full` — dominant, glowing |
 | **Success state** | "✓ Saved" + "You can come back to this anytime." | Replaces the form after submit |
@@ -5588,60 +5602,74 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 **Q5** — "How do you currently price your work?"
 **Q6** — "What would change everything for you right now?"
 
-**4 Results (v2.0):**
+**4 Results (v3.0 — Decision Collapse Copy):**
 
-| Archetype | Identity | Blade |
-|-----------|----------|-------|
-| The Invisible Genius | "You create real value." | "You don't need more insight. You need business structure around what's already true." |
-| The Multi-Talent Trap | "You're good at many things—and none of them fully define you." | "You've tried picking one thing. It never held all of you." |
-| The Misaligned Vector | "You're putting in effort. A lot of it. But the results don't match." | "You already know effort isn't the issue. But you keep applying it anyway." |
-| The Underpriced Operator | "You deliver real value. People get results from working with you." | "You've known you should charge more for years. Knowing didn't help." |
+| Archetype | Validation | Collapse | Truth |
+|-----------|-----------|---------|-------|
+| The Invisible Genius | "You create real value. People leave conversations with you clearer, more focused, or unstuck." | "It's not structured in a way people can quickly understand — so they don't always act — and you end up re-explaining it every time." | "This isn't a skill problem. It's a business structure problem around what you already do." |
+| The Multi-Talent Trap | "You're good at many things — and none of them fully define you." | "You've tried picking one thing. It never held all of you." | "Understanding alone didn't change it." |
+| The Misaligned Vector | "You're putting in effort. A lot of it. But the results don't match." | "You already know effort isn't the issue. But you keep applying it anyway." | "You've understood this for a while. Understanding alone didn't change it." |
+| The Underpriced Operator | "You deliver real value. People get results from working with you." | "You've known you should charge more for years. Knowing didn't help." | "You've understood this for a while. Understanding alone didn't change it." |
 
-Each result → **CTA to `/ignite#hero-video`** + retake. No backward loops.
+Each result → **CTA: "See what's actually missing (4 min)"** → `/ignite#hero-video`. No backward loops.
 
 ### SCREEN 4: Ignite → `/ignite`
 
-**S1 HERO:**
-- H1: *"You can't explain what you do."* → **"That's why it's not selling."**
-- "In 90 minutes, I turn what you've been doing your whole life into a business people understand—and pay for."
-- "You're more capable than your results show. And you know it."
-- Button: "Reveal what I already do naturally (free)" → ZoG
-- Button: **"Turn this into a business people understand — and pay for ($555)"** → Stripe
-- Divine Timing: "Not right now, but maybe in a month"
+**S1 HERO (v3.0):**
+- H1: *"You can't clearly explain what you do."* → **"That's why it's not turning into something people buy."**
+- "In 90 minutes, we take what you already do — and turn it into:"
+- "→ a clear one-sentence business"
+- "→ a real offer"
+- "→ something people understand — and pay for"
+- "You're not far off."
+- **"You're one structural layer away from something that works."**
+- Button: **"Turn this into something real ($555)"** → Stripe
+- Button: "See why this hasn't worked yet (4 min)" → `#hero-video`
 
 **S2 QUALIFIER:**
 - "This is for you if" + 5 self-talk cards
-- Closing: "You've proven your value—for other people. The question is: What is yours to build?"
+- Closing: "You've proven your value — for other people. The question is: What is yours to build?"
 
 **S3 VIDEO (#hero-video):**
+- Before video: **"This will show you why insight alone never converts into income — and what actually needs to happen instead."**
 - YouTube: "Why Insight Alone Never Turns Into Income" — NotebookLM (afWWcXUqnLI)
 - Nuclear line: *"If you're still thinking about this after watching… you already know."*
 
-**S4 HOW IT WORKS:**
-- Step 1: "Your genius gets named"
-- Step 2: "It becomes a product"
-- Step 3: **"You leave with a clear business"** — "Not something to think about later."
+**S4 HOW IT WORKS (v3.0):**
+- Step 1: "We name what you already do — clearly"
+- Step 2: "We structure it into something people can buy"
+- Step 3: **"You leave with a real business — not something to 'figure out later'"**
 
 **S5 ABOUT:** Aleksandr's testimony — "What is mine to build?"
 
 **S6 TESTIMONIALS:** 6 quotes (Sergey, Sandra, Oyi, Karime, Aleksa, Alexey)
 
-**S7 BOOKING (#pricing-section #booking):**
-- 4 deliverable bullets
+**S7 PRICING (#pricing-section #booking) — v3.0:**
+- **Header:** "One session. One clear business."
+- **Body:** "If you don't turn this into something concrete:"
+- "→ it stays something people benefit from — but don't pay for"
+- "→ you keep circling the same question"
+- "→ nothing fundamentally changes"
+- **Offer:** "In 90 minutes: → we define exactly what you do → who it's for → why they pay → how to express it simply"
 - **$555** — "One session. One business."
-- Guarantee: **"If we don't land a clear, speakable business you can immediately use—you don't pay."**
+- **Guarantee (NEW):** "If you don't leave with a clear one-sentence business: **you don't pay.**"
 - Bridge: "You don't need more thinking. You need this finished."
 - Resonance Permission: *"If your heart isn't resonating with this, don't sign up."*
-- CTA: "Book Your Session" → Stripe
+- CTA: **"Book Your Session"** → Stripe
 - Footer: "Have a question? 15-min call" (demoted to 9px)
 - Footer: "Already paid? Book your session here →" → Cal.com
 
 **S8 FAQ:** 4 questions
 
-**EMOTIONAL CLOSE:**
-- *"You've been carrying something you can't name. That's why nothing has fully clicked."*
-- **"This is where it does."**
-- CTA: **"See My Business on One Page — $555"** → Stripe
+**EMOTIONAL CLOSE (v3.0):**
+- *"You've been carrying something real."*
+- *"That's not the problem."*
+- **"The problem is it hasn't been turned into something people can say yes to."**
+- *"This is where that changes."*
+
+**FINAL COLLAPSE LINE (NEW):**
+- **"It either becomes something real now — or it stays something you keep thinking about."**
+- CTA: **"Book Your Session"** → Stripe
 
 ### SCREEN 5: Post-Payment
 
@@ -5653,27 +5681,28 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 2. **No loops backward**
 3. **No over-explaining**
 4. **Every screen must increase: clarity → tension → inevitability**
+5. **Situational identity only — no labels (founder, entrepreneur, coach)**
+6. **Decision language in all CTAs — protagonist position, not observer**
 
 ### Status
 
 | Element | Status |
 |---------|--------|
-| All screens | ✅ Live |
+| All screens | ✅ Live (v2.0 copy — v3.0 copy upgrade pending) |
 | Video embed | ✅ Live (correct video) |
-| 3 CTAs on result page | ✅ Live (updated v2.0, 6 min) |
 | Route Selection UI | ✅ Live (Fast / Guided) |
 | Resonance Permission | ✅ Live |
-| Divine Timing (1 month) | ✅ Live |
 | Stripe → Cal.com | ✅ Confirmed |
 | No backward loops | ✅ Removed |
-| Free call demoted | ✅ Footer only |
 | Ownership-first email gate | ✅ Live ("Don't lose this" framing) |
-| Dark liquid glass on all ZoG screens | ✅ Live (entry, loading, result) |
+| Dark liquid glass on all ZoG screens | ✅ Live |
 | Hash-based scroll (#hero-video) | ✅ Live |
 | Share section (dark glass, delayed) | ✅ Live |
+| **v3.0 copy (decision collapse)** | 🔜 Documented, not yet implemented |
+| **Guarantee** | 🔜 Documented, not yet implemented |
+| **Quiz as main path** | 🔜 Documented, not yet implemented |
 | Silent account creation | ❌ Not built (backend Phase 2) |
 | Magic link email | ❌ Not built (backend Phase 2) |
-| Custom success page | ❌ Not built (not needed Phase 1) |
 
 ---
 
