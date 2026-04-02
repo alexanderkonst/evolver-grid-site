@@ -152,7 +152,7 @@ const AppleseedDisplay = ({
                                transition-all duration-200 hover:scale-[1.02] active:scale-95"
                 >
                     <div>
-                        <p className="text-sm font-semibold text-[#2c3150]">See why this hasn't turned into income — and what changes it (4 min)</p>
+                        <p className="text-sm font-semibold text-[#2c3150]">See why this hasn't turned into income — and what changes it (6 min)</p>
                     </div>
                     <span className="w-8 h-8 rounded-full bg-[#8460ea]/10 flex items-center justify-center flex-shrink-0 ml-3">
                         <ArrowRight className="w-4 h-4 text-[#8460ea]" />
