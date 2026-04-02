@@ -293,7 +293,8 @@ const IgniteSession = () => {
           </h1>
 
           <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            In 90 minutes, I turn what you've been doing your whole life into a one-sentence business people understand—and pay for.
+            In 90 minutes, I turn what you've been doing your whole life
+            into a business people understand—and pay for.
           </p>
 
           {/* Emotional hook — pulled up from qualifier */}
@@ -309,8 +310,8 @@ const IgniteSession = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               <div>
-                <span>Find out in 5 minutes — free</span>
-                <span className="block text-[10px] text-white/40 mt-0.5">Most people take 6–12 months. We start here.</span>
+                <span>Reveal what I already do naturally (free)</span>
+                <span className="block text-[10px] text-white/40 mt-0.5">Most people take 6–12 months to figure this out. We start here.</span>
               </div>
               <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
@@ -325,7 +326,7 @@ const IgniteSession = () => {
               className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <span>Turn this into something real ($555)</span>
+              <span>Turn this into a business people understand — and pay for ($555)</span>
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
               </span>
@@ -348,7 +349,8 @@ const IgniteSession = () => {
         <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
           <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
           <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            You've tried building. You've tried coaching. You've considered going back to corporate. Nothing held all of you.
+            You've proven your value—for other people.<br/>
+            The question is: What is yours to build?
           </p>
           <div className="space-y-2 max-w-md mx-auto">
             {[
@@ -368,7 +370,7 @@ const IgniteSession = () => {
             ))}
           </div>
           <p className="text-xs text-white/45 text-center max-w-sm mx-auto leading-relaxed">
-            You know your work matters. You've proven it a hundred times—for other people. The thing you can't prove is: what is yours to build?
+            You've proven your value—for other people. The question is: What is yours to build?
           </p>
         </section>
 
@@ -411,8 +413,8 @@ const IgniteSession = () => {
               {
                 emoji: "🚀",
                 step: "3",
-                title: "You leave with a business—not an idea",
-                desc: "AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
+                title: "You leave with a clear business",
+                desc: "Not something to think about later. AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
               },
             ].map((item, i) => (
               <div
@@ -504,7 +506,7 @@ const IgniteSession = () => {
               <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed font-medium">
-              If you don't leave with a clear one-sentence business, you don't pay.
+              If we don't land a clear, speakable business you can immediately use—you don't pay.
             </p>
           </div>
 
@@ -540,9 +542,9 @@ const IgniteSession = () => {
               href={CALCOM_CLARITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-white/40 hover:text-white/70 transition-colors underline underline-offset-4 decoration-white/10 hover:decoration-white/30"
+              className="text-[9px] text-white/25 hover:text-white/50 transition-colors underline underline-offset-4 decoration-white/5 hover:decoration-white/20"
             >
-              Not sure? Book a free 15-min call
+              Have a question? 15-min call
             </a>
             <AlreadyPaidLink />
           </div>
