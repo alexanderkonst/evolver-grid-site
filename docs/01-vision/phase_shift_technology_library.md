@@ -2350,3 +2350,78 @@ The Holomap functions by treating every digital surface (profiles, pages, channe
 > **Why this matters:** By projecting the dream business onto this sorted holomap, the system creates **laser-focused directivity of effort**. The outcome is optimized *by design* before a single action is taken. It ensures that maximum signal is broadcasted via paths of least resistance.
 
 ---
+
+## Domain 51: The Curiosity Gap Engine (Algorithmic Aikido)
+
+> *April 2, 2026 — Discovered during ZoG share text redesign. The collapse of "share my product" into "share my truth."*
+
+### 51a. The Core Phase Shift
+
+**Discovery:** The standard approach to viral sharing is to embed a link in the share message so friends can "discover" the product. This is backwards. The link IS what kills virality. Social media algorithms treat outbound links as commercial signals and **actively throttle reach by 5-10x.** Removing the link produces the opposite: the algorithm classifies the post as authentic personal content and **amplifies it**.
+
+**The phase shift:** From "Share this product with friends" → "Ask friends if they actually see you this way — and leave the source invisible."
+
+### 51b. The Three-Stage Viral Loop (The Mechanism)
+
+The mechanism exploits three properties simultaneously: algorithmic behavior, human psychology, and the topology of curiosity.
+
+| Stage | What happens | Why it works |
+|-------|-------------|-------------|
+| **1. Genuine post** | User shares their result as a personal revelation, no link, no brand | Algorithm: no link = authentic → maximum organic reach. Psychology: vulnerability invites engagement |
+| **2. Engagement magnet** | "Do you actually see me this way?" demands a response | Algorithm: comments are the **highest-weight signal** across ALL social platforms. Each comment → +1 algorithmic boost → 2nd-degree reach → more comments → feedback loop |
+| **3. Curiosity fires** | Friends ask "where did you get this?" | The sharer becomes the distribution channel. Word-of-mouth conversion rate: **~30% vs ~2%** for link clicks. The product spreads through CONVERSATIONS, not clicks |
+
+### 51c. Why Algorithms LOVE This (The Physics)
+
+Social media recommendation algorithms optimize for ONE thing: **dwell time × engagement depth.** Every platform (LinkedIn, Instagram, Facebook, X) uses the same core ranking signals:
+
+| Signal | Algorithmic Weight | Does This Post Trigger It? |
+|--------|-------------------|---------------------------|
+| **Comments** | Highest | ✅ "Do you see me this way?" literally demands a comment |
+| **Comment replies** (thread depth) | Very high | ✅ Others respond to each other about the person |
+| **Dwell time** | High | ✅ Personal + vulnerable = people read carefully |
+| **No outbound link** | High (inverted penalty) | ✅ LinkedIn penalizes links by ~5-10x. No link = no penalty |
+| **Reactions** (heart, celebrate) | Medium | ✅ Self-disclosure gets emotional reactions |
+| **Saves/bookmarks** | Very high | ✅ "I want to do this too" = save for later |
+
+**The n-th degree effect:** LinkedIn shows your post to **connections of people who commented.** A post with 15 comments reaches 2,000-5,000 people. A post with a link? 200-500. **That's a 10x multiplier** — from removing four characters (a URL).
+
+The algorithm doesn't just "like" this content. It **amplifies it exponentially** because engagement begets reach begets more engagement. This is the same feedback loop that makes posts "go viral" — but triggered deliberately through structural design, not luck.
+
+### 51d. The Deeper Principle: Curiosity > Convenience
+
+**Why removing the link works psychologically:**
+
+| With link | Without link |
+|-----------|-------------|
+| Convenience → passive click = cold, anonymous | Curiosity → active question = warm, personal |
+| The friend clicks → they're one of 1000 visitors | The friend asks → they're in a 1-on-1 conversation |
+| Conversion: ~2% (standard web traffic) | Conversion: ~30%+ (warm word-of-mouth) |
+| The sharer is a billboard | The sharer is a trusted recommender |
+
+**This is Attention Coupling (Domain 8b) applied to distribution.** Not hooks — tuning forks. Not capture — coupling. The product enters someone's life through a human they trust, in a conversation they initiated, about a topic they chose to engage with. Every conversion defense is bypassed because there IS no pitch.
+
+### 51e. Cross-Domain Synthesis
+
+| Domain | Connection |
+|--------|-----------|
+| **8a: Acorn** | The share IS the acorn. One personal result, shared genuinely, grows into conversations, which grow into referrals |
+| **8b: Attention Coupling** | No hook, no manipulation. The post hums at a frequency. Those who resonate engage. Those who don't, scroll past |
+| **13: The Shift** | "Share my product" = outer-directed. "Ask friends if they see me" = inner-directed, self-expressive. Same action, different direction, 10x different result |
+| **14: Scatter vs. Focus** | One share, one question, one natural viral loop. Not "post on 5 platforms with 5 strategies" |
+| **49: One-Button** | The share button is itself a One-Button experience: one action that contains the entire viral mechanism |
+
+### 51f. Why It's a Technology (Not Just a Tactic)
+
+This is replicable for ANY product that produces a **personal result:**
+
+1. **Make the share about the person, not the product** — their result, their words, their identity
+2. **Ask a question that invites engagement** — "do you see this in me?" / "is this accurate?" / "what do you think?"
+3. **Remove the link entirely** — curiosity > convenience
+4. **Let the sharer become the channel** — they answer "where'd you get this?" in their own words, with their own enthusiasm
+
+The technology transfers to any lead magnet, any assessment, any personalized output. The principle: **the product disappears into the person's self-expression.** Distribution becomes invisible because it's indistinguishable from genuine social behavior.
+
+**First implementation:** Zone of Genius share flow (`src/components/sharing/ShareZoG.tsx`)
+
+---
