@@ -367,6 +367,12 @@ const IgniteSession = () => {
             You're one structural layer away from something that works.
           </p>
 
+          {/* Self-qualification — kills "is this for me?" */}
+          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If this already feels familiar — this is for you.<br/>
+            If it doesn't, it won't land.
+          </p>
+
           <div className="flex flex-col items-center gap-4 pt-6">
 
             {/* Paid path: Ignition Session */}
@@ -601,9 +607,10 @@ const IgniteSession = () => {
             ))}
           </div>
 
-          {/* Bridge line */}
+          {/* Final decision collapse */}
           <p className="text-xs text-white/55 font-medium">
-            You don't need more thinking. You need this finished.
+            You don't need more time to figure this out.<br/>
+            You need to decide if this becomes real.
           </p>
 
           {/* Resonance Permission — HD Emotional Authority principle */}

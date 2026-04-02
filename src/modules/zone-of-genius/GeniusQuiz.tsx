@@ -313,6 +313,10 @@ function ResultView({
       <p className="text-sm font-medium text-[#2c3150] mb-1.5">
         {result.reframe}
       </p>
+      <p className="text-xs text-[#2c3150]/50 leading-relaxed mb-3 italic">
+        And fixing it doesn't mean building something massive —<br/>
+        it means making what's already there usable.
+      </p>
 
       {/* Blade */}
       <p className="text-xs text-[#2c3150]/45 leading-relaxed mb-8 italic">
