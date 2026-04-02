@@ -258,6 +258,21 @@ const IgniteSession = () => {
     return () => { document.title = "Evolver"; };
   }, []);
 
+  // Handle hash-based scrolling (e.g. /ignite#hero-video)
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      // Small delay to allow the page to render first
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash]);
+
   const content = (
     <div className="relative min-h-screen bg-black text-white overflow-hidden" id="ignite-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
 

@@ -402,7 +402,7 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Header — Godfather "front door" */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4 ring-1 ring-white/10">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 ring-1 ring-white/10">
                         <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
                     </div>
                     <h1
