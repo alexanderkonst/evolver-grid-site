@@ -65,7 +65,7 @@
 - [The Noble = Free Antidote](#the-noble--free-antidote--deepened-march-24-2026)
 
 ### VI. Live Assets (Current)
-- [Video Script v1.0](#video-script-v10)
+- [Video Script v2.0](#video-script-v20)
 - [Live Funnel Spec v2.0](#live-funnel-spec-v20)
 
 ### VII. Operational Overlays
@@ -4943,15 +4943,16 @@ The Funnel Page Architecture v3.0 has been **implemented live** in [IgniteSessio
 
 ---
 
-## Video Script v1.0
+## Video Script v2.0
 
 > *"Why Insight Alone Never Converts Into Income" — 4-minute face-to-camera*
 > *Purpose: sits between ZoG result and session booking. Breaks "false completion."*
 > *Production note (HD): Throat + G Center (Channel 1-8) — record raw, one take. Your face and voice ARE the transmission. Not produced. Not slides.*
+> *Full script + subtitle overlay: [video_script_4min.md](../../docs/03-playbooks/video_script_4min.md)*
 
-### Script
+### Script (with v2.0 inserts)
 
-**[OPEN — calm, direct]**
+**[OPEN — calm, direct] (0:00–0:12)**
 
 If you're here, something probably felt… accurate.
 
@@ -4967,13 +4968,15 @@ Because most people think the problem is:
 
 That's almost never true.
 
+**[PROBLEM REFRAME] (0:12–0:35)**
+
 **The real problem is this:**
 
 You know it…
 
 But you can't structure it in a way that other people understand—and pay for.
 
----
+**[CORE TENSION] (0:35–1:10)**
 
 So what happens?
 
@@ -4987,6 +4990,20 @@ And somehow…
 
 **The more you explain it, the less clear it becomes.**
 
+**[LOOP BREAK → BODY HIT] (1:10–2:05)** ← *v2.0 INSERT*
+
+And you can feel it happening.
+
+Mid-sentence.
+
+You start clear…
+then you adjust…
+then you lose it.
+
+And by the end, it doesn't even sound true anymore.
+
+**[ROOT CAUSE] (2:05–2:30)**
+
 That's not a communication issue.
 
 That's a structural issue.
@@ -4999,15 +5016,19 @@ And without that container:
 - You can't scale it
 - You can't even talk about it without friction
 
+**[CONSEQUENCE] (2:30–2:50)**
+
 So you stay in this loop:
 
 *Working → adjusting → doubting → restarting*
 
 Over and over again.
 
----
+**[TRUTH DROP] (2:50–3:10)** ← *v2.0 INSERT*
 
-**Now here's the shift.**
+**Insight alone doesn't get paid.**
+
+**Business structure does.**
 
 What if the problem isn't you?
 
@@ -5018,6 +5039,8 @@ and turned it into something concrete
 
 That's the missing step.
 
+**[SOLUTION] (3:10–3:40)**
+
 Because once it's named properly…
 
 Everything else becomes obvious.
@@ -5026,8 +5049,6 @@ Everything else becomes obvious.
 - Who it's for.
 - What to say.
 - Why people pay.
-
----
 
 **That's what we do in the session.**
 
@@ -5046,23 +5067,46 @@ And turn it into:
 
 Live.
 
-Most people spend months trying to figure this out.
+**[TIME COLLAPSE] (3:40–3:50)**
+
+Most people spend months — years — trying to figure this out.
+
+We finish it in one session.
 
 You leave with it.
 
----
+**[CLOSE — quiet, direct] (3:50–4:00)**
 
-**[CLOSE — quiet, direct]**
+If you can feel this—
 
-If that's what you've been missing—
+This is the missing step.
 
-You can book a session below.
+You can book the session below.
 
----
+### Nuclear Line (final frame, hold 3 seconds)
 
-### Nuclear Line (add at end of video or on page after video)
+> **"If you're still thinking about this… you already know."**
 
-> "If you're still thinking about this after watching, you already know."
+### High-Conversion Subtitle Overlay v1.0
+
+> *These are NOT captions. They are controlled thought injections.*
+> *Rules: 1-2 lines max. Sync with pauses, not speech. Emphasize contrast words (YOU / NOT / THIS).*
+> *Full frame-by-frame spec: [video_script_4min.md](../../docs/03-playbooks/video_script_4min.md)*
+
+| Timestamp | Subtitle |
+|-----------|----------|
+| 0:00–0:12 | `If you're here… something felt accurate` → `"yeah… that's me"` → `but also— incomplete` |
+| 0:12–0:35 | `Most people think: "I don't know what I'm good at"` → `That's not the problem` → `You already know` |
+| 0:35–1:10 | `You know it…` → `but you can't turn it into something people understand` → `— and pay for` |
+| 1:10–1:40 | `You try to explain it` → `adjust the words` → `simplify… then complicate again` → `and it gets worse` |
+| 1:40–2:05 | `you can feel it happening mid-sentence` → `you start clear → then adjust → then lose it` → `and it stops sounding true` |
+| 2:05–2:30 | `this is not communication` → `this is structure` → `you don't have a container for what you are` |
+| 2:30–2:50 | `so you stay stuck` → `working → adjusting → doubting → restarting` → `again and again` |
+| 2:50–3:10 | **`Insight alone doesn't get paid`** → **`business structure does`** |
+| 3:10–3:40 | `in 90 minutes` → `→ one sentence → one offer → one business` |
+| 3:40–4:00 | `most people stay here for years` → `we finish it in one session` |
+| 4:00–END | `if you can feel this—` → `this is the missing step` → `book the session below` |
+| FINAL | **`if you're still thinking about this… you already know`** |
 
 ### Production Notes
 
@@ -5071,6 +5115,8 @@ You can book a session below.
 - **Setting:** Simple. Face to camera. No slides.
 - **Energy:** The same energy you bring to the first 5 minutes of an Ignition Session.
 - **The principle:** You're not explaining a product. You're breaking the false completion the quiz created and bridging to the real resolution (the session).
+- **Subtitles:** Hand-placed, not auto-generated. The subtitle track is its own persuasion layer — it works even on mute. Most people will experience this on autoplay (Instagram, LinkedIn = muted by default).
+- **Channel 1-8 (HD):** When you speak from your identity, you initiate. Your face and voice ARE the product. One take. The imperfection IS the signal.
 
 ---
 
