@@ -417,10 +417,12 @@ export type Database = {
       }
       game_profiles: {
         Row: {
+          access_token: string | null
           ai_upgrade_access: boolean | null
           avatar_url: string | null
           created_at: string
           current_streak_days: number
+          email: string | null
           first_name: string | null
           first_time_actions: Json | null
           genius_stage: string | null
@@ -471,10 +473,12 @@ export type Database = {
           zone_of_genius_completed: boolean | null
         }
         Insert: {
+          access_token?: string | null
           ai_upgrade_access?: boolean | null
           avatar_url?: string | null
           created_at?: string
           current_streak_days?: number
+          email?: string | null
           first_name?: string | null
           first_time_actions?: Json | null
           genius_stage?: string | null
@@ -525,10 +529,12 @@ export type Database = {
           zone_of_genius_completed?: boolean | null
         }
         Update: {
+          access_token?: string | null
           ai_upgrade_access?: boolean | null
           avatar_url?: string | null
           created_at?: string
           current_streak_days?: number
+          email?: string | null
           first_name?: string | null
           first_time_actions?: Json | null
           genius_stage?: string | null
