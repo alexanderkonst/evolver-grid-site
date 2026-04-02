@@ -330,7 +330,7 @@ function ResultView({
                    transition-all duration-200 hover:scale-[1.02] active:scale-95"
       >
         <div>
-          <p className="text-sm font-semibold text-[#2c3150]">{result.cta} (4 min)</p>
+          <p className="text-sm font-semibold text-[#2c3150]">{result.cta} (6 min)</p>
           <p className="text-xs text-[#2c3150]/50 mt-0.5">{result.ctaSub}</p>
         </div>
         <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">

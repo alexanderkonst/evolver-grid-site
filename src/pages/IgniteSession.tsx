@@ -303,20 +303,6 @@ const IgniteSession = () => {
           </p>
 
           <div className="flex flex-col items-center gap-4 pt-6">
-            {/* Free path: ZoG reveal */}
-            <a
-              href="/zone-of-genius/entry"
-              className="liquid-glass w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              <div>
-                <span>Reveal what I already do naturally (free)</span>
-                <span className="block text-[10px] text-white/40 mt-0.5">Most people take 6–12 months to figure this out. We start here.</span>
-              </div>
-              <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                <ArrowRight className="w-3 h-3" />
-              </span>
-            </a>
 
             {/* Paid path: Ignition Session */}
             <a
