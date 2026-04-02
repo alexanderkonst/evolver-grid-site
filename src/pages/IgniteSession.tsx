@@ -263,7 +263,7 @@ const MicroCommitmentBlock = () => {
       <p className="text-sm text-white/60 text-center font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>
         Which of these feels most true right now?
       </p>
-      <p className="text-[10px] text-white/25 text-center">Just one question — nothing else.</p>
+      <p className="text-[10px] text-white/25 text-center">Just one question:</p>
       <div className="space-y-2">
         {options.map((opt, i) => (
           <button
