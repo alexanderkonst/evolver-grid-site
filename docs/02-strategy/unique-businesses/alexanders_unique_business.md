@@ -66,7 +66,7 @@
 
 ### VI. Live Assets (Current)
 - [Video Script v1.0](#video-script-v10)
-- [Live Funnel Spec v1.0](#live-funnel-spec-v10)
+- [Live Funnel Spec v2.0](#live-funnel-spec-v20)
 
 ### VII. Operational Overlays
 - [Human Design Operational Overlay](#human-design-operational-overlay)
@@ -5074,41 +5074,46 @@ You can book a session below.
 
 ---
 
-## Live Funnel Spec v1.0
+## Live Funnel Spec v2.0
 
-> *April 2, 2026 — Every word of copy currently live, extracted verbatim from code.*
+> *April 2, 2026 — Godfather Offer Architect upgrade. Every word rewritten for maximum precision.*
 > *Walk the live screens against this document. Any mismatch = something to fix.*
 > *Domain: aleksandrkonstantinov.com*
 
 ### The Flow
 
 ```
-SCREEN 1: ZoG Entry (/)
+SCREEN 1: Entry (/)
+    ↓ "Reveal what I already do naturally"
+    ↓ Route select: 🤖 Fast (1 min) / 📋 Guided (10-15 min)
     ↓ person completes the experience
 SCREEN 2: ZoG Result (AppleseedDisplay)
     ↓ clicks one of 3 CTAs
-SCREEN 3a: Quiz (/quiz) — optional circler path
+    PRIMARY → /ignite#hero-video
+    SECONDARY → /ignite#pricing-section
+    TERTIARY → /quiz
+SCREEN 3: Quiz (/quiz) — optional circler path
     ↓ completes quiz, gets archetype
-SCREEN 3b: Quiz Result
-    ↓ clicks CTA to watch video
+    ↓ CTA → /ignite#hero-video
 SCREEN 4: Ignite Landing Page (/ignite)
-    ↓ watches video, scrolls to booking
+    ↓ watches video, scrolls to pricing
 SCREEN 5: Post-Payment (Stripe → Cal.com)
 ```
 
-### SCREEN 1: ZoG Entry → `/`
+### SCREEN 1: Entry → `/`
 
 **H1:** "Why is it still so hard to explain what you do?"
 
-**Body:** "There's a pattern in how you think, solve problems, and create value. You've been using it for years. People come to you for it."
+**Body:** "There's a unique way you think, solve problems, and create value. You've been using it your whole life—because it's natural to you. People already come to you for it—when they're stuck, unclear, or need direction."
 
-**Italic:** "And yet… you've never been able to fully explain it."
+**Break:** *"And still… it hasn't turned into something clear, simple, and paid."*
 
-**Micro:** "This reveals it. No frameworks. No overthinking. Just answer a few prompts."
+**Primary CTA:** "Reveal what I already do naturally" → Route Selection
 
-**Choice:**
-- 🤖 "Yes, my AI knows me" → copy prompt → paste response → generate
-- 📋 "No, I'll do the assessment" → 4-step talent picker
+**Route Selection:**
+- H2: "How do you want to reveal it?"
+- 🤖 **"Fast (1 min)"** — "Use AI to reflect your zone of genius instantly"
+- 📋 **"Guided (10–15 min)"** — "Answer a few prompts — we extract it step-by-step"
 
 ### SCREEN 2: ZoG Result (AppleseedDisplay)
 
@@ -5119,27 +5124,28 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 
 **Resonance Rating:** "From 1 to 10, how well does this match how you see yourself at your brightest?"
 
-**The Gap:**
-- "This is you."
-- "You've been doing this for years. People come to you for it. You've delivered results through it."
-- *"And yet… you've never been able to clearly say what it is."*
-- "This is your pattern." *"Not your business."*
-- "That's why nothing has fully clicked."
-- "Because knowing this doesn't answer:" *What do I offer? Who is it for? Why would someone pay?*
+**The Gap (v2.0):**
+- "This is real."
+- "You've been doing this for years. People already come to you for it."
+- *"And it's exactly why this has been so hard to turn into something that works."*
+- "Because this is the way you naturally think and create."
+- **"Not a business."**
+- "Patterns don't get paid. Business structure does."
 - "You've seen this before. You knew it was true."
 - **"And still nothing changed."**
+- "Because knowing this doesn't answer:" *What do I offer? Who is it for? Why would someone pay?*
 
 **3 CTAs:**
-1. 🎯 **"Watch this — 4 minutes"** → `/ignite#hero-video`
-2. ⚡ **"I already know — let's go →"** → `/ignite#pricing-section`
-3. 🔄 "Not sure? See the pattern behind why this has been so hard" → `/quiz`
+1. 🔥 **"See why this hasn't turned into income — and what changes it (4 min)"** → `/ignite#hero-video`
+2. ⚡ **"I see it — let's build it →"** → `/ignite#pricing-section`
+3. 🔄 "Not sure? See exactly why this has been so hard (6-question diagnostic)" → `/quiz`
 
 **Email Gate:** "Enter your email to save and share your result"
 
 ### SCREEN 3: Quiz → `/quiz`
 
-**H1:** "Why is it still so hard to turn what you do into something real?"
-**Micro:** "6 questions. No email required. See your pattern."
+**H1:** "Why hasn't this turned into something real?"
+**Micro:** "6 questions. No overthinking. See exactly where it breaks."
 
 **Q1** — "When someone asks what you do, what happens?"
 **Q2** — "What do people consistently come to you for?"
@@ -5148,30 +5154,30 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 **Q5** — "How do you currently price your work?"
 **Q6** — "What would change everything for you right now?"
 
-**4 Results:**
+**4 Results (v2.0):**
 
 | Archetype | Identity | Blade |
 |-----------|----------|-------|
-| The Invisible Genius | "You create value in ways that are hard to explain." | "You've understood this for a while. Understanding alone didn't change it." |
+| The Invisible Genius | "You create real value." | "You don't need more insight. You need business structure around what's already true." |
 | The Multi-Talent Trap | "You're good at many things—and none of them fully define you." | "You've tried picking one thing. It never held all of you." |
 | The Misaligned Vector | "You're putting in effort. A lot of it. But the results don't match." | "You already know effort isn't the issue. But you keep applying it anyway." |
 | The Underpriced Operator | "You deliver real value. People get results from working with you." | "You've known you should charge more for years. Knowing didn't help." |
 
-Each result → **CTA to `/ignite#hero-video`** + secondary "Want to go deeper? See your full reveal →" → `/`
+Each result → **CTA to `/ignite#hero-video`** + retake. No backward loops.
 
 ### SCREEN 4: Ignite → `/ignite`
 
 **S1 HERO:**
 - H1: *"You can't explain what you do."* → **"That's why it's not selling."**
-- "In 90 minutes, I turn what you've been doing your whole life into a one-sentence business people understand—and pay for."
+- "In 90 minutes, I turn what you've been doing your whole life into a business people understand—and pay for."
 - "You're more capable than your results show. And you know it."
-- Button: "Find out in 5 minutes — free" → ZoG
-- Button: "Turn this into something real ($555)" → Stripe
+- Button: "Reveal what I already do naturally (free)" → ZoG
+- Button: **"Turn this into a business people understand — and pay for ($555)"** → Stripe
 - Divine Timing: "Not right now, but maybe in a month"
 
 **S2 QUALIFIER:**
 - "This is for you if" + 5 self-talk cards
-- Closing: "You know your work matters. You've proven it a hundred times—for other people."
+- Closing: "You've proven your value—for other people. The question is: What is yours to build?"
 
 **S3 VIDEO (#hero-video):**
 - YouTube: "Building One's Unique Business" (pnQzKNJyP0A)
@@ -5180,7 +5186,7 @@ Each result → **CTA to `/ignite#hero-video`** + secondary "Want to go deeper? 
 **S4 HOW IT WORKS:**
 - Step 1: "Your genius gets named"
 - Step 2: "It becomes a product"
-- Step 3: "You leave with a business—not an idea"
+- Step 3: **"You leave with a clear business"** — "Not something to think about later."
 
 **S5 ABOUT:** Aleksandr's testimony — "What is mine to build?"
 
@@ -5189,22 +5195,30 @@ Each result → **CTA to `/ignite#hero-video`** + secondary "Want to go deeper? 
 **S7 BOOKING (#pricing-section #booking):**
 - 4 deliverable bullets
 - **$555** — "One session. One business."
-- Guarantee: "If you don't leave with a clear one-sentence business, you don't pay."
+- Guarantee: **"If we don't land a clear, speakable business you can immediately use—you don't pay."**
+- Bridge: "You don't need more thinking. You need this finished."
 - Resonance Permission: *"If your heart isn't resonating with this, don't sign up."*
 - CTA: "Book Your Session" → Stripe
-- Secondary: "Not sure? Book a free 15-min call" → Cal.com
-- Tertiary: "Already paid? Book your session here →" → Cal.com
+- Footer: "Have a question? 15-min call" (demoted to 9px)
+- Footer: "Already paid? Book your session here →" → Cal.com
 
 **S8 FAQ:** 4 questions
 
 **EMOTIONAL CLOSE:**
 - *"You've been carrying something you can't name. That's why nothing has fully clicked."*
 - **"This is where it does."**
-- CTA: "See My Business on One Page — $555" → Stripe
+- CTA: **"See My Business on One Page — $555"** → Stripe
 
 ### SCREEN 5: Post-Payment
 
 Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
+
+### System Principles (DO NOT BREAK)
+
+1. **One dominant action per screen**
+2. **No loops backward**
+3. **No over-explaining**
+4. **Every screen must increase: clarity → tension → inevitability**
 
 ### Status
 
@@ -5212,10 +5226,13 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 |---------|--------|
 | All screens | ✅ Live |
 | Video embed | ✅ Live (correct video) |
-| 3 CTAs on result page | ✅ Live |
+| 3 CTAs on result page | ✅ Live (updated v2.0) |
+| Route Selection UI | ✅ Live (Fast / Guided) |
 | Resonance Permission | ✅ Live |
 | Divine Timing (1 month) | ✅ Live |
 | Stripe → Cal.com | ✅ Confirmed |
+| No backward loops | ✅ Removed |
+| Free call demoted | ✅ Footer only |
 | Custom success page | ❌ Not built (not needed Phase 1) |
 
 ---
@@ -5278,5 +5295,5 @@ Not identical channel configurations, but RESONANT ones. The session's power com
 
 ---
 
-*Alexander's Unique Business v7.3 — April 2, 2026 (Human Design Operational Overlay added)*
-*Updated: HD/Gene Keys mapped to tactical implications. Manifestor reframe applied to weekly SOP. Channel 28-38/39-55 confirmed as session mechanics. 6/2 profile confirmed as methodology source.*
+*Alexander's Unique Business v7.4 — April 2, 2026 (Godfather v2 Funnel Copy Upgrade)*
+*Updated: Full funnel spec v2.0 — every screen rewritten for maximum clarity, tension, inevitability. Route selection, system principles, backward loop removal, free call demotion.*
