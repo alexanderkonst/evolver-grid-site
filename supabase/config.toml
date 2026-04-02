@@ -95,3 +95,6 @@ verify_jwt = false
 
 [functions.equilibrium-cron]
 verify_jwt = false
+
+[functions.save-zog-result]
+verify_jwt = false
