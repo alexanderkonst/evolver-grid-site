@@ -1015,6 +1015,71 @@ Use near the final CTA. This one sentence does the work of a paragraph.
 
 ---
 
+## The Situational Identity Principle (April 2026)
+
+> *"Don't choose between 'founder' and 'entrepreneur.' Transcend both."*
+> *Source: GFOA × Alexander — discovered while sharpening tribe precision*
+
+### The Principle
+
+Never use **identity labels** in primary messaging. Use **situational language** — describe the lived experience, not the job title.
+
+### Why Labels Fail
+
+| Label | What it signals | Why it fails |
+|-------|----------------|-------------|
+| **"Founder"** | Already building, startup/tech energy, identity = decided | Buyer is *in transition, circling, not fully claimed yet.* Sees "founder" → "That's not me... yet" → self-excludes |
+| **"Entrepreneur"** | Broader, more inclusive, allows "becoming" | Overused, vague, low emotional charge. Doesn't stop the scroll |
+| **"Coach" / "Consultant"** | Specific profession | Excludes the healer, the system thinker, the community builder — who ARE the tribe but don't use that word |
+
+### The Move: Situational Identity
+
+| ❌ Label language | ✅ Situational identity |
+|------------------|----------------------|
+| "Founders in transition" | "People who know they're meant to build something of their own..." |
+| "Entrepreneurs who are stuck" | "People whose work is real — but doesn't translate into a business yet" |
+| "Coaches and consultants" | "People who are already valuable — but it's not structured into income" |
+
+### The Test
+
+> "You can't explain what you do."
+
+That's not a label. That's a **lived experience.** This is the energy to maintain in all messaging.
+
+### How to Apply to Any Unique Business
+
+1. **Audit all copy** for identity labels (founder, entrepreneur, coach, consultant, healer)
+2. **Replace each** with the situational experience that label was trying to name
+3. **Test:** Read the copy out loud. If it sounds like a job description, it's a label. If it sounds like someone describing their life at 2am, it's situational
+
+---
+
+## Decision Language CTAs (April 2026)
+
+### The Principle
+
+CTAs should use **decision language**, not curiosity language. The viewer should feel they're making a choice, not browsing.
+
+### The Shift
+
+| ❌ Curiosity (invites browsing) | ✅ Decision (invites action) |
+|-------------------------------|---------------------------|
+| "Watch this" | "See what's actually blocking this" |
+| "Discover your genius" | "Understand why this hasn't turned into income" |
+| "Learn more" | "Make this usable" |
+| "Take the quiz" | "See exactly why this hasn't turned into income" |
+
+### Connection to Controlled Collapse
+
+Decision language IS the CTA-level implementation of the Controlled Collapse Sequence. The button itself completes the identity shift:
+
+- Curiosity CTA = observer position (they're watching)
+- Decision CTA = protagonist position (they're choosing)
+
+The shift from observer → protagonist happens at the CTA, not before it.
+
+---
+
 
 # Part IV: The Recursive Insight
 
@@ -1042,5 +1107,5 @@ This is **self-organizing infrastructure for mission manifestation**.
 *Unified: January 27, 2026*
 *Merged from: marketing_playbook.md + marketing_meta_playbook.md*
 *Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*
-*Updated: April 2, 2026 — Controlled Collapse Conversion Pattern (consequence block, micro-commitment, non-optionality, identity-shift CTA, pressure line). Curiosity Gap pattern established.*
+*Updated: April 2, 2026 — Controlled Collapse Conversion Pattern (consequence block, micro-commitment, non-optionality, identity-shift CTA, pressure line). Curiosity Gap pattern established. Situational Identity Principle (transcend labels — use lived-experience language). Decision Language CTAs (protagonist > observer positioning).*
 

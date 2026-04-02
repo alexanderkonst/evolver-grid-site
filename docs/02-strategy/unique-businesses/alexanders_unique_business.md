@@ -556,13 +556,64 @@ These are the calibers of people Alexander vibrates with most deeply — **lowes
 
 All five archetypes share one thing: **they are already doing the work.** They just don't have the structure yet.
 
-- The healer who gives advice for free? **Entrepreneur** whose business hasn't been named
-- The ecosystem thinker building community? **Entrepreneur** whose offer hasn't been extracted
-- The system architect who sees the broken thing? **Entrepreneur** whose product hasn't been installed
-- The AI experimenter who knows this is the future? **Entrepreneur** whose uniqueness hasn't been plugged in
-- The new earth leader who already has followers? **Entrepreneur** whose revenue model hasn't been built
+##### The Situational Identity Principle (GFOA — April 2, 2026)
 
-**Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Every entrepreneur in this caliber polishes their surface while leaving decision conditions unbuilt. Naming this is a Tuning Fork moment for them.
+> *"Don't choose between 'founder' and 'entrepreneur.' Transcend both."*
+
+**The label psychology:**
+
+| Label | What it signals | Why it fails |
+|-------|----------------|-------------|
+| **"Founder"** | Already building, startup/tech energy, identity = decided | Your real buyer is *in transition, circling, not fully claimed yet.* When they see "founder" they think: "That's not me... yet" — and self-exclude |
+| **"Entrepreneur"** | Broader, more inclusive, allows "becoming" | Overused, vague, low emotional charge. Generic |
+
+**The real move: SITUATIONAL IDENTITY**
+
+Don't label them. **Describe their lived experience:**
+
+| ❌ Label language | ✅ Situational identity |
+|------------------|----------------------|
+| "Founders in transition" | "People who know they're meant to build something of their own..." |
+| "Entrepreneurs who are stuck" | "People whose work is real — but doesn't translate into a business yet" |
+| "Coaches and consultants" | "People who are already valuable — but it's not structured into income" |
+
+**Your best line already does this:**
+
+> "You can't explain what you do."
+
+That's not a label. That's a **lived experience.** Keep that energy in all messaging.
+
+**The segment in one sentence:**
+
+> "People who know they have something real — but it's not becoming a real business."
+
+**Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Naming the unnamed loop is a Tuning Fork moment for them.
+
+##### CTA Language Shift: Decision Language, Not Curiosity Language
+
+| ❌ Curiosity (old) | ✅ Decision (new) |
+|-------------------|------------------|
+| "Watch this" | "See what's actually blocking this" |
+| "Discover your genius" | "Understand why this hasn't turned into income" |
+| "Learn more" | "Make this usable" |
+| "Take the quiz" | "See exactly why this hasn't turned into income" |
+
+##### Quiz as Main Path (GFOA Recommendation — Not Yet Implemented)
+
+Current: quiz = optional side path (curiosity)
+Proposed: quiz = **diagnostic intensifier** in the main flow
+
+```
+ZoG Reveal
+  → "See exactly why this hasn't turned into income (6 questions)"
+  → Quiz (diagnostic)
+  → Video
+  → Buy
+```
+
+This moves from "this is interesting" → **"this is specifically why I'm stuck."**
+
+**Status:** Recommendation noted. Not yet implemented. Evaluate after first outreach data.
 
 ##### Narrowing the Moment, Not the Market
 
