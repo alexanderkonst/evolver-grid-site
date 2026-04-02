@@ -4828,6 +4828,283 @@ The Funnel Page Architecture v3.0 has been **implemented live** in [IgniteSessio
 
 ---
 
+## Video Script v1.0
+
+> *"Why Insight Alone Never Converts Into Income" — 4-minute face-to-camera*
+> *Purpose: sits between ZoG result and session booking. Breaks "false completion."*
+> *Production note (HD): Throat + G Center (Channel 1-8) — record raw, one take. Your face and voice ARE the transmission. Not produced. Not slides.*
+
+### Script
+
+**[OPEN — calm, direct]**
+
+If you're here, something probably felt… accurate.
+
+Like, "yeah—that's me."
+
+But also incomplete.
+
+And that's the part I want to talk about.
+
+Because most people think the problem is:
+
+*"I don't know my zone of genius."*
+
+That's almost never true.
+
+**The real problem is this:**
+
+You know it…
+
+But you can't structure it in a way that other people understand—and pay for.
+
+---
+
+So what happens?
+
+You try to explain what you do.
+
+You adjust the words.
+You add context.
+You simplify… then complicate again.
+
+And somehow…
+
+**The more you explain it, the less clear it becomes.**
+
+That's not a communication issue.
+
+That's a structural issue.
+
+You don't have a container for what you are.
+
+And without that container:
+
+- You can't charge properly
+- You can't scale it
+- You can't even talk about it without friction
+
+So you stay in this loop:
+
+*Working → adjusting → doubting → restarting*
+
+Over and over again.
+
+---
+
+**Now here's the shift.**
+
+What if the problem isn't you?
+
+What if the problem is that no one has ever:
+
+**Seen what you are from the outside**
+and turned it into something concrete
+
+That's the missing step.
+
+Because once it's named properly…
+
+Everything else becomes obvious.
+
+- What to offer.
+- Who it's for.
+- What to say.
+- Why people pay.
+
+---
+
+**That's what we do in the session.**
+
+Not coaching.
+Not theory.
+
+In 90 minutes:
+
+We take what you already saw in your result…
+
+And turn it into:
+
+→ One clear sentence
+→ One structured offer
+→ One real business
+
+Live.
+
+Most people spend months trying to figure this out.
+
+You leave with it.
+
+---
+
+**[CLOSE — quiet, direct]**
+
+If that's what you've been missing—
+
+You can book a session below.
+
+---
+
+### Nuclear Line (add at end of video or on page after video)
+
+> "If you're still thinking about this after watching, you already know."
+
+### Production Notes
+
+- **Tone:** Calm, direct. Not hype. Not therapeutic. Just truth.
+- **Length:** 3:30–4:30 max
+- **Setting:** Simple. Face to camera. No slides.
+- **Energy:** The same energy you bring to the first 5 minutes of an Ignition Session.
+- **The principle:** You're not explaining a product. You're breaking the false completion the quiz created and bridging to the real resolution (the session).
+
+---
+
+## Live Funnel Spec v1.0
+
+> *April 2, 2026 — Every word of copy currently live, extracted verbatim from code.*
+> *Walk the live screens against this document. Any mismatch = something to fix.*
+> *Domain: aleksandrkonstantinov.com*
+
+### The Flow
+
+```
+SCREEN 1: ZoG Entry (/)
+    ↓ person completes the experience
+SCREEN 2: ZoG Result (AppleseedDisplay)
+    ↓ clicks one of 3 CTAs
+SCREEN 3a: Quiz (/quiz) — optional circler path
+    ↓ completes quiz, gets archetype
+SCREEN 3b: Quiz Result
+    ↓ clicks CTA to watch video
+SCREEN 4: Ignite Landing Page (/ignite)
+    ↓ watches video, scrolls to booking
+SCREEN 5: Post-Payment (Stripe → Cal.com)
+```
+
+### SCREEN 1: ZoG Entry → `/`
+
+**H1:** "Why is it still so hard to explain what you do?"
+
+**Body:** "There's a pattern in how you think, solve problems, and create value. You've been using it for years. People come to you for it."
+
+**Italic:** "And yet… you've never been able to fully explain it."
+
+**Micro:** "This reveals it. No frameworks. No overthinking. Just answer a few prompts."
+
+**Choice:**
+- 🤖 "Yes, my AI knows me" → copy prompt → paste response → generate
+- 📋 "No, I'll do the assessment" → 4-step talent picker
+
+### SCREEN 2: ZoG Result (AppleseedDisplay)
+
+**The Reveal:**
+- "MY GENIUS IS TO BE A" → **[Generated Archetype Name]**
+- "I [generated bullseye action statement]"
+- Three Lenses: Top Talents • Prime Driver • Archetype
+
+**Resonance Rating:** "From 1 to 10, how well does this match how you see yourself at your brightest?"
+
+**The Gap:**
+- "This is you."
+- "You've been doing this for years. People come to you for it. You've delivered results through it."
+- *"And yet… you've never been able to clearly say what it is."*
+- "This is your pattern." *"Not your business."*
+- "That's why nothing has fully clicked."
+- "Because knowing this doesn't answer:" *What do I offer? Who is it for? Why would someone pay?*
+- "You've seen this before. You knew it was true."
+- **"And still nothing changed."**
+
+**3 CTAs:**
+1. 🎯 **"Watch this — 4 minutes"** → `/ignite#hero-video`
+2. ⚡ **"I already know — let's go →"** → `/ignite#pricing-section`
+3. 🔄 "Not sure? See the pattern behind why this has been so hard" → `/quiz`
+
+**Email Gate:** "Enter your email to save and share your result"
+
+### SCREEN 3: Quiz → `/quiz`
+
+**H1:** "Why is it still so hard to turn what you do into something real?"
+**Micro:** "6 questions. No email required. See your pattern."
+
+**Q1** — "When someone asks what you do, what happens?"
+**Q2** — "What do people consistently come to you for?"
+**Q3** — "Which feels most true right now?"
+**Q4** — "Think about your best moments at work. What was happening?"
+**Q5** — "How do you currently price your work?"
+**Q6** — "What would change everything for you right now?"
+
+**4 Results:**
+
+| Archetype | Identity | Blade |
+|-----------|----------|-------|
+| The Invisible Genius | "You create value in ways that are hard to explain." | "You've understood this for a while. Understanding alone didn't change it." |
+| The Multi-Talent Trap | "You're good at many things—and none of them fully define you." | "You've tried picking one thing. It never held all of you." |
+| The Misaligned Vector | "You're putting in effort. A lot of it. But the results don't match." | "You already know effort isn't the issue. But you keep applying it anyway." |
+| The Underpriced Operator | "You deliver real value. People get results from working with you." | "You've known you should charge more for years. Knowing didn't help." |
+
+Each result → **CTA to `/ignite#hero-video`** + secondary "Want to go deeper? See your full reveal →" → `/`
+
+### SCREEN 4: Ignite → `/ignite`
+
+**S1 HERO:**
+- H1: *"You can't explain what you do."* → **"That's why it's not selling."**
+- "In 90 minutes, I turn what you've been doing your whole life into a one-sentence business people understand—and pay for."
+- "You're more capable than your results show. And you know it."
+- Button: "Find out in 5 minutes — free" → ZoG
+- Button: "Turn this into something real ($555)" → Stripe
+- Divine Timing: "Not right now, but maybe in a month"
+
+**S2 QUALIFIER:**
+- "This is for you if" + 5 self-talk cards
+- Closing: "You know your work matters. You've proven it a hundred times—for other people."
+
+**S3 VIDEO (#hero-video):**
+- YouTube: "Building One's Unique Business" (pnQzKNJyP0A)
+- Nuclear line: *"If you're still thinking about this after watching… you already know."*
+
+**S4 HOW IT WORKS:**
+- Step 1: "Your genius gets named"
+- Step 2: "It becomes a product"
+- Step 3: "You leave with a business—not an idea"
+
+**S5 ABOUT:** Aleksandr's testimony — "What is mine to build?"
+
+**S6 TESTIMONIALS:** 6 quotes (Sergey, Sandra, Oyi, Karime, Aleksa, Alexey)
+
+**S7 BOOKING (#pricing-section #booking):**
+- 4 deliverable bullets
+- **$555** — "One session. One business."
+- Guarantee: "If you don't leave with a clear one-sentence business, you don't pay."
+- Resonance Permission: *"If your heart isn't resonating with this, don't sign up."*
+- CTA: "Book Your Session" → Stripe
+- Secondary: "Not sure? Book a free 15-min call" → Cal.com
+- Tertiary: "Already paid? Book your session here →" → Cal.com
+
+**S8 FAQ:** 4 questions
+
+**EMOTIONAL CLOSE:**
+- *"You've been carrying something you can't name. That's why nothing has fully clicked."*
+- **"This is where it does."**
+- CTA: "See My Business on One Page — $555" → Stripe
+
+### SCREEN 5: Post-Payment
+
+Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
+
+### Status
+
+| Element | Status |
+|---------|--------|
+| All screens | ✅ Live |
+| Video embed | ✅ Live (correct video) |
+| 3 CTAs on result page | ✅ Live |
+| Resonance Permission | ✅ Live |
+| Divine Timing (1 month) | ✅ Live |
+| Stripe → Cal.com | ✅ Confirmed |
+| Custom success page | ❌ Not built (not needed Phase 1) |
+
+---
+
 ## Human Design Operational Overlay
 
 > *Added April 2, 2026 — Oyi's HD reading mapped to tactical decisions.*
