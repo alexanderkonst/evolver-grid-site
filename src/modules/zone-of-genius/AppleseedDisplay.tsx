@@ -70,76 +70,64 @@ const OwnershipSection = ({
     return (
         <div className="space-y-6 pt-4 max-w-md mx-auto">
 
-            {/* EMAIL GATE — before unlock */}
+            {/* EMAIL GATE — "Don't lose this" */}
             {!emailUnlocked && !isSaved && (
-                <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-2 p-4 rounded-xl liquid-glass ring-1 ring-white/10">
-                    <p className="text-xs text-white/50 text-center">Enter your email to save your result</p>
-                    <div className="flex w-full gap-2">
-                        <div className="relative flex-1">
+                <div className="space-y-3 text-center">
+                    <p className="text-sm font-semibold text-white/80">Don't lose this</p>
+                    <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-3 p-5 rounded-xl liquid-glass ring-1 ring-white/10">
+                        <p className="text-xs text-white/45 leading-relaxed">
+                            Enter your email to save your result<br/>
+                            and come back to it anytime
+                        </p>
+                        <div className="relative w-full">
                             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/25" />
                             <input
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your@email.com"
-                                className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-white/80 placeholder:text-white/20 focus:outline-none focus:border-[#8460ea]/40 transition-colors"
+                                className="w-full pl-9 pr-3 py-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-white/80 placeholder:text-white/20 focus:outline-none focus:border-[#8460ea]/40 transition-colors"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
                             disabled={emailSaving || !email.trim()}
-                            className="liquid-glass-strong rounded-lg px-4 py-2 text-sm font-medium text-white ring-1 ring-white/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-40"
+                            className="w-full liquid-glass-strong rounded-full px-6 py-3.5 text-white font-semibold text-base
+                                       ring-1 ring-white/20
+                                       shadow-[0_0_30px_rgba(132,96,234,0.2)]
+                                       hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
+                                       hover:scale-105 active:scale-95
+                                       transition-all duration-300 ease-out
+                                       disabled:opacity-40"
                         >
-                            {emailSaving ? '...' : 'Unlock'}
+                            {emailSaving ? 'Saving...' : 'Save my result'}
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             )}
 
-            {/* ─── STEP 1: OWN IT (primary, dominant) ─── */}
+            {/* ─── SUCCESS STATE: after save ─── */}
             {(emailUnlocked || isSaved) && (
                 <div className="space-y-2 text-center">
-                    <p className="text-xs text-white/40 uppercase tracking-wider">Save your result</p>
+                    <p className="text-sm text-white/60">✓ Saved</p>
+                    <p className="text-xs text-white/30">You can come back to this anytime.</p>
 
-                    {!isSaved && onSave ? (
-                        <>
-                            <button
-                                className="w-full liquid-glass-strong rounded-full px-6 py-4 text-white font-semibold text-base
-                                           ring-1 ring-white/20
-                                           shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                           hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                           hover:scale-105 active:scale-95
-                                           transition-all duration-300 ease-out
-                                           flex items-center justify-center gap-2 disabled:opacity-40"
-                                onClick={onSave}
-                                disabled={isSaving}
-                            >
-                                <Sparkles className="w-4 h-4" />
-                                {isSaving ? 'Saving...' : 'Save to my profile'}
-                            </button>
-                            <p className="text-[11px] text-white/25">
-                                Access it anytime. Build on it when you're ready.
-                            </p>
-                        </>
-                    ) : isSaved && onContinue ? (
-                        <>
-                            <p className="text-xs text-white/50 mb-2">✓ Saved</p>
-                            <button
-                                className="w-full liquid-glass-strong rounded-full px-6 py-4 text-white font-semibold text-base
-                                           ring-1 ring-white/20
-                                           shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                           hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                           hover:scale-105 active:scale-95
-                                           transition-all duration-300 ease-out
-                                           flex items-center justify-center gap-2"
-                                onClick={onContinue}
-                            >
-                                {continueLabel}
-                                <Sparkles className="w-4 h-4" />
-                            </button>
-                        </>
-                    ) : null}
+                    {onContinue && (
+                        <button
+                            className="w-full mt-3 liquid-glass-strong rounded-full px-6 py-4 text-white font-semibold text-base
+                                       ring-1 ring-white/20
+                                       shadow-[0_0_30px_rgba(132,96,234,0.2)]
+                                       hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
+                                       hover:scale-105 active:scale-95
+                                       transition-all duration-300 ease-out
+                                       flex items-center justify-center gap-2"
+                            onClick={onContinue}
+                        >
+                            {continueLabel}
+                            <Sparkles className="w-4 h-4" />
+                        </button>
+                    )}
                 </div>
             )}
 
