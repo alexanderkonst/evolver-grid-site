@@ -2425,3 +2425,81 @@ The technology transfers to any lead magnet, any assessment, any personalized ou
 **First implementation:** Zone of Genius share flow (`src/components/sharing/ShareZoG.tsx`)
 
 ---
+
+## Domain 52: Ritual Conversion Architecture
+
+> *Added April 2, 2026 — Extracted from Godfather Offer Architect session.*
+
+**The Insight:** A high-conversion funnel is not a sequence of pages. It is a ritual with four stages:
+
+| Stage | Experience | Mechanism |
+|-------|-----------|-----------|
+| **Recognition** | "That's me" | Mirror, not instruction. The user sees themselves reflected accurately. |
+| **Destabilization** | "This is why I've been stuck" | The cost of staying the same becomes visible. Not through explanation — through somatic truth. |
+| **Re-orientation** | "It's a structure problem, not a skill problem" | The frame shifts. The solution category changes. |
+| **Commitment** | "This is the missing step" | Inevitability collapses all alternatives into one action. |
+
+**The Conversion Leak:** Compassionate softening. Protecting the user from the full truth of their situation — not manipulatively, but too gently. That gentleness = where conversion leaks.
+
+**The Fix:** Consequence, not explanation. Move faster into the cost of staying the same. The transition should feel like: "Oh. This is me." → 0.5 sec later → "Oh… this is why I've been stuck."
+
+**System Principles:**
+1. One dominant action per screen
+2. No loops backward
+3. No micro-escapes from commitment
+4. Every extra word must increase inevitability — if it doesn't, it weakens the field
+
+**Anti-patterns (micro-escapes that kill conversion):**
+- Too many soft exits
+- Too many "think about it" paths
+- Backward loops ("see your full reveal")
+- Split-focus CTAs that create decision paralysis
+
+**The test:** Your right buyer does NOT need more options, more safety, or more explanation. They need one clean, undeniable next step.
+
+**First implementation:** Supernova Funnel v2.0 — ZoG → Result → Video → Booking
+
+---
+
+## Domain 53: The MEET Principle
+
+> *Added April 2, 2026 — The deepest conversion insight from the Godfather session.*
+
+**The MEET is not when they feel seen. The MEET is when they cannot unsee the cost of staying the same.**
+
+Most conversion systems optimize for:
+- ✅ Feeling seen
+- ✅ Feeling impressed  
+- ✅ Feeling understood
+
+But stop before:
+- ❌ Internally cornered by truth
+
+The missing 5-10% of conversion comes from this single transition: from "I feel recognized" to "I cannot stay here anymore."
+
+**How to create it:**
+
+The somatic transition happens in 0.5 seconds, NOT through explanation. The copy pattern:
+
+> "This is real."
+> "You've been doing this for years."
+> → (0.5s) →
+> "And it's exactly why this has been so hard to turn into something that works."
+
+Then the structural reframe:
+
+> "Because this is a pattern. Not a business."
+> "Patterns don't get paid. Business structure does."
+
+Then the blade:
+
+> "You've seen this before. You knew it was true."
+> "And still nothing changed."
+
+This sequence moves from recognition → consequence → inevitability without ever explaining. It mirrors, then exposes the cost.
+
+**The spine:** "Insight alone doesn't get paid. Business structure around the insight does."
+
+**First implementation:** AppleseedDisplay.tsx — The Gap (Screen 2 of Supernova Funnel)
+
+---
