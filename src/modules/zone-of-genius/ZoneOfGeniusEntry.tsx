@@ -309,10 +309,6 @@ const ZoneOfGeniusEntry = () => {
 
     // Step: Appleseed Result
     if (step === "appleseed-result" && appleseed) {
-        // Determine the next step based on return path
-        const nextPath = getPostZogRedirect(returnPath) || "/game";
-        const isOnboarding = returnPath === "/start";
-
         return (
             <GameShellV2 hideNavigation>
                 <AppleseedDisplay
@@ -321,8 +317,6 @@ const ZoneOfGeniusEntry = () => {
                     isSaved={isSaved}
                     onSave={handleSaveClick}
                     isSaving={isSaving}
-                    onContinue={() => navigate(nextPath)}
-                    continueLabel={isOnboarding ? "Continue Onboarding" : "Continue"}
                 />
             </GameShellV2>
         );
