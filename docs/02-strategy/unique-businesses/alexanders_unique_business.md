@@ -4683,10 +4683,6 @@ Oyi's 8-phase lunar framework mapped to the annual seeing phase:
 
 The Seeing Phase is doing what it promised: every session produces recognition (re-cognition — knowing again).
 
-### The Michael Phoenix Signal
-
-External validation from Oyi's network: Michael Phoenix (Nike, CVS, project management black belt) described the founder's gift as: "thought → execution in less than 48 hours." This IS the unique gift — taking someone's invisible pattern and turning it into a visible, working, deployable system within one sitting. Worth a conversation as a potential venture studio node.
-
 ### Actionable Next Steps (from Oyi's Prescription)
 
 | # | Action | Priority |
