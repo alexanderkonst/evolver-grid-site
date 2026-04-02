@@ -2,7 +2,7 @@
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *February 19, 2026 · v2.1*
+> *February 19, 2026 · v7.3*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
@@ -10,7 +10,71 @@
 >
 > **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
 
+## Table of Contents
+
+### I. Core Artifacts (The 14-Domain OS)
+1. [Artifact Status](#artifact-status)
+2. [Artifact Production Sequence](#artifact-production-sequence)
+3. [PMF Hypothesis](#pmf-hypothesis)
+4. [The Artifacts](#the-artifacts)
+   - [1. Myth](#1-myth)
+   - [2. Unique Gift](#2-unique-gift)
+   - [3. Tribe (ICP)](#3-tribe-icp)
+   - [4. Life Situation](#4-life-situation)
+   - [5. Pain (Point A)](#5-pain-point-a--5-layer-slicer-per-segment)
+   - [7. Dream Outcome (Point B)](#7-dream-outcome-point-b)
+   - [8. Transformational Promise](#8-transformational-promise-point-a--point-b)
+   - [8B. Transformation Snapshot](#8b-transformation-snapshot)
+   - [9. The Absurdly Simple Strategy](#9-the-absurdly-simple-strategy)
+   - [10. Method (MAP → MATCH → MOVE)](#10-method-map--match--move)
+   - [11. Proof (Embodied Credibility)](#11-proof-embodied-credibility)
+   - [12. Channel](#12-channel)
+   - [13. Godfather Offer Probe](#13-godfather-offer-probe--march-28-2026)
+   - [14. The Golden DM Architecture](#14-the-golden-dm-architecture)
+
+### II. Methodology & Sessions
+- [Domain 13: Effort vs. Focus](#domain-13-effort-vs-focus-march-23-2026)
+- [Mirror Session — First Offer](#mirror-session--first-offer-march-3-2026)
+- [Ignition Methodology — Playbook Compression Map](#ignition-methodology--playbook-compression-map-march-4-2026)
+- [Ignition Session SOP v1.0](#ignition-session-sop-v10-march-5-2026)
+- [⭐ Ignition Session SOP v2.0](#-ignition-session-sop-v20--the-redesigned-flow-march-19-2026)
+- [Session Flow v1.0 — As Delivered](#session-flow-v10--as-actually-delivered-session-1-ogi-march-5-6-2026)
+
+### III. Strategy & Economics
+- [Strategy Staging — The Natural Ladder](#strategy-staging--the-natural-ladder-march-4-2026)
+- [Venture Architecture — The Sequence Emerging](#venture-architecture--the-sequence-emerging-march-12-2026)
+- [March 2026 Strategy — 10K Engine](#march-2026-strategy--10k-engine-march-3-4-2026)
+- [Value Ladder v2.0 — Three Containers](#value-ladder-v20--three-containers-march-10-2026)
+- [Sales Pipeline & Forecast v4.0](#sales-pipeline--forecast-v40-march-23--april-6-2026)
+- [7 Activation Channels — Realistic Projections](#7-activation-channels--realistic-projections-march-25-26-2026)
+
+### IV. Distribution & Movement
+- [Distribution Strategy — Instantiated](#distribution-strategy--instantiated-march-18-2026-ceremony-night)
+- [⭐ The Coherent Distribution Flow](#-the-coherent-distribution-flow--tactics-as-one-act-march-19-2026)
+- [Alexander's Instantiated Launch Plan](#alexanders-instantiated-launch-plan-march-19-2026)
+- [Movement OS — The Movement Layer](#movement-os--the-movement-layer)
+- [Root Cause Analysis](#root-cause-analysis)
+
+### V. Downloads (Ceremony Crystallizations)
+- [The Organizing Principle of Sales](#download-the-organizing-principle-of-sales-march-31-2026)
+- [Reach Out to Potential Collaborators — 5 Segments](#download-reach-out-to-potential-collaborators--the-5-segments-march-31-2026)
+- [Self-Organize Through Cross-Pollination](#download-self-organize-through-cross-pollination-march-31-2026)
+- [Asset Matchmaking & Equilibrium Clock](#download-asset-matchmaking--equilibrium-clock-march-31-2026)
+- [The Funnel Page Architecture v3.0](#download-the-funnel-page-architecture-v30-march-31-2026)
+- [Moon Cycle Intention Framework](#moon-cycle-intention-framework-march-24-2026)
+- [The Noble = Free Antidote](#the-noble--free-antidote--deepened-march-24-2026)
+
+### VI. Live Assets (Current)
+- [Video Script v1.0](#video-script-v10)
+- [Live Funnel Spec v1.0](#live-funnel-spec-v10)
+
+### VII. Operational Overlays
+- [Human Design Operational Overlay](#human-design-operational-overlay)
+
+---
+
 **Tagline v1.0:** `Helps build ventures from who you already are`
+
 
 ## Artifact Status
 
