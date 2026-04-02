@@ -3759,7 +3759,7 @@ Venture Studio → Ecosystem (% / equity / rev share) ← LAYER 4: FUTURE
 | Dimension | Spec |
 |-----------|------|
 | **Name** | The Build: Getting to PMF |
-| **Price** | $1,111 upfront + capped $2,500 from first $10K revenue |
+| **Price** | Cohort 1: $888 or $1,111 flat (feeling into it). Rev share introduced Cohort 2+ after group format proven |
 | **Cohort** | 4-6 people (intimacy matters for this depth of work) |
 | **Duration** | 4 weeks (3 live calls + 1 integration call) |
 | **Cadence** | Weekly |
@@ -3792,10 +3792,10 @@ When person A watches person B get their business named in real time:
 | Metric | Value |
 |--------|-------|
 | Participants | 4-6 |
-| Upfront revenue | 4 × $1,111 = $4,444 |
-| Rev share (over 3-6mo) | Up to 4 × $2,500 = $10,000 |
-| Total per cohort | ~$14,444 |
-| Run rate at 1/month | ~$14K/mo |
+| Cohort 1 price | $888 or $1,111 flat (no rev share — simplify until format proven) |
+| Upfront revenue | 4 × $888 = $3,552 — or 4 × $1,111 = $4,444 |
+| Cohort 2+ (after validation) | $1,111 upfront + capped $2,500 rev share |
+| Run rate at 1/month | $3.5K-$4.4K/mo upfront (Cohort 1) → $14K/mo (Cohort 2+) |
 | Time investment | 4 calls × 2h + async = ~12h/cohort |
 
 #### The Ignition → Build Close
@@ -3833,6 +3833,38 @@ WEEK 3:    First 4+ Ignition graduates → announce Cohort 1
 WEEK 4:    The Build: Cohort 1 begins
 ```
 
+### GFOA Solo Dominance Verdict (April 2, 2026)
+
+> *"You do NOT build this as a collaborative product right now. Collapse YOUR funnel → get paid → THEN invite others into YOUR system."*
+
+**Phase 1 — Solo Dominance (next 14 days):**
+- ONLY goal: get 3-10 people to pay $555
+- DM 10-20 warm people daily. Post daily (LinkedIn minimum)
+- Nothing else matters. Not founders program, not collaboration, not perfect system
+- **KPI:** first 3 paid sessions = proof of life
+
+**Phase 2 — Extract Pattern:**
+- After 3-10 sessions: same objections, same breakthroughs, same transformations
+- That pattern becomes the Group Build structure
+
+**Phase 3 — Group Build from reality, not theory:**
+- The Build launches from PROVEN pattern, not spec
+- Cohort 1 at flat pricing ($888 or $1,111) — no rev share complexity
+- Revenue complexity (rev share) added Cohort 2+ when format validated
+
+**Revenue Sequencing Rule:**
+```
+$555 Ignition → $888-$1,111 Group Build (flat) → THEN rev share / venture
+                                                  (never before validated)
+```
+
+**Communication Compression Rule (from Cori's feedback):**
+> "Can this be understood in 10 seconds?"
+
+| ❌ | ✅ |
+|---|---|
+| "Universal system for unique businesses" | "I turn what you already do into something people pay for" |
+
 ---
 
 ## Collaboration: Roso & Cori — The Clarity Boosters (April 2, 2026)
@@ -3854,10 +3886,12 @@ WEEK 4:    The Build: Cohort 1 begins
 | Aspect | Status |
 |--------|--------|
 | **Original concept** | "Founders Program" — joint venture building a group program for founders |
-| **Current reality** | 2 months in, no test message deployed.  Roso needs income now. Cori is protective of time. Alexander's own funnel just went live |
+| **Current reality** | 2 months in, no test message deployed. Roso needs income now. Cori is protective of time. Alexander's own funnel just went live |
 | **The realization** | The Build (value ladder step 2) IS the founders program — same container, evolved form |
-| **Recommended path** | Apprentice facilitators in Cohort 1 (15-20% revenue share each) → then go through The Build themselves in Cohort 2 → then Layer 3 (Transmission) |
-| **Key dynamic** | They are not co-founders. They are potential first facilitators. Their medicines complement Alexander's |
+| **GFOA verdict** | Do NOT build collaboratively right now. Collapse YOUR funnel → get paid → THEN invite into YOUR system |
+| **Current role** | Friends who review the funnel and give feedback. NOT co-builders. NOT apprentice facilitators yet |
+| **Future path** | After 3-10 paid Ignition sessions: "I'm running this with real clients now. If it works, we can build something together from reality — not theory." |
+| **Key dynamic** | They are not co-founders. They are potential future facilitators. Their medicines complement Alexander's. But the timing is: SOLO FIRST |
 
 ### What Cori's Feedback Taught
 
