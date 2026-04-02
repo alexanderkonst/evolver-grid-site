@@ -5276,7 +5276,7 @@ Each result → **CTA to `/ignite#hero-video`** + retake. No backward loops.
 - Closing: "You've proven your value—for other people. The question is: What is yours to build?"
 
 **S3 VIDEO (#hero-video):**
-- YouTube: "Building One's Unique Business" (pnQzKNJyP0A)
+- YouTube: "Why Insight Alone Never Turns Into Income" — NotebookLM (afWWcXUqnLI)
 - Nuclear line: *"If you're still thinking about this after watching… you already know."*
 
 **S4 HOW IT WORKS:**
