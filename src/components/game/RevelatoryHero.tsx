@@ -10,10 +10,11 @@ interface ThreeLensesData {
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
     title: string;
-    actionStatement?: string; // "You architect coherent nested living optimal systems from complexity"
+    actionStatement?: string;
     threeLenses?: ThreeLensesData;
     tagline?: string;
     children?: ReactNode;
+    darkMode?: boolean;
     // Legacy props for backward compatibility
     subtitle?: string;
     subtitlePlain?: string;
@@ -30,12 +31,25 @@ const RevelatoryHero = ({
     threeLenses,
     tagline,
     children,
+    darkMode = false,
     subtitle,
     subtitlePlain
 }: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
-    const palette = isAppleseed
+    const palette = darkMode
+        ? {
+            gradient: "from-transparent to-transparent",
+            icon: Sparkles,
+            iconBg: "bg-[#8460ea]/15",
+            iconColor: "text-[#8460ea]",
+            textPrimary: "text-white/90",
+            textSecondary: "text-white/60",
+            textMuted: "text-[#8460ea]",
+            glowColor: "rgba(132,96,234,0.2)",
+            divider: "bg-white/10",
+        }
+        : isAppleseed
         ? {
             gradient: "from-white/70 via-[#f0f4ff]/80 to-white/60",
             icon: Sparkles,
@@ -62,7 +76,7 @@ const RevelatoryHero = ({
     const IconComponent = palette.icon;
 
     return (
-        <div className="relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md border border-white/40">
+        <div className={`relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md ${darkMode ? 'liquid-glass ring-1 ring-white/10' : 'border border-white/40'}`}>
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${palette.gradient}`} />
 
