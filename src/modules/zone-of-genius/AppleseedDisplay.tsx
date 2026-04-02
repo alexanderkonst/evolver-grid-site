@@ -288,8 +288,8 @@ const AppleseedDisplay = ({
                             Not a business.
                         </p>
                         <p className="text-xs text-white/35 leading-relaxed">
-                            Patterns don't get paid.<br/>
-                            Business structure does.
+                            Insight alone doesn't get paid.<br/>
+                            Business structure around it does.
                         </p>
                     </div>
 
@@ -300,6 +300,30 @@ const AppleseedDisplay = ({
                         </p>
                         <p className="text-xs font-medium text-white/60">
                             And still nothing changed.
+                        </p>
+                    </div>
+
+                    {/* CONSEQUENCE BLOCK — converts abstract pain into felt, time-bound loss */}
+                    <div className="text-center space-y-2 py-2">
+                        <p className="text-[11px] text-white/35 leading-relaxed">
+                            If nothing changes:
+                        </p>
+                        <div className="flex flex-col items-center gap-1">
+                            <p className="text-xs text-white/45 leading-relaxed">
+                                <span className="text-white/25">→</span> you will keep explaining this differently every time
+                            </p>
+                            <p className="text-xs text-white/45 leading-relaxed">
+                                <span className="text-white/25">→</span> people will keep getting value without paying
+                            </p>
+                            <p className="text-xs text-white/45 leading-relaxed">
+                                <span className="text-white/25">→</span> another 6–12 months will pass in the same loop
+                            </p>
+                        </div>
+                        <p className="text-xs text-white/35 leading-relaxed mt-1">
+                            Not because you're wrong.
+                        </p>
+                        <p className="text-xs font-medium text-white/55">
+                            Because this isn't structured yet.
                         </p>
                     </div>
 
@@ -330,7 +354,7 @@ const AppleseedDisplay = ({
                         </span>
                     </a>
 
-                    {/* CTA 2 (FAST): I see it — let's build it */}
+                    {/* CTA 2 (FAST): Identity shift — stop circling */}
                     <a
                         href="/ignite#pricing-section"
                         className="w-full flex items-center justify-center gap-2 p-3
@@ -339,7 +363,7 @@ const AppleseedDisplay = ({
                                    transition-all duration-200 text-sm text-white/45
                                    hover:text-white/80"
                     >
-                        I see it — let's build it
+                        I'm done circling this — let's build it
                         <ArrowRight className="w-3.5 h-3.5" />
                     </a>
 

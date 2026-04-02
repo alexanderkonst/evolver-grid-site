@@ -247,6 +247,47 @@ const DivineTimingCapture = () => {
   );
 };
 
+/* ─── Micro-Commitment Block — psychological ownership ─── */
+const MicroCommitmentBlock = () => {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  const options = [
+    "I struggle to explain what I do",
+    "People get value but don't pay",
+    "I've tried multiple directions",
+    "I know I'm close but can't land it",
+  ];
+
+  return (
+    <section className="space-y-4 max-w-md mx-auto" aria-label="Self-diagnostic">
+      <p className="text-sm text-white/60 text-center font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>
+        Which of these feels most true right now?
+      </p>
+      <div className="space-y-2">
+        {options.map((opt, i) => (
+          <button
+            key={i}
+            onClick={() => setSelected(i)}
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-200 ${
+              selected === i
+                ? "liquid-glass-strong ring-1 ring-[#8460ea]/40 text-white/90 shadow-[0_0_15px_rgba(132,96,234,0.15)]"
+                : "liquid-glass ring-1 ring-white/5 text-white/50 hover:text-white/70 hover:ring-white/15"
+            }`}
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+      {selected !== null && (
+        <p className="text-xs text-white/55 text-center font-medium animate-in fade-in slide-in-from-bottom-2 duration-300">
+          Good. That's exactly what we solve in the session.
+        </p>
+      )}
+    </section>
+  );
+};
+
 const IgniteSession = () => {
   const location = useLocation();
   const inShell = location.pathname.startsWith("/game/");
@@ -317,6 +358,12 @@ const IgniteSession = () => {
             You're more capable than your results show.<br/>And you know it.
           </p>
 
+          {/* Proximity reframe — reduce overwhelm, increase readiness */}
+          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            You're not far away.<br/>
+            <span className="text-white/55 font-medium">You're one structural layer away.</span>
+          </p>
+
           <div className="flex flex-col items-center gap-4 pt-6">
 
             {/* Paid path: Ignition Session */}
@@ -327,7 +374,7 @@ const IgniteSession = () => {
               className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              <span>Turn this into a business people understand — and pay for ($555)</span>
+              <span>Give it a structure that holds—even when you're not there ($555)</span>
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                 <ArrowRight className="w-3 h-3" />
               </span>
@@ -389,6 +436,17 @@ const IgniteSession = () => {
           <p className="text-xs text-white/40 text-center mt-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
             If you're still thinking about this after watching… you already know.
           </p>
+
+          {/* Non-optionality — felt consequence, not intellectual */}
+          <div className="text-center mt-5 space-y-1">
+            <p className="text-xs text-white/45 leading-relaxed">
+              This doesn't stay neutral.
+            </p>
+            <p className="text-xs text-white/55 leading-relaxed font-medium">
+              It either becomes a business—<br/>
+              or it stays something people benefit from for free.
+            </p>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════
@@ -469,6 +527,11 @@ const IgniteSession = () => {
             ))}
           </div>
         </section>
+
+        {/* ═══════════════════════════════════════════════
+            MICRO-COMMITMENT — psychological ownership before purchase
+            ═══════════════════════════════════════════════ */}
+        <MicroCommitmentBlock />
 
         {/* ═══════════════════════════════════════════════
             S7: BOOKING — decision clarity + safety + inevitability
@@ -605,6 +668,13 @@ const IgniteSession = () => {
             You've been carrying something you can't name.
             <br />That's why nothing has fully clicked.
           </p>
+
+          {/* Pressure line — the weapon */}
+          <p className="text-xs text-white/40 font-medium max-w-sm mx-auto">
+            Clarity without structure doesn't compound.<br/>
+            It leaks.
+          </p>
+
           <p className="text-sm text-white/80 font-medium">
             This is where it does.
           </p>
