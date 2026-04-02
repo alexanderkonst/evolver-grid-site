@@ -5694,13 +5694,13 @@ Stripe checkout → Stripe redirects to Cal.com → user books 90-min session.
 | Resonance Permission | ✅ Live |
 | Stripe → Cal.com | ✅ Confirmed |
 | No backward loops | ✅ Removed |
-| Ownership-first email gate | ✅ Live ("Don't lose this" framing) |
+| Ownership-first email gate | ✅ Live ("Save this and come back to it anytime") |
 | Dark liquid glass on all ZoG screens | ✅ Live |
 | Hash-based scroll (#hero-video) | ✅ Live |
 | Share section (dark glass, delayed) | ✅ Live |
-| **v3.0 copy (decision collapse)** | 🔜 Documented, not yet implemented |
-| **Guarantee** | 🔜 Documented, not yet implemented |
-| **Quiz as main path** | 🔜 Documented, not yet implemented |
+| **v3.0 copy (decision collapse)** | ✅ Implemented (April 2, 2026) |
+| **Guarantee** | ✅ Implemented ("you don't pay") |
+| **Quiz as main path** | ✅ Implemented (primary CTA from result page) |
 | Silent account creation | ❌ Not built (backend Phase 2) |
 | Magic link email | ❌ Not built (backend Phase 2) |
 
