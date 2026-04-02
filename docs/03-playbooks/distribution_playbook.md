@@ -1368,12 +1368,31 @@ If any answer is wrong → rewrite until it's right.
 
 ---
 
+## Conversion Friction: Beyond Clicks (April 2026)
+
+> **Note:** Friction reduction (Sub-Result 5) traditionally focuses on reducing STEPS (clicks, forms, loading times). The [Controlled Collapse Sequence](../01-vision/integral_transactional_field_theory.md) adds a deeper layer: **decision friction.**
+>
+> Decision friction = "I'm not sure if I need this right now."
+>
+> This is removed NOT by simplifying the checkout, but by:
+> 1. **Consequence Block** — making inaction feel costly
+> 2. **Micro-Commitment** — having them name their own pain
+> 3. **Non-optionality Frame** — eliminating the neutral option
+> 4. **Identity-Shift CTA** — making the button feel like who they already are
+>
+> Distribution reach + marketing resonance + conversion friction elimination = collapse.
+>
+> See: [Marketing Playbook — Controlled Collapse Pattern](./marketing_playbook.md) | [ITFT Part IX](../01-vision/integral_transactional_field_theory.md)
+
+---
+
 *Codified: January 27, 2026*
 *Updated: February 18, 2026 — partnership distribution model, myth-driven distribution principle*
 *Updated: March 26, 2026 — Part V: Realistic Projections (cold-start truth, anti-patterns, channel sequencing)*
 *Updated: March 31, 2026 — Part VI: AI-Native Distribution Infrastructure (GHL Ask AI, Frankie Model, Purity Check, scaling sequence)*
 *Updated: March 31, 2026 — Part VII: The Organizing Principle of Sales (P × M × D × S = ONE, 5 collaborator segments, one-button funnel, digital surface holomap, cross-pollination distribution)*
 *Updated: March 31, 2026 — Part VIII: Operational Launch Kit (3 campaigns, customer journey fixes, purity standard)*
+*Updated: April 2, 2026 — Conversion Friction: Beyond Clicks (decision friction layer, cross-reference to ITFT Part IX)*
 *This is the master blueprint for the Distribution Compiler*
 
 
