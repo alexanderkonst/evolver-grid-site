@@ -115,33 +115,29 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 
   return (
     <div className="relative max-w-md mx-auto">
-      {/* Nudge — heart-open prompt */}
-      <p className="text-xs text-[#2c3150]/40 text-center mb-2 leading-relaxed">
-        Ask friends on socials — do they actually see you this way?
-      </p>
-
       {/* Main Share Button */}
-      <Button
-        variant="wabi-secondary"
-        size="lg"
-        className="w-full justify-center gap-2"
+      <button
+        className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full
+                   liquid-glass ring-1 ring-white/15
+                   text-sm font-medium text-white/60 hover:text-white/80
+                   hover:scale-[1.02] active:scale-95 transition-all"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Share2 className="w-5 h-5" />
-        <span>Share & ask friends</span>
-        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </Button>
+        <Share2 className="w-4 h-4" />
+        <span>Share with a friend</span>
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 p-3 bg-white rounded-xl border border-[#a4a3d0]/30 shadow-lg z-20 space-y-2">
+        <div className="absolute top-full left-0 right-0 mt-2 p-3 rounded-xl liquid-glass ring-1 ring-white/15 shadow-lg z-20 space-y-2">
           {shareLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
+              className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 transition-colors text-white/70"
               onClick={() => setIsOpen(false)}
             >
               <link.icon className="w-5 h-5 text-[#8460ea]" />
@@ -150,10 +146,10 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
           ))}
           <button
             onClick={handleCopy}
-            className="flex min-h-[44px] w-full items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#a4a3d0]/10 transition-colors text-[#2c3150]"
+            className="flex min-h-[44px] w-full items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 transition-colors text-white/70"
           >
             {copied ? (
-              <Check className="w-5 h-5 text-green-500" />
+              <Check className="w-5 h-5 text-green-400" />
             ) : (
               <Copy className="w-5 h-5 text-[#8460ea]" />
             )}
