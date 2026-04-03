@@ -99,7 +99,7 @@ const AppleseedRitualLoading = ({
                 </div>
 
                 {/* Decorative text */}
-                <p className="mt-8 text-sm text-white/30">
+                <p className="mt-8 text-sm text-white/70">
                     Your Zone of Genius is being articulated...
                 </p>
             </div>
