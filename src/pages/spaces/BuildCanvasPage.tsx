@@ -117,9 +117,9 @@ const ARTIFACT_META = [
    ──────────────────────────────────────── */
 
 const statusConfig: Record<ArtifactStatusValue, { label: string; bg: string; text: string }> = {
-  landed: { label: "Landed", bg: "rgba(74,168,124,0.15)", text: "#2a7a55" },
-  refining: { label: "Refining", bg: "rgba(212,168,67,0.15)", text: "#8a6d1a" },
-  draft: { label: "Draft", bg: "rgba(164,163,208,0.15)", text: "#8280b0" },
+  landed: { label: "Landed", bg: "rgba(74,168,124,0.2)", text: "#5fc992" },
+  refining: { label: "Refining", bg: "rgba(212,168,67,0.2)", text: "#dbb64a" },
+  draft: { label: "Draft", bg: "rgba(255,255,255,0.05)", text: "rgba(255,255,255,0.4)" },
 };
 
 const getPreview = (canvas: CanvasSnapshot, key: string): string | null => {
@@ -244,11 +244,10 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
 
   return (
     <div
-      className="rounded-xl border border-[#a4a3d0]/15 transition-all duration-300 group"
+      className="rounded-xl ring-1 ring-white/10 transition-all duration-300 group liquid-glass"
       style={{
-        background: `linear-gradient(135deg, ${meta.bgFrom}, ${meta.bgTo})`,
         borderColor: isExpanded ? `${meta.color}30` : undefined,
-        boxShadow: isExpanded ? `0 4px 20px ${meta.color}08` : undefined,
+        boxShadow: isExpanded ? `0 4px 20px ${meta.color}15` : undefined,
       }}
     >
       {/* Header — always visible */}
@@ -272,8 +271,8 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[11px] font-mono text-[#a4a3d0]">{meta.number}.</span>
-            <h3 className="text-sm font-semibold text-[#2c3150]">{meta.label}</h3>
+            <span className="text-[11px] font-mono text-white/30">{meta.number}.</span>
+            <h3 className="text-sm font-semibold text-white">{meta.label}</h3>
             <span
               className="px-2 py-0.5 rounded-full text-[10px] font-medium"
               style={{ background: st.bg, color: st.text }}
@@ -283,7 +282,7 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
             <PrecisionDot score={precision} />
           </div>
           {!isExpanded && (
-            <p className="text-xs text-[#2c3150]/50 leading-relaxed truncate">
+            <p className="text-xs text-white/40 leading-relaxed truncate">
               {preview || meta.question}
             </p>
           )}
@@ -291,7 +290,7 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
 
         {/* Expand chevron */}
         {hasContent && (
-          <div className="flex-shrink-0 mt-1 text-[#a4a3d0] group-hover:text-[#8460ea] transition-colors">
+          <div className="flex-shrink-0 mt-1 text-white/30 group-hover:text-[#8460ea] transition-colors">
             {isExpanded ? (
               <ChevronUp className="w-4 h-4" />
             ) : (
@@ -312,11 +311,11 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
               <p className="text-[10px] uppercase tracking-wider font-medium mb-1" style={{ color: meta.color }}>
                 {field.label}
               </p>
-              <p className="text-sm text-[#2c3150]/80 leading-relaxed">{field.value}</p>
+              <p className="text-sm text-white/60 leading-relaxed">{field.value}</p>
             </div>
           ))}
           {!details.length && preview && (
-            <p className="text-sm text-[#2c3150]/70 leading-relaxed">{preview}</p>
+            <p className="text-sm text-white/50 leading-relaxed">{preview}</p>
           )}
         </div>
       )}
@@ -339,12 +338,12 @@ const CanvasProgress = ({ status }: { status: CanvasArtifactStatus }) => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs">
-        <span className="text-[#2c3150]/50">Canvas Completion</span>
+        <span className="text-white/40">Canvas Completion</span>
         <span className="font-mono text-[#8460ea]">
           {landed}/{total} landed
         </span>
       </div>
-      <div className="h-1.5 rounded-full bg-[#a4a3d0]/10 overflow-hidden">
+      <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
         <div className="h-full rounded-full relative overflow-hidden" style={{ width: `${pctRefining}%` }}>
           <div
             className="absolute inset-0 rounded-full"
@@ -424,7 +423,7 @@ const BuildCanvasPage = () => {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center gap-3">
             <div className="premium-spinner" />
-            <p className="text-sm text-[#a4a3d0]">Loading canvas…</p>
+            <p className="text-sm text-white/30 animate-pulse">Loading canvas…</p>
           </div>
         </div>
       </GameShellV2>
@@ -442,10 +441,10 @@ const BuildCanvasPage = () => {
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#8460ea]/10 to-[#c8b7d8]/15 mb-5">
                 <Layers className="w-9 h-9 text-[#8460ea]" />
               </div>
-              <h1 className="text-2xl font-display font-bold text-[#2c3150] mb-2">
+              <h1 className="text-2xl font-display font-bold text-white mb-2">
                 Unique Business Canvas
               </h1>
-              <p className="text-[#2c3150]/60 max-w-md mx-auto leading-relaxed">
+              <p className="text-white/50 max-w-md mx-auto leading-relaxed">
                 The Canvas is built during a facilitated Ignition Session — 60–90 minutes
                 where we discover your uniqueness, forge your myth, identify your tribe,
                 and design your business around who you already are.
@@ -541,10 +540,7 @@ const BuildCanvasPage = () => {
         <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-5">
           {/* ── Hero ── */}
           <div
-            className="text-center py-8 px-6 rounded-2xl relative overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, rgba(200,183,216,0.35) 0%, rgba(212,209,232,0.4) 40%, rgba(231,233,245,0.45) 100%)",
-            }}
+            className="text-center py-8 px-6 rounded-2xl relative overflow-hidden liquid-glass ring-1 ring-white/10"
           >
             {/* Subtle shimmer overlay */}
             <div
@@ -555,17 +551,17 @@ const BuildCanvasPage = () => {
               }}
             />
             <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/50 backdrop-blur-sm mb-4 shadow-sm">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-sm mb-4 ring-1 ring-white/10">
                 <Layers className="w-7 h-7 text-[#8460ea]" />
               </div>
               <p className="text-[11px] text-[#8460ea] uppercase tracking-[0.2em] mb-2 font-medium">
                 Unique Business Canvas · {canvas.version}
               </p>
-              <h1 className="text-2xl lg:text-3xl font-display font-bold text-[#2c3150] mb-1">
+              <h1 className="text-2xl lg:text-3xl font-display font-bold text-white mb-1">
                 {canvas.tagline || "My Unique Business"}
               </h1>
               {canvas.facilitator && (
-                <p className="text-sm text-[#2c3150]/40">
+                <p className="text-sm text-white/40">
                   Facilitated by {canvas.facilitator}
                   {canvas.session_number ? ` · Session ${canvas.session_number}` : ""}
                   {canvas.session_date
@@ -585,7 +581,7 @@ const BuildCanvasPage = () => {
 
           {/* ── Controls ── */}
           <div className="flex items-center justify-between">
-            <h2 className="text-xs font-medium text-[#2c3150]/50 uppercase tracking-wider">
+            <h2 className="text-xs font-medium text-white/40 uppercase tracking-wider">
               7 Artifacts
             </h2>
             <div className="flex gap-2">
@@ -642,7 +638,7 @@ const BuildCanvasPage = () => {
             </Button>
             <Button
               variant="outline"
-              className="border-[#a4a3d0]/25 text-[#2c3150] rounded-xl hover:bg-[#8460ea]/5"
+              className="border-white/15 text-white/70 rounded-xl hover:bg-white/5"
               onClick={() => navigate("/game/build/refine")}
             >
               <ArrowRight className="w-4 h-4 mr-1.5" />
@@ -653,14 +649,14 @@ const BuildCanvasPage = () => {
           {/* ── Quick Links ── */}
           <div className="grid grid-cols-2 gap-2 text-center">
             <button
-              className="p-3 rounded-xl bg-white/40 border border-[#a4a3d0]/10 hover:border-[#8460ea]/20 transition-all text-xs text-[#2c3150]/60 hover:text-[#8460ea]"
+              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-[#8460ea]"
               onClick={() => navigate("/game/build/my-business")}
             >
               <Eye className="w-4 h-4 mx-auto mb-1" />
               My Business
             </button>
             <button
-              className="p-3 rounded-xl bg-white/40 border border-[#a4a3d0]/10 hover:border-[#8460ea]/20 transition-all text-xs text-[#2c3150]/60 hover:text-[#8460ea]"
+              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-[#8460ea]"
               onClick={() => navigate("/the-originals")}
             >
               <Users className="w-4 h-4 mx-auto mb-1" />

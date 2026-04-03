@@ -52,23 +52,31 @@ const ProfileOverviewContent = () => {
 
     const currentStep = getOnboardingStep(data?.onboardingStage);
 
+    if (isLoading) {
+        return (
+            <div className="p-6 lg:p-8 max-w-2xl mx-auto flex items-center justify-center min-h-[50vh]">
+                <div className="text-white/30 animate-pulse text-sm">Loading profile...</div>
+            </div>
+        );
+    }
+
     return (
         <div className="p-6 lg:p-8 max-w-2xl mx-auto space-y-8">
             {/* Welcome Header */}
             <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8460ea]/20 to-[#a4a3d0]/10 flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10">
                     <User className="w-8 h-8 text-[#8460ea]" />
                 </div>
-                <h1 className="text-2xl font-bold text-[#2c3150] mb-2">
-                    {isLoading ? "Loading..." : data?.firstName ? `Hello, ${data.firstName}!` : "Your Profile"}
+                <h1 className="text-2xl font-bold text-white mb-2">
+                    {data?.firstName ? `Hello, ${data.firstName}!` : "Your Profile"}
                 </h1>
-                <p className="text-[#a4a3d0]">
+                <p className="text-white/40">
                     Know yourself. Build your character.
                 </p>
             </div>
 
             {/* Stats */}
-            {!isLoading && data && (
+            {data && (
                 <div className="flex justify-center">
                     <PlayerStatsBadge
                         level={data.level}
@@ -80,41 +88,39 @@ const ProfileOverviewContent = () => {
             )}
 
             {/* Onboarding Progress */}
-            {!isLoading && (
-                <div className="rounded-2xl border border-[#a4a3d0]/20 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6">
-                    <OnboardingProgress currentStep={currentStep} />
-                </div>
-            )}
+            <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6">
+                <OnboardingProgress currentStep={currentStep} />
+            </div>
 
             {/* Quick Links */}
             <div className="grid grid-cols-2 gap-3">
                 <Link
                     to="/zone-of-genius/entry"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
+                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Sparkles className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-[#2c3150]">Zone of Genius</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Zone of Genius</span>
                 </Link>
                 <Link
                     to="/game/me/genius-business"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
+                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Briefcase className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-[#2c3150]">Genius Business</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Genius Business</span>
                 </Link>
                 <Link
                     to="/quality-of-life-map/assessment"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
+                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Map className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-[#2c3150]">Quality of Life</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Quality of Life</span>
                 </Link>
                 <Link
                     to="/game/me/mission"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-[#a4a3d0]/30 bg-white shadow-sm hover:shadow-md hover:bg-[#8460ea]/5 transition-all"
+                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Target className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-[#2c3150]">My Mission</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">My Mission</span>
                 </Link>
             </div>
 
@@ -122,7 +128,7 @@ const ProfileOverviewContent = () => {
             <div className="text-center">
                 <Link
                     to="/game/me/settings"
-                    className="inline-flex items-center gap-2 text-sm text-[#a4a3d0] hover:text-[#8460ea] transition-colors"
+                    className="inline-flex items-center gap-2 text-sm text-white/30 hover:text-white/60 transition-colors"
                 >
                     <Settings className="w-4 h-4" />
                     Profile Settings

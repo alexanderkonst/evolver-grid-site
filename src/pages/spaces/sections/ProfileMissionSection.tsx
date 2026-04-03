@@ -100,9 +100,9 @@ const ProfileMissionSection = () => {
                     <div>
                         <div className="flex items-center gap-3 mb-2">
                             <Target className="w-6 h-6 text-[#6894d0]" />
-                            <h1 className="text-2xl font-bold text-[#2c3150]">Mission Snapshot</h1>
+                            <h1 className="text-2xl font-bold text-white">Mission Snapshot</h1>
                         </div>
-                        <p className="text-[rgba(44,49,80,0.7)]">Keep your mission front and center.</p>
+                        <p className="text-white/50">Keep your mission front and center.</p>
                     </div>
                     <Panel3Actions
                         primaryLabel={missionCommitment ? "Edit Mission" : "Start Mission"}
@@ -111,40 +111,40 @@ const ProfileMissionSection = () => {
                     />
                 </div>
 
-                <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-5">
                     <div className="flex items-start justify-between gap-4">
                         <div>
-                            <div className="flex items-center gap-2 mb-2 text-sm text-[#2c3150]/60">
+                            <div className="flex items-center gap-2 mb-2 text-sm text-white/40">
                                 <Target className="w-4 h-4 text-[#6894d0]" />
                                 <span>Primary Mission</span>
                             </div>
                             {missionCommitment ? (
                                 <>
-                                    <h2 className="text-lg font-semibold text-[#2c3150] mb-1">
+                                    <h2 className="text-lg font-semibold text-white mb-1">
                                         {missionCommitment.mission_title}
                                     </h2>
-                                    <p className="text-sm text-[#2c3150]/70 mb-3">
+                                    <p className="text-sm text-white/60 mb-3">
                                         {missionCommitment.mission_statement}
                                     </p>
-                                    <div className="flex flex-wrap gap-2 text-xs text-[#2c3150]/60">
+                                    <div className="flex flex-wrap gap-2 text-xs">
                                         {missionCommitment.pillar && (
-                                            <span className="rounded-full bg-[#a4a3d0]/20 px-2 py-1">{missionCommitment.pillar}</span>
+                                            <span className="rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-white/50">{missionCommitment.pillar}</span>
                                         )}
                                         {missionCommitment.focus_area && (
-                                            <span className="rounded-full bg-[#a4a3d0]/20 px-2 py-1">{missionCommitment.focus_area}</span>
+                                            <span className="rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-white/50">{missionCommitment.focus_area}</span>
                                         )}
                                         {missionCommitment.challenge && (
-                                            <span className="rounded-full bg-[#a4a3d0]/20 px-2 py-1">{missionCommitment.challenge}</span>
+                                            <span className="rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-white/50">{missionCommitment.challenge}</span>
                                         )}
                                         {missionCommitment.outcome && (
-                                            <span className="rounded-full bg-[#a4a3d0]/20 px-2 py-1">{missionCommitment.outcome}</span>
+                                            <span className="rounded-full bg-white/5 ring-1 ring-white/10 px-2 py-1 text-white/50">{missionCommitment.outcome}</span>
                                         )}
                                     </div>
                                 </>
                             ) : (
                                 <>
-                                    <h2 className="text-lg font-semibold text-[#2c3150] mb-1">Set your mission</h2>
-                                    <p className="text-sm text-[rgba(44,49,80,0.7)]">
+                                    <h2 className="text-lg font-semibold text-white mb-1">Set your mission</h2>
+                                    <p className="text-sm text-white/50">
                                         Choose the mission that best matches your contribution to the planet.
                                     </p>
                                 </>

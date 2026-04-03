@@ -11,11 +11,11 @@ interface MyNextMoveSectionProps {
 }
 
 const VECTOR_COLORS: Record<string, string> = {
-    body: 'bg-green-100 text-green-700',
-    mind: 'bg-blue-100 text-blue-700',
-    emotions: 'bg-pink-100 text-pink-700',
-    spirit: 'bg-purple-100 text-purple-700',
-    uniqueness: 'bg-[#c8b7d8]/30 text-[#8460ea]'
+    body: 'bg-green-500/15 text-green-300',
+    mind: 'bg-blue-500/15 text-blue-300',
+    emotions: 'bg-pink-500/15 text-pink-300',
+    spirit: 'bg-purple-500/15 text-purple-300',
+    uniqueness: 'bg-[#8460ea]/15 text-[#a4a3d0]'
 };
 
 const VECTOR_LABELS: Record<string, string> = {
@@ -32,11 +32,11 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
 
     if (!action) {
         return (
-            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <h2 className="font-display text-lg font-semibold text-[#2c3150] mb-3">My Next Move</h2>
-                <div className="text-center py-8 text-[#2c3150]/60">
+            <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-5">
+                <h2 className="font-display text-lg font-semibold text-white mb-3">My Next Move</h2>
+                <div className="text-center py-8 text-white/40">
                     <p>Complete your Zone of Genius and Quality of Life assessments to get personalized recommendations.</p>
-                    <Button asChild className="mt-4">
+                    <Button asChild className="mt-4 liquid-glass-strong ring-1 ring-white/20 text-white hover:bg-white/10">
                         <Link to="/start">Start Zone of Genius</Link>
                     </Button>
                 </div>
@@ -46,10 +46,8 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
 
     const handleDoIt = () => {
         if (action.link) {
-            // Navigate to the action's content
             navigate(action.link);
         } else {
-            // Show completion confirmation
             setShowConfirm(true);
         }
     };
@@ -60,26 +58,26 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
     };
 
     return (
-        <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
-            <h2 className="font-display text-lg font-semibold text-[#2c3150] mb-4">My Next Move</h2>
+        <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-5 breathing-card">
+            <h2 className="font-display text-lg font-semibold text-white mb-4">My Next Move</h2>
 
             {/* Action Card */}
-            <div className="rounded-xl border-2 border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 mb-4">
+            <div className="rounded-xl liquid-glass-strong ring-1 ring-white/15 p-5 mb-4">
                 <div className="flex items-start gap-3 mb-3">
                     <span className="text-3xl">{action.emoji || '🎯'}</span>
                     <div className="flex-1">
-                        <h3 className="font-semibold text-lg text-[#2c3150]">{action.title}</h3>
-                        <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{action.description}</p>
+                        <h3 className="font-semibold text-lg text-white">{action.title}</h3>
+                        <p className="text-sm text-white/50 mt-1">{action.description}</p>
                     </div>
                 </div>
 
                 {/* Metadata */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#a4a3d0]/10 text-[#2c3150]/70">
+                    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-white/5 text-white/50 ring-1 ring-white/10">
                         <Clock className="w-3 h-3" />
                         {action.duration}
                     </span>
-                    <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full ${VECTOR_COLORS[action.vector]}`}>
+                    <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full ring-1 ring-white/10 ${VECTOR_COLORS[action.vector]}`}>
                         <Zap className="w-3 h-3" />
                         +{action.xp} XP · {VECTOR_LABELS[action.vector]}
                     </span>
@@ -88,44 +86,43 @@ const MyNextMoveSection = ({ action, onComplete, isCompleting }: MyNextMoveSecti
                 {/* Action Button */}
                 {showConfirm ? (
                     <div className="space-y-2">
-                        <p className="text-sm text-[rgba(44,49,80,0.7)] text-center">Did you complete this action?</p>
+                        <p className="text-sm text-white/50 text-center">Did you complete this action?</p>
                         <div className="flex gap-2">
-                            <Button
-                                variant="outline"
-                                className="flex-1"
+                            <button
+                                className="flex-1 py-2 rounded-lg liquid-glass ring-1 ring-white/15 text-white/70 hover:bg-white/10 transition-all text-sm font-medium"
                                 onClick={() => setShowConfirm(false)}
                             >
                                 Not Yet
-                            </Button>
-                            <Button
-                                className="flex-1 bg-[#b1c9b6] hover:bg-[#9ab8a5]"
+                            </button>
+                            <button
+                                className="flex-1 py-2 rounded-lg bg-[#b1c9b6]/20 ring-1 ring-[#b1c9b6]/30 text-[#b1c9b6] hover:bg-[#b1c9b6]/30 transition-all text-sm font-medium flex items-center justify-center gap-1"
                                 onClick={handleConfirmComplete}
                                 disabled={isCompleting}
                             >
-                                <Check className="w-4 h-4 mr-2" />
+                                <Check className="w-4 h-4" />
                                 Done!
-                            </Button>
+                            </button>
                         </div>
                     </div>
                 ) : (
-                    <Button
-                        className="w-full"
-                        size="lg"
+                    <button
+                        className="w-full py-3 rounded-xl liquid-glass-strong ring-1 ring-white/20 text-white font-semibold tracking-wide uppercase
+                                   shadow-[0_0_30px_rgba(132,96,234,0.15)] hover:shadow-[0_0_40px_rgba(132,96,234,0.25)]
+                                   hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
                         onClick={handleDoIt}
                     >
-                        DO IT
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                        Read Profile
+                        <ArrowRight className="w-4 h-4" />
+                    </button>
                 )}
             </div>
 
             {/* Explore More */}
             <Link
                 to="/game/transformation"
-                className="flex items-center justify-center gap-1 text-sm text-[#2c3150]/60 hover:text-[#2c3150] transition-colors"
+                className="flex items-center justify-center gap-1 text-sm text-white/30 hover:text-white/60 transition-colors"
             >
-                Not this? Explore more
-                <ChevronRight className="w-4 h-4" />
+                ✦ Explore All Spaces
             </Link>
         </div>
     );
