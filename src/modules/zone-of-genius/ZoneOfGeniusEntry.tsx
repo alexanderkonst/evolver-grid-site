@@ -528,7 +528,7 @@ const ZoneOfGeniusEntry = () => {
                                         <ClipboardList className="w-5 h-5 text-[#6894d0]" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors tracking-wide">
+                                        <p className="text-base font-bold text-white/90 group-hover:text-white transition-colors tracking-wide">
                                             📋 Guided (10–15 min)
                                         </p>
                                         <p className="text-xs text-white/35 mt-1 leading-relaxed">Assessment of your top talents</p>
