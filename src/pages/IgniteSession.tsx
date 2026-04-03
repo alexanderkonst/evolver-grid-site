@@ -590,7 +590,7 @@ const IgniteSession = () => {
               <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed font-medium">
-              If you don't leave with a clear one-sentence business: you don't pay.
+              If you don't leave with a one-sentence business you recognize as yours: you don't pay.
             </p>
           </div>
 
