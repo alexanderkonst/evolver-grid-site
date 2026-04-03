@@ -230,19 +230,19 @@ function QuestionStep({
 }) {
   return (
     <div className="animate-in fade-in duration-300">
-      <p className="text-xs text-[#8460ea] font-medium mb-2 uppercase tracking-wider">
+      <p className="text-sm text-[#8460ea] font-semibold mb-3 uppercase tracking-[0.15em] font-sans">
         {question.label}
       </p>
-      <h2 className="text-lg font-semibold text-white/90 font-display mb-6 leading-snug">
+      <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-8 leading-snug">
         {question.question}
       </h2>
-      <div className="space-y-2.5">
+      <div className="space-y-3">
         {question.options.map((option, idx) => (
           <button
             key={idx}
             onClick={() => onAnswer(idx)}
-            className={`w-full p-4 rounded-xl ring-1 transition-all duration-200
-                        text-left text-sm leading-relaxed
+            className={`w-full p-5 rounded-xl ring-1 transition-all duration-200
+                        text-left text-base font-sans leading-relaxed
                         ${selectedIdx === idx
                 ? "ring-[#8460ea] bg-[#8460ea]/15 text-white shadow-md shadow-[#8460ea]/10"
                 : "ring-white/10 liquid-glass text-white/80 hover:ring-white/25 hover:text-white"
