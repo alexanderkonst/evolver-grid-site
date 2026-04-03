@@ -1,115 +1,72 @@
 
 
-# Apply Marketing Playbook to All Modules — Workflow + Execution
+## Apply Glassmorphism to Game Shell
 
-## Understanding
+The game shell currently uses opaque dark blue gradients for its three panels (SpacesRail, SectionsPanel, content area) and a light gray outer background. The glassmorphism blueprint calls for translucent glass panels floating over a rich background — not flat panels on solid colors.
 
-You're absolutely right. The sequence is:
+### Current State
+- **SpacesRail** (Panel 1): Opaque `bg-gradient-to-b from-[#1e4374] via-[#1a2f4a] to-[#0e1f35]`
+- **SectionsPanel** (Panel 2): Opaque `bg-gradient-to-b from-[#29549f]/95 via-[#1e4374]/90 to-[#1a2f4a]/95`
+- **Content area** (Panel 3): Light gray `bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]`
+- **Outer shell**: Same light gray with faint bokeh radials
+- **Glass CSS classes** already exist in `index.css` (`liquid-glass`, `liquid-glass-strong`)
 
-1. **Product Playbook Phase 1** (per module) -- define Master Result, Sub-Results, transformation (Point A to Point B)
-2. **Marketing Playbook** (per module) -- using the Master Result as input, generate Core Belief, Packaging, ICP, Customer Forces, and Landing Page content
+### Plan
 
-Without the Master Result and its sub-results, we can't write a landing page -- we wouldn't know what transformation to promise.
+**Step 1 — Rich background layer in GameShellV2**
 
-## What Already Exists
+Replace the light gray shell background with a dark atmospheric background using the existing `gradient.jpg` (already used in the ZoG assessment layout) plus a dark overlay:
 
-Good news: the taxonomy (v2.2) already has Master Results for every module. For example:
-- ZoG: "Who am I?" to "I know my genius and how to use it"
-- QoL: "Fog about my life" to "Clear map of where I stand"
-- Men's Circle: "Alone in my journey" to "Held by brothers"
-
-But these are one-liners. To build a proper landing page, we need the full depth from both playbooks.
-
----
-
-## Plan: Create a Reusable Workflow + Execute for Priority 1 Modules
-
-### Part 1: Create the Workflow SOP
-
-**File:** `docs/04-workflows/module_landing_page_workflow.md`
-
-A step-by-step SOP that can be applied to ANY module. It chains two playbooks:
-
-```text
-STEP 1: PRODUCT PLAYBOOK (Phase 1 only -- just the result layer)
-  1.1  Define Master Result (Point A to Point B -- one sentence)
-  1.2  List Sub-Results (3-7 intermediate wins)
-  1.3  Define Artifacts (what user walks away with)
-  1.4  Define Bridges (what comes before/after this module)
-
-STEP 2: MARKETING PLAYBOOK (Phases 0-4)
-  2.0  Core Belief (what we fundamentally believe about this domain)
-  2.1  Packaging (free/paid, format, value ladder position)
-  2.2  Frictionless Purchase (price, CTA, one-click readiness)
-  2.3  Core Message Stack (one-liner, resonance hook, anti-messages)
-  2.4  Messaging Ladder (hook, resonance, proof, action)
-  2.5  ICP Deep Dive -- Heart, Mind, Gut (Three Dan Tians)
-
-STEP 3: CUSTOMER FORCES ANALYSIS
-  3.1  PUSH (what drives them away from status quo)
-  3.2  PULL (what attracts them to this solution)
-  3.3  ANXIETY (what stops them from starting)
-  3.4  INERTIA (what keeps them stuck)
-  3.5  ENEMY (the status quo to fight)
-
-STEP 4: LANDING PAGE CONTENT
-  4.1  Hero (headline + subheadline + CTA)
-  4.2  For Whom section
-  4.3  Pain section (from Customer Forces PUSH)
-  4.4  Solution section (from Sub-Results)
-  4.5  Outcomes section (from Artifacts)
-  4.6  How It Works (from Sub-Results sequence)
-  4.7  Story/Origin (from Core Belief)
-  4.8  Final CTA
-
-OUTPUT: One markdown file per module at:
-  docs/06-modules/[module-slug]/landing_page_content.md
+```
+Fixed layer: gradient.jpg full-bleed + bg-[#0a0a1a]/60 overlay
 ```
 
-### Part 2: Execute for Priority 1 Modules
+This gives the glass panels something to blur against.
 
-Priority 1 modules are the free acquisition funnels:
+**Step 2 — SpacesRail → liquid-glass**
 
-| Module | Why Priority 1 |
-|--------|---------------|
-| Zone of Genius | Free entry point, highest traffic, main acquisition funnel |
-| Quality of Life | Free entry point, second acquisition funnel |
+- Remove the opaque gradient background
+- Apply `liquid-glass` class + `rounded-none` (it's edge-to-edge)
+- Keep the dark border but switch to `border-white/10`
+- All text stays white (already is) — adjust secondary text to `text-white/50` and `text-white/30`
+- Active nav items: use `liquid-glass-strong` + `rounded-xl` instead of solid `bg-[#29549f]`
+- Inactive items: `bg-white/5 hover:bg-white/10`
+- Logo, user profile, settings — same white-on-glass treatment
 
-For each of these two modules, we will:
-1. Run through the workflow above
-2. Output a complete `landing_page_content.md` with all marketing data filled in
-3. This content can later drive a universal `ModuleLandingTemplate` component
+**Step 3 — SectionsPanel → liquid-glass**
 
-### Part 3: Create Module Content Directory Structure
+- Remove opaque gradient
+- Apply `liquid-glass` class
+- Border: `border-r border-white/10`
+- Section items: active = `bg-white/15 text-white`, hover = `hover:bg-white/10`
+- Sub-sections border: `border-white/10`
+- Close button: `text-white/50 hover:text-white`
 
-```text
-docs/06-modules/
-  zone-of-genius/
-    landing_page_content.md    -- marketing data for ZoG landing
-  quality-of-life/
-    landing_page_content.md    -- marketing data for QoL landing
-```
+**Step 4 — Content area (Panel 3)**
 
-This structure scales: as we apply the workflow to more modules, each gets its own folder.
+- Make semi-transparent: `bg-white/5 backdrop-blur-sm` or keep transparent to let the background show through with a very subtle glass tint
+- The content pages themselves already have their own backgrounds, so this panel mainly needs to not fight the glass aesthetic
 
----
+**Step 5 — Mobile layout**
 
-## Technical Deliverables
+- Mobile header: apply `liquid-glass-strong` instead of opaque gradient
+- Mobile navigation view: same glass treatment as desktop panels
+- Mobile content back-bar: glass treatment
 
-| # | File | Description |
-|---|------|-------------|
-| 1 | `docs/04-workflows/module_landing_page_workflow.md` | Reusable SOP chaining Product Playbook to Marketing Playbook to Landing Page |
-| 2 | `docs/06-modules/zone-of-genius/landing_page_content.md` | Full marketing content for ZoG landing page |
-| 3 | `docs/06-modules/quality-of-life/landing_page_content.md` | Full marketing content for QoL landing page |
+**Step 6 — Collapsed sidebar expand button**
 
-No code changes in this step -- this is content/strategy work. The code implementation (ModuleLandingTemplate component, routes) comes after the content is approved.
+- Currently solid `bg-[#29549f]` — switch to `liquid-glass` with `bg-white/5`
 
----
+### Files to Edit
 
-## Execution Sequence
+| File | Changes |
+|------|---------|
+| `src/components/game/GameShellV2.tsx` | Dark background layer, glass content area, mobile header glass |
+| `src/components/game/SpacesRail.tsx` | Replace opaque bg with `liquid-glass`, glass nav items |
+| `src/components/game/SectionsPanel.tsx` | Replace opaque bg with `liquid-glass`, glass section items |
 
-1. Write the workflow SOP (the reusable template)
-2. Apply it to Zone of Genius (using existing landing page content + taxonomy Master Result as input)
-3. Apply it to Quality of Life (same process)
-4. Review output -- these become the data source for future landing page components
+### What Won't Change
+- The `liquid-glass` / `liquid-glass-strong` CSS in `index.css` — already correct
+- Content pages inside the shell — they render their own backgrounds
+- The `hideNavigation` onboarding view — keeps its current light style
 
