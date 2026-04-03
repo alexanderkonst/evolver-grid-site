@@ -254,7 +254,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 >
                     {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
-                <span className="font-bold text-[#2c3150]">Evolver</span>
+                <span className="font-bold text-[#2c3150]">Genius Business</span>
                 <div className="w-9" /> {/* Spacer */}
             </div>
 
