@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { ArrowRight, Mail, ChevronDown, Share2 } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
