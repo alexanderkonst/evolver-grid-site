@@ -341,10 +341,9 @@ const IgniteSession = () => {
             className="w-[160px] h-auto mx-auto opacity-80"
           />
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase tracking-[0.15em] text-white leading-[1.3] max-w-2xl mx-auto" style={{ fontFamily: "'Cinzel', serif" }}>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase tracking-[0.15em] text-white leading-[1.3] max-w-2xl mx-auto" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             <span className="text-white/60">You can't clearly explain what you do</span>
             <br />
-            {/* Horizontal dash separator */}
             <span className="inline-block w-12 h-px bg-white/40 my-4" />
             <br />
             <span className="text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }}>
