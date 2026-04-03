@@ -391,7 +391,18 @@ export default function GeniusQuiz() {
 
   return (
     <GameShellV2 hideNavigation>
-      <div className="p-4 lg:p-8 max-w-xl mx-auto">
+      {/* Attached Gradient Background Override */}
+      <div className="fixed inset-0 z-0">
+          <img 
+              src="/gradient.jpg" 
+              alt="Background Gradient" 
+              className="w-full h-full object-cover" 
+          />
+          {/* Light overlay to ensure dark text remains legible over the navy parts of the gradient */}
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
+      </div>
+      
+      <div className="relative z-10 p-4 lg:p-8 max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
