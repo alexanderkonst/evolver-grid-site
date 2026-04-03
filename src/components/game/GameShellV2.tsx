@@ -386,7 +386,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     )}
                 >
                     <header
-                        className="bg-gradient-to-r from-[#29549f] via-[#1e4374] to-[#29549f] backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-[#6894d0]/30"
+                        className="liquid-glass-strong flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-white/10"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
