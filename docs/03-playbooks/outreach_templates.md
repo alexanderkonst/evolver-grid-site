@@ -137,7 +137,55 @@ Would love to see what people get.
 | 3 — Invitation | They engage again | `If you want, I can help you finish it in one session.` |
 | 4 — They ask how | "How?" / "Tell me more" | `We take what you already do and turn it into a one-sentence business, a clear offer, and your next move — live. 90 minutes.` → send /ignite link |
 | 5 — Hesitation | Silence / "I'll think about it" | `No rush. People usually know when they're ready.` |
+| **5b — Proof seeker** | **"Show me it works" / "Do you have examples?"** | **See §IIb below — the José Response** |
 | — | No response (7+ days) | `Hey — just checking this landed. No rush.` |
+
+---
+
+## IIb. THE JOSÉ RESPONSE (Proof-Seeker Handling)
+
+> *April 3, 2026 — Extracted from live conversion data. José = high-intelligence, skeptical system-thinker. Fully resonated with the worldview. Did NOT convert because the verbal pitch lacked materialization density. The website has the guarantee — the conversation didn't.*
+>
+> **Diagnosis:** Cognitive match ≠ buying trigger. Proof > intelligence > philosophy.
+
+### The Gap
+
+| What the WEBSITE has | What the CONVERSATION was missing |
+|---|---|
+| ✅ Guarantee ("you don't pay") | ❌ No guarantee mentioned verbally |
+| ✅ Outcome language ("one sentence, one offer, one business") | ❌ Verbal pitch stayed abstract ("structure your essence") |
+| ✅ Testimonials section | ❌ No concrete before→after shared in conversation |
+| ✅ "90 minutes" mechanism | ❌ No proof of execution ("someone did this, here's what happened") |
+
+### Before → After Snapshots (USE THESE VERBALLY)
+
+Keep 2-3 of these in your back pocket. When someone asks "show me it works" — don't explain. **Show the delta:**
+
+| Founder | Before | After |
+|---------|--------|-------|
+| **Oyi** | "I do facilitation, coaching, consulting... it's hard to explain" | "I help creative founders build their first profitable business in 6 weeks" → designed his Mirror Session → booking clients |
+| **Sergey** | "I have 20 years of corporate experience but can't package it" | "I help mid-career professionals escape the golden cage and build their own thing" → clear offer, clear tribe, clear language |
+| **Alexa** | "I'm good at many things but none of them define me" | "I help women reclaim their energy after burnout through embodied leadership" → first paid session within 2 weeks |
+
+### The Verbal Guarantee (MEMORIZE THIS)
+
+When they hesitate:
+
+> **"We leave the session with a concrete offer you can send the same day. If that doesn't happen, you don't pay."**
+
+This one sentence neutralizes:
+- ❌ "Consultant = weak" → ✅ Execution, not talking
+- ❌ "Unproven" → ✅ Risk-free
+- ❌ "Abstract concept" → ✅ "Send the same day" = tangible
+
+### The Full José Sequence (Proof-Seeker Path)
+
+| Step | They say | You say |
+|------|----------|---------|
+| 1 | "Show me it works" / "Do you have examples?" | `Last session: founder came in unable to explain what he does. Left with a one-sentence business, a concrete offer, and his first client conversation booked — all in 90 minutes.` |
+| 2 | They engage / ask more | `We don't leave until you have something you can send the same day. If that doesn't happen, you don't pay.` |
+| 3 | Still cautious | `I get it. Most people who do what I do talk about concepts. I build the thing live with you. You'll hold it in your hands when we're done.` |
+| 4 | Ready | Send /ignite link or book directly |
 
 ---
 
@@ -395,5 +443,5 @@ it out loud makes it real.
 
 ---
 
-*Outreach Templates v2.0 — April 2, 2026 (Godfather Offer Architect upgrade)*
-*Updated: 4 channel-specific frames, 10 viral posts, 3 carousel specs, deployment strategy, response handling flow.*
+*Outreach Templates v2.1 — April 3, 2026 (José signal: proof-seeker handling, before→after snapshots, verbal guarantee)*
+*Updated: 4 channel-specific frames, 10 viral posts, 3 carousel specs, deployment strategy, response handling flow, José Response path.*
