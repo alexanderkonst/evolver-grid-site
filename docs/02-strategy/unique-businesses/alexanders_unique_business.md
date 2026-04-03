@@ -2,7 +2,7 @@
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *February 19, 2026 · v7.9*
+> *April 3, 2026 · v8.0 — Declaration Phase*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 

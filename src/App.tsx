@@ -135,8 +135,8 @@ import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
 
 const PageLoader = () => (
-  <div className="h-screen flex items-center justify-center bg-[#1a1d2e]">
-    <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full" />
+  <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
+    <div className="animate-spin w-8 h-8 border-2 border-white/30 border-t-transparent rounded-full" />
   </div>
 );
 

@@ -1050,5 +1050,5 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
-*Roadmap updated: 2026-04-03. Premium UI polish COMPLETE (172 commits overnight). Glassmorphism, gradient unification, SiteLogo, auto-scroll, dark liquid glass quiz all deployed. Copy FROZEN. UI FROZEN. Next: traffic + data only.*
+*Roadmap updated: 2026-04-03. Premium UI polish COMPLETE (172 commits overnight). Glassmorphism, gradient unification, SiteLogo, auto-scroll, dark liquid glass quiz all deployed. Funnel analytics WIRED (17 event types across ZoG → Quiz → Ignite → Booking). Copy FROZEN. UI FROZEN. Next: traffic + data only.*
 

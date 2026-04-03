@@ -1,4 +1,5 @@
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
+import { trackPageView, trackCTAClick, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
@@ -165,6 +166,7 @@ const PrimaryCTA = ({ id, label = "Book Your Session", showPrice = true }: { id:
       target="_blank"
       rel="noopener noreferrer"
       id={id}
+      onClick={() => trackCTAClick('booking_click', id)}
     >
       <BoldText className="uppercase">{`${label}${showPrice ? " — $555" : ""}`}</BoldText>
       <ArrowRight className="w-4 h-4 ml-1" />
@@ -205,6 +207,7 @@ const DivineTimingCapture = () => {
       // Silently continue
     }
     setState('saved');
+    trackFunnelEvent({ step: 'divine_timing', source: 'ignite_page' });
   }, [email]);
 
   if (state === 'saved') {
@@ -297,6 +300,7 @@ const IgniteSession = () => {
 
   useEffect(() => {
     document.title = "You've Been Giving Your Best Work Away for Free — Ignition Session";
+    trackPageView('ignite_view');
     return () => { document.title = "Genius Business"; };
   }, []);
 
