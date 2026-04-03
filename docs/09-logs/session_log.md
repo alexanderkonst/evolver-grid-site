@@ -3349,3 +3349,23 @@ The irony: this very session IS the Builder's Blind Spot in action. The product 
 
 *"Now the system can hear. Every visitor leaves a signal — whether they convert or not. The data will tell us what no amount of building can: where the real friction is."*
 
+---
+
+### 3 Holonic Moves — Receptivity Infrastructure (continued)
+
+**Time**: ~4pm (continued session)
+
+Three moves devised from the 26-perspective holonic reading. All advance the COLLECTIVE quadrants (LL/LR) without touching funnel logic or screen flow. The theme: **RECEPTIVITY** — making the system capable of receiving what the encounter phase will produce.
+
+| Move | What Was Built | Holomap Impact |
+|------|---------------|----------------|
+| **1. Funnel Events Migration** | `supabase/migrations/20260403_create_funnel_events.sql` — table + indexes + RLS policies for anonymous inserts. Analytics events will now persist to the database instead of being lost in localStorage | P6 (+0.5), P8 (+0.5), P12 (+0.5) |
+| **2. Testimonial Collection** | `supabase/migrations/20260403_create_session_testimonials.sql` + `src/pages/FeedbackPage.tsx` at `/feedback` + route registration. Dark glass form where session graduates submit their experience. Admin-approved before display. Graceful degradation | P2 (+0.5), P6 (+0.5), P7 (+0.5) |
+| **3. Founders Cross-Read** | `supabase/functions/notify-founders-crossread/index.ts` — Resend-based edge function. Sends personalized email to each founder linking to `/founders`. Admin-triggered. Beautiful Georgia-serif email. THE P3 dormant trigger since Day 11 | P3 (+1.0), P7 (+0.5), P11 (+0.5) |
+
+**Key insight:** These are RECEPTIVITY gaps, not BUILD gaps. The system could send (funnel, pages, copy) but couldn't receive (testimonials, cross-reads, persistent analytics). Now it can.
+
+---
+
+*"The system doesn't just speak now. It listens. It remembers. And when the founders read each other's canvases — the tribe will recognize itself."*
+
