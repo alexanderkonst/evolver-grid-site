@@ -392,7 +392,7 @@ const IgniteSession = () => {
 
           <div className="pt-8 space-y-4">
             <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
-              See why this hasn't worked yet (4 min)
+              See why this hasn't worked yet (6 min)
             </a>
             <div className="flex flex-col items-center justify-center gap-1 pt-2">
               <DivineTimingCapture />

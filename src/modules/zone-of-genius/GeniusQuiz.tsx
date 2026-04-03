@@ -115,7 +115,7 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
     reframe: "This isn't a skill problem. It's a business structure problem around what you already do.",
     blade: "You've understood this for a while. Understanding alone didn't change it.",
     cta: "See what's actually missing",
-    ctaSub: "4 min — what needs to happen next",
+    ctaSub: "6 min — what needs to happen next",
   },
   multi_talent_trap: {
     id: "multi_talent_trap",
@@ -135,7 +135,7 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
     reframe: "You don't need to choose one skill. You need a structure that holds all of them.",
     blade: "You've tried picking one thing. It never held all of you. Understanding alone didn't change it.",
     cta: "See what's actually missing",
-    ctaSub: "4 min — what needs to happen next",
+    ctaSub: "6 min — what needs to happen next",
   },
   misaligned_vector: {
     id: "misaligned_vector",
@@ -155,7 +155,7 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
     reframe: "This isn't about effort. It's about alignment.",
     blade: "You already know effort isn't the issue. But you keep applying it anyway. Understanding alone didn't change it.",
     cta: "See what's actually missing",
-    ctaSub: "4 min — what needs to happen next",
+    ctaSub: "6 min — what needs to happen next",
   },
   underpriced_operator: {
     id: "underpriced_operator",
@@ -175,7 +175,7 @@ const ARCHETYPES: Record<ArchetypeId, ArchetypeResult> = {
     reframe: "This isn't about confidence. It's about clarity.",
     blade: "You've known you should charge more for years. Knowing didn't help. Understanding alone didn't change it.",
     cta: "See what's actually missing",
-    ctaSub: "4 min — what needs to happen next",
+    ctaSub: "6 min — what needs to happen next",
   },
 };
 
