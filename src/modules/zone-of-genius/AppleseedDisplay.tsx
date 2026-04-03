@@ -105,21 +105,42 @@ const OwnershipSection = ({
                     <p className="text-sm text-white/50">✓ Saved. We sent your Zone of Genius to your inbox.</p>
                 </div>
             )}
+        </div>
+    );
+};
 
-            {/* ─── SHARE (tertiary, delayed, minimal) ─── */}
-            {shareVisible && (
-                <div className="animate-in fade-in duration-700 opacity-50 hover:opacity-70 transition-opacity">
-                    <ShareZoG
-                        archetypeName={appleseed.vibrationalKey.name}
-                        tagline={appleseed.bullseyeSentence}
-                        primeDriver={appleseed.threeLenses.primeDriver}
-                        talents={appleseed.threeLenses.actions}
-                        archetype={appleseed.threeLenses.archetype}
-                        profileId={profileId}
-                        profileUrl={profileUrl}
-                    />
-                </div>
-            )}
+/**
+ * DelayedShare — appears 800ms after page load, below CTAs
+ */
+const DelayedShare = ({
+    appleseed,
+    profileId,
+    profileUrl,
+}: {
+    appleseed: AppleseedData;
+    profileId?: string;
+    profileUrl?: string;
+}) => {
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setVisible(true), 800);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!visible) return null;
+
+    return (
+        <div className="animate-in fade-in duration-700 opacity-50 hover:opacity-70 transition-opacity max-w-md mx-auto">
+            <ShareZoG
+                archetypeName={appleseed.vibrationalKey.name}
+                tagline={appleseed.bullseyeSentence}
+                primeDriver={appleseed.threeLenses.primeDriver}
+                talents={appleseed.threeLenses.actions}
+                archetype={appleseed.threeLenses.archetype}
+                profileId={profileId}
+                profileUrl={profileUrl}
+            />
         </div>
     );
 };
