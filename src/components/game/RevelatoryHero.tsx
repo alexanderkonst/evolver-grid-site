@@ -185,10 +185,11 @@ const RevelatoryHero = ({
                     </div>
                 )}
 
-                {/* Signature watermark */}
-                <p className="absolute bottom-3 right-4 text-[10px] text-white/30 tracking-wide">
-                    get yours → aleksandrkonstantinov.com
-                </p>
+                {/* Screenshot prompt + signature */}
+                <div className="absolute bottom-3 right-4 text-right">
+                    <p className="text-[11px] text-white/40 italic">Screenshot this.</p>
+                    <p className="text-[10px] text-white/30 tracking-wide">get yours → aleksandrkonstantinov.com</p>
+                </div>
             </div>
 
             <style>{`
