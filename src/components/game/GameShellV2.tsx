@@ -401,17 +401,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     )}
                 >
                     <header
-                        className="liquid-glass-strong flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-white/10"
+                        className="bg-white/80 backdrop-blur-xl flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-black/10"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-[#2c3150] hover:bg-black/5 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </button>
-                        <span className="text-white font-medium flex-1 truncate">
+                        <span className="text-[#2c3150] font-medium flex-1 truncate">
                             {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
                         </span>
                     </header>
