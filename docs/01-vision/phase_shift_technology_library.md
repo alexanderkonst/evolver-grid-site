@@ -2811,3 +2811,102 @@ The share MUST come AFTER ownership (save/email gate). Sequence:
 Reversing this order = the user is sharing before they OWN the insight = the share feels like distribution rather than verification = it doesn't work.
 
 ---
+
+## Domain 57: Campfire Networking (Broadcast Into the Group, Let the 1:1 Form Itself)
+
+> *Added April 2, 2026 — Discovered live at a social/networking event in Mexico City. The insight: stop hunting for the right person. Join the group. Speak into it. The right person finds you.*
+
+### 57a. The Discovery
+
+The default networking pattern is **speed dating at a campfire:**
+
+1. Arrive at event
+2. Scan the room for "the right person"
+3. Approach a stranger → initiate 1:1 conversation
+4. Pitch/qualify while managing anxiety
+5. Hope for chemistry
+6. Repeat
+
+**Hit rate: extremely low. Energy cost: extremely high.**
+
+The hack is embarrassingly simple:
+
+1. Join a group that's already standing and chatting
+2. Listen. Contribute naturally when moved to.
+3. Something you say resonates with someone
+4. **They** lean in. The 1:1 forms itself.
+5. Zero initiation required. Zero pitch. Zero anxiety.
+
+**Hit rate: dramatically higher. Energy cost: near zero.**
+
+### 57b. Why This Works (The Physics)
+
+| Hunting (speed dating) | Broadcasting (campfire) |
+|----------------------|----------------------|
+| You approach **one** person | You speak to **five** people simultaneously |
+| YOU do the qualifying | **They** self-select |
+| The connection starts with YOUR agenda | The connection starts with THEIR curiosity |
+| You carry the social risk | The group absorbs the risk |
+| Outcome: forced proximity | Outcome: **natural resonance** |
+
+The group is a **natural amplifier.** You say one thing. Multiple people hear it. The one who resonates self-separates. You didn't find them. They found you — because something you said named something they couldn't name themselves.
+
+This is the Tuning Fork (Domain 8) — in person, in real time.
+
+### 57c. Why You Didn't See It
+
+The entire culture trains you that networking = hunting:
+
+- "Work the room"
+- "Make connections"
+- "Don't be wallflower — approach people"
+- "Have your elevator pitch ready"
+
+All of this is **push** energy. It works for people whose genius IS push (salespeople, extroverts, performers). For people whose genius is **seeing/naming/mirroring** — like Alexander — push networking is structurally misaligned. It's using the wrong instrument.
+
+The campfire was always the right instrument. You just had the wrong definition of "networking."
+
+### 57d. The Architecture (Why This Is the Same Pattern as Everything Else)
+
+| Context | The "group" | What you broadcast | The 1:1 that forms |
+|---------|-------------|-------------------|-------------------|
+| **Networking event** | A standing group chatting | A perspective, a name for something unnamed | Someone leans in: "wait, say more about that" |
+| **LinkedIn** | The feed | A post that names a pain | Someone DMs: "this is me" |
+| **The ZoG funnel** | The internet | A mirror (archetype result) | Someone emails: "how do I build on this?" |
+| **A dinner party** | The table | A story, an observation | Someone asks to talk after |
+
+**It's the same pattern at every scale.** Broadcast into a group field → let the individual self-select → the 1:1 has already begun because they arrived interested.
+
+### 57e. The One Rule
+
+> **Do NOT try to ignite a 1:1 unless you are intuitively guided to do so.**
+
+If it's forced, it's push. If it's pulled, it's real. The group gives you permission to broadcast without forcing. The 1:1 gives you permission to go deep without manufacturing context. The sequence matters: group first, depth second. Never reverse it.
+
+### 57f. Connection to the Stack
+
+| Domain | How 57 completes it |
+|--------|-------------------|
+| **8: Tuning Fork** | The campfire contribution IS a tuning fork ping. The person who resonates hears their own frequency in what you said |
+| **47: Quality That Sells** | The "quality" in networking isn't your pitch — it's the quality of your contribution to the group. Excellence broadcasts; pitch repels |
+| **51: Curiosity Gap** | Your group contribution creates a curiosity gap: "wait, what do you mean by that?" — and the 1:1 IS the resolution |
+| **54: Precision Paradox** | Broadcasting into the group IS narrowing — not of the audience, but of the resonance. The narrower the signal, the stronger the pull |
+| **55: Builder's Blind Spot** | Hunting for 1:1s = polishing the surface (approaching more people, better pitch). Campfire = decision physics (creating the conditions for connection to happen) |
+
+### 57g. The One-Sentence Version
+
+> *"Stop hunting for the right person. Join a group. Speak into it. The right person will find you — because something you said named something they couldn't name themselves."*
+
+### 57h. The Practical Protocol
+
+1. Arrive at event
+2. Find a group of 3-6 people already talking
+3. Join. Listen first.
+4. When something lands — contribute. Name what's unnamed. Share a perspective.
+5. Notice who leans in
+6. If someone leans in → let the 1:1 form naturally after the group disperses
+7. If nobody leans in → no loss. Move to another group. Repeat.
+
+**The entire event becomes low-anxiety, high-yield.** You are never rejected because you never pitched. You are never awkward because you never forced. The worst case is: you had interesting group conversations. The best case: a genuine 1:1 with someone who already thinks you see something they can't.
+
+---
