@@ -85,7 +85,7 @@ const AppleseedRitualLoading = ({
 
                 {/* Phase text */}
                 <div className="h-8 mb-4">
-                    <p className="text-lg text-white/50 animate-pulse transition-all duration-500">
+                    <p className="text-lg text-white/90 animate-pulse transition-all duration-500">
                         {PHASES[phaseIndex]}
                     </p>
                 </div>
@@ -99,7 +99,7 @@ const AppleseedRitualLoading = ({
                 </div>
 
                 {/* Decorative text */}
-                <p className="mt-8 text-sm text-white/30">
+                <p className="mt-8 text-sm text-white/70">
                     Your Zone of Genius is being articulated...
                 </p>
             </div>
