@@ -384,12 +384,15 @@ const ZoneOfGeniusEntry = () => {
 
     return (
         <GameShellV2 hideNavigation>
-            {/* Dark liquid glass background override */}
-            <div className="fixed inset-0 z-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, #0f172a, #1a1035)' }}>
-                {/* Atmospheric orbs */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.12)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(104,148,208,0.08)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(164,163,208,0.05)_0%,transparent_40%)]" />
+            {/* Attached Gradient Background Override */}
+            <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
+                <img 
+                    src="/gradient.jpg" 
+                    alt="Background Gradient" 
+                    className="w-full h-full object-cover" 
+                />
+                {/* Dark overlay to ensure white text remains legible */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
             </div>
 
             <div className="relative z-10 p-4 lg:p-8 max-w-xl mx-auto min-h-dvh flex flex-col justify-center">
