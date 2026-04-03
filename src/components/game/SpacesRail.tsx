@@ -1,5 +1,6 @@
 import { ReactNode, memo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logoSrc from "@/assets/logo.jpg";
 import {
     Compass,
     User,
@@ -118,22 +119,24 @@ const SpacesRail = ({
         >
             {/* User Profile + Community Header */}
             <div className="p-3 md:p-4 border-b border-[#a4a3d0]/30">
-                {/* Community - Placeholder (not clickable) */}
-                <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+            {/* Community Logo */}
+                <Link to="/" className="flex items-center justify-center mb-3">
+                    <div
+                        className="w-10 h-10 rounded-lg overflow-hidden"
+                        style={{
+                            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                            maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                        }}
+                    >
                         <img
-                            src="/community-avatar.jpg"
-                            alt="Community"
+                            src={logoSrc}
+                            alt="Home"
                             className="w-full h-full object-cover"
                         />
                     </div>
-                    <div className="hidden md:block overflow-hidden">
-                        <p className="text-white font-semibold text-sm truncate">Alexander Konstantinov's</p>
-                        <p className="text-[#a4a3d0] text-xs truncate">Community</p>
-                    </div>
-                </div>
+                </Link>
 
-                {/* Divider between community and profile */}
+                {/* Divider between logo and profile */}
                 <div className="hidden md:block h-px bg-[#a4a3d0]/30 mb-3" />
 
                 {/* User Profile */}
