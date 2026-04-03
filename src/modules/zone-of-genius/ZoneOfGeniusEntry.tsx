@@ -429,7 +429,7 @@ const ZoneOfGeniusEntry = () => {
                     </h1>
 
                     {/* Body — Source Serif, compact rhythm */}
-                    <p className="text-sm text-white/55 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                    <p className="text-sm text-white/90 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.25), 0 0 40px rgba(240,194,127,0.1)' }}>
                         There's a unique way you think, solve problems, and create value.
                         You've been using it your whole life — because it's natural to you.
                         People already come to you for it.
