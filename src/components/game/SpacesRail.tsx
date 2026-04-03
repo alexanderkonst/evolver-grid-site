@@ -173,11 +173,11 @@ const SpacesRail = ({
                     </div>
                 </Link>
                 <div className="flex flex-col items-center gap-1 mt-2 md:hidden">
-                    <span className="text-[10px] text-[#6894d0]">
+                    <span className="text-[10px] text-white/50">
                         {userLevel ? `Level ${userLevel}` : 'Member'}
                     </span>
                     {userXp !== undefined && (
-                        <span className="text-[10px] text-[#a7cbd4]">
+                        <span className="text-[10px] text-white/30">
                             {userXp} XP
                         </span>
                     )}
