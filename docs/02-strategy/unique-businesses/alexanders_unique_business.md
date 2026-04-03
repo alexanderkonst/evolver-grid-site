@@ -2,7 +2,7 @@
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *February 19, 2026 · v7.3*
+> *February 19, 2026 · v7.9*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
@@ -6034,6 +6034,6 @@ The funnel is at 9.9+. The remaining 0.1% comes from DATA, not from more wordsmi
 
 ---
 
-*Alexander's Unique Business v7.8 — April 2, 2026 (Replication Engine Architecture)*
-*Updated: The Replication Engine (Layers 2-3) documented. Layer 2: The Build — Getting to PMF (group container, 4-6 people, $1,111 + rev share, 4-call flow: Extraction → Structure → Collapse → Integration). Layer 3: The Transmission (spec only — facilitator training, $3K-5K). Witnessing Effect principle codified. Roso & Cori collaboration status documented — their medicines: Truth-naming (Cori/The Precision Eye), Fog-piercing inquiry (Roso/The Needle), Structural seeing (Alexander/The Architect). Positioning shift: "installs business structure" > "helps find clarity." Ascension ladder: ZoG → Ignition → Build → Transmission → Venture Studio. Cori's feedback as market data: TLDR-first for first contact.*
+*Alexander's Unique Business v7.9 — April 3, 2026 (Premium UI Overhaul + PageRank Principle)*
+*Updated: v7.8 changes preserved. v7.9 adds: Domain 60 (PageRank Principle — the platform's moat = owning the standard that maps genius). Zero-friction viral sharing architecture (identity expression, not validation-seeking). Premium UI deployed: dark liquid glass across all ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on all step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Post-save UX: "✓ Saved. We sent your Zone of Genius to your inbox." 172 commits overnight. UI + Copy now FROZEN. Next: traffic only.*
 

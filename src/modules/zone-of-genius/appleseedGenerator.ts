@@ -173,10 +173,99 @@ Return a JSON object with this exact structure:
 `;
 
 // ---------------------------------------------------------------------------
+// INPUT SANITIZER — handles JSON, markdown, code blocks, etc.
+// ---------------------------------------------------------------------------
+
+/**
+ * Sanitize raw signal input to handle various formats users paste:
+ * - Raw JSON from Claude/ChatGPT "view raw" exports
+ * - Markdown-formatted responses
+ * - Code blocks with ```json wrappers
+ * - Mixed text/JSON content
+ * 
+ * The goal is to extract meaningful text content from any format
+ * so the AI model can process it without choking on structural characters.
+ */
+const sanitizeRawSignal = (raw: string): string => {
+  let cleaned = raw.trim();
+  
+  // Strip markdown code block wrappers
+  if (cleaned.startsWith("```json")) {
+    cleaned = cleaned.slice(7);
+  } else if (cleaned.startsWith("```")) {
+    cleaned = cleaned.slice(3);
+  }
+  if (cleaned.endsWith("```")) {
+    cleaned = cleaned.slice(0, -3);
+  }
+  cleaned = cleaned.trim();
+
+  // If the input looks like raw JSON, try to parse and extract text content
+  if ((cleaned.startsWith("{") || cleaned.startsWith("[")) && (cleaned.endsWith("}") || cleaned.endsWith("]"))) {
+    try {
+      const parsed = JSON.parse(cleaned);
+      // Convert JSON to a readable text representation
+      const textified = jsonToReadableText(parsed);
+      if (textified && textified.length > 50) {
+        return `The following is structured data about this person's background and characteristics:\n\n${textified}`;
+      }
+    } catch {
+      // Not valid JSON — that's fine, treat as text
+    }
+  }
+
+  // If input has an excessive ratio of special characters to words, wrap it
+  const specialChars = (cleaned.match(/[{}[\]"\\]/g) || []).length;
+  const wordCount = cleaned.split(/\s+/).length;
+  if (specialChars > wordCount * 0.5 && wordCount > 10) {
+    // High ratio of JSON-like chars — wrap in a text block to protect the prompt
+    return `The following is the user's self-description (may contain formatting artifacts — focus on the meaning):\n\n${cleaned}`;
+  }
+
+  return cleaned;
+};
+
+/**
+ * Recursively convert a JSON object into readable text.
+ * Extracts string values and labels them with their keys.
+ */
+const jsonToReadableText = (obj: unknown, prefix = ""): string => {
+  if (typeof obj === "string") {
+    return obj;
+  }
+  if (typeof obj === "number" || typeof obj === "boolean") {
+    return String(obj);
+  }
+  if (Array.isArray(obj)) {
+    return obj
+      .map((item, i) => jsonToReadableText(item, `${prefix}[${i}]`))
+      .filter(Boolean)
+      .join("\n");
+  }
+  if (obj && typeof obj === "object") {
+    return Object.entries(obj as Record<string, unknown>)
+      .map(([key, value]) => {
+        const label = key.replace(/[_-]/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2");
+        const content = jsonToReadableText(value, `${prefix}.${key}`);
+        if (!content) return "";
+        if (typeof value === "string") {
+          return `${label}: ${content}`;
+        }
+        return `${label}:\n${content}`;
+      })
+      .filter(Boolean)
+      .join("\n");
+  }
+  return "";
+};
+
+// ---------------------------------------------------------------------------
 // FULL PROMPT CONSTRUCTOR
 // ---------------------------------------------------------------------------
 
 export const buildAppleseedPrompt = (rawSignal: string): string => {
+  const processedSignal = sanitizeRawSignal(rawSignal);
+  
   return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
 
 ${APPLESEED_TEMPLATE}
@@ -191,7 +280,7 @@ ${LANGUAGE_GUIDELINES}
 
 Now, generate an Appleseed for this person based on the following input:
 
-${rawSignal}
+${processedSignal}
 
 ---
 

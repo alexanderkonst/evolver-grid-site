@@ -188,7 +188,10 @@ const ZoneOfGeniusEntry = () => {
 
             setStep("appleseed-result");
         } catch (err) {
-            setError('Failed to generate your Appleseed. Please try again.');
+            const errorMsg = err instanceof Error ? err.message : 'Something went wrong';
+            setError(errorMsg.includes('try again') 
+              ? errorMsg 
+              : 'Something went wrong generating your profile. Please try again — it usually works on retry.');
             setStep("paste-response");
         } finally {
             setIsProcessing(false);

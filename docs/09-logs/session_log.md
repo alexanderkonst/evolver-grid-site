@@ -3228,3 +3228,80 @@ Node:        10% ongoing revenue share
 
 *"Force without direction = diffusion. Now we do: pressure → direction → revenue → scale." Go DM people.*
 
+---
+
+## Premium UI Overhaul + Viral Identity Architecture — Wed–Thu, April 2–3, 2026 (Night Session)
+
+**Location**: Mexico City
+**Time**: ~9pm–4am (overnight deep build)
+**Commits**: 172
+**Files changed**: 19 source files, 2 docs, 1 new public asset
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Domain 60: The PageRank Principle** | Codified in `phase_shift_technology_library.md`. The platform's moat = the infrastructure that makes the right output metric visible and computable. Google doesn't make websites. Michelin doesn't cook. Moody's doesn't lend. They control demand allocation by owning the standard |
+| **Zero-Friction Viral Sharing** | Sharing reframed from "validation-seeking" to "identity expression." Non-blocking, tertiary side-channel. Copy: "This is how I naturally create value. Curious what you see." |
+| **Dark Liquid Glass Quiz** | `/quiz` converted from broken light-surface (dark text, white buttons on gradient) to full glassmorphism: `liquid-glass` buttons, `ring-white/10` borders, `text-white/90` hierarchy |
+| **Gradient Unification** | `gradient.jpg + bg-[#0a0a1a]/65` overlay applied to ALL ZoG screens: Entry → Quiz → Ritual Loading → Assessment → Snapshot → Result |
+| **Auto-Scroll System** | `stepContentRef` + `useEffect` in `ZoneOfGeniusEntry.tsx` — every step transition (choice → route → ai-prompt → paste-response) auto-scrolls new content into view |
+| **SiteLogo Component** | NEW `src/components/SiteLogo.tsx` — circular toroidal field logo, fixed position, no text, no border, links to home. Deployed across all pages |
+| **3-Tier Glassmorphism** | Applied to `GameShellV2`, `SpacesRail`, `SectionsPanel` — light glass (4px blur), strong glass (50px blur), and text hierarchy per blueprint |
+| **Radix ScrollArea** | Elegant scrollbars replacing browser defaults across all panel components |
+| **Ignite Font Alignment** | Standardized Ignite page typography to match homepage (Cormorant Garamond display, Poppins body) |
+| **Watermark Signature** | Added to `RevelatoryHero.tsx` — branded watermark on generated ZoG screenshots |
+| **Post-Save UX** | Simplified to single line: "✓ Saved. We sent your Zone of Genius to your inbox." Share as collapsed tertiary section |
+| **Guarantee Reframe** | "If you don't leave with a one-sentence business you recognize as yours: you don't pay." — resonance-based, not inflatable |
+| **AppleseedDisplay Restructure** | 313 lines changed. CTA flow reordered: result → save → share (sequential, not competing). Duplicate share UI removed |
+
+### Key Technical Changes
+
+| File | Lines Δ | What Changed |
+|------|---------|-------------|
+| `AppleseedDisplay.tsx` | ±313 | Share flow restructure, gradient background, save copy, CTA ordering |
+| `IgniteSession.tsx` | ±308 | Font alignment, SiteLogo, hero styling, CTA standardization |
+| `ZoneOfGeniusEntry.tsx` | ±198 | Auto-scroll, Cormorant Garamond headline, layout tightening |
+| `GeniusQuiz.tsx` | ±109 | Dark liquid glass conversion (bg-white/40 → bg-[#0a0a1a]/65, all text → white hierarchy) |
+| `GameShellV2.tsx` | ±44 | Glassmorphism, SiteLogo in hideNav mode, Radix ScrollArea |
+| `SpacesRail.tsx` | ±71 | Glassmorphism overhaul |
+| `SiteLogo.tsx` | +29 | NEW — reusable circular logo component |
+| `AppleseedRitualLoading.tsx` | ±13 | CSS gradient → gradient.jpg |
+| `ZoneOfGeniusAssessmentLayout.tsx` | ±14 | CSS gradient → gradient.jpg |
+| `Step4GenerateSnapshot.tsx` | ±14 | CSS gradient → gradient.jpg |
+| `RevelatoryHero.tsx` | ±10 | Watermark signature |
+
+### Key Insights
+
+- **The PageRank Principle is the acorn:** Google doesn't make websites. It makes the metric that RANKS websites. ZoG makes the metric that maps genius. Whoever controls the standard controls demand allocation
+- **Share ≠ Validate:** The original "ask friends if this sounds like you" flow leaked momentum at peak energy. Clean model: See → Feel → Decide → (optionally) Share as expression, never as validation
+- **Visual continuity = trust:** Before this session, each ZoG screen had a different CSS gradient. Users saw jarring background shifts between steps. Now one continuous gradient.jpg experience from entry to result
+- **Glassmorphism blueprint is the design standard:** `liquid-glass` (4px blur, subtle) vs `liquid-glass-strong` (50px blur, heavy) creates depth hierarchy. All text is white on dark. Usage pattern codified in `docs/03-playbooks/glassmorphism_blueprint.md`
+
+### Docs Updated
+
+| Document | Change |
+|----------|--------|
+| `docs/01-vision/phase_shift_technology_library.md` | +124 lines — Domain 60 (PageRank Principle) |
+| `docs/00-master/context.md` | Domain count: 59 → 60 |
+
+### Sprint Status
+
+| Metric | Value |
+|--------|-------|
+| **Phase** | SOLO DOMINANCE — funnel locked, UI polished, ready for traffic |
+| **Funnel UI** | ✅ Premium — all screens dark liquid glass, unified gradient, auto-scroll |
+| **Brand Identity** | ✅ Toroidal field logo deployed site-wide |
+| **Copy** | ✅ Frozen — guarantee, save confirmation, share copy finalized |
+| **Next action** | Post. DM. Sell. The surface is polished. Now fill it |
+
+### Assessment
+
+**172 commits in one night.** This was the "final polish" session — the session where the product surface reached premium quality. Every screen a visitor touches now feels like one continuous experience: dark glass over cosmic gradient, white text hierarchy, breathing animations, auto-scroll, unified brand mark.
+
+The irony: this very session IS the Builder's Blind Spot in action. The product was already good enough. But now it's *undeniably* good. The question is whether the extra 172 commits moved conversion — and the answer comes from traffic data, not from more commits.
+
+---
+
+*Session complete ~4am. "The surface is the surface. The signal is the signal. Now: transmit the signal through the surface to a real human."*
+

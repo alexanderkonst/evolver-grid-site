@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-04-02 (evening) — Copy work FROZEN. Funnel v3.0 FINAL.*
+> *Last updated: 2026-04-03 — Premium UI polish complete. Glassmorphism deployed. SiteLogo live. Copy FROZEN. TRAFFIC ONLY.*
 
 ---
 
@@ -19,7 +19,7 @@
 | 6 | Upgrades in Profile (categories) | UX | ✅ DONE | — |
 | 7 | Library: practices, combos, sequences | UX | 🟡 MED | This cycle |
 | 8 | Fast design workflow | UX | ✅ DONE | — |
-| 9 | Onboarding flow polish (button sequencing) | UX | 🔴 HIGH | This week |
+| 9 | Onboarding flow polish (button sequencing) | UX | ✅ DONE | — |
 | **DATA MODEL** |
 | 10 | User results to DB (missions, resources) | Data | 🔴 HIGH | This week |
 | 11 | Matchmaking types (resources, ZoG, missions) | Data | 🔴 HIGH | This cycle |
@@ -46,7 +46,7 @@
 | 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
 | 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
 | **BRAND & CONTENT** |
-| 29 | Logos (platform + modules) | Brand | 🔴 HIGH | This cycle |
+| 29 | Logos (platform + modules) | Brand | ✅ DONE | — |
 | 30 | Videos (explainer, onboarding, module intros) | Content | 🔴 HIGH | This cycle |
 | **LEARN SPACE** |
 | 31 | Experiential modules for Learn space | Product | 🟡 MED | This cycle |
@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | LAUNCH. Funnel v3.0 FINAL. Copy FROZEN. All postponed items captured. NOW: TRAFFIC ONLY. |
-| **Current cycle** | April 2026 — v3.0 Decision Collapse + 5 micro-collapse objection kills deployed. Quiz as primary path. Guarantee live. Share v3.0 spec documented (not yet coded). 56 Phase Shift Domains. |
+| **Current phase** | LAUNCH. Funnel v3.0 FINAL. Copy FROZEN. Premium UI deployed. NOW: TRAFFIC ONLY. |
+| **Current cycle** | April 2026 — v3.0 Decision Collapse + 5 micro-collapse objection kills deployed. Quiz as primary path. Guarantee live. Dark liquid glass across all screens. Gradient.jpg unified. SiteLogo deployed. 60 Phase Shift Domains. |
 | **Location** | Mexico City |
 | **Focus** | **DM real humans. Update surfaces. Post content. Observe reactions. The diagnostic: have I sent a personal message to a real human about what I do this week?** |
-| **Key milestone** | All previous + Funnel v3.0 + 5 Micro-Collapse + Quiz main path + Guarantee + Share v3.0 spec (Domain 56) + Holonic Seeing (4d/15e-i) + All postponed items in roadmap |
-| **Key decisions** | Copy work FROZEN. No more funnel optimization until traffic data exists. Build order: traffic first, then backend (silent accounts), then share v3.0, then data-driven optimization. |
+| **Key milestone** | All previous + Premium UI (glassmorphism, gradient unification, auto-scroll, SiteLogo, dark liquid glass quiz) + Zero-friction viral sharing + Domain 60 (PageRank Principle) + Guarantee reframed |
+| **Key decisions** | Copy work FROZEN. UI polish DONE. No more funnel optimization until traffic data exists. Build order: traffic first, then backend (silent accounts), then data-driven optimization. |
 
 ---
 
@@ -1050,5 +1050,5 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
-*Roadmap updated: 2026-04-02. Funnel v3.0 + micro-collapse FINAL. All postponed items captured. Copy work FROZEN. Next: traffic + data only.*
+*Roadmap updated: 2026-04-03. Premium UI polish COMPLETE (172 commits overnight). Glassmorphism, gradient unification, SiteLogo, auto-scroll, dark liquid glass quiz all deployed. Copy FROZEN. UI FROZEN. Next: traffic + data only.*
 
