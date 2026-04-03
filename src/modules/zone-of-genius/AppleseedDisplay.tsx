@@ -3,7 +3,7 @@ import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -52,6 +52,7 @@ const OwnershipSection = ({
 }) => {
     const [shareVisible, setShareVisible] = useState(false);
     const [shareExpanded, setShareExpanded] = useState(false);
+    const shareContentRef = useRef<HTMLDivElement>(null);
 
     // Delayed reveal of share section (500ms after email unlock / save)
     useEffect(() => {
@@ -103,8 +104,8 @@ const OwnershipSection = ({
             {/* ─── SUCCESS STATE: after save ─── */}
             {(emailUnlocked || isSaved) && (
                 <div className="space-y-1 text-center py-2">
-                    <p className="text-sm text-white/60">✓ Saved</p>
-                    <p className="text-xs text-white/30">We'll send you a link to come back anytime.</p>
+                    <p className="text-sm text-white/60">✓ Saved — check your email</p>
+                    <p className="text-xs text-white/30">We sent your Zone of Genius to your inbox.</p>
                 </div>
             )}
 
@@ -115,7 +116,15 @@ const OwnershipSection = ({
                     style={{ opacity: shareExpanded ? 1 : 0.45 }}
                 >
                     <button
-                        onClick={() => setShareExpanded(!shareExpanded)}
+                        onClick={() => {
+                            const next = !shareExpanded;
+                            setShareExpanded(next);
+                            if (next) {
+                                setTimeout(() => {
+                                    shareContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }, 100);
+                            }
+                        }}
                         className="w-full flex items-center justify-center gap-2 py-2 text-xs text-white/40 hover:text-white/60 transition-colors"
                     >
                         <span>Or… show someone how you actually operate</span>
@@ -123,7 +132,7 @@ const OwnershipSection = ({
                     </button>
 
                     {shareExpanded && (
-                        <div className="space-y-3 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <div ref={shareContentRef} className="space-y-3 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
                             <p className="text-xs text-white/50 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 This is how I naturally create value.<br/>
                                 <span className="italic text-white/35">Curious what you see.</span>
