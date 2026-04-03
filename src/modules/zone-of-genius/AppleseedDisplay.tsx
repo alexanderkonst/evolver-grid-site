@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { ArrowRight, Mail, ChevronDown, Share2 } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
@@ -54,10 +54,10 @@ const OwnershipSection = ({
     const [shareExpanded, setShareExpanded] = useState(false);
     const shareContentRef = useRef<HTMLDivElement>(null);
 
-    // Delayed reveal of share section (500ms after email unlock / save)
+    // Delayed reveal of share section (4s after email unlock / save)
     useEffect(() => {
         if (emailUnlocked || isSaved) {
-            const timer = setTimeout(() => setShareVisible(true), 500);
+            const timer = setTimeout(() => setShareVisible(true), 4000);
             return () => clearTimeout(timer);
         }
     }, [emailUnlocked, isSaved]);
@@ -108,11 +108,10 @@ const OwnershipSection = ({
                 </div>
             )}
 
-            {/* ─── STEP 2: SHARE (tertiary, identity expression, non-blocking) ─── */}
+            {/* ─── SHARE (tertiary, delayed, minimal) ─── */}
             {shareVisible && (
                 <div
-                    className="transition-all duration-500 ease-out"
-                    style={{ opacity: shareExpanded ? 1 : 0.45 }}
+                    className="animate-in fade-in duration-700"
                 >
                     <button
                         onClick={() => {
@@ -126,15 +125,16 @@ const OwnershipSection = ({
                         }}
                         className="w-full flex items-center justify-center gap-2 py-2 text-xs text-white/40 hover:text-white/60 transition-colors"
                     >
-                        <span>Or… show someone how you actually operate</span>
+                        <Share2 className="w-3 h-3" />
+                        <span>Share this</span>
                         <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${shareExpanded ? 'rotate-180' : ''}`} />
                     </button>
 
                     {shareExpanded && (
                         <div ref={shareContentRef} className="space-y-3 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
-                            <p className="text-xs text-white/50 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            <p className="text-xs text-white/60 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 This is how I naturally create value.<br/>
-                                <span className="italic text-white/35">Curious what you see.</span>
+                                <span className="italic text-white/45">Curious what you see.</span>
                             </p>
 
                             <ShareZoG
@@ -334,44 +334,8 @@ const AppleseedDisplay = ({
                     </div>
                 </div>
 
-                {/* CTAs Wrapper */}
-                <div className="max-w-md mx-auto space-y-5">
-
-                    {/* CTA 1 (PRIMARY): Quiz — diagnostic intensifier */}
-                    <a
-                        href="/quiz"
-                        className="w-full flex items-center justify-between p-4 rounded-xl
-                                   liquid-glass ring-1 ring-[#8460ea]/30
-                                   hover:ring-[#8460ea]/60
-                                   hover:shadow-[0_0_25px_rgba(132,96,234,0.2)]
-                                   transition-all duration-200 hover:scale-[1.02] active:scale-95"
-                    >
-                        <div>
-                            <p className="text-sm font-semibold text-white/85">See exactly why this hasn't turned into income</p>
-                            <p className="text-xs text-white/40 mt-0.5">6-question diagnostic</p>
-                        </div>
-                        <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
-                            <ArrowRight className="w-4 h-4 text-[#8460ea]" />
-                        </span>
-                    </a>
-
-                    {/* CTA 2 (SECONDARY): Identity shift — stop circling */}
-                    <a
-                        href="/ignite#pricing-section"
-                        className="w-full flex items-center justify-center gap-2 p-3
-                                   rounded-xl ring-1 ring-white/10
-                                   hover:ring-[#8460ea]/30 hover:bg-white/5
-                                   transition-all duration-200 text-sm text-white/45
-                                   hover:text-white/80"
-                    >
-                        I'm done circling this — let's make it real
-                        <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-                </div>
-
                 {/* ═══════════════════════════════════════════════
-                    OWNERSHIP SECTION — ONE intention per moment
-                    Step 1: Own it (save). Step 2: Amplify (share, collapsed).
+                    STATE 1: OWNERSHIP (save/email gate)
                     ═══════════════════════════════════════════════ */}
                 <OwnershipSection
                     emailUnlocked={emailUnlocked}
@@ -386,6 +350,47 @@ const AppleseedDisplay = ({
                     profileId={profileId}
                     profileUrl={profileUrl}
                 />
+
+                {/* ═══════════════════════════════════════════════
+                    STATE 2 & 3: PRIMARY + SECONDARY CTAs
+                    Linear flow — one job per moment
+                    ═══════════════════════════════════════════════ */}
+                <div className="max-w-md mx-auto space-y-4">
+
+                    {/* CTA 1 (PRIMARY): Quiz — diagnostic */}
+                    <a
+                        href="/quiz"
+                        className="w-full flex items-center justify-between p-5 rounded-2xl
+                                   liquid-glass-strong ring-1 ring-white/25
+                                   shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
+                                   hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
+                                   hover:scale-[1.02] active:scale-95
+                                   transition-all duration-300 alive-card"
+                    >
+                        <div>
+                            <p className="text-base font-bold text-white uppercase tracking-wider" style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}>
+                                See exactly why this hasn't turned into income
+                            </p>
+                            <p className="text-xs text-white/50 mt-1">6-question diagnostic</p>
+                        </div>
+                        <span className="w-10 h-10 rounded-full bg-[#b8a4f8]/20 flex items-center justify-center flex-shrink-0 ml-4">
+                            <ArrowRight className="w-5 h-5 text-[#b8a4f8]" />
+                        </span>
+                    </a>
+
+                    {/* CTA 2 (SECONDARY): Build */}
+                    <a
+                        href="/ignite#pricing-section"
+                        className="w-full flex items-center justify-center gap-3 p-4
+                                   rounded-2xl liquid-glass ring-1 ring-white/15
+                                   hover:ring-white/30 hover:bg-white/5
+                                   transition-all duration-300 text-sm text-white/70
+                                   hover:text-white uppercase tracking-wider font-medium"
+                    >
+                        I'm done circling this — let's make it real
+                        <ArrowRight className="w-4 h-4" />
+                    </a>
+                </div>
             </div>
         </>
     );
