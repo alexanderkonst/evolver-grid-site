@@ -1,8 +1,16 @@
-# Roadmap — Evolver Platform
+# Roadmap — Planetary OS Emergence
 
-> Single source of truth for platform development direction.
-> 
-> *Last updated: 2026-04-03 — Premium UI polish complete. Glassmorphism deployed. SiteLogo live. Copy FROZEN. TRAFFIC ONLY.*
+> **This is not a project tracker. This is the living navigation instrument for Alexander's life work.**
+>
+> The roadmap is where the AI speaks on behalf of the emergence — reading the current state, suggesting what to bump up, capturing transmissions, and translating system-level insights into actionable next steps. It is the meeting point between the founder's vision and the system's developmental needs.
+>
+> **How to use this with AI:**
+> - "Read the roadmap and tell me what to focus on this week"
+> - "What should we bump up given [current situation]?"
+> - "Capture this idea in the roadmap"
+> - "What does the system need that I'm not seeing?"
+>
+> *Last updated: 2026-04-03 — Roadmap upgraded to living navigation instrument. Originals Circle captured. Premium UI complete. Copy FROZEN. TRAFFIC ONLY.*
 
 ---
 
