@@ -418,7 +418,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-white/5 backdrop-blur-xl overflow-auto relative"
+                        className="flex-1 bg-white/70 backdrop-blur-xl overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
