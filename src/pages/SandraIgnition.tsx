@@ -67,7 +67,7 @@ const SandraIgnition = () => {
 
   useEffect(() => {
     document.title = "The Future Is Already Speaking To You — Sandra Otto";
-    return () => { document.title = "Evolver"; };
+    return () => { document.title = "Genius Business"; };
   }, []);
 
   const content = (

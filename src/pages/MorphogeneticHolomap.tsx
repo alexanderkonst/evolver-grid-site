@@ -198,7 +198,7 @@ const PERSPECTIVES: PerspectiveData[] = [
   },
   {
     id: "p8", shortId: "LR-Sig", quadrant: "LR", layer: "Significance",
-    title: "Platform as Nervous System", subtitle: "Evolver as digital substrate",
+    title: "Platform as Nervous System", subtitle: "Genius Business as digital substrate",
     currentStage: 3, score: 4,
     stages: [
       { name: "Latency", icon: "◌", desc: "Code repo exists, no coherent purpose", status: "done" },
