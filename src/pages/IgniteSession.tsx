@@ -484,8 +484,8 @@ const IgniteSession = () => {
               {
                 emoji: "🚀",
                 step: "3",
-                title: "You leave with a real business",
-                desc: "Not something to 'figure out later.' AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
+                title: "You leave with a one-page offer",
+                desc: "Not something to 'figure out later.' AI compiles everything live into one page: what you do, who it's for, why they pay, and what to say next.",
               },
             ].map((item, i) => (
               <div
@@ -575,7 +575,7 @@ const IgniteSession = () => {
 
           {/* Price */}
           <div>
-            <div className="flex items-baseline justify-center gap-1 mb-1">
+            <div className="flex items-baseline justify-center gap-1 mb-4">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight font-serif">$555</span>
             </div>
             <p className="text-xs text-white/55">One session. One business.</p>
