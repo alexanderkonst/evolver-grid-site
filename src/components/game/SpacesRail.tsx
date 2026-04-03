@@ -111,9 +111,8 @@ const SpacesRail = ({
     return (
         <div
             className={cn(
-                // Brandbook: Navigation uses slate palette, Deep Navy for dark mode
-                "w-[72px] lg:w-[280px] flex flex-col border-r border-[#a4a3d0]/30",
-                "bg-gradient-to-b from-[#1e4374] via-[#1a2f4a] to-[#0e1f35]",
+                "w-[72px] lg:w-[280px] flex flex-col border-r border-white/10",
+                "liquid-glass",
                 className
             )}
         >
