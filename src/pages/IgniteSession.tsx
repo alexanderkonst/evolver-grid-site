@@ -621,15 +621,16 @@ const IgniteSession = () => {
           {/* CTA */}
           <PrimaryCTA id="book-session-btn" label="Book Your Session" showPrice={false} />
 
-          {/* Small text */}
-          <div className="flex flex-col items-center gap-2 pt-1">
+          {/* Small text / Secondary Actions */}
+          <div className="flex flex-col items-center gap-3 pt-3">
             <a
               href={CALCOM_CLARITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[9px] text-white/25 hover:text-white/50 transition-colors underline underline-offset-4 decoration-white/5 hover:decoration-white/20"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/20 text-xs text-white/60 hover:text-white/90 transition-all duration-200"
             >
-              Have a question? 15-min call
+              <MessageCircle className="w-3.5 h-3.5 opacity-70" />
+              <span>Have a question? Let's chat for 15 mins</span>
             </a>
             <AlreadyPaidLink />
           </div>

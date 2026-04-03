@@ -392,7 +392,7 @@ const ZoneOfGeniusEntry = () => {
                     className="w-full h-full object-cover" 
                 />
                 {/* Dark overlay to ensure white text remains legible */}
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>
 
             <div className="relative z-10 p-4 lg:p-8 max-w-xl mx-auto min-h-dvh flex flex-col justify-center">
