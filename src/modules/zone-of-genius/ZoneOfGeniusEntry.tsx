@@ -429,14 +429,14 @@ const ZoneOfGeniusEntry = () => {
                     </h1>
 
                     {/* Body — Source Serif, compact rhythm */}
-                    <p className="text-sm text-white/55 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                    <p className="text-sm text-white/90 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.25), 0 0 40px rgba(240,194,127,0.1)' }}>
                         There's a unique way you think, solve problems, and create value.
                         You've been using it your whole life — because it's natural to you.
                         People already come to you for it.
                     </p>
 
                     {/* Italic turn */}
-                    <p className="text-sm text-white/35 mt-4 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                    <p className="text-sm text-white/70 mt-4 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2), 0 0 40px rgba(240,194,127,0.08)' }}>
                         And yet… it hasn't turned into something consistent.
                         Not because it isn't real.
                         Because it's never been structured into something people can
