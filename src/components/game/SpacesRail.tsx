@@ -204,21 +204,16 @@ const SpacesRail = ({
                             onClick={handleSpaceClick}
                             disabled={isLocked}
                             className={cn(
-                                // Mobile: centered icon, Desktop: icon + label
                                 "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 relative group",
                                 "justify-center md:justify-start",
-                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6894d0]/50",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
                                 isLocked
-                                    ? "bg-[#1e4374]/40 text-[#6894d0]/50 cursor-not-allowed"
+                                    ? "bg-white/5 text-white/30 cursor-not-allowed"
                                     : active
-                                        ? space.id === "next-move"
-                                            ? "bg-[#29549f] text-white shadow-lg shadow-[#29549f]/40 ring-2 ring-[#6894d0]/60"
-                                            : "bg-[#29549f]/80 text-white border-l-2 border-[#a7cbd4] shadow-md"
+                                        ? "liquid-glass-strong text-white shadow-lg shadow-white/10 ring-1 ring-white/20"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            : space.id === "next-move"
-                                                ? "bg-[#1e4374]/60 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white hover:translate-y-[-1px] ring-1 ring-[#6894d0]/30"
-                                                : "bg-[#1e4374]/60 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
+                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={space.label}
                         >
