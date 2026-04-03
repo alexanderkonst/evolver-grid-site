@@ -406,18 +406,18 @@ const ZoneOfGeniusEntry = () => {
                 <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>
 
-            <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
+            <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
 
                 {/* Header — Godfather "front door" */}
                 <div className="text-center mb-10">
                     {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
+                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
                     {/* Headline — CAPS */}
                     <h1
-                        className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8 uppercase tracking-[0.04em]"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-display text-white leading-[1.35] max-w-2xl mx-auto mb-8 uppercase tracking-[0.04em]"
                         style={{
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
@@ -433,14 +433,14 @@ const ZoneOfGeniusEntry = () => {
                     <div className="w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
 
                     {/* Three short truths */}
-                    <div className="space-y-3 max-w-sm mx-auto">
-                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                    <div className="space-y-4 max-w-lg mx-auto">
+                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             There's a <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>unique way</span> you think and solve problems.
                         </p>
-                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             People <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>already come to you</span> for it.
                         </p>
-                        <p className="text-sm text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-base sm:text-lg text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>structured</span> into something they can quickly <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>say yes</span> to.
                         </p>
                     </div>
@@ -460,7 +460,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="text-center">
                             <button
                                 className="w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
-                                           text-white font-bold text-lg tracking-wider uppercase
+                                           text-white font-bold text-lg sm:text-xl tracking-wider uppercase
                                            ring-1 ring-white/25
                                            shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
                                            hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
