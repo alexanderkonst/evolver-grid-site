@@ -41,11 +41,10 @@ const AppleseedRitualLoading = ({
 
     return (
         <>
-            {/* Dark liquid glass background */}
-            <div className="fixed inset-0 z-0" style={{ background: 'linear-gradient(to bottom, #0a0a1a, #0f172a, #1a1035)' }}>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.12)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(104,148,208,0.08)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(164,163,208,0.05)_0%,transparent_40%)]" />
+            {/* Gradient background — matches ZoG entry page */}
+            <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
+                <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+                <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>
 
             <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">

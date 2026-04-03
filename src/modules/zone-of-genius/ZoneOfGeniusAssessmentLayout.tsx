@@ -106,15 +106,11 @@ const ZoneOfGeniusAssessmentLayout = ({
   return (
     <ZoneOfGeniusProvider>
       <div className="min-h-dvh flex flex-col bg-black text-white overflow-hidden" style={{ fontFamily: "'Poppins', sans-serif" }}>
-        {/* Dark gradient background */}
-        <div className="fixed inset-0 z-0" style={{
-          background: 'linear-gradient(180deg, #0a0a1a 0%, #0f1528 40%, #0a0a1a 100%)',
-        }} />
-
-        {/* Subtle ambient glow */}
-        <div className="fixed inset-0 z-0 opacity-30" style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(132,96,234,0.15) 0%, transparent 60%)',
-        }} />
+        {/* Gradient background — matches ZoG entry page */}
+        <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
+          <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
+        </div>
 
         <main className="relative z-10 flex-1 pt-16 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-6xl">
