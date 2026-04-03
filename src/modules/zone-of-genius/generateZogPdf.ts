@@ -378,7 +378,7 @@ function renderFooter(b: PdfBuilder) {
     b.doc.setFontSize(7);
     b.doc.setTextColor(...COLORS.muted);
     b.doc.text(
-      `Page ${i} of ${pageCount}  ·  evolver.community`,
+      `Page ${i} of ${pageCount}  ·  geniusbusiness.app`,
       PAGE_W / 2,
       292,
       { align: "center" }
