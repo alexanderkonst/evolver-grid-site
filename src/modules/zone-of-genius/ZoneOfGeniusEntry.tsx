@@ -406,7 +406,7 @@ const ZoneOfGeniusEntry = () => {
                 <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>
 
-            <div className="relative z-10 p-5 lg:p-10 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
+            <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
 
                 {/* Header — Godfather "front door" */}
                 <div className="text-center mb-10">
