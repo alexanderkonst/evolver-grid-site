@@ -252,7 +252,7 @@ const SpacesRail = ({
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
                         "justify-center md:justify-start",
-                        "bg-[#1e4374]/40 text-[#a7cbd4] hover:bg-[#29549f]/60 hover:text-white"
+                        "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
                     )}
                     title="Settings"
                 >
