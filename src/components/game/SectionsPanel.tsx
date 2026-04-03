@@ -255,7 +255,7 @@ const SectionsPanel = ({
         <div
             className={cn(
                 "w-[260px] flex flex-col",
-                "liquid-glass bg-black/35",
+                "liquid-glass bg-black/25",
                 "border-r border-white/10",
                 className
             )}
