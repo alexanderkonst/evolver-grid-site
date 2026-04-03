@@ -5943,9 +5943,30 @@ If you track: ZoG pattern + quiz pattern + future inputs → you can build adapt
 |------|-------|-------|--------|
 | 1. ENTRY | ZoG Reveal | Free | ✅ Live |
 | 2. CORE | Ignition Session (90 min) | $555 | ✅ Live |
+| **2.5. CIRCLE** | **The Originals Circle** — recurring group call. Alexander shares latest codes for building unique businesses (1hr), then founders share their gifts live — to the group or a selected member. Community as practice field | **Free for Original Truth Rebels** (included in tribe membership) | 🔜 Activate after 5+ Ignition Sessions |
 | 3. GROUP BUILD | "Build Your Business in 7 Days" — cohort, 5-10 people | $1,500–$3,000 | 🔜 After 20-50 sessions |
 | 4. TEACHER TRAINING | Learn to run these sessions + AI system + scripts | $3,000–$10,000+ | 🔜 After repeatability proven |
 | 5. NETWORK / OS | Marketplace, matching, venture layer | TBD | 🔜 Phase 4+ |
+
+#### The Originals Circle (NEW — April 3, 2026)
+
+> *Received as a transmission. The format: a recurring call for the Original Truth Rebels.*
+
+**Format:**
+- **Part 1 (1 hour):** Alexander shares the latest codes / breakthroughs / phase shift technologies that are most helpful for building unique businesses. Live transmission, not pre-planned curriculum.
+- **Part 2 (open):** Founders share their gifts in real time — to the whole group, or to a selected member. This is the PRACTICE FIELD. The tribe sharpens itself.
+
+**Why this is transformational:**
+1. **P3 activator:** The founders cross-read each other. The tribe recognizes itself (Shared Field trigger)
+2. **Retention:** Between Ignition ($555 one-time) and The Build ($1,111), founders have a REASON to stay connected
+3. **Gift practice:** The circle is where founders test their gift on REAL people who understand the frame. Lowest-stakes, highest-feedback environment possible
+4. **Content engine:** Each circle produces teachable moments, testimonials, breakthroughs — raw material for everything
+
+**Activation trigger:** After 5 completed Ignition Sessions (minimum tribe density for a meaningful circle)
+
+**Cadence:** Biweekly or monthly — to be determined by wave (HD: Emotional Authority → don't lock cadence prematurely)
+
+---
 
 #### Group Build Details
 

@@ -796,6 +796,24 @@ For unbuilt features, show:
 
 ---
 
+### The Originals Circle (Priority: 🟡 TRIGGER-BASED | Activation: After 5 Ignition Sessions)
+
+**What:** A recurring group call for the Original Truth Rebels. Part 1 (1hr): Alexander shares latest codes/breakthroughs for building unique businesses. Part 2 (open): founders share their gifts in real time — to the group or a selected member.
+
+**Why:** P3 (Shared Field) activator. Retention between Ignition ($555) and The Build ($1,111). The tribe's practice field for live gift-sharing. Content engine for testimonials + breakthroughs.
+
+**Activation trigger:** Do NOT start until 5+ Ignition Sessions have been completed (minimum tribe density for a meaningful circle).
+
+**Don't-Forget mechanism:** When the 5th Ignition Session is completed, this item activates. Check back here.
+
+**Status:** ⏸️ Captured. Waiting for trigger.
+
+---
+
+*Roadmap updated: 2026-04-03. Originals Circle captured as trigger-activated milestone.*
+
+---
+
 *Roadmap updated: 2026-04-01. Quiz at /quiz live (6 questions, 4 archetypes). Customer journey playbook consolidated. Homepage = ZoG reveal, /ignite = landing page.*
 
 ---
