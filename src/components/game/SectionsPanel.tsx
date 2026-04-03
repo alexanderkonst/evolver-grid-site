@@ -264,7 +264,7 @@ const SectionsPanel = ({
                 <div className="h-10 px-4 flex items-center justify-end">
                     <button
                         onClick={onClose}
-                        className="p-1.5 text-[#a7cbd4] hover:text-white hover:bg-[#29549f]/60 rounded-md transition-colors"
+                        className="p-1.5 text-white/50 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                         title="Hide sidebar (⌘B)"
                         aria-label="Hide sidebar"
                     >
