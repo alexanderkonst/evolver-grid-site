@@ -32,11 +32,6 @@ const OwnershipSection = ({
     setEmail,
     emailSaving,
     handleEmailSubmit,
-    onSave,
-    isSaving,
-    appleseed,
-    profileId,
-    profileUrl,
 }: {
     emailUnlocked: boolean;
     isSaved: boolean;
@@ -44,22 +39,7 @@ const OwnershipSection = ({
     setEmail: (v: string) => void;
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
-    onSave?: () => void;
-    isSaving: boolean;
-    appleseed: AppleseedData;
-    profileId?: string;
-    profileUrl?: string;
 }) => {
-    const [shareVisible, setShareVisible] = useState(false);
-
-    // Delayed reveal of share section (800ms after email unlock / save)
-    useEffect(() => {
-        if (emailUnlocked || isSaved) {
-            const timer = setTimeout(() => setShareVisible(true), 800);
-            return () => clearTimeout(timer);
-        }
-    }, [emailUnlocked, isSaved]);
-
     return (
         <div className="space-y-6 pt-4 max-w-md mx-auto">
 
