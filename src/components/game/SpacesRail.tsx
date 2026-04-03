@@ -154,8 +154,8 @@ const SpacesRail = ({
                             className="w-8 h-8 rounded-full object-cover flex-shrink-0"
                         />
                     ) : (
-                        <div className="w-8 h-8 rounded-full bg-[#2c3150] flex items-center justify-center flex-shrink-0">
-                            <User className="w-4 h-4 text-[#a4a3d0]" />
+                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <User className="w-4 h-4 text-white/50" />
                         </div>
                     )}
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
