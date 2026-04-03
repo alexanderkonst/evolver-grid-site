@@ -171,6 +171,7 @@ const App = () => (
         <Sonner />
         {/* AnimatedBackground removed for minimal SaaS design */}
         <CustomCursor />
+        <SiteLogo />
         <BrowserRouter>
           <TitleManager />
           <ScrollRestoration />
