@@ -275,8 +275,8 @@ const AppleseedDisplay = ({
 
                     {/* Clarity Bridge */}
                     <div className="space-y-4 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
-                        <p className="text-sm text-white/60 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
-                        <p className="text-[15px] text-white/80 italic leading-loose">
+                        <p className="text-lg text-white/80 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
+                        <p className="text-xl text-white italic leading-loose">
                             What exactly do I offer? <br/>
                             Who is it for? <br/>
                             Why would someone pay for this — consistently?
