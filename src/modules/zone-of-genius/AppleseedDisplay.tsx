@@ -254,10 +254,10 @@ const AppleseedDisplay = ({
                     
                     {/* Validation */}
                     <div className="space-y-4">
-                        <p className="text-lg md:text-xl text-white/80 font-light tracking-wide leading-relaxed">
+                        <p className="text-lg md:text-xl text-white font-light tracking-wide leading-relaxed">
                             You've been doing this for years.
                         </p>
-                        <p className="text-base text-white/50 font-light tracking-wide leading-relaxed">
+                        <p className="text-base text-white/80 font-light tracking-wide leading-relaxed">
                             People already come to you for it. <br/>
                             You've delivered real results through this.
                         </p>
@@ -265,12 +265,12 @@ const AppleseedDisplay = ({
 
                     {/* Collapse Shift */}
                     <div className="space-y-6">
-                        <p className="text-lg text-white/70 font-light tracking-wide leading-relaxed">
+                        <p className="text-lg text-white/90 font-light tracking-wide leading-relaxed">
                             But this — by itself — doesn't become a business.
                         </p>
                         <div className="flex flex-col gap-2">
-                            <p className="text-base text-white/40 italic">Because this is how you naturally think.</p>
-                            <p className="text-base font-medium text-white/90 tracking-wide">
+                            <p className="text-base text-white/70 italic">Because this is how you naturally think.</p>
+                            <p className="text-base font-medium text-white tracking-wide">
                                 It is not yet structured to be bought.
                             </p>
                         </div>
@@ -278,13 +278,13 @@ const AppleseedDisplay = ({
 
                     {/* Consequence Block */}
                     <div className="space-y-6">
-                        <div className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent mx-auto" />
+                        <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent mx-auto" />
                         
                         <div className="space-y-3">
-                            <p className="text-base text-white/50 leading-loose">
+                            <p className="text-base text-white/80 leading-loose">
                                 Without turning this into something concrete:
                             </p>
-                            <p className="text-sm text-white/40 leading-loose font-light">
+                            <p className="text-sm text-white/65 leading-loose font-light">
                                 you keep explaining it differently every time<br/>
                                 people receive value — but do not always pay<br/>
                                 you remain in the loop of "almost there"
@@ -292,10 +292,10 @@ const AppleseedDisplay = ({
                         </div>
                         
                         <div className="pt-4 space-y-2">
-                            <p className="text-base text-white/60 tracking-wide">
+                            <p className="text-base text-white/85 tracking-wide">
                                 Months pass. Nothing fundamentally changes.
                             </p>
-                            <p className="text-sm text-white/40 italic">
+                            <p className="text-sm text-white/65 italic">
                                 And more time thinking about it cannot change it.
                             </p>
                         </div>
@@ -303,8 +303,8 @@ const AppleseedDisplay = ({
 
                     {/* Clarity Bridge */}
                     <div className="space-y-4 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
-                        <p className="text-sm text-white/40 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
-                        <p className="text-[15px] text-white/60 italic leading-loose">
+                        <p className="text-sm text-white/60 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
+                        <p className="text-[15px] text-white/80 italic leading-loose">
                             What exactly do I offer? <br/>
                             Who is it for? <br/>
                             Why would someone pay for this — consistently?
@@ -313,22 +313,22 @@ const AppleseedDisplay = ({
 
                     {/* Decision Line */}
                     <div className="space-y-5">
-                        <p className="text-lg text-white/70 font-light tracking-wide leading-relaxed">
+                        <p className="text-lg text-white/90 font-light tracking-wide leading-relaxed">
                             This is where most people stop.
                         </p>
-                        <p className="text-base font-light text-white/50">
+                        <p className="text-base font-light text-white/75">
                             They recognize themselves…<br/>
-                            <span className="text-white/80 font-medium mt-2 block">but never make it real.</span>
+                            <span className="text-white font-medium mt-2 block">but never make it real.</span>
                         </p>
                     </div>
 
                     {/* Readiness reframe */}
                     <div className="space-y-3 pb-8">
-                        <div className="w-1 h-1 rounded-full bg-[#8460ea]/50 mx-auto mb-6" />
-                        <p className="text-base text-white/60 tracking-wide font-light">
+                        <div className="w-1 h-1 rounded-full bg-[#b8a4f8]/50 mx-auto mb-6" />
+                        <p className="text-base text-white/80 tracking-wide font-light">
                             You don't need to be more ready.
                         </p>
-                        <p className="text-lg font-medium text-white/90 tracking-wide">
+                        <p className="text-lg font-medium text-white tracking-wide">
                             You simply need structure.
                         </p>
                     </div>
