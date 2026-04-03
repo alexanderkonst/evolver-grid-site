@@ -2,7 +2,7 @@
 
 > Single source of truth for platform development direction.
 > 
-> *Last updated: 2026-03-26 (evening)*
+> *Last updated: 2026-04-02 (evening) — Copy work FROZEN. Funnel v3.0 FINAL.*
 
 ---
 
@@ -68,12 +68,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | LAUNCH SPRINT. Funnel built. Liquid glass applied. Quiz deployed. Ownership-first email gate live. Copy roasted. DMs being sent. |
-| **Current cycle** | April 2026 — Transition from "built" to "live". Customer Journey Playbook v1 complete. Identity Disruptor quiz at /quiz. ZoG assessment in dark glass, app in light glass. Ownership-first post-result flow deployed ("Don't lose this" → silent save → delayed share). |
+| **Current phase** | LAUNCH. Funnel v3.0 FINAL. Copy FROZEN. All postponed items captured. NOW: TRAFFIC ONLY. |
+| **Current cycle** | April 2026 — v3.0 Decision Collapse + 5 micro-collapse objection kills deployed. Quiz as primary path. Guarantee live. Share v3.0 spec documented (not yet coded). 56 Phase Shift Domains. |
 | **Location** | Mexico City |
-| **Focus** | **Post first signal. DM 5-10 people. Update surfaces. Observe reactions. The diagnostic: "Have I sent a personal message to a real human about what I do this week?"** |
-| **Key milestone** | ✅ All previous + ✅ ITFT Conversion Physics Upgrade (consequence block, micro-commitment, non-optionality, identity-shift CTAs, proximity reframe, pressure line) + ✅ Ownership-first email gate + ✅ Dark liquid glass on all ZoG screens |
-| **Key decisions** | Two glass systems: dark-surface (public funnel) + light-surface (internal app). Ownership-first conversion: users save results, not "sign up." Controlled Collapse Sequence: funnel is a 5-step collapse (Recognition → Consequence → Non-optionality → Simplicity → Action). Launch at 7-8 not 9.9. First 5 clients > another week of polishing. Manual CRM until $5K/month. |
+| **Focus** | **DM real humans. Update surfaces. Post content. Observe reactions. The diagnostic: have I sent a personal message to a real human about what I do this week?** |
+| **Key milestone** | All previous + Funnel v3.0 + 5 Micro-Collapse + Quiz main path + Guarantee + Share v3.0 spec (Domain 56) + Holonic Seeing (4d/15e-i) + All postponed items in roadmap |
+| **Key decisions** | Copy work FROZEN. No more funnel optimization until traffic data exists. Build order: traffic first, then backend (silent accounts), then share v3.0, then data-driven optimization. |
 
 ---
 
@@ -908,4 +908,147 @@ A platform tool where a founder who has completed their Product (Unique Business
 
 ---
 
-*Roadmap updated: 2026-04-02. Replication Engine architecture designed (Layer 2: The Build group container, Layer 3: The Transmission spec). Roso & Cori collaboration status documented. ITFT Conversion Physics live. Silent account creation + magic link still queued as next backend work.*
+## 📌 POSTPONED ITEMS — Clearly Named (April 2, 2026)
+
+> All items identified during the v3.0 Decision Collapse session and the broader strategy work. Organized by category, with source references and prerequisites. **No more copy work — only traffic + data determines which of these get built next.**
+
+---
+
+### Category 1: Funnel Backend
+
+#### 1.1 Silent Account Creation
+**What:** When user submits email on the "Save this" gate, create Supabase account silently in background. Attach ZoG result to that user account. NO "sign up," "create account," or "join" language anywhere.
+**Source:** [Alexander's UB — Funnel Spec v3.0](../02-strategy/unique-businesses/alexanders_unique_business.md)
+**Prerequisite:** None — can be built now
+**Priority:** 🔴 HIGH — first backend work after copy freeze
+
+#### 1.2 Magic Link Email
+**What:** After silent account creation, email the user a magic link so they can return to their saved ZoG result later. Link opens directly to their result — no login flow.
+**Source:** [Alexander's UB — Funnel Spec v3.0](../02-strategy/unique-businesses/alexanders_unique_business.md)
+**Prerequisite:** 1.1 (Silent Account Creation)
+**Priority:** 🔴 HIGH — paired with 1.1
+
+#### 1.3 ZoG Result Persistence
+**What:** Store the full ZoG result (archetype, bullseye statement, zone description) in the user's account so it persists across sessions and can be referenced in future flows.
+**Source:** Implied by 1.1 and 1.2
+**Prerequisite:** 1.1 (Silent Account Creation)
+**Priority:** 🔴 HIGH — paired with 1.1
+
+---
+
+### Category 2: Share / Viral Mechanism
+
+#### 2.1 Implement Externalized Self-Recognition Share (v3.0)
+**What:** Upgrade the current generic share section on AppleseedDisplay to the v3.0 Identity Verification copy:
+- Header: "Sanity check this with someone who knows you well"
+- Button: "Ask someone: is this actually me?"
+- Microcopy: "You'll know instantly if this is real — or just in your head."
+- Default share message: "Hey — quick gut check. This describes how I naturally think/work. Does this actually sound like me to you?"
+**Source:** [Alexander's UB — Share Spec v3.0](../02-strategy/unique-businesses/alexanders_unique_business.md), [Domain 56](../01-vision/phase_shift_technology_library.md)
+**Prerequisite:** None — can be built now (copy work, no backend)
+**Priority:** 🟡 MED — implement after first traffic data
+
+#### 2.2 "Close the Loop" — Response Feedback System
+**What:** Design how responses from friends feed BACK into the funnel. Turn "yes that's you" replies into conversion triggers. Re-engage sharers automatically.
+**Source:** GFOA session — user was told to say "close the loop" when ready
+**Prerequisite:** 2.1 (Share v3.0 implemented) + traffic data showing shares happening
+**Priority:** 🟢 LOW — design when share volume justifies it
+
+#### 2.3 Share A/B Testing
+**What:** Test button copy variants (A: "Send this to someone who knows you well" / B: "Do others see you this way?" / C: "Be honest — does this sound like me?") and share message variants (higher-conversion / edgy).
+**Source:** [Alexander's UB — Share Spec v3.0](../02-strategy/unique-businesses/alexanders_unique_business.md)
+**Prerequisite:** 2.1 + sufficient traffic volume for statistical significance
+**Priority:** 🟢 LOW — data-driven, not copy-driven
+
+---
+
+### Category 3: Funnel Optimization (Data-Driven Only)
+
+#### 3.1 Copy A/B Testing
+**What:** Test the 5 micro-collapse objection kills against versions without them. Watch drop-off at each friction point. Test CTA wording variants.
+**Source:** GFOA final session — "after this: NO MORE COPY WORK. ONLY TRAFFIC + DATA."
+**Prerequisite:** Sufficient funnel traffic (50+ completions per variant)
+**Priority:** 🟢 LOW — blocked by traffic volume
+
+#### 3.2 Quiz-to-Ignite Bridge Optimization
+**What:** Monitor quiz completion → Ignite page click-through. If drop-off is high, test result page CTA variants.
+**Source:** Funnel v3.0 architecture — quiz is now PRIMARY path
+**Prerequisite:** Traffic data showing quiz completions
+**Priority:** 🟡 MED — first optimization after traffic starts
+
+#### 3.3 Pricing Section Self-Diagnostic
+**What:** Add 1-question micro-commitment self-diagnostic above pricing ("Which describes you best?"). Was in ITFT Part IX spec but not implemented in v3.0.
+**Source:** [ITFT Part IX — Controlled Collapse Sequence](../02-strategy/unique-businesses/alexanders_unique_business.md)
+**Prerequisite:** Pricing section traffic data — only implement if drop-off at pricing is measurably high
+**Priority:** 🟢 LOW — diagnostic-driven, not assumption-driven
+
+---
+
+### Category 4: Content & Outreach
+
+#### 4.1 4-Minute Methodology Video
+**What:** Record the methodology overview video that's currently a placeholder YouTube embed (afWWcXUqnLI). The funnel references "See why this hasn't worked yet (4 min)" — this video needs to exist.
+**Source:** [Video Script](../03-playbooks/video_script_4min.md), [Video Production Plan](../08-content/VIDEO_PRODUCTION_PLAN.md)
+**Prerequisite:** None — Alexander records this
+**Priority:** 🔴 HIGH — the funnel currently links to a placeholder
+
+#### 4.2 Outreach Execution
+**What:** Execute the 3-day Ceremony Sprint (surfaces → DMs → content post → upstream partner). All templates exist in the playbook.
+**Source:** [Launch Sprint Plan](../../.gemini/antigravity/brain/473373eb-98e9-4fdb-811f-9c3042bca01e/launch_sprint_plan.md), [Customer Journey Playbook](../03-playbooks/customer_journey_playbook.md)
+**Prerequisite:** None — everything is built
+**Priority:** 🔴 CRITICAL — "Have I sent a personal message to a real human about what I do this week?"
+
+#### 4.3 Surface Updates (LinkedIn, WhatsApp, Email Sig, Telegram)
+**What:** Update all digital surfaces with v3.0-aligned bios and headlines. Copy exists in Playbook Section 9.
+**Source:** [Customer Journey Playbook Section 9](../03-playbooks/customer_journey_playbook.md)
+**Prerequisite:** None
+**Priority:** 🔴 HIGH — permanent signal, 30 min max
+
+#### 4.4 NotebookLM Video Series (36 episodes)
+**What:** Generate video overviews for all micro-modules using NotebookLM. TV series format (F/S/M/E/B/G seasons).
+**Source:** [Video Production Plan](../08-content/VIDEO_PRODUCTION_PLAN.md)
+**Prerequisite:** First paying client (proves demand before content investment)
+**Priority:** 🟡 MED — content machine, not launch-critical
+
+---
+
+### Category 5: Platform-Level (Post-Revenue)
+
+#### 5.1 Interactive Canvas in BUILD Space
+**What:** Build the Unique Business Canvas as an interactive module in the platform's BUILD space. Connect ZoG → Canvas → Product Builder → Marketplace.
+**Source:** Roadmap Goal 2 (est. March 2026)
+**Prerequisite:** Revenue from Ignition Sessions proves the methodology
+**Priority:** 🟡 MED — platform feature, not revenue feature
+
+#### 5.2 Distribution Surface Projector
+**What:** AI-powered tool that takes a founder's completed Product + Packaging and generates their personalized distribution holomap.
+**Source:** [Roadmap — Distribution Surface Projector](#distribution-surface-projector-added-april-1-2026)
+**Prerequisite:** Phase 1 (manual) proven with Alexander's own holomap ✅. Phase 2 (prompt workflow) is next.
+**Priority:** 🟡 MED — Phase 2 buildable now, Phase 3 = platform feature
+
+#### 5.3 Holomap AI Features
+**What:** Wire AI into holomap data for bottleneck analysis, growth driver identification, system voice, and self-calibration.
+**Source:** [Roadmap — Holomap AI Features](#holomap-ai-features-priority--high--target-q2-2026)
+**Prerequisite:** Holomap methodology proven on 3+ ventures
+**Priority:** 🟡 MED — Q2-Q3 2026
+
+#### 5.4 Per-Founder Holomaps (The Build tier)
+**What:** Each founder in The Build ($5K tier) gets a personalized morphogenetic map of THEIR venture. 12 perspectives × evolutionary stages, updated weekly.
+**Source:** [Roadmap — Per-Founder Holomaps](#per-founder-holomaps-priority--med--target-q2-2026)
+**Prerequisite:** The Build group container launched (4+ Ignition graduates)
+**Priority:** 🟡 MED — makes The Build irreplaceable
+
+---
+
+### The One Rule
+
+> **"I don't need a better funnel. I need more people inside it."**
+>
+> Every item above is secondary to: **DM a real human this week.**
+>
+> The diagnostic for whether any of these items should be built: **"Is this blocked by traffic data I don't have yet?"** If yes → get traffic first. If no → build it.
+
+---
+
+*Roadmap updated: 2026-04-02. Funnel v3.0 + micro-collapse FINAL. All postponed items captured. Copy work FROZEN. Next: traffic + data only.*
+
