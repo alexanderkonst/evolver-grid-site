@@ -315,11 +315,6 @@ const AppleseedDisplay = ({
                     setEmail={setEmail}
                     emailSaving={emailSaving}
                     handleEmailSubmit={handleEmailSubmit}
-                    onSave={onSave}
-                    isSaving={isSaving}
-                    appleseed={appleseed}
-                    profileId={profileId}
-                    profileUrl={profileUrl}
                 />
 
                 {/* ═══════════════════════════════════════════════
