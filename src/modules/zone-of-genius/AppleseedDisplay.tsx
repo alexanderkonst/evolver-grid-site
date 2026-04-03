@@ -110,7 +110,7 @@ const OwnershipSection = ({
 
             {/* ─── SHARE (tertiary, delayed, minimal) ─── */}
             {shareVisible && (
-                <div className="animate-in fade-in duration-700">
+                <div className="animate-in fade-in duration-700 opacity-50 hover:opacity-70 transition-opacity">
                     <ShareZoG
                         archetypeName={appleseed.vibrationalKey.name}
                         tagline={appleseed.bullseyeSentence}
