@@ -401,6 +401,34 @@ const IgniteSession = () => {
         </header>
 
         {/* ═══════════════════════════════════════════════
+            S1.5: VIDEO — immediately after hero
+            ═══════════════════════════════════════════════ */}
+        <section id="hero-video" aria-label="Methodology video" className="space-y-5">
+          <div className="liquid-glass rounded-2xl p-1">
+            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
+          </div>
+          <p className="text-xs text-white/45 text-center italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If you're still thinking about this after watching… you already know.
+          </p>
+
+          {/* Post-video CTA */}
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <span>Turn this into something real ($555)</span>
+              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            </a>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
             S2: QUALIFIER — the gold (untouched)
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
