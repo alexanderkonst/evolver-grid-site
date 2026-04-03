@@ -129,7 +129,7 @@ const OwnershipSection = ({
                 </div>
             )}
 
-            {/* ─── STEP 2: AMPLIFY (delayed, collapsed) ─── */}
+            {/* ─── STEP 2: SHARE (tertiary, identity expression, non-blocking) ─── */}
             {shareVisible && (
                 <div
                     className="transition-all duration-500 ease-out"
@@ -139,15 +139,15 @@ const OwnershipSection = ({
                         onClick={() => setShareExpanded(!shareExpanded)}
                         className="w-full flex items-center justify-center gap-2 py-2 text-xs text-white/40 hover:text-white/60 transition-colors"
                     >
-                        <span>Optional: Get perspective from others</span>
+                        <span>Or… show someone how you actually operate</span>
                         <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${shareExpanded ? 'rotate-180' : ''}`} />
                     </button>
 
                     {shareExpanded && (
                         <div className="space-y-3 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
-                            <p className="text-xs text-white/35 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                                Ask 2–3 people who know you well:<br/>
-                                <span className="italic text-white/50">Does this actually sound like me?</span>
+                            <p className="text-xs text-white/50 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                                This is how I naturally create value.<br/>
+                                <span className="italic text-white/35">Curious what you see.</span>
                             </p>
 
                             <ShareZoG
@@ -159,10 +159,6 @@ const OwnershipSection = ({
                                 profileId={profileId}
                                 profileUrl={profileUrl}
                             />
-
-                            <p className="text-[10px] text-white/20 text-center italic">
-                                Clarity gets stronger when it's reflected back.
-                            </p>
                         </div>
                     )}
                 </div>

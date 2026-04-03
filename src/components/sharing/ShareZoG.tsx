@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Share2, Copy, Linkedin, Facebook, Send, Twitter, Instagram, Check, ChevronDown } from "lucide-react";
+import { Share2, Copy, Linkedin, Send, Twitter, Check, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface ShareZoGProps {
@@ -13,17 +13,21 @@ interface ShareZoGProps {
 }
 
 /**
- * Virality mechanism: "Curiosity Gap" sharing
+ * Virality mechanism: Identity Expression sharing
  *
- * The share text does NOT include the website link.
- * Instead it asks friends "do you see me this way?"
+ * Share = expression, NOT validation.
+ * "This is me" — not "help me decide."
  *
- * This creates a two-stage viral loop:
- * 1. Friends engage with the post (comments, reactions) → algorithmic boost
- * 2. Friends ask "where did you get this?" → organic word-of-mouth
- * 3. The original sharer becomes the distribution channel
+ * The share text doesn't ask for permission or sanity-checking.
+ * It states identity and invites curiosity.
  *
- * The link is intentionally absent. Curiosity > convenience.
+ * Viral loop:
+ * 1. User shares because it feels true (ownership energy)
+ * 2. Receiver sees something specific + personal → "wait, what is this?"
+ * 3. Curiosity gap drives organic inquiry → word-of-mouth
+ *
+ * No link included. Curiosity > convenience.
+ * No validation framing. Expression > hesitation.
  */
 const buildShareText = (params: {
   archetypeName: string;
@@ -34,17 +38,15 @@ const buildShareText = (params: {
 }) => {
   const { archetypeName, tagline, primeDriver, talents } = params;
 
-  let text = `Something just named what I do better than I ever could.\n\n`;
-  text += `Apparently my genius is: ${archetypeName}\n`;
+  let text = `This is how I naturally create value:\n\n`;
+  text += `${archetypeName}\n`;
   text += `"${tagline}"\n\n`;
 
   if (talents && talents.length > 0) {
-    text += `Top talents: ${talents.join(" · ")}\n`;
+    text += `${talents.join(" · ")}\n`;
   }
-  text += `What drives me: ${primeDriver}\n\n`;
-  text += `Honestly? It hit hard.\n\n`;
-  text += `But I'm curious — do you actually see me this way? 👀\n`;
-  text += `Tell me if this lands or if I'm delusional 😂`;
+  text += `What drives it: ${primeDriver}\n\n`;
+  text += `Curious what you see.`;
 
   return text;
 };
@@ -72,6 +74,16 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 
   const shareLinks = [
     {
+      label: "WhatsApp",
+      icon: Send,
+      href: `https://wa.me/?text=${encodedText}`,
+    },
+    {
+      label: "Telegram",
+      icon: Send,
+      href: `https://t.me/share/url?url=${siteUrl}&text=${encodedText}`,
+    },
+    {
       label: "LinkedIn",
       icon: Linkedin,
       href: `https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`,
@@ -80,21 +92,6 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
       label: "X (Twitter)",
       icon: Twitter,
       href: `https://twitter.com/intent/tweet?text=${encodedText}`,
-    },
-    {
-      label: "Facebook",
-      icon: Facebook,
-      href: `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}&quote=${encodedText}`,
-    },
-    {
-      label: "Telegram",
-      icon: Send,
-      href: `https://t.me/share/url?url=${siteUrl}&text=${encodedText}`,
-    },
-    {
-      label: "Instagram",
-      icon: Instagram,
-      href: `https://www.instagram.com/`,
     },
   ];
 
@@ -123,7 +120,7 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
         onClick={() => setIsOpen(!isOpen)}
       >
         <Share2 className="w-4 h-4" />
-        <span>Share with a friend</span>
+        <span>Share this</span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
