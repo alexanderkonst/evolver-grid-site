@@ -198,6 +198,23 @@ These are the guerrilla surfaces. Each one takes 1-5 minutes to set up and then 
 >
 > — Phase Shift Technology #50
 
+### The Unified Surface Principle (April 2, 2026 — Domain 57 extension)
+
+> **Every surface — digital, physical, hidden — obeys the same physics.** An event is a surface. A dinner is a surface. A standing group of people chatting is a surface. The same Yield formula applies. The same activation rule applies: **you don't activate a surface by being on it. You activate it by communicating into it.**
+
+| Surface type | Example | Activation = NOT | Activation = |
+|-------------|---------|-----------------|-------------|
+| **Presence** | LinkedIn headline | Having a profile | Writing a signal |
+| **Publish** | LinkedIn post | Scrolling the feed | Posting content |
+| **Push** | DM | Having contacts | Sending a message |
+| **Physical** | Networking event | Showing up | **Broadcasting into a group field** |
+
+This means the Physical tier is no longer a separate category with different rules. It is scored identically: `Yield = (Attention × Clout × Alignment) / Energy Cost`. And the activation rule is the same across ALL 151+ surfaces: **communication, not presence.**
+
+**Consequence for event selection:** Every event can be scored on the same 4 dimensions. A $500 conference with low alignment may yield less than a free dinner with high alignment. Choose events by Yield, not by prestige.
+
+**See:** [Domain 57: Campfire Networking](../01-vision/phase_shift_technology_library.md) — the operational protocol for activating physical surfaces.
+
 ---
 
 *Created: March 31, 2026*
