@@ -388,37 +388,59 @@ const ZoneOfGeniusEntry = () => {
             <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
                 <img 
                     src="/gradient.jpg" 
-                    alt="Background Gradient" 
+                    alt="" 
                     className="w-full h-full object-cover" 
+                    aria-hidden="true"
                 />
                 {/* Dark overlay to ensure white text remains legible */}
                 <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>
 
-            <div className="relative z-10 p-4 lg:p-8 max-w-xl mx-auto min-h-dvh flex flex-col justify-center">
+            <div className="relative z-10 p-5 lg:p-10 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
 
                 {/* Header — Godfather "front door" */}
-                <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full overflow-hidden mb-4 ring-1 ring-white/10">
-                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
+                <div className="text-center mb-10">
+                    {/* Dodecahedron — breathing icon */}
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
+                        <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
+
+                    {/* Headline — more space, more letter-spacing */}
                     <h1
-                        className="text-2xl lg:text-3xl font-semibold font-display text-white/90"
-                        style={{ textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)' }}
+                        className="text-[1.65rem] lg:text-3xl font-light tracking-wide text-white/90 leading-[1.35]"
+                        style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            textShadow: '0 0 40px rgba(255,255,255,0.12), 0 0 80px rgba(132,96,234,0.08)',
+                        }}
                     >
-                        Why is it still so hard to explain what you do—<br className="hidden sm:inline" />
-                        and turn it into something people actually pay for?
+                        Why is it still so hard to explain<br className="hidden sm:inline" />
+                        what you do —<br />
+                        <span className="text-white font-normal mt-1 block">
+                            and turn it into something people actually pay for?
+                        </span>
                     </h1>
-                    <p className="text-sm text-white/55 mt-4 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                        There's a unique way you think, solve problems, and create value.<br/>
-                        You've been using it your whole life — because it's natural to you.<br/>
-                        People already come to you for it — when they're stuck, unclear, or need direction.
-                    </p>
-                    <p className="text-sm text-white/35 mt-3 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                        And yet… it hasn't turned into something consistent.<br/>
-                        Not because it isn't real.<br/>
-                        Because it's never been structured into something people can quickly understand — and say yes to.
-                    </p>
+
+                    {/* Body — stanza-separated, breathing rhythm */}
+                    <div className="mt-8 space-y-4 max-w-sm mx-auto">
+                        <p className="text-[15px] text-white/55 leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            There's a unique way you think, solve problems, and create value.
+                        </p>
+                        <p className="text-[15px] text-white/45 leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            You've been using it your whole life — because it's natural to you.<br/>
+                            People already come to you for it.
+                        </p>
+                    </div>
+
+                    {/* Italic subtext — separated, softer */}
+                    <div className="mt-6 max-w-sm mx-auto">
+                        <div className="w-px h-6 bg-gradient-to-b from-white/15 to-transparent mx-auto mb-4" />
+                        <p className="text-sm text-white/30 italic leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            And yet… it hasn't turned into something consistent.<br/>
+                            Not because it isn't real.<br/>
+                            Because it's never been structured into something<br/>
+                            people can quickly understand — and say yes to.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Error message */}
@@ -430,22 +452,23 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Choice */}
                 {step === "choice" && (
-                    <div className="space-y-6">
-                        {/* Primary CTA — center, large */}
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        {/* Primary CTA — breathing alive feel */}
                         <div className="text-center">
                             <button
                                 className="w-full max-w-sm mx-auto liquid-glass-strong rounded-full px-8 py-4
-                                           text-white font-semibold text-base
+                                           text-white font-medium text-[15px] tracking-wide
                                            ring-1 ring-white/20
                                            shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                           hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                           hover:scale-105 active:scale-95
+                                           hover:shadow-[0_0_50px_rgba(132,96,234,0.35)]
+                                           hover:scale-[1.03] active:scale-95
                                            transition-all duration-300 ease-out
-                                           flex items-center justify-center gap-2"
+                                           flex items-center justify-center gap-3
+                                           alive-card"
                                 onClick={() => setStep("choice-route")}
                             >
                                 Reveal the unique way I naturally create value
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="w-4 h-4 opacity-70" />
                             </button>
                         </div>
                     </div>
@@ -453,9 +476,9 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Route Selection */}
                 {step === "choice-route" && (
-                    <div className="space-y-6">
-                        <div className="text-center mb-4">
-                            <h2 className="text-lg font-semibold text-white/80 font-display">
+                    <div className="space-y-8 animate-in fade-in duration-500">
+                        <div className="text-center">
+                            <h2 className="text-xl font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 How do you want to reveal it?
                             </h2>
                         </div>
@@ -463,48 +486,51 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-5 rounded-xl liquid-glass
+                                className="w-full p-6 rounded-2xl liquid-glass
                                            ring-1 ring-white/10
                                            hover:ring-[#8460ea]/40
-                                           hover:shadow-[0_0_25px_rgba(132,96,234,0.15)]
-                                           transition-all duration-200 
+                                           hover:shadow-[0_0_30px_rgba(132,96,234,0.15)]
+                                           transition-all duration-300 
                                            text-left flex items-start gap-4 group
-                                           hover:scale-[1.01] active:scale-[0.99]"
+                                           hover:scale-[1.015] active:scale-[0.985]
+                                           animate-in fade-in slide-in-from-bottom-2 duration-400"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2.5 rounded-full bg-[#8460ea]/15 shrink-0
-                                                    group-hover:bg-[#8460ea]/25 transition-colors">
+                                    <div className="p-3 rounded-full bg-[#8460ea]/15 shrink-0
+                                                    group-hover:bg-[#8460ea]/25 transition-colors duration-300">
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
+                                        <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors tracking-wide">
                                             🤖 Faster (1 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Ask your AI & paste its response → get your pattern instantly</p>
+                                        <p className="text-xs text-white/35 mt-1 leading-relaxed">Ask your AI & paste its response → get your pattern instantly</p>
                                     </div>
                                 </div>
                             </button>
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-5 rounded-xl liquid-glass
+                                className="w-full p-6 rounded-2xl liquid-glass
                                            ring-1 ring-white/10
                                            hover:ring-[#6894d0]/40
-                                           hover:shadow-[0_0_25px_rgba(104,148,208,0.15)]
-                                           transition-all duration-200 
+                                           hover:shadow-[0_0_30px_rgba(104,148,208,0.15)]
+                                           transition-all duration-300 
                                            text-left flex items-start gap-4 group
-                                           hover:scale-[1.01] active:scale-[0.99]"
+                                           hover:scale-[1.015] active:scale-[0.985]
+                                           animate-in fade-in slide-in-from-bottom-2 duration-400"
+                                style={{ animationDelay: '100ms' }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2.5 rounded-full bg-[#6894d0]/15 shrink-0
-                                                    group-hover:bg-[#6894d0]/25 transition-colors">
+                                    <div className="p-3 rounded-full bg-[#6894d0]/15 shrink-0
+                                                    group-hover:bg-[#6894d0]/25 transition-colors duration-300">
                                         <ClipboardList className="w-5 h-5 text-[#6894d0]" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
+                                        <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors tracking-wide">
                                             📋 Guided (10–15 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Assessment of your top talents</p>
+                                        <p className="text-xs text-white/35 mt-1 leading-relaxed">Assessment of your top talents</p>
                                     </div>
                                 </div>
                             </button>
@@ -514,21 +540,22 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: AI Prompt */}
                 {step === "ai-prompt" && (
-                    <div className="space-y-4">
-                        <div className="text-center">
-                            <h2 className="text-base font-semibold text-white/80 font-display">
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 Copy this prompt into your AI
                             </h2>
+                            <p className="text-xs text-white/30">ChatGPT, Claude, Gemini — any will work</p>
                         </div>
 
-                        <div className="relative rounded-xl liquid-glass ring-1 ring-white/10">
-                            <pre className="text-xs whitespace-pre-wrap font-mono leading-snug max-h-40 overflow-y-auto p-3 pr-16 text-white/25">
+                        <div className="relative rounded-2xl liquid-glass ring-1 ring-white/10">
+                            <pre className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 text-white/15 selection:bg-[#8460ea]/20">
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-2 right-2 bg-white/5 backdrop-blur-sm border-white/15 text-white/70 hover:bg-white/10 hover:text-white shadow-sm text-xs"
+                                className="absolute top-3 right-3 bg-white/5 backdrop-blur-sm border-white/15 text-white/70 hover:bg-white/10 hover:text-white shadow-sm text-xs rounded-lg"
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
@@ -547,25 +574,25 @@ const ZoneOfGeniusEntry = () => {
 
                         <button
                             className="w-full liquid-glass-strong rounded-full px-8 py-4
-                                       text-white font-semibold text-base
+                                       text-white font-medium text-[15px] tracking-wide
                                        ring-1 ring-white/20
                                        shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                       hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                       hover:scale-105 active:scale-95
+                                       hover:shadow-[0_0_50px_rgba(132,96,234,0.35)]
+                                       hover:scale-[1.03] active:scale-95
                                        transition-all duration-300 ease-out
-                                       flex items-center justify-center gap-2"
+                                       flex items-center justify-center gap-3"
                             onClick={() => setStep("paste-response")}
                         >
                             I've got my AI's response
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-4 h-4 opacity-70" />
                         </button>
 
-                        <div className="text-center">
+                        <div className="text-center pt-2">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-xs text-white/25 hover:text-white/60 transition-colors"
+                                className="text-[11px] text-white/20 hover:text-white/50 transition-colors duration-300 tracking-wide"
                             >
-                                Nevermind, I'll do the assessment →
+                                I'll do the guided assessment instead →
                             </button>
                         </div>
                     </div>
@@ -573,35 +600,37 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Paste Response */}
                 {step === "paste-response" && (
-                    <div className="space-y-6">
-                        <div className="text-center">
-                            <h2 className="text-lg font-semibold text-white/80 font-display">
+                    <div className="space-y-6 animate-in fade-in duration-500">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 Paste your AI's response
                             </h2>
+                            <p className="text-xs text-white/30">The full response — we'll extract your pattern from it</p>
                         </div>
 
                         <Textarea
                             value={aiResponse}
                             onChange={(e) => setAiResponse(e.target.value)}
                             placeholder="Paste your AI's response here..."
-                            className="min-h-[200px] font-mono text-sm bg-white/5 backdrop-blur-sm border-white/10 focus:border-[#8460ea]/40 text-white/80 placeholder:text-white/20"
+                            className="min-h-[200px] font-mono text-sm rounded-2xl bg-white/[0.03] backdrop-blur-sm border-white/10 focus:border-[#8460ea]/30 focus:ring-1 focus:ring-[#8460ea]/20 text-white/80 placeholder:text-white/15 transition-all duration-300"
                         />
 
                         <button
-                            className="w-full liquid-glass-strong rounded-full px-8 py-4
-                                       text-white font-semibold text-base
+                            className={`w-full liquid-glass-strong rounded-full px-8 py-4
+                                       text-white font-medium text-[15px] tracking-wide
                                        ring-1 ring-white/20
                                        shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                       hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                       hover:scale-105 active:scale-95
+                                       hover:shadow-[0_0_50px_rgba(132,96,234,0.35)]
+                                       hover:scale-[1.03] active:scale-95
                                        transition-all duration-300 ease-out
-                                       disabled:opacity-40 disabled:hover:scale-100
-                                       flex items-center justify-center gap-2"
+                                       disabled:opacity-30 disabled:hover:scale-100 disabled:shadow-none
+                                       flex items-center justify-center gap-3
+                                       ${aiResponse.trim() ? 'alive-card' : ''}`}
                             onClick={handleGenerateAppleseed}
                             disabled={isProcessing || !aiResponse.trim()}
                         >
                             {isProcessing ? "Discovering..." : "Discover My Zone of Genius"}
-                            <Sparkles className="w-4 h-4" />
+                            <Sparkles className="w-4 h-4 opacity-70" />
                         </button>
                     </div>
                 )}
