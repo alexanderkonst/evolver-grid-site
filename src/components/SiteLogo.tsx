@@ -7,8 +7,8 @@ import { Link, useLocation } from "react-router-dom";
 const SiteLogo = () => {
     const location = useLocation();
 
-    // Hide on game pages and result pages
-    if (location.pathname.startsWith("/game") || location.pathname === "/my-result") return null;
+    // Hide on game pages, result pages, and ZoG appleseed view
+    if (location.pathname.startsWith("/game") || location.pathname === "/my-result" || location.pathname.startsWith("/zone-of-genius/appleseed")) return null;
 
     return (
         <Link
