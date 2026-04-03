@@ -253,10 +253,9 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                // Panel 2: Lighter than Panel 1 - Royal Blue base
                 "w-[260px] flex flex-col",
-                "bg-gradient-to-b from-[#29549f]/95 via-[#1e4374]/90 to-[#1a2f4a]/95",
-                "backdrop-blur-sm border-r border-[#6894d0]/30",
+                "liquid-glass",
+                "border-r border-white/10",
                 className
             )}
         >
@@ -265,7 +264,7 @@ const SectionsPanel = ({
                 <div className="h-10 px-4 flex items-center justify-end">
                     <button
                         onClick={onClose}
-                        className="p-1.5 text-[#a7cbd4] hover:text-white hover:bg-[#29549f]/60 rounded-md transition-colors"
+                        className="p-1.5 text-white/50 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                         title="Hide sidebar (⌘B)"
                         aria-label="Hide sidebar"
                     >
@@ -287,10 +286,10 @@ const SectionsPanel = ({
                             <div
                                 className={cn(
                                     "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-all duration-150",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6894d0]/50",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
                                     sectionActive && !hasSubSections
-                                        ? "bg-[#1e4374]/80 text-white border-l-2 border-[#a7cbd4]"
-                                        : "text-[#a7cbd4] hover:bg-[#1e4374]/60 hover:text-white hover:translate-x-0.5"
+                                        ? "bg-white/15 text-white border-l-2 border-white/40"
+                                        : "text-white/60 hover:bg-white/10 hover:text-white hover:translate-x-0.5"
                                 )}
                                 onClick={() => {
                                     if (hasSubSections) {
@@ -315,7 +314,7 @@ const SectionsPanel = ({
 
                             {/* Sub-sections with indent */}
                             {hasSubSections && isExpanded && (
-                                <div className="ml-8 border-l border-[#6894d0]/30">
+                                <div className="ml-8 border-l border-white/10">
                                     {section.subSections!.map((sub) => {
                                         const subActive = isActive(sub.path);
                                         return (
@@ -324,8 +323,8 @@ const SectionsPanel = ({
                                                 className={cn(
                                                     "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
                                                     subActive
-                                                        ? "bg-[#1e4374]/80 text-white"
-                                                        : "text-[#6894d0] hover:bg-[#1e4374]/60 hover:text-white"
+                                                        ? "bg-white/15 text-white"
+                                                        : "text-white/40 hover:bg-white/10 hover:text-white"
                                                 )}
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
