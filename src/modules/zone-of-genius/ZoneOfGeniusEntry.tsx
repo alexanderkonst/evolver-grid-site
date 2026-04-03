@@ -415,35 +415,30 @@ const ZoneOfGeniusEntry = () => {
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Eyebrow — sets the frame */}
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-                        Zone of Genius Discovery
-                    </p>
-
-                    {/* Headline */}
+                    {/* Headline — CAPS */}
                     <h1
-                        className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8"
+                        className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8 uppercase tracking-[0.04em]"
                         style={{
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
                     >
                         Why is it still so hard to explain what you do{' '}
-                        <span className="text-white/50">—</span>{' '}
+                        <span className="text-white/60">—</span>{' '}
                         and turn it into something people actually pay for?
                     </h1>
 
                     {/* Separator */}
                     <div className="w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
 
-                    {/* Three short truths — scannable, not a wall */}
+                    {/* Three short truths */}
                     <div className="space-y-3 max-w-sm mx-auto">
-                        <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             There's a unique way you think and solve problems.
                         </p>
-                        <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             People already come to you for it.
                         </p>
-                        <p className="text-sm text-white/50 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.12)' }}>
+                        <p className="text-sm text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             It just hasn't been structured into something they can quickly say yes to.
                         </p>
                     </div>
