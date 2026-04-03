@@ -574,18 +574,20 @@ const ZoneOfGeniusEntry = () => {
                         </div>
 
                         <button
-                            className="w-full liquid-glass-strong rounded-full px-8 py-4
-                                       text-white font-medium text-[15px] tracking-wide
-                                       ring-1 ring-white/20
-                                       shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                       hover:shadow-[0_0_50px_rgba(132,96,234,0.35)]
+                            className="w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
+                                       text-white font-bold text-lg tracking-wide
+                                       ring-1 ring-white/25
+                                       shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
+                                       hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
                                        hover:scale-[1.03] active:scale-95
                                        transition-all duration-300 ease-out
-                                       flex items-center justify-center gap-3"
+                                       flex items-center justify-center gap-4
+                                       alive-card"
+                            style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
                             onClick={() => setStep("paste-response")}
                         >
                             I've got my AI's response
-                            <ArrowRight className="w-4 h-4 opacity-70" />
+                            <ArrowRight className="w-5 h-5 opacity-80" />
                         </button>
 
                         <div className="text-center pt-2">
