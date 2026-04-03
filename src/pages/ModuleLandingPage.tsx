@@ -17,7 +17,7 @@ const ModuleLandingPage = () => {
 
     useEffect(() => {
         if (module) {
-            document.title = `${module.title} — Evolver`;
+            document.title = `${module.title} — Genius Business`;
         }
     }, [module]);
 

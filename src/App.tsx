@@ -157,7 +157,7 @@ const TitleManager = () => {
   const location = useLocation();
 
   useEffect(() => {
-    document.title = `Evolver | ${getPageTitle(location.pathname)}`;
+    document.title = `Genius Business | ${getPageTitle(location.pathname)}`;
   }, [location.pathname]);
 
   return null;

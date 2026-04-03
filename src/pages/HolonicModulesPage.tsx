@@ -675,7 +675,7 @@ const HolonicModulesPage = () => {
     const listAnim = useScrollAnimation(0.1);
 
     useEffect(() => {
-        document.title = "The Evolver System — All Modules";
+        document.title = "The Genius Business System — All Modules";
         window.scrollTo(0, 0);
     }, []);
 
@@ -699,7 +699,7 @@ const HolonicModulesPage = () => {
                         </span>
                     </div>
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-semibold text-white leading-[1.1] mb-5 tracking-tight">
-                        The Evolver System
+                        The Genius Business System
                     </h1>
                     <p className="text-lg sm:text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mb-8">
                         {allModulesCount} modules · {allSubmodulesCount} submodules · 8 spaces.

@@ -297,7 +297,7 @@ const IgniteSession = () => {
 
   useEffect(() => {
     document.title = "You've Been Giving Your Best Work Away for Free — Ignition Session";
-    return () => { document.title = "Evolver"; };
+    return () => { document.title = "Genius Business"; };
   }, []);
 
   // Handle hash-based scrolling
@@ -332,7 +332,7 @@ const IgniteSession = () => {
         <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
             src={geniusLogo}
-            alt="Evolver — Unique Business Engine"
+            alt="Genius Business"
             className="w-[160px] h-auto mx-auto opacity-80"
           />
 

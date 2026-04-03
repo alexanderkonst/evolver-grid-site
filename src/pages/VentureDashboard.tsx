@@ -35,7 +35,7 @@ const RADAR_DATA = [
 const CONCENTRIC_CIRCLES = [
   { label: "This Venture", scale: "Personal", status: "active", ring: 1 },
   { label: "Each Client", scale: "Canvas", status: "active", ring: 2 },
-  { label: "The Platform", scale: "Evolver", status: "building", ring: 3 },
+  { label: "The Platform", scale: "Genius Business", status: "building", ring: 3 },
   { label: "Product", scale: "Standalone", status: "emerging", ring: 4 },
   { label: "Civilization", scale: "Planetary OS", status: "seed", ring: 5 },
   { label: "Universal", scale: "Species", status: "seed", ring: 6 },
@@ -348,7 +348,7 @@ const VentureDashboard = () => {
             This dashboard reads the invisible and lets the footprints reveal themselves."
           </p>
           <div className="flex items-center justify-center gap-6 text-xs text-white/15">
-            <span>Evolver · Morphogenetic Navigation</span>
+            <span>Genius Business · Morphogenetic Navigation</span>
             <span>·</span>
             <span>© 2026 Alexander Konstantinov</span>
           </div>

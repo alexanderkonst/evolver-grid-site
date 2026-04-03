@@ -25,7 +25,7 @@ const ZoneOfGeniusAssessmentLayout = ({
       {/* Logo */}
       <img
         src={geniusLogo}
-        alt="Evolver"
+        alt="Genius Business"
         className="w-[48px] h-auto mx-auto opacity-70 mb-4"
       />
 
