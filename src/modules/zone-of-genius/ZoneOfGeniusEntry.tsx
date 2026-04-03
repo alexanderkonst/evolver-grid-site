@@ -423,8 +423,7 @@ const ZoneOfGeniusEntry = () => {
                         }}
                     >
                         Why is it still so hard to explain what you do{' '}
-                        <span className="text-white/60">—</span>
-                        <br className="hidden sm:inline" />
+                        <span className="text-white/60">—</span>{' '}
                         and turn it into something people actually pay for?
                     </h1>
 
