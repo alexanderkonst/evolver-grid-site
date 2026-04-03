@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { Link, useLocation } from "react-router-dom";
+=======
+import { Link } from "react-router-dom";
+<<<<<<< HEAD
+>>>>>>> 1b6372b (deploy)
 import logoSrc from "@/assets/logo.jpg";
 
 /**
@@ -34,5 +39,27 @@ const SiteLogo = () => {
     </Link>
   );
 };
+=======
+
+/**
+ * SiteLogo — Circular logo, top-left corner, links to home.
+ * No text, no border. Just the image in a circle.
+ */
+const SiteLogo = () => (
+    <Link
+        to="/"
+        className="fixed top-4 left-4 z-50 w-10 h-10 rounded-full overflow-hidden
+                   hover:scale-110 transition-transform duration-200"
+        aria-label="Home"
+    >
+        <img
+            src="/evolver-logo.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+        />
+    </Link>
+);
+>>>>>>> f638a99 (deploy)
 
 export default SiteLogo;
