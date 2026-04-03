@@ -245,6 +245,7 @@ const SpacesRail = ({
                     );
                 })}
             </nav>
+            </ScrollArea>
 
             {/* Settings Button */}
             <div className="p-2 md:p-3 border-t border-white/10 space-y-1">

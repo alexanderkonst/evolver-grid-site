@@ -274,8 +274,8 @@ const SectionsPanel = ({
                 </div>
             )}
 
-            {/* Sections - custom scrollbar */}
-            <nav className="flex-1 overflow-y-auto py-2 pt-4 scrollbar-thin">
+            <ScrollArea className="flex-1">
+            <nav className="py-2 pt-4">
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;
