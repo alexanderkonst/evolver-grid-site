@@ -1,9 +1,10 @@
 import { ReactNode, useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
+import logoSrc from "@/assets/logo.jpg";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
@@ -340,6 +341,18 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 <main
                     className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/5 backdrop-blur-xl"
                 >
+                    {/* Logo — upper right */}
+                    <Link to="/" className="absolute top-4 right-4 z-20 block w-10 h-10 group">
+                        <div
+                            className="w-full h-full rounded-lg overflow-hidden"
+                            style={{
+                                WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                                maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                            }}
+                        >
+                            <img src={logoSrc} alt="Home" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" draggable={false} />
+                        </div>
+                    </Link>
                     <div className="page-transition-enter">
                         {children}
                     </div>
