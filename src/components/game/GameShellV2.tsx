@@ -329,10 +329,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-8 bg-[#29549f] hover:bg-[#1e4374] flex items-center justify-center border-r border-[#6894d0]/30 transition-colors"
+                        className="h-dvh sticky top-0 w-8 liquid-glass flex items-center justify-center border-r border-white/10 transition-colors hover:bg-white/10"
                         title="Expand sidebar (⌘B)"
                     >
-                        <PanelLeft className="w-4 h-4 text-[#a7cbd4]" />
+                        <PanelLeft className="w-4 h-4 text-white/50" />
                     </button>
                 )}
 
