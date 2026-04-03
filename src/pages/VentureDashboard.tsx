@@ -348,7 +348,7 @@ const VentureDashboard = () => {
             This dashboard reads the invisible and lets the footprints reveal themselves."
           </p>
           <div className="flex items-center justify-center gap-6 text-xs text-white/15">
-            <span>Evolver · Morphogenetic Navigation</span>
+            <span>Genius Business · Morphogenetic Navigation</span>
             <span>·</span>
             <span>© 2026 Alexander Konstantinov</span>
           </div>
