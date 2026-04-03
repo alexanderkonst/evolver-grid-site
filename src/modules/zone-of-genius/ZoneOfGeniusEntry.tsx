@@ -409,48 +409,39 @@ const ZoneOfGeniusEntry = () => {
             <div className="relative z-10 p-5 lg:p-10 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
 
                 {/* Header — Godfather "front door" */}
-                <div className="text-center mb-10">
+                <div className="text-center mb-8">
                     {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-5 ring-1 ring-white/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Headline — more space, more letter-spacing */}
+                    {/* Headline — Cormorant Garamond, confident weight */}
                     <h1
-                        className="text-[1.65rem] lg:text-3xl font-light tracking-wide text-white/90 leading-[1.35]"
+                        className="text-2xl lg:text-[1.85rem] font-semibold font-display text-white/90 leading-[1.3] max-w-md mx-auto"
                         style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            textShadow: '0 0 40px rgba(255,255,255,0.12), 0 0 80px rgba(132,96,234,0.08)',
+                            textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
                     >
-                        Why is it still so hard to explain<br className="hidden sm:inline" />
-                        what you do —<br />
-                        <span className="text-white font-normal mt-1 block">
-                            and turn it into something people actually pay for?
-                        </span>
+                        Why is it still so hard to explain what you do{' '}
+                        <span className="text-white/60">—</span>
+                        <br className="hidden sm:inline" />
+                        and turn it into something people actually pay for?
                     </h1>
 
-                    {/* Body — stanza-separated, breathing rhythm */}
-                    <div className="mt-8 space-y-4 max-w-sm mx-auto">
-                        <p className="text-[15px] text-white/55 leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                            There's a unique way you think, solve problems, and create value.
-                        </p>
-                        <p className="text-[15px] text-white/45 leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                            You've been using it your whole life — because it's natural to you.<br/>
-                            People already come to you for it.
-                        </p>
-                    </div>
+                    {/* Body — Source Serif, compact rhythm */}
+                    <p className="text-sm text-white/55 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                        There's a unique way you think, solve problems, and create value.
+                        You've been using it your whole life — because it's natural to you.
+                        People already come to you for it.
+                    </p>
 
-                    {/* Italic subtext — separated, softer */}
-                    <div className="mt-6 max-w-sm mx-auto">
-                        <div className="w-px h-6 bg-gradient-to-b from-white/15 to-transparent mx-auto mb-4" />
-                        <p className="text-sm text-white/30 italic leading-[1.8] tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                            And yet… it hasn't turned into something consistent.<br/>
-                            Not because it isn't real.<br/>
-                            Because it's never been structured into something<br/>
-                            people can quickly understand — and say yes to.
-                        </p>
-                    </div>
+                    {/* Italic turn */}
+                    <p className="text-sm text-white/35 mt-4 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                        And yet… it hasn't turned into something consistent.
+                        Not because it isn't real.
+                        Because it's never been structured into something people can
+                        quickly understand — and say yes to.
+                    </p>
                 </div>
 
                 {/* Error message */}
