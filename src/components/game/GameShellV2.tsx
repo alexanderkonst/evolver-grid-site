@@ -369,7 +369,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     />
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 bg-[#29549f]">
+                    <div className="flex-1">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}
