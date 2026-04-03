@@ -484,8 +484,8 @@ const IgniteSession = () => {
               {
                 emoji: "🚀",
                 step: "3",
-                title: "You leave with a real business",
-                desc: "Not something to 'figure out later.' AI compiles everything live into one page. What you do, who it's for, why they pay, what to say next.",
+                title: "You leave with a one-page offer",
+                desc: "Not something to 'figure out later.' AI compiles everything live into one page: what you do, who it's for, why they pay, and what to say next.",
               },
             ].map((item, i) => (
               <div
