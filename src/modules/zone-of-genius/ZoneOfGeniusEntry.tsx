@@ -417,7 +417,7 @@ const ZoneOfGeniusEntry = () => {
 
                     {/* Headline — CAPS */}
                     <h1
-                        className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8 uppercase tracking-[0.04em]"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-display text-white leading-[1.35] max-w-2xl mx-auto mb-8 uppercase tracking-[0.04em]"
                         style={{
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
