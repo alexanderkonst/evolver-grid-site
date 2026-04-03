@@ -623,13 +623,13 @@ const ZoneOfGeniusEntry = () => {
 
                         <button
                             className={`w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
-                                       text-white font-bold text-lg tracking-wide
+                                       text-white font-bold text-lg tracking-wider uppercase
                                        ring-1 ring-white/25
                                        shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
                                        hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
                                        hover:scale-[1.03] active:scale-95
                                        transition-all duration-300 ease-out
-                                       disabled:opacity-30 disabled:hover:scale-100 disabled:shadow-none
+                                       disabled:opacity-60 disabled:hover:scale-100 disabled:shadow-none
                                        flex items-center justify-center gap-4
                                        ${aiResponse.trim() ? 'alive-card' : ''}`}
                             style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
