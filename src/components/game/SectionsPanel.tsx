@@ -286,10 +286,10 @@ const SectionsPanel = ({
                             <div
                                 className={cn(
                                     "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-all duration-150",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6894d0]/50",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
                                     sectionActive && !hasSubSections
-                                        ? "bg-[#1e4374]/80 text-white border-l-2 border-[#a7cbd4]"
-                                        : "text-[#a7cbd4] hover:bg-[#1e4374]/60 hover:text-white hover:translate-x-0.5"
+                                        ? "bg-white/15 text-white border-l-2 border-white/40"
+                                        : "text-white/60 hover:bg-white/10 hover:text-white hover:translate-x-0.5"
                                 )}
                                 onClick={() => {
                                     if (hasSubSections) {
