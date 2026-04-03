@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logoSrc from "@/assets/logo.jpg";
 
 /**
  * Global site logo — fixed top-left on every page.
- * Uses a radial vignette mask so the square image fades
- * smoothly into any background (light or dark).
+ * Hidden on /game routes where SpacesRail has its own embedded logo.
  */
 const SiteLogo = () => {
+  const location = useLocation();
+
+  // Hide on game pages — SpacesRail has its own logo
+  if (location.pathname.startsWith("/game")) return null;
+
   return (
     <Link
       to="/"
@@ -16,7 +20,6 @@ const SiteLogo = () => {
       <div
         className="w-full h-full rounded-lg overflow-hidden"
         style={{
-          /* radial fade: image is fully visible in the centre, fades to transparent at edges */
           WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
           maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
         }}
