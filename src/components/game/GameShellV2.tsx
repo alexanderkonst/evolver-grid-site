@@ -336,9 +336,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content - subtle glass tint */}
+                {/* Panel 3: Content - lightest glass tier */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/90"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/10 backdrop-blur-xl"
                 >
                     <div className="page-transition-enter">
                         {children}
