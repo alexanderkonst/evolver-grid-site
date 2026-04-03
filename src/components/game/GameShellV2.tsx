@@ -289,11 +289,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     };
 
     return (
-        <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
-            {/* Wabi-sabi Bokeh Overlay */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(200,183,216,0.08)_0%,transparent_50%)]" />
+        <div className="min-h-dvh bg-[#0a0a1a]">
+            {/* Rich atmospheric background for glassmorphism */}
+            <div className="fixed inset-0 z-0">
+                <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+                <div className="absolute inset-0 bg-[#0a0a1a]/60" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
@@ -329,17 +329,16 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-8 bg-[#29549f] hover:bg-[#1e4374] flex items-center justify-center border-r border-[#6894d0]/30 transition-colors"
+                        className="h-dvh sticky top-0 w-8 liquid-glass flex items-center justify-center border-r border-white/10 transition-colors hover:bg-white/10"
                         title="Expand sidebar (⌘B)"
                     >
-                        <PanelLeft className="w-4 h-4 text-[#a7cbd4]" />
+                        <PanelLeft className="w-4 h-4 text-white/50" />
                     </button>
                 )}
 
-                {/* Panel 3: Content - Pearl/White gradient (lightest panel) */}
+                {/* Panel 3: Content - subtle glass tint */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4"
-                    style={{ background: 'var(--panel3-gradient)' }}
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/5 backdrop-blur-sm"
                 >
                     <div className="page-transition-enter">
                         {children}
@@ -370,7 +369,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     />
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 bg-[#29549f]">
+                    <div className="flex-1">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}
@@ -387,12 +386,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     )}
                 >
                     <header
-                        className="bg-gradient-to-r from-[#29549f] via-[#1e4374] to-[#29549f] backdrop-blur-sm flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-[#6894d0]/30"
+                        className="liquid-glass-strong flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-white/10"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-[#1e4374] rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
@@ -404,7 +403,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5] overflow-auto relative"
+                        className="flex-1 bg-white/5 backdrop-blur-sm overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
