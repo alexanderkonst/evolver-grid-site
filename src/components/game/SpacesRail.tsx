@@ -185,8 +185,8 @@ const SpacesRail = ({
                 </div>
             </div>
 
-            {/* Spaces Navigation */}
-            <nav className="flex-1 flex flex-col gap-1 p-2 md:p-3 overflow-y-auto">
+            <ScrollArea className="flex-1">
+              <nav className="flex flex-col gap-1 p-2 md:p-3">
                 {SPACES.map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
