@@ -412,7 +412,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             <ArrowLeft className="w-5 h-5" />
                         </button>
                         <span className="text-[#2c3150] font-medium flex-1 truncate">
-                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Evolver"}
+                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Genius Business"}
                         </span>
                     </header>
 
