@@ -50,7 +50,7 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const resolvedProfileUrl = profileUrl || "https://www.alexandrkonstantinov.com";
+  const resolvedProfileUrl = profileUrl || "https://www.aleksandrkonstantinov.com";
   const shareUrl = buildShareUrl(resolvedProfileUrl, profileId);
 
   const shareText = useMemo(
