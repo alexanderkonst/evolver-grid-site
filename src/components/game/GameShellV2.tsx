@@ -289,11 +289,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     };
 
     return (
-        <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
-            {/* Wabi-sabi Bokeh Overlay */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(200,183,216,0.08)_0%,transparent_50%)]" />
+        <div className="min-h-dvh bg-[#0a0a1a]">
+            {/* Rich atmospheric background for glassmorphism */}
+            <div className="fixed inset-0 z-0">
+                <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+                <div className="absolute inset-0 bg-[#0a0a1a]/60" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
