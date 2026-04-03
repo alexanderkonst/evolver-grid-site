@@ -401,6 +401,34 @@ const IgniteSession = () => {
         </header>
 
         {/* ═══════════════════════════════════════════════
+            S1.5: VIDEO — immediately after hero
+            ═══════════════════════════════════════════════ */}
+        <section id="hero-video" aria-label="Methodology video" className="space-y-5">
+          <div className="liquid-glass rounded-2xl p-1">
+            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
+          </div>
+          <p className="text-xs text-white/45 text-center italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            If you're still thinking about this after watching… you already know.
+          </p>
+
+          {/* Post-video CTA */}
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              <span>Turn this into something real ($555)</span>
+              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            </a>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
             S2: QUALIFIER — the gold (untouched)
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
@@ -431,32 +459,6 @@ const IgniteSession = () => {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S3: VIDEO
-            ═══════════════════════════════════════════════ */}
-        <section id="hero-video" aria-label="Methodology video">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Watch this before you book
-          </h2>
-          <p className="text-sm text-white/55 text-center mb-3" style={{ fontFamily: "'Source Serif 4', serif" }}>This will show you why insight alone never converts into income — and what actually needs to happen instead.</p>
-          <div className="liquid-glass rounded-2xl p-1">
-            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
-          </div>
-          <p className="text-xs text-white/40 text-center mt-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            If you're still thinking about this after watching… you already know.
-          </p>
-
-          {/* Non-optionality — felt consequence, not intellectual */}
-          <div className="text-center mt-5 space-y-1">
-            <p className="text-xs text-white/45 leading-relaxed">
-              This doesn't stay neutral.
-            </p>
-            <p className="text-xs text-white/55 leading-relaxed font-medium">
-              It either becomes a business—<br/>
-              or it stays something people benefit from for free.
-            </p>
-          </div>
-        </section>
 
         {/* ═══════════════════════════════════════════════
             S4: HOW IT WORKS — 3 steps + deliverables
