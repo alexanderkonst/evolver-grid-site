@@ -14,6 +14,7 @@ interface MatchCandidate {
   name: string;
   archetype: string;
   tagline?: string | null;
+  avatarUrl?: string | null;
   similarityScore: number;
   location: string | null;
   showLocation: boolean;
@@ -42,6 +43,7 @@ interface AssetMatchResult {
   lastName: string;
   archetype: string | null;
   tagline: string | null;
+  avatarUrl?: string | null;
   resonanceScore: number;
   matchType: string;
   collaborationProposal: string;
@@ -53,10 +55,10 @@ interface AssetMatchResult {
 }
 
 const SUGGESTED_ACTION_LABELS: Record<string, string> = {
-  intro: "📨 Request Intro",
-  "micro-collab": "🤝 Start Project",
-  "practice-together": "🧘 Practice Together",
-  wait: "⏳ Revisit Later",
+  intro: "Request Intro",
+  "micro-collab": "Start Project",
+  "practice-together": "Practice Together",
+  wait: "Revisit Later",
 };
 
 const MATCH_TYPE_LABELS: Record<string, string> = {
@@ -118,6 +120,9 @@ const hasLanguageOverlap = (base: string[], candidate: string[]) => {
   return candidate.some((lang) => baseSet.has(normalizeKey(lang)));
 };
 
+/** Strip ✦ symbols from archetype strings */
+const stripSymbols = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
+
 const Matchmaking = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -132,8 +137,13 @@ const Matchmaking = () => {
   const [assetMatches, setAssetMatches] = useState<AssetMatchResult[]>([]);
   const [assetMatchesLoading, setAssetMatchesLoading] = useState(false);
 
+  // Tinder-style: track current AI match index
+  const [currentAiMatchIndex, setCurrentAiMatchIndex] = useState(0);
+  // Track hidden profiles
+  const [hiddenProfiles, setHiddenProfiles] = useState<Set<string>>(new Set());
+
   const Skeleton = ({ className }: { className?: string }) => (
-    <div className={`animate-pulse bg-[#a4a3d0]/20 rounded ${className || ""}`} />
+    <div className={`animate-pulse bg-white/10 rounded-xl ${className || ""}`} />
   );
 
   useEffect(() => {
@@ -170,7 +180,7 @@ const Matchmaking = () => {
 
       const { data: profileRows } = await supabase
         .from("game_profiles")
-        .select("user_id, first_name, last_name, location, show_location, spoken_languages, last_zog_snapshot_id, visibility")
+        .select("user_id, first_name, last_name, avatar_url, location, show_location, spoken_languages, last_zog_snapshot_id, visibility")
         .neq("user_id", user.id)
         .neq("visibility", "hidden");
 
@@ -259,6 +269,7 @@ const Matchmaking = () => {
             name: displayName,
             archetype,
             tagline,
+            avatarUrl: (row as any).avatar_url || null,
             similarityScore: similarity.score,
             location: row.location || null,
             showLocation: row.show_location ?? true,
@@ -318,19 +329,13 @@ const Matchmaking = () => {
   useEffect(() => {
     const loadAssetMatches = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        console.log("[AssetMatching] No user session, skipping");
-        return;
-      }
+      if (!user) return;
 
-      console.log("[AssetMatching] Calling suggest-asset-matches for user:", user.id);
       setAssetMatchesLoading(true);
       try {
         const { data, error } = await supabase.functions.invoke("suggest-asset-matches", {
           body: { userId: user.id },
         });
-
-        console.log("[AssetMatching] Response:", { data, error });
 
         if (error) {
           console.warn("[AssetMatching] Edge function error:", error.message);
@@ -338,10 +343,24 @@ const Matchmaking = () => {
         }
 
         if (data?.matches) {
-          console.log("[AssetMatching] Got matches:", data.matches.length, data.matches);
-          setAssetMatches(data.matches);
-        } else {
-          console.log("[AssetMatching] No matches in response:", data);
+          // Fetch avatar URLs for matched users
+          const userIds = data.matches.map((m: any) => m.userId);
+          const { data: avatarRows } = await supabase
+            .from("game_profiles")
+            .select("user_id, avatar_url")
+            .in("user_id", userIds);
+
+          const avatarMap = new Map<string, string | null>();
+          (avatarRows || []).forEach((row: any) => {
+            avatarMap.set(row.user_id, row.avatar_url);
+          });
+
+          const enriched = data.matches.map((m: any) => ({
+            ...m,
+            avatarUrl: avatarMap.get(m.userId) || null,
+          }));
+
+          setAssetMatches(enriched);
         }
       } catch (err) {
         console.warn("[AssetMatching] Exception:", err);
@@ -380,110 +399,95 @@ const Matchmaking = () => {
     [groups, sameLocationOnly, sameLanguageOnly, currentProfile]
   );
 
+  // Filter out hidden AI matches
+  const visibleAiMatches = assetMatches.filter(m => !hiddenProfiles.has(m.userId));
+
   const hasAnyMatches =
     filteredGroups.similarGenius.length > 0 ||
     filteredGroups.complementaryGenius.length > 0 ||
     filteredGroups.similarMission.length > 0 ||
-    assetMatches.length > 0 ||
+    visibleAiMatches.length > 0 ||
     assetMatchesLoading;
 
+  // Clamp index
+  const clampedIndex = Math.min(currentAiMatchIndex, Math.max(0, visibleAiMatches.length - 1));
+  const currentAiMatch = visibleAiMatches[clampedIndex];
+
+  const handleAiPass = () => {
+    if (currentAiMatch) {
+      setHiddenProfiles(prev => new Set([...prev, currentAiMatch.userId]));
+      // Stay at same index (next profile slides in)
+      if (clampedIndex >= visibleAiMatches.length - 1) {
+        setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1));
+      }
+    }
+  };
+
+  const handleAiConnect = () => {
+    // For now just advance to next profile
+    if (clampedIndex < visibleAiMatches.length - 1) {
+      setCurrentAiMatchIndex(clampedIndex + 1);
+    }
+  };
+
   const renderMatch = (match: MatchCandidate) => (
-    <div key={match.id} className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+    <div key={match.id} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-4">
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-lg font-semibold text-[#2c3150]">{match.name}</h3>
-          <p className="text-sm text-[rgba(44,49,80,0.7)]">✦ {match.archetype} ✦</p>
-          {match.tagline && (
-            <p className="text-xs text-[#2c3150]/60 mt-1 italic">"{match.tagline}"</p>
-          )}
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-white/5 flex items-center justify-center ring-1 ring-white/10 flex-shrink-0">
+            {match.avatarUrl ? (
+              <img src={match.avatarUrl} alt={match.name} className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-sm text-white/30">{match.name.charAt(0)}</span>
+            )}
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-white">{match.name}</h3>
+            <p className="text-xs text-white/40">{stripSymbols(match.archetype)}</p>
+          </div>
         </div>
-        <Badge variant="secondary">{match.similarityScore}% match</Badge>
+        <Badge className="bg-white/5 text-white/40 ring-1 ring-white/10 text-[10px]">
+          {match.similarityScore}%
+        </Badge>
       </div>
-      <p className="text-sm text-[rgba(44,49,80,0.7)] mt-3">{match.matchReason}</p>
+      {match.matchReason && (
+        <p className="text-xs text-white/40 mt-2">{match.matchReason}</p>
+      )}
     </div>
   );
 
   return (
     <GameShellV2>
-      <div className="p-6 lg:p-8 max-w-5xl mx-auto">
-        {/* Epic Header */}
-        <div className="relative overflow-hidden rounded-3xl mb-8">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#6d28d9] via-[#7c3aed] to-[#a78bfa]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
-          <div className="relative px-6 py-10 sm:px-10 sm:py-12 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 mb-4">
-              <Users className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="font-display text-2xl sm:text-3xl font-semibold text-white mb-2"
-              style={{ textShadow: "0 0 40px rgba(255,255,255,0.3)" }}>
-              Your Genius Matches
-            </h1>
-            <p className="text-white/70 max-w-md mx-auto">
-              People in the network whose Zone of Genius complements yours
-            </p>
-          </div>
-        </div>
+      <div className="p-6 lg:p-8 max-w-3xl mx-auto space-y-8">
 
-        <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 mb-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-          <div className="flex flex-wrap items-center gap-6">
-            <div className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-[#2c3150]/60" />
-              <div>
-                <p className="text-sm font-medium text-[#2c3150]">Same location</p>
-                <p className="text-xs text-[#2c3150]/60">
-                  {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
-                </p>
-              </div>
-              <Switch
-                checked={sameLocationOnly}
-                onCheckedChange={setSameLocationOnly}
-                aria-label="Filter matches by same location"
-              />
-            </div>
-            <div className="flex items-center gap-3">
-              <Languages className="w-4 h-4 text-[#2c3150]/60" />
-              <div>
-                <p className="text-sm font-medium text-[#2c3150]">Same language</p>
-                <p className="text-xs text-[#2c3150]/60">
-                  {currentProfile?.spokenLanguages?.length
-                    ? currentProfile.spokenLanguages.join(", ")
-                    : "Add languages to enable"}
-                </p>
-              </div>
-              <Switch
-                checked={sameLanguageOnly}
-                onCheckedChange={setSameLanguageOnly}
-                aria-label="Filter matches by shared language"
-              />
-            </div>
-          </div>
-        </div>
-
+        {/* Loading */}
         {loading && (
-          <div className="grid gap-4 md:grid-cols-2">
-            {Array.from({ length: 6 }).map((_, idx) => (
-              <Skeleton key={idx} className="h-32 w-full" />
-            ))}
+          <div className="space-y-4">
+            <Skeleton className="h-48 w-full" />
+            <Skeleton className="h-32 w-full" />
           </div>
         )}
 
+        {/* Error */}
         {!loading && error && (
-          <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
-            <p className="text-red-600">{error}</p>
+          <div className="rounded-xl liquid-glass ring-1 ring-red-500/20 p-6 text-center">
+            <p className="text-red-300">{error}</p>
           </div>
         )}
 
+        {/* Filter warnings */}
         {!loading && !error && (locationBlocked || languageBlocked) && (
-          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-6 text-sm text-amber-800">
+          <div className="rounded-xl liquid-glass ring-1 ring-amber-500/20 p-4 text-sm text-amber-200">
             {locationBlocked && "Add your location in your profile to use the location filter. "}
             {languageBlocked && "Add spoken languages in your profile to use the language filter."}
           </div>
         )}
 
+        {/* No matches */}
         {!loading && !error && !hasAnyMatches && (
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-8">
             <EmptyState
-              icon={<Users className="w-6 h-6 text-[#2c3150]/50" />}
+              icon={<Users className="w-6 h-6 text-white/30" />}
               title="No matches yet"
               description="Complete your Zone of Genius to find your people."
             />
@@ -491,130 +495,149 @@ const Matchmaking = () => {
         )}
 
         {!loading && !error && hasAnyMatches && (
-          <div className="space-y-8">
+          <>
+            {/* ═════════════════════════════════════════
+                SECTION 1: AI-POWERED MATCHES (TOP)
+                Tinder-style: one profile at a time
+                ═════════════════════════════════════════ */}
             <section>
-              <div className="mb-3">
-                <h2 className="text-lg font-semibold text-[#2c3150]">Similar Genius</h2>
-                <p className="text-sm text-[#2c3150]/60">People who think and operate like you.</p>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {filteredGroups.similarGenius.map(renderMatch)}
-                {filteredGroups.similarGenius.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
-                    No similar genius matches yet.
-                  </div>
-                )}
-              </div>
-            </section>
-
-            <section>
-              <div className="mb-3">
-                <h2 className="text-lg font-semibold text-[#2c3150]">Complementary Genius</h2>
-                <p className="text-sm text-[#2c3150]/60">Great co-founder or collaborator fit.</p>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {filteredGroups.complementaryGenius.map(renderMatch)}
-                {filteredGroups.complementaryGenius.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
-                    No complementary matches yet.
-                  </div>
-                )}
-              </div>
-            </section>
-
-            <section>
-              <div className="mb-3">
-                <h2 className="text-lg font-semibold text-[#2c3150]">Similar Mission</h2>
-                <p className="text-sm text-[#2c3150]/60">People aligned with your current mission.</p>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {filteredGroups.similarMission.map(renderMatch)}
-                {filteredGroups.similarMission.length === 0 && (
-                  <div className="rounded-xl border border-dashed border-[#a4a3d0]/30 bg-[#f0f4ff]/50 p-6 text-sm text-[#2c3150]/60">
-                    No mission matches yet.
-                  </div>
-                )}
-              </div>
-            </section>
-
-            <section>
-              <div className="mb-3">
-                <div className="flex items-center gap-2">
-                  <Boxes className="w-5 h-5 text-emerald-600" />
-                  <h2 className="text-lg font-semibold text-[#2c3150]">AI-Powered Matches</h2>
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Boxes className="w-5 h-5 text-[#8460ea]" />
+                  <h2 className="text-lg font-semibold text-white">AI-Powered Matches</h2>
                 </div>
-                <p className="text-sm text-[#2c3150]/60">Win-win collaboration proposals powered by your full profile.</p>
+                <p className="text-sm text-white/40">Win-win collaboration proposals powered by your full profile.</p>
               </div>
+
               {assetMatchesLoading ? (
-                <div className="grid gap-4 md:grid-cols-2">
-                  {Array.from({ length: 2 }).map((_, idx) => (
-                    <Skeleton key={idx} className="h-48 w-full" />
-                  ))}
-                </div>
-              ) : assetMatches.length > 0 ? (
-                <div className="grid gap-6 md:grid-cols-2">
-                  {assetMatches.map((match) => (
-                    <MatchCard
-                      key={match.userId}
-                      user={{
-                        id: match.userId,
-                        firstName: match.firstName,
-                        lastName: match.lastName,
-                        archetype: match.archetype || "Community Member",
-                        tagline: match.tagline,
-                      }}
-                      matchLabel="Collaboration Proposal"
-                      matchReason={match.collaborationProposal}
-                      matchTypeBadge={MATCH_TYPE_LABELS[match.matchType] || match.matchType}
-                      secondaryLabel="Why this works"
-                      secondaryReason={`${match.alignment} ${match.complementarity}`}
-                      tertiaryLabel={match.friction !== "None identified" ? "Watch out for" : undefined}
-                      tertiaryReason={match.friction !== "None identified" ? match.friction : undefined}
-                      connectLabel={SUGGESTED_ACTION_LABELS[match.suggestedAction] || "Connect"}
-                      onPass={() => { /* TODO: track pass */ }}
-                      onConnect={() => { /* TODO: initiate connection */ }}
-                    />
-                  ))}
-                </div>
+                <Skeleton className="h-64 w-full" />
+              ) : visibleAiMatches.length > 0 && currentAiMatch ? (
+                <MatchCard
+                  key={currentAiMatch.userId}
+                  user={{
+                    id: currentAiMatch.userId,
+                    firstName: currentAiMatch.firstName,
+                    lastName: currentAiMatch.lastName,
+                    archetype: currentAiMatch.archetype || "Community Member",
+                    tagline: currentAiMatch.tagline,
+                    avatarUrl: currentAiMatch.avatarUrl || null,
+                  }}
+                  matchLabel="Collaboration Proposal"
+                  matchReason={currentAiMatch.collaborationProposal}
+                  matchTypeBadge={MATCH_TYPE_LABELS[currentAiMatch.matchType] || currentAiMatch.matchType}
+                  secondaryLabel="Why this works"
+                  secondaryReason={`${currentAiMatch.alignment} ${currentAiMatch.complementarity}`}
+                  tertiaryLabel={currentAiMatch.friction !== "None identified" ? "Watch out for" : undefined}
+                  tertiaryReason={currentAiMatch.friction !== "None identified" ? currentAiMatch.friction : undefined}
+                  connectLabel="Add Connection"
+                  onPass={handleAiPass}
+                  onConnect={handleAiConnect}
+                  currentIndex={clampedIndex}
+                  totalCount={visibleAiMatches.length}
+                  onPrev={() => setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1))}
+                  onNext={() => setCurrentAiMatchIndex(Math.min(visibleAiMatches.length - 1, clampedIndex + 1))}
+                />
               ) : (
-                <div className="rounded-xl border border-dashed border-emerald-300/30 bg-emerald-50/30 p-6 text-sm text-[#2c3150]/60">
-                  No collaboration matches yet. Complete your Zone of Genius and map your assets to unlock AI-powered matching.
+                <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-6 text-sm text-white/40 text-center">
+                  {assetMatches.length > 0
+                    ? "You've reviewed all AI matches. New ones will appear as more people join."
+                    : "Complete your Zone of Genius and map your assets to unlock AI-powered matching."}
                 </div>
               )}
             </section>
 
-            {/* ═══════════════════════════════════════════════
-                GATE A BRIDGE -> GATE B ($555 IGNITION)
-                ═══════════════════════════════════════════════ */}
-            <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#334155] p-8 md:p-12 !text-white text-center shadow-xl space-y-5 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
-              <div className="relative z-10">
-                <div className="mx-auto w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-4 text-white/80">
-                  <Boxes className="w-6 h-6" />
+            {/* ═════════════════════════════════════════
+                SECTION 2: GENIUS MATCHES (BOTTOM)
+                Category-based list view
+                ═════════════════════════════════════════ */}
+            <section>
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Users className="w-5 h-5 text-[#6894d0]" />
+                  <h2 className="text-lg font-semibold text-white">Your Genius Matches</h2>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  We found your people. <br className="hidden md:block"/> Now build a business out of it.
-                </h2>
-                <p className="text-white/70 max-w-lg mx-auto leading-relaxed text-sm md:text-base mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                  We have your precise Appleseed data. The only logical next step is to lock in your architecture. Bring your exact genius profile into the 90-minute Ignition Session.
-                </p>
-                <div className="pt-2">
-                  <a 
-                    href="https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 bg-white text-[#0F172A] px-8 py-4 rounded-full font-medium text-sm hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Book your Ignition Session ($555)
-                    <span className="w-6 h-6 rounded-full bg-[#0F172A]/10 flex items-center justify-center">
-                      →
-                    </span>
-                  </a>
+                <p className="text-sm text-white/40">People in the network whose Zone of Genius complements yours.</p>
+              </div>
+
+              {/* Filters */}
+              <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4 mb-6">
+                <div className="flex flex-wrap items-center gap-6">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-4 h-4 text-white/30" />
+                    <div>
+                      <p className="text-sm font-medium text-white/70">Same location</p>
+                      <p className="text-xs text-white/30">
+                        {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
+                      </p>
+                    </div>
+                    <Switch
+                      checked={sameLocationOnly}
+                      onCheckedChange={setSameLocationOnly}
+                      aria-label="Filter matches by same location"
+                    />
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Languages className="w-4 h-4 text-white/30" />
+                    <div>
+                      <p className="text-sm font-medium text-white/70">Same language</p>
+                      <p className="text-xs text-white/30">
+                        {currentProfile?.spokenLanguages?.length
+                          ? currentProfile.spokenLanguages.join(", ")
+                          : "Add languages to enable"}
+                      </p>
+                    </div>
+                    <Switch
+                      checked={sameLanguageOnly}
+                      onCheckedChange={setSameLanguageOnly}
+                      aria-label="Filter matches by shared language"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Similar Genius */}
+              <div className="mb-6">
+                <h3 className="text-sm font-semibold text-white/60 mb-2">Similar Genius</h3>
+                <p className="text-xs text-white/30 mb-3">People who think and operate like you.</p>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {filteredGroups.similarGenius.map(renderMatch)}
+                  {filteredGroups.similarGenius.length === 0 && (
+                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
+                      No similar genius matches yet.
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Complementary Genius */}
+              <div className="mb-6">
+                <h3 className="text-sm font-semibold text-white/60 mb-2">Complementary Genius</h3>
+                <p className="text-xs text-white/30 mb-3">Great co-founder or collaborator fit.</p>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {filteredGroups.complementaryGenius.map(renderMatch)}
+                  {filteredGroups.complementaryGenius.length === 0 && (
+                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
+                      No complementary matches yet.
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Similar Mission */}
+              <div>
+                <h3 className="text-sm font-semibold text-white/60 mb-2">Similar Mission</h3>
+                <p className="text-xs text-white/30 mb-3">People aligned with your current mission.</p>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {filteredGroups.similarMission.map(renderMatch)}
+                  {filteredGroups.similarMission.length === 0 && (
+                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
+                      No mission matches yet.
+                    </div>
+                  )}
                 </div>
               </div>
             </section>
-          </div>
+          </>
         )}
       </div>
     </GameShellV2>
