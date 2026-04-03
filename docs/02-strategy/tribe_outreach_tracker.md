@@ -4,7 +4,7 @@
 >
 > *Data fields here map 1:1 to the future `tribe_contacts` schema — no rework on migration.*
 
-*Last updated: March 28, 2026*
+*Last updated: April 3, 2026*
 
 ---
 
@@ -20,6 +20,7 @@
 | 6 | **Tylor Middlestadt** | Warm network | v2.0 (EN) | ✅ March 28 | ⏳ Sent | — | — | DM sent March 28 |
 | 7 | **Tracey Abbott** | Warm network | v2.0 | ✅ March 28 | ⏳ Sent | — | — | DM sent March 28 |
 | 8 | **William Griffin** | Warm network | v2.0 | ✅ March 28 | ⏳ Sent | — | — | Does something similar to Alexander. Potential collaborator or complementary player — awaiting response before positioning |
+| 9 | **José da Veiga** | Warm network (INBOUND) | — (he initiated) | 🔵 He called April 3 | 🟡 In Conversation | — | — | **First inbound post-declaration.** Systems architect, PhD, runs Colibri Art Studio (35yr printing biz). Did ZoG live on call → "The Jazz Architect" → Quiz → "Multi-Talent Trap" → browsed /ignite → "I'm sold. Maybe I'll pay $550." Hit "failed to generate" bug on prompt path (JSON paste). Textbook Original Truth Rebel. Next: let him watch video, follow up in 2-3 days |
 
 ---
 
@@ -45,7 +46,7 @@ prospect → dm_sent → responded → booking → ignited → building → alum
 |-------|-------|------------|
 | **prospect** | 0 | Identified, not yet contacted |
 | **dm_sent** | 3 | Golden DM delivered, awaiting response |
-| **responded** | 0 | Replied to DM (any response) |
+| **responded** | 1 | Replied / in conversation (José — inbound, expressed buying intent) |
 | **booking** | 0 | Scheduling Ignition Session |
 | **ignited** | 1 | Ignition Session complete (Aleksa — invited to Build) |
 | **building** | 4 | In The Build container |
@@ -58,8 +59,9 @@ prospect → dm_sent → responded → booking → ignited → building → alum
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| **Total contacts** | 8 | |
-| **DMs sent** | 8/8 | 100% of identified contacts |
+| **Total contacts** | 9 | +1 inbound (José) |
+| **DMs sent** | 8/9 | José = inbound (he initiated) |
+| **Inbound leads** | 1 | José da Veiga — first post-declaration inbound (April 3) |
 | **Response rate** | TBD | 2/5 confirmed reads (Oyi, Sergey) |
 | **Ignition conversion** | 1 paid / 5 sessions | Sergey = paid; others = founding cohort |
 | **Revenue from outreach** | $0 + 1000 MXN donation | |

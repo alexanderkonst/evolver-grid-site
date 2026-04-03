@@ -14,7 +14,7 @@
 |---------|---------------|------|
 | §1 Identity | Who built this, why, and what it believes | 2 min |
 | §2 Ontology | The foundational architecture of reality that everything rests on | 5 min |
-| §3 Technologies | The 57 named phase shift discoveries that power the methodology | 3 min |
+| §3 Technologies | The 61 named phase shift discoveries that power the methodology | 3 min |
 | §4 Methodology | The 7-artifact Unique Business Canvas and how it works | 5 min |
 | §5 Platform | What's built — 19 modules across 6 spaces | 3 min |
 | §6 Strategy | How it grows — assembly, matchmaking, white-label, distribution | 4 min |
@@ -173,7 +173,7 @@ Every mystical tradition, religious symbol, and scientific framework describes *
 
 # §3. TECHNOLOGIES — The Phase Shift Library
 
-> *This section distills `phase_shift_technology_library.md` (~2,900 lines). 57 named discoveries. Here are the 15 most important.*
+> *This section distills `phase_shift_technology_library.md` (~3,400 lines). 61 named discoveries. Here are the 16 most important.*
 
 A **phase shift technology** is a seeing instrument that produces an unusually rapid transformation. Named by the result it delivers, not the wall it supposedly broke.
 
@@ -223,6 +223,7 @@ A **phase shift technology** is a seeing instrument that produces an unusually r
 | 13 | **The Builder's Blind Spot** (Domain 55) | Builders optimize the product (surface friction). The real blocker is the viewer's decision (decision friction). "Stop building. Start collapsing." |
 | 14 | **Externalized Self-Recognition** (Domain 56) | People don't share mirrors to help friends. They share to confirm what they saw about themselves. Identity verification loop > distribution |
 | 15 | **Campfire Networking** (Domain 57) | Stop hunting for 1:1s. Join a group. Speak into it. The right person finds you — because you named something they couldn't name themselves |
+| 16 | **The Temporal Realization** (Domain 61) | Declaration restructures the past. The present doesn't emerge from the past — the present reveals what was always being prepared. The Copernican Inversion applied to time |
 
 **Therefore, when building features or writing copy:** these are the vocabulary. "Copernican Inversion," "scatter pattern," "precision gap," "tuning fork," "builder's blind spot," "campfire networking" — use these terms. They are the project's operating language.
 
@@ -432,7 +433,7 @@ Pattern library          Sends sequences             Books sessions
 | **Phase** | LAUNCH. Funnel v3.0 FINAL. Copy FROZEN. Traffic only. |
 | **Funnel** | v3.0 Decision Collapse + 5 micro-collapse objection kills. Quiz as primary path. Guarantee live ("you don't pay"). Liquid glass. Dark glass on all ZoG screens. |
 | **Copy status** | FROZEN. No more funnel optimization until traffic data exists. |
-| **Ontology** | v1.5 — 57 Phase Shift domains, 26-perspective Holonic Seeing Mode |
+| **Ontology** | v1.5 — 61 Phase Shift domains, 26-perspective Holonic Seeing Mode |
 | **Location** | Mexico City |
 
 ## The Funnel Architecture (LIVE)
@@ -588,4 +589,4 @@ When you need more than 80%, go here:
 *Master Context Document v1.1 · Updated April 2, 2026*
 *Synthesized from 16 source documents totaling ~20,000+ lines*
 *Maintained by Gemini (Antigravity) · Updated when source docs change*
-*Changes from v1.0: 60 domains (was 44), 26-perspective seeing (was 12+1), funnel v3.0 FINAL, copy FROZEN, LAUNCH phase, PageRank Principle + Measurement Inversion codified*
+*Changes from v1.0: 61 domains (was 44), 26-perspective seeing (was 12+1), funnel v3.0 FINAL, copy FROZEN, LAUNCH phase, PageRank Principle + Measurement Inversion + Temporal Realization codified*
