@@ -339,6 +339,7 @@ const SectionsPanel = ({
                     );
                 })}
             </nav>
+            </ScrollArea>
         </div>
     );
 };
