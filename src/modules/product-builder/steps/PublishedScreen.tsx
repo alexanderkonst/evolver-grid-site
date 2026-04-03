@@ -16,7 +16,7 @@ const PublishedScreen: React.FC = () => {
     const { toast } = useToast();
     const [isPublishing, setIsPublishing] = useState(false);
     const [copied, setCopied] = useState(false);
-    const productUrl = state.productUrl || `https://evolver.app/p/your-genius-product`;
+    const productUrl = state.productUrl || `https://geniusbusiness.app/p/your-genius-product`;
 
     useEffect(() => {
         setCurrentStep(7);

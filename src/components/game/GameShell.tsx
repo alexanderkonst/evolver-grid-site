@@ -273,7 +273,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                 {/* Logo */}
                 <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-[#2c3150]">
                     <Link to="/" className="font-bold text-lg text-white">
-                        Evolver
+                        Genius Business
                     </Link>
                     {/* Desktop collapse button */}
                     <button
