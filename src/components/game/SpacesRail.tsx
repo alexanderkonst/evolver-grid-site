@@ -246,7 +246,7 @@ const SpacesRail = ({
             </nav>
 
             {/* Settings Button */}
-            <div className="p-2 md:p-3 border-t border-[#29549f]/30 space-y-1">
+            <div className="p-2 md:p-3 border-t border-white/10 space-y-1">
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
