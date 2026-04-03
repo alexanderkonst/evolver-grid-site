@@ -409,38 +409,46 @@ const ZoneOfGeniusEntry = () => {
             <div className="relative z-10 p-5 lg:p-10 max-w-lg mx-auto min-h-dvh flex flex-col justify-center">
 
                 {/* Header — Godfather "front door" */}
-                <div className="text-center mb-8">
+                <div className="text-center mb-10">
                     {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-5 ring-1 ring-white/10 breathing-card">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Headline — Cormorant Garamond, confident weight */}
+                    {/* Eyebrow — sets the frame */}
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+                        The question that keeps coming back
+                    </p>
+
+                    {/* Headline — single punchy line */}
                     <h1
-                        className="text-2xl lg:text-[1.85rem] font-semibold font-display text-white/90 leading-[1.3] max-w-md mx-auto"
+                        className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8"
                         style={{
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
                     >
-                        Why is it still so hard to explain what you do{' '}
-                        <span className="text-white/60">—</span>{' '}
-                        and turn it into something people actually pay for?
+                        You know you create real value.
+                        <br />
+                        <span className="text-white/50 font-normal" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic' }}>
+                            So why is it still so hard to explain — and sell?
+                        </span>
                     </h1>
 
-                    {/* Body — Source Serif, compact rhythm */}
-                    <p className="text-sm text-white/90 mt-5 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.25), 0 0 40px rgba(240,194,127,0.1)' }}>
-                        There's a unique way you think, solve problems, and create value.
-                        You've been using it your whole life — because it's natural to you.
-                        People already come to you for it.
-                    </p>
+                    {/* Separator */}
+                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
 
-                    {/* Italic turn */}
-                    <p className="text-sm text-white/70 mt-4 italic max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2), 0 0 40px rgba(240,194,127,0.08)' }}>
-                        And yet… it hasn't turned into something consistent.
-                        Not because it isn't real.
-                        Because it's never been structured into something people can
-                        quickly understand — and say yes to.
-                    </p>
+                    {/* Three short truths — scannable, not a wall */}
+                    <div className="space-y-3 max-w-sm mx-auto">
+                        <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                            There's a unique way you think and solve problems.
+                        </p>
+                        <p className="text-sm text-white/80 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                            People already come to you for it.
+                        </p>
+                        <p className="text-sm text-white/50 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.12)' }}>
+                            It just hasn't been structured into something they can quickly say yes to.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Error message */}
