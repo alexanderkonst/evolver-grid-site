@@ -341,7 +341,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                 {/* Panel 3: Content - lightest glass tier */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/70 backdrop-blur-xl"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/50 backdrop-blur-xl"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
@@ -418,7 +418,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-white/70 backdrop-blur-xl overflow-auto relative"
+                        className="flex-1 bg-white/50 backdrop-blur-xl overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
