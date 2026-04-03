@@ -267,7 +267,7 @@ const SpacesRail = ({
                     className={cn(
                         "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
                         "justify-center md:justify-start",
-                        "text-[#a7cbd4]/60 hover:bg-red-500/20 hover:text-red-300"
+                        "text-white/30 hover:bg-red-500/20 hover:text-red-300"
                     )}
                     title="Log Out"
                 >
