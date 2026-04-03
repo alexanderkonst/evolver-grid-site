@@ -417,12 +417,12 @@ export default function GeniusQuiz() {
           {!result ? (
             <>
               <h1
-                className="text-xl font-semibold font-display text-white/90 leading-snug"
-                style={{ textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)' }}
+                className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight"
+                style={{ textShadow: '0 0 30px rgba(255,255,255,0.2), 0 0 60px rgba(132,96,234,0.15)' }}
               >
                 Why hasn't this turned into something real?
               </h1>
-              <p className="text-xs text-white/40 mt-2 max-w-sm mx-auto">
+              <p className="text-sm font-sans text-white/50 mt-3 max-w-sm mx-auto">
                 6 questions. No overthinking. See exactly where it breaks.
               </p>
             </>
