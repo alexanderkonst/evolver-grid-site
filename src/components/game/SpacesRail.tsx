@@ -117,7 +117,7 @@ const SpacesRail = ({
             )}
         >
             {/* User Profile + Community Header */}
-            <div className="p-3 md:p-4 border-b border-[#a4a3d0]/30">
+            <div className="p-3 md:p-4 border-b border-white/10">
             {/* Community Logo */}
                 <Link to="/" className="flex items-center justify-center mb-3">
                     <div
