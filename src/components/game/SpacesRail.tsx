@@ -1,5 +1,6 @@
 import { ReactNode, memo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logoSrc from "@/assets/logo.jpg";
 import {
     Compass,
     User,
