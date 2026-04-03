@@ -45,7 +45,7 @@ const RevelatoryHero = ({
             iconColor: "text-[#8460ea]",
             textPrimary: "text-white/90",
             textSecondary: "text-white/60",
-            textMuted: "text-[#8460ea]",
+            textMuted: "text-[#b8a4f8]",
             glowColor: "rgba(132,96,234,0.2)",
             divider: "bg-white/10",
         }
