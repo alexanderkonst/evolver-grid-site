@@ -110,44 +110,16 @@ const OwnershipSection = ({
 
             {/* ─── SHARE (tertiary, delayed, minimal) ─── */}
             {shareVisible && (
-                <div
-                    className="animate-in fade-in duration-700"
-                >
-                    <button
-                        onClick={() => {
-                            const next = !shareExpanded;
-                            setShareExpanded(next);
-                            if (next) {
-                                setTimeout(() => {
-                                    shareContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                }, 100);
-                            }
-                        }}
-                        className="w-full flex items-center justify-center gap-2 py-2 text-xs text-white/40 hover:text-white/60 transition-colors"
-                    >
-                        <Share2 className="w-3 h-3" />
-                        <span>Share this</span>
-                        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${shareExpanded ? 'rotate-180' : ''}`} />
-                    </button>
-
-                    {shareExpanded && (
-                        <div ref={shareContentRef} className="space-y-3 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
-                            <p className="text-xs text-white/60 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                                This is how I naturally create value.<br/>
-                                <span className="italic text-white/45">Curious what you see.</span>
-                            </p>
-
-                            <ShareZoG
-                                archetypeName={appleseed.vibrationalKey.name}
-                                tagline={appleseed.bullseyeSentence}
-                                primeDriver={appleseed.threeLenses.primeDriver}
-                                talents={appleseed.threeLenses.actions}
-                                archetype={appleseed.threeLenses.archetype}
-                                profileId={profileId}
-                                profileUrl={profileUrl}
-                            />
-                        </div>
-                    )}
+                <div className="animate-in fade-in duration-700">
+                    <ShareZoG
+                        archetypeName={appleseed.vibrationalKey.name}
+                        tagline={appleseed.bullseyeSentence}
+                        primeDriver={appleseed.threeLenses.primeDriver}
+                        talents={appleseed.threeLenses.actions}
+                        archetype={appleseed.threeLenses.archetype}
+                        profileId={profileId}
+                        profileUrl={profileUrl}
+                    />
                 </div>
             )}
         </div>
