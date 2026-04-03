@@ -5579,16 +5579,45 @@ SCREEN 5: Post-Payment (Stripe → Cal.com)
 - Email them a magic link or access link
 - Persist result so they can return later
 
-**Secondary share section (delayed, collapsed):**
+**Secondary share section (delayed, collapsed) — v3.0: Externalized Self-Recognition:**
+
+The share is NOT distribution. It is **identity verification loop** — the user shares because they need confirmation this is true about them. This is what spreads.
 
 | Element | Copy |
 |---------|------|
-| **Collapsed label** | "Optional: Get perspective from others" |
-| **Expanded copy** | "Ask 2–3 people who know you well: *Does this actually sound like me?*" |
-| **Share button** | "Share with a friend" → dark glass dropdown (LinkedIn, X, Facebook, Telegram, Instagram, Copy) |
-| **Footer** | "Clarity gets stronger when it's reflected back." |
+| **Header** | "Sanity check this with someone who knows you well" |
+| **Button** | "Ask someone: is this actually me?" |
+| **Microcopy** | "You'll know instantly if this is real — or just in your head." |
 
-**Sequence:** Save → [500ms delay] → Share appears (collapsed). Never before save. One intention per moment.
+**Default share message (the viral engine — matters MORE than the button):**
+
+> "Hey — quick gut check.
+> This describes how I naturally think/work.
+> Does this actually sound like me to you?"
+
+**Test variants (A/B test when traffic allows):**
+
+| Variant | Share text |
+|---------|-----------|
+| **Higher-conversion** | "This is how I apparently create value. Curious — does this feel accurate from your perspective?" |
+| **Edgy (selective use)** | "Be honest — do you actually see me this way? Or am I making this up?" |
+
+**Button test variants:**
+- A: "Send this to someone who knows you well"
+- B: "Do others see you this way?"
+- C: "Be honest — does this sound like me?"
+
+**The three loops this creates:**
+
+| Loop | Mechanism |
+|------|-----------|
+| **Viral** | User → friend → curiosity → inbound |
+| **Trust** | Friend validates → user believes more → buys |
+| **Re-entry** | Friend asks "where is this from?" → DM → funnel |
+
+**Status:** 🔜 Spec documented. NOT implemented. Current share section in code is v2.0 (generic).
+
+**Sequence (unchanged):** Save → [500ms delay] → Share appears (collapsed). Never before save. One intention per moment.
 
 ### SCREEN 3: Quiz → `/quiz`
 

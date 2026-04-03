@@ -2723,3 +2723,91 @@ Naming an unnamed loop = medicine. Not marketing.
 **Key correction (April 2, 2026):** The narrowing here is NOT the label (founder vs. entrepreneur vs. coach). The narrowing is the **moment of readiness** — a phase of consciousness: "I've tried. I'm close. I'm frustrated enough now." The market is broad. The filter is the phase.
 
 ---
+
+## Domain 56: Externalized Self-Recognition (The Identity Verification Loop)
+
+> *Added April 2, 2026 — Discovered while redesigning the share section of the ZoG result page. The insight: people don't share to distribute. They share to confirm who they are.*
+
+### 56a. The Discovery
+
+Every product builder thinks "share" means distribution:
+
+❌ "Spread the word"
+❌ "Help a friend"
+❌ "Grow the platform"
+
+None of these work for identity-revealing tools. Because the user didn't receive information. They received a **mirror.** And the instinct after seeing yourself in a mirror is not "share this mirror." It is: **"Is this actually me?"**
+
+The share mechanism is not distribution. It is **identity verification loop** — the user shares because they need external confirmation that what they just saw about themselves is real.
+
+### 56b. Why This Works (Psychology)
+
+| Motivation | What drives it | How strong |
+|-----------|---------------|------------|
+| ❌ Altruism | "My friend would benefit" | Weak — requires effort with no personal payoff |
+| ❌ Status | "Look what I found" | Moderate — works for novel things, not mirrors |
+| ✅ **Identity verification** | "I need someone to confirm this is true about me" | **Strongest** — resolves existential ambiguity |
+
+The share is not optional social nicety. It is the **completion of the self-recognition process.** The user saw themselves. Now they need someone else to see them the same way. Only then does the insight become *real.*
+
+### 56c. The Three Loops
+
+| Loop | Mechanism | What it produces |
+|------|-----------|-----------------|
+| **Viral** | User → friend → curiosity → "where is this?" → inbound | New users (acquisition) |
+| **Trust** | Friend validates → user believes result → buys | Conversion (decision confidence) |
+| **Re-entry** | Friend asks "what is this?" → user re-engages → deeper commitment | Retention + evangelism |
+
+All three loops are triggered by a single action: the user asking someone "is this actually me?"
+
+### 56d. The Mechanism vs. The Generic
+
+| Generic share | Identity verification share |
+|---------------|---------------------------|
+| "Share with a friend" | "Ask someone: is this actually me?" |
+| "Spread the word" | "Sanity check this with someone who knows you well" |
+| "Help others discover this" | "You'll know instantly if this is real — or just in your head" |
+| Motivation: help the platform | Motivation: **resolve self-doubt** |
+| Copy: about the product | Copy: about **the user's identity** |
+
+### 56e. The Viral Engine (Share Message)
+
+The share message matters MORE than the button. It is the first contact between the platform and a new potential user — delivered by their friend, in their voice, in their context.
+
+**Default:**
+
+> "Hey — quick gut check.
+> This describes how I naturally think/work.
+> Does this actually sound like me to you?"
+
+**Why this works:**
+- Low pressure (gut check, not endorsement request)
+- Easy to respond (yes/no + nuance)
+- Invites honesty (not approval)
+- Creates curiosity gap ("what IS this?")
+
+### 56f. Connection to the Stack
+
+| Domain | How 56 completes it |
+|--------|-------------------|
+| **8: Acorn and Tuning Fork** | The ZoG result IS the acorn. The share is asking: "do others see this acorn in me too?" — completing the tuning fork's validation cycle |
+| **51: Curiosity Gap Engine** | The share message IS a curiosity gap artifact — the friend receives a provocative mirror and wants to know where it came from |
+| **52: Ritual Conversion** | The share is not a marketing action. It is a **ritual of self-confirmation** — the user becomes more committed to their identity by externalizing it |
+| **53: MEET Principle** | The friend's response ("yes, that's obviously you") IS a MEET — a moment of clear recognition that creates trust and forward motion |
+| **55: Builder's Blind Spot** | Most builders would make the share about the product. This domain reveals: the share is about the user's IDENTITY. Product-centric sharing = surface. Identity-centric sharing = decision physics |
+
+### 56g. The One-Sentence Version
+
+> *"People don't share mirrors to help their friends. They share mirrors to confirm what they saw."*
+
+### 56h. Critical Rule
+
+The share MUST come AFTER ownership (save/email gate). Sequence:
+
+1. See result
+2. Save result (identity claimed)
+3. THEN: "Want to sanity check this?"
+
+Reversing this order = the user is sharing before they OWN the insight = the share feels like distribution rather than verification = it doesn't work.
+
+---
