@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { trackPageView, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -48,12 +49,25 @@ const ZoneOfGeniusEntry = () => {
     const hasSavedAppleseed = useRef(false);
     const stepContentRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll to step content when step changes
+    // Track page view on mount
+    useEffect(() => {
+        trackPageView('zog_entry');
+    }, []);
+
+    // Auto-scroll to step content when step changes + track funnel transitions
     useEffect(() => {
         if (step !== 'choice') {
             const timer = setTimeout(() => {
                 stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 150);
+            // Track step transitions
+            const stepMap: Record<string, any> = {
+                'choice-route': 'zog_choice_route',
+                'ai-prompt': 'zog_ai_prompt',
+                'paste-response': 'zog_paste',
+                'appleseed-result': 'zog_result',
+            };
+            if (stepMap[step]) trackFunnelEvent({ step: stepMap[step] });
             return () => clearTimeout(timer);
         }
     }, [step]);
@@ -164,6 +178,7 @@ const ZoneOfGeniusEntry = () => {
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
         setCopied(true);
+        trackFunnelEvent({ step: 'zog_copy_prompt' });
         setTimeout(() => setCopied(false), 2000);
     };
 

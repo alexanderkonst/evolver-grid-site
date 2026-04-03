@@ -3305,3 +3305,47 @@ The irony: this very session IS the Builder's Blind Spot in action. The product 
 
 *Session complete ~4am. "The surface is the surface. The signal is the signal. Now: transmit the signal through the surface to a real human."*
 
+---
+
+## Declaration Phase Acceleration — Thu, April 3, 2026 (Afternoon Session)
+
+**Location**: Mexico City
+**Time**: ~3pm (continued from overnight Deep Build)
+
+### What We Built
+
+| Item | Description |
+|------|-------------|
+| **Funnel Analytics Pipeline** | NEW `src/lib/funnelAnalytics.ts` — lightweight client-side funnel event tracking for ZoG → Quiz → /ignite → Booking pipeline. Anonymous session IDs, localStorage queue fallback, Supabase `funnel_events` table. 17 event types covering every funnel touchpoint |
+| **Analytics Wiring** | Tracking events wired into: `ZoneOfGeniusEntry.tsx` (page view, step transitions, email save), `GeniusQuiz.tsx` (quiz start, quiz complete with archetype), `IgniteSession.tsx` (page view, CTA clicks, divine timing, booking clicks) |
+| **PageLoader Dark Glass Fix** | Suspense fallback `PageLoader` in `App.tsx` converted from `bg-[#1a1d2e]` + amber spinner to `bg-[#0a0a1a]` + white/30 spinner — matches liquid glass aesthetic across all loading states |
+| **Holomap Day 34 Update** | Strategic documentation updated to reflect the Declaration phase bottleneck shift: from construction to encounter. Three new triggers defined for collective quadrant advancement |
+
+### Key Technical Changes
+
+| File | Lines Δ | What Changed |
+|------|---------|-------------|
+| `funnelAnalytics.ts` | +140 | NEW — complete funnel analytics library with session management, event queue, and typed events |
+| `ZoneOfGeniusEntry.tsx` | ±15 | Funnel tracking for page view, step transitions (choice-route, ai-prompt, paste, result), email save |
+| `GeniusQuiz.tsx` | ±10 | Funnel tracking for quiz start, quiz complete (with archetype metadata), CTA click |
+| `IgniteSession.tsx` | ±10 | Funnel tracking for page view, divine timing email, all CTA clicks (booking, clarity) |
+| `App.tsx` | ±2 | PageLoader dark glass fix (bg + spinner color) |
+
+### Key Insights
+
+- **The analytics pipeline is the first LR (systemic) infrastructure for measuring encounter.** Without it, every decision about the funnel is assumption-based. With it, the system can measure: where do people drop off? What percentage complete the quiz? How many reach the pricing section?
+- **The PageLoader fix was a "last mile" polish** — the brief loading flash between pages was the one remaining light-themed element breaking the dark glass continuity
+
+### Sprint Status
+
+| Metric | Value |
+|--------|-------|
+| **Phase** | DECLARATION — funnel locked, UI polished, analytics wired, ready for traffic |
+| **Analytics** | ✅ 17 event types tracking every conversion touchpoint |
+| **Funnel UI** | ✅ Premium — including loading states |
+| **Next action** | Post. DM. Sell. Measure |
+
+---
+
+*"Now the system can hear. Every visitor leaves a signal — whether they convert or not. The data will tell us what no amount of building can: where the real friction is."*
+

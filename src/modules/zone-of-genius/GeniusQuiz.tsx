@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { trackPageView, trackFunnelEvent, trackCTAClick } from "@/lib/funnelAnalytics";
 import { ArrowRight, RotateCcw } from "lucide-react";
 import GameShellV2 from "../../components/game/GameShellV2";
 
@@ -335,6 +336,7 @@ function ResultView({
                    hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
                    hover:scale-[1.02] active:scale-95
                    transition-all duration-300"
+        onClick={() => trackCTAClick('ignite_cta_click', 'quiz_result_cta', { from: 'quiz' })}
       >
         <div>
           <p className="text-base font-bold text-white uppercase tracking-wider" style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}>
@@ -367,6 +369,11 @@ export default function GeniusQuiz() {
   const [result, setResult] = useState<ArchetypeResult | null>(null);
   const [transitioning, setTransitioning] = useState(false);
 
+  // Track quiz start
+  useEffect(() => {
+    trackPageView('quiz_start');
+  }, []);
+
   const handleAnswer = useCallback(
     (optionIdx: number) => {
       const q = QUESTIONS[currentQuestion];
@@ -382,6 +389,7 @@ export default function GeniusQuiz() {
           // Calculate result
           const archetypeId = calculateResult(newAnswers);
           setResult(ARCHETYPES[archetypeId]);
+          trackFunnelEvent({ step: 'quiz_complete', metadata: { archetype: archetypeId } });
         }
         setTransitioning(false);
       }, 400);
