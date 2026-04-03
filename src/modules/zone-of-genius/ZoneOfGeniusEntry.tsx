@@ -417,21 +417,19 @@ const ZoneOfGeniusEntry = () => {
 
                     {/* Eyebrow — sets the frame */}
                     <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-                        The question that keeps coming back
+                        Zone of Genius Discovery
                     </p>
 
-                    {/* Headline — single punchy line */}
+                    {/* Headline */}
                     <h1
                         className="text-xl lg:text-2xl font-semibold font-display text-white leading-[1.35] max-w-lg mx-auto mb-8"
                         style={{
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
                     >
-                        You know you create real value.
-                        <br />
-                        <span className="text-white/50 font-normal" style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic' }}>
-                            So why is it still so hard to explain — and sell?
-                        </span>
+                        Why is it still so hard to explain what you do{' '}
+                        <span className="text-white/50">—</span>{' '}
+                        and turn it into something people actually pay for?
                     </h1>
 
                     {/* Separator */}
