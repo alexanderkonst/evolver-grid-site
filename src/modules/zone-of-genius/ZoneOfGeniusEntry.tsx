@@ -502,7 +502,7 @@ const ZoneOfGeniusEntry = () => {
                                         <Bot className="w-5 h-5 text-[#8460ea]" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors tracking-wide">
+                                        <p className="text-base font-bold text-white/90 group-hover:text-white transition-colors tracking-wide">
                                             🤖 Faster (1 min)
                                         </p>
                                         <p className="text-xs text-white/35 mt-1 leading-relaxed">Ask your AI & paste its response → get your pattern instantly</p>
