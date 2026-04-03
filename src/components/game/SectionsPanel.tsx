@@ -314,7 +314,7 @@ const SectionsPanel = ({
 
                             {/* Sub-sections with indent */}
                             {hasSubSections && isExpanded && (
-                                <div className="ml-8 border-l border-[#6894d0]/30">
+                                <div className="ml-8 border-l border-white/10">
                                     {section.subSections!.map((sub) => {
                                         const subActive = isActive(sub.path);
                                         return (
