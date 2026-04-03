@@ -47,7 +47,7 @@ const Panel3Actions = ({
 
       <div
         className={cn(
-          "sm:hidden fixed bottom-0 left-0 right-0 border-t border-[#a4a3d0]/20 bg-white/95 px-4 pt-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] shadow-lg",
+          "sm:hidden fixed bottom-0 left-0 right-0 border-t border-white/10 bg-black/80 backdrop-blur-xl px-4 pt-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] shadow-lg",
           stickyClass
         )}
       >

@@ -339,9 +339,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content - lightest glass tier */}
+                {/* Panel 3: Content - transparent over atmospheric background */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/50 backdrop-blur-xl"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/15 backdrop-blur-sm"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
@@ -401,24 +401,24 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     )}
                 >
                     <header
-                        className="bg-white/80 backdrop-blur-xl flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-black/10"
+                        className="bg-black/30 backdrop-blur-xl flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-white/10"
                         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
                     >
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-[#2c3150] hover:bg-black/5 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 text-white/70 hover:bg-white/10 rounded-lg transition-colors"
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </button>
-                        <span className="text-[#2c3150] font-medium flex-1 truncate">
+                        <span className="text-white/90 font-medium flex-1 truncate">
                             {SPACES.find(s => s.id === activeSpaceId)?.label || "Genius Business"}
                         </span>
                     </header>
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-white/50 backdrop-blur-xl overflow-auto relative"
+                        className="flex-1 bg-black/15 backdrop-blur-sm overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
