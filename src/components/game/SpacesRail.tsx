@@ -117,29 +117,8 @@ const SpacesRail = ({
                 className
             )}
         >
-            {/* User Profile + Community Header */}
-            <div className="p-3 md:p-4 border-b border-white/10">
-            {/* Community Logo */}
-                <Link to="/" className="flex items-center justify-center lg:justify-start mb-3">
-                    <div
-                        className="w-10 h-10 rounded-lg overflow-hidden"
-                        style={{
-                            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                            maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                        }}
-                    >
-                        <img
-                            src={logoSrc}
-                            alt="Home"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </Link>
-
-                {/* Divider between logo and profile */}
-                <div className="hidden md:block h-px bg-white/10 mb-3" />
-
-                {/* User Profile */}
+            {/* User Profile */}
+            <div className="p-2 md:p-3">
                 <Link
                     to="/game/me"
                     className="flex items-center gap-2 hover:bg-white/10 rounded-lg p-1.5 -m-1.5 transition-colors"
