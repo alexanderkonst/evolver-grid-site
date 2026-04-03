@@ -206,12 +206,12 @@ function calculateResult(answers: Record<string, number>): ArchetypeId {
 function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
     <div className="w-full max-w-xs mx-auto mb-6">
-      <div className="flex justify-between text-[10px] text-[#2c3150]/40 mb-1.5">
+      <div className="flex justify-between text-[10px] text-white/30 mb-1.5">
         <span>{current} of {total}</span>
       </div>
-      <div className="h-1 bg-[#2c3150]/10 rounded-full overflow-hidden">
+      <div className="h-1 bg-white/10 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-[#8460ea] to-[#29549f] rounded-full transition-all duration-500 ease-out"
+          className="h-full bg-gradient-to-r from-white/80 to-white/40 rounded-full transition-all duration-500 ease-out"
           style={{ width: `${(current / total) * 100}%` }}
         />
       </div>
@@ -230,10 +230,10 @@ function QuestionStep({
 }) {
   return (
     <div className="animate-in fade-in duration-300">
-      <p className="text-xs text-[#8460ea]/60 font-medium mb-2 uppercase tracking-wider">
+      <p className="text-xs text-[#8460ea] font-medium mb-2 uppercase tracking-wider">
         {question.label}
       </p>
-      <h2 className="text-lg font-semibold text-[#2c3150] font-display mb-6 leading-snug">
+      <h2 className="text-lg font-semibold text-white/90 font-display mb-6 leading-snug">
         {question.question}
       </h2>
       <div className="space-y-2.5">
@@ -241,11 +241,11 @@ function QuestionStep({
           <button
             key={idx}
             onClick={() => onAnswer(idx)}
-            className={`w-full p-4 rounded-xl border-2 transition-all duration-200
+            className={`w-full p-4 rounded-xl ring-1 transition-all duration-200
                         text-left text-sm leading-relaxed
                         ${selectedIdx === idx
-                ? "border-[#8460ea] bg-[#8460ea]/10 text-[#2c3150] shadow-md shadow-[#8460ea]/10"
-                : "border-[#2c3150]/10 bg-white/80 text-[#2c3150]/80 hover:border-[#8460ea]/40 hover:bg-white hover:shadow-sm"
+                ? "ring-[#8460ea] bg-[#8460ea]/15 text-white shadow-md shadow-[#8460ea]/10"
+                : "ring-white/10 liquid-glass text-white/80 hover:ring-white/25 hover:text-white"
               }`}
           >
             {option.text}
@@ -267,21 +267,24 @@ function ResultView({
     <div className="animate-in fade-in duration-500 max-w-md mx-auto">
       {/* Archetype name */}
       <div className="text-center mb-6">
-        <p className="text-xs text-[#8460ea]/50 font-medium uppercase tracking-wider mb-2">
+        <p className="text-xs text-[#8460ea] font-medium uppercase tracking-wider mb-2">
           Your pattern
         </p>
-        <h1 className="text-2xl font-display font-semibold aurora-text leading-tight">
+        <h1
+          className="text-2xl font-display font-semibold text-white leading-tight"
+          style={{ textShadow: '0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(132,96,234,0.15)' }}
+        >
           {result.name}
         </h1>
       </div>
 
       {/* Identity + Mirror */}
       <div className="space-y-4 mb-6">
-        <p className="text-sm font-medium text-[#2c3150]">
+        <p className="text-sm font-medium text-white/90">
           {result.identity}
         </p>
         {result.mirror.map((line, i) => (
-          <p key={i} className="text-sm text-[#2c3150]/60 leading-relaxed">
+          <p key={i} className="text-sm text-white/50 leading-relaxed">
             {line}
           </p>
         ))}
@@ -289,20 +292,20 @@ function ResultView({
 
       {/* Problem */}
       <div className="mb-5">
-        <p className="text-sm font-semibold text-[#2c3150]">
+        <p className="text-sm font-semibold text-white/90">
           The problem is:
         </p>
-        <p className="text-sm text-[#2c3150]/70 mt-1.5 leading-relaxed italic">
+        <p className="text-sm text-white/60 mt-1.5 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
           {result.problem}
         </p>
       </div>
 
       {/* Symptoms */}
       <div className="mb-5">
-        <p className="text-xs text-[#2c3150]/40 mb-2">So instead:</p>
+        <p className="text-xs text-white/30 mb-2">So instead:</p>
         <ul className="space-y-1">
           {result.symptoms.map((s, i) => (
-            <li key={i} className="text-sm text-[#2c3150]/60 leading-relaxed">
+            <li key={i} className="text-sm text-white/50 leading-relaxed">
               — {s}
             </li>
           ))}
@@ -310,16 +313,16 @@ function ResultView({
       </div>
 
       {/* Reframe */}
-      <p className="text-sm font-medium text-[#2c3150] mb-1.5">
+      <p className="text-sm font-medium text-white/90 mb-1.5">
         {result.reframe}
       </p>
-      <p className="text-xs text-[#2c3150]/50 leading-relaxed mb-3 italic">
+      <p className="text-xs text-white/40 leading-relaxed mb-3 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
         And fixing it doesn't mean building something massive —<br/>
         it means making what's already there usable.
       </p>
 
       {/* Blade */}
-      <p className="text-xs text-[#2c3150]/45 leading-relaxed mb-8 italic">
+      <p className="text-xs text-white/35 leading-relaxed mb-8 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
         {result.blade}
       </p>
 
@@ -327,25 +330,24 @@ function ResultView({
       <a
         href="/ignite#hero-video"
         className="w-full flex items-center justify-between p-4 rounded-xl
-                   bg-gradient-to-r from-[#8460ea]/20 to-[#29549f]/20
-                   border border-[#8460ea]/30 hover:border-[#8460ea]/60
-                   hover:shadow-lg hover:shadow-[#8460ea]/10
-                   transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                   liquid-glass-strong ring-1 ring-white/20
+                   hover:ring-white/30 hover:shadow-[0_0_25px_rgba(132,96,234,0.15)]
+                   transition-all duration-300 hover:scale-[1.02] active:scale-95"
       >
         <div>
-          <p className="text-sm font-semibold text-[#2c3150]">{result.cta} (6 min)</p>
-          <p className="text-xs text-[#2c3150]/50 mt-0.5">{result.ctaSub}</p>
+          <p className="text-sm font-semibold text-white">{result.cta} (6 min)</p>
+          <p className="text-xs text-white/40 mt-0.5">{result.ctaSub}</p>
         </div>
-        <span className="w-8 h-8 rounded-full bg-[#8460ea]/20 flex items-center justify-center flex-shrink-0 ml-3">
-          <ArrowRight className="w-4 h-4 text-[#8460ea]" />
+        <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 ml-3">
+          <ArrowRight className="w-4 h-4 text-white/70" />
         </span>
       </a>
 
-      {/* Restart — no backward loops */}
+      {/* Restart */}
       <button
         onClick={onRestart}
-        className="flex items-center gap-1.5 mx-auto mt-6 text-xs text-[#2c3150]/30
-                   hover:text-[#2c3150]/50 transition-colors"
+        className="flex items-center gap-1.5 mx-auto mt-6 text-xs text-white/20
+                   hover:text-white/40 transition-colors"
       >
         <RotateCcw className="w-3 h-3" />
         Retake
@@ -391,34 +393,37 @@ export default function GeniusQuiz() {
 
   return (
     <GameShellV2 hideNavigation>
-      {/* Attached Gradient Background Override */}
-      <div className="fixed inset-0 z-0">
+      {/* Gradient Background — dark overlay matching ZoG entry */}
+      <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
           <img 
               src="/gradient.jpg" 
-              alt="Background Gradient" 
+              alt="" 
               className="w-full h-full object-cover" 
+              aria-hidden="true"
           />
-          {/* Light overlay to ensure dark text remains legible over the navy parts of the gradient */}
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
       </div>
       
       <div className="relative z-10 p-4 lg:p-8 max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
-            <img src="/dodecahedron.png" alt="Quiz" className="w-full h-full object-cover" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4 ring-1 ring-white/10 breathing-card">
+            <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
           </div>
           {!result ? (
             <>
-              <h1 className="text-xl font-semibold font-display aurora-text leading-snug">
+              <h1
+                className="text-xl font-semibold font-display text-white/90 leading-snug"
+                style={{ textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)' }}
+              >
                 Why hasn't this turned into something real?
               </h1>
-              <p className="text-xs text-[var(--wabi-text-secondary)]/50 mt-2 max-w-sm mx-auto">
+              <p className="text-xs text-white/40 mt-2 max-w-sm mx-auto">
                 6 questions. No overthinking. See exactly where it breaks.
               </p>
             </>
           ) : (
-            <p className="text-xs text-[var(--wabi-text-secondary)]/50 mt-1">
+            <p className="text-xs text-white/40 mt-1">
               Your result is ready.
             </p>
           )}
