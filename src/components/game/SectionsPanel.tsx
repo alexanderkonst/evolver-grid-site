@@ -1,4 +1,5 @@
 import { ReactNode, memo, useEffect, useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
