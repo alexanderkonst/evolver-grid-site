@@ -253,10 +253,9 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                // Panel 2: Lighter than Panel 1 - Royal Blue base
                 "w-[260px] flex flex-col",
-                "bg-gradient-to-b from-[#29549f]/95 via-[#1e4374]/90 to-[#1a2f4a]/95",
-                "backdrop-blur-sm border-r border-[#6894d0]/30",
+                "liquid-glass",
+                "border-r border-white/10",
                 className
             )}
         >
