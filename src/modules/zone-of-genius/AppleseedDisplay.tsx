@@ -54,10 +54,10 @@ const OwnershipSection = ({
     const [shareExpanded, setShareExpanded] = useState(false);
     const shareContentRef = useRef<HTMLDivElement>(null);
 
-    // Delayed reveal of share section (500ms after email unlock / save)
+    // Delayed reveal of share section (4s after email unlock / save)
     useEffect(() => {
         if (emailUnlocked || isSaved) {
-            const timer = setTimeout(() => setShareVisible(true), 500);
+            const timer = setTimeout(() => setShareVisible(true), 4000);
             return () => clearTimeout(timer);
         }
     }, [emailUnlocked, isSaved]);
