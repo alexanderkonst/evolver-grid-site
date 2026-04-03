@@ -187,8 +187,8 @@ const RevelatoryHero = ({
 
                 {/* Screenshot prompt + signature */}
                 <div className="mt-4 text-center">
-                    <p className="text-[11px] text-white/40 italic">Screenshot this.</p>
-                    <p className="text-[10px] text-white/30 tracking-wide">get yours → aleksandrkonstantinov.com</p>
+                    <p className="text-xs text-white/40 italic">Screenshot this.</p>
+                    <p className="text-xs text-white/30 tracking-wider">get yours → aleksandrkonstantinov.com</p>
                 </div>
             </div>
 

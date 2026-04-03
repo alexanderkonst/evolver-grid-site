@@ -7,8 +7,8 @@ import { Link, useLocation } from "react-router-dom";
 const SiteLogo = () => {
     const location = useLocation();
 
-    // Hide on game pages — SpacesRail has its own logo
-    if (location.pathname.startsWith("/game")) return null;
+    // Hide on game pages and result pages
+    if (location.pathname.startsWith("/game") || location.pathname === "/my-result") return null;
 
     return (
         <Link
