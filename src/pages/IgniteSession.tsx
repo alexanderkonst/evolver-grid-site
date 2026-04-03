@@ -459,32 +459,6 @@ const IgniteSession = () => {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S3: VIDEO
-            ═══════════════════════════════════════════════ */}
-        <section id="hero-video" aria-label="Methodology video">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Watch this before you book
-          </h2>
-          <p className="text-sm text-white/55 text-center mb-3" style={{ fontFamily: "'Source Serif 4', serif" }}>This will show you why insight alone never converts into income — and what actually needs to happen instead.</p>
-          <div className="liquid-glass rounded-2xl p-1">
-            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
-          </div>
-          <p className="text-xs text-white/40 text-center mt-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            If you're still thinking about this after watching… you already know.
-          </p>
-
-          {/* Non-optionality — felt consequence, not intellectual */}
-          <div className="text-center mt-5 space-y-1">
-            <p className="text-xs text-white/45 leading-relaxed">
-              This doesn't stay neutral.
-            </p>
-            <p className="text-xs text-white/55 leading-relaxed font-medium">
-              It either becomes a business—<br/>
-              or it stays something people benefit from for free.
-            </p>
-          </div>
-        </section>
 
         {/* ═══════════════════════════════════════════════
             S4: HOW IT WORKS — 3 steps + deliverables
