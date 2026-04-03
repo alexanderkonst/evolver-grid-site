@@ -675,7 +675,7 @@ const HolonicModulesPage = () => {
     const listAnim = useScrollAnimation(0.1);
 
     useEffect(() => {
-        document.title = "The Evolver System — All Modules";
+        document.title = "The Genius Business System — All Modules";
         window.scrollTo(0, 0);
     }, []);
 
