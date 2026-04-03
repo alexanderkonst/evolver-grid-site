@@ -1,9 +1,9 @@
-import { ArrowRight, Mail, ChevronDown, Share2 } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
