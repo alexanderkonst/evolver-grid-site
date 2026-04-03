@@ -43,10 +43,20 @@ const ZoneOfGeniusEntry = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [profileId, setProfileId] = useState<string | null>(null);
 
-    // Generated data
     const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
     const hasSavedAppleseed = useRef(false);
+    const stepContentRef = useRef<HTMLDivElement>(null);
+
+    // Auto-scroll to step content when step changes
+    useEffect(() => {
+        if (step !== 'choice') {
+            const timer = setTimeout(() => {
+                stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 150);
+            return () => clearTimeout(timer);
+        }
+    }, [step]);
 
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
@@ -452,7 +462,7 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Choice */}
                 {step === "choice" && (
-                    <div className="space-y-6 animate-in fade-in duration-500">
+                    <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         {/* Primary CTA — breathing alive feel */}
                         <div className="text-center">
                             <button
@@ -476,7 +486,7 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Route Selection */}
                 {step === "choice-route" && (
-                    <div className="space-y-8 animate-in fade-in duration-500">
+                    <div ref={stepContentRef} className="space-y-8 animate-in fade-in duration-500">
                         <div className="text-center">
                             <h2 className="text-xl font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 How do you want to reveal it?
@@ -540,7 +550,7 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: AI Prompt */}
                 {step === "ai-prompt" && (
-                    <div className="space-y-6 animate-in fade-in duration-500">
+                    <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
                             <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 Copy this prompt into your AI
@@ -600,7 +610,7 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Paste Response */}
                 {step === "paste-response" && (
-                    <div className="space-y-6 animate-in fade-in duration-500">
+                    <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
                             <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
                                 Paste your AI's response
