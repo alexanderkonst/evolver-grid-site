@@ -411,7 +411,7 @@ const ZoneOfGeniusEntry = () => {
                 {/* Header — Godfather "front door" */}
                 <div className="text-center mb-10">
                     {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
+                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
