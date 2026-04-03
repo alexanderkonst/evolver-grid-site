@@ -103,9 +103,8 @@ const OwnershipSection = ({
 
             {/* ─── SUCCESS STATE: after save ─── */}
             {(emailUnlocked || isSaved) && (
-                <div className="space-y-1 text-center py-2">
-                    <p className="text-sm text-white/60">✓ Saved — check your email</p>
-                    <p className="text-xs text-white/30">We sent your Zone of Genius to your inbox.</p>
+                <div className="text-center py-2">
+                    <p className="text-sm text-white/50">✓ Saved. We sent your Zone of Genius to your inbox.</p>
                 </div>
             )}
 
