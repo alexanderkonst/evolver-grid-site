@@ -257,90 +257,94 @@ const AppleseedDisplay = ({
                 )}
 
                 {/* ═══════════════════════════════════════════════
-                    THE GAP — controlled incomplete transformation
+                    THE GAP — Sacred typographical journey
                     ═══════════════════════════════════════════════ */}
-                <div className="space-y-5 pt-6 max-w-md mx-auto">
+                <div className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-16" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                    
                     {/* Validation */}
-                    <div className="text-center space-y-3">
-                        <p className="text-xs text-white/50 leading-relaxed">
-                            You've been doing this for years.<br/>
-                            People already come to you for it.<br/>
+                    <div className="space-y-4">
+                        <p className="text-lg md:text-xl text-white/80 font-light tracking-wide leading-relaxed">
+                            You've been doing this for years.
+                        </p>
+                        <p className="text-base text-white/50 font-light tracking-wide leading-relaxed">
+                            People already come to you for it. <br/>
                             You've delivered real results through this.
                         </p>
                     </div>
 
                     {/* Collapse Shift */}
-                    <div className="text-center space-y-2">
-                        <p className="text-xs text-white/45 leading-relaxed">
+                    <div className="space-y-6">
+                        <p className="text-lg text-white/70 font-light tracking-wide leading-relaxed">
                             But this — by itself — doesn't become a business.
                         </p>
-                        <p className="text-xs text-white/45 leading-relaxed">
-                            Because this is:
-                        </p>
-                        <p className="text-sm text-white/60 leading-relaxed">
-                            👉 how you naturally think and create
-                        </p>
-                        <p className="text-sm font-semibold text-white/85">
-                            Not something structured to be bought.
-                        </p>
+                        <div className="flex flex-col gap-2">
+                            <p className="text-base text-white/40 italic">Because this is how you naturally think.</p>
+                            <p className="text-base font-medium text-white/90 tracking-wide">
+                                It is not yet structured to be bought.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Consequence Block */}
-                    <div className="text-center space-y-2 py-2">
-                        <p className="text-[11px] text-white/35 leading-relaxed">
-                            And without turning this into something concrete:
-                        </p>
-                        <div className="flex flex-col items-center gap-1">
-                            <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> you keep explaining it differently every time
+                    <div className="space-y-6">
+                        <div className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent mx-auto" />
+                        
+                        <div className="space-y-3">
+                            <p className="text-base text-white/50 leading-loose">
+                                Without turning this into something concrete:
                             </p>
-                            <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> people get value — but don't always pay
-                            </p>
-                            <p className="text-xs text-white/45 leading-relaxed">
-                                <span className="text-white/25">→</span> you stay in the loop of "almost there"
+                            <p className="text-sm text-white/40 leading-loose font-light">
+                                you keep explaining it differently every time<br/>
+                                people receive value — but do not always pay<br/>
+                                you remain in the loop of "almost there"
                             </p>
                         </div>
-                        <p className="text-xs font-medium text-white/55 mt-1">
-                            6–12 months pass. And nothing fundamentally changes.
-                        </p>
-                        <p className="text-xs text-white/40 mt-2 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                            And more time thinking about it hasn't been the thing that changes it.
-                        </p>
+                        
+                        <div className="pt-4 space-y-2">
+                            <p className="text-base text-white/60 tracking-wide">
+                                Months pass. Nothing fundamentally changes.
+                            </p>
+                            <p className="text-sm text-white/40 italic">
+                                And more time thinking about it cannot change it.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Clarity Bridge */}
-                    <div className="text-center space-y-1">
-                        <p className="text-[11px] text-white/30">This doesn't answer:</p>
-                        <div className="flex flex-col items-center gap-0.5">
-                            <p className="text-xs text-white/50 italic">What exactly do I offer?</p>
-                            <p className="text-xs text-white/50 italic">Who is it for?</p>
-                            <p className="text-xs text-white/50 italic">Why would someone pay for this — consistently?</p>
-                        </div>
+                    <div className="space-y-4 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
+                        <p className="text-sm text-white/40 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
+                        <p className="text-[15px] text-white/60 italic leading-loose">
+                            What exactly do I offer? <br/>
+                            Who is it for? <br/>
+                            Why would someone pay for this — consistently?
+                        </p>
                     </div>
 
                     {/* Decision Line */}
-                    <div className="text-center space-y-1 py-2">
-                        <p className="text-xs text-white/40 leading-relaxed">
+                    <div className="space-y-5">
+                        <p className="text-lg text-white/70 font-light tracking-wide leading-relaxed">
                             This is where most people stop.
                         </p>
-                        <p className="text-xs text-white/40 leading-relaxed">
-                            They recognize themselves…
-                        </p>
-                        <p className="text-xs font-medium text-white/60">
-                            but never turn it into something real.
+                        <p className="text-base font-light text-white/50">
+                            They recognize themselves…<br/>
+                            <span className="text-white/80 font-medium mt-2 block">but never make it real.</span>
                         </p>
                     </div>
 
-                    {/* Readiness reframe — kills "I'm not ready" */}
-                    <div className="text-center space-y-1 pb-2">
-                        <p className="text-xs text-white/45 leading-relaxed">
+                    {/* Readiness reframe */}
+                    <div className="space-y-3 pb-8">
+                        <div className="w-1 h-1 rounded-full bg-[#8460ea]/50 mx-auto mb-6" />
+                        <p className="text-base text-white/60 tracking-wide font-light">
                             You don't need to be more ready.
                         </p>
-                        <p className="text-xs font-medium text-white/55">
-                            You need this to be structured.
+                        <p className="text-lg font-medium text-white/90 tracking-wide">
+                            You simply need structure.
                         </p>
                     </div>
+                </div>
+
+                {/* CTAs Wrapper */}
+                <div className="max-w-md mx-auto space-y-5">
 
                     {/* CTA 1 (PRIMARY): Quiz — diagnostic intensifier */}
                     <a
