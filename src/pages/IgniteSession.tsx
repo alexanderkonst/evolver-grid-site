@@ -297,7 +297,7 @@ const IgniteSession = () => {
 
   useEffect(() => {
     document.title = "You've Been Giving Your Best Work Away for Free — Ignition Session";
-    return () => { document.title = "Evolver"; };
+    return () => { document.title = "Genius Business"; };
   }, []);
 
   // Handle hash-based scrolling

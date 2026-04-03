@@ -68,7 +68,7 @@ const OyiIgnition = () => {
 
   useEffect(() => {
     document.title = "Sovereignty Restored — Oyi Sun";
-    return () => { document.title = "Evolver"; };
+    return () => { document.title = "Genius Business"; };
   }, []);
 
   const content = (

@@ -67,7 +67,7 @@ const SergeyIgnition = () => {
 
   useEffect(() => {
     document.title = "Pull + AI = Breakthrough — Sergey Jay Makarov";
-    return () => { document.title = "Evolver"; };
+    return () => { document.title = "Genius Business"; };
   }, []);
 
   const content = (
