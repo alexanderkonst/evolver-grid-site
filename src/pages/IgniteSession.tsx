@@ -2,7 +2,8 @@ import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "luci
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
-import GameShellV2 from "@/components/game/GameShellV2";
+import GameShellV2 from "../components/game/GameShellV2";
+import SiteLogo from "@/components/SiteLogo";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
@@ -325,6 +326,8 @@ const IgniteSession = () => {
 
       {/* Dark overlay for text readability */}
       <div className="fixed inset-0 bg-black/45 z-[1]" aria-hidden="true" />
+
+      <SiteLogo />
 
       {/* ═══════════════════════════════════════════════
           CONTENT LAYER — all sections float above video

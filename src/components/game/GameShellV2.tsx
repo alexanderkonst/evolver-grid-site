@@ -9,6 +9,7 @@ import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import SiteLogo from "@/components/SiteLogo";
 // import { loadNudgeState } from "@/lib/myNextMoveLogic";
 
 interface GameShellV2Props {
@@ -225,6 +226,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
                 </div>
+                <SiteLogo />
                 <div className="relative z-10">
                     {children}
                 </div>
