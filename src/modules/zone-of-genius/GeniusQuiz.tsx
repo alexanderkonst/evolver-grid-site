@@ -205,8 +205,8 @@ function calculateResult(answers: Record<string, number>): ArchetypeId {
 
 function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
-    <div className="w-full max-w-xs mx-auto mb-6">
-      <div className="flex justify-between text-[10px] text-white/30 mb-1.5">
+    <div className="w-full max-w-sm mx-auto mb-8">
+      <div className="flex justify-between text-xs font-sans text-white/40 mb-2 tracking-wide">
         <span>{current} of {total}</span>
       </div>
       <div className="h-1 bg-white/10 rounded-full overflow-hidden">
