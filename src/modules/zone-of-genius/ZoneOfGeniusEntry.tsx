@@ -596,7 +596,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="text-center pt-2">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-[11px] text-white/20 hover:text-white/50 transition-colors duration-300 tracking-wide"
+                                className="text-[11px] text-white/60 hover:text-white/90 transition-colors duration-300 tracking-wide"
                             >
                                 I'll do the guided assessment instead →
                             </button>
