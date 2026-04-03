@@ -480,7 +480,7 @@ const ZoneOfGeniusEntry = () => {
                                         <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
                                             🤖 Faster (1 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Paste your situation → get your pattern instantly</p>
+                                        <p className="text-xs text-white/35 mt-0.5">Ask your AI & paste its response → get your pattern instantly</p>
                                     </div>
                                 </div>
                             </button>
@@ -502,9 +502,9 @@ const ZoneOfGeniusEntry = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">
-                                            📋 Guided (5–7 min)
+                                            📋 Guided (10–15 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-0.5">Answer a few prompts → we extract it together</p>
+                                        <p className="text-xs text-white/35 mt-0.5">Assessment of your top talents</p>
                                     </div>
                                 </div>
                             </button>
