@@ -1,4 +1,5 @@
 import { ReactNode, memo } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoSrc from "@/assets/logo.jpg";
 import {
