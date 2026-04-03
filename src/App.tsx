@@ -13,6 +13,7 @@ import { getPageTitle } from "@/lib/pageTitles";
 import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LandingPage from "./pages/LandingPage";
+import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
@@ -184,6 +185,7 @@ const App = () => (
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:category" element={<Library />} />
                   <Route path="/contact" element={<ContactNew />} />
+                  <Route path="/feedback" element={<FeedbackPage />} />
                   <Route path="/tools" element={<ToolsRedirect />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
