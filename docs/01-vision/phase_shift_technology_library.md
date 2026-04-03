@@ -3163,3 +3163,127 @@ And the error persists — not because better thinkers haven't pointed it out (t
 > *"Every industry measures volume at the input because inputs are countable. The thing that actually matters — quality at the output — is felt, not counted. The person who names the right output metric owns the disruption."*
 
 ---
+
+## Domain 60: The PageRank Principle (Whoever Builds the Counting Infrastructure Owns the Market)
+
+> *Added April 2, 2026 — Cascaded from Domain 59 (The Measurement Inversion). Domain 59 identified the civilizational error. Domain 60 identifies the MECHANISM by which naming the right metric becomes market dominance: not through naming alone, but through building the counting infrastructure that makes the right metric visible, trackable, and computable.*
+
+### 60a. The Mechanism: Standard = Gatekeeper
+
+**Whoever defines what "good" means becomes the gatekeeper through which all value must pass.**
+
+| Who | What they made visible | What they control |
+|-----|----------------------|-------------------|
+| **Google (PageRank)** | Webpage relevance (invisible → computed) | Where ALL internet attention goes. Every website optimizes for Google's metric. |
+| **Michelin** | Restaurant excellence (invisible → starred) | Which restaurants get traffic. A tire company controls fine dining. |
+| **S&P / Moody's** | Creditworthiness (invisible → rated) | Where ALL capital flows. Entire economies optimize for their ratings. |
+| **US News** | College quality (invisible → ranked) | Where ALL student applications go. Universities spend billions chasing a magazine's metric. |
+
+**The pattern:** None of them MAKE the thing they measure. Google doesn't make websites. Michelin doesn't cook food. Moody's doesn't lend money. US News doesn't teach. **They control demand allocation by owning the evaluation standard.**
+
+This is not influence. It is not thought leadership. It is **structural market control through measurement infrastructure.**
+
+### 60b. The Three Layers of Metric Ownership
+
+| Layer | What happens | Value created |
+|-------|-------------|---------------|
+| **1: Naming** | You articulate the right output metric ("resonant connections, not contacts") | Frame capture — people can't unhear it. Permanent perceptual shift |
+| **2: Tracking** | You build a system that MEASURES the right metric | Evaluation standard — people start judging BY your metric. You define "good" |
+| **3: Infrastructure** | You become the platform through which the measurement happens | Market gatekeeper — all value flows through your instrument. This is PageRank |
+
+**Where most people stop:** Layer 1. Naming is easy. Bhutan named GNH in 1972. 54 years later, GDP still dominates — because Bhutan never built the counting infrastructure.
+
+**Where monopolies are born:** Layer 3. Google didn't just NAME relevance. They built the crawler, the algorithm, the index — the infrastructure that COMPUTES relevance at planetary scale. The infrastructure IS the moat.
+
+### 60c. PageRank as Origin Myth
+
+PageRank IS Google. Not search. Not ads. Not Android. **PageRank.**
+
+Everything else grew from that one measurement innovation: "Instead of counting how many times a keyword appears on a page (input metric), count how many quality pages LINK to it (output metric)."
+
+```
+BEFORE PAGERANK:
+Search engines measured keyword frequency (input metric)
+→ Results were garbage
+→ SEO spam gamed the metric
+→ Users couldn't find what they wanted
+
+AFTER PAGERANK:
+Google measured link-weighted relevance (output metric)
+→ Results were immediately better
+→ The right metric WAS the product
+→ Users switched and never came back
+```
+
+**The structural lesson:** PageRank didn't compete with other search engines on features. It competed on WHAT IT MEASURED. The measurement innovation was the entire product.
+
+### 60d. The ZoG as Candidate PageRank
+
+The Zone of Genius assessment does the same structural move:
+
+| | Before ZoG | After ZoG |
+|---|---|---|
+| **What's measured** | Nothing — genius is invisible, felt, unnamed | Genius is named, structured, shareable |
+| **Input metric (what others measure)** | "Skills listed on a resume" | — |
+| **Output metric (what ZoG measures)** | — | "How clearly can you articulate what you uniquely do?" |
+| **Verification** | Impossible — "I'm kind of good at a lot of things" | Immediate — "This IS me" body response |
+
+**The parallel is structural:**
+- PageRank took something invisible (webpage relevance) and made it visible, trackable, computable
+- The ZoG takes something invisible (human genius) and makes it visible, shareable, and verifiable in one sitting
+
+**For the ZoG to become a true PageRank, it needs three things:**
+
+| Requirement | PageRank had it | ZoG status |
+|-------------|----------------|------------|
+| **Universal problem** | "Find relevant pages" — everyone needs this | "Name what you uniquely do" — universal ✅ |
+| **Massive scale** | Crawled the entire web | Needs millions of completions ⏳ |
+| **Immediate verifiability** | You search, you find what you want | You take it, you get a "this is me" moment ✅ |
+
+**The scale gap is the only gap.** The problem is universal. The verification is immediate. What's missing is millions of data points — which is what traffic and distribution create.
+
+### 60e. What the Platform Already Measures (Output-First Architecture)
+
+Every module in Planetary OS is already built on output metrics, not input metrics:
+
+| Module | Input metric (what others measure) | Output metric (what the platform measures) |
+|--------|-----------------------------------|------------------------------------------|
+| **Zone of Genius** | Quiz completions | People who recognized something they couldn't name |
+| **Ignition Session** | Sessions delivered | Founders who can now articulate their genius |
+| **The Build** | Calls completed | Founders with paying clients |
+| **Playbook** | Downloads / page views | Founders whose business came alive |
+| **Surface Holomap** | Impressions / followers | Signal quality per unit effort (Yield formula) |
+| **Campfire Protocol** | Contacts made at events | Resonant 1:1s self-formed from signal |
+
+**This is not accidental.** The output-first architecture is a structural consequence of the Copernican Inversion (Domain 1). When you put the founder at the center, everything you build naturally measures what matters TO the founder, not what's easy to count FOR the platform.
+
+### 60f. The Investment Thesis Implication
+
+If every industry has an input-output metric inversion (Domain 59), and whoever builds the counting infrastructure for the right output metric owns the market (Domain 60), then:
+
+> **The most valuable companies of the next decade are the ones that build PageRank for industries still trapped in input metrics.**
+
+| Industry | The "PageRank" opportunity | What it would look like |
+|----------|--------------------------|------------------------|
+| **Education** | Measure transformation, not enrollment | A platform that tracks capability acquisition, not credits |
+| **Healthcare** | Measure healing, not procedures | A system that tracks patient wellbeing trajectories, not billing codes |
+| **Events** | Measure resonance, not attendance | An app that surfaces who you SHOULD talk to, based on signal alignment |
+| **Venture capital** | Measure founder-alignment, not deal flow | A system that evaluates founders by genius articulation quality, not pitch decks |
+| **Recruitment** | Measure thriving-in-role, not positions filled | A platform that tracks whether placed people are actually flourishing |
+
+**Caveat (honest):** This map is a LENS, not an investment thesis. An investment thesis requires capital, deal flow, operator networks, and track record. This is the ontological framework that could INFORM such a thesis. The distance between "seeing the pattern" and "deploying capital profitably against it" is measured in years and billions of dollars, not documentation.
+
+### 60g. Connection to the Stack
+
+| Domain | How 60 completes it |
+|--------|-------------------|
+| **1: Copernican Inversion** | The Copernican Inversion creates output-first architecture. Domain 60 explains WHY that architecture becomes a platform moat (PageRank principle) |
+| **50: The Projection Matrix** | The Surface Holomap's Yield formula IS a measurement instrument — it already applies the PageRank principle to distribution |
+| **56: Externalized Self-Recognition** | The ZoG shares PageRank's structure: make the invisible visible, then let the measurement propagate |
+| **59: Measurement Inversion** | Domain 59 is the ERROR. Domain 60 is the MECHANISM for exploiting the error at scale |
+
+### 60h. The One-Sentence Version
+
+> *"PageRank didn't compete with other search engines on features. It competed on what it measured. The measurement innovation was the entire product. Whoever builds the counting infrastructure for the right output metric in any industry becomes the gatekeeper through which all value flows."*
+
+---
