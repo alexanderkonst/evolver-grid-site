@@ -205,8 +205,8 @@ function calculateResult(answers: Record<string, number>): ArchetypeId {
 
 function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
-    <div className="w-full max-w-xs mx-auto mb-6">
-      <div className="flex justify-between text-[10px] text-white/30 mb-1.5">
+    <div className="w-full max-w-sm mx-auto mb-8">
+      <div className="flex justify-between text-xs font-sans text-white/40 mb-2 tracking-wide">
         <span>{current} of {total}</span>
       </div>
       <div className="h-1 bg-white/10 rounded-full overflow-hidden">
@@ -230,19 +230,19 @@ function QuestionStep({
 }) {
   return (
     <div className="animate-in fade-in duration-300">
-      <p className="text-xs text-[#8460ea] font-medium mb-2 uppercase tracking-wider">
+      <p className="text-sm text-[#8460ea] font-semibold mb-3 uppercase tracking-[0.15em] font-sans">
         {question.label}
       </p>
-      <h2 className="text-lg font-semibold text-white/90 font-display mb-6 leading-snug">
+      <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-8 leading-snug">
         {question.question}
       </h2>
-      <div className="space-y-2.5">
+      <div className="space-y-3">
         {question.options.map((option, idx) => (
           <button
             key={idx}
             onClick={() => onAnswer(idx)}
-            className={`w-full p-4 rounded-xl ring-1 transition-all duration-200
-                        text-left text-sm leading-relaxed
+            className={`w-full p-5 rounded-xl ring-1 transition-all duration-200
+                        text-left text-base font-sans leading-relaxed
                         ${selectedIdx === idx
                 ? "ring-[#8460ea] bg-[#8460ea]/15 text-white shadow-md shadow-[#8460ea]/10"
                 : "ring-white/10 liquid-glass text-white/80 hover:ring-white/25 hover:text-white"
@@ -417,12 +417,12 @@ export default function GeniusQuiz() {
           {!result ? (
             <>
               <h1
-                className="text-xl font-semibold font-display text-white/90 leading-snug"
-                style={{ textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)' }}
+                className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight"
+                style={{ textShadow: '0 0 30px rgba(255,255,255,0.2), 0 0 60px rgba(132,96,234,0.15)' }}
               >
                 Why hasn't this turned into something real?
               </h1>
-              <p className="text-xs text-white/40 mt-2 max-w-sm mx-auto">
+              <p className="text-sm font-sans text-white/50 mt-3 max-w-sm mx-auto">
                 6 questions. No overthinking. See exactly where it breaks.
               </p>
             </>
