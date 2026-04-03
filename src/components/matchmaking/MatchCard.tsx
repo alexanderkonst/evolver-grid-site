@@ -1,6 +1,5 @@
 import { memo } from "react";
-import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, UserPlus, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface MatchCardProps {
@@ -22,7 +21,15 @@ interface MatchCardProps {
   connectLabel?: string;
   onPass: () => void;
   onConnect: () => void;
+  /** Tinder-style navigation */
+  currentIndex?: number;
+  totalCount?: number;
+  onPrev?: () => void;
+  onNext?: () => void;
 }
+
+/** Strip ✦ symbols from archetype strings */
+const stripSymbols = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
 
 const MatchCard = ({
   user,
@@ -36,75 +43,125 @@ const MatchCard = ({
   connectLabel,
   onPass,
   onConnect,
+  currentIndex,
+  totalCount,
+  onPrev,
+  onNext,
 }: MatchCardProps) => {
+  const cleanArchetype = stripSymbols(user.archetype);
+
   return (
-    <div className="w-full max-w-md mx-auto rounded-3xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6 shadow-[0_8px_24px_rgba(164,163,208,0.18)] transition-shadow hover:shadow-[0_12px_32px_rgba(132,96,234,0.22)]">
-      <div className="flex flex-col items-center text-center gap-4">
-        <div className="w-28 h-28 rounded-full overflow-hidden bg-[#a4a3d0]/20 flex items-center justify-center">
-          {user.avatarUrl ? (
-            <img
-              src={user.avatarUrl}
-              alt={`${user.firstName} ${user.lastName}`}
-              loading="lazy"
-              decoding="async"
-              onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg";
-              }}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <Sparkles className="w-10 h-10 text-amber-500" />
-          )}
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold text-[#2c3150]">
+    <div className="w-full max-w-lg mx-auto">
+      {/* ─── Action Buttons (TOP) ─── */}
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <button
+          onClick={onPass}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl liquid-glass ring-1 ring-white/10
+                     text-white/50 hover:text-red-300 hover:ring-red-400/20 transition-all text-sm"
+        >
+          <X className="w-4 h-4" />
+          Don't show again
+        </button>
+
+        {/* Navigation indicator */}
+        {typeof currentIndex === "number" && typeof totalCount === "number" && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onPrev}
+              disabled={currentIndex === 0}
+              className="w-8 h-8 rounded-lg liquid-glass ring-1 ring-white/10 flex items-center justify-center
+                         text-white/40 hover:text-white/80 disabled:opacity-20 transition-all"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="text-xs text-white/30 font-mono tabular-nums">
+              {currentIndex + 1}/{totalCount}
+            </span>
+            <button
+              onClick={onNext}
+              disabled={currentIndex === totalCount - 1}
+              className="w-8 h-8 rounded-lg liquid-glass ring-1 ring-white/10 flex items-center justify-center
+                         text-white/40 hover:text-white/80 disabled:opacity-20 transition-all"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        <button
+          onClick={onConnect}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl
+                     bg-gradient-to-r from-[#8460ea] to-[#6894d0] text-white
+                     shadow-[0_0_20px_rgba(132,96,234,0.2)] hover:shadow-[0_0_30px_rgba(132,96,234,0.35)]
+                     hover:scale-[1.02] active:scale-95 transition-all text-sm font-medium"
+        >
+          <UserPlus className="w-4 h-4" />
+          {connectLabel || "Connect"}
+        </button>
+      </div>
+
+      {/* ─── Profile Card ─── */}
+      <div className="rounded-2xl liquid-glass ring-1 ring-white/10 overflow-hidden">
+        {/* Photo + Identity */}
+        <div className="flex flex-col items-center text-center p-6 pb-4">
+          <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-white/15 mb-4 bg-white/5 flex items-center justify-center">
+            {user.avatarUrl ? (
+              <img
+                src={user.avatarUrl}
+                alt={`${user.firstName} ${user.lastName}`}
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <Sparkles className="w-8 h-8 text-[#8460ea]/60" />
+            )}
+          </div>
+
+          <h2 className="text-xl font-semibold text-white">
             {user.firstName} {user.lastName}
           </h2>
-          <p className="text-[#2c3150] mt-1">✦ {user.archetype} ✦</p>
+          <p className="text-white/50 text-sm mt-0.5">{cleanArchetype}</p>
+
           {matchTypeBadge && (
-            <Badge variant="secondary" className="mt-2 bg-emerald-100 text-emerald-800 border-emerald-200">
+            <Badge className="mt-2 bg-emerald-500/15 text-emerald-300 border-emerald-500/20 ring-1 ring-emerald-500/15">
               {matchTypeBadge}
             </Badge>
           )}
           {user.tagline && (
-            <p className="text-sm text-[#2c3150]/60 mt-2 italic break-words">"{user.tagline}"</p>
+            <p className="text-sm text-white/40 mt-2 italic max-w-sm">"{user.tagline}"</p>
           )}
         </div>
 
-        <div className="w-full border-t border-[#a4a3d0]/20 pt-4">
-          <p className="text-xs uppercase text-[#2c3150]/60 mb-2">
-            {matchLabel || "Why you match"}
-          </p>
-          <p className="text-sm text-[#2c3150] break-words">{matchReason}</p>
-        </div>
-
-        {secondaryReason && (
-          <div className="w-full border-t border-[#a4a3d0]/20 pt-4">
-            <p className="text-xs uppercase text-[#2c3150]/60 mb-2">
-              {secondaryLabel || "Also relevant"}
+        {/* Collaboration Proposal */}
+        <div className="px-6 pb-4 space-y-4">
+          <div className="border-t border-white/5 pt-4">
+            <p className="text-[10px] uppercase tracking-wider text-[#8460ea] mb-2 font-medium">
+              {matchLabel || "Why you match"}
             </p>
-            <p className="text-sm text-[#2c3150] break-words">{secondaryReason}</p>
+            <p className="text-sm text-white/70 leading-relaxed">{matchReason}</p>
           </div>
-        )}
 
-        {tertiaryReason && (
-          <div className="w-full border-t border-[#a4a3d0]/20 pt-4">
-            <p className="text-xs uppercase text-[#2c3150]/60 mb-2">
-              {tertiaryLabel || "Context"}
-            </p>
-            <p className="text-sm text-[#2c3150]/70 break-words">{tertiaryReason}</p>
-          </div>
-        )}
+          {secondaryReason && (
+            <div className="border-t border-white/5 pt-4">
+              <p className="text-[10px] uppercase tracking-wider text-[#8460ea] mb-2 font-medium">
+                {secondaryLabel || "Also relevant"}
+              </p>
+              <p className="text-sm text-white/60 leading-relaxed">{secondaryReason}</p>
+            </div>
+          )}
 
-        <div className="flex w-full gap-3 pt-4">
-          <Button variant="outline" className="flex-1" onClick={onPass}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Pass
-          </Button>
-          <Button className="flex-1" onClick={onConnect}>
-            {connectLabel || "Connect"}
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          {tertiaryReason && (
+            <div className="border-t border-white/5 pt-4">
+              <p className="text-[10px] uppercase tracking-wider text-amber-400/80 mb-2 font-medium">
+                {tertiaryLabel || "Context"}
+              </p>
+              <p className="text-sm text-white/50 leading-relaxed">{tertiaryReason}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -122,7 +179,8 @@ const areEqual = (prev: MatchCardProps, next: MatchCardProps) => (
   prev.secondaryLabel === next.secondaryLabel &&
   prev.tertiaryReason === next.tertiaryReason &&
   prev.connectLabel === next.connectLabel &&
-  prev.matchTypeBadge === next.matchTypeBadge
+  prev.matchTypeBadge === next.matchTypeBadge &&
+  prev.currentIndex === next.currentIndex
 );
 
 export default memo(MatchCard, areEqual);
