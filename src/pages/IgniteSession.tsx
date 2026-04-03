@@ -9,6 +9,8 @@ import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import BoldText from "@/components/BoldText";
 
 /* ─── Hardcoded fallback testimonials (used if DB unavailable) ─── */
 const FALLBACK_TESTIMONIALS: TestimonialData[] = [
@@ -104,7 +106,6 @@ const HlsBackground = () => {
       hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
       return () => hls.destroy();
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      // Safari native HLS support
       video.src = HLS_VIDEO_URL;
       video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
     }
@@ -153,35 +154,36 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   );
 };
 
-/* ─── Primary CTA Button (liquid glass) ──────────────────── */
+/* ─── Primary CTA Button ──────────────────── */
 const PrimaryCTA = ({ id, label = "Book Your Session", showPrice = true }: { id: string; label?: string; showPrice?: boolean }) => (
-  <a
-    href={STRIPE_PAYMENT_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-    style={{ fontFamily: "'Poppins', sans-serif" }}
-    id={id}
+  <Button
+    size="lg"
+    asChild
   >
-    {label}{showPrice && " — $555"}
-    <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
-      <ArrowRight className="w-4 h-4" />
-    </span>
-  </a>
+    <a
+      href={STRIPE_PAYMENT_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      id={id}
+    >
+      <BoldText className="uppercase">{label}{showPrice ? " — $555" : ""}</BoldText>
+      <ArrowRight className="w-4 h-4 ml-1" />
+    </a>
+  </Button>
 );
 
-/* ─── Already Paid → Book (more visible) ─────────────────── */
+/* ─── Already Paid → Book ─────────────────── */
 const AlreadyPaidLink = () => (
-  <a
-    href={CALCOM_BOOKING_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs text-white/50 hover:text-white/80 transition-all duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-    style={{ fontFamily: "'Poppins', sans-serif" }}
-  >
-    <Check className="w-3 h-3" />
-    Already paid? Book your session here →
-  </a>
+  <Button variant="outline" size="sm" asChild>
+    <a
+      href={CALCOM_BOOKING_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Check className="w-3 h-3" />
+      Already paid? Book your session here →
+    </a>
+  </Button>
 );
 
 /* ─── Divine Timing Email Capture ────────────────────────── */
@@ -194,14 +196,13 @@ const DivineTimingCapture = () => {
     if (!email.trim() || !email.includes('@')) return;
     setState('saving');
     try {
-      // Store the divine timing lead — lightweight pre-GHL capture
       await (supabase as any).from('divine_timing_leads').insert({
         email: email.trim(),
         source: 'ignite_page',
         created_at: new Date().toISOString(),
       });
     } catch {
-      // Silently continue — we don't want to block the experience
+      // Silently continue
     }
     setState('saved');
   }, [email]);
@@ -222,8 +223,7 @@ const DivineTimingCapture = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email — I'll check in about a month"
-          className="w-full px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-colors"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
+          className="w-full px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-colors font-sans"
           autoFocus
           required
         />
@@ -248,7 +248,7 @@ const DivineTimingCapture = () => {
   );
 };
 
-/* ─── Micro-Commitment Block — psychological ownership ─── */
+/* ─── Micro-Commitment Block ─── */
 const MicroCommitmentBlock = () => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -261,7 +261,7 @@ const MicroCommitmentBlock = () => {
 
   return (
     <section className="space-y-4 max-w-md mx-auto" aria-label="Self-diagnostic">
-      <p className="text-sm text-white/60 text-center font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>
+      <p className="text-sm text-white/60 text-center font-medium font-serif uppercase tracking-wide">
         Which of these feels most true right now?
       </p>
       <p className="text-[10px] text-white/25 text-center">Just one question:</p>
@@ -270,12 +270,11 @@ const MicroCommitmentBlock = () => {
           <button
             key={i}
             onClick={() => setSelected(i)}
-            className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-200 ${
+            className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-200 font-sans ${
               selected === i
                 ? "liquid-glass-strong ring-1 ring-[#8460ea]/40 text-white/90 shadow-[0_0_15px_rgba(132,96,234,0.15)]"
                 : "liquid-glass ring-1 ring-white/5 text-white/50 hover:text-white/70 hover:ring-white/15"
             }`}
-            style={{ fontFamily: "'Source Serif 4', serif" }}
           >
             {opt}
           </button>
@@ -301,11 +300,10 @@ const IgniteSession = () => {
     return () => { document.title = "Evolver"; };
   }, []);
 
-  // Handle hash-based scrolling (e.g. /ignite#hero-video)
+  // Handle hash-based scrolling
   useEffect(() => {
     const hash = location.hash;
     if (hash) {
-      // Small delay to allow the page to render first
       const timer = setTimeout(() => {
         const el = document.querySelector(hash);
         if (el) {
@@ -317,26 +315,20 @@ const IgniteSession = () => {
   }, [location.hash]);
 
   const content = (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden" id="ignite-page" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <div className="relative min-h-screen bg-black text-white overflow-hidden font-sans" id="ignite-page">
 
-      {/* ═══════════════════════════════════════════════
-          VIDEO BACKGROUND — HLS stream via hls.js
-          ═══════════════════════════════════════════════ */}
+      {/* VIDEO BACKGROUND */}
       <HlsBackground />
 
-      {/* Dark overlay for text readability */}
+      {/* Dark overlay */}
       <div className="fixed inset-0 bg-black/45 z-[1]" aria-hidden="true" />
 
       <SiteLogo />
 
-      {/* ═══════════════════════════════════════════════
-          CONTENT LAYER — all sections float above video
-          ═══════════════════════════════════════════════ */}
+      {/* CONTENT LAYER */}
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
-        {/* ═══════════════════════════════════════════════
-            S1: HERO
-            ═══════════════════════════════════════════════ */}
+        {/* S1: HERO */}
         <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
             src={geniusLogo}
@@ -344,7 +336,7 @@ const IgniteSession = () => {
             className="w-[160px] h-auto mx-auto opacity-80"
           />
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase tracking-[0.15em] text-white leading-[1.3] max-w-2xl mx-auto" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase tracking-[0.15em] text-white leading-[1.3] max-w-2xl mx-auto font-serif">
             <span className="text-white/60">You can't clearly explain what you do</span>
             <br />
             <span className="inline-block w-12 h-px bg-white/40 my-4" />
@@ -354,45 +346,54 @@ const IgniteSession = () => {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed">
             In 90 minutes, we take what you already do —<br/>
             and turn it into:
           </p>
-          <div className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed space-y-1" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <div className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed space-y-1">
             <p>→ a clear one-sentence business</p>
             <p>→ a real offer</p>
             <p>→ something people understand — and pay for</p>
           </div>
 
           {/* Proximity reframe */}
-          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed mt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed mt-2">
             You're not far off.
           </p>
-          <p className="text-sm text-white/65 font-medium max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-sm text-white/65 font-medium max-w-sm mx-auto">
             You're one structural layer away from something that works.
           </p>
 
-          {/* Self-qualification — kills "is this for me?" */}
-          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          {/* Self-qualification */}
+          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3 italic">
             If this already feels familiar — this is for you.<br/>
             If it doesn't, it won't land.
           </p>
 
           <div className="flex flex-col items-center gap-4 pt-6">
-
             {/* Paid path: Ignition Session */}
-            <a
-              href={STRIPE_PAYMENT_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              <span>Turn this into something real ($555)</span>
-              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                <ArrowRight className="w-3 h-3" />
-              </span>
-            </a>
+            <Button size="lg" asChild>
+              <a
+                href={STRIPE_PAYMENT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BoldText className="uppercase">Turn this into something real — $555</BoldText>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </a>
+            </Button>
+
+            {/* Free path: clarity call */}
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href={CALCOM_CLARITY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="w-3.5 h-3.5 opacity-70" />
+                Not sure yet? Let's talk for 15 min — free
+              </a>
+            </Button>
           </div>
 
           <div className="pt-8 space-y-4">
@@ -405,40 +406,36 @@ const IgniteSession = () => {
           </div>
         </header>
 
-        {/* ═══════════════════════════════════════════════
-            S1.5: VIDEO — immediately after hero
-            ═══════════════════════════════════════════════ */}
+        {/* S1.5: VIDEO */}
         <section id="hero-video" aria-label="Methodology video" className="space-y-5">
           <div className="liquid-glass rounded-2xl p-1">
             <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
           </div>
-          <p className="text-xs text-white/45 text-center italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-xs text-white/45 text-center italic">
             If you're still thinking about this after watching… you already know.
           </p>
 
           {/* Post-video CTA */}
           <div className="flex flex-col items-center gap-3 pt-2">
-            <a
-              href={STRIPE_PAYMENT_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="liquid-glass-strong w-full max-w-md inline-flex items-center justify-between px-6 py-4 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ring-1 ring-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              <span>Turn this into something real ($555)</span>
-              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                <ArrowRight className="w-3 h-3" />
-              </span>
-            </a>
+            <Button size="lg" asChild>
+              <a
+                href={STRIPE_PAYMENT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BoldText className="uppercase">Turn this into something real — $555</BoldText>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </a>
+            </Button>
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S2: QUALIFIER — the gold (untouched)
-            ═══════════════════════════════════════════════ */}
+        {/* S2: QUALIFIER */}
         <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
-          <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
+            <BoldText>This Is For You If</BoldText>
+          </h2>
+          <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed">
             You've proven your value—for other people.<br/>
             The question is: What is yours to build?
           </p>
@@ -453,7 +450,6 @@ const IgniteSession = () => {
               <div
                 key={i}
                 className="liquid-glass rounded-xl px-4 py-3 text-sm text-white/70 italic"
-                style={{ fontFamily: "'Source Serif 4', serif" }}
               >
                 {item}
               </div>
@@ -465,11 +461,11 @@ const IgniteSession = () => {
         </section>
 
 
-        {/* ═══════════════════════════════════════════════
-            S4: HOW IT WORKS — 3 steps + deliverables
-            ═══════════════════════════════════════════════ */}
+        {/* S4: HOW IT WORKS */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What happens in 90 minutes</h2>
+          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
+            <BoldText>What Happens In 90 Minutes</BoldText>
+          </h2>
           <p className="text-xs text-white/45 text-center">This is not coaching. You leave with a document, not a feeling.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
@@ -507,9 +503,7 @@ const IgniteSession = () => {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S5: ABOUT — trimmed, no jargon
-            ═══════════════════════════════════════════════ */}
+        {/* S5: ABOUT */}
         <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
           <img
             src={aleksandrPhoto}
@@ -517,26 +511,26 @@ const IgniteSession = () => {
             className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
           />
           <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center space-y-3">
-            <p className="text-sm text-white/70 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p className="text-sm text-white/70 leading-relaxed">
               I spent years in the loop myself. Building startups that didn't stick. Consulting. Coaching friends for free. Circling the same question everyone in this situation circles:
             </p>
-            <p className="text-sm text-white/80 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p className="text-sm text-white/80 leading-relaxed italic">
               "What is mine to build?"
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-1">
               What I do now is simple: I sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends.
             </p>
             <p className="text-xs text-white/55 mt-4">
-              — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Aleksandr Konstantinov</em>
+              — <em>Aleksandr Konstantinov</em>
             </p>
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S6: TESTIMONIALS
-            ═══════════════════════════════════════════════ */}
+        {/* S6: TESTIMONIALS */}
         <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>What they said after</h2>
+          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em] mb-3">
+            <BoldText>What They Said After</BoldText>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {testimonials.map((t, i) => (
               <ExpandableTestimonial key={i} t={t} variant="dark" />
@@ -544,25 +538,21 @@ const IgniteSession = () => {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            MICRO-COMMITMENT — psychological ownership before purchase
-            ═══════════════════════════════════════════════ */}
+        {/* MICRO-COMMITMENT */}
         <MicroCommitmentBlock />
 
-        {/* ═══════════════════════════════════════════════
-            S7: BOOKING — decision clarity + safety + inevitability
-            ═══════════════════════════════════════════════ */}
+        {/* S7: BOOKING */}
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Book your session">
-          {/* Anchor for direct-link scrolling */}
           <div id="booking" className="sr-only" aria-hidden="true" />
 
-          {/* What happens — consequence-first */}
           <div className="space-y-3 max-w-sm mx-auto">
-            <p className="text-lg font-medium text-white/90 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>One session. One clear business.</p>
-            <p className="text-xs text-white/45 text-center leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
+              <BoldText>One Session. One Clear Business.</BoldText>
+            </p>
+            <p className="text-xs text-white/45 text-center leading-relaxed">
               If you don't turn this into something concrete:
             </p>
-            <div className="text-xs text-white/50 space-y-1 text-center" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <div className="text-xs text-white/50 space-y-1 text-center">
               <p>→ it stays something people benefit from — but don't pay for</p>
               <p>→ you keep circling the same question</p>
               <p>→ nothing fundamentally changes</p>
@@ -586,7 +576,7 @@ const IgniteSession = () => {
           {/* Price */}
           <div>
             <div className="flex items-baseline justify-center gap-1 mb-1">
-              <span className="text-5xl md:text-6xl font-medium text-white tracking-tight">$555</span>
+              <span className="text-5xl md:text-6xl font-medium text-white tracking-tight font-serif">$555</span>
             </div>
             <p className="text-xs text-white/55">One session. One business.</p>
           </div>
@@ -601,53 +591,54 @@ const IgniteSession = () => {
             </p>
           </div>
 
-          {/* Micro social proof — 3 quotes */}
+          {/* Micro social proof */}
           <div className="space-y-1.5 max-w-sm mx-auto">
             {[
               "\"I was applying force, but the vector was wrong.\"",
               "\"This is a miracle of miracles.\"",
               "\"I've never been able to say it like that before.\"",
             ].map((quote, i) => (
-              <p key={i} className="text-xs text-white/40 italic text-center" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              <p key={i} className="text-xs text-white/40 italic text-center">
                 {quote}
               </p>
             ))}
           </div>
 
-          {/* Final decision collapse */}
+          {/* Final decision */}
           <p className="text-xs text-white/55 font-medium">
             You don't need more time to figure this out.<br/>
             You need to decide if this becomes real.
           </p>
 
-          {/* Resonance Permission — HD Emotional Authority principle */}
-          <p className="text-[10px] text-white/35 italic max-w-xs mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          {/* Resonance Permission */}
+          <p className="text-[10px] text-white/35 italic max-w-xs mx-auto leading-relaxed">
             If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured.
           </p>
 
           {/* CTA */}
           <PrimaryCTA id="book-session-btn" label="Book Your Session" showPrice={false} />
 
-          {/* Small text / Secondary Actions */}
+          {/* Secondary Actions */}
           <div className="flex flex-col items-center gap-3 pt-3">
-            <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/20 text-xs text-white/60 hover:text-white/90 transition-all duration-200"
-            >
-              <MessageCircle className="w-3.5 h-3.5 opacity-70" />
-              <span>Have a question? Let's chat for 15 mins</span>
-            </a>
+            <Button variant="outline" size="sm" asChild>
+              <a
+                href={CALCOM_CLARITY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="w-3.5 h-3.5 opacity-70" />
+                Have a question? Let's chat for 15 mins
+              </a>
+            </Button>
             <AlreadyPaidLink />
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            S8: FAQ — glass accordions
-            ═══════════════════════════════════════════════ */}
+        {/* S8: FAQ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
+          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em] mb-4">
+            <BoldText>Questions</BoldText>
+          </h2>
           {[
             {
               q: "What if I don't know my genius yet?",
@@ -689,20 +680,18 @@ const IgniteSession = () => {
           ))}
         </section>
 
-        {/* ═══════════════════════════════════════════════
-            EMOTIONAL CLOSE
-            ═══════════════════════════════════════════════ */}
+        {/* EMOTIONAL CLOSE */}
         <div className="text-center space-y-4 pt-2" id="final-close">
-          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed">
             You've been carrying something real.
           </p>
-          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed">
             That's not the problem.
           </p>
           <p className="text-sm text-white/80 font-medium max-w-sm mx-auto leading-relaxed">
             The problem is it hasn't been turned into something people can say yes to.
           </p>
-          <p className="text-xs text-white/50 italic max-w-sm mx-auto" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-xs text-white/50 italic max-w-sm mx-auto">
             This is where that changes.
           </p>
 
@@ -726,4 +715,3 @@ const IgniteSession = () => {
 };
 
 export default IgniteSession;
-
