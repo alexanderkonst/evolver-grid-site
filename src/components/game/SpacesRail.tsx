@@ -230,10 +230,10 @@ const SpacesRail = ({
 
                             {/* Nudge Badge - new unlock indicator */}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#1e4374] animate-ping" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30 animate-ping" />
                             )}
                             {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#1e4374]" />
+                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
                             {/* Active indicator */}
