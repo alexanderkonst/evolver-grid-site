@@ -433,14 +433,14 @@ const ZoneOfGeniusEntry = () => {
                     <div className="w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
 
                     {/* Three short truths */}
-                    <div className="space-y-3 max-w-sm mx-auto">
-                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                    <div className="space-y-4 max-w-lg mx-auto">
+                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             There's a <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>unique way</span> you think and solve problems.
                         </p>
-                        <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             People <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>already come to you</span> for it.
                         </p>
-                        <p className="text-sm text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
+                        <p className="text-base sm:text-lg text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>structured</span> into something they can quickly <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>say yes</span> to.
                         </p>
                     </div>
