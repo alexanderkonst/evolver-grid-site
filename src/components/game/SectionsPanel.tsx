@@ -323,8 +323,8 @@ const SectionsPanel = ({
                                                 className={cn(
                                                     "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
                                                     subActive
-                                                        ? "bg-[#1e4374]/80 text-white"
-                                                        : "text-[#6894d0] hover:bg-[#1e4374]/60 hover:text-white"
+                                                        ? "bg-white/15 text-white"
+                                                        : "text-white/40 hover:bg-white/10 hover:text-white"
                                                 )}
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
