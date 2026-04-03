@@ -266,12 +266,12 @@ function ResultView({
   return (
     <div className="animate-in fade-in duration-500 max-w-md mx-auto">
       {/* Archetype name */}
-      <div className="text-center mb-6">
-        <p className="text-xs text-[#8460ea] font-medium uppercase tracking-wider mb-2">
+      <div className="text-center mb-8">
+        <p className="text-sm text-[#8460ea] font-semibold uppercase tracking-[0.2em] mb-3">
           Your pattern
         </p>
         <h1
-          className="text-2xl font-display font-semibold text-white leading-tight"
+          className="text-3xl md:text-4xl font-display font-bold text-white leading-tight"
           style={{ textShadow: '0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(132,96,234,0.15)' }}
         >
           {result.name}
@@ -279,33 +279,33 @@ function ResultView({
       </div>
 
       {/* Identity + Mirror */}
-      <div className="space-y-4 mb-6">
-        <p className="text-sm font-medium text-white/90">
+      <div className="space-y-4 mb-8">
+        <p className="text-lg font-semibold text-white">
           {result.identity}
         </p>
         {result.mirror.map((line, i) => (
-          <p key={i} className="text-sm text-white/50 leading-relaxed">
+          <p key={i} className="text-base text-white/70 leading-relaxed">
             {line}
           </p>
         ))}
       </div>
 
       {/* Problem */}
-      <div className="mb-5">
-        <p className="text-sm font-semibold text-white/90">
+      <div className="mb-6">
+        <p className="text-base font-bold text-white">
           The problem is:
         </p>
-        <p className="text-sm text-white/60 mt-1.5 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+        <p className="text-base text-white/75 mt-2 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
           {result.problem}
         </p>
       </div>
 
       {/* Symptoms */}
-      <div className="mb-5">
-        <p className="text-xs text-white/30 mb-2">So instead:</p>
-        <ul className="space-y-1">
+      <div className="mb-6">
+        <p className="text-sm text-white/50 mb-2">So instead:</p>
+        <ul className="space-y-1.5">
           {result.symptoms.map((s, i) => (
-            <li key={i} className="text-sm text-white/50 leading-relaxed">
+            <li key={i} className="text-base text-white/65 leading-relaxed">
               — {s}
             </li>
           ))}
@@ -313,41 +313,45 @@ function ResultView({
       </div>
 
       {/* Reframe */}
-      <p className="text-sm font-medium text-white/90 mb-1.5">
+      <p className="text-base font-semibold text-white mb-2">
         {result.reframe}
       </p>
-      <p className="text-xs text-white/40 leading-relaxed mb-3 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+      <p className="text-sm text-white/55 leading-relaxed mb-4 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
         And fixing it doesn't mean building something massive —<br/>
         it means making what's already there usable.
       </p>
 
       {/* Blade */}
-      <p className="text-xs text-white/35 leading-relaxed mb-8 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+      <p className="text-sm text-white/45 leading-relaxed mb-10 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
         {result.blade}
       </p>
 
       {/* ═══ CTA: Watch the video ═══ */}
       <a
         href="/ignite#hero-video"
-        className="w-full flex items-center justify-between p-4 rounded-xl
-                   liquid-glass-strong ring-1 ring-white/20
-                   hover:ring-white/30 hover:shadow-[0_0_25px_rgba(132,96,234,0.15)]
-                   transition-all duration-300 hover:scale-[1.02] active:scale-95"
+        className="w-full flex items-center justify-between p-5 rounded-2xl
+                   liquid-glass-strong ring-1 ring-white/25
+                   shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
+                   hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
+                   hover:scale-[1.02] active:scale-95
+                   transition-all duration-300"
       >
         <div>
-          <p className="text-sm font-semibold text-white">{result.cta} (6 min)</p>
-          <p className="text-xs text-white/40 mt-0.5">{result.ctaSub}</p>
+          <p className="text-base font-bold text-white uppercase tracking-wider" style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}>
+            {result.cta}
+          </p>
+          <p className="text-xs text-white/50 mt-1">{result.ctaSub}</p>
         </div>
-        <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 ml-3">
-          <ArrowRight className="w-4 h-4 text-white/70" />
+        <span className="w-10 h-10 rounded-full bg-[#b8a4f8]/20 flex items-center justify-center flex-shrink-0 ml-4">
+          <ArrowRight className="w-5 h-5 text-[#b8a4f8]" />
         </span>
       </a>
 
       {/* Restart */}
       <button
         onClick={onRestart}
-        className="flex items-center gap-1.5 mx-auto mt-6 text-xs text-white/20
-                   hover:text-white/40 transition-colors"
+        className="flex items-center gap-1.5 mx-auto mt-8 text-xs text-white/25
+                   hover:text-white/45 transition-colors"
       >
         <RotateCcw className="w-3 h-3" />
         Retake
