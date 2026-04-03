@@ -422,9 +422,11 @@ const ZoneOfGeniusEntry = () => {
                             textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
                         }}
                     >
-                        Why is it still so hard to explain what you do{' '}
-                        <span className="text-white/60">—</span>{' '}
-                        and turn it into something people actually pay for?
+                        Why is it still so hard to{' '}
+                        <span style={{ textShadow: '0 0 25px rgba(240,194,127,0.5), 0 0 50px rgba(240,194,127,0.25)' }}>explain what you do</span>
+                        {' '}<span className="text-white/60">—</span>{' '}
+                        and turn it into something people{' '}
+                        <span style={{ textShadow: '0 0 25px rgba(240,194,127,0.5), 0 0 50px rgba(240,194,127,0.25)' }}>actually pay for</span>?
                     </h1>
 
                     {/* Separator */}
@@ -433,13 +435,13 @@ const ZoneOfGeniusEntry = () => {
                     {/* Three short truths */}
                     <div className="space-y-3 max-w-sm mx-auto">
                         <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            There's a unique way you think and solve problems.
+                            There's a <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>unique way</span> you think and solve problems.
                         </p>
                         <p className="text-sm text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            People already come to you for it.
+                            People <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>already come to you</span> for it.
                         </p>
                         <p className="text-sm text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            It just hasn't been structured into something they can quickly say yes to.
+                            It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>structured</span> into something they can quickly <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>say yes</span> to.
                         </p>
                     </div>
                 </div>
