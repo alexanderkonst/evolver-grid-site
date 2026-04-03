@@ -363,6 +363,28 @@ const AppleseedDisplay = ({
                         <ArrowRight className="w-4 h-4" />
                     </a>
                 </div>
+
+                {/* ═══════════════════════════════════════════════
+                    SHARE MODULE — delayed, collapsed, non-intrusive
+                    Below CTAs, visually de-emphasized
+                    ═══════════════════════════════════════════════ */}
+                <DelayedShare
+                    appleseed={appleseed}
+                    profileId={profileId}
+                    profileUrl={profileUrl}
+                />
+
+                {/* ═══════════════════════════════════════════════
+                    SIGNATURE / DOMAIN MARKER — passive virality
+                    ═══════════════════════════════════════════════ */}
+                <div className="text-right pr-3 pb-6">
+                    <span
+                        className="text-[11px] text-white/30 hover:text-white/50 transition-opacity duration-500 cursor-default select-none"
+                        style={{ letterSpacing: '0.02em' }}
+                    >
+                        get yours → aleksandrkonstantinov.com
+                    </span>
+                </div>
             </div>
         </>
     );
