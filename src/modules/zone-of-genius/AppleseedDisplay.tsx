@@ -102,30 +102,9 @@ const OwnershipSection = ({
 
             {/* ─── SUCCESS STATE: after save ─── */}
             {(emailUnlocked || isSaved) && (
-                <div className="space-y-2 text-center">
+                <div className="space-y-1 text-center py-2">
                     <p className="text-sm text-white/60">✓ Saved</p>
-                    <p className="text-xs text-white/30">You can come back to this anytime.</p>
-                    <p className="text-[10px] text-white/20 italic">We'll send you a link to access this anytime.</p>
-
-                    <button
-                        className="w-full mt-3 liquid-glass-strong rounded-full px-6 py-4 text-white font-semibold text-base
-                                   ring-1 ring-white/20
-                                   shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                   hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                   hover:scale-105 active:scale-95
-                                   transition-all duration-300 ease-out
-                                   flex items-center justify-center gap-2"
-                        onClick={() => {
-                            // Stay in ONE continuous reality — scroll to the video CTA, NOT to a platform
-                            const videoCta = document.querySelector('a[href="/ignite#hero-video"]');
-                            if (videoCta) {
-                                videoCta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }
-                        }}
-                    >
-                        Continue
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <p className="text-xs text-white/30">We'll send you a link to come back anytime.</p>
                 </div>
             )}
 
