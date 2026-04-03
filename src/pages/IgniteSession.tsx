@@ -166,7 +166,7 @@ const PrimaryCTA = ({ id, label = "Book Your Session", showPrice = true }: { id:
       rel="noopener noreferrer"
       id={id}
     >
-      <BoldText className="uppercase">{label}{showPrice ? " — $555" : ""}</BoldText>
+      <BoldText className="uppercase">{`${label}${showPrice ? " — $555" : ""}`}</BoldText>
       <ArrowRight className="w-4 h-4 ml-1" />
     </a>
   </Button>
