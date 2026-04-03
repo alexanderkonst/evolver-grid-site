@@ -136,7 +136,7 @@ const SpacesRail = ({
                 </Link>
 
                 {/* Divider between logo and profile */}
-                <div className="hidden md:block h-px bg-[#a4a3d0]/30 mb-3" />
+                <div className="hidden md:block h-px bg-white/10 mb-3" />
 
                 {/* User Profile */}
                 <Link
