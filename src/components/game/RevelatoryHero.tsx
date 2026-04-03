@@ -176,7 +176,7 @@ const RevelatoryHero = ({
                     </div>
                 )}
 
-                {/* Children (optional extra content) */}
+            {/* Children (optional extra content) */}
                 {children && !threeLenses && (
                     <div className="mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 max-w-2xl mx-auto">
                         <div className={`text-lg ${palette.textPrimary} leading-relaxed`}>
@@ -184,6 +184,11 @@ const RevelatoryHero = ({
                         </div>
                     </div>
                 )}
+
+                {/* Signature watermark */}
+                <p className="absolute bottom-3 right-4 text-[10px] text-white/30 tracking-wide">
+                    get yours → aleksandrkonstantinov.com
+                </p>
             </div>
 
             <style>{`
