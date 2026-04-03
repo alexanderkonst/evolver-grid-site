@@ -161,11 +161,11 @@ const SpacesRail = ({
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
                         <p className="text-white font-medium text-sm truncate">{displayName}</p>
                         <div className="flex items-center gap-2 text-xs">
-                            <span className="text-[#6894d0]">
+                            <span className="text-white/50">
                                 {userLevel ? `Level ${userLevel}` : 'Member'}
                             </span>
                             {userXp !== undefined && (
-                                <span className="text-[#a7cbd4]">
+                                <span className="text-white/30">
                                     {userXp} XP
                                 </span>
                             )}
