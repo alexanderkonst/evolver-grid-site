@@ -153,6 +153,28 @@ These are the surfaces where **one unit of effort produces the most signal.** Ac
 | **Friday** | LinkedIn + Telegram | Methodology disclosure (Open Blueprint Paradox) |
 | **Weekly** | WhatsApp status + WhatsApp Channel ⭐ | Refresh visual card + Channel post |
 
+### Wave 4: Physical Community Platforms (Ongoing — Campfire Networking)
+
+> Physical surfaces where showing up = access to group fields. Activation protocol: Domain 57 (join group → broadcast → let 1:1 form). Each platform is BOTH a presence surface (profile) AND a physical surface (events). Added April 2, 2026.
+
+| # | Platform | Profile (Presence) | Events (Physical) | Alignment | Notes |
+|---|----------|-------------------|-------------------|-----------|-------|
+| 1 | **InterNations** | Profile + activity updates | Regular city events, dinners, activity groups | 🟢 HIGH — entrepreneurs, expats, professionals in transition | Global platform, strong CDMX chapter. Profile = permanent surface. Events = recurring broadcast surface |
+| 2 | **MATES CDMX** | Community membership | Coworking days, language exchanges, social drinks, curated calendar | 🟢 HIGH — remote workers, digital nomads, builders | MATES Pass gives access to partner venue perks. Strong nomad/builder alignment |
+| 3 | **Meetup.com (CDMX groups)** | Profile across groups | AI Enthusiasts CDMX, Mexico Remote Workers, Fight Club CDMX, professional/tech groups | 🟡 MED — varies by group | Multiple groups = multiple surfaces. Join 3-5 highest-alignment groups |
+| 4 | **CDMX Expats** | WhatsApp/Telegram group membership | Entrepreneurs in Mexico subgroup, Creatives of CDMX, interest-based meetups | 🟢 HIGH — entrepreneur subgroup specifically | WhatsApp culture = primary coordination channel. Join entrepreneur and creative subgroups |
+| 5 | **Coworking events** (Impact Hub, Público, Homework) | Physical presence | Hosted workshops, networking mixers, community events | 🟡 MED — depends on event | Not just offices — they're community hubs with event calendars |
+| 6 | **Latitud** | Application-based | Founder-focused events, startup community | 🟢 HIGH — startup founders building in LATAM | Invite-only/application. Higher barrier = higher quality signal |
+| 7 | **Language exchanges** | Show up | Recurring social/language events | 🟡 MED — low-pressure, high conversation density | Perfect campfire environment. People are actively seeking conversation |
+
+**Activation protocol (same for all):**
+1. Create profile (presence surface — set once, radiates forever)
+2. Attend events (physical surface — apply Campfire Networking protocol)
+3. Join the WhatsApp/Telegram group (push surface — contribute to group conversations)
+4. **Do NOT pitch. Broadcast into the group field. Let 1:1s form from resonance.**
+
+**Scoring note:** These platforms are triple-surface — each one gives you Presence (profile) + Physical (events) + Push (group chat). Three surfaces from one membership.
+
 ---
 
 ## The Hidden Layer — Surfaces Most People Never Think Of

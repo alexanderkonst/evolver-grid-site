@@ -2954,3 +2954,77 @@ This insight doesn't just change how Alexander networks. It shifts the entire pa
 
 ---
 
+## Domain 58: The Resonance Metric (The Entire Events Industry Measures the Wrong Thing)
+
+> *Added April 2, 2026 — Emerged as a direct consequence of Domain 57 (Campfire Networking). The insight: the events industry is built on the wrong metric. This is not a tactical observation. This is a civilization-level measurement error.*
+
+### 58a. The Error
+
+The entire professional events industry — conferences, networking mixers, meetups, summits, retreats — measures success by one metric:
+
+> **"Contacts made."**
+
+Business cards exchanged. LinkedIn connections added. Handshakes given. People spoken to. The number goes up. The organizer reports it. The attendee feels productive. Everyone goes home.
+
+**This metric is wrong.**
+
+Not slightly wrong. **Categorically wrong.** Like measuring a hospital's success by number of patients admitted instead of patients healed. The metric rewards volume, not value. Quantity, not quality. Contact, not connection.
+
+### 58b. The Right Metric
+
+The right metric is:
+
+> **"Resonant connections self-formed from signal."**
+
+Not: how many people did I talk to?
+But: **how many 1:1 conversations formed because someone resonated with something I said or radiated?**
+
+| The wrong metric | The right metric |
+|-----------------|-----------------|
+| Contacts made | Resonant 1:1s self-formed |
+| Business cards exchanged | Conversations where mutual recognition occurred |
+| People spoken to | People who leaned in because of resonance |
+| "I met 30 people tonight" | "3 people found me because of what I said" |
+| **Measures: effort** | **Measures: signal quality** |
+
+### 58c. Why This Matters (Systemic Consequences)
+
+**1. It explains why most people hate networking.** They're playing a volume game (talk to as many people as possible) that produces anxiety, superficiality, and exhaustion. The game is rigged — not because they're bad at it, but because the METRIC is bad.
+
+**2. It explains why the best connections happen at dinner, not at the conference.** Dinner = small group = campfire = broadcast into group field = resonance has room to form. Conference keynote = large audience = no group field = contacts but no connections. The informal setting outperforms the formal one BECAUSE the right metric can operate.
+
+**3. It explains why introverts and "bad networkers" often have the deepest relationships.** They don't play the volume game. They contribute meaningfully to small groups. Their hit rate (resonant connections per conversation) is FAR higher — but invisible under the wrong metric.
+
+**4. It redefines what event organizers should optimize for.** Not: more people, bigger venue, more sessions. But: **more small group environments where resonance can form.** Roundtables > panels. Dinners > receptions. Breakout rooms > ballrooms. Walk-and-talks > networking slots.
+
+**5. It applies to digital surfaces too.** LinkedIn measures impressions, likes, followers — the wrong metric. The right metric: "how many DMs came from people who resonated with my post?" Number of resonant inbound conversations > number of views.
+
+### 58d. The Measurement Error Pattern
+
+This is not unique to events. It is a recurring pattern across industries:
+
+| Industry | Wrong metric | Right metric |
+|----------|-------------|-------------|
+| Events / networking | Contacts made | Resonant connections self-formed |
+| Social media | Impressions / followers | Resonant inbound conversations |
+| Sales | Calls made / emails sent | Conversations where recognition occurred |
+| Healthcare | Patients admitted | Patients healed |
+| Education | Students enrolled | Students transformed |
+| Marketing | Leads generated | Decisions collapsed |
+
+**The pattern:** the wrong metric always measures VOLUME at the INPUT. The right metric always measures QUALITY at the OUTPUT. The wrong metric is easier to count. The right metric is harder to count but is the only one that tracks reality.
+
+### 58e. Connection to the Stack
+
+| Domain | How 58 completes it |
+|--------|-------------------|
+| **50: The Projection Matrix** | The Surface Holomap's Yield formula already captures this — Yield rewards signal quality over volume. Domain 58 gives the philosophical WHY behind the formula |
+| **54: Precision Paradox** | "As you narrow, you don't shrink — you intensify." The right metric IS the precision paradox applied to networking: fewer contacts, stronger resonance |
+| **55: Builder's Blind Spot** | The events industry optimizes for surface friction (more contacts) while ignoring decision friction (does this person actually want to talk to me?). Same blind spot, different context |
+| **57: Campfire Networking** | Domain 57 IS the operational protocol for the right metric. Join group → broadcast → let 1:1 form = maximize resonant connections per event |
+
+### 58f. The One-Sentence Version
+
+> *"The entire events industry is built on the wrong metric: contacts made. The right metric is resonant connections self-formed from signal. Everything changes when you measure resonance instead of reach."*
+
+---
