@@ -36,6 +36,13 @@ const QualityOfLifeMapAssessment = ({
 
   const handleStageSelect = (stageId: number) => {
     setAnswer(domain.id, stageId);
+    // Auto-advance after brief visual feedback (unless it's the last domain)
+    if (!isLastDomain) {
+      setTimeout(() => {
+        setCurrentIndex(prev => prev + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 400);
+    }
   };
 
   const handlePrevious = () => {
@@ -193,47 +200,52 @@ const QualityOfLifeMapAssessment = ({
             Previous
           </Button>
 
-          <Button
-            onClick={handleNext}
-            disabled={!hasAnswer}
-            size="lg"
-            className={cn(
-              "text-lg px-8 bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] text-white",
-              !hasAnswer && "opacity-50"
-            )}
-          >
-            {isLastDomain ? "See Results" : "Next"}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          {/* Only show explicit button on last domain */}
+          {isLastDomain && (
+            <Button
+              onClick={handleNext}
+              disabled={!hasAnswer}
+              size="lg"
+              className={cn(
+                "text-lg px-8 bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] text-white",
+                !hasAnswer && "opacity-50"
+              )}
+            >
+              See Results
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          )}
         </div>
 
         {/* Mobile Bottom Bar */}
         <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 p-4 shadow-lg z-above">
-          <div className="flex items-center justify-between gap-3 mb-3">
+          <div className="flex items-center justify-between gap-3">
             {currentIndex > 0 && (
               <button
                 onClick={handlePrevious}
                 className="text-xs px-4 py-2 rounded-full border border-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-secondary)] hover:bg-[var(--depth-violet)]/5 transition-colors"
               >
                 <ArrowLeft className="inline mr-1 h-3 w-3" />
-                Previous
+                Back
               </button>
             )}
             <div className="text-xs text-[var(--wabi-text-muted)] flex-1 text-center">
-              Domain {currentIndex + 1}/{DOMAINS.length}
+              {currentIndex + 1} of {DOMAINS.length}
             </div>
-          </div>
-          <button
-            onClick={handleNext}
-            disabled={!hasAnswer}
-            className={cn(
-              "w-full py-3 rounded-xl font-bold transition-all text-sm text-white bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)]",
-              !hasAnswer && "opacity-50"
+            {/* Only show explicit button on last domain */}
+            {isLastDomain && (
+              <button
+                onClick={handleNext}
+                disabled={!hasAnswer}
+                className={cn(
+                  "px-6 py-2 rounded-full font-bold text-sm text-white bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] transition-all",
+                  !hasAnswer && "opacity-50"
+                )}
+              >
+                See Results
+              </button>
             )}
-          >
-            {isLastDomain ? "See Results" : "Next Domain"}
-            <ArrowRight className="inline ml-2 h-4 w-4" />
-          </button>
+          </div>
         </div>
 
         {/* Spacer for mobile bottom bar */}

@@ -468,31 +468,31 @@ const BuildCanvasPage = () => {
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#2c3150]/35">{artifact.label}</p>
-                    <p className="text-[11px] text-[#a4a3d0]/50 truncate">{artifact.question}</p>
+                    <p className="text-sm font-medium text-white/25">{artifact.label}</p>
+                    <p className="text-[11px] text-white/20 truncate">{artifact.question}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* The derivation chain visual */}
-            <div className="mb-8 p-4 rounded-xl bg-white/40 border border-[#a4a3d0]/10 max-w-md mx-auto">
+            <div className="mb-8 p-4 rounded-xl liquid-glass ring-1 ring-white/10 max-w-md mx-auto">
               <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2 font-medium">
                 How it works
               </p>
-              <div className="flex items-center justify-center gap-1 text-[11px] text-[#2c3150]/40 font-mono flex-wrap">
+              <div className="flex items-center justify-center gap-1 text-[11px] text-white/30 font-mono flex-wrap">
                 {["Uniqueness", "→", "Myth", "→", "Tribe", "→", "Pain", "→", "Promise", "→", "Magnet", "→", "Ladder"].map(
                   (item, i) => (
                     <span
                       key={i}
-                      className={item === "→" ? "text-[#a4a3d0]/30" : "px-1.5 py-0.5 rounded bg-[#a4a3d0]/5"}
+                      className={item === "→" ? "text-white/15" : "px-1.5 py-0.5 rounded bg-white/5"}
                     >
                       {item}
                     </span>
                   )
                 )}
               </div>
-              <p className="text-[11px] text-[#2c3150]/40 mt-2">
+              <p className="text-[11px] text-white/30 mt-2">
                 Each artifact derives from the previous. Change artifact 1 → everything downstream sharpens.
               </p>
             </div>
@@ -512,12 +512,12 @@ const BuildCanvasPage = () => {
             </div>
 
             {/* If they already have Product Builder data, offer a link */}
-            <div className="mt-10 pt-6 border-t border-[#a4a3d0]/10">
-              <p className="text-xs text-[#2c3150]/40 mb-3">Already have a product?</p>
+            <div className="mt-10 pt-6 border-t border-white/10">
+              <p className="text-xs text-white/30 mb-3">Already have a product?</p>
               <Button
                 variant="outline"
                 size="sm"
-                className="border-[#a4a3d0]/30 text-[#2c3150]"
+                className="border-white/15 text-white/60"
                 onClick={() => navigate("/game/build/product-builder")}
               >
                 <ArrowRight className="w-4 h-4 mr-1" />
@@ -617,11 +617,11 @@ const BuildCanvasPage = () => {
 
           {/* ── Session Notes ── */}
           {canvas.notes && (
-            <div className="p-4 bg-white/50 rounded-xl border border-[#a4a3d0]/15">
+            <div className="p-4 liquid-glass rounded-xl ring-1 ring-white/10">
               <p className="text-[11px] text-[#8460ea] uppercase tracking-wider mb-2 font-medium">
                 Session Notes
               </p>
-              <p className="text-sm text-[#2c3150]/70 leading-relaxed whitespace-pre-wrap">
+              <p className="text-sm text-white/60 leading-relaxed whitespace-pre-wrap">
                 {canvas.notes}
               </p>
             </div>

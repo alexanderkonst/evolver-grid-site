@@ -182,9 +182,9 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-[#a4a3d0]">Loading your results...</div>
+          <div className="text-white/30 animate-pulse">Loading your results...</div>
         </div>
-      </GameShellV2>
+    </GameShellV2>
     );
   }
 
@@ -194,8 +194,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       <GameShellV2>
         <div className="max-w-2xl mx-auto p-6 text-center">
           <Map className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-          <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Complete Your Assessment</h1>
-          <p className="text-[#a4a3d0] mb-6">Answer all 8 domains to see your results.</p>
+          <h1 className="text-2xl font-bold text-white mb-4">Complete Your Assessment</h1>
+          <p className="text-white/50 mb-6">Answer all 8 domains to see your results.</p>
           <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
             Start Assessment
           </Button>
@@ -207,15 +207,15 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const content = (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
       {/* Hero Section */}
-      <div ref={snapshotRef} className="rounded-2xl border border-[#a4a3d0]/30 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] p-6 space-y-5">
+      <div ref={snapshotRef} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 space-y-5">
         {/* Title with Value Statement */}
         <div className="text-center">
-          <p className="text-sm text-[#a4a3d0] mb-1">Your Quality of Life</p>
+          <p className="text-sm text-[#8460ea] mb-1">Your Quality of Life</p>
           <div className="inline-flex items-center gap-3">
-            <span className="text-5xl font-bold text-[#2c3150]">{overallStageRounded}</span>
-            <span className="text-[#a4a3d0] text-lg">/10</span>
+            <span className="text-5xl font-bold text-white">{overallStageRounded}</span>
+            <span className="text-white/30 text-lg">/10</span>
           </div>
-          <p className="mt-3 text-sm text-[#2c3150]/70 font-medium">
+          <p className="mt-3 text-sm text-white/50 font-medium">
             Now you know where to focus your growth.
           </p>
         </div>
@@ -225,8 +225,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
               <PolarGrid stroke="rgba(132, 96, 234, 0.2)" />
-              <PolarAngleAxis dataKey="domain" tick={{ fill: '#2c3150', fontSize: 14 }} />
-              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: '#a4a3d0', fontSize: 10 }} tickCount={6} />
+              <PolarAngleAxis dataKey="domain" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 14 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }} tickCount={6} />
               <Radar dataKey="value" stroke="#8460ea" fill="#8460ea" fillOpacity={0.4} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
@@ -234,23 +234,23 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
         {/* Growth & Strengths */}
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/50 p-4">
-            <p className="text-xs uppercase tracking-wide text-[#a4a3d0] mb-3">🌱 Growth Areas</p>
+          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
+            <p className="text-xs uppercase tracking-wide text-[#8460ea] mb-3">🌱 Growth Areas</p>
             <div className="space-y-2">
               {growthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
-                  <span className="text-sm text-[#2c3150]">{domain.name}</span>
+                  <span className="text-sm text-white/70">{domain.name}</span>
                   <span className="text-sm font-semibold text-[#8460ea]">{stageValue}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/50 p-4">
-            <p className="text-xs uppercase tracking-wide text-[#a4a3d0] mb-3">💪 Strengths</p>
+          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
+            <p className="text-xs uppercase tracking-wide text-[#8460ea] mb-3">💪 Strengths</p>
             <div className="space-y-2">
               {strengthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
-                  <span className="text-sm text-[#2c3150]">{domain.name}</span>
+                  <span className="text-sm text-white/70">{domain.name}</span>
                   <span className="text-sm font-semibold text-[#8460ea]">{stageValue}</span>
                 </div>
               ))}
