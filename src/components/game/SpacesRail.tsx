@@ -1,4 +1,5 @@
 import { ReactNode, memo } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoSrc from "@/assets/logo.jpg";
 import {
@@ -184,8 +185,8 @@ const SpacesRail = ({
                 </div>
             </div>
 
-            {/* Spaces Navigation */}
-            <nav className="flex-1 flex flex-col gap-1 p-2 md:p-3 overflow-y-auto">
+            <ScrollArea className="flex-1">
+              <nav className="flex flex-col gap-1 p-2 md:p-3">
                 {SPACES.map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -244,6 +245,7 @@ const SpacesRail = ({
                     );
                 })}
             </nav>
+            </ScrollArea>
 
             {/* Settings Button */}
             <div className="p-2 md:p-3 border-t border-white/10 space-y-1">
