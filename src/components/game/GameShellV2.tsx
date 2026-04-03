@@ -338,7 +338,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                 {/* Panel 3: Content - lightest glass tier */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/10 backdrop-blur-xl"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/15 backdrop-blur-xl"
                 >
                     <div className="page-transition-enter">
                         {children}
