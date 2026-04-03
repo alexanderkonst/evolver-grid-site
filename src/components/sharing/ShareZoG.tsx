@@ -111,18 +111,24 @@ const ShareZoG = ({ archetypeName, tagline, primeDriver, talents, archetype, pro
 
   return (
     <div className="relative max-w-md mx-auto">
-      {/* Main Share Button */}
+      {/* Collapsed trigger — minimal, optional feel */}
       <button
-        className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full
-                   liquid-glass ring-1 ring-white/15
-                   text-sm font-medium text-white/60 hover:text-white/80
-                   hover:scale-[1.02] active:scale-95 transition-all"
+        className="w-full flex items-center justify-center gap-2 py-2.5 px-4
+                   text-xs text-white/40 hover:text-white/60
+                   transition-all duration-300"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Share2 className="w-4 h-4" />
-        <span>Share this</span>
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <Share2 className="w-3.5 h-3.5" />
+        <span>Optional: Get perspective from others</span>
+        <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
+
+      {/* Microcopy — only when expanded */}
+      {isOpen && (
+        <p className="text-center text-[11px] text-white/35 italic mb-2">
+          Be honest—does this sound like me?
+        </p>
+      )}
 
       {/* Dropdown */}
       {isOpen && (

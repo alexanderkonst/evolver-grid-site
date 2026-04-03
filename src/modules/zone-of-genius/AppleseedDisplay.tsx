@@ -1,9 +1,9 @@
-import { ArrowRight, Mail, ChevronDown, Share2 } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -32,11 +32,6 @@ const OwnershipSection = ({
     setEmail,
     emailSaving,
     handleEmailSubmit,
-    onSave,
-    isSaving,
-    appleseed,
-    profileId,
-    profileUrl,
 }: {
     emailUnlocked: boolean;
     isSaved: boolean;
@@ -44,24 +39,7 @@ const OwnershipSection = ({
     setEmail: (v: string) => void;
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
-    onSave?: () => void;
-    isSaving: boolean;
-    appleseed: AppleseedData;
-    profileId?: string;
-    profileUrl?: string;
 }) => {
-    const [shareVisible, setShareVisible] = useState(false);
-    const [shareExpanded, setShareExpanded] = useState(false);
-    const shareContentRef = useRef<HTMLDivElement>(null);
-
-    // Delayed reveal of share section (4s after email unlock / save)
-    useEffect(() => {
-        if (emailUnlocked || isSaved) {
-            const timer = setTimeout(() => setShareVisible(true), 4000);
-            return () => clearTimeout(timer);
-        }
-    }, [emailUnlocked, isSaved]);
-
     return (
         <div className="space-y-6 pt-4 max-w-md mx-auto">
 
@@ -107,21 +85,42 @@ const OwnershipSection = ({
                     <p className="text-sm text-white/50">✓ Saved. We sent your Zone of Genius to your inbox.</p>
                 </div>
             )}
+        </div>
+    );
+};
 
-            {/* ─── SHARE (tertiary, delayed, minimal) ─── */}
-            {shareVisible && (
-                <div className="animate-in fade-in duration-700">
-                    <ShareZoG
-                        archetypeName={appleseed.vibrationalKey.name}
-                        tagline={appleseed.bullseyeSentence}
-                        primeDriver={appleseed.threeLenses.primeDriver}
-                        talents={appleseed.threeLenses.actions}
-                        archetype={appleseed.threeLenses.archetype}
-                        profileId={profileId}
-                        profileUrl={profileUrl}
-                    />
-                </div>
-            )}
+/**
+ * DelayedShare — appears 800ms after page load, below CTAs
+ */
+const DelayedShare = ({
+    appleseed,
+    profileId,
+    profileUrl,
+}: {
+    appleseed: AppleseedData;
+    profileId?: string;
+    profileUrl?: string;
+}) => {
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setVisible(true), 800);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!visible) return null;
+
+    return (
+        <div className="animate-in fade-in duration-700 opacity-50 hover:opacity-70 transition-opacity max-w-md mx-auto">
+            <ShareZoG
+                archetypeName={appleseed.vibrationalKey.name}
+                tagline={appleseed.bullseyeSentence}
+                primeDriver={appleseed.threeLenses.primeDriver}
+                talents={appleseed.threeLenses.actions}
+                archetype={appleseed.threeLenses.archetype}
+                profileId={profileId}
+                profileUrl={profileUrl}
+            />
         </div>
     );
 };
@@ -316,11 +315,6 @@ const AppleseedDisplay = ({
                     setEmail={setEmail}
                     emailSaving={emailSaving}
                     handleEmailSubmit={handleEmailSubmit}
-                    onSave={onSave}
-                    isSaving={isSaving}
-                    appleseed={appleseed}
-                    profileId={profileId}
-                    profileUrl={profileUrl}
                 />
 
                 {/* ═══════════════════════════════════════════════
@@ -362,6 +356,28 @@ const AppleseedDisplay = ({
                         I'm done circling this — let's make it real
                         <ArrowRight className="w-4 h-4" />
                     </a>
+                </div>
+
+                {/* ═══════════════════════════════════════════════
+                    SHARE MODULE — delayed, collapsed, non-intrusive
+                    Below CTAs, visually de-emphasized
+                    ═══════════════════════════════════════════════ */}
+                <DelayedShare
+                    appleseed={appleseed}
+                    profileId={profileId}
+                    profileUrl={profileUrl}
+                />
+
+                {/* ═══════════════════════════════════════════════
+                    SIGNATURE / DOMAIN MARKER — passive virality
+                    ═══════════════════════════════════════════════ */}
+                <div className="text-right pr-3 pb-6">
+                    <span
+                        className="text-[11px] text-white/30 hover:text-white/50 transition-opacity duration-500 cursor-default select-none"
+                        style={{ letterSpacing: '0.02em' }}
+                    >
+                        get yours → aleksandrkonstantinov.com
+                    </span>
                 </div>
             </div>
         </>
