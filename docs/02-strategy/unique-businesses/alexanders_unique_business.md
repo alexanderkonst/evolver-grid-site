@@ -649,8 +649,20 @@ Messaging makes conversion work. **Outreach makes volume happen.**
 | Past clients | Reactivation. "I've evolved what I do" |
 | Email | Nurture. Magic link returnees |
 | Communities | Presence. Not selling — signaling |
+| **Physical community platforms** | Triple-surface (profile + events + group chat). See Wave 4 in [Surface Holomap](../digital_surface_holomap.md) |
 
 **Not passive inbound.** This is amplified outbound + inbound hybrid.
+
+**Physical Surface Strategy (April 2, 2026 — Domain 57/58):**
+
+Events are NOT "networking opportunities." They are **physical broadcast surfaces** — identical in function to LinkedIn or DMs. Activation = communication, not presence. Protocol:
+1. Join platforms: InterNations, MATES CDMX, Meetup (AI groups, remote workers), CDMX Expats (entrepreneur subgroup), Latitud
+2. Attend events regularly (same group = recognition over time)
+3. At each event: join a standing group → listen → contribute → let 1:1s form from resonance
+4. **Do NOT hunt for 1:1s. Do NOT pitch. Broadcast into the group field.**
+5. Metric: NOT "contacts made." Metric: **"resonant 1:1s self-formed from signal"** (Domain 58)
+
+Each platform = three surfaces in one: Presence (profile), Physical (events), Push (group chat).
 
 ---
 
