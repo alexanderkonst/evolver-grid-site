@@ -1,40 +1,286 @@
-# Outreach Templates & Activation Kit v2.0
+# Epicenter Broadcast Playbook (Domain 65)
 
-> *April 2, 2026 — Godfather Offer Architect upgrade. Full activation SOP.*
+> *The founder's execution engine for coherent radiation.*
+> *April 4, 2026 — Restructured from Outreach Templates v2.3*
 > *© 2026 Alexander Konstantinov · For personal use*
-> *"Insight alone doesn't get paid. Business structure around the insight does."*
+> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence)*
+
+> **Purpose:** This is the EXECUTION document. Not theory (that's [Distribution Playbook](./distribution_playbook.md)). Not methodology (that's [Unique Business Playbook](./unique_business_playbook.md)). This is: **what to send, where to send it, how to send it — click by click — and what to learn from every response.**
 
 ---
 
-## 🧭 ACTIVATION SEQUENCE (Do In Order)
+## §1. SURFACE INVENTORY (Alexander's Active Surfaces)
 
-### Phase 1: Surface Activation (30 min)
+> **Every surface has sub-surfaces.** This inventory maps ALL of them.
+> Last updated: April 4, 2026
 
-| # | Surface | Time | Exact Action |
-|---|---------|------|-------------|
-| 1 | **LinkedIn headline** | 2 min | `I turn what you already do into a business people understand — and pay for` |
-| 2 | **LinkedIn banner** | 10 min | Hero visual: "You can't explain what you do. That's why it's not selling." + link |
-| 3 | **LinkedIn about section** | 10 min | Founder story → methodology → proof → CTA (ZoG link) |
-| 4 | **LinkedIn featured section** | 3 min | Pin: (1) ZoG reveal link, (2) /ignite URL, (3) NotebookLM video |
-| 5 | **Instagram bio** | 2 min | `I turn what you already do into a business people understand — and pay for` + link |
-| 6 | **Email signature** | 2 min | `Alexander Konstantinov · aleksandrkonstantinov.com` |
-| 7 | **WhatsApp about** | 1 min | `I turn what you already do into a one-sentence business · aleksandrkonstantinov.com` |
+### LinkedIn (~4,500 connections)
+- **Profile URL:** linkedin.com/in/[TBD]
+- **Headline:** ✅ Updated
+- **About/Bio:** ✅ Updated (previous session)
+- **Featured section:** ⚠️ Status?
+- **Banner image:** ⚠️ Status?
 
-### Phase 2: Channel Activation (1 hour)
+### Telegram
+- **Channel:** 1 channel, 31 subscribers
+- **Client groups:** 4-5 groups from past containers, 10-30 people each (~100 total)
+- **Bio/About:** ⚠️ Not yet updated
 
-Send messages to 4 channels — each with its own tone. **Frame: "I built this free tool and it works for everybody."**
+### Instagram (@integralevolution)
+- **Account type:** Personal (NOT Business/Creator — link sticker in Stories unavailable)
+- **Bio link:** ⚠️ Not yet set to aleksandrkonstantinov.com
+- **Bio text:** ⚠️ TBD
+- **Note:** Consider switching to Creator account (free, takes 30 seconds, enables link stickers)
 
-### Phase 3: Content (30 min)
+### WhatsApp
+- **Status (Stories):** Available ✅
+- **Groups:** Cannabis ceremony groups (via Karime — check timing)
+- **About text:** ⚠️ Not yet updated
 
-Post Instagram carousel with 3 infographics (see Section IV below).
+### Facebook (~2,500 connections, "Integral Evolution")
+- **Type:** Personal profile
+- **Groups:** ⚠️ TBD
 
-### Phase 4: Viral Posts (ongoing)
+### YouTube (42 subscribers)
+- **Channel name:** ⚠️ TBD
+- **Community Tab:** Available for posts (no video needed)
 
-Deploy the 10 viral posts over 5-10 days across LinkedIn + Instagram.
+### X / Twitter (@integral or similar, ~0 followers)
+- **Activity:** Dormant
+- **Priority:** Low — but pin a tweet for anyone who finds you
+
+### Other (Lower Priority)
+- **Medium blog:** Exists — link in bio/about
+- **Other digital assets:** To be inventoried as they surface
 
 ---
 
-## 0. THE EPICENTER BROADCAST (Domain 65)
+## §2. SURFACE ACTIVATION SOP (Click-by-Click)
+
+> **Resolution:** Every step is a physical action your hands perform. No thinking required.
+> **⚠️** Steps marked with ⚠️ will be made precise once Surface Inventory (§1) is filled.
+
+### Execution Order (Fastest Impact First)
+
+| # | Surface | Time | Why this order |
+|---|---------|------|----------------|
+| 1 | WhatsApp Status | 2 min | Instant passive reach. Everyone checks Status |
+| 2 | Telegram (personal + channels) | 5 min | Most intimate audience. Highest response rate |
+| 3 | Instagram Story | 3 min | Disappears in 24h — urgency. Link sticker = clickable |
+| 4 | Instagram Post | 5 min | Permanent. Requires bio link update first |
+| 5 | LinkedIn Post | 5 min | Professional network. Link in first comment |
+| 6 | Facebook Post | 3 min | Widest passive reach for old connections |
+| 7 | X / Twitter | 2 min | Global reach, lowest effort |
+
+**Total: ~25 minutes for all 7 surfaces.**
+
+---
+
+### SURFACE 1: WhatsApp Status (2 min)
+
+**Image:** Vertical poster (story format)
+**Text overlay:** `Пройди за 2 минуты 👆 aleksandrkonstantinov.com`
+
+**Steps:**
+1. Open WhatsApp on phone
+2. Tap **Status** tab (bottom bar, second from left)
+3. Tap the **camera icon** (or "My Status" → "+")
+4. Select the **vertical poster image** from your camera roll
+5. Tap the **text tool** (T icon, top right)
+6. Type: `aleksandrkonstantinov.com`
+7. Position text near bottom of image
+8. Tap the **green send arrow** ✅
+9. **Optional:** Also post a TEXT status:
+   - Tap "My Status" → pencil icon (text status)
+   - Type: `Сделал инструмент: раскрывает главный талант за 2 минуты. aleksandrkonstantinov.com`
+   - Tap send ✅
+
+**After:** Check "Status views" tomorrow morning. Anyone who viewed = warm.
+
+---
+
+### SURFACE 2: Telegram (5 min)
+
+**Text:** Russian social post version (§3)
+**Image:** Square poster
+
+#### 2a. Personal Telegram (post to own feed / Saved Messages for forwarding)
+
+**Steps:**
+1. Open Telegram
+2. ⚠️ **[If you have a personal channel]:** Go to your channel → tap message field → paste Russian social post text → attach square poster → Send ✅
+3. **[If forwarding to contacts]:** Go to Saved Messages → paste text + image → long-press → Forward → select contacts
+
+#### 2b. Telegram Channels
+
+⚠️ **NEEDS INPUT:** Which channels do you have? For each:
+1. Open channel
+2. Tap message field
+3. Paste Russian social post text
+4. Attach square poster image
+5. Send ✅
+
+#### 2c. Telegram Groups (from past containers)
+
+⚠️ **NEEDS INPUT:** Which groups are appropriate?
+1. Open group
+2. Paste Russian social post text (no image — groups are more conversational)
+3. Send ✅
+
+#### 2d. Telegram Bio Update
+
+1. Open Telegram → Settings (gear icon)
+2. Tap your name/photo at top
+3. Tap **Bio** field
+4. Update to: `Раскрываю яркие таланты и превращаю их в бизнес · aleksandrkonstantinov.com`
+5. Tap Done ✅
+
+---
+
+### SURFACE 3: Instagram Story (3 min)
+
+**Image:** Vertical poster
+**Prerequisite:** Must have Business/Creator account for Link sticker
+
+**Steps:**
+1. Open Instagram
+2. Tap **your profile picture** with "+" (top left) or swipe right from feed
+3. Tap **gallery icon** (bottom left) → select vertical poster
+4. Tap **sticker icon** (square smiley face, top of screen)
+5. Tap **Link** sticker
+6. Paste: `https://aleksandrkonstantinov.com`
+7. Customize sticker text: `Пройди за 2 минуты` or `Try it`
+8. Position link sticker near center-bottom of image
+9. Tap **Your Story** → Send ✅
+
+**After:** If someone replies to your Story → respond within 5 minutes. Story replies = highest-intent signal on Instagram.
+
+---
+
+### SURFACE 4: Instagram Post (5 min)
+
+**Image:** Square poster (or personal photo)
+**Prerequisite:** Bio link must be updated FIRST
+
+**Step 0 — Update Bio Link:**
+1. Open Instagram → tap your profile icon (bottom right)
+2. Tap **Edit Profile**
+3. Find **Website** field
+4. Paste: `https://aleksandrkonstantinov.com`
+5. Tap **Done** / checkmark ✅
+
+**Post Steps:**
+1. Tap **+** (bottom center) → **Post**
+2. Select square poster image from camera roll
+3. Tap **Next** → (optional filters, skip) → tap **Next**
+4. In **Caption** field, paste:
+```
+Я наконец сфокусировался на том, чем хочу заниматься в жизни: помогать людям разглядеть самые яркие таланты — и превратить их в бизнес.
+
+6 лет занимаюсь этим профессионально. Только сейчас по-настоящему упаковал.
+
+Сделал инструмент — за пару минут раскрывает главный талант.
+
+🔗 Ссылка в био
+
+#зонагениальности #талант #бизнесизнутри #самопознание #предпринимательство
+```
+5. Tap **Add location** → type `Mexico City` → select it
+6. Tap **Share** ✅
+
+**After:** Share this post to your Story too (tap paper airplane icon under post → "Add to your story" → Send)
+
+---
+
+### SURFACE 5: LinkedIn Post (5 min)
+
+**Image:** Square poster (or personal photo)
+**⚠️ CRITICAL:** Do NOT put the link in the post body. LinkedIn suppresses posts with outbound links.
+
+**Steps:**
+1. Open LinkedIn (web or app)
+2. Tap **Start a post** (top of feed)
+3. Paste the English social post text (§3) — **WITHOUT the URL line**:
+```
+I finally got clear on what I want to do with my life.
+
+Help people see their brightest talents — and turn them into a business.
+
+I've been doing this professionally for 6 years, but only now truly packaged it.
+
+The way I see it, business grows from self-knowledge — so I built a tool that reveals your #1 talent in a couple of minutes.
+
+If you take it — I'd genuinely love to hear what came up.
+```
+4. Tap **photo icon** → attach square poster image
+5. Tap **Post** ✅
+6. **IMMEDIATELY:** Go to your new post → tap **Comment** → type:
+   `→ aleksandrkonstantinov.com`
+   → Post comment ✅
+
+**After (within 1 hour):**
+- Like 3-5 posts from your connections (boosts your visibility in their feed)
+- Reply to anyone who comments on YOUR post within minutes
+
+---
+
+### SURFACE 6: Facebook Post (3 min)
+
+**Image:** Square poster (or personal photo)
+**Text:** Russian social post version (§3, with "Личный апдейт" opening)
+
+**Steps:**
+1. Open Facebook (web or app)
+2. Tap **What's on your mind?**
+3. Paste Russian social post text (full version with "Если пройдёшь — расскажи" ending)
+4. Tap **Photo/Video** → attach square poster
+5. **Set visibility: Public** (tap the audience selector → "Public")
+6. Tap **Post** ✅
+
+**After:** If a friend comments in the first 30 min, reply immediately (FB algorithm rewards fast engagement)
+
+---
+
+### SURFACE 7: X / Twitter (2 min)
+
+**Image:** Square poster
+**Text:** Short English version
+
+**Steps:**
+1. Open X (web or app)
+2. Tap **compose** (blue + or feather icon)
+3. Type:
+```
+I built a tool that reveals your #1 talent in 2 minutes.
+
+6 years of helping people see their brightest gifts — finally packaged it.
+
+aleksandrkonstantinov.com
+```
+4. Tap **photo icon** → attach square poster
+5. Tap **Post** ✅
+6. **Pin this tweet:** Tap ⋯ on your tweet → "Pin to your profile"
+
+---
+
+### POST-SURFACE CHECKLIST
+
+After all surfaces are posted, verify:
+
+- [ ] WhatsApp Status posted
+- [ ] Telegram channel(s) posted
+- [ ] Telegram bio updated
+- [ ] Instagram Story posted (with link sticker)
+- [ ] Instagram Post posted (with bio link updated)
+- [ ] Instagram Post shared to Story
+- [ ] LinkedIn Post published (link in FIRST COMMENT)
+- [ ] Facebook Post published (set to Public)
+- [ ] X tweet posted and pinned
+- [ ] Bio/About updated on: Telegram, Instagram, WhatsApp
+
+---
+
+## §3. LOCKED TEXTS (Domain 65)
 
 > **The founder's first act of coherent radiation. Not a campaign — a declaration that carries a gift.**
 > Say what's true. Offer the gift. Sign your name. That's the whole engine.
@@ -50,7 +296,7 @@ Deploy the 10 viral posts over 5-10 days across LinkedIn + Instagram.
 Занимаюсь этим профессионально уже 6 лет, но только сейчас по-настоящему упаковал.
 
 В моем понимании бизнес растёт из самопознания — поэтому я сделал инструмент,
-который за пару минут раскрывает твой главный талант. Бесплатно, для всех.
+который за пару минут раскрывает главный талант.
 
 www.aleksandrkonstantinov.com
 
@@ -58,24 +304,61 @@ www.aleksandrkonstantinov.com
 Саша
 ```
 
-### English version:
+### English version (DM):
 
 ```
 Hey — personal update.
 
-I finally focused on the thing I want to do with my life:
-help people see their most pronounced talents — and turn them into a business.
+I finally got clear on what I want to do with my life:
+help people see their brightest talents — and turn them into a business.
 
 I've been doing this professionally for 6 years, but only now truly packaged it.
 
-In my paradigm, business grows from self-knowledge — so I made a tool
-that reveals your top talent in a few minutes. Free, for everyone.
+The way I see it, business grows from self-knowledge — so I built a tool
+that reveals your #1 talent in a couple of minutes.
 
 www.aleksandrkonstantinov.com
 
 [Warm sign-off],
 [Name]
 ```
+
+### Social Post version — Russian (for Telegram, WhatsApp, Facebook, Instagram):
+
+```
+Личный апдейт.
+
+Я наконец сфокусировался на том, чем хочу заниматься в жизни:
+помогать людям разглядеть свои самые яркие таланты — и превратить их в бизнес.
+
+Занимаюсь этим профессионально уже 6 лет, но только сейчас по-настоящему упаковал.
+
+В моем понимании бизнес растёт из самопознания — поэтому я сделал инструмент,
+который за пару минут раскрывает главный талант.
+
+www.aleksandrkonstantinov.com
+
+Если пройдёшь — расскажи, что вышло 🙂
+```
+
+### Social Post version — English (for LinkedIn, X):
+
+```
+I finally got clear on what I want to do with my life.
+
+Help people see their brightest talents — and turn them into a business.
+
+I've been doing this professionally for 6 years, but only now truly packaged it.
+
+The way I see it, business grows from self-knowledge — so I built a tool
+that reveals your #1 talent in a couple of minutes.
+
+→ aleksandrkonstantinov.com
+
+If you take it — I'd genuinely love to hear what came up.
+```
+
+> **Note:** On LinkedIn, put the link in the FIRST COMMENT, not in the post body. LinkedIn suppresses posts with outbound links.
 
 ### The Structure (3 Beats + Gift):
 
@@ -92,7 +375,7 @@ www.aleksandrkonstantinov.com
 
 ---
 
-## I. CHANNEL ACTIVATION MESSAGES
+## §4. CHANNEL ACTIVATION MESSAGES
 
 ### a) PAST CLIENTS (STRONGEST)
 
@@ -184,7 +467,7 @@ Would love to see what people get.
 
 ---
 
-## II. RESPONSE HANDLING (Godfather DM → Booking Flow)
+## §5. RESPONSE HANDLING (Godfather DM → Booking Flow)
 
 > **Rule:** Don't pitch. Don't explain. Just deepen awareness.
 
@@ -200,7 +483,7 @@ Would love to see what people get.
 
 ---
 
-## IIb. THE JOSÉ RESPONSE (Proof-Seeker Handling)
+## §5b. THE JOSÉ RESPONSE (Proof-Seeker Handling)
 
 > *April 3, 2026 — Extracted from live conversion data. José = high-intelligence, skeptical system-thinker. Fully resonated with the worldview. Did NOT convert because the verbal pitch lacked materialization density. The website has the guarantee — the conversation didn't.*
 >
@@ -253,7 +536,7 @@ This one sentence neutralizes:
 
 ---
 
-## III. 10 VIRAL POSTS (Ready to Deploy)
+## §6. 10 VIRAL POSTS (Ready to Deploy)
 
 > **Rules:** No fluff. No hashtags. No emojis. Just signal.
 > **Cadence:** 1-2 per day over 5-10 days. LinkedIn + Instagram text posts.
@@ -371,7 +654,7 @@ You're one sentence away.
 
 ---
 
-## IV. INSTAGRAM CAROUSEL (3 Infographics)
+## §7. INSTAGRAM CAROUSEL (3 Infographics)
 
 ### Slide 1: "The Loop"
 
@@ -414,7 +697,7 @@ aleksandrkonstantinov.com
 
 ---
 
-## V. POST-PAYMENT EMAIL
+## §8a. POST-PAYMENT EMAIL
 
 > Sent after someone pays $555 via Stripe. Love-only. Service-first.
 
@@ -450,7 +733,7 @@ P.S. If you have questions before the session, reply to this email. I read every
 
 ---
 
-## VI. POST-SESSION FOLLOW-UP EMAIL
+## §8b. POST-SESSION FOLLOW-UP EMAIL
 
 > Sent 24-48 hours after the Ignition Session.
 
@@ -493,19 +776,19 @@ it out loud makes it real.
 
 ---
 
-## VII. CAMPAIGN TRACKING
+## §9. CAMPAIGN TRACKING
 
-| # | Name | Channel | Sent | Response? | Type | Next Action | Status |
-|---|------|---------|------|-----------|------|-------------|--------|
-| 1 | | | | | | | |
-| 2 | | | | | | | |
-| 3 | | | | | | | |
-| 4 | | | | | | | |
-| 5 | | | | | | | |
+> **Live tracking is in a separate file for easy updates from any model:**
+> → [`docs/09-logs/broadcast_tracker.md`](../09-logs/broadcast_tracker.md)
+>
+> **Why separate?** This playbook is INSTRUCTIONS (how to do it). The tracker is DATA (what happened). Keeping them apart means you can update the tracker quickly with a cheap model — just add a row.
 
-**Status flow:** Sent → Responded → In Conversation → /ignite Sent → Session Booked → Session Done
+**Tracking Protocol (Domain 68):**
+- Every response is intelligence
+- Track not just status, but WHAT WE LEARNED
+- After every 10 entries, re-read for patterns → update typology → update copy → update product
 
 ---
 
-*Outreach Templates v2.1 — April 3, 2026 (José signal: proof-seeker handling, before→after snapshots, verbal guarantee)*
-*Updated: 4 channel-specific frames, 10 viral posts, 3 carousel specs, deployment strategy, response handling flow, José Response path.*
+*Epicenter Broadcast Playbook v3.0 — April 4, 2026*
+*Restructured from Outreach Templates. Click-by-click SOP. Field Refraction Intelligence tracking. Domains 65 + 67 + 68.*
