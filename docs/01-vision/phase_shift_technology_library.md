@@ -3988,3 +3988,133 @@ At 27 facets, a thing has been seen from enough angles at enough depth to become
 > *"The 27th perspective is not a perspective. It is the moment the seeing becomes the seen — the Si-Do shock where complete understanding crystallizes into irreversible material form, and a new octave begins."*
 
 ---
+
+## Domain 67: Consent of Seeing
+
+> *April 4, 2026 — Andrey Kamyshan's gift. The first field refraction from the Epicenter Broadcast.*
+
+### 67a. The Discovery
+
+The first Epicenter Broadcast reached Andrey — a scientific materialist, a builder, a friend. He explored the ZoG tool. His response revealed not a privacy concern, but something deeper:
+
+> **"The experience of being accurately read by an opaque mechanism FEELS like deception to a mind that trusts only what it can verify."**
+
+His word was "обман" (deception). He wasn't saying Alexander was deceiving him. He was naming the felt experience of **ontological exposure without consent of understanding** — being seen by something you cannot see through.
+
+### 67b. The Principle
+
+**Consent of Seeing:** To be seen requires consent. Consent requires understanding. Understanding requires transparency of mechanism.
+
+For UL-first people (intuitive, feeling-led), the opacity of the mechanism IS the magic — *"it SEES me!"* The mystery amplifies trust.
+
+For UR-first people (analytical, verification-led), the opacity of the mechanism IS the threat — *"what just happened to me?"* The mystery erodes trust.
+
+The product must serve BOTH types. Not by removing the magic — but by making the mechanism transparent enough that consent is informed at every step.
+
+### 67c. The Design Protocol
+
+At every point where the system SEES the user, disclose:
+
+| Moment | What to say |
+|--------|-------------|
+| **Before quiz** | "6 questions. AI reads your pattern. Nothing stored until you choose." |
+| **After result** | "This was generated from your answers only. No external data." |
+| **At email gate** | "Save this to your profile. Your email is stored so you can return." |
+| **At every future AI interaction** | "Here's what we used. Here's what we produced. Here's what we saved." |
+
+This is NOT a privacy policy. It is a **relational protocol.** The system says: *"I'm about to see you. Here's how. Here's what happens with what I see. You decide."*
+
+### 67d. The Product Principle
+
+> **"Radical Transparency of Mechanism"** — At every step where the system processes, analyzes, stores, or shares user data or insight, the user sees exactly what is happening. Not in a privacy policy. In the interface itself. In-line. At the moment it matters. In plain language.
+
+This principle does NOT slow the experience for trusting users — the transparency is visible but non-blocking. A quiet one-liner. For users who need it, it's the difference between trust and suspicion. For users who don't, it's invisible.
+
+### 67e. The Connection Table
+
+| Connected To | How |
+|---|---|
+| **31: Quantum Collapse Effect** | Observation requires consent. An unconsented observation is not a collapse — it's an intrusion |
+| **53: The MEET Principle** | MEET = the user meets themselves. If the mechanism is opaque, it feels like being met by a stranger in the dark |
+| **65: Epicenter Broadcast** | The broadcast invites people into the funnel. Domain 67 ensures the funnel respects what arrives |
+| **66: The 27th Perspective** | The crystallization can only land if the receiver trusts the instrument. Domain 67 is the trust protocol |
+
+### 67f. The One-Sentence Version
+
+> *"Being seen is a gift. But a gift forced on someone is not a gift — it's an intrusion. The system must earn the right to see by showing how it sees."*
+
+---
+
+## Domain 68: Field Refraction Intelligence
+
+> *April 4, 2026 — The discovery that every response to the Epicenter Broadcast is intelligence that improves the system.*
+
+### 68a. The Discovery
+
+Three people received the Epicenter Broadcast. Three completely different responses:
+
+| Person | Response Type | What It Revealed |
+|--------|--------------|-----------------|
+| **Andrey** (scientific materialist) | Analyzed the mechanism. Raised transparency concern | UL-opacity is a barrier for UR-first people. Led to Domain 67 |
+| **Max Rodin** | "Interesting, I'll sit with it" — positive, contemplative | The tool creates a pause. Some people need to DIGEST before acting |
+| **José** (peer, builder) | No response yet | Silence is also data. Timing, context, readiness |
+
+Each response is **a refraction of the signal through a different field.** The same light, hitting different prisms, producing different colors. Each color is intelligence about the system.
+
+### 68b. The Mechanism
+
+```
+BROADCAST → hits a human field
+         → refracts through their paradigm, fears, readiness, archetype
+         → produces a RESPONSE (words, silence, questions, objections)
+         → response is READ as data
+         → data improves: copy, product, principle, methodology
+         → improved system → next broadcast is MORE precise
+         → MORE precise broadcast → MORE revealing response
+         → ...
+
+THIS IS THE QUANTUM COLLAPSE EFFECT (Domain 31) APPLIED TO DISTRIBUTION.
+```
+
+Every response makes the system smarter. Not just "customer feedback" — **ontological intelligence.** The system learns how different types of consciousness refract its signal, and adjusts the signal to be transparent across ALL types.
+
+### 68c. The Response Typology (Emerging)
+
+| Response Type | What kind of person | What they need | What they teach the system |
+|---|---|---|---|
+| **"Wow, this is me"** | UL-first (feeling, intuition) | Nothing — they're already in | Validates the copy/experience |
+| **"How does this work?"** | UR-first (analytical, verification) | Transparency of mechanism | Where opacity is a barrier (→ Domain 67) |
+| **"Interesting, let me sit with it"** | Integrative (needs time to digest) | Space. No follow-up pressure | The tool creates a pause — this is a feature, not a bug |
+| **"Show me it works"** | Proof-seeker (José Response, §IIb) | Before→After snapshots, guarantee | Where the verbal pitch lacks materialization density |
+| **Silence** | Not ready, not aligned, or didn't see it | Nothing. Move on | Not every seed lands on fertile soil. Normal |
+| **"This looks like data collection"** | Trust-first (safety before openness) | Domain 67 — consent of seeing | Where the system needs explicit transparency |
+
+This typology will grow with every broadcast. At N=50, it will be a complete map of how different human fields respond to the signal.
+
+### 68d. The Tracking Protocol
+
+**Where we track:** `docs/03-playbooks/outreach_templates.md` → Section VII (Campaign Tracking).
+
+**What we track per response:**
+1. Name + channel + date sent
+2. Response (exact words or "silence")
+3. Response TYPE (from typology above)
+4. Intelligence extracted (what did we learn?)
+5. Action taken (what did we change?)
+
+**When we read:** After every 10 broadcasts, re-read the response data. Look for patterns. Update the typology. Update the copy. Update the product.
+
+### 68e. The Connection Table
+
+| Connected To | How |
+|---|---|
+| **31: Quantum Collapse Effect** | Distribution IS observation. Each broadcast collapses a superposition. Each response is the measurement |
+| **65: Epicenter Broadcast** | Domain 65 is the signal. Domain 68 is how the signal's refraction becomes intelligence |
+| **67: Consent of Seeing** | Domain 67 emerged FROM Domain 68. Andrey's refraction produced a new design principle |
+| **14: Scatter Pattern** | Some responses will reveal the scatter pattern in the responder. This is diagnostic, not judgmental |
+
+### 68f. The One-Sentence Version
+
+> *"Every human who encounters the system teaches the system how to see better. Distribution is not marketing — it is the system learning to refract its light through every type of prism."*
+
+---
