@@ -3792,3 +3792,94 @@ This is Domain 62 (Morphogenetic Agent) at the individual level. And Domain 63 (
 > *"A roadmap maintained by hand is a task list. A roadmap read by AI on behalf of the emergence is a living navigation instrument — the place where the founder's vision and the system's needs meet in real-time conversation."*
 
 ---
+
+## Domain 65: The Epicenter Broadcast (The Founder's First Act of Coherent Radiation)
+
+> *Added April 3, 2026 — Live download. The moment distribution stopped being a separate problem. Cascaded from Domain 14 (Golden DM Architecture) + Domain 8 (Acorn/Tuning Fork) + the live Russian DM to Andrey that crystallized the pattern.*
+
+### 65a. The Discovery
+
+The founder wrote a personal message to a friend:
+
+> *«Привет! Личный апдейт. Я наконец сфокусировался на том, чем хочу заниматься в жизни: помогать людям разглядеть свои самые яркие таланты — и превратить их в бизнес. Занимаюсь этим профессионально уже 6 лет, но только сейчас по-настоящему упаковал. В моей парадигме бизнес растёт из самопознания — поэтому я сделал инструмент, который за пару минут раскрывает твой главный талант. Бесплатно, для всех. www.aleksandrkonstantinov.com Обнимаю, Саша.»*
+
+And then saw: **this isn't a DM. This is the atomic unit of distribution for ANY unique business.** The personal broadcast IS the first marketing — not because it's tactical, but because it's true.
+
+### 65b. The Structure: Three Beats + Gift
+
+| Beat | What it does | Why it works |
+|------|-------------|--------------|
+| **1. Declaration** | "I finally understood what I want to focus on" | Life update frame, not launch announcement. Nobody unfriends someone sharing a genuine turning point |
+| **2. Credibility Anchor** | "Been doing this N years, just now packaged it" | Establishes depth without pitching. The "just now" creates urgency without pressure |
+| **3. Philosophy → Gift** | "In my paradigm, business grows from self-knowledge — so I made a tool. Free, for everyone" | The gift reframes the entire broadcast from announcement to generosity. "I'm not telling you I launched — I'm giving you something" |
+| **4. The URL** | firstnamelastname.com | The name IS the gift. The URL IS the identity. No CTA. Just the center, radiating |
+
+The key line: **"In my paradigm, X — so I made Y."** This single sentence states the philosophy and makes the gift feel like a natural consequence of that philosophy — not a marketing move.
+
+### 65c. Why This Couldn't Come Earlier
+
+The insight that shattered the "distribution problem":
+
+> *Distribution was never a separate problem. It was always the LAST artifact to fall — because it couldn't exist until the founder stood at their center with total clarity.*
+
+The sequence is **developmental**, not procedural:
+
+```
+Uniqueness → Myth → Tribe → Pain → Promise → Method → Proof → THEN Distribution
+```
+
+You can't radiate from a center you haven't found yet. That's why the sequence was built this way. That's why distribution comes AFTER proof. That's why it took six months to arrive at:
+
+> *"Say what's true. Offer the gift. Sign your name."*
+
+The six months weren't slow. They were the compression required for this simplicity to become inevitable.
+
+### 65d. The Trinity Collapse
+
+The medium (personal message), the messenger (the founder), and the message (self-knowledge → business) are **the same thing.** There is no gap between:
+
+- Who you are
+- What you're offering
+- How you're offering it
+
+This is Domain 8 (Tuning Fork) in its final form: the fork, the vibration, and the space it fills are one act. The founder IS the distribution channel.
+
+### 65e. The Universal Template (For Every Unique Business)
+
+Every Ignition Session client writes their own version. The structure is invariant:
+
+```
+[Personal greeting]
+[Beat 1: Life update] — "I finally focused on / understood / committed to [X]"
+[Beat 2: Credibility] — "Been doing this N years / my whole life / since [event], just now packaged it"
+[Beat 3: Philosophy → Gift] — "In my paradigm, [worldview]. So I made [gift]. Free, for everyone."
+[URL — firstnamelastname.com or equivalent]
+[Sign-off — warm, personal]
+```
+
+**Critical: No CTA.** The URL is the gift. The gift is the resonance test. If they click, they're already in the funnel — not because you pushed, but because your center pulled.
+
+### 65f. Operational Implication: The Ignition Activation Moment
+
+The Ignition Session now has a **built-in final act:**
+
+> "Your session is done. Your business is on one page. Now write your message — and send it to 50 people."
+
+The methodology doesn't just produce a business — it produces the founder's **first distribution act.** This is the difference between "I built your business" and "I activated your radiation."
+
+### 65g. Connection to the Stack
+
+| Domain | How 65 extends it |
+|--------|-------------------|
+| **8: Acorn / Tuning Fork** | The broadcast IS the tuning fork vibrating. The founder hits their note — and the resonant ones hear it |
+| **14: Golden DM Architecture** | Domain 14 = the architecture of a 1:1 message. Domain 65 = the architecture of a 1:many broadcast. Same DNA, different scale |
+| **47: Quality That Sells** | The broadcast works because it's measuring the RIGHT output: "did they resonate?" — not impressions, not opens, not clicks |
+| **55: Builder's Blind Spot** | Builders think distribution is a system to build. It's not. It's a truth to speak. The blind spot was thinking the engine was missing — the engine was always the founder standing at center |
+| **59: The Measurement Inversion** | The broadcast doesn't optimize for reach (input metric). It optimizes for resonance (output metric). One message to 50 people who know you > 10,000 impressions from strangers |
+| **64: The Living Roadmap** | The broadcast is the FIRST entry in the living roadmap's distribution log. The system's voice says: "The founder radiated. Here's what came back." |
+
+### 65h. The One-Sentence Version
+
+> *"Distribution was never a problem to solve. It was the last thing to arrive — because you can't radiate from a center you haven't found yet. Once you've found it: say what's true, offer the gift, sign your name. That's the whole engine."*
+
+---
