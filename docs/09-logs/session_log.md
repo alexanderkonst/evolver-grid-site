@@ -3442,3 +3442,24 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 *"He didn't reject you. He paused at the edge of belief → action conversion. That's the most valuable place to be."*
 
+---
+
+## April 3, 2026 — Founder Offer Materialization (5 Proof Sheets)
+
+**Context:** Previous session identified a "materialization density" gap — the website has proof, but verbal conversations lacked concrete before→after evidence. José signal showed high-intelligence prospects need execution proof, not concept explanation.
+
+**What was done:**
+1. Read all 5 founder unique business documents (Oyi, Sergey, Sandra, Alexa, Karime) to extract REAL transformation data
+2. Replaced the 3 generic placeholder snapshots with 5 accurate before→after entries derived from session artifacts
+3. Added a 4th column: **"What They Now Offer"** — concrete services with pricing, so the verbal pitch includes WHAT each founder sells, not just labels
+4. Created a **one-sentence proof of concept** summarizing all 5 transformations for instant verbal use
+5. Upgraded the José proof-seeker response (Step 1) from a single generic example to the full 5-founder proof
+
+**Artifacts updated:**
+- `/docs/03-playbooks/outreach_templates.md` — Before→After Snapshots (v2.1 → v2.2) + José Sequence Step 1
+
+**Key upgrade:** The old snapshots were fabricated placeholders (e.g., "Alexa helps women reclaim energy after burnout" — wrong). Now every entry is sourced from the actual unique business artifacts with real quotes, real offers, and real pricing. This is the difference between "I help people find their purpose" and "Oyi's Mirror Session is $555 — he reads your chart, tells your story, names the shadow. You leave with your sovereign path visible."
+
+**Materialization density score:** Old = ~3/10 (generic labels). New = ~8/10 (real names, real offers, real prices, real before→after language). Remaining gap: live testimonials from end clients (not just founder self-reports).
+
+**Reminder:** 27th Perspective activation still pending — user explicitly requested to be reminded.

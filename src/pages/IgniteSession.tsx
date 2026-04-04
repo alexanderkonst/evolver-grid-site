@@ -542,6 +542,33 @@ const IgniteSession = () => {
           </div>
         </section>
 
+        {/* FOUNDER PROOF */}
+        <section className="space-y-4" id="founder-proof" aria-label="Founders who've done this">
+          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
+            <BoldText>Founders Who've Done This</BoldText>
+          </h2>
+          <div className="space-y-2 max-w-md mx-auto">
+            {[
+              { name: "Oyi", line: "teaches sovereignty through storytelling — helping creative builders reclaim their inner authority." },
+              { name: "Sergey", line: "shows tech leaders how Pull + AI replaces the 80-hour push — same results, half the force." },
+              { name: "Sandra", line: "crystallizes your mission into one sentence — so your team, your board, and your grandmother all see it." },
+              { name: "Alexa", line: "maps invisible architecture — the hidden pattern connecting everything you do into one product." },
+              { name: "Karime", line: "transmits a frequency of unconditional love — people arrive carrying weight, they leave alleviated." },
+            ].map((f, i) => (
+              <div
+                key={i}
+                className="liquid-glass rounded-xl px-4 py-3 flex items-baseline gap-2"
+              >
+                <span className="text-sm font-serif font-semibold text-white/90 shrink-0 min-w-[60px]">{f.name}</span>
+                <p className="text-xs text-white/55 leading-relaxed">{f.line}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-white/35 text-center italic max-w-sm mx-auto">
+            Each came in unable to explain what they do. Each left with a named gift, a one-sentence offer, and a clear path forward.
+          </p>
+        </section>
+
         {/* MICRO-COMMITMENT */}
         <MicroCommitmentBlock />
 

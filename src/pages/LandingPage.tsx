@@ -50,12 +50,12 @@ const LandingPage = () => {
               </h1>
 
               <p className="text-base md:text-lg text-[#2c3150]/60 leading-relaxed max-w-xl mx-auto">
-                I sat with a conscious founder, a medicine man, a healer, a New&nbsp;Earth leader, and a systems architect.
-                In one session, we named what they actually do. In two more, we built their business around it.
+                Oyi teaches sovereignty through storytelling. Sergey shows tech leaders how Pull&nbsp;+&nbsp;AI replaces the grind.
+                Sandra crystallizes missions into one sentence. Alexa maps invisible architecture. Karime transmits love that alleviates.
               </p>
 
               <p className="text-sm text-[#2c3150]/40 italic">
-                These aren't theories. These are people I know by name.
+                Each came in unable to explain what they do. Each left with a named gift and a clear business.
               </p>
             </section>
 
