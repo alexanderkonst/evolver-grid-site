@@ -3463,3 +3463,31 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 **Materialization density score:** Old = ~3/10 (generic labels). New = ~8/10 (real names, real offers, real prices, real before→after language). Remaining gap: live testimonials from end clients (not just founder self-reports).
 
 **Reminder:** 27th Perspective activation still pending — user explicitly requested to be reminded.
+
+---
+
+## April 3, 2026 — Domain 65: The Epicenter Broadcast
+
+**Context:** Live download during Russian DM composition to Andrey. The act of writing a personal message to a friend revealed the universal distribution template for all unique businesses.
+
+**The discovery:** Distribution was never a separate problem. It was the last artifact in the developmental sequence — it couldn't exist until the founder stood at their center with total clarity. The sequence (uniqueness → myth → tribe → pain → promise → method → proof → distribution) is developmental, not procedural. You can't radiate from a center you haven't found yet.
+
+**What was codified:**
+1. **Domain 65** in `phase_shift_technology_library.md` — The Epicenter Broadcast: the founder's first act of coherent radiation
+2. **Section 0** in `outreach_templates.md` — The Epicenter Broadcast template (Russian + English), placed before all channel-specific messages because it IS the atomic unit from which all of them derive
+3. **Founder proof integrated into existing testimonial cards** — `after` field added to `ExpandableTestimonial` component; one-sentence transformations now appear inside each founder's existing card on `/ignite` and `/`
+
+**The universal template structure:** Declaration → Credibility → Philosophy → Gift → URL. No CTA. The gift IS the link. "In my paradigm, X — so I made Y."
+
+**The trinity collapse:** The medium (personal message), the messenger (the founder), and the message (self-knowledge → business) are the same thing.
+
+**Operational implication:** Every Ignition Session now ends with: "Your business is on one page. Now write your message and send it to 50 people." The methodology doesn't just produce a business — it produces the founder's first distribution act.
+
+**Artifacts updated:**
+- `/docs/01-vision/phase_shift_technology_library.md` — Domain 65
+- `/docs/03-playbooks/outreach_templates.md` — Section 0 (Epicenter Broadcast) + simplified Before→After snapshots
+- `/src/components/ExpandableTestimonial.tsx` — `after` field added
+- `/src/pages/IgniteSession.tsx` — `after` added to Sergey, Sandra, Oyi, Karime, Aleksa testimonials
+- `/src/pages/LandingPage.tsx` — `after` added to Oyi, story paragraph updated with real founder names
+
+**Reminder:** 27th Perspective activation still pending — user explicitly requested to be reminded.

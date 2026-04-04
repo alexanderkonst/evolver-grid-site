@@ -34,6 +34,64 @@ Deploy the 10 viral posts over 5-10 days across LinkedIn + Instagram.
 
 ---
 
+## 0. THE EPICENTER BROADCAST (Domain 65)
+
+> **The founder's first act of coherent radiation. Not a campaign — a declaration that carries a gift.**
+> Say what's true. Offer the gift. Sign your name. That's the whole engine.
+
+### The Universal Template (Send to 50 people on launch day)
+
+```
+Привет! Личный апдейт.
+
+Я наконец сфокусировался на том, чем хочу заниматься в жизни:
+помогать людям разглядеть свои самые яркие таланты — и превратить их в бизнес.
+
+Занимаюсь этим профессионально уже 6 лет, но только сейчас по-настоящему упаковал.
+
+В моей парадигме бизнес растёт из самопознания — поэтому я сделал инструмент,
+который за пару минут раскрывает твой главный талант. Бесплатно, для всех.
+
+www.aleksandrkonstantinov.com
+
+Обнимаю,
+Саша
+```
+
+### English version:
+
+```
+Hey — personal update.
+
+I finally focused on the thing I want to do with my life:
+help people see their most pronounced talents — and turn them into a business.
+
+I've been doing this professionally for 6 years, but only now truly packaged it.
+
+In my paradigm, business grows from self-knowledge — so I made a tool
+that reveals your top talent in a few minutes. Free, for everyone.
+
+www.aleksandrkonstantinov.com
+
+[Warm sign-off],
+[Name]
+```
+
+### The Structure (3 Beats + Gift):
+
+| Beat | Line | Why it works |
+|------|------|-------------|
+| **1. Declaration** | "I finally focused on…" | Life update, not launch announcement |
+| **2. Credibility** | "6 years, just now packaged" | Depth without pitching |
+| **3. Philosophy → Gift** | "In my paradigm… so I made…" | Gift feels like natural consequence of worldview |
+| **4. URL** | firstnamelastname.com | No CTA. The gift IS the link |
+
+**Critical:** No CTA. No "check it out." No "let me know." The URL is the gift. If they click, they're already in the funnel — because your center pulled, not because you pushed.
+
+**Ignition Session activation:** Every client writes their own version on session day. *"Your session is done. Your business is on one page. Now write your message — and send it to 50 people."*
+
+---
+
 ## I. CHANNEL ACTIVATION MESSAGES
 
 ### a) PAST CLIENTS (STRONGEST)
