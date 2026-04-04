@@ -10,7 +10,7 @@
 > - "Capture this idea in the roadmap"
 > - "What does the system need that I'm not seeing?"
 >
-> *Last updated: 2026-04-03 — 27th Perspective Morphogenesis applied. Phase: CRYSTALLIZATION. 7-Day Sprint: 50 Epicenter Broadcasts. Andrey = Message 1 ✅.*
+> *Last updated: 2026-04-04 — Two-Path Architecture codified. Epicenter Broadcast Playbook operational. 68 Phase Shift Domains. "Free" removed from all outreach. Erik Desrosiers added to broadcast.*
 
 ---
 
@@ -53,7 +53,11 @@
 | **ECONOMICS** |
 | 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
 | 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
-| **BRAND & CONTENT** |
+| **INSTAGRAM** |
+| 39 | Switch Instagram to Creator Account | Distribution | 🔴 HIGH | **30 seconds — Settings → Account → Switch to Creator Account. Unlocks link stickers in Stories. Without this, Stories can't link to your site.** |
+| **CONTENT** |
+| 40 | Content plan for infographic assets across surfaces | Content | 🔴 HIGH | Separate session — REMIND ME |
+| **PARKED** |
 | 29 | Logos (platform + modules) | Brand | ✅ DONE | — |
 | 30 | Videos (explainer, onboarding, module intros) | Content | 🔴 HIGH | This cycle |
 | **LEARN SPACE** |
@@ -1024,9 +1028,10 @@ A platform tool where a founder who has completed their Product (Unique Business
 **Prerequisite:** None — everything is built
 **Priority:** 🔴 CRITICAL — "Have I sent a personal message to a real human about what I do this week?"
 
-#### 4.3 Surface Updates (LinkedIn, WhatsApp, Email Sig, Telegram)
-**What:** Update all digital surfaces with v3.0-aligned bios and headlines. Copy exists in Playbook Section 9.
-**Source:** [Customer Journey Playbook Section 9](../03-playbooks/customer_journey_playbook.md)
+#### 4.3 Surface Updates (LinkedIn, WhatsApp, Email Sig, Telegram, Instagram)
+**What:** Update all digital surfaces with v3.0-aligned bios and headlines. Copy exists in [Epicenter Broadcast Playbook](../03-playbooks/epicenter_broadcast_playbook.md) §1-§2.
+**Instagram prerequisite:** Switch to Creator Account (Settings → Account → Switch to Creator Account). Takes 30 seconds. Unlocks link stickers in Stories.
+**Source:** [Epicenter Broadcast Playbook](../03-playbooks/epicenter_broadcast_playbook.md)
 **Prerequisite:** None
 **Priority:** 🔴 HIGH — permanent signal, 30 min max
 

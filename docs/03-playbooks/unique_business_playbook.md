@@ -2987,50 +2987,100 @@ Given the completed Unique Business Canvas for [founder name], run the Godfather
 
 # Part IV: SOP Quick Reference
 
-## The Master Execution Sequence
+## The Master Execution Sequence — Two-Path Architecture (April 4, 2026)
+
+> *"From 'I am' to 'I sell' — the complete end-to-end playbook."*
+
+### The Two Paths from Uniqueness
 
 ```
-ZONE OF GENIUS ARTICULATION (Seed)
-           ↓
-    1. Genius → Articulation
-           ↓
-    2. Articulation → Offer
-           ↓
-    3. Offer → Deep ICP + Point A/B
-           ↓
-    4. ICP → 3-Step Blueprint
-           ↓
-    5. Blueprint → Positioning Sentences
-           ↓
-    6. Positioning → Diagnostic Offer
-           ↓
-    7. Diagnostic → Value Ladder
-           ↓
-    8. Ladder → Distribution Strategy
-           ↓
-    9. Distribution → Launch Sequence
-           ↓
-    10. Launch → Product Blueprint
-           ↓
-    FIRST REVENUE → SCALED VENTURE
+                        UNIQUENESS + SHADOW
+                              │
+                  ┌───────────┴───────────┐
+                  │                       │
+           PATH A: PRODUCT          PATH B: BUSINESS
+           (Build the thing)        (Sell the thing)
+                  │                       │
+                  │                       │
+                  │              1. Uniqueness + Shadow
+                  │              2. Business Artifacts (Marketing)
+                  │              3. Sales Strategy
+        PATH A STARTS ──────►   4. Distribution Philosophy
+                  │              5. Surface Map + Smart Selection
+                  │              6. Activation / Broadcast (Tactics)
+                  │              7. Campaign Tracking + Intelligence
+                  │                       │
+           UX Playbook                    │
+           UI Playbook                    │
+           Software Arch                  │
+           Brand Book                     │
+                  │                       │
+      Integrated Product            Epicenter Broadcast
+      Building Workflow             Playbook (SOP)
+           (Meta SOP)                     │
+                  │                       │
+                  └───────────┬───────────┘
+                              │
+                     FIRST REVENUE
+                              │
+                       SCALED VENTURE
 ```
+
+> [!IMPORTANT]
+> **Path A runs in parallel from step 4 onward.** You start building the product while the business artifacts are forming. You don't wait for the business to be fully defined before building — the product development INFORMS the business artifacts and vice versa. They co-evolve.
+
+---
+
+### Path B: Business Creation (how a founder goes from "I am" to "I sell")
+
+| Step | Playbook | What it produces | Ref |
+|------|----------|-----------------|-----|
+| **1a. Uniqueness** | [Unique Business Playbook](./unique_business_playbook.md) | Zone of Genius, Archetype, Gift named | Workflow 1 |
+| **1b. Shadow** | [Unique Business Playbook](./unique_business_playbook.md) | The inverted gift — the blind spot that keeps them stuck | Proof Case #1 (Ogi) |
+| **2. Business Artifacts** | [Unique Business Creation Playbook](./unique_business_creation_playbook.md) | 7 canvas artifacts: Tribe, Promise, Lead Magnet, Offer, Value Ladder, etc. | Workflows 2-7 |
+| **3. Marketing** | [Marketing Playbook](./marketing_playbook.md) | Positioning, copy, core belief, packaging, tuning fork | Workflow 5 |
+| **4. Sales Strategy** | [Godfather Playbook](./godfather_playbook.md) + [Customer Journey Playbook](./customer_journey_playbook.md) | Conversion flow, response handling, proof structure, pricing confidence | Godfather Probe |
+| **5. Distribution** | [Distribution Playbook](./distribution_playbook.md) | Channel strategy, cold start, virality mechanics, philosophy | Workflow 8 |
+| **6. Surface Map + Smart Selection** | [Epicenter Broadcast Playbook §1-§2](./epicenter_broadcast_playbook.md) | Inventory ALL surfaces → select by reach + resonance → rank order | §1 |
+| **7. Activation / Broadcast** | [Epicenter Broadcast Playbook §2-§6](./epicenter_broadcast_playbook.md) | Click-by-click SOP per surface, locked texts, deployment schedule | §2 |
+| **8. Campaign Tracking + Intelligence** | [Broadcast Tracker](../09-logs/broadcast_tracker.md) | Living data, response typology, field refraction intelligence (D68) | §9 |
+
+### Path A: Product Creation (build the thing)
+
+| Step | Playbook | What it produces |
+|------|----------|-----------------|
+| **A1. UX** | [UX Playbook](./ux_playbook.md) | User experience architecture, flows, emotional states |
+| **A2. UI** | [UI Playbook](./ui_playbook.md) | Visual design system, components, interactions |
+| **A3. Software Arch** | [Software Architecture Playbook](./software_architecture_playbook.md) | Tech stack, data model, edge functions |
+| **A4. Brand** | Brand Book | Bio-light aesthetic, theme engine, motion standards |
+| **Meta SOP** | [Integrated Product Building Workflow](./integrated_product_building_workflow.md) | Orchestrates A1-A4 into a single build flow |
+
+---
+
+### The End-to-End Timeline
+
+| Phase | Path B (Business) | Path A (Product) | Milestone |
+|-------|-------------------|-------------------|-----------|
+| **Week 1-2** | Steps 1-3 (Uniqueness → Artifacts → Marketing) | — | Canvas complete |
+| **Week 2-3** | Steps 4-5 (Sales → Distribution philosophy) | A1-A2 begin (UX → UI) | Offer validated |
+| **Week 3-4** | Steps 6-7 (Surface map → Activation) | A3-A4 (Software → Brand) | First broadcasts |
+| **Week 4+** | Step 8 (Tracking → Intelligence → Iterate) | Product building continues | First revenue |
 
 ---
 
 ## Human-in-the-Loop Checkpoints
 
-| Workflow | Check Question | Pass Criteria |
-|----------|----------------|---------------|
-| 1: Articulation | "Does this feel true?" | Emotional resonance |
-| 2: Offer | "Would you sell this tomorrow?" | Excitement + clarity |
-| 3: ICP + A/B | "Is this a real person you know?" | Visceral recognition |
-| 4: Blueprint | "Could you explain in 30 seconds?" | Memorable + logical |
-| 5: Positioning | "Can you say this naturally?" | Authentic voice |
-| 6: Diagnostic | "Is price an easy yes?" | Low friction |
-| 7: Value Ladder | "Clear path to recurring?" | Differentiated tiers |
-| 8: Distribution | "Can you sustain this?" | Realistic capacity |
-| 9: Launch | "Are daily actions achievable?" | Actionable plan |
-| 10: Blueprint | "Does this deliver the promise?" | Aligned to transformation |
+| Step | Check Question | Pass Criteria |
+|------|----------------|---------------|
+| 1a: Uniqueness | "Does this feel true?" | Emotional resonance |
+| 1b: Shadow | "Does this land in the body?" | Somatic confirmation |
+| 2: Artifacts | "Would you sell this tomorrow?" | Excitement + clarity |
+| 3: Marketing | "Can you say this naturally?" | Authentic voice |
+| 4: Sales | "Is price an easy yes?" | Pricing confidence ≥ 7 |
+| 5: Distribution | "Can you sustain this?" | Realistic capacity |
+| 6: Surface Map | "Is every surface named?" | Complete inventory |
+| 7: Activation | "Can you execute this without thinking?" | Click-by-click resolution |
+| 8: Tracking | "Is every response logged?" | Data flowing |
 
 ---
 
@@ -3038,16 +3088,15 @@ ZONE OF GENIUS ARTICULATION (Seed)
 
 | Stage | Quick Prompt |
 |-------|--------------|
-| 1 | "Synthesize into Unique Gift card" |
+| 1a | "Synthesize into Unique Gift card" |
+| 1b | "Name the inverted gift — the shadow" |
 | 2 | "Transform ZoG into Excalibur offer" |
-| 3 | "Deepen ICP with identity + situational markers + Point A/B" |
-| 4 | "Create 3-Step Blueprint with transformation mechanism" |
-| 5 | "Generate positioning sentence variations" |
-| 6 | "Design diagnostic offer with deliverables + pricing" |
-| 7 | "Design 5-tier value ladder" |
-| 8 | "Create 3-channel distribution strategy" |
-| 9 | "Build 30-day launch sequence with conversion math" |
-| 10 | "Transform validated offer into product blueprint" |
+| 3 | "Generate positioning sentence variations" |
+| 4 | "Design diagnostic offer with deliverables + pricing" |
+| 5 | "Create 3-channel distribution strategy" |
+| 6 | "Map all surfaces, rank by reach × resonance" |
+| 7 | "Build click-by-click activation SOP per surface" |
+| 8 | "Log response, extract intelligence, update typology" |
 
 ---
 
