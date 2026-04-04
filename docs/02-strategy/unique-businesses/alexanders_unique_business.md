@@ -120,6 +120,25 @@ The exact order artifacts get produced — each one is the seed for the next:
 
 > The production sequence IS the methodology. When you run this for a client, you take them through the same sequence.
 
+### Two-Path Architecture (April 4, 2026)
+
+The artifacts above feed into a **two-path execution structure:**
+
+```
+                        UNIQUENESS + SHADOW
+                              │
+                  ┌───────────┴───────────┐
+           PATH A: PRODUCT          PATH B: BUSINESS
+           (Build the thing)        (Sell the thing)
+```
+
+- **Path B** (Business Creation): Uniqueness → Shadow → Business Artifacts → Marketing → Sales → Distribution → Surface Map → Broadcast → Tracking
+- **Path A** (Product Creation): UX → UI → Software Architecture → Brand — **starts in parallel from Path B step 4**
+
+**The Uniqueness Shadow (step 1b):** The inverted gift — the blind spot that keeps them stuck. Discovered through Ogi's sessions: seeing someone's shadow IS part of seeing their genius. The shadow shows where the gift over-applies, under-applies, or blocks itself.
+
+> Full structure with playbook references: [Unique Business Playbook — Part IV: Master Execution Sequence](../../03-playbooks/unique_business_playbook.md#the-master-execution-sequence--two-path-architecture-april-4-2026)
+
 ---
 
 ## PMF Hypothesis

@@ -84,25 +84,41 @@ docs/
 
 ## 📘 03-playbooks (Methodology)
 
-*How we build things — reusable across all modules.*
+*How we build things. Two paths from uniqueness: Product (build the thing) and Business (sell the thing).*
+
+**Path B: Business Creation** (Uniqueness → Shadow → Artifacts → Marketing → Sales → Distribution → Surface Map → Broadcast → Tracking)
 
 | Doc | Purpose |
 |-----|---------|
-| [product_playbook.md](./03-playbooks/product_playbook.md) | Master Result → Screens → Content |
-| [ui_playbook.md](./03-playbooks/ui_playbook.md) | Design tokens, components, patterns |
-| [ux_playbook.md](./03-playbooks/ux_playbook.md) | UX principles & flows |
+| [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | **Master playbook** — Two-Path Architecture, 10+ principles, session-tested |
+| [unique_business_creation_playbook.md](./03-playbooks/unique_business_creation_playbook.md) | Canvas artifact creation (Tribe, Promise, Offer, Value Ladder, etc.) |
 | [marketing_playbook.md](./03-playbooks/marketing_playbook.md) | First principles, 7 centers, copy |
-| [distribution_playbook.md](./03-playbooks/distribution_playbook.md) | Channels, growth loops, launch |
+| [godfather_playbook.md](./03-playbooks/godfather_playbook.md) | Sales conversion — Godfather Offer Probe |
+| [customer_journey_playbook.md](./03-playbooks/customer_journey_playbook.md) | Gate A → Gate B conversion flow |
+| [distribution_playbook.md](./03-playbooks/distribution_playbook.md) | Philosophy, channels, growth loops |
+| [epicenter_broadcast_playbook.md](./03-playbooks/epicenter_broadcast_playbook.md) | **Tactical execution** — Surface SOP, locked texts, click-by-click |
+| [pain_theory_playbook.md](./03-playbooks/pain_theory_playbook.md) | Pain-point analysis (5-Layer Slicer) |
+
+**Path A: Product Creation** (UX → UI → Software → Brand — starts in parallel from Path B step 4)
+
+| Doc | Purpose |
+|-----|---------|
+| [ux_playbook.md](./03-playbooks/ux_playbook.md) | UX principles & flows |
+| [ui_playbook.md](./03-playbooks/ui_playbook.md) | Design tokens, components, patterns |
 | [software_architecture_playbook.md](./03-playbooks/software_architecture_playbook.md) | Architecture patterns |
-| [integrated_module_playbook.md](./03-playbooks/integrated_module_playbook.md) | Module integration |
-| [holonic_work_playbook.md](./03-playbooks/holonic_work_playbook.md) | Holonic work principles |
-| [pain_theory_playbook.md](./03-playbooks/pain_theory_playbook.md) | Pain-point analysis |
-| [telemetry_playbook.md](./03-playbooks/telemetry_playbook.md) | Analytics & tracking |
+| [product_playbook.md](./03-playbooks/product_playbook.md) | Master Result → Screens → Content |
+| [integrated_product_building_workflow.md](./03-playbooks/integrated_product_building_workflow.md) | **Meta SOP** — orchestrates Path A |
 | [design_framework.md](./03-playbooks/design_framework.md) | Design framework |
+
+**Support Playbooks**
+
+| Doc | Purpose |
+|-----|---------|
+| [holonic_work_playbook.md](./03-playbooks/holonic_work_playbook.md) | Holonic work principles |
+| [telemetry_playbook.md](./03-playbooks/telemetry_playbook.md) | Analytics & tracking |
 | [mission_control.md](./03-playbooks/mission_control.md) | Mission control dashboard |
 | [natural_work_rhythms.md](./03-playbooks/natural_work_rhythms.md) | Work rhythm patterns |
 | [notebooklm_workflow.md](./03-playbooks/notebooklm_workflow.md) | NotebookLM workflow |
-| [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | Unique Business methodology v2.0 — session-tested, 10+ named principles |
 
 ---
 
@@ -234,6 +250,7 @@ docs/
 | [presenter_notes_2026_01_24.md](./09-logs/presenter_notes_2026_01_24.md) | Presenter notes |
 | [today_brief.md](./09-logs/today_brief.md) | Today's brief |
 | [mission_updates.md](./09-logs/mission_updates.md) | Mission updates |
+| [broadcast_tracker.md](./09-logs/broadcast_tracker.md) | **Living data** — Epicenter broadcast log, field refraction intelligence (D68) |
 
 ---
 
