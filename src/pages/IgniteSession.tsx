@@ -17,7 +17,7 @@ import BoldText from "@/components/BoldText";
 const FALLBACK_TESTIMONIALS: TestimonialData[] = [
   {
     shortQuote: "I was applying force, but the vector was wrong. Everything clicks.",
-    fullQuote: "I was applying force—but the vector was wrong. Myth was the missing piece. I knew nothing about this. Everything starts aligning. This is like a ten, nine-plus. There's nothing here that doesn't click. Absolutely everything clicks. I feel enormous value.",
+    fullQuote: "I was applying force, but the vector was wrong. The structure you developed is genius. I was 100% inside your structure and never felt the need to change the methodology. You stepped me right into a zone of new knowledge. Myth was the missing piece. I knew nothing about this. Everything starts aligning. This is like a ten, nine-plus. There's nothing here that doesn't click. Absolutely everything clicks. I feel enormous value. I'm ready to call you every other day and keep working. Testimonials, surveys — in whatever form you need, I'll do it all.",
     name: "Sergey Jay Makarov",
     before: "Serial Founder & System Architect",
     after: "shows tech leaders how Pull + AI replaces the 80-hour push — same results, half the force.",
