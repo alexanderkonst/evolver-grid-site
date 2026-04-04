@@ -161,11 +161,17 @@ Would love to see what people get.
 
 Keep 2-3 of these in your back pocket. When someone asks "show me it works" — don't explain. **Show the delta:**
 
-| Founder | Before | After |
-|---------|--------|-------|
-| **Oyi** | "I do facilitation, coaching, consulting... it's hard to explain" | "I help creative founders build their first profitable business in 6 weeks" → designed his Mirror Session → booking clients |
-| **Sergey** | "I have 20 years of corporate experience but can't package it" | "I help mid-career professionals escape the golden cage and build their own thing" → clear offer, clear tribe, clear language |
-| **Alexa** | "I'm good at many things but none of them define me" | "I help women reclaim their energy after burnout through embodied leadership" → first paid session within 2 weeks |
+- **Oyi** teaches sovereignty through storytelling — helping creative builders reclaim their inner authority.
+- **Sergey** shows tech leaders how Pull + AI replaces the 80-hour push — same results, half the force.
+- **Sandra** crystallizes your mission into one sentence — so your team, your board, and your grandmother all see it.
+- **Alexa** maps invisible architecture — the hidden pattern connecting everything you do into one product.
+- **Karime** transmits a frequency of unconditional love — people arrive carrying weight, they leave alleviated.
+
+*Each came in unable to explain what they do. Each left with a named gift, a one-sentence offer, and a clear path forward.*
+
+**One-sentence proof of concept (USE THIS):**
+
+> "Five founders came in unable to explain what they do. Each left with a named gift, a one-sentence offer, and a clear path to their first paying client. Oyi's teaching sovereignty through storytelling. Sergey's showing tech leaders how Pull + AI = breakthrough. Sandra's crystallizing missions for conscious founders. Alexa's mapping invisible architecture. Karime's transmitting love that alleviates what grips you. All of them were hiding the gift behind the mechanism — we named the gift, and the business organized itself around it."
 
 ### The Verbal Guarantee (MEMORIZE THIS)
 
@@ -182,7 +188,7 @@ This one sentence neutralizes:
 
 | Step | They say | You say |
 |------|----------|---------|
-| 1 | "Show me it works" / "Do you have examples?" | `Last session: founder came in unable to explain what he does. Left with a one-sentence business, a concrete offer, and his first client conversation booked — all in 90 minutes.` |
+| 1 | "Show me it works" / "Do you have examples?" | `Five founders, five different gifts. A medicine man who was scattered across 6 projects — now teaching sovereignty through storytelling, clients booking. A tech leader pushing 80-hour weeks — now showing teams how Pull + AI = breakthrough. A channeler who couldn't crystallize her mission — now doing Mission Crystallization Sessions. An architect who hid his sight behind code — now getting paid for mapping the invisible. A healer who called her gift "nothing special" — now named, claimed, transmitting. All in 90-minute sessions.` |
 | 2 | They engage / ask more | `We don't leave until you have something you can send the same day. If that doesn't happen, you don't pay.` |
 | 3 | Still cautious | `I get it. Most people who do what I do talk about concepts. I build the thing live with you. You'll hold it in your hands when we're done.` |
 | 4 | Ready | Send /ignite link or book directly |

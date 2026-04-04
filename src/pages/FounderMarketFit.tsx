@@ -330,6 +330,35 @@ const FounderMarketFit = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="fmf-founder-proof">
+                        <h3 className="fmf-h3">Founders who've done this</h3>
+                        <div className="fmf-proof-list">
+                            <div className="fmf-proof-item">
+                                <span className="fmf-proof-name">Oyi</span>
+                                <p className="fmf-proof-line">teaches sovereignty through storytelling — helping creative builders reclaim their inner authority.</p>
+                            </div>
+                            <div className="fmf-proof-item">
+                                <span className="fmf-proof-name">Sergey</span>
+                                <p className="fmf-proof-line">shows tech leaders how Pull + AI replaces the 80-hour push — same results, half the force.</p>
+                            </div>
+                            <div className="fmf-proof-item">
+                                <span className="fmf-proof-name">Sandra</span>
+                                <p className="fmf-proof-line">crystallizes your mission into one sentence — so your team, your board, and your grandmother all see it.</p>
+                            </div>
+                            <div className="fmf-proof-item">
+                                <span className="fmf-proof-name">Alexa</span>
+                                <p className="fmf-proof-line">maps invisible architecture — the hidden pattern connecting everything you do into one product.</p>
+                            </div>
+                            <div className="fmf-proof-item">
+                                <span className="fmf-proof-name">Karime</span>
+                                <p className="fmf-proof-line">transmits a frequency of unconditional love — people arrive carrying weight, they leave alleviated.</p>
+                            </div>
+                        </div>
+                        <p className="fmf-proof-footnote">
+                            Each came in unable to explain what they do. Each left with a named gift, a one-sentence offer, and a clear path forward.
+                        </p>
+                    </div>
                 </div>
             </section>
 

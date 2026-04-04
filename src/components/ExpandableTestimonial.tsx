@@ -7,6 +7,8 @@ export interface TestimonialData {
   name: string;
   /** Subtitle shown above quote on Ignite page */
   before?: string;
+  /** One-sentence transformation shown below name */
+  after?: string;
 }
 
 /**
@@ -68,6 +70,15 @@ export const ExpandableTestimonial = ({
           } ${isLight ? "text-[#8460ea]/40" : "text-white/20"}`}
         />
       </div>
+
+      {/* After line — one-sentence transformation */}
+      {t.after && (
+        <p className={`text-[11px] mt-1 leading-relaxed ${
+          isLight ? "text-[#2c3150]/40" : "text-white/35"
+        }`}>
+          Now: {t.after}
+        </p>
+      )}
 
       {/* Full quote — expandable */}
       <div

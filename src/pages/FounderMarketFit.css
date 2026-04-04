@@ -470,6 +470,61 @@
     border: 1px solid rgba(124, 106, 239, 0.15);
 }
 
+/* === FOUNDER PROOF === */
+.fmf-founder-proof {
+    margin-top: 56px;
+    padding-top: 48px;
+    border-top: 1px solid var(--fmf-border);
+}
+
+.fmf-proof-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fmf-proof-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 14px 20px;
+    background: var(--fmf-bg-card);
+    border: 1px solid var(--fmf-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.fmf-proof-item:hover {
+    border-color: rgba(124, 106, 239, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fmf-proof-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--fmf-accent-light);
+    flex-shrink: 0;
+    min-width: 70px;
+}
+
+.fmf-proof-line {
+    font-size: 0.92rem;
+    color: var(--fmf-text-dim);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.fmf-proof-footnote {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--fmf-text-muted);
+    font-style: italic;
+    max-width: 500px;
+    margin-inline: auto;
+}
+
 /* === REVELATION === */
 .fmf-fmf-reveal {
     text-align: center;
