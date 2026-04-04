@@ -113,6 +113,7 @@ const LandingPage = () => {
                     shortQuote: "Wow, wow, wow, wow, wow. My guides, they like you.",
                     fullQuote: "Wow, wow, wow, wow, wow. I never had the words to say that ... I've been working on this since 2011 - change my age, make small edits. You've changed the dynamic ... This is a major breakthrough ... I physically feel chills, and I feel unfolding ... I see this as life changing.",
                     name: "Oyi Sun, Medicine Man, Ye Ming Zhu keeper",
+                    after: "teaches sovereignty through storytelling — helping creative builders reclaim their inner authority.",
                   },
                 ] as import("@/components/ExpandableTestimonial").TestimonialData[]).map((t, i) => (
                   <ExpandableTestimonial key={i} t={t} variant="light" />
