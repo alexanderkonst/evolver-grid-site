@@ -1,9 +1,9 @@
 # Epicenter Broadcast Playbook (Domain 65)
 
 > *The founder's execution engine for coherent radiation.*
-> *April 4, 2026 — Restructured from Outreach Templates v2.3*
+> *April 6, 2026 — v3.1: Locked Tuning Fork texts + Sub-Tribe strategy + Content Strategy*
 > *© 2026 Alexander Konstantinov · For personal use*
-> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence)*
+> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence) + Domain 69 (Crystallization Antenna)*
 
 > **Purpose:** This is the EXECUTION document. Not theory (that's [Distribution Playbook](./distribution_playbook.md)). Not methodology (that's [Unique Business Playbook](./unique_business_playbook.md)). This is: **what to send, where to send it, how to send it — click by click — and what to learn from every response.**
 
@@ -372,6 +372,97 @@ If you take it — I'd genuinely love to hear what came up.
 **Critical:** No CTA. No "check it out." No "let me know." The URL is the gift. If they click, they're already in the funnel — because your center pulled, not because you pushed.
 
 **Ignition Session activation:** Every client writes their own version on session day. *"Your session is done. Your business is on one page. Now write your message — and send it to 50 people."*
+
+### 🔒 LOCKED MASTER TUNING FORK TEXTS (April 6, 2026)
+
+> **These are the final, frozen master copies.** All surface posts, DMs, and derivatives are compressions of these.
+
+**🇷🇺 Russian (for Russian-speaking surfaces):**
+
+```
+Я наконец сфокусировался на том, чем хочу заниматься в жизни.
+
+Помогать людям разглядеть свои самые яркие таланты и превращать их в бизнес.
+
+Занимаюсь этим профессионально уже 6 лет, но только сейчас по-настоящему упаковал.
+
+В моем понимании бизнес растёт из самопознания — поэтому я сделал инструмент, который за пару минут раскрывает главный талант человека.
+
+www.aleksandrkonstantinov.com
+```
+
+**🇬🇧 English (for English-speaking surfaces):**
+
+```
+I finally got clear on what I want to do with my life.
+
+Help people see their brightest talents — and turn them into a business.
+
+I've been doing this professionally for 6 years, but only now truly packaged it.
+
+The way I see it, business grows from self-knowledge — so I built a tool that reveals your #1 talent in a couple of minutes.
+
+→ aleksandrkonstantinov.com
+```
+
+---
+
+## §3b. SUB-TRIBE MESSAGING (April 6, 2026 — Karime session)
+
+> **Insight:** Not all outreach is broadcast. There are sub-tribes that need different framing. Broadcasts radiate to new people. These messages equip people who already want to radiate FOR you.
+
+### Message Type: Funnel Alignment (for The Originals + OTRs)
+
+> **Who:** People who already believe in the work. Already refer you naturally.
+> **Purpose:** Give them the URL so their natural impulse has a landing spot.
+> **This is NOT a broadcast — it's enablement.**
+
+```
+[Name] —
+
+I finally built the landing page for everything I do.
+
+Whenever you feel the urge to recommend this work to someone —
+this is the link you can send:
+
+aleksandrkonstantinov.com
+
+Thank you for being an original 🙏
+```
+
+### Message Type: Referral Language (for Karime and close allies)
+
+> **Who:** People who actively refer others to you.
+> **Purpose:** Give them words they can use.
+
+```
+[Name] —
+
+If you ever want to refer someone to this work, here's what you can say:
+
+"I know someone who helps people see their brightest talent and turn it into a business. 
+He's been doing it for 6 years and just built a tool that shows you yours in 2 minutes.
+aleksandrkonstantinov.com"
+
+Or just send the link — the site explains itself.
+```
+
+### Message Type: Past ZoG Takers (Video Note)
+
+> **Who:** People who took a Zone of Genius session in the past.
+> **Purpose:** Show them the new tool. Video note = personal warmth.
+> **Format:** Short selfie video (30-60 sec), sent via DM.
+
+**Script for video note:**
+```
+Hey [Name] — remember when we did the Zone of Genius session?
+
+I finally built a tool that does the first part of that instantly —
+shows your #1 talent in about 2 minutes.
+
+I'd love for you to try it and tell me what you get.
+aleksandrkonstantinov.com
+```
 
 ---
 
@@ -790,5 +881,32 @@ it out loud makes it real.
 
 ---
 
-*Epicenter Broadcast Playbook v3.0 — April 4, 2026*
-*Restructured from Outreach Templates. Click-by-click SOP. Field Refraction Intelligence tracking. Domains 65 + 67 + 68.*
+## §10. CONTENT STRATEGY (April 6, 2026)
+
+> **Insight:** You're sitting on a goldmine. Your infographics, tools, and systems ARE the content. The plan is simple.
+
+### The Content Engine
+
+| Step | What | How |
+|------|------|-----|
+| 1 | **Stamp** | Add `aleksandrkonstantinov.com` + your name to each image |
+| 2 | **Link** | Caption connects to: "I help people see their brightest talents and turn them into a business" |
+| 3 | **Post** | 1 image/day across Instagram + LinkedIn |
+
+### Content Source: Feed Channels to AI
+
+**Phase shift idea:** Feed all your existing channels (Telegram, NotebookLM, session transcripts, playbook excerpts) to AI to index, extract, and reformat as content. You already have 69+ domains, 10+ named principles, and hundreds of pages of session-tested insights. The content already exists — it just needs to be reformatted for each surface.
+
+### Content Cadence
+
+| Day | Content Type | Surface |
+|-----|-------------|------|
+| Daily | 1 infographic (stamped) | IG + LinkedIn |
+| 2x/week | Short text post (from §6 viral posts) | LinkedIn + IG |
+| 1x/week | Video note to a specific person | DM |
+| Monthly | Carousel (from §7) | IG |
+
+---
+
+*Epicenter Broadcast Playbook v3.1 — April 6, 2026*
+*Locked Tuning Fork texts. Sub-Tribe messaging. Content strategy. Domains 65 + 67 + 68 + 69.*

@@ -16,10 +16,10 @@
 | 4 | Andrey Kamyshan | Telegram DM | Apr 3, 8:01 PM | Epicenter DM (RU) | Apr 3: raised "обман" concern. Apr 4: follow-up — psychologists confirm AI trust > human trust; "бесплатное = сбор данных или скам" | "How does this work?" (UR-first) | Domain 67 (consent of seeing). "Free" = data collection frame. Psychologists losing trust to ChatGPT — adjacent market signal | In Conversation |
 | 5 | Max Rodin | Telegram DM | Apr 3, 8:12 PM | Epicenter DM (RU, personalized) | "Я потыкал — интересно, поварю еще!" | "Let me sit with it" (Integrative) | Tool creates contemplative pause — feature not bug | Responded ✅ |
 | 6 | Erik Desrosiers | ? | Planned | Peer (AI system builder) | — | — | Peer like Nabadi — building crazy AI system. Start with conversation | Planned |
-| 7 | | | | | | | | |
-| 8 | | | | | | | | |
-| 9 | | | | | | | | |
-| 10 | | | | | | | | |
+| 7 | Kirill | Call | Apr 6, 8:30 PM | Live demo + collaborator | — | — | Proto-licensee. Has delivered ZoG. Show tool live on call. Ask for practitioner feedback | Planned |
+| 8 | Karen | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
+| 9 | Soren | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
+| 10 | Valentin | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
 
 **Status values:** Planned → Sent → Responded → In Conversation → /ignite Sent → Booked → Done
 
@@ -43,6 +43,19 @@
 **Batch 3: Collaborator Conversations**
 8. Devon — ZoG workshop partner. Start with conversation, not broadcast.
 9. Erik Desrosiers — AI system builder peer. Conversation first.
+10. Kirill — Proto-licensee. Live demo on call Apr 6.
+
+**Batch 4: Intuitive Arrivals (Apr 6)**
+11. Karen
+12. Soren
+13. Valentin
+
+**Sub-Tribe Strategy (Apr 6 — Karime unblocked):**
+- **The Originals** — funnel alignment message
+- **Original Truth Rebels / Conscious Renaissance Founders** — funnel link
+- **Aligned Collaborators** — personal invitation
+- **Integral Ecosystem Builders** — peer conversation
+- **Past ZoG takers** — video note
 
 **Next names:** (add as they arrive from the field)
 - 
