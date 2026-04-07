@@ -38,13 +38,14 @@ interface NavItem {
 }
 
 const SPACES: NavItem[] = [
-    {
-        id: "next-move",
-        label: "My Next Move",
-        icon: <Compass className="w-5 h-5" />,
-        path: "/game/next-move",
-        description: "Recommended Action"
-    },
+    // Hidden until built — uncomment to re-enable
+    // {
+    //     id: "next-move",
+    //     label: "My Next Move",
+    //     icon: <Compass className="w-5 h-5" />,
+    //     path: "/game/next-move",
+    //     description: "Recommended Action"
+    // },
     {
         id: "profile",
         label: "Profile",

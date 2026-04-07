@@ -27,12 +27,13 @@ interface SpaceSections {
 }
 
 const SPACE_SECTIONS: SpaceSections = {
-    "next-move": {
-        title: "My Next Move",
-        sections: [
-            { id: "recommended", label: "Recommended Action", path: "/game/next-move" },
-        ],
-    },
+    // Hidden until built — uncomment to re-enable
+    // "next-move": {
+    //     title: "My Next Move",
+    //     sections: [
+    //         { id: "recommended", label: "Recommended Action", path: "/game/next-move" },
+    //     ],
+    // },
     // ME Space (was Profile/GROW)
     grow: {
         title: "ME",
