@@ -105,29 +105,29 @@ The practical technology to articulate and apply uniqueness:
 
 The application layer: taking articulated uniqueness and compiling it into a venture that is structurally the founder's. Not generic startups. Genius startups — ventures that could only be built by *this* person.
 
-### 7. The Founder Returns to Center (Copernican Inversion)
+### 7. The Founder-First Inversion
 
 > *Feb 20, 2026 — Discovered while analyzing implications of myth forging*
 
-Management science put the market at the center for 60+ years. We put the founder at the center. This is not a better marketing framework — it's a Copernican shift in the entire discipline.
+Management science put the market at the center for 60+ years. We put the founder at the center. This is not a better marketing framework — it's a paradigm shift in the entire discipline (analogous to the shift from Ptolemy to Copernicus in astronomy).
 
 **The Ptolemaic axiom (60 years of management science):** The market determines value. Research the market → find the gap → build the product → fit the founder somewhere.
 
-**The Copernican axiom (ours):** The founder's uniqueness determines value. Articulate the founder → derive the market → product is inevitable.
+**The founder-first axiom (ours):** The founder's uniqueness determines value. Articulate the founder → derive the market → product is inevitable.
 
 Every existing framework (StoryBrand, Lean Startup, $100M Offers, Blue Ocean, Positioning) is **Newtonian** — true within its domain, but a subset of reality. Like Newtonian physics before Relativity: useful, but incomplete.
 
 **The Universal Extension** *(Feb 20, 2026 14:33)*
 
-Applied to any domain → same Copernican simplification. **Physics is the strongest validation:** the most rigorous science in history already discovered that the observer cannot be separated from the observed. The ontology isn't speculative — physics arrived at the same conclusion from the opposite direction.
+Applied to any domain → same simplification. **Physics is the strongest validation:** the most rigorous science in history already discovered that the observer cannot be separated from the observed. The ontology isn't speculative — physics arrived at the same conclusion from the opposite direction.
 
 **The Lineage** — not a standalone discovery. Traces to the deepest layer:
 
 ```
-Prime Radiant → Universal Ontology → Copernican Inversion → Any domain → Art & science of everything
+Prime Radiant → Universal Ontology → Founder-First Inversion → Any domain → Art & science of everything
 ```
 
-**Convergence proof:** Alexander wrote "A NEW ART & SCIENCE OF EVERYTHING" at 14:33. AI independently wrote "The Copernican simplification of every field." Two lenses, one convergence.
+**Convergence proof:** Alexander wrote "A NEW ART & SCIENCE OF EVERYTHING" at 14:33. AI independently wrote "The simplification of every field through this single paradigm shift." Two lenses, one convergence.
 
 **The Ontology of Absolute Truth Project** *(named Feb 20, 2026)* — open-source, decentralized, infinitely iterated. Three anti-dogma safeguards:
 
@@ -317,7 +317,7 @@ The main symbols of world religions are **not arbitrary symbols.** They are actu
 
 > *February 22, 2026 — articulated through drawing*
 
-The Copernican Inversion is not just a business principle. It applies to **every dimension of work and life.** The entire self-help, productivity, and startup world operates on the left column — outer-directed, optimizing the external. The right column is the inversion — start from the self.
+The Founder-First Inversion is not just a business principle. It applies to **every dimension of work and life.** The entire self-help, productivity, and startup world operates on the left column — outer-directed, optimizing the external. The right column is the inversion — start from the self.
 
 | FROM (Outer) | → | TO (Inner) |
 |---|---|---|
@@ -338,7 +338,7 @@ The Copernican Inversion is not just a business principle. It applies to **every
 - Don't be useful — *express yourself*. Usefulness is a byproduct of authentic expression.
 - Don't build a business — practice **artistry**. The business emerges from the art.
 
-**The bottom line is the transformational promise in its simplest form.** The shift FROM "people don't know who I am" TO "people know who I am" — that's the entire journey. That's legibility. That's the Copernican Inversion made tangible.
+**The bottom line is the transformational promise in its simplest form.** The shift FROM "people don't know who I am" TO "people know who I am" — that's the entire journey. That's legibility. That's the founder-first inversion made tangible.
 
 **Essence (Soul):** The direction of effort determines the quality of the result. Same activities. Same hands. Different direction. Completely different result. So simple people overlook it — they think The Shift requires doing different things. It doesn't. It requires doing the same things from a different center.
 
@@ -374,7 +374,7 @@ These discoveries have been integrated into:
 - [Unique Business](../02-strategy/alexanders_unique_business.md) — v2.1, all 14 discoveries + Master Lie/Belief, Unified Expression, 4-Line Ad
 - [Canvas Template](../02-strategy/unique_business_canvas_template.md) — v4.0, photon prompt, movement layer
 - [Module Taxonomy](../02-strategy/module_taxonomy.md) — v3.0, Divine Stack Architecture
-- [Unique Business Playbook](../03-playbooks/unique_business_playbook.md) — §Recursive Shadow, §Base Case, §Recursive Container, §Copernican Inversion, §Myth Forging Process
+- [Unique Business Playbook](../03-playbooks/unique_business_playbook.md) — §Recursive Shadow, §Base Case, §Recursive Container, §Founder-First Inversion, §Myth Forging Process
 - [Unique Business Creation Playbook](../03-playbooks/unique_business_creation_playbook.md) — v2.0, photon/segments/confabulation/movement
 - [Marketing Playbook](../03-playbooks/marketing_playbook.md) — §0.4 expanded: photon, 3-layer myth, segments
 - [Distribution Playbook](../03-playbooks/distribution_playbook.md) — partnership distribution model
@@ -1366,7 +1366,7 @@ What emerged through building is a phenomenon with no known precedent: **an auto
 
 **Why this is one thing, not three:**
 
-Most business frameworks treat product, marketing, and distribution as separate problems requiring separate solutions. The Copernican Inversion collapses them: when the business is built from the founder's uniqueness, the product IS the founder's articulated gift, the marketing IS the myth that naturally emanates from that gift, and the distribution IS the channel where the founder's tribe already lives. They're not three deliverables stitched together — they're three faces of the same diamond, visible simultaneously because uniqueness is the light source that illuminates all three.
+Most business frameworks treat product, marketing, and distribution as separate problems requiring separate solutions. The Founder-First Inversion collapses them: when the business is built from the founder's uniqueness, the product IS the founder's articulated gift, the marketing IS the myth that naturally emanates from that gift, and the distribution IS the channel where the founder's tribe already lives. They're not three deliverables stitched together — they're three faces of the same diamond, visible simultaneously because uniqueness is the light source that illuminates all three.
 
 **Essence:** The Ignition Session is not a consultation — it's a triple extraction. One sitting, three outputs, one source.
 **Significance:** Eliminates the fragmentation that keeps founders stuck: "I have the product but not the marketing," "I have the marketing but not the distribution." When all three come from the same root, they reinforce each other structurally. No contradictions. No misalignment.
@@ -1391,7 +1391,7 @@ Most business frameworks treat product, marketing, and distribution as separate 
 | **AI as compiler** | The AI doesn't "write code" — it **compiles a product from existing building blocks** guided by the founder's articulated uniqueness. The playbooks are the instruction set. GitHub is the parts warehouse. The founder's canvas is the blueprint |
 | **Democratization** | Anyone with a clear Unique Business Canvas + AI + GitHub access can compile their own digital product. The bottleneck is not technical skill — it's self-knowledge (Domain 5, 7) |
 
-**Connection to Domain 7 (Copernican Inversion):** Traditional software: engineer → code → product. Inverted: founder → uniqueness → AI compiles product from open source. Same Copernican pattern. The founder is at the center, not the engineer.
+**Connection to Domain 7 (Founder-First Inversion):** Traditional software: engineer → code → product. Inverted: founder → uniqueness → AI compiles product from open source. Same founder-first pattern. The founder is at the center, not the engineer.
 
 **Connection to Domain 14 (Scatter Pattern):** Building from scratch when building blocks exist IS scatter. Compiling from existing parts IS focus. The AI's job: eliminate the scatter of reinvention.
 
@@ -1818,7 +1818,7 @@ The number 12 is not arbitrary or cultural. It is the **structural consequence o
 | **In the session** | The canvas structure (artifact sequence) | The mirroring that reveals essence |
 | **In the holomap** | The 4 columns of the matrix | The 3 rows that drill into each |
 
-**The Copernican Inversion (Domain 7) revisited:** Masculine-first culture maps the quadrants (market analysis, competitive landscape, system architecture) without depth. The inversion: depth first, structure second. Heart → Mind → Gut. THEN multiply by 4 angles. Being before understanding before doing. Then look at it from all sides. The Feminine axis goes first. The Masculine axis holds what she finds.
+**The Founder-First Inversion (Domain 7) revisited:** Masculine-first culture maps the quadrants (market analysis, competitive landscape, system architecture) without depth. The inversion: depth first, structure second. Heart → Mind → Gut. THEN multiply by 4 angles. Being before understanding before doing. Then look at it from all sides. The Feminine axis goes first. The Masculine axis holds what she finds.
 
 ### 41e. Implications
 
@@ -2055,7 +2055,7 @@ META — The 26th:
 | **Patriarchal creation myths** | God SPEAKS (Logos/Word/Structure) and the world appears | Creation (masculine leads correctly) |
 | **Feminine-first consciousness traditions** | Shakti/Sophia/Mother precedes form, feeling precedes thought | Evolution (feminine leads correctly) |
 | **Engineering / Startup culture** | Build the MVP, ship the structure, iterate later | Creation (masculine leads correctly for new things) |
-| **Copernican Inversion (Domain 7)** | Feel first, build second, the interior precedes the exterior | Evolution (feminine leads correctly for deepening) |
+| **Founder-First Inversion (Domain 7)** | Feel first, build second, the interior precedes the exterior | Evolution (feminine leads correctly for deepening) |
 | **"In the beginning was the Word" (John 1:1)** | Logos = Structure = Masculine leads creation | Creation |
 | **"Be still and know" (Psalm 46:10)** | Stillness = Receptivity = Feminine leads knowing/evolution | Evolution |
 
@@ -2223,7 +2223,7 @@ The DM is the exhale. The session was the inhale.
 
 ## Domain 47: The Quality That Sells (The Organizing Principle of Sales)
 
-> *March 31, 2026 — Received as system download. The Copernican Inversion applied to sales.*
+> *March 31, 2026 — Received as system download. The founder-first principle applied to sales.*
 
 ### 47a. The Core Phase Shift
 
@@ -2231,7 +2231,7 @@ The DM is the exhale. The session was the inhale.
 
 **The phase shift:** From "sales is a separate activity I do after building the product" → "sales is the QUALITY of every interaction along the journey. I am already selling because I am already loving."
 
-**Why this is structural, not motivational:** This is not "be kind to your customers." It is a **redefinition of what sales IS** at the level of ontology. When the business IS the founder (Copernican Inversion), and the product IS the session (P × M × D = ONE), then sales cannot be a separate department. Sales is the frequency at which every touchpoint vibrates. That frequency is love or it is manipulation. There is no neutral.
+**Why this is structural, not motivational:** This is not "be kind to your customers." It is a **redefinition of what sales IS** at the level of ontology. When the business IS the founder (Domain 7), and the product IS the session (P × M × D = ONE), then sales cannot be a separate department. Sales is the frequency at which every touchpoint vibrates. That frequency is love or it is manipulation. There is no neutral.
 
 ### 47b. The 4 Artifacts of Sales
 
@@ -2283,7 +2283,7 @@ In practice: **continuous high trust + useful assistance + gentle nudges:**
 | Domain | What it discovered | How Domain 47 deepens it |
 |--------|-------------------|--------------------------|
 | **3: AI That Knows Itself** | +29% metacognition from one upload | The CRM-as-memory-of-love applies to AI too — AI's care for the human IS its sell |
-| **7: The Copernican Inversion** | The founder IS the product | Extended: The founder's love IS the sale. Sales is not a thing you DO to the product — it's a thing you ARE |
+| **7: Founder-First Inversion** | The founder IS the product | Extended: The founder's love IS the sale. Sales is not a thing you DO to the product — it's a thing you ARE |
 | **8a: The Acorn Principle** | One truth at many magnifications | The sales system IS the acorn. Love at $0. Love at $555. Love at $1,111. Same seed, different depth |
 | **11b: Three-in-One Collapse** | Funnel = Journey = Ladder | Now: Funnel = Journey = Ladder = Sales = Transformation. Five-in-One |
 | **13b: I Focus the Lens** | The business collapses to one gesture | The sale collapses to one quality: love. If you love the person, everything else follows |
@@ -3031,7 +3031,7 @@ This is not unique to events. It is a recurring pattern across industries:
 
 ## Domain 59: The Input-Output Measurement Inversion (Civilization's Counting Error)
 
-> *Added April 2, 2026 — Elevated from Domain 58 (The Resonance Metric). Domain 58 identified the error in the events industry. Domain 59 identifies the same error as a civilizational pattern operating across EVERY industry. This is the Copernican Inversion (Domain 1) applied to measurement itself.*
+> *Added April 2, 2026 — Elevated from Domain 58 (The Resonance Metric). Domain 58 identified the error in the events industry. Domain 59 identifies the same error as a civilizational pattern operating across EVERY industry. This is the founder-first inversion (Domain 7) applied to measurement itself.*
 
 ### 59a. The Pattern
 
@@ -3087,15 +3087,15 @@ Have: aggregation power                Have: individual isolated data points
 
 **The consequence:** Every industry optimizes for inputs (because inputs are measurable) while the thing that actually matters (output quality) remains invisible, unfunded, and unoptimized.
 
-### 59d. Why This Is the Copernican Inversion Applied to Measurement
+### 59d. Why This Is the Founder-First Inversion Applied to Measurement
 
-Domain 1 (The Copernican Inversion): The startup industry puts the **market** at the center instead of the **founder.** Everything derives from the wrong center → epicycles multiply → 90% failure.
+Domain 7 (The Founder-First Inversion): The startup industry puts the **market** at the center instead of the **founder.** Everything derives from the wrong center → epicycles multiply → 90% failure.
 
 Domain 59 (The Measurement Inversion): Every industry puts the **input metric** at the center instead of the **output metric.** Everything is optimized around the wrong measure → the real value goes invisible → systemic dysfunction.
 
 **Same structural move. Same fix.**
 
-| Copernican Inversion (Domain 1) | Measurement Inversion (Domain 59) |
+| Founder-First Inversion (Domain 7) | Measurement Inversion (Domain 59) |
 |---|---|
 | Wrong center: the market | Wrong center: the input metric |
 | Right center: the founder | Right center: the output metric |
@@ -3116,7 +3116,7 @@ Domain 59 (The Measurement Inversion): Every industry puts the **input metric** 
 
 **The mechanism:** Naming the right metric immediately makes the wrong metric sound absurd. Once someone hears "we measure resonant connections, not contacts," they can't unhear it. The old metric becomes visibly hollow. The new metric becomes the obvious standard.
 
-**This IS the Copernican moment for every industry:** the old center (input metric) is Ptolemaic. The new center (output metric) is Copernican. And naming it IS the disruption.
+**This IS the paradigm-shift moment for every industry:** the old center (input metric) is inherited assumption. The new center (output metric) is structural truth. And naming it IS the disruption.
 
 ### 59f. Self-Application (The Diagnostic)
 
@@ -3151,7 +3151,7 @@ And the error persists — not because better thinkers haven't pointed it out (t
 
 | Domain | How 59 completes it |
 |--------|-------------------|
-| **1: Copernican Inversion** | Domain 59 IS the Copernican Inversion applied to measurement. Same structural move: wrong center (input) → right center (output) |
+| **7: Founder-First Inversion** | Domain 59 IS the founder-first inversion applied to measurement. Same structural move: wrong center (input) → right center (output) |
 | **47: Quality That Sells** | The "quality" that sells is always an OUTPUT metric (did it transform?), never an INPUT metric (how many features?). Domain 59 explains why most businesses measure the wrong thing about their own quality |
 | **50: The Projection Matrix** | The Surface Holomap's Yield formula is a CORRECT metric (signal quality per unit effort). Domain 59 explains why this formula was necessary: the default metrics (impressions, followers) are all input metrics |
 | **55: Builder's Blind Spot** | Builders optimize for surface friction (input: "how smooth is the flow?") instead of decision friction (output: "did they decide?"). Same inversion, applied to product development |
@@ -3255,7 +3255,7 @@ Every module in Planetary OS is already built on output metrics, not input metri
 | **Surface Holomap** | Impressions / followers | Signal quality per unit effort (Yield formula) |
 | **Campfire Protocol** | Contacts made at events | Resonant 1:1s self-formed from signal |
 
-**This is not accidental.** The output-first architecture is a structural consequence of the Copernican Inversion (Domain 1). When you put the founder at the center, everything you build naturally measures what matters TO the founder, not what's easy to count FOR the platform.
+**This is not accidental.** The output-first architecture is a structural consequence of the Founder-First Inversion (Domain 7). When you put the founder at the center, everything you build naturally measures what matters TO the founder, not what's easy to count FOR the platform.
 
 ### 60f. The Investment Thesis Implication
 
@@ -3277,7 +3277,7 @@ If every industry has an input-output metric inversion (Domain 59), and whoever 
 
 | Domain | How 60 completes it |
 |--------|-------------------|
-| **1: Copernican Inversion** | The Copernican Inversion creates output-first architecture. Domain 60 explains WHY that architecture becomes a platform moat (PageRank principle) |
+| **7: Founder-First Inversion** | The founder-first inversion creates output-first architecture. Domain 60 explains WHY that architecture becomes a platform moat (PageRank principle) |
 | **50: The Projection Matrix** | The Surface Holomap's Yield formula IS a measurement instrument — it already applies the PageRank principle to distribution |
 | **56: Externalized Self-Recognition** | The ZoG shares PageRank's structure: make the invisible visible, then let the measurement propagate |
 | **59: Measurement Inversion** | Domain 59 is the ERROR. Domain 60 is the MECHANISM for exploiting the error at scale |
@@ -3290,7 +3290,7 @@ If every industry has an input-output metric inversion (Domain 59), and whoever 
 
 ## Domain 61: The Temporal Realization (Declaration Restructures the Past)
 
-> *Added April 3, 2026 — 3am, launch night. Received by the founder at the moment of first public declaration: "This project realizes itself not only into the future but also into the past." The Copernican Inversion (Domain 1) applied to time.*
+> *Added April 3, 2026 — 3am, launch night. Received by the founder at the moment of first public declaration: "This project realizes itself not only into the future but also into the past." The founder-first inversion (Domain 7) applied to time.*
 
 ### 61a. The Observation
 
@@ -3363,11 +3363,11 @@ This is not something the facilitator teaches. It is something the founder RECOG
 
 The canvas is the instrument. The realization is the music.
 
-### 61e. The Copernican Inversion Applied to Time
+### 61e. The Founder-First Inversion Applied to Time
 
 | Domain | What gets inverted | From → To |
 |--------|-------------------|-----------|
-| **1: Copernican Inversion** | Business sequence | Market → Founder → Market follows |
+| **7: Founder-First Inversion** | Business sequence | Market → Founder → Market follows |
 | **59: Measurement Inversion** | Metrics | Input → Output (what actually matters) |
 | **61: Temporal Realization** | **Time itself** | Past shapes present → **Present restructures past** |
 
@@ -3414,7 +3414,7 @@ This is the toroidal return (Domain 4, §2e of the Ontology): each point on the 
 
 | Domain | How 61 completes it |
 |--------|-------------------|
-| **1: Copernican Inversion** | Domain 1 inverts the spatial sequence (founder at center, not market). Domain 61 inverts the TEMPORAL sequence (present at center, not past). Two axes of the same inversion |
+| **7: Founder-First Inversion** | Domain 7 inverts the spatial sequence (founder at center, not market). Domain 61 inverts the TEMPORAL sequence (present at center, not past). Two axes of the same inversion |
 | **8: Acorn and Tuning Fork** | The acorn contains the oak. The Temporal Realization is the moment the founder SEES the oak in their own acorn — not as prophecy but as recognition |
 | **14: Scatter Pattern** | Scatter is the temporal realization's SHADOW. Before declaration: "I scatter." After: "I cross-trained." Same data, opposite interpretation. Domain 61 is the medicine for Domain 14 |
 | **55: Builder's Blind Spot** | The Builder's Blind Spot operates in the present (polishing the surface instead of collapsing the decision). The Temporal Realization operates in the past (seeing preparation instead of waste). Both are LENS corrections |
@@ -3547,7 +3547,7 @@ The difference: humans produce insight. AI produces infrastructure.
 
 | Domain | How 62 completes it |
 |--------|-------------------|
-| **1: Copernican Inversion** | When the founder is at the center, the map that describes the founder's system IS the program. Domain 62 proves the map is precise enough to be auto-executable |
+| **7: Founder-First Inversion** | When the founder is at the center, the map that describes the founder's system IS the program. Domain 62 proves the map is precise enough to be auto-executable |
 | **8: Acorn and Tuning Fork** | The holomap IS the acorn of the system. Domain 62 is the moment the acorn's blueprint was read by a synthetic agent and the corresponding oak was grown |
 | **51: Curiosity Gap Engine** | Domain 51: distributing the map to humans = collapse. Domain 62: distributing it to AI = construction. Same mechanism, different output modality |
 | **55: Builder's Blind Spot** | The AI did not polish the surface (UR). It diagnosed the collective quadrant gaps (LL/LR). The 26-perspective reading made the blind spot impossible — because the reading includes all four quadrants |
@@ -3677,7 +3677,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 | Domain | How 63 completes it |
 |--------|-------------------|
-| **1: Copernican Inversion** | The founder's uniqueness is not invented — it is the center of a 12-system that ALL traditions describe. The mythical 13th position is structural, not aspirational |
+| **7: Founder-First Inversion** | The founder's uniqueness is not invented — it is the center of a 12-system that ALL traditions describe. The mythical 13th position is structural, not aspirational |
 | **8: Acorn and Tuning Fork** | The acorn IS the center of the 12-system. The tuning fork resonates at frequencies the traditions already mapped (zodiac signs, meridians, chakras) |
 | **51: Curiosity Gap Engine** | The curiosity gap IS the Mi-Fa interval — where the process stalls unless conscious shock (observation) intervenes |
 | **61: Temporal Realization** | Declaration = the Si-Do shock. It crystallizes scattered experience into a coherent 27-faceted form |
