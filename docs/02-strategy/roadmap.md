@@ -25,7 +25,7 @@
 | W3 | **Infographic series** | B — Content | 🔴 | Resonance Field, Two-Path Architecture, River Canyon — for showing in sessions + social |
 | W4 | **Reach-outs** (Devon, Erik, Karen, Soren, Valentin) | B — Distribution | 🔴 | Intuitive names. Reach out as the field calls them |
 | W5 | **Chris + Patricia** (via Karime) | B — Sales | 🟡 | Awaiting Karime's voice note intros |
-| W6 | **Instagram Creator switch** | B — Distribution | 🔴 | 30 seconds. Unlocks Stories link stickers |
+| W6 | **Instagram bio + first post** | B — Distribution | 🔴 | Creator account confirmed. Bio copy + first post + FB + X copy ready (see artifact) |
 | W7 | **Content cadence start** | B — Content | 🟡 | 1 stamped infographic/day on IG + LinkedIn |
 | W8 | **CRM formalization** | Support | 🟡 | ✅ Master table built (broadcast_tracker.md). All 24 contacts, segments, financials in one table. Next: Notion sync |
 | W9 | **Notion CRM automation** | Support | 🟡 | Create Notion database + API sync script. Goal: voice → AI → markdown → Notion auto-update. 1-2 hrs |
