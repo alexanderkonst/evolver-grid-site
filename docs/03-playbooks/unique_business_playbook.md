@@ -338,6 +338,49 @@ If it's forced, it's push. If it's pulled, it's real. The group gives permission
 
 ---
 
+## Principle 12: The Allegory Translation Protocol
+
+> *"If you strip the context, does the phrase still mean anything? If not, translate it."*
+>
+> *v1.0 · April 7, 2026 — Discovered during Karime's artifact production. The systematic risk of allegory in AI-assisted work.*
+
+During artifact production, the system naturally generates allegories — vivid metaphors that carry enormous emotional charge IN context: "running on fumes," "gives the coat to everyone and stands in the cold," "standing outside her own house." These phrases resonate deeply with the founder because they lived the context. But they carry a **systematic risk:**
+
+1. **AI strips context.** Downstream AI work (copy, landing pages, content) will use the phrase without the story behind it. Stripped of context, "walk into your own house" means nothing.
+2. **Allegories drift.** Each person who encounters the phrase attaches their own meaning. The original energetic truth degrades.
+3. **Copy becomes empty.** A landing page that says "stop running on fumes" sounds like a spa ad, not a precision intervention.
+
+**The protocol — 3 steps:**
+
+```
+STEP 1: ALLEGORY   →  What is the vivid image/metaphor?
+STEP 2: ENERGY     →  What does it ACTUALLY mean? What's the felt truth underneath?
+STEP 3: UNIVERSAL  →  How do you say that to someone with ZERO context and it still lands?
+```
+
+**Example (Karime's artifacts):**
+
+| Allegory | Energy (what it actually means) | Universal Language |
+|----------|-------------------------------|-------------------|
+| "Running on fumes" | Giving from depletion, not abundance. Her body, emotions, and spirit are exhausted from years of tending to others without being tended to | She gives when she has nothing left. She is physically and emotionally depleted from years of over-giving without receiving |
+| "Gives the coat of love to everyone and stands in the cold" | She transmits love, safety, and acceptance to everyone but does not receive care, love, or tending for herself | She pours love into everyone around her and doesn't let anyone pour into her. She tends to everyone and has stopped tending to herself |
+| "Standing outside her own house" | She has built something real — a capacity for healing, for love, for return — but she won't access it for herself. She knows how to hold others but won't let herself be held | She carries a medicine she never takes. She knows how to hold others but won't let herself be held |
+| "Walk into your own house" / "Walking in" | Receiving. Turning the medicine inward. Naming her needs. Creating sacred space for herself. Letting herself be held | She receives what she gives. She names her needs. She creates sacred space for herself. She lets herself be held |
+| "The vessel must be full" | She can only transmit from abundance — depletion weakens the medicine | When she is nourished and tended, her gift flows stronger. When she is depleted, the gift thins. Self-tending is what makes the medicine real |
+
+**When to apply:**
+
+- **Canvas distillations** — must ALWAYS be in universal language. These are the seed for all downstream AI work
+- **Core lines** (Master Lie, Master Belief, one-sentence promise) — universal language only
+- **Full-signal versions** — allegories are WELCOME here. This is where the poetry lives. But it must coexist with a universal language version
+- **Lead magnets and copy** — universal language primary, allegory as ornamentation only
+
+**The rule:** If a phrase requires knowing the founder's story to understand it, it hasn't been translated. Translate it.
+
+> **Why this matters for AI:** LLMs are allegory machines. They generate vivid metaphors that feel profound in the moment but evaporate when reused in a different context. The Allegory Translation Protocol ensures that every artifact has a context-independent version that can survive any number of downstream AI transformations without losing the original signal.
+
+---
+
 ## The Soul-Alignment Test
 
 A tactic is soul-aligned if and only if:
