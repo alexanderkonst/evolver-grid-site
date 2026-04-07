@@ -608,6 +608,50 @@ That's not a label. That's a **lived experience.** Keep that energy in all messa
 
 **Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Naming the unnamed loop is a Tuning Fork moment for them.
 
+##### Adjacent Market B: "Successful People Asking 'Now What?'" (April 6, 2026 — Karime session)
+
+> **Source:** Live conversation with Karime about two of her clients (Chris and Patricia) she can refer. Field-verified, not theoretical.
+
+**Discovery:** The funnel/website speaks **beachhead pain** ("I can't explain what I do, I can't turn my gift into income"). But there's an adjacent market arriving through Karime's ceremonies — people who **don't have that pain** but need the **same product**.
+
+| | **Market A (Beachhead)** | **Market B (Adjacent)** |
+|---|---|---|
+| **Pain** | "I'm more capable than my results show" — money, unnamed gift, results gap | "I have everything — except clarity on what I'm here to do" — meaning, purpose, "how do I use my next 20 years?" |
+| **Entry** | Website/funnel (self-selected through the tool) | Referral from trusted bridge (Karime) → personal conversation → ZoG |
+| **Trust** | Earned through tuning fork text + tool experience | Inherited from Karime (pre-loaded, "trusts me blindly") |
+| **Financial pressure** | Yes — income is part of the pain | No — has resources, time, energy. Pressure is existential |
+| **Website reaction** | "That's me!" → clicks → enters funnel | May be discouraged — "he doesn't have the pain you expressed so dramatically" (Karime) |
+| **Product** | **Same:** Uniqueness → Unique Business Canvas | **Same:** Uniqueness → Unique Business Canvas |
+| **End state** | Business = income vehicle | Business = impact vehicle (but still a business — even nonprofits need healthy revenue models, confirmed by MIT research) |
+
+**Live profiles:**
+
+| Person | Situation | What they need |
+|---|---|---|
+| **Chris** | Post-achievement: wine business sold, kids in university, plenty of time/energy/resources. Built a community of young people since pandemic but doesn't know what to do with it. Came to Karime's ceremony asking "What's my spiritual purpose?" | ZoG → asset mapping across all his resources/communities/consulting → laser focus into one vehicle. "He IS the business. He needs to laser focus." |
+| **Patricia** | Has a coaching business but it's scattered. Published on LinkedIn for 6-7 months, paid a content strategist, got ONE lead that didn't convert. Karime told her: "I don't think you're speaking your language." | Actually closer to beachhead (has the unnamed-gift pain). Needs unique business work to laser-focus her proposition. Arriving through referral instead of funnel — faster path, inherited trust |
+
+**The Adjacent Funnel (Market B entry):**
+
+```
+Karime's ceremony → Purpose question surfaces →
+Karime sends voice note referral →
+Alexander asks 2-3 evaluatory questions (voice note or written, <5 min) →
+ZoG (always the first step with new people) →
+Unique Business Canvas session →
+"Now you have the vehicle for your next 20 years"
+```
+
+**Strategic significance:**
+1. **Same product, different door.** No new offer needed. Just different entry language
+2. **Higher willingness to pay.** Market B has resources
+3. **Karime is a permanent referral source.** She keeps getting people asking the question she can't fully answer — and the answer is Alexander's work
+4. **Karime's role = bridge, not facilitator.** "For me it's getting them to your door. For you, getting them through the door"
+5. **Website as correct repulsion filter.** If Market B people don't connect with the website, that's working as designed. They enter through the referral door, not the funnel door
+6. **Market B framing:** Not "turn your gift into income" but **"channel your resources, energy, and purpose into the vehicle that's been waiting for you"**
+
+> **Key Karime insight (April 6):** She gets a LOT of people who want to receive exactly what Alexander gives. Her ceremonies crack open the purpose question. His work provides the structural answer. This is a **permanent referral pipeline**, not a one-time favor.
+
 ##### CTA Language Shift: Decision Language, Not Curiosity Language
 
 | ❌ Curiosity (old) | ✅ Decision (new) |

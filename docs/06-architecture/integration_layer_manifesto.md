@@ -205,4 +205,57 @@ When one tribe is thriving and measurable, that's proof of elephant.
 - [ ] What's the governance model for the integration layer?
 - [ ] What metrics define "thriving tribe"?
 - [ ] How does profile portability work across platforms?
+- [ ] What's the attribution & licensing protocol for cross-platform modules?
+
+---
+
+## Known Elephant Builders (April 6, 2026)
+
+> **These are the people and projects Alexander has been personally involved with.** Each is building a piece of the same elephant. The integration opportunity is not theoretical — these are real contacts with real codebases.
+
+| Project | Builder(s) | Piece of the Elephant |
+|---|---|---|
+| **Compart** | Nabadi (Jacob Griscom) | Profile-based coordination, human potential OS (closed-source) |
+| **Symbiosis** | Jan Andrea Jamako | Coordination platform — one of the clearest seers of the whole |
+| **Core Nexus** | Adam Apollo | Integral tech coordination |
+| **Gaia Union / Gaia Hub** | Felipe Leal, Silvana Ravine | Global coordination hub |
+| **Holo Movement** | (network) | Movement of movements — needs "Google Maps for the movement" |
+| **Gaia Net Futura** | (network) | Integral coordination network |
+| **White Lotus / Club Dow Universe** | (network) | Global consciousness network |
+| **Pre-Roda** | (network) | Coordination infrastructure |
+| **Planetary OS** | Alexander Konstantinov | Genius discovery, business creation, matchmaking, transformation (open-source) |
+
+**The integrators who saw it clearest:** Alexander Keenan and Jan Andrea (Symbiosis).
+
+### The Modular Open-Source Strategy (from Nabadi conversation, April 6)
+
+> If we had the open-source code of these other platforms, we could just take their modules and see which ones they've developed that we haven't. Instead of making them from scratch, plug them in and focus on the integration layer rather than building particular modules.
+
+**This reframes the build vs. integrate decision:**
+
+```
+Old: Build all modules ourselves → Then try to connect with other platforms
+New: Build our unique modules (ZoG, Canvas, Matchmaking) → Import their modules → Focus on the BASEPLATE
+```
+
+**What Planetary OS uniquely contributes (no one else has built these):**
+- Zone of Genius discovery (81 talents, 4M unique profiles)
+- Unique Business Canvas (myth → tribe → pain → promise → value ladder)
+- AI-powered matchmaking from deep profiles
+
+**What could be imported from ecosystem partners:**
+- Governance frameworks (from platforms that specialize in coordination)
+- Event management (Luma-like systems)
+- Resource mapping (from asset-focused platforms)
+- Community currencies / token systems
+- Group facilitation tools
+
+**Prerequisite:** Open-source code or open APIs from partner platforms.
+
+**Current status:** Nabadi (Compart) = first contact. Currently closed-source. Seed planted.
+
+---
+
+*v1.1 — April 6, 2026*
+*Added: Known Ecosystem Builders, Modular Open-Source Strategy. Nabadi conversation triggered crystallization of integration opportunity.*
 
