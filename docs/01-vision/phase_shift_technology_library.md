@@ -4210,3 +4210,91 @@ The Two-Path Architecture (Build / Sell) is the cable between antenna and TV —
 
 ---
 
+## Domain 70: The Resonance Field (Concentric Circles of Market Coherence)
+
+*April 6, 2026 — Crystallized during Karime conversation about adjacent market referrals*
+
+> *"Markets are not categories. They are concentric circles of coherence around the laser beam of your myth."*
+
+### 70a. The Discovery
+
+While analyzing Karime's referrals (Chris and Patricia), a naming problem surfaced: calling them "Market A" and "Market B" was startup language that didn't capture the actual structure. The real structure is not categorical — it's a **continuous field of resonance** radiating outward from the founder's myth.
+
+The myth IS a laser beam. When that beam hits a person, the degree of coherence between the beam and the person determines how strongly they resonate. This is not a binary (fits / doesn't fit) — it's a continuous gradient from bullseye to periphery to repulsion.
+
+```
+THE RESONANCE FIELD (viewed from above):
+
+         ┌──────── repulsion zone ────────┐
+         │   ┌──── ring 6-7 (distant) ────┐ │
+         │   │  ┌── ring 8-9 (adjacent) ──┐ │ │
+         │   │  │  ┌── BULLSEYE (10) ──┐  │ │ │
+         │   │  │  │                   │  │ │ │
+         │   │  │  │    ◉ THE MYTH     │  │ │ │
+         │   │  │  │   (laser beam)    │  │ │ │
+         │   │  │  └───────────────────┘  │ │ │
+         │   │  └─────────────────────────┘ │ │
+         │   └──────────────────────────────┘ │
+         └────────────────────────────────────┘
+```
+
+### 70b. The Structure
+
+| Zone | Coherence | What happens | Example |
+|------|-----------|-------------|---------|
+| **Bullseye (10)** | Maximum resonance. Person sees the website/myth and says "that's me" | Self-selected entry through the funnel. No explanation needed | The beachhead: "Gifted builders whose results don't match their capability" |
+| **Ring 8-9** | High resonance. The work IS for them but the entry language doesn't fully land | Enter through a different door — referral, personal conversation, different framing. Same product behind the door | Patricia (coaching business, scattered, 1 lead in 6 months) — arrives via Karime |
+| **Ring 6-7** | Moderate resonance. They need the work but don't have the beachhead pain | Enter through trusted bridge + evaluatory questions. Product is the same, framing shifts: "channel your purpose" not "turn your gift into income" | Chris (post-achievement, "what's my spiritual purpose?") |
+| **Ring 1-5** | Low resonance. Might benefit someday but timing isn't right | Not worth pursuing. They'll move toward the center when ready | "Someday" dreamers, comfortable procrastinators |
+| **Repulsion** | The myth actively repels them. This is correct behavior | They self-exclude. The repulsion IS the focus. A laser that covers the whole wall isn't a laser — it's a lamp | Grind addicts, "just need funding" types |
+
+### 70c. Key Principles
+
+1. **Each ring contains multiple segments.** The bullseye has Pivot-Loop Founders, Grinding Coaches, and Caged Professionals. Ring 7 has post-achievement purpose-seekers, conscious nonprofit founders, and "successful but unfulfilled" executives. Different segments, same ring.
+
+2. **The website is calibrated for the bullseye.** Ring 7 people (Chris) feel repulsion from the website — not because the work isn't for them, but because the **entry frequency** is tuned to ring 10. They need a different entry point.
+
+3. **Adjacent rings need different ENTRY FREQUENCIES but the same PRODUCT.** The session room is the same. The door they walk through is different. Bullseye enters through the funnel. Ring 8 enters through referral. Ring 7 enters through a trusted bridge's voice note.
+
+4. **Repulsion is structural, not personal.** The myth MUST polarize. Without repulsion there is no focus. The anti-tribe isn't "bad" — they're outside the field.
+
+5. **The founder's resonance field expands over time.** As testimony accumulates and the product proves itself — the bullseye widens. What was ring 8 becomes ring 9. The field grows concentrically.
+
+6. **Referral bridges are frequency translators.** Karime doesn't change the myth — she translates it for her ring. Her ceremonies create the opening. The founder's work provides the answer. The bridge translates frequency, not message.
+
+### 70d. Why This Replaces "Market A / Market B"
+
+| Old language | New language | Why |
+|---|---|---|
+| "Market A" | "Bullseye" or "Ring 10" | Not a separate market — it's the center of one field |
+| "Market B" | "Ring 7-8" (adjacent) | Not a different market — same field at lower coherence |
+| "Beachhead vs. Adjacent" | "Bullseye vs. Concentric rings" | One field, not two categories |
+| "Different markets, same product" | "Different entry frequencies, same session room" | The product IS the same. Only the door changes |
+
+### 70e. Consequences
+
+| Consequence | What it means |
+|-------------|---------------|
+| **Stop calling them "markets"** | They're rings of resonance in one continuous field |
+| **Each ring has its own entry door** | Bullseye = website/funnel. Ring 8-9 = referral. Ring 7 = trusted bridge + evaluatory questions |
+| **The website is a bullseye calibrator** | If someone doesn't connect with the website, the field is working correctly |
+| **Referral partners are frequency translators** | Karime translates the signal for her ring |
+| **The field expands through proof** | More testimonials = wider bullseye |
+| **Infographic potential: HIGH** | This model is immediately visual. Show in sessions |
+
+### 70f. The Connection Table
+
+| Connected To | How |
+|---|---|
+| **Domain 65: Epicenter Broadcast** | The broadcast IS the laser beam. Domain 70 maps WHERE it lands and at what intensity |
+| **Domain 68: Field Refraction Intelligence** | Every response carries ring-level data. "That's me!" = bullseye. "Interesting but..." = ring 8. "Not for me" = repulsion |
+| **Domain 69: Crystallization Antenna** | The antenna receives the signal. Domain 70 maps the landscape the signal broadcasts INTO |
+| **Tribe (Unique Business)** | Tribe description = bullseye text. Anti-tribe = repulsion zone. Adjacent = ring 7-8 |
+
+### 70g. The One-Sentence Version
+
+> *"Your myth is a laser beam. The bullseye is who screams 'that's me.' The rings are who needs a different door to the same room. The repulsion is the focus itself."*
+
+---
+
+

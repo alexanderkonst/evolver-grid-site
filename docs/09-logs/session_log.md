@@ -3535,3 +3535,46 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 **The exterior octave sequence:**
 1 (Andrey ✅) → 3 (conversations) → 4 (feedback compass) → 7 (first traffic pattern) → 12 (conversion pattern) → 13 (first funnel booking) → 26 (someone shares it) → **27 (a stranger pays $555 = the business is real)**
+
+---
+
+## April 6, 2026 — Planting Seeds (New Moon)
+
+**Context:** Monday, new moon cycle. Harvesting and celebration complete. Setting the stage for the full moon week. Karime session today surfaced adjacent market intelligence. Nabadi conversation crystallized Planetary OS integration vision.
+
+### What Emerged
+
+| Item | Impact |
+|------|--------|
+| **Domain 70: The Resonance Field** | Markets aren't categories — they're concentric circles of coherence around the laser beam of the myth. Bullseye = website converts. Rings 7-8 = referral bridges (Karime). Repulsion = correct behavior (the focus itself) |
+| **Adjacent Ring Discovery (Chris + Patricia)** | Same product, different entry frequency. Post-achievement "Now What?" segment enters through Karime's voice note, not through the website. Website correctly repels ring 7 |
+| **Integral Ecosystem Builder Network** | Nabadi conversation crystallized: 9 known projects building the same elephant (Compart, Symbiosis, Core Nexus, Gaia Union, Holo Movement, etc.). Open-source modular integration = focus on baseplate, not bricks |
+| **Sub-Tribe Messaging** | Locked: Funnel Alignment (Originals), Referral Language (Karime/allies), Video Note (past ZoG takers) |
+| **Locked Tuning Fork Texts** | Master copies frozen in RU + EN. All derivatives compress from these |
+| **Content Strategy Activated** | §10 of playbook: stamp + link + post. 1/day. Feed channels to AI for content extraction |
+| **Karime as Permanent Bridge** | Her ceremonies crack open the purpose question → Alexander's work = structural answer. Not a one-time favor — an architecture |
+| **Tribe Name Evolution** | "Gifted builders who can't name it" → expanded to full signal including fog, scatter, "around the corner," significance |
+
+### Key Decisions
+
+- **Stop saying "Market A / Market B"** — use resonance rings instead
+- **Website = bullseye calibrator.** If someone doesn't connect, the field is working correctly
+- **Referral partners = frequency translators** — Karime translates for her ring
+- **The gear shift to integration (Planetary OS layer) will NOT be driven by mind — by the river + higher guidance**
+- **Infographic series** — Resonance Field, Two-Path Architecture, River Canyon — for sessions + social
+
+### Documents Updated
+
+- `/docs/01-vision/phase_shift_technology_library.md` — Domain 70 (The Resonance Field)
+- `/docs/02-strategy/planetary_os_assembly.md` — Integral Ecosystem Builder Network (Step 12)
+- `/docs/06-architecture/integration_layer_manifesto.md` — Known Elephant Builders + Modular Open-Source Strategy
+- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Adjacent Market B section
+- `/docs/03-playbooks/epicenter_broadcast_playbook.md` — v3.1: Tuning Fork texts, Sub-Tribe messaging, Content Strategy
+- `/docs/09-logs/broadcast_tracker.md` — Nabadi updated, Kirill/Karen/Soren/Valentin added, Karime = ACTIVE BRIDGE, Chris/Patricia as referrals
+- `/docs/02-strategy/roadmap.md` — Weekly scope (New Moon planting), status updated to 70 domains
+
+### Scope for This Week (April 7-13, New Moon — Planting)
+
+W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic series · W4: Reach-outs (Devon, Erik, Karen, Soren, Valentin) · W5: Chris + Patricia via Karime · W6: Instagram Creator switch · W7: Content cadence start · W8: Holomap auto-update mechanism · W9: Moon phase check
+
+**Phase Shift Domains as of today: 70**
