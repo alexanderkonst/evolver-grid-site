@@ -403,6 +403,9 @@ const IgniteSession = () => {
                 Not sure yet? Let's talk for 15 min — free
               </a>
             </Button>
+            <p className="text-[10px] text-white/30 max-w-xs mx-auto">
+              No convincing. No persuasion. Just clarity on whether this is for you.
+            </p>
           </div>
 
           <div className="pt-8 space-y-4">
@@ -639,6 +642,9 @@ const IgniteSession = () => {
                 Have a question? Let's chat for 15 mins
               </a>
             </Button>
+            <p className="text-[10px] text-white/30 max-w-xs mx-auto">
+              No convincing. No persuasion. Just clarity.
+            </p>
             <AlreadyPaidLink />
           </div>
         </section>

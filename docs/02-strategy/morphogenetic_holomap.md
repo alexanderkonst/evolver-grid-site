@@ -8,6 +8,15 @@
 
 > **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Domain 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md) → **This Instrument**
 
+### Auto-Update Mechanism
+
+> **To update this holomap:** Say "update the holomap" and the AI reads:
+> 1. `docs/09-logs/session_log.md` — the latest entries since the last holomap update date
+> 2. `docs/02-strategy/roadmap.md` — current status and weekly scope
+>
+> Both files already get updated every session. No extra work needed. The holomap reads what already exists.
+
+
 ---
 
 ## How to Read This Map
