@@ -12,7 +12,7 @@
 |---|------|---------|------|------|----------|---------------------|-------------|--------|
 | 1 | Kiril | Telegram DM | Pre-launch | Epicenter DM (RU) | — | — | First send, pre-launch timing | Sent |
 | 2 | José da Veiga | ? | Early April | Peer conversation | No response yet | Silence | Follow up Tue Apr 8 | Pending |
-| 3 | Nabadi | ? | Early April | Peer (Compart founder) | Sent Compart demo, asked for feedback | Peer exchange | Different context — he initiated with his platform first | In Conversation |
+| 3 | Nabadi | DM | Apr 3, 12:07 PM (him) → 5:50 PM (me) → Apr 6 (me) | Peer exchange (Compart founder) | Apr 3: mutual demo swap — he sent Compart, I sent ZoG. He said "Excellent! I will review." (code: closed-source). Apr 6: pitched open-source modular platform idea — pool of integral/holonic builders sharing code, modularized into one platform with attribution & licensing per module | Peer exchange → Ecosystem builder | First Integral Ecosystem Builder contact. Open-source = prerequisite for modularization. This is Path B step 5 (Distribution) through structural partnership, not marketing | In Conversation |
 | 4 | Andrey Kamyshan | Telegram DM | Apr 3, 8:01 PM | Epicenter DM (RU) | Apr 3: raised "обман" concern. Apr 4: follow-up — psychologists confirm AI trust > human trust; "бесплатное = сбор данных или скам" | "How does this work?" (UR-first) | Domain 67 (consent of seeing). "Free" = data collection frame. Psychologists losing trust to ChatGPT — adjacent market signal | In Conversation |
 | 5 | Max Rodin | Telegram DM | Apr 3, 8:12 PM | Epicenter DM (RU, personalized) | "Я потыкал — интересно, поварю еще!" | "Let me sit with it" (Integrative) | Tool creates contemplative pause — feature not bug | Responded ✅ |
 | 6 | Erik Desrosiers | ? | Planned | Peer (AI system builder) | — | — | Peer like Nabadi — building crazy AI system. Start with conversation | Planned |
@@ -37,7 +37,9 @@
 5. ~~Max Rodin~~ ✅
 
 **Batch 2: Enablement (Equipping Radiators)**
-6. Karime — referral language: "here is what you can tell people if you want to refer me"
+6. Karime — **ACTIVE BRIDGE.** Apr 6: referring Chris + Patricia (her ceremony clients). Sending voice notes. Permanent referral pipeline — her ceremonies crack open the purpose question; Alexander's work provides the structural answer
+   - **Chris** (via Karime) — Post-achievement, wine business, community builder. "What's my spiritual purpose?" Adjacent Market B. No financial pain. Awaiting Karime's intro voice note
+   - **Patricia** (via Karime) — Coaching business, scattered, LinkedIn 6mo = 1 lead. Closer to beachhead. "Trusts me blindly" (Karime). Awaiting voice note
 7. Original Truth Rebels — funnel link: "here is my new funnel, whenever you feel the urge to recommend — this is the link"
 
 **Batch 3: Collaborator Conversations**
