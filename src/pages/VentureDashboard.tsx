@@ -3,18 +3,18 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const HERO_METRICS = [
-  { label: "Revenue Generated", value: "$0", sub: "Pre-revenue · First paid session imminent", icon: "💰" },
-  { label: "Canvases Produced", value: "4", sub: "Alexander · Oyi · Sergey · Alexa", icon: "🗺️" },
-  { label: "Facilitators Trained", value: "0", sub: "Karime in queue · First facilitator track", icon: "🔥" },
+  { label: "Revenue Generated", value: "$161", sub: "$50 Oyi + $111 Karime (gratitude) · $6.2K+ rev share pending", icon: "💰" },
+  { label: "Canvases In Creation", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🗺️" },
+  { label: "Founder Landing Pages", value: "3", sub: "Oyi · Sergey · Sandra · (Alexander = main site)", icon: "🚀" },
 ];
 
 const TIMELINE = [
   { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Mask-on-first. Ran the full process on himself.", color: "#8460ea" },
-  { day: 2, date: "Mar 5", name: "Oyi", type: "Value Exchange", desc: "First external delivery. Full canvas. Myth discovery.", color: "#6894d0" },
-  { day: 4, date: "Mar 7", name: "Sergey", type: "Value Exchange", desc: "Methodology refinement. Shadow → myth tested.", color: "#a7cbd4" },
-  { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Full canvas in 2.5hrs. Fastest yet. Shadow = Step 1.5.", color: "#b1c9b6" },
-  { day: 10, date: "Mar 13", name: "Sandra", type: "Queue", desc: "Next in line.", color: "#cec9b0" },
-  { day: 10, date: "Mar 13", name: "Karime", type: "Queue + 2 clients", desc: "First facilitator track. Bridge to paid.", color: "#cea4ae" },
+  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($50)", desc: "Full canvas. Myth discovery. Flying to Mexico for intensive.", color: "#6894d0" },
+  { day: 4, date: "Mar 7", name: "Sergey", type: "Rev Share ($277)", desc: "Product Kernel v1.0. 3 gift sessions delivered.", color: "#a7cbd4" },
+  { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Full canvas in 2.5hrs. Fastest yet. Invited to Build.", color: "#b1c9b6" },
+  { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Uniqueness + myth + tribe landed.", color: "#cec9b0" },
+  { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Bridge + client. Referring Chris + Patricia. Session 2 tomorrow.", color: "#cea4ae" },
 ];
 
 const RADAR_DATA = [
@@ -42,12 +42,12 @@ const CONCENTRIC_CIRCLES = [
 ];
 
 const CHANNELS = [
-  { name: "Warm Network", status: "active", emoji: "🟢", detail: "1 client / 2 days" },
-  { name: "DMs to Tribe", status: "next", emoji: "🔜", detail: "20-30 people identified" },
-  { name: "LinkedIn", status: "inactive", emoji: "🔴", detail: "Not activated" },
-  { name: "Referral Loop", status: "active", emoji: "🟢", detail: "Happening organically" },
-  { name: "Content", status: "inactive", emoji: "🔴", detail: "Zero produced yet" },
-  { name: "Collaborations", status: "inactive", emoji: "🔴", detail: "Not activated" },
+  { name: "Warm Network", status: "active", emoji: "🟢", detail: "6 active clients. 24 contacts in CRM" },
+  { name: "DMs to Tribe", status: "active", emoji: "🟢", detail: "5 sent, 3 responded. Intuitive batches" },
+  { name: "Referral Bridges", status: "active", emoji: "🟢", detail: "Karime → Patricia + Chris. Organic" },
+  { name: "Instagram", status: "next", emoji: "🔜", detail: "Creator account ready. First post today" },
+  { name: "LinkedIn", status: "next", emoji: "🔜", detail: "Bio updated. First post this week" },
+  { name: "Collaborators", status: "active", emoji: "🟢", detail: "Kirill (licensee), Anton (ecosystem), Roso/Cori (demo)" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -80,7 +80,7 @@ const VentureDashboard = () => {
             Not a forecast — a reading of the structure the future is filling.
           </p>
           <p className="text-xs text-white/30 tracking-widest uppercase">
-            Last updated: March 13, 2026 · Day 10
+            Last updated: April 7, 2026 · Day 35
           </p>
         </header>
 
@@ -113,9 +113,9 @@ const VentureDashboard = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { label: "Marketing Spend", value: "$0" },
-              { label: "Content Produced", value: "Zero" },
-              { label: "Funnel", value: "None" },
-              { label: "Conversion Rate", value: "100%" },
+              { label: "Revenue Share Pipeline", value: "$6.2K+" },
+              { label: "Funnel", value: "Live" },
+              { label: "Client Retention", value: "100%" },
             ].map((s) => (
               <div key={s.label} className="space-y-1">
                 <div className="text-2xl md:text-3xl font-display font-bold text-[#a7cbd4]">{s.value}</div>
@@ -326,18 +326,18 @@ const VentureDashboard = () => {
         <section className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 backdrop-blur-xl p-8 text-center alive-card" id="next-milestone">
           <p className="text-xs uppercase tracking-[0.3em] text-[#a4a3d0] mb-3">Next Milestone</p>
           <h3 className="text-3xl md:text-4xl font-display font-medium bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent mb-4">
-            First Paying Client
+            First $555 Ignition Session
           </h3>
           <p className="text-white/40 max-w-lg mx-auto">
-            $555 Ignition Session. The methodology is proven. The pipeline is organic.
-            The only remaining step: cross the threshold.
+            Revenue has begun ($161 in gratitude payments). 6 canvases in creation.
+            The methodology is proven. The pipeline is alive. Next: first full-price paid session.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
-            <span>4 canvases complete</span>
+            <span>6 canvases active</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>2 more value exchanges</span>
+            <span>$161 received</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>Then: $555</span>
+            <span>24 contacts in CRM</span>
           </div>
         </section>
 
