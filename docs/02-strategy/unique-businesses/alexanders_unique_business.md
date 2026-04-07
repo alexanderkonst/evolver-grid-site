@@ -3898,19 +3898,32 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 2. First session DESIGNED (their own version of The Naming for their tribe)
 3. First session DELIVERED
 4. First PAID session delivered
-5. 10 sessions total (mix of free and paid)
+5. 3 paid sessions delivered (PMF signal)
 6. Recurring monthly revenue → PMF proven → Container 3 unlocks
 ```
 
-### Current Session Status (March 24, 2026)
+### Build Boundary (April 7, 2026 — crystallized)
 
-| Person | Container | Status | Next Step |
-|--------|-----------|--------|-----------|
-| **Oyi** | Deep into The Build (Session 5) | All artifacts at 9.9+. A→B journey designed. Mirror Session blueprinted. Value ladder v1.0 crystallized | Write the Mirror Session in his own words. Thursday: product crystallization + distribution |
-| **Sergey** | The Build (Session 5) | All artifacts 🔥9+. Product Kernel v1.0 (Мультиварка). Master Result v2.0 roasted. Trinity Sub-Results: 🟢СРЕДА → 🔵СУПЕРСИЛА → 🔴КОМАНДА. 3 gift sessions delivered (Dima, Ruslan, Base Design). Worlds (11 domains). BHAG (1M realizations). Workflow handoff: received `integrated_product_building_workflow.md` for self-serve | Validate Product Kernel through gift sessions. Test SR1 (СРЕДА) without Jay. Replace «прорыв» with pull-native word. Run workflow self-serve with AI |
-| **Sandra** | The Build | Uniqueness + myth + tribe landed. Pain naming in progress | Continue pain, then promise |
-| **Alexa** | The Naming complete | Uniqueness extracted, invited to Build | Decision pending |
-| **Karime** | The Naming | Tribe v1.0 refined. Pain in progress | Continue artifact production |
+> **Principle:** The Build ends at a different point depending on where the client starts. Revenue share triggers from the FIRST paid client, regardless of Build stage.
+
+| Client type | Build ends when | Max duration | Revenue share |
+|-------------|----------------|--------------|---------------|
+| **Early-stage** (doesn't know their thing yet) | All artifacts + funnel ready | 12 weeks | From first paid client |
+| **Mid-stage** (knows, hasn't sold) | First paying client OR 12 weeks | 12 weeks | From first paid client |
+| **Advanced** (already delivering sessions) | 3 paid sessions delivered | 12 weeks | From first paid client |
+
+**Hard rule:** 12-week max. After 12 weeks → review: extend (paid), pause, or transition to Container 3.
+
+### Current Session Status (April 7, 2026)
+
+| Person | Container | Type | Sessions | Agreement | Paid | Status |
+|--------|-----------|------|----------|-----------|------|--------|
+| **Oyi** | The Build (deep) | Mid-stage | 5+ | Gratitude-based | $50 donation | All artifacts 9.9+. Mirror Session blueprinted. Value ladder v1.0 crystallized |
+| **Sergey** | The Build | Advanced | 5 | $277 rev share from first client | $0 (ждём) | Product Kernel v1.0. 3 gift sessions. Workflow handoff done. **Boundary: 3 paid sessions** |
+| **Sandra** | The Build | Early-stage | ~6 | Rev share TBD (❗she asked) | $0 | Uniqueness + myth + tribe landed. Pain in progress. **Нужно назвать цифру (rec: 33% с первых $10K)** |
+| **Karime** | The Naming → Build | Early-stage | 1.5 | Gratitude → transitioning | $111 donation (Apr 7) | Active bridge. Flying to Mexico ~next weekend for intensive Build |
+| **Alexa** | The Naming complete | — | 1 | — | $0 | Invited to Build. Decision pending |
+| **Taylor & Tracy** | The Build(?) | — | ? | $3K rev share from first $10K | $0 | ⚠️ STALLED. Need checkpoint conversation |
 
 > **The Avengers insight (March 24):** These five clients weren't randomly selected. By following intuition, Alexander selected five people from five DIFFERENT segments of his tribe. They are the potential originating team of the Unique Venture Studio — medicine man (Oyi), medicine woman (Karime), new earth conscious leadership (Sandra), deep tech/systems (Sergey), and creative transmission (Alexa). Each person who completes The Build becomes a potential co-founding node.
 
