@@ -18,18 +18,18 @@ const TIMELINE = [
 ];
 
 const RADAR_DATA = [
-  { perspective: "UL-Ess", fullLabel: "Founder Consciousness", value: 9, fullMark: 10 },
-  { perspective: "UR-Ess", fullLabel: "Observable System", value: 7, fullMark: 10 },
-  { perspective: "LL-Ess", fullLabel: "Shared Field", value: 6, fullMark: 10 },
-  { perspective: "LR-Ess", fullLabel: "System Architecture", value: 5, fullMark: 10 },
-  { perspective: "UL-Sig", fullLabel: "Ontological Liberation", value: 8, fullMark: 10 },
-  { perspective: "UR-Sig", fullLabel: "Data Signal Strength", value: 8, fullMark: 10 },
-  { perspective: "LL-Sig", fullLabel: "Movement Formation", value: 4, fullMark: 10 },
-  { perspective: "LR-Sig", fullLabel: "Platform as Nervous System", value: 3, fullMark: 10 },
-  { perspective: "UL-Imp", fullLabel: "Founder Inner Move", value: 7, fullMark: 10 },
-  { perspective: "UR-Imp", fullLabel: "What Must Be Built", value: 5, fullMark: 10 },
-  { perspective: "LL-Imp", fullLabel: "Tribe Must Act", value: 3, fullMark: 10 },
-  { perspective: "LR-Imp", fullLabel: "System at Scale", value: 2, fullMark: 10 },
+  { perspective: "UL-Ess", fullLabel: "Founder Consciousness", value: 10, fullMark: 10 },
+  { perspective: "UR-Ess", fullLabel: "Observable System", value: 9.5, fullMark: 10 },
+  { perspective: "LL-Ess", fullLabel: "Shared Field", value: 7.5, fullMark: 10 },
+  { perspective: "LR-Ess", fullLabel: "System Architecture", value: 7, fullMark: 10 },
+  { perspective: "UL-Sig", fullLabel: "Ontological Liberation", value: 9.5, fullMark: 10 },
+  { perspective: "UR-Sig", fullLabel: "Data Signal Strength", value: 8.5, fullMark: 10 },
+  { perspective: "LL-Sig", fullLabel: "Movement Formation", value: 8, fullMark: 10 },
+  { perspective: "LR-Sig", fullLabel: "Platform as Nervous System", value: 5, fullMark: 10 },
+  { perspective: "UL-Imp", fullLabel: "Founder Inner Move", value: 9.5, fullMark: 10 },
+  { perspective: "UR-Imp", fullLabel: "What Must Be Built", value: 8.5, fullMark: 10 },
+  { perspective: "LL-Imp", fullLabel: "Tribe Must Act", value: 4, fullMark: 10 },
+  { perspective: "LR-Imp", fullLabel: "System at Scale", value: 4.5, fullMark: 10 },
 ];
 
 const CONCENTRIC_CIRCLES = [
