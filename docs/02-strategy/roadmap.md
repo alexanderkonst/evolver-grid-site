@@ -10,7 +10,25 @@
 > - "Capture this idea in the roadmap"
 > - "What does the system need that I'm not seeing?"
 >
-> *Last updated: 2026-04-06 — Sub-tribe strategy activated (Karime session). Locked Tuning Fork texts frozen. Content strategy: stamp + link + post. Kirill call tonight (proto-licensee live demo). 69 Phase Shift Domains. 10 names in tracker.*
+> *Last updated: 2026-04-06 PM — Domain 70 (Resonance Field). Sub-tribe strategy. Content strategy. Adjacent market crystallized via Karime. Kirill call tonight. 70 Phase Shift Domains. 12+ names in tracker. New moon = planting week.*
+
+---
+
+## 🌑 This Week's Scope (April 7-13, New Moon — Planting Seeds)
+
+> **Energetic context:** New moon cycle. Harvesting and celebration complete. Now planting seeds for the full moon intention.
+
+| # | Seed | Path | Priority | Notes |
+|---|------|------|----------|-------|
+| W1 | **Karime Session 2** (Tue AM) | B — Business | 🔴 | Her unique business. She's also a contributor + bridge. Second session with much more mature system |
+| W2 | **Kirill Call** (Mon PM) | B — Distribution | 🔴 | Proto-licensee. Live demo. Practitioner feedback |
+| W3 | **Infographic series** | B — Content | 🔴 | Resonance Field, Two-Path Architecture, River Canyon — for showing in sessions + social |
+| W4 | **Reach-outs** (Devon, Erik, Karen, Soren, Valentin) | B — Distribution | 🔴 | Intuitive names. Reach out as the field calls them |
+| W5 | **Chris + Patricia** (via Karime) | B — Sales | 🟡 | Awaiting Karime's voice note intros |
+| W6 | **Instagram Creator switch** | B — Distribution | 🔴 | 30 seconds. Unlocks Stories link stickers |
+| W7 | **Content cadence start** | B — Content | 🟡 | 1 stamped infographic/day on IG + LinkedIn |
+| W8 | **Holomap auto-update mechanism** | Support | 🟡 | Simple feed system so holomap stays current |
+| W9 | **Moon phase check** | Support | 🟡 | Situate the week energetically |
 
 ---
 
@@ -54,9 +72,12 @@
 | 27 | Token economics (XP, reputation) | Econ | 🟡 MED | MVP has XP |
 | 28 | Daily use case (Learn/Meet/Build) | Econ | ✅ DONE | — |
 | **INSTAGRAM** |
-| 39 | Switch Instagram to Creator Account | Distribution | 🔴 HIGH | **30 seconds — Settings → Account → Switch to Creator Account. Unlocks link stickers in Stories. Without this, Stories can't link to your site.** |
+| 39 | Switch Instagram to Creator Account | Distribution | 🔴 HIGH | **30 seconds — Settings → Account → Switch to Creator Account. Unlocks link stickers in Stories.** |
 | **CONTENT** |
-| 40 | Content plan for infographic assets across surfaces | Content | 🔴 HIGH | Separate session — REMIND ME |
+| 40 | Content plan for infographic assets across surfaces | Content | 🔴 HIGH | §10 of playbook. Stamp + link + post. 1/day |
+| 41 | Infographic series (Resonance Field, Two-Path, River Canyon) | Content | 🔴 HIGH | For sessions + social. Iterate with AI image gen |
+| **HOLOMAP** |
+| 42 | Holomap auto-update mechanism | Support | 🟡 MED | Feed from session_log + roadmap → auto-update holomap |
 | **PARKED** |
 | 29 | Logos (platform + modules) | Brand | ✅ DONE | — |
 | 30 | Videos (explainer, onboarding, module intros) | Content | 🔴 HIGH | This cycle |
@@ -80,12 +101,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Current phase** | CRYSTALLIZATION. Interior octave at 27 (complete seeing). Exterior octave at ~7 (first radiation). The Si-Do shock has begun (Andrey = message #1). |
-| **Current cycle** | April 2026 — 66 Phase Shift Domains. 27-Perspective Holonic Seeing. Funnel v3.0 FINAL. Copy FROZEN. UI FROZEN. NOW: **7-DAY CRYSTALLIZATION SPRINT.** |
+| **Current phase** | CRYSTALLIZATION → PLANTING. Interior octave at 27. Exterior octave expanding (10+ sends, adjacent ring discovered, sub-tribe strategy active). |
+| **Current cycle** | April 7-13 (New Moon). 70 Phase Shift Domains. Resonance Field model (D70). Two-Path Architecture. Locked Tuning Fork texts. Content strategy activated. |
 | **Location** | Mexico City |
-| **Focus** | **50 Epicenter Broadcasts in 7 days (7/day). One template. Same message. Different name at the top. Andrey ✅ = Day 1, Message 1. The diagnostic: "How many clicked the link?"** |
-| **Key milestone** | Domain 66 (The 27th Perspective) codified. Holonic Seeing upgraded to 27 perspectives. Epicenter Broadcast (Domain 65) IS the Si-Do shock. First message sent to Andrey. |
-| **Key decisions** | The 27th Perspective Morphogenesis reveals: interior development at 27:7 ratio to exterior distribution. NO more building needed. The exterior octave completes when a stranger pays $555 from the funnel. Everything else (silent accounts, video, share v3.0) waits for what the 50 messages reveal. |
+| **Focus** | **Planting seeds for full moon: reach-outs, Karime session 2, Kirill live demo, infographic series, content cadence. The names arrive intuitively — this is NOT a numbers game.** |
+| **Key milestone** | Domain 70 (Resonance Field) reframes markets as concentric rings of coherence. Adjacent ring (Chris/Patricia via Karime) confirmed — same product, different entry door. Karime = permanent referral bridge. |
+| **Key decisions** | Bullseye (ring 10) = website/funnel. Ring 7-8 = referral bridges (Karime). Ring 6-7 = trusted evaluatory entry. The myth polarizes correctly: repulsion IS the focus. Field expands through proof, not through changing the message. |
 
 ---
 

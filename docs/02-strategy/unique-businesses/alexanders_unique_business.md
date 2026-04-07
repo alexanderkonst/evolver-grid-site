@@ -608,13 +608,13 @@ That's not a label. That's a **lived experience.** Keep that energy in all messa
 
 **Implication:** The Builder's Blind Spot (Principle 10) is the **content magnet** for this exact population. Naming the unnamed loop is a Tuning Fork moment for them.
 
-##### Adjacent Market B: "Successful People Asking 'Now What?'" (April 6, 2026 — Karime session)
+##### Adjacent Ring (7-8): "Successful People Asking 'Now What?'" (April 6, 2026 — Karime session)
 
 > **Source:** Live conversation with Karime about two of her clients (Chris and Patricia) she can refer. Field-verified, not theoretical.
 
-**Discovery:** The funnel/website speaks **beachhead pain** ("I can't explain what I do, I can't turn my gift into income"). But there's an adjacent market arriving through Karime's ceremonies — people who **don't have that pain** but need the **same product**.
+**Discovery:** The funnel/website speaks **bullseye pain** ("I can't explain what I do, I can't turn my gift into income"). But there's an adjacent ring arriving through Karime's ceremonies — people who **don't have that pain** but need the **same product**. See [Domain 70: The Resonance Field](../../01-vision/phase_shift_technology_library.md) for the full model.
 
-| | **Market A (Beachhead)** | **Market B (Adjacent)** |
+| | **Bullseye / Ring 10 (Beachhead)** | **Ring 7-8 (Adjacent)** |
 |---|---|---|
 | **Pain** | "I'm more capable than my results show" — money, unnamed gift, results gap | "I have everything — except clarity on what I'm here to do" — meaning, purpose, "how do I use my next 20 years?" |
 | **Entry** | Website/funnel (self-selected through the tool) | Referral from trusted bridge (Karime) → personal conversation → ZoG |
