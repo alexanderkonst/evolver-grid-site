@@ -1,8 +1,8 @@
 # Epicenter Broadcast Tracker
 
-> **Purpose:** Track every person the broadcast touches. Easy to update from any model.
-> **How to update:** Add a row. Fill what you know. Leave blanks for unknowns.
-> **When to review:** After every 10 entries. Re-read for patterns (Domain 68).
+> **Purpose:** Track every person + per-person notes + segment tags. One file for the whole pipeline.
+> **How to update:** Add a row to the log. Update the person's notes below. Keep notes concise.
+> **When to review:** After every 10 entries. Re-read for patterns.
 
 ---
 
@@ -26,7 +26,6 @@
 | 14 | **Alexander Pustov** | ? | Planned | ? | — | — | New intuitive arrival Apr 7 | Planned |
 | 15 | **Terrina Cavendar** | In person | This weekend | Organic conversation | — | — | Visiting Mexico. Tell her about the work | Planned |
 
-> **Full per-person notes:** See [Contact Dossier](contact_dossier.md)
 
 **Status values:** Planned → Sent → Responded → In Conversation → /ignite Sent → Booked → Done
 
@@ -104,4 +103,71 @@
 
 ---
 
-*Broadcast Tracker v1.0 — April 4, 2026*
+*Broadcast Tracker v2.0 — April 7, 2026*
+
+---
+
+## Segment Tags
+
+| Tag | Ring | Description |
+|-----|------|-------------|
+| `BULLSEYE` | 10 | Self-selected through funnel. Recognizes the pain immediately |
+| `ADJACENT` | 7-8 | Same product, different entry. "Now what?" not "I'm stuck" |
+| `COLLABORATOR` | — | Peer builder. Wants to co-create, license, or integrate |
+| `ECOSYSTEM` | — | Building parallel projects. Potential modular integration |
+| `BRIDGE` | — | Refers others. Frequency translator between rings |
+| `PAST-ZOG` | — | Took ZoG before. Re-engagement through video note |
+| `ORIGINAL` | — | Early supporter / community member |
+
+---
+
+## Contact Notes
+
+### Patricia Reed — `ADJACENT`
+- Via Karime. WhatsApp. Apr 6: she reached out first ("можешь рассказать подробнее?"). Послан сайт → ждём реакцию
+- Coaching business, scattered, LinkedIn 6мо = 1 lead. "Трустит мне вслепую" (Karime). Ближе к bullseye, чем Chris
+- Сайт = litmus test для этого кольца. Если не кликнет → предложить звонок. Если кликнет → ZoG
+
+### Anton Parin — `COLLABORATOR` + `ECOSYSTEM`
+- Telegram. Apr 7: ответил на сообщение + медитацию. **Сам прошёл ZoG тесты!**
+- "Я полностью в AI + интеграл + бизнес". Bali. Integral profiling. Past collaborator (коллаборации на паузе)
+- Спросил: "Ты ведёшь оттуда на персональную консультацию?" → видит фаннел
+- Next: спросить, что строит. Ecosystem Builder #10?
+
+### Kirill — `COLLABORATOR` (proto-licensee)
+- Call Apr 7. Показал сайт → impressed. Хочет стать фасилитатором + лицензировать
+- **Сам начал подсказывать как строить лицензию** → коллаборатор, не клиент
+- Next: задокументировать его идеи по licensing
+
+### Roso & Cori — `COLLABORATOR` (пауза)
+- Discord. Roso предложил паузу. Хочет свою аудиторию: "employed professionals who want a way out"
+- **Plan:** Предложить сессию как демонстрацию. Каждому из них (и Roso и Cori)
+
+### Karime — `BRIDGE` + `COLLABORATOR`
+- ACTIVE BRIDGE. Реферит Chris + Patricia
+- **Хочет прилететь в Мексику (~след. выходные)**, вилла на пляже, строить unique business вместе
+- От клиента → co-creator
+
+### Chris — `ADJACENT` (via Karime)
+- Post-achievement, wine business, community builder. "В чём моя духовная цель?" Нет финансовой боли. Ждём интро от Karime
+
+### Terrina Cavendar — `TBD`
+- Приезжает в Мексику на выходных. Органически рассказать про работу
+
+### Devon Seagers — `COLLABORATOR` / `PAST-ZOG`
+- ZoG workshop partner. Новый интуитивный приход Apr 7
+
+### Alexander Pustov — `TBD`
+- Новый интуитивный приход Apr 7
+
+---
+
+## Pipeline Analytics
+
+| Metric | Value |
+|--------|-------|
+| **Total contacts** | 17 |
+| **Responded** | 6 (Patricia, Anton, Kirill, Andrey, Max, Nabadi) |
+| **Response rate** | ~55% (из отправленных) |
+| **Segments** | BULLSEYE: 1, ADJACENT: 3, COLLABORATOR: 5, ECOSYSTEM: 2, BRIDGE: 1, TBD: 5 |
+| **Паттерн** | Коллабораторы отвечают быстрее и глубже. Adjacent ring (через Karime) самоселектируется быстро. Bullseye (холодный DM) — trust friction |
