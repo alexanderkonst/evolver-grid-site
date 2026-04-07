@@ -3578,3 +3578,65 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic series · W4: Reach-outs (Devon, Erik, Karen, Soren, Valentin) · W5: Chris + Patricia via Karime · W6: Instagram Creator switch · W7: Content cadence start · W8: Holomap auto-update mechanism · W9: Moon phase check
 
 **Phase Shift Domains as of today: 70**
+
+---
+
+## April 7, 2026 — Operationalizing CRM, Build Boundaries, and Social Activation (Day 35)
+
+**Context:** New moon. 4 days since the Crystallization Sprint (50 Epicenter Broadcasts). Today was about administrative infrastructure — the invisible support system that enables the exterior octave to accelerate. Multiple real-time client updates processed.
+
+### What Emerged
+
+| Item | Impact |
+|------|--------|
+| **CRM v3.0 — Single Source of Truth** | Merged all fragmented contact lists into one master table in `broadcast_tracker.md`. 24 contacts with segments, stages, containers, sessions, agreements, paid revenue, pending revenue, channels, last contact, notes. This is now THE CRM |
+| **Build Boundary Crystallized** | Formalized in `alexanders_unique_business.md`: flexible cutoff by client maturity (Early/Mid/Advanced), 12-week max, revenue share from first paid client. NOT a rigid formula |
+| **$555 Fixed Price — Final Decision** | Sliding scale rejected as "fear-based." $555 is the price. If someone can't pay, Alexander decides personally. No system decides |
+| **Karime $111 Gratitude Payment** | Received after session. Added to CRM. Total revenue: $161 ($50 Oyi + $111 Karime) |
+| **Patricia Referral via Karime** | New contact. Sent to website. Awaiting response |
+| **Social Activation — Step-by-Step Ready** | Instagram bio copy, first post caption, Facebook copy, X/Twitter copy — all written and artifact-ready. Creator account already active |
+| **Roadmap v4.0** | Complete rewrite: 1,088 → 160 lines. TOC added. All DONE items consolidated. Active backlog sorted by leverage. 86% reduction |
+| **Dashboard Updated** | Revenue: $0 → $161. Canvases: 4 → 6. New metric: 3 founder landing pages. Channels: 2/6 active → 4/6. Next milestone: First $555 Ignition Session |
+
+### Financial State
+
+| Client | Received | Pending (Rev Share) |
+|--------|----------|---------------------|
+| Oyi | $50 (gratitude) | — |
+| Karime | $111 (gratitude) | — |
+| Sergey | — | $277 (from first revenue) |
+| Taylor | — | $3,000 |
+| Tracy | — | $3,000 |
+| Sandra | — | TBD (rec: 33% from first $10K) |
+| **Total** | **$161** | **$6,277+** |
+
+### Key Decisions
+
+- **$555 fixed, no sliding scale.** Exception = Alexander's personal call, not a system rule
+- **CRM stays in markdown.** Notion automation on roadmap but not urgent. `broadcast_tracker.md` = master
+- **Roadmap condensed.** One file, five sections, no duplication. Weekly ritual: "read the roadmap" → AI updates
+- **Social goes up today/tomorrow.** Bio + first post + FB + X. DM trigger: "READY"
+- **Build boundary = flexible cutoff.** Not "N sessions = done." Client maturity determines transition
+
+### Documents Updated
+
+- `/docs/09-logs/broadcast_tracker.md` — CRM v3.0 (full rewrite, 24 contacts)
+- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Build boundary, session status, Oyi/Karime corrections
+- `/docs/02-strategy/roadmap.md` — v4.0 (TOC, DONE consolidated, active backlog, parked)
+- `/src/pages/VentureDashboard.tsx` — Revenue, canvases, landing pages, channels, next milestone
+- `/docs/01-vision/phase_shift_technology_library.md` — "Copernican Inversion" fixation reduced
+
+### Scope for This Week (remaining after today)
+
+- W1: Karime Session 2 (tomorrow, Tue AM)
+- W2: Kirill Call (today, Mon PM)
+- W3: Sandra agreement — name the revenue share
+- W4: Taylor & Tracy checkpoint — professional conversation
+- W5: Instagram bio + first post + FB + X
+- W6: Reach-outs (Devon, Erik, Karen, Soren, Valentin)
+- W7: Roso + Cori — offer demo sessions
+
+**Phase Shift Domains as of today: 70**
+**Revenue: $161 received, $6,277+ pending**
+**CRM: 24 contacts in unified table**
+
