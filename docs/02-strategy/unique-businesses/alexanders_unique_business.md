@@ -3918,12 +3918,13 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 
 | Person | Container | Type | Sessions | Agreement | Paid | Status |
 |--------|-----------|------|----------|-----------|------|--------|
-| **Oyi** | The Build (deep) | Mid-stage | 5+ | Gratitude-based | $50 donation | All artifacts 9.9+. Mirror Session blueprinted. Value ladder v1.0 crystallized |
+| **Oyi** | The Build (deep) | Mid-stage | 5+ | Gratitude-based | $50 donation | All artifacts 9.9+. Mirror Session blueprinted. **Wants to fly to Mexico (~next wknd) for intensive Build** |
 | **Sergey** | The Build | Advanced | 5 | $277 rev share from first client | $0 (ждём) | Product Kernel v1.0. 3 gift sessions. Workflow handoff done. **Boundary: 3 paid sessions** |
 | **Sandra** | The Build | Early-stage | ~6 | Rev share TBD (❗she asked) | $0 | Uniqueness + myth + tribe landed. Pain in progress. **Нужно назвать цифру (rec: 33% с первых $10K)** |
-| **Karime** | The Naming → Build | Early-stage | 1.5 | Gratitude → transitioning | $111 donation (Apr 7) | Active bridge. Flying to Mexico ~next weekend for intensive Build |
+| **Karime** | The Naming → Build | Early-stage | 1.5 | Gratitude → transitioning | $111 donation (Apr 7) | Active bridge. Refers Chris + Patricia. Session 2 planned |
 | **Alexa** | The Naming complete | — | 1 | — | $0 | Invited to Build. Decision pending |
-| **Taylor & Tracy** | The Build(?) | — | ? | $3K rev share from first $10K | $0 | ⚠️ STALLED. Need checkpoint conversation |
+| **Taylor** | The Build(?) | — | ? | **$3,000** rev share from first $10K | $0 | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
+| **Tracy** | The Build(?) | — | ? | **$3,000** rev share from first $10K | $0 | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
 
 > **The Avengers insight (March 24):** These five clients weren't randomly selected. By following intuition, Alexander selected five people from five DIFFERENT segments of his tribe. They are the potential originating team of the Unique Venture Studio — medicine man (Oyi), medicine woman (Karime), new earth conscious leadership (Sandra), deep tech/systems (Sergey), and creative transmission (Alexa). Each person who completes The Build becomes a potential co-founding node.
 

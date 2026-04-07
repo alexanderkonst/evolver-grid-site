@@ -1,33 +1,79 @@
-# Epicenter Broadcast Tracker
+# CRM — All Contacts
 
-> **Purpose:** Track every person + per-person notes + segment tags. One file for the whole pipeline.
-> **How to update:** Add a row to the log. Update the person's notes below. Keep notes concise.
-> **When to review:** After every 10 entries. Re-read for patterns.
+> **Purpose:** Single source of truth for ALL individual contacts. Outreach, clients, collaborators — everyone.
+> **How to update:** Tell the AI what changed → AI updates the table + notes.
+> **Export:** This table can be imported to Notion as CSV when ready.
 
 ---
 
-## Broadcast Log
+## Segment Tags
 
-| # | Name | Channel | Date | Type | Response | Response Type (D68) | Intelligence | Status |
-|---|------|---------|------|------|----------|---------------------|-------------|--------|
-| 1 | Kiril | Telegram DM | Pre-launch | Epicenter DM (RU) | — | — | First send, pre-launch timing | Sent |
-| 2 | José da Veiga | ? | Early April | Peer conversation | No response yet | Silence | Follow up Tue Apr 8 | Pending |
-| 3 | Nabadi | DM | Apr 3 → Apr 6 | Peer exchange (Compart founder) | Apr 6: pitched open-source modular platform idea | Peer exchange → Ecosystem builder | Integral Ecosystem Builder #1 | In Conversation |
-| 4 | Andrey Kamyshan | Telegram DM | Apr 3, 8:01 PM | Epicenter DM (RU) | Raised "обман" concern → AI trust discussion | "How does this work?" (UR-first) | Bullseye segment — trust friction pattern | In Conversation |
-| 5 | Max Rodin | Telegram DM | Apr 3, 8:12 PM | Epicenter DM (RU) | "Я потыкал — интересно, поварю еще!" | "Let me sit with it" (Integrative) | Contemplative pause — feature not bug | Responded ✅ |
-| 6 | Erik Desrosiers | ? | Planned | Peer (AI system builder) | — | — | Ecosystem builder peer | Planned |
-| 7 | **Kirill** | **Call** | **Apr 7** | **Live demo + collaborator** | **Impressed. Wants to be facilitator. Started advising on licensing structure** | **Collaborator activation** | **Proto-licensee CONFIRMED. Entered collaborator mode immediately** | **Active Collaborator** |
-| 8 | Karen Martirosyan | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
-| 9 | Soren | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6. Similar to Karen | Planned |
-| 10 | Valentin | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6. Природа | Planned |
-| 11 | **Patricia Reed** | **WhatsApp** | **Apr 6, 6:50 PM** | **Inbound (via Karime)** | **"Can you please tell me more about what you do?" → sent website** | **Self-initiated pull** | **Adjacent ring. She reached out FIRST. Website = litmus test** | **Awaiting Response** |
-| 12 | **Anton Parin** | **Telegram** | **Apr 7** | **Re-engagement (past collaborator)** | **Went through ZoG tests! "Прошел твои тестирования." Asked about consultation flow. "AI + интеграл + бизнес"** | **Self-selected + peer** | **Bali. Integral profiling + AI. Past collaborator. Took the test himself = self-selection** | **In Conversation** |
-| 13 | **Devon Seagers** | ? | Planned | Past ZoG partner | — | — | New intuitive arrival Apr 7 | Planned |
-| 14 | **Alexander Pustov** | ? | Planned | ? | — | — | New intuitive arrival Apr 7 | Planned |
-| 15 | **Terrina Cavendar** | In person | This weekend | Organic conversation | — | — | Visiting Mexico. Tell her about the work | Planned |
+| Tag | Ring | Description |
+|-----|------|-------------|
+| `BULLSEYE` | 10 | Self-selected through funnel. Recognizes the pain immediately |
+| `ADJACENT` | 7-8 | Same product, different entry. "Now what?" not "I'm stuck" |
+| `CLIENT` | — | Active or past client (in a container) |
+| `COLLABORATOR` | — | Peer builder. Wants to co-create, license, or integrate |
+| `ECOSYSTEM` | — | Building parallel projects. Potential modular integration |
+| `BRIDGE` | — | Refers others. Frequency translator between rings |
+| `PAST-ZOG` | — | Took ZoG before. Re-engagement through video note |
+| `ORIGINAL` | — | Early supporter / community member |
 
+**Stage values:** `Planned` → `Sent` → `Responded` → `In Conversation` → `Naming` → `Build` → `Venture` → `Collaborator`
 
-**Status values:** Planned → Sent → Responded → In Conversation → /ignite Sent → Booked → Done
+---
+
+## Master Table
+
+| # | Name | Segment | Stage | Container | Sessions | Agreement | Paid | Pending | Channel | Last Contact | Notes |
+|---|------|---------|-------|-----------|----------|-----------|------|---------|---------|--------------|-------|
+| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$50** | — | ? | Mar 24 | All artifacts 9.9+. Mirror Session blueprinted. **Wants to fly to Mexico (~next weekend), villa + intensive Build** |
+| 2 | **Sergey** | `CLIENT` | Build | The Build (advanced) | 5 | $277 rev share from first paid client | **$0** | $277 | Telegram | Mar | Product Kernel v1.0 (Мультиварка). 3 gift sessions delivered. Workflow handoff done. **Boundary: 3 paid sessions** |
+| 3 | **Sandra** | `CLIENT` | Build | The Build (early-stage) | ~6 | Rev share TBD — **she asked, needs answer** | **$0** | ⚠️ TBD | ? | Mar | Uniqueness + myth + tribe landed. Pain in progress. **Rec: 33% с первых $10K** |
+| 4 | **Karime** | `CLIENT` `BRIDGE` | Naming→Build | The Naming → Build | 1.5 | Gratitude → transitioning | **$111** | — | WhatsApp | Apr 7 | Active bridge (refers Chris + Patricia). $111 donation Apr 7. Session 2 planned. Co-creator energy |
+| 5 | **Alexa** | `CLIENT` | Naming done | The Naming complete | 1 | — | **$0** | — | ? | Mar | Uniqueness extracted. Invited to Build. Decision pending |
+| 6 | **Taylor** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
+| 7 | **Tracy** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
+| 8 | **Kirill** | `COLLABORATOR` | Active Collaborator | — | — | — | **$0** | — | Call + Telegram | Apr 7 | Proto-licensee CONFIRMED. Wants to facilitate + license. Started co-designing licensing structure |
+| 9 | **Anton Parin** | `COLLABORATOR` `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | Telegram | Apr 7 | Bali. AI + интеграл + бизнес. **Сам прошёл ZoG!** Спросил про консультацию. Past collaborator |
+| 10 | **Nabadi** | `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | DM | Apr 6 | Compart founder. Integral Ecosystem Builder #1. Open-source modular platform pitch |
+| 11 | **Patricia Reed** | `ADJACENT` | Awaiting Response | — | — | — | **$0** | — | WhatsApp | Apr 6 | Via Karime. She reached out first. Sent website. Coaching business, scattered. Ближе к bullseye чем Chris |
+| 12 | **Chris** | `ADJACENT` | Awaiting Intro | — | — | — | **$0** | — | Via Karime | — | Post-achievement, wine business. "В чём моя духовная цель?" Нет финансовой боли. Ждём voice note от Karime |
+| 13 | **Andrey Kamyshan** | `BULLSEYE` | In Conversation | — | — | — | **$0** | — | Telegram DM | Apr 4 | Raised "обман" concern → AI trust discussion. Trust friction pattern |
+| 14 | **Max Rodin** | `ORIGINAL` | Responded | — | — | — | **$0** | — | Telegram DM | Apr 3 | "Я потыкал — интересно, поварю еще!" Contemplative pause |
+| 15 | **José da Veiga** | `ORIGINAL` | Pending | — | — | — | **$0** | — | ? | Early Apr | No response. Follow up Tue Apr 8 |
+| 16 | **Roso** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 6 | Partnership paused. Wants his own audience ("employed professionals"). **Plan: offer demo session** |
+| 17 | **Cori** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 7 | Same as Roso. **Plan: offer demo session** |
+| 18 | **Erik Desrosiers** | `ECOSYSTEM` | Planned | — | — | — | **$0** | — | ? | — | AI system builder peer. Conversation first |
+| 19 | **Devon Seagers** | `COLLABORATOR` `PAST-ZOG` | Planned | — | — | — | **$0** | — | ? | — | ZoG workshop partner. Intuitive arrival Apr 7 |
+| 20 | **Karen Martirosyan** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 6. Similar to Sorin |
+| 21 | **Sorin** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 6. Similar to Karen |
+| 22 | **Valentin** | `TBD` `ORIGINAL` | Planned | — | — | — | **$0** | — | ? | — | Организация "Природа". Intuitive arrival Apr 6 |
+| 23 | **Alexander Pustov** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 7 |
+| 24 | **Terrina Cavendar** | `TBD` | Planned | — | — | — | **$0** | — | In person | This wknd | Visiting Mexico this weekend. Organic conversation |
+
+---
+
+## Revenue Summary
+
+| Category | Amount |
+|----------|--------|
+| **Cash received** | **$161** ($50 Oyi + $111 Karime) |
+| **Revenue share contracts** | **$6,277** ($277 Sergey + $3,000 Taylor + $3,000 Tracy) |
+| **Revenue share TBD** | Sandra (needs terms — rec: 33% с первых $10K) |
+
+---
+
+## Open Items
+
+- [ ] **Sandra:** Name the revenue share. Rec: 33% с первых $10K (= ~$3,300)
+- [ ] **Taylor:** Checkpoint conversation. "У нас есть соглашение. Давай профессионально или фиксируем паузу"
+- [ ] **Tracy:** Same checkpoint conversation
+- [ ] **Sergey:** Обозначить границу Build (3 paid sessions)
+- [ ] **Oyi:** Мексика — определить формат intensive
+- [ ] **Roso + Cori:** Предложить демо-сессию каждому
+- [ ] **Instagram Creator switch** — 30 сек
+- [ ] **Original Truth Rebels** — разослать ссылку на фаннел
 
 ---
 
@@ -38,38 +84,27 @@
 **Batch 1: DMs (Personal Radiation)**
 1. ~~Kiril~~ (pre-launch)
 2. ~~José da Veiga~~ (peer)
-3. ~~Nabadi~~ (Compart founder — peer exchange)
+3. ~~Nabadi~~ (Compart founder)
 4. ~~Andrey Kamyshan~~ ✅
 5. ~~Max Rodin~~ ✅
 
 **Batch 2: Enablement (Equipping Radiators)**
-6. Karime — **ACTIVE BRIDGE.** Apr 6: referring Chris + Patricia (her ceremony clients). Sending voice notes. Permanent referral pipeline — her ceremonies crack open the purpose question; Alexander's work provides the structural answer
-   - **Chris** (via Karime) — Post-achievement, wine business, community builder. "What's my spiritual purpose?" Adjacent Market B. No financial pain. Awaiting Karime's intro voice note
-   - **Patricia** (via Karime) — Coaching business, scattered, LinkedIn 6mo = 1 lead. Closer to beachhead. "Trusts me blindly" (Karime). Awaiting voice note
-7. Original Truth Rebels — funnel link: "here is my new funnel, whenever you feel the urge to recommend — this is the link"
+6. Karime — ACTIVE BRIDGE
+7. Original Truth Rebels — funnel link
 
 **Batch 3: Collaborator Conversations**
-8. Devon Seagers — ZoG workshop partner. Start with conversation, not broadcast.
-9. Erik Desrosiers — AI system builder peer. Conversation first.
-10. Kirill — ~~Proto-licensee~~ → **CONFIRMED COLLABORATOR.** Apr 7 call: impressed by site, wants to facilitate + license. Started co-designing licensing structure
-11. Anton Parin — Past collaborator. Bali. AI + integral + business. **Took the ZoG test himself.** Asked about consultation flow
-12. Roso (RnD Ventures) — Partnership paused. Considering gift session offer
+8. Devon Seagers
+9. Erik Desrosiers
+10. Kirill — **CONFIRMED COLLABORATOR**
+11. Anton Parin — **Took the ZoG test himself**
+12. Roso — Considering demo session
 
 **Batch 4: Intuitive Arrivals (Apr 6-7)**
 13. Karen Martirosyan
-14. Sorin (похож на Karen)
+14. Sorin
 15. Valentin (Природа)
-16. Alexander Pustov (arrived Apr 7)
-17. Terrina Cavendar (visiting Mexico this weekend — organic)
-
-**Karime escalation:** She wants to fly to Mexico (~next weekend) to build unique business together at beach villa. From client → co-creator
-
-**Sub-Tribe Strategy (Apr 6 — Karime unblocked):**
-- **The Originals** — funnel alignment message
-- **Original Truth Rebels / Conscious Renaissance Founders** — funnel link
-- **Aligned Collaborators** — personal invitation
-- **Integral Ecosystem Builders** — peer conversation
-- **Past ZoG takers** — video note
+16. Alexander Pustov
+17. Terrina Cavendar (Mexico this weekend)
 
 **Next names:** (add as they arrive from the field)
 - 
@@ -83,7 +118,7 @@
 | WhatsApp Status | ☐ | | |
 | Telegram Channel (31 people) | ☐ | | |
 | Telegram Client Groups | ☐ | | Count groups posted to |
-| Instagram Story | ☐ | | Need Business account for link sticker |
+| Instagram Story | ☐ | | Need Creator account for link sticker |
 | Instagram Post | ☐ | | Update bio link first |
 | LinkedIn Post | ☐ | | Link in first comment |
 | Facebook Post (~2,500) | ☐ | | Set to Public |
@@ -103,103 +138,16 @@
 
 ---
 
-*Broadcast Tracker v2.0 — April 7, 2026*
-
----
-
-## Segment Tags
-
-| Tag | Ring | Description |
-|-----|------|-------------|
-| `BULLSEYE` | 10 | Self-selected through funnel. Recognizes the pain immediately |
-| `ADJACENT` | 7-8 | Same product, different entry. "Now what?" not "I'm stuck" |
-| `COLLABORATOR` | — | Peer builder. Wants to co-create, license, or integrate |
-| `ECOSYSTEM` | — | Building parallel projects. Potential modular integration |
-| `BRIDGE` | — | Refers others. Frequency translator between rings |
-| `PAST-ZOG` | — | Took ZoG before. Re-engagement through video note |
-| `ORIGINAL` | — | Early supporter / community member |
-
----
-
-## Contact Notes
-
-### Patricia Reed — `ADJACENT`
-- Via Karime. WhatsApp. Apr 6: she reached out first ("можешь рассказать подробнее?"). Послан сайт → ждём реакцию
-- Coaching business, scattered, LinkedIn 6мо = 1 lead. "Трустит мне вслепую" (Karime). Ближе к bullseye, чем Chris
-- Сайт = litmus test для этого кольца. Если не кликнет → предложить звонок. Если кликнет → ZoG
-
-### Anton Parin — `COLLABORATOR` + `ECOSYSTEM`
-- Telegram. Apr 7: ответил на сообщение + медитацию. **Сам прошёл ZoG тесты!**
-- "Я полностью в AI + интеграл + бизнес". Bali. Integral profiling. Past collaborator (коллаборации на паузе)
-- Спросил: "Ты ведёшь оттуда на персональную консультацию?" → видит фаннел
-- Next: спросить, что строит. Ecosystem Builder #10?
-
-### Kirill — `COLLABORATOR` (proto-licensee)
-- Call Apr 7. Показал сайт → impressed. Хочет стать фасилитатором + лицензировать
-- **Сам начал подсказывать как строить лицензию** → коллаборатор, не клиент
-- Next: задокументировать его идеи по licensing
-
-### Roso & Cori — `COLLABORATOR` (пауза)
-- Discord. Roso предложил паузу. Хочет свою аудиторию: "employed professionals who want a way out"
-- **Plan:** Предложить сессию как демонстрацию. Каждому из них (и Roso и Cori)
-
-### Karime — `BRIDGE` + `COLLABORATOR`
-- ACTIVE BRIDGE. Реферит Chris + Patricia
-- **Хочет прилететь в Мексику (~след. выходные)**, вилла на пляже, строить unique business вместе
-- От клиента → co-creator
-
-### Chris — `ADJACENT` (via Karime)
-- Post-achievement, wine business, community builder. "В чём моя духовная цель?" Нет финансовой боли. Ждём интро от Karime
-
-### Terrina Cavendar — `TBD`
-- Приезжает в Мексику на выходных. Органически рассказать про работу
-
-### Devon Seagers — `COLLABORATOR` / `PAST-ZOG`
-- ZoG workshop partner. Новый интуитивный приход Apr 7
-
-### Alexander Pustov — `TBD`
-- Новый интуитивный приход Apr 7
-
----
-
 ## Pipeline Analytics
 
 | Metric | Value |
 |--------|-------|
-| **Total contacts** | 17 |
+| **Total contacts** | 24 |
+| **Clients (active)** | 7 (Oyi, Sergey, Sandra, Karime, Alexa, Taylor, Tracy) |
 | **Responded** | 6 (Patricia, Anton, Kirill, Andrey, Max, Nabadi) |
-| **Response rate** | ~55% (из отправленных) |
-| **Segments** | BULLSEYE: 1, ADJACENT: 3, COLLABORATOR: 5, ECOSYSTEM: 2, BRIDGE: 1, TBD: 5 |
+| **Segments** | CLIENT: 7, BULLSEYE: 1, ADJACENT: 2, COLLABORATOR: 5, ECOSYSTEM: 2, BRIDGE: 1, TBD: 4 |
 | **Паттерн** | Коллабораторы отвечают быстрее и глубже. Adjacent ring (через Karime) самоселектируется быстро. Bullseye (холодный DM) — trust friction |
 
 ---
 
-## 💰 Client CRM — Agreements & Revenue
-
-### Active Clients
-
-| Client | Container | Sessions Done | Agreement | Paid | Owed / Pending | Status |
-|--------|-----------|---------------|-----------|------|----------------|--------|
-| **Oyi** | The Build (deep) | 5+ | Gratitude-based | **$50** (donation) | — | Active. All artifacts 9.9+. Mirror Session blueprinted |
-| **Sergey** | The Build | 5 | $277 from his first paid client | **$0** | $277 (revenue share, triggered when he gets first client) | Active. Product Kernel v1.0. 3 gift sessions delivered. Workflow handoff done |
-| **Sandra** | The Build | ~6 | Revenue share (% TBD — she asked, needs to be named) | **$0** | **⚠️ NEEDS AGREEMENT.** She's ready. Propose terms | Active. Uniqueness + myth + tribe landed. Pain in progress |
-| **Karime** | The Naming → Build | 1.5 | Gratitude-based → transitioning | **$111** (donation, Apr 7) | — | Active bridge + client. Flying to Mexico ~next weekend for intensive |
-| **Alexa** | The Naming complete | 1 | — | **$0** | — | Invited to Build. Decision pending |
-| **Taylor & Tracy** | The Build(?) | ? | $3,000 rev share from first $10K | **$0** | $3,000 (revenue share) | ⚠️ **STALLED.** Disappearing. Not doing their work. Need "let's be professional" conversation |
-
-### Revenue Summary
-
-| Category | Amount |
-|----------|--------|
-| **Cash received** | **$161** ($50 Oyi + $111 Karime) |
-| **Revenue share pending** | **$3,277+** ($277 Sergey + $3,000 Taylor/Tracy) |
-| **Revenue share TBD** | Sandra (needs terms) |
-| **Total potential** | $3,438+ |
-
-### Open Items
-
-- [ ] **Sandra:** Name the revenue share. Рекомендация: 33% с первых $10K (= ~$3,300). Она уже спросила — назови цифру
-- [ ] **Sergey:** Уточнить границу Build. До какой точки? (см. анализ ниже)
-- [ ] **Taylor & Tracy:** Серьёзный разговор. "Ребята, у нас есть соглашение. Я свою часть делаю. Давайте либо работаем профессионально, либо закрываем контейнер"
-- [ ] **Oyi:** Нужна ли формализация? Пока gratitude-based работает
-- [ ] **Karime:** Мексика = intensive. Определить формат: это сессия 2 или это Build?
+*CRM v3.0 — April 7, 2026*
