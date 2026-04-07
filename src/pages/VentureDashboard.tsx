@@ -3,9 +3,9 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const HERO_METRICS = [
-  { label: "Revenue Generated", value: "$161", sub: "$50 Oyi + $111 Karime (gratitude) · $6.2K+ rev share pending", icon: "💰" },
-  { label: "Canvases In Creation", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🗺️" },
-  { label: "Founder Landing Pages", value: "3", sub: "Oyi · Sergey · Sandra · (Alexander = main site)", icon: "🚀" },
+  { label: "Cash Received", value: "$161", sub: "$50 Oyi + $111 Karime (gratitude donations)", icon: "💰" },
+  { label: "Agreed Revenue Share", value: "$6.2K+", sub: "$277 Sergey · $3K Taylor · $3K Tracy · Sandra TBD", icon: "📜" },
+  { label: "Genius Business Offers Created", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🗺️" },
 ];
 
 const TIMELINE = [
@@ -42,12 +42,12 @@ const CONCENTRIC_CIRCLES = [
 ];
 
 const CHANNELS = [
-  { name: "Warm Network", status: "active", emoji: "🟢", detail: "6 active clients. 24 contacts in CRM" },
-  { name: "DMs to Tribe", status: "active", emoji: "🟢", detail: "5 sent, 3 responded. Intuitive batches" },
-  { name: "Referral Bridges", status: "active", emoji: "🟢", detail: "Karime → Patricia + Chris. Organic" },
-  { name: "Instagram", status: "next", emoji: "🔜", detail: "Creator account ready. First post today" },
-  { name: "LinkedIn", status: "next", emoji: "🔜", detail: "Bio updated. First post this week" },
-  { name: "Collaborators", status: "active", emoji: "🟢", detail: "Kirill (licensee), Anton (ecosystem), Roso/Cori (demo)" },
+  { name: "Epicenter Broadcasts (DMs)", status: "active", emoji: "🟢", detail: "5 sent, 3 responded. Intuitive batches. Domain 65" },
+  { name: "Referral Bridges", status: "active", emoji: "🟢", detail: "Karime → Patricia + Chris. Organic frequency translation" },
+  { name: "Collaborator Network", status: "active", emoji: "🟢", detail: "Kirill (licensee), Anton (ZoG taker), Roso/Cori (demo)" },
+  { name: "7-Surface Activation", status: "ready", emoji: "🟡", detail: "WhatsApp · Telegram · IG · LinkedIn · FB · X · YouTube — copy locked" },
+  { name: "Content Cadence", status: "planned", emoji: "🔜", detail: "10 viral posts + 3-slide carousel — stamped, ready to deploy" },
+  { name: "Partnership (Upstream)", status: "seed", emoji: "🌱", detail: "Self-knowledge practitioners → 'Now what?' → us. Architecture mapped" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -113,8 +113,8 @@ const VentureDashboard = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { label: "Marketing Spend", value: "$0" },
-              { label: "Revenue Share Pipeline", value: "$6.2K+" },
-              { label: "Funnel", value: "Live" },
+              { label: "Ignition Session", value: "$555" },
+              { label: "CRM Contacts", value: "24" },
               { label: "Client Retention", value: "100%" },
             ].map((s) => (
               <div key={s.label} className="space-y-1">
