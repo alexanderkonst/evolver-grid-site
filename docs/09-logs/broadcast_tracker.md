@@ -12,14 +12,21 @@
 |---|------|---------|------|------|----------|---------------------|-------------|--------|
 | 1 | Kiril | Telegram DM | Pre-launch | Epicenter DM (RU) | — | — | First send, pre-launch timing | Sent |
 | 2 | José da Veiga | ? | Early April | Peer conversation | No response yet | Silence | Follow up Tue Apr 8 | Pending |
-| 3 | Nabadi | DM | Apr 3, 12:07 PM (him) → 5:50 PM (me) → Apr 6 (me) | Peer exchange (Compart founder) | Apr 3: mutual demo swap — he sent Compart, I sent ZoG. He said "Excellent! I will review." (code: closed-source). Apr 6: pitched open-source modular platform idea — pool of integral/holonic builders sharing code, modularized into one platform with attribution & licensing per module | Peer exchange → Ecosystem builder | First Integral Ecosystem Builder contact. Open-source = prerequisite for modularization. This is Path B step 5 (Distribution) through structural partnership, not marketing | In Conversation |
-| 4 | Andrey Kamyshan | Telegram DM | Apr 3, 8:01 PM | Epicenter DM (RU) | Apr 3: raised "обман" concern. Apr 4: follow-up — psychologists confirm AI trust > human trust; "бесплатное = сбор данных или скам" | "How does this work?" (UR-first) | Domain 67 (consent of seeing). "Free" = data collection frame. Psychologists losing trust to ChatGPT — adjacent market signal | In Conversation |
-| 5 | Max Rodin | Telegram DM | Apr 3, 8:12 PM | Epicenter DM (RU, personalized) | "Я потыкал — интересно, поварю еще!" | "Let me sit with it" (Integrative) | Tool creates contemplative pause — feature not bug | Responded ✅ |
-| 6 | Erik Desrosiers | ? | Planned | Peer (AI system builder) | — | — | Peer like Nabadi — building crazy AI system. Start with conversation | Planned |
-| 7 | Kirill | Call | Apr 6, 8:30 PM | Live demo + collaborator | — | — | Proto-licensee. Has delivered ZoG. Show tool live on call. Ask for practitioner feedback | Planned |
-| 8 | Karen | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
-| 9 | Soren | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
-| 10 | Valentin | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
+| 3 | Nabadi | DM | Apr 3 → Apr 6 | Peer exchange (Compart founder) | Apr 6: pitched open-source modular platform idea | Peer exchange → Ecosystem builder | Integral Ecosystem Builder #1 | In Conversation |
+| 4 | Andrey Kamyshan | Telegram DM | Apr 3, 8:01 PM | Epicenter DM (RU) | Raised "обман" concern → AI trust discussion | "How does this work?" (UR-first) | Bullseye segment — trust friction pattern | In Conversation |
+| 5 | Max Rodin | Telegram DM | Apr 3, 8:12 PM | Epicenter DM (RU) | "Я потыкал — интересно, поварю еще!" | "Let me sit with it" (Integrative) | Contemplative pause — feature not bug | Responded ✅ |
+| 6 | Erik Desrosiers | ? | Planned | Peer (AI system builder) | — | — | Ecosystem builder peer | Planned |
+| 7 | **Kirill** | **Call** | **Apr 7** | **Live demo + collaborator** | **Impressed. Wants to be facilitator. Started advising on licensing structure** | **Collaborator activation** | **Proto-licensee CONFIRMED. Entered collaborator mode immediately** | **Active Collaborator** |
+| 8 | Karen Martirosyan | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6 | Planned |
+| 9 | Soren | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6. Similar to Karen | Planned |
+| 10 | Valentin | ? | Planned | ? | — | — | Intuitive name — arrived Apr 6. Природа | Planned |
+| 11 | **Patricia Reed** | **WhatsApp** | **Apr 6, 6:50 PM** | **Inbound (via Karime)** | **"Can you please tell me more about what you do?" → sent website** | **Self-initiated pull** | **Adjacent ring. She reached out FIRST. Website = litmus test** | **Awaiting Response** |
+| 12 | **Anton Parin** | **Telegram** | **Apr 7** | **Re-engagement (past collaborator)** | **Went through ZoG tests! "Прошел твои тестирования." Asked about consultation flow. "AI + интеграл + бизнес"** | **Self-selected + peer** | **Bali. Integral profiling + AI. Past collaborator. Took the test himself = self-selection** | **In Conversation** |
+| 13 | **Devon Seagers** | ? | Planned | Past ZoG partner | — | — | New intuitive arrival Apr 7 | Planned |
+| 14 | **Alexander Pustov** | ? | Planned | ? | — | — | New intuitive arrival Apr 7 | Planned |
+| 15 | **Terrina Cavendar** | In person | This weekend | Organic conversation | — | — | Visiting Mexico. Tell her about the work | Planned |
+
+> **Full per-person notes:** See [Contact Dossier](contact_dossier.md)
 
 **Status values:** Planned → Sent → Responded → In Conversation → /ignite Sent → Booked → Done
 
@@ -43,14 +50,20 @@
 7. Original Truth Rebels — funnel link: "here is my new funnel, whenever you feel the urge to recommend — this is the link"
 
 **Batch 3: Collaborator Conversations**
-8. Devon — ZoG workshop partner. Start with conversation, not broadcast.
+8. Devon Seagers — ZoG workshop partner. Start with conversation, not broadcast.
 9. Erik Desrosiers — AI system builder peer. Conversation first.
-10. Kirill — Proto-licensee. Live demo on call Apr 6.
+10. Kirill — ~~Proto-licensee~~ → **CONFIRMED COLLABORATOR.** Apr 7 call: impressed by site, wants to facilitate + license. Started co-designing licensing structure
+11. Anton Parin — Past collaborator. Bali. AI + integral + business. **Took the ZoG test himself.** Asked about consultation flow
+12. Roso (RnD Ventures) — Partnership paused. Considering gift session offer
 
-**Batch 4: Intuitive Arrivals (Apr 6)**
-11. Karen
-12. Soren
-13. Valentin
+**Batch 4: Intuitive Arrivals (Apr 6-7)**
+13. Karen Martirosyan
+14. Sorin (похож на Karen)
+15. Valentin (Природа)
+16. Alexander Pustov (arrived Apr 7)
+17. Terrina Cavendar (visiting Mexico this weekend — organic)
+
+**Karime escalation:** She wants to fly to Mexico (~next weekend) to build unique business together at beach villa. From client → co-creator
 
 **Sub-Tribe Strategy (Apr 6 — Karime unblocked):**
 - **The Originals** — funnel alignment message
@@ -84,7 +97,8 @@
 
 | Week | DMs Sent | Responses | Clicks | Quiz Completions | Emails Captured |
 |------|----------|-----------|--------|------------------|-----------------|
-| Apr 3-9 | 4 | 2 | ? | ? | ? |
+| Apr 3-9 | 5 | 3 (Max, Andrey, Anton) | ? | 1 (Anton took ZoG) | ? |
+| **Inbound** | — | 2 (Patricia, Kirill call) | — | — | — |
 | Apr 10-16 | | | | | |
 | Apr 17-23 | | | | | |
 
