@@ -171,3 +171,35 @@
 | **Response rate** | ~55% (из отправленных) |
 | **Segments** | BULLSEYE: 1, ADJACENT: 3, COLLABORATOR: 5, ECOSYSTEM: 2, BRIDGE: 1, TBD: 5 |
 | **Паттерн** | Коллабораторы отвечают быстрее и глубже. Adjacent ring (через Karime) самоселектируется быстро. Bullseye (холодный DM) — trust friction |
+
+---
+
+## 💰 Client CRM — Agreements & Revenue
+
+### Active Clients
+
+| Client | Container | Sessions Done | Agreement | Paid | Owed / Pending | Status |
+|--------|-----------|---------------|-----------|------|----------------|--------|
+| **Oyi** | The Build (deep) | 5+ | Gratitude-based | **$50** (donation) | — | Active. All artifacts 9.9+. Mirror Session blueprinted |
+| **Sergey** | The Build | 5 | $277 from his first paid client | **$0** | $277 (revenue share, triggered when he gets first client) | Active. Product Kernel v1.0. 3 gift sessions delivered. Workflow handoff done |
+| **Sandra** | The Build | ~6 | Revenue share (% TBD — she asked, needs to be named) | **$0** | **⚠️ NEEDS AGREEMENT.** She's ready. Propose terms | Active. Uniqueness + myth + tribe landed. Pain in progress |
+| **Karime** | The Naming → Build | 1.5 | Gratitude-based → transitioning | **$111** (donation, Apr 7) | — | Active bridge + client. Flying to Mexico ~next weekend for intensive |
+| **Alexa** | The Naming complete | 1 | — | **$0** | — | Invited to Build. Decision pending |
+| **Taylor & Tracy** | The Build(?) | ? | $3,000 rev share from first $10K | **$0** | $3,000 (revenue share) | ⚠️ **STALLED.** Disappearing. Not doing their work. Need "let's be professional" conversation |
+
+### Revenue Summary
+
+| Category | Amount |
+|----------|--------|
+| **Cash received** | **$161** ($50 Oyi + $111 Karime) |
+| **Revenue share pending** | **$3,277+** ($277 Sergey + $3,000 Taylor/Tracy) |
+| **Revenue share TBD** | Sandra (needs terms) |
+| **Total potential** | $3,438+ |
+
+### Open Items
+
+- [ ] **Sandra:** Name the revenue share. Рекомендация: 33% с первых $10K (= ~$3,300). Она уже спросила — назови цифру
+- [ ] **Sergey:** Уточнить границу Build. До какой точки? (см. анализ ниже)
+- [ ] **Taylor & Tracy:** Серьёзный разговор. "Ребята, у нас есть соглашение. Я свою часть делаю. Давайте либо работаем профессионально, либо закрываем контейнер"
+- [ ] **Oyi:** Нужна ли формализация? Пока gratitude-based работает
+- [ ] **Karime:** Мексика = intensive. Определить формат: это сессия 2 или это Build?
