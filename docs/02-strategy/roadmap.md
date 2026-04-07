@@ -27,8 +27,13 @@
 | W5 | **Chris + Patricia** (via Karime) | B — Sales | 🟡 | Awaiting Karime's voice note intros |
 | W6 | **Instagram Creator switch** | B — Distribution | 🔴 | 30 seconds. Unlocks Stories link stickers |
 | W7 | **Content cadence start** | B — Content | 🟡 | 1 stamped infographic/day on IG + LinkedIn |
-| W8 | **Holomap auto-update mechanism** | Support | 🟡 | Simple feed system so holomap stays current |
-| W9 | **Moon phase check** | Support | 🟡 | Situate the week energetically |
+| W8 | **CRM formalization** | Support | 🟡 | ✅ Master table built (broadcast_tracker.md). All 24 contacts, segments, financials in one table. Next: Notion sync |
+| W9 | **Notion CRM automation** | Support | 🟡 | Create Notion database + API sync script. Goal: voice → AI → markdown → Notion auto-update. 1-2 hrs |
+| W10 | **Oyi Mexico intensive** | B — Business | 🟡 | He wants to fly to Mexico ~next weekend. Determine format: intensive Build sprint? |
+| W11 | **Sandra agreement** | B — Business | 🔴 | Name the revenue share. She asked. Rec: 33% from first $10K |
+| W12 | **Taylor & Tracy checkpoint** | B — Business | 🔴 | Professional conversation. Are they in or out? |
+| W13 | **Roso + Cori demo sessions** | B — Sales | 🟡 | Offer demo Unique Business session to each |
+| W14 | **Moon phase check** | Support | 🟡 | Situate the week energetically |
 
 ---
 
