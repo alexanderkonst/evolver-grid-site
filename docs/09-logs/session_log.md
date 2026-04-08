@@ -3736,9 +3736,24 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 - `/src/pages/VentureDashboard.tsx` — Full copy overhaul + financial data ($677 cash, $6.9K total, Oyi $566)
 - `/src/pages/IgniteSession.tsx` — Removed self-qualification line, updated clarity call subtext
 - `/src/components/SiteLogo.tsx` — 90px size, hidden on `/` and `/ignite`
-- `/docs/01-vision/phase_shift_technology_library.md` — Domain 75 (Ease Protocol)
+- `/src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx` — Replaced static gradient.jpg with HLS video background (Mux stream)
+- `/docs/01-vision/phase_shift_technology_library.md` — Domain 14f (Grind Addiction deepening) + Domain 75 (Ease Protocol)
 - `/docs/02-strategy/roadmap.md` — Revenue + domain count updated
+- `/docs/02-strategy/alexanders_operating_system.md` — Ease Protocol as core operating principle
+- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Grind Addiction Download + social activation milestone + v8.1
+- `/docs/03-playbooks/unique_business_playbook.md` — Principle 13 (Grind Addiction Diagnosis)
 - `/docs/09-logs/broadcast_tracker.md` — Oyi $566, $677 total cash
+
+### Social Activation (Day 36 — FIRST public posts)
+
+| Platform | Handle | Post |
+|----------|--------|------|
+| Telegram | Aleksandr Konstantinov (31 subs) | "Launch Day" banner + "Hello! My name is Aleksandr Konstantinov, and I am a grind addict." + full grind diagnosis text |
+| Instagram | @integralevolution (647 followers) | Same content as carousel + extended text in comments |
+| Facebook | Personal profile | Same content |
+
+**Timing:** 2:43 PM CT, April 8, 2026
+**Mode:** Unhinged. No strategy. No editing. No hesitation. Domain 75 (Ease Protocol) operating live.
 
 ### Artifacts Produced
 

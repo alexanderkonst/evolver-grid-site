@@ -19,7 +19,41 @@ import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
+import Hls from "hls.js";
 
+const HLS_VIDEO_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh38GNw8.m3u8";
+
+const HlsBackground = () => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (Hls.isSupported()) {
+            const hls = new Hls({ autoStartLoad: true });
+            hls.loadSource(HLS_VIDEO_URL);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
+            return () => hls.destroy();
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = HLS_VIDEO_URL;
+            video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
+        }
+    }, []);
+
+    return (
+        <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+        />
+    );
+};
 type Step =
     | "choice"
     | "choice-route"
@@ -412,14 +446,9 @@ const ZoneOfGeniusEntry = () => {
 
     return (
         <GameShellV2 hideNavigation>
-            {/* Attached Gradient Background Override */}
+            {/* HLS Video Background */}
             <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-                <img 
-                    src="/gradient.jpg" 
-                    alt="" 
-                    className="w-full h-full object-cover" 
-                    aria-hidden="true"
-                />
+                <HlsBackground />
                 {/* Dark overlay to ensure white text remains legible */}
                 <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
             </div>

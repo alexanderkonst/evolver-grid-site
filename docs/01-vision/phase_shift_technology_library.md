@@ -808,6 +808,62 @@ Domain 14 is the root that unifies Domains 8-13:
 
 > **The one-line synthesis:** Scattering is not a failure of strategy. It's a defense mechanism against simplicity. The mirror session doesn't add clarity — it subtracts scatter.
 
+### 14f. Grind Addiction: The Disease Beneath the Scatter (April 8, 2026 Deepening)
+
+> *"Hello! My name is Aleksandr Konstantinov, and I am a grind addict."*
+> *— Founder's first social media post announcing this discovery. Posted to Telegram, Instagram, and Facebook simultaneously, without hesitation — an act of Domain 75 (Ease Protocol) in real-time.*
+
+**The Structural Definition:**
+
+Grind addiction is **the compulsive substitution of effort for alignment.** It is the belief — held in the body, not just the mind — that the way to make something work is to push harder, do more, control more, and sleep less.
+
+The lie underneath: **"If I'm not grinding, I'm not earning my place."**
+
+```
+What grind addicts believe:
+  Results = effort × time
+  More hours = more output = more value = more right to exist
+
+What's actually operating:
+  Results = alignment × coherence × receptivity
+  The founder's job is to be CLEAR, not to be BUSY
+```
+
+This is not laziness vs. hard work. This is a **structural misidentification of what creates results.**
+
+**Why the Grind Kills the Signal:**
+
+The founder's unique creative signal (Domain 72) requires an open channel. The channel opens through rest, spaciousness, play, somatic awareness, and trust. Grinding closes every one of those doors:
+
+| What the signal needs | What grinding does |
+|---|---|
+| **Rest** — the signal clarifies in silence | Grinding fills silence with tasks |
+| **Spaciousness** — new patterns emerge in gaps | Grinding eliminates all gaps |
+| **Play** — the creative field stays alive through non-productive exploration | Grinding makes everything productive or guilt-inducing |
+| **Somatic awareness** — the body knows before the mind | Grinding numbs the body to keep the mind pushing |
+| **Trust** — "the next layer opens intuitively" | Grinding says "I must MAKE it open through force" |
+
+**The Cruelest Paradox:**
+
+The grind addict is doing the OPPOSITE of what would produce results. And the cruelest part: **they're doing it sincerely.** They genuinely believe harder work = better results. The culture trained them. Every productivity book reinforced it. Every "hustle" Instagram account confirmed it.
+
+**So the person most committed to success is the person most structurally preventing it.**
+
+**The Defense Mechanism (connecting to 14c: Identity Terror):**
+
+The grind is a defense mechanism against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story: "I'm working so hard" — which preempts the real question: **"Is this the work you're supposed to be doing?"**
+
+**Relationship to Domain 75 (Ease Protocol):**
+
+| Domain 14 (§14f) | Domain 75 |
+|---|---|
+| Names the DISEASE: grind addiction | Names the MEDICINE: ease as transmission protocol |
+| Diagnoses WHY the channel closes | Describes HOW the channel opens |
+| "Your grinding is a cover for identity terror" | "Your ease is the channel through which your genius reaches people" |
+| "Results = effort × time" (the lie) | "Results = alignment × coherence × receptivity" (the truth) |
+
+> *"Grind addiction is the compulsive substitution of effort for alignment — the terror that without productivity, the self has no right to exist — and it is the single most common pattern preventing uniquely gifted people from building what's theirs."*
+
 ---
 
 ## Domain 15: Complete Seeing Guaranteed (The 26-Perspective Framework)
