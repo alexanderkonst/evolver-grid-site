@@ -112,14 +112,18 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-modal bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Left: Logo + Navigation */}
-          <div className="flex items-center gap-8">
+          {/* Center: Logo */}
+          <div className="absolute left-1/2 -translate-x-1/2">
             <Link
               to="/"
               className="flex items-center transition-all duration-300 logo-glow hover:logo-glow-hover"
             >
               <img src={logo} alt="Aleksandr Konstantinov" loading="lazy" className="h-16 w-auto" />
             </Link>
+          </div>
+
+          {/* Left: Navigation */}
+          <div className="flex items-center gap-8">
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
