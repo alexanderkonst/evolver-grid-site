@@ -9,12 +9,12 @@ const HERO_METRICS = [
 ];
 
 const TIMELINE = [
-  { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Mask-on-first. Ran the full process on himself.", color: "#8460ea" },
-  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($566)", desc: "Full canvas. Myth discovery. $50 initial + $516 gift (Apr 8). Flying to Mexico for intensive.", color: "#6894d0" },
-  { day: 4, date: "Mar 7", name: "Sergey", type: "Rev Share ($277)", desc: "Product Kernel v1.0. 3 gift sessions delivered.", color: "#a7cbd4" },
-  { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Full canvas in 2.5hrs. Fastest yet. Invited to Build.", color: "#b1c9b6" },
-  { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Uniqueness + myth + tribe landed.", color: "#cec9b0" },
-  { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Bridge + client. Referring Chris + Patricia. Session 2 tomorrow.", color: "#cea4ae" },
+  { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Built the methodology by applying it to himself first.", color: "#8460ea" },
+  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($566)", desc: "Complete business blueprint. Later sent $566 in gratitude gifts — without being asked.", color: "#6894d0" },
+  { day: 4, date: "Mar 7", name: "Sergey", type: "Rev Share ($277)", desc: "Business blueprint created. Revenue share agreement. 3 follow-up sessions delivered.", color: "#a7cbd4" },
+  { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet.", color: "#b1c9b6" },
+  { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Core identity, story, and audience crystallized.", color: "#cec9b0" },
+  { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically.", color: "#cea4ae" },
 ];
 
 const RADAR_DATA = [

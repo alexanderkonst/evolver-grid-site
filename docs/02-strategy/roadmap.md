@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-07 evening — 74 Phase Shift Domains. Tribe v3.0 (Signal-First). Infographic Episodes v2.0 scripts complete (43 slides). Playbooks upgraded.*
+> *Last updated: 2026-04-08 afternoon — 75 Phase Shift Domains. Tribe v3.0 (Signal-First). Domain 75 (Ease Protocol) codified. Dashboard copy overhauled. Oyi $516 gift received ($677 total cash).*
 
 ---
 
@@ -44,8 +44,8 @@
 
 | Metric | Value |
 |--------|-------|
-| **Phase** | PLANTING. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $161 revenue) |
-| **Cycle** | April 7-13 (New Moon). **74 Phase Shift Domains.** Tribe v3.0 (Signal-First). Infographic Episodes ready for visual production |
+| **Phase** | PLANTING. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $677 revenue) |
+| **Cycle** | April 7-13 (New Moon). **75 Phase Shift Domains.** Tribe v3.0 (Signal-First). Domain 75 (Ease Protocol). Infographic Episodes ready for visual production |
 | **Location** | Mexico City |
 | **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
 | **Focus** | **Planting seeds: social activation, client agreements, demonstration sessions. Names arrive intuitively.** |
