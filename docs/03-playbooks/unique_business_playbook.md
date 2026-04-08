@@ -1252,7 +1252,17 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - Output: Qualifiers (inner state) → Segments (types) → Life Situation (why NOW) → Tribe Synthesis paragraph
   - Key principle: The myth is universal. The tribe is YOUR tribe. Beachhead.
   - Don't define tribe first. Forge myth, watch who magnetizes.
+  - **The Signal-First Tribe Principle (Domain 72):** Define the tribe by what's ALIVE in them (their unique creative signal), not by what's BROKEN (their pain). The tribe is not "people in pain." The tribe is "people carrying an unmistakable creative signal that they cannot yet articulate." Pain is real — but it's a consequence of the unnamed signal, not the defining characteristic. This reframe changes EVERYTHING downstream: content reflects fire instead of poking wounds, the promise shifts from "fix what's wrong" to "name what's right," and the self-selection energy shifts from deficit to recognition.
   - **Derivation method:** Reverse myth's truth claims into qualifier questions → ask "what life paths produce this inner state?" → segments emerge → ask "what pressure makes them ready TODAY?" → life situation → founder fills in self-talk + felt texture from embodied experience
+  - **The Resonance Sort Protocol (Domain 72f):** The repeatable 5-step methodology for defining tribe at 9.999 precision:
+    1. **Multi-resolution field scan** — AI generates sub-tribe candidates at 3+ precision tiers (9.99, 9.9, 9.0). Include characteristics beyond pain: capacity, desire, competence, signal strength, readiness
+    2. **Founder somatic reordering** — The founder feels into each candidate and reorders by body resonance, not logic. The head will pick "who seems like a good customer." The body picks "who I light up with." Trust the body
+    3. **Founder addition** — The founder names what the AI missed (this always happens — AI can't see the full interior). The characteristics the founder adds will often be the most defining ones
+    4. **AI synthesis** — Compress the reordered characteristics into one tribe description. Test: does the description name what's ALIVE in them, not just what's wrong?
+    5. **Somatic confirmation** — If chills, humility, or tears arrive in the founder → the tuning fork rang. If not → iterate. The emotional response IS the signal that precision has been achieved
+    - **Why this works:** Combines AI's breadth (seeing many angles) with the founder's depth (feeling which one is TRUE). Neither alone produces the result. Together: crystallization
+    - **Surprising discovery:** The characteristics that ranked highest in live testing were NOT about pain — they were about unrealized CAPACITY, generative DESIRE, and existing COMPETENCE. The tribe that resonated most deeply was defined by what's RIGHT with them
+  - **Situational Identity Principle:** NEVER use identity labels (founder, entrepreneur, coach, consultant) in primary copy. Use situational language — describe lived experience, not job titles. ❌ "Founders in transition" → ✅ "People who know they have something real but it's not becoming a real business." Labels trigger self-exclusion ("that's not me... yet"). Situations trigger recognition ("that IS my life")
   - Each segment needs 4 fields: how they arrived, the grind, the dream (in THEIR words), what they tell themselves
   - Dream outcomes in THEIR conscious language, not our framework language
   - Produce anti-tribe (who is NOT for this) with explanations

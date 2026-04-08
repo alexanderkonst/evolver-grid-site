@@ -1080,6 +1080,111 @@ The shift from observer → protagonist happens at the CTA, not before it.
 
 ---
 
+## The Dual-Frequency Distribution Principle (April 2026)
+
+> *"The content addresses what's RIGHT. The funnel addresses what's WRONG. Both are true. Both are needed."*
+> *Source: Domain 73 — Phase Shift Technology Library*
+
+### The Principle
+
+Distribution operates on two frequencies simultaneously. Neither alone is complete:
+
+```
+CONTENT (Signal-first):           FUNNEL (Pain-first):
+"Here's what you carry"           "Here's what it costs to not name it"
+Reflects fire                     Names the wound
+Attracts by recognition           Converts by consequence
+"Does this match what you see?"   "Are you ready to stop waiting?"
+Entrance: voluntary resonance     Entrance: recognition of cost
+```
+
+### Why Both Frequencies Are Needed
+
+| Without Funnel (signal-only) | Without Content (pain-only) |
+|---|---|
+| Attracts people who love the frameworks but never act | Attracts people who identify with brokenness |
+| "I love your content" but never books | Filters for crisis, not readiness |
+| The practitioner becomes a teacher (incomplete) | The practitioner becomes a healer (depleting) |
+
+**With both:** Content attracts people who resonate with the SIGNAL. Funnel converts people who recognize the COST. The right person sees BOTH — "I carry something unnamed" AND "I can't afford to keep it unnamed."
+
+### Practical Architecture for Any Unique Business
+
+| Surface | Frequency | Energy |
+|---------|-----------|--------|
+| **Instagram / content** | Signal-first | "Here's what I see. Does this match?" |
+| **LinkedIn / frameworks** | Signal-first | Paradigm shifts, recognition triggers |
+| **Website / landing page** | Pain-first | "Why is it still so hard? Here's the way through" |
+| **DMs** | Signal-first | "I thought of you when I made this" |
+| **Quiz** | Bridge | Names both the signal AND the gap |
+| **Session booking page** | Pain-first | Consequence, pricing, decision |
+
+### How to Apply to Any Unique Business
+
+1. **Audit all surfaces:** Is each surface operating on the right frequency?
+2. **Content should never feel like a sales funnel.** It should feel like a gift — reflecting what's alive in the tribe
+3. **The funnel should never feel like content.** It should feel like a decision — naming consequence and offering the bridge
+4. **The bridge surfaces (quiz, DM conversation) hold both frequencies simultaneously:** recognition of what's alive AND acknowledgment of what it costs to leave it unnamed
+
+> **Connection:** [Phase Shift Technology Library — Domain 73](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 6](./unique_business_playbook.md)
+
+---
+
+## The Playbook-as-Lead-Magnet Pattern (April 2026)
+
+> *"Give away the entire architecture. The blueprints show you the architecture. The session builds the house."*
+> *Source: Domain 74 + Principle 2 (Open Blueprint Paradox)*
+
+### The Principle
+
+The complete methodology — every step, every framework, nothing held back — can be given away as free content. **This does NOT cannibalize the paid offering. It creates it.**
+
+| Assumption | Reality |
+|---|---|
+| "If I give away the how-to, nobody will pay" | The person who can DIY it was never going to pay. The person who needs the mirror was never going to DIY it. Zero cannibalization |
+| "Free content should be basic, paid should be deep" | The deeper the free content, the more the reader recognizes: "I can see the map but I can't see MYSELF on it" |
+| "I need to hold back the best content" | The BEST content creates the HIGHEST trust. Withholding creates suspicion |
+
+**The mechanism:** The jar can't read its own label. The methodology shows you how to do the work. But you cannot apply it to YOURSELF — because you're inside the jar. **The precision gap between understanding the method and being mirrored IS the product.**
+
+### The Format: Infographic Episodes
+
+The specific format for playbook-as-lead-magnet:
+
+| Element | Design | Why |
+|---|---|---|
+| **Format** | Multi-slide carousel (Instagram) | Mobile, swipeable, binge-friendly |
+| **Structure** | 5 beats per episode: WHY NOW → BIG INSIGHT → TRAP → HOW TO APPLY → CLIFFHANGER | Each beat does one job |
+| **Sequence** | Mindset Shift → then each methodology artifact in build order | Follows the real methodology. Reader understands the architecture |
+| **Tone** | Complete gift — no holding back, no teasers | Trust is built by completeness |
+| **CTA** | Only in the final episode, as a logical conclusion | "If you want this done in 90 minutes..." — the reader brought themselves there |
+| **Permanence** | Posted as permanent profile content, not stories | New followers find and binge the whole library |
+
+### How to Apply to Any Unique Business
+
+1. **Map your methodology into a sequential episode structure.** Each artifact = one episode
+2. **Open with the mindset shift.** Before any how-to, the seeing must change
+3. **End each episode with a cliffhanger** pointing to the next. The sequence becomes a journey
+4. **The final episode offers the session** as a logical conclusion — not a pitch, but the obvious answer to the gap the reader now feels
+5. **Batch-produce in one session.** The founder creates ceremony-style, not daily. Post as a permanent library
+6. **This IS the content frequency** (Dual-Frequency Distribution). The funnel lives on the website
+
+### The Precision Gap Mechanism
+
+```
+Reader sees the methodology → understands the architecture
+  → tries to apply it to themselves
+  → discovers: "I can see the framework but not myself in it"
+  → the gap is felt (not manufactured)
+  → the session is the obvious next step
+```
+
+The content CREATES the felt need for the session. Not by withholding — by GIVING EVERYTHING and letting the reader discover the gap on their own.
+
+> **Connection:** [Phase Shift Technology Library — Domain 74](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 2](./unique_business_playbook.md)
+
+---
+
 
 # Part IV: The Recursive Insight
 
@@ -1108,4 +1213,5 @@ This is **self-organizing infrastructure for mission manifestation**.
 *Merged from: marketing_playbook.md + marketing_meta_playbook.md*
 *Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*
 *Updated: April 2, 2026 — Controlled Collapse Conversion Pattern (consequence block, micro-commitment, non-optionality, identity-shift CTA, pressure line). Curiosity Gap pattern established. Situational Identity Principle (transcend labels — use lived-experience language). Decision Language CTAs (protagonist > observer positioning).*
+*Updated: April 7, 2026 — Dual-Frequency Distribution Principle (content = signal-first, funnel = pain-first). Playbook-as-Lead-Magnet Pattern (Open Blueprint Paradox operationalized as Infographic Episodes).*
 
