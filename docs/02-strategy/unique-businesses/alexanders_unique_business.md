@@ -65,6 +65,7 @@
 - [The Funnel Page Architecture v3.0](#download-the-funnel-page-architecture-v30-march-31-2026)
 - [Moon Cycle Intention Framework](#moon-cycle-intention-framework-march-24-2026)
 - [The Noble = Free Antidote](#the-noble--free-antidote--deepened-march-24-2026)
+- [The Grind Addiction Diagnosis](#download-the-grind-addiction-diagnosis-april-8-2026)
 
 ### VI. Live Assets (Current)
 - [Video Script v2.0 (LOCKED)](#video-script-v20-locked)
@@ -6185,6 +6186,56 @@ The funnel is at 9.9+. The remaining 0.1% comes from DATA, not from more wordsmi
 
 ---
 
-*Alexander's Unique Business v7.9 — April 3, 2026 (Premium UI Overhaul + PageRank Principle)*
-*Updated: v7.8 changes preserved. v7.9 adds: Domain 60 (PageRank Principle — the platform's moat = owning the standard that maps genius). Zero-friction viral sharing architecture (identity expression, not validation-seeking). Premium UI deployed: dark liquid glass across all ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on all step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Post-save UX: "✓ Saved. We sent your Zone of Genius to your inbox." 172 commits overnight. UI + Copy now FROZEN. Next: traffic only.*
+## Download: The Grind Addiction Diagnosis (April 8, 2026)
+
+> *"Hello! My name is Aleksandr Konstantinov, and I am a grind addict."*
+> *— First social media post. Posted to Telegram (31 subscribers), Instagram (@integralevolution, 647 followers), and Facebook simultaneously, without hesitation — an act of Domain 75 (Ease Protocol) in real-time.*
+
+### The Discovery
+
+Grind addiction is **the compulsive substitution of effort for alignment.** It is the belief — held in the body, not just the mind — that the way to make something work is to push harder, do more, control more, and sleep less.
+
+```
+What grind addicts believe:
+  Results = effort × time
+  More hours = more output = more value = more right to exist
+
+What's actually operating:
+  Results = alignment × coherence × receptivity
+  The founder's job is to be CLEAR, not to be BUSY
+```
+
+This is not laziness vs. hard work. This is a **structural misidentification of what creates results.**
+
+### Why it Became Personal Myth
+
+The moment the founder publicly named himself as a grind addict — on launch day, across all channels, without editing or hesitation — three things happened simultaneously:
+
+1. **Personal healing:** The naming IS the first step of recovery. "I am a grind addict" follows the same structure as any recovery program's first step: naming the disease
+2. **Methodology demonstration:** The post IS the methodology in action — name the invisible pattern, make it speakable, and let the recognition trigger do the work
+3. **Content production:** The post IS the lead magnet — it's the exact same content that constitutes the Infographic Episodes, delivered unplanned, through ease
+
+### The Economic Proof
+
+| Mode | Result |
+|------|--------|
+| **Grinding** (Jan-Feb) | $0 revenue. Maximum effort. Zero pull |
+| **Ease** (Mar-Apr) | $677 cash, $6.9K total. Oyi's $566 arrived while sleeping |
+
+### Social Activation Milestone (Day 36)
+
+| Platform | Handle | Post Type |
+|----------|--------|-----------|
+| Telegram | Aleksandr Konstantinov (31 subscribers) | "Launch Day" banner + full grind addiction text |
+| Instagram | @integralevolution (647 followers) | Carousel: banner + grind text card + full explanation in comments |
+| Facebook | Personal profile | Same content |
+
+**Posting mode:** Unhinged. No strategy. No scheduling. No hesitation. Domain 75 (Ease Protocol) operating live.
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+
+---
+
+*Alexander's Unique Business v8.1 — April 8, 2026 (Grind Addiction Diagnosis + Social Activation + Dashboard Overhaul)*
+*Updated: v8.0 changes preserved. v8.1 adds: Domain 14f (Grind Addiction deepening), Domain 75 (Ease Protocol), dashboard copy overhaul (Option C: public-facing, data-forward), first social media activation across Telegram/IG/FB, 27-perspective roast prompt upgrade, $677 cash / $6.9K total revenue.*
 

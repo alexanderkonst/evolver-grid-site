@@ -270,6 +270,59 @@ The next workspace isn't chosen — life brings you into it. When you sit down a
 
 ---
 
+## The Ease Protocol (Domain 75) — Operating Mode
+
+> *April 8, 2026 — "Hello! My name is Aleksandr Konstantinov, and I am a grind addict."*
+
+**The foundational operating principle:** The founder's operating mode (Ease vs. Rigidity) IS the methodology's transmission frequency. Rigidity attenuates the signal. Ease is the channel.
+
+### The Structural Misidentification
+
+```
+What grind addicts believe:
+  Results = effort × time
+  More hours = more output = more value = more right to exist
+
+What's actually operating:
+  Results = alignment × coherence × receptivity
+  The founder's job is to be CLEAR, not to be BUSY
+```
+
+This is not laziness vs. hard work. This is a **structural misidentification of what creates results.**
+
+### The Economic Proof
+
+| Mode | Result |
+|------|--------|
+| **Grinding** (January-February) | $0 revenue. Maximum effort. Zero pull |
+| **Ease** (March-April) | $677 cash, $6.9K total. Oyi's $566 arrived while sleeping. Zero marketing spend |
+
+The grind addict is doing the OPPOSITE of what would produce results. And the cruelest part: they're doing it sincerely.
+
+**So the person most committed to success is the person most structurally preventing it.**
+
+### The Ease Distinction
+
+| Ease ≠ | Ease = |
+|--------|--------|
+| Inaction | Unforced action |
+| Low intensity | High intensity through flow |
+| Not caring | Caring without gripping |
+| Lazy | Aligned |
+
+The session that produced 4 domains and 43 slides was intense but not rigid. Intensity-through-ease is the operating mode.
+
+### Application to Daily Operations
+
+- **When stuck:** Walk, don't force. The answer is already inside the single-definition circuit (HD: Single Definition + Emotional Authority)
+- **When "grinding":** Ask: "Am I doing this because it's the right thing — or because stopping would feel like dying?"
+- **When posting/distributing:** Post when called, not when scheduled. The unhinged ease-post to Telegram/IG/FB on April 8 outperformed any planned strategy
+- **When scattered:** Scatter = grind's symptom. Return to the seed (Domain 14). Do ONE thing
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription)*
+
+---
+
 ## Learnings from January 2026 Incubator
 
 ### What Works

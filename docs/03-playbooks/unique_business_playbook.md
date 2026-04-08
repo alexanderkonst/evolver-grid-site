@@ -511,6 +511,56 @@ This is the bridge between the Methodology (mystical/visionary) and the Technolo
 
 ---
 
+## Principle 13: The Grind Addiction Diagnosis
+
+> *"The person most committed to success is the person most structurally preventing it."*
+>
+> *v1.0 · April 8, 2026 — Phase Shift Domain 14f + Domain 75. The unifying diagnosis beneath scatter, burnout, and misalignment.*
+
+Grind addiction is **the compulsive substitution of effort for alignment.** It is the belief — held in the body, not just the mind — that the way to make something work is to push harder, do more, control more, and sleep less.
+
+```
+What grind addicts believe:
+  Results = effort × time
+  More hours = more output = more value = more right to exist
+
+What's actually operating:
+  Results = alignment × coherence × receptivity
+  The founder's job is to be CLEAR, not to be BUSY
+```
+
+This is not laziness vs. hard work. This is a **structural misidentification of what creates results.**
+
+### Why Every Founder Carries This
+
+It's not a personality type. It's a cultural infection. The founder who says "I know I should charge more but I can't afford to lose the few clients I have" — that's grind addiction talking. The founder who says "I need to post every day" — grind addiction. The founder who says "I'll sleep when it's done" — grind addiction.
+
+### Why it Matters for the Session
+
+The Ignition Session is, at its core, **a detox.** What actually happens in 90 minutes is not "we name your business." What happens is: the founder STOPS. Sits with another human. Is listened to without agenda. And something emerges that was always there but was buried under the noise of grinding. The session works because it creates the OPPOSITE of the grind environment — it creates **spaciousness.**
+
+### The Signal Table
+
+| What the signal needs | What grinding does |
+|---|---|
+| **Rest** — the signal clarifies in silence | Grinding fills silence with tasks |
+| **Spaciousness** — new patterns emerge in gaps | Grinding eliminates all gaps |
+| **Play** — the creative field stays alive through exploration | Grinding makes everything productive or guilt-inducing |
+| **Somatic awareness** — the body knows before the mind | Grinding numbs the body to keep the mind pushing |
+| **Trust** — "the next layer opens intuitively" | Grinding says "I must MAKE it open through force" |
+
+### The Defense Mechanism
+
+The grind is a defense against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story → Domain 14c (Identity Terror).
+
+### For Facilitators
+
+Name this in Session 1. Every founder has it. The diagnostic question: *"Are you doing this because it's the right thing to do — or because stopping would feel like dying?"* The grind addict answers: "Both." That's the signal.
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+
+---
+
 # Part I: Philosophy & Ontology
 
 > *"The moment you can articulate your genius precisely, the market crystallizes around it."*
