@@ -87,7 +87,7 @@
 |----------|---------|-----------|--------|
 | Uniqueness | **v2.0** (Person-Perspective Developer — The Lens Focuser) | — | ✅ Deepened |
 | Myth | **v2.1** (grind is a lie, uniqueness IS your business) | — | ✅ Crystallized |
-| Tribe | **v2.2** (meta-segment: founders in transition) | — | ✅ Deep, 3-segment map |
+| Tribe | **v3.0** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) | — | ✅ Signal-first evolution (Resonance Sort Protocol applied) |
 | Pain | **v3.1** (5-layer slicer per segment, 9.95 calibration) | **9.95** | ✅ Landed |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
 | Promise | **v2.0** (collapsed from roasting) | — | ✅ Landed |
@@ -540,6 +540,59 @@ Self-Talk, Dream Outcomes, Felt Texture
 > And the voice that used to whisper *"I am not ready yet"* is starting to sound like a cheap and dangerous excuse.
 
 > **Why "Original Truth Rebels":** They rebel against the grind narrative. They carry an original truth — their unnamed gift — that won't be suppressed. They're not contrarian for the sake of it. They rebel because the conventional path doesn't fit who they actually are. *March 28, 2026.*
+
+#### Signal-First Tribe Evolution: v3.0 (April 7, 2026)
+
+> *"Define your tribe by the fire they carry, not the wound they nurse."*
+> *Discovered by applying the Resonance Sort Protocol (Domain 72f) to Alexander's own tribe definition.*
+
+**The shift:** v2.2 defined the tribe by their PAIN ("stuck in the grind," "savings declining," "can't name their gift"). v3.0 redefines the tribe by their SIGNAL — what's ALIVE in them, not what's broken.
+
+**How the Resonance Sort Protocol was applied:**
+
+| Step | What happened |
+|------|---------------|
+| **1. Multi-resolution scan** | AI generated 9 sub-tribe candidates at 3 precision tiers (9.99, 9.9, 9.0) |
+| **2. Founder somatic reorder** | Alexander reordered all candidates by body resonance. The result shocked: the characteristics that ranked highest were NOT about pain |
+| **3. Founder addition** | Alexander added: "tried to find their zone of genius / purpose / uniqueness but every next insight still misses the precision they can feel is possible." This became a top-3 characteristic |
+| **4. AI synthesis** | Compressed into: "Awakened Practitioners Who Can't Name Their Fire" |
+| **5. Somatic confirmation** | Chills. Humility. "This gives me chills and humbles me to think of SUCH a crowd" |
+
+**What ranked highest (somatic, not logical):**
+
+| Rank | Characteristic | About pain? |
+|------|---------------|-------------|
+| 1 | Already has something working, playing small while carrying something large | No — unrealized CAPACITY |
+| 2 | Deep inner work done, wants to create from that depth | No — generative DESIRE |
+| 3 | Years of serious professional depth, externally successful | No — existing COMPETENCE |
+| Top 3 addition | Tried everything to find their genius — nothing delivers the clarity they can feel is possible | No — the GAP in seeing, not the pain of failure |
+
+**The signal-first tribe definition:**
+
+**Energetic Tribe Name: Awakened Practitioners Who Can't Name Their Fire**
+
+> People carrying an unmistakable creative signal that everyone around them responds to — friends come to them without them offering, conversations change when they enter, something unnamed happens in the room. They have the strategic mind AND a personal awakening practice, and want to build something that integrates both. They've changed lives in conversations but almost never charged for it — and never packaged THAT thing they did. They have a deep suspicion that their scattered path IS the product.
+>
+> They carry fire. They know it. Everyone around them knows it. But they can't name it, can't package it, and can't sell it.
+
+**What changed from v2.2 to v3.0:**
+
+| | v2.2 (Pain-first) | v3.0 (Signal-first) |
+|---|---|---|
+| **Tribe name** | "Original Truth Rebels" | "Awakened Practitioners Who Can't Name Their Fire" |
+| **Defining energy** | What's wrong (stuck, grinding, declining savings) | What's ALIVE (carrying fire, changing lives, can't name it) |
+| **Content voice** | "Here's what's broken and how to fix it" | "Here's a framework that sees what you've been trying to see" |
+| **Promise** | "Fix the grind" | "Name the fire" |
+| **Self-selection trigger** | Pain recognition ("that's my problem") | Signal recognition ("that's ME") |
+
+**Three humans chosen for content testing:**
+1. The Compassion Key lady from ClubDAO universe (and the ClubDAO people broadly)
+2. Laura Alvarez
+3. Hernan from Colombia
+
+> **Mask-On-First note:** The Resonance Sort Protocol was applied to the FOUNDER's own tribe first, producing this case study. Every discovery here becomes a reusable blueprint for future founders running Artifact 3 at this precision level.
+
+> **Connection:** [Phase Shift Technology Library — Domain 72](../../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Artifact 3 Workflow](../../03-playbooks/unique_business_playbook.md)
 
 #### Highest Resonance → Lowest Resistance (April 2, 2026)
 
