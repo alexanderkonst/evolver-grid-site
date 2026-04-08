@@ -4,8 +4,8 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 
 const HERO_METRICS = [
   { label: "Revenue from Alexander's Genius Business", value: "$6.4K", sub: "Cash: $161 · Agreed rev share: $6.2K", icon: "💰" },
-  { label: "Revenue from All Genius Businesses Created", value: "$0", sub: "No client businesses have generated revenue yet", icon: "📊" },
-  { label: "Genius Founders Activated", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
+  { label: "Revenue from All Genius Businesses Created", value: "$6.4K", sub: "Alexander's business is the first to generate revenue", icon: "📊" },
+  { label: "Activated Genius Founders", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
 ];
 
 const TIMELINE = [
@@ -101,15 +101,17 @@ const VentureDashboard = () => {
 
         {/* ─── The Signal ──────────────────────────────────────────────────── */}
         <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center" id="signal-section">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { label: "Marketing Spend", value: "$0" },
               { label: "CRM Contacts", value: "24" },
               { label: "Client Retention", value: "100%" },
+              { label: "Certified Facilitators", value: "1", note: "upon certification completion" },
             ].map((s) => (
               <div key={s.label} className="space-y-1">
-                <div className="text-2xl md:text-3xl font-display font-bold text-[#a7cbd4]">{s.value}</div>
+              <div className="text-2xl md:text-3xl font-display font-bold text-[#a7cbd4]">{s.value}</div>
                 <div className="text-xs text-white/40 uppercase tracking-wider">{s.label}</div>
+                {(s as any).note && <div className="text-[10px] text-white/25 mt-0.5">({(s as any).note})</div>}
               </div>
             ))}
           </div>
