@@ -13,12 +13,13 @@ interface TourStepsScreenProps {
  * Order: Profile (ME) first, then other spaces
  */
 const TOUR_STEPS: TourStepConfig[] = [
-    {
-        targetSpaceId: "next-move",
-        title: "My Next Move",
-        tagline: "Your personalized recommendations",
-        description: "This is your command center. See your recommended next action, track your progress, and stay focused on what matters most.",
-    },
+    // Hidden until built — uncomment to re-enable
+    // {
+    //     targetSpaceId: "next-move",
+    //     title: "My Next Move",
+    //     tagline: "Your personalized recommendations",
+    //     description: "This is your command center. See your recommended next action, track your progress, and stay focused on what matters most.",
+    // },
     {
         targetSpaceId: "grow",
         title: "Me",
