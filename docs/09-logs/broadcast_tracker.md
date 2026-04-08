@@ -27,7 +27,7 @@
 
 | # | Name | Segment | Stage | Container | Sessions | Agreement | Paid | Pending | Channel | Last Contact | Notes |
 |---|------|---------|-------|-----------|----------|-----------|------|---------|---------|--------------|-------|
-| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$50** | — | ? | Mar 24 | All artifacts 9.9+. Mirror Session blueprinted. **Wants to fly to Mexico (~next weekend), villa + intensive Build** |
+| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$566** | — | ? | Apr 8 | All artifacts 9.9+. Mirror Session blueprinted. **$50 initial + $516 gift (Apr 8).** Wants to fly to Mexico (~next weekend), villa + intensive Build |
 | 2 | **Sergey** | `CLIENT` | Build | The Build (advanced) | 5 | $277 rev share from first paid client | **$0** | $277 | Telegram | Mar | Product Kernel v1.0 (Мультиварка). 3 gift sessions delivered. Workflow handoff done. **Boundary: 3 paid sessions** |
 | 3 | **Sandra** | `CLIENT` | Build | The Build (early-stage) | ~6 | Rev share TBD — **she asked, needs answer** | **$0** | ⚠️ TBD | ? | Mar | Uniqueness + myth + tribe landed. Pain in progress. **Rec: 33% с первых $10K** |
 | 4 | **Karime** | `CLIENT` `BRIDGE` | Naming→Build | The Naming → Build | 1.5 | Gratitude → transitioning | **$111** | — | WhatsApp | Apr 7 | Active bridge (refers Chris + Patricia). $111 donation Apr 7. Session 2 planned. Co-creator energy |
@@ -58,7 +58,7 @@
 
 | Category | Amount |
 |----------|--------|
-| **Cash received** | **$161** ($50 Oyi + $111 Karime) |
+| **Cash received** | **$677** ($566 Oyi + $111 Karime) |
 | **Revenue share contracts** | **$6,277** ($277 Sergey + $3,000 Taylor + $3,000 Tracy) |
 | **Revenue share TBD** | Sandra (needs terms — rec: 33% с первых $10K) |
 
