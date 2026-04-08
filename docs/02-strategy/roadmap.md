@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-07 — CRM v3.0 live. 24 contacts. $161 revenue. 6 canvases. Build boundary crystallized. Social activation ready.*
+> *Last updated: 2026-04-07 evening — 74 Phase Shift Domains. Tribe v3.0 (Signal-First). Infographic Episodes v2.0 scripts complete (43 slides). Playbooks upgraded.*
 
 ---
 
@@ -32,10 +32,10 @@
 | W6 | **Reach-outs** (Devon, Erik, Karen, Soren, Valentin) | Distribution | 🔴 | Intuitive names. Reach out as the field calls them |
 | W7 | **Roso + Cori demo sessions** | Sales | 🟡 | Offer demo Unique Business session to each |
 | W8 | **Chris + Patricia** (via Karime) | Sales | 🟡 | Awaiting Karime's voice note intros |
-| W9 | **Content cadence start** | Content | 🟡 | 1 stamped infographic/day on IG + LinkedIn |
-| W10 | **Infographic series** | Content | 🟡 | Resonance Field, Two-Path, River Canyon — for sessions + social |
-| W11 | **Oyi Mexico intensive** | Business | 🟡 | He wants to fly to Mexico ~next weekend. Determine format |
-| W12 | **Notion CRM automation** | Support | 🟡 | Create Notion database + API sync. 1-2 hrs |
+| W9 | **Infographic Episodes — visual production** | Content | 🟡 | 43 slides in 3rd party app. Scripts ready. Branding spec ready |
+| W10 | **Instagram profile setup** | Distribution | 🟡 | Categories/highlights for episode series + pinned intro post |
+| W11 | **Follow 200+ aligned weak ties** | Distribution | 🟡 | Domain 71: radiate into the resonance field |
+| W12 | **Oyi Mexico intensive** | Business | 🟡 | He wants to fly to Mexico ~next weekend. Determine format |
 | W13 | **Moon phase check** | Support | 🟡 | Situate the week energetically |
 
 ---
@@ -45,7 +45,7 @@
 | Metric | Value |
 |--------|-------|
 | **Phase** | PLANTING. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $161 revenue) |
-| **Cycle** | April 7-13 (New Moon). 70 Phase Shift Domains. Resonance Field (D70). Build Boundary crystallized |
+| **Cycle** | April 7-13 (New Moon). **74 Phase Shift Domains.** Tribe v3.0 (Signal-First). Infographic Episodes ready for visual production |
 | **Location** | Mexico City |
 | **Revenue** | **$161 cash** ($50 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
 | **Focus** | **Planting seeds: social activation, client agreements, demonstration sessions. Names arrive intuitively.** |
@@ -67,9 +67,9 @@
 | 4 | Sergey — communicate Build boundary (3 paid sessions) | Business | 🔴 |
 | **DISTRIBUTION** |
 | 5 | Instagram bio + first post + FB + X | Distribution | 🔴 |
-| 6 | Content cadence: 1 stamped infographic/day | Content | 🔴 |
-| 7 | Infographic series (Resonance Field, Two-Path, River Canyon) | Content | 🔴 |
-| 8 | 4-minute methodology video (currently placeholder) | Content | 🔴 |
+| 6 | Infographic Episodes — visual production (43 slides) | Content | 🔴 |
+| 7 | Instagram profile: categories + pinned intro post | Distribution | 🔴 |
+| 8 | Follow 200+ aligned weak ties (Domain 71) | Distribution | 🔴 |
 | **FUNNEL** |
 | 9 | Silent account creation + magic link (backend) | Infra | 🔴 |
 | 10 | ZoG result persistence | Infra | 🔴 |
@@ -138,11 +138,13 @@
 ### Methodology
 - [x] Myth crystallization — "YOU ARE THE PMF"
 - [x] Anatomy of a Myth framework — 4-part structure
-- [x] Tribe forging v2.2 — 3 segments + meta-segment
+- [x] Tribe forging v2.2 → **v3.0** — Signal-First: "Awakened Practitioners Who Can't Name Their Fire"
+- [x] Resonance Sort Protocol — 5-step tribe definition SOP at 9.999 precision
 - [x] Pain deep-dive — 5-layer slicer v2.0 at 9.95 precision
 - [x] Promise / MTR — "I help you get paying clients for your unique business"
 - [x] 5-min lead magnet video — source text + NotebookLM
 - [x] Unique Business sequence spec
+- [x] Infographic Episode Scripts v2.0 — 43 slides across 8 episodes
 - [x] Product Builder (Blueprint Generator)
 - [x] Litmus test: Alexander through Product Builder
 - [x] Founder landing pages: Oyi (`/oyi`), Sergey (`/sergey`), Sandra (`/sandra`)
@@ -164,10 +166,16 @@
 ### Documentation & Intelligence
 - [x] Planetary OS Assembly v1.1 (4 transcripts integrated)
 - [x] Holomap v2.1 (12 perspectives × 7 stages)
-- [x] 70 Phase Shift Domains codified
+- [x] 74 Phase Shift Domains codified
 - [x] Holomap monthly ritual — first reading done
 - [x] Phase shift: "Copernican Inversion" → "Founder-First Inversion"
 - [x] Domain 70: Resonance Field
+- [x] Domain 71: Weak Tie Resonance
+- [x] Domain 72: Signal-First Tribe + Resonance Sort Protocol
+- [x] Domain 73: Dual-Frequency Distribution
+- [x] Domain 74: Playbook-as-Lead-Magnet
+- [x] Unique Business Playbook — Artifact 3 enhanced with Resonance Sort Protocol
+- [x] Marketing Playbook — Dual-Frequency + Playbook-as-Lead-Magnet patterns added
 
 ### Sprint History
 - [x] Jan 3-29: Network School — 27 days, functional MVP, 5 growth paths, ZoG + QoL onboarding
@@ -184,4 +192,4 @@
 
 ---
 
-*Roadmap v4.0 — April 7, 2026*
+*Roadmap v4.1 — April 7, 2026 (evening update — 74 domains, tribe v3.0, infographic episodes)*

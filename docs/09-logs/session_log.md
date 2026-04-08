@@ -3640,3 +3640,54 @@ W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic ser
 **Revenue: $161 received, $6,277+ pending**
 **CRM: 24 contacts in unified table**
 
+---
+
+## April 7, 2026 (Evening) — Infographic Episodes & The Signal-First Tribe Evolution (Day 35 continued)
+
+**Context:** Ceremony download session. The content strategy collapsed from "social media growth" into "Truth Ignition" — a permanent library of infographic episodes giving away the complete methodology as a lead magnet. Simultaneously, the tribe definition evolved from pain-first to signal-first, producing the Resonance Sort Protocol.
+
+### What Emerged
+
+| Item | Impact |
+|------|--------|
+| **Tribe Definition v3.0** | Evolved from "Original Truth Rebels" (pain-first) to **"Awakened Practitioners Who Can't Name Their Fire"** (signal-first). The tribe is defined by what's ALIVE in them, not what's BROKEN. Resonance Sort Protocol applied live — somatic reordering of 9 sub-tribe candidates produced this result |
+| **Resonance Sort Protocol** | Repeatable 5-step methodology for defining tribe at 9.999 precision: Multi-resolution scan → Founder somatic reorder → Founder addition → AI synthesis → Somatic confirmation. Codified as Domain 72f |
+| **Infographic Episode Scripts v2.0** | Complete slide-by-slide scripts for 8 episodes (43 slides). WHY NOW → BIG INSIGHT → TRAP → HOW TO APPLY → CLIFFHANGER structure. Updated with precise methodology from Unique Business Playbook + Alexander's Unique Business doc |
+| **4 New Phase Shift Domains** | Domain 71 (Weak Tie Resonance), 72 (Signal-First Tribe), 73 (Dual-Frequency Distribution), 74 (Playbook-as-Lead-Magnet). Total domains: **74** |
+| **Dual-Frequency Distribution** | Content addresses what's RIGHT (signal-first). Funnel addresses what's WRONG (pain-first). Both are true. Both are needed. Codified as Domain 73 |
+| **Playbook-as-Lead-Magnet** | The Open Blueprint Paradox made operational. Give away the entire methodology as infographic episodes. The jar can't read its own label — giving it away doesn't cannibalize, it creates the precision gap. Domain 74 |
+| **Unique Business Playbook upgraded** | Artifact 3 (Tribe) workflow enhanced with Resonance Sort Protocol + Signal-First Tribe Principle + Situational Identity Principle. Every future founder now has this SOP |
+| **Marketing Playbook upgraded** | Added Dual-Frequency Distribution Principle + Playbook-as-Lead-Magnet Pattern. Both generalized for any unique business |
+| **Alexander's Tribe v3.0 documented** | Full case study in `alexanders_unique_business.md`: protocol steps, somatic ranking table, v2.2→v3.0 comparison, three test humans named (Compassion Key lady, Laura Alvarez, Hernan from Colombia) |
+
+### Key Discoveries
+
+- **The tribe that resonated most was NOT defined by pain** — it was defined by unrealized CAPACITY, generative DESIRE, and existing COMPETENCE
+- **Success comes from weak ties who are most aligned** — not from broadcasting to strong ties (Domain 71)
+- **Content = signal-first, Funnel = pain-first** — this polarity makes the distribution architecture complete (Domain 73)
+- **The complete playbook given away freely IS the highest-conversion lead magnet** — the precision gap between understanding the method and being mirrored IS the product (Domain 74)
+- **Three test humans for content**: Compassion Key lady (ClubDAO), Laura Alvarez, Hernan from Colombia
+
+### Documents Updated
+
+- `/docs/01-vision/phase_shift_technology_library.md` — Domains 71, 72, 73, 74
+- `/docs/03-playbooks/unique_business_playbook.md` — Artifact 3 enhanced with Resonance Sort Protocol + Signal-First Tribe + Situational Identity
+- `/docs/03-playbooks/marketing_playbook.md` — Dual-Frequency Distribution + Playbook-as-Lead-Magnet Pattern
+- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Tribe v3.0 (Signal-First evolution), artifact status updated
+
+### Artifacts Produced (in conversation artifacts dir)
+
+- `infographic_episode_scripts.md` — 43 slide scripts, v2.0
+- `infographic_episodes_blueprint.md` — Master plan mapping 74 domains into 8-episode sequence
+
+### Remaining for Content Execution
+
+- [ ] Visual production (founder's 3rd party app — 43 slides)
+- [ ] Instagram profile organization (categories/highlights)
+- [ ] Pinned intro post
+- [ ] Follow aligned weak ties (200+)
+- [ ] Soft-launch DMs to test humans
+
+**Phase Shift Domains as of tonight: 74**
+**Revenue: $161 received, $6,277+ pending**
+
