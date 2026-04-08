@@ -7,8 +7,10 @@ import { Link, useLocation } from "react-router-dom";
 const SiteLogo = () => {
     const location = useLocation();
 
-    // Hide on game pages, result pages, and ZoG appleseed view
-    if (location.pathname.startsWith("/game") || location.pathname === "/my-result" || location.pathname.startsWith("/zone-of-genius/appleseed")) return null;
+    // Hide on pages that have their own logo/hero treatment
+    const hidden = ["/game", "/zone-of-genius/appleseed"];
+    const exactHidden = ["/", "/ignite", "/my-result"];
+    if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
         <Link
