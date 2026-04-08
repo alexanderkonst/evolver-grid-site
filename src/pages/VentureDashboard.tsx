@@ -3,20 +3,9 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const HERO_METRICS = [
-  { label: "Total Revenue", value: "$6.4K", sub: "Cash received: $161 · Agreed revenue share: $6.2K", icon: "💰" },
-  { label: "Genius Business Offers Created", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🗺️" },
-  {
-    label: "Founder Landing Pages",
-    value: "4",
-    sub: "links",
-    icon: "🚀",
-    links: [
-      { label: "1", href: "/oyi" },
-      { label: "2", href: "/sergey" },
-      { label: "3", href: "/sandra" },
-      { label: "4", href: "/ignite" },
-    ],
-  },
+  { label: "Revenue from Alexander's Genius Business", value: "$6.4K", sub: "Cash: $161 · Agreed rev share: $6.2K", icon: "💰" },
+  { label: "Revenue from All Genius Businesses Created", value: "$0", sub: "No client businesses have generated revenue yet", icon: "📊" },
+  { label: "Genius Founders Activated", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
 ];
 
 const TIMELINE = [
@@ -104,25 +93,7 @@ const VentureDashboard = () => {
                 <div className="text-sm font-medium text-white/70 tracking-wide uppercase mb-1">
                   {m.label}
                 </div>
-                <div className="text-xs text-white/40">
-                  {(m as any).links ? (
-                    <span className="inline-flex items-center gap-2">
-                      {(m as any).links.map((link: { label: string; href: string }) => (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-white/20 text-[10px] text-white/50 hover:text-white hover:border-[#8460ea]/60 hover:bg-[#8460ea]/10 transition-all duration-200"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </span>
-                  ) : (
-                    m.sub
-                  )}
-                </div>
+                <div className="text-xs text-white/40">{m.sub}</div>
               </div>
             </div>
           ))}
