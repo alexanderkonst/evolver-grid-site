@@ -3,7 +3,7 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const HERO_METRICS = [
-  { label: "Total Revenue Pipeline", value: "$6.4K+", sub: "Cash received: $161 · Agreed revenue share: $6.2K+", icon: "💰" },
+  { label: "Total Revenue", value: "$6.4K", sub: "Cash received: $161 · Agreed revenue share: $6.2K", icon: "💰" },
   { label: "Genius Business Offers Created", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🗺️" },
   {
     label: "Founder Landing Pages",
@@ -130,10 +130,9 @@ const VentureDashboard = () => {
 
         {/* ─── The Signal ──────────────────────────────────────────────────── */}
         <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center" id="signal-section">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             {[
               { label: "Marketing Spend", value: "$0" },
-              { label: "Ignition Session", value: "$555" },
               { label: "CRM Contacts", value: "24" },
               { label: "Client Retention", value: "100%" },
             ].map((s) => (
@@ -146,6 +145,25 @@ const VentureDashboard = () => {
           <p className="mt-6 text-sm text-white/30 italic">
             "The myth IS the marketing. Operational fact, not theory."
           </p>
+        </section>
+
+        {/* ─── Next Milestone ──────────────────────────────────────────────── */}
+        <section className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 backdrop-blur-xl p-8 text-center alive-card" id="next-milestone">
+          <p className="text-xs uppercase tracking-[0.3em] text-[#a4a3d0] mb-3">Next Milestone</p>
+          <h3 className="text-3xl md:text-4xl font-display font-medium bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent mb-4">
+            First $555 Ignition Session
+          </h3>
+          <p className="text-white/40 max-w-lg mx-auto">
+            6 Genius Business offers created. The methodology is proven. The pipeline is alive.
+            Next: first full-price paid session from a new client.
+          </p>
+          <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
+            <span>$161 cash received</span>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span>$6.2K agreed rev share</span>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span>24 contacts in CRM</span>
+          </div>
         </section>
 
         {/* ─── Timeline ────────────────────────────────────────────────────── */}
@@ -279,24 +297,7 @@ const VentureDashboard = () => {
           </div>
         </section>
 
-        {/* ─── Next Milestone ──────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 backdrop-blur-xl p-8 text-center alive-card" id="next-milestone">
-          <p className="text-xs uppercase tracking-[0.3em] text-[#a4a3d0] mb-3">Next Milestone</p>
-          <h3 className="text-3xl md:text-4xl font-display font-medium bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent mb-4">
-            First $555 Ignition Session
-          </h3>
-          <p className="text-white/40 max-w-lg mx-auto">
-            6 Genius Business offers created. The methodology is proven. The pipeline is alive.
-            Next: first full-price paid session from a new client.
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
-            <span>$161 cash received</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>$6.2K+ agreed rev share</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>24 contacts in CRM</span>
-          </div>
-        </section>
+
 
         {/* ─── Footer ──────────────────────────────────────────────────────── */}
         <footer className="text-center space-y-4 pt-8 pb-12" id="dashboard-footer">
