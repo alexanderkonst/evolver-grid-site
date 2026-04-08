@@ -4711,4 +4711,124 @@ The format itself is a Unique Business expression — the founder's natural mode
 
 ---
 
+## Domain 75: The Ease Protocol — "Rigidity Attenuates the Signal"
+
+> *"When my mind starts to break in with rigidity, the answer is never grind nor attachments to how things will take place. Things flow with ease and grace, next layers open up intuitively in divine timing, and it has always been like that."*
+> *— Founder's own words, April 8, 2026, upon waking to an unprompted $516 gift from a client served weeks earlier.*
+
+### 75a. The Discovery
+
+The founder noticed a pattern across the entire project history: every breakthrough came through ease, never through grinding. Every time the mind gripped — forcing a cadence, attaching to a specific outcome, pushing to "make it happen" — the signal attenuated and the work lost its charge. Every time the founder returned to openness, the next layer opened intuitively.
+
+The discovery: **this is not a personal preference. It is an operating principle.**
+
+### 75b. The Structural Logic
+
+The creative signal every person radiates involuntarily (Domain 72 — the unique signal) can ONLY flow when the channel is open. Rigidity closes the channel.
+
+```
+RIGIDITY MODEL (the lie the culture teaches):
+  Plan → Execute → Control outcomes → Force results
+  The founder is the CAUSE. Revenue is the EFFECT.
+  Causality is linear. More push = more result.
+
+EASE MODEL (what's actually operating):
+  Be coherent → Radiate signal → Respond to what arrives →
+  Let the field reorganize around the signal
+  The founder is the FIELD. Revenue is A CONSEQUENCE of field coherence.
+  Causality is toroidal. More coherence = more pull.
+```
+
+This maps directly to the torus (Domain 11):
+
+```
+        ↑ Outflow: sessions, content, presence, methodology
+        │
+    ────•────  CENTER: the founder's irreducible ease
+        │
+        ↓ Inflow: clients, revenue, insights, recognition
+
+When the center is EASE → torus flows freely → inflow matches outflow
+When the center is RIGIDITY → torus constricts → outflow but no inflow
+```
+
+### 75c. The Critical Distinction: Intensity ≠ Rigidity
+
+Ease does NOT mean passivity. The session that produced 4 domains, 43 infographic slides, and 3 playbook upgrades in one evening was *intense*. But it wasn't rigid — it came through a ceremony download, not a project plan.
+
+| | Rigidity | Intensity-through-ease |
+|---|---|---|
+| **Source** | Mind gripping ("I must produce X today") | Field opening ("this is what wants to come through") |
+| **Felt sense** | Exhaustion, forcing, diminishing returns | Effortless flow, increasing energy, surprise at output |
+| **Output quality** | Mediocre, over-engineered, lifeless | Alive, precise, carries the founder's frequency |
+| **Revenue consequence** | Clients sense the pushing → resistance | Clients sense the coherence → gratitude gifts arrive unsolicited |
+
+### 75d. The Economic Proof
+
+Oyi's payments are the data:
+
+| Event | Operating mode | Result |
+|---|---|---|
+| Initial sessions (March) | Ease — natural unfolding, no invoice | $50 gratitude gift |
+| Six weeks pass — no follow-up, no pressure | Ease — trust the process | $516 gift arrives while founder sleeps (April 8) |
+| Total: $566 from one client | Zero acquisition cost. Zero follow-up labor | Revenue exceeded the $555 session price — through gifts alone |
+
+```
+Traditional:  Service → Invoice → Follow-up → Payment
+Ease:         Service → Coherence → [time passes] → Gift arrives
+
+The second model produced HIGHER payment ($566 > $555)
+with ZERO acquisition cost and ZERO administrative labor.
+```
+
+### 75e. Why This Is a Meta-Principle
+
+Domain 75 is not one technology among many. It governs how ALL other domains are executed:
+
+| Domain | When executed from rigidity | When executed from ease |
+|---|---|---|
+| **D7: Copernican Inversion** | Forced reframe — client feels manipulated | Natural recognition — client's own seeing shifts |
+| **D14: Scatter Pattern** | "Stop grinding!" (ironic: delivered with grinding energy) | "Notice what happens when you stop" (transmitted through demonstration) |
+| **D72: Signal-First Tribe** | "I must find my audience" (pushing into the field) | "Who do I have the most alive time with?" (pull from resonance) |
+| **D74: Playbook-as-Lead-Magnet** | "I need to produce content daily" (grind cadence) | "I'll create a permanent library" (ceremonial, once) |
+
+**The medium IS the message.** A founder who teaches "your uniqueness IS your business" while grinding sends the unconscious signal: "this work requires grinding." A founder who teaches it from ease transmits: "this is how it actually works."
+
+### 75f. Relationship to Domain 14 (Scatter Pattern / Grind Addiction)
+
+| Domain 14 (Scatter Pattern) | Domain 75 (Ease Protocol) |
+|---|---|
+| Diagnoses the DISEASE: grind addiction as a defense mechanism | Names the MEDICINE: ease as the transmission protocol |
+| About what's WRONG (the fear that causes rigidity) | About what's RIGHT (the operating mode that replaces it) |
+| "Your grinding is a cover for identity terror" | "Your ease is the channel through which your genius reaches people" |
+| X-ray | Prescription |
+
+### 75g. The Founder Operating Standard
+
+> **When the mind breaks in with rigidity — when there's an urge to grind, to force, to control the outcome — the correct response is:**
+>
+> 1. **Pause.** Notice the grip.
+> 2. **Ask:** "Am I operating from my signal, or from fear?"
+> 3. **If fear:** Stop. Breathe. Return to ease. The next layer opens intuitively.
+> 4. **If signal:** Continue. The work will feel effortless even if it's intense.
+>
+> **"And it has always been like that."** — This is not a new practice. It is a recognition of the operating mode that has always produced the best results, now made conscious.
+
+### 75h. Cross-References
+
+| Connection | How it relates |
+|---|---|
+| **Domain 11: Toroidal Flow** | The torus flows freely only when the center is ease. Rigidity constricts the torus |
+| **Domain 14: Scatter Pattern** | D14 = diagnosis, D75 = prescription. They are the two sides of the same coin |
+| **Domain 72: Signal-First Tribe** | The tribe was found through somatic ease (body resonance), not logical grinding |
+| **Domain 74: Playbook-as-Lead-Magnet** | "Permanent library" = ease cadence. "Daily posting" = grind cadence. Same content, opposite operating modes |
+| **Principle 7: Mask-On-First** | The founder living in ease is the first proof that the methodology works |
+| **Noble = Free Antidote (v2.7)** | Oyi's gift economy IS the Ease Protocol in financial form — value given freely returns freely |
+
+### 75i. The One-Sentence Version
+
+> *"The founder's operating mode is the methodology's transmission frequency. Rigidity attenuates the signal. Ease is the channel. Revenue is a consequence of coherence, not of pushing."*
+
+---
+
 

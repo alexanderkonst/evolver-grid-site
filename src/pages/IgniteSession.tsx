@@ -373,11 +373,7 @@ const IgniteSession = () => {
             You're one structural layer away from something that works.
           </p>
 
-          {/* Self-qualification */}
-          <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed mt-3 italic">
-            If this already feels familiar — this is for you.<br/>
-            If it doesn't, it won't land.
-          </p>
+
 
           <div className="flex flex-col items-center gap-4 pt-6">
             {/* Paid path: Ignition Session */}
@@ -404,7 +400,7 @@ const IgniteSession = () => {
               </a>
             </Button>
             <p className="text-[10px] text-white/30 max-w-xs mx-auto">
-              No convincing. No persuasion. Just clarity on whether this is for you.
+              No convincing. No persuasion. Just clarity on your situation, your top talent, and your unique business.
             </p>
           </div>
 
