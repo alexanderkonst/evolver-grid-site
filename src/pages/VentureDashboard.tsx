@@ -4,7 +4,7 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 
 const HERO_METRICS = [
   { label: "Revenue from Alexander's Genius Business", value: "$6.9K", sub: "Cash: $677 · Agreed rev share: $6.2K", icon: "💰" },
-  { label: "Revenue from All Genius Businesses Created", value: "$6.9K", sub: "Alexander's business is the first to generate revenue", icon: "📊" },
+  { label: "Revenue from All Genius Businesses Created", value: "$6.9K", sub: "Alexander's business is the first to generate revenue", icon: "💰💰💰" },
   { label: "Activated Genius Founders", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
 ];
 
@@ -53,7 +53,7 @@ const VentureDashboard = () => {
         <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#a7cbd4]/5 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: "4s" }} />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-12 space-y-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-12 space-y-16">
 
         {/* ─── Header ──────────────────────────────────────────────────────── */}
         <header className="text-center space-y-4 fade-in-section" id="dashboard-header">

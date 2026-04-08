@@ -13,7 +13,7 @@ const SiteLogo = () => {
     return (
         <Link
             to="/"
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[60px] h-[60px] rounded-full overflow-hidden hover:scale-110 transition-transform duration-200"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90px] h-[90px] rounded-full overflow-hidden hover:scale-110 transition-transform duration-200"
             aria-label="Home"
         >
             <img
