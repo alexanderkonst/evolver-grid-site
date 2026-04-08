@@ -25,12 +25,13 @@ interface SpaceItem {
 }
 
 const SPACES: SpaceItem[] = [
-    {
-        id: "next-move",
-        label: "MY NEXT MOVE",
-        icon: <Compass className="w-5 h-5 flex-shrink-0" />,
-        path: "/game/next-move",
-    },
+    // Hidden until built — uncomment to re-enable
+    // {
+    //     id: "next-move",
+    //     label: "MY NEXT MOVE",
+    //     icon: <Compass className="w-5 h-5 flex-shrink-0" />,
+    //     path: "/game/next-move",
+    // },
     {
         id: "grow",
         label: "ME",
