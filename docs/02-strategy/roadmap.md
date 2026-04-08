@@ -47,7 +47,7 @@
 | **Phase** | PLANTING. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $161 revenue) |
 | **Cycle** | April 7-13 (New Moon). **74 Phase Shift Domains.** Tribe v3.0 (Signal-First). Infographic Episodes ready for visual production |
 | **Location** | Mexico City |
-| **Revenue** | **$161 cash** ($50 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
+| **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
 | **Focus** | **Planting seeds: social activation, client agreements, demonstration sessions. Names arrive intuitively.** |
 | **Key milestone** | CRM v3.0 — single source of truth for all 24 contacts with segments, financials, notes |
 | **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max, rev share from first paid client |

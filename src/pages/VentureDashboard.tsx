@@ -3,14 +3,14 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const HERO_METRICS = [
-  { label: "Revenue from Alexander's Genius Business", value: "$6.4K", sub: "Cash: $161 · Agreed rev share: $6.2K", icon: "💰" },
-  { label: "Revenue from All Genius Businesses Created", value: "$6.4K", sub: "Alexander's business is the first to generate revenue", icon: "📊" },
+  { label: "Revenue from Alexander's Genius Business", value: "$6.9K", sub: "Cash: $677 · Agreed rev share: $6.2K", icon: "💰" },
+  { label: "Revenue from All Genius Businesses Created", value: "$6.9K", sub: "Alexander's business is the first to generate revenue", icon: "📊" },
   { label: "Activated Genius Founders", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
 ];
 
 const TIMELINE = [
   { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Mask-on-first. Ran the full process on himself.", color: "#8460ea" },
-  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($50)", desc: "Full canvas. Myth discovery. Flying to Mexico for intensive.", color: "#6894d0" },
+  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($566)", desc: "Full canvas. Myth discovery. $50 initial + $516 gift (Apr 8). Flying to Mexico for intensive.", color: "#6894d0" },
   { day: 4, date: "Mar 7", name: "Sergey", type: "Rev Share ($277)", desc: "Product Kernel v1.0. 3 gift sessions delivered.", color: "#a7cbd4" },
   { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Full canvas in 2.5hrs. Fastest yet. Invited to Build.", color: "#b1c9b6" },
   { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Uniqueness + myth + tribe landed.", color: "#cec9b0" },
@@ -71,7 +71,7 @@ const VentureDashboard = () => {
             Not a forecast — a reading of the structure the future is filling.
           </p>
           <p className="text-xs text-white/30 tracking-widest uppercase">
-            Last updated: April 7, 2026 · Day 35
+            Last updated: April 8, 2026 · Day 36
           </p>
         </header>
 
@@ -131,7 +131,7 @@ const VentureDashboard = () => {
             Next: first full-price paid session from a new client.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
-            <span>$161 cash received</span>
+            <span>$677 cash received</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span>$6.2K agreed rev share</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
