@@ -58,17 +58,15 @@ const VentureDashboard = () => {
         {/* ─── Header ──────────────────────────────────────────────────────── */}
         <header className="text-center space-y-4 fade-in-section" id="dashboard-header">
           <p className="text-sm font-medium tracking-[0.3em] uppercase text-[#a4a3d0]">
-            Morphogenetic Dashboard
+            Progress Dashboard
           </p>
           <h1 className="text-4xl md:text-6xl font-display font-medium tracking-tight">
             <span className="bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent">
-              The Emergence
+              Aleksandr Konstantinov's Unique Business Venture
             </span>
           </h1>
           <p className="text-lg text-white/50 max-w-2xl mx-auto font-light">
-            A live map of the Unique Business methodology unfolding.
-            <br />
-            Not a forecast — a reading of the structure the future is filling.
+            A live map of the Unique Business methodology — from first session to movement.
           </p>
           <p className="text-xs text-white/30 tracking-widest uppercase">
             Last updated: April 8, 2026 · Day 36
@@ -116,7 +114,7 @@ const VentureDashboard = () => {
             ))}
           </div>
           <p className="mt-6 text-sm text-white/30 italic">
-            "The myth IS the marketing. Operational fact, not theory."
+            Zero marketing spend. 100% word of mouth.
           </p>
         </section>
 
@@ -177,8 +175,8 @@ const VentureDashboard = () => {
 
         {/* ─── 12-Perspective Radar ─────────────────────────────────────────── */}
         <section id="radar-section">
-          <h2 className="text-2xl font-display text-center mb-2 text-white/80">12-Perspective Morphogenetic Map</h2>
-          <p className="text-sm text-white/30 text-center mb-4">Trinity (Essence · Significance · Implications) × 4 Quadrants (UL · UR · LL · LR)</p>
+          <h2 className="text-2xl font-display text-center mb-2 text-white/80">Dynamic Systemic View</h2>
+          <p className="text-sm text-white/30 text-center mb-4">12 perspectives across Essence · Significance · Implications × 4 Quadrants</p>
           <div className="text-center mb-8">
             <a href="/holomap" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5 border border-[#6894d0]/30 px-3 py-1.5 rounded-full hover:border-[#8460ea]/40">
               Open Full Navigation Instrument →
@@ -275,11 +273,10 @@ const VentureDashboard = () => {
         {/* ─── Footer ──────────────────────────────────────────────────────── */}
         <footer className="text-center space-y-4 pt-8 pb-12" id="dashboard-footer">
           <p className="text-xs text-white/20 italic max-w-md mx-auto">
-            "The invisible is the real. Everything else is its footprint.
-            This dashboard reads the invisible and lets the footprints reveal themselves."
+            Built in public. Updated in near-real time.
           </p>
           <div className="flex items-center justify-center gap-6 text-xs text-white/15">
-            <span>Genius Business · Morphogenetic Navigation</span>
+            <span>Genius Business · Progress Dashboard</span>
             <span>·</span>
             <span>© 2026 Alexander Konstantinov</span>
           </div>
