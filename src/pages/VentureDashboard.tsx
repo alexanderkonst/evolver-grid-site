@@ -1,12 +1,78 @@
-import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip } from "recharts";
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip, AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+// ─── Revenue Timeline Data ──────────────────────────────────────────────────
 
-const HERO_METRICS = [
-  { label: "Revenue from Alexander's Genius Business", value: "$6.9K", sub: "Cash: $677 · Agreed rev share: $6.2K", icon: "💰" },
-  { label: "Revenue from All Genius Businesses Created", value: "$6.9K", sub: "Alexander's business is the first to generate revenue", icon: "💰💰💰" },
-  { label: "Activated Genius Founders", value: "6", sub: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime", icon: "🔥" },
+const REVENUE_TIMELINE = [
+  { day: 0, date: "Mar 4", cash: 0, total: 0, label: "Day 0" },
+  { day: 2, date: "Mar 5", cash: 0, total: 277, label: "Oyi (rev share)" },
+  { day: 4, date: "Mar 7", cash: 0, total: 554, label: "Sergey ($277 rev share)" },
+  { day: 30, date: "Apr 2", cash: 50, total: 6327, label: "Oyi $50 gift" },
+  { day: 34, date: "Apr 6", cash: 161, total: 6438, label: "Karime $111 gratitude" },
+  { day: 35, date: "Apr 7", cash: 161, total: 6438, label: "" },
+  { day: 36, date: "Apr 8", cash: 677, total: 6954, label: "Oyi $516 gift" },
 ];
+
+// ─── KPI Data ───────────────────────────────────────────────────────────────
+
+const KPIS = [
+  {
+    label: "Cash Revenue",
+    value: "$677",
+    trend: "+$516",
+    trendLabel: "last 24h",
+    trendUp: true,
+    detail: "$566 Oyi · $111 Karime",
+    color: "#8460ea",
+  },
+  {
+    label: "Total Revenue",
+    value: "$6.9K",
+    trend: "∞",
+    trendLabel: "from $0",
+    trendUp: true,
+    detail: "$677 cash + $6.2K rev share",
+    color: "#6894d0",
+  },
+  {
+    label: "Genius Founders",
+    value: "6",
+    trend: "+1",
+    trendLabel: "this week",
+    trendUp: true,
+    detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime",
+    color: "#a7cbd4",
+  },
+  {
+    label: "Conversion Rate",
+    value: "100%",
+    trend: "—",
+    trendLabel: "maintained",
+    trendUp: true,
+    detail: "Every session → canvas completed",
+    color: "#b1c9b6",
+  },
+];
+
+const SECONDARY_STATS = [
+  { label: "Marketing Spend", value: "$0", accent: false },
+  { label: "CRM Contacts", value: "24", accent: false },
+  { label: "Landing Pages", value: "4", accent: false },
+  { label: "Social Surfaces", value: "3/9", accent: true },
+  { label: "Domains Codified", value: "75", accent: false },
+  { label: "Days Active", value: "36", accent: false },
+];
+
+// ─── Revenue Breakdown ──────────────────────────────────────────────────────
+
+const REVENUE_BREAKDOWN = [
+  { name: "Oyi", cash: 566, revShare: 0, type: "Gratitude gifts", status: "received", color: "#8460ea" },
+  { name: "Karime", cash: 111, revShare: 0, type: "Gratitude gift", status: "received", color: "#6894d0" },
+  { name: "Sergey", cash: 0, revShare: 277, type: "Rev share", status: "pending", color: "#a7cbd4" },
+  { name: "Taylor", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#b1c9b6" },
+  { name: "Tracy", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#cec9b0" },
+];
+
+// ─── Timeline ───────────────────────────────────────────────────────────────
 
 const TIMELINE = [
   { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Built the methodology by applying it to himself first.", color: "#8460ea" },
@@ -17,134 +83,269 @@ const TIMELINE = [
   { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically.", color: "#cea4ae" },
 ];
 
+// ─── Radar ──────────────────────────────────────────────────────────────────
+
 const RADAR_DATA = [
   { perspective: "UL-Ess", fullLabel: "Founder Consciousness", value: 10, fullMark: 10 },
   { perspective: "UR-Ess", fullLabel: "Observable System", value: 9.5, fullMark: 10 },
-  { perspective: "LL-Ess", fullLabel: "Shared Field", value: 7.5, fullMark: 10 },
+  { perspective: "LL-Ess", fullLabel: "Shared Field", value: 8, fullMark: 10 },
   { perspective: "LR-Ess", fullLabel: "System Architecture", value: 7, fullMark: 10 },
-  { perspective: "UL-Sig", fullLabel: "Ontological Liberation", value: 9.5, fullMark: 10 },
-  { perspective: "UR-Sig", fullLabel: "Data Signal Strength", value: 8.5, fullMark: 10 },
-  { perspective: "LL-Sig", fullLabel: "Movement Formation", value: 8, fullMark: 10 },
+  { perspective: "UL-Sig", fullLabel: "Ontological Liberation", value: 9.7, fullMark: 10 },
+  { perspective: "UR-Sig", fullLabel: "Data Signal Strength", value: 9, fullMark: 10 },
+  { perspective: "LL-Sig", fullLabel: "Movement Formation", value: 8.5, fullMark: 10 },
   { perspective: "LR-Sig", fullLabel: "Platform as Nervous System", value: 5, fullMark: 10 },
   { perspective: "UL-Imp", fullLabel: "Founder Inner Move", value: 9.5, fullMark: 10 },
   { perspective: "UR-Imp", fullLabel: "What Must Be Built", value: 8.5, fullMark: 10 },
   { perspective: "LL-Imp", fullLabel: "Tribe Must Act", value: 4, fullMark: 10 },
-  { perspective: "LR-Imp", fullLabel: "System at Scale", value: 4.5, fullMark: 10 },
+  { perspective: "LR-Imp", fullLabel: "System at Scale", value: 5, fullMark: 10 },
 ];
 
 const CHANNELS = [
   { name: "Epicenter Broadcasts (DMs)", status: "active", emoji: "🟢", detail: "5 sent, 3 responded. Intuitive batches. Domain 65" },
   { name: "Referral Bridges", status: "active", emoji: "🟢", detail: "Karime → Patricia + Chris. Organic frequency translation" },
   { name: "Collaborator Network", status: "active", emoji: "🟢", detail: "Kirill (licensee), Anton (ZoG taker), Roso/Cori (demo)" },
-  { name: "7-Surface Activation", status: "ready", emoji: "🟡", detail: "WhatsApp · Telegram · IG · LinkedIn · FB · X · YouTube — copy locked" },
-  { name: "Content Cadence", status: "planned", emoji: "🔜", detail: "10 viral posts + 3-slide carousel — stamped, ready to deploy" },
-  { name: "Partnership (Upstream)", status: "seed", emoji: "🌱", detail: "Self-knowledge practitioners → 'Now what?' → us. Architecture mapped" },
+  { name: "Social (TG · IG · FB)", status: "active", emoji: "🟢", detail: "3 surfaces activated Apr 8. Grind addiction post live" },
+  { name: "Content Cadence", status: "ready", emoji: "🟡", detail: "Infographic Episodes ~60% complete. 10 viral posts queued" },
+  { name: "Partnership (Upstream)", status: "seed", emoji: "🌱", detail: "Self-knowledge practitioners → 'Now what?' → us" },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+const formatCurrency = (v: number) => v >= 1000 ? `$${(v / 1000).toFixed(1)}K` : `$${v}`;
+
+// ─── Component ──────────────────────────────────────────────────────────────
 
 const VentureDashboard = () => {
+  const totalCash = REVENUE_BREAKDOWN.reduce((s, r) => s + r.cash, 0);
+  const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
+  const totalAll = totalCash + totalRevShare;
+
   return (
-    <div className="min-h-screen bg-[#0c1220] text-white font-sans" id="venture-dashboard">
-      {/* Aurora background */}
+    <div className="min-h-screen bg-[#0a0e1a] text-white" style={{ fontFamily: "'DM Sans', sans-serif" }} id="venture-dashboard">
+
+      {/* ─── Ambient background ─────────────────────────────────────── */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#8460ea]/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#6894d0]/8 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#a7cbd4]/5 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: "4s" }} />
+        <div className="absolute -top-20 -left-20 w-[700px] h-[700px] rounded-full opacity-[0.04]"
+          style={{ background: "radial-gradient(circle, #8460ea 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-40 -right-20 w-[600px] h-[600px] rounded-full opacity-[0.03]"
+          style={{ background: "radial-gradient(circle, #6894d0 0%, transparent 70%)" }} />
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full opacity-[0.02]"
+          style={{ background: "radial-gradient(circle, #a7cbd4 0%, transparent 70%)" }} />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-36 pb-12 space-y-16">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 pt-32 pb-16">
 
-        {/* ─── Header ──────────────────────────────────────────────────────── */}
-        <header className="text-center space-y-4 fade-in-section" id="dashboard-header">
-          <p className="text-sm font-medium tracking-[0.3em] uppercase text-[#a4a3d0]">
-            Progress Dashboard
-          </p>
-          <h1 className="text-4xl md:text-6xl font-display font-medium tracking-tight">
-            <span className="bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent">
-              Aleksandr Konstantinov's Unique Business Venture
-            </span>
+        {/* ─── Header ──────────────────────────────────────────────── */}
+        <header className="mb-16 fade-in-section" id="dashboard-header">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-[#8460ea] animate-pulse" />
+            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white/40">Live · Day 36</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white/90 leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            Venture Dashboard
           </h1>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto font-light">
-            A live map of the Unique Business methodology — from first session to movement.
-          </p>
-          <p className="text-xs text-white/30 tracking-widest uppercase">
-            Last updated: April 8, 2026 · Day 36
+          <p className="text-[15px] text-white/35 max-w-lg leading-relaxed">
+            Aleksandr Konstantinov's Unique Business Methodology — tracking the emergence from first session to movement.
           </p>
         </header>
 
-        {/* ─── Hero Metrics ────────────────────────────────────────────────── */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6" id="hero-metrics">
-          {HERO_METRICS.map((m, i) => (
+        {/* ─── KPI Grid ────────────────────────────────────────────── */}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3" id="kpi-grid">
+          {KPIS.map((kpi, i) => (
             <div
-              key={m.label}
-              className="relative group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center transition-all duration-500 hover:border-[#8460ea]/40 hover:bg-white/8 hover:scale-[1.02]"
-              style={{ animationDelay: `${i * 150}ms` }}
-              id={`metric-${i}`}
+              key={kpi.label}
+              className="group relative rounded-xl p-5 transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.06)",
+                animationDelay: `${i * 100}ms`,
+              }}
+              id={`kpi-${i}`}
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#8460ea]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: `linear-gradient(135deg, ${kpi.color}08, transparent)` }} />
               <div className="relative">
-                <span className="text-3xl mb-3 block">{m.icon}</span>
-                <div className="text-5xl md:text-6xl font-display font-bold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-2">
-                  {m.value}
+                <div className="text-[11px] font-medium tracking-[0.15em] uppercase text-white/30 mb-3">
+                  {kpi.label}
                 </div>
-                <div className="text-sm font-medium text-white/70 tracking-wide uppercase mb-1">
-                  {m.label}
+                <div className="text-3xl md:text-4xl font-medium tracking-[-0.02em] text-white/90 mb-2"
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  {kpi.value}
                 </div>
-                <div className="text-xs text-white/40">{m.sub}</div>
+                <div className="flex items-center gap-2">
+                  {kpi.trendUp && (
+                    <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400/80">
+                      {kpi.trend}
+                    </span>
+                  )}
+                  <span className="text-[10px] text-white/25">{kpi.trendLabel}</span>
+                </div>
+                <div className="text-[10px] text-white/20 mt-2 leading-relaxed">{kpi.detail}</div>
               </div>
             </div>
           ))}
         </section>
 
-        {/* ─── The Signal ──────────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center" id="signal-section">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { label: "Marketing Spend", value: "$0" },
-              { label: "CRM Contacts", value: "24" },
-              { label: "Client Retention", value: "100%" },
-              { label: "Certified Facilitators", value: "1", note: "upon certification completion" },
-            ].map((s) => (
-              <div key={s.label} className="space-y-1">
-              <div className="text-2xl md:text-3xl font-display font-bold text-[#a7cbd4]">{s.value}</div>
-                <div className="text-xs text-white/40 uppercase tracking-wider">{s.label}</div>
-                {(s as any).note && <div className="text-[10px] text-white/25 mt-0.5">({(s as any).note})</div>}
+        {/* ─── Secondary Stats Bar ─────────────────────────────────── */}
+        <section className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl px-5 py-3.5 mb-16"
+          style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}
+          id="secondary-stats"
+        >
+          {SECONDARY_STATS.map((s) => (
+            <div key={s.label} className="flex items-center gap-2">
+              <span className={`text-sm font-medium ${s.accent ? "text-[#8460ea]/80" : "text-white/50"}`}>
+                {s.value}
+              </span>
+              <span className="text-[10px] text-white/20 uppercase tracking-wider">{s.label}</span>
+            </div>
+          ))}
+        </section>
+
+        {/* ─── Revenue Chart + Breakdown ───────────────────────────── */}
+        <section className="grid grid-cols-1 lg:grid-cols-5 gap-3 mb-16" id="revenue-section">
+
+          {/* Revenue Chart */}
+          <div className="lg:col-span-3 rounded-xl p-6"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-sm font-medium text-white/60 mb-0.5">Revenue Timeline</h2>
+                <p className="text-[10px] text-white/25">Cumulative revenue since Day 1</p>
               </div>
-            ))}
+              <div className="flex items-center gap-4 text-[10px] text-white/30">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-0.5 rounded-full bg-[#8460ea]" /> Cash
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-0.5 rounded-full bg-[#6894d0]" /> Total
+                </span>
+              </div>
+            </div>
+            <ResponsiveContainer width="100%" height={240}>
+              <AreaChart data={REVENUE_TIMELINE} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                <defs>
+                  <linearGradient id="gradTotal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#6894d0" stopOpacity={0.2} />
+                    <stop offset="100%" stopColor="#6894d0" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="gradCash" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#8460ea" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="#8460ea" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+                <XAxis dataKey="date" tick={{ fill: "rgba(255,255,255,0.2)", fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: "rgba(255,255,255,0.2)", fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={(v) => formatCurrency(v)} width={45} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgba(10, 14, 26, 0.95)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: "8px",
+                    color: "#fff",
+                    fontSize: "12px",
+                    fontFamily: "DM Sans",
+                    padding: "8px 12px",
+                  }}
+                  formatter={(value: number, name: string) => [formatCurrency(value), name === "total" ? "Total Revenue" : "Cash Received"]}
+                  labelFormatter={(label) => `${label}`}
+                />
+                <Area type="monotone" dataKey="total" stroke="#6894d0" strokeWidth={1.5} fill="url(#gradTotal)" />
+                <Area type="monotone" dataKey="cash" stroke="#8460ea" strokeWidth={2} fill="url(#gradCash)" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
-          <p className="mt-6 text-sm text-white/30 italic">
-            Zero marketing spend. 100% word of mouth.
-          </p>
+
+          {/* Revenue Breakdown */}
+          <div className="lg:col-span-2 rounded-xl p-6"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <h2 className="text-sm font-medium text-white/60 mb-1">Revenue Breakdown</h2>
+            <p className="text-[10px] text-white/25 mb-5">By founder · cash + rev share</p>
+
+            <div className="space-y-3">
+              {REVENUE_BREAKDOWN.map((r) => {
+                const rTotal = r.cash + r.revShare;
+                const pct = totalAll > 0 ? (rTotal / totalAll) * 100 : 0;
+                return (
+                  <div key={r.name} className="group">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: r.color }} />
+                        <span className="text-xs text-white/60 font-medium">{r.name}</span>
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded-md ${r.status === "received" ? "bg-emerald-500/10 text-emerald-400/70" : "bg-amber-500/10 text-amber-400/70"}`}>
+                          {r.status === "received" ? "received" : "pending"}
+                        </span>
+                      </div>
+                      <span className="text-xs text-white/50 font-mono">{formatCurrency(rTotal)}</span>
+                    </div>
+                    <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+                      <div className="h-full rounded-full transition-all duration-700"
+                        style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${r.color}80, ${r.color}40)` }} />
+                    </div>
+                    <div className="flex items-center gap-3 mt-1">
+                      {r.cash > 0 && <span className="text-[9px] text-white/25">${r.cash} cash</span>}
+                      {r.revShare > 0 && <span className="text-[9px] text-white/25">${r.revShare.toLocaleString()} rev share</span>}
+                      <span className="text-[9px] text-white/15 ml-auto">{r.type}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Totals */}
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
+              <span className="text-[10px] text-white/25 uppercase tracking-wider">Total</span>
+              <div className="text-right">
+                <span className="text-lg font-medium text-white/80" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  {formatCurrency(totalAll)}
+                </span>
+                <span className="text-[10px] text-white/20 ml-2">({formatCurrency(totalCash)} cash)</span>
+              </div>
+            </div>
+          </div>
         </section>
 
-        {/* ─── Next Milestone ──────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 backdrop-blur-xl p-8 text-center alive-card" id="next-milestone">
-          <p className="text-xs uppercase tracking-[0.3em] text-[#a4a3d0] mb-3">Next Milestone</p>
-          <h3 className="text-3xl md:text-4xl font-display font-medium bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent mb-4">
-            First $555 Ignition Session
+        {/* ─── Growth Context (why no MoM yet) ─────────────────────── */}
+        <section className="rounded-xl px-6 py-4 mb-16 flex items-start gap-4"
+          style={{ background: "rgba(132,96,234,0.04)", border: "1px solid rgba(132,96,234,0.08)" }}
+          id="growth-context"
+        >
+          <span className="text-lg mt-0.5">📊</span>
+          <div>
+            <p className="text-xs text-white/50 leading-relaxed">
+              <span className="text-white/70 font-medium">On growth metrics:</span> At 36 days and 6 founders, month-over-month
+              growth rates would be misleading. Key milestones tracked instead: first $555 from funnel (pending), 10th canvas (4 away),
+              $1K cash threshold ($323 away). Growth rates activate at 3+ months of data.
+            </p>
+          </div>
+        </section>
+
+        {/* ─── Next Milestone ──────────────────────────────────────── */}
+        <section className="rounded-xl p-8 text-center alive-card mb-16"
+          style={{ background: "rgba(132,96,234,0.04)", border: "1px solid rgba(132,96,234,0.12)" }}
+          id="next-milestone"
+        >
+          <p className="text-[10px] uppercase tracking-[0.3em] text-[#a4a3d0] mb-3">Next Milestone</p>
+          <h3 className="text-2xl md:text-3xl font-medium mb-4 bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            First $555 Ignition Session from Funnel
           </h3>
-          <p className="text-white/40 max-w-lg mx-auto">
-            6 Genius Business offers created. The methodology is proven. The pipeline is alive.
-            Next: first full-price paid session from a new client.
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-4 text-sm text-white/30">
-            <span>$677 cash received</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>$6.2K agreed rev share</span>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <span>24 contacts in CRM</span>
+          <div className="flex items-center justify-center gap-6 text-[11px] text-white/25">
+            <span>$323 to $1K cash</span>
+            <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
+            <span>4 canvases to N=10</span>
+            <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
+            <span>3/9 surfaces live</span>
           </div>
         </section>
 
-        {/* ─── Timeline ────────────────────────────────────────────────────── */}
-        <section id="timeline-section">
-          <h2 className="text-2xl font-display text-center mb-8 text-white/80">The Journey</h2>
+        {/* ─── The Journey ─────────────────────────────────────────── */}
+        <section id="timeline-section" className="mb-16">
+          <h2 className="text-lg font-medium text-white/60 mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>The Journey</h2>
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#8460ea]/60 via-[#6894d0]/40 to-transparent" />
+            <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#8460ea]/30 via-[#6894d0]/20 to-transparent" />
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {TIMELINE.map((t, i) => (
                 <div
                   key={t.name}
@@ -152,19 +353,25 @@ const VentureDashboard = () => {
                   id={`timeline-${t.name.toLowerCase()}`}
                 >
                   {/* Node */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full border-2 border-white/40 -translate-x-1/2 mt-2 z-10"
-                    style={{ backgroundColor: t.color, boxShadow: `0 0 20px ${t.color}40` }}
-                  />
+                  <div className="absolute left-[7px] md:left-1/2 w-[15px] h-[15px] rounded-full -translate-x-1/2 mt-1.5 z-10 border border-white/10"
+                    style={{ backgroundColor: `${t.color}30`, boxShadow: `0 0 12px ${t.color}20` }}
+                  >
+                    <div className="absolute inset-[3px] rounded-full" style={{ backgroundColor: t.color }} />
+                  </div>
 
                   {/* Content */}
-                  <div className={`ml-16 md:ml-0 md:w-[45%] ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                    <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 hover:border-white/20 transition-all duration-300">
-                      <div className="flex items-center gap-3 mb-2" style={{ justifyContent: i % 2 === 0 ? "flex-end" : "flex-start" }}>
-                        <span className="text-xs font-mono text-white/30">Day {t.day}</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full border border-white/20 text-white/50">{t.type}</span>
+                  <div className={`ml-8 md:ml-0 md:w-[45%] ${i % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
+                    <div className="rounded-lg p-4 transition-all duration-300 hover:bg-white/[0.02]"
+                      style={{ border: "1px solid rgba(255,255,255,0.04)" }}>
+                      <div className="flex items-center gap-2 mb-1" style={{ justifyContent: i % 2 === 0 ? "flex-end" : "flex-start" }}>
+                        <span className="text-[10px] font-mono text-white/20">Day {t.day}</span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-md text-white/30"
+                          style={{ background: `${t.color}15`, border: `1px solid ${t.color}20` }}>
+                          {t.type}
+                        </span>
                       </div>
-                      <h3 className="text-lg font-display font-medium" style={{ color: t.color }}>{t.name}</h3>
-                      <p className="text-sm text-white/40 mt-1">{t.desc}</p>
+                      <h3 className="text-sm font-medium mb-0.5" style={{ color: `${t.color}cc` }}>{t.name}</h3>
+                      <p className="text-[11px] text-white/30 leading-relaxed">{t.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -173,114 +380,126 @@ const VentureDashboard = () => {
           </div>
         </section>
 
-        {/* ─── 12-Perspective Radar ─────────────────────────────────────────── */}
-        <section id="radar-section">
-          <h2 className="text-2xl font-display text-center mb-2 text-white/80">Dynamic Systemic View</h2>
-          <p className="text-sm text-white/30 text-center mb-4">12 perspectives across Essence · Significance · Implications × 4 Quadrants</p>
-          <div className="text-center mb-8">
-            <a href="/holomap" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5 border border-[#6894d0]/30 px-3 py-1.5 rounded-full hover:border-[#8460ea]/40">
-              Open Full Navigation Instrument →
+        {/* ─── 12-Perspective Radar ────────────────────────────────── */}
+        <section id="radar-section" className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-lg font-medium text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Systemic View</h2>
+              <p className="text-[10px] text-white/25 mt-0.5">12 perspectives · 4 quadrants × 3 depths</p>
+            </div>
+            <a href="/holomap" className="text-[10px] text-[#6894d0]/60 hover:text-[#8460ea] transition-colors px-3 py-1.5 rounded-lg border border-white/5 hover:border-[#8460ea]/20">
+              Open Holomap →
             </a>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6">
-            <ResponsiveContainer width="100%" height={420}>
-              <RadarChart data={RADAR_DATA} cx="50%" cy="50%" outerRadius="75%">
-                <PolarGrid stroke="rgba(255,255,255,0.08)" />
-                <PolarAngleAxis
-                  dataKey="perspective"
-                  tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11, fontFamily: "DM Sans" }}
-                />
-                <PolarRadiusAxis
-                  angle={90}
-                  domain={[0, 10]}
-                  tick={{ fill: "rgba(255,255,255,0.2)", fontSize: 10 }}
-                  axisLine={false}
-                />
-                <Radar
-                  name="Current State"
-                  dataKey="value"
-                  stroke="#8460ea"
-                  fill="#8460ea"
-                  fillOpacity={0.15}
-                  strokeWidth={2}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "rgba(12, 18, 32, 0.95)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    borderRadius: "12px",
-                    color: "#fff",
-                    fontSize: "13px",
-                    fontFamily: "DM Sans",
-                  }}
-                  formatter={(value: number, _name: string, entry: any) => [
-                    `${value}/10`,
-                    entry.payload.fullLabel,
-                  ]}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
+            {/* Radar Chart */}
+            <div className="lg:col-span-3 rounded-xl p-5"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <ResponsiveContainer width="100%" height={380}>
+                <RadarChart data={RADAR_DATA} cx="50%" cy="50%" outerRadius="72%">
+                  <PolarGrid stroke="rgba(255,255,255,0.05)" />
+                  <PolarAngleAxis
+                    dataKey="perspective"
+                    tick={{ fill: "rgba(255,255,255,0.25)", fontSize: 10, fontFamily: "'DM Sans'" }}
+                  />
+                  <PolarRadiusAxis
+                    angle={90}
+                    domain={[0, 10]}
+                    tick={{ fill: "rgba(255,255,255,0.12)", fontSize: 9 }}
+                    axisLine={false}
+                  />
+                  <Radar
+                    name="Current"
+                    dataKey="value"
+                    stroke="#8460ea"
+                    fill="#8460ea"
+                    fillOpacity={0.1}
+                    strokeWidth={1.5}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "rgba(10, 14, 26, 0.95)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: "8px",
+                      color: "#fff",
+                      fontSize: "12px",
+                      fontFamily: "DM Sans",
+                      padding: "8px 12px",
+                    }}
+                    formatter={(value: number, _name: string, entry: any) => [
+                      `${value}/10`,
+                      entry.payload.fullLabel,
+                    ]}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
 
-            {/* Legend */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-              {RADAR_DATA.map((d) => (
-                <div key={d.perspective} className="flex items-center gap-2 text-xs">
-                  <div className="w-2 h-2 rounded-full" style={{
-                    backgroundColor: d.value >= 7 ? "#8460ea" : d.value >= 4 ? "#6894d0" : "#a4a3d0",
-                    opacity: 0.8,
-                  }} />
-                  <span className="text-white/30 font-mono">{d.perspective}</span>
-                  <span className="text-white/50">{d.fullLabel}</span>
-                  <span className="text-white/20 ml-auto">{d.value}/10</span>
-                </div>
-              ))}
+            {/* Legend Grid */}
+            <div className="lg:col-span-2 rounded-xl p-5"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="space-y-2">
+                {RADAR_DATA.map((d) => {
+                  const intensity = d.value / 10;
+                  const barColor = d.value >= 8 ? "#8460ea" : d.value >= 6 ? "#6894d0" : "#a4a3d0";
+                  return (
+                    <div key={d.perspective} className="group">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-mono text-white/20 w-[42px]">{d.perspective}</span>
+                          <span className="text-[11px] text-white/40">{d.fullLabel}</span>
+                        </div>
+                        <span className="text-[11px] font-mono text-white/25">{d.value}</span>
+                      </div>
+                      <div className="h-[3px] rounded-full bg-white/[0.03] overflow-hidden">
+                        <div className="h-full rounded-full transition-all duration-700"
+                          style={{ width: `${intensity * 100}%`, backgroundColor: barColor, opacity: 0.6 }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                <span className="text-[10px] text-white/20">Average</span>
+                <span className="text-sm font-medium text-white/50">{(RADAR_DATA.reduce((s, d) => s + d.value, 0) / RADAR_DATA.length).toFixed(1)}/10</span>
+              </div>
             </div>
           </div>
         </section>
 
-
-
-        {/* ─── Channel Activation ───────────────────────────────────────────── */}
-        <section id="channels-section">
-          <h2 className="text-2xl font-display text-center mb-8 text-white/80">Distribution Channels</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* ─── Distribution Channels ───────────────────────────────── */}
+        <section id="channels-section" className="mb-16">
+          <h2 className="text-lg font-medium text-white/60 mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Distribution Channels</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {CHANNELS.map((ch) => (
               <div
                 key={ch.name}
-                className={`rounded-xl border p-5 transition-all duration-300 hover:scale-[1.02] ${
-                  ch.status === "active"
-                    ? "border-[#8460ea]/40 bg-[#8460ea]/10"
-                    : ch.status === "next"
-                    ? "border-[#6894d0]/30 bg-[#6894d0]/5"
-                    : "border-white/8 bg-white/3"
-                }`}
+                className="rounded-xl p-4 transition-all duration-300 hover:scale-[1.01]"
+                style={{
+                  background: ch.status === "active" ? "rgba(132,96,234,0.04)" : "rgba(255,255,255,0.02)",
+                  border: `1px solid ${ch.status === "active" ? "rgba(132,96,234,0.1)" : "rgba(255,255,255,0.04)"}`,
+                }}
                 id={`channel-${ch.name.toLowerCase().replace(/\s/g, '-')}`}
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-lg">{ch.emoji}</span>
-                  <span className="font-medium text-white/80">{ch.name}</span>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-xs">{ch.emoji}</span>
+                  <span className="text-xs font-medium text-white/60">{ch.name}</span>
                 </div>
-                <p className="text-sm text-white/40">{ch.detail}</p>
+                <p className="text-[11px] text-white/25 leading-relaxed">{ch.detail}</p>
               </div>
             ))}
           </div>
         </section>
 
-
-
-        {/* ─── Footer ──────────────────────────────────────────────────────── */}
-        <footer className="text-center space-y-4 pt-8 pb-12" id="dashboard-footer">
-          <p className="text-xs text-white/20 italic max-w-md mx-auto">
-            Built in public. Updated in near-real time.
-          </p>
-          <div className="flex items-center justify-center gap-6 text-xs text-white/15">
-            <span>Genius Business · Progress Dashboard</span>
-            <span>·</span>
-            <span>© 2026 Alexander Konstantinov</span>
+        {/* ─── Footer ──────────────────────────────────────────────── */}
+        <footer className="pt-8 pb-12 border-t border-white/[0.03]" id="dashboard-footer">
+          <div className="flex items-center justify-between text-[10px] text-white/15">
+            <span>Built in public · Updated in near-real time</span>
+            <span>© 2026 Aleksandr Konstantinov</span>
           </div>
         </footer>
+
       </div>
     </div>
   );
