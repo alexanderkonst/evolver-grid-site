@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-08 afternoon — 75 Phase Shift Domains. Tribe v3.0 (Signal-First). Domain 75 (Ease Protocol) codified. Dashboard copy overhauled. Oyi $516 gift received ($677 total cash).*
+> *Last updated: 2026-04-08 night — 75 Phase Shift Domains. 13 Playbook Principles. Holomap Day 36: "Activation." Social activation: TG + IG + FB live. Grind Addiction (D14f) integrated across all core docs. $677 cash, $6.9K total. Infographic Episodes ~60% complete (founder-created from inspiration).*
 
 ---
 
@@ -28,11 +28,11 @@
 | W2 | **Kirill Call** (Mon PM) | Distribution | 🔴 | Proto-licensee. Live demo. Practitioner feedback |
 | W3 | **Sandra agreement** | Business | 🔴 | Name the revenue share. She asked. Rec: 33% from first $10K |
 | W4 | **Taylor & Tracy checkpoint** | Business | 🔴 | Professional conversation. Are they in or out? $3K each pending |
-| W5 | **Instagram bio + first post** | Distribution | 🔴 | Creator account ready. Bio + post + FB + X copy ready (see artifact) |
+| ~~W5~~ | ~~**Instagram bio + first post**~~ | ~~Distribution~~ | ✅ | **DONE Apr 8.** Grind addiction carousel posted. Bio + FB profile overhauled |
 | W6 | **Reach-outs** (Devon, Erik, Karen, Soren, Valentin) | Distribution | 🔴 | Intuitive names. Reach out as the field calls them |
 | W7 | **Roso + Cori demo sessions** | Sales | 🟡 | Offer demo Unique Business session to each |
 | W8 | **Chris + Patricia** (via Karime) | Sales | 🟡 | Awaiting Karime's voice note intros |
-| W9 | **Infographic Episodes — visual production** | Content | 🟡 | 43 slides in 3rd party app. Scripts ready. Branding spec ready |
+| W9 | **Infographic Episodes — visual production** | Content | 🟡 | **~60% complete.** Founder creating from scratch, from inspiration (D75 in action). Targeting tonight |
 | W10 | **Instagram profile setup** | Distribution | 🟡 | Categories/highlights for episode series + pinned intro post |
 | W11 | **Follow 200+ aligned weak ties** | Distribution | 🟡 | Domain 71: radiate into the resonance field |
 | W12 | **Oyi Mexico intensive** | Business | 🟡 | He wants to fly to Mexico ~next weekend. Determine format |
@@ -44,12 +44,12 @@
 
 | Metric | Value |
 |--------|-------|
-| **Phase** | PLANTING. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $677 revenue) |
-| **Cycle** | April 7-13 (New Moon). **75 Phase Shift Domains.** Tribe v3.0 (Signal-First). Domain 75 (Ease Protocol). Infographic Episodes ready for visual production |
+| **Phase** | ACTIVATION. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $677 cash, 3/9 social surfaces live) |
+| **Cycle** | April 7-13 (New Moon). **75 Phase Shift Domains. 13 Playbook Principles.** Holomap Day 36: "Activation." Infographic Episodes ~60% complete (founder-created) |
 | **Location** | Mexico City |
 | **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
-| **Focus** | **Planting seeds: social activation, client agreements, demonstration sessions. Names arrive intuitively.** |
-| **Key milestone** | CRM v3.0 — single source of truth for all 24 contacts with segments, financials, notes |
+| **Focus** | **Social surfaces activated. Infographics in progress. Content engine = grind addiction diagnosis. Next: remaining surfaces + reach-outs.** |
+| **Key milestone** | First social posts EVER (Telegram + IG + FB). Grind addiction integrated across ALL core docs (14 files updated in one session) |
 | **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max, rev share from first paid client |
 
 ---
@@ -66,8 +66,8 @@
 | 3 | Taylor & Tracy checkpoint conversation | Business | 🔴 |
 | 4 | Sergey — communicate Build boundary (3 paid sessions) | Business | 🔴 |
 | **DISTRIBUTION** |
-| 5 | Instagram bio + first post + FB + X | Distribution | 🔴 |
-| 6 | Infographic Episodes — visual production (43 slides) | Content | 🔴 |
+| 5 | ~~Instagram bio + first post + FB + X~~ | Distribution | ✅ Done Apr 8 |
+| 6 | Infographic Episodes — visual production (43 slides) | Content | 🟡 ~60% done |
 | 7 | Instagram profile: categories + pinned intro post | Distribution | 🔴 |
 | 8 | Follow 200+ aligned weak ties (Domain 71) | Distribution | 🔴 |
 | **FUNNEL** |
@@ -174,6 +174,18 @@
 - [x] Domain 72: Signal-First Tribe + Resonance Sort Protocol
 - [x] Domain 73: Dual-Frequency Distribution
 - [x] Domain 74: Playbook-as-Lead-Magnet
+- [x] Domain 75: Ease Protocol — founder's operating mode IS transmission frequency
+- [x] Domain 14f: Grind Addiction deepening — structural misidentification of what creates results
+- [x] Holomap Day 36: "Activation" — first social posts, instrument calibration protocol
+- [x] Unique Business Playbook — Principle 13 (Grind Addiction Diagnosis)
+- [x] Epicenter Broadcast Playbook v3.2 — §10b Grind Addiction Content Weapon
+- [x] Morphogenetic Navigation — Grind Addiction Interference Pattern section
+- [x] Alexander's OS — Ease Protocol operating section
+- [x] Alexander's Unique Business v8.1 — Grind Addiction Download + social activation
+- [x] Social activation: Telegram + Instagram + Facebook (3/9 surfaces)
+- [x] Facebook profile overhaul (bio, cover, featured, pinned post)
+- [x] Venture Dashboard copy overhaul (public-facing, data-forward)
+- [x] HLS video background on `/` (Mux stream)
 - [x] Unique Business Playbook — Artifact 3 enhanced with Resonance Sort Protocol
 - [x] Marketing Playbook — Dual-Frequency + Playbook-as-Lead-Magnet patterns added
 
@@ -192,4 +204,4 @@
 
 ---
 
-*Roadmap v4.1 — April 7, 2026 (evening update — 74 domains, tribe v3.0, infographic episodes)*
+*Roadmap v4.2 — April 8, 2026 (night — 75 domains, 13 principles, Day 36 "Activation", social activation live, FB overhaul, infographics ~60%)*

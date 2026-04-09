@@ -1,9 +1,9 @@
 # Epicenter Broadcast Playbook (Domain 65)
 
 > *The founder's execution engine for coherent radiation.*
-> *April 6, 2026 — v3.1: Locked Tuning Fork texts + Sub-Tribe strategy + Content Strategy*
+> *April 8, 2026 — v3.2: First social activation (Telegram + IG + FB) + Grind Addiction content weapon*
 > *© 2026 Alexander Konstantinov · For personal use*
-> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence) + Domain 69 (Crystallization Antenna)*
+> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence) + Domain 69 (Crystallization Antenna) + Domain 14f (Grind Addiction) + Domain 75 (Ease Protocol)*
 
 > **Purpose:** This is the EXECUTION document. Not theory (that's [Distribution Playbook](./distribution_playbook.md)). Not methodology (that's [Unique Business Playbook](./unique_business_playbook.md)). This is: **what to send, where to send it, how to send it — click by click — and what to learn from every response.**
 
@@ -22,14 +22,15 @@
 - **Banner image:** ⚠️ Status?
 
 ### Telegram
-- **Channel:** 1 channel, 31 subscribers
+- **Channel:** 1 channel, 31 subscribers — ✅ **FIRST POST Apr 8** ("Launch Day" + Grind Addiction diagnosis)
 - **Client groups:** 4-5 groups from past containers, 10-30 people each (~100 total)
 - **Bio/About:** ⚠️ Not yet updated
 
-### Instagram (@integralevolution)
+### Instagram (@integralevolution, 647 followers)
 - **Account type:** Personal (NOT Business/Creator — link sticker in Stories unavailable)
 - **Bio link:** ⚠️ Not yet set to aleksandrkonstantinov.com
 - **Bio text:** ⚠️ TBD
+- ✅ **FIRST POST Apr 8** — Carousel: "Launch Day" banner + Grind Addiction text card + full explanation in comments
 - **Note:** Consider switching to Creator account (free, takes 30 seconds, enables link stickers)
 
 ### WhatsApp
@@ -38,7 +39,7 @@
 - **About text:** ⚠️ Not yet updated
 
 ### Facebook (~2,500 connections, "Integral Evolution")
-- **Type:** Personal profile
+- **Type:** Personal profile — ✅ **FIRST POST Apr 8** (Grind Addiction diagnosis, set to Public)
 - **Groups:** ⚠️ TBD
 
 ### YouTube (42 subscribers)
@@ -268,15 +269,17 @@ aleksandrkonstantinov.com
 After all surfaces are posted, verify:
 
 - [ ] WhatsApp Status posted
-- [ ] Telegram channel(s) posted
+- [x] Telegram channel(s) posted — ✅ Apr 8 (Grind Addiction)
 - [ ] Telegram bio updated
 - [ ] Instagram Story posted (with link sticker)
-- [ ] Instagram Post posted (with bio link updated)
+- [x] Instagram Post posted — ✅ Apr 8 (Grind Addiction carousel)
 - [ ] Instagram Post shared to Story
 - [ ] LinkedIn Post published (link in FIRST COMMENT)
-- [ ] Facebook Post published (set to Public)
+- [x] Facebook Post published (set to Public) — ✅ Apr 8
 - [ ] X tweet posted and pinned
 - [ ] Bio/About updated on: Telegram, Instagram, WhatsApp
+
+**Score: 3/9 surfaces activated (Day 36)**
 
 ---
 
@@ -908,5 +911,56 @@ it out loud makes it real.
 
 ---
 
-*Epicenter Broadcast Playbook v3.1 — April 6, 2026*
-*Locked Tuning Fork texts. Sub-Tribe messaging. Content strategy. Domains 65 + 67 + 68 + 69.*
+## §10b. THE GRIND ADDICTION CONTENT WEAPON (April 8, 2026)
+
+> **Discovery:** The grind addiction diagnosis IS the highest-performing content type. It landed as the founder's FIRST social post — unplanned, unedited, through ease — and simultaneously served as personal healing, methodology demonstration, and lead magnet.
+
+### Why It Works as Content
+
+| What it does | Why it converts |
+|---|---|
+| **Names an invisible disease** | Recognition trigger ("This is me") — same mechanism as ZoG |
+| **Inverts the self-help narrative** | Not "work smarter" — "your working IS the problem" |
+| **Demonstrates the methodology live** | The post IS the methodology: name the pattern, make it speakable |
+| **Carries founder's myth** | "I am a grind addict" = vulnerability = trust = resonance |
+
+### The Core Text (Reusable Across All Surfaces)
+
+```
+Hello! My name is Aleksandr Konstantinov, and I am a grind addict.
+
+Grind addiction is the compulsive substitution of effort for alignment.
+
+It is the belief — held in the body, not just the mind — that the way
+to make something work is to push harder, do more, control more,
+and sleep less.
+
+What grind addicts believe:
+  Results = effort × time
+
+What's actually operating:
+  Results = alignment × coherence × receptivity
+
+The person most committed to success is the person
+most structurally preventing it.
+
+This is not laziness vs. hard work.
+This is a structural misidentification of what creates results.
+```
+
+### Deployment Log
+
+| Date | Surface | Format | Notes |
+|------|---------|--------|-------|
+| Apr 8 | Telegram (31 subs) | "Launch Day" banner + full text | First post ever |
+| Apr 8 | Instagram (@integralevolution) | Carousel: banner + grind card + comments | First IG post |
+| Apr 8 | Facebook (personal) | Same content, Public | First FB post |
+
+**Posting mode:** Unhinged. No strategy. No scheduling. No hesitation. Domain 75 (Ease Protocol) operating live.
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+
+---
+
+*Epicenter Broadcast Playbook v3.2 — April 8, 2026*
+*First social activation: Telegram + IG + FB. Grind Addiction content weapon added. 3/9 surfaces live. Domains 65 + 67 + 68 + 69 + 14f + 75.*

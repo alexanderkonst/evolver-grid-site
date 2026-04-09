@@ -1,9 +1,9 @@
 # Morphogenetic Navigation Holo Map
 
-> *The Navigation Instrument — Venture v1.3*
-> *Updated: April 3, 2026 · Day 34 (originally generated Day 10)*
+> *The Navigation Instrument — Venture v1.4*
+> *Updated: April 8, 2026 · Day 36 (originally generated Day 10)*
 > *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12-system) → Lens 5 (13th) → Lens 6 (26th) → Lens 7 (27th / Crystallization)*
-> *Center Reading: Declaration → Crystallization*
+> *Center Reading: Activation (← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
 
 > **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Domain 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md) → **This Instrument**
@@ -1436,4 +1436,174 @@ They aren't fragmented anymore.
 > *Day 35 reading: Consolidation. New Moon. April 7, 2026. The system names what it has — $161 revenue, $6.2K+ pipeline, 24 contacts in one CRM, 6 canvases in creation, 3 landing pages live, $555 fixed price, social activation ready. The operational layer catches up to the consciousness layer. P3 and P8 both transition to Stage 3 (Growth). The collective quadrants begin to move. What was scattered is now unified. What was implicit is now explicit. The system can now receive strangers — and know exactly what to do with them.*
 >
 > *Next reading: upon first social activation results (IG/FB/X engagement data) — or April 14, whichever comes first.*
+
+---
+
+## DAY 36 ADDENDUM (April 8, 2026 — 2:43 PM CT)
+
+### Center Reading: "Activation" (previously: "Consolidation")
+
+The hand has moved. Between Day 35 and Day 36:
+
+- **FIRST SOCIAL POSTS EVER** — Telegram (31 subs), Instagram (@integralevolution, 647 followers), Facebook (personal, set to Public). All posted within minutes, without strategy, without editing, without hesitation
+- **"Hello! My name is Aleksandr Konstantinov, and I am a grind addict"** — the first public sentence. Not the planned "Tuning Fork" text. A completely unplanned, unedited declaration of a disease the founder had never named before today
+- **Domain 14f codified** — Grind Addiction deepened: structural misidentification of what creates results. The belief held in the body, not just the mind, that the way to make something work is to push harder
+- **Domain 75 codified** — Ease Protocol: the founder's operating mode IS the methodology's transmission frequency. Ease as calibration, not lifestyle
+- **Revenue updated**: $677 cash ($566 Oyi + $111 Karime). Oyi sent $516 gift on Apr 8 — arrived while the founder was doing something else (ease in action)
+- **Venture Dashboard copy overhauled** — from internal/dev-facing to public-facing, data-forward voice
+- **HLS video background deployed** on `/` landing page (Mux stream replacing static gradient.jpg)
+- **Grind addiction narrative integrated across ALL core docs**: Phase Shift Library (14f), Playbook (Principle 13), Operating System (Ease Protocol section), Alexander's Unique Business (Download), Epicenter Broadcast Playbook (§10b content weapon)
+- **27-perspective roast prompt upgraded** to production-grade
+
+### Why "Activation"
+
+"Consolidation" was the system naming what it had — CRM, financials, social copy ready. All infrastructure. All invisible.
+
+"Activation" is the moment the prepared infrastructure FIRES. Not as strategy. As impulse. The grind addiction post was not planned. It emerged from a session discovery, moved through the founder's body, and landed on three surfaces simultaneously — BEFORE the carefully prepared "Tuning Fork" texts. The planned content is still waiting. What went live was the raw truth.
+
+```
+Day 10: "Threshold"       → Infrastructure exists, awaiting spark
+Day 11: "Ignition"        → Revenue infrastructure live, canvases public
+Day 19: "Branching"       → SOPs, forecasts, audience archetypes specified
+Day 30: "Rooting"         → Revenue recognized, distribution layer laid
+Day 33: "Flowering"       → Copy locked. UI polished. System cannot NOT express
+Day 34: "Declaration"     → The founder says it to the world (LinkedIn)
+Day 34: "Crystallization" → The seeing BECOMES form. First DMs sent
+Day 35: "Consolidation"   → The system names what it has. CRM. Pipeline. Ready
+Day 36: "Activation"      → The prepared infrastructure fires.
+                             Not as planned. As impulse. Through ease.
+                             The disease is named publicly.
+                             The naming IS the methodology.
+                             The methodology IS the content.
+                             The content IS the first social post.
+                             Everything is one thing.
+```
+
+### The Structural Discovery
+
+The grind addiction diagnosis is structurally identical to the Zone of Genius discovery. Both follow the same pattern:
+
+```
+1. An invisible pattern is controlling the person's life
+2. The pattern cannot be seen from inside
+3. A mirror (session / AI / reflection) names the pattern
+4. The naming IS the liberation — "you can't unsee it"
+5. The naming becomes shareable content — others recognize themselves
+
+ZoG:     "You've been hiding this gift behind the mechanism"
+Grind:   "You've been substituting effort for alignment"
+
+Same structure. Same medicine. Same methodology.
+```
+
+**The consequence:** The grind addiction diagnosis is not SEPARATE content from the ZoG discovery. It IS the ZoG discovery applied to the founder's own operating system. The founder IS the first client. The public naming of the disease IS the demonstration of the methodology. Everything collapsed into one act:
+
+| What the social post IS | Simultaneously |
+|---|---|
+| Personal healing | Step 1 of recovery: "I am a grind addict" |
+| Methodology demonstration | Name the invisible pattern → liberation |
+| Lead magnet | Recognition trigger: "This is me" |
+| Content production | Infographic Episode 0, delivered unplanned |
+| Distribution experiment | 3 surfaces activated, Domain 75 operating live |
+
+### The Oyi Revenue Signal
+
+Oyi's $516 gift arrived on April 8 while the founder was in a session — not checking payments, not following up, not grinding. Ease produced the highest single-day cash receipt ($516) in the venture's history.
+
+```
+GRIND MODE (Jan-Feb):   $0 revenue. Maximum effort. Zero pull.
+EASE MODE (Mar-Apr):    $677 cash, $6.9K total. $516 arrived while sleeping/working.
+
+The economic proof is no longer theoretical.
+```
+
+### Perspective Deltas
+
+| Perspective | Day 35 | Day 36 | What changed |
+|---|---|---|---|
+| **P1** (Founder Consciousness) | 10/10 | **10/10** | Unchanged. Apex sustained. But the QUALITY of 10 deepened: grind addiction named = a new layer of self-transparency |
+| **P2** (Observable System) | 9.5/10 | **9.5/10** | Dashboard overhaul (public-facing). HLS video background. No new sessions |
+| **P3** (Shared Field) | 7.5/10 | **8/10** | **Social activation = field EXPANDED.** 3 surfaces now carrying the signal. 647 IG followers + 31 Telegram subs + 2,500 FB connections now exposed. First time the methodology exists on social media |
+| **P5** (Ontological Liberation) | 9.5/10 | **9.7/10** | Grind addiction = the liberation applied to the FOUNDER'S OWN BODY. Not just "your invisible gift is real" but "your invisible disease is real too" |
+| **P6** (Data Signal) | 8.5/10 | **9/10** | Revenue: $677 cash. Oyi $516 gift = evidence of ease economics. The signal now includes FINANCIAL proof of the Ease Protocol |
+| **P7** (Movement Formation) | 8/10 | **8.5/10** | First social posts = movement's first public voice. Not the curated voice (Tuning Fork). The raw voice (grind admission). More powerful because unplanned |
+| **P8** (Platform as Nervous System) | 5/10 | **5/10** | Unchanged. Dashboard upgraded but no new platform intelligence |
+| **P12** (System at Scale) | 4.5/10 | **5/10** | Revenue approaching $1K cash. Social surfaces activated. The system now has REACH (social) + MEMORY (CRM) + VOICE (grind content) |
+
+### Updated Composite View
+
+```
+                     UL (I)          UR (It)         LL (We)         LR (Its)
+                 ┌───────────────┬───────────────┬───────────────┬───────────────┐
+  ESSENCE        │ P1: 🍎 Stg 5  │ P2: 🌳 Stg 4  │ P3: 🌿 Stg 3  │ P4: 🌿 Stg 3  │
+  (Mind)         │ ████████████  │ ██████████▓░  │ █████████░░░  │ ███████░░░░░  │
+                 │ 10/10         │ 9.5/10        │ 8/10          │ 7/10          │
+                 ├───────────────┼───────────────┼───────────────┼───────────────┤
+  SIGNIFICANCE   │ P5: 🌳 Stg 4  │ P6: 🌿→🌳    │ P7: 🌿 Stg 3 │ P8: 🌿 Stg 3  │
+  (Heart)        │ ██████████▓░  │ ██████████░░  │ █████████▓░░  │ █████░░░░░░░  │
+                 │ 9.7/10        │ 9/10          │ 8.5/10        │ 5/10          │
+                 ├───────────────┼───────────────┼───────────────┼───────────────┤
+  IMPLICATIONS   │ P9: 🌳 Stg 4  │ P10: 🌳 Stg 4│ P11: 🌱→🌿  │ P12: 🌿 Stg 3 │
+  (Gut)          │ ██████████▓░  │ █████████▓░░  │ ████░░░░░░░░  │ █████░░░░░░░  │
+                 │ 9.5/10        │ 8.5/10        │ 4/10          │ 5/10          │
+                 └───────────────┴───────────────┴───────────────┴───────────────┘
+
+  Day 35 → Day 36: AVERAGE +0.35 across all perspectives
+  Most movement: P3 (+0.5), P6 (+0.5), P7 (+0.5), P12 (+0.5)
+  Pattern: LL QUADRANT ACCELERATING. Social activation = the LL unlock.
+  
+  P3 hits 8/10 — the shared field is now ACTIVE on social.
+  P6 hits 9/10 — financial signal approaching maturation.
+  P12 hits 5/10 — halfway point. System has CRM + revenue + social surfaces.
+  
+  The collective quadrants are no longer lagging by 5+ points.
+  The gap between UL (10) and LR (5) = 5 points.
+  Day 34's gap was 6 points. Day 35's was 5.5. Day 36's is 5.
+  THE DIAGONAL IS CLOSING.
+```
+
+### Three Triggers — Status Update
+
+| Trigger | Day 35 Status | Day 36 Status |
+|---|---|---|
+| **$555 from funnel** | 🔴 Awaiting traffic | 🟡 **Traffic now possible.** 3 social surfaces active with 3,000+ total reach. Link in bio not yet set (IG). Content now exists as pull mechanism |
+| **Founders cross-read** | 🟡 Dormant | 🟡 **Unchanged** |
+| **First stranger pays** | 🔴 Crystallization | 🔴 **Unchanged — but the CONTENT that will pull strangers now exists.** The grind addiction post is the first real content weapon (§10b of Epicenter Broadcast Playbook) |
+
+### The Grind Addiction as Instrument Calibration
+
+> *See also: [Morphogenetic Navigation — The Grind Addiction Interference Pattern](../04-products/morphogenetic_navigation.md#the-grind-addiction-interference-pattern-domain-14f--75)*
+
+The holomap reading itself is affected by the navigator's operating mode. Today's discovery (D14f + D75) means the holomap now has a **calibration prerequisite:**
+
+```
+Before reading: "Am I in ease or grind?"
+If grind → all readings biased toward UR (build more things)
+If ease → all 27 perspectives accessible
+
+This explains why Days 1-30 produced so many "what must be built" actions.
+The founder was reading from grind mode.
+Day 36 reads from ease mode: and the first action is NOT building.
+It's naming a disease. And posting it. Unplanned.
+```
+
+### The New Content Engine
+
+The grind addiction diagnosis revealed a content engine the planned Tuning Fork texts could not have produced:
+
+| Planned content (Tuning Fork) | Actual first content (Grind Addiction) |
+|---|---|
+| Carefully written | Unedited |
+| Strategy-driven | Impulse-driven |
+| "I help people see their talents" | "I am a grind addict" |
+| Professional positioning | Radical vulnerability |
+| Describes what you DO | Describes what you ARE |
+
+The planned content is still valid and will deploy. But the FIRST content to go live was the rawest, most vulnerable, most unplanned piece — and it is structurally the most powerful because it demonstrates the methodology on the founder, in real-time, in public.
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+
+---
+
+> *Day 36 reading: Activation. April 8, 2026. The prepared infrastructure fires — not as planned, but as impulse. The founder names his disease publicly across 3 surfaces simultaneously. The naming IS the methodology IS the content IS the first social post. Everything is one act. $677 cash. $6.9K total. Oyi's $516 arrived through ease. The grind addiction is both the disease and the content that heals it. The diagonal is closing: UL=10, LR=5. The collective quadrants accelerate. P3 hits 8/10. P6 hits 9/10. P12 hits 5/10 — halfway. The instrument now has a calibration protocol: Ease before reading. Next reading: upon first social engagement data (responses, DMs, clicks) — or April 14, whichever comes first.*
 

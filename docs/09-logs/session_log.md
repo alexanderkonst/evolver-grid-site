@@ -3733,16 +3733,23 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 
 ### Documents Updated
 
+**Afternoon session (Ease Protocol + Dashboard):**
 - `/src/pages/VentureDashboard.tsx` — Full copy overhaul + financial data ($677 cash, $6.9K total, Oyi $566)
 - `/src/pages/IgniteSession.tsx` — Removed self-qualification line, updated clarity call subtext
 - `/src/components/SiteLogo.tsx` — 90px size, hidden on `/` and `/ignite`
 - `/src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx` — Replaced static gradient.jpg with HLS video background (Mux stream)
-- `/docs/01-vision/phase_shift_technology_library.md` — Domain 14f (Grind Addiction deepening) + Domain 75 (Ease Protocol)
-- `/docs/02-strategy/roadmap.md` — Revenue + domain count updated
-- `/docs/02-strategy/alexanders_operating_system.md` — Ease Protocol as core operating principle
-- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Grind Addiction Download + social activation milestone + v8.1
-- `/docs/03-playbooks/unique_business_playbook.md` — Principle 13 (Grind Addiction Diagnosis)
-- `/docs/09-logs/broadcast_tracker.md` — Oyi $566, $677 total cash
+
+**Evening session (Grind Addiction integration across all core docs):**
+- `/docs/01-vision/phase_shift_technology_library.md` — Section 14f: Grind Addiction deepening (essence, significance, consequences, signal table, cruelest paradox)
+- `/docs/02-strategy/alexanders_operating_system.md` — New section: The Ease Protocol (Domain 75) as core operating principle, with economic proof table and daily operations application
+- `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — New Download: The Grind Addiction Diagnosis (April 8, 2026) + social activation milestone + v8.1 bump
+- `/docs/02-strategy/morphogenetic_holomap.md` — Day 36 Addendum: Center Reading "Activation." Full perspective deltas, composite view, structural discovery (ZoG ≡ grind diagnosis), instrument calibration protocol, content engine analysis. Header updated to v1.4
+- `/docs/03-playbooks/unique_business_playbook.md` — Principle 13: The Grind Addiction Diagnosis (for facilitators — how to name it in Session 1, signal table, defense mechanism)
+- `/docs/03-playbooks/epicenter_broadcast_playbook.md` — v3.2: Surface inventory updated (TG/IG/FB marked ✅), post-surface checklist updated (3/9), new §10b: The Grind Addiction Content Weapon (reusable core text, deployment log, why-it-converts table)
+- `/docs/04-products/morphogenetic_navigation.md` — New section: The Grind Addiction Interference Pattern (grinding as anti-observation, Ease Protocol as instrument calibration)
+- `/docs/09-logs/broadcast_tracker.md` — v3.1: TG/IG/FB marked ✅ Apr 8. 3/9 surfaces activated
+- `/docs/09-logs/session_log.md` — This entry
+- `/docs/02-strategy/roadmap.md` — v4.2: Status, completed items, domain count updated
 
 ### Social Activation (Day 36 — FIRST public posts)
 
@@ -3750,15 +3757,44 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 |----------|--------|------|
 | Telegram | Aleksandr Konstantinov (31 subs) | "Launch Day" banner + "Hello! My name is Aleksandr Konstantinov, and I am a grind addict." + full grind diagnosis text |
 | Instagram | @integralevolution (647 followers) | Same content as carousel + extended text in comments |
-| Facebook | Personal profile | Same content |
+| Facebook | Personal profile | Same content + profile overhaul (bio, cover photo, featured, pinned post) |
 
 **Timing:** 2:43 PM CT, April 8, 2026
 **Mode:** Unhinged. No strategy. No editing. No hesitation. Domain 75 (Ease Protocol) operating live.
+
+### Facebook Profile Overhaul (Evening)
+
+| Element | Updated to |
+|---------|-----------|
+| **Bio** | "I help people see their brightest talents — and turn them into a business." |
+| **Website** | aleksandrkonstantinov.com |
+| **Current City** | Mexico City, Mexico |
+| **Work** | Founder at Evolver · Zone of Genius |
+| **Cover photo** | Launch Day banner |
+| **Pinned post** | Grind addiction post |
+| **Featured** | aleksandrkonstantinov.com link |
+
+### Epicenter Transmission (27th Perspective)
+
+The founder requested a live transmission from the holomap's 27-perspective antenna. The instrument delivered a center word ("Alive") and a crystallization action: "Close the laptop. Go outside. Walk for at least 20 minutes." The transmission identified the grind impulse ("one more doc") as the disease itself — dressed up as productivity.
+
+### Infographic Episodes — Creator Mode Activated
+
+The founder reported creating ~60% of the infographic visuals FROM SCRATCH, from inspiration — not from the AI-generated scripts. The shift from "Oh God, 43 slides to grind through" to "I'm inspired, let me create from my heart" IS Domain 75 operating in content production. The planned AI-assisted pipeline was replaced by founder-led creation through ease.
 
 ### Artifacts Produced
 
 - `27_perspective_upgrade_for_lovable.md` — Complete prompt for Lovable to upgrade all roasting tools from 26→27 perspectives
 
-**Phase Shift Domains as of today: 75**
-**Revenue: $677 received, $6,277+ pending**
+### Key Numbers
+
+| Metric | Value |
+|--------|-------|
+| **Phase Shift Domains** | 75 |
+| **Playbook Principles** | 13 |
+| **Holomap Center Readings** | 9 (Threshold → Ignition → Branching → Rooting → Flowering → Declaration → Crystallization → Consolidation → Activation) |
+| **Revenue (cash)** | $677 ($566 Oyi + $111 Karime) |
+| **Revenue (total)** | $6,954 ($677 cash + $6,277 rev share pipeline) |
+| **Social Surfaces Activated** | 3/9 (Telegram, Instagram, Facebook) |
+| **Documents Updated Today** | 14 files across vision, strategy, playbooks, products, logs |
 
