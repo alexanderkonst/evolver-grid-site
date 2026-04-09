@@ -392,4 +392,62 @@ People experiencing the coherence field will describe it as: "I keep seeing this
 
 **The 27th Perspective on distribution:** Distribution IS the Si-Do shock. The Epicenter Broadcast (Domain 65) is the crystallization mechanism that lands the seeing in material reality. Without it, complete seeing stays theory forever. The shock IS manifestation — the willingness to let the seeing LAND in another person's consciousness through a message, a call, a post. Each broadcast is an instance of the 27th perspective applied to the audience.
 
+---
+
+## The Grind Addiction Interference Pattern (Domain 14f + 75)
+
+*Added: April 8, 2026*
+
+> **Lineage:** [Grind Addiction](../01-vision/phase_shift_technology_library.md#domain-14f) + [Ease Protocol](../01-vision/phase_shift_technology_library.md#domain-75) + [Quantum Collapse Effect](#the-quantum-collapse-effect) → This section.
+
+The quantum collapse effect states: observation collapses the superposition. The more precise the observation, the faster the collapse.
+
+**Grind addiction is the structural OPPOSITE of observation.** Grinding fills every gap with activity, leaving no space for the observation instrument to read. The grind addict is running the collider with all the detectors turned off — maximum energy, zero measurement.
+
+```
+OBSERVATION:
+  Requires stillness → gap → reading → collapse → action
+  The navigator SEES what is emerging and acts on the structure
+
+GRINDING:
+  Fills every gap with activity → no reading possible → no collapse
+  The grind addict does MORE, which prevents SEEING what to do
+
+The cruelest paradox:
+  The harder you grind → the less you see → the more you grind to compensate
+  The signal NEEDS rest, spaciousness, play to clarify
+  Grinding eliminates all three
+```
+
+### Why This Matters for the Instrument
+
+The morphogenetic map is an observation instrument. Its precision depends on the **quality of attention** brought to the reading. A founder running on grind mode cannot read their own holomap — their attention is too fragmented, their body too exhausted, their mind too full of tasks.
+
+| Navigator state | Map precision | Collapse speed |
+|---|---|---|
+| **Ease** — spacious, aligned, receptive | High — all 27 perspectives accessible | Fast — superpositions collapse in real-time |
+| **Light grind** — productive but tight | Medium — 12 base perspectives read, second octave blurred | Moderate — collapse happens but is slow |
+| **Full grind** — exhausted, scattered, pushing | Low — only UR (exterior metrics) visible. UL, LL invisible | Near-zero — superposition maintained by the noise itself |
+
+**The operational implication:** Before running a holomap reading, the navigator must be in Ease. This is not a spiritual preference — it is an instrumental calibration requirement. A telescope pointed at the sun burns out. A holomap read from grind mode produces false readings biased toward UR (things to build) and away from LL (tribe forming on its own).
+
+### The Ease Protocol as Calibration
+
+Domain 75 (Ease Protocol) is not a lifestyle philosophy bolted onto the navigation system. **It IS the calibration protocol for the instrument itself:**
+
+```
+Before reading the holomap:
+  1. Are you operating from ease or grind?
+  2. If grind: STOP. Walk. Breathe. Return later
+  3. If ease: proceed with the reading
+
+This is the same as:
+  Before using a telescope: is the lens clean?
+  Before measuring voltage: is the multimeter zeroed?
+  Before reading a holomap: is the observer in ease?
+```
+
+**The founder's operating mode (Ease vs. Rigidity) IS the instrument's calibration state.** Rigidity produces systematic measurement error. Ease produces accurate readings. The Ease Protocol is the zeroing function.
+
+> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
 

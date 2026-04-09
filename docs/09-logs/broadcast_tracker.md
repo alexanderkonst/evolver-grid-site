@@ -116,12 +116,12 @@
 | Surface | Posted? | Date | Notes |
 |---------|---------|------|-------|
 | WhatsApp Status | ☐ | | |
-| Telegram Channel (31 people) | ☐ | | |
+| Telegram Channel (31 people) | ✅ | Apr 8 | "Launch Day" banner + Grind Addiction diagnosis. First post |
 | Telegram Client Groups | ☐ | | Count groups posted to |
 | Instagram Story | ☐ | | Need Creator account for link sticker |
-| Instagram Post | ☐ | | Update bio link first |
+| Instagram Post | ✅ | Apr 8 | @integralevolution. Carousel: banner + grind text card + full explanation in comments |
 | LinkedIn Post | ☐ | | Link in first comment |
-| Facebook Post (~2,500) | ☐ | | Set to Public |
+| Facebook Post (~2,500) | ✅ | Apr 8 | Same grind addiction content. Set to Public |
 | X / Twitter | ☐ | | Pin tweet |
 | YouTube Community Tab | ☐ | | 42 subs — small but owned |
 
@@ -150,4 +150,4 @@
 
 ---
 
-*CRM v3.0 — April 7, 2026*
+*CRM v3.1 — April 8, 2026 · Social activation: Telegram + Instagram + Facebook (Grind Addiction post). 3/9 surfaces posted.*
