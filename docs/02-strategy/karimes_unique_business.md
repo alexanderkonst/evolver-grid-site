@@ -13,14 +13,14 @@
 
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
-| Uniqueness | **v1.0** (9-energy synthesis + Return + Attuned Presence) | **9.9/10** | ✅ Landed (session #2) |
-| Shadow | **v1.1** (The Abandoned Self — pure life-level, business separated) | **9.4/10** | ✅ Landed (session #2) |
-| Myth | **v1.0** (The Empty Vessel — derived from Shadow v1.1) | — | 🔄 AI-generated, awaiting session score |
-| Tribe | **v1.0** (Women on the continuum of self-abandonment) | — | 🔄 AI-generated, awaiting session score |
-| Pain | **v1.0** (5-Layer Slicer per segment) | — | 🔄 AI-generated, awaiting session score |
-| Promise | **v1.0** (The Return Home — inverse pain) | — | 🔄 AI-generated, awaiting session score |
-| Lead Magnet | **v1.0** (Pain card as recognition trigger) | — | 🔄 AI-generated, awaiting session score |
-| Value Ladder | **v1.0** (3 containers: Gift → Journey → Temple) | — | 🔄 AI-generated, awaiting session score |
+| Uniqueness | **v1.1** (10-energy synthesis + Heartbreak Mechanism) | **9.7/10** | ✅ Landed (session #3 — post-asymptote calibration) |
+| Shadow | **v1.2** (The Abandoned Self + overgiving/receiving disbalance + steel) | **9.4/10** | ✅ Landed (session #3, verbatim correction) |
+| Myth | **v1.2** (The Steel and the Broken Heart) | — | 🔄 Heartbreak rewrite session #3, awaiting score |
+| Tribe | **v1.2** (The Broken Heart Tribe — steel around hearts) | — | 🔄 Heartbreak rewrite session #3, awaiting score |
+| Pain | **v1.2** (Steel as prison — "she doesn't know the steel is there") | — | 🔄 Canvas updated, detailed section awaiting build |
+| Promise | **v1.2** (Steel to new tissue — heart expands through breaking) | — | 🔄 Canvas updated, detailed section awaiting build |
+| Lead Magnet | **v1.2** (Heartbreak recognition card) | — | 🔄 Canvas updated, detailed section awaiting build |
+| Value Ladder | **v1.2** (Recognition → Ceremony → Return → Temple) | — | 🔄 Canvas updated, detailed section awaiting build |
 
 ## Unique Business Canvas
 
@@ -28,14 +28,14 @@
 
 | # | Artifact | Distillation |
 |---|----------|-------------|
-| 1 | **Uniqueness** | I emanate a frequency of unconditional love and acceptance that fills the space. Inside it, people feel safe, held, and loved. I sense what they're carrying and create sacred conditions for it to surface — for them to become aware of it and feel it. I guide them through. How they relate — to themselves, to each other, to what was weighing on them — shifts. They leave alleviated, more at peace. |
-| 1.5 | **Shadow** | The Abandoned Self — she guides others back to love, belonging, and peace, but she doesn't receive those things for herself. She pours love into everyone around her and doesn't let anyone pour into her. Doesn't name what she feels — her exhaustion, her overwhelm, her need. Can't see herself — her power, her worth, her beauty. Rarely creates sacred space for herself. Feels orphaned by life, unsupported, unheld. The very orphanhood she senses in others and heals, she carries inside herself. The epicenter: "Life doesn't hold me." It does. She just hasn't let it. |
-| 2 | **Myth** | **Lie:** The world tells women who carry others — healers, mothers, givers — that their needs come last. That giving IS the gift. That receiving is selfish. So they deplete themselves and call it devotion. **Truth:** A guide who does not receive her own medicine is depleted. Self-abandonment isn't humility — it's the slow draining of the very person everyone depends on. **Line:** The woman who receives what she gives — who names her needs, who tends to herself — doesn't weaken. She becomes the most powerful guide. Because she stops teaching love and starts living it. |
-| 3 | **Tribe** | Women who carry a natural capacity to hold others — in their families, their friendships, their work, their ceremonies — and have stopped holding themselves. They pour love into everyone and don't let anyone pour into them. Some are healers who serve beautifully but can't name their own needs. Some are mothers and caregivers who forgot they once had a name besides "the one who holds everything." Some are initiated women who've done deep inner work but still can't receive what they give. All of them feel it in their bones: unsupported, unheld, orphaned by the very life they fill with love. |
-| 4 | **Pain** | She feels it every day: the weight of everyone else's world on her shoulders, and no one asking how SHE is. She can see everyone's pain with beautiful clarity — but when she turns that same gaze on herself, there is nothing to see. She gives until she's depleted and then gives more. She hasn't created sacred space for herself in months. Her body is exhausted — tension, fatigue, something that won't let go. The deepest ache: she feels orphaned by life. Unsupported. Unheld. She senses this wound in others and heals it, every time. But who heals her? |
-| 5 | **Promise** | From depleting herself for everyone to receiving what she gives. From tending to everyone but herself — to being held, seen, named, and alleviated. She learns to receive with the same grace she gives. She sees herself — her power, her worth, her beauty — with the same precision she always offered others. The orphanhood dissolves. Not because life suddenly changes, but because she finally lets herself be held. |
-| 6 | **Lead Magnet** | The pain card — a mirror held with love. When a woman reads it and her body says "yes, that's me," the recognition IS the gift. No methodology to sell. No framework. Just: "I see you. I see what you carry. And I know what it's like because I carry it too." Formats: voice note, ceremony invitation, written reflection, one-to-one conversation. |
-| 7 | **Value Ladder** | **0: The Recognition** ($0) — Pain card as content. She reads it and feels seen. **1: The Ceremony** (entry) — One sacred container: be held, be seen, begin to receive. **2: The Return** (journey) — Guided passage from self-abandonment to self-tending. Multiple sessions. Learning to receive. **3: The Temple** (ongoing) — A container of women practicing receiving together. Community. Ongoing ceremony. |
+| 1 | **Uniqueness** | I emanate a frequency of unconditional love and acceptance that fills the space. I am deeply, unusually present — I attune to the person so precisely that they feel seen in a way they rarely experience. I sense what they're carrying and create sacred conditions for it to surface. What I'm really working with is the broken heart. Life breaks the heart — not just through lovers, but through everything: projects, friendships, places, parents, bodies. Most people put steel around the break. A temporary repair that becomes permanent. The steel closes them down — that's how you become orphaned. I help people tear down the heavy walls of their heart. I hold the bleeding heart with them. I guide them through — not around, but through — the pain. When you traverse it, it softens, falls away, lightens. When you avoid it, it grows. The heart doesn't break to destroy — it breaks to expand. New tissue grows where the break was. I'm bringing people back home — back to the heart, back to the primordial source of love. They reconnect. They leave alleviated, lighter, more at peace. |
+| 1.5 | **Shadow** | The Abandoned Self — she guides others back to the heart, but she struggles to return there herself. She too has steel around her own heartbreaks. Overgiving, not knowing how to receive, and not giving care to one's needs. She pours love into everyone and struggles to let anyone pour into her. Doesn't name what she feels. Struggles to see herself — her power, her worth, her beauty. Rarely creates sacred space for herself. Feels orphaned by life, unsupported, unheld. The very orphanhood she senses in others and heals, she carries inside herself. The epicenter: "Life doesn't hold me." It does. She just hasn't let it. |
+| 2 | **Myth** | **Lie:** When your heart breaks, protect it. Put steel around it. Close it down. Move on. Be strong. So the most devoted women armor their hearts and call it survival. The steel becomes permanent — no one gets in, nothing gets out. They feel orphaned by the very life they fill with love. And the world confirms it: "You're so strong." **Truth:** The heart doesn't break to destroy — it breaks to expand. When you remove the steel and let the heart bleed and grow new tissue, the heart becomes bigger with every break. The woman who returns to her broken heart — who holds it, lets it bleed, traverses the pain instead of armoring over it — reconnects to the primordial source of love. The most powerful guide is the one who has let her own heart break open. |
+| 3 | **Tribe** | People carrying steel around a broken heart they may not even know is broken. Not just romantic heartbreak — the project that was pulled apart, the friendship that ended, the parent who did their best but still left cracks, the body that betrayed them. Her highest-resonance tribe: women who carry others, whose hearts broke under the weight, who armored up to survive and forgot the steel was there. Healers, mothers, caregivers, initiated seekers — all carrying heartbreak they normalized. Everyone who sits with Karime leaves lighter — because she holds the bleeding heart without flinching. All of them sense it: there's a home they haven't returned to. |
+| 4 | **Pain** | The steel around her heart is so old she forgot it's there. She doesn't feel heartbroken — she feels heavy, numb, disconnected. She gives until she's depleted and then gives more. She senses everyone's contraction but can't feel her own broken heart beneath the armor. Her body carries it: tension, exhaustion, something that won't release. She hasn't let herself fully bleed — fully be heartbroken — in years. The deepest ache: she's orphaned. Not because life abandoned her, but because the steel she put around her heart cut her off from love. And she doesn't even know the steel is there. |
+| 5 | **Promise** | From steel to new tissue. From armored to open. From orphaned to home. She tears down the heavy walls around her heart and lets it bleed again — held, witnessed, not alone. She traverses the pain — through, not around — and it softens, falls away, lightens. The heart expands where it was broken. She reconnects to the primordial source of love. She sees herself — her power, her worth, her beauty — with the same precision she always offered others. She learns to receive with the same grace she gives. The orphanhood dissolves. Not because life changes, but because the steel is gone and love flows in again. |
+| 6 | **Lead Magnet** | The heartbreak recognition — a mirror held with love. When she reads it and her body says "yes, that's me — I've been carrying steel and didn't know it," the recognition IS the gift. No methodology to sell. Just: "I see the break. I see the steel. And I know what it's like because I carry it too." Formats: voice note, ceremony invitation, written reflection, one-to-one conversation. |
+| 7 | **Value Ladder** | **0: The Recognition** ($0) — Heartbreak card as content. She reads it and the steel cracks. **1: The Ceremony** (entry) — One sacred container: be held, let the heart bleed, begin to traverse. **2: The Return** (journey) — Guided passage through the heartbreak. Remove the steel. Hold the bleeding heart. Grow new tissue. Multiple sessions. Learning to receive. **3: The Temple** (ongoing) — A container of women whose hearts are expanding together. Community. Ongoing ceremony. The source they reconnect to — together. |
 
 ---
 
@@ -288,7 +288,62 @@ Karime transmits love (the coat)
 
 > Something moves through me — a kind of unconditional love and acceptance that fills any room I'm in. People feel it. They feel safe. Held. Loved. From inside that safety, whatever they've been carrying starts to loosen — the resentment they haven't spoken, the grief they've been swallowing, the wall between them and someone they care about. I sense it before they name it. I create a sacred space for it to come up — for them to feel it and become aware of it. Then I walk them through. How they relate shifts — to themselves, to each other, to what was weighing on them. They leave alleviated. More at peace. I do this in a ceremony, in a coaching call, over a cup of coffee. The setting doesn't matter. The love and the shift are always the same.
 
-**Precision score:** —/10 *(awaiting Karime's body-score)*
+**Precision score:** ~9/10 *(Karime, March 17 — v0.8)*
+
+---
+
+#### Uniqueness v1.1 — The Heartbreak Discovery (April 9, 2026, session #3)
+
+*What changed: The 10th energy emerged from Session #3 — The Heartbreak Mechanism. Karime spontaneously articulated: "I'm helping people tear down the heavy walls of their heart so they can reconnect to love and feel love beautifully." The core discovery: hearts break (this is life's mechanism to OPEN them), most people put steel around the break (survival), the steel becomes permanent (orphanhood / prison), Karime removes the steel, lets it bleed, holds the bleeding heart WITH them, and new tissue grows — the heart EXPANDS through the break. This is "through, not around" in its most visceral, specific form. Also: heartbreak is not just romantic — it's projects, friendships, places, parents, health/body betrayal. Karime lights up when someone comes heartbroken: "I'm fully online. I almost feel joy." Heartbreak is the #1 core wound of the planet, in her view.*
+
+*Builds on v1.0 (9.9/10) — all 9 energies preserved. The 10th energy (Heartbreak Mechanism) reveals WHAT she is actually traversing people through, and WHY they became orphaned.*
+
+**The ten energies (Uniqueness v1.1):**
+
+| # | Energy | In Karime's experience |
+|---|--------|----------------------|
+| 1 | **Sensing** | She perceives what people are carrying before they speak — even when they avoid it or don't know it's there |
+| 2 | **Unconditional love frequency** | A frequency of unconditional love and acceptance emanates through her and fills the space. Not personal love — a frequency that comes through, not from her |
+| 3 | **Sacred, safe, held space** | She creates a container with a quality of sacredness, safety, and being held |
+| 4 | **Attuned presence** | Deeply, unusually present. She attunes to the person so precisely they feel seen in a way they've rarely experienced. "She sees me, she's in me, and she still likes me." That unconditionally accepting attuned gaze creates trust, bond, and the ground for everything |
+| 5 | **Surfacing** | Inside that space, what people carry surfaces — she creates conditions for them to become aware of it and feel it. Sometimes she names it and it appears |
+| 6 | **Through, not around** | She guides through the pain, the sadness, the tightness — because that's the only way. When you traverse it, it softens, falls away, lightens. When you avoid it, it grows |
+| 7 | **The Heartbreak Mechanism** *(new — Session #3)* | Life breaks the heart to OPEN it. Most people put steel around the break — a temporary survival repair that becomes a permanent prison. They close down: no one gets in, nothing gets out. She helps them tear down the heavy walls, remove the steel, let the heart bleed again. She holds the bleeding heart WITH them. New tissue grows where the break was — the heart EXPANDS through the breaking. Heartbreak is not just romantic: it's projects, friendships, places, parents, health, body betrayal. "Heartbreak is the #1 core wound of the planet. That's how one goes orphan." |
+| 8 | **The Return** | She brings people back home — to the heart, to the primordial source of love. By removing the steel and letting the heart bleed and grow, she reconnects them to the origin point they were cut off from. She mothers them back: "Come back, the house is here, the love is here" |
+| 9 | **Relational shift / reconnection** | How they relate shifts — to themselves, to each other, to what was weighing on them. They reconnect, bond back to what was broken |
+| 10 | **Alleviation** | They leave alleviated, lighter, more at peace. The contraction lets go. The heart, now growing instead of armored, opens to love again |
+
+**Full-signal distillation (v1.1 — Karime's voice, building on v1.0 9.9/10):**
+
+> I emanate a frequency of unconditional love and acceptance that fills the space like a coat. Inside it, people feel safe, held, and loved. But it's more than safety. I am deeply, unusually present. I attune to the person in front of me so precisely that they feel seen in a way they've rarely experienced. I see what they carry, I name it, and they feel — not judged. "She sees me, she's in me, and she still likes me." That presence — that unconditionally accepting, attuned gaze — is what creates the trust, the bond, the ground for everything that follows. From within that bond, I sense what they're carrying — the grief they swallow, the contraction in their chest, the burden they've held so long they forgot it's there. I sense it even when they avoid it or don't know it's there. Sometimes I just name it and it appears for them. I create the sacred conditions for it to surface, for them to become aware of it and feel it. What I'm really working with is the broken heart. Life breaks the heart — not just through lovers, but through everything: projects you believed in that were pulled apart, friendships that ended, places you had to leave, parents who did their best but still left cracks, bodies that betrayed you. Most people, when their heart breaks, put steel around it. A temporary repair that becomes permanent. The steel closes them down — no one gets in, nothing gets out. That's how you become orphaned. That's the prison. I help people tear down the heavy walls of their heart so they can reconnect to love. I hold the bleeding heart with them. I guide them through — not around, but through — the pain, the sadness, the tightness. When you traverse it, it softens, falls away, lightens. When you avoid it, it grows. The heart doesn't break to destroy. It breaks to expand. When you remove the steel and let the heart bleed and grow new tissue instead, the heart becomes bigger with every break. What I'm really doing is bringing people back home — back to the heart, back to the primordial source of love. Most people I sit with are emotionally and spiritually orphaned, disconnected from that origin point, and they don't even know it. I sense it, and something in me wants to mother them back. Come back, the house is here, the love is here. How they relate shifts — to themselves, to each other, to what was weighing on them. They reconnect, they bond back to what was broken. They leave alleviated, lighter, more at peace. That is my medicine. I do it in ceremony, in a session, over coffee. The format changes. The transmission doesn't.
+
+**Precision score:** 9.7/10 *(Karime, Session #3 — scored post-asymptote discovery. Favorite phrase: "The heart doesn't break to destroy — it breaks to expand." Note: this is the first artifact scored after Karime understood the asymptotic function — that 10 is unreachable, that every 9.9 opens a new scale from 9.9 to 10. Her previous 9.9 on v1.0 was scored under the belief that 10 was a reachable destination. The 9.7 is therefore a MORE calibrated score on an infinite scale, not a decrease in quality.)*
+
+---
+
+#### Uniqueness v1.0 — 9-Energy Synthesis + Return + Attuned Presence (April 7, 2026, session #2)
+
+*What changed: Three new energies woven in from Session #2. (1) The Return — she doesn't just guide through, she guides HOME, back to the heart, back to the primordial source of love. (2) Attuned Presence — deeply, unusually present; an unconditionally accepting attuned gaze that creates trust and bond. (3) The Mothering — she senses people are orphaned and something in her wants to mother them back. Also: "through, not around" mechanism made explicit — traverse the pain and it softens, falls away, lightens. Spiritual/emotional orphanhood as the condition she senses. Primordial love source as the destination.*
+
+**The nine energies (Uniqueness v1.0):**
+
+| # | Energy | In Karime's experience |
+|---|--------|----------------------|
+| 1 | **Sensing** | She perceives what people are carrying before they speak — even when they avoid it or don't know it's there |
+| 2 | **Unconditional love frequency** | A frequency of unconditional love and acceptance emanates through her and fills the space. Not personal love — a frequency that comes through, not from her |
+| 3 | **Sacred, safe, held space** | She creates a container with a quality of sacredness, safety, and being held |
+| 4 | **Surfacing** | Inside that space, what people carry surfaces — she creates conditions for them to become aware of it and feel it. Sometimes she names it and it appears |
+| 5 | **Through, not around** | She guides through the pain, the sadness, the tightness — because that's the only way. When you traverse it, it softens, falls away, lightens. When you avoid it, it grows |
+| 6 | **The Return** | She brings people back home — to the heart, to the primordial source of love. Most people she sits with are emotionally and spiritually orphaned, disconnected from that origin point. She senses it and mothers them back: "Come back, the house is here, the love is here" |
+| 7 | **Attuned presence** | Deeply, unusually present. She attunes to the person so precisely they feel seen in a way they've rarely experienced. "She sees me, she's in me, and she still likes me." That unconditionally accepting attuned gaze creates trust, bond, and the ground for everything |
+| 8 | **Relational shift / reconnection** | How they relate shifts — to themselves, to each other, to what was weighing on them. They reconnect, bond back to what was broken |
+| 9 | **Alleviation** | They leave alleviated, lighter, more at peace. The contraction lets go |
+
+**Full-signal distillation (v1.0 — Karime's voice, scored 9.9/10):**
+
+> I emanate a frequency of unconditional love and acceptance that fills the space like a coat. Inside it, people feel safe, held, and loved. But it's more than safety. I am deeply, unusually present. I attune to the person in front of me so precisely that they feel seen in a way they've rarely experienced. I see what they carry, I name it, and they feel — not judged. "She sees me, she's in me, and she still likes me." That presence — that unconditionally accepting, attuned gaze — is what creates the trust, the bond, the ground for everything that follows. From within that bond, I sense what they're carrying — the grief they swallow, the contraction in their chest, the burden they've held so long they forgot it's there. I sense it even when they avoid it or don't know it's there. Sometimes I just name it and it appears for them. I create the sacred conditions for it to surface, for them to become aware of it and feel it. And then I guide them through — not around, but through — through the pain, the sadness, the tightness. Because that's the only way. When you traverse it, it softens, falls away, lightens. When you avoid it, it grows. What I'm really doing is bringing people back home — back to the heart, back to the primordial source of love. Most people I sit with are emotionally and spiritually orphaned, disconnected from that origin point, and they don't even know it. I sense it, and something in me wants to mother them back. Come back, the house is here, the love is here. How they relate shifts — to themselves, to each other, to what was weighing on them. They reconnect, they bond back to what was broken. They leave alleviated, lighter, more at peace. That is my medicine. I do it in ceremony, in a session, over coffee. The format changes. The transmission doesn't.
+
+**Precision score:** 9.9/10 *(Karime, Session #2 — landed)*
 
 ---
 
@@ -355,13 +410,13 @@ GIFT (returns people home, alleviates, mothers back, creates sacred space)
 
 ---
 
-### Shadow Distillation (full-signal) — v1.1 · Precision: 9.4/10
+### Shadow Distillation (full-signal) — v1.2 · Precision: 9.4/10
 
-> Karime returns others home — to the heart, to the primordial source of love. She mothers the orphaned back. She sees what they carry, names it, walks them through the pain, and they leave alleviated every time. She doesn't do this for herself. She doesn't name when she's exhausted, when she's overburdened, when she needs someone else. She gives the coat of love to everyone who sits with her and stands in the cold. Without it, she rarely creates sacred space for her own ceremony, her own connection to the Mother, her own nourishment. It happens on the side, never in the forefront. She has eyes to see others with attuned precision: their pain, their beauty, their hidden truths. When she turns that gaze on herself, there is nothing to see: not her power, not her worth, not her beauty, not her needs. Underneath all of it, the deepest wound: she feels orphaned by life, unsupported, unheld. She senses this orphanhood in others and heals it — but carries it inside herself. The woman who returns everyone else home stands outside her own house saying: "Does life really hold me?" It does. She built the house with every person she ever alleviated. The house is there. She just won't walk in.
+> Karime returns others home — to the heart, to the primordial source of love. She mothers the orphaned back. She sees what they carry, names it, walks them through the pain, and they leave alleviated every time. She struggles to do this for herself. Overgiving, not knowing how to receive, and not giving care to one's needs — this is the disbalance. She doesn't name when she's exhausted, when she's overburdened, when she needs someone else. She gives the coat of love to everyone who sits with her and stands in the cold. Without it, she rarely creates sacred space for her own ceremony, her own connection to the Mother, her own nourishment. It happens on the side, never in the forefront. She has eyes to see others with attuned precision: their pain, their beauty, their hidden truths. When she turns that gaze on herself, there is nothing to see: not her power, not her worth, not her beauty, not her needs. Underneath all of it, the deepest wound: she feels orphaned by life, unsupported, unheld. She senses this orphanhood in others and heals it — but carries it inside herself. The woman who returns everyone else home stands outside her own house saying: "Does life really hold me?" It does. She built the house with every person she ever alleviated. The house is there. She just won't walk in.
 
-### Shadow — universal language — v1.1
+### Shadow — universal language — v1.2
 
-> Karime does something rare: people sit with her and whatever they've been carrying starts to let go. They feel lighter. More at peace. It happens every time — in a ceremony, in a session, over coffee. But she doesn't do this for herself. She doesn't say when she's tired. She doesn't ask for help when she's overwhelmed. She can see others with beautiful precision — she names what they carry before they speak. But when she looks at herself, she sees nothing special. Not her power. Not her worth. She gives and gives and gives to everyone — and then feels like life doesn't hold her, like she's unsupported, like she's an orphan on this planet. The very wound she heals in others — the feeling of not being held, not having a home — lives inside her. She's come a long way. Twenty years ago, she literally made herself sick carrying others' pain. Now the grip is lighter. But the pattern is still there: tend to everyone else, forget she has needs, feel abandoned by the very life she fills with love for others. The exit is simple and terrifying: receive what she gives. See herself the way she sees others. Walk into her own house.
+> Karime does something rare: people sit with her and whatever they've been carrying starts to let go. They feel lighter. More at peace. It happens every time — in a ceremony, in a session, over coffee. But she struggles to do this for herself. She overgives and doesn't know how to receive, doesn't give care to her own needs. She doesn't say when she's tired. She doesn't ask for help when she's overwhelmed. She can see others with beautiful precision — she names what they carry before they speak. But when she looks at herself, she sees nothing special. Not her power. Not her worth. She gives and gives and gives to everyone — and then feels like life doesn't hold her, like she's unsupported, like she's an orphan on this planet. The very wound she heals in others — the feeling of not being held, not having a home — lives inside her. She's come a long way. Twenty years ago, she literally made herself sick carrying others' pain. Now the grip is lighter. But the pattern is still there: overgive, don't receive, forget she has needs, feel abandoned by the very life she fills with love for others. The exit is simple and terrifying: receive what she gives. See herself the way she sees others. Walk into her own house.
 
 ---
 
@@ -434,73 +489,163 @@ Shadow name: **The Abandoned Self.** Reframed from gift to life. But business sc
 
 ## 2. Myth
 
-#### Myth v1.0 — Derived from Shadow v1.1 (April 7, 2026)
+#### Myth v1.2 — The Steel and the Broken Heart (April 9, 2026, session #3)
 
-*Derived from Uniqueness v1.0 (9.9/10) and Shadow v1.1 (9.4/10). The shadow — "The Abandoned Self" — scaled to a world-level claim. The myth is no longer about certification culture (v0.2) but about the systemic lie that women who carry others must empty themselves to be worthy.*
+*Derived from Uniqueness v1.1 (session #3) and Shadow v1.2 (9.4/10). v1.2 reframe from v1.1: Karime and Alexander read the myth and tribe v1.1 and both said "the precision is really off from where we got with Karime's downloads." The heartbreak discovery (session #3) revealed the MECHANISM underneath the heaviness: life breaks the heart → people put steel around it → steel becomes permanent → orphanhood. Karime's spontaneous articulation: "I'm helping people tear down the heavy walls of their heart so they can reconnect to love." The myth now centers on the STEEL and the HEARTBREAK — not "heaviness" in the abstract.*
 
-**Shadow → Myth derivation (v1.0):**
+**Shadow → Myth derivation (v1.2):**
 
 ```
-Personal shadow:   "I give the coat of love to everyone and stand in the cold.
-                    My needs aren't important. I'm fine. Receiving is selfish."
+Personal shadow:   "I help others remove the steel from their hearts,
+                    but I carry steel around my own heartbreaks.
+                    I hold everyone's bleeding heart but won't let mine bleed."
         ↓ scale to world level
-Master Lie:        "The woman who carries others must deplete herself.
-                    Giving IS the gift. Receiving is weakness.
-                    Your needs come last — that's what devotion looks like."
+Master Lie:        "When your heart breaks, protect it. Put steel around it.
+                    Close it down. Move on. Be strong.
+                    The break is the problem. The steel is the solution."
         ↓ invert
-Master Belief:     "A guide who does not receive her own medicine is depleted.
-                    Self-abandonment isn't humility — it's the slow draining
-                    of the very person the world needs nourished.
-                    The woman who receives what she gives becomes the most powerful guide."
+Master Belief:     "The heart doesn't break to destroy — it breaks to expand.
+                    The steel was the problem all along. Remove it,
+                    let it bleed, hold it with love, and new tissue grows.
+                    The heart becomes bigger with every break."
 ```
 
-### Master Lie / Master Belief Polarity (v1.0)
+### Master Lie / Master Belief Polarity (v1.2)
 
 | | |
 |---|---|
-| **Master Lie** | The woman who carries others must deplete herself to be worthy. Your needs come last. Receiving is selfish. Asking to be held is weakness. You are the strong one — the one who pours love into everyone, the one who mothers others back, the one who holds the space. Your own ceremony? Your own connection to the Mother? On the side. Never the forefront. The world taught you: devotion means depletion. And you believed it — not because you're naive, but because you're so good at giving that the exhaustion felt like purpose. |
-| **Master Belief** | A guide who does not receive her own medicine is depleted. Self-abandonment isn't humility — it's the slow draining of the very person the world needs nourished. The woman who receives what she gives — who names her needs, who creates sacred space for HERSELF — doesn't weaken. She becomes the most powerful guide. Because she stops teaching love and starts living it. Her nourishment IS her medicine. |
+| **Master Lie** | When your heart breaks, protect it. Put steel around it. Close it down. Move on. Be strong. Every person who has ever been heartbroken — by a lover, a parent, a dying body, a failed project, a broken friendship, a place they had to leave — knows the moment: the crack, the bleeding, the unbearable openness. And the world says: close it. Armor up. "You're too sensitive." "Time heals." "Keep going." So they put steel around the break. And the steel works — for a while. The pain dims. They function. They carry on. But the steel doesn't dissolve. It becomes permanent. No one gets in. Nothing gets out. They feel orphaned by life — disconnected from love, from being held, from the very thing their heart was designed to carry. And they don't even know the steel is there. They just feel heavy. Numb. Alone. And the world calls it being strong. |
+| **Master Belief** | The heart doesn't break to destroy — it breaks to EXPAND. The break is not the wound. The steel is. When you remove the steel and let the heart bleed again — held, witnessed, not alone — new tissue grows where the break was. The heart becomes bigger. More open. More alive. The woman who returns to her broken heart and traverses the pain — not around it, but through — reconnects to the primordial source of love. She stops being orphaned. Not because life changes, but because the steel is gone and love flows in again. The most powerful guide is not the one with the most armor. It's the one who has let her own heart break open. |
 
-### Full myth (v1.0)
+### Full myth (v1.2)
 
-> **The Lie:** The world tells women who carry others — healers, mothers, caregivers, guides — that their needs come last. That giving IS the gift. That receiving is selfish. So the most devoted women empty themselves and call it love. They give the coat of love to everyone who sits with them and stand in the cold. They see others with beautiful precision — their pain, their beauty, their hidden truths — but when they turn that gaze on themselves, there is nothing to see. Not their power. Not their worth. Not their needs. They feel orphaned by the very life they fill with love for others. And the world confirms it: "You're so strong. You don't need anything." So they keep giving. And the vessel slowly empties.
+> **The Lie:** When your heart breaks, protect it. Everyone learns this. The lover who left. The parent who did their best but still left cracks. The project you poured your life into that was pulled apart. The body that betrayed you. The friendship that ended without a word. Life breaks the heart — not once, but over and over. And every time, the world says the same thing: put steel around it. Close it down. Move on. Be strong. So people do. They armor the break. A temporary repair that becomes permanent. The steel dims the pain, but it also closes the door. No one gets in. Nothing gets out. They feel orphaned — disconnected from love, from being held, from the very thing their heart was built to carry. And they don't even know the steel is there. They just feel heavy. Numb. Alone. And the world calls this being strong.
 >
-> **The Truth:** A guide who cannot receive is running on fumes. Self-abandonment isn't devotion — it's the slow death of the medicine. The woman who walks into her own house — who receives, who names her exhaustion, who creates sacred space for herself as a priority, not an afterthought — doesn't weaken. She fills. And from that fullness, the medicine becomes something it could never be when she was running on empty: sustainable, embodied, alive. The most powerful healer is not the one who gives everything. It's the one who has learned to receive.
+> **The Truth:** The heart doesn't break to destroy. It breaks to expand. The break is life's mechanism to OPEN the heart — to make it bigger, more capable of love, more alive. But only if you let it bleed. When you remove the steel and hold the broken heart — really hold it, let it bleed, let the pain move through without armoring over it — new tissue grows where the break was. The heart becomes bigger with every break. Not metaphorically. This IS the mechanism. Bypass the pain with steel and the heart stays the same size, sealed, cut off. Traverse it — through, not around — and it softens, falls away, lightens. The woman who returns to her broken heart reconnects to the primordial source of love. She stops being orphaned. Not because life suddenly holds her, but because the steel is gone and love flows in again. The most powerful guide is not the one with the most armor. It's the one who has let her heart break open.
 >
-> **The Line:** *Walk into your own house. The coat of love you gave to everyone? Put it on. The sacred space you created for others? Create it for yourself. You are not selfish for receiving. You are the vessel — and the vessel must be full.*
+> **The Line:** *The steel you put around your heart was supposed to protect you. It became your prison. Your heart didn't break to destroy you — it broke to expand. Remove the steel. Let it bleed. The love that was always there is waiting on the other side.*
 
-### Universal language version (v1.0)
+### Universal language version (v1.2)
 
-> You know that thing you do — where you hold everyone? Where people come to you with their pain, their fear, their broken pieces, and they leave lighter? You've been doing it your whole life. For your family. For your friends. In your work. In ceremony. Everyone leaves alleviated. Everyone feels held. And you stand there after they leave, exhausted, unseen, wondering why life doesn't hold you the way you hold others.
+> You know that feeling — the one where nothing quite reaches you? Where you're surrounded by people but something is sealed off? You've been carrying it so long you forgot it wasn't always there. Somewhere along the way, your heart broke. Maybe it was a person. Maybe it was a place. Maybe it was your body. Maybe it was a dream. And when it broke, you did what people do — you put something around it. Something strong. Something that would hold the pieces in place. And it worked. The pain dimmed. You kept going.
 >
-> You've been told this is what strong women do. Give. Hold. Carry. Don't ask. Don't need. Be the rock. And you believed it — not because you're weak, but because you're so good at it that the exhaustion felt like purpose.
+> But the thing you put around the break — it didn't dissolve. It's still there. And now it's not protecting you. It's cutting you off. From love. From being held. From the very thing your heart was designed to carry. You feel heavy but you don't know why. You feel alone but you can't explain it. You pour love into everyone around you but nothing pours back in — not because it isn't offered, but because the armor won't let it through.
 >
-> Here's the truth: a woman who pours love into everyone and never lets anyone pour into her isn't being strong. She's slowly depleting herself. The medicine she carries — that rare, natural, can't-be-taught frequency that shifts everyone who sits with her — it needs her nourished and tended to flow through. And she has been running on nothing for too long.
+> Here's what no one told you: your heart didn't break to destroy you. It broke to expand. Every heartbreak — the lover, the parent, the friend, the failed project, the sick body — is the heart's mechanism to get bigger. But only if you let it bleed. When you hold the broken heart — really hold it, let the pain move through, don't armor over it — new tissue grows where the break was. The heart becomes bigger. More open. More alive.
 >
-> The most powerful thing you can do — for yourself, for the people you hold, for the world that needs your medicine — is receive what you give. Name your exhaustion. Create sacred space for yourself. Not on the side. In the forefront. You are not selfish for needing what you give. You are the source — and the source must be tended.
+> The most powerful thing you can do is go back. Back to the break. Back to the bleeding. Not alone — held. Witnessed. With someone who knows what it looks like because she's held her own bleeding heart too. The steel was supposed to save you. It became your prison. Remove it. Let the heart bleed. And watch what grows.
 
-### Myth anatomy (v1.0)
+### Myth anatomy (v1.2)
 
 | Component | What it is |
-|-----------|-----------|
-| **Seed** (irreducible truth) | A guide who does not receive her own medicine is depleted. She must be nourished for the medicine to flow |
-| **Soil** (the paradox) | The world rewards women for self-abandonment and calls it devotion. The more they give, the more they're praised — and the more depleted they become |
-| **Sunlight** (the tribe) | Women who carry others — healers, mothers, caregivers, guides — who feel orphaned by the very life they fill with love. They can see everyone's pain but can't see their own worth |
-| **Water** (the call) | Receive what you give. Name your needs. Create sacred space for yourself. Self-tending IS the medicine |
+|-----------|-----------| 
+| **Seed** (irreducible truth) | The heart breaks to expand. The steel — not the break — creates the orphanhood. Remove the steel, let it bleed, hold it with love, and new tissue grows |
+| **Soil** (the paradox) | The world teaches people to armor their heartbreak and calls it strength. The very thing designed to protect becomes the prison. They feel orphaned but don't know the steel is what's doing it |
+| **Sunlight** (the tribe) | Anyone carrying steel around a broken heart — not just romantic heartbreak. Projects, friendships, parents, bodies, places. The steel is so old they forgot it's there. They just feel heavy, numb, alone |
+| **Water** (the call) | Go back to the break. Remove the steel. Hold the bleeding heart — not alone. Traverse the pain through, not around. Let new tissue grow. The heart was always designed to expand through breaking |
 
-### Three layers (v1.0)
+### Three layers (v1.2)
 
 | Layer | Function | The line |
 |-------|----------|----------|
-| **Attack** | Stops the scroll, names the wound | *"You pour love into everyone who sits with you. And then you stand there — depleted, unseen, wondering who tends to you. You call it devotion. The world calls it strength. It's neither. It's the slow draining of the most important person in the room — you."* |
-| **Reframe** | 2am moment, can't unsee | *"What if the exhaustion you carry isn't the price of your gift — but the proof that you've stopped receiving it? What if the orphanhood you feel isn't because life abandoned you, but because you abandoned yourself?"* |
-| **Invitation** | Creates the tribe | *"Receive what you give. The medicine you carry for others — it was always yours too. The woman who lets herself be held becomes the most powerful guide. Because she stops teaching love and starts living it."* |
+| **Attack** | Stops the scroll, names the wound | *"Your heart broke. You put steel around it. The pain dimmed. You kept going. But the steel didn't dissolve. It's still there — and now it's not protecting you. It's cutting you off. From love. From being held. From everything your heart was designed to carry. You feel heavy but you don't know why. The steel is why."* |
+| **Reframe** | 2am moment, can't unsee | *"What if your heart didn't break to destroy you — but to expand? What if the problem was never the break, but the steel you put around it? What if the orphanhood you feel isn't because life abandoned you, but because you sealed yourself in?"* |
+| **Invitation** | Creates the tribe | *"Remove the steel. Let the heart bleed. Not alone — held. Witnessed. By someone who has held her own bleeding heart. New tissue grows where the break was. The heart becomes bigger with every break it's allowed to feel. The love that was always there is waiting on the other side."* |
 
-### Collapse test (v1.0)
+### Collapse test (v1.2)
 
-> *"If someone proves that self-abandoning women make better healers than women who receive — that depletion improves the medicine — this myth collapses."* → ✅ Falsifiable. Every healer who has burned out knows the opposite is true.
+> *"If someone proves that keeping steel around broken hearts produces fuller, more connected, more love-filled lives than removing the steel and letting the heart bleed and grow — this myth collapses."* → ✅ Falsifiable. Every person who has done deep inner work knows: armor creates isolation; vulnerability creates connection.
 
-**Precision score:** —/10 *(awaiting Karime's body-score)*
+**Precision score:** —/10 *(awaiting Karime's body-score, Session #3)*
+
+---
+
+<details>
+<summary>Myth v1.1 (April 9, 2026) — superseded by v1.2</summary>
+
+*v1.1 was centered on "heaviness" and "returning to the source" — closer than v1.0 but still abstract. The heartbreak discovery (session #3) revealed the specific MECHANISM: steel around broken hearts. Superseded by v1.2 which names the steel, the bleeding, and the new tissue.*
+
+#### Myth v1.1 — Heart-Centered Rewrite (April 9, 2026, session #3)
+
+*Derived from Uniqueness v1.0 (9.9/10) and Shadow v1.1 (9.3/10). v1.1 reframe from v1.0 (scored 5/10): Karime's feedback was that the myth was hyper-focused on "needs" and "self-abandonment" as if her work is about helping women name their needs — it's not. Her work is about the HEART, the heaviness that accumulates, traversing pain (through, not around), and returning to the primordial source of love. The myth is now centered on disconnection from the heart/source as the root cause — not "neglecting needs."*
+
+**Shadow → Myth derivation (v1.1):**
+
+```
+Personal shadow:   "I guide others back to the heart, to the primordial source of love,
+                    but I struggle to return there myself. The heaviness accumulates.
+                    I carry the orphanhood I heal in others."
+        ↓ scale to world level
+Master Lie:        "The heaviness you carry is just the cost of having a big heart.
+                    Carry more. Give more. You're the strong one.
+                    The pain you feel? That's how you know you're doing it right."
+        ↓ invert
+Master Belief:     "The heaviness isn't the price of the gift — it's the sign
+                    she's stopped returning to the source. When she traverses
+                    her own pain and reconnects to the heart, the medicine
+                    becomes what it was always meant to be: alive and embodied."
+```
+
+### Master Lie / Master Belief Polarity (v1.1)
+
+| | |
+|---|---|
+| **Master Lie** | The heaviness you carry is the price of having a big heart. Every woman who carries others — who holds the family, who mothers the orphaned, who creates sacred space, who guides people through their pain — learns the same silent lesson: the heavier you feel, the more good you're doing. Your chest tightens? You're being devoted. Your body aches? You're being strong. You haven't returned to ceremony for yourself in months? That's because your calling is to hold others. The world tells you: carry more. And when the heaviness becomes unbearable, carry more still. It never tells you: return to the source. Because the world doesn't know that the source exists. |
+| **Master Belief** | The heaviness isn't devotion — it's the sign she has stopped returning to the heart. The primordial love she channels for everyone else — she has cut herself off from it. When she traverses her own pain — through, not around — it softens, falls away, lightens. When she reconnects to the source, she doesn't weaken. She refills. The medicine was always meant to flow from a woman who is nourished by the same love she transmits. Not from one who gives it away and stands in the cold. |
+
+### Full myth (v1.1)
+
+> **The Lie:** The world tells women who carry others — healers, mothers, caregivers, guides — that the heaviness they feel is the price of having a big heart. Carry more. Give more. You're the strong one. So the most devoted women accumulate the weight of everyone they love and lose connection to their own heart — the very source their gift flows from. They see everyone else's contraction, their grief, their hidden truth, with attuned precision. But when they turn that gaze on themselves, there is nothing to see. Not their power. Not their worth. Not even the weight they're carrying. They feel orphaned by the very life they fill with love. And the world confirms it: "You're so strong. You don't need anything." So they keep carrying. And the heaviness becomes everything.
+>
+> **The Truth:** The heaviness isn't the price of the gift — it's the sign she has stopped returning to the source. The heart — not the organ, the primordial love she channels for everyone else — it's there, it was always there, and she has cut herself off from it. When she traverses her own pain — not around it, but through — it softens, falls away, lightens. This is not a metaphor. This is the mechanism. Bypass the pain and it grows. Walk through it and it releases. The woman who returns to the heart — who reconnects to the source of love that flows through her — doesn't weaken. She refills. And from that fullness, the medicine becomes what it was always meant to be: alive, sustainable, embodied. The most powerful guide is not the one who carries the most. It's the one who has returned home.
+>
+> **The Line:** *The heaviness you carry is not devotion. It's the distance between you and the source. Return to the heart. Let yourself be held by the same love you hold for everyone else.*
+
+### Universal language version (v1.1)
+
+> You know that heaviness in your chest — the one that never fully lifts? You've carried it so long you forgot it wasn't always there. You hold everyone. Your family. Your friends. The people who come to you with their broken pieces. They sit with you and leave lighter. Every time. And you stand there after they leave, heavier.
+>
+> The world told you this is what strong women do. Carry more. Hold more. Be the rock. And you believed it — not because you're naive, but because you're so good at it that the heaviness started to feel like purpose. Like proof that your heart is big enough.
+>
+> Here's the truth: the heaviness isn't the price of your gift. It's the sign you've stopped returning to the source. The love that flows through you — the thing that makes everyone who sits with you feel held and alleviated — it has a source. And you've been channeling it for everyone else while cutting yourself off from it.
+>
+> When you traverse the pain — not avoid it, not push through it, but walk into it and let it soften — it falls away. It lightens. This is how your gift actually works. You know this because you do it for others every day. You just haven't done it for yourself.
+>
+> The most powerful thing you can do — for yourself, for the people you hold, for the world that needs your medicine — is return home. To your own heart. To the love that was always there. You are not selfish for going back to the source. You are the source — and the source must be tended.
+
+### Myth anatomy (v1.1)
+
+| Component | What it is |
+|-----------|-----------| 
+| **Seed** (irreducible truth) | The heaviness she carries is the distance between her and the source. When she returns to the heart, the medicine flows from fullness |
+| **Soil** (the paradox) | The world rewards women for carrying more and calls it devotion. The heavier they feel, the more the world confirms they're doing it right — while the disconnection from the source deepens |
+| **Sunlight** (the tribe) | Women who carry a heaviness in the heart they can't quite name. Who hold others and everyone leaves lighter — except them. Who feel orphaned by the very life they fill with love |
+| **Water** (the call) | Return to the heart. Traverse the pain — through, not around. Reconnect to the source of love you've been channeling for everyone else. The heaviness isn't yours to carry — it's yours to release |
+
+### Three layers (v1.1)
+
+| Layer | Function | The line |
+|-------|----------|----------|
+| **Attack** | Stops the scroll, names the wound | *"You hold everyone. They sit with you and leave lighter. Every time. And you stand there heavier. You've been calling this devotion. The world calls it strength. But the heaviness in your chest — the one that never fully lifts — that's not devotion. That's the distance between you and the source."* |
+| **Reframe** | 2am moment, can't unsee | *"What if the heaviness you carry isn't the price of your gift — but the proof you've stopped returning to the source? What if the orphanhood you feel isn't because life abandoned you, but because you forgot the way home?"* |
+| **Invitation** | Creates the tribe | *"Return to the heart. The love you channel for everyone else? It has a source. And it's been waiting for you. The woman who goes back — who lets herself be held by the same love she gives — becomes the most powerful guide. Because the medicine finally flows from fullness."* |
+
+### Collapse test (v1.1)
+
+> *"If someone proves that women who carry increasing heaviness without returning to the source produce better medicine than women who return to the heart and give from fullness — this myth collapses."* → ✅ Falsifiable. Every healer who has burned out knows the opposite is true.
+
+**Precision score:** —/10 *(awaiting Karime's body-score, Session #3)*
+
+---
+
+</details>
+
+<details>
+<summary>Myth v1.0 (April 7, 2026) — superseded by v1.1</summary>
+
+*v1.0 was hyper-focused on "needs" and "self-abandonment." Karime scored it 5/10: "I don't think my work is about needs per se. This is so hyper-focused on needs." Superseded by v1.1 which centers on the HEART, heaviness, traversal through pain, and returning to the primordial source of love.*
+
+</details>
 
 ---
 
@@ -609,26 +754,77 @@ All five Master Beliefs say one thing: **"What you naturally are is the MOST pow
 
 ## 3. Tribe (ICP)
 
-#### Tribe v1.0 — Derived from Shadow v1.1 (April 7, 2026)
+#### Tribe v1.2 — The Broken Heart Tribe (April 9, 2026, session #3)
 
-*The tribe is no longer defined as "practitioners who can't name their gift" (v0.1) but as women who carry others and have stopped carrying themselves. This flows directly from the life-level shadow: the self-abandoning woman, the orphanhood wound, the inability to receive. The tribe IS the shadow, lived by an entire population.*
+*v1.2 reframe from v1.1: Karime and Alexander read tribe v1.1 and both said the precision was off. The heartbreak discovery (session #3) revealed: the tribe carries STEEL around BROKEN HEARTS — not just "heaviness." Heartbreak is universal (not just romantic): projects, friendships, places, parents, bodies. Karime lights up when someone comes heartbroken: "I'm fully online. I almost feel joy." Karime: "Heartbreak is the #1 core wound of the planet. That's how one goes orphan." The tribe is now anyone carrying steel around a broken heart — with highest resonance being women who carry others and armored up under the weight.*
 
-*Important: Karime does NOT help people build businesses. This tribe doesn't need leads, funnels, or pipelines. They need to be HELD — and to learn to hold themselves.*
+*Important: Karime does NOT help people build businesses. This tribe doesn't need leads, funnels, or pipelines. They need the steel removed. They need to let the heart bleed again — held, witnessed, not alone — so new tissue can grow.*
 
-**Who they are — one paragraph (v1.0):**
+**Who they are — one paragraph (v1.2):**
 
-Women who carry a natural capacity to hold others — in their families, their friendships, their work, their ceremonies — and have stopped holding themselves. They give endlessly. They see everyone's pain with attuned precision. They create safety wherever they go. And when everyone leaves lighter, they stand there — exhausted, unseen, wondering why life doesn't hold them the way they hold others. Some are healers who serve beautifully but can't name their own needs. Some are mothers and caregivers who forgot they had a name before "the one who holds everything." Some are initiated women who've done deep inner work but still can't receive what they give. All of them feel it in their bones: unsupported, unheld, orphaned by the very life they fill with love.
+People carrying steel around a broken heart they may not even know is broken. Life broke their heart — not just through lovers, but through everything: the project that was pulled apart, the friendship that ended, the parent who did their best but still left cracks, the body that betrayed them. And when it broke, they did what the world taught them: they put steel around it. A temporary repair that became permanent. The steel closes them down — no one gets in, nothing gets out. They feel heavy, numb, disconnected. They feel orphaned by life but don't know the steel is what's doing it. Some are healers whose clients leave lighter every time while they carry an unnamed weight behind the armor. Some are mothers and caregivers who became "the strong one" and forgot the steel was there. Some are initiated seekers who've done deep inner work but the steel runs deeper than any ceremony reached. All of them sense it: there's a home they haven't returned to. A love they've been channeling for others but the armor won't let back in.
 
-**Qualifiers (v1.0 — derived from Karime's shadow, not her business):**
+**Qualifiers (v1.2 — derived from Karime's shadow, uniqueness, and the heartbreak discovery):**
 
 | Shadow truth | → Became qualifier |
 |-------------|-------------------|
-| She gives the coat of love to everyone and stands in the cold | They give endlessly to others and feel empty — but can't name when they need to receive |
-| She can't see herself — her power, her worth, her beauty | They see everyone else's pain and beauty with precision, but when they look at themselves: "nothing to see" |
-| She doesn't name when she's exhausted | They don't say when they're tired, overwhelmed, in need. "I'm fine" is their refrain |
-| She feels orphaned by life, unsupported, unheld | They carry a deep, often unnamed sense of being alone in life — even surrounded by love |
-| She rarely creates sacred space for herself | They haven't prioritized their own nourishment, ceremony, or tending in months — maybe years |
-| Everybody who sits with her leaves alleviated | People consistently say "I feel better after talking to you" — but they've never treated that as evidence of a gift |
+| She helps others remove the steel but carries steel around her own heartbreaks | They carry steel around a broken heart that's so old they forgot it's there — they just feel heavy, numb, disconnected |
+| Life breaks the heart through everything — not just lovers | Their heartbreak isn't always romantic — it's projects, friendships, places, parents, bodies. Most never called it heartbreak |
+| She holds the bleeding heart without flinching | People consistently come to them when heartbroken — "I feel better after sitting with you." They light up in the presence of raw pain |
+| She can't see herself — her power, her worth, her beauty | They see everyone's contraction with precision, but when they look at themselves: "nothing to see" — the steel blocks the view |
+| She traverses pain for others but armors over her own | They guide others through pain beautifully but when their own heart breaks, they put more steel on it and keep going |
+| She feels orphaned — the steel is the prison | They feel disconnected from love, unsupported, alone — not because life abandoned them but because the steel they put around their heart won't let anything in |
+
+**Three segments (v1.2):**
+
+| Segment | Who they are | Where they are | The dream |
+|---------|-------------|----------------|-----------|
+| **1. The Armored Healer** | Women who serve professionally — coaches, therapists, ceremony holders, facilitators — whose clients leave lighter every time. Their own hearts broke somewhere along the way and they put steel on it to keep serving. Their bodies carry what the armor holds back: chronic exhaustion, tension, something that won't release | They know their gift is real. People confirm it every time. But behind the armor, their heart hasn't fully bled in years. They feel orphaned by the very life they pour love into. The steel they don't know is there dims everything | "I want to serve from an open heart, not from behind armor. I want to give the medicine AND let my own heart be held. I want to stop being the strongest person in the room and let myself break" |
+| **2. The Sealed Mother** | Women who carry their families, friendships, communities — who ARE the safe space — but nobody asks how their heart is doing. Their hearts broke through parenthood, through loss, through being "the strong one" for too long. They armored up so thoroughly that they don't even register the break anymore. They just feel heavy | They sense something is sealed. They pour love into everyone but nothing reaches them back — not because nobody offers, but because the armor won't let it through. They hear "you're so strong" and it feels like a prison sentence | "I want someone to see behind the armor. Not the strong version. The broken one. The one whose heart cracked open years ago and I never let it bleed. I'm tired of the steel" |
+| **3. The Veteran Seeker** | Women who've done deep inner work — plant medicine, therapy, retreats, spiritual practice — and shed layers but the steel runs deeper than any ceremony reached alone. They know they're carrying something. They just can't get to it. The heartbreak predates the healing journey | They've done the work. They've accessed profound states. But they keep coming back to the same sealed place. The steel was put there before they had language for it — by a parent, by a body, by a first love, by a foundational betrayal. It's structural, not emotional | "I've done so much healing but something is still sealed off. I need someone who can reach deeper than I can reach alone — someone who will hold the bleeding heart when I finally take the steel off" |
+
+**Anti-tribe (who this is NOT for):**
+
+| Who | Why not |
+|-----|--------|
+| **People who haven't experienced heartbreak** | This is universal but if the myth doesn't land in the body — if "steel around the heart" doesn't make them go "yes, that's me" — it's not their path right now |
+| **People seeking business coaching** | Karime doesn't help people build businesses. If they want funnels, pipelines, and strategies — this is not the space |
+| **People in acute crisis** | They need safety and stabilization first. Karime can hold them, but removing the steel requires readiness |
+| **People who aren't ready to bleed** | The myth will feel like an attack if they're still deeply identified with the armor. They need to feel the crack first — the moment they sense the steel might not actually be saving them |
+
+**Tribe synthesis (speakable — v1.2):**
+
+> Your heart broke. Maybe it was a person. Maybe it was your body. Maybe it was a project you believed in. Maybe it was a parent. And when it broke, you did what people do — you put something around it. Something strong. Something that would hold the pieces together. And it worked. You kept going. But the thing you put around the break — it's still there. And now it's not protecting you. It's cutting you off. You feel heavy but you don't know why. You feel alone but you can't explain it. You pour love into everyone around you and nothing reaches you back. Not because nobody offers. Because the armor won't let it through. What if the break wasn't the problem? What if the steel was? What if your heart broke to expand — but the armor sealed it shut? The most powerful thing you can do is go back. To the break. To the bleeding. Not alone. Held by someone who has held her own bleeding heart. The steel was supposed to save you. It became your prison.
+
+**Precision score:** —/10 *(awaiting Karime's body-score, Session #3)*
+
+---
+
+<details>
+<summary>Tribe v1.1 (April 9, 2026) — superseded by v1.2</summary>
+
+*v1.1 was centered on "heaviness" and "returning to the source" — closer than v1.0 but still abstract. The heartbreak discovery (session #3) revealed the specific MECHANISM: steel around broken hearts. Superseded by v1.2.*
+
+#### Tribe v1.1 — Heart-Centered Rewrite (April 9, 2026, session #3)
+
+*v1.1 reframe from v1.0 (scored 5.5–5.7/10): Karime's feedback was that the tribe felt "radically incomplete" — nothing about the heart, nothing about the heaviness, nothing about the return to the source. The tribe is now centered on: women who carry a heaviness in the heart, who are disconnected from the primordial love source they channel for others, and who haven't found their way home. Karime: "There is nothing mentioned about the heart here and for me it's like it's the compass of my work, the heart."*
+
+*Important: Karime does NOT help people build businesses. This tribe doesn't need leads, funnels, or pipelines. They need to be guided back home — to the heart, to the source of love — through their pain, not around it.*
+
+**Who they are — one paragraph (v1.1):**
+
+Women who carry a heaviness in the heart that they can't quite name. They hold others — in their families, their friendships, their work, their ceremonies — and everyone who sits with them leaves lighter. But they don't. The heaviness accumulates. They see everyone else's contraction, their grief, their hidden truth, with attuned precision — but when they turn that gaze on themselves, there is nothing to see. Not their power. Not their worth. Not even the weight they're carrying. Some are healers whose clients feel alleviated every time, but they themselves carry an unnamed weight. Some are mothers and caregivers who forgot they once had a name besides "the strong one." Some are initiated women who've done deep inner work but still feel disconnected from the source — orphaned by the very life they fill with love. All of them sense it: there is a home they haven't returned to. A love they channel for others but haven't let in for themselves.
+
+**Qualifiers (v1.1 — derived from Karime's shadow and uniqueness, not her business):**
+
+| Shadow truth | → Became qualifier |
+|-------------|-------------------|
+| She channels primordial love for others but struggles to return to the source herself | They carry a heaviness in the heart that never fully lifts — despite channeling love and alleviation for everyone around them |
+| She can't see herself — her power, her worth, her beauty | They see everyone else's contraction and hidden truth with precision, but when they look at themselves: "nothing to see" |
+| She traverses pain for others but goes around her own | They guide others through pain beautifully but avoid, numb, or bypass their own — the heaviness grows |
+| She feels orphaned by life, unsupported, unheld | They carry a deep, often unnamed sense of being alone in life — disconnected from the love source they sense exists |
+| She rarely creates sacred space for herself | They haven't prioritized their own ceremony, their own connection to the source, their own nourishment — it happens on the side, never the forefront |
+| Everybody who sits with her leaves alleviated, lighter | People consistently say "I feel better after sitting with you" — they leave lighter. She doesn't |
 
 **Three segments (v1.0):**
 
@@ -647,13 +843,15 @@ Women who carry a natural capacity to hold others — in their families, their f
 | **People in acute crisis** | They need safety and stabilization first — not shadow work. Karime can hold them, but this offering isn't crisis intervention |
 | **Women who aren't ready to receive** | The myth will feel like an attack if they're still deeply identified with "I'm the strong one." They need to feel the crack first |
 
-**Tribe synthesis (speakable — v1.0):**
+**Tribe synthesis (speakable — v1.1):**
 
-> You know that thing you do — where you hold everyone? Where people come to you with their broken pieces and leave lighter? You've been doing it your whole life. In your family. In your friendships. In your work. Maybe in ceremony. Everyone who sits with you says the same thing: "I feel better." And you stand there after they leave, exhausted, alone, wondering: who holds ME? You've been calling this strength. The world calls it devotion. But underneath it there's something you haven't named: you feel orphaned by life. Unsupported. Unheld. You pour love into everyone around you and don't let anyone pour into you. You can see everyone's pain with attuned precision — but when you turn that gaze on yourself, there is nothing to see. Not your power. Not your worth. Not even your exhaustion. You're not broken. You're depleted. And the medicine the world needs from you — it needs you nourished, not empty.
+> You know that heaviness in your chest — the one that never quite lifts? You've been carrying it so long you forgot it wasn't always there. You hold everyone. Your family. Your friends. The people who come to you with their broken pieces. They sit with you and leave lighter. Every time. Everyone who sits with you says the same thing: "I feel better." And you stand there after they leave, heavier. You've been calling this strength. The world calls it devotion. But underneath it there's something you haven't named: you've lost connection to the source. The love that flows through you — the thing that shifts everyone who sits with you — it has an origin. And you've been channeling it for everyone else while cutting yourself off from it. You can sense everyone's contraction, their grief, their hidden truth — but when you turn that gaze on yourself, there is nothing to see. Not your power. Not your worth. Not even the weight you're carrying. You're not broken. You've stopped returning home. And the medicine the world needs from you — it needs you returned to the source, not disconnected from it.
 
-**Precision score:** —/10 *(awaiting Karime's body-score)*
+**Precision score:** —/10 *(awaiting Karime's body-score, Session #3)*
 
 ---
+
+</details>
 
 <details>
 <summary>Tribe v0.1 (March 17, 2026) — superseded by v1.0</summary>
