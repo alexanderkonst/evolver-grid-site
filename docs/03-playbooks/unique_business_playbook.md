@@ -381,6 +381,31 @@ STEP 3: UNIVERSAL  →  How do you say that to someone with ZERO context and it 
 
 ---
 
+## Principle 13: The Highest-Rated Version Rule
+
+> *"AI must always derive downstream artifacts from the founder's highest-scored version of each upstream artifact. Never recompress, re-summarize, or re-distill a version the founder has already scored."*
+>
+> *v1.0 · April 9, 2026 — Discovered during Karime's Session #3. The systematic risk of AI re-distilling previously scored artifacts.*
+
+During downstream artifact production (Myth, Tribe, Pain, Promise, etc.), the system has a systematic tendency to re-compress upstream artifacts into shorter versions. This creates **signal loss by re-distillation:**
+
+1. **The founder scores a full-signal version (e.g., 9.9/10).** All energies are present. The resonance is high.
+2. **AI produces downstream artifacts.** Instead of building on the 9.9 version, it re-summarizes the uniqueness into a shorter form, stripping out energies the AI considers "secondary."
+3. **The downstream artifacts inherit the stripped version.** The Myth, Tribe, Pain, and Promise are all derived from a lower-resolution input. They score 5/10.
+4. **The founder says: "This feels incomplete. Where did all the signal go?"**
+
+**The rule — 3 mandates:**
+
+1. **Always work from the highest-scored full-signal version.** If Uniqueness v1.0 scored 9.9/10, all downstream artifacts (Myth, Tribe, Pain, Promise, etc.) MUST be derived from the v1.0 full-signal paragraph — not from a canvas summary, not from a re-distilled version, not from a shorter version the AI produces for convenience.
+
+2. **Never re-distill what the founder has already scored.** If the founder scored a version, that version is sacred. You may add to it (new energies, new precision) but you may never subtract from it. If a shorter version is needed for a canvas or summary, label it explicitly as "canvas summary" and keep the full-signal version as the derivation source.
+
+3. **When in doubt, cite the source version.** Every downstream artifact should name which exact version (e.g., "Derived from Uniqueness v1.0, 9.9/10") it was built from. This creates traceability and prevents silent re-distillation.
+
+**Why this matters:** The founder's body-score is the ground truth. When AI re-distills a scored artifact, it makes editorial decisions about what's "important" — often stripping the exact energies that made the founder score it high. In Karime's case, the Return (bringing people home to the heart), Attuned Presence, and Mothering energies were stripped from the canvas distillation, causing all downstream artifacts to miss the heart of her work. Three energies lost → entire canvas at 5/10.
+
+---
+
 ## The Soul-Alignment Test
 
 A tactic is soul-aligned if and only if:
