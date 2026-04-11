@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-08 night — 75 Phase Shift Domains. 13 Playbook Principles. Holomap Day 36: "Activation." Social activation: TG + IG + FB live. Grind Addiction (D14f) integrated across all core docs. $677 cash, $6.9K total. Infographic Episodes ~60% complete (founder-created from inspiration).*
+> *Last updated: 2026-04-10 night — Heartbreak Medicine session (216 min with Karime). Pipeline activated: Patricia ZoG quiz, José deep video engagement, Oluwa Adams scheduled for livestream. 25 contacts. $677 cash, $6.9K total. Content pillars locked: Talents→Business + AI. Reframe: client sessions + sales ARE the build.*
 
 ---
 
@@ -18,25 +18,32 @@
 
 ---
 
-## 🌑 This Week's Scope (April 7-13)
+## The Reframe (April 10, 2026)
 
-> **Energetic context:** New moon cycle. Planting seeds for full moon.
+> **Client sessions and sales ARE the platform build.**
+>
+> Every client session deepens the methodology, generates artifacts, produces testimonials, and proves the system. The session IS the product. The product IS the build. The build IS the platform.
+>
+> *"This is not just building an aligned blueprint. What this is is awakening through business development while ACTUALLY building a unique business."* — Karime Kuri
+
+---
+
+## 🌑 This Week's Scope (April 14-20)
+
+> **Energetic context:** Oyi in Mexico. Oluwa livestream. Pipeline warming.
 
 | # | Seed | Path | Priority | Notes |
 |---|------|------|----------|-------|
-| W1 | **Karime Session 2** (Tue AM) | Business | 🔴 | Her unique business. She's also a contributor + bridge |
-| W2 | **Kirill Call** (Mon PM) | Distribution | 🔴 | Proto-licensee. Live demo. Practitioner feedback |
-| W3 | **Sandra agreement** | Business | 🔴 | Name the revenue share. She asked. Rec: 33% from first $10K |
-| W4 | **Taylor & Tracy checkpoint** | Business | 🔴 | Professional conversation. Are they in or out? $3K each pending |
-| ~~W5~~ | ~~**Instagram bio + first post**~~ | ~~Distribution~~ | ✅ | **DONE Apr 8.** Grind addiction carousel posted. Bio + FB profile overhauled |
-| W6 | **Reach-outs** (Devon, Erik, Karen, Soren, Valentin) | Distribution | 🔴 | Intuitive names. Reach out as the field calls them |
-| W7 | **Roso + Cori demo sessions** | Sales | 🟡 | Offer demo Unique Business session to each |
-| W8 | **Chris + Patricia** (via Karime) | Sales | 🟡 | Awaiting Karime's voice note intros |
-| W9 | **Infographic Episodes — visual production** | Content | 🟡 | **~60% complete.** Founder creating from scratch, from inspiration (D75 in action). Targeting tonight |
-| W10 | **Instagram profile setup** | Distribution | 🟡 | Categories/highlights for episode series + pinned intro post |
-| W11 | **Follow 200+ aligned weak ties** | Distribution | 🟡 | Domain 71: radiate into the resonance field |
-| W12 | **Oyi Mexico intensive** | Business | 🟡 | He wants to fly to Mexico ~next weekend. Determine format |
-| W13 | **Moon phase check** | Support | 🟡 | Situate the week energetically |
+| W1 | **Oyi Mexico Intensive** (Mon-Sun) | Build | 🔴 | Villa + deep Build work. First in-person intensive at length. Will be in Oluwa livestream audience |
+| W2 | **Oluwa Adams Livestream** (Wed 10:30am CDMX) | Build + Distribution | 🔴 | Conversation: mastery / hero's journey / unique gift monetization. Transcript → AI. Oyi in audience |
+| W3 | **Patricia Reed ZoG follow-up** | Sales | 🔴 | Did she paste back the JSON? Get her distilled uniqueness score. Pipeline → quiz completion |
+| W4 | **José da Veiga ZoG quiz** | Sales | 🔴 | Guide to quiz. He watched video, articulated the exact pain. Ready |
+| W5 | **Karime: Score Myth + Tribe v1.2** | Build | 🔴 | Body-score only. Heartbreak rewrite awaiting validation |
+| W6 | **Sandra agreement** | Business | 🔴 | Name the revenue share. She asked. Rec: 33% from first $10K |
+| W7 | **Taylor & Tracy checkpoint** | Business | 🔴 | Professional conversation. Are they in or out? $3K each pending |
+| W8 | **Infographic Episodes — visual production** | Content | 🟡 | **~60% complete.** Founder creating from inspiration |
+| W9 | **Content Pillars execution** | Content | 🟡 | Two pillars locked: (1) Talents → Business, (2) AI. First content from both |
+| W10 | **Terrina Cavendar** | Sales | 🟡 | In Mexico this weekend. Organic conversation |
 
 ---
 
@@ -44,13 +51,13 @@
 
 | Metric | Value |
 |--------|-------|
-| **Phase** | ACTIVATION. Interior octave at 27. Exterior octave expanding (24 contacts, CRM v3.0, $677 cash, 3/9 social surfaces live) |
-| **Cycle** | April 7-13 (New Moon). **75 Phase Shift Domains. 13 Playbook Principles.** Holomap Day 36: "Activation." Infographic Episodes ~60% complete (founder-created) |
+| **Phase** | ACTIVATION → DEEPENING. 25 contacts. CRM v3.2. $677 cash. 3/9 social surfaces. Pipeline: 8 in conversation, 1 livestream scheduled |
+| **Cycle** | April 14-20 (Waxing). **75 Phase Shift Domains. 13 Playbook Principles.** Oyi arriving Mexico. Oluwa livestream Wed |
 | **Location** | Mexico City |
 | **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
-| **Focus** | **Social surfaces activated. Infographics in progress. Content engine = grind addiction diagnosis. Next: remaining surfaces + reach-outs.** |
-| **Key milestone** | First social posts EVER (Telegram + IG + FB). Grind addiction integrated across ALL core docs (14 files updated in one session) |
-| **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max, rev share from first paid client |
+| **Focus** | **Sessions ARE the build. Oyi intensive + Oluwa livestream + pipeline follow-ups (Patricia, José) + Karime artifact scoring** |
+| **Key milestone** | Karime Session #3 — 216 min. Heartbreak Mechanism discovered. Deepest client session ever. Asymptotic precision principle landed |
+| **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max. Sessions = build (not separate tracks) |
 
 ---
 
@@ -60,33 +67,39 @@
 
 | # | Item | Category | Priority |
 |---|------|----------|----------|
+| **SESSIONS (= PRIMARY BUILD)** |
+| 1 | Oyi Mexico intensive (Apr 14-20) | Build | 🔴 |
+| 2 | Oluwa Adams livestream (Wed Apr 16, 10:30am) | Build + Distribution | 🔴 |
+| 3 | Karime: score Myth + Tribe v1.2 | Build | 🔴 |
+| 4 | Patricia Reed: ZoG result follow-up | Sales | 🔴 |
+| 5 | José da Veiga: guide to ZoG quiz | Sales | 🔴 |
 | **REVENUE** |
-| 1 | First $555 Ignition Session | Growth | 🔴 |
-| 2 | Sandra revenue share agreement (33% from first $10K) | Business | 🔴 |
-| 3 | Taylor & Tracy checkpoint conversation | Business | 🔴 |
-| 4 | Sergey — communicate Build boundary (3 paid sessions) | Business | 🔴 |
+| 6 | First $555 Ignition Session | Growth | 🔴 |
+| 7 | Sandra revenue share agreement (33% from first $10K) | Business | 🔴 |
+| 8 | Taylor & Tracy checkpoint conversation | Business | 🔴 |
+| 9 | Sergey — communicate Build boundary (3 paid sessions) | Business | 🔴 |
 | **DISTRIBUTION** |
-| 5 | ~~Instagram bio + first post + FB + X~~ | Distribution | ✅ Done Apr 8 |
-| 6 | Infographic Episodes — visual production (43 slides) | Content | 🟡 ~60% done |
-| 7 | Instagram profile: categories + pinned intro post | Distribution | 🔴 |
-| 8 | Follow 200+ aligned weak ties (Domain 71) | Distribution | 🔴 |
+| 10 | ~~Instagram bio + first post + FB + X~~ | Distribution | ✅ Done Apr 8 |
+| 11 | Infographic Episodes — visual production (43 slides) | Content | 🟡 ~60% done |
+| 12 | Instagram profile: categories + pinned intro post | Distribution | 🔴 |
+| 13 | Follow 200+ aligned weak ties (Domain 71) | Distribution | 🔴 |
 | **FUNNEL** |
-| 9 | Silent account creation + magic link (backend) | Infra | 🔴 |
-| 10 | ZoG result persistence | Infra | 🔴 |
+| 14 | Silent account creation + magic link (backend) | Infra | 🔴 |
+| 15 | ZoG result persistence | Infra | 🔴 |
 | **PRODUCT** |
-| 11 | Unique Business iteration flow | Product | 🟡 |
-| 12 | Smart packaging recommendations | Product | 🟡 |
-| 13 | ZoG explainer + activation recording | UX | 🟡 |
-| 14 | User results to DB (missions, resources) | Data | 🟡 |
-| 15 | Matchmaking types (resources, ZoG, missions) | Data | 🟡 |
+| 16 | Unique Business iteration flow | Product | 🟡 |
+| 17 | Smart packaging recommendations | Product | 🟡 |
+| 18 | ZoG explainer + activation recording | UX | 🟡 |
+| 19 | User results to DB (missions, resources) | Data | 🟡 |
+| 20 | Matchmaking types (resources, ZoG, missions) | Data | 🟡 |
 | **SUPPORT** |
-| 16 | Notion CRM automation | Support | 🟡 |
-| 17 | Holomap auto-update mechanism | Support | 🟡 |
-| 18 | Module landings (every module) | Marketing | 🟡 |
-| 19 | Videos (explainer, onboarding, module intros) | Content | 🟡 |
+| 21 | Notion CRM automation | Support | 🟡 |
+| 22 | Holomap auto-update mechanism | Support | 🟡 |
+| 23 | Module landings (every module) | Marketing | 🟡 |
+| 24 | Videos (explainer, onboarding, module intros) | Content | 🟡 |
 | **TRIGGERS** |
-| 20 | The Originals Circle — activate after 5 Ignition Sessions | Community | ⏸️ |
-| 21 | The Build: Group Container — activate after 4 Ignition graduates | Product | ⏸️ |
+| 25 | The Originals Circle — activate after 5 Ignition Sessions | Community | ⏸️ |
+| 26 | The Build: Group Container — activate after 4 Ignition graduates | Product | ⏸️ |
 
 ---
 
@@ -126,7 +139,7 @@
 - [x] Value ladder v2.0 — three containers ($555 / $1,111+$2.5K / venture)
 - [x] Build boundary crystallized — flexible by client type, 12-week max
 - [x] Pricing philosophy — premium at every level
-- [x] CRM v3.0 — single file, 24 contacts, financials, notes
+- [x] CRM v3.2 — single file, 25 contacts, financials, notes, upcoming events
 
 ### Funnel & Landing
 - [x] Solo user landing page — Ignition Session at `/ignite`, liquid glass design
@@ -193,6 +206,8 @@
 - [x] Jan 3-29: Network School — 27 days, functional MVP, 5 growth paths, ZoG + QoL onboarding
 - [x] Feb: UX polish, data model, methodology crystallization
 - [x] Mar: Canvas sessions (5 founders), methodology proven, first revenue
+- [x] Apr 7-8: Karime Session 2 (shadow reframe to 9.4), CRM v3.0, social activation (TG+IG+FB). Oyi $516 gift. 75 domains. Grind Addiction integrated
+- [x] Apr 9-10: Karime Session 3 (216 min — Heartbreak Mechanism). Pipeline activated (Patricia ZoG, José video, Oluwa scheduled). CRM v3.2 (25 contacts). Content pillars locked
 
 ---
 
@@ -204,4 +219,4 @@
 
 ---
 
-*Roadmap v4.2 — April 8, 2026 (night — 75 domains, 13 principles, Day 36 "Activation", social activation live, FB overhaul, infographics ~60%)*
+*Roadmap v4.3 — April 10, 2026 (Heartbreak Medicine session 216 min. Pipeline: Patricia ZoG, José video, Oluwa livestream Wed. Sessions + sales = THE BUILD. Oyi arriving Mexico Mon. 25 contacts, $677 cash, $6.9K total)*

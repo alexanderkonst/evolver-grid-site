@@ -2929,6 +2929,10 @@ Not a pitch. Not a hook. Not a funnel. A true story — your story, told raw —
 > — Oyi Sun, Medicine Man, Ye Ming Zhu keeper
 >
 > "I feel caught. Wonderful. This is great work. Thank you for opening my eyes to things that maybe I'm pushing away — to not embody or execute or own. I appreciate that a lot. I'm pushing it away by belittling myself, making myself smaller. My alternatives are to quit this or to go [deeper]. So I go."
+>
+> "This is not just building an aligned blueprint. What this is is awakening through business development while ACTUALLY building a unique business."
+>
+> "I got the closest to ever articulating what I love doing the most, what excites me doing the most. I've never articulated it in my life. The heart doesn't break to destroy. It breaks to expand."
 > — Karime Kuri, ex-WEF leader, Oxford alum, Healer of Healers
 >
 > "I was applying force, but the vector was wrong. I'm ready to call you every other day and keep working."
