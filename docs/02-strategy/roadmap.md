@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-10 night — Heartbreak Medicine session (216 min with Karime). Pipeline activated: Patricia ZoG quiz, José deep video engagement, Oluwa Adams scheduled for livestream. 25 contacts. $677 cash, $6.9K total. Content pillars locked: Talents→Business + AI. Reframe: client sessions + sales ARE the build.*
+> *Last updated: 2026-04-12 midnight — Day 40 Night Session. 79 Phase Shift Domains (4 new: Return to Center, Descent Octave, Planetary Holomap, Question Collapse). Auth gate deployed. 27-Perspective article live (dark theme, bilingual, open source). Methodology carousel v2 (7 slides, infographics generated). 3 DMs sent (Patricia, Chris, José). "The question IS the content IS the lead magnet IS the visibility."*
 
 ---
 
@@ -52,12 +52,12 @@
 | Metric | Value |
 |--------|-------|
 | **Phase** | ACTIVATION → DEEPENING. 25 contacts. CRM v3.2. $677 cash. 3/9 social surfaces. Pipeline: 8 in conversation, 1 livestream scheduled |
-| **Cycle** | April 14-20 (Waxing). **75 Phase Shift Domains. 13 Playbook Principles.** Oyi arriving Mexico. Oluwa livestream Wed |
+| **Cycle** | April 14-20 (Waxing). **79 Phase Shift Domains. 13 Playbook Principles.** Oyi arriving Mexico. Oluwa livestream Wed |
 | **Location** | Mexico City |
 | **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
 | **Focus** | **Sessions ARE the build. Oyi intensive + Oluwa livestream + pipeline follow-ups (Patricia, José) + Karime artifact scoring** |
-| **Key milestone** | Karime Session #3 — 216 min. Heartbreak Mechanism discovered. Deepest client session ever. Asymptotic precision principle landed |
-| **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max. Sessions = build (not separate tracks) |
+| **Key milestone** | Domain 79: Question Collapse — entire marketing stack collapses into one genuine question. Auth gate live. Article deployed open source |
+| **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max. Sessions = build. Direct DMs > broadcast posts |
 
 ---
 
@@ -201,6 +201,15 @@
 - [x] HLS video background on `/` (Mux stream)
 - [x] Unique Business Playbook — Artifact 3 enhanced with Resonance Sort Protocol
 - [x] Marketing Playbook — Dual-Frequency + Playbook-as-Lead-Magnet patterns added
+- [x] Domain 76: Return to Center ("Copernican Inversion" retired)
+- [x] Domain 77: The Descent Octave (consciousness → matter)
+- [x] Domain 78: The Planetary Holomap (World-As-Is / Golden Age)
+- [x] Domain 79: The Question Collapse (question = content = lead magnet = visibility)
+- [x] 27-Perspective Article deployed at `/integral_theory_upgrade1` (bilingual, dark theme, CC BY-NC-SA 4.0, collaborator invitation)
+- [x] Mandatory auth gate (`RequireAuth.tsx`) — all pages gated except homepage + public surfaces
+- [x] Methodology carousel v2 — 7 slides, infographics generated, milestones 7-note octave woven in
+- [x] Dantian correction across all docs (Upper=Mind, Central=Heart, Lower=Gut)
+- [x] Glassmorphic logo update
 
 ### Sprint History
 - [x] Jan 3-29: Network School — 27 days, functional MVP, 5 growth paths, ZoG + QoL onboarding
@@ -208,6 +217,7 @@
 - [x] Mar: Canvas sessions (5 founders), methodology proven, first revenue
 - [x] Apr 7-8: Karime Session 2 (shadow reframe to 9.4), CRM v3.0, social activation (TG+IG+FB). Oyi $516 gift. 75 domains. Grind Addiction integrated
 - [x] Apr 9-10: Karime Session 3 (216 min — Heartbreak Mechanism). Pipeline activated (Patricia ZoG, José video, Oluwa scheduled). CRM v3.2 (25 contacts). Content pillars locked
+- [x] Apr 11: 27-Perspective Article deployed. Domains 76-79. Auth gate. Methodology carousel v2. Question Collapse principle. 3 DMs sent. 79 domains total
 
 ---
 
@@ -219,4 +229,4 @@
 
 ---
 
-*Roadmap v4.3 — April 10, 2026 (Heartbreak Medicine session 216 min. Pipeline: Patricia ZoG, José video, Oluwa livestream Wed. Sessions + sales = THE BUILD. Oyi arriving Mexico Mon. 25 contacts, $677 cash, $6.9K total)*
+*Roadmap v4.4 — April 12, 2026 (Day 40. 79 domains. Auth gate live. Article deployed. Carousel ready. Question Collapse: the question IS the content IS the lead magnet IS the visibility. 3 DMs sent. $677 cash, $6.9K total)*
