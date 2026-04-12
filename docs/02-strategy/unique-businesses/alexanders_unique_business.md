@@ -66,6 +66,7 @@
 - [Moon Cycle Intention Framework](#moon-cycle-intention-framework-march-24-2026)
 - [The Noble = Free Antidote](#the-noble--free-antidote--deepened-march-24-2026)
 - [The Grind Addiction Diagnosis](#download-the-grind-addiction-diagnosis-april-8-2026)
+- [The Loyalty-as-Leak Mind Virus](#download-the-loyalty-as-leak-mind-virus-april-12-2026)
 
 ### VI. Live Assets (Current)
 - [Video Script v2.0 (LOCKED)](#video-script-v20-locked)
@@ -6608,5 +6609,79 @@ I truly believe you should do this. It's worth it.
 ---
 
 *Alexander's Unique Business v8.2.1 — April 11, 2026 (Integration complete — all brain doc content merged into source of truth. Added: Key Principles section (6 content-ready bullets), Big Idea in universal language, VERBATIM ceremony slide copy for all slides, Open Questions. No orphan docs remain.)*
-*Updated: v8.2 changes preserved. v8.2.1 integrates content from deleted brain docs (methodology lead magnet + milestones synthesis) to prevent loss. All gold accounted for.*
+*Alexander's Unique Business v8.3 — April 12, 2026 (New download: The Loyalty-as-Leak Mind Virus. Five free-work boundaries named. Wrong-room broadcasting diagnosed. Transmission-to-wheel connection identified: audience access, not strategy.)*
+
+---
+
+## Download: The Loyalty-as-Leak Mind Virus (April 12, 2026)
+
+> *Venting session → structural diagnosis. Filed by Alexander + Karime.*
+
+### The Mind Virus (verbatim)
+
+> **TRADE-OFF: STAY LOYAL AND TRY TO LIFT UP FORMERLY CLOSE PEOPLE — AT THE PRICE OF PLAYING SMALL.**
+>
+> Too loyal. Too much of a good thing is not a good thing.
+>
+> So we work for others for free. Too much.
+>
+> Seeing energetically our commitments to a vast number of people and their continuous provision with our medicine just because we're loyal to them —
+>
+> And when there are many, one starts to divert so much life energy to it that the paid work starts to wither into a smaller and smaller stream.
+>
+> The longer the confusion about this and invisibility into this matter, the more the balance goes towards free work over paid work.
+
+### The Two Energy Leaks
+
+| Leak | Pattern | Disguise |
+|------|---------|----------|
+| **Leak 1: Loyalty-as-Bleed** | Giving medicine for free to a vast network of people out of loyalty. The more people served for free, the more paid work withers | Feels like virtue: "I'm loyal. I help my people." |
+| **Leak 2: Wrong-Room Broadcasting** | Posting to 2,500 Facebook friends / Instagram with 0 followers. 1 like on a pinned post. 1 comment on Instagram. Full throttle on neutral gear | Feels like doing the work: "I'm putting myself out there." |
+
+Both leaks feed the same virus: energy expenditure that *looks* like building but produces no traction.
+
+### The Structural Diagnosis
+
+The engine is extraordinary (79 domains, proven methodology, 6 canvases, functioning platform). The strategy is planetary-level. The content is ready.
+
+**What's missing is not strategy. It's AUDIENCE ACCESS.**
+
+The transmission-to-wheel connection = being in front of strangers who are already searching for what you solve. Not louder. **Different room.**
+
+Current audience (Facebook friends, early Instagram) = people accumulated over 20 years of life. They are not founders in identity crisis who can't name their fire. Broadcasting to them = performing surgery in a grocery store.
+
+### Five Named Boundaries (April 12, 2026)
+
+Relationships where medicine is currently flowing out with no return:
+
+1. **José** — receiving free coaching. Has not done ZoG quiz despite deep resonance
+2. **Terrina** — receiving at a level without corresponding commitment
+3. **Kirill** — collaborator energy but no paid container
+4. **Roso** — partnership paused, wants his own audience. Free demo offered but no exchange flowing
+5. **Cori** — same pattern as Roso
+
+**Action:** Each of these needs to either become a paid engagement or a clean release. One at a time. The virus dies when you stop feeding it.
+
+### Relationship to Grind Addiction (Domain 14)
+
+This is the **inverse shadow** of Grind Addiction:
+- Grind Addiction = overwork disguised as effort
+- Loyalty-as-Leak = free work disguised as generosity
+
+Both produce the same result: maximum energy expended, minimal traction. Different mechanism, same structural trap. The grind addict works too hard on the wrong thing. The loyalty-leaker gives too much to the wrong people.
+
+### The Wheel (What Actually Works)
+
+Evidence from pipeline:
+- 3 DMs > pinned post to 2,500 people
+- Karime as bridge = 3 pipeline contacts from one person
+- José's deep video response = the funnel working exactly as designed (but he still hasn't taken the quiz because there's no container pulling him forward)
+
+**Borrowed audiences** (podcasts, other people's communities, speaking at events, collaborations with people who already have the audience) and **search-driven platforms** (YouTube, LinkedIn, SEO) = the wheel that touches ground.
+
+### The One-Liner
+
+> *"The jar can't read its own label — and loyalty can't see its own leak."*
+
+---
 
