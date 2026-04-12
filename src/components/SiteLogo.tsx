@@ -15,15 +15,17 @@ const SiteLogo = () => {
     return (
         <Link
             to="/"
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90px] h-[90px] rounded-full overflow-hidden hover:scale-110 transition-transform duration-200"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 group"
             aria-label="Home"
         >
-            <img
-                src="/evolver-logo.jpg"
-                alt=""
-                className="w-full h-full object-cover"
-                aria-hidden="true"
-            />
+            <div className="w-[94px] h-[94px] rounded-full liquid-glass-strong ring-1 ring-white/15 shadow-[0_0_30px_rgba(255,255,255,0.06)] p-[3px] hover:scale-110 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] transition-all duration-300">
+                <img
+                    src="/evolver-logo.jpg"
+                    alt=""
+                    className="w-full h-full object-cover rounded-full"
+                    aria-hidden="true"
+                />
+            </div>
         </Link>
     );
 };
