@@ -3875,10 +3875,85 @@ This testimonial captures the paradigm shift the session log has been circling: 
 
 The reframe: client sessions and sales are not a SEPARATE track from platform development. They are the PRIMARY build activity. Everything else — UI, docs, playbooks — is scaffolding. The methodology IS the product. The session IS the build. The testimonial IS the distribution. The referral IS the scaling.
 
-**Phase Shift Domains as of today: 75** (no new domains — but the Heartbreak Mechanism is a candidate for Domain 76)
+| **Phase Shift Domains as of today: 75** (no new domains — but the Heartbreak Mechanism is a candidate for Domain 76)
 **Revenue: $677 received, $6,277+ pending**
 **CRM: 25 contacts in unified table**
 **Canvases: 6 (Alexander, Oyi, Sergey, Sandra, Alexa, Karime)**
 
+
+---
+
+## Day 40 — Friday, April 11, 2026 (Night Session, ~9:30pm – 12:10am)
+
+**Location**: Mexico City
+**Theme**: Crystallization + Distribution Instruments + Platform Security
+
+### What We Built
+
+| Item | Impact |
+|------|--------|
+| **27-Perspective Article v2** | Open-source paper at `/integral_theory_upgrade1` — bilingual (EN/RU), full glassmorphism, CC BY-NC-SA 4.0 license, collaborator invitation. Dark theme. Date + author + website |
+| **Methodology Carousel v2** | 7-slide Instagram carousel (radically simplified from 11). Hook → Problem → Reframe → Octave Journey → Recipe → "Jar can't read its own label" → CTA. Infographics generated (7 PNGs) |
+| **Domain 76: Return to Center** | Documented in Phase Shift Technology Library |
+| **Domain 77: The Descent Octave** | Consciousness → matter without changing nature |
+| **Domain 78: The Planetary Holomap** | World-As-Is / Golden Age — same territory, different center of gravity |
+| **Domain 79: The Question Collapse** | Question = Content = Lead Magnet = Visibility. Entire marketing stack collapses into a single genuine question. "Diagnosis is not shareable. Insight is." |
+| **Mandatory Auth Gate** | `RequireAuth.tsx` — all pages gated behind login EXCEPT homepage, auth flows, public profiles, the open-source article, and creator pages |
+| **Glassmorphic Logo** | Site logo updated per glassmorphism blueprint |
+| **Dantian Correction** | Upper = Mind, Central = Heart/Essence, Lower = Gut/Will — corrected across all docs |
+| **Milestones 7-Note Octave** | 12 raw milestones compressed into Do→Re→Mi→Fa→Sol→La→Si→Do' with two shock points (Mi→Fa, Si→Do') |
+| **Holomap Conceptual Work** | "Who is this actually for?" as the diagnostic question. Insight: the holomap doesn't need software — the question IS the technology, and it distributes itself through use |
+| **3 DMs sent** | Patricia, Chris, José — the Si-Do shock. Crystallization, not broadcasting |
+
+### Key Discoveries
+
+1. **The Question Collapse (Domain 79):** "The question IS the content IS the lead magnet IS the visibility. No grind required. One genuine question, posted with the energy of 'I truly believe you should ask yourself this,' travels farther than a hundred posts about pain."
+
+2. **Visibility is not the bottleneck:** 1 like from 2500 Facebook friends on the grind addiction post = full visibility with no conversion. The "visibility problem" was actually the scatter pattern (Domain 14) disguising the crystallization gap as a resource gap. The fix was not more posts — it was 3 direct messages.
+
+3. **Holomap = distributed question:** If every venture can be diagnosed with "who is this actually for?" — the holomap paints itself when enough people carry the question. No platform needed. The question replicates through use.
+
+4. **Light theme experiment:** Tried converting the article to light theme (warm cream #faf8f5) + Mux HLS video background. Didn't look good. Reverted to original dark theme.
+
+### Methodology Carousel v2 — Slide Structure
+
+| Slide | Content |
+|-------|---------|
+| 1 | **Hook** — "How to Turn Your Talents Into a Business" |
+| 2 | **Problem** — "You have something real. But it's not a business yet." |
+| 3 | **Reframe** — "Start from YOU. Self-knowledge." |
+| 4 | **Journey** — 7-note octave infographic (Do→Do') with shock points |
+| 5 | **Recipe** — 10-step list, no descriptions |
+| 6 | **Kicker** — "The jar can't read its own label." |
+| 7 | **CTA** — Zone of Genius quiz + "I don't care if you do it with me" |
+
+### Technical Changes
+
+| File | Change |
+|------|--------|
+| `src/components/RequireAuth.tsx` | NEW — centralized auth guard (session check, loading spinner, redirect with return URL) |
+| `src/App.tsx` | All non-public routes wrapped in `<RequireAuth>` |
+| `src/pages/IntegralTheoryUpgrade1.tsx` | Article v2 — bilingual, dark theme, license, collaborator invite, spacing fixes |
+| `docs/01-vision/phase_shift_technology_library.md` | Domains 76-79 added. Dantian correction applied |
+| `docs/02-strategy/unique-businesses/alexanders_unique_business.md` | Carousel slides documented, milestones 7-note octave, key principles section |
+
+### Phase Shift Domains: 79
+
+| New Domain | Title |
+|---|---|
+| 76 | The Return to Center |
+| 77 | The Descent Octave |
+| 78 | The Planetary Holomap |
+| 79 | The Question Collapse |
+
+### What We Did NOT Do (Intentionally)
+
+- AI lead magnet — not ripe yet
+- Holomap interactive surface — the concept IS the tool
+- More social posts — replaced with 3 direct messages
+
+---
+
+*Day 40 complete. ~12:10am. 79 domains. Three DMs sent. The 27th happened.*
 
 
