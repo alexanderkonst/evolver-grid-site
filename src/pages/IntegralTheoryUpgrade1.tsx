@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Hls from 'hls.js';
 
 type Lang = 'en' | 'ru';
 
@@ -406,13 +407,13 @@ const content = {
 
 // Render helpers
 const Paragraph = ({ text }: { text: string }) => (
-  <p className="text-white/75 leading-relaxed text-base md:text-lg mb-6 font-light" style={{ fontFamily: "'Source Serif 4', 'Georgia', serif" }}>
+  <p className="text-[#2c3150]/75 leading-relaxed text-base md:text-lg mb-6 font-light" style={{ fontFamily: "'Source Serif 4', 'Georgia', serif" }}>
     {text}
   </p>
 );
 
 const Heading3 = ({ text }: { text: string }) => (
-  <h3 className="text-white text-lg md:text-xl font-medium mb-4 mt-8 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
+  <h3 className="text-[#2c3150] text-lg md:text-xl font-medium mb-4 mt-8 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
     {text}
   </h3>
 );
@@ -420,8 +421,8 @@ const Heading3 = ({ text }: { text: string }) => (
 const List = ({ items }: { items: string[] }) => (
   <ul className="space-y-2 mb-6 ml-1">
     {items.map((item, i) => (
-      <li key={i} className="text-white/70 text-sm md:text-base leading-relaxed flex gap-3" style={{ fontFamily: "'Source Serif 4', serif" }}>
-        <span className="text-white/30 select-none shrink-0">—</span>
+      <li key={i} className="text-[#2c3150]/70 text-sm md:text-base leading-relaxed flex gap-3" style={{ fontFamily: "'Source Serif 4', serif" }}>
+        <span className="text-[#2c3150]/25 select-none shrink-0">—</span>
         <span>{item}</span>
       </li>
     ))}
@@ -429,8 +430,8 @@ const List = ({ items }: { items: string[] }) => (
 );
 
 const Callout = ({ text }: { text: string }) => (
-  <div className="liquid-glass rounded-2xl p-6 md:p-8 my-8">
-    <p className="text-white/90 text-base md:text-lg leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+  <div className="rounded-2xl p-6 md:p-8 my-8 border border-[#2c3150]/8 bg-white/60 shadow-sm">
+    <p className="text-[#2c3150]/85 text-base md:text-lg leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
       {text}
     </p>
   </div>
@@ -439,13 +440,13 @@ const Callout = ({ text }: { text: string }) => (
 const Framework = ({ items }: { items: { symbol: string; label: string; desc: string }[] }) => (
   <div className="space-y-4 my-8">
     {items.map((item, i) => (
-      <div key={i} className="liquid-glass rounded-xl p-5 md:p-6 flex gap-4 items-start transition-transform duration-300 hover:scale-[1.01]">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 flex items-center justify-center text-lg md:text-xl shrink-0 ring-1 ring-white/10">
+      <div key={i} className="rounded-xl p-5 md:p-6 flex gap-4 items-start transition-transform duration-300 hover:scale-[1.01] border border-[#2c3150]/8 bg-white/50 shadow-sm">
+        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#2c3150]/5 flex items-center justify-center text-lg md:text-xl shrink-0 ring-1 ring-[#2c3150]/10">
           {item.symbol}
         </div>
         <div>
-          <div className="text-white text-sm md:text-base font-medium mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.label}</div>
-          <div className="text-white/60 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.desc}</div>
+          <div className="text-[#2c3150] text-sm md:text-base font-medium mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.label}</div>
+          <div className="text-[#2c3150]/60 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.desc}</div>
         </div>
       </div>
     ))}
@@ -455,12 +456,12 @@ const Framework = ({ items }: { items: { symbol: string; label: string; desc: st
 const Grid12 = ({ items }: { items: { n: number; q: string; text: string }[] }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-6">
     {items.map((item) => (
-      <div key={item.n} className="liquid-glass rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02]">
+      <div key={item.n} className="rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02] border border-[#2c3150]/8 bg-white/50 shadow-sm">
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-white/90 text-2xl font-light tabular-nums" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.n}</span>
-          <span className="text-white/40 text-xs uppercase tracking-widest" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.q}</span>
+          <span className="text-[#2c3150]/80 text-2xl font-light tabular-nums" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.n}</span>
+          <span className="text-[#2c3150]/40 text-xs uppercase tracking-widest" style={{ fontFamily: "'Poppins', sans-serif" }}>{item.q}</span>
         </div>
-        <p className="text-white/65 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.text}</p>
+        <p className="text-[#2c3150]/60 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item.text}</p>
       </div>
     ))}
   </div>
@@ -468,16 +469,16 @@ const Grid12 = ({ items }: { items: { n: number; q: string; text: string }[] }) 
 
 const Contrast = ({ left, right }: { left: { label: string; items: string[] }; right: { label: string; items: string[] } }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
-    <div className="liquid-glass rounded-2xl p-6 text-center">
-      <div className="text-white/40 text-xs uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>{left.label}</div>
+    <div className="rounded-2xl p-6 text-center border border-[#2c3150]/8 bg-white/40">
+      <div className="text-[#2c3150]/40 text-xs uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>{left.label}</div>
       {left.items.map((item, i) => (
-        <p key={i} className="text-white/70 text-sm md:text-base leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item}</p>
+        <p key={i} className="text-[#2c3150]/65 text-sm md:text-base leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>{item}</p>
       ))}
     </div>
-    <div className="liquid-glass-strong rounded-2xl p-6 text-center ring-1 ring-white/10">
-      <div className="text-white text-xs uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>{right.label}</div>
+    <div className="rounded-2xl p-6 text-center border border-[#2c3150]/12 bg-white/70 shadow-sm">
+      <div className="text-[#2c3150] text-xs uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>{right.label}</div>
       {right.items.map((item, i) => (
-        <p key={i} className="text-white/90 text-sm md:text-base leading-relaxed font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>{item}</p>
+        <p key={i} className="text-[#2c3150]/85 text-sm md:text-base leading-relaxed font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>{item}</p>
       ))}
     </div>
   </div>
@@ -486,11 +487,11 @@ const Contrast = ({ left, right }: { left: { label: string; items: string[] }; r
 const Sequence = ({ items }: { items: { n: string; insight: string }[] }) => (
   <div className="space-y-0 my-8">
     {items.map((item, i) => (
-      <div key={i} className="flex items-start gap-4 md:gap-6 py-4 border-b border-white/5 last:border-0">
-        <div className="text-white/20 text-3xl md:text-4xl font-extralight tabular-nums w-12 md:w-16 text-right shrink-0" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <div key={i} className="flex items-start gap-4 md:gap-6 py-4 border-b border-[#2c3150]/6 last:border-0">
+        <div className="text-[#2c3150]/15 text-3xl md:text-4xl font-extralight tabular-nums w-12 md:w-16 text-right shrink-0" style={{ fontFamily: "'Poppins', sans-serif" }}>
           {item.n}
         </div>
-        <p className="text-white/75 text-sm md:text-base leading-relaxed pt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
+        <p className="text-[#2c3150]/70 text-sm md:text-base leading-relaxed pt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
           {item.insight}
         </p>
       </div>
@@ -502,10 +503,10 @@ const Convergence = ({ items }: { items: { n: string; traditions: string }[] }) 
   <div className="space-y-3 my-8">
     {items.map((item, i) => (
       <div key={i} className="flex items-start gap-4">
-        <div className="liquid-glass w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-white/80 text-sm font-medium shrink-0 ring-1 ring-white/10" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        <div className="w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-[#2c3150]/70 text-sm font-medium shrink-0 ring-1 ring-[#2c3150]/10 bg-white/50" style={{ fontFamily: "'Poppins', sans-serif" }}>
           {item.n}
         </div>
-        <p className="text-white/55 text-sm leading-relaxed pt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
+        <p className="text-[#2c3150]/55 text-sm leading-relaxed pt-2" style={{ fontFamily: "'Source Serif 4', serif" }}>
           {item.traditions}
         </p>
       </div>
@@ -532,6 +533,7 @@ const renderBlock = (block: any, i: number) => {
 export default function IntegralTheoryUpgrade1() {
   const [lang, setLang] = useState<Lang>('en');
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const c = content[lang];
 
   useEffect(() => {
@@ -555,28 +557,53 @@ export default function IntegralTheoryUpgrade1() {
     return () => observer.disconnect();
   }, [lang]);
 
+  // HLS video background
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const src = 'https://stream.mux.com/FOC51VHgIsnwQtpM7FkyZWb6d6IY7XiXC01ZHY49tLro.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({ autoStartLoad: true });
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => {});
+      });
+      return () => hls.destroy();
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+      video.play().catch(() => {});
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #080818 0%, #0c1025 30%, #0f0f2a 60%, #0a0a1a 100%)' }}>
-      {/* Ambient glow */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[20%] w-[600px] h-[600px] rounded-full opacity-[0.04]"
-          style={{ background: 'radial-gradient(circle, rgba(132,96,234,0.6) 0%, transparent 70%)' }} />
-        <div className="absolute top-[50%] right-[10%] w-[500px] h-[500px] rounded-full opacity-[0.03]"
-          style={{ background: 'radial-gradient(circle, rgba(104,148,208,0.6) 0%, transparent 70%)' }} />
-        <div className="absolute bottom-[10%] left-[30%] w-[400px] h-[400px] rounded-full opacity-[0.03]"
-          style={{ background: 'radial-gradient(circle, rgba(167,203,212,0.5) 0%, transparent 70%)' }} />
+    <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #faf8f5 0%, #f5f1eb 30%, #f0ece4 60%, #ece7de 100%)' }}>
+      {/* Video background */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          muted
+          loop
+          playsInline
+          autoPlay
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0" style={{ background: 'rgba(250, 248, 245, 0.82)' }} />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-5 md:px-8">
         {/* Language toggle — sits below the fixed site logo */}
-        <div className="sticky top-28 z-40 pt-6 pb-4" style={{ background: 'linear-gradient(180deg, rgba(8,8,24,0.98) 0%, rgba(8,8,24,0) 100%)' }}>
+        <div className="sticky top-28 z-40 pt-6 pb-4" style={{ background: 'linear-gradient(180deg, rgba(250,248,245,0.98) 0%, rgba(250,248,245,0) 100%)' }}>
           <div className="flex justify-center">
-            <div className="liquid-glass rounded-full p-1.5 flex gap-1 ring-1 ring-white/10">
+            <div className="rounded-full p-1.5 flex gap-1 ring-1 ring-[#2c3150]/10 bg-white/60 shadow-sm">
               <button
                 onClick={() => setLang('en')}
                 className={`px-8 py-3 rounded-full text-xs tracking-widest uppercase transition-all duration-300 ${
-                  lang === 'en' ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.06)]' : 'text-white/40 hover:text-white/60'
+                  lang === 'en' ? 'bg-[#2c3150]/8 text-[#2c3150] shadow-sm' : 'text-[#2c3150]/35 hover:text-[#2c3150]/60'
                 }`}
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
@@ -585,7 +612,7 @@ export default function IntegralTheoryUpgrade1() {
               <button
                 onClick={() => setLang('ru')}
                 className={`px-8 py-3 rounded-full text-xs tracking-widest uppercase transition-all duration-300 ${
-                  lang === 'ru' ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.06)]' : 'text-white/40 hover:text-white/60'
+                  lang === 'ru' ? 'bg-[#2c3150]/8 text-[#2c3150] shadow-sm' : 'text-[#2c3150]/35 hover:text-[#2c3150]/60'
                 }`}
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
@@ -598,32 +625,31 @@ export default function IntegralTheoryUpgrade1() {
         {/* Hero */}
         <header className="pt-20 md:pt-28 pb-16 md:pb-24 text-center">
           <h1
-            className="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6 tracking-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-[#2c3150] leading-tight mb-6 tracking-tight"
             style={{
               fontFamily: "'Playfair Display', serif",
-              textShadow: '0 0 60px rgba(255,255,255,0.08)',
             }}
           >
             {c.title}
           </h1>
-          <p className="text-white/40 text-base md:text-lg font-light mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-[#2c3150]/45 text-base md:text-lg font-light mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.subtitle}
           </p>
-          <p className="text-white/25 text-sm tracking-widest uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <p className="text-[#2c3150]/30 text-sm tracking-widest uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             {c.author}
           </p>
-          <p className="text-white/15 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <p className="text-[#2c3150]/20 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
             {lang === 'en' ? 'April 11, 2026' : '11 апреля 2026'}
             {' · '}
-            <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">aleksandrkonstantinov.com</a>
+            <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[#2c3150]/40 transition-colors">aleksandrkonstantinov.com</a>
           </p>
         </header>
 
         {/* Abstract */}
         <section className="mb-16 md:mb-24">
-          <div className="liquid-glass-strong rounded-2xl p-8 md:p-10 ring-1 ring-white/10">
-            <div className="text-white/30 text-xs uppercase tracking-[0.2em] mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>{c.abstract.label}</div>
-            <p className="text-white/70 text-sm md:text-base leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <div className="rounded-2xl p-8 md:p-10 border border-[#2c3150]/10 bg-white/60 shadow-sm">
+            <div className="text-[#2c3150]/30 text-xs uppercase tracking-[0.2em] mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>{c.abstract.label}</div>
+            <p className="text-[#2c3150]/65 text-sm md:text-base leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
               {c.abstract.text}
             </p>
           </div>
@@ -639,16 +665,16 @@ export default function IntegralTheoryUpgrade1() {
           >
             {/* Section header */}
             <div className="flex items-baseline gap-4 mb-8">
-              <span className="text-white/15 text-4xl md:text-5xl font-extralight" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <span className="text-[#2c3150]/12 text-4xl md:text-5xl font-extralight" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {section.number}
               </span>
-              <h2 className="text-white text-xl md:text-2xl font-light tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h2 className="text-[#2c3150] text-xl md:text-2xl font-light tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {section.title}
               </h2>
             </div>
 
             {/* Divider */}
-            <div className="h-px w-16 bg-white/10 mb-8" />
+            <div className="h-px w-16 bg-[#2c3150]/10 mb-8" />
 
             {/* Content blocks */}
             {section.content.map((block: any, bi: number) => renderBlock(block, bi))}
@@ -656,18 +682,18 @@ export default function IntegralTheoryUpgrade1() {
         ))}
 
         {/* Footer */}
-        <footer className="py-16 md:py-24 border-t border-white/5">
+        <footer className="py-16 md:py-24 border-t border-[#2c3150]/6">
           {/* Sources */}
-          <p className="text-white/20 text-xs leading-relaxed text-center mb-10" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-[#2c3150]/25 text-xs leading-relaxed text-center mb-10" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.footer}
           </p>
 
           {/* License & Open Source */}
-          <div className="liquid-glass rounded-2xl p-6 md:p-8 text-center space-y-4">
-            <p className="text-white/30 text-xs uppercase tracking-[0.2em]" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <div className="rounded-2xl p-6 md:p-8 text-center space-y-4 border border-[#2c3150]/8 bg-white/50">
+            <p className="text-[#2c3150]/30 text-xs uppercase tracking-[0.2em]" style={{ fontFamily: "'Poppins', sans-serif" }}>
               {lang === 'en' ? 'Open Source' : 'Открытый источник'}
             </p>
-            <p className="text-white/50 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <p className="text-[#2c3150]/50 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
               {lang === 'en'
                 ? 'This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). You are free to share and adapt this material with attribution, for non-commercial purposes, under the same license.'
                 : 'Эта работа распространяется по лицензии Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). Вы можете свободно делиться и адаптировать этот материал с указанием авторства, в некоммерческих целях, на условиях той же лицензии.'
@@ -677,13 +703,13 @@ export default function IntegralTheoryUpgrade1() {
               href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-white/30 text-xs underline underline-offset-2 hover:text-white/50 transition-colors"
+              className="inline-block text-[#2c3150]/30 text-xs underline underline-offset-2 hover:text-[#2c3150]/50 transition-colors"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               CC BY-NC-SA 4.0
             </a>
-            <div className="h-px w-12 bg-white/5 mx-auto my-4" />
-            <p className="text-white/40 text-sm leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            <div className="h-px w-12 bg-[#2c3150]/6 mx-auto my-4" />
+            <p className="text-[#2c3150]/40 text-sm leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
               {lang === 'en'
                 ? 'This is a living document. I invite collaborators — researchers, practitioners, integral theorists, translators — to build on this work. If this vision sees something you recognize, reach out.'
                 : 'Это живой документ. Я приглашаю соавторов — исследователей, практиков, интегральных теоретиков, переводчиков — развивать эту работу. Если это видение видит то, что вы узнаёте — напишите.'
@@ -693,7 +719,7 @@ export default function IntegralTheoryUpgrade1() {
               href="https://aleksandrkonstantinov.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-white/40 text-xs tracking-widest uppercase hover:text-white/60 transition-colors"
+              className="inline-block text-[#2c3150]/40 text-xs tracking-widest uppercase hover:text-[#2c3150]/60 transition-colors"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               aleksandrkonstantinov.com
