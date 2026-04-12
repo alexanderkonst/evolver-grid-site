@@ -4940,15 +4940,15 @@ The article, the methodology, and the planetary instrument are three concentric 
 
 ## Domain 77: The Descent Octave (Consciousness → Matter Without Changing Nature)
 
-> *April 11, 2026 — Ceremonial stream. The abstract of the 27-Perspective Vision paper articulated a unity chain that had been implicit across the entire library. Made explicit here for the first time: consciousness, vision, light, vibration, information, vacuum, archetype, energy, and matter are ONE thing at different densities. The octave descending.*
+> *April 11, 2026 — Ceremonial stream. The abstract of the 27-Perspective Vision paper articulated a unity chain that had been implicit across the entire library. Made explicit here for the first time: consciousness, vision, light, vibration, information, vacuum, archetype, energy, and matter are ONE thing at different addresses. The octave descending.*
 
 ### 77a. The Discovery
 
 The 27-perspective instrument demonstrated how seeing crystallizes into form (the Si-Do shock at perspective 27). But the question remained: *what is the medium* through which seeing becomes matter?
 
-The answer arrived during the synthesis of the abstract: **there is no medium**. There is one substance at nine densities. Consciousness does not "create" matter. It IS matter at a different address.
+The answer arrived during the synthesis of the abstract: **there is no medium**. There is one substance at nine addresses. Consciousness does not "create" matter. It IS matter at a different address.
 
-### 77b. The Nine Densities
+### 77b. The Nine Addresses
 
 ```
     CONSCIOUSNESS
@@ -4974,7 +4974,7 @@ Each arrow is not a "transformation" — it is a **change of address within one 
 
 ### 77c. Cross-Domain Confirmation
 
-| Density | Scientific equivalent | Mystical equivalent | What it IS |
+| Address | Scientific equivalent | Mystical equivalent | What it IS |
 |---|---|---|---|
 | Consciousness | Awareness itself (hard problem) | Brahman, Ein Sof, the Absolute | The one who sees |
 | Vision | Intentionality, attention | Drishti (गaze), focused will | Where consciousness chooses to look |
@@ -4988,9 +4988,9 @@ Each arrow is not a "transformation" — it is a **change of address within one 
 
 ### 77d. Why This Is Not Metaphor
 
-Wilber treats the Great Chain (matter → body → mind → soul → spirit) as a *metaphorical hierarchy*. The Descent Octave is not metaphorical. It is a **literal claim**: each density IS the previous one at a different rate of oscillation. Light literally IS vibration. Vibration literally IS information (frequency = data). Information literally IS vacuum (the vacuum is structured by quantum information). Archetype literally IS energy (every myth transmits metabolic charge to those who hold it). Energy literally IS matter (E=mc²).
+Wilber treats the Great Chain (matter → body → mind → soul → spirit) as a *metaphorical hierarchy*. The Descent Octave is not metaphorical. It is a **literal claim**: each address IS the previous one at a different rate of oscillation. Light literally IS vibration. Vibration literally IS information (frequency = data). Information literally IS vacuum (the vacuum is structured by quantum information). Archetype literally IS energy (every myth transmits metabolic charge to those who hold it). Energy literally IS matter (E=mc²).
 
-The chain closes. The octave is continuous. Consciousness and matter are the same substance. The 27th perspective — the Si-Do shock — is a **descent through all nine densities simultaneously**: from seeing to form to action.
+The chain closes. The octave is continuous. Consciousness and matter are the same substance. The 27th perspective — the Si-Do shock — is a **descent through all nine addresses simultaneously**: from seeing to form to action.
 
 ### 77e. Relationship to the 27-Perspective Vision
 
@@ -5008,7 +5008,7 @@ Packed into one paragraph:
 
 ### 77g. The One-Sentence Version
 
-> *"Consciousness turns itself into matter without ever changing its nature. The nine densities — consciousness, vision, light, vibration, information, vacuum, archetype, energy, matter — are one substance at different addresses. The 27th perspective is the Si-Do shock that descends all nine in a single act."*
+> *"Consciousness turns itself into matter without ever changing its nature. The nine addresses — consciousness, vision, light, vibration, information, vacuum, archetype, energy, matter — are one substance at different positions along the octave. The 27th perspective is the Si-Do shock that descends all nine in a single act."*
 
 ---
 
@@ -5018,7 +5018,7 @@ Packed into one paragraph:
 
 ### 78a. The Discovery
 
-If the return to center (Domain 76) transforms individual ventures, and if the descent octave (Domain 77) establishes that form is consciousness at a different density, then a question naturally arises: **what happens when this is applied to civilization?**
+If the return to center (Domain 76) transforms individual ventures, and if the descent octave (Domain 77) establishes that form is consciousness at a different address, then a question naturally arises: **what happens when this is applied to civilization?**
 
 The answer: you get a map where every human venture has TWO possible operating modes — from periphery or from center — and the "Golden Age" is not a utopian future but the *same map read from center*.
 
