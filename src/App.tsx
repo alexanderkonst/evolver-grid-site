@@ -134,6 +134,7 @@ import EquilibriumPage from "./pages/EquilibriumPage";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
+import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -362,6 +363,8 @@ const App = () => (
                   <Route path="/fmf" element={<FounderMarketFit />} />
                   {/* Community Pages */}
                   <Route path="/the-originals" element={<TheOriginalsPage />} />
+                  {/* Integral Theory Article */}
+                  <Route path="/integral_theory_upgrade1" element={<IntegralTheoryUpgrade1 />} />
                   {/* Venture Dashboard — Public morphogenetic dashboard */}
                   <Route path="/dashboard" element={<VentureDashboard />} />
                   <Route path="/holomap" element={<MorphogeneticHolomap />} />
