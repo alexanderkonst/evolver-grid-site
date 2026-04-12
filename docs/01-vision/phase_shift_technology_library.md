@@ -5110,3 +5110,64 @@ One vision. Three magnifications. One return.
 ---
 
 
+## Domain 79: The Question Collapse (Question = Content = Lead Magnet = Visibility)
+
+> *April 11, 2026 — Ceremonial stream. While examining why a pinned post about "grinding addiction" received 1 like from 2500 Facebook friends, the following principle crystallized: visibility is not a resource that can be increased through effort. It is a natural consequence of INSIGHT DELIVERY. The entire marketing stack collapses into a single element: a genuine question.*
+
+### 79a. The Discovery
+
+Traditional distribution assumes a pipeline: create content → build audience → distribute lead magnet → convert to clients. Each stage is a separate activity requiring separate effort. The grind comes from running four parallel workstreams.
+
+But when the content IS a genuine question that gives the reader an immediate experience of seeing something they hadn't seen before, the pipeline collapses:
+
+```
+The question IS the content
+  → because it gives the reader an insight.
+The question IS the lead magnet
+  → because anyone who has the insight wants more.
+The question IS the visibility
+  → because insight is inherently shareable.
+The question IS the distribution
+  → because it replicates through USE, not through marketing.
+```
+
+**One element. Four functions. No grind.**
+
+### 79b. Why Diagnosis Is Not Shareable But Insight Is
+
+A post that DIAGNOSES the reader ("you have a grinding addiction") gets scrolled past. Nobody shares their diagnosis. Nobody wants to be the person who publicly identifies with a disease.
+
+A post that gives the reader an INSIGHT ("who is your business actually for?") gets shared. The reader wants to give OTHERS that experience. They share not because they were asked to, but because insight is inherently contagious — it wants to move.
+
+| Element | Diagnosis (outward) | Insight (inward) |
+|---|---|---|
+| **Reader's experience** | "This person is telling me what's wrong with me" | "I just saw something I didn't see before" |
+| **Emotional response** | Defensive / scrolls past | Curious / applies to own life |
+| **Sharing impulse** | None (who shares their diagnosis?) | Natural (who doesn't share a genuine "aha"?) |
+| **Required cadence** | Daily posting (grind) | One question per week (ease) |
+| **Distribution** | Depends on algorithm | Depends on the quality of the question |
+
+### 79c. The Formula
+
+> *One genuine question, posted with the energy of "I truly believe you should ask yourself this," travels farther than a hundred posts about pain.*
+
+Examples of question-as-distribution:
+- "Who is your business actually for?"
+- "What's the one thing you do that people keep coming to you for, but you've never charged for?"
+- "What if your gift and your business were the same thing?"
+
+Each question gives the reader a MIRROR. They see themselves. Seeing is the product. The product distributes itself.
+
+### 79d. Relationship to Domain 73 (Dual-Frequency Distribution)
+
+Domain 73 identified two frequencies: *content frequency* (signal — what's alive) and *funnel frequency* (pain — what's stuck). The diagnosis post was funnel-frequency content placed in a content-frequency channel.
+
+Domain 79 goes further: it collapses the two frequencies into a single element. A genuine question is SIMULTANEOUSLY signal (it's alive, it radiates) AND pain (it touches the exact stuck point). The question doesn't need to be classified as "content" or "funnel" — it is both at once.
+
+### 79e. The One-Sentence Version
+
+> *"Visibility is not a resource to acquire. It is the natural consequence of delivering insight. A genuine question that gives someone an experience of seeing distributes itself — no grind, no algorithm, no pipeline. The question IS the content IS the lead magnet IS the visibility."*
+
+---
+
+
