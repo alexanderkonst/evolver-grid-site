@@ -31,9 +31,9 @@ const content = {
           { type: 'paragraph', text: "The Trinity — Essence, Significance, Consequences. Wilber never named this axis explicitly, yet he uses it constantly: in every explanation, he first defines what something IS, then addresses why it MATTERS, then explores what it DEMANDS. This three-stroke movement is the deep structure of his pedagogy." },
           { type: 'paragraph', text: "The same triad appears in Daoist philosophy as the three dantians:" },
           { type: 'framework', items: [
-            { symbol: "❤️", label: "Lower Dantian — Essence", desc: "What IS this? Stripped to irreducible felt truth. Being itself, before interpretation" },
-            { symbol: "🧠", label: "Middle Dantian — Significance", desc: "Why does this MATTER? What understanding does it yield?" },
-            { symbol: "🔥", label: "Upper Dantian — Consequences", desc: "What does this inevitably RESULT IN? What ripples and manifests from this seeing?" }
+            { symbol: "❤️", label: "Middle Dantian (Heart) — Essence", desc: "What IS this? Stripped to irreducible felt truth. Being itself, before interpretation" },
+            { symbol: "🧠", label: "Upper Dantian (Mind) — Significance", desc: "Why does this MATTER? What understanding does it yield?" },
+            { symbol: "🔥", label: "Lower Dantian (Gut / Hara) — Consequences", desc: "What does this inevitably RESULT IN? What ripples and manifests from this seeing?" }
           ]},
           { type: 'paragraph', text: "These three exhaust all possible depths of penetration. There is no fourth. Every knowing passes through being, understanding, and consequence. Geometrically, this is the Tetrahedron — the simplest solid, three edges per vertex. The Divine Feminine penetrates into what Structure holds." },
           { type: 'callout', text: "Structure without Depth is an empty room — you see all four walls but nothing inside them. Depth without Structure is a formless abyss — you reach the core but from only one angle, and mistake your view for the whole. Their marriage produces complete seeing." }
@@ -232,9 +232,9 @@ const content = {
           { type: 'paragraph', text: "Троица: Сущность, Значимость, Последствия. Уилбер никогда не назвал эту ось явно, но использует её постоянно: в каждом своём объяснении он сначала определяет, ЧТО нечто представляет собой, затем — ПОЧЕМУ это имеет значение, и наконец — что из этого СЛЕДУЕТ, как это можно применить в жизни." },
           { type: 'paragraph', text: "Та же триада появляется в даосской философии как три дантяня:" },
           { type: 'framework', items: [
-            { symbol: "❤️", label: "Нижний дантянь — Сущность", desc: "Что это ЕСТЬ? Обнажённое до нередуцируемой прочувствованной истины. Бытие само по себе, до интерпретации" },
-            { symbol: "🧠", label: "Средний дантянь — Значимость", desc: "Почему это ВАЖНО? Какое понимание это порождает?" },
-            { symbol: "🔥", label: "Верхний дантянь — Последствия", desc: "Что из этого неизбежно СЛЕДУЕТ? Какие волны расходятся и что проявляется из этого видения?" }
+            { symbol: "❤️", label: "Средний дантянь (Сердце) — Сущность", desc: "Что это ЕСТЬ? Обнажённое до нередуцируемой прочувствованной истины. Бытие само по себе, до интерпретации" },
+            { symbol: "🧠", label: "Верхний дантянь (Ум) — Значимость", desc: "Почему это ВАЖНО? Какое понимание это порождает?" },
+            { symbol: "🔥", label: "Нижний дантянь (Хара / Живот) — Последствия", desc: "Что из этого неизбежно СЛЕДУЕТ? Какие волны расходятся и что проявляется из этого видения?" }
           ]},
           { type: 'paragraph', text: "Эти три исчерпывают все возможные глубины проникновения. Четвёртой нет. Всякое знание проходит через бытие, понимание и следствие. Геометрически это Тетраэдр — простейшее твёрдое тело, три ребра на каждую вершину." },
           { type: 'callout', text: "Структура без Глубины — пустая комната: видишь все четыре стены, но ничего внутри. Глубина без Структуры — бесформенная бездна: достигаешь ядра, но лишь с одного угла, и принимаешь свой вид за целое. Их брак рождает полное видение." }
