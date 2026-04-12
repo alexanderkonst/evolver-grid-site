@@ -181,6 +181,48 @@ Code Implementation
 
 ---
 
+## 🔴 DOC CREEP PREVENTION (NON-NEGOTIABLE)
+
+> *"Doc creep is the disease. One source of truth per concept. No orphans."*
+> — Alexander, April 11, 2026
+
+### The Rule
+
+**NEVER create a new file for content that belongs in an existing source-of-truth document.** Synthesis, analysis, and planning outputs must be integrated directly into the relevant SoT — not saved as separate docs that get forgotten.
+
+### Pre-Write Checklist (before creating ANY new .md file)
+
+1. **Does a source-of-truth already exist for this content?** → Check the routing table below
+2. **If YES** → Append a new dated section to that SoT document. Do not create a new file.
+3. **If NO** → Ask: "Will this content need to be found and updated later?" If yes → create it in the correct `docs/` directory. If no → it's scratch work → `brain/<convo-id>/scratch/`
+4. **Brain artifacts** (`brain/<convo-id>/*.md`) are for **conversation-scoped working memory only** — they must NEVER be the final resting place for strategic content. If a brain artifact produces gold, integrate it into the SoT before the conversation ends.
+
+### Content Routing Table
+
+| Content Type | Source of Truth | NEVER put in |
+|---|---|---|
+| Alexander's business artifacts, milestones, value ladder, content, outreach copy, session insights | `docs/02-strategy/unique-businesses/alexanders_unique_business.md` | `docs/08-content/`, orphan brain docs |
+| Client business artifacts (Karime, Oyi, Sandra, Sergey, etc.) | `docs/02-strategy/unique-businesses/[name]_unique_business.md` | Separate synthesis docs |
+| Methodology / playbook-level patterns | `docs/03-playbooks/unique_business_playbook.md` | Duplicated in business docs |
+| CRM, pipeline, outreach tracking | `docs/09-logs/broadcast_tracker.md` | Session log, separate trackers |
+| Session history + breakthroughs | `docs/09-logs/session_log.md` | Business docs (except cross-refs) |
+| Operational roadmap + weekly scope | `docs/02-strategy/roadmap.md` | Ad-hoc task lists |
+| Phase Shift Technologies | `docs/01-vision/phase_shift_technology_library.md` | Scattered across business docs |
+| Scratch/temporary work | `brain/<convo-id>/scratch/` | `docs/` directories |
+
+### The Test
+
+Before saving ANY file, ask: **"In 2 weeks, will someone know to look HERE for this content?"** If the answer is "probably not" → it's in the wrong place.
+
+### Cross-Conversation Continuity
+
+When resuming work across conversations:
+1. **Read the SoT first** — not old brain artifacts
+2. **Check the version footer** at the bottom of each SoT doc — it tells you what was last added and when
+3. **Append, don't duplicate** — new insights get a new dated section header, not a new file
+
+---
+
 ## Key Documents
 - `docs/product_playbook.md` - **META**: First principles + 9-phase Execution Workflow
 - `docs/ux_ui_playbook.md` - UX/UI as product, taxonomy, mobile-first, performance
@@ -188,6 +230,9 @@ Code Implementation
 - `docs/distribution_playbook.md` - Distribution as product, 8-phase workflow
 - `docs/customer_journey_map.md` - Source of truth for UX
 - `docs/onboarding_spec.md` - Onboarding flow specification
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md` - **Alexander's unique business SoT (v8.2.1+)**
+- `docs/03-playbooks/unique_business_playbook.md` - **Methodology playbook SoT**
+- `docs/09-logs/broadcast_tracker.md` - **CRM + pipeline SoT**
 - `ai_tasks/README.md` - Task system overview
 - `ai_tasks/PENDING_MIGRATIONS.md` - Database tasks for Lovable
 
