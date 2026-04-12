@@ -6,6 +6,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
+import RequireAuth from "@/components/RequireAuth";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -181,76 +182,83 @@ const App = () => (
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
                 <Routes>
+                  {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<ZoneOfGeniusEntry />} />
-                  <Route path="/ignite" element={<IgniteSession />} />
-                  <Route path="/library" element={<Library />} />
-                  <Route path="/library/:category" element={<Library />} />
-                  <Route path="/contact" element={<ContactNew />} />
-                  <Route path="/feedback" element={<FeedbackPage />} />
-                  <Route path="/tools" element={<ToolsRedirect />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
-
-                  <Route path="/start" element={<OnboardingPage />} />
+                  <Route path="/reveal" element={<Navigate to="/" replace />} />
+                  <Route path="/my-result" element={<MyResult />} />
+                  <Route path="/integral_theory_upgrade1" element={<IntegralTheoryUpgrade1 />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />
+                  <Route path="/p/:slug" element={<CreatorPage />} />
+                  <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
+
+                  {/* ══════ PROTECTED ROUTES (login required) ══════ */}
+                  <Route path="/ignite" element={<RequireAuth><IgniteSession /></RequireAuth>} />
+                  <Route path="/library" element={<RequireAuth><Library /></RequireAuth>} />
+                  <Route path="/library/:category" element={<RequireAuth><Library /></RequireAuth>} />
+                  <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
+                  <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
+                  <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />
+
+                  <Route path="/start" element={<RequireAuth><OnboardingPage /></RequireAuth>} />
                   <Route path="/profile" element={<Navigate to="/game/me" replace />} />
-                  <Route path="/settings" element={<Profile />} />
-                  <Route path="/game/settings" element={<Settings />} />
+                  <Route path="/settings" element={<RequireAuth><Profile /></RequireAuth>} />
+                  <Route path="/game/settings" element={<RequireAuth><Settings /></RequireAuth>} />
                   <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/marketplace/browse" element={<Navigate to="/game/marketplace/browse" replace />} />
-                  <Route path="/marketplace/create-page" element={<PublicPageEditor />} />
-                  <Route path="/ai-upgrade" element={<AIUpgrade />} />
-                  <Route path="/destiny" element={<Destiny />} />
-                  <Route path="/mens-circle" element={<MensCircle />} />
-                  <Route path="/mens-circle/thank-you" element={<MensCircleThankYou />} />
+                  <Route path="/marketplace/create-page" element={<RequireAuth><PublicPageEditor /></RequireAuth>} />
+                  <Route path="/ai-upgrade" element={<RequireAuth><AIUpgrade /></RequireAuth>} />
+                  <Route path="/destiny" element={<RequireAuth><Destiny /></RequireAuth>} />
+                  <Route path="/mens-circle" element={<RequireAuth><MensCircle /></RequireAuth>} />
+                  <Route path="/mens-circle/thank-you" element={<RequireAuth><MensCircleThankYou /></RequireAuth>} />
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
-                  <Route path="/reveal" element={<Navigate to="/" replace />} />
-                  <Route path="/quiz" element={<GeniusQuiz />} />
-                  <Route path="/genius-offer-intake" element={<GeniusOfferIntake />} />
-                  <Route path="/admin/genius-offers" element={<AdminGeniusOffers />} />
-                  <Route path="/genius-admin" element={<AdminGeniusOffers />} />
-                  <Route path="/admin/mission-participants" element={<AdminMissionParticipants />} />
-                  <Route path="/admin/mission-sync" element={<AdminMissionSync />} />
-                  <Route path="/admin/content" element={<AdminContentManager />} />
-                  <Route path="/sandra" element={<SandraIgnition />} />
-                  <Route path="/sergey" element={<SergeyIgnition />} />
-                  <Route path="/oyi" element={<OyiIgnition />} />
-                  <Route path="/intelligences" element={<MultipleIntelligences />} />
-                  <Route path="/genius-layer-matching" element={<GeniusLayerMatching />} />
+                  <Route path="/quiz" element={<RequireAuth><GeniusQuiz /></RequireAuth>} />
+                  <Route path="/genius-offer-intake" element={<RequireAuth><GeniusOfferIntake /></RequireAuth>} />
+                  <Route path="/admin/genius-offers" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
+                  <Route path="/genius-admin" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
+                  <Route path="/admin/mission-participants" element={<RequireAuth><AdminMissionParticipants /></RequireAuth>} />
+                  <Route path="/admin/mission-sync" element={<RequireAuth><AdminMissionSync /></RequireAuth>} />
+                  <Route path="/admin/content" element={<RequireAuth><AdminContentManager /></RequireAuth>} />
+                  <Route path="/sandra" element={<RequireAuth><SandraIgnition /></RequireAuth>} />
+                  <Route path="/sergey" element={<RequireAuth><SergeyIgnition /></RequireAuth>} />
+                  <Route path="/oyi" element={<RequireAuth><OyiIgnition /></RequireAuth>} />
+                  <Route path="/intelligences" element={<RequireAuth><MultipleIntelligences /></RequireAuth>} />
+                  <Route path="/genius-layer-matching" element={<RequireAuth><GeniusLayerMatching /></RequireAuth>} />
                   {/* Game Routes */}
-                  <Route path="/game" element={<GameHome />} />
-                  <Route path="/game/next-move" element={<CoreLoopHome />} />
-                  <Route path="/game/next-move-v2" element={<DailyLoopV2 />} />
+                  <Route path="/game" element={<RequireAuth><GameHome /></RequireAuth>} />
+                  <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
+                  <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
-                  <Route path="/game/me" element={<ProfileOverview />} />
-                  <Route path="/game/me/settings" element={<Profile />} />
-                  <Route path="/game/me/mission" element={<ProfileMissionSection />} />
-                  <Route path="/game/me/assets" element={<ProfileAssetsSection />} />
-                  <Route path="/game/me/genius-business" element={<GeniusBusiness />} />
-                  <Route path="/game/me/genius-business/audience" element={<GeniusBusinessAudience />} />
-                  <Route path="/game/me/genius-business/promise" element={<GeniusBusinessPromise />} />
-                  <Route path="/game/me/genius-business/channels" element={<GeniusBusinessChannels />} />
-                  <Route path="/game/me/genius-business/vision" element={<GeniusBusinessVision />} />
-                  <Route path="/game/me/zone-of-genius" element={<ZoneOfGeniusOverview />} />
-                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<ZoGPerspectiveView />} />
-                  <Route path="/game/me/canvas" element={<CanvasOverviewPage />} />
-                  <Route path="/game/me/art" element={<ArtPage />} />
+                  <Route path="/game/me" element={<RequireAuth><ProfileOverview /></RequireAuth>} />
+                  <Route path="/game/me/settings" element={<RequireAuth><Profile /></RequireAuth>} />
+                  <Route path="/game/me/mission" element={<RequireAuth><ProfileMissionSection /></RequireAuth>} />
+                  <Route path="/game/me/assets" element={<RequireAuth><ProfileAssetsSection /></RequireAuth>} />
+                  <Route path="/game/me/genius-business" element={<RequireAuth><GeniusBusiness /></RequireAuth>} />
+                  <Route path="/game/me/genius-business/audience" element={<RequireAuth><GeniusBusinessAudience /></RequireAuth>} />
+                  <Route path="/game/me/genius-business/promise" element={<RequireAuth><GeniusBusinessPromise /></RequireAuth>} />
+                  <Route path="/game/me/genius-business/channels" element={<RequireAuth><GeniusBusinessChannels /></RequireAuth>} />
+                  <Route path="/game/me/genius-business/vision" element={<RequireAuth><GeniusBusinessVision /></RequireAuth>} />
+                  <Route path="/game/me/zone-of-genius" element={<RequireAuth><ZoneOfGeniusOverview /></RequireAuth>} />
+                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<RequireAuth><ZoGPerspectiveView /></RequireAuth>} />
+                  <Route path="/game/me/canvas" element={<RequireAuth><CanvasOverviewPage /></RequireAuth>} />
+                  <Route path="/game/me/art" element={<RequireAuth><ArtPage /></RequireAuth>} />
                   {/* Legacy redirects */}
                   <Route path="/game/profile" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/profile/*" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/grow" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/grow/*" element={<Navigate to="/game/me" replace />} />
                   {/* LEARN Space (was Transformation) */}
-                  <Route path="/game/learn" element={<LearnSpace />} />
-                  <Route path="/game/learn/today" element={<TodaysPractice />} />
-                  <Route path="/game/learn/paths" element={<TransformationGrowthPaths />} />
-                  <Route path="/game/learn/path/:pathId" element={<PathSection />} />
-                  <Route path="/game/learn/library" element={<TransformationPracticeLibrary />} />
-                  <Route path="/game/learn/tests" element={<TransformationPersonalityTests />} />
-                  <Route path="/game/learn/qol-assessment" element={<TransformationQolAssessment />} />
-                  <Route path="/game/learn/qol-results" element={<TransformationQolResults />} />
-                  <Route path="/game/learn/genius-assessment" element={<TransformationGeniusAssessment />}>
+                  <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
+                  <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
+                  <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
+                  <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />
+                  <Route path="/game/learn/library" element={<RequireAuth><TransformationPracticeLibrary /></RequireAuth>} />
+                  <Route path="/game/learn/tests" element={<RequireAuth><TransformationPersonalityTests /></RequireAuth>} />
+                  <Route path="/game/learn/qol-assessment" element={<RequireAuth><TransformationQolAssessment /></RequireAuth>} />
+                  <Route path="/game/learn/qol-results" element={<RequireAuth><TransformationQolResults /></RequireAuth>} />
+                  <Route path="/game/learn/genius-assessment" element={<RequireAuth><TransformationGeniusAssessment /></RequireAuth>}>
                     <Route index element={<Step1SelectTop10Talents />} />
                     <Route path="step-1" element={<Step1SelectTop10Talents />} />
                     <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />
@@ -261,17 +269,17 @@ const App = () => (
                   <Route path="/game/transformation" element={<Navigate to="/game/learn" replace />} />
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
                   {/* OFFER Space (was Marketplace) */}
-                  <Route path="/game/marketplace" element={<MarketplaceSpace />} />
-                  <Route path="/game/marketplace/my-products" element={<MyProductsPage />} />
+                  <Route path="/game/marketplace" element={<RequireAuth><MarketplaceSpace /></RequireAuth>} />
+                  <Route path="/game/marketplace/my-products" element={<RequireAuth><MyProductsPage /></RequireAuth>} />
                   <Route path="/game/marketplace/founders" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/browse" element={<Navigate to="/game/marketplace" replace />} />
-                  <Route path="/game/marketplace/ignite" element={<IgniteSession />} />
+                  <Route path="/game/marketplace/ignite" element={<RequireAuth><IgniteSession /></RequireAuth>} />
                   {/* COLLABORATE Space (was Teams/Discover) */}
-                  <Route path="/game/collaborate" element={<CollaborateSpace />} />
-                  <Route path="/game/collaborate/matches" element={<Matchmaking />} />
-                  <Route path="/game/collaborate/connections" element={<Connections />} />
-                  <Route path="/game/collaborate/mission" element={<MissionSelection />} />
-                  <Route path="/game/collaborate/people" element={<PeopleDirectory />} />
+                  <Route path="/game/collaborate" element={<RequireAuth><CollaborateSpace /></RequireAuth>} />
+                  <Route path="/game/collaborate/matches" element={<RequireAuth><Matchmaking /></RequireAuth>} />
+                  <Route path="/game/collaborate/connections" element={<RequireAuth><Connections /></RequireAuth>} />
+                  <Route path="/game/collaborate/mission" element={<RequireAuth><MissionSelection /></RequireAuth>} />
+                  <Route path="/game/collaborate/people" element={<RequireAuth><PeopleDirectory /></RequireAuth>} />
                   {/* Legacy redirects */}
                   <Route path="/game/teams" element={<Navigate to="/game/collaborate" replace />} />
                   <Route path="/game/matches" element={<Navigate to="/game/collaborate/matches" replace />} />
@@ -279,19 +287,19 @@ const App = () => (
                   <Route path="/game/mission" element={<Navigate to="/game/collaborate/mission" replace />} />
                   <Route path="/community/people" element={<Navigate to="/game/collaborate/people" replace />} />
                   {/* MEET Space (was Events) */}
-                  <Route path="/game/meet" element={<MeetSpace />} />
-                  <Route path="/game/meet/create" element={<CreateEvent />} />
-                  <Route path="/game/meet/my-rsvps" element={<MyRsvps />} />
+                  <Route path="/game/meet" element={<RequireAuth><MeetSpace /></RequireAuth>} />
+                  <Route path="/game/meet/create" element={<RequireAuth><CreateEvent /></RequireAuth>} />
+                  <Route path="/game/meet/my-rsvps" element={<RequireAuth><MyRsvps /></RequireAuth>} />
                   {/* Legacy redirects */}
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
                   {/* BUILD Space */}
                   <Route path="/game/build" element={<Navigate to="/game/build/canvas" replace />} />
-                  <Route path="/game/build/canvas" element={<BuildCanvasPage />} />
-                  <Route path="/game/build/my-business" element={<MyGeniusBusinessPage />} />
-                  <Route path="/game/build/refine" element={<RefineBusinessPage />} />
+                  <Route path="/game/build/canvas" element={<RequireAuth><BuildCanvasPage /></RequireAuth>} />
+                  <Route path="/game/build/my-business" element={<RequireAuth><MyGeniusBusinessPage /></RequireAuth>} />
+                  <Route path="/game/build/refine" element={<RequireAuth><RefineBusinessPage /></RequireAuth>} />
                   {/* Product Builder in GameShell */}
-                  <Route path="/game/build/product-builder" element={<ProductBuilderPage />}>
+                  <Route path="/game/build/product-builder" element={<RequireAuth><ProductBuilderPage /></RequireAuth>}>
                     <Route index element={<ProductBuilderEntry />} />
                     <Route path="icp" element={<DeepICPScreen />} />
                     <Route path="pain" element={<DeepPainScreen />} />
@@ -304,73 +312,67 @@ const App = () => (
                   {/* Legacy redirects */}
                   <Route path="/game/coop" element={<Navigate to="/game/build" replace />} />
                   <Route path="/events" element={<Navigate to="/game/meet" replace />} />
-                  <Route path="/events/:id" element={<EventDetail />} />
-                  <Route path="/events/community/:communityId" element={<CommunityEvents />} />
-                  <Route path="/game/snapshot" element={<CharacterSnapshot />} />
-                  <Route path="/game/path/:pathId" element={<GrowthPathsPage />} />
-                  <Route path="/game/test-nav" element={<TestNavigation />} />
-                  <Route path="/today" element={<Today />} />
-                  <Route path="/character" element={<Today />} />
-                  <Route path="/map" element={<GameMap />} />
-                  <Route path="/skills" element={<GrowthPathsPage />} />
-                  <Route path="/growth-paths" element={<GrowthPathsPage />} />
-                  <Route path="/resources/zog-intro-video" element={<ResourcesZogIntroVideo />} />
-                  <Route path="/resources/personality-tests" element={<ResourcesPersonalityTests />} />
-                  <Route path="/quality-of-life-map" element={<QolLayout />}>
+                  <Route path="/events/:id" element={<RequireAuth><EventDetail /></RequireAuth>} />
+                  <Route path="/events/community/:communityId" element={<RequireAuth><CommunityEvents /></RequireAuth>} />
+                  <Route path="/game/snapshot" element={<RequireAuth><CharacterSnapshot /></RequireAuth>} />
+                  <Route path="/game/path/:pathId" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
+                  <Route path="/game/test-nav" element={<RequireAuth><TestNavigation /></RequireAuth>} />
+                  <Route path="/today" element={<RequireAuth><Today /></RequireAuth>} />
+                  <Route path="/character" element={<RequireAuth><Today /></RequireAuth>} />
+                  <Route path="/map" element={<RequireAuth><GameMap /></RequireAuth>} />
+                  <Route path="/skills" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
+                  <Route path="/growth-paths" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
+                  <Route path="/resources/zog-intro-video" element={<RequireAuth><ResourcesZogIntroVideo /></RequireAuth>} />
+                  <Route path="/resources/personality-tests" element={<RequireAuth><ResourcesPersonalityTests /></RequireAuth>} />
+                  <Route path="/quality-of-life-map" element={<RequireAuth><QolLayout /></RequireAuth>}>
                     <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
                     <Route path="results" element={<QualityOfLifeMapResults />} />
                     <Route path="priorities" element={<QualityOfLifePriorities />} />
                     <Route path="growth-recipe" element={<QualityOfLifeGrowthRecipe />} />
                   </Route>
-                  <Route path="/zone-of-genius" element={<ZoneOfGeniusLandingPage />} />
-                  <Route path="/zone-of-genius/appleseed" element={<AppleseedView />} />
-                  <Route path="/zone-of-genius/excalibur" element={<ExcaliburView />} />
-                  <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
-                  <Route path="/zone-of-genius/assessment" element={<ZoneOfGeniusAssessmentLayout />}>
+                  <Route path="/zone-of-genius" element={<RequireAuth><ZoneOfGeniusLandingPage /></RequireAuth>} />
+                  <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
+                  <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
+                  <Route path="/zone-of-genius/entry" element={<RequireAuth><ZoneOfGeniusEntry /></RequireAuth>} />
+                  <Route path="/zone-of-genius/assessment" element={<RequireAuth><ZoneOfGeniusAssessmentLayout /></RequireAuth>}>
                     <Route index element={<Step1SelectTop10Talents />} />
                     <Route path="step-1" element={<Step1SelectTop10Talents />} />
                     <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />
                     <Route path="step-3" element={<Step3OrderTalents />} />
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
-                  <Route path="/m/:slug" element={<ModuleDetail />} />
-                  <Route path="/modules" element={<HolonicModulesPage />} />
-                  <Route path="/modules/:slug" element={<ModuleLandingPage />} />
+                  <Route path="/m/:slug" element={<RequireAuth><ModuleDetail /></RequireAuth>} />
+                  <Route path="/modules" element={<RequireAuth><HolonicModulesPage /></RequireAuth>} />
+                  <Route path="/modules/:slug" element={<RequireAuth><ModuleLandingPage /></RequireAuth>} />
                   {/* Mission Discovery */}
-                  <Route path="/mission-discovery" element={<MissionDiscoveryLanding />} />
-                  <Route path="/mission-discovery/wizard" element={<MissionDiscoveryWizard />} />
+                  <Route path="/mission-discovery" element={<RequireAuth><MissionDiscoveryLanding /></RequireAuth>} />
+                  <Route path="/mission-discovery/wizard" element={<RequireAuth><MissionDiscoveryWizard /></RequireAuth>} />
                   {/* Asset Mapping */}
-                  <Route path="/asset-mapping" element={<AssetMappingLanding />} />
-                  <Route path="/asset-mapping/wizard" element={<AssetMappingWizard />} />
+                  <Route path="/asset-mapping" element={<RequireAuth><AssetMappingLanding /></RequireAuth>} />
+                  <Route path="/asset-mapping/wizard" element={<RequireAuth><AssetMappingWizard /></RequireAuth>} />
                   {/* Product Builder - Legacy redirect to GameShell version */}
                   <Route path="/product-builder" element={<Navigate to="/game/build/product-builder" replace />} />
                   <Route path="/product-builder/*" element={<Navigate to="/game/build/product-builder" replace />} />
-                  {/* Public Creator Pages */}
-                  <Route path="/p/:slug" element={<CreatorPage />} />
-                  <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
-                  <Route path="/my-page" element={<PublicPageEditor />} />
+                  {/* Public Creator Pages — already in public section above */}
+                  <Route path="/my-page" element={<RequireAuth><PublicPageEditor /></RequireAuth>} />
                   {/* Art Gallery - Wrapped with persistent audio */}
-                  <Route path="/art" element={<ArtLayout />}>
+                  <Route path="/art" element={<RequireAuth><ArtLayout /></RequireAuth>}>
                     <Route index element={<ArtGallery />} />
                     <Route path=":category" element={<ArtPortfolio />} />
                   </Route>
                   {/* Tools */}
-                  <Route path="/transcriber" element={<Transcriber />} />
+                  <Route path="/transcriber" element={<RequireAuth><Transcriber /></RequireAuth>} />
                   {/* Equilibrium — Standalone Living Clock */}
-                  <Route path="/equilibrium" element={<EquilibriumPage />} />
+                  <Route path="/equilibrium" element={<RequireAuth><EquilibriumPage /></RequireAuth>} />
                   {/* Founder-Market Fit Landing Page */}
-                  <Route path="/founder-market-fit" element={<FounderMarketFit />} />
-                  <Route path="/fmf" element={<FounderMarketFit />} />
+                  <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
+                  <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   {/* Community Pages */}
-                  <Route path="/the-originals" element={<TheOriginalsPage />} />
-                  {/* Integral Theory Article */}
-                  <Route path="/integral_theory_upgrade1" element={<IntegralTheoryUpgrade1 />} />
-                  {/* Venture Dashboard — Public morphogenetic dashboard */}
-                  <Route path="/dashboard" element={<VentureDashboard />} />
-                  <Route path="/holomap" element={<MorphogeneticHolomap />} />
-                  <Route path="/founders" element={<FoundersShowcase />} />
-                  {/* Magic link result access — no auth required */}
-                  <Route path="/my-result" element={<MyResult />} />
+                  <Route path="/the-originals" element={<RequireAuth><TheOriginalsPage /></RequireAuth>} />
+                  {/* Venture Dashboard */}
+                  <Route path="/dashboard" element={<RequireAuth><VentureDashboard /></RequireAuth>} />
+                  <Route path="/holomap" element={<RequireAuth><MorphogeneticHolomap /></RequireAuth>} />
+                  <Route path="/founders" element={<RequireAuth><FoundersShowcase /></RequireAuth>} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

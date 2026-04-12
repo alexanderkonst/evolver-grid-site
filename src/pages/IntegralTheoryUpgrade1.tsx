@@ -596,7 +596,7 @@ export default function IntegralTheoryUpgrade1() {
         </div>
 
         {/* Hero */}
-        <header className="pt-12 md:pt-20 pb-16 md:pb-24 text-center">
+        <header className="pt-20 md:pt-28 pb-16 md:pb-24 text-center">
           <h1
             className="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6 tracking-tight"
             style={{
@@ -609,8 +609,13 @@ export default function IntegralTheoryUpgrade1() {
           <p className="text-white/40 text-base md:text-lg font-light mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.subtitle}
           </p>
-          <p className="text-white/25 text-sm tracking-widest uppercase" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <p className="text-white/25 text-sm tracking-widest uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
             {c.author}
+          </p>
+          <p className="text-white/15 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+            {lang === 'en' ? 'April 11, 2026' : '11 апреля 2026'}
+            {' · '}
+            <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">aleksandrkonstantinov.com</a>
           </p>
         </header>
 
@@ -652,9 +657,48 @@ export default function IntegralTheoryUpgrade1() {
 
         {/* Footer */}
         <footer className="py-16 md:py-24 border-t border-white/5">
-          <p className="text-white/20 text-xs leading-relaxed text-center" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          {/* Sources */}
+          <p className="text-white/20 text-xs leading-relaxed text-center mb-10" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.footer}
           </p>
+
+          {/* License & Open Source */}
+          <div className="liquid-glass rounded-2xl p-6 md:p-8 text-center space-y-4">
+            <p className="text-white/30 text-xs uppercase tracking-[0.2em]" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              {lang === 'en' ? 'Open Source' : 'Открытый источник'}
+            </p>
+            <p className="text-white/50 text-sm leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              {lang === 'en'
+                ? 'This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). You are free to share and adapt this material with attribution, for non-commercial purposes, under the same license.'
+                : 'Эта работа распространяется по лицензии Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). Вы можете свободно делиться и адаптировать этот материал с указанием авторства, в некоммерческих целях, на условиях той же лицензии.'
+              }
+            </p>
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-white/30 text-xs underline underline-offset-2 hover:text-white/50 transition-colors"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              CC BY-NC-SA 4.0
+            </a>
+            <div className="h-px w-12 bg-white/5 mx-auto my-4" />
+            <p className="text-white/40 text-sm leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+              {lang === 'en'
+                ? 'This is a living document. I invite collaborators — researchers, practitioners, integral theorists, translators — to build on this work. If this vision sees something you recognize, reach out.'
+                : 'Это живой документ. Я приглашаю соавторов — исследователей, практиков, интегральных теоретиков, переводчиков — развивать эту работу. Если это видение видит то, что вы узнаёте — напишите.'
+              }
+            </p>
+            <a
+              href="https://aleksandrkonstantinov.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-white/40 text-xs tracking-widest uppercase hover:text-white/60 transition-colors"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              aleksandrkonstantinov.com
+            </a>
+          </div>
         </footer>
       </div>
     </div>
