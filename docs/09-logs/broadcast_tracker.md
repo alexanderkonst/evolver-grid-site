@@ -34,23 +34,23 @@
 | 5 | **Alexa** | `CLIENT` | Naming done | The Naming complete | 1 | — | **$0** | — | ? | Mar | Uniqueness extracted. Invited to Build. Decision pending |
 | 6 | **Taylor** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
 | 7 | **Tracy** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
-| 8 | **Kirill** | `COLLABORATOR` | Active Collaborator | — | — | — | **$0** | — | Call + Telegram | Apr 7 | Proto-licensee CONFIRMED. Wants to facilitate + license. Started co-designing licensing structure |
+| 8 | **Kirill** | `COLLABORATOR` | Active Collaborator | — | — | — | **$0** | — | Call + Telegram | Apr 7 | ⚠️ **ENERGY LEAK.** Proto-licensee. Wants to facilitate + license. Collaborator energy but no paid container or exchange flowing. Needs: paid structure or clean release |
 | 9 | **Anton Parin** | `COLLABORATOR` `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | Telegram | Apr 7 | Bali. AI + интеграл + бизнес. **Сам прошёл ZoG!** Спросил про консультацию. Past collaborator |
 | 10 | **Nabadi** | `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | DM | Apr 6 | Compart founder. Integral Ecosystem Builder #1. Open-source modular platform pitch |
 | 11 | **Patricia Reed** | `ADJACENT` | Active Session | — | 1 | — | **$0** | — | WhatsApp | Apr 11 | Via Karime. Reached out first (Apr 6). Took ZoG quiz Apr 10 (raw JSON → guided paste-back). **Apr 11: Alexander sent full pitch — validated her past coaching disappointment, explained hero's journey gap in society, then gave 4-step journey (clarity → uniqueness → build → scale). Jumped straight into uniqueness articulation in same session.** "Inner Systems Architect" archetype. Coaching business, scattered. Ближе к bullseye чем Chris |
 | 12 | **Chris** | `ADJACENT` | In Conversation | — | — | — | **$0** | — | WhatsApp | Apr 11 | Via Karime. Post-achievement, wine business. **Apr 11: Alexander sent full methodology pitch via WhatsApp — same 4-step journey (clarity → uniqueness → build → scale). "I take people throughout all of this journey."** Awaiting response. "В чём моя духовная цель?" Нет финансовой боли |
 | 13 | **Andrey Kamyshan** | `BULLSEYE` | In Conversation | — | — | — | **$0** | — | Telegram DM | Apr 4 | Raised "обман" concern → AI trust discussion. Trust friction pattern |
 | 14 | **Max Rodin** | `ORIGINAL` | Responded | — | — | — | **$0** | — | Telegram DM | Apr 3 | "Я потыкал — интересно, поварю еще!" Contemplative pause |
-| 15 | **José da Veiga** | `ORIGINAL` `ADJACENT` | In Conversation | — | — | — | **$0** | — | WhatsApp | Apr 10 | **Watched /ignite video (had Chrome loading issue, worked on phone).** Deeply resonant response: *"I don't know what I am good at. Not because I'm not good at things, but because I am good at anything I set my mind to — which paradoxically makes it hard to point at one thing."* Alexander coaching through limiting belief: *"Few and far between"* → *"They're not rare. They're concentrated. You just need better rooms, not more people."* **Has NOT done the ZoG quiz yet.** Next: guide to quiz |
-| 16 | **Roso** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 6 | Partnership paused. Wants his own audience ("employed professionals"). **Plan: offer demo session** |
-| 17 | **Cori** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 7 | Same as Roso. **Plan: offer demo session** |
+| 15 | **José da Veiga** | `ORIGINAL` `ADJACENT` | In Conversation | — | — | — | **$0** | — | WhatsApp | Apr 10 | ⚠️ **ENERGY LEAK.** Watched /ignite video. Deeply resonant. *"I don't know what I am good at..."* Alexander coaching through limiting belief. **Has NOT done the ZoG quiz despite deep resonance.** Receiving free medicine. Needs boundary: quiz or release |
+| 16 | **Roso** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 6 | ⚠️ **ENERGY LEAK.** Partnership paused. Wants his own audience. Free demo offered but no exchange flowing. Needs: paid container or clean release |
+| 17 | **Cori** | `COLLABORATOR` | Paused | — | — | — | **$0** | — | Discord | Apr 7 | ⚠️ **ENERGY LEAK.** Same pattern as Roso. Needs: paid container or clean release |
 | 18 | **Erik Desrosiers** | `ECOSYSTEM` | Planned | — | — | — | **$0** | — | ? | — | AI system builder peer. Conversation first |
 | 19 | **Devon Seagers** | `COLLABORATOR` `PAST-ZOG` | Planned | — | — | — | **$0** | — | ? | — | ZoG workshop partner. Intuitive arrival Apr 7 |
 | 20 | **Karen Martirosyan** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 6. Similar to Sorin |
 | 21 | **Sorin** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 6. Similar to Karen |
 | 22 | **Valentin** | `TBD` `ORIGINAL` | Planned | — | — | — | **$0** | — | ? | — | Организация "Природа". Intuitive arrival Apr 6 |
 | 23 | **Alexander Pustov** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 7 |
-| 24 | **Terrina Cavendar** | `TBD` | Planned | — | — | — | **$0** | — | In person | This wknd | Visiting Mexico this weekend. Organic conversation |
+| 24 | **Terrina Cavendar** | `TBD` | Planned | — | — | — | **$0** | — | In person | This wknd | ⚠️ **ENERGY LEAK.** Visiting Mexico. Receiving at a level without corresponding commitment. Needs boundary |
 | 25 | **Oluwa Adams** | `COLLABORATOR` `BRIDGE` | Scheduled | — | — | — | **$0** | — | WhatsApp | Apr 10 | **NEW.** Connected via Karime. Healer, energy worker. **Livestream conversation scheduled: Wednesday Apr 16 at 10:30am Mexico City time.** Topic: path of mastery / hero's journey / unique gift monetization + how it's changing business on the planet. Oyi in audience. Oluwa agreed to co-create content that gets fed to AI for field amplification. High co-creator energy. Mexico-based |
 
 ---
@@ -79,6 +79,26 @@
 - [ ] **José da Veiga:** Guide to ZoG quiz (he watched video, deeply resonated, hasn't taken quiz yet)
 - [ ] **Oluwa Adams:** Confirm Wed Apr 16 livestream details, prepare talking points
 - [ ] **Karime Session #3:** Score Myth v1.2 and Tribe v1.2 (heartbreak rewrite, awaiting body-score)
+
+### ⚠️ Energy Leak Audit (April 12, 2026)
+
+> **Mind virus identified:** "Stay loyal and try to lift up formerly close people — at the price of playing small." Too much medicine given for free. The balance has tipped: mostly free work, barely any paid work.
+
+| # | Name | Leak Pattern | Boundary Needed |
+|---|------|--------------|-----------------|
+| 1 | **José** | Free coaching. Deep resonance but hasn't committed (quiz not taken) | Quiz completion → paid session, or release |
+| 2 | **Terrina** | Receiving at a level without corresponding commitment | Define container or release |
+| 3 | **Kirill** | Collaborator energy, no paid container | Licensing terms or release |
+| 4 | **Roso** | Partnership paused. Free demo offered, no exchange | Paid demo or clean release |
+| 5 | **Cori** | Same as Roso | Paid demo or clean release |
+
+### Strategic Pivot: Wrong-Room Broadcasting
+
+> **The current social audience cannot receive the frequency.** 1 like from 2,500 Facebook friends. 1 comment on Instagram. Full throttle on neutral gear.
+>
+> **The fix is not louder. It's a different room.**
+>
+> What works: Direct DMs (3 DMs > pinned post to 2,500). Bridge contacts via Karime (3 contacts from 1 person). Borrowed audiences + search-driven platforms = the wheel that touches ground.
 
 ---
 
@@ -174,5 +194,5 @@
 
 ---
 
-*CRM v3.3 — April 11, 2026 · Patricia upgraded to Active Session (Alexander pitched + jumped into uniqueness articulation). Chris upgraded to In Conversation (methodology pitch sent). Content work in progress: Unique Business lead magnet + AI lead magnet.*
+*CRM v3.4 — April 12, 2026 · Energy Leak Audit: 5 relationships flagged (José, Terrina, Kirill, Roso, Cori). Mind virus named: loyalty-as-leak. Wrong-room broadcasting diagnosed. Transmission-to-wheel = audience access, not strategy.*
 
