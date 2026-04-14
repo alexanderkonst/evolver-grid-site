@@ -85,41 +85,49 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "settings", label: "Settings", path: "/game/me/settings" },
         ],
     },
-    // LEARN Space (was Transformation)
+    // LEARN Space
     learn: {
         title: "LEARN",
         sections: [
-            { id: "today", label: "Today's Practice", path: "/game/learn/today" },
+            { id: "overview", label: "Growth Sequence", path: "/game/learn" },
             {
-                id: "paths",
-                label: "Growth Paths",
-                path: "/game/learn/paths",
+                id: "body",
+                label: "Body",
+                path: "/game/learn/path/body",
                 subSections: [
-                    { id: "body", label: "Body", path: "/game/learn/path/body" },
-                    { id: "emotions", label: "Emotions", path: "/game/learn/path/emotions" },
-                    { id: "mind", label: "Mind", path: "/game/learn/path/mind" },
-                    { id: "genius", label: "Genius", path: "/game/learn/path/genius" },
-                    { id: "spirit", label: "Spirit", path: "/game/learn/path/spirit" },
-                ],
-            },
-            { id: "library", label: "Practice Library", path: "/game/learn/library" },
-            { id: "tests", label: "Personality Tests", path: "/game/learn/tests" },
-            {
-                id: "qol-map",
-                label: "Quality of Life Map",
-                path: "/game/learn/qol-assessment",
-                subSections: [
-                    { id: "qol-assessment", label: "Assessment", path: "/game/learn/qol-assessment" },
-                    { id: "qol-results", label: "Results", path: "/game/learn/qol-results" },
+                    { id: "body-overview", label: "Coming soon", path: "/game/learn/path/body" },
                 ],
             },
             {
-                id: "zog-assessment",
-                label: "Zone of Genius",
-                path: "/game/learn/genius-assessment/step-0",
+                id: "emotions",
+                label: "Emotions",
+                path: "/game/learn/path/emotions",
                 subSections: [
-                    { id: "zog-assessment", label: "Assessment", path: "/game/learn/genius-assessment/step-0" },
-                    { id: "zog-snapshot", label: "Snapshot", path: "/game/learn/genius-assessment/step-4" },
+                    { id: "emotions-overview", label: "Coming soon", path: "/game/learn/path/emotions" },
+                ],
+            },
+            {
+                id: "mind",
+                label: "Mind",
+                path: "/game/learn/path/mind",
+                subSections: [
+                    { id: "mind-overview", label: "Coming soon", path: "/game/learn/path/mind" },
+                ],
+            },
+            {
+                id: "talent",
+                label: "Talent",
+                path: "/game/learn/path/genius",
+                subSections: [
+                    { id: "talent-overview", label: "Coming soon", path: "/game/learn/path/genius" },
+                ],
+            },
+            {
+                id: "spirit",
+                label: "Spirit",
+                path: "/game/learn/path/spirit",
+                subSections: [
+                    { id: "spirit-overview", label: "Coming soon", path: "/game/learn/path/spirit" },
                 ],
             },
         ],
