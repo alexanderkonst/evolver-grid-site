@@ -27,6 +27,7 @@ import VentureDashboard from "./pages/VentureDashboard";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
+import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
@@ -184,6 +185,7 @@ const App = () => (
                 <Routes>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<ZoneOfGeniusEntry />} />
+                  <Route path="/methodology" element={<MethodologyLandingPage />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
