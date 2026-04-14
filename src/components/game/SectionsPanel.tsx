@@ -27,6 +27,19 @@ interface SpaceSections {
 }
 
 const SPACE_SECTIONS: SpaceSections = {
+    // JOURNEY Space — the 7-step methodology sequence
+    journey: {
+        title: "JOURNEY",
+        sections: [
+            { id: "step-1", label: "1 · Articulate talent", path: "/game/journey" },
+            { id: "step-2", label: "2 · Build the business", path: "/game/journey#business" },
+            { id: "step-3", label: "3 · Build the product", path: "/game/journey#build" },
+            { id: "step-4", label: "4 · Test & iterate", path: "/game/journey#test" },
+            { id: "step-5", label: "5 · Launch & grow", path: "/game/journey#launch" },
+            { id: "step-6", label: "6 · Regular check-ins", path: "/game/journey#checkins" },
+            { id: "step-7", label: "7 · Founder collective", path: "/game/journey#collective" },
+        ],
+    },
     // Hidden until built — uncomment to re-enable
     // "next-move": {
     //     title: "My Next Move",

@@ -13,6 +13,7 @@ import {
     Settings,
     Rocket,
     LogOut,
+    Route,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -25,6 +26,12 @@ interface SpaceItem {
 }
 
 const SPACES: SpaceItem[] = [
+    {
+        id: "journey",
+        label: "JOURNEY",
+        icon: <Route className="w-5 h-5 flex-shrink-0" />,
+        path: "/game/journey",
+    },
     // Hidden until built — uncomment to re-enable
     // {
     //     id: "next-move",
