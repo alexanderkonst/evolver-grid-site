@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import {
   LIBRARY_CATEGORIES,
@@ -175,8 +175,8 @@ const VideoCard = ({
   </button>
 );
 
-/* ─── Main Page ─── */
-const Library = () => {
+/* ─── Grow Space Content (shared between /library and /game/learn/library) ─── */
+export const GrowSpaceContent = () => {
   const navigate = useNavigate();
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("all");
@@ -198,7 +198,7 @@ const Library = () => {
   );
 
   return (
-    <GameShellV2>
+    <>
       <div className="p-6 pb-24 lg:p-8 lg:pb-8 max-w-4xl mx-auto">
 
         {/* ═══════ HEADER: GROW ═══════ */}
@@ -440,8 +440,15 @@ const Library = () => {
           </div>
         </div>
       )}
-    </GameShellV2>
+    </>
   );
 };
+
+/* ─── Main Library Page (wraps in GameShellV2) ─── */
+const Library = () => (
+  <GameShellV2>
+    <GrowSpaceContent />
+  </GameShellV2>
+);
 
 export default Library;
