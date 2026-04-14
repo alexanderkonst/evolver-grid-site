@@ -1,710 +1,471 @@
-import { useEffect, useState } from "react";
-import { useSearchParams, useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import BackButton from "@/components/BackButton";
 import {
   LIBRARY_CATEGORIES,
   LIBRARY_ITEMS,
   LibraryItem,
   LibraryCategoryId,
-  ExperienceIntent
 } from "@/modules/library/libraryContent";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import libraryLogo from "@/assets/library-logo.png";
-import BoldText from "@/components/BoldText";
-import { markPracticeDone } from "@/lib/practiceSystem";
-import { CheckCircle2 } from "lucide-react";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { logActionEvent } from "@/lib/actionEvents";
-import PracticeComplete from "@/components/game/PracticeComplete";
+import { ChevronDown, Lock, Play, BookOpen, GraduationCap, Users, Rocket, TrendingUp, Crown, ArrowRight } from "lucide-react";
 
-type LengthFilter = "all" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
-type IntentChoice = ExperienceIntent | null;
-type LengthChoice = "any" | "5min" | "8min" | "10min" | "15min" | "20min" | "over20";
-
-const toDurationBucket = (minutes?: number | null) => {
-  if (!minutes && minutes !== 0) return undefined;
-  if (minutes <= 3) return "xs";
-  if (minutes <= 10) return "sm";
-  if (minutes <= 25) return "md";
-  return "lg";
+/* ─── Growth Sequence Steps ─── */
+type GrowthStep = {
+  id: string;
+  number: number;
+  title: string;
+  description: string;
+  locked: boolean;
+  icon: React.ReactNode;
+  neonColor: string;       // for the glow
+  neonColorRgb: string;    // for box-shadow
+  content?: "videos" | "article-link" | "article-27" | "locked" | "cta";
+  linkTo?: string;
 };
 
-const CATEGORY_SLUG_MAP: Record<string, LibraryCategoryId | "all"> = {
-  all: "all",
-  breathwork: "breathEnergy",
-  "breath-energy": "breathEnergy",
-  "breath-energy-practices": "breathEnergy",
-  money: "moneyAbundance",
-  abundance: "moneyAbundance",
-  "money-abundance": "moneyAbundance",
-  reality: "realityWisdom",
-  "reality-wisdom": "realityWisdom",
-  "reality-hacking": "realityWisdom",
-  spiritual: "spiritualGuidance",
-  "spiritual-guidance": "spiritualGuidance",
-  "spiritual-beings": "spiritualGuidance",
-  activations: "activations",
-  "heart-light-activations": "activations",
-  animals: "animalSpirits",
-  "animal-spirits": "animalSpirits",
-};
+const GROWTH_STEPS: GrowthStep[] = [
+  {
+    id: "foundational-videos",
+    number: 1,
+    title: "Watch the foundational course",
+    description: "Curated breathwork, activations, wisdom, and spiritual practices from embodied modern guides.",
+    locked: false,
+    icon: <Play className="w-5 h-5" />,
+    neonColor: "from-cyan-400 to-cyan-300",
+    neonColorRgb: "0, 200, 255",
+    content: "videos",
+  },
+  {
+    id: "scientific-materialism-antidote",
+    number: 2,
+    title: "Read the scientific materialism antidote",
+    description: "The article that dissolves the dominant paradigm and reveals what's underneath.",
+    locked: false,
+    icon: <BookOpen className="w-5 h-5" />,
+    neonColor: "from-emerald-400 to-emerald-300",
+    neonColorRgb: "52, 211, 153",
+    content: "article-link",
+  },
+  {
+    id: "founder-academy",
+    number: 3,
+    title: "Do the founder academy modules",
+    description: "Structured modules to build your unique business from your zone of genius.",
+    locked: true,
+    icon: <GraduationCap className="w-5 h-5" />,
+    neonColor: "from-violet-400 to-violet-300",
+    neonColorRgb: "167, 139, 250",
+    content: "locked",
+  },
+  {
+    id: "27-perspectives",
+    number: 4,
+    title: "Read the 27 perspectives article",
+    description: "The full ontological framework: 4 quadrants × 3 depths × recursive seeing = 27 dimensions of reality.",
+    locked: false,
+    icon: <BookOpen className="w-5 h-5" />,
+    neonColor: "from-amber-400 to-amber-300",
+    neonColorRgb: "251, 191, 36",
+    content: "article-27",
+    linkTo: "/integral_theory_upgrade1",
+  },
+  {
+    id: "integral-mystery-school",
+    number: 5,
+    title: "Do the integral mystery school",
+    description: "Deep immersion into the living architecture of consciousness and creation.",
+    locked: true,
+    icon: <Crown className="w-5 h-5" />,
+    neonColor: "from-rose-400 to-rose-300",
+    neonColorRgb: "251, 113, 133",
+    content: "locked",
+  },
+  {
+    id: "work-1-on-1",
+    number: 6,
+    title: "Work with me 1:1",
+    description: "Direct transmission. Personal guidance through the full phase-shift sequence.",
+    locked: false,
+    icon: <Rocket className="w-5 h-5" />,
+    neonColor: "from-fuchsia-400 to-fuchsia-300",
+    neonColorRgb: "232, 121, 249",
+    content: "cta",
+    linkTo: "/ignite",
+  },
+];
 
-const slugify = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
+/* ─── Video Category Filter Sub-component ─── */
+const VideoCategoryFilter = ({
+  activeCategory,
+  onSelect,
+}: {
+  activeCategory: LibraryCategoryId | "all";
+  onSelect: (id: LibraryCategoryId | "all") => void;
+}) => (
+  <div className="flex gap-2 flex-wrap mb-6">
+    <button
+      onClick={() => onSelect("all")}
+      className={cn(
+        "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border",
+        activeCategory === "all"
+          ? "bg-white/15 text-white border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+          : "bg-white/5 text-white/50 border-white/10 hover:border-white/20 hover:text-white/70"
+      )}
+    >
+      All
+    </button>
+    {LIBRARY_CATEGORIES.map((cat) => (
+      <button
+        key={cat.id}
+        onClick={() => onSelect(cat.id)}
+        className={cn(
+          "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border",
+          activeCategory === cat.id
+            ? "bg-white/15 text-white border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+            : "bg-white/5 text-white/50 border-white/10 hover:border-white/20 hover:text-white/70"
+        )}
+      >
+        {cat.name}
+      </button>
+    ))}
+  </div>
+);
 
-const getCategoryFromParam = (value?: string | null): LibraryCategoryId | "all" | null => {
-  if (!value) return null;
-  const normalized = value.toLowerCase();
-  if (CATEGORY_SLUG_MAP[normalized]) {
-    return CATEGORY_SLUG_MAP[normalized];
-  }
-  const categoryById = LIBRARY_CATEGORIES.find((category) => category.id.toLowerCase() === normalized);
-  if (categoryById) return categoryById.id;
-  const categoryBySlug = LIBRARY_CATEGORIES.find((category) => slugify(category.name) === normalized);
-  return categoryBySlug ? categoryBySlug.id : null;
-};
+/* ─── Video Card ─── */
+const VideoCard = ({
+  item,
+  onSelect,
+}: {
+  item: LibraryItem;
+  onSelect: (item: LibraryItem) => void;
+}) => (
+  <button
+    onClick={() => onSelect(item)}
+    className="flex flex-col rounded-xl liquid-glass text-left group hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+  >
+    <div className="relative w-full aspect-video overflow-hidden">
+      <img
+        src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
+        alt={item.title}
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+          <Play className="w-5 h-5 text-white ml-0.5" />
+        </div>
+      </div>
+    </div>
+    <div className="p-4 flex flex-col gap-1.5">
+      <div className="text-sm font-semibold text-white line-clamp-2">
+        {item.title}
+      </div>
+      {item.teacher && (
+        <div className="text-xs text-white/50">{item.teacher}</div>
+      )}
+      {(item.durationLabel || item.durationMinutes) && (
+        <div className="text-xs text-white/40">
+          {item.durationLabel ?? `${item.durationMinutes} min`}
+        </div>
+      )}
+    </div>
+  </button>
+);
 
+/* ─── Main Page ─── */
 const Library = () => {
-  const { category } = useParams();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const fromGame = searchParams.get('from') === 'game';
-  const fromDailyLoop = searchParams.get('from') === 'daily-loop';
-  const initialCategory = getCategoryFromParam(category) ?? "breathEnergy";
-  const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">(initialCategory);
-  const [search, setSearch] = useState("");
-  const [lengthFilter, setLengthFilter] = useState<LengthFilter>("all");
+  const [expandedStep, setExpandedStep] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
-  const [markingDone, setMarkingDone] = useState<string | null>(null);
-  const [profileId, setProfileId] = useState<string | null>(null);
+  const [howExpanded, setHowExpanded] = useState<Record<string, boolean>>({});
 
-  // Practice Complete celebration state
-  const [showCelebration, setShowCelebration] = useState(false);
-  const [completedPractice, setCompletedPractice] = useState<LibraryItem | null>(null);
-
-  // Intent advisor state
-  const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
-  const [intentChoice, setIntentChoice] = useState<IntentChoice>(null);
-  const [intentLengthChoice, setIntentLengthChoice] = useState<LengthChoice>("any");
-  const [advisorLoading, setAdvisorLoading] = useState(false);
-  const [advisorError, setAdvisorError] = useState<string | null>(null);
-  const [advisorSuggestions, setAdvisorSuggestions] = useState<Array<{
-    item: LibraryItem;
-    explanation: string;
-  }> | null>(null);
-
-  useEffect(() => {
-    let isMounted = true;
-    getOrCreateGameProfileId()
-      .then(id => {
-        if (isMounted) setProfileId(id);
-      })
-      .catch(() => undefined);
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    const nextCategory = getCategoryFromParam(category);
-    if (nextCategory) {
-      setActiveCategory(nextCategory);
-    }
-  }, [category]);
-
-  const handleSelectItem = (item: LibraryItem, metadata?: Record<string, unknown>) => {
-    setSelectedItem(item);
-    if (profileId) {
-      const mergedMetadata = {
-        ...metadata,
-        origin: fromDailyLoop ? "daily_loop_freedom_mode" : fromGame ? "game" : "library",
-      };
-      logActionEvent({
-        actionId: `library:${item.id}`,
-        profileId,
-        source: "src/pages/Library.tsx",
-        loop: "marketplace",
-        growthPath: item.primaryPath,
-        qolDomain: item.primaryDomain,
-        duration: toDurationBucket(item.durationMinutes),
-        selectedAt: new Date().toISOString(),
-        metadata: mergedMetadata,
-      });
-    }
+  const toggleStep = (stepId: string, locked: boolean) => {
+    if (locked) return;
+    setExpandedStep((prev) => (prev === stepId ? null : stepId));
   };
 
-  const handleMarkAsDone = async (item: LibraryItem, e?: React.MouseEvent) => {
-    if (e) {
-      e.stopPropagation();
-    }
-
-    setMarkingDone(item.id);
-
-    const result = await markPracticeDone(item.id, item.primaryPath);
-
-    if (result.success) {
-      if (profileId) {
-        logActionEvent({
-          actionId: `library:${item.id}`,
-          profileId,
-          source: "src/pages/Library.tsx",
-          loop: "marketplace",
-          growthPath: item.primaryPath,
-          qolDomain: item.primaryDomain,
-          duration: toDurationBucket(item.durationMinutes),
-          completedAt: new Date().toISOString(),
-          metadata: {
-            intent: "mark_done",
-            result: "completed",
-            origin: fromDailyLoop ? "daily_loop_freedom_mode" : fromGame ? "game" : "library",
-          },
-        });
-      }
-      // Show celebration screen instead of just toast
-      setCompletedPractice(item);
-      setShowCelebration(true);
-      setSelectedItem(null); // Close video modal if open
-    } else {
-      toast.error(result.error || "Failed to log practice");
-    }
-
-    setMarkingDone(null);
+  const toggleHow = (stepId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setHowExpanded((prev) => ({ ...prev, [stepId]: !prev[stepId] }));
   };
 
-  const matchesLengthFilter = (item: LibraryItem, filter: LengthFilter | LengthChoice): boolean => {
-    if (filter === "all" || filter === "any") return true;
-    if (!item.durationMinutes) return true;
-
-    if (filter === "5min") return item.durationMinutes <= 5;
-    if (filter === "8min") return item.durationMinutes > 5 && item.durationMinutes <= 8;
-    if (filter === "10min") return item.durationMinutes > 8 && item.durationMinutes <= 10;
-    if (filter === "15min") return item.durationMinutes > 10 && item.durationMinutes <= 15;
-    if (filter === "20min") return item.durationMinutes > 15 && item.durationMinutes <= 20;
-    if (filter === "over20") return item.durationMinutes > 20;
-
-    return true;
-  };
-
-  const buildAdvisorPrompt = (payload: {
-    intent: IntentChoice;
-    lengthChoice: LengthChoice;
-    items: {
-      id: string;
-      title: string;
-      teacher?: string;
-      categoryId: LibraryCategoryId;
-      durationMinutes: number | null;
-    }[];
-  }): string => {
-    return `You are helping a user choose a practice from a small curated practice library.
-
-The user has told you:
-- Their current intention (what they want right now).
-- How much time they have.
-
-You are given a JSON list of candidate practices with:
-- id
-- title
-- teacher
-- categoryId (breathEnergy, moneyAbundance, realityWisdom, spiritualGuidance, activations, animalSpirits)
-- durationMinutes (may be null).
-
-From this list:
-- Choose up to 3 practices that best match the user's intention and time.
-- Prefer shorter practices if lengthChoice is "short"; prefer longer or deeper ones if "long".
-- Prefer breathwork videos for breathwork / feelBetter intentions, activations for activation / psychic intentions, and wisdom videos for receiveWisdom intentions.
-
-For each chosen practice, output ONE line in the following format:
-[title] — [very short explanation of why it's a good match for their intention right now, in 1 short sentence]
-
-Style:
-- Be encouraging but concise.
-- Do not mention the library, JSON, IDs, or this prompt.
-- Do not number the lines; just one suggestion per line.
-
-User intent and choices:
-${JSON.stringify({ intent: payload.intent, lengthChoice: payload.lengthChoice }, null, 2)}
-
-Candidate practices:
-${JSON.stringify(payload.items, null, 2)}
-
-Now output up to 3 lines, each describing one recommended practice.`.trim();
-  };
-
-  const handleGetAdvisorSuggestions = async () => {
-    if (!intentChoice) return;
-
-    try {
-      setAdvisorLoading(true);
-      setAdvisorError(null);
-      setAdvisorSuggestions(null);
-
-      const matching = LIBRARY_ITEMS.filter(item => {
-        const matchesIntent = !item.intents || item.intents.includes(intentChoice);
-        const matchesLength = matchesLengthFilter(item, intentLengthChoice);
-        return matchesIntent && matchesLength;
-      });
-
-      if (matching.length === 0) {
-        setAdvisorError("No practices match that combo yet. Try relaxing one of the filters.");
-        return;
-      }
-
-      const payload = {
-        intent: intentChoice,
-        lengthChoice: intentLengthChoice,
-        items: matching.map(item => ({
-          id: item.id,
-          title: item.title,
-          teacher: item.teacher,
-          categoryId: item.categoryId,
-          durationMinutes: item.durationMinutes ?? null,
-        })),
-      };
-
-      const prompt = buildAdvisorPrompt(payload);
-
-      const { data, error } = await supabase.functions.invoke("library-advisor", {
-        body: { prompt },
-      });
-
-      if (error) {
-        if (error.message?.includes("429") || error.message?.includes("Rate limit")) {
-          toast.error("Rate limits exceeded, please try again later.");
-          setAdvisorError("Rate limits exceeded. Please try again in a moment.");
-        } else if (error.message?.includes("402") || error.message?.includes("Payment")) {
-          toast.error("Payment required. Please add funds to your workspace.");
-          setAdvisorError("Payment required. Please contact support.");
-        } else {
-          throw error;
-        }
-        return;
-      }
-
-      const responseText = data?.generatedText || "";
-      const lines = responseText
-        .split("\n")
-        .map(l => l.trim())
-        .filter(Boolean);
-
-      // Parse suggestions and match to actual library items
-      const matchedSuggestions = lines
-        .map(line => {
-          // Format: "[title] — [explanation]"
-          const separator = line.indexOf("—");
-          if (separator === -1) return null;
-
-          const title = line.substring(0, separator).trim();
-          const explanation = line.substring(separator + 1).trim();
-
-          // Find matching library item (case-insensitive, fuzzy match)
-          const matchedItem = LIBRARY_ITEMS.find(item =>
-            item.title.toLowerCase() === title.toLowerCase() ||
-            item.title.toLowerCase().includes(title.toLowerCase()) ||
-            title.toLowerCase().includes(item.title.toLowerCase())
-          );
-
-          if (!matchedItem) return null;
-
-          return { item: matchedItem, explanation };
-        })
-        .filter((match): match is { item: LibraryItem; explanation: string } => match !== null);
-
-      setAdvisorSuggestions(matchedSuggestions);
-    } catch (err) {
-      setAdvisorError("Could not generate suggestions. Please try again.");
-      toast.error("Failed to generate suggestions");
-    } finally {
-      setAdvisorLoading(false);
-    }
-  };
-
-  const intentOptions: { id: ExperienceIntent; label: string }[] = [
-    { id: "breathwork", label: "Do a breathwork practice" },
-    { id: "activation", label: "Receive an activation" },
-    { id: "receiveWisdom", label: "Receive wisdom" },
-    { id: "feelBetter", label: "Feel better right now" },
-    { id: "psychic", label: "Activate psychic abilities" },
-  ];
-
-  const timeOptions: { id: LengthChoice; label: string }[] = [
-    { id: "any", label: "Any length" },
-    { id: "5min", label: "5 min" },
-    { id: "8min", label: "8 min" },
-    { id: "10min", label: "10 min" },
-    { id: "15min", label: "15 min" },
-    { id: "20min", label: "20 min" },
-    { id: "over20", label: ">20 min" },
-  ];
-
-  const filteredItems = LIBRARY_ITEMS.filter(item => {
-    const matchesCategory =
-      activeCategory === "all" || item.categoryId === activeCategory;
-    const query = search.toLowerCase();
-    const matchesSearch =
-      !query ||
-      item.title.toLowerCase().includes(query) ||
-      (item.teacher ?? "").toLowerCase().includes(query);
-    const matchesLength = matchesLengthFilter(item, lengthFilter);
-
-    return matchesCategory && matchesSearch && matchesLength;
-  });
+  const filteredItems = LIBRARY_ITEMS.filter(
+    (item) => activeCategory === "all" || item.categoryId === activeCategory
+  );
 
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className="min-h-dvh flex flex-col bg-[#0a0a1a] text-white overflow-hidden">
+      {/* ─── Ambient Background ─── */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Gradient base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d1025] to-[#0a0a1a]" />
+        {/* Glow orbs */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-cyan-500/5 blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-violet-500/5 blur-[120px]" />
+        <div className="absolute top-2/3 left-1/2 w-[400px] h-[400px] rounded-full bg-emerald-500/4 blur-[100px]" />
+      </div>
+
       <Navigation />
 
-      <main className="flex-1 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          {/* Back Button */}
-          <div className="mb-6">
-            <BackButton
-              to={fromGame ? "/game" : "/"}
-              label={<BoldText>{fromGame ? "BACK TO GAME" : "BACK"}</BoldText>}
-              className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
-            />
-          </div>
+      <main className="flex-1 relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-4xl">
 
-          <div className="flex justify-center mb-6">
-            <img
-              src={libraryLogo}
-              alt="Library Logo"
-              loading="lazy"
-              className="h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 object-contain"
-            />
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-primary uppercase text-center">
-            <BoldText>Welcome to the Sacred Library of Transformation!</BoldText>
-          </h1>
-
-          <p className="text-lg text-muted-foreground mb-8 text-center">
-            <BoldText>This is a curation of powerful activations by amazing embodied modern day guides. Enjoy transforming!</BoldText>
-          </p>
-
-          {/* Help Me Choose Button */}
-          <div className="flex justify-center my-8">
-            <button
-              onClick={() => setIsAdvisorOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-bold transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)] uppercase"
-              style={{
-                backgroundColor: 'hsl(210, 70%, 15%)',
-                color: 'white'
-              }}
+          {/* ═══════ PANEL 1: GROW ═══════ */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass mb-6">
+              <TrendingUp className="w-4 h-4 text-cyan-400" />
+              <span className="text-xs font-medium text-white/70 uppercase tracking-widest">Growth Space</span>
+            </div>
+            <h1
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+              style={{ textShadow: "0 0 40px rgba(255,255,255,0.15), 0 0 80px rgba(255,255,255,0.05)" }}
             >
-              <BoldText>Help me choose a practice</BoldText>
-            </button>
+              GROW
+            </h1>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Your journey from scattered talent to centered mastery.
+              Each step unlocks the next level of seeing.
+            </p>
           </div>
 
-          {/* Intent Advisor Panel */}
-          {isAdvisorOpen && (
-            <div className="mt-4 mb-8 rounded-2xl border border-border bg-card/60 p-4 space-y-3 text-xs sm:text-sm">
-              <div className="flex justify-between items-center">
-                <h2 className="font-semibold text-foreground text-sm">
-                  What do you want right now?
-                </h2>
-                <button
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => {
-                    setIsAdvisorOpen(false);
-                    setAdvisorSuggestions(null);
-                    setAdvisorError(null);
-                  }}
-                >
-                  Close
-                </button>
-              </div>
+          {/* ═══════ PANEL 2: GROWTH SEQUENCE ═══════ */}
+          <div className="space-y-4">
+            {GROWTH_STEPS.map((step) => {
+              const isExpanded = expandedStep === step.id;
+              const isHowOpen = howExpanded[step.id] ?? false;
 
-              {/* Intention choices */}
-              <div className="space-y-1">
-                <p className="text-foreground/80">Choose your intention:</p>
-                <div className="flex flex-wrap gap-2">
-                  {intentOptions.map(option => (
-                    <button
-                      key={option.id}
-                      onClick={() => setIntentChoice(option.id)}
-                      className={cn(
-                        "px-4 py-2 rounded-full border text-xs transition-all min-h-[44px]",
-                        intentChoice === option.id
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
-                      )}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              return (
+                <div key={step.id} className="relative">
+                  {/* ── Step Button ── */}
+                  <button
+                    onClick={() => toggleStep(step.id, step.locked)}
+                    disabled={step.locked}
+                    className={cn(
+                      "w-full rounded-2xl p-5 sm:p-6 text-left transition-all duration-500 group relative overflow-hidden",
+                      step.locked
+                        ? "opacity-40 cursor-not-allowed"
+                        : "hover:scale-[1.01] cursor-pointer",
+                      isExpanded
+                        ? "liquid-glass-strong"
+                        : "liquid-glass"
+                    )}
+                    style={
+                      !step.locked
+                        ? {
+                            boxShadow: isExpanded
+                              ? `0 0 40px rgba(${step.neonColorRgb}, 0.15), inset 0 1px 1px rgba(255,255,255,0.1)`
+                              : `0 0 20px rgba(${step.neonColorRgb}, 0.08)`,
+                          }
+                        : undefined
+                    }
+                  >
+                    <div className="flex items-center gap-4">
+                      {/* Number badge */}
+                      <div
+                        className={cn(
+                          "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300",
+                          step.locked
+                            ? "bg-white/5 text-white/30"
+                            : `bg-gradient-to-br ${step.neonColor} text-black/80`
+                        )}
+                      >
+                        {step.locked ? <Lock className="w-4 h-4" /> : step.number}
+                      </div>
 
-              {/* Time choices */}
-              <div className="space-y-1">
-                <p className="text-foreground/80">How much time do you have?</p>
-                <div className="flex flex-wrap gap-2">
-                  {timeOptions.map(option => (
-                    <button
-                      key={option.id}
-                      onClick={() => setIntentLengthChoice(option.id)}
-                      className={cn(
-                        "px-4 py-2 rounded-full border text-xs transition-all min-h-[44px]",
-                        intentLengthChoice === option.id
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
-                      )}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      {/* Title + description */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className={cn(
+                            "text-base sm:text-lg font-semibold transition-colors duration-300",
+                            step.locked ? "text-white/30" : "text-white"
+                          )}>
+                            {step.title}
+                          </span>
+                        </div>
+                        {!isExpanded && (
+                          <p className={cn(
+                            "text-sm mt-1 line-clamp-1 transition-colors duration-300",
+                            step.locked ? "text-white/15" : "text-white/40"
+                          )}>
+                            {step.description}
+                          </p>
+                        )}
+                      </div>
 
-              <button
-                onClick={handleGetAdvisorSuggestions}
-                disabled={advisorLoading || !intentChoice}
-                className="mt-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs sm:text-sm text-foreground disabled:opacity-60 hover:bg-card/80 transition-colors"
-              >
-                {advisorLoading ? "Finding practices..." : "Suggest practices"}
-              </button>
+                      {/* Right side: icon + expand */}
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        {/* "How" toggle */}
+                        {!step.locked && !isExpanded && (
+                          <button
+                            onClick={(e) => toggleHow(step.id, e)}
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs text-white/40 hover:text-white/70 bg-white/5 hover:bg-white/10 transition-all duration-300"
+                          >
+                            How
+                            <ChevronDown className={cn(
+                              "w-3 h-3 transition-transform duration-300",
+                              isHowOpen && "rotate-180"
+                            )} />
+                          </button>
+                        )}
+                        {/* Expand chevron */}
+                        {!step.locked && (
+                          <ChevronDown className={cn(
+                            "w-5 h-5 text-white/30 group-hover:text-white/60 transition-all duration-300",
+                            isExpanded && "rotate-180 text-white/60"
+                          )} />
+                        )}
+                      </div>
+                    </div>
 
-              {advisorError && (
-                <p className="text-xs text-red-400 mt-2">{advisorError}</p>
-              )}
-
-              {advisorSuggestions && advisorSuggestions.length > 0 && (
-                <div className="mt-4 space-y-3">
-                  <h3 className="text-sm font-semibold text-foreground">
-                    Suggested practices:
-                  </h3>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {advisorSuggestions.map(({ item, explanation }, idx) => (
-                      <div key={idx} className="flex flex-col">
-                        <button
-                          onClick={() => handleSelectItem(item, { intent: "advisor_pick", explanation })}
-                          className="flex flex-col rounded-xl border border-border bg-card text-left shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden group"
-                        >
-                          <div className="relative w-full aspect-video overflow-hidden">
-                            <img
-                              src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
-                              alt={item.title}
-                              loading="lazy"
-                              decoding="async"
-                              className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                          </div>
-                          <div className="p-3 flex flex-col gap-1.5">
-                            <div className="text-xs font-semibold text-foreground line-clamp-2">
-                              {item.title}
-                            </div>
-                            {item.teacher && (
-                              <div className="text-[10px] text-muted-foreground">
-                                {item.teacher}
-                              </div>
-                            )}
-                            {(() => {
-                              const durationText =
-                                item.durationLabel ??
-                                (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
-                              return durationText ? (
-                                <div className="text-[10px] text-muted-foreground">
-                                  {durationText}
-                                </div>
-                              ) : null;
-                            })()}
-                          </div>
-                        </button>
-                        <p className="mt-2 text-[11px] text-foreground/70 px-1">
-                          {explanation}
+                    {/* "How" dropdown (inline, above expansion) */}
+                    {isHowOpen && !isExpanded && !step.locked && (
+                      <div className="mt-4 pt-4 border-t border-white/10">
+                        <p className="text-sm text-white/50 leading-relaxed">
+                          {step.description}
                         </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+                    )}
+                  </button>
 
-          {/* Category Chips */}
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <button
-              onClick={() => setActiveCategory("all")}
-              className={cn(
-                "px-4 py-2.5 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all min-h-[44px]",
-                activeCategory === "all"
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
-              )}
-            >
-              All
-            </button>
-            {LIBRARY_CATEGORIES.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={cn(
-                  "px-4 py-2.5 rounded-full border text-xs sm:text-sm whitespace-nowrap transition-all min-h-[44px]",
-                  activeCategory === cat.id
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
-                )}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
+                  {/* ── Expanded Content ── */}
+                  {isExpanded && (
+                    <div className="mt-2 rounded-2xl liquid-glass p-6 sm:p-8 animate-in fade-in slide-in-from-top-2 duration-500">
+                      <p className="text-sm text-white/60 mb-6 leading-relaxed">
+                        {step.description}
+                      </p>
 
-          {/* Search Input */}
-          <input
-            type="text"
-            placeholder="Search by title or guide..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="mt-6 w-full max-w-md rounded-full border border-border bg-background/50 px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-          />
-
-          {/* Length Filter */}
-          <div className="mt-3 flex flex-wrap gap-2 text-xs sm:text-sm">
-            {[
-              { id: "all", label: "All lengths" },
-              { id: "5min", label: "5 min" },
-              { id: "8min", label: "8 min" },
-              { id: "10min", label: "10 min" },
-              { id: "15min", label: "15 min" },
-              { id: "20min", label: "20 min" },
-              { id: "over20", label: ">20 min" },
-            ].map(option => (
-              <button
-                key={option.id}
-                onClick={() => setLengthFilter(option.id as LengthFilter)}
-                className={cn(
-                  "px-3 py-1 rounded-full border transition-all",
-                  lengthFilter === option.id
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background/50 text-foreground/70 border-border hover:border-primary/50"
-                )}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Video Grid */}
-          {filteredItems.length > 0 ? (
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredItems.map(item => (
-                <div
-                  key={item.id}
-                  className="flex flex-col rounded-xl border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/50 transition-all overflow-hidden"
-                >
-                  <button
-                    onClick={() => handleSelectItem(item, { intent: "library_pick", category: activeCategory })}
-                    className="flex flex-col text-left group"
-                  >
-                    <div className="relative w-full aspect-video overflow-hidden">
-                      <img
-                        src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
-                        alt={item.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                    </div>
-                    <div className="p-4 flex flex-col gap-2">
-                      <div className="text-sm font-semibold text-foreground line-clamp-2">
-                        {item.title}
-                      </div>
-                      {item.teacher && (
-                        <div className="text-xs text-muted-foreground">
-                          {item.teacher}
+                      {/* Videos grid */}
+                      {step.content === "videos" && (
+                        <div>
+                          <VideoCategoryFilter
+                            activeCategory={activeCategory}
+                            onSelect={setActiveCategory}
+                          />
+                          {filteredItems.length > 0 ? (
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                              {filteredItems.map((item) => (
+                                <VideoCard
+                                  key={item.id}
+                                  item={item}
+                                  onSelect={setSelectedItem}
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <p className="text-sm text-white/30">
+                              No content in this category yet.
+                            </p>
+                          )}
                         </div>
                       )}
-                      {(() => {
-                        const durationText =
-                          item.durationLabel ??
-                          (item.durationMinutes ? `${item.durationMinutes} min` : undefined);
-                        return durationText ? (
-                          <div className="text-xs text-muted-foreground">
-                            {durationText}
+
+                      {/* Article link (scientific materialism) */}
+                      {step.content === "article-link" && (
+                        <div className="flex flex-col items-center gap-4">
+                          <div className="liquid-glass-strong rounded-xl p-6 text-center max-w-md mx-auto hover:scale-[1.02] transition-transform duration-300">
+                            <BookOpen className="w-8 h-8 mx-auto mb-3 text-emerald-400" />
+                            <h3 className="text-lg font-semibold text-white mb-2">Coming Soon</h3>
+                            <p className="text-sm text-white/50">
+                              The scientific materialism antidote article is being prepared for publication.
+                            </p>
                           </div>
-                        ) : null;
-                      })()}
+                        </div>
+                      )}
+
+                      {/* 27 Perspectives article */}
+                      {step.content === "article-27" && (
+                        <div className="flex flex-col items-center gap-4">
+                          <button
+                            onClick={() => navigate(step.linkTo!)}
+                            className="liquid-glass-strong rounded-xl p-6 text-center max-w-md mx-auto hover:scale-[1.02] transition-all duration-300 group/card w-full"
+                            style={{ boxShadow: `0 0 30px rgba(${step.neonColorRgb}, 0.15)` }}
+                          >
+                            <BookOpen className="w-8 h-8 mx-auto mb-3 text-amber-400" />
+                            <h3 className="text-lg font-semibold text-white mb-2">
+                              27-Perspective Vision
+                            </h3>
+                            <p className="text-sm text-white/50 mb-4">
+                              Person-Perspectives as Dimensions of Reality — by Aleksandr Konstantinov
+                            </p>
+                            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-400/20 text-amber-300 text-sm font-medium group-hover/card:from-amber-500/30 group-hover/card:to-amber-400/30 transition-all duration-300">
+                              Read the article
+                              <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
+                            </div>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* CTA - Work 1:1 */}
+                      {step.content === "cta" && (
+                        <div className="flex flex-col items-center gap-4">
+                          <button
+                            onClick={() => navigate(step.linkTo!)}
+                            className="liquid-glass-strong rounded-xl p-8 text-center max-w-md mx-auto hover:scale-[1.03] transition-all duration-300 group/card w-full"
+                            style={{ boxShadow: `0 0 40px rgba(${step.neonColorRgb}, 0.2)` }}
+                          >
+                            <Rocket className="w-10 h-10 mx-auto mb-4 text-fuchsia-400" />
+                            <h3 className="text-xl font-bold text-white mb-2">
+                              Ignition Session
+                            </h3>
+                            <p className="text-sm text-white/50 mb-5">
+                              One conversation that changes your trajectory.
+                              Articulate your top talent, build your unique business, and launch from center.
+                            </p>
+                            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-fuchsia-500/20 to-fuchsia-400/20 text-fuchsia-300 text-sm font-bold group-hover/card:from-fuchsia-500/30 group-hover/card:to-fuchsia-400/30 transition-all duration-300 ring-1 ring-fuchsia-400/20">
+                              Start now
+                              <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
+                            </div>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Locked placeholder */}
+                      {step.content === "locked" && (
+                        <div className="text-center py-4">
+                          <Lock className="w-6 h-6 mx-auto mb-2 text-white/20" />
+                          <p className="text-sm text-white/30">
+                            This module is being built. Stay tuned.
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  </button>
-                  <div className="px-4 pb-4">
-                    <button
-                      onClick={(e) => handleMarkAsDone(item, e)}
-                      disabled={markingDone === item.id}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-all disabled:opacity-50 min-h-[44px]"
-                    >
-                      <CheckCircle2 className="w-4 h-4" />
-                      {markingDone === item.id ? "Logging..." : "Mark as done"}
-                    </button>
-                  </div>
+                  )}
+
+                  {/* ── Milestone connector between steps ── */}
+                  {step.number < GROWTH_STEPS.length && (
+                    <div className="flex items-center justify-center py-2">
+                      <div className="w-px h-6 bg-gradient-to-b from-white/10 to-transparent" />
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-8 text-sm text-muted-foreground">
-              Content for this category is coming soon.
-            </p>
-          )}
+              );
+            })}
+          </div>
         </div>
       </main>
 
-      {/* Video Modal */}
+      {/* ─── Video Modal ─── */}
       {selectedItem && (
         <div
-          className="fixed inset-0 z-modal flex items-center justify-center bg-black/80 px-4"
-          onClick={() => {
-            if (profileId) {
-              logActionEvent({
-                actionId: `library:${selectedItem.id}`,
-                profileId,
-                source: "src/pages/Library.tsx",
-                loop: "marketplace",
-                growthPath: selectedItem.primaryPath,
-                qolDomain: selectedItem.primaryDomain,
-                duration: toDurationBucket(selectedItem.durationMinutes),
-                selectedAt: new Date().toISOString(),
-                metadata: { intent: "close_modal_overlay" },
-              });
-            }
-            setSelectedItem(null);
-          }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm px-4"
+          onClick={() => setSelectedItem(null)}
         >
           <div
-            className="w-full max-w-4xl rounded-2xl bg-card border border-border p-6 shadow-2xl"
+            className="w-full max-w-4xl rounded-2xl liquid-glass-strong p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-start mb-4">
-              <h2 className="text-base sm:text-lg font-semibold pr-4 text-foreground">
+              <h2 className="text-base sm:text-lg font-semibold pr-4 text-white">
                 {selectedItem.title}
               </h2>
               <button
-                onClick={() => {
-                  if (profileId) {
-                    logActionEvent({
-                      actionId: `library:${selectedItem.id}`,
-                      profileId,
-                      source: "src/pages/Library.tsx",
-                      loop: "marketplace",
-                      growthPath: selectedItem.primaryPath,
-                      qolDomain: selectedItem.primaryDomain,
-                      duration: toDurationBucket(selectedItem.durationMinutes),
-                      selectedAt: new Date().toISOString(),
-                      metadata: { intent: "close_modal_button" },
-                    });
-                  }
-                  setSelectedItem(null);
-                }}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors rounded-full px-3 py-1 hover:bg-muted"
+                onClick={() => setSelectedItem(null)}
+                className="text-sm text-white/50 hover:text-white transition-colors rounded-full px-3 py-1 hover:bg-white/10"
               >
                 Close
               </button>
@@ -719,46 +480,10 @@ Now output up to 3 lines, each describing one recommended practice.`.trim();
               />
             </div>
             {selectedItem.teacher && (
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-sm text-white/50">
                 Guided by {selectedItem.teacher}
               </p>
             )}
-            <button
-              onClick={() => handleMarkAsDone(selectedItem)}
-              disabled={markingDone === selectedItem.id}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-all disabled:opacity-50 min-h-[44px]"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              {markingDone === selectedItem.id ? "Logging..." : "Mark as done"}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Practice Complete Celebration Modal */}
-      {showCelebration && completedPractice && (
-        <div
-          className="fixed inset-0 z-modal flex items-center justify-center bg-black/80 px-4"
-          onClick={() => setShowCelebration(false)}
-        >
-          <div
-            className="w-full max-w-lg"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <PracticeComplete
-              practiceName={completedPractice.title}
-              xpEarned={25}
-              streakDays={1}
-              onContinue={() => {
-                setShowCelebration(false);
-                setCompletedPractice(null);
-              }}
-              onFindPeople={() => {
-                setShowCelebration(false);
-                setCompletedPractice(null);
-                navigate("/game/teams");
-              }}
-            />
           </div>
         </div>
       )}
