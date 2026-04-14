@@ -570,7 +570,7 @@ export default function IntegralTheoryUpgrade1() {
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-5 md:px-8">
         {/* Language toggle */}
-        <div className="sticky top-28 z-40 pt-6 pb-4" style={{ background: 'linear-gradient(180deg, rgba(8,8,24,0.98) 0%, rgba(8,8,24,0) 100%)' }}>
+        <div className="sticky top-36 z-40 pt-6 pb-4" style={{ background: 'linear-gradient(180deg, rgba(8,8,24,0.98) 0%, rgba(8,8,24,0) 100%)' }}>
           <div className="flex justify-center">
             <div className="liquid-glass rounded-full p-1.5 flex gap-1 ring-1 ring-white/10">
               <button

@@ -196,8 +196,8 @@ const App = () => (
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   <Route path="/ignite" element={<RequireAuth><IgniteSession /></RequireAuth>} />
-                  <Route path="/library" element={<RequireAuth><Library /></RequireAuth>} />
-                  <Route path="/library/:category" element={<RequireAuth><Library /></RequireAuth>} />
+                  <Route path="/library" element={<Library />} />
+                  <Route path="/library/:category" element={<Library />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
                   <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
                   <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />
