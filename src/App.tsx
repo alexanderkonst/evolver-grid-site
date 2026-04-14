@@ -370,7 +370,7 @@ const App = () => (
                   {/* Community Pages */}
                   <Route path="/the-originals" element={<RequireAuth><TheOriginalsPage /></RequireAuth>} />
                   {/* Venture Dashboard */}
-                  <Route path="/dashboard" element={<RequireAuth><VentureDashboard /></RequireAuth>} />
+                  <Route path="/dashboard" element={<VentureDashboard />} />
                   <Route path="/holomap" element={<RequireAuth><MorphogeneticHolomap /></RequireAuth>} />
                   <Route path="/founders" element={<RequireAuth><FoundersShowcase /></RequireAuth>} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
