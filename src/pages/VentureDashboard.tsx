@@ -3,35 +3,27 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Responsi
 // ─── Revenue Timeline Data ──────────────────────────────────────────────────
 
 const REVENUE_TIMELINE = [
-  { day: 0, date: "Mar 4", cash: 0, total: 0, label: "Day 0" },
-  { day: 2, date: "Mar 5", cash: 0, total: 277, label: "Oyi (rev share)" },
-  { day: 4, date: "Mar 7", cash: 0, total: 554, label: "Sergey ($277 rev share)" },
-  { day: 30, date: "Apr 2", cash: 50, total: 6327, label: "Oyi $50 gift" },
-  { day: 34, date: "Apr 6", cash: 161, total: 6438, label: "Karime $111 gratitude" },
-  { day: 35, date: "Apr 7", cash: 161, total: 6438, label: "" },
-  { day: 36, date: "Apr 8", cash: 677, total: 6954, label: "Oyi $516 gift" },
+  { day: 0, date: "Mar 4", total: 0, label: "Day 0" },
+  { day: 2, date: "Mar 5", total: 277, label: "Oyi (rev share)" },
+  { day: 4, date: "Mar 7", total: 554, label: "Sergey ($277 rev share)" },
+  { day: 30, date: "Apr 2", total: 6327, label: "Oyi $50 gift" },
+  { day: 34, date: "Apr 6", total: 6438, label: "Karime $111 gratitude" },
+  { day: 36, date: "Apr 8", total: 6954, label: "Oyi $516 gift" },
+  { day: 40, date: "Apr 12", total: 7154, label: "Karime $200 in-kind" },
+  { day: 41, date: "Apr 13", total: 7654, label: "Oyi $500 in-kind" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
 
 const KPIS = [
   {
-    label: "Cash Revenue",
-    value: "$677",
-    trend: "+$516",
-    trendLabel: "last 24h",
-    trendUp: true,
-    detail: "$566 Oyi · $111 Karime",
-    color: "#8460ea",
-  },
-  {
     label: "Total Revenue",
-    value: "$6.9K",
-    trend: "∞",
-    trendLabel: "from $0",
+    value: "$7.7K",
+    trend: "+$700",
+    trendLabel: "last 48h",
     trendUp: true,
-    detail: "$677 cash + $6.2K rev share",
-    color: "#6894d0",
+    detail: "$1,377 cash/in-kind + $6.3K rev share",
+    color: "#8460ea",
   },
   {
     label: "Genius Founders",
@@ -40,7 +32,7 @@ const KPIS = [
     trendLabel: "this week",
     trendUp: true,
     detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime",
-    color: "#a7cbd4",
+    color: "#6894d0",
   },
   {
     label: "Conversion Rate",
@@ -49,7 +41,7 @@ const KPIS = [
     trendLabel: "maintained",
     trendUp: true,
     detail: "Every session → canvas completed",
-    color: "#b1c9b6",
+    color: "#a7cbd4",
   },
 ];
 
@@ -59,14 +51,14 @@ const SECONDARY_STATS = [
   { label: "Landing Pages", value: "4", accent: false },
   { label: "Social Surfaces", value: "3/9", accent: true },
   { label: "Domains Codified", value: "75", accent: false },
-  { label: "Days Active", value: "36", accent: false },
+  { label: "Days Active", value: "41", accent: false },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
 
 const REVENUE_BREAKDOWN = [
-  { name: "Oyi", cash: 566, revShare: 0, type: "Gratitude gifts", status: "received", color: "#8460ea" },
-  { name: "Karime", cash: 111, revShare: 0, type: "Gratitude gift", status: "received", color: "#6894d0" },
+  { name: "Oyi", cash: 1066, revShare: 0, type: "Gratitude + in-kind", status: "received", color: "#8460ea" },
+  { name: "Karime", cash: 311, revShare: 0, type: "Gratitude + in-kind", status: "received", color: "#6894d0" },
   { name: "Sergey", cash: 0, revShare: 277, type: "Rev share", status: "pending", color: "#a7cbd4" },
   { name: "Taylor", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#b1c9b6" },
   { name: "Tracy", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#cec9b0" },
@@ -81,6 +73,8 @@ const TIMELINE = [
   { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet.", color: "#b1c9b6" },
   { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Core identity, story, and audience crystallized.", color: "#cec9b0" },
   { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically.", color: "#cea4ae" },
+  { day: 40, date: "Apr 12", name: "Karime", type: "In-kind ($200)", desc: "Claude Pro subscription payment. Deepening operational partnership.", color: "#cea4ae" },
+  { day: 41, date: "Apr 13", name: "Oyi", type: "In-kind ($500)", desc: "Comprehensive support: food, flights, transport. Sustained gratitude.", color: "#6894d0" },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
@@ -139,7 +133,7 @@ const VentureDashboard = () => {
         <header className="mb-16 fade-in-section" id="dashboard-header">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-[#8460ea] animate-pulse" />
-            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white/40">Live · Day 36</span>
+            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white/40">Live · Day 41</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white/90 leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Venture Dashboard
@@ -150,7 +144,7 @@ const VentureDashboard = () => {
         </header>
 
         {/* ─── KPI Grid ────────────────────────────────────────────── */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3" id="kpi-grid">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3" id="kpi-grid">
           {KPIS.map((kpi, i) => (
             <div
               key={kpi.label}
@@ -214,10 +208,7 @@ const VentureDashboard = () => {
               </div>
               <div className="flex items-center gap-4 text-[10px] text-white/30">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-0.5 rounded-full bg-[#8460ea]" /> Cash
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-0.5 rounded-full bg-[#6894d0]" /> Total
+                  <span className="w-2 h-0.5 rounded-full bg-[#6894d0]" /> Total Revenue
                 </span>
               </div>
             </div>
@@ -225,11 +216,7 @@ const VentureDashboard = () => {
               <AreaChart data={REVENUE_TIMELINE} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
                 <defs>
                   <linearGradient id="gradTotal" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6894d0" stopOpacity={0.2} />
-                    <stop offset="100%" stopColor="#6894d0" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="gradCash" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8460ea" stopOpacity={0.3} />
+                    <stop offset="0%" stopColor="#8460ea" stopOpacity={0.25} />
                     <stop offset="100%" stopColor="#8460ea" stopOpacity={0} />
                   </linearGradient>
                 </defs>
@@ -246,11 +233,10 @@ const VentureDashboard = () => {
                     fontFamily: "DM Sans",
                     padding: "8px 12px",
                   }}
-                  formatter={(value: number, name: string) => [formatCurrency(value), name === "total" ? "Total Revenue" : "Cash Received"]}
+                  formatter={(value: number) => [formatCurrency(value), "Total Revenue"]}
                   labelFormatter={(label) => `${label}`}
                 />
-                <Area type="monotone" dataKey="total" stroke="#6894d0" strokeWidth={1.5} fill="url(#gradTotal)" />
-                <Area type="monotone" dataKey="cash" stroke="#8460ea" strokeWidth={2} fill="url(#gradCash)" />
+                <Area type="monotone" dataKey="total" stroke="#8460ea" strokeWidth={2} fill="url(#gradTotal)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -312,9 +298,9 @@ const VentureDashboard = () => {
           <span className="text-lg mt-0.5">📊</span>
           <div>
             <p className="text-xs text-white/50 leading-relaxed">
-              <span className="text-white/70 font-medium">On growth metrics:</span> At 36 days and 6 founders, month-over-month
-              growth rates would be misleading. Key milestones tracked instead: first $555 from funnel (pending), 10th canvas (4 away),
-              $1K cash threshold ($323 away). Growth rates activate at 3+ months of data.
+              <span className="text-white/70 font-medium">On growth metrics:</span> At 41 days and 6 founders, month-over-month
+              growth rates would be misleading. Key milestones tracked instead: first $555 from funnel (pending), 10th canvas (4 away).
+              Growth rates activate at 3+ months of data.
             </p>
           </div>
         </section>
@@ -330,7 +316,7 @@ const VentureDashboard = () => {
             First $555 Ignition Session from Funnel
           </h3>
           <div className="flex items-center justify-center gap-6 text-[11px] text-white/25">
-            <span>$323 to $1K cash</span>
+            <span>$1,377 cash received</span>
             <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
             <span>4 canvases to N=10</span>
             <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
