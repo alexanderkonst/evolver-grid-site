@@ -34,7 +34,7 @@ const STEPS: MethodologyStep[] = [
     locked: false,
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
-    action: { label: "Discover your genius — free", path: "/zone-of-genius" },
+    action: { label: "Discover your genius — free", path: "/game/journey/start" },
   },
   {
     id: "business",
@@ -119,22 +119,20 @@ const MethodologyLandingPage = () => {
             textShadow: "0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)",
           }}
         >
-          Why is it still so hard to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(135deg, hsl(175,80%,55%), hsl(260,70%,65%))" }}
           >
-            explain what you do
+            Name Your Top Talent.
           </span>
-          {" "}—{" "}
-          <span className="text-white/60">and turn it into something people</span>{" "}
+          <br />
+          Monetize it.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(135deg, hsl(45,90%,65%), hsl(330,70%,60%))" }}
           >
-            actually pay for
+            Scale it.
           </span>
-          ?
         </h1>
         <p className="text-sm text-white/30 max-w-md mx-auto leading-relaxed">
           Seven steps from unnamed talent to thriving business.
@@ -164,12 +162,12 @@ const MethodologyLandingPage = () => {
                 className={cn(
                   "w-full text-left rounded-2xl transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30",
                   step.locked
-                    ? "liquid-glass opacity-[0.35] hover:opacity-[0.5] cursor-default"
+                    ? "liquid-glass cursor-pointer hover:bg-white/[0.02]"
                     : "liquid-glass cursor-pointer hover:scale-[1.01] active:scale-[0.998]"
                 )}
                 style={{
                   border: step.locked
-                    ? "1px solid rgba(255,255,255,0.06)"
+                    ? "1px solid rgba(255,255,255,0.08)"
                     : `1px solid rgba(${step.neonRgb}, 0.25)`,
                   boxShadow: step.locked
                     ? "none"
@@ -215,7 +213,7 @@ const MethodologyLandingPage = () => {
                           )}
                           style={
                             step.locked
-                              ? { background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.15)" }
+                              ? { background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }
                               : {
                                   background: `linear-gradient(135deg, ${step.neonHsl}, rgba(${step.neonRgb}, 0.7))`,
                                   color: "rgba(0,0,0,0.85)",
@@ -235,13 +233,13 @@ const MethodologyLandingPage = () => {
                           "font-semibold leading-snug mb-1.5",
                           isFirst ? "text-lg sm:text-xl" : "text-base sm:text-lg"
                         )}
-                        style={{ color: step.locked ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.92)" }}
+                        style={{ color: step.locked ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.92)" }}
                       >
                         {step.title}
                       </h2>
                       <p
                         className="text-xs sm:text-sm leading-relaxed"
-                        style={{ color: step.locked ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.35)" }}
+                        style={{ color: step.locked ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.5)" }}
                       >
                         {step.subtitle}
                       </p>
@@ -266,7 +264,7 @@ const MethodologyLandingPage = () => {
                       <div className="mt-3 flex items-center gap-1.5">
                         <span
                           className="text-[11px] font-medium"
-                          style={{ color: step.locked ? "rgba(255,255,255,0.1)" : `rgba(${step.neonRgb}, 0.6)` }}
+                          style={{ color: step.locked ? "rgba(255,255,255,0.25)" : `rgba(${step.neonRgb}, 0.6)` }}
                         >
                           How it works
                         </span>
@@ -275,7 +273,7 @@ const MethodologyLandingPage = () => {
                             "w-3 h-3 transition-transform duration-300",
                             isHowOpen && "rotate-180"
                           )}
-                          style={{ color: step.locked ? "rgba(255,255,255,0.1)" : `rgba(${step.neonRgb}, 0.5)` }}
+                          style={{ color: step.locked ? "rgba(255,255,255,0.2)" : `rgba(${step.neonRgb}, 0.5)` }}
                         />
                       </div>
                     </div>
@@ -287,11 +285,11 @@ const MethodologyLandingPage = () => {
               {isHowOpen && (
                 <div
                   className="mx-5 sm:mx-6 pb-5 animate-in fade-in slide-in-from-top-1 duration-300"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
+                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
                 >
                   <p
                     className="text-xs sm:text-sm leading-relaxed pt-4"
-                    style={{ color: step.locked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)" }}
+                    style={{ color: step.locked ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.5)" }}
                   >
                     {step.howText}
                   </p>

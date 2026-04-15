@@ -254,6 +254,7 @@ const App = () => (
                   <Route path="/game/grow/*" element={<Navigate to="/game/me" replace />} />
                   {/* JOURNEY Space */}
                   <Route path="/game/journey" element={<JourneyPage />} />
+                  <Route path="/game/journey/start" element={<ZoneOfGeniusEntry />} />
                   {/* LEARN Space (was Transformation) */}
                   <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />

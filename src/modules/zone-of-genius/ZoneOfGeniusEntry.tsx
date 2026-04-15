@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { trackPageView, trackFunnelEvent } from "@/lib/funnelAnalytics";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { ArrowRight, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
@@ -66,9 +66,14 @@ type Step =
 
 const ZoneOfGeniusEntry = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { toast } = useToast();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/next-move";
+
+    // When accessed from /game/journey/start, show full platform navigation
+    const isInPlatform = location.pathname.startsWith("/game/journey");
+    const hideNav = !isInPlatform;
+    const returnPath = searchParams.get("return") || "/";
 
     const [step, setStep] = useState<Step>("choice");
     const [aiResponse, setAiResponse] = useState("");
@@ -363,7 +368,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Generating Appleseed (Ritual Loading)
     if (step === "generating-appleseed") {
         return (
-            <GameShellV2 hideNavigation>
+            <GameShellV2 hideNavigation={hideNav}>
                 <AppleseedRitualLoading minDuration={4000} />
             </GameShellV2>
         );
@@ -372,7 +377,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Appleseed Result
     if (step === "appleseed-result" && appleseed) {
         return (
-            <GameShellV2 hideNavigation>
+            <GameShellV2 hideNavigation={hideNav}>
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
@@ -387,7 +392,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Generating Excalibur
     if (step === "generating-excalibur") {
         return (
-            <GameShellV2 hideNavigation>
+            <GameShellV2 hideNavigation={hideNav}>
                 <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
                         <div className="absolute inset-0 border-2 border-[#a4a3d0]/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
@@ -431,7 +436,7 @@ const ZoneOfGeniusEntry = () => {
     // Step: Excalibur Result
     if (step === "excalibur-result" && excalibur) {
         return (
-            <GameShellV2 hideNavigation>
+            <GameShellV2 hideNavigation={hideNav}>
                 <ExcaliburDisplay
                     excalibur={excalibur}
                     profileId={profileId ?? undefined}
@@ -445,7 +450,7 @@ const ZoneOfGeniusEntry = () => {
     }
 
     return (
-        <GameShellV2 hideNavigation>
+        <GameShellV2 hideNavigation={hideNav}>
             {/* HLS Video Background */}
             <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
                 <HlsBackground />
