@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -315,10 +315,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
     return (
         <div className="min-h-dvh bg-[#0a0a1a]">
-            {/* Rich atmospheric background for glassmorphism */}
+            {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
-                <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-                <div className="absolute inset-0 bg-[#0a0a1a]/60" />
+                <MuxVideoBackground />
+                {/* Base darkening overlay — prevents video from being too bright */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/30" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
@@ -362,9 +363,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — lightest pane (dramatic: Rail black/50 → Sections black/10 → Content white/25%) */}
+                {/* Panel 3: Content — lightest pane, video barely dimmed. Dark text for contrast */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/[0.25]"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/[0.10]"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
@@ -442,7 +443,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-white/[0.25] overflow-auto relative"
+                        className="flex-1 bg-black/[0.10] overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
