@@ -151,6 +151,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
     // Determine active space from URL
     useEffect(() => {
+        // Root path `/` is the Journey space
+        if (location.pathname === "/") {
+            setActiveSpaceId("journey");
+            return;
+        }
+
         const currentSpace = getSpaceFromPath(location.pathname);
         if (currentSpace) {
             setActiveSpaceId(currentSpace);
@@ -385,8 +391,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — prevents video from being too bright */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/30" />
+                {/* Base darkening overlay — very light, lets video breathe */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/15" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
