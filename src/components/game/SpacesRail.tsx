@@ -123,7 +123,7 @@ const SpacesRail = ({
         <div
             className={cn(
                 "w-[72px] lg:w-[280px] flex flex-col border-r border-white/10",
-                "liquid-glass bg-black/50",
+                "liquid-glass bg-black/70",
                 className
             )}
         >

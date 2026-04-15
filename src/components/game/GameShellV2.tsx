@@ -10,7 +10,43 @@ import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
+import Hls from "hls.js";
 // import { loadNudgeState } from "@/lib/myNextMoveLogic";
+
+/** Animated video background — Mux HLS stream behind all panels */
+const MUX_BG_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh38GNw8.m3u8";
+
+const MuxVideoBackground = () => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (Hls.isSupported()) {
+            const hls = new Hls({ autoStartLoad: true });
+            hls.loadSource(MUX_BG_URL);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
+            return () => hls.destroy();
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = MUX_BG_URL;
+            video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
+        }
+    }, []);
+
+    return (
+        <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+        />
+    );
+};
 
 interface GameShellV2Props {
     children: ReactNode;
