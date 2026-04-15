@@ -34,7 +34,7 @@ const STEPS: MethodologyStep[] = [
     locked: false,
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
-    action: { label: "Discover your genius — free", path: "/start" },
+    action: { label: "Discover your genius — free", path: "/zone-of-genius" },
   },
   {
     id: "business",
@@ -111,24 +111,30 @@ const MethodologyLandingPage = () => {
 
       {/* ═══════ HEADER ═══════ */}
       <header className="text-center mb-14">
-        <p
-          className="text-[11px] font-medium tracking-[0.35em] uppercase mb-5"
-          style={{ color: "rgba(255,255,255,0.25)" }}
-        >
-          The Unique Business Protocol
-        </p>
         <h1
-          className="text-3xl sm:text-4xl md:text-[2.8rem] font-medium leading-[1.15] tracking-[-0.03em] mb-5"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(255,255,255,0.92)" }}
+          className="text-2xl sm:text-3xl md:text-[2.4rem] font-semibold leading-[1.3] tracking-[-0.02em] mb-5 uppercase"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            color: "rgba(255,255,255,0.92)",
+            textShadow: "0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)",
+          }}
         >
-          Your genius is already there.
-          <br />
+          Why is it still so hard to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(135deg, hsl(175,80%,55%), hsl(260,70%,65%))" }}
           >
-            Press the button.
+            explain what you do
           </span>
+          {" "}—{" "}
+          <span className="text-white/60">and turn it into something people</span>{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(135deg, hsl(45,90%,65%), hsl(330,70%,60%))" }}
+          >
+            actually pay for
+          </span>
+          ?
         </h1>
         <p className="text-sm text-white/30 max-w-md mx-auto leading-relaxed">
           Seven steps from unnamed talent to thriving business.
