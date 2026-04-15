@@ -63,6 +63,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // New naming: grow, learn, meet, collaborate, build, marketplace (offer)
         const spaceMap: Record<string, string> = {
             "next-move": "next-move",
+            journey: "journey",
             // New space names
             grow: "grow",
             learn: "learn",
@@ -247,15 +248,34 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const offerComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
     const fullUnlock = ["qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
 
-    // Unlock status for each space — all spaces are always unlocked
+    // ═══ PROGRESSIVE UNLOCK — Fog of War ═══
+    // Journey is always open. Other spaces unlock as the user advances through methodology steps.
+    // Step 1 complete (ZoG done)       → ME unlocks
+    // Step 2 complete (Ignition done)  → BUILD unlocks
+    // Step 3+ (advancing)              → LEARN, MEET, COLLABORATE, OFFER unlock progressively
+    const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
+    const ignitionComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
+
     const unlockStatus: Record<string, boolean> = {
-        "next-move": true,
-        "grow": true,
-        "learn": true,
-        "meet": true,
-        "collaborate": true,
-        "build": true,
-        "buysell": true,
+        "journey": true,                                    // Always open — the front door
+        "next-move": zogComplete,                           // After Step 1
+        "grow": zogComplete,                                // After Step 1 — see your profile
+        "learn": zogComplete,                               // After Step 1 — growth material
+        "build": ignitionComplete,                          // After Step 2 — business canvas
+        "meet": zogComplete,                                // After Step 1 — community events
+        "collaborate": ignitionComplete,                    // After Step 2 — needs a business first
+        "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
+    };
+
+    // Unlock hint tooltips — shown on hover over locked spaces
+    const unlockHints: Record<string, string> = {
+        "next-move": "Unlocks after Step 1",
+        "grow": "Unlocks after Step 1",
+        "learn": "Unlocks after Step 1",
+        "build": "Unlocks after Step 2",
+        "meet": "Unlocks after Step 1",
+        "collaborate": "Unlocks after Step 2",
+        "buysell": "Unlocks after Step 2",
     };
 
     // Nudge badges - visual indicators for unlocked spaces (disabled for now)
@@ -305,6 +325,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     activeSpaceId={activeSpaceId}
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
+                    unlockHints={unlockHints}
                     nudgeBadges={nudgeBadges}
                     className="h-dvh sticky top-0"
                     userName={profile?.first_name || undefined}
@@ -376,6 +397,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         activeSpaceId={activeSpaceId}
                         onSpaceSelect={handleSpaceSelect}
                         unlockStatus={unlockStatus}
+                        unlockHints={unlockHints}
                         nudgeBadges={nudgeBadges}
                         userName={profile?.first_name || undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}

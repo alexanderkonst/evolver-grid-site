@@ -28,6 +28,7 @@ import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
+import JourneyPage from "./pages/JourneyPage";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
@@ -184,8 +185,8 @@ const App = () => (
               <PageTransition>
                 <Routes>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
-                  <Route path="/" element={<ZoneOfGeniusEntry />} />
-                  <Route path="/methodology" element={<MethodologyLandingPage />} />
+                  <Route path="/" element={<JourneyPage />} />
+                  <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
@@ -251,6 +252,8 @@ const App = () => (
                   <Route path="/game/profile/*" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/grow" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/grow/*" element={<Navigate to="/game/me" replace />} />
+                  {/* JOURNEY Space */}
+                  <Route path="/game/journey" element={<JourneyPage />} />
                   {/* LEARN Space (was Transformation) */}
                   <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
