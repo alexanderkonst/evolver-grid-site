@@ -4,17 +4,19 @@ import { ChevronDown, Lock, ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * MethodologyLandingPage — 7-button unique business methodology page.
+ * MethodologyLandingPage — Mini App Store layout.
  * Lives inside GameShellV2 (wrapped by the route).
- * Button 1 is unlocked (free gift). Buttons 2-7 are locked.
- * Each button has a "How" dropdown and an image placeholder for animated AI art.
+ * Each step = an app tile with animated image placeholder + ALL CAPS name.
+ * Button 1 is unlocked (free). Buttons 2-7 locked with fog of war.
+ * "How It Works" expandable contains all the descriptive text.
  */
 
-type MethodologyStep = {
+type AppStep = {
   id: string;
   number: number;
-  title: string;
-  subtitle: string;
+  /** Short ALL-CAPS name displayed on the tile */
+  appName: string;
+  /** What this app does — shown in How It Works */
   howText: string;
   locked: boolean;
   neonHsl: string;
@@ -24,23 +26,21 @@ type MethodologyStep = {
   action?: { label: string; path: string };
 };
 
-const STEPS: MethodologyStep[] = [
+const STEPS: AppStep[] = [
   {
     id: "articulate",
     number: 1,
-    title: "Articulate your top talent",
-    subtitle: "Without a wording of what you're especially good at, nothing else can grow.",
+    appName: "DISCOVER",
     howText: "A free Zone of Genius discovery — 15 minutes. You answer questions about what energizes you most, and AI + human insight crystallize your top talent into one precise articulation. You walk away with words that finally sound like you.",
     locked: false,
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
-    action: { label: "Discover your genius — free", path: "/game/journey/start" },
+    action: { label: "Start free", path: "/game/journey/start" },
   },
   {
     id: "business",
     number: 2,
-    title: "Turn your top talent into a business",
-    subtitle: "From talent articulation to founder-market fit. Your uniqueness IS your product-market fit.",
+    appName: "IGNITE",
     howText: "The Ignition Session: 60–90 minutes. We map your top shadow, identify the pain that comes with it, locate your bullseye tribe, derive the transformational promise, and crystallize your methodology. You leave with a Unique Business Canvas — a set of artifacts that makes you say: 'Oh shit, this is real.'",
     locked: true,
     neonHsl: "hsl(260, 70%, 65%)",
@@ -49,8 +49,7 @@ const STEPS: MethodologyStep[] = [
   {
     id: "build",
     number: 3,
-    title: "Build the product with purpose entrepreneurs",
-    subtitle: "Turn your methodology into a sequence of transformational results.",
+    appName: "BUILD",
     howText: "In a cohort of aligned founders, you take your pain-to-promise methodology and turn it into buttons — each one a concrete outcome your clients walk through. The product IS the user journey, radically simplified. That's why it works, and why it can scale with AI.",
     locked: true,
     neonHsl: "hsl(210, 70%, 60%)",
@@ -59,8 +58,7 @@ const STEPS: MethodologyStep[] = [
   {
     id: "test",
     number: 4,
-    title: "Test & iterate through gifting",
-    subtitle: "The moment when Excalibur gets taken out of the stone.",
+    appName: "TEST",
     howText: "Deliver your product to real people from your tribe — through gift and gratitude economy. Two weeks is enough. Confidence builds massively, limiting beliefs fall away, money blocks clear. Provided the person is from your tribe, ignition happens and everybody's very happy.",
     locked: true,
     neonHsl: "hsl(45, 90%, 55%)",
@@ -69,8 +67,7 @@ const STEPS: MethodologyStep[] = [
   {
     id: "launch",
     number: 5,
-    title: "Launch & grow with precision",
-    subtitle: "After days of hard work, a solution so elegant emerges — like a lotus in spring.",
+    appName: "LAUNCH",
     howText: "Package your value ladder, craft a one-sentence USP, and deploy across personalized surfaces optimized for yield. Digital surfaces, physical surfaces, rooms where your tribe already gathers. One clean intro. No link. Energetically as clean as a Michelin restaurant.",
     locked: true,
     neonHsl: "hsl(330, 70%, 60%)",
@@ -79,8 +76,7 @@ const STEPS: MethodologyStep[] = [
   {
     id: "checkins",
     number: 6,
-    title: "Regular check-ins as you grow",
-    subtitle: "First paying client → first milestone → organic demand feeds the torus.",
+    appName: "GROW",
     howText: "Ongoing sessions during the growth phase. Track your milestones: first paying client, first revenue threshold, second, third. Until the organic demand starts to just feed itself — the torus is spinning.",
     locked: true,
     neonHsl: "hsl(145, 60%, 50%)",
@@ -89,8 +85,7 @@ const STEPS: MethodologyStep[] = [
   {
     id: "collective",
     number: 7,
-    title: "Join the purpose founder collective",
-    subtitle: "Once you're off the hook for food and shelter — play begins.",
+    appName: "SCALE",
     howText: "Map all assets across founders. Find quick win-win collaborations. Share medicine with one another. Universal playbooks, absolutely unique outputs. The whole thing was 'I have to get ready.' But what if you're already ready?",
     locked: true,
     neonHsl: "hsl(290, 60%, 60%)",
@@ -142,204 +137,192 @@ const MethodologyLandingPage = () => {
         </p>
       </header>
 
-      {/* ═══════ BUTTON CASCADE ═══════ */}
-      <div className="space-y-4">
+      {/* ═══════ APP STORE GRID ═══════ */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
         {STEPS.map((step) => {
           const isHowOpen = howExpanded[step.id] ?? false;
-          const isFirst = step.number === 1;
+          const isUnlocked = !step.locked;
 
           return (
-            <div key={step.id} id={step.id}>
-
-              {/* ─── THE BUTTON ─── */}
+            <div
+              key={step.id}
+              id={step.id}
+              className={cn(
+                /* First tile spans full width on mobile for prominence */
+                step.number === 1 && "col-span-2 sm:col-span-1"
+              )}
+            >
+              {/* ─── APP TILE ─── */}
               <button
                 onClick={() => {
-                  if (step.action && !step.locked) {
+                  if (step.action && isUnlocked) {
                     navigate(step.action.path);
                   } else {
                     toggleHow(step.id);
                   }
                 }}
                 className={cn(
-                  "w-full text-left rounded-2xl transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30",
-                  step.locked
-                    ? "liquid-glass cursor-pointer hover:bg-white/[0.02]"
-                    : "liquid-glass cursor-pointer hover:scale-[1.01] active:scale-[0.998]"
+                  "w-full flex flex-col items-center text-center rounded-[20px] transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30 group",
+                  "p-4 sm:p-5",
+                  isUnlocked
+                    ? "cursor-pointer hover:scale-[1.03] active:scale-[0.97]"
+                    : "cursor-pointer hover:bg-white/[0.02]"
                 )}
                 style={{
-                  border: step.locked
-                    ? "1px solid rgba(255,255,255,0.08)"
-                    : `1px solid rgba(${step.neonRgb}, 0.25)`,
-                  boxShadow: step.locked
-                    ? "none"
-                    : `0 0 40px rgba(${step.neonRgb}, 0.06), 0 0 80px rgba(${step.neonRgb}, 0.03)`,
+                  background: isUnlocked
+                    ? `linear-gradient(160deg, rgba(${step.neonRgb}, 0.08), rgba(${step.neonRgb}, 0.02))`
+                    : "rgba(255,255,255,0.02)",
+                  border: isUnlocked
+                    ? `1px solid rgba(${step.neonRgb}, 0.25)`
+                    : "1px solid rgba(255,255,255,0.06)",
+                  boxShadow: isUnlocked
+                    ? `0 0 30px rgba(${step.neonRgb}, 0.08), inset 0 1px 1px rgba(255,255,255,0.08)`
+                    : "inset 0 1px 1px rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
                 }}
               >
-                <div className={cn("p-5 sm:p-6", isFirst && "sm:p-8")}>
-                  <div className="flex items-start gap-4">
-
-                    {/* ─── Image / Number Badge ─── */}
-                    <div className="flex-shrink-0">
-                      {step.imageSrc ? (
-                        /* AI-generated animated image */
-                        <div
-                          className={cn(
-                            "rounded-xl overflow-hidden",
-                            isFirst ? "w-20 h-20 sm:w-24 sm:h-24" : "w-14 h-14 sm:w-16 sm:h-16"
-                          )}
-                          style={{
-                            border: step.locked
-                              ? "1px solid rgba(255,255,255,0.05)"
-                              : `1px solid rgba(${step.neonRgb}, 0.25)`,
-                            boxShadow: step.locked
-                              ? "none"
-                              : `0 0 20px rgba(${step.neonRgb}, 0.1)`,
-                          }}
-                        >
-                          <img
-                            src={step.imageSrc}
-                            alt={step.title}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : (
-                        /* Number badge fallback */
-                        <div
-                          className={cn(
-                            "rounded-full flex items-center justify-center font-bold",
-                            isFirst
-                              ? "w-14 h-14 sm:w-16 sm:h-16 text-lg"
-                              : "w-10 h-10 sm:w-12 sm:h-12 text-sm"
-                          )}
-                          style={
-                            step.locked
-                              ? { background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }
-                              : {
-                                  background: `linear-gradient(135deg, ${step.neonHsl}, rgba(${step.neonRgb}, 0.7))`,
-                                  color: "rgba(0,0,0,0.85)",
-                                  boxShadow: `0 0 25px rgba(${step.neonRgb}, 0.3)`,
-                                }
-                          }
-                        >
-                          {step.locked ? <Lock className="w-4 h-4" /> : step.number}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* ─── Text ─── */}
-                    <div className="flex-1 min-w-0 pt-0.5">
-                      <h2
-                        className={cn(
-                          "font-semibold leading-snug mb-1.5",
-                          isFirst ? "text-lg sm:text-xl" : "text-base sm:text-lg"
-                        )}
-                        style={{ color: step.locked ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.92)" }}
+                {/* ─── App Icon Area ─── */}
+                <div
+                  className={cn(
+                    "rounded-2xl overflow-hidden flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-105",
+                    "w-16 h-16 sm:w-20 sm:h-20"
+                  )}
+                  style={{
+                    background: isUnlocked
+                      ? `linear-gradient(135deg, ${step.neonHsl}, rgba(${step.neonRgb}, 0.5))`
+                      : "rgba(255,255,255,0.04)",
+                    boxShadow: isUnlocked
+                      ? `0 4px 20px rgba(${step.neonRgb}, 0.25), inset 0 1px 2px rgba(255,255,255,0.15)`
+                      : "inset 0 1px 1px rgba(255,255,255,0.05)",
+                    border: isUnlocked
+                      ? `1px solid rgba(${step.neonRgb}, 0.3)`
+                      : "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  {step.imageSrc ? (
+                    /* AI-generated animated image — will be added by Alexander */
+                    <img
+                      src={step.imageSrc}
+                      alt={step.appName}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    /* Placeholder icon */
+                    step.locked ? (
+                      <Lock
+                        className="w-5 h-5 sm:w-6 sm:h-6"
+                        style={{ color: "rgba(255,255,255,0.2)" }}
+                      />
+                    ) : (
+                      <span
+                        className="text-xl sm:text-2xl font-bold"
+                        style={{ color: "rgba(0,0,0,0.7)" }}
                       >
-                        {step.title}
-                      </h2>
-                      <p
-                        className="text-xs sm:text-sm leading-relaxed"
-                        style={{ color: step.locked ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.5)" }}
-                      >
-                        {step.subtitle}
-                      </p>
-
-                      {/* CTA for unlocked — looks like a real button */}
-                      {step.action && !step.locked && (
-                        <div
-                          className="liquid-glass-strong inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full text-sm font-semibold ring-1 transition-all duration-300 hover:scale-105 active:scale-95"
-                          style={{
-                            color: step.neonHsl,
-                            // @ts-ignore ring-color via style
-                            '--tw-ring-color': `rgba(${step.neonRgb}, 0.35)`,
-                            boxShadow: `0 0 25px rgba(${step.neonRgb}, 0.15)`,
-                          } as React.CSSProperties}
-                        >
-                          {step.action.label}
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      )}
-
-                      {/* How toggle */}
-                      <div className="mt-3 flex items-center gap-1.5">
-                        <span
-                          className="text-[11px] font-medium"
-                          style={{ color: step.locked ? "rgba(255,255,255,0.25)" : `rgba(${step.neonRgb}, 0.6)` }}
-                        >
-                          How it works
-                        </span>
-                        <ChevronDown
-                          className={cn(
-                            "w-3 h-3 transition-transform duration-300",
-                            isHowOpen && "rotate-180"
-                          )}
-                          style={{ color: step.locked ? "rgba(255,255,255,0.2)" : `rgba(${step.neonRgb}, 0.5)` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                        {step.number}
+                      </span>
+                    )
+                  )}
                 </div>
+
+                {/* ─── App Name (ALL CAPS) ─── */}
+                <h2
+                  className="text-xs sm:text-sm font-bold tracking-[0.12em] leading-tight"
+                  style={{
+                    color: isUnlocked
+                      ? "rgba(255,255,255,0.92)"
+                      : "rgba(255,255,255,0.4)",
+                  }}
+                >
+                  {step.appName}
+                </h2>
+
+                {/* ─── CTA for unlocked tile ─── */}
+                {step.action && isUnlocked && (
+                  <div
+                    className="flex items-center gap-1.5 mt-2.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wide transition-all duration-300 group-hover:scale-105"
+                    style={{
+                      background: `rgba(${step.neonRgb}, 0.15)`,
+                      color: step.neonHsl,
+                      border: `1px solid rgba(${step.neonRgb}, 0.25)`,
+                    }}
+                  >
+                    {step.action.label}
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                )}
+
+                {/* ─── How It Works toggle hint ─── */}
+                {step.locked && (
+                  <div className="flex items-center gap-1 mt-2">
+                    <span
+                      className="text-[9px] sm:text-[10px]"
+                      style={{ color: "rgba(255,255,255,0.2)" }}
+                    >
+                      How it works
+                    </span>
+                    <ChevronDown
+                      className={cn(
+                        "w-2.5 h-2.5 transition-transform duration-300",
+                        isHowOpen && "rotate-180"
+                      )}
+                      style={{ color: "rgba(255,255,255,0.15)" }}
+                    />
+                  </div>
+                )}
               </button>
 
-              {/* ─── How content (outside the button for a11y) ─── */}
+              {/* ─── How It Works expanded content ─── */}
               {isHowOpen && (
                 <div
-                  className="mx-5 sm:mx-6 pb-5 animate-in fade-in slide-in-from-top-1 duration-300"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                  className="mt-2 p-4 rounded-xl animate-in fade-in slide-in-from-top-1 duration-300"
+                  style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    backdropFilter: "blur(8px)",
+                  }}
                 >
                   <p
-                    className="text-xs sm:text-sm leading-relaxed pt-4"
-                    style={{ color: step.locked ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.5)" }}
+                    className="text-[11px] sm:text-xs leading-relaxed"
+                    style={{ color: step.locked ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.55)" }}
                   >
                     {step.howText}
                   </p>
                 </div>
               )}
-
-              {/* ─── Connector thread ─── */}
-              {step.number < 7 && (
-                <div className="flex justify-center py-1">
-                  <div
-                    className="w-px h-6"
-                    style={{
-                      background: `linear-gradient(to bottom, rgba(${step.neonRgb}, 0.12), transparent)`,
-                    }}
-                  />
-                </div>
-              )}
             </div>
           );
         })}
+      </div>
 
-        {/* ═══════ OTHER PROJECTS LINK ═══════ */}
-        <div className="pt-6">
-          <div className="flex justify-center py-2">
-            <div className="w-10 h-px bg-white/6" />
-          </div>
-          <a
-            href="https://prompts.aleksandrkonstantinov.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-4 rounded-2xl p-5 transition-all duration-300 hover:bg-white/[0.02]"
-            style={{ border: "1px solid rgba(255,255,255,0.03)" }}
-          >
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/[0.03] flex items-center justify-center">
-              <ExternalLink className="w-4 h-4 text-white/20" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-sm font-semibold text-white/30 group-hover:text-white/50 transition-colors">
-                See our other projects
-              </h2>
-              <p className="text-[11px] text-white/12 mt-0.5">AI prompts, ontological tools, and more</p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-white/10 group-hover:text-white/25 group-hover:translate-x-1 transition-all" />
-          </a>
+      {/* ═══════ OTHER PROJECTS LINK ═══════ */}
+      <div className="pt-8">
+        <div className="flex justify-center py-2">
+          <div className="w-10 h-px bg-white/6" />
         </div>
+        <a
+          href="https://prompts.aleksandrkonstantinov.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-4 rounded-2xl p-5 transition-all duration-300 hover:bg-white/[0.02]"
+          style={{ border: "1px solid rgba(255,255,255,0.03)" }}
+        >
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/[0.03] flex items-center justify-center">
+            <ExternalLink className="w-4 h-4 text-white/20" />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-sm font-semibold text-white/30 group-hover:text-white/50 transition-colors">
+              See our other projects
+            </h2>
+            <p className="text-[11px] text-white/12 mt-0.5">AI prompts, ontological tools, and more</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-white/10 group-hover:text-white/25 group-hover:translate-x-1 transition-all" />
+        </a>
       </div>
 
       {/* ═══════ SOCIAL PROOF ═══════ */}
-      <div className="mt-20 text-center">
+      <div className="mt-16 text-center">
         <div className="flex items-center justify-center gap-8 mb-8">
           {[
             { num: "6", label: "founders" },
