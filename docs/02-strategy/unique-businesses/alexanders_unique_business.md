@@ -1042,7 +1042,103 @@ Not angry pain. Quiet exhaustion. The ache of the unnamed.
 
 ---
 
-#### Funnel Architecture v3.1 (The Moonshot Iteration, Synthesized March 2026)
+#### Funnel Architecture v4.0 — Journey Page + Fog of War (April 14, 2026)
+
+> **The shift:** The front door is no longer a standalone ZoG reveal. It's a 7-step methodology page inside the full game shell. The user sees the ENTIRE path upfront, but only Step 1 is unlocked. Fog of war creates intrigue and progressive disclosure.
+
+**Headline:** "Name Your Top Talent. Monetize it. Scale it Alongside Other Purpose Entrepreneurs."
+
+```
+ENTRY: DM / Post / Link → aleksandrkonstantinov.com (/)
+    │
+    ↓
+PHASE 1: JOURNEY PAGE (/) — Inside GameShellV2
+    │
+    ├─ 7 methodology buttons visible (cascade layout)
+    │   ├─ Step 1: "Articulate your top talent" — UNLOCKED, glowing
+    │   ├─ Steps 2-7: VISIBLE but locked (fog of war)
+    │   │   2. Turn your top talent into a business
+    │   │   3. Build the product with purpose entrepreneurs
+    │   │   4. Share it with the world
+    │   │   5. Get your first 10 clients
+    │   │   6. Scale alongside other purpose entrepreneurs
+    │   │   7. Mentor the next wave
+    │   └─ Each locked button has title + subtitle readable, "How it works" expandable
+    │
+    ├─ Sidebar: JOURNEY space active | ME, LEARN, MEET, COLLABORATE, BUILD, OFFER — fog-of-war locked
+    │
+    ↓ Clicks "Discover your genius — free" (Button 1)
+    │
+PHASE 2: ZoG REVEAL (/game/journey/start) — INSIDE THE PLATFORM
+    │
+    ├─ ZoneOfGeniusEntry renders with full navigation visible (hideNavigation=false)
+    ├─ JOURNEY space still highlighted in sidebar
+    ├─ User sees the platform shell = they're INSIDE the experience
+    │
+    ├─ Choice: "AI knows me" (paste prompt) | "I'll do the assessment" (4-step)
+    ├─ → Appleseed result (recognition trigger)
+    ├─ → Save = SignupModal if guest (email capture happens HERE)
+    ├─ → Excalibur deep analysis (precision gap felt)
+    │
+    ↓ ZoG complete → navigate("/") 
+    │
+PHASE 3: RETURN TO JOURNEY — Post-Recognition
+    │
+    ├─ Step 1: ✅ COMPLETE
+    ├─ ME, LEARN, MEET spaces: 🔓 UNLOCKED (fog lifts)
+    ├─ Steps 2-7: Progressive unlock based on onboarding_stage
+    │
+    ↓ "Watch this (4 min)" → /ignite
+    │
+PHASE 4: THE CORE CATALYST (The Ignition Session)
+    │
+    ├─ 90 minutes. Mirror, not teacher.
+    ├─ AI Assistant compiles business infrastructure live
+    └─ OUTPUT: The Sacred Trading Card (inherently viral 7.0 Draft)
+    │
+    ↓ The Precision Gap is felt
+    │
+PHASE 5: THE BUILD (Outcome Scaling)
+    │
+    ├─ $1,111 upfront
+    ├─ $2,500 from first $10K baseline
+    └─ 10 clients. Early PMF.
+    │
+    ↓
+ONGOING: EVOLVER OS / VENTURE STUDIO
+```
+
+**Key differences from v3.1:**
+
+| v3.1 (Moonshot) | v4.0 (Journey Page) |
+|-----------------|---------------------|
+| ZoG reveal IS the front door | Journey methodology page IS the front door |
+| User sees only one step at a time | User sees ALL 7 steps (fog of war on locked ones) |
+| ZoG runs on standalone page | ZoG runs INSIDE the platform shell |
+| Post-ZoG → `/game/me` | Post-ZoG → `/` (Journey, step completed) |
+| No sidebar during ZoG | Full sidebar visible during ZoG |
+| Linear funnel (one path) | Progressive disclosure (game-like unlock) |
+
+**Technical implementation:**
+
+| Route | Component | Auth | Purpose |
+|-------|-----------|------|---------|
+| `/` | JourneyPage (GameShellV2 → MethodologyLandingPage) | No | Front door — 7-button methodology |
+| `/game/journey/start` | ZoneOfGeniusEntry (hideNavigation=false) | No | ZoG inside platform |
+| `/game/journey` | JourneyPage | No | Same as `/` |
+| `/start` | OnboardingStart | Yes | Auth + onboarding flow |
+| `/ignite` | IgniteSession | Yes | Landing page + $555 booking |
+
+**Panel brightness progression:** Rail (bg-black/50) → Sections (bg-black/10) → Content (bg-black/5) — darkest-to-lightest left-to-right.
+
+**Fog of War unlock rules:**
+- `zogComplete`: unlocks ME, LEARN, MEET spaces
+- `isClient`: unlocks COLLABORATE, BUILD, OFFER spaces
+- Journey sections: all 7 visible, but only active steps have glowing neon + functional CTAs
+
+---
+
+#### Funnel Architecture v3.1 — Legacy (The Moonshot Iteration, Synthesized March 2026)
 
 **The Copernican Inverted Sequence (P × M × D = ONE)**
 
