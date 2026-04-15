@@ -119,7 +119,7 @@ const MethodologyLandingPage = () => {
             textShadow: "0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)",
           }}
         >
-          <span
+           <span
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(135deg, hsl(175,80%,55%), hsl(260,70%,65%))" }}
           >
@@ -131,8 +131,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(135deg, hsl(45,90%,65%), hsl(330,70%,60%))" }}
           >
-            Scale it.
+            Scale it
           </span>
+          {" "}Alongside Other Purpose Entrepreneurs.
         </h1>
         <p className="text-sm text-white/30 max-w-md mx-auto leading-relaxed">
           Seven steps from unnamed talent to thriving business.

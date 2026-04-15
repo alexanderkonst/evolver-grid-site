@@ -34,32 +34,39 @@
 
 ## 1. System Architecture
 
-### The System (a field with intelligent entry points — not a linear funnel)
+> **Current version: v4.0 — Journey Page + Fog of War (April 14, 2026)**
+> See also: [Alexander's Unique Business — Funnel v4.0](../02-strategy/unique-businesses/alexanders_unique_business.md)
+
+### The System (progressive disclosure inside the game shell)
 
 ```
-(A) Warm Entry (PRIMARY — your network)
-    ZoG Reveal → [gap felt] → Video → Session → Build
-
-(B) Cold Entry (social posts, shares)
-    Quiz → ZoG Reveal → Video → Session → Build
-
-(C) Analytical Mind (overthinkers)
-    ZoG Reveal → Quiz → Video → Session → Build
-
-(D) High Intent (instant recognizers)
-    ZoG Reveal → Session (skip video)
+All Entry Paths → aleksandrkonstantinov.com (/)
+    Journey Page (7-step methodology, fog of war)
+    │
+    ├─ Step 1 unlocked → "Discover your genius — free"
+    │   └─ /game/journey/start → ZoG inside platform
+    │       ├─ Appleseed → recognition trigger
+    │       ├─ Save → SignupModal (email capture)
+    │       └─ Excalibur → precision gap felt
+    │
+    ├─ Post-ZoG → return to / (Step 1 done, spaces unlocked)
+    │   └─ "Watch this (4 min)" → /ignite → $555
+    │
+    └─ Steps 2-7: locked (fog of war, progressive unlock)
 ```
 
-> **Key principle:** The ZoG reveal is the front door. Not the landing page. Not a quiz.
+> **Key principle:** The Journey page is the front door. Shows the ENTIRE path. Only Step 1 is playable. Everything inside the platform shell.
 
-### Route Map (live)
+### Route Map (live — v4.0)
 
-| URL | Page | Purpose |
-|-----|------|---------|
-| `aleksandrkonstantinov.com` | ZoG Reveal | Front door — recognition experience |
-| `aleksandrkonstantinov.com/ignite` | Landing Page | Decision page — video + booking ($555) |
-| `aleksandrkonstantinov.com/quiz` | Quiz | 6 questions → archetype → gap → video bridge |
-| `aleksandrkonstantinov.com/reveal` | Redirect → `/` | Vanity URL for sharing |
+| URL | Page | Auth | Purpose |
+|-----|------|------|---------|
+| `/` | Journey Page (GameShellV2) | No | Front door — 7-button methodology |
+| `/game/journey/start` | ZoG inside platform | No | ZoG with full sidebar visible |
+| `/game/journey` | Journey Page | No | Same as `/` |
+| `/zone-of-genius` | ZoG standalone | No | Legacy entry |
+| `/ignite` | Landing Page | Yes | Video + booking ($555) |
+| `/start` | Onboarding | Yes | Auth + onboarding flow |
 
 ### Psychological Arc
 
