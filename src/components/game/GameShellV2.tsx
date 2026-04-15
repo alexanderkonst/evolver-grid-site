@@ -10,7 +10,7 @@ import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
-import Hls from "hls.js";
+// hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 // import { loadNudgeState } from "@/lib/myNextMoveLogic";
 
 /** Animated video background — Mux HLS stream behind all panels */
@@ -24,26 +24,41 @@ const MuxVideoBackground = () => {
         const video = videoRef.current;
         if (!video) return;
 
-        try {
-            if (Hls.isSupported()) {
-                const hls = new Hls({ autoStartLoad: true });
-                hls.loadSource(MUX_BG_URL);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
-                hls.on(Hls.Events.ERROR, (_event: any, data: any) => {
-                    if (data.fatal) setVideoFailed(true);
-                });
-                return () => hls.destroy();
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                video.src = MUX_BG_URL;
-                video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
-                video.addEventListener("error", () => setVideoFailed(true));
-            } else {
+        let hlsInstance: any = null;
+
+        const initHls = async () => {
+            try {
+                const HlsModule = await import("hls.js");
+                const Hls = HlsModule.default;
+
+                if (Hls.isSupported()) {
+                    hlsInstance = new Hls({ autoStartLoad: true });
+                    hlsInstance.loadSource(MUX_BG_URL);
+                    hlsInstance.attachMedia(video);
+                    hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+                        video.play().catch(() => {});
+                        video.playbackRate = 0.5;
+                    });
+                    hlsInstance.on(Hls.Events.ERROR, (_event: any, data: any) => {
+                        if (data.fatal) setVideoFailed(true);
+                    });
+                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                    video.src = MUX_BG_URL;
+                    video.addEventListener("loadedmetadata", () => {
+                        video.play().catch(() => {});
+                        video.playbackRate = 0.5;
+                    });
+                    video.addEventListener("error", () => setVideoFailed(true));
+                } else {
+                    setVideoFailed(true);
+                }
+            } catch {
                 setVideoFailed(true);
             }
-        } catch {
-            setVideoFailed(true);
-        }
+        };
+
+        initHls();
+        return () => { hlsInstance?.destroy(); };
     }, []);
 
     if (videoFailed) {
@@ -415,9 +430,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — lightest pane, video barely dimmed. Dark text for contrast */}
+                {/* Panel 3: Content — no overlay, video shows through with just the base 30% dimming */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/[0.10]"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
@@ -495,7 +510,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-black/[0.10] overflow-auto relative"
+                        className="flex-1 overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
