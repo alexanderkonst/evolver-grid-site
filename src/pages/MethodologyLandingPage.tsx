@@ -158,19 +158,16 @@ const MethodologyLandingPage = () => {
                 className={cn(
                   "w-full text-left rounded-2xl transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30",
                   step.locked
-                    ? "opacity-[0.35] hover:opacity-[0.5] cursor-default"
-                    : "cursor-pointer hover:scale-[1.008] active:scale-[0.998]"
+                    ? "liquid-glass opacity-[0.35] hover:opacity-[0.5] cursor-default"
+                    : "liquid-glass cursor-pointer hover:scale-[1.01] active:scale-[0.998]"
                 )}
                 style={{
-                  background: step.locked
-                    ? "rgba(255,255,255,0.02)"
-                    : `linear-gradient(135deg, rgba(${step.neonRgb}, 0.06), rgba(${step.neonRgb}, 0.015))`,
                   border: step.locked
-                    ? "1px solid rgba(255,255,255,0.04)"
-                    : `1px solid rgba(${step.neonRgb}, 0.2)`,
+                    ? "1px solid rgba(255,255,255,0.06)"
+                    : `1px solid rgba(${step.neonRgb}, 0.25)`,
                   boxShadow: step.locked
                     ? "none"
-                    : `0 0 40px rgba(${step.neonRgb}, 0.06), 0 0 80px rgba(${step.neonRgb}, 0.03), inset 0 1px 0 rgba(255,255,255,0.05)`,
+                    : `0 0 40px rgba(${step.neonRgb}, 0.06), 0 0 80px rgba(${step.neonRgb}, 0.03)`,
                 }}
               >
                 <div className={cn("p-5 sm:p-6", isFirst && "sm:p-8")}>
@@ -246,13 +243,13 @@ const MethodologyLandingPage = () => {
                       {/* CTA for unlocked — looks like a real button */}
                       {step.action && !step.locked && (
                         <div
-                          className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                          className="liquid-glass-strong inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full text-sm font-semibold ring-1 transition-all duration-300 hover:scale-105 active:scale-95"
                           style={{
-                            background: `linear-gradient(135deg, rgba(${step.neonRgb}, 0.25), rgba(${step.neonRgb}, 0.12))`,
                             color: step.neonHsl,
-                            border: `1px solid rgba(${step.neonRgb}, 0.35)`,
-                            boxShadow: `0 0 20px rgba(${step.neonRgb}, 0.12)`,
-                          }}
+                            // @ts-ignore ring-color via style
+                            '--tw-ring-color': `rgba(${step.neonRgb}, 0.35)`,
+                            boxShadow: `0 0 25px rgba(${step.neonRgb}, 0.15)`,
+                          } as React.CSSProperties}
                         >
                           {step.action.label}
                           <ArrowRight className="w-4 h-4" />
