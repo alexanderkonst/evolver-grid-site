@@ -180,11 +180,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         return () => subscription.unsubscribe();
     }, []);
 
-    // Onboarding redirect
+    // Onboarding redirect — send incomplete users to /start
+    // EXCEPT on /game/journey which is the public front door
     useEffect(() => {
         if (!profile?.onboarding_stage) return;
         const needsOnboarding = ["new", "zog_started"].includes(profile.onboarding_stage);
-        if (needsOnboarding && location.pathname.startsWith("/game")) {
+        const isJourneyPage = location.pathname === "/game/journey" || location.pathname === "/";
+        if (needsOnboarding && location.pathname.startsWith("/game") && !isJourneyPage) {
             navigate("/start");
         }
     }, [profile?.onboarding_stage, location.pathname, navigate]);

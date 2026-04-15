@@ -151,7 +151,7 @@ const ZoneOfGeniusEntry = () => {
 
             // If user has complete Excalibur data AND came from another page, redirect to profile
             if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && hasReturnParam) {
-                navigate("/game/me");
+                navigate("/");
                 return;
             }
 
