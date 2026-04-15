@@ -81,6 +81,8 @@ interface SpacesRailProps {
     activeSpaceId?: string;
     onSpaceSelect?: (spaceId: string) => void;
     unlockStatus?: Record<string, boolean>;
+    /** Tooltip hints for locked spaces — e.g. "Unlocks after Step 1" */
+    unlockHints?: Record<string, string>;
     /** Spaces that have a new unlock waiting (shows badge/glow) */
     nudgeBadges?: string[];
     className?: string;
@@ -95,6 +97,7 @@ const SpacesRail = ({
     activeSpaceId,
     onSpaceSelect,
     unlockStatus = {},
+    unlockHints = {},
     nudgeBadges = [],
     className,
     userName,
@@ -202,13 +205,19 @@ const SpacesRail = ({
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                             )}
-                            title={space.label}
+                            title={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
                         >
-                            {isLocked ? (
-                                <Lock className="w-5 h-5 flex-shrink-0" />
-                            ) : (
-                                space.icon
-                            )}
+                            {/* Icon — always show the space's own icon, dim when locked */}
+                            <span className="relative flex-shrink-0">
+                                <span className={cn(isLocked && "opacity-30")}>
+                                    {space.icon}
+                                </span>
+                                {isLocked && (
+                                    <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-black/60 rounded-full flex items-center justify-center border border-white/10">
+                                        <Lock className="w-2 h-2 text-white/40" />
+                                    </span>
+                                )}
+                            </span>
 
                             {/* Label - hidden on mobile, shown on desktop with truncation */}
                             <span className="hidden md:block text-sm font-medium truncate">
@@ -284,6 +293,13 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prevKeys.length !== nextKeys.length) return false;
     for (const key of prevKeys) {
         if (prev.unlockStatus?.[key] !== next.unlockStatus?.[key]) return false;
+    }
+    // Check unlockHints
+    const prevHintKeys = Object.keys(prev.unlockHints || {});
+    const nextHintKeys = Object.keys(next.unlockHints || {});
+    if (prevHintKeys.length !== nextHintKeys.length) return false;
+    for (const key of prevHintKeys) {
+        if (prev.unlockHints?.[key] !== next.unlockHints?.[key]) return false;
     }
     return true;
 };
