@@ -18,22 +18,37 @@ const MUX_BG_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [videoFailed, setVideoFailed] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        if (Hls.isSupported()) {
-            const hls = new Hls({ autoStartLoad: true });
-            hls.loadSource(MUX_BG_URL);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
-            return () => hls.destroy();
-        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = MUX_BG_URL;
-            video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
+        try {
+            if (Hls.isSupported()) {
+                const hls = new Hls({ autoStartLoad: true });
+                hls.loadSource(MUX_BG_URL);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
+                hls.on(Hls.Events.ERROR, (_event: any, data: any) => {
+                    if (data.fatal) setVideoFailed(true);
+                });
+                return () => hls.destroy();
+            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                video.src = MUX_BG_URL;
+                video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
+                video.addEventListener("error", () => setVideoFailed(true));
+            } else {
+                setVideoFailed(true);
+            }
+        } catch {
+            setVideoFailed(true);
         }
     }, []);
+
+    if (videoFailed) {
+        return <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />;
+    }
 
     return (
         <video
@@ -44,6 +59,7 @@ const MuxVideoBackground = () => {
             playsInline
             className="w-full h-full object-cover"
             aria-hidden="true"
+            onError={() => setVideoFailed(true)}
         />
     );
 };
