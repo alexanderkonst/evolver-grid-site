@@ -31,7 +31,7 @@ const STEPS: AppStep[] = [
     id: "discover",
     number: 1,
     appName: "DISCOVER",
-    ctaLabel: "Find your genius",
+    ctaLabel: "Articulate your top talent — it's a gift",
     locked: false,
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
@@ -40,7 +40,7 @@ const STEPS: AppStep[] = [
   {
     id: "name",
     number: 2,
-    appName: "NAME",
+    appName: "CRYSTALLIZE",
     locked: true,
     neonHsl: "hsl(260, 70%, 65%)",
     neonRgb: "140, 100, 234",
