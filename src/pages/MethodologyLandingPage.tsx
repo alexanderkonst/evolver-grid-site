@@ -4,25 +4,23 @@ import { cn } from "@/lib/utils";
 
 /**
  * MethodologyLandingPage — Mini App Store layout.
- * Lives inside GameShellV2 (wrapped by the route).
- * Each step = a numbered app tile with animated image placeholder + ALL CAPS name.
- * All tiles are clickable and navigate to their journey page.
- * Locked tiles show lock overlay but still navigate (page shows locked state).
+ * Each step = app tile: animated image + ALL CAPS name + subtitle (what it does).
+ * Unlocked tiles have a game-style prompt ("Claim Your Gift").
+ * All tiles navigate to their journey page.
  */
 
 type AppStep = {
   id: string;
   number: number;
-  /** Short ALL-CAPS name — describes what this step DOES */
   appName: string;
-  /** CTA label for unlocked tile — describes the specific action */
-  ctaLabel?: string;
+  /** What this step does — plain text under the name */
+  subtitle: string;
+  /** Game-style prompt for unlocked tiles — "Claim Your Gift" etc */
+  prompt?: string;
   locked: boolean;
   neonHsl: string;
   neonRgb: string;
-  /** Path to AI-generated animated image (WebP/MP4) */
   imageSrc?: string;
-  /** Route path for this step's page */
   path: string;
 };
 
@@ -31,25 +29,28 @@ const STEPS: AppStep[] = [
     id: "discover",
     number: 1,
     appName: "DISCOVER",
-    ctaLabel: "Articulate your top talent — it's a gift",
+    subtitle: "Articulate Your Top Talent",
+    prompt: "Claim Your Gift",
     locked: false,
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
     path: "/game/journey/start",
   },
   {
-    id: "name",
+    id: "package",
     number: 2,
-    appName: "CRYSTALLIZE",
+    appName: "PACKAGE",
+    subtitle: "Turn Your Talent Into a Business",
     locked: true,
     neonHsl: "hsl(260, 70%, 65%)",
     neonRgb: "140, 100, 234",
-    path: "/game/journey/name",
+    path: "/game/journey/package",
   },
   {
     id: "build",
     number: 3,
     appName: "BUILD",
+    subtitle: "Create Your Product",
     locked: true,
     neonHsl: "hsl(210, 70%, 60%)",
     neonRgb: "70, 140, 220",
@@ -59,6 +60,7 @@ const STEPS: AppStep[] = [
     id: "test",
     number: 4,
     appName: "TEST",
+    subtitle: "Validate Through Gifting",
     locked: true,
     neonHsl: "hsl(45, 90%, 55%)",
     neonRgb: "230, 190, 30",
@@ -68,6 +70,7 @@ const STEPS: AppStep[] = [
     id: "launch",
     number: 5,
     appName: "LAUNCH",
+    subtitle: "Go Live With Precision",
     locked: true,
     neonHsl: "hsl(330, 70%, 60%)",
     neonRgb: "220, 80, 140",
@@ -77,6 +80,7 @@ const STEPS: AppStep[] = [
     id: "grow",
     number: 6,
     appName: "GROW",
+    subtitle: "Scale Your Revenue",
     locked: true,
     neonHsl: "hsl(145, 60%, 50%)",
     neonRgb: "50, 190, 100",
@@ -86,6 +90,7 @@ const STEPS: AppStep[] = [
     id: "scale",
     number: 7,
     appName: "SCALE",
+    subtitle: "Join the Founder Collective",
     locked: true,
     neonHsl: "hsl(290, 60%, 60%)",
     neonRgb: "180, 100, 220",
@@ -187,16 +192,6 @@ const MethodologyLandingPage = () => {
                   {step.number}
                 </div>
 
-                {/* ─── Connector Line (sequence indicator) ─── */}
-                {step.number < 7 && (
-                  <div
-                    className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 w-4 sm:w-6 h-px hidden sm:block"
-                    style={{
-                      background: `linear-gradient(to right, rgba(${step.neonRgb}, 0.15), transparent)`,
-                    }}
-                  />
-                )}
-
                 {/* ─── App Icon Area ─── */}
                 <div
                   className={cn(
@@ -216,7 +211,6 @@ const MethodologyLandingPage = () => {
                   }}
                 >
                   {step.imageSrc ? (
-                    /* AI-generated animated image placeholder */
                     <img
                       src={step.imageSrc}
                       alt={step.appName}
@@ -224,13 +218,11 @@ const MethodologyLandingPage = () => {
                       loading="lazy"
                     />
                   ) : step.locked ? (
-                    /* Locked: lock icon with subtle gradient */
                     <Lock
                       className="w-5 h-5 sm:w-6 sm:h-6"
                       style={{ color: "rgba(255,255,255,0.2)" }}
                     />
                   ) : (
-                    /* Unlocked: decorative animated gradient shimmer */
                     <div
                       className="w-full h-full flex items-center justify-center"
                       style={{
@@ -247,7 +239,7 @@ const MethodologyLandingPage = () => {
 
                 {/* ─── App Name (ALL CAPS) ─── */}
                 <h2
-                  className="text-xs sm:text-sm font-bold tracking-[0.12em] leading-tight mb-1"
+                  className="text-xs sm:text-sm font-bold tracking-[0.12em] leading-tight"
                   style={{
                     color: isUnlocked
                       ? "rgba(255,255,255,0.92)"
@@ -257,19 +249,29 @@ const MethodologyLandingPage = () => {
                   {step.appName}
                 </h2>
 
-                {/* ─── CTA for unlocked tile — describes the action ─── */}
-                {step.ctaLabel && isUnlocked && (
-                  <div
-                    className="flex items-center gap-1.5 mt-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wide transition-all duration-300 group-hover:scale-105"
+                {/* ─── Subtitle: what this step does (plain text, no button) ─── */}
+                <p
+                  className="text-[10px] sm:text-[11px] leading-snug mt-1"
+                  style={{
+                    color: isUnlocked
+                      ? "rgba(255,255,255,0.5)"
+                      : "rgba(255,255,255,0.2)",
+                  }}
+                >
+                  {step.subtitle}
+                </p>
+
+                {/* ─── Game-style prompt for unlocked tiles ─── */}
+                {step.prompt && isUnlocked && (
+                  <p
+                    className="text-[10px] sm:text-[11px] font-semibold mt-2.5 tracking-wide group-hover:tracking-wider transition-all duration-300"
                     style={{
-                      background: `rgba(${step.neonRgb}, 0.15)`,
                       color: step.neonHsl,
-                      border: `1px solid rgba(${step.neonRgb}, 0.25)`,
+                      textShadow: `0 0 12px rgba(${step.neonRgb}, 0.4)`,
                     }}
                   >
-                    {step.ctaLabel}
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
+                    ✦ {step.prompt}
+                  </p>
                 )}
               </button>
             </div>

@@ -362,9 +362,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — lightest pane (dramatic jump: Rail black/50 → Sections black/10 → Content white/15%) */}
+                {/* Panel 3: Content — lightest pane (dramatic: Rail black/50 → Sections black/10 → Content white/25%) */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/[0.15] backdrop-blur-[2px]"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-white/[0.25]"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
@@ -442,7 +442,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                     {/* Content with safe area bottom */}
                     <main
-                        className="flex-1 bg-white/[0.15] backdrop-blur-[2px] overflow-auto relative"
+                        className="flex-1 bg-white/[0.25] overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         <div className="page-transition-enter">
