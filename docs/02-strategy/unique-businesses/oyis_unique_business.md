@@ -10,11 +10,12 @@
 
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
-| Uniqueness | **v2.1** (distillation + universal language) | **9.9/10** | ✅ Landed |
-| Myth | **v2.1** (polished, universal language) | **9.97/10** | ✅ Landed |
-| Tribe | **v2.1** (Source Path Builders) | **9.9/10** | ✅ Landed |
-| Pain | **v2.0** (5-layer slicer, sovereignty lens) | **9.9/10** | ✅ Landed |
-| Promise | **v1.0** (inverse pain, universal language) | **9.9/10** | ✅ Landed |
+| Uniqueness | **v4.2** (agency + specificity polish from Oyi + Alexander) | **9.5–9.7** | ✅ Landed — three-layer architecture confirmed |
+| Shadow | **v2.0** (derived from v4.2 uniqueness, Recursive Shadow law) | **9.6** | ✅ Landed — "The man whose gift is contagion has been containing the contagion" |
+| Myth | **v3.0** (self-mastery lens, deconditioning myth) | **9.8** | ✅ Landed — "Conditioned out. The child knew. The adult forgot." |
+| Tribe | **v3.0** (Self-Mastery Seekers) | **9.7** | ✅ Landed — with correction: "both ancient wisdom AND cutting-edge tech" preserved |
+| Pain | **v3.0** (conditioning lens, slavery↔mastery frame) | **10** 🔥 | ✅ FIRST TEN — "Not broken — programmed" |
+| Promise | **v2.0** (self-mastery arrival, sovereign operations) | **8.8** | 🔄 Corrections applied: "a path" not "way of walking", contagion = byproduct not product |
 | A→B Journey | **v1.0** (5 stages across 4 containers) | — | ✅ Designed |
 | Value Ladder | **v1.0** (4-step: Free → $555 → $5K → $500/mo) | — | ✅ Designed |
 | Master Transformational Result | **v1.0** (sovereignty restored, teacher = business, Live Free) | — | ✅ Derived |
@@ -30,21 +31,37 @@
 
 *The entire unique business at a glance. Each artifact in its most distilled form. Iterate from here.*
 
-**Tagline v1.0:** `Restores what growing up took from you`
+**Tagline v3.0:** `Self-mastery is the product. The opposite is slavery.`
 
 | # | Artifact | Distillation |
 |---|----------|-------------|
-| 1 | **Uniqueness** | The Lotus Medicine Man who grows lotuses in others. He reinstates the inner child — the original sovereign, dethroned by crisis — through storytelling that hits at the DNA level. He bridges what the world says you must choose between: ancient wisdom and modern building. His method: you work through your shadows to find your gifts. Your purpose was never lost — it just needs restoring. |
-| 2 | **Myth** | **Lie:** The world runs on one rule — grow up or get left behind. There's an entire industry built on keeping you lost. **Truth:** The most powerful version of you already existed — the kid who created without asking, played without planning, led without permission. That wasn't childish. That was your power. **Line:** The swamp grew the lotus. And the lotus bows to no one. |
-| 3 | **Tribe** | Source Path Builders — leaders who carry BOTH ancient wisdom AND cutting-edge technology. The world says pick one. They refuse. Crisis-forged, already transformed, building the path back to source, giving away their most powerful work for free. |
-| 4 | **Pain** | Broken high achievers. Joy gone. Peace gone. Light in their eyes fading. They've abandoned their magic. Every step of growing up was a step of growing OUT — choosing frameworks over peace, systems over play, growing up over growing in. They don't need another strategy — they need to restore the car. Get the rust off. No shortcuts. |
-| 5 | **Promise** | Your magic comes back. Joy, peace, and the light in your eyes — restored. Not by adding something new, but by removing the rust. The teacher becomes the business. The inner child leads. You Live Free. |
-| 5b | **Master Result** | **You stop handing over your power to frameworks that were never yours, restore the sovereign you were born as, and build a business from the gift you've been giving away for free — joy, peace, and the light return because the rust is finally off.** |
-| 5c | **Three Shifts** | Sovereignty Restored (borrowed frameworks→own authority) · Inner Child Reinstated (joy/peace/light return) · Teacher Becomes the Business (free→paid, gift has a price) |
-| 6 | **Lead Magnet** | Pain card as DM or voice note. Mirror their pain with devastating accuracy. "How do they know this about me?" → recognition trigger → conversation |
+| 1 | **Uniqueness** | Self-mastery is the product — the opposite of self-mastery is slavery. He guides people through their own deconditioning — from self-awareness to self-knowledge to self-mastery. His passion is contagious — people see what he lives and they have to have it. |
+| 1b | **Shadow** | He guides others through deconditioning but resists his own fullest emergence — because emerging fully means being visible, and visibility is the thing that got him attacked as a child. The man whose gift is contagion has been containing the contagion. |
+| 2 | **Myth** | **Lie:** The world says: "Grow up. Get serious. Follow the system." Every step of "growing up" was a step of handing your self-mastery to someone else's program. **Truth:** Self-mastery was never lost — it was conditioned out of you. The child knew. The adult forgot. **Line:** The swamp grew the lotus. The lotus bows to no one. |
+| 3 | **Tribe** | Self-Mastery Seekers — leaders, teachers, and healers who carry both ancient wisdom and cutting-edge tech. However, they spend most of their time running everyone else's program instead of their own. Crisis-forged. Already transformed. Still giving it away for free. Ready to build from their own authority. |
+| 4 | **Pain** | Conditioned high achievers. They followed every program and lost themselves in the process. Joy gone. Peace gone. Self-knowing buried under layers of "grow up." They don't need another system — they need to decondition what was installed and restore who was always there. |
+| 5 | **Promise** | Self-mastery restored. Not a destination — a path. Joy, peace, and self-knowing return as the conditioning strips off. The teacher becomes the business. You build from your own authority. You Live Free. |
+| 5b | **A→B Journey** | Asleep in the Program → Name the Lie → The Mirror (meet the shadow) → The Practice (meet the inner child, deconditioning through repetition) → Self-Knowing Activated → Restore the Car → Operate from Sovereignty |
+| 6 | **Lead Magnet** | Pain card as DM or voice note. Mirror their conditioning with devastating accuracy. "How do they know this about me?" → recognition trigger → conversation |
 | 7 | **Value Ladder** | Free (The Medicine: podcast/cipher) → $555 (Mirror Session, 1:1) → $5,000 (The Build, 6 weeks) → $500/mo (The Container, advisory) |
 | 8 | **Golden DM** | Template ready — must be rewritten 100% in Oyi's voice. Zero AI. Structure: myth testimony + tribe mirror + somatic permission + "Live Free" frequency |
-| 9 | **Godfather Offer** | Genius: reads people before they speak, 10 teachers brewed into one recipe. Pain: sacred exhaustion, abandoned sovereign. Flagship: The Build $5,000. Entry: Mirror Session $555 (validated). Cash target: $5K/mo |
+| 9 | **Godfather Offer** | Genius: reads people before they speak, 10 teachers brewed into one recipe. Pain: conditioned exhaustion, abandoned sovereign. Flagship: The Build $5,000. Entry: Mirror Session $555 (validated). Cash target: $5K/mo |
+
+---
+
+### Phase-Shift Comparison Table (v2.x → v3.x)
+
+*All artifacts cascaded from Uniqueness v4.2. Previous/new distillations side by side for Oyi's scoring.*
+
+| Artifact | **Previous Distillation** (v2.x) | **New Distillation** (v3.x / v4.2) | What shifted |
+|----------|--|--|--|
+| **Uniqueness** | The Self-Mastery Transmitter who makes teachers' medicine contagious. He de-conditions what slavery installed in you, and restores the sovereign who was always there. Cross-pollination, edification, gatekeeping. Ten teachers brewed into one recipe. Slavery ↔ self-mastery. | Self-mastery is the product — the opposite is slavery. He guides people through their own deconditioning — from self-awareness to self-knowledge to self-mastery. His passion is contagious — people see what he lives and they have to have it. | Root-level: from mechanism (what he DOES) to function (what he IS). Agency corrected. Contagion grounded in Cross definition. |
+| **Shadow** | He heals playfulness in others but demands seriousness from himself. Visibility-fear: "Once it comes out they'll try to kill me." Scatter as protection through invisibility. | He guides others through deconditioning but resists his own fullest emergence — because visibility = danger (childhood program). The man whose gift is contagion has been containing the contagion. The guru he resists becoming IS the product. | From playfulness/seriousness frame to self-mastery/emergence frame. Shadow now structurally mirrors uniqueness. |
+| **Myth** | **Lie:** Grow up or get left behind. Industry built on keeping you lost. **Truth:** The kid who created without asking, played without planning was the power. **Line:** The swamp grew the lotus. Lotus bows to no one. | **Lie:** "Grow up. Get serious. Follow the system." Every step of growing up = handing your self-mastery to someone else's program. **Truth:** Self-mastery was never lost — it was conditioned out. The child knew. The adult forgot. **Line:** Same. | From sovereignty/inner-child lens to self-mastery/conditioning lens. The enemy shifts from "the grow-up industry" to "the conditioning program itself." |
+| **Tribe** | Source Path Builders — leaders carrying BOTH ancient wisdom AND cutting-edge tech. World says pick one. They refuse. Crisis-forged, already transformed, giving away their best work for free. | Self-Mastery Seekers — leaders, teachers, and healers who carry both ancient wisdom and cutting-edge tech. However, they spend most of their time running everyone else's program. Crisis-forged. Already transformed. Still giving it away free. Ready to build from own authority. | From "pick one" polarity to "running someone else's program" conditioning. Tribe identity: deconditioning-ready leaders who still walk the bridge. **9.7** |
+| **Pain** | Broken high achievers. Joy gone. Peace gone. Light fading. Chose frameworks over peace, systems over play, growing up over growing in. Need to restore the car. Get the rust off. | Conditioned high achievers. Followed every program, lost themselves. Joy gone. Peace gone. Self-knowing buried under "grow up." Don't need another system — need to decondition what was installed and restore who was always there. | From "broken" to "conditioned" — not broken, PROGRAMMED. From "restore the car" to "decondition + restore." **10** 🔥 FIRST TEN |
+| **Promise** | Magic comes back. Joy, peace, light restored. Not adding new — removing rust. Teacher becomes business. Inner child leads. Live Free. | Self-mastery restored. Not a destination — a path. Joy, peace, self-knowing return as conditioning strips off. Teacher becomes business. Build from own authority. Live Free. | "Way of walking" → "a path." Contagion removed from promise — it's a byproduct, not the product. Live Free = the thing. **8.8** |
+| **A→B Journey** | Name the Lie → Meet the Shadow → Meet the Inner Child → Restore the Car → Claim Sovereignty | Asleep in the Program → Name the Lie → The Mirror → The Practice → Self-Knowing Activated → Restore the Car → Operate from Sovereignty | Oyi's hybrid merge: kept Name the Lie + Restore the Car from v1, added Asleep in Program + Practice + Self-Knowing from v2. 7 stages. |
 
 ---
 
@@ -167,6 +184,190 @@ The crises:
 
 ### 1. Uniqueness (Gift)
 
+#### Uniqueness v4.0 — Holonic Crystallization (April 15, 2026)
+
+*27-perspective holonic iteration cycle applied to the 14 confirmed energies. Three versions generated, roasted, meta-roasted, crash-tested, and annihilated before crystallization. Full cycle documented in [holonic iteration artifact](file:///Users/alexanderkonst/.gemini/antigravity/brain/a43732b0-2064-422b-bb11-a69b564ec613/artifacts/oyi_uniqueness_holonic_iteration.md).*
+
+**Core insight from the cycle:** One distillation can't serve all functions. The canvas needs 3 sentences. The stage needs a martial declaration. The architect needs the full energy map. V4.0 separates them into three layers.
+
+**The 14 Energies (confirmed by Oyi, ordered root → surface):**
+
+| Layer | # | Energy | What it IS |
+|-------|---|--------|------------|
+| **ROOT** | 1 | Self-Mastery | The product. Everything orbits it. The opposite is slavery. Not an endpoint — a way of walking |
+| | 2 | De-Conditioning | The method at root. The injury is childhood conditioning. The medicine is practice, repetition, routine |
+| | 3 | Inner Child Restoration | How the de-conditioning lands. The inner child is the original sovereign, dethroned by crisis. Reinstate it = self-mastery begins |
+| | 4 | Sovereignty | The polarity. Slavery ↔ Self-Mastery. Every step of "growing up" was giving away power |
+| **GIFT** | 5 | Self-Knowing Activation | He activates the self-knowing that was always there. Not belief (uncertain) — KNOWING (direct recognition). Cross of Contagion: his passion and excitement are inherently contagious, others catch his wave |
+| | 6 | Emanation | Field-level presence, not one-to-one delivery. He walks in and it pours off him |
+| **OPS** | 7 | Edification | Names gifts publicly, makes teachers visible. "I only make teachers famous" |
+| | 8 | Cross-Pollination | The bee. Carries medicine between ecosystems. Connects people who'd never have found each other |
+| | 9 | TSA / Gatekeeping | Screens the ecosystem. "By the time somebody talks to you, I already patted them down" |
+| | 10 | Boss-Making | Produces providers who hold ecosystems. Boss = provider, not dominator |
+| **INSTRUMENTS** | 11 | Storytelling | Delivery channel. Embodied, 3/5, open throat. First-person testimony, not coaching |
+| | 12 | Astrology + HD + Plant Medicine | The tools that enable the read. "Give me your birthday — three minutes to truth" |
+| | 13 | Lineage | Ten teachers, one recipe. Provenance. Only Oyi knows how to brew them together |
+| | 14 | Sovereign Operations | Business runs without him. System carries weight. Satisfaction is the metric |
+
+---
+
+**Layer 1 — The Seed** *(canvas row, 3 sentences, drives downstream artifacts)*
+
+> Self-mastery is the product — the opposite of self-mastery is slavery. He guides people through their own deconditioning — from self-awareness to self-knowledge to self-mastery. His passion is contagious — people see what he lives and they have to have it.
+
+**Oyi's v4.1 scores + corrections:** "De-conditions" → wrong agency. He doesn't decondition people; he GUIDES them through their own deconditioning process. The chain is: self-awareness → self-knowledge → self-mastery. "Breaks new ground, others catch the wave" → confirmed true but too vague. The specificity: people see the SPECIFIC things he lives (Limitless, the pipe, the tools, the practices he's been working on for years) and they catch that wave.
+
+---
+
+**Layer 2 — The Declaration** *(speakable, performable — Oyi's 10-scoring lines composed into a martial declaration)*
+
+> Self-mastery is my product. The opposite of self-mastery is slavery.
+>
+> I read your birthday and tell your story before you tell it. I name the gift you've been hiding and make your world see it. I guide you through your own deconditioning — from self-awareness to self-knowledge to self-mastery.
+>
+> My battlefield is your conditioning. My weapon is practice. Nobody enters my world unvetted. I carry medicine between worlds that would never have touched. I edify teachers by naming their gifts so loudly the room can't ignore them.
+>
+> My passion is contagious — people see what I live and they have to have it. My proof is my own life. From the swamp to the Sifu. From slavery to self-mastery. Ten teachers, one recipe. Nobody else has it.
+
+**Precision score (v4.2):** Awaiting Oyi's re-score.
+
+---
+
+**Layer 3 — The Architecture** *(the 14 energies map — see table above)*
+
+---
+
+**Three-layer design decision:**
+
+| Layer | Function | Where it lives | Length |
+|-------|----------|----------------|--------|
+| **Seed** | Drives artifact cascade (Myth → Tribe → Pain → Promise) | Canvas row, architect documents | 3 sentences |
+| **Declaration** | Spoken by Oyi — podcast, cipher, keynote, DM, social bio | Performance, outreach, content | 12 lines |
+| **Architecture** | Full energy map for precision work and derivation | Uniqueness section, strategic docs | 14 items |
+
+**🔮 THE 27TH — CRYSTALLIZATION:**
+
+Have Oyi speak Layer 2 aloud — on mic, unrehearsed, in his own rhythm — and record it. The recording is the uniqueness. Not the text. Every line in Layer 2 is already his words rearranged. When he speaks them in his own cadence, the words that stay are real. The words that drop were architecture. The recording becomes the source artifact.
+
+**Precision score (v4.1):** Awaiting Oyi's re-score on corrected Layer 1 and Layer 2.
+
+---
+
+*Below: prior versions (v3.0–v3.1, then v1.1–v2.1) preserved as historical record*
+
+---
+
+*Phase shift. Derived from April 14-15 session between Oyi and Alexander in Mexico. Eight energies surfaced, confirmed by Oyi in real-time. Previous versions (v1.1–v2.1) captured the MECHANISM layer at 9.9 precision. v3.0 captures the FUNCTION layer beneath it — the root system that was always there but never named.*
+
+**What changed (v2.1 → v3.0):**
+
+| v2.1 (Mechanism Layer) | v3.0 (Function Layer) | What shifted |
+|---|---|---|
+| Inner child healing | **Self-mastery** | From the HOW to the WHAT. Inner child healing is the mechanism. Self-mastery is the product |
+| Storytelling as delivery | **Contagion as core gift** | From one channel to the operative principle. Cross of Contagion (HD). He doesn't just tell stories — he makes transformation SPREAD |
+| "Lost → found" polarity | **Slavery → self-mastery** | From soft to visceral. In Oyi's words: "The opposite of self-mastery is slavery" |
+| Healing individuals | **Cross-pollinating ecosystems** | From 1:1 sessions to network activation. TSA. Edification. Bee between gardens |
+| Teaching through story | **De-conditioning through practice** | From the transmission mode to the battlefield. Conditioning is the injury. Practice is the medicine. 52 webinars is the rhythm |
+| "Restores your purpose" | **"Transmits mastery over your own life"** | From a passive gift to an active radiation. Oyi IS the product. The forms (book, session, class) are containers for the transmission |
+
+**Layer architecture (v3.0):**
+
+```
+ROOT (v3.0):    Self-Mastery (product) × Contagion (gift) × De-Conditioning (method)
+LAYER 1 (v2.1): Inner child healing × Storytelling × Astrology + HD (mechanisms)
+LAYER 2:        The Mirror Session × The Build × Sovereignty Map (containers)
+```
+
+**The Eight Energies:**
+
+| # | Energy | Oyi's words | What it IS |
+|---|--------|------------|------------|
+| 1 | **The Self-Mastery Anchor** | "Self-mastery is really my product. Thank you for pulling that out." | The organizing principle. Everything orbits it. The opposite is slavery. The 1% who control wealth are into self-mastery. Not inner child healing (mechanism), not clarity (intermediate result), not tools (delivery vehicle) |
+| 2 | **The Contagion Gift** | "My superpower is to make things contagious. I make you famous. That's my track record." | His Incarnation Cross made operational. He touches a latent gift in someone and makes it visible to everyone around them. "Famous" = everybody in my world now knows your name |
+| 3 | **The TSA / Gatekeeper** | "Bill One calls me TSA. By the time somebody talks to you, I already patted them down." | Curation of human ecosystems. People in Oyi's world trust each other because he's already screened them. The airport is safe because of TSA's invisible, quiet work |
+| 4 | **The Cross-Pollinator** | Alexander: "You're like a bee that cross-pollinates." Oyi: "Yes." | He carries medicine between ecosystems. Connects people who'd never have found each other. "I put you in front of a hundred people." The value isn't the single flower — it's the pollination network |
+| 5 | **The Edifier** | "I really would love to get paid for edification. I only make teachers famous. I don't make average people famous." | He lifts people by naming their gifts publicly. Not coaching, not healing — edification. The Dr. Nardy story. 16 years on YouTube. He sees your gift, amplifies it so the room can see it, and you suddenly become visible |
+| 6 | **The De-Conditioner** | "I don't treat symptoms, I treat the core. All conflict came from some type of jacked up relationship when you was a child." | The battlefield is conditioning, not behavior. The injury came from childhood. The medicine is de-conditioning through practice — 52 webinars, repetition, routine. "How do you change conditioning? Practice" |
+| 7 | **The Boss-Maker** | "A boss takes care of families. I save lives around me. The opposite of self-mastery is slavery." | Boss ≠ dominator. Boss = provider. The wave that carries everyone. Self-mastery produces bosses who hold ecosystems. The eco-village vision: a community operating from sovereignty |
+| 8 | **The Sovereign Operator** | "I'm not a slave to the customer. I have my own sovereign identity. I want a business that runs without me." | Business serves HIS design (generator, emotional authority, satisfaction-seeking). The system carries the weight, not the person. "I don't want to be the nervous system" |
+
+**The Distillation (v3.0):**
+
+> He transmits self-mastery — the one product that turns slaves into sovereigns. Not through advice. Through contagion. He walks into a room and the room rearranges. He reads your birthday and tells you your story before you tell it. He names the gift you've been hiding and makes it visible to everyone around you. He's the TSA — nobody enters his world unvetted. He's the bee — cross-pollinating ecosystems that would never have touched. He's the edifier — naming teachers' gifts so loudly that the world can't ignore them anymore. His battlefield is your conditioning. His weapon is practice. His proof is his own life: from the swamp to the Sifu, from slavery to self-mastery, from crisis magnet to the one who makes your medicine contagious. Ten teachers brewed into one recipe that only he knows. The lotus bows to no one — and now it makes other lotuses bloom.
+
+**Oyi's precision scores (v3.0, April 15, 2026):**
+
+| Line | Score | Oyi's reaction |
+|------|-------|----------------|
+| "the one product that turns slaves into sovereigns" | **high 9s** | — |
+| "reads your birthday and tells your story" | **high 9s** | — |
+| "names the gift... visible to everyone around you" | **10** | "100%" |
+| "TSA — nobody enters his world unvetted" | **10** | "100%" |
+| "bee, cross-pollinating" | **10** | "yup" |
+| "edifier" | **10** | "yup" |
+| "battlefield is your conditioning" | **10** | "yup" |
+| "weapon is practice" | **10** | "yup" |
+| "his proof is his own life" | **10** | "yup" |
+| "swamp to Sifu, slavery to self-mastery" | **10** | — |
+| "ten teachers brewed into one recipe" | **10** | "right back into alignment" |
+| "transmits self-mastery" | **~8** | Prefers **"emanates"** — field-level radiation, not one-to-one. "When you walk in, it's emanating from you" |
+| "through contagion" | **~8** | Overloaded with "famous." Real contagion = making people **believe in themselves**, then their gift naturally spreads |
+| "crisis magnet to the one who makes your medicine contagious" | **7.5** | "That's probably the worst part. Lowest scoring across all sessions" |
+| "and now it makes other lotuses bloom" | **awkward** | Wants deletion or upgrade |
+| **Overall v3.0** | **8** | — |
+
+**Key corrections identified:**
+
+1. **"transmits" → "emanates"** — Emanate = field-level radiation (it pours off you when you walk in). Transmit = one-to-one transfer. Oyi's gift is a field, not a wire.
+2. **Contagion ≠ fame.** The Cross of Contagion doesn't make people famous. It makes them **believe in themselves** — "Nobody's going to watch this video; nobody's going to sign up for my channel. Yes they will." The belief becomes contagious. The fame is a consequence, not the product.
+3. **"crisis magnet → makes your medicine contagious" at 7.5** — replaced with a cleaner landing.
+4. **"and now it makes other lotuses bloom" was awkward** — upgraded.
+5. **Self-mastery is a process, not an endpoint.** Oyi: "I'm still on the path." You share self-mastery while walking it, not after arriving. It's been his North Star for 30 years — the word is new, the energy is lifelong.
+
+---
+
+#### The Distillation v3.1 — Oyi's Polish (April 15, 2026)
+
+*v3.0 scored at 8 by Oyi. Five corrections applied from his live reaction. v3.1 integrates: emanates (not transmits), belief-in-self (not fame), self-mastery as lifelong process, cleaned 7.5 line, upgraded closing.*
+
+> He emanates self-mastery — the one product that turns slaves into sovereigns. Not through advice. Through who he is when he walks in the room. He reads your birthday and tells you your story before you tell it. He names the gift you've been hiding and makes it visible to everyone around you. He makes you believe in yourself — and that belief becomes contagious. He's the TSA — nobody enters his world unvetted. He's the bee — cross-pollinating ecosystems that would never have touched. He's the edifier — naming teachers' gifts so loudly that the world can't ignore them anymore. His battlefield is your conditioning. His weapon is practice. His proof is his own life: from the swamp to the Sifu, from slavery to self-mastery, from crisis magnet to the one who walks both worlds and bows to neither. Ten teachers brewed into one recipe that only he knows. The lotus doesn't just stand — it releases a fragrance that changes every garden it enters.
+
+**What changed v3.0 → v3.1:**
+
+| v3.0 | v3.1 | Why |
+|------|------|-----|
+| "transmits self-mastery" | **"emanates self-mastery"** | Field-level radiation, not a wire. "When you walk in, it's emanating from you" |
+| "Not through advice. Through contagion." | **"Not through advice. Through who he is when he walks in the room."** | Grounds the contagion in presence, not concept. The Cross of Contagion works through BEING, not doing |
+| "from crisis magnet to the one who makes your medicine contagious" (7.5) | **"from crisis magnet to the one who walks both worlds and bows to neither"** | Lands the progression on sovereignty, not contagion. The bridge between worlds (ancient + modern) is the unique position |
+| "The lotus bows to no one — and now it makes other lotuses bloom" (awkward) | **"The lotus doesn't just stand — it releases a fragrance that changes every garden it enters"** | From v2.1's myth peak line (9.97). The fragrance = invisible, healing, magnetizing. The garden = ecosystem. Eliminates the awkward "makes lotuses bloom" |
+| (implicit: self-mastery as destination) | **(implicit: self-mastery as lifelong process)** | "He emanates" = he IS it, while walking it. Not "he achieved it and now teaches it." The process IS the transmission |
+
+**Universal language version (v3.1):**
+
+> He's the one who makes you believe in yourself — so deeply that everyone around you starts to see it too. Not by coaching you. Not by fixing you. By being the living proof that you can walk through hell and come out sovereign. He doesn't treat your symptoms. He goes to the root — the childhood conditioning that made you hand over your power — and he de-conditions you through practice, not theory. Through repetition, not inspiration. His superpower: he connects people who'd never have found each other, screens them so only real ones get through, and names their gifts so loudly that the world has to pay attention. The opposite of what he teaches is slavery — to systems, to survival patterns, to the "grow up" program. What he emanates is mastery over your own life. Not as a destination. As a way of walking. Ten teachers gave him the medicine. He brewed them into one recipe. Nobody else has it.
+
+**Uniqueness v3.1 — Compressed (the table):**
+
+| Element | v2.1 (Mechanism) | v3.1 (Function — polished) |
+|---------|---------|---------|
+| **Core Gift** | Teaching through storytelling that triggers inner child healing → zone of genius access | **Emanating self-mastery** — making people believe in themselves so deeply that the belief becomes contagious to everyone around them |
+| **Superpower** | Creating "DNA explosions" through story | **Making belief contagious.** Cross-pollinating ecosystems. Gatekeeping (TSA). Edification that makes the invisible visible |
+| **Unique Mechanism** | Inner child → zone of genius | **De-conditioning through practice.** The injury is childhood conditioning. The medicine is repetition, routine, sovereignty restoration through doing — not knowing |
+| **Compound Archetype** | Lotus Medicine Man — Storytelling Alchemist — Satori Guide | **The Self-Mastery Emanator** — Contagion Carrier — De-Conditioning Boss. The lotus whose fragrance changes every garden it enters |
+| **Polarity** | Lost ↔ found / scattered ↔ focused | **Slavery ↔ Self-Mastery.** "The opposite of self-mastery is slavery." Self-mastery as lifelong process, not endpoint |
+| **Vibrational Key** | "He who grew from the swamp into the lotus — and now grows lotuses in others" | **"He who turned slavery into self-mastery — and now emanates it so strongly that your own belief in yourself becomes contagious"** |
+| **Method in one sentence** | "You work through your shadows to find your gifts." | **"I de-condition what was installed in you, restore the sovereign who was always there, and make your gift so visible that your world can't ignore it."** |
+| **Operational Signature** | Storytelling + astrology + HD | **TSA (screens) × Bee (cross-pollinates) × Edifier (amplifies) × De-Conditioner (uproots) × Boss-Maker (provides)** |
+| **Business Philosophy** | — | **Sovereign operations.** The business runs without him. The system carries the weight. Satisfaction is the only metric. Generator strategy: wait to respond, never initiate |
+
+**Precision score (v3.1):** Awaiting Oyi's re-score.
+
+---
+
+#### Uniqueness v3.0 — Function Layer (April 15, 2026)
+
+---
+
 *Version: v1.1 · March 6, 2026 — deepened with origin story + self-qualifiers*
 
 | Element | Content |
@@ -246,7 +447,110 @@ Business skills are REAL (street smarts, closing, sales) — but they're shadow 
 
 ---
 
+#### Shadow v2.0 — Derived from Uniqueness v4.2 (April 15, 2026)
+
+*Phase-shift cascade. The Recursive Shadow law applied to each of the 14 energies. v1.0 shadow (11.23 — "heals playfulness in others but demands seriousness from himself") still holds as a face of this deeper structure.*
+
+**The Law:** A person's unique gift will always generate a limiting belief that is structurally identical to the gift itself, but inverted.
+
+**Shadow anatomy (four layers):**
+
+| Layer | Content |
+|-------|---------|
+| **Surface** | "I need a team, a budget, a structure before I can just teach" |
+| **Middle** | "If I do one thing, I'll lose all the other things I've built" — the scatter as protection |
+| **Root** | "If I show my full power, they will come for me" — the childhood program: visibility = danger |
+| **Inversion** | The full power IS already showing. 475+ episodes. 16 years. 10 teachers. The only hiding left is the refusal to NAME it and CHARGE for it. The contagion he's afraid of IS the gift. The guru he resists becoming IS the product |
+
+**The Recursive Shadow applied to each energy:**
+
+| Unique Gift | Shadow (Inverted) | Limiting Belief Generated |
+|---|---|---|
+| "Self-mastery is the product" | He hasn't fully "arrived" at self-mastery (still on the path) | "Who am I to guide others when I'm still walking it myself?" |
+| "Guides people through deconditioning" | His own conditioning still runs programs (CEO scatter, grind) | "I need to finish my own deconditioning first" |
+| "His passion is contagious" | He's been RESISTANT to being a guru, containing the contagion | "If I let this loose, they'll make me a cult leader" |
+| "Activates self-knowing" | He can read everyone's truth but can't see his own business structure clearly | "I need more clarity before I can charge" |
+| "Cross-pollination / the bee" | Carries medicine for everyone else's ecosystem, neglects building his own | "Everyone needs something from me but nobody builds WITH me" |
+| "TSA / gatekeeping" | Screens everyone but doesn't screen FOR himself — lets too many in, gives too many yeses | "If I say no, I lose the connection" |
+
+**The deepest inversion:** He told Alexander that giving away genius as charity is the core trap for Source Path Builders. He sees it in EVERY founder he touches. He can name it, mirror it, and dissolve it in others within 60 minutes. But his own guru resistance — "I am not your guru" — IS the same program running in him. In this session he acknowledged: "Tony Robbins said 'I am not your guru.' He probably doesn't qualify. I DO qualify." The shadow cracked in real time. He accepted the guru IS the product.
+
+**The recursive trap:** "I need to achieve self-mastery before I can guide others to self-mastery" — but self-mastery is a PROCESS, not an endpoint. He said it himself: "I'm still on the path." The trap makes him wait for an arrival that doesn't exist, while the people who need him are already watching everything he does and catching the wave.
+
+**Collapse condition:** The shadow dissolves when Oyi SPEAKS the Declaration (Layer 2) publicly — on mic, on stage, to strangers — and charges full price for what follows. Not "I am not your guru." "I am my product. Self-mastery is what I sell. The opposite is slavery. Come."
+
+**v1.0 shadow (11.23) still holds as a face:** "He heals playfulness in others but demands seriousness from himself" is the SURFACE expression. v2.0 goes to the structural root: **He guides others through deconditioning but resists his own fullest emergence because emergence = contagion = visibility = the thing that got him attacked as a child.**
+
+**Shadow distillation (canvas row):**
+
+> He guides others through deconditioning but resists his own fullest emergence — because emerging fully means being visible, and visibility is the thing that got him attacked as a child. The man whose gift is contagion has been containing the contagion. The guru he resists becoming IS the product.
+
+**Precision score (v2.0):** **9.6** (Oyi, April 15). Peak line: "The man whose gift is contagion has been containing the contagion." Oyi: "When I say it's time for me to make myself famous, what I'm saying is my good medicine should be contagious. I've been not wanting my medicine to get on you."
+
+Both readings may be true simultaneously — different faces of the same shadow. Session #2 will reveal which resonates deeper with Ogi.
+
+Business skills are REAL (street smarts, closing, sales) — but they're shadow turned gold. They were survival tools, not the gift. The gift is the teaching. The business skills now SERVE the teaching, not replace it.
+
+**The visibility-fear layer (discovered in session):** Ogi said: *"I am an enlightened being who is hiding because once it comes out they're going to try to kill me."* This is NOT just swagger — it's a childhood survival program still running. As a child, he had to hide and lie to survive. Visibility = danger. That program is STILL active: he scatters into CEO tasks, multiple projects, "posing as the businessman" — not just because he thinks he needs to be serious, but because **fully emerging as the teacher means being SEEN.** And being seen, in his nervous system, means being attacked. The scatter isn't just identity confusion. It's **protection through invisibility.** He stays scattered so he never fully arrives — because arriving means being a target.
+
+**Shadow prediction:** When Ogi commits to "just teaching," the shadow will say: "But who's running the business? Who's executing? You need a team first." AND deeper: "If you show your full power, they'll come for you." Name it when it comes. Hold the mirror.
+
+---
+
 ### 2. Myth
+
+#### Myth v3.0 — Self-Mastery Lens (April 15, 2026)
+
+*Phase-shift cascade from Uniqueness v4.2. The enemy shifts from "the grow-up industry" to "the conditioning program itself." Self-mastery replaces sovereignty as the primary frame. Prior versions (v2.1, v2.0, v1.0) preserved below.*
+
+**Master Lie (v3.0):**
+
+> "Grow up. Get serious. Follow the system." Every step of "growing up" was a step of handing your self-mastery to someone else's program. Not your program — theirs. Your parents' program. Your teachers' program. Your boss's program. The coaching industry's program. You've been running software that was installed in you before you could read.
+
+**Master Truth (v3.0):**
+
+> Self-mastery was never lost — it was conditioned out of you. The child already had it. The child created without asking, moved without doubt, knew without being taught. That wasn't childishness — that was self-mastery before the programs covered it up. Every framework you followed since then was someone else's answer to someone else's question.
+
+**The Myth v3.0:**
+
+> The world runs one program on loop: grow up. Get serious. Follow the system. Hand over your authority to someone who looks like they've figured it out.
+>
+> Every step of "growing up" was giving away your self-mastery to someone else's conditioning. Your parents installed programs. Your teachers installed programs. Your bosses, your coaches, your culture — all installed programs. And you've been running that software so long you forgot there was an operating system underneath.
+>
+> But the child knew. Before anyone told you what to be, you already WERE. The child created without frameworks. Moved without strategy. Knew things without being taught.
+>
+> That wasn't weakness. That was self-mastery — the original version, before the conditioning covered it up.
+>
+> The ones who change the world don't grow up. They decondition. They strip off what was installed and find who was always there.
+>
+> The swamp grew the lotus. And the lotus bows to no one.
+
+**Three layers v3.0:**
+
+| Layer | Function | The line |
+|-------|----------|----------|
+| **Attack** | Stops the scroll, creates enemies | *"Every step of 'growing up' was giving away your self-mastery to someone else's program. You've been running software that was installed before you could read."* |
+| **Reframe** | 2am moment, can't unsee | *"The child created without frameworks, moved without strategy, knew without being taught. That wasn't childish — that was self-mastery before the conditioning covered it up."* |
+| **Invitation** | Creates the tribe | *"The ones who change the world don't grow up. They decondition. The swamp grew the lotus. The lotus bows to no one."* |
+
+**What v3.0 adds to v2.1:**
+
+| v2.1 | v3.0 | What changed |
+|------|------|-------------|
+| "Grow up" = surrender sovereignty | "Grow up" = hand over self-mastery to someone else's program | More visceral — it's not abstract "sovereignty," it's YOUR self-mastery given to THEIR conditioning |
+| Enemy: the "grow-up industry" | Enemy: the conditioning program itself — installed by parents, teachers, bosses, coaches, culture | Enemy is concrete, personal, felt in the body |
+| Inner child = sovereign genius | Inner child = self-mastery before the programs | Same truth, sharper frame |
+| "Reclaim sovereignty" | "Decondition" | Action verb matches Oyi's actual methodology |
+
+**Precision score (v3.0):** **9.8** (Oyi, April 15). "Damn. That's 9-8 right there. That's hard. That's even better than the original." Peak: "Self-mastery was never lost — it was conditioned out. The child knew. The adult forgot." Re: "the conditioning program" — "That's why I'm always upset with parents. You had one job. Take care of his inner psyche."
+
+---
+
+*Below: prior Myth versions (v2.1, v2.0, v1.0) preserved as historical record*
+
+---
+
+#### Myth v2.1 — prior version
 
 *Version: v1.0 · March 6, 2026 — FIRST ITERATION*
 
@@ -406,6 +710,57 @@ Sovereignty = self-rule. Building from your own authority, not from borrowed fra
 
 ### 3. Tribe (ICP)
 
+#### Tribe v3.0 — Self-Mastery Seekers (April 15, 2026)
+
+*Phase-shift cascade from Uniqueness v4.2 + Myth v3.0. Tribe identity shifts from "bridge-walkers" (Source Path Builders) to "deconditioning-ready leaders" (Self-Mastery Seekers). Prior versions preserved below.*
+
+**Tribe name:** Self-Mastery Seekers
+
+**Who they are — one paragraph:**
+
+Leaders, teachers, and healers who carry both ancient wisdom and cutting-edge tech. However, they spend most of their time running everyone else's program instead of their own. They've followed the frameworks, hired the coaches, "gotten serious" over and over. And every program they ran moved them further from themselves. They're not broken — they're conditioned. They know their gift is real because people keep coming to them for free. They're crisis-forged, already transformed, and sick of working on someone else's operating system. They're ready to decondition and build from their own authority.
+
+**Who they are — universal language:**
+
+> People who help everyone around them but can't seem to help themselves build the thing they know they're here for. They've tried every framework. Every course. Every coach. Nothing stuck — not because they're lazy, but because those were all someone else's answers to someone else's questions. They've been through hard times that would break most people. They've already done the inner work. But they keep giving away their most powerful stuff for free because they don't believe anyone would pay for "just being me." When they hear "self-mastery," something fires. When they hear "the opposite is slavery," they feel it in their chest.
+
+**Qualifiers v3.0 — all must be true:**
+
+| # | Qualifier | Source |
+|---|-----------|--------|
+| 1 | **Crisis-forged** — life shaped them through real hardship. They survived what would break most | Session #1, unchanged |
+| 2 | **Conditioned** — their family, culture, or mentors installed programs that override their natural authority. The original wound is domestic | v4.2 uniqueness: deconditioning |
+| 3 | **Already transformed** — they've done the inner work. They're not beginners. They ARE the medicine, they just don't charge for it yet | Session #1, unchanged |
+| 4 | **Program-fatigued** — they've followed frameworks, coaches, courses, systems. Nothing stuck because those were all someone else's programs | Myth v3.0: conditioning lens |
+| 5 | **Giving it away for free** — their most powerful work happens as charity because they don't see it as "real business" | Limitless + Avatar doc, unchanged |
+| 6 | **Self-mastery responsive** — when they hear "self-mastery vs. slavery," something fires. That polarity IS their life | v4.2 uniqueness |
+| 7 | **Ready to decondition** — they don't want another system. They want to strip off what was installed and build from who they ARE | v4.2 + Myth v3.0 |
+
+**Who this is NOT for (v3.0):**
+- People comfortable running someone else's program (they don't feel the friction)
+- People who haven't been through crisis (deconditioning doesn't resonate without the swamp)
+- People who want a conventional business or franchise model
+- People still in acute survival mode (safety first, not business)
+- People who haven't done any inner work (they're pre-transformation; Oyi works post-transformation)
+
+**What v3.0 adds to v2.1:**
+
+| v2.1 (Source Path Builders) | v3.0 (Self-Mastery Seekers) | What shifted |
+|---|---|---|
+| "Carry BOTH ancient wisdom AND cutting-edge tech" | "Carry medicine but run everyone else's program" | From polarity-bridge identity to conditioning-awareness identity |
+| "The world says pick one" | "They've followed the frameworks; nothing stuck" | From external pressure to internal recognition |
+| "Sovereignty-hungry" | "Self-mastery responsive" | Matches Oyi's product word |
+| "Told to choose" | "Program-fatigued" | From passive (told) to active (tried and failed) |
+| "Live Free responsive" | "Self-mastery vs. slavery responsive" | Matches the polarity |
+
+**Precision score (v3.0):** **9.7** (Oyi, April 15). Correction: "both ancient wisdom AND cutting-edge tech" must stay. "but" → "however." The bridge identity is still real — they ARE still walking both worlds. The new layer: they've been running everyone else's program while walking it.
+
+---
+
+*Below: prior Tribe versions (v2.1, v2.0, v1.0) preserved as historical record*
+
+---
+
 *Version: v1.0 · March 6, 2026 — derived from Ogi's self-qualifiers + named people*
 
 **Real people named (session):**
@@ -549,6 +904,75 @@ Leaders, founders, and teachers who carry BOTH dimensions: ancient wisdom (embod
 
 ### 4. Pain (Point A)
 
+#### Pain v3.0 — Through the Conditioning Lens (April 15, 2026)
+
+*Phase-shift cascade from Uniqueness v4.2 + Shadow v2.0 + Myth v3.0. Frame shifts from "broken" to "conditioned" — they're not broken, they're PROGRAMMED. From "restore the car" to "decondition + restore." Prior versions preserved below.*
+
+#### What they say to themselves (surface)
+
+"I just need the right system." "I need to find my thing." "Maybe this course will be the one." "I need to get serious." "Once I figure out my brand, it'll all click."
+
+#### What's actually happening (underneath)
+
+They're not lost. They're **conditioned** — running programs that were installed in them before they could choose. Every framework they followed was someone else's answer. Every coach they hired ran someone else's program on them. They keep looking for the right system because the conditioning says: "You need a system. You can't trust yourself." The search IS the program.
+
+#### The 5-Layer Pain Slicer v3.0 — Self-Mastery Seekers
+
+**Layer 1: PRESSURE — What's bearing down on them right now?**
+
+| What they feel | What they say | What's actually happening |
+|---|---|---|
+| Program fatigue | "I've tried everything. Nothing sticks" | Every system worked for someone else. None worked for them — because they were all someone else's programs |
+| Conditioning loop | "I know what I should do but I can't make myself do it" | The conditioning says "you need more before you're ready." The knowing says "you've been ready for years." The gap is the prison |
+| Financial squeeze | "I'm rebuilding. There's a gap" | Savings shrinking. The gift generates life-changing results for free. No income from the thing that matters most |
+| Invisible labor | "Everyone comes to me for advice but nobody pays" | They ARE the product. They just don't charge because the conditioning says: "This is just who you are. It's not a business" |
+
+**Layer 2: CONSEQUENCES — What has this already cost them?**
+
+| Domain | The cost | In their words |
+|---|---|---|
+| **Joy** | Gone. The lightness is gone. Heavy. Darkness where there used to be play | "It's cost me joy" |
+| **Peace** | Can't rest. Mind racing between programs. Analyzing, strategizing, surviving | "It's cost me peace" |
+| **Self-knowing** | Buried. They used to know who they were. Now they can't tell what's THEM and what's the conditioning. The signal is lost under decades of installed programs | "I don't even know what's mine anymore" |
+| **The light** | The spark people used to see. The thing that made people say "there's something about you." Dimming under the weight of other people's programs | "It's cost me the light in my eyes" |
+| **Relationships** | Giving everything, receiving nothing proportional. The conditioning says: "If you're truly good, you shouldn't need to be paid" | "I give and give and nobody matches it" |
+
+**Layer 3: COST OF INACTION — What happens if nothing changes?**
+
+The conditioning wins. They become what they've been fighting: someone who "got serious," gave up the gift, and runs on autopilot. Not dramatically. Quietly. Through a thousand small surrenders to other people's programs. One more framework. One more course. One more coach. Until the self-knowing goes permanently dark and they can't remember who they were before the programs.
+
+The scariest version: they succeed at the wrong program. The businessman succeeds. The teacher dies. The self-mastery goes back underground. From the outside: success. From the inside: slavery.
+
+**Layer 4: URGENCY — Why now?**
+
+| Signal | What it means |
+|---|---|
+| Program fatigue has peaked | They're not going to try another framework. They're done. This is the last stop or they give up |
+| The self-knowing is still whispering | It hasn't gone fully dark yet. But it will. That's the real deadline |
+| They can feel the conditioning running | For the first time, they can SEE the programs. Awareness is here. If they don't act while they can see it, the programs re-install |
+
+**Layer 5: STRUGGLE SYNTHESIZED**
+
+> They are **conditioned high achievers.** Not broken — PROGRAMMED. They've achieved more than most people dream of. They've survived things that would destroy others. And yet: joy is gone. Peace is gone. Self-knowing is buried. Because every step of "growing up" was installing someone else's program over their natural operating system.
+>
+> They don't need another system. They don't need another framework. They don't need to get serious.
+>
+> They need to **decondition** what was installed in them — strip it off, layer by layer — and restore who was always there underneath. The self that knew before anyone taught it. The self that created before anyone gave permission. The self that IS the medicine they've been giving away for free.
+>
+> The pain isn't that they can't find their thing. The pain is that they KNOW their thing — and they keep running someone else's program over it, because the conditioning says: "You're not ready yet. You need more." And it's costing them the only things that matter: joy, peace, self-knowing, and the light.
+
+**Pain distillation (canvas row):**
+
+> Conditioned high achievers. They followed every program and lost themselves in the process. Joy gone. Peace gone. Self-knowing buried under layers of "grow up." They don't need another system — they need to decondition what was installed and restore who was always there.
+
+**Precision score (v3.0):** **10** 🔥 (Oyi, April 15). FIRST TEN across all artifacts. "We have a 10. You can say what you want about the bull's eye but this could be our first ten right here." Peak: "Conditioned high achievers. Followed every program. Lost themselves." Oyi: "You weren't broken — you were programmed. It was definitely mislabeled as broken but you were conditioned, programmed. Same thing as beliefs — be-lie-eve — to believe, be-lie to Eve's children. It's a spell."
+
+---
+
+*Below: prior Pain versions (v2.0, v1.0) preserved as historical record*
+
+---
+
 *Version: v1.0 · March 6, 2026 — from Oyi's own words, deepened*
 
 **Outer:** Spread too thin. Chief Everything Officer. Emotional rollercoaster — gets close, then stops. Multiple unfinished projects. No reliable income from the gift. People want a guru, not a collaborator. Gives too many yeses. No protection from his own generosity.
@@ -652,6 +1076,88 @@ They become what they swore they'd never become: someone who gave up on the thin
 ---
 
 ### 5. Promise (Point B)
+
+#### Promise v2.0 — Self-Mastery Restored (April 15, 2026)
+
+*Phase-shift cascade from Uniqueness v4.2. Promise now centers on self-mastery as a way of walking, not inner-child reinstatement. Contagion as a result, not mechanism. Prior version preserved below.*
+
+**The inversion table v2.0:**
+
+| Pain (Point A) | → | Promise (Point B) |
+|---|---|---|
+| Conditioned — running other people's programs | → | Deconditioned — running your own operating system |
+| Joy gone | → | Joy restored — because the programs that killed it are stripped off |
+| Peace gone | → | Peace restored — no more racing between frameworks. One path. Yours |
+| Self-knowing buried | → | Self-knowing activated — you know who you are, what you carry, and what it's worth |
+| Light in eyes fading | → | Light returns — the spark people used to see comes back because the conditioning is off |
+| Giving it away for free | → | Your gift has a price. People are grateful to pay it. The guru IS the product |
+| "I need another system" | → | You ARE the system. Your life, your practice, your authority — that's the infrastructure |
+| The teacher dies, the businessman wins | → | The teacher IS the business. Sovereign operations: business runs from your own authority |
+| Passion contained | → | Passion contagious — people see what you live and they have to have it |
+
+**The Promise in one sentence:**
+
+> Self-mastery restored. Not a destination — a path. Joy, peace, and self-knowing return as the conditioning strips off. The teacher becomes the business. You build from your own authority. You Live Free.
+
+**Universal language version:**
+
+> Remember when you knew who you were? Before the programs. Before the frameworks. Before everyone told you how to "get serious." That knowing comes back. The joy. The peace. The clarity about who you are and what you carry. Not by adding another system — by stripping off the ones that were installed over you. You stop pretending to be something you're not. You start walking as who you are. People see it and they want what you have. You teach through your stories. People pay you for it. Your passion becomes contagious. You build from your own authority. You Live Free.
+
+**The A→B Journey v2.0 (five stages):**
+
+| Stage | Name | What happens | Container |
+|---|---|---|---|
+| 1 | **Asleep in the Program** | They can't see the conditioning yet. They think they need another framework | Pre-Mirror: lead magnet lands, recognition fires |
+| 2 | **Name the Lie** | The myth lands — they hear "every step of growing up was handing your self-mastery to someone else's program" and they can't unhear it. The lie is named | Lead magnet / podcast / first contact |
+| 3 | **The Mirror** (Meet the Shadow) | Oyi reads their chart, names their conditioning, mirrors their shadow. They SEE the programs for the first time | Mirror Session ($555) |
+| 4 | **The Practice** (Meet the Inner Child) | Deconditioning through repetition. Not insight — practice. Daily routines aligned to their design. The inner child is met through doing, not analyzing | The Build, weeks 1-3 ($5,000) |
+| 5 | **Self-Knowing Activated** | They know who they are. They know what they carry. They know what it's worth. The signal is clear. The noise is gone | The Build, weeks 4-6 |
+| 6 | **Restore the Car** | The original form — before the programs — is restored. Not new. Not more. Original. The rust is off | Transition from Build to Container |
+| 7 | **Operate from Sovereignty** | Business runs from their own authority. They ARE the product. The teacher IS the business. They Live Free | The Container ($500/mo) |
+
+**What v2.0 adds to v1.0:**
+
+| v1.0 (Sovereignty Restored) | v2.0 (Self-Mastery Restored) | What shifted |
+|---|---|---|
+| "Magic comes back" | "Self-mastery restored" | From mystical to concrete |
+| "Removing the rust" | "Stripping off the conditioning" | Matches Oyi's method |
+| "Inner child leads" | "Self-knowing activated" | From archetype to direct recognition |
+| "Sovereignty restored" | "Build from your own authority" | Same truth, Oyi's language |
+| (no contagion in promise) | "Passion becomes contagious" | Contagion now appears as RESULT of the arrival |
+
+**Precision score (v2.0):** **8.8** (Oyi, April 15). Corrections: (1) "way of walking" → "a path" — "there are many paths, just like people say there's many paths up the mountain." (2) "conditioning is off" unclear — needs clearer mechanism. (3) Contagion is NOT the product — Live Free is the product. Contagion is a byproduct of Oyi's je ne sais quoi, not a teachable skill. "It's not because of my sales skills. It's because of my je ne sais quoi. It's because of the oomph. It's because of the intangible. Pimping they call it — it's either in you or on you or both. It's in me AND on me."
+
+---
+
+#### Session Discoveries — April 15 Closing (The Lighthouse Method)
+
+**1. The Lighthouse Method** — Oyi named his methodology. This is not an astrology session. Not a Human Design session. Not a 365 session. It's ALL of them brewed into one potent transformational 60 minutes. Like a mixologist — he may pull any card intuitively, start from any angle. No cookie-cutter. The method IS the product.
+
+> "It may be that you start with Human Design or it may be that you start with this story about conditioning. You explain what conditioning even is, or maybe they're already at the cutting-edge technology production so they'll need something else. There is no exact right; there is no clear-cut cookie-cutter thing."
+
+**2. The Football Field** — "How long is a football field? How wide? What are these markers for? You win this game in battles of 10 yards." The first thing a person needs to know is the MAP of this battlefield they're on. Managing your own energies = practice #1. Self-mastery begins with self-mapping.
+
+**3. The Concierge / Mixologist** — Oyi's session identity. At the cookout, the person at the grill is in charge of EVERYTHING: watches the grill, pours the beers, rolls the blunts, got the pistol when police come. He's the concierge. He makes sure everybody has a good time. That's who Oyi is in a session — not a specialist, the WHOLE HOST.
+
+**4. "Pull Your Own Troubles"** — Fayetteville culture. Where Oyi's from, they don't make you a drink. They show you where. They say: "Pull your own troubles." THIS IS THE DECONDITIONING PHILOSOPHY IN NATIVE LANGUAGE. Oyi doesn't do the work for you. He shows you where your troubles are and you pull them yourself. Self-mastery = you serve yourself.
+
+> "Pull your own troubles" = the promise in three words. The opposite of every coaching program that says "let me fix you." This is: "I'll show you where. You pull."
+
+**5. 365** — Added to Oyi's toolkit. "Give him 365 because that's what I do." Alongside predictive astrology, Human Design, martial arts lineage, mystery school initiation — 365 is another card in the Lighthouse Method mixologist's bar.
+
+**Next steps (Alexander's direction):**
+
+The sharpened Unique Business Canvas is now ready to feed to the **Godfather Offer Architect**. The conversation:
+
+> "Hey, what's up? What's my beginning of the funnel? What do I give them at the first meaningful touch point after the lead magnet?"
+
+Alexander: "You're not just coming with some generic considerations; you're bringing the stuff that is already sharpened. Let's go! That's how I see the next steps."
+
+---
+
+*Below: prior Promise versions (v1.0, v0.1) preserved as historical record*
+
+---
 
 *Version: v0.1 · March 6, 2026*
 
