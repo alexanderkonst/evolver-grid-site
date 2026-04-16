@@ -106,8 +106,9 @@ const formatCurrency = (v: number) => v >= 1000 ? `$${(v / 1000).toFixed(1)}K` :
 
 const VentureDashboard = () => {
   const totalCash = REVENUE_BREAKDOWN.reduce((s, r) => s + r.cash, 0);
+  const totalInKind = REVENUE_BREAKDOWN.reduce((s, r) => s + r.inKind, 0);
   const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
-  const totalAll = totalCash + totalRevShare;
+  const totalAll = totalCash + totalInKind + totalRevShare;
 
   return (
     <div className="min-h-screen bg-[#0a0e1a] text-white" style={{ fontFamily: "'DM Sans', sans-serif" }} id="venture-dashboard">
@@ -128,12 +129,12 @@ const VentureDashboard = () => {
         <header className="mb-16 fade-in-section" id="dashboard-header">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-[#8460ea] animate-pulse" />
-            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white/40">Live · Day 41</span>
+            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white">Live · Day 43</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white/90 leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Venture Dashboard
           </h1>
-          <p className="text-[15px] text-white/35 max-w-lg leading-relaxed">
+          <p className="text-[15px] text-white max-w-lg leading-relaxed">
             Aleksandr Konstantinov's Unique Business Methodology — tracking the emergence from first session to movement.
           </p>
         </header>
@@ -154,22 +155,22 @@ const VentureDashboard = () => {
               <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{ background: `linear-gradient(135deg, ${kpi.color}08, transparent)` }} />
               <div className="relative">
-                <div className="text-[11px] font-medium tracking-[0.15em] uppercase text-white/30 mb-3">
+                <div className="text-[11px] font-medium tracking-[0.15em] uppercase text-white mb-3">
                   {kpi.label}
                 </div>
-                <div className="text-3xl md:text-4xl font-medium tracking-[-0.02em] text-white/90 mb-2"
+                <div className="text-3xl md:text-4xl font-medium tracking-[-0.02em] text-white mb-2"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {kpi.value}
                 </div>
                 <div className="flex items-center gap-2">
-                  {kpi.trendUp && (
-                    <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400/80">
+                  {kpi.trend && (
+                    <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400">
                       {kpi.trend}
                     </span>
                   )}
-                  <span className="text-[10px] text-white/25">{kpi.trendLabel}</span>
+                  {kpi.trendLabel && <span className="text-[10px] text-white">{kpi.trendLabel}</span>}
                 </div>
-                <div className="text-[10px] text-white/20 mt-2 leading-relaxed">{kpi.detail}</div>
+                {kpi.detail && <div className="text-[10px] text-white mt-2 leading-relaxed">{kpi.detail}</div>}
               </div>
             </div>
           ))}
@@ -182,10 +183,10 @@ const VentureDashboard = () => {
         >
           {SECONDARY_STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className={`text-sm font-medium ${s.accent ? "text-[#8460ea]/80" : "text-white/50"}`}>
+              <span className="text-sm font-medium text-white">
                 {s.value}
               </span>
-              <span className="text-[10px] text-white/20 uppercase tracking-wider">{s.label}</span>
+              <span className="text-[10px] text-white uppercase tracking-wider">{s.label}</span>
             </div>
           ))}
         </section>
@@ -198,10 +199,10 @@ const VentureDashboard = () => {
             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-sm font-medium text-white/60 mb-0.5">Revenue Timeline</h2>
-                <p className="text-[10px] text-white/25">Cumulative revenue since Day 1</p>
+                <h2 className="text-sm font-medium text-white mb-0.5">Revenue Timeline</h2>
+                <p className="text-[10px] text-white">Cumulative revenue since Day 1</p>
               </div>
-              <div className="flex items-center gap-4 text-[10px] text-white/30">
+              <div className="flex items-center gap-4 text-[10px] text-white">
                 <span className="flex items-center gap-1.5">
                   <span className="w-2 h-0.5 rounded-full bg-[#6894d0]" /> Total Revenue
                 </span>
@@ -216,8 +217,8 @@ const VentureDashboard = () => {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="date" tick={{ fill: "rgba(255,255,255,0.2)", fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: "rgba(255,255,255,0.2)", fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={(v) => formatCurrency(v)} width={45} />
+                <XAxis dataKey="date" tick={{ fill: "rgba(255,255,255,0.8)", fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: "rgba(255,255,255,0.8)", fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={(v) => formatCurrency(v)} width={45} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "rgba(10, 14, 26, 0.95)",
@@ -239,33 +240,34 @@ const VentureDashboard = () => {
           {/* Revenue Breakdown */}
           <div className="lg:col-span-2 rounded-xl p-6"
             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <h2 className="text-sm font-medium text-white/60 mb-1">Revenue Breakdown</h2>
-            <p className="text-[10px] text-white/25 mb-5">By founder · cash + rev share</p>
+            <h2 className="text-sm font-medium text-white mb-1">Revenue Breakdown</h2>
+            <p className="text-[10px] text-white mb-5">By founder · cash · in-kind · rev share</p>
 
             <div className="space-y-3">
               {REVENUE_BREAKDOWN.map((r) => {
-                const rTotal = r.cash + r.revShare;
+                const rTotal = r.cash + r.inKind + r.revShare;
                 const pct = totalAll > 0 ? (rTotal / totalAll) * 100 : 0;
                 return (
                   <div key={r.name} className="group">
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: r.color }} />
-                        <span className="text-xs text-white/60 font-medium">{r.name}</span>
-                        <span className={`text-[9px] px-1.5 py-0.5 rounded-md ${r.status === "received" ? "bg-emerald-500/10 text-emerald-400/70" : "bg-amber-500/10 text-amber-400/70"}`}>
+                        <span className="text-xs text-white font-medium">{r.name}</span>
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded-md ${r.status === "received" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"}`}>
                           {r.status === "received" ? "received" : "pending"}
                         </span>
                       </div>
-                      <span className="text-xs text-white/50 font-mono">{formatCurrency(rTotal)}</span>
+                      <span className="text-xs text-white font-mono">{formatCurrency(rTotal)}</span>
                     </div>
                     <div className="h-1 rounded-full bg-white/5 overflow-hidden">
                       <div className="h-full rounded-full transition-all duration-700"
                         style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${r.color}80, ${r.color}40)` }} />
                     </div>
                     <div className="flex items-center gap-3 mt-1">
-                      {r.cash > 0 && <span className="text-[9px] text-white/25">${r.cash} cash</span>}
-                      {r.revShare > 0 && <span className="text-[9px] text-white/25">${r.revShare.toLocaleString()} rev share</span>}
-                      <span className="text-[9px] text-white/15 ml-auto">{r.type}</span>
+                      {r.cash > 0 && <span className="text-[9px] text-white">${r.cash} cash</span>}
+                      {r.inKind > 0 && <span className="text-[9px] text-white">${r.inKind} in-kind</span>}
+                      {r.revShare > 0 && <span className="text-[9px] text-white">${r.revShare.toLocaleString()} rev share</span>}
+                      <span className="text-[9px] text-white/60 ml-auto">{r.type}</span>
                     </div>
                   </div>
                 );
@@ -273,32 +275,23 @@ const VentureDashboard = () => {
             </div>
 
             {/* Totals */}
-            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
-              <span className="text-[10px] text-white/25 uppercase tracking-wider">Total</span>
-              <div className="text-right">
-                <span className="text-lg font-medium text-white/80" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            <div className="mt-5 pt-4 border-t border-white/5">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-white uppercase tracking-wider">Total</span>
+                <span className="text-lg font-medium text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {formatCurrency(totalAll)}
                 </span>
-                <span className="text-[10px] text-white/20 ml-2">({formatCurrency(totalCash)} cash)</span>
+              </div>
+              <div className="flex items-center gap-4 text-[9px] text-white">
+                <span>${totalCash} cash</span>
+                <span>${totalInKind} in-kind</span>
+                <span>${totalRevShare} rev share</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ─── Growth Context (why no MoM yet) ─────────────────────── */}
-        <section className="rounded-xl px-6 py-4 mb-16 flex items-start gap-4"
-          style={{ background: "rgba(132,96,234,0.04)", border: "1px solid rgba(132,96,234,0.08)" }}
-          id="growth-context"
-        >
-          <span className="text-lg mt-0.5">📊</span>
-          <div>
-            <p className="text-xs text-white/50 leading-relaxed">
-              <span className="text-white/70 font-medium">On growth metrics:</span> At 41 days and 6 founders, month-over-month
-              growth rates would be misleading. Key milestones tracked instead: first $555 from funnel (pending), 10th canvas (4 away).
-              Growth rates activate at 3+ months of data.
-            </p>
-          </div>
-        </section>
+
 
         {/* ─── Next Milestone ──────────────────────────────────────── */}
         <section className="rounded-xl p-8 text-center alive-card mb-16"
@@ -310,18 +303,18 @@ const VentureDashboard = () => {
             style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             First $555 Ignition Session from Funnel
           </h3>
-          <div className="flex items-center justify-center gap-6 text-[11px] text-white/25">
+          <div className="flex items-center justify-center gap-6 text-[11px] text-white">
             <span>$1,377 cash received</span>
-            <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
-            <span>4 canvases to N=10</span>
-            <span className="w-0.5 h-0.5 rounded-full bg-white/15" />
+            <span className="w-0.5 h-0.5 rounded-full bg-white/50" />
+            <span>3 canvases to N=10</span>
+            <span className="w-0.5 h-0.5 rounded-full bg-white/50" />
             <span>3/9 surfaces live</span>
           </div>
         </section>
 
         {/* ─── The Journey ─────────────────────────────────────────── */}
         <section id="timeline-section" className="mb-16">
-          <h2 className="text-lg font-medium text-white/60 mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>The Journey</h2>
+          <h2 className="text-lg font-medium text-white mb-8" style={{ fontFamily: "'Cormorant Garamond', serif" }}>The Journey</h2>
           <div className="relative">
             {/* Timeline line */}
             <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#8460ea]/30 via-[#6894d0]/20 to-transparent" />
@@ -345,14 +338,14 @@ const VentureDashboard = () => {
                     <div className="rounded-lg p-4 transition-all duration-300 hover:bg-white/[0.02]"
                       style={{ border: "1px solid rgba(255,255,255,0.04)" }}>
                       <div className="flex items-center gap-2 mb-1" style={{ justifyContent: i % 2 === 0 ? "flex-end" : "flex-start" }}>
-                        <span className="text-[10px] font-mono text-white/20">Day {t.day}</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-md text-white/30"
+                        <span className="text-[10px] font-mono text-white">Day {t.day}</span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-md text-white"
                           style={{ background: `${t.color}15`, border: `1px solid ${t.color}20` }}>
                           {t.type}
                         </span>
                       </div>
-                      <h3 className="text-sm font-medium mb-0.5" style={{ color: `${t.color}cc` }}>{t.name}</h3>
-                      <p className="text-[11px] text-white/30 leading-relaxed">{t.desc}</p>
+                      <h3 className="text-sm font-medium mb-0.5" style={{ color: `${t.color}` }}>{t.name}</h3>
+                      <p className="text-[11px] text-white leading-relaxed">{t.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -365,10 +358,10 @@ const VentureDashboard = () => {
         <section id="radar-section" className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-lg font-medium text-white/60" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Systemic View</h2>
-              <p className="text-[10px] text-white/25 mt-0.5">12 perspectives · 4 quadrants × 3 depths</p>
+              <h2 className="text-lg font-medium text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Systemic View</h2>
+              <p className="text-[10px] text-white mt-0.5">12 perspectives · 4 quadrants × 3 depths</p>
             </div>
-            <a href="/holomap" className="text-[10px] text-[#6894d0]/60 hover:text-[#8460ea] transition-colors px-3 py-1.5 rounded-lg border border-white/5 hover:border-[#8460ea]/20">
+            <a href="/holomap" className="text-[10px] text-[#6894d0] hover:text-[#8460ea] transition-colors px-3 py-1.5 rounded-lg border border-white/10 hover:border-[#8460ea]/30">
               Open Holomap →
             </a>
           </div>
@@ -382,12 +375,12 @@ const VentureDashboard = () => {
                   <PolarGrid stroke="rgba(255,255,255,0.05)" />
                   <PolarAngleAxis
                     dataKey="perspective"
-                    tick={{ fill: "rgba(255,255,255,0.25)", fontSize: 10, fontFamily: "'DM Sans'" }}
+                    tick={{ fill: "rgba(255,255,255,0.8)", fontSize: 10, fontFamily: "'DM Sans'" }}
                   />
                   <PolarRadiusAxis
                     angle={90}
                     domain={[0, 10]}
-                    tick={{ fill: "rgba(255,255,255,0.12)", fontSize: 9 }}
+                    tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 9 }}
                     axisLine={false}
                   />
                   <Radar
@@ -428,10 +421,10 @@ const VentureDashboard = () => {
                     <div key={d.perspective} className="group">
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono text-white/20 w-[42px]">{d.perspective}</span>
-                          <span className="text-[11px] text-white/40">{d.fullLabel}</span>
+                          <span className="text-[10px] font-mono text-white w-[42px]">{d.perspective}</span>
+                          <span className="text-[11px] text-white">{d.fullLabel}</span>
                         </div>
-                        <span className="text-[11px] font-mono text-white/25">{d.value}</span>
+                        <span className="text-[11px] font-mono text-white">{d.value}</span>
                       </div>
                       <div className="h-[3px] rounded-full bg-white/[0.03] overflow-hidden">
                         <div className="h-full rounded-full transition-all duration-700"
@@ -442,8 +435,8 @@ const VentureDashboard = () => {
                 })}
               </div>
               <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
-                <span className="text-[10px] text-white/20">Average</span>
-                <span className="text-sm font-medium text-white/50">{(RADAR_DATA.reduce((s, d) => s + d.value, 0) / RADAR_DATA.length).toFixed(1)}/10</span>
+                <span className="text-[10px] text-white">Average</span>
+                <span className="text-sm font-medium text-white">{(RADAR_DATA.reduce((s, d) => s + d.value, 0) / RADAR_DATA.length).toFixed(1)}/10</span>
               </div>
             </div>
           </div>
@@ -451,7 +444,7 @@ const VentureDashboard = () => {
 
         {/* ─── Distribution Channels ───────────────────────────────── */}
         <section id="channels-section" className="mb-16">
-          <h2 className="text-lg font-medium text-white/60 mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Distribution Channels</h2>
+          <h2 className="text-lg font-medium text-white mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Distribution Channels</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {CHANNELS.map((ch) => (
               <div
@@ -465,9 +458,9 @@ const VentureDashboard = () => {
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-xs">{ch.emoji}</span>
-                  <span className="text-xs font-medium text-white/60">{ch.name}</span>
+                  <span className="text-xs font-medium text-white">{ch.name}</span>
                 </div>
-                <p className="text-[11px] text-white/25 leading-relaxed">{ch.detail}</p>
+                <p className="text-[11px] text-white leading-relaxed">{ch.detail}</p>
               </div>
             ))}
           </div>
@@ -475,7 +468,7 @@ const VentureDashboard = () => {
 
         {/* ─── Footer ──────────────────────────────────────────────── */}
         <footer className="pt-8 pb-12 border-t border-white/[0.03]" id="dashboard-footer">
-          <div className="flex items-center justify-between text-[10px] text-white/15">
+          <div className="flex items-center justify-between text-[10px] text-white">
             <span>Built in public · Updated in near-real time</span>
             <span>© 2026 Aleksandr Konstantinov</span>
           </div>
