@@ -72,9 +72,9 @@ export function useJourneyProgression() {
         }
 
         const { data: profile } = await supabase
-          .from("profiles")
+          .from("game_profiles")
           .select("onboarding_stage")
-          .eq("id", user.id)
+          .eq("user_id", user.id)
           .maybeSingle();
 
         if (!cancelled) {
