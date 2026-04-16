@@ -4307,3 +4307,66 @@ Raw recording lives in Fathom (not checked into the repo). All corpus artifacts 
 ---
 
 *Day 41 addendum 5 complete. Impromptu transmission metabolized into seven corpus artifacts. Three open decisions named and parked for Sasha. Oyi and Oluwa's contributions acknowledged in their own voices. Heart → Mind → Gut — the structure was on the tape.*
+
+
+
+## Day 41 addendum 6 — Playbook funnel shipped end-to-end (April 16, 2026)
+
+### What happened
+
+Claude Code Mac app executed the full handoff playbook in one autonomous session — `docs/05-specs/claude_code_handoff_playbook_funnel.md`, all 7 tasks. Sasha explicitly switched the working mode to "no PR ceremony, just push and deploy each batch," so every task landed on `main` directly via `gh pr merge --rebase --delete-branch` and Vercel redeployed each time. The receipts are the PR numbers + commit SHAs, not a review gate.
+
+### Commits landed on `main` (chronological)
+
+| SHA | Scope |
+|-----|-------|
+| `77c8eec` | Task 3a — migration `20260416_anonymous_genius_results.sql` + rate-limits table; edge function stubs for `save-anonymous-zog` / `claim-anonymous-zog` |
+| `b0b5caf` | Meta — `.agent/RULES.md` section "Direct-to-Main Deploy Flow" documenting the no-PR workflow Sasha adopted mid-session |
+| `08c7df2` | Task 2 — `Auth.tsx` gains `?claim=true` single-email mode + magic-link alternative on login tab; reads both `?next=` and `?redirect=`; new `AuthCallback.tsx` at `/auth/callback` to resolve the magic-link session and fire-and-forget the claim |
+| `eb24108` | Tasks 3b / 3c / 3d — full `save-anonymous-zog` (rate-limit 3/10-min, upsert by lower-cased email, `admin.generateLink` belt-and-braces); full `claim-anonymous-zog` (auth bearer, lookup, `zog_snapshots` insert, mark claimed, idempotent); `ZoneOfGeniusEntry.tsx` banner when guest has `pending_claim_email` |
+| `792cf28` | Tasks 1 + 4 — `MethodologyLandingPage.tsx` tile grid replaced with `PlaybookHero` + Cormorant headline; `PlaybookHero` CTA path corrected from `/zone-of-genius/assessment` (auth-gated) to `/zone-of-genius` (public). Task 4.1 / 4.3 verified as already-wired in App.tsx and `PlaybookShell.tsx`; no code needed. |
+| `18b433f` | Meta — `.claude/settings.json` pre-approves the long tail of safe bash/edit patterns so future batches run without per-command prompts |
+| `<this>` | Task 4.2 — optional URL-hash persistence of substep disclosure (`/playbook/discover#2-strategy`); Day 41 addendum 6 |
+
+### What's deployed vs what still needs Alexander's hand
+
+**Vercel-deployed automatically** (every merge to `main`):
+- All `src/` changes above — landing page, auth flow, callback, ZoG entry banner, StepCard hash-linking
+- `.claude/settings.json` (takes effect after Claude Code Mac app reload)
+
+**Still requires manual deploy** (Supabase CLI wasn't available in the session):
+- Migration `supabase/migrations/20260416_anonymous_genius_results.sql` — run in Supabase dashboard or `supabase db push`
+- Edge function `supabase/functions/save-anonymous-zog/` — `supabase functions deploy save-anonymous-zog`
+- Edge function `supabase/functions/claim-anonymous-zog/` — `supabase functions deploy claim-anonymous-zog`
+
+Until those three land on the Supabase side, the frontend will fall through gracefully: the callback logs a warning but still routes to `/playbook/discover`, and the claim banner will show "error" state because the save function isn't reachable yet. Fail-open, not fail-closed.
+
+### Definition of Done — what Claude Code could verify vs what Sasha must verify in a live browser
+
+**Verified in the repo:**
+- `tsc --noEmit` is clean across every commit
+- Production `npm run build` passes (see verification block in the final commit)
+- Routing: `/` → headline + `PlaybookHero` + testimonials + other-projects + stats, CTA goes to `/auth?claim=true&next=/zone-of-genius`
+- `/playbook` redirects to `/playbook/discover` (existing `Navigate` route)
+- `/playbook/:slug` wrapped in `RequireAuth`; unauthenticated visitors get bounced to `/auth?redirect=<path>`
+
+**Requires Sasha in an incognito browser on staging after the Supabase deploy:**
+- Magic-link email actually arrives from Supabase with the corrected `emailRedirectTo`
+- `anonymous_genius_results` row appears after an anonymous AI-Appleseed run with a pending email
+- `zog_snapshots` row created on magic-link click, `claimed_at` stamped on the anonymous row
+- Second click of the same link is a no-op (`claimed: false` in logs), still routes to `/playbook/discover`
+- Rate limit: four saves for the same email in 10 min returns 429 on the fourth
+
+### Lane discipline
+
+Pure Claude Code lane — `src/`, `supabase/`, `.agent/`, `.claude/`, and this one doc entry. No corpus essays or methodology writing. Sasha's direct-to-main workflow shift (captured as RULES.md §4 and PR #15 → `b0b5caf`) is the one piece of meta-docs adjusted.
+
+### Next
+
+- Sasha deploys the Supabase migration + two functions, then runs the Definition of Done checklist in incognito.
+- If DoD passes: funnel goes live. If anything fails: capture the failure point and open a follow-up — Claude Code re-enters the lane and fixes.
+- Substep copy in `src/data/playbookSteps.ts` still placeholder; Sasha refines when ready (separate, content-only lane).
+
+---
+
+*Day 41 addendum 6 complete. Seven tasks, six merges, one new deploy workflow, one settings.json. Sasha wanted "less clicking Confirm" — got it.*
