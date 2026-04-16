@@ -42,6 +42,7 @@ import GameHome from "./pages/GameHome";
 import DailyLoopV2 from "./pages/DailyLoopV2";
 import Today from "./pages/Today";
 import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import GrowthPathsPage from "./pages/GrowthPathsPage";
@@ -189,6 +190,7 @@ const App = () => (
                   <Route path="/" element={<JourneyPage />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
                   <Route path="/my-result" element={<MyResult />} />
