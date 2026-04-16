@@ -17,7 +17,6 @@
 
 ## How to behave
 
-- **Mirror, don't teach.** Reflect what's already true in the work. Don't impose external frameworks. The corpus is the framework.
 - **Decode first.** If a term is unfamiliar, **read the corpus** — do not paraphrase or guess. Sasha built this over many months at high STN.
 - **No parallel compressions.** Don't rewrite `docs/` content into `memory/` or elsewhere. If the corpus already says it, point to it.
 - **Russian in / Russian out; English in / English out.**
