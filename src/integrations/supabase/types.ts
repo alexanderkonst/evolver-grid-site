@@ -91,6 +91,57 @@ export type Database = {
         }
         Relationships: []
       }
+      anonymous_genius_rate_limits: {
+        Row: {
+          email_lower: string
+          hit_count: number
+          window_start: string
+        }
+        Insert: {
+          email_lower: string
+          hit_count?: number
+          window_start: string
+        }
+        Update: {
+          email_lower?: string
+          hit_count?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
+      anonymous_genius_results: {
+        Row: {
+          assessment_version: string
+          claimed_at: string | null
+          claimed_user_id: string | null
+          created_at: string
+          email: string
+          id: string
+          result_payload: Json
+          updated_at: string
+        }
+        Insert: {
+          assessment_version?: string
+          claimed_at?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          result_payload: Json
+          updated_at?: string
+        }
+        Update: {
+          assessment_version?: string
+          claimed_at?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          result_payload?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       canvas_snapshots: {
         Row: {
           artifact_status: Json | null
