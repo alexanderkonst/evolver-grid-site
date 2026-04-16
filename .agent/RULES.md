@@ -19,6 +19,27 @@ Use SafeToAutoRun: true for all JavaScript operations including button clicks, l
 ### 3. Workflow Execution
 All workflow files include `// turbo-all` annotation - execute ALL steps without confirmation prompts.
 
+### 4. Direct-to-Main Deploy Flow (April 16, 2026)
+
+Alexander does NOT review PRs on GitHub. Every completed code batch lands on `main` automatically and Vercel auto-deploys.
+
+**Per-batch procedure (applies to every agent working on `src/` or `supabase/`):**
+
+1. Commit with a descriptive message using conventional-commit prefixes (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`).
+2. `git push` (creates remote branch if missing).
+3. `gh pr create` with a complete summary + test plan. The PR is a receipt, not a review gate.
+4. `gh pr merge <num> --rebase --delete-branch` — lands on `main` immediately. (Expect a local "'main' is already used by worktree" warning — the *remote* merge still succeeds; ignore it.)
+5. `git fetch origin --prune && git reset --hard origin/main` — re-anchor this worktree for the next batch.
+6. In the chat, report the merged commit SHA so Alexander can trace what shipped.
+
+**What still requires explicit confirmation** (don't auto-merge):
+- DB migrations that drop columns / tables, or alter production data destructively.
+- Secret rotations or changes to auth / RLS / billing logic that can't be trivially reverted.
+- Force pushes to `main`, or anything requiring `--force`.
+- Package additions / removals that change the production dependency graph.
+
+For those, still commit + push, but pause before merging and flag in chat.
+
 ---
 
 ## Why This Matters
