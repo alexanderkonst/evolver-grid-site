@@ -30,12 +30,12 @@
 
 ## 🌑 This Week's Scope (April 14-20)
 
-> **Energetic context:** Oyi in Mexico. Oluwa livestream. Pipeline warming.
+> **Energetic context:** Oyi in Mexico. Oluwa transmission landed April 15 (impromptu, not Wed livestream). Sequence C now the operating scaling model. Licensing negotiation in-flight.
 
 | # | Seed | Path | Priority | Notes |
 |---|------|------|----------|-------|
-| W1 | **Oyi Mexico Intensive** (Mon-Sun) | Build | 🔴 | Villa + deep Build work. First in-person intensive at length. Will be in Oluwa livestream audience |
-| W2 | **Oluwa Adams Livestream** (Wed 10:30am CDMX) | Build + Distribution | 🔴 | Conversation: mastery / hero's journey / unique gift monetization. Transcript → AI. Oyi in audience |
+| W1 | **Oyi Mexico Intensive** (Mon-Sun) | Build | 🔴 | Villa + deep Build work. First in-person intensive at length. Now doubles as licensing negotiation window |
+| W2 | ~~Oluwa Adams Livestream (Wed 10:30am CDMX)~~ → **April 15 transmission landed impromptu** | Build + Distribution | ✅ | Happened April 15 as three-way Zoom (Sasha + Oyi + Oluwa), 80 min, Fathom recorded. 6 anchor formulations, 2 witness formulations, 3 decisions surfaced. Metabolized into 7 corpus artifacts |
 | W3 | **Patricia Reed ZoG follow-up** | Sales | 🔴 | Did she paste back the JSON? Get her distilled uniqueness score. Pipeline → quiz completion |
 | W4 | **José da Veiga ZoG quiz** | Sales | 🔴 | Guide to quiz. He watched video, articulated the exact pain. Ready |
 | W5 | **Karime: Score Myth + Tribe v1.2** | Build | 🔴 | Body-score only. Heartbreak rewrite awaiting validation |
@@ -44,6 +44,12 @@
 | W8 | **Infographic Episodes — visual production** | Content | 🟡 | **~60% complete.** Founder creating from inspiration |
 | W9 | **Content Pillars execution** | Content | 🟡 | Two pillars locked: (1) Talents → Business, (2) AI. First content from both |
 | W10 | **Terrina Cavendar** | Sales | 🟡 | In Mexico this weekend. Organic conversation |
+| **REPURPOSE TRACK** (new — from April 15 transmission) | | | | |
+| W11 | **Oyi licensing negotiation — v1 deal terms** | Business + Distribution | 🔴 | Sasha said yes. Use 11-row checklist in `open_questions_from_oyi_session.md`. Target: signed v1 by end of Oyi's Mexico week |
+| W12 | **`/playbook/discover` polish** (P0 unblock) | Infra | 🔴 | Brief written (`ai_tasks/PENDING_playbook_discover_polish.md`), assigned to Codex. Must be green before Oyi pushes to list |
+| W13 | **Long-form essay v1 — April 15 transmission** | Content | 🔴 | Outlined in `docs/08-content/april15_repurpose_plan.md`. Draft to be written. Freeze for 90-day Oyi window |
+| W14 | **Shorts bundle — 7 clips with timecodes** | Content | 🟡 | Queue exists in repurpose plan. Production pending. First 2-3 go public after v1 essay lands |
+| W15 | **Decision 3 — three-way call cadence** | Strategy | 🟡 | Still open. Recommended default: seeded spontaneity (2/month, 48h-out scheduling). Sasha to answer |
 
 ---
 
@@ -51,13 +57,14 @@
 
 | Metric | Value |
 |--------|-------|
-| **Phase** | ACTIVATION → DEEPENING. 25 contacts. CRM v3.2. $677 cash. 3/9 social surfaces. Pipeline: 8 in conversation, 1 livestream scheduled |
-| **Cycle** | April 14-20 (Waxing). **79 Phase Shift Domains. 13 Playbook Principles.** Oyi arriving Mexico. Oluwa livestream Wed |
+| **Phase** | ACTIVATION → EMANATION. 25 contacts. CRM v3.2. $677 cash. 3/9 social surfaces. April 15 transmission delivered. Licensing in negotiation |
+| **Cycle** | April 14-20 (Waxing). **79 Phase Shift Domains. 14 Playbook Principles.** Oyi in Mexico. April 15 impromptu transmission landed. Day 42 of the active sprint |
+| **Holomap center** | **"Emanation"** (Day 41 reading). The signal now travels without the apparatus. Heart row complete (P5, P6, P7 ≥ 9/10). P3 + P7 transitioned Stage 3→4 (Maturation) |
 | **Location** | Mexico City |
-| **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD |
-| **Focus** | **Sessions ARE the build. Oyi intensive + Oluwa livestream + pipeline follow-ups (Patricia, José) + Karime artifact scoring** |
-| **Key milestone** | Domain 79: Question Collapse — entire marketing stack collapses into one genuine question. Auth gate live. Article deployed open source |
-| **Key decisions** | $555 fixed price (no sliding scale). Build boundary = flexible by client type, 12-week max. Sessions = build. Direct DMs > broadcast posts |
+| **Revenue** | **$677 cash** ($566 Oyi + $111 Karime). **$6,277 rev share pending** ($277 Sergey + $3K Taylor + $3K Tracy). Sandra TBD. Oyi list = new projected revenue surface |
+| **Focus** | **Sequence C: Sessions (tree) + Licensed Distribution via Oyi (spine) + Field Recordings (multiplier). Tracks run in parallel, compound each cycle** |
+| **Key milestone** | April 15 Oluwa + Oyi transmission — 6 anchor formulations, 2 witness formulations, 3 decisions surfaced. First artifact of native emanation. Cowork captured into 7 downstream corpus artifacts |
+| **Key decisions** | $555 fixed price. Build boundary = flexible by client type, 12-week max. Sessions = build. **Licensing to Oyi ✅ yes (v1 terms in negotiation). Scaling = Sequence C (both scales, in parallel). Cadence = still open** |
 
 ---
 
@@ -67,9 +74,17 @@
 
 | # | Item | Category | Priority |
 |---|------|----------|----------|
-| **SESSIONS (= PRIMARY BUILD)** |
+| **LICENSING & REPURPOSE TRACK (new — Sequence C spine + multiplier)** |
+| L1 | Negotiate v1 licensing deal with Oyi — use 11-row checklist in `open_questions_from_oyi_session.md` (scope: 1 piece, 50/50 rev share default, 30-day exclusivity, 90-day freeze) | Business + Distribution | 🔴 |
+| L2 | `/playbook/discover` polish — 7 issues flagged April 16. Brief in `ai_tasks/PENDING_playbook_discover_polish.md`. **P0 unblock** for licensing distribution | Infra (Codex lane) | 🔴 |
+| L3 | Draft long-form essay v1 from April 15 transmission — outline in `docs/08-content/april15_repurpose_plan.md` | Content | 🔴 |
+| L4 | Build UTM/attribution variant `/playbook/discover?src=oyi` + rev-share tracking mechanism | Infra (Codex lane) | 🔴 |
+| L5 | Verify magic-link claim flow end-to-end (pre-Oyi-traffic) | Infra (Codex lane) | 🔴 |
+| L6 | Produce shorts bundle — 7 clips with timecodes from April 15 recording | Content | 🟡 |
+| L7 | Decision 3 — answer three-way call cadence question (recommended default: seeded spontaneity, 2/month) | Strategy | 🟡 |
+| **SESSIONS (= PRIMARY BUILD — Sequence C tree)** |
 | 1 | Oyi Mexico intensive (Apr 14-20) | Build | 🔴 |
-| 2 | Oluwa Adams livestream (Wed Apr 16, 10:30am) | Build + Distribution | 🔴 |
+| 2 | ~~Oluwa Adams livestream (Wed Apr 16, 10:30am)~~ — delivered April 15 impromptu (3-way transmission) | Build + Distribution | ✅ Done Apr 15 |
 | 3 | Karime: score Myth + Tribe v1.2 | Build | 🔴 |
 | 4 | Patricia Reed: ZoG result follow-up | Sales | 🔴 |
 | 5 | José da Veiga: guide to ZoG quiz | Sales | 🔴 |
@@ -218,6 +233,9 @@
 - [x] Apr 7-8: Karime Session 2 (shadow reframe to 9.4), CRM v3.0, social activation (TG+IG+FB). Oyi $516 gift. 75 domains. Grind Addiction integrated
 - [x] Apr 9-10: Karime Session 3 (216 min — Heartbreak Mechanism). Pipeline activated (Patricia ZoG, José video, Oluwa scheduled). CRM v3.2 (25 contacts). Content pillars locked
 - [x] Apr 11: 27-Perspective Article deployed. Domains 76-79. Auth gate. Methodology carousel v2. Question Collapse principle. 3 DMs sent. 79 domains total
+- [x] **Apr 15: Oluwa + Oyi impromptu transmission** — 80-min three-way Zoom, Fathom recorded. 6 anchor formulations in Sasha's own voice (Recursiveness of the Gift, Self-Knowledge Collapses Workaround Industry, Business as Beehive, Grind as Mind Virus, Effortless Exciting Intensity, Copernican "I Am" Manifest). 2 witness formulations (Oyi's *"100% of limitations you fight for"* + Oluwa's *"Teaspoon or bucket?"*). 3 decisions surfaced. Three-depth pattern (Heart → Mind → Gut) empirically observed on a recording for the first time
+- [x] **Apr 16 Day 42: April 15 metabolized into 7 corpus artifacts** — `alexanders_unique_business.md` v8.6 Download + v8.7 postscript · `unique_business_playbook.md` Principle 13 v1.1 + Principle 14 + Copernican Inversion enrichment · `open_questions_from_oyi_session.md` (3 decisions parked, then 2 answered) · `april15_repurpose_plan.md` (7 clips + essay outline + AI-context primer + planetary slice) · `morphogenetic_holomap.md` Day 41 addendum ("Emanation" center, Heart row complete, P3+P7 Stage 4) · `session_log.md` Day 41 addendum 5 · `ai_tasks/PENDING_playbook_discover_polish.md` (design brief, P0)
+- [x] **Apr 16: Decision 1 (Licensing) answered ✅ YES** — 11-row negotiation checklist drafted. Decision 2 (Scaling) answered ✅ as Sequence C — three parallel tracks (Sessions + Licensed Distribution + Field Recordings). Decision 3 (Cadence) still open
 
 ---
 
@@ -230,3 +248,5 @@
 ---
 
 *Roadmap v4.4 — April 12, 2026 (Day 40. 79 domains. Auth gate live. Article deployed. Carousel ready. Question Collapse: the question IS the content IS the lead magnet IS the visibility. 3 DMs sent. $677 cash, $6.9K total)*
+
+*Roadmap v4.5 — April 16, 2026 (Day 42. Holomap center = "Emanation." April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Licensing ✅ yes with 11-row negotiation checklist. Scaling = Sequence C (Sessions + Licensed Distribution + Field Recordings, parallel and compounding). Cadence still open. `/playbook/discover` polish = P0 unblock for licensing distribution. The signal now travels without the apparatus; the apparatus is for scale.)*
