@@ -7,6 +7,9 @@ const content = {
     title: "27-Perspective Vision",
     subtitle: "Person-Perspectives as Dimensions of Reality",
     author: "Aleksandr Konstantinov & Synthetic Intelligence",
+    version: "v1.1",
+    versionDate: "April 16, 2026",
+    versionNote: "Resolves Cube + Merkaba geometry and the three strata of convergence.",
     abstract: {
       label: "Abstract",
       text: "This paper presents a 27-perspective vision derived from two irreducible axes: the Four Quadrants of Integral Theory (Structure / the Divine Masculine) and the Three Depths of Trinitarian inquiry (Depth / the Divine Feminine), independently identified in Daoist philosophy as the three dantians. These axes generate 12 seeing-positions corresponding to 12 dimensions of perspective, independently identified as the 12 facets of the dodecahedron, Plato's solid shape of essence, the fifth element. Through recursive application — seeing the balanced perspective born at the center (13th, the Greek Sun Logos), then seeing the Logos itself from all positions (14th–26th) — the vision then integrates 26 perspectives: a new octave of complete seeing. The 27th is not a perspective but a crystallization — the Si-Do shock (Gurdjieff) at which seeing becomes an impulse. And that's how consciousness turns itself into matter without ever changing its nature. Hence leading to the realization of the unity of consciousness, vision, light, vibration, information, vacuum (space), archetype (myth), energy, and physical matter."
@@ -208,6 +211,9 @@ const content = {
     title: "27 перспектив видения",
     subtitle: "Перспективы субъекта как измерения реальности",
     author: "Александр Константинов и Синтетический Интеллект",
+    version: "в. 1.1",
+    versionDate: "16 апреля 2026",
+    versionNote: "Разрешение геометрии Куб + Меркаба и трёх страт конвергенции.",
     abstract: {
       label: "Аннотация",
       text: "В настоящей работе представлено видение из 27 перспектив, выведенное из двух нередуцируемых осей: Четырёх Квадрантов Интегральной Теории (Структура / Божественная Маскулинность) и Трёх Глубин тринитарного исследования (Глубина / Божественная Феминность), независимо идентифицированных в даосской философии как три дантяня. Эти оси порождают 12 позиций видения, соответствующих 12 измерениям восприятия, независимо идентифицированных как 12 граней додекаэдра — Платонова тела сущности, пятого элемента. Через рекурсивное применение — видение сбалансированной перспективы, рождённой в центре (13-я, греческий Солнечный Логос), затем видение самого Логоса со всех позиций (14–26-я) — видение интегрирует 26 перспектив: новую октаву полного видения. 27-я не является перспективой, а кристаллизацией — шоком Си-До (Гурджиев), в котором видение становится импульсом. Так сознание превращает себя в материю, не меняя своей природы. Что ведёт к осознанию единства сознания, видения, света, вибрации, информации, вакуума (пространства), архетипа (мифа), энергии и физической материи."
@@ -613,9 +619,14 @@ export default function IntegralTheoryUpgrade1() {
             {c.author}
           </p>
           <p className="text-white/15 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            {lang === 'en' ? 'April 11, 2026' : '11 апреля 2026'}
+            <span className="text-white/30">{c.version}</span>
+            {' · '}
+            {c.versionDate}
             {' · '}
             <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">aleksandrkonstantinov.com</a>
+          </p>
+          <p className="text-white/20 text-[11px] tracking-wide mt-2 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
+            {c.versionNote}
           </p>
         </header>
 
