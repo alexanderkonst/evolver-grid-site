@@ -132,7 +132,7 @@ const PlaybookHero = () => {
         type="button"
         onClick={() =>
           navigate(
-            "/auth?next=/zone-of-genius/assessment&claim=true",
+            "/auth?claim=true&next=/zone-of-genius",
           )
         }
         className={cn(
