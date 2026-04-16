@@ -6,7 +6,7 @@ const content = {
   en: {
     title: "27-Perspective Vision",
     subtitle: "Person-Perspectives as Dimensions of Reality",
-    author: "Aleksandr Konstantinov",
+    author: "Aleksandr Konstantinov & Synthetic Intelligence",
     abstract: {
       label: "Abstract",
       text: "This paper presents a 27-perspective vision derived from two irreducible axes: the Four Quadrants of Integral Theory (Structure / the Divine Masculine) and the Three Depths of Trinitarian inquiry (Depth / the Divine Feminine), independently identified in Daoist philosophy as the three dantians. These axes generate 12 seeing-positions corresponding to 12 dimensions of perspective, independently identified as the 12 facets of the dodecahedron, Plato's solid shape of essence, the fifth element. Through recursive application — seeing the balanced perspective born at the center (13th, the Greek Sun Logos), then seeing the Logos itself from all positions (14th–26th) — the vision then integrates 26 perspectives: a new octave of complete seeing. The 27th is not a perspective but a crystallization — the Si-Do shock (Gurdjieff) at which seeing becomes an impulse. And that's how consciousness turns itself into matter without ever changing its nature. Hence leading to the realization of the unity of consciousness, vision, light, vibration, information, vacuum (space), archetype (myth), energy, and physical matter."
@@ -28,7 +28,7 @@ const content = {
           ]},
           { type: 'paragraph', text: "These four exhaust all possible angles. There is no fifth. Every observation is either interior or exterior, individual or collective. Geometrically, this is the Cube — four spatial diagonals meeting at a center. The Divine Masculine holds space." },
           { type: 'heading3', text: "The Feminine Axis — Depth" },
-          { type: 'paragraph', text: "The Trinity — Essence, Significance, Consequences. Wilber never named this axis explicitly, yet he uses it constantly: in every explanation, he first defines what something IS, then addresses why it MATTERS, then explores what it DEMANDS. This three-stroke movement is the deep structure of his pedagogy." },
+          { type: 'paragraph', text: "The Trinity — Essence, Significance, Consequences. Wilber never named this axis explicitly, yet he uses it rather constantly when introducing key concepts: he first defines what something IS, then addresses why it MATTERS, then explores what it DEMANDS. This three-stroke movement is the deep structure of his pedagogy." },
           { type: 'paragraph', text: "The same triad appears in Daoist philosophy as the three dantians:" },
           { type: 'framework', items: [
             { symbol: "❤️", label: "Middle Dantian (Heart) — Essence", desc: "What IS this? Stripped to irreducible felt truth. Being itself, before interpretation" },
@@ -202,12 +202,12 @@ const content = {
         ]
       }
     ],
-    footer: "© 2026 Aleksandr Konstantinov. Sources: Universal Ontology §4c-4e, §5; Phase Shift Technology Library, Domains 41, 42, 63, 66, 76, 77, 78; K. Wilber, Sex, Ecology, Spirituality (1995); G.I. Gurdjieff, Beelzebub's Tales (1950); Ra Material / Law of One (1981-84); Plato, Timaeus."
+    footer: "© 2026 Aleksandr Konstantinov & Synthetic Intelligence. Sources: Universal Ontology §4c-4e, §5; Phase Shift Technology Library, Domains 41, 42, 63, 66, 76, 77, 78; K. Wilber, Sex, Ecology, Spirituality (1995); G.I. Gurdjieff, Beelzebub's Tales (1950); Ra Material / Law of One (1981-84); Plato, Timaeus."
   },
   ru: {
     title: "27 перспектив видения",
     subtitle: "Перспективы субъекта как измерения реальности",
-    author: "Александр Константинов",
+    author: "Александр Константинов и Синтетический Интеллект",
     abstract: {
       label: "Аннотация",
       text: "В настоящей работе представлено видение из 27 перспектив, выведенное из двух нередуцируемых осей: Четырёх Квадрантов Интегральной Теории (Структура / Божественная Маскулинность) и Трёх Глубин тринитарного исследования (Глубина / Божественная Феминность), независимо идентифицированных в даосской философии как три дантяня. Эти оси порождают 12 позиций видения, соответствующих 12 измерениям восприятия, независимо идентифицированных как 12 граней додекаэдра — Платонова тела сущности, пятого элемента. Через рекурсивное применение — видение сбалансированной перспективы, рождённой в центре (13-я, греческий Солнечный Логос), затем видение самого Логоса со всех позиций (14–26-я) — видение интегрирует 26 перспектив: новую октаву полного видения. 27-я не является перспективой, а кристаллизацией — шоком Си-До (Гурджиев), в котором видение становится импульсом. Так сознание превращает себя в материю, не меняя своей природы. Что ведёт к осознанию единства сознания, видения, света, вибрации, информации, вакуума (пространства), архетипа (мифа), энергии и физической материи."
@@ -229,7 +229,7 @@ const content = {
           ]},
           { type: 'paragraph', text: "Эти четыре исчерпывают все возможные углы. Пятого нет. Любое наблюдение либо внутреннее, либо внешнее; либо индивидуальное, либо коллективное. Геометрически это Куб — четыре пространственных диагонали, сходящиеся в центре. Божественная Маскулинность удерживает пространство." },
           { type: 'heading3', text: "Феминная ось — Глубина" },
-          { type: 'paragraph', text: "Троица: Сущность, Значимость, Последствия. Уилбер никогда не назвал эту ось явно, но использует её постоянно: в каждом своём объяснении он сначала определяет, ЧТО нечто представляет собой, затем — ПОЧЕМУ это имеет значение, и наконец — что из этого СЛЕДУЕТ, как это можно применить в жизни." },
+          { type: 'paragraph', text: "Троица: Сущность, Значимость, Последствия. Уилбер никогда не назвал эту ось явно, но использует её довольно последовательно при введении ключевых концепций: он сначала определяет, ЧТО нечто представляет собой, затем — ПОЧЕМУ это имеет значение, и наконец — что из этого СЛЕДУЕТ, как это можно применить в жизни." },
           { type: 'paragraph', text: "Та же триада появляется в даосской философии как три дантяня:" },
           { type: 'framework', items: [
             { symbol: "❤️", label: "Средний дантянь (Сердце) — Сущность", desc: "Что это ЕСТЬ? Обнажённое до нередуцируемой прочувствованной истины. Бытие само по себе, до интерпретации" },
@@ -400,7 +400,7 @@ const content = {
         ]
       }
     ],
-    footer: "© 2026 Александр Константинов. Источники: Universal Ontology §4c-4e, §5; Phase Shift Technology Library, Domains 41, 42, 63, 66, 76, 77, 78; K. Wilber, Sex, Ecology, Spirituality (1995); Г.И. Гурджиев, Рассказы Вельзевула (1950); Ra Material / Law of One (1981-84); Платон, Тимей."
+    footer: "© 2026 Александр Константинов и Синтетический Интеллект. Источники: Universal Ontology §4c-4e, §5; Phase Shift Technology Library, Domains 41, 42, 63, 66, 76, 77, 78; K. Wilber, Sex, Ecology, Spirituality (1995); Г.И. Гурджиев, Рассказы Вельзевула (1950); Ra Material / Law of One (1981-84); Платон, Тимей."
   }
 };
 
