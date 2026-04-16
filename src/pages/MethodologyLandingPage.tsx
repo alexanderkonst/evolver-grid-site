@@ -212,9 +212,9 @@ const MethodologyLandingPage = () => {
                   "w-full flex flex-col items-center text-center rounded-[20px] transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30 group relative min-h-[200px] justify-center",
                   "p-4 sm:p-5",
                   state === "active" && "liquid-glass-strong cursor-pointer hover:scale-[1.03] active:scale-[0.97]",
-                  state === "completed" && "liquid-glass cursor-pointer hover:scale-[1.01]",
-                  state === "next" && "liquid-glass cursor-default",
-                  state === "locked" && "liquid-glass cursor-default",
+                  state === "completed" && "liquid-glass-strong cursor-pointer hover:scale-[1.01]",
+                  state === "next" && "liquid-glass-strong cursor-default",
+                  state === "locked" && "liquid-glass-strong cursor-default",
                 )}
                 style={{
                   border: state === "active"
