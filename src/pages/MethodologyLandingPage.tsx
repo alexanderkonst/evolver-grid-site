@@ -146,15 +146,12 @@ const MethodologyLandingPage = () => {
             <div
               key={step.id}
               id={step.id}
-              className={cn(
-                step.number === 1 && "col-span-2 sm:col-span-1"
-              )}
             >
               {/* ─── APP TILE ─── */}
               <button
                 onClick={() => navigate(step.path)}
                 className={cn(
-                  "w-full flex flex-col items-center text-center rounded-[20px] transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30 group relative",
+                  "w-full flex flex-col items-center text-center rounded-[20px] transition-all duration-500 outline-none focus-visible:ring-2 focus-visible:ring-white/30 group relative min-h-[200px] justify-center",
                   "p-4 sm:p-5",
                   isUnlocked
                     ? "liquid-glass-strong cursor-pointer hover:scale-[1.03] active:scale-[0.97]"
