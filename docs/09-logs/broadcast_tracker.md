@@ -32,8 +32,8 @@
 | 3 | **Sandra** | `CLIENT` | Build | The Build (early-stage) | ~6 | Rev share TBD — **she asked, needs answer** | **$0** | ⚠️ TBD | ? | Mar | Uniqueness + myth + tribe landed. Pain in progress. **Rec: 33% с первых $10K** |
 | 4 | **Karime** | `CLIENT` `BRIDGE` | Build | The Build (active — deep) | 3 | Gratitude → transitioning | **$111** | — | WhatsApp | Apr 10 | Active bridge (refers Chris + Patricia + Oluwa). $111 donation Apr 7. **Session #3 completed Apr 9 — 216 min, MASSIVE. Heartbreak Mechanism discovered. Uniqueness v1.1 scored 9.7, Shadow v1.2 scored 9.4. Myth + Tribe rewritten (v1.2 — heartbreak/steel). Asymptotic precision principle landed.** Co-creator energy |
 | 5 | **Alexa** | `CLIENT` | Naming done | The Naming complete | 1 | — | **$0** | — | ? | Mar | Uniqueness extracted. Invited to Build. Decision pending |
-| 6 | **Taylor** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
-| 7 | **Tracy** | `CLIENT` | Build (stalled) | The Build(?) | ? | **$3,000** rev share from first $10K | **$0** | $3,000 | ? | ? | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
+| 6 | **Taylor** | `PAUSED` | Agreement removed | — | ? | ~~$3,000 rev share~~ **REMOVED** | **$0** | $0 | ? | ? | ⚠️ Agreement removed Apr 15. Scatter pattern active. Renegotiation pending |
+| 7 | **Tracy** | `PAUSED` | Agreement removed | — | ? | ~~$3,000 rev share~~ **REMOVED** | **$0** | $0 | ? | ? | ⚠️ Agreement removed Apr 15. Not committed — same configuration for 20 years. Renegotiation pending |
 | 8 | **Kirill** | `CLIENT` `NODE` | Session 1 Complete | The Naming (full) | 1 | Rev-share TBD (after first GrowFox revenue) | **$0** | TBD | Call + Telegram | Apr 14 | ✅ **UPGRADED from ENERGY LEAK.** Session 1 complete. Uniqueness: **Системный Алхимик** — 9.8 со слезами. All 7 artifacts drafted. Shadow: Алхимик Рассеивания. **BECAME A NODE:** organizing 3 intros (ТРИЗ+Genesis 2×2 call, Nikita/Wolf Line Capital). Products: Квадро (enterprise, 2yr) + GrowFox (health, 2wk, coding himself). GrowFox → 30-40 users by May 1. Partner: Diana. See: [kirills_unique_business.md](../02-strategy/unique-businesses/kirills_unique_business.md) |
 | 9 | **Anton Parin** | `COLLABORATOR` `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | Telegram | Apr 7 | Bali. AI + интеграл + бизнес. **Сам прошёл ZoG!** Спросил про консультацию. Past collaborator |
 | 10 | **Nabadi** | `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | DM | Apr 6 | Compart founder. Integral Ecosystem Builder #1. Open-source modular platform pitch |
@@ -60,8 +60,9 @@
 
 | Category | Amount |
 |----------|--------|
-| **Cash received** | **$677** ($566 Oyi + $111 Karime) |
-| **Revenue share contracts** | **$6,277** ($277 Sergey + $3,000 Taylor + $3,000 Tracy) |
+| **Cash received** | **$1,377** ($1,066 Oyi + $311 Karime) |
+| **Revenue share contracts** | **$277** (Sergey) |
+| **Agreements removed** | Taylor ($3,000) + Tracy ($3,000) — removed Apr 15, renegotiation pending |
 | **Revenue share TBD** | Sandra (needs terms — rec: 33% с первых $10K) |
 
 ---
