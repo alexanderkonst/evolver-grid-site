@@ -9,8 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Mail } from "lucide-react";
+import { ArrowLeft, Mail, Sparkles } from "lucide-react";
 import { captureReferralIdFromUrl } from "@/lib/gameProfile";
+
+// Key used by ZoneOfGeniusEntry to detect that the anonymous result should be
+// POSTed to save-anonymous-zog with this email (so it can be claimed after the
+// magic-link sign-in completes).
+const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -24,14 +29,78 @@ const Auth = () => {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
 
-  const redirectTo = searchParams.get("redirect") || "/start";
+  // Claim mode: the landing-page "Claim your gift" CTA lands the user here
+  // with ?claim=true so they can enter just an email and carry on to their
+  // Zone of Genius result without picking a password first.
+  const claimMode = searchParams.get("claim") === "true";
   const mode = searchParams.get("mode"); // signup, login, or null
-  const isOnboardingFlow = mode === "signup"; // From ZoG flow - minimal UI
+  const isOnboardingFlow = mode === "signup" || claimMode; // tinted UI
   const defaultTab = mode === "signup" ? "signup" : "login";
+
+  // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
+  const queryNext = searchParams.get("next") || searchParams.get("redirect");
+  const defaultNext = claimMode ? "/zone-of-genius" : "/playbook/discover";
+  const nextPath = queryNext || defaultNext;
 
   useEffect(() => {
     captureReferralIdFromUrl();
   }, []);
+
+  // Shared magic-link sender. stashForClaim=true also pockets the email in
+  // sessionStorage so ZoneOfGeniusEntry can POST the result under the same key.
+  const sendMagicLink = async (
+    submittedEmail: string,
+    postLinkRedirect: string,
+    stashForClaim: boolean,
+  ) => {
+    const trimmed = submittedEmail.trim();
+    if (!trimmed) {
+      toast({ title: "Email required", description: "Please enter your email.", variant: "destructive" });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const emailRedirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(postLinkRedirect)}`;
+      const { error } = await supabase.auth.signInWithOtp({
+        email: trimmed,
+        options: { emailRedirectTo },
+      });
+      if (error) throw error;
+
+      if (stashForClaim && typeof window !== "undefined") {
+        window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, trimmed.toLowerCase());
+      }
+
+      toast({
+        title: "Magic link sent",
+        description: `Check ${trimmed} for a sign-in link.`,
+      });
+
+      // Claim flow: send the user straight to their (still anonymous) result
+      // while the link sits in their inbox.
+      if (stashForClaim) {
+        setTimeout(() => navigate(postLinkRedirect), 800);
+      }
+    } catch (error: any) {
+      toast({
+        title: "Couldn't send magic link",
+        description: error?.message ?? "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClaimSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMagicLink(email, nextPath, true);
+  };
+
+  const handleMagicLinkFromLogin = () => {
+    sendMagicLink(email, nextPath, false);
+  };
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +111,7 @@ const Auth = () => {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/start`,
+          emailRedirectTo: `${window.location.origin}${nextPath}`,
           data: {
             first_name: firstName.trim(),
             last_name: lastName.trim(),
@@ -58,7 +127,7 @@ const Auth = () => {
       });
 
       // Redirect immediately since auto-confirm is enabled
-      setTimeout(() => navigate(redirectTo), 1000);
+      setTimeout(() => navigate(nextPath), 1000);
     } catch (error: any) {
       toast({
         title: "Sign up failed",
@@ -87,7 +156,7 @@ const Auth = () => {
         description: "Redirecting...",
       });
 
-      setTimeout(() => navigate(redirectTo), 500);
+      setTimeout(() => navigate(nextPath), 500);
     } catch (error: any) {
       toast({
         title: "Login failed",
@@ -158,7 +227,7 @@ const Auth = () => {
     }
   };
 
-  // Forgot Password View
+  // ── Forgot Password View ────────────────────────────────────────────
   if (showForgotPassword) {
     return (
       <div className="min-h-dvh flex flex-col bg-background">
@@ -230,6 +299,61 @@ const Auth = () => {
     );
   }
 
+  // ── Claim-your-gift View (?claim=true) ─────────────────────────────
+  if (claimMode) {
+    return (
+      <div className="min-h-dvh flex flex-col bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]">
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.08)_0%,transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
+        </div>
+        <main className="flex-grow flex items-center justify-center px-4 py-24 relative z-10">
+          <Card className="w-full max-w-md bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-12 h-12 rounded-full bg-[#8460ea]/10 flex items-center justify-center mb-3">
+                <Sparkles className="w-6 h-6 text-[#8460ea]" />
+              </div>
+              <CardTitle className="text-2xl font-bold text-[#2c3150]">
+                Enter your email — your free result stays safe there.
+              </CardTitle>
+              <CardDescription className="text-[#4a4a6d]">
+                We'll email you a one-click magic link. You can dive into your Zone of Genius now; the link just keeps your result waiting when you're ready to come back.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleClaimSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="claim-email" className="text-[#2c3150]">Email</Label>
+                  <Input
+                    id="claim-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoFocus
+                    className="border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full bg-[#8460ea] hover:bg-[#6894d0] text-white"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Send me the magic link"}
+                </Button>
+                <p className="text-xs text-[#6b6a8a] text-center pt-2">
+                  No password to pick. No spam. Just your result, ready when you are.
+                </p>
+              </form>
+            </CardContent>
+          </Card>
+        </main>
+      </div>
+    );
+  }
+
+  // ── Normal Auth View (login / signup tabs) ─────────────────────────
   return (
     <div className={`min-h-dvh flex flex-col ${isOnboardingFlow
       ? 'bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]'
@@ -305,6 +429,20 @@ const Auth = () => {
                   >
                     {loading ? "Logging in..." : "Log In"}
                   </Button>
+
+                  {/* Magic-link alternative — same OTP flow as claim mode, but
+                      without the pending-claim email stash. */}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleMagicLinkFromLogin}
+                    className="w-full"
+                    disabled={loading || !email}
+                  >
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Or send me a magic link instead
+                  </Button>
+
                   {import.meta.env.DEV && (
                     <Button
                       type="button"
