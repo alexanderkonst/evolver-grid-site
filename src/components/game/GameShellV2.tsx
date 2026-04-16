@@ -114,6 +114,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
     const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
         if (typeof window !== 'undefined') {
+            // Default to closed on Journey page — the app store view needs full width
+            const isJourneyPage = window.location.pathname.startsWith('/game/journey');
+            if (isJourneyPage) return false;
             const saved = localStorage.getItem('sectionsPanelOpen');
             return saved !== null ? JSON.parse(saved) : true;
         }
@@ -360,6 +363,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     //     nudgeBadges.push('collaborate');
     // }
 
+    // Gradual reveal on Journey page — only show current space + next one
+    const isJourneyPage = location.pathname.startsWith('/game/journey');
+    const hiddenSpaces: string[] = isJourneyPage
+        ? ["learn", "meet", "collaborate", "build", "buysell"] // hide everything beyond JOURNEY + ME
+        : [];
+
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
         setActiveSpaceId(spaceId);
@@ -403,6 +412,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     unlockStatus={unlockStatus}
                     unlockHints={unlockHints}
                     nudgeBadges={nudgeBadges}
+                    hiddenSpaces={hiddenSpaces}
                     className="h-dvh sticky top-0"
                     userName={profile?.first_name || undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
@@ -475,6 +485,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         unlockStatus={unlockStatus}
                         unlockHints={unlockHints}
                         nudgeBadges={nudgeBadges}
+                        hiddenSpaces={hiddenSpaces}
                         userName={profile?.first_name || undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}
                         userLevel={profile?.level || undefined}
