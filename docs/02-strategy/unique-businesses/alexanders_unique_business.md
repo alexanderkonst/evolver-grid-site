@@ -7065,5 +7065,27 @@ This download is not a teaching moment. It's a **field recording of the founder 
 
 ---
 
-*Alexander's Unique Business v8.6 — April 15, 2026 (April 15 Transmission Download integrated. Six DNA explosions captured: Recursiveness of the Gift, Self-Knowledge Collapses the Workaround Industry, Business as Beehive, Grind as Mind Virus, Effortless Exciting Intensity, Copernican "I Am" Manifest. Hero's Journey challenge-ordering observed. Oyi licensing offer on the table. Field: Generator + Projector + Manifestor = alchemical configuration.)*
+### Postscript — Sasha's Answers (April 16, 2026 · Day 42)
+
+Written one day after the download. Of the three open decisions that closed this section, two are now answered. The third is still Sasha's to name.
+
+**Decision 1 — Licensing:** *"I am a yes to licensing, why wouldn't I be? We just need to figure out the specificity."* Yes in principle. The specificity has been converted into an 11-row negotiation checklist in `docs/02-strategy/open_questions_from_oyi_session.md` with defaults, ranges, and walk-away lines for the next call with Oyi. Scope: one piece first — the April 15 long-form essay. Revenue share default: 50/50. Exclusivity: non-exclusive with 30-day launch window. Freeze window: 90 days. Attribution: Sasha bylined.
+
+**Decision 2 — Scaling goal:** *"Are you kidding me? Do you remember my moonshot prompt? One-to-few or one-to-thousands — how do we do it?"*
+
+Fair correction. The original framing offered Sequence A (one-to-few first) and Sequence B (one-to-thousands first) as the two viable paths. Both are insufficient for a venture whose name is Planetary OS. The resolved answer is **Sequence C — three parallel, mutually reinforcing tracks:**
+
+- **Track 1 — Sessions (the tree):** Sasha runs 2-3 Ignition Sessions per week. Each session generates a canvas, a Fathom recording, corpus entries, and candidate downloads. The methodology stays pressure-tested and the transmission source keeps emitting.
+- **Track 2 — Licensed Distribution (the spine):** Oyi licenses one piece at a time from Track 1 output. Essay + clips go to his list. 1-3% convert back into Track 1 Ignition bookings. Distribution without Sasha personally scaling himself.
+- **Track 3 — Field Recordings (the multiplier):** Recurring Manifestor + Generator + Projector calls (pending Decision 3). Fathom records. Each recording yields ~10 artifacts at zero nervous-system cost because Sasha is not performing — he is being, and witnesses arrive inside the radius.
+
+The tracks compound: Track 1 generates inventory, Track 2 distributes it, conversions fund Track 1, Track 3 amplifies both. The first facilitator becomes necessary only when Track 2 demand exceeds Sasha's Track 1 capacity — a quality problem, not a strategy problem, and not on the critical path for Month 1-2.
+
+**Decision 3 — Cadence:** Still open. Awaiting Sasha's answer. Recommended default (from the open-questions doc): seeded spontaneity — commit to ~2 three-way calls per month, exact day picked 48h out by whoever feels the pull. Preserves the emanation quality while giving Track 3 a minimum rhythm.
+
+The consequence for the canvas: Sasha's **channels** layer (7-artifact model) just acquired a new named channel — licensed distribution via partner list, running parallel to direct sessions and organic social. This is the first time a Sasha-venture channel has been defined as *someone else's audience*. It is also the first time the tribe has volunteered a member as structurally a distributor rather than structurally a client.
+
+---
+
+*Alexander's Unique Business v8.7 — April 16, 2026 (Postscript added: Sasha's April 16 answers to Decisions 1 and 2. Licensing ✅ yes with specificity checklist. Scaling ✅ resolved as Sequence C — three parallel tracks. Decision 3 cadence still open. New canvas channel surfaced: licensed distribution via partner list.)*
 

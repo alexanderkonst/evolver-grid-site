@@ -4,6 +4,11 @@
 >
 > *Source: Fathom recording, April 15, 2026. Session digest in `docs/09-logs/session_log.md` Day 41 addendum 5. Download in `docs/02-strategy/unique-businesses/alexanders_unique_business.md`.*
 
+> **Answer log — April 16, 2026 (Day 42):**
+> - **Decision 1 (Licensing):** ✅ YES in principle. Specificity is the work. Document below converted from decision doc → negotiation checklist.
+> - **Decision 2 (Scaling goal):** ✅ Resolved — **neither A nor B; Sequence C.** Parallel tracks, not sequential. Consistent with the moonshot prompt (Planetary OS = reach is definitional).
+> - **Decision 3 (Cadence):** 🟡 Still open. Awaiting Sasha.
+
 ---
 
 ## The framing
@@ -16,7 +21,7 @@ Three concrete decisions fell out of this. None of them has a wrong answer. All 
 
 ---
 
-## Decision 1 — Licensing content to Oyi
+## Decision 1 — Licensing content to Oyi ✅ YES (April 16, 2026)
 
 ### What Oyi is offering
 
@@ -32,81 +37,138 @@ JVZoo / ClickBank model, adapted:
 - Control of the canon.
 - Dilution of the message.
 
-### The sub-decisions that hang off this
+### The answer
 
-| Sub-decision | Options | Notes |
-|---|---|---|
-| **Yes/no in principle** | yes / no / not yet | If "not yet" — what's the unblock? |
-| **Scope** | one piece (trial) / a track (series) / the whole methodology | Recommend: one piece first, see how it lands |
-| **Format of the first piece** | long-form essay / video / shorts bundle / lead magnet / session recording | The April 15 transcript repurpose plan gives you four candidates |
-| **Exclusivity** | exclusive to Oyi's channels / non-exclusive / exclusive-per-channel | Non-exclusive by default is simpler |
-| **Revenue share** | 50/50 / 70/30 author-favor / 30/70 distributor-favor / other | Industry range is 30–50% to the distributor for list-driven sales |
-| **Duration** | one-deal / evergreen / renewable annually | Default to one-deal first, evergreen once trust is proved |
-| **Attribution** | Sasha bylined / co-bylined / Oyi hosts, Sasha linked | Sasha bylined is the simplest. Protects canon |
+**Yes.** Said plainly on April 16: *"I am a yes to licensing, why wouldn't I be? We just need to figure out the specificity."*
 
-### The reason to say yes
+Structural reasons this was always going to be yes — and why the corpus is only now catching up:
 
-Sasha's current audience is small and slow to build. Oyi has a distribution capability (email list, platform, rapport) that Sasha does not have and does not naturally grow. Licensing is a **leverage trade** — Sasha trades a slice of revenue for an immediate step-up in reach. If "I don't need a better funnel, I need more people inside it" is The One Rule, this is direct compliance with it.
+- Oyi's audience is a distribution capability Sasha does not have and does not naturally grow.
+- The One Rule — *"I don't need a better funnel, I need more people inside it"* — makes this compliance, not a trade.
+- The April 15 transmission proved the signal travels without the apparatus. The apparatus (funnel, playbook page, magic link) is for scale; the signal is already at transmission quality. Licensing is how the signal gets scale.
+- Canon protection concerns (methodology still evolving, risk of freezing an outdated version) are addressed by *scope control*, not by saying no. Start with one piece. Freeze that piece for 90 days. Let the methodology keep evolving in the corpus; let the licensed piece stand as a stable artifact from a specific moment.
 
-### The reason to say no (or not yet)
+### The negotiation checklist (for the next call with Oyi)
 
-- Sasha's own platform is mid-build (`src/`, playbook pages, landing page rewrite). Licensing content before the platform is ready means Oyi's audience lands on a half-built experience.
-- Licensing one piece prematurely sets an anchor for revenue share that is hard to renegotiate upward later.
-- The methodology is still evolving rapidly — April 15 is Day 41 of the active sprint, and new downloads land every 2–4 days. Locking content in a licensed form before it's stable risks distributing an outdated version.
-- Canon protection: if Oyi's audience reacts strongly, Sasha will want control of the next move. Shared authorship distributes that control.
+Each row below is a term to be agreed on the next Oyi call. Each has a **default** (what to propose first) and **acceptable range** (what not to go below / above). The defaults are author-favor by design because this is the first deal and the anchor matters.
 
-### What would unblock a "not yet" into a "yes"
+| Term | Default (propose this) | Acceptable range | Walk-away line |
+|---|---|---|---|
+| **Scope of deal** | One piece — the April 15 long-form essay (~2,000 words, outlined in `docs/08-content/april15_repurpose_plan.md`) | One piece only for v1; track/series conversation reopens after v1 conversion data | Do not license "the methodology" or "a track" at v1 |
+| **Format** | Long-form essay + embedded Fathom clips + CTA to Ignition Session application | Essay + clips + CTA; or essay-only if Oyi prefers text-native | Not a course, not a cohort, not a packaged product |
+| **Attribution** | Sasha bylined. *"By Alexander Konstantinov, distributed with permission via Oyi."* | Sasha bylined; Oyi hosts and frames | No ghost-bylined, no co-authored |
+| **Exclusivity** | Non-exclusive. Sasha may publish the same essay on his own surfaces (LinkedIn, site) after an agreed launch window (e.g., 30 days) | 30-day exclusivity window acceptable; longer not | No open-ended exclusivity |
+| **Revenue share** | **50/50** on first-sale revenue from Oyi-attributed traffic that converts to a $555 Ignition Session | 60/40 author-favor to 50/50; walk if asked for <50% to author | No flat "you keep all list revenue, I get the booking fee" — this is not a referral, it's a co-distribution |
+| **Tracking / attribution mechanism** | UTM-tagged link + dedicated landing variant `/playbook/discover?src=oyi` | UTM minimum; dedicated variant preferred for cleaner signal | No verbal handshake on who sent whom |
+| **Duration** | One-deal. Revisit terms after 90 days or 10 conversions, whichever comes first | 90 days / 10 conversions checkpoint mandatory | No evergreen on v1 |
+| **Renewal default** | Auto-renew another 90 days at same terms unless either party flags review | Either party can flag review; no penalty | No unilateral auto-renew |
+| **Methodology control** | Sasha retains authorship and canon control. Oyi may not edit, remix, or excerpt without approval | Light edits (grammar, Oyi's intro/outro framing) pre-approved; substantive edits require approval | No derivative works without written approval |
+| **Content updates** | Essay frozen for 90-day licensed window. If methodology evolves (likely — Day 41 proved it does), Sasha publishes the evolution *elsewhere* during window; licensed essay stands as v1 artifact | Freeze window non-negotiable from Oyi's side | No mid-window content swaps |
+| **Termination** | Either party may terminate at 90-day mark. Mid-window termination only for breach | Breach = attribution violation, unapproved derivative, non-payment of revenue share | No unilateral mid-window termination without breach |
 
-1. Landing page rewrite + playbook page complete at `/playbook/discover`.
-2. Magic-link claim flow working end-to-end.
-3. One stable piece of content that Sasha is willing to freeze for 90 days.
+### Dependencies before Oyi can distribute
 
-**Sasha's answer:** _________________________
+Not blockers on *saying yes*. Blockers on *Oyi's audience actually landing somewhere that honors the signal.*
+
+| # | Dependency | Status | Owner |
+|---|---|---|---|
+| 1 | `/playbook/discover` polish — 7 issues flagged by Sasha April 16 | 🔴 Brief written (`ai_tasks/PENDING_playbook_discover_polish.md`), assigned Codex, P0 | Codex |
+| 2 | Magic-link claim flow working end-to-end | 🟡 Status unclear — Sasha to verify before Oyi traffic lands | Sasha + Codex |
+| 3 | Long-form essay v1 drafted + frozen | 🔴 Outline exists (`docs/08-content/april15_repurpose_plan.md`), full draft not yet written | Sasha + Cowork |
+| 4 | UTM/attribution variant `/playbook/discover?src=oyi` working | 🔴 Not built | Codex |
+| 5 | Rev-share tracking mechanism (Stripe metadata? manual spreadsheet?) | 🔴 Not decided | Sasha |
+
+**Launch criterion:** All 5 green before Oyi pushes to his list. Acceptable to sign the deal before all 5 are green — Oyi agrees the distribution starts on Sasha's go-signal.
+
+### Sasha's written answer (for the record)
+
+> *"I am a yes to licensing, why wouldn't I be? We just need to figure out the specificity."* — April 16, 2026
 
 ---
 
-## Decision 2 — Scaling goal (one-to-few vs one-to-thousands)
+## Decision 2 — Scaling goal ✅ RESOLVED: Sequence C (April 16, 2026)
 
 ### What Oyi asked
 
 > *"Do you have growth goals, do you have scaling goals? You want to keep adding one, two, three clients at a time, or do you want to make an impact on thousands at a time?"*
 
-### The false binary to dissolve
+### Why the question is wrong
 
-This sounds like a choice between *depth* and *reach*. It is actually a choice between **two sequences**:
+Sasha's response on April 16: *"Are you kidding me? Do you remember my moonshot prompt?"*
 
-**Sequence A — one-to-few first, then scale:**
+Fair correction. The original framing of this document presented Sequence A (one-to-few first) and Sequence B (one-to-thousands first) as the two viable paths. Both are insufficient. The venture is **Planetary OS** — reach is not a strategic choice, it is definitional. A planetary operating system that reaches "a few" is an oxymoron. A planetary operating system that reaches thousands before it reaches its first facilitator is a brittle broadcast.
+
+The right question is not *which scale first* but *how do the scales reinforce each other in parallel*.
+
+### Sequence C — parallel tracks, mutually reinforcing
+
+**Three tracks run concurrently. They compound.**
+
 ```
-5-10 Ignition Sessions ($555 each) →
-prove canvas-to-first-sale pathway →
-train 2-3 facilitators via The Build →
-scale horizontally through trained facilitators
+┌─────────────────────────────────────────────────────────────────────┐
+│  TRACK 1 — SESSIONS (the tree)                                      │
+│    Sasha runs Ignition Sessions ($555). 1-3 per week.               │
+│    Every session = new canvas + new recording + new corpus entries  │
+│    + new download candidates + new methodology pressure-test        │
+│    Output: depth, signal quality, canonical artifacts               │
+├─────────────────────────────────────────────────────────────────────┤
+│  TRACK 2 — LICENSED DISTRIBUTION (the spine)                        │
+│    Oyi licenses one piece at a time from the output of Track 1      │
+│    Essay + clips distributed to Oyi's list. 1-3% conversion         │
+│    back to Track 1 (Ignition Session bookings) — bi-directional     │
+│    Output: reach, external octave movement, revenue multiplier      │
+├─────────────────────────────────────────────────────────────────────┤
+│  TRACK 3 — FIELD RECORDINGS (the multiplier)                        │
+│    Recurring Manifestor + Generator + Projector calls (Decision 3)  │
+│    Fathom records; each recording feeds Tracks 1 and 2              │
+│    Rotating cast — the pattern is licensable by HD type, not person │
+│    Output: content pipeline at zero nervous-system cost             │
+└─────────────────────────────────────────────────────────────────────┘
+
+FLOW:  Sessions (Track 1) + Field Calls (Track 3)
+          ↓  generate recordings & artifacts
+       Repurpose Plan
+          ↓  converts recordings → essays, clips, lead magnets
+       Licensed Distribution (Track 2)
+          ↓  Oyi pushes to his list
+       1-3% conversion
+          ↓  books Ignition Sessions (back into Track 1)
+       Track 1 generates more recordings
+          → loop closes, amplifies on each cycle
 ```
 
-**Sequence B — one-to-thousands first, then deepen:**
-```
-License content to Oyi → 
-reach thousands via Oyi's list →
-convert 1-3% to Ignition Sessions →
-run sessions at higher volume from day one
-```
+### Why this works (structurally, not aspirationally)
 
-Sequence A is *depth-first*. Sequence B is *reach-first*. Both end in the same place — a scaled methodology — but they shape the next 90 days very differently.
+**Track 1 is the transmission source.** Without live sessions, the corpus stops growing and the methodology ossifies. Sasha is the Manifestor. The Manifestor must emit. Sessions are the structured container for emission.
 
-### The relevant constraints
+**Track 2 is not new labor.** Oyi distributes *what already exists* — the April 15 recording, the essay outline, the clips already queued. Sasha does not produce new content for Oyi. Oyi receives from the output of Track 1.
 
-- **Current revenue:** $677 cash. Not a lot of runway to wait for Sequence A.
-- **Current capacity:** Sasha runs sessions personally. Sequence B risks saturating Sasha before facilitator training exists.
-- **Quality control:** Sequence A protects canon (every session is Sasha). Sequence B requires trusting Oyi's list to self-qualify.
-- **Energetic fit:** Sasha said on the call — *"effortless exciting intensity, I can't stop."* This is the signal of Sequence A-quality presence. Sequence B at scale without facilitators would compromise it.
+**Track 3 turns Track 1 into a multiplier.** One three-way call = 6 formulations = 7 clips + 1 essay + 1 long-form lead magnet. The April 15 call proved the yield ratio. If the cadence decision (Decision 3) goes yes, Track 3 runs on its own schedule.
 
-### The honest question
+**The loop is self-reinforcing.** Every conversion from Track 2 funds another Track 1 session. Every Track 1 session generates more Track 2 inventory. Track 3 amplifies both without adding performance cost — because you are not performing in Track 3, you are being, and witnesses arrive inside the radius.
 
-*If you had to choose today — without optimizing — which one feels like the field SASHA is actually in right now?*
+### Capacity math (quick, not final)
 
-If the answer is "A, but I want to plan for B," then the real answer is **A with a visible B-on-the-horizon.** That looks like: run sessions, record everything, let Oyi distribute the *recordings* (not the live offer) as content that warms his list for Sasha's eventual cohort offer.
+| Weekly capacity | Sessions | Three-way calls | Essays/clips produced | Conversions @ 1-3% from Oyi's list (hypothetical 10K reach per piece) |
+|---|---|---|---|---|
+| Current (1 session/week avg) | 1 | 0 | — | — |
+| Sustainable (3 sessions + 1 field call) | 3 | 1 | ~10/week | 100-300 exposures/week → 1-9 Ignition bookings/week |
+| With 1 facilitator (later) | 3 Sasha + 2 facilitator | 1 | ~15/week | 150-450 exposures/week → 1-14 Ignition bookings/week |
 
-**Sasha's answer:** _________________________
+The first facilitator becomes necessary when Track 2 conversions exceed Sasha's personal capacity in Track 1. That is a **quality problem, not a strategy problem.** The facilitator emerges from the existing canvases (Playbook SOP v2 path) when the demand signal warrants it. This is not on the critical path for Month 1-2.
+
+### What Sequence C requires from Sasha
+
+1. **Commit to a Track 1 rhythm.** 2-3 Ignition Sessions per week minimum. The tree has to keep fruiting.
+2. **Say yes to Decision 3 (cadence).** Track 3 becomes an instrument only if there's a cadence. Seeded spontaneity (2/month) is the lowest-risk starting point.
+3. **Let Cowork run the repurpose pipeline.** Every Fathom recording → repurpose plan → queue of artifacts ready for Track 2.
+4. **Sign the Oyi deal on the v1 terms above (Decision 1).** One piece first. 50/50. 90-day window. Proves the loop.
+
+### Sasha's written answer (for the record)
+
+> *"Are you kidding me? Do you remember my moonshot prompt? One-to-few or one-to-thousands — how do we do it?"* — April 16, 2026
+>
+> **The answer: Sequence C. Both, in parallel, mutually reinforcing. The tree, the spine, the multiplier.**
 
 ---
 
@@ -161,3 +223,4 @@ Don't delete the decision-and-reasoning structure — future Sasha may want to r
 ---
 
 *File opened April 16, 2026 · Day 41 · Three decisions parked, not nudged.*
+*File updated April 16, 2026 · Day 42 · Decisions 1 and 2 answered by Sasha. Decision 3 still open.*
