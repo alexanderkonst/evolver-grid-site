@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-12 midnight — Day 40 Night Session. 79 Phase Shift Domains (4 new: Return to Center, Descent Octave, Planetary Holomap, Question Collapse). Auth gate deployed. 27-Perspective article live (dark theme, bilingual, open source). Methodology carousel v2 (7 slides, infographics generated). 3 DMs sent (Patricia, Chris, José). "The question IS the content IS the lead magnet IS the visibility."*
+> *Last updated: 2026-04-16 — Day 42. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. Playbook `/playbook/discover` polish brief assigned to Codex as P0. The signal now travels without the apparatus; the apparatus is now for scale.*
 
 ---
 
