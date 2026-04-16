@@ -3957,3 +3957,268 @@ The reframe: client sessions and sales are not a SEPARATE track from platform de
 *Day 40 complete. ~12:10am. 79 domains. Three DMs sent. The 27th happened.*
 
 
+---
+
+## Day 41 — Wednesday, April 15, 2026 (Hackathon Day 3 with Oyi — Agent Setup)
+
+**Location**: Mexico City
+**Theme**: Cowork agent operating manual + design stack adoption (pre-landing-page-rebuild)
+**Context**: Moon cycle week 2 (manifesting). Ceremony with Santa Maria and blue lotus. Tribe download received, to be poured after agent is properly set up.
+
+### What We Built
+
+| Item | Impact |
+|------|--------|
+| **CLAUDE.md rewritten** | Pointer-only contract + navigation map. Previous parallel `memory/` compressions deleted. `docs/` is the source of truth; CLAUDE.md points into it, does not duplicate |
+| **.agent/RULES.md** (pre-existing) | Autonomous execution rules, language rules, agent lane assignments |
+| **.agent/anti-ai-style.md** NEW | Banned phrases, banned patterns, register rules. Voice guardrails applied to everything Cowork-agent writes |
+| **.agent/session-protocol.md** NEW | Adaptive session-open protocol. 8 verbs ("update the roadmap", "update the holomap", "capture this idea", "what should I focus on", "bump/park X", "log this session", "what's the [principle]") mapped to specific files and edit protocols |
+| **memory/ tree deleted** | 17 files, 1,639 lines of duplicate content removed. TASKS.md deleted. `docs/02-strategy/roadmap.md` reinstated as the ONLY task system |
+| **UI/UX Pro Max installed** | `.agent/skills/ui-ux-pro-max/` — 67 styles, 96 palettes, 57 font pairings, 99 UX guidelines, 13 stacks. MIT-licensed. Read SKILL.md before any new UI surface |
+| **DESIGN_STACK.md** NEW | `.agent/skills/DESIGN_STACK.md` — decision tree for 4 design tools: UI/UX Pro Max (local skill), Gemini 3.1 Flash Image Preview / Nano Banana 2 (AI Studio direct), Stitch (Google, MCP export), 21st.dev (shadcn registry) |
+| **Nano Banana 2 path clarified** | Use aistudio.google.com directly. Third-party wrappers (infsh) flagged Trust Hub FAIL — skipped |
+| **21st.dev install pattern documented** | `npx shadcn@latest add "https://21st.dev/r/..."` — complementary to base shadcn/ui |
+| **Stitch MCP path documented** | Placeholder for when first Stitch export happens. Connects via `.mcp.json` at project root |
+
+### Key Decisions
+
+1. **No parallel compressions of `docs/`.** The corpus is the second brain. CLAUDE.md is a pointer map, not a re-summary. When in doubt, point to `docs_index.md`.
+
+2. **License boundary enforced.** `.agent/skills/` = MIT (Anthropic-derived practice guidance). `docs/` = CC BY-NC-SA 4.0 (Sasha's originals). Never mix.
+
+3. **Design tool stack locked.** Four tools, one decision tree. UI/UX Pro Max is always-active reference. Stitch is optional pre-code sketch surface. Gemini 3.1 Flash Image Preview is the image path (direct, skip wrappers). 21st.dev is the component registry beyond base shadcn.
+
+4. **harry's Cowork stack adapted, not copied.** 4-folder / 2-core-files pattern translated: `docs/` is already the knowledge base, `CLAUDE.md` is the working-memory pointer, `.agent/` holds the operating manual, `.agent/skills/` holds the MIT-side practice guidance.
+
+### Files Touched
+
+| File | Change |
+|------|--------|
+| `CLAUDE.md` | Rewritten as pointer-only contract (142 lines) |
+| `.agent/anti-ai-style.md` | NEW — voice guardrails |
+| `.agent/session-protocol.md` | NEW — 8 verbs, adaptive open protocol |
+| `.agent/skills/ui-ux-pro-max/` | NEW — installed via `npx uipro-cli init` and moved from `.claude/skills/` |
+| `.agent/skills/DESIGN_STACK.md` | NEW — 4-tool decision tree |
+| `.claude/skills/README.md` | Pointer note: active skills live under `.agent/skills/` |
+| `memory/` tree + `TASKS.md` | DELETED (duplicates of `docs/`) |
+
+### What's Next (this session)
+
+- **Receive tribe download** from Sasha — the "massive download" that gives a much better tribe description
+- **Update** `docs/02-strategy/unique-businesses/alexanders_unique_business.md` Artifact 3 (Tribe section) with version bump and "download received in ceremony" lineage note
+- **Rebuild** homepage `/` tailored to the new tribe description (Bio-Light, Pearl #e7e9e5, Violet #8460ea, wabi-sabi + Apple Industrial)
+
+### Phase Shift Domains: 79 (unchanged)
+
+---
+
+*Day 41 in progress. Agent operating manual locked. Design stack adopted. Ready for the pour.*
+
+---
+
+## Day 41 addendum — Plugin audit (obra/superpowers + garrytan/gstack)
+
+**Trigger**: Four GitHub plugins promoted in @yury.ai Instagram reel with inflated star counts and a fake `claude /install <user>/<repo>` syntax. Reviewed two of them in depth.
+
+### Verdicts
+
+| Plugin | License | Verdict | Reason |
+|--------|---------|---------|--------|
+| obra/superpowers | MIT | **SKIP plugin, ADOPT one idea** | "Mandatory workflows, not suggestions" directly conflicts with `.agent/RULES.md` autonomy + existing agent-lane assignments. TDD-first doesn't match landing-page / copy / methodology work |
+| garrytan/gstack | MIT | **SKIP** | Role-theater (CEO review, Eng review, Designer, CSO, etc.) duplicates existing multi-AI team (Human + Gemini + Codex + Claude Code + Cowork). Writes to global `~/.claude/`, pollutes all projects. Patches `CLAUDE.md` — violates the pointer-only contract just locked today |
+| "Frontend Design" (277k) | — | **SKIP** | Fabricated / not identifiable as a real repo |
+| thedotmack/claude-mem | AGPL-3.0 | **SKIP** | Session memory + AI-compressed summaries = exactly the parallel compression of `docs/` that was deleted earlier today. Plus AGPL-3.0 risk for commercial product |
+
+### What was extracted anyway
+
+One idea from superpowers worth keeping: **verification before completion**. Added as a new section in `.agent/RULES.md`:
+
+> Before saying "done" on any non-trivial task: re-read what was written, verify each touched file, check success criteria directly, and report blockers honestly.
+
+No plugins installed. No `~/.claude/` pollution. No CLAUDE.md mutations by third-party installers.
+
+### Meta-rule reinforced
+
+**Do not install anything that creates a parallel system to one that already works.** The `.agent/` operating manual, `docs/` corpus, and multi-AI team assignments are the system. Plugins that overlay their own methodology, roles, or memory layer violate this.
+
+---
+
+*Day 41 addendum complete. Plugin surface locked down. No third-party opinionated frameworks installed.*
+
+---
+
+## Day 41 addendum 2 — Reversal on gstack, agent lanes rewritten
+
+**Trigger**: Sasha challenged the gstack SKIP verdict. Key info he surfaced:
+- He's fully on Claude ecosystem now. No more Codex, no more Lovable, no more Gemini-as-CTO as active lanes.
+- New lanes: **Claude in Cowork** (docs, corpus, sessions) + **Claude Code Mac app** (funnels, products, platform).
+- With one agent playing multiple roles, gstack's slash-commands become *mode switches*, not role theater.
+
+### What changed
+
+1. **`.agent/RULES.md` rewritten** — new Agent Assignments section:
+   - Claude in Cowork owns `docs/`, `.agent/`, `CLAUDE.md`
+   - Claude Code Mac owns `src/`, `supabase/`, `/api/`, `public/`
+   - `ai_tasks/PENDING_*.md` queue deprecated
+   - `.cursorrules`, Codex, Lovable, Antigravity lanes deprecated
+
+2. **`CLAUDE.md` updated** — the team composition line replaced with the two-lane model.
+
+3. **gstack installation plan** (executed on Sasha's Mac, not in Cowork sandbox):
+   ```bash
+   git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && cd ~/.claude/skills/gstack && ./setup
+   ```
+   - Chose namespaced mode (`/gstack-*`) to avoid collision
+   - Declined the "add gstack to current project" step — preserves `CLAUDE.md` pointer-only contract
+   - Global skills visible in all Claude Code projects, no project-level patches
+
+4. **`.agent/GSTACK_COMMANDS.md` created** — reference sheet for ~30 slash commands with a "likely high-value" shortlist for current work (landing page rebuild, sessions, pipeline).
+
+### Why the reversal was correct
+
+The original SKIP called gstack "role theater duplicating the multi-AI team." That was accurate for the old Codex/Gemini/Lovable setup. With one Claude agent playing all roles, explicit mode-switching slash commands are useful tooling — not duplication.
+
+The CLAUDE.md pollution concern remains valid. Solved by installing global skills only and skipping `gstack-team-init`.
+
+### Correction to prior addendum
+
+The earlier table listed gstack as "SKIP." Superseded by this addendum. The same meta-rule still holds: **don't install anything that creates a parallel system to one that already works** — but gstack, configured this way, augments rather than replaces.
+
+---
+
+*Day 41 addendum 2 complete. Agent lanes modern. gstack installed global-only.*
+
+---
+
+## Day 41 addendum 3 — Landing page rebuild spec
+
+**Trigger**: Sasha showed current `/` (App Store grid with 7 tiles) + hand-drawn sketch of the new vision: circle, 7 nodes, dragonfly at top, step 1 off-circle left edge, headline *"Unnamed talent → thriving biz in flow. In seven steps."*
+
+### What was decided (via AskUserQuestion)
+
+| Question | Answer |
+|----------|--------|
+| Hero headline | *"Unnamed talent → thriving biz in flow. In seven steps."* (exact from sketch) |
+| CTA copy | *"Read the playbook"* |
+| Signup flow | Email-only magic link (matches backlog item 14) |
+
+### Artifacts produced
+
+1. **`docs/08-content/landing_page_infographic_prompts.md`** — Full image-gen prompt for Gemini 3.1 Flash Image Preview (Nano Banana 2) + full video-animation prompt for Veo 3 / Runway / Stitch, with Bio-Light palette woven in, CSS fallback, and file output conventions.
+
+2. **`docs/05-specs/landing_page_seven_steps_spec.md`** — Drop-in spec for Claude Code (Mac app) to implement in `src/`. Includes:
+   - Hero code (Cormorant Garamond serif, gradient arrow accent)
+   - `<video>` + `<img>` fallback infographic section
+   - Pill CTA with pearl→lilac gradient, electric violet border
+   - Route for `/playbook` (gated via `RequireAuth`)
+   - Placeholder `PlaybookPage.tsx`
+   - Auth flow: `navigate("/auth?next=/playbook")` + magic-link handling in `Auth.tsx`
+   - Testing checklist
+
+### Lane discipline
+
+Cowork did not edit `src/`. Spec + prompts live in `docs/` (content) and `docs/05-specs/` (implementation brief). Claude Code (Mac app) executes the actual `src/` edits.
+
+### Sequencing
+
+1. Sasha runs gstack install on Mac (from addendum 2) — one command.
+2. Sasha opens Claude Code (Mac app), points it at `docs/05-specs/landing_page_seven_steps_spec.md`, lets it implement.
+3. Sasha generates the infographic PNG via aistudio.google.com using the prompt in `docs/08-content/landing_page_infographic_prompts.md`. Saves to `public/images/landing/seven-steps-infographic.png`.
+4. v1 ships static (PNG only). Video loop gets added later.
+5. Next session: build out the actual playbook page content at `/playbook`.
+
+### Connection to Question Collapse (Domain 79)
+
+The playbook IS the content IS the lead magnet IS the visibility. Signup = commitment to read, not a gate of scarcity. The page title on `/playbook` should eventually be the playbook itself, rendered in full, readable for free once signed up. Open Blueprint Paradox: the more we show, the more trust compounds.
+
+### Roadmap update
+
+**Bump to This Week's Scope (Apr 14–20):**
+- W11: Landing page rebuild (`/`) — hero + circular infographic + CTA 🔴
+- W12: Playbook page v1 (`/playbook`) — full text rendered 🔴 (next session)
+
+**New Active Backlog items** (if not already captured):
+- Magic-link `?next=` redirect in `Auth.tsx`
+- `/playbook` route + `RequireAuth` wrap
+- Infographic video loop (non-blocking enhancement)
+
+---
+
+*Day 41 addendum 3 complete. Spec shipped to Claude Code lane. Cowork stays in docs/.*
+
+
+
+
+---
+
+## Day 41 addendum 4 — Playbook skeleton built (April 16, 2026)
+
+### What happened
+
+Crossed lane — Cowork wrote code directly into `src/`. Following updated `.agent/RULES.md` guidance ("Work where your attention is"), and Sasha's explicit choice "Здесь, в Cowork — я пишу код прямо в `src/`."
+
+### Files created
+
+| File | Role |
+|------|------|
+| `src/data/playbookSteps.ts` | Single source of truth — 7 steps × 3 substeps each, with placeholder copy + ONE GOOD STRATEGY bullets. Includes `getStepBySlug`, `getStepByNumber` helpers. |
+| `src/components/playbook/PlaybookShell.tsx` | Top nav — 7-dot progression bar with connector lines. Active step: electric-violet glow. Completed: dimmed pearl, tappable. Locked: lock icon, ghost, not tappable. |
+| `src/components/playbook/StepCard.tsx` | Step body — 3 substeps × 2-level disclosure (description → ONE GOOD STRATEGY → bullets) with glowing triangles per sketch. Bottom: italicized Cormorant "TRANSFORMATIONAL RESULT" button quoting the user's own voice. |
+| `src/pages/PlaybookPage.tsx` | Composer — reads `:slug` from URL, wraps in `GameShellV2` + `PlaybookShell` + `StepCard`. Unknown slug → redirect to `discover`. |
+
+### Files edited
+
+- `src/App.tsx` — added `PlaybookPage` import + two routes:
+  - `/playbook` → redirect to `/playbook/discover`
+  - `/playbook/:slug` → `<RequireAuth><PlaybookPage /></RequireAuth>`
+
+### Seven transformational-result labels (user's own voice)
+
+Crafted per Sasha's brief — not task descriptions, identity phase shifts. Each is what the user says to themselves after completing the step:
+
+1. **DISCOVER** → *"I finally know what I'm for."*
+2. **PACKAGE** → *"I can describe my business in one sentence."*
+3. **BUILD** → *"My first product exists — I can hand it to someone."*
+4. **TEST** → *"People who got it say yes to more."*
+5. **LAUNCH** → *"I have my first paying client."*
+6. **GROW** → *"My income is repeatable."*
+7. **SCALE** → *"I'm not building alone anymore."*
+
+### Disclosure logic (per sketch)
+
+Substep row, three levels of reveal:
+
+```
+▸ 1  Substep                                          (default collapsed)
+▾ 1  Substep                                          (description open)
+     Description text, 1–2 lines.
+     [ ▸ ONE GOOD STRATEGY ]                          (strategy pill, closed)
+     [ ▾ ONE GOOD STRATEGY ]                          (strategy pill, open)
+       • Bullet one
+       • Bullet two
+       • Bullet three
+```
+
+Each triangle has a soft radial glow in the step's neon color. Rotates 90° on open. Light-fade transition on content.
+
+### Verification
+
+- `tsc --noEmit --skipLibCheck` → 0 errors across the repo.
+- `npm run build` failed in sandbox (missing `@rollup/rollup-linux-arm64-gnu` — environment artifact, not a code issue). Claude Code Mac app will run the actual build.
+
+### Out of scope (still)
+
+- Actual replacement of `MethodologyLandingPage.tsx` hero with the circular infographic + CTA — spec in `docs/05-specs/landing_page_seven_steps_spec.md`, Claude Code Mac app executes.
+- Real substep copy — placeholder text lives in `playbookSteps.ts`. Sasha will replace when ready.
+- `useJourneyProgression` wiring — for now the shell uses position-based default state. Pass `getStepState` prop to override when real progression is available.
+- Infographic PNG + video — generate via Nano Banana 2 + Veo 3 when Sasha is ready.
+
+### Next
+
+- Sasha reviews the playbook at `/playbook/discover` (after magic-link signup).
+- Refine substep copy in `src/data/playbookSteps.ts`.
+- Claude Code Mac app: replace the landing page hero per spec.
+
+---
+
+*Day 41 addendum 4 complete. Playbook skeleton lives in `src/`. One source of truth. Ready for Sasha's words.*
