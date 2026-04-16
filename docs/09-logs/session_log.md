@@ -4222,3 +4222,88 @@ Each triangle has a soft radial glow in the step's neon color. Rotates 90° on o
 ---
 
 *Day 41 addendum 4 complete. Playbook skeleton lives in `src/`. One source of truth. Ready for Sasha's words.*
+
+
+
+
+---
+
+## Day 41 addendum 5 — Oluwa + Oyi impromptu transmission (April 15, 2026)
+
+### What happened
+
+Impromptu three-way Zoom, 80 minutes. Sasha + Oyi (in Mexico with Sasha) + Oluwa Adams-Oyenuga (from Nigeria). Framed by Sasha at the top as: *"part of making other people famous through the art of sales — frame things in a way it looks just so and works for everybody, then cross-pollinate."* Oyi and Sasha had jammed on it in the morning; Oluwa came in without a briefing, trusting the invitation.
+
+Recorded in Fathom. Not a client session. Not a scheduled livestream. An *unprompted live transmission* that captured Sasha in his native operating mode — not explaining the methodology, emanating it — with two witnesses who are themselves inside the work (Oyi as client/partner, Oluwa as mirror-without-agenda).
+
+### Six anchor formulations (Sasha's own voice, to quote — not paraphrase)
+
+These are the units that belong in the corpus. Timestamps reference the Fathom recording.
+
+1. **The Recursiveness of the Gift** (~15:11)
+   *"If my unique business is to assist others with unique businesses, then it will be one of my biggest challenges to build a unique business for myself. For my hero's journey, I'm destined to continuously question myself — until a certain point — believe that I'm not yet there, not enough of my own unique business, understanding, results, success. One of those cases of the goggles the old lady is looking for in the apartment — they've been on all along."*
+
+2. **Self-Knowledge Collapses the Business Education Industry** (~17:20)
+   *"People think about business — there are all kinds of playbooks and an entire education industry, people making millions upon millions of dollars, where it's all a workaround for lack of self-knowledge. When self-knowledge is sufficient, everything collapses into one. Business stops being difficult. The entire business education industry just collapses into something very, very simple."*
+
+3. **Business Is Love, Service, the Beehive** (~18:00)
+   *"Business is supposed to be love. Supposed to be service. Not gimmicks. Not manipulation. Not formal. Just be, like the beehive doing their thing — several roles in the hive, but humans have infinity of roles, because everybody's unique."*
+
+4. **Grind as Mind Virus** (~35:50)
+   *"Grind is like a mind virus. When it kicks in, it runs like one of those drills on the street, drilling the ground. The mind knows how to drill — so it's 'I'm gonna figure it out.' But that only makes things worse. One can go deeper and deeper into that grinding hole. The mind doesn't really know how to get results. The solution actually reveals itself — turns out to have been extremely simple all along."*
+
+5. **Effortless Exciting Intensity (the antidote)** (~36:20)
+   *"Not grind. Effortless intensity. Effortless exciting intensity. Intense, but not grind. A constant awe and excitement. I can't stop. It's just so much fun."*
+
+6. **The Copernican "I Am" Manifest** (~43:40)
+   *"If I know myself very well, then my client is me. My message is just me emanating what I emanate anyway. My product is how I do things anyway, structured for others. My marketing is what I'm here to expose as half-truths. My polarizing myth creates the magnetic pool vortex. I am the product, I am the marketing, I am the sales, I am the distribution, I am the methodology, I am the startup, I am the business, I am the packaging, I am the tribe, I am the pain, I am the transformational promise, all of it."*
+
+### Two formulations from the witnesses (to carry forward)
+
+- **Oyi** (~1:06:07): *"You get to keep 100% of the limitations you fight for."* Oyi's teacher's line, offered to Sasha as business-and-personal counsel for the ICP boundary — some are fighting for their limitations, and that's the diagnostic, not a failure.
+
+- **Oluwa** (~1:08:58): *"Truth has to be digested. Teaspoon or bucket?"* The tailoring-to-readiness principle, delivered as lived wisdom, not theory. The facilitator's question before every transmission.
+
+### Three open decisions surfaced by Oyi (require Sasha's answer)
+
+1. **Licensing Sasha's content to Oyi.** Oyi said it directly (~11:37): *"Like JVZoo / ClickBank — you have the product, I have the million-person list, we negotiate the split. I want the learning curve to be short. Just give me the content."* Form, exclusivity, revenue share — all unresolved.
+
+2. **Scaling goal — one-to-few vs one-to-thousands** (~1:13:45). Oyi asked explicitly: *"Do you have growth goals, do you have scaling goals? Keep adding one, two, three clients at a time, or make an impact on thousands at a time?"* Sasha did not answer on the call.
+
+3. **Cadence of three-way calls.** Oyi closed with (~1:17:30): *"This one was done inspirationally, but I think the next couple should be on a schedule."* Schedule, format, host — unresolved.
+
+**These three live in `docs/02-strategy/open_questions_from_oyi_session.md` for Sasha to answer at his own pace.**
+
+### Links into the rest of the corpus (what this session updated)
+
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md` → new **Download: The April 15 Transmission (Oluwa + Oyi)** in Section V
+- `docs/03-playbooks/unique_business_playbook.md` → Principle 13 (Grind Addiction) enriched with energetic/phenomenological layer; Copernican Inversion gets the I-am manifest quote block; new mini-principle Hero's Journey Challenge Ordering
+- `docs/02-strategy/open_questions_from_oyi_session.md` → new file, three decisions awaiting Sasha
+- `docs/08-content/april15_repurpose_plan.md` → new file: 6–8 shorts (timecodes + titles), long-form essay outline, AI-context-priming protocol, planetary-slice framing
+- `docs/02-strategy/roadmap.md` → Day 42 entry, three new Active Backlog items, Repurpose Track visible in This Week's Scope
+- `docs/02-strategy/morphogenetic_holomap.md` → Day 41 addendum reading
+
+### The three DNA explosions, framed as a unit
+
+What Sasha delivered on the call — unprompted, from a rough morning with a migraine — was three explosions in sequence:
+
+- **Heart:** *The gift is the shadow. Recursiveness. The struggle is a feature of the mission.*
+- **Mind:** *Self-knowledge collapses the workaround industry. Business is crystallized self-knowledge.*
+- **Gut:** *Business as love, as service, as the beehive. Planetary consequence.*
+
+Heart → Mind → Gut. In order. This is the three-depth structure actually being lived on a recording. Significant for the methodology — the three-depth wasn't imposed on the data, it emerged from the data on its own.
+
+### Lane discipline
+
+Raw recording lives in Fathom (not checked into the repo). All corpus artifacts derived from this session are in `docs/`. No `src/` edits.
+
+### Next
+
+- Sasha answers the three open questions at his own pace.
+- If the licensing decision goes yes: spec out the first piece Oyi gets to distribute (likely the long-form essay from the repurpose plan).
+- If the cadence decision goes yes: add the three-way cadence to the holomap as a recurring P3 (Shared Field) instrument.
+- The planetary slice of the repurpose plan is deliberately non-operational — it's a reading of what was structurally present, not a plan to action.
+
+---
+
+*Day 41 addendum 5 complete. Impromptu transmission metabolized into seven corpus artifacts. Three open decisions named and parked for Sasha. Oyi and Oluwa's contributions acknowledged in their own voices. Heart → Mind → Gut — the structure was on the tape.*

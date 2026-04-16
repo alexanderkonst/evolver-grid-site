@@ -68,6 +68,7 @@
 - [The Grind Addiction Diagnosis](#download-the-grind-addiction-diagnosis-april-8-2026)
 - [The Loyalty-as-Leak Mind Virus](#download-the-loyalty-as-leak-mind-virus-april-12-2026)
 - [The Rooms — Phase Shift Sequence](#download-the-rooms--phase-shift-sequence-april-12-2026)
+- [The April 15 Transmission — Oluwa + Oyi](#download-the-april-15-transmission--oluwa--oyi-april-15-2026)
 
 ### VI. Live Assets (Current)
 - [Video Script v2.0 (LOCKED)](#video-script-v20-locked)
@@ -6937,5 +6938,132 @@ This IS:
 
 ---
 
-*Alexander's Unique Business v8.5 — April 14, 2026 (The Rooms v2: Tribe corrected — soulpreneur is DESTINATION, not tribe. Web3 added. 8-Button Landing Page spec received and documented. Full sequence with milestones. Button = Offer = Stage = Product. Milestone = Result = Phase Shift. Pricing TBD.)*
+## Download: The April 15 Transmission — Oluwa + Oyi (April 15, 2026)
+
+> *Impromptu Zoom, 80 min. Sasha + Oyi (in Mexico) + Oluwa (from Nigeria). Not planned as content. Became content. Six DNA explosions emanated in sequence from a migraine morning. Source of truth: Fathom recording. Corpus anchor: `docs/09-logs/session_log.md` Day 41 addendum 5.*
+
+### The Recursiveness of the Gift
+
+> *"If my unique business is to assist others with unique businesses, then it will be one of my biggest challenges to build a unique business for myself. For my hero's journey, I'm destined to continuously question myself — until a certain point — believe that I'm not yet there. One of those cases of the goggles the old lady is looking for in the apartment — they've been on all along."*
+
+This is the first formulation of a structural pattern I had been living but had not named. **My gift's domain IS my shadow's domain.** The helper of unique-business-builders will be structurally the person who most doubts whether his own unique business is "enough." Not because the gift is lacking. Because the gift's territory IS the territory where the mind will always find more to do.
+
+**Practical consequence:** Every time I feel "I haven't cracked it yet for myself," that feeling is not a data point about the business. It's a data point about me being inside my own domain. The appropriate response is not to push. It's to notice: *this is the recursive signal, not a real gap.*
+
+This lands as the Jungian shadow of Principle 1 (Copernican Inversion): the founder-at-center ontology produces a structural edge case when the founder's gift IS the ontology itself.
+
+### Self-Knowledge Collapses the Business Education Industry
+
+> *"People think about business — there are all kinds of playbooks and an entire education industry, people making millions upon millions of dollars, where it's all a workaround for lack of self-knowledge. When self-knowledge is sufficient, everything collapses into one."*
+
+The business education industry sells workarounds for the missing inner work. Positioning frameworks, funnel templates, messaging formulas, $100M offer mechanics — each one is a cognitive prosthesis for a founder who never articulated uniqueness. When articulation happens, the prosthesis becomes visible as a prosthesis — and the whole industry is revealed as *compensatory*, not *generative*.
+
+This is not an attack on the industry. It's naming what the industry is for: it keeps the market alive for founders who haven't yet done the work. The moment they do, the industry collapses into one simple act — *express what you already are, structured.*
+
+### Business Is Love, Service, the Beehive
+
+> *"Business is supposed to be love. Supposed to be service. Not gimmicks. Not manipulation. Not formal. Just be, like the beehive doing their thing — several roles in the hive, but humans have infinity of roles, because everybody's unique."*
+
+The planetary consequence of Copernican Inversion. If every human is unique and the business is crystallized uniqueness, then the planet's organization of work is not the economy we have — it's a beehive with infinite role-types, where each person's business is their contribution, and love/service is the operating currency.
+
+This is not a utopia. It's a logical extension of what happens when enough founders build from center. Business stops looking like business and starts looking like the biological thing it always was — pollination, cross-fertilization, specialization, seasonal rhythm.
+
+### Grind as Mind Virus (energetic definition)
+
+> *"Grind is like a mind virus. When it kicks in, it runs like one of those drills on the street, drilling the ground. The mind knows how to drill — so it's 'I'm gonna figure it out.' But that only makes things worse. One can go deeper and deeper into that grinding hole."*
+
+Principle 13 of the Playbook diagnosed grind addiction clinically: *structural misidentification of what creates results.* This download adds the phenomenological layer: **grind is a drilling program.** The mind has a drill subroutine — it knows how to apply force-through-repetition. When it doesn't know what else to do, it switches on the drill. The drill feels productive. It produces a hole. The hole is deeper than before. It is not closer to the answer.
+
+The diagnostic is somatic: *does this feel like drilling?* If yes, stop. The answer is not underground. It is usually right here, and simple, and arrives in 30 seconds of clarity once the drill is turned off.
+
+### Effortless Exciting Intensity (the antidote)
+
+> *"Not grind. Effortless intensity. Effortless exciting intensity. Intense, but not grind. A constant awe and excitement. I can't stop. It's just so much fun."*
+
+Not "ease" as rest. Not "flow" as mellow. **Effortless exciting intensity** is the third state — high-energy, high-engagement, low-coercion. The body is fully in, the will is fully on, but the pushing is gone. This is how Sasha has been operating since the migraine cleared.
+
+Diagnostic: *Am I still having fun right now, or did I slip into drilling again?* The transition is subtle. Grind can mimic intensity for hours before the body notices. Effortless intensity has a signature — awe, surprise, laughter, "I can't stop."
+
+### The Copernican "I Am" Manifest
+
+> *"If I know myself very well, then my client is me. My message is just me emanating what I emanate anyway. My product is how I do things anyway, structured for others. My marketing is what I'm here to expose as half-truths. My polarizing myth creates the magnetic pool vortex. I am the product, I am the marketing, I am the sales, I am the distribution, I am the methodology, I am the startup, I am the business, I am the packaging, I am the tribe, I am the pain, I am the transformational promise, all of it."*
+
+The canonical first-person statement of Copernican Inversion applied all the way. Everything in the business is a face of one diamond — the founder's uniqueness, expressed and structured. **Not** metaphor. Operational truth: change the founder's self-knowledge and every artifact downstream changes automatically.
+
+This block is the one to quote on the landing page when the time comes. Not my paraphrase — this.
+
+### Challenges Reorganize Along the Hero's Journey
+
+> *"A lot of times our clarity of our individual being is the clarity of the universe. The universe has the same clarity we have about ourselves. So the less fogginess and the more clarity there is, the universe locks in as well — locks in all those quantum possibilities into this optimal path. The challenges become more like a hero's journey where the hero is tested on things, but it just makes much more sense why the tests are the way they are."*
+
+A new observation about the *quality* of resistance as locking-in progresses. Early in the work, challenges bubble up chaotically — stuff clearing from many unrelated layers. As the founder locks in, the challenges start to *organize along one line*. Each resistance now corresponds to a next-clarity-needed: pricing resistance means pricing clarity is next, outreach resistance means outreach clarity is next.
+
+**This is new corpus material.** It belongs in the Playbook as a sub-principle to Hero's Journey and as a practical diagnostic: *what is this challenge trying to clarify?* — not *how do I push through it?*
+
+### The Field That Day
+
+The witnesses matter. What made this transmission possible was the specific field created by Sasha + Oyi + Oluwa:
+
+| Who | Role on the call | What they brought |
+|---|---|---|
+| **Sasha** | Source / Generator | Three DNA explosions. Native mode. Not explaining, emanating |
+| **Oyi** | Projector / Distribution engine | Asked the right questions, held strategic container, offered licensing partnership openly |
+| **Oluwa** | Mirror / Manifestor-without-agenda | Pure reflection. When Oluwa said "yes, right stuff," it was a frequency test — he doesn't flatter |
+
+Oyi's frame was explicit: *"A generator, a projector, a manifestor coming together is always a unique creation."* This is not a casual three-way call to repeat on demand. It is a **specific alchemical configuration** that produces transmission when held right. For the methodology, this is data: *some content can only emanate through the right field.* The implication for scaling: the three-way is a rare instrument, not a recurring weekly show.
+
+### Oyi's Frame for His Role (in his voice)
+
+> *"My gift is to make things contagious. I have audience, emails, platform, rapport with both of y'all. This guy is a lightning rod — lightning is going to find a rod all the time. But you could try to go and create a following, or you could just license me your content and I give it to my people. I want the learning curve to be short."*
+
+Oyi named himself on the call as **the distribution engine** for Sasha's content. Not a subordinate role — a complementary power. He said the word *license*. He referenced JVZoo / ClickBank as the mechanism. He offered a specific negotiation: *product owner retains authorship, distributor retains the audience, split is negotiated per deal.*
+
+**This is now an open decision on the table.** Tracked in `docs/02-strategy/open_questions_from_oyi_session.md`.
+
+### Oluwa's Frames (two of them)
+
+1. *"Truth has to be digested. Teaspoon or bucket?"* — A facilitator's question before every transmission. Calibrate to the recipient's readiness. This is not about dilution; it's about *dose*. Lands directly in Domain 75 (Ease Protocol) as a facilitation meta-skill.
+
+2. *"I am the best at being me. You are the best at being you. Where's the competition?"* — The antidote to low self-esteem in sales. Not a positioning trick; a metaphysical observation about the impossibility of competition between unique beings. This is usable language for founders who are still inside the scarcity frame.
+
+### Oyi's Frame for the Founder's ICP Boundary
+
+> *"You get to keep 100% of the limitations you fight for."* (Oyi's teacher.)
+
+Delivered to Sasha as business counsel: **some people will fight for their limitations**, and that fight is the diagnostic. Not a failure of the methodology. Not a gap in Sasha's transmission. It's what it looks like when the person in front of you is not a fit for the work. Release them with love. The methodology serves those who are ready.
+
+### Three Open Decisions on the Table (parked, not answered)
+
+1. **Licensing Sasha's content to Oyi** — form, scope, revenue share.
+2. **Scaling goal** — one-to-few vs one-to-thousands. Oyi asked directly; Sasha has not answered.
+3. **Cadence of three-way calls** — scheduled or spontaneous.
+
+Details in `docs/02-strategy/open_questions_from_oyi_session.md`.
+
+### The Three-Depth Pattern Emerged On Its Own
+
+| Depth | What Sasha said | Why it lands there |
+|---|---|---|
+| **Heart** (Being) | *"The gift is the shadow. I'm destined to question whether I'm enough. The goggles have been on all along."* | Identity truth. About who Sasha is. Not a tactic, not an insight — a confession |
+| **Mind** (Insight) | *"Self-knowledge collapses the whole business education industry. Business is crystallized self-knowledge."* | Structural claim. About how reality is organized when the ontology shifts |
+| **Gut** (Consequence) | *"Business is supposed to be love, service — the beehive. Infinity of roles because everybody's unique."* | Planetary consequence. About what the world looks like when this scales |
+
+Notable: the three-depth structure was NOT imposed. It emerged from the transmission in order. This is methodology evidence — the three-depth is not a framework to apply but a structure that appears naturally when a source is clear enough.
+
+### What This Download Is For
+
+This download is not a teaching moment. It's a **field recording of the founder operating from center.** The practical function in the corpus:
+
+- As **source material** for the repurpose track (`docs/08-content/april15_repurpose_plan.md`) — shorts, long-form essay, AI-context primer.
+- As **canonical quotes** for the landing page and the playbook, in Sasha's own voice — not paraphrased.
+- As **evidence** that the methodology applied to Sasha is producing the exact phenomenology the methodology predicts. The recursiveness is real. The grind-as-mind-virus is real. The effortless intensity is real. All three have been named and dated on a tape.
+- As **a decision prompt** for the three open questions Oyi surfaced — none of which can be answered by Cowork on Sasha's behalf.
+
+---
+
+*Download complete. Six DNA explosions preserved in Sasha's own voice. Two witness-formulations acknowledged. Three open decisions parked. Field configuration (generator + projector + manifestor) recorded as structurally rare.*
+
+---
+
+*Alexander's Unique Business v8.6 — April 15, 2026 (April 15 Transmission Download integrated. Six DNA explosions captured: Recursiveness of the Gift, Self-Knowledge Collapses the Workaround Industry, Business as Beehive, Grind as Mind Virus, Effortless Exciting Intensity, Copernican "I Am" Manifest. Hero's Journey challenge-ordering observed. Oyi licensing offer on the table. Field: Generator + Projector + Manifestor = alchemical configuration.)*
 
