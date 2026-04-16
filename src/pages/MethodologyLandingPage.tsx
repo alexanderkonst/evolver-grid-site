@@ -348,13 +348,13 @@ const MethodologyLandingPage = () => {
       <section className="mt-16" id="testimonials" aria-label="Client testimonials">
         <h2
           className="text-lg font-semibold text-center mb-6"
-          style={{ fontFamily: "'Cormorant Garamond', serif", color: "#0a1628" }}
+          style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(255,255,255,0.85)" }}
         >
           What Founders Say
         </h2>
         <div className="space-y-3">
           {TESTIMONIALS.map((t, i) => (
-            <ExpandableTestimonial key={i} t={t} variant="light" />
+            <ExpandableTestimonial key={i} t={t} variant="dark" />
           ))}
         </div>
       </section>
