@@ -88,6 +88,18 @@ const ZoneOfGeniusEntry = () => {
     const hasSavedAppleseed = useRef(false);
     const stepContentRef = useRef<HTMLDivElement>(null);
 
+    // Anonymous-claim banner state: when a guest comes from the landing-page
+    // "Claim your gift" CTA, Auth.tsx stashes their email in sessionStorage
+    // under this key. As soon as the Appleseed result is ready, we POST it to
+    // the save-anonymous-zog edge function so the magic-link claim on
+    // /auth/callback can pick it up. Status drives the in-page banner.
+    const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
+    const [anonymousSave, setAnonymousSave] = useState<{
+        status: "idle" | "sending" | "sent" | "error";
+        email?: string;
+    }>({ status: "idle" });
+    const hasPostedAnonymous = useRef(false);
+
     // Track page view on mount
     useEffect(() => {
         trackPageView('zog_entry');
@@ -213,6 +225,55 @@ const ZoneOfGeniusEntry = () => {
             })();
         }
     }, [step, appleseed, isGuest, aiResponse]);
+
+    // Anonymous claim: if a guest arrived from /auth?claim=true (pending email
+    // in sessionStorage), POST the result to save-anonymous-zog so the magic-
+    // link sign-in on /auth/callback can attach it to the new user. Guests
+    // without a pending email keep the existing localStorage-only path.
+    useEffect(() => {
+        if (step !== "appleseed-result" || !appleseed) return;
+        if (!isGuest) return;
+        if (hasPostedAnonymous.current) return;
+        if (typeof window === "undefined") return;
+
+        const pendingEmail = window.sessionStorage.getItem(PENDING_CLAIM_EMAIL_KEY);
+        if (!pendingEmail) return;
+
+        hasPostedAnonymous.current = true;
+        setAnonymousSave({ status: "sending", email: pendingEmail });
+
+        (async () => {
+            try {
+                const { data, error } = await supabase.functions.invoke("save-anonymous-zog", {
+                    body: {
+                        email: pendingEmail,
+                        result_payload: appleseed,
+                        assessment_version: "v1",
+                    },
+                });
+                if (error || !(data as { ok?: boolean } | null)?.ok) {
+                    console.error("[ZoneOfGeniusEntry] save-anonymous-zog failed", error, data);
+                    setAnonymousSave({ status: "error", email: pendingEmail });
+                    hasPostedAnonymous.current = false; // allow retry on next render
+                    return;
+                }
+                setAnonymousSave({ status: "sent", email: pendingEmail });
+            } catch (err) {
+                console.error("[ZoneOfGeniusEntry] save-anonymous-zog threw", err);
+                setAnonymousSave({ status: "error", email: pendingEmail });
+                hasPostedAnonymous.current = false;
+            }
+        })();
+    }, [step, appleseed, isGuest]);
+
+    const handleRedoClaimEmail = () => {
+        if (typeof window !== "undefined") {
+            window.sessionStorage.removeItem(PENDING_CLAIM_EMAIL_KEY);
+        }
+        hasPostedAnonymous.current = false;
+        setAnonymousSave({ status: "idle" });
+        navigate("/auth?claim=true&next=/zone-of-genius");
+    };
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ZONE_OF_GENIUS_PROMPT);
@@ -378,6 +439,46 @@ const ZoneOfGeniusEntry = () => {
     if (step === "appleseed-result" && appleseed) {
         return (
             <GameShellV2 hideNavigation={hideNav}>
+                {anonymousSave.status !== "idle" && (
+                    <div className="w-full max-w-3xl mx-auto px-5 pt-4">
+                        {anonymousSave.status === "sending" && (
+                            <div className="rounded-xl bg-[#8460ea]/10 border border-[#8460ea]/20 px-5 py-4 text-sm text-[#2c3150]">
+                                Saving your result to <strong>{anonymousSave.email}</strong>…
+                            </div>
+                        )}
+                        {anonymousSave.status === "sent" && (
+                            <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-5 py-4 text-sm text-[#2c3150]">
+                                <p className="font-medium">
+                                    Result saved. Check your email — the magic link unlocks your full playbook.
+                                </p>
+                                <p className="mt-1 text-[#4a4a6d]">
+                                    Sent to <strong>{anonymousSave.email}</strong>.{" "}
+                                    <button
+                                        type="button"
+                                        onClick={handleRedoClaimEmail}
+                                        className="underline text-[#8460ea] hover:text-[#6894d0]"
+                                    >
+                                        Wrong email? Redo
+                                    </button>
+                                </p>
+                            </div>
+                        )}
+                        {anonymousSave.status === "error" && (
+                            <div className="rounded-xl bg-red-500/10 border border-red-500/20 px-5 py-4 text-sm text-[#2c3150]">
+                                <p>
+                                    We couldn't save your result to <strong>{anonymousSave.email}</strong>.{" "}
+                                    <button
+                                        type="button"
+                                        onClick={handleRedoClaimEmail}
+                                        className="underline text-[#8460ea] hover:text-[#6894d0]"
+                                    >
+                                        Try a different email
+                                    </button>
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                )}
                 <AppleseedDisplay
                     appleseed={appleseed}
                     profileId={profileId ?? undefined}
