@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaybookStep, Substep } from "@/data/playbookSteps";
+
+// Hash format shared by Task 4.2 (URL-hash persistence of substep open state):
+// /playbook/discover#2-strategy means "substep 2's ONE GOOD STRATEGY is open".
+const SUBSTEP_HASH_RE = /^#(\d+)-strategy$/;
+const parseSubstepHash = (raw: string): number | null => {
+  const m = SUBSTEP_HASH_RE.exec(raw);
+  return m ? Number.parseInt(m[1], 10) : null;
+};
 
 /**
  * StepCard — renders one of the 7 playbook steps.
@@ -57,18 +65,22 @@ const Triangle = ({
   </span>
 );
 
-/** A single substep row — number + description always visible, one-level disclosure for bullets. */
+/** A single substep row — number + description always visible, one-level
+ *  disclosure for bullets. Open state is controlled by the parent StepCard so
+ *  it can round-trip through the URL hash (Task 4.2). */
 const SubstepRow = ({
   substep,
   neonHsl,
   neonRgb,
+  open,
+  onToggle,
 }: {
   substep: Substep;
   neonHsl: string;
   neonRgb: string;
+  open: boolean;
+  onToggle: () => void;
 }) => {
-  const [open, setOpen] = useState(false);
-
   return (
     <div className="py-5">
       {/* ══ Row: number + description always visible */}
@@ -95,7 +107,7 @@ const SubstepRow = ({
           {/* ══ ONE GOOD STRATEGY trigger */}
           <button
             type="button"
-            onClick={() => setOpen((o) => !o)}
+            onClick={onToggle}
             className={cn(
               "inline-flex items-center gap-2 py-2 px-3 rounded-full",
               "text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold",
@@ -158,6 +170,50 @@ const SubstepRow = ({
 };
 
 const StepCard = ({ step }: StepCardProps) => {
+  // Task 4.2 — deep-linkable substep disclosure. Many substeps can be open at
+  // once; the URL hash tracks the most recently toggled-open substep so a
+  // shared link deep-links to that section.
+  const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const applyHash = () => {
+      const n = parseSubstepHash(window.location.hash);
+      if (n !== null && step.substeps.some((s) => s.number === n)) {
+        setOpenSubsteps((prev) => {
+          if (prev.has(n)) return prev;
+          const next = new Set(prev);
+          next.add(n);
+          return next;
+        });
+      }
+    };
+
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, [step.substeps]);
+
+  const toggleSubstep = (substepNumber: number) => {
+    setOpenSubsteps((prev) => {
+      const next = new Set(prev);
+      const bareUrl = `${window.location.pathname}${window.location.search}`;
+      const hashForThis = `#${substepNumber}-strategy`;
+
+      if (next.has(substepNumber)) {
+        next.delete(substepNumber);
+        if (window.location.hash === hashForThis) {
+          window.history.replaceState(null, "", bareUrl);
+        }
+      } else {
+        next.add(substepNumber);
+        window.history.replaceState(null, "", `${bareUrl}${hashForThis}`);
+      }
+      return next;
+    });
+  };
+
   return (
     <article
       className="relative rounded-3xl p-6 sm:p-10 transition-all duration-500"
@@ -197,6 +253,8 @@ const StepCard = ({ step }: StepCardProps) => {
             substep={ss}
             neonHsl={step.neonHsl}
             neonRgb={step.neonRgb}
+            open={openSubsteps.has(ss.number)}
+            onToggle={() => toggleSubstep(ss.number)}
           />
         ))}
       </section>
