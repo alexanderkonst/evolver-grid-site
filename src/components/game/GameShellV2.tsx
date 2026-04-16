@@ -391,8 +391,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — very light, lets video breathe */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/15" />
+                {/* Base darkening overlay — 50% to tame video vibrancy */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/50" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
