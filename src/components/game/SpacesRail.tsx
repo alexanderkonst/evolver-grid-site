@@ -85,6 +85,8 @@ interface SpacesRailProps {
     unlockHints?: Record<string, string>;
     /** Spaces that have a new unlock waiting (shows badge/glow) */
     nudgeBadges?: string[];
+    /** Spaces to completely hide from the rail (gradual reveal) */
+    hiddenSpaces?: string[];
     className?: string;
     // Optional user data props
     userName?: string;
@@ -99,6 +101,7 @@ const SpacesRail = ({
     unlockStatus = {},
     unlockHints = {},
     nudgeBadges = [],
+    hiddenSpaces = [],
     className,
     userName,
     userAvatarUrl,
@@ -176,7 +179,7 @@ const SpacesRail = ({
 
             <ScrollArea className="flex-1">
               <nav className="flex flex-col gap-1 p-2 md:p-3">
-                {SPACES.map((space) => {
+                {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
                     const hasNudge = nudgeBadges.includes(space.id);
@@ -300,6 +303,13 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prevHintKeys.length !== nextHintKeys.length) return false;
     for (const key of prevHintKeys) {
         if (prev.unlockHints?.[key] !== next.unlockHints?.[key]) return false;
+    }
+    // Check hiddenSpaces
+    const prevHidden = prev.hiddenSpaces || [];
+    const nextHidden = next.hiddenSpaces || [];
+    if (prevHidden.length !== nextHidden.length) return false;
+    for (const h of prevHidden) {
+        if (!nextHidden.includes(h)) return false;
     }
     return true;
 };

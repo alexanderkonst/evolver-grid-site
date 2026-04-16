@@ -145,7 +145,7 @@ const TileIcon = ({ step, state }: { step: AppStep; state: StepState }) => {
   // locked
   return (
     <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.02)" }}>
-      <Lock className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: "rgba(0,10,30,0.2)" }} />
+      <Lock className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: "rgba(255,255,255,0.4)" }} />
     </div>
   );
 };
@@ -229,7 +229,7 @@ const MethodologyLandingPage = () => {
                     : state === "next"
                       ? `0 0 15px rgba(${step.neonRgb}, 0.06)`
                       : undefined,
-                  opacity: state === "locked" ? 0.45 : 1,
+                  opacity: 1,
                 }}
                 disabled={state === "locked"}
               >
@@ -247,8 +247,8 @@ const MethodologyLandingPage = () => {
                     color: state === "active" || state === "completed"
                       ? "#0a1628"
                       : state === "next"
-                        ? `rgba(${step.neonRgb}, 0.7)`
-                        : "rgba(0,10,30,0.3)",
+                        ? `rgba(${step.neonRgb}, 0.85)`
+                        : "rgba(255,255,255,0.5)",
                     border: state === "active" || state === "completed"
                       ? `1px solid rgba(${step.neonRgb}, 0.3)`
                       : state === "next"
@@ -293,8 +293,8 @@ const MethodologyLandingPage = () => {
                       : state === "completed"
                         ? "#1a2a44"
                         : state === "next"
-                          ? "rgba(0,10,30,0.55)"
-                          : "rgba(0,10,30,0.25)",
+                          ? "rgba(255,255,255,0.7)"
+                          : "rgba(255,255,255,0.5)",
                   }}
                 >
                   {step.appName}
@@ -309,8 +309,8 @@ const MethodologyLandingPage = () => {
                       : state === "completed"
                         ? "#2a3a54"
                         : state === "next"
-                          ? "rgba(0,10,30,0.4)"
-                          : "rgba(0,10,30,0.15)",
+                          ? "rgba(255,255,255,0.5)"
+                          : "rgba(255,255,255,0.35)",
                   }}
                 >
                   {step.subtitle}
