@@ -6,11 +6,11 @@ const REVENUE_TIMELINE = [
   { day: 0, date: "Mar 4", total: 0, label: "Day 0" },
   { day: 2, date: "Mar 5", total: 277, label: "Oyi (rev share)" },
   { day: 4, date: "Mar 7", total: 554, label: "Sergey ($277 rev share)" },
-  { day: 30, date: "Apr 2", total: 6327, label: "Oyi $50 gift" },
-  { day: 34, date: "Apr 6", total: 6438, label: "Karime $111 gratitude" },
-  { day: 36, date: "Apr 8", total: 6954, label: "Oyi $516 gift" },
-  { day: 40, date: "Apr 12", total: 7154, label: "Karime $200 in-kind" },
-  { day: 41, date: "Apr 13", total: 7654, label: "Oyi $500 in-kind" },
+  { day: 30, date: "Apr 2", total: 604, label: "Oyi $50 gift" },
+  { day: 34, date: "Apr 6", total: 715, label: "Karime $111 gratitude" },
+  { day: 36, date: "Apr 8", total: 1231, label: "Oyi $516 gift" },
+  { day: 40, date: "Apr 12", total: 1431, label: "Karime $200 in-kind" },
+  { day: 41, date: "Apr 13", total: 1931, label: "Oyi $500 in-kind" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -18,50 +18,45 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     label: "Total Revenue",
-    value: "$7.7K",
+    value: "$1,654",
     trend: "+$700",
-    trendLabel: "last 48h",
+    trendLabel: "this week",
     trendUp: true,
-    detail: "$1,377 cash/in-kind + $6.3K rev share",
+    detail: "Cash: $677 · In-kind: $700 · Rev share: $277",
     color: "#8460ea",
   },
   {
     label: "Genius Founders",
-    value: "6",
+    value: "7",
     trend: "+1",
     trendLabel: "this week",
     trendUp: true,
-    detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime",
+    detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill",
     color: "#6894d0",
   },
   {
-    label: "Conversion Rate",
+    label: "Continuation Rate",
     value: "100%",
-    trend: "—",
-    trendLabel: "maintained",
-    trendUp: true,
-    detail: "Every session → canvas completed",
+    trend: "",
+    trendLabel: "",
+    trendUp: false,
+    detail: "",
     color: "#a7cbd4",
   },
 ];
 
 const SECONDARY_STATS = [
   { label: "Marketing Spend", value: "$0", accent: false },
-  { label: "CRM Contacts", value: "24", accent: false },
-  { label: "Landing Pages", value: "4", accent: false },
-  { label: "Social Surfaces", value: "3/9", accent: true },
-  { label: "Domains Codified", value: "75", accent: false },
-  { label: "Days Active", value: "41", accent: false },
+  { label: "CRM Contacts", value: "31", accent: false },
+  { label: "Days Active", value: "43", accent: false },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
 
 const REVENUE_BREAKDOWN = [
-  { name: "Oyi", cash: 1066, revShare: 0, type: "Gratitude + in-kind", status: "received", color: "#8460ea" },
-  { name: "Karime", cash: 311, revShare: 0, type: "Gratitude + in-kind", status: "received", color: "#6894d0" },
-  { name: "Sergey", cash: 0, revShare: 277, type: "Rev share", status: "pending", color: "#a7cbd4" },
-  { name: "Taylor", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#b1c9b6" },
-  { name: "Tracy", cash: 0, revShare: 3000, type: "Rev share", status: "pending", color: "#cec9b0" },
+  { name: "Oyi", cash: 566, inKind: 500, revShare: 0, type: "Cash + in-kind", status: "received", color: "#8460ea" },
+  { name: "Karime", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#6894d0" },
+  { name: "Sergey", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#a7cbd4" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────

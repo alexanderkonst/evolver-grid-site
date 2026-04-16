@@ -4079,8 +4079,8 @@ The Ignition session doesn't add clarity — it **subtracts scatter.**
 | **Sandra** | The Build | Early-stage | ~6 | Rev share TBD (❗she asked) | $0 | Uniqueness + myth + tribe landed. Pain in progress. **Нужно назвать цифру (rec: 33% с первых $10K)** |
 | **Karime** | The Naming → Build | Early-stage | 1.5 | Gratitude → transitioning | $111 donation (Apr 7) | Active bridge. Refers Chris + Patricia. Session 2 planned |
 | **Alexa** | The Naming complete | — | 1 | — | $0 | Invited to Build. Decision pending |
-| **Taylor** | The Build(?) | — | ? | **$3,000** rev share from first $10K | $0 | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
-| **Tracy** | The Build(?) | — | ? | **$3,000** rev share from first $10K | $0 | ⚠️ STALLED. Disappearing. Need checkpoint conversation |
+| **Taylor** | — | — | ? | ~~$3,000 rev share~~ **REMOVED Apr 15** | $0 | ⚠️ Agreement removed. Scatter pattern active. Renegotiation pending |
+| **Tracy** | — | — | ? | ~~$3,000 rev share~~ **REMOVED Apr 15** | $0 | ⚠️ Agreement removed. Not committed — same configuration 20 years. Renegotiation pending |
 
 > **The Avengers insight (March 24):** These five clients weren't randomly selected. By following intuition, Alexander selected five people from five DIFFERENT segments of his tribe. They are the potential originating team of the Unique Venture Studio — medicine man (Oyi), medicine woman (Karime), new earth conscious leadership (Sandra), deep tech/systems (Sergey), and creative transmission (Alexa). Each person who completes The Build becomes a potential co-founding node.
 
