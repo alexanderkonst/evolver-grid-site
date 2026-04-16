@@ -574,6 +574,32 @@ The Ignition Session is, at its core, **a detox.** What actually happens in 90 m
 | **Somatic awareness** — the body knows before the mind | Grinding numbs the body to keep the mind pushing |
 | **Trust** — "the next layer opens intuitively" | Grinding says "I must MAKE it open through force" |
 
+### The Energetic Layer (v1.1 · April 15, 2026)
+
+> *"Grind is like a mind virus. When it kicks in, it runs like one of those drills on the street, drilling the ground. The mind knows how to drill — so it says 'I'm gonna figure it out.' But that only makes things worse. One can go deeper and deeper into that grinding hole."* — Sasha, April 15, 2026, Oluwa + Oyi transmission
+
+Principle 13 originally diagnosed grind addiction clinically: a structural misidentification of what creates results. The April 15 transmission added the phenomenology — grind is a **drilling program** the mind runs when it doesn't know what else to do. The drill *feels* productive because it produces a hole. The hole is deeper than before. **It is not closer to the answer.**
+
+The answer — when it actually arrives — was always simple, always nearby, usually available in under 30 seconds once the drill is off.
+
+**The somatic diagnostic:** *Does this feel like drilling?* If yes, the action is not *push through* — it is *turn the drill off and wait.* The answer arrives in stillness, not depth.
+
+### The Antidote: Effortless Exciting Intensity (v1.1 · April 15, 2026)
+
+> *"Not grind. Effortless intensity. Effortless exciting intensity. Intense, but not grind. A constant awe and excitement. I can't stop. It's just so much fun."* — Sasha, April 15, 2026
+
+The ease protocol (Domain 75) is sometimes misread as *low energy, mellow, restful.* That is rest, not the antidote. The antidote to grind is the **third state** — high-energy, high-engagement, low-coercion. The body is fully in, the will is fully on, the pushing is gone.
+
+| | **Grind** | **Rest** | **Effortless exciting intensity** (the antidote) |
+|---|---|---|---|
+| Energy | High (forced) | Low | High (natural) |
+| Engagement | Full (coerced) | Absent | Full (pulled) |
+| Pushing | Constant | None | None |
+| Signature | Jaw clench, "I have to" | Stillness | Awe, surprise, laughter, "I can't stop" |
+| Duration | Until collapse | Recovery period | Until the task completes naturally |
+
+The diagnostic: *Am I still having fun right now, or did I slip into drilling again?* Grind can mimic intensity for hours before the body notices. Effortless intensity has a signature — **awe**.
+
 ### The Defense Mechanism
 
 The grind is a defense against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story → Domain 14c (Identity Terror).
@@ -583,6 +609,57 @@ The grind is a defense against a specific terror: **the terror of being seen as 
 Name this in Session 1. Every founder has it. The diagnostic question: *"Are you doing this because it's the right thing to do — or because stopping would feel like dying?"* The grind addict answers: "Both." That's the signal.
 
 > *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+
+---
+
+## Principle 14: Hero's Journey Challenge Ordering
+
+> *"A lot of times our clarity of our individual being is the clarity of the universe. The universe has the same clarity we have about ourselves. The less fogginess and the more clarity, the universe locks in — into this optimal path. The challenges become more like a hero's journey where the hero is tested on things, but it just makes much more sense why the tests are the way they are."* — Sasha, April 15, 2026
+>
+> *v1.0 · April 15, 2026 — Observed in Sasha's own locking-in. Confirmed by Ogi's, Karime's, Sergey's trajectories.*
+
+### The Observation
+
+Early in the inner work, challenges show up **chaotically** — material bubbling up from many unrelated layers: childhood stuff, money stuff, identity stuff, relational stuff, body stuff. The founder feels like they're clearing a kettle of boiling water, with no organizing principle.
+
+As the founder locks in — as self-knowledge sharpens and commitment deepens — **the challenges reorganize along one line.** They start to feel less like random boiling and more like a hero's journey where each test has a specific meaning connected to the next next step of the actual work.
+
+### Structural Claim
+
+| Phase | Challenge quality | What it feels like |
+|---|---|---|
+| **Pre-lock-in** | Random bubbling | "Why is all this old stuff coming up at once?" |
+| **Locking in** | Organizing along one line | "Oh — this resistance IS the next clarity I need" |
+| **Locked in** | Each test maps to a next-specific clarity | "The universe is giving me exactly the next gate" |
+
+This is not mystical. It's what happens when the founder's inner clarity pulls the field of possibility into a specific trajectory. The quantum possibilities *lock in*. The challenges stop being random because there IS a line now for them to organize along.
+
+### The Practical Diagnostic
+
+When a challenge arises, the old question was: *How do I push through this?*
+
+The new question is: **What clarity is this challenge trying to bring?**
+
+Every resistance, once the founder is locked in, maps to a specific next-clarity-needed:
+
+- **Pricing resistance** → pricing clarity is next
+- **Outreach resistance** → messaging clarity is next  
+- **Delivery resistance** → scope clarity is next
+- **Hiring resistance** → role clarity is next
+
+The resistance IS the invitation. Work the clarity, not the resistance.
+
+### Why This Matters for the Methodology
+
+Principle 14 is the antidote to a common misread of Principle 13 (Grind Addiction): *"If I'm not supposed to grind, but I feel resistance, what am I supposed to do?"*
+
+Answer: the resistance is the signal of the next clarity required. Sit with it, name what's foggy, articulate until the fog lifts. The resistance dissolves when the clarity lands — not when the push succeeds.
+
+### For Facilitators
+
+When a client brings a challenge, don't help them push through. Ask: *"What is this challenge trying to clarify for you?"* The client will usually answer themselves within 2 minutes. The clarity was always the actual work; the challenge was the messenger.
+
+> *Relates to: Principle 13 (Grind Addiction) — this is the *what to do instead of push* corollary. Phase Shift Library candidate: Domain 80 (Challenge Ordering).*
 
 ---
 
@@ -917,6 +994,16 @@ Once the center moves, the epicycles dissolve:
 | ICP = target audience defined by demographics | ICP = the people magnetized by the truth |
 | Product = solution to market gap | Product = crystallized founder uniqueness |
 | PMF = found through iteration | PMF = **remembered** through self-knowledge |
+
+### The First-Person Manifest (v1.1 · April 15, 2026)
+
+> *"If I know myself very well, then my client is me. My message is just me emanating what I emanate anyway. My product is how I do things anyway, structured for others. My marketing is what I'm here to expose as half-truths. My polarizing myth creates the magnetic pool vortex. I am the product, I am the marketing, I am the sales, I am the distribution, I am the methodology, I am the startup, I am the business, I am the packaging, I am the tribe, I am the pain, I am the transformational promise, all of it."* — Sasha, April 15, 2026, Oluwa + Oyi transmission
+
+The canonical first-person statement of the Copernican Inversion applied all the way through. Every noun in the business — product, marketing, sales, distribution, methodology, startup, packaging, tribe, pain, promise — is a **face** of one irreducible thing: the founder's uniqueness, expressed and structured.
+
+**Not metaphor.** Operational truth: change the founder's self-knowledge, and every artifact downstream changes automatically. There is nothing to coordinate between departments because there are no departments. There is one act with many faces.
+
+This is the block to quote on the landing page, on the methodology overview, in the pitch — anywhere the Copernican Inversion needs to be stated in the founder's own voice, not explained abstractly.
 
 ### The Newtonian Analogy
 
