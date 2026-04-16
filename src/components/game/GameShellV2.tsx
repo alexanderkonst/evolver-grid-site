@@ -115,7 +115,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
         if (typeof window !== 'undefined') {
             // Default to closed on Journey page — the app store view needs full width
-            const isJourneyPage = window.location.pathname.startsWith('/game/journey');
+            const p = window.location.pathname;
+            const isJourneyPage = p === '/' || p.startsWith('/game/journey');
             if (isJourneyPage) return false;
             const saved = localStorage.getItem('sectionsPanelOpen');
             return saved !== null ? JSON.parse(saved) : true;
@@ -364,7 +365,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // }
 
     // Gradual reveal on Journey page — only show current space + next one
-    const isJourneyPage = location.pathname.startsWith('/game/journey');
+    const isJourneyPage = location.pathname === '/' || location.pathname.startsWith('/game/journey');
     const hiddenSpaces: string[] = isJourneyPage
         ? ["learn", "meet", "collaborate", "build", "buysell"] // hide everything beyond JOURNEY + ME
         : [];
