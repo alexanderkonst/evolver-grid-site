@@ -145,7 +145,7 @@ const TileIcon = ({ step, state }: { step: AppStep; state: StepState }) => {
   // locked
   return (
     <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.02)" }}>
-      <Lock className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: "rgba(255,255,255,0.4)" }} />
+      <Lock className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: "#1a2a44" }} />
     </div>
   );
 };
@@ -227,8 +227,8 @@ const MethodologyLandingPage = () => {
                   boxShadow: state === "active"
                     ? `0 0 30px rgba(${step.neonRgb}, 0.12), inset 0 1px 1px rgba(255,255,255,0.15)`
                     : state === "next"
-                      ? `0 0 15px rgba(${step.neonRgb}, 0.06)`
-                      : undefined,
+                      ? `0 0 15px rgba(${step.neonRgb}, 0.06), inset 0 1px 1px rgba(255,255,255,0.1)`
+                      : `inset 0 1px 1px rgba(255,255,255,0.08)`,
                   opacity: 1,
                 }}
                 disabled={state === "locked"}
@@ -247,8 +247,8 @@ const MethodologyLandingPage = () => {
                     color: state === "active" || state === "completed"
                       ? "#0a1628"
                       : state === "next"
-                        ? `rgba(${step.neonRgb}, 0.85)`
-                        : "rgba(255,255,255,0.5)",
+                        ? "#0b1a33"
+                        : "#1a2a44",
                     border: state === "active" || state === "completed"
                       ? `1px solid rgba(${step.neonRgb}, 0.3)`
                       : state === "next"
@@ -291,10 +291,10 @@ const MethodologyLandingPage = () => {
                     color: state === "active"
                       ? "#0a1628"
                       : state === "completed"
-                        ? "#1a2a44"
+                        ? "#0b1a33"
                         : state === "next"
-                          ? "rgba(255,255,255,0.7)"
-                          : "rgba(255,255,255,0.5)",
+                          ? "#0b1a33"
+                          : "#1a2a44",
                   }}
                 >
                   {step.appName}
@@ -307,10 +307,10 @@ const MethodologyLandingPage = () => {
                     color: state === "active"
                       ? "#1a2a44"
                       : state === "completed"
-                        ? "#2a3a54"
+                        ? "#1a2a44"
                         : state === "next"
-                          ? "rgba(255,255,255,0.5)"
-                          : "rgba(255,255,255,0.35)",
+                          ? "#2a3a55"
+                          : "#2a3a55",
                   }}
                 >
                   {step.subtitle}
