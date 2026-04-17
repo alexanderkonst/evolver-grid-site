@@ -109,6 +109,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         current_streak_days?: number | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
+    // Prevents the SpacesRail lock-flicker: while the profile is still being
+    // fetched, `stage` would default to "new" and render ME/LEARN/MEET as
+    // locked for a beat — then flip unlocked when the profile arrives. We
+    // hold back the unlockStatus map until we know for sure.
+    const [profileLoaded, setProfileLoaded] = useState(false);
 
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
@@ -198,6 +203,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             console.error("Failed to load profile:", error);
             setProfile(null);
             setHasGeniusOffer(false);
+        } finally {
+            setProfileLoaded(true);
         }
     };
 
@@ -225,6 +232,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             console.error("Failed to load profile by ID:", error);
             setProfile(null);
             setHasGeniusOffer(false);
+        } finally {
+            setProfileLoaded(true);
         }
     };
 
@@ -335,16 +344,23 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const ignitionComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
 
-    const unlockStatus: Record<string, boolean> = {
-        "journey": true,                                    // Always open — the front door
-        "next-move": zogComplete,                           // After Step 1
-        "grow": zogComplete,                                // After Step 1 — see your profile
-        "learn": zogComplete,                               // After Step 1 — growth material
-        "build": ignitionComplete,                          // After Step 2 — business canvas
-        "meet": zogComplete,                                // After Step 1 — community events
-        "collaborate": ignitionComplete,                    // After Step 2 — needs a business first
-        "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
-    };
+    // NOTE: until `profileLoaded === true`, we intentionally emit an empty map.
+    // `SpacesRail` only marks an item as locked when `unlockStatus[id] === false`;
+    // `undefined` means "don't render a lock." So we render a neutral rail during
+    // the profile fetch, then flip to the real lock state on first real value —
+    // no visible lock-then-unlock flicker on ME/LEARN/MEET.
+    const unlockStatus: Record<string, boolean> = profileLoaded
+        ? {
+            "journey": true,                                    // Always open — the front door
+            "next-move": zogComplete,                           // After Step 1
+            "grow": zogComplete,                                // After Step 1 — see your profile
+            "learn": zogComplete,                               // After Step 1 — growth material
+            "build": ignitionComplete,                          // After Step 2 — business canvas
+            "meet": zogComplete,                                // After Step 1 — community events
+            "collaborate": ignitionComplete,                    // After Step 2 — needs a business first
+            "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
+        }
+        : {};
 
     // Unlock hint tooltips — shown on hover over locked spaces
     const unlockHints: Record<string, string> = {
@@ -447,12 +463,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — ~15% tint on top of the video background
-                    so long-form copy stays legible while the circle still
-                    breathes through. Progression: Rail (heaviest) →
-                    Sections (medium) → Content (lightest, 15%). */}
+                {/* Panel 3: Content — ~60% tint on top of the video background
+                    so long-form copy reads cleanly while the video still
+                    breathes through at the edges. Progression: Rail (heaviest) →
+                    Sections (medium) → Content (60% — lightest tier but legible). */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/15"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/60"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">

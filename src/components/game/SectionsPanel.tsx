@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
+import { useJourneyProgression } from "@/hooks/useJourneyProgression";
+import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 
 interface SubSection {
     id: string;
@@ -28,21 +30,14 @@ interface SpaceSections {
 
 const SPACE_SECTIONS: SpaceSections = {
     // JOURNEY Space — the 7-step methodology sequence.
-    // Labels + paths mirror `PLAYBOOK_STEPS` (src/data/playbookSteps.ts).
-    // Each section jumps to the matching playbook page; the landing itself
-    // is the "Overview" entry at the top.
+    //
+    // NOTE: the journey sections are BUILT DYNAMICALLY inside the
+    // component based on `useJourneyProgression().currentStep`, so this
+    // static entry is intentionally empty (keeping the key alive so the
+    // lookup doesn't return null). See `buildJourneySections()` below.
     journey: {
         title: "JOURNEY",
-        sections: [
-            { id: "journey-overview", label: "Overview", path: "/" },
-            { id: "step-1", label: "1 · Name Your Top Talent", path: "/playbook/discover" },
-            { id: "step-2", label: "2 · Articulate it with Precision", path: "/playbook/package" },
-            { id: "step-3", label: "3 · Enhance it with Business Structure", path: "/playbook/build" },
-            { id: "step-4", label: "4 · Build your First Unique Product", path: "/playbook/product" },
-            { id: "step-5", label: "5 · Gift it or Sell It To Beta-Test", path: "/playbook/test" },
-            { id: "step-6", label: "6 · Laser-Focus Tactically and Go Live", path: "/playbook/launch" },
-            { id: "step-7", label: "7 · Grow & Scale with Others, in Flow", path: "/playbook/scale" },
-        ],
+        sections: [],
     },
     // Hidden until built — uncomment to re-enable
     // "next-move": {
@@ -197,6 +192,43 @@ interface SectionsPanelProps {
     className?: string;
 }
 
+/**
+ * Build the JOURNEY pane sections progressively.
+ *
+ * Rule (from Sasha, 2026-04-17):
+ *   "The second pane should show two items:
+ *      1. Business Creation Playbook
+ *      2. Step 1: <step subtitle>
+ *    Until the person has taken the next step, we don't show Step 2 yet."
+ *
+ * Translation: show Overview + Steps 1..currentStep. As the user finishes
+ * each step (onboarding_stage advances), the next row appears here.
+ *
+ * `currentStep` returned by useJourneyProgression is 1 for a fresh user,
+ * 2 after ZoG, 3 after Ignition, etc. — so steps 1..currentStep is the
+ * "everything up to and including what I'm working on now" window.
+ */
+const buildJourneySections = (currentStep: number): Section[] => {
+    const overview: Section = {
+        id: "journey-overview",
+        label: "1. Business Creation Playbook",
+        path: "/",
+    };
+
+    // Guard: clamp to the 1..7 range. `currentStep` shouldn't go out of bounds
+    // but the useJourneyProgression hook has a "future expansion" branch that
+    // could return 4+ — cap to 7 so we never slice beyond the array.
+    const visibleSteps = PLAYBOOK_STEPS
+        .filter((s) => s.number <= Math.min(currentStep, PLAYBOOK_STEPS.length))
+        .map((s, idx) => ({
+            id: `step-${s.number}`,
+            label: `${idx + 2}. Step ${s.number}: ${s.subtitle}`,
+            path: `/playbook/${s.slug}`,
+        }));
+
+    return [overview, ...visibleSteps];
+};
+
 const SectionsPanel = ({
     activeSpaceId,
     onSectionSelect,
@@ -206,6 +238,7 @@ const SectionsPanel = ({
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
+    const { currentStep } = useJourneyProgression();
 
     // Check user email for feature gating
     useEffect(() => {
@@ -218,6 +251,14 @@ const SectionsPanel = ({
     const getSections = () => {
         const baseData = SPACE_SECTIONS[activeSpaceId];
         if (!baseData) return null;
+
+        // JOURNEY → progressive reveal driven by onboarding_stage.
+        if (activeSpaceId === "journey") {
+            return {
+                ...baseData,
+                sections: buildJourneySections(currentStep),
+            };
+        }
 
         // Add Art section only for alexanderkonst@gmail.com in ME space
         if (activeSpaceId === "grow" && userEmail === "alexanderkonst@gmail.com") {
