@@ -630,6 +630,8 @@ export default function IntegralTheoryUpgrade1() {
             {c.versionDate}
             {' · '}
             <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">aleksandrkonstantinov.com</a>
+            {' · '}
+            <a href="https://github.com/alexanderkonst/evolver-grid-site/blob/main/src/pages/IntegralTheoryUpgrade1.tsx" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">source on github</a>
           </p>
           <p className="text-white/20 text-[11px] tracking-wide mt-2 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.versionNote}
