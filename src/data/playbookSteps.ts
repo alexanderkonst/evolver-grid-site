@@ -2,29 +2,42 @@
  * Playbook steps — single source of truth for the seven-step journey.
  *
  * Used by:
- *  - Landing page (`MethodologyLandingPage`) — tile grid, circular infographic
- *  - Playbook pages (`PlaybookPage`) — top nav, step cards, substep disclosures
+ *  - Landing page (`MethodologyLandingPage`) — name + 7-step infographic + CTA
+ *  - Playbook pages (`PlaybookPage`) — top step nav, step card, substep disclosures
  *
- * Structure:
+ * Structure (v2 — 2026-04-16):
  *  Step → 3 Substeps (1, 2, 3)
- *    Substep has:
- *      - description (1–2 lines, always visible as the row's default state)
- *      - oneGoodStrategyBullets[] — revealed on click of the ONE GOOD STRATEGY ▶ triangle
+ *    Each substep has:
+ *      - name:              short handle (2–4 words)
+ *      - description:       1 line, always visible once the step's "See how" is open
+ *      - oneProvenStrategy: short paragraph (mostly one line) revealed when the
+ *                           substep's "See one proven strategy" button is clicked
  *
- * Transformational-result labels are written in the user's own voice — what
- * they say to themselves after they've completed the step. The phrase must
- * stand alone as a proud, legible identity statement — NOT a dangling fragment.
+ * Disclosure hierarchy (matches Sasha's sketch):
+ *   Step (default: collapsed)
+ *     └─ [ See how ▼ ]                     ← step-level trigger
+ *          └─ Substeps 1, 2, 3             (name + description always visible)
+ *                └─ [ See one proven       ← substep-level button + triangle
+ *                     strategy ▶ ]
+ *                     └─ ONE PROVEN STRATEGY
+ *                          {short paragraph}
  *
- * Step names (subtitles) are VERBATIM — do not paraphrase, do not compress.
+ * Step names (subtitles) and transformational-result labels are psychoactive,
+ * canonical, and VERBATIM from Sasha — never paraphrase, never drift.
  */
 
 export type Substep = {
   /** 1, 2, 3 within a step */
   number: 1 | 2 | 3;
-  /** What this substep does, 1–2 lines, human voice — always visible */
+  /** Short title for this substep — 2–4 words, human voice */
+  name: string;
+  /** One-line description. Always visible when the step's "See how" is open. */
   description: string;
-  /** The "ONE GOOD STRATEGY" bullets — hidden until the triangle is clicked */
-  oneGoodStrategyBullets: string[];
+  /**
+   * The ONE PROVEN STRATEGY — short paragraph (mostly one line).
+   * Hidden until the substep's "See one proven strategy" button is clicked.
+   */
+  oneProvenStrategy: string;
 };
 
 export type PlaybookStep = {
@@ -51,9 +64,9 @@ export type PlaybookStep = {
 };
 
 /**
- * PLACEHOLDER COPY — Sasha will replace substep descriptions and strategy
- * bullets with his own text. Step names (subtitles) and transformational
- * results are final as of Day 41 (April 16, 2026).
+ * PLACEHOLDER COPY — Sasha will replace substep names, descriptions, and
+ * one-proven-strategy paragraphs with his own text. Step names (subtitles)
+ * and transformational results are CANONICAL as of 2026-04-16 (Day 41).
  */
 export const PLAYBOOK_STEPS: PlaybookStep[] = [
   {
@@ -67,33 +80,26 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
-        description:
-          "Name the one thing you do that others can't copy. The natural move, not the trained one.",
-        oneGoodStrategyBullets: [
-          "Run the Zone of Genius quiz — reveals your archetype in 6 questions.",
-          "Ask five people who love you: what do I do that surprises you?",
-          "Notice what you keep doing for free. That's the signal.",
-        ],
+        name: "Ask your AI to reflect it back at you",
+        description: "",
+        oneProvenStrategy:
+          "Use this prompt: \u201CBased on all you know about me, what\u2019s my zone of genius?\u201D",
       },
       {
         number: 2,
+        name: "Map talent to pain",
         description:
           "Map where your talent meets a real pain someone else feels.",
-        oneGoodStrategyBullets: [
-          "Write 10 one-line pains you've personally moved through.",
-          "Circle the 3 where your natural move was the unlock.",
-          "Those 3 are your ground. The rest are someone else's business.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Write ten one-line pains you've personally moved through; circle the three where your natural move was the unlock.",
       },
       {
         number: 3,
+        name: "Say it in one line",
         description:
           "Say it in one line — what you do, for whom, with what shift.",
-        oneGoodStrategyBullets: [
-          "Template: 'I help [who] move from [pain] to [promise].'",
-          "Test it on 3 strangers. If they lean in, it's alive.",
-          "Refine until it fits in one breath.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Template: 'I help [who] move from [pain] to [promise].' Test it on three strangers. If they lean in, it's alive.",
       },
     ],
   },
@@ -108,33 +114,27 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Choose the tribe",
         description:
-          "Choose the tribe — the specific people whose fire you can name.",
-        oneGoodStrategyBullets: [
-          "Run the Resonance Sort Protocol: signal first, demographics second.",
-          "Look for awakened practitioners who can't yet name what they carry.",
-          "Write their nickname, not their job title.",
-        ],
+          "Choose the tribe — the specific people whose fire you can already name.",
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Use the Resonance Sort Protocol: signal first, demographics second. Write their nickname, not their job title.",
       },
       {
         number: 2,
+        name: "Shape the promise",
         description:
           "Shape the promise — the visible shift you deliver, in their words.",
-        oneGoodStrategyBullets: [
-          "Write the pain in the tribe's exact phrasing.",
-          "Write the resolution in the tribe's exact phrasing.",
-          "The gap between those two sentences is your promise.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Write the pain in the tribe's phrasing, then the resolution in the tribe's phrasing. The gap between those two sentences is your promise.",
       },
       {
         number: 3,
+        name: "Lock the pitch",
         description:
           "Lock the one-sentence pitch — who, from what, to what — crisp.",
-        oneGoodStrategyBullets: [
-          "Template: 'I help [tribe] move from [pain] to [promise] through [method].'",
-          "Read it out loud. If you stumble, cut a word.",
-          "Test on three strangers. If they ask a follow-up, it's alive.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] 'I help [tribe] move from [pain] to [promise] through [method].' Read it out loud — if you stumble, cut a word.",
       },
     ],
   },
@@ -149,34 +149,27 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Set the value ladder",
         description:
           "Set the value ladder — one offer per altitude, priced with conviction.",
-        oneGoodStrategyBullets: [
-          "Free: the question that opens them to themselves.",
-          "Entry: a single session that delivers one phase shift.",
-          "Deep: the full container — weeks, not minutes.",
-          "Premium at every tier. No sliding scale.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Free opens the question. Entry delivers one phase shift. Deep is the full container. Premium at every tier — no sliding scale.",
       },
       {
         number: 2,
+        name: "Name the channel",
         description:
           "Name the channel — the one surface where your tribe actually lives.",
-        oneGoodStrategyBullets: [
-          "Pick the channel where you already naturally show up.",
-          "One channel. Not three. Not even two — yet.",
-          "Post the same promise in the tribe's language for 30 days.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Pick the channel where you already naturally show up. One channel, not three. Post the same promise in the tribe's language for 30 days.",
       },
       {
         number: 3,
+        name: "Draw the shape",
         description:
           "Draw the shape — offers, channel, and cadence on one page.",
-        oneGoodStrategyBullets: [
-          "One-page business map: offer · tribe · channel · price.",
-          "If it doesn't fit on one page, you haven't simplified enough.",
-          "Keep it where you see it daily.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] One-page business map: offer · tribe · channel · price. If it doesn't fit on one page, you haven't simplified enough.",
       },
     ],
   },
@@ -191,31 +184,27 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Pick the smallest thing",
         description:
           "Pick the smallest complete thing — one session, one document, one call.",
-        oneGoodStrategyBullets: [
-          "If you can't deliver it this week, it's too big.",
-          "Write what happens in the first 30 minutes.",
-          "Write what the person walks away with.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] If you can't deliver it this week, it's too big. Write what happens in the first 30 minutes, and what the person walks away with.",
       },
       {
         number: 2,
-        description: "Build the container — the frame that holds the work.",
-        oneGoodStrategyBullets: [
-          "One landing page. One calendar link. One email template.",
-          "No funnel yet. One surface, clear door.",
-          "Ship the ugly version. Refine from real use.",
-        ],
+        name: "Build the container",
+        description:
+          "Build the container — the frame that holds the work.",
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] One landing page, one calendar link, one email template. No funnel yet. Ship the ugly version and refine from real use.",
       },
       {
         number: 3,
-        description: "Write the invitation — the message that opens the door.",
-        oneGoodStrategyBullets: [
-          "Lead with the pain in their voice.",
-          "Name the shift. No feature list.",
-          "End with one specific ask — a yes or no question, not 'thoughts?'.",
-        ],
+        name: "Write the invitation",
+        description:
+          "Write the invitation — the message that opens the door.",
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Lead with the pain in their voice. Name the shift, not the feature list. End with one specific ask — a yes/no question, not 'thoughts?'",
       },
     ],
   },
@@ -230,33 +219,27 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Gift the first three",
         description:
           "Gift the first three — full value, no price, full presence.",
-        oneGoodStrategyBullets: [
-          "Pick 3 people who match the tribe description exactly.",
-          "Deliver as if they paid premium.",
-          "Tell them: 'I'm not selling. I need to know if this lands.'",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Pick three people who match the tribe description exactly. Deliver as if they paid premium. Tell them: 'I need to know if this lands.'",
       },
       {
         number: 2,
+        name: "Capture the shift",
         description:
           "Capture the shift — in their words, before the afterglow fades.",
-        oneGoodStrategyBullets: [
-          "Ask within 48 hours: what changed in you?",
-          "Ask: what would you tell a friend who's stuck where you were?",
-          "Those two answers are your testimonials and your marketing copy.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Within 48 hours ask: what changed in you? And: what would you tell a friend who's stuck where you were? Those are your testimonials and your marketing copy.",
       },
       {
         number: 3,
-        description: "Read the signal — who wants more, who referred, who paid.",
-        oneGoodStrategyBullets: [
-          "Three gifts → three signals. Count them.",
-          "If 2 of 3 want more, the ground is real.",
-          "If 1 of 3 refers someone, distribution is starting.",
-          "If 0 of 3 reach back, the promise doesn't match the pain. Return to step 2.",
-        ],
+        name: "Read the signal",
+        description:
+          "Read the signal — who wants more, who referred, who paid.",
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Three gifts, three signals. Two of three want more → the ground is real. One of three refers → distribution is starting. Zero reach back → return to step two.",
       },
     ],
   },
@@ -271,33 +254,27 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Name the price",
         description:
           "Name the price — premium, specific, with the reason underneath.",
-        oneGoodStrategyBullets: [
-          "Price the transformation, not the hours.",
-          "Fixed price per container. No sliding scale.",
-          "Write why this number feels right, for you.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Price the transformation, not the hours. Fixed price per container, no sliding scale. Write why this number feels right, for you.",
       },
       {
         number: 2,
+        name: "Send the invitation",
         description:
           "Send the specific invitation — not a broadcast, a direct message.",
-        oneGoodStrategyBullets: [
-          "One message to one person. Name the pain. Name the shift. Name the price.",
-          "'I'm opening 3 spots. Want to be one?'",
-          "Send 10 of these before you write a single social post.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] One message to one person: name the pain, name the shift, name the price. 'I'm opening three spots — want one?' Send ten before posting socially.",
       },
       {
         number: 3,
+        name: "Hold the first session",
         description:
           "Hold the first paid session with the same care as the free ones.",
-        oneGoodStrategyBullets: [
-          "The money doesn't change the work. It just names the commitment.",
-          "Deliver the same depth. Notice what the payment opens.",
-          "Capture what was different, if anything.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] The money doesn't change the work — it names the commitment. Deliver the same depth. Notice what the payment opens.",
       },
     ],
   },
@@ -312,32 +289,26 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     substeps: [
       {
         number: 1,
+        name: "Multiply what works",
         description:
           "Find the channel that already works — and do more of only that.",
-        oneGoodStrategyBullets: [
-          "Map where your first 3 clients came from.",
-          "The channel with 2+ of them is your channel. Ignore the rest.",
-          "Multiply by 3 before adding a new one.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Map where your first three clients came from. The channel with two or more of them is your channel. Multiply it by three before adding anything new.",
       },
       {
         number: 2,
+        name: "Systematise the session",
         description:
           "Systematise the sessions — keep the soul, document the steps.",
-        oneGoodStrategyBullets: [
-          "After each session, write what you did, in order.",
-          "Notice what you do every time. That's the spine.",
-          "Notice what you adapt each time. That's the art. Leave it.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] After each session, write what you did in order. What you do every time is the spine. What you adapt each time is the art — leave it alone.",
       },
       {
         number: 3,
+        name: "Gather the circle",
         description: "Gather the circle — peers, not followers.",
-        oneGoodStrategyBullets: [
-          "5 founders who each hold a different unique business.",
-          "Meet monthly. Share one question and one result.",
-          "No leader role. The rotation is the leader.",
-        ],
+        oneProvenStrategy:
+          "[PLACEHOLDER — Sasha fills in.] Five founders, each holding a different unique business. Meet monthly. Share one question and one result. No leader role — the rotation is the leader.",
       },
     ],
   },

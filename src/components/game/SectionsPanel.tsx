@@ -27,17 +27,21 @@ interface SpaceSections {
 }
 
 const SPACE_SECTIONS: SpaceSections = {
-    // JOURNEY Space — the 7-step methodology sequence
+    // JOURNEY Space — the 7-step methodology sequence.
+    // Labels + paths mirror `PLAYBOOK_STEPS` (src/data/playbookSteps.ts).
+    // Each section jumps to the matching playbook page; the landing itself
+    // is the "Overview" entry at the top.
     journey: {
         title: "JOURNEY",
         sections: [
-            { id: "step-1", label: "1 · Articulate talent", path: "/game/journey" },
-            { id: "step-2", label: "2 · Build the business", path: "/game/journey#business" },
-            { id: "step-3", label: "3 · Build the product", path: "/game/journey#build" },
-            { id: "step-4", label: "4 · Test & iterate", path: "/game/journey#test" },
-            { id: "step-5", label: "5 · Launch & grow", path: "/game/journey#launch" },
-            { id: "step-6", label: "6 · Regular check-ins", path: "/game/journey#checkins" },
-            { id: "step-7", label: "7 · Founder collective", path: "/game/journey#collective" },
+            { id: "journey-overview", label: "Overview", path: "/" },
+            { id: "step-1", label: "1 · Name Your Top Talent", path: "/playbook/discover" },
+            { id: "step-2", label: "2 · Articulate it with Precision", path: "/playbook/package" },
+            { id: "step-3", label: "3 · Enhance it with Business Structure", path: "/playbook/build" },
+            { id: "step-4", label: "4 · Build your First Unique Product", path: "/playbook/product" },
+            { id: "step-5", label: "5 · Gift it or Sell It To Beta-Test", path: "/playbook/test" },
+            { id: "step-6", label: "6 · Laser-Focus Tactically and Go Live", path: "/playbook/launch" },
+            { id: "step-7", label: "7 · Grow & Scale with Others, in Flow", path: "/playbook/scale" },
         ],
     },
     // Hidden until built — uncomment to re-enable

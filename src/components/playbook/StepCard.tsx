@@ -3,39 +3,47 @@ import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaybookStep, Substep } from "@/data/playbookSteps";
 
-// Hash format shared by Task 4.2 (URL-hash persistence of substep open state):
-// /playbook/discover#2-strategy means "substep 2's ONE GOOD STRATEGY is open".
-const SUBSTEP_HASH_RE = /^#(\d+)-strategy$/;
-const parseSubstepHash = (raw: string): number | null => {
-  const m = SUBSTEP_HASH_RE.exec(raw);
-  return m ? Number.parseInt(m[1], 10) : null;
-};
-
 /**
  * StepCard — renders one of the 7 playbook steps.
  *
- * Each substep has ONE disclosure level:
+ * Disclosure hierarchy (per Sasha's 2026-04-16 sketch):
  *
- *   Level 0 (default):
- *     1  — Description text, 1–2 lines, always visible.
- *          [ ONE GOOD STRATEGY ▶ ]    (glowing triangle trigger)
+ *   ┌─ STEP HEADER ───────────────────────────────────┐
+ *   │ Step N of 7 · APPNAME                           │
+ *   │ {subtitle}                                      │
+ *   │                                                 │
+ *   │   [ See how ▼ ]       ← step-level disclosure   │
+ *   │                                                 │
+ *   │   ↓ (when open) ↓                               │
+ *   │                                                 │
+ *   │   1 · {substep.name}                            │
+ *   │       {substep.description}                     │
+ *   │       [ See one proven strategy ▶ ]             │
+ *   │       ↓ (when open)                             │
+ *   │       ONE PROVEN STRATEGY                       │
+ *   │       {substep.oneProvenStrategy}               │
+ *   │                                                 │
+ *   │   2 · ...                                       │
+ *   │   3 · ...                                       │
+ *   │                                                 │
+ *   │ Transformational result · phase shift           │
+ *   │ ["{step.transformationalResult}"]               │
+ *   └─────────────────────────────────────────────────┘
  *
- *   Level 1 (on triangle click):
- *     1  — Description text, 1–2 lines.
- *          [ ONE GOOD STRATEGY ▾ ]
- *            • Bullet one
- *            • Bullet two
- *            • Bullet three
+ * URL hash deep-linking (shareable links):
+ *   /playbook/discover                 → all collapsed
+ *   /playbook/discover#how             → "See how" open, substeps collapsed
+ *   /playbook/discover#how-2           → "See how" open, substep 2 strategy open
  *
- * Below all three substeps: the TRANSFORMATIONAL RESULT button — the
- * phrase the user says to themselves after the step lands.
+ * Opening any substep's strategy auto-opens "See how" so the deep link lands
+ * on visible content.
  */
 
 export type StepCardProps = {
   step: PlaybookStep;
 };
 
-/** Triangle with soft radial glow per step color. */
+/** Triangle button adornment with soft radial glow per step color. */
 const Triangle = ({
   open,
   neonHsl,
@@ -65,9 +73,8 @@ const Triangle = ({
   </span>
 );
 
-/** A single substep row — number + description always visible, one-level
- *  disclosure for bullets. Open state is controlled by the parent StepCard so
- *  it can round-trip through the URL hash (Task 4.2). */
+/** Substep row — number + name + description always visible (once "See how" is
+ *  open). The "See one proven strategy" button reveals the short paragraph. */
 const SubstepRow = ({
   substep,
   neonHsl,
@@ -83,7 +90,6 @@ const SubstepRow = ({
 }) => {
   return (
     <div className="py-5">
-      {/* ══ Row: number + description always visible */}
       <div className="flex items-start gap-4">
         <div
           className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
@@ -97,14 +103,28 @@ const SubstepRow = ({
           {substep.number}
         </div>
         <div className="flex-1 pt-1">
-          <p
-            className="text-sm sm:text-[15px] leading-relaxed mb-3"
-            style={{ color: "rgba(231,233,229,0.88)" }}
+          {/* ══ Substep name */}
+          <h3
+            className="text-base sm:text-lg font-semibold leading-tight mb-1.5"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "rgba(231,233,229,0.98)",
+            }}
           >
-            {substep.description}
-          </p>
+            {substep.name}
+          </h3>
 
-          {/* ══ ONE GOOD STRATEGY trigger */}
+          {/* ══ Description (one line) — hidden if empty so rows stay tight */}
+          {substep.description && (
+            <p
+              className="text-sm sm:text-[15px] leading-relaxed mb-3"
+              style={{ color: "rgba(231,233,229,0.8)" }}
+            >
+              {substep.description}
+            </p>
+          )}
+
+          {/* ══ "See one proven strategy" button */}
           <button
             type="button"
             onClick={onToggle}
@@ -123,40 +143,41 @@ const SubstepRow = ({
             aria-expanded={open}
           >
             <Triangle open={open} neonHsl={neonHsl} neonRgb={neonRgb} />
-            <span>ONE GOOD STRATEGY</span>
+            <span>See one proven strategy</span>
           </button>
 
-          {/* ══ Bullets reveal */}
+          {/* ══ One Proven Strategy reveal */}
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
               open ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0",
             )}
           >
-            <ul className="space-y-2 py-1">
-              {substep.oneGoodStrategyBullets.map((bullet, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-sm leading-relaxed"
-                  style={{ color: "rgba(231,233,229,0.8)" }}
-                >
-                  <span
-                    aria-hidden="true"
-                    className="mt-[9px] inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{
-                      backgroundColor: neonHsl,
-                      boxShadow: `0 0 8px -1px ${neonHsl}`,
-                    }}
-                  />
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
+            <div
+              className="rounded-2xl p-4 sm:p-5"
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.08), rgba(${neonRgb},0.02))`,
+                border: `1px solid rgba(${neonRgb},0.18)`,
+              }}
+            >
+              <div
+                className="text-[10px] uppercase tracking-[0.28em] font-semibold mb-2"
+                style={{ color: neonHsl }}
+              >
+                One Proven Strategy
+              </div>
+              <p
+                className="text-sm sm:text-[15px] leading-relaxed"
+                style={{ color: "rgba(231,233,229,0.9)" }}
+              >
+                {substep.oneProvenStrategy}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Hair-line divider between substeps */}
+      {/* ══ Hair-line divider between substeps */}
       <div
         aria-hidden="true"
         className="h-[1px] w-full mt-5"
@@ -169,47 +190,86 @@ const SubstepRow = ({
   );
 };
 
+// ───── Hash parsing (deep-link support) ─────
+// #how             → see-how open
+// #how-1 / #how-2 / #how-3  → see-how open + that substep's strategy open
+const HASH_RE = /^#how(?:-(\d+))?$/;
+const parseHash = (raw: string): { seeHow: boolean; substep: number | null } => {
+  const m = HASH_RE.exec(raw);
+  if (!m) return { seeHow: false, substep: null };
+  const n = m[1] ? Number.parseInt(m[1], 10) : null;
+  return { seeHow: true, substep: n };
+};
+
 const StepCard = ({ step }: StepCardProps) => {
-  // Task 4.2 — deep-linkable substep disclosure. Many substeps can be open at
-  // once; the URL hash tracks the most recently toggled-open substep so a
-  // shared link deep-links to that section.
+  // Step-level "See how" disclosure — wraps the 3 substeps.
+  const [seeHowOpen, setSeeHowOpen] = useState(false);
+  // Substep-level "See one proven strategy" — multi-open allowed.
   const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(new Set());
 
+  // Re-seed state whenever the step slug changes (navigating 1 → 2 → …)
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const { seeHow, substep } = parseHash(window.location.hash);
+    setSeeHowOpen(seeHow);
+    setOpenSubsteps(
+      substep !== null && step.substeps.some((s) => s.number === substep)
+        ? new Set([substep])
+        : new Set(),
+    );
 
-    const applyHash = () => {
-      const n = parseSubstepHash(window.location.hash);
-      if (n !== null && step.substeps.some((s) => s.number === n)) {
+    const onHashChange = () => {
+      const { seeHow: sh, substep: ss } = parseHash(window.location.hash);
+      setSeeHowOpen(sh);
+      if (ss !== null && step.substeps.some((s) => s.number === ss)) {
         setOpenSubsteps((prev) => {
-          if (prev.has(n)) return prev;
           const next = new Set(prev);
-          next.add(n);
+          next.add(ss);
           return next;
         });
       }
     };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, [step.slug, step.substeps]);
 
-    applyHash();
-    window.addEventListener("hashchange", applyHash);
-    return () => window.removeEventListener("hashchange", applyHash);
-  }, [step.substeps]);
+  const writeHash = (seeHow: boolean, lastOpenSubstep: number | null) => {
+    if (typeof window === "undefined") return;
+    const bare = `${window.location.pathname}${window.location.search}`;
+    if (!seeHow) {
+      window.history.replaceState(null, "", bare);
+    } else if (lastOpenSubstep !== null) {
+      window.history.replaceState(null, "", `${bare}#how-${lastOpenSubstep}`);
+    } else {
+      window.history.replaceState(null, "", `${bare}#how`);
+    }
+  };
+
+  const toggleSeeHow = () => {
+    setSeeHowOpen((prev) => {
+      const next = !prev;
+      // Closing "See how" also collapses every substep.
+      if (!next) setOpenSubsteps(new Set());
+      writeHash(
+        next,
+        next && openSubsteps.size ? Math.max(...openSubsteps) : null,
+      );
+      return next;
+    });
+  };
 
   const toggleSubstep = (substepNumber: number) => {
+    // Opening any substep auto-opens "See how" so the content is visible.
     setOpenSubsteps((prev) => {
       const next = new Set(prev);
-      const bareUrl = `${window.location.pathname}${window.location.search}`;
-      const hashForThis = `#${substepNumber}-strategy`;
-
-      if (next.has(substepNumber)) {
-        next.delete(substepNumber);
-        if (window.location.hash === hashForThis) {
-          window.history.replaceState(null, "", bareUrl);
-        }
-      } else {
-        next.add(substepNumber);
-        window.history.replaceState(null, "", `${bareUrl}${hashForThis}`);
-      }
+      if (next.has(substepNumber)) next.delete(substepNumber);
+      else next.add(substepNumber);
+      const seeHowNext = seeHowOpen || next.size > 0;
+      setSeeHowOpen(seeHowNext);
+      writeHash(
+        seeHowNext,
+        next.size ? Math.max(...next) : null,
+      );
       return next;
     });
   };
@@ -227,7 +287,7 @@ const StepCard = ({ step }: StepCardProps) => {
       }}
     >
       {/* ══ STEP HEADER */}
-      <header className="mb-8">
+      <header className="mb-6">
         <div
           className="text-[10px] uppercase tracking-[0.32em] mb-3"
           style={{ color: step.neonHsl }}
@@ -235,7 +295,7 @@ const StepCard = ({ step }: StepCardProps) => {
           Step {step.number} of 7 · {step.appName}
         </div>
         <h1
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
+          className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15] mb-6"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "rgba(231,233,229,0.98)",
@@ -243,10 +303,46 @@ const StepCard = ({ step }: StepCardProps) => {
         >
           {step.subtitle}
         </h1>
+
+        {/* ══ "See how" — step-level disclosure trigger */}
+        <button
+          type="button"
+          onClick={toggleSeeHow}
+          className={cn(
+            "inline-flex items-center gap-3 py-2.5 px-4 rounded-full",
+            "text-[11px] sm:text-xs uppercase tracking-[0.26em] font-semibold",
+            "transition-all duration-300 hover:scale-[1.02]",
+            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+          )}
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.22), rgba(${step.neonRgb},0.08))`,
+            border: `1px solid rgba(${step.neonRgb},0.45)`,
+            color: "rgba(231,233,229,0.98)",
+            boxShadow: seeHowOpen
+              ? `0 0 22px -4px ${step.neonHsl}, inset 0 1px 1px rgba(255,255,255,0.08)`
+              : `0 0 10px -4px rgba(${step.neonRgb},0.4)`,
+          }}
+          aria-expanded={seeHowOpen}
+          aria-controls={`step-${step.number}-substeps`}
+        >
+          <Triangle
+            open={seeHowOpen}
+            neonHsl={step.neonHsl}
+            neonRgb={step.neonRgb}
+          />
+          <span>See how</span>
+        </button>
       </header>
 
-      {/* ══ 3 SUBSTEPS */}
-      <section aria-label="Substeps" className="mb-10">
+      {/* ══ 3 SUBSTEPS (revealed by "See how") */}
+      <section
+        id={`step-${step.number}-substeps`}
+        aria-label="Substeps"
+        className={cn(
+          "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
+          seeHowOpen ? "max-h-[3000px] opacity-100 mb-10" : "max-h-0 opacity-0",
+        )}
+      >
         {step.substeps.map((ss) => (
           <SubstepRow
             key={ss.number}
@@ -259,35 +355,60 @@ const StepCard = ({ step }: StepCardProps) => {
         ))}
       </section>
 
-      {/* ══ TRANSFORMATIONAL RESULT BUTTON */}
-      <div className="flex flex-col items-center gap-3 pt-4">
-        <div
-          className="text-[10px] uppercase tracking-[0.28em]"
-          style={{ color: "rgba(231,233,229,0.45)" }}
-        >
-          Transformational result · phase shift
+      {/* ══ RESULT (what you get from this app) + CONSISTENT CTA */}
+      <div className="flex flex-col items-center gap-5 pt-4">
+        {/* Result promise — the transformational-result phrase, framed as
+            the outcome this "app" delivers. Consistent across all 7 steps. */}
+        <div className="flex flex-col items-center gap-2 text-center">
+          <div
+            className="text-[10px] uppercase tracking-[0.28em]"
+            style={{ color: "rgba(231,233,229,0.45)" }}
+          >
+            Your result
+          </div>
+          <p
+            className="text-lg sm:text-xl md:text-2xl leading-snug max-w-[520px]"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              color: "rgba(231,233,229,0.95)",
+              letterSpacing: "0.005em",
+            }}
+          >
+            &ldquo;{step.transformationalResult}&rdquo;
+          </p>
         </div>
-        <button
-          type="button"
-          className={cn(
-            "px-6 sm:px-8 py-3 sm:py-4 rounded-full",
-            "text-sm sm:text-base font-semibold leading-tight",
-            "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-            "max-w-[480px] text-center",
-          )}
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            color: "rgba(231,233,229,0.98)",
-            backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.28), rgba(132,96,234,0.2))`,
-            border: `1px solid ${step.neonHsl}`,
-            boxShadow: `0 0 24px -6px ${step.neonHsl}, inset 0 1px 1px rgba(255,255,255,0.1)`,
-            letterSpacing: "0.01em",
-          }}
-        >
-          “{step.transformationalResult}”
-        </button>
+
+        {/* Consistent CTA — same label on every step. "Pay as you progress"
+            sits just below as the pricing/model hint. Wire the click target
+            once the acceleration/pricing surface exists. */}
+        <div className="flex flex-col items-center gap-2">
+          <button
+            type="button"
+            className={cn(
+              "px-7 sm:px-10 py-3.5 sm:py-4 rounded-full",
+              "text-xs sm:text-sm font-semibold uppercase tracking-[0.22em]",
+              "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
+              "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+            )}
+            style={{
+              color: "rgba(231,233,229,0.98)",
+              backgroundImage:
+                "linear-gradient(135deg, rgba(132,96,234,0.9), rgba(41,84,159,0.9))",
+              border: "1px solid rgba(231,233,229,0.4)",
+              boxShadow:
+                "0 20px 60px -18px rgba(132,96,234,0.7), inset 0 1px 1px rgba(255,255,255,0.22)",
+            }}
+          >
+            Guidance to accelerate the process
+          </button>
+          <div
+            className="text-[10px] uppercase tracking-[0.32em]"
+            style={{ color: "rgba(231,233,229,0.55)" }}
+          >
+            Pay as you progress
+          </div>
+        </div>
       </div>
     </article>
   );

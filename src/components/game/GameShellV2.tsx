@@ -447,9 +447,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — no overlay, video shows through with just the base 30% dimming */}
+                {/* Panel 3: Content — ~15% tint on top of the video background
+                    so long-form copy stays legible while the circle still
+                    breathes through. Progression: Rail (heaviest) →
+                    Sections (medium) → Content (lightest, 15%). */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/15"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
