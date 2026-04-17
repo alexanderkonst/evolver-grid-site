@@ -61,6 +61,19 @@ export type PlaybookStep = {
   neonRgb: string;
   /** The 3 substeps */
   substeps: [Substep, Substep, Substep];
+  /**
+   * Public price label (e.g., "Free", "$49", "$297"). The infographic
+   * popover renders this in the header; when undefined we show
+   * "Pricing coming soon" as the placeholder. Sasha fills these in as
+   * the store copy stabilises.
+   */
+  price?: string;
+  /**
+   * Short bullets for the "What's included" list in the popover.
+   * Keep each item one line, concrete and outcome-facing.
+   * Sasha fills these in.
+   */
+  included?: string[];
 };
 
 /**
@@ -77,6 +90,12 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     transformationalResult: "I can name my top talent out loud.",
     neonHsl: "hsl(175, 80%, 55%)",
     neonRgb: "0, 210, 190",
+    price: "Free",
+    included: [
+      "Zone-of-Genius reflection prompt",
+      "Talent-to-pain mapping worksheet",
+      "Your one-line identity sentence",
+    ],
     substeps: [
       {
         number: 1,
