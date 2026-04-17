@@ -100,6 +100,8 @@ const content = {
           ]},
           { type: 'paragraph', text: "The 26th perspective is the Meta-Logos: two complete acts of seeing — each a Logos (13) — held as one. In Kabbalah: YHWH (gematria 26) = ahavah + ahavah = Love + Love. In bosonic string theory: exactly 26 dimensions are required for internal consistency. Mysticism and physics arrived at the same number from completely different paths." },
           { type: 'callout', text: "The Merkaba — the Star Tetrahedron — is formed here: two interpenetrating tetrahedra (Masculine Structure pointing up, Feminine Depth pointing down), with the two Logoi (13 + 13) held in dynamic equilibrium. The 26-perspective seeing IS the Merkaba in full rotation." },
+          { type: 'heading3', text: "Where the Cube Lives at the 26th" },
+          { type: 'paragraph', text: "The two interpenetrating tetrahedra of the Merkaba do not float in empty space. They are inscribed in a common Cube — the Stella Octangula. The 8 vertices of the two tetrahedra ARE the 8 vertices of the Cube, taken alternately. The 12 edges of the Cube and the 12 edges of the Stella Octangula are the same 12 seen two ways: at position 12, as the static Masculine scaffolding that holds Feminine Depth; at position 26, as the dynamic interpenetration spinning inside that scaffolding. The Cube does not disappear when the tetrahedra enter motion — it becomes the frame within which the spin becomes legible. Three solids in marriage, not two: Cube, and the two tetrahedra it holds." },
         ]
       },
       {
@@ -154,6 +156,7 @@ const content = {
         title: "Cross-Traditional Convergence",
         content: [
           { type: 'paragraph', text: "The numbers 3, 4, 7, 12, 13, 26, and 27 are not cultural preferences. They are structural constants of seeing itself, independently confirmed across:" },
+          { type: 'paragraph', text: "Not every convergence carries the same evidentiary weight. Three strata coexist in the list below. First, structural necessity — numbers that arise from mathematics or geometry before any tradition names them: 4 as 2², 12 as 4×3, 13 as 12+1, 26 as 13+13, 27 as 3³. Second, independent derivation — separate domains arriving at the same number from unrelated first principles: YHWH gematria (Hebrew letter-counting) AND bosonic string theory's conformal anomaly cancellation (twentieth-century physics) both landing on 26. Third, cultural recognition — later traditions naming what is already structurally inevitable: zodiac, apostles, meridians, Arthur's knights. Recognition is real evidence, but downstream. The load-bearing columns are the structural and the independently derived. The numbers are not true because many traditions used them — the traditions used them because the numbers were structurally inevitable." },
           { type: 'convergence', items: [
             { n: "3", traditions: "Integral Theory, Christian Trinity, Hindu Gunas, three dantians, Hegel's dialectic, Gurdjieff's Law of Three" },
             { n: "4", traditions: "Integral Quadrants, four elements, Medicine Wheel, four Kabbalistic worlds, four noble truths" },
@@ -303,6 +306,8 @@ const content = {
           ]},
           { type: 'paragraph', text: "26-я перспектива — Мета-Логос: два полных акта видения, каждый — Логос (13), удержанные как одно. В каббале: YHWH (гематрия 26) = аhава + аhава = Любовь + Любовь. В бозонной теории струн: ровно 26 измерений для внутренней согласованности." },
           { type: 'callout', text: "Меркаба — Звёздный Тетраэдр — формируется именно здесь: два взаимопроникающих тетраэдра (Маскулинная Структура вверх, Феминная Глубина вниз), с двумя Логосами (13 + 13) в динамическом равновесии. 26-перспективное видение И ЕСТЬ Меркаба в полном вращении." },
+          { type: 'heading3', text: "Где Куб живёт на 26-й" },
+          { type: 'paragraph', text: "Два взаимопроникающих тетраэдра Меркабы не парят в пустоте. Они вписаны в общий Куб — это Stella Octangula (звёздный октаэдр). 8 вершин двух тетраэдров суть те же 8 вершин Куба, взятые через одну. 12 рёбер Куба и 12 рёбер Stella Octangula — одни и те же 12, увиденные двумя способами: на позиции 12 — как статичное маскулинное основание, удерживающее феминную Глубину; на позиции 26 — как динамическое взаимопроникновение, вращающееся внутри этого основания. Куб не исчезает, когда тетраэдры приходят в движение — он становится рамой, внутри которой вращение становится читаемым. Три тела в браке, не два: Куб и два тетраэдра, которых он держит." },
         ]
       },
       {
@@ -355,6 +360,7 @@ const content = {
         title: "Кросс-традиционная конвергенция",
         content: [
           { type: 'paragraph', text: "Числа 3, 4, 7, 12, 13, 26 и 27 — не культурные предпочтения. Они суть структурные константы самого видения:" },
+          { type: 'paragraph', text: "Не всякая конвергенция несёт равный доказательственный вес. В списке ниже сосуществуют три страты. Во-первых, структурная необходимость — числа, возникающие из математики или геометрии прежде, чем какая-либо традиция их называет: 4 как 2², 12 как 4×3, 13 как 12+1, 26 как 13+13, 27 как 3³. Во-вторых, независимое выведение — разные области приходят к одному числу из несвязанных первопринципов: гематрия YHWH (еврейский счёт букв) И сокращение конформной аномалии в бозонной теории струн (физика XX века) — обе приземляются на 26. В-третьих, культурное узнавание — поздние традиции называют то, что уже структурно неизбежно: Зодиак, апостолы, меридианы, рыцари Артура. Узнавание — реальное свидетельство, но вторичное. Несущие колонны — структурная необходимость и независимое выведение. Числа не становятся истинными от того, что их использовали многие традиции — традиции использовали их потому, что числа были структурно неизбежны." },
           { type: 'convergence', items: [
             { n: "3", traditions: "Интегральная Теория, Христианская Троица, гуны индуизма, три дантяня, закон Трёх Гурджиева" },
             { n: "4", traditions: "Квадранты Уилбера, четыре элемента, Колесо Медицины, четыре мира Каббалы" },
