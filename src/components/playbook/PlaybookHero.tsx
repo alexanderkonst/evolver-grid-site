@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import PlaybookCircleInfographic from "./PlaybookCircleInfographic";
+import { useJourneyProgression } from "@/hooks/useJourneyProgression";
 
 /**
  * PlaybookHero — the animated circular infographic at the top of the landing.
@@ -19,17 +20,30 @@ import PlaybookCircleInfographic from "./PlaybookCircleInfographic";
  */
 
 type PlaybookHeroProps = {
-  /** Optional unlock high-water mark. Defaults to 1 (step-1 free gift only). */
+  /**
+   * Optional manual override for the unlock high-water mark. If provided,
+   * this wins over the Supabase-derived step. Useful for demo/preview.
+   * Otherwise the circle reads `onboarding_stage` via useJourneyProgression
+   * and reacts to user progression automatically:
+   *   new / zog_started       → step 1 active (free gift)
+   *   zog_complete / qol_*    → step 2 active
+   *   offer/recipe_complete   → step 3 active
+   *   unlocked / complete     → step 4+
+   */
   unlockedThroughStep?: number;
 };
 
-const PlaybookHero = ({ unlockedThroughStep = 1 }: PlaybookHeroProps) => {
+const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
   const navigate = useNavigate();
+  // Pull live progression from Supabase. Falls back to step 1 for
+  // unauthenticated visitors (the landing page's primary audience).
+  const { currentStep } = useJourneyProgression();
+  const unlock = unlockedThroughStep ?? currentStep;
 
   return (
     <div className="mb-12">
       <div className="mb-8">
-        <PlaybookCircleInfographic unlockedThroughStep={unlockedThroughStep} />
+        <PlaybookCircleInfographic unlockedThroughStep={unlock} />
       </div>
 
       {/* ══════ CTA: Claim your gift (Step 1 free) ══════ */}

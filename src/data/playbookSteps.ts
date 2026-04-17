@@ -74,6 +74,14 @@ export type PlaybookStep = {
    * Sasha fills these in.
    */
   included?: string[];
+  /**
+   * Stripe Price ID for this step (e.g., "price_1ABCxyz"). When set, the
+   * "Guidance to accelerate the process" CTA launches a one-time Stripe
+   * Checkout Session. When undefined, the CTA shows a friendly
+   * "Pricing coming soon" toast. Sasha fills in per-step as Stripe
+   * products are created. Step 1 is free and stays undefined.
+   */
+  priceId?: string;
 };
 
 /**

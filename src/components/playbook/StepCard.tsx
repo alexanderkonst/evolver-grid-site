@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaybookStep, Substep } from "@/data/playbookSteps";
+import { useStepCheckout } from "@/hooks/useStepCheckout";
 
 /**
  * StepCard — renders one of the 7 playbook steps.
@@ -206,6 +207,9 @@ const StepCard = ({ step }: StepCardProps) => {
   const [seeHowOpen, setSeeHowOpen] = useState(false);
   // Substep-level "See one proven strategy" — multi-open allowed.
   const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(new Set());
+  // Payment CTA — launches Stripe one-time checkout when step.priceId is set,
+  // otherwise shows a "pricing coming soon" toast.
+  const { startCheckout, isLoading: checkoutLoading } = useStepCheckout();
 
   // Re-seed state whenever the step slug changes (navigating 1 → 2 → …)
   useEffect(() => {
@@ -380,16 +384,20 @@ const StepCard = ({ step }: StepCardProps) => {
         </div>
 
         {/* Consistent CTA — same label on every step. "Pay as you progress"
-            sits just below as the pricing/model hint. Wire the click target
-            once the acceleration/pricing surface exists. */}
+            sits just below as the pricing/model hint. Click launches Stripe
+            one-time checkout when step.priceId is set; otherwise a friendly
+            "pricing coming soon" toast. */}
         <div className="flex flex-col items-center gap-2">
           <button
             type="button"
+            onClick={() => startCheckout(step)}
+            disabled={checkoutLoading}
             className={cn(
               "px-7 sm:px-10 py-3.5 sm:py-4 rounded-full",
               "text-xs sm:text-sm font-semibold uppercase tracking-[0.22em]",
               "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
               "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+              "disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100",
             )}
             style={{
               color: "rgba(231,233,229,0.98)",
@@ -399,8 +407,19 @@ const StepCard = ({ step }: StepCardProps) => {
               boxShadow:
                 "0 20px 60px -18px rgba(132,96,234,0.7), inset 0 1px 1px rgba(255,255,255,0.22)",
             }}
+            aria-busy={checkoutLoading}
           >
-            Guidance to accelerate the process
+            <span className="inline-flex items-center gap-2">
+              {checkoutLoading && (
+                <Loader2
+                  aria-hidden="true"
+                  className="h-4 w-4 animate-spin"
+                />
+              )}
+              {checkoutLoading
+                ? "Opening checkout…"
+                : "Guidance to accelerate the process"}
+            </span>
           </button>
           <div
             className="text-[10px] uppercase tracking-[0.32em]"
