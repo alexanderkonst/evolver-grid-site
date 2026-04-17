@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-16 — Day 42. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. Playbook `/playbook/discover` polish brief assigned to Codex as P0. The signal now travels without the apparatus; the apparatus is now for scale.*
+> *Last updated: 2026-04-17 — Day 43. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. **Funnel Clarity Sprint opened April 16** — landing → playbook flow spec, progressive unlock, two-CTA hero, email-before-ZoG, adapted resonance rating. Q1 (step 2/3 merge) = ✅ keep separate (map to $555 / $1,111+$2.5K ladder rungs; progressive unlock enforces sequence). Q2 (lane) = ✅ keep both — Cowork for corpus/docs/planning, Claude Code via `ai_tasks/PENDING_*.md` for heavy src/+supabase/ passes. The signal now travels without the apparatus; the apparatus is now for scale.*
 
 ---
 
@@ -50,6 +50,48 @@
 | W13 | **Long-form essay v1 — April 15 transmission** | Content | 🔴 | Outlined in `docs/08-content/april15_repurpose_plan.md`. Draft to be written. Freeze for 90-day Oyi window |
 | W14 | **Shorts bundle — 7 clips with timecodes** | Content | 🟡 | Queue exists in repurpose plan. Production pending. First 2-3 go public after v1 essay lands |
 | W15 | **Decision 3 — three-way call cadence** | Strategy | 🟡 | Still open. Recommended default: seeded spontaneity (2/month, 48h-out scheduling). Sasha to answer |
+
+---
+
+## 🎯 Funnel Clarity Sprint — Landing → Playbook (April 16-20)
+
+> **Intent:** close the loop between the landing page (7-step circle infographic = "the store") and the playbook pages, so a visitor can land → complete Step 1 (ZoG) → land back inside the logged-in shell with Step 2 visibly unlocked → buy any paid step via Stripe. Infographic treated as the store; every locked node previews price + inclusions + CTA; progressive reveal drives progression; emotional payoff on Step-1 completion.
+>
+> **Lane split:** Cowork (this file) holds the spec and the small corpus/UI patches. Heavy `src/` + `supabase/` work goes to Codex via `ai_tasks/PENDING_*.md` briefs referencing Fxx below.
+
+### Decisions landed
+
+- **Q1: Step 2 + Step 3 merge? → No, keep separate.** Step 2 ("Articulate") = $555 Ignition Session = single high-intensity sitting with Sasha; Step 3 ("Build") = $1,111 + $2.5K Build container = weeks of accompanied work. Merging collapses two distinct ladder rungs + two distinct transformations into one. Progressive unlock already enforces the sequence on the UI side, so no gamification cost to keeping them discrete.
+- **Q2: Claude Code vs Cowork lane? → Keep both.** Cowork = corpus, strategy, docs, session metabolism, surgical patches. Claude Code = multi-file implementation passes, infra-heavy work. Bridge = `ai_tasks/PENDING_*.md` briefs so either lane can hand off. (Same handoff pattern already proven on `/playbook/discover` polish.)
+
+### Tasks
+
+| # | Item | Lane | Priority | Notes |
+|---|------|------|----------|-------|
+| **QUICK WINS (Cowork, shipped 2026-04-17)** | | | | |
+| F0a | Panel 3 background opacity → raised to `bg-[#0a0a1a]/60` | Cowork | ✅ | `GameShellV2.tsx` L471 — legibility restored over Mux loop |
+| F0b | ME rail flicker — gated `unlockStatus` on `profileLoaded` flag | Cowork | ✅ | `GameShellV2.tsx` — `profileLoaded` tracked; pass `{}` to SpacesRail until profile fetch resolves. No more lock-then-unlock beat |
+| F0c | Journey SectionsPanel → progressive 2-item state | Cowork | ✅ | `SectionsPanel.tsx` — `buildJourneySections(currentStep)` slices `PLAYBOOK_STEPS` to `currentStep`. Fresh user sees Overview + Step 1 only; each completion adds the next row |
+| F0d | Remove top-center logo on `/playbook/:slug` (redundant with top-right) | Cowork | ✅ | `SiteLogo.tsx` — `/playbook` already in the hidden paths list. Verified: only Panel 3's right-side logo renders on playbook routes |
+| **LANDING (two-CTA hero)** | | | | |
+| F1 | Landing hero: add second CTA "See the Playbook" next to "Claim your gift" | Codex | 🔴 | Scrolls to the circle infographic OR routes to `/playbook/discover` — pick one, A/B later |
+| **EMAIL-BEFORE-ZoG (progressive profile)** | | | | |
+| F2 | Capture email *before* the ZoG quiz, not after. Magic-link auth on completion; user returns signed-in with a "set password" prompt as optional follow-up | Codex | 🔴 | Current flow gates email at save time (`Auth.tsx` stashes to sessionStorage). Invert: email gate first, then quiz, then write snapshot against already-known user via anon claim OR pre-created profile |
+| **STEP-1 COMPLETION PAYOFF** | | | | |
+| F3 | Congratulations screen after ZoG with "Step 2 unlocked" reveal — animation/glow on pane 2's new "Step 2" entry synced with the circle node unlocking | Codex | 🔴 | Uses existing `onboarding_stage: "zog_complete"` as trigger. Hook into Panel 2's dynamic list (F0c). Glow = ring-halo animation reused from PlaybookCircleInfographic |
+| **RESONANCE RATING** | | | | |
+| F4 | Adapt `src/components/ui/ResonanceRating.tsx` (1-10 scale, already used in product-builder) into the ZoG completion flow. Store rating against `user_id` in a new column on `zog_snapshots` or a new table `step_resonance_ratings(user_id, step_slug, rating, created_at)` | Codex | 🟡 | Gives us a drop-off signal + a lever for future iteration. Component is battle-tested across DeepICP/Pain/TP screens |
+| **STEP-CARD + PROGRESSIVE UNLOCK** | | | | |
+| F5 | All 7 StepCards live + each has its own CTA / price / inclusions — currently only Step 1 has real copy, rest `[PLACEHOLDER — Sasha fills in]` | Sasha (copy) | 🟡 | Me to seed Stripe price IDs in `playbookSteps.ts` once Sasha creates products in Stripe dashboard |
+| F6 | All CTAs locked except Step 1 — sequential unlock driven by `onboarding_stage` | Already shipped | ✅ | `useJourneyProgression` + StepCard already gate this |
+| F7 | Stripe webhook or verify-and-advance edge function — after successful checkout, flip `onboarding_stage` to next stage so the next step unlocks without manual refresh | Codex | 🔴 | `session_id` already in return URL; need `supabase/functions/verify-step-session/index.ts` that queries Stripe Checkout Session + advances stage |
+| **CONTENT PANE 2 (playbook page)** | | | | |
+| F8 | Same 2-item state on `/playbook/:slug` — same progressive reveal logic as F0c, just in the playbook route's shell | Cowork | 🟡 | If F0c touches `SectionsPanel.tsx` directly this is free; verify no route-specific fork exists |
+
+### Handoff artifacts to produce
+
+- `ai_tasks/PENDING_funnel_clarity_sprint.md` — briefs F1, F2, F3, F4, F7 with explicit file targets, acceptance criteria, and references back to this sprint section.
+- Update `CLAUDE.md` Repo landmarks with `useJourneyProgression.ts` once it's referenced by more than one component (already is — PlaybookHero + SectionsPanel).
 
 ---
 
@@ -250,3 +292,7 @@
 *Roadmap v4.4 — April 12, 2026 (Day 40. 79 domains. Auth gate live. Article deployed. Carousel ready. Question Collapse: the question IS the content IS the lead magnet IS the visibility. 3 DMs sent. $677 cash, $6.9K total)*
 
 *Roadmap v4.5 — April 16, 2026 (Day 42. Holomap center = "Emanation." April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Licensing ✅ yes with 11-row negotiation checklist. Scaling = Sequence C (Sessions + Licensed Distribution + Field Recordings, parallel and compounding). Cadence still open. `/playbook/discover` polish = P0 unblock for licensing distribution. The signal now travels without the apparatus; the apparatus is for scale.)*
+
+*Roadmap v4.6 — April 17, 2026 (Day 43. Funnel Clarity Sprint opened. Q1 answered — step 2/3 stay separate, value ladder already enforces the surgical boundary. Q2 answered — keep both Cowork and Claude Code lanes, bridged by `ai_tasks/PENDING_*.md`. Four UI quick-wins shipped same day: Panel 3 opacity /15→/60, ME rail flicker eliminated, Journey SectionsPanel collapsed to progressive two-item state, redundant top-center logo confirmed hidden on `/playbook/*`. Five heavier items handed to Codex lane — F1 dual-CTA, F2 email-before-ZoG, F3 completion ceremony, F4 ResonanceRating storage, F7 Stripe webhook verify-and-advance.)*
+
+*Roadmap v4.6 — April 17, 2026 (Day 43. Funnel Clarity Sprint opened. Q1 step 2/3 merge = keep separate — two distinct ladder rungs, progressive unlock enforces the sequence. Q2 lane = keep both, bridge via ai_tasks/. F0 quick wins: panel-3 opacity, ME-rail flicker, 2-item journey pane, duplicate-logo removal — all Cowork-lane, same session. F1-F7 Codex-lane: two-CTA hero, email-before-ZoG magic link, step-1 completion payoff animation, resonance rating, Stripe verify-and-advance webhook. The landing IS the store; the completion IS the unlock; the unlock IS the nudge into paid progression.)*
