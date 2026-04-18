@@ -142,5 +142,30 @@
       "Read(.env)",
       "Read(.env.*)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 .claude/hooks/block-irreversible.py" },
+          { "type": "command", "command": "python3 .claude/hooks/block-deploy-commit.py" }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "python3 .claude/hooks/canon-lock.py" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "python3 .claude/hooks/session-log-nudge.py" }
+        ]
+      }
+    ]
   }
 }
