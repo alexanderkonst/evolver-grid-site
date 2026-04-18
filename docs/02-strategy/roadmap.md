@@ -6,6 +6,8 @@
 >
 > **Micro-notations** (use consistently so the dashboard + AI can read timing): `due YYYY-MM-DD` on deadlines · `since YYYY-MM-DD` on Waiting On items (when the ball went to the other side) · `started YYYY-MM-DD` on long-running Active items with no natural deadline.
 >
+> **Autonomy tags** (for the `roadmap-pulse` scheduled task — see `.agent/auto-execute-policy.md`, **opt-out model**): by default every item is eligible for autonomous execution when it fits the policy whitelist (docs maintenance, session-log appends, holomap rule-based updates, roadmap hygiene, benchmark-lab appends). Add `[hold]` in Notes to **exclude** an item — pulse will surface it but not touch it. Add `[brief]` to have the pulse task draft a Claude Code brief into `ai_tasks/PENDING_*.md` for one-click dispatch. Tags stack: `[hold] [brief]` = prepare the brief, don't execute.
+>
 > **Triage rules** (AI applies these on "update the roadmap" or "triage"):
 > 1. **Waiting On > 7 days** → surface for a nudge (re-ping, reframe, or close the loop).
 > 2. **Weekly Scope item still open after its week** → either roll to next week with a reason, demote to Active Backlog, or park.
