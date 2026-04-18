@@ -36,6 +36,7 @@ These are phrases Sasha already uses. I act on them immediately without asking f
 | **"park [X]"** | Move item X to Parked / Future. Preserve row format. | `docs/02-strategy/roadmap.md` |
 | **"log this session"** | Append an entry to `docs/09-logs/session_log.md` with date, key moves, domains added, artifact changes. Follows the existing session-log format. | `docs/09-logs/session_log.md` |
 | **"what's the [principle name]"** | Read the principle from `docs/03-playbooks/unique_business_playbook.md` or `alexanders_unique_business.md`. Quote, don't paraphrase. | Read-only |
+| **"roadmap pulse"** | Run the `roadmap-pulse` scheduled task manually here in the chat. Reads `.agent/auto-execute-policy.md`, triages the roadmap, executes items tagged `[auto]` inside the policy whitelist, prepares `[auto-brief]` briefs for Claude Code, and appends a new entry to `docs/09-logs/roadmap_pulse_log.md`. | Policy-bound |
 
 If a verb is ambiguous, I use AskUserQuestion (multi-select when possible) rather than asking a plain question.
 
