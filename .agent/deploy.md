@@ -49,14 +49,24 @@ Both Cowork Claude and Claude Code should operate with these defaults:
 
 ## For Claude Code (headless mode via the MCP bridge)
 
-When dispatched via `scripts/mcp-claude-code-bridge/`, Claude Code should:
+When dispatched via `scripts/mcp-claude-code-bridge/`, Claude Code operates in **full-autonomy default**: make changes → verify → commit → push → auto-deploy fires. Sasha does not intervene. The bridge's `buildBriefPrompt` wires these instructions into every apply-mode dispatch.
 
-- Make the code changes per the brief.
-- Run the verification pipeline.
-- **Leave the working tree dirty.** Do not commit. Sasha's `deploy` command will sweep it.
-- If the brief says "open a PR," treat that as "write the changes and let Sasha deploy." PRs are not part of this repo's flow.
+Specifically, Claude Code should:
 
-Exception: if a brief explicitly instructs Claude Code to commit + push, it commits + pushes directly to `main`. Still no PR.
+1. Make the code changes per the brief.
+2. Run the verification pipeline:
+   - `npm run test` (always).
+   - `npm run corpus:drift` if corpus was touched.
+   - `npx tsc --noEmit` if `src/` was touched.
+   - Any feature-specific smoke check called out in the brief.
+3. Rename the brief `ai_tasks/PENDING_*.md → ai_tasks/DONE_*.md` and append a **"Notes from execution"** section at the bottom (what changed vs brief, pattern divergences, new files/migrations, verification results).
+4. `git add -A` — stage everything.
+5. `git commit -m "<descriptive single-sentence>"` — NOT `"deploy"`. The one-word `deploy` message is reserved for Sasha's manual sweeps of his own uncommitted edits. AI commits always carry a readable message. Never use `--no-verify` or `--no-gpg-sign`.
+6. `git push origin main` directly. This fires auto-deploy to all three surfaces. No PR. No staging. No branch.
+
+Exception — `dirty-tree mode`: only when a brief or dispatch call explicitly says "do not commit." In that case Claude Code leaves changes staged or working-tree-dirty, and Sasha sweeps with `deploy`. This is the escape hatch for work Sasha wants to eyeball before it ships.
+
+**Irreversible prod actions remain a hard stop.** If a brief implies dropping a DB column, deleting live storage files, moving money, or changing a live Stripe price id, Claude Code pauses, emits the plan, and waits for explicit approval before touching anything. Everything else ships.
 
 ---
 
