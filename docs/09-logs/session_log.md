@@ -4396,7 +4396,7 @@ The trade-off expected going in (heavy skill bloats operational responses) was r
 ### Corpus landings
 
 - **`docs/01-vision/phase_shift_technology_library.md`** — new **Domain 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)**. Generalizes Domain 3 (Metacognition Benchmark) from sighting to verified principle. 27-perspective synthesis collapsed into one line: *"You don't wait for the future. You compile it."*
-- **`docs/09-logs/transcripts/scaffold_vs_model_upgrade_verification_2026_04_18.md`** — rigor anchor with per-dimension SIB scores, per-module Evolutionary Stage scores, time data, calibration data, methodology caveats.
+- **`docs/09-logs/transcripts/scaffold_engineering_lab.md`** — canonical lab record (Feb 12 Session 1 + April 18 Session 2 + cross-session synthesis §4, incl. dual-mode signature, plateau context, masculine/feminine framing, Knoware naming, turn protocols, three public-facing ideas, Appendices A–E). Session 2 data (per-dimension SIB, per-module Evolutionary Stage, wall-clock times, calibration, methodology caveats) lives in §3.2. *Earlier file `scaffold_vs_model_upgrade_verification_2026_04_18.md` consolidated into this one (document-creep avoidance); stub redirect left at the old path.*
 
 ### Open items for next replication
 
