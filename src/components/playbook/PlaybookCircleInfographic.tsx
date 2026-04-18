@@ -102,6 +102,12 @@ const StepPreviewCard = ({
             style={{ color: step.neonHsl }}
           >
             Step {step.number} · {step.appName}
+            {step.bundleWith?.length ? (
+              <span className="opacity-70">
+                {" · Bundled with Step "}
+                {step.bundleWith.join(", ")}
+              </span>
+            ) : null}
           </span>
           <h4
             className="text-lg leading-tight"
@@ -135,13 +141,14 @@ const StepPreviewCard = ({
         &ldquo;{step.transformationalResult}&rdquo;
       </p>
 
-      {/* ═══ What's included ═══ */}
+      {/* ═══ Here's what you get (renamed from "What's included" —
+           Sasha 2026-04-17, "Вот" prefix) ═══ */}
       <div className="flex flex-col gap-2">
         <span
           className="text-[10px] uppercase tracking-[0.22em]"
           style={{ color: "rgba(231,233,229,0.45)" }}
         >
-          What's included
+          Here's what you get
         </span>
         <ul className="flex flex-col gap-1.5">
           {included.map((item, idx) => (
@@ -189,7 +196,7 @@ const StepPreviewCard = ({
           onClick={() => onOpenStep(step)}
           className={cn(
             "group w-full rounded-full px-4 py-2.5",
-            "text-[11px] font-semibold uppercase tracking-[0.18em]",
+            "text-[11px] font-semibold uppercase tracking-[0.18em] leading-snug",
             "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}
@@ -201,10 +208,10 @@ const StepPreviewCard = ({
             boxShadow: "0 12px 36px -12px rgba(132,96,234,0.5)",
           }}
         >
-          <span className="inline-flex items-center justify-center gap-2">
-            Open this step
+          <span className="inline-flex items-center justify-center gap-2 text-center">
+            {step.ctaText ?? "Open this step"}
             <ArrowRight
-              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 shrink-0"
               aria-hidden="true"
             />
           </span>
@@ -231,11 +238,15 @@ const PlaybookCircleInfographic = ({
 
   return (
     <figure
-      className={cn("relative mx-auto w-full max-w-[480px]", className)}
+      className={cn("relative mx-auto w-full max-w-[640px]", className)}
       aria-label="The seven-step journey — holonic completion circle"
     >
       <svg
-        viewBox="0 0 480 480"
+        // viewBox is expanded horizontally (~-80 → 560) and vertically
+        // (~-30 → 510) beyond the 480×480 ring so multi-line step labels
+        // sitting outside the ring have breathing room. Center stays at
+        // (240, 240) — only the canvas around it grows.
+        viewBox="-80 -30 640 540"
         className="w-full h-auto block"
         role="img"
         aria-labelledby="playbook-circle-title playbook-circle-desc"
@@ -487,29 +498,73 @@ const PlaybookCircleInfographic = ({
           );
         })}
 
-        {/* ═══ NODE LABELS (appName) ═══ */}
+        {/* ═══ NODE LABELS (always visible — multi-line, canonical titles) ═══
+            Rendered OUTSIDE the ring, placed radially by each node's angle.
+            - `labelLines` (preferred) is a pre-split 2-line version of the
+              subtitle, authored in playbookSteps.ts to avoid naive word wrap.
+            - textAnchor:    start | end | middle   (horizontal side of ring)
+            - dominantBaseline: hanging | auto | middle (vertical side)
+            Anchoring keeps each label's INNER edge at the same distance
+            from the ring regardless of how many words it has.            */}
         {PLAYBOOK_STEPS.map((step, i) => {
           const a = angleFor(i);
-          const labelRadius = RING_RADIUS + NODE_RADIUS + 22;
-          const x = CENTER + labelRadius * Math.cos(a);
-          const y = CENTER + labelRadius * Math.sin(a);
+          const cosA = Math.cos(a);
+          const sinA = Math.sin(a);
+          // Outer label radius — past the node's outer edge + breathing room
+          const labelRadius = RING_RADIUS + NODE_RADIUS + 18;
+          const x = CENTER + labelRadius * cosA;
+          const y = CENTER + labelRadius * sinA;
           const state = stateFor(step.number, unlockedThroughStep);
+          const lines = step.labelLines ?? [step.appName];
+
+          // Side of ring → anchor. Narrow band at top/bottom (|cosA| < 0.22)
+          // gets center-anchored so labels stay legible at 12 / 6 o'clock.
+          const textAnchor: "start" | "middle" | "end" =
+            Math.abs(cosA) < 0.22 ? "middle" : cosA > 0 ? "start" : "end";
+          // Vertical anchor — above ring → baseline ends at point (auto);
+          // below ring → baseline hangs; near horizontal → middle.
+          const dominantBaseline: "hanging" | "middle" | "auto" =
+            Math.abs(sinA) < 0.22 ? "middle" : sinA > 0 ? "hanging" : "auto";
+
+          const lineHeight = 13; // px at 11px font — tight but legible
+
           return (
             <text
               key={`label-${step.slug}`}
               x={x}
               y={y}
-              textAnchor="middle"
-              dominantBaseline="middle"
+              textAnchor={textAnchor}
+              dominantBaseline={dominantBaseline}
               fontFamily="'Poppins', system-ui, sans-serif"
-              fontSize={10.5}
-              letterSpacing="0.28em"
-              fontWeight={600}
-              fill="rgba(231,233,229,0.85)"
-              opacity={state === "locked" ? 0.4 : state === "active" ? 1 : 0.75}
+              fontSize={11}
+              letterSpacing="0.08em"
+              fontWeight={state === "active" ? 700 : 600}
+              fill="rgba(231,233,229,0.92)"
+              opacity={state === "locked" ? 0.45 : state === "active" ? 1 : 0.8}
               aria-hidden="true"
+              style={{
+                textShadow:
+                  "0 1px 6px rgba(10,22,40,0.9), 0 0 2px rgba(10,22,40,0.7)",
+              }}
             >
-              {step.appName}
+              {lines.map((line, idx) => (
+                <tspan
+                  key={idx}
+                  x={x}
+                  // First line sits on the anchor; subsequent lines push down
+                  // by one lineHeight. When anchored to `auto` (above ring)
+                  // we lift the stack so the LAST line lands on the anchor.
+                  dy={
+                    idx === 0
+                      ? dominantBaseline === "auto"
+                        ? -(lines.length - 1) * lineHeight
+                        : 0
+                      : lineHeight
+                  }
+                >
+                  {line}
+                </tspan>
+              ))}
             </text>
           );
         })}

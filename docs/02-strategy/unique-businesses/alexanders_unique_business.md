@@ -45,6 +45,7 @@
 - [Venture Architecture — The Sequence Emerging](#venture-architecture--the-sequence-emerging-march-12-2026)
 - [March 2026 Strategy — 10K Engine](#march-2026-strategy--10k-engine-march-3-4-2026)
 - [Value Ladder v2.0 — Three Containers](#value-ladder-v20--three-containers-march-10-2026)
+- [Value Ladder v3.0 — 7-Step Playbook Mapping](#value-ladder-v30--7-step-playbook-mapping-april-17-2026)
 - [Sales Pipeline & Forecast v4.0](#sales-pipeline--forecast-v40-march-23--april-6-2026)
 - [7 Activation Channels — Realistic Projections](#7-activation-channels--realistic-projections-march-25-26-2026)
 - [⭐ The Replication Engine — Group Build + Teacher Training](#-the-replication-engine--group-build--teacher-training-april-2-2026)
@@ -4100,6 +4101,62 @@ Unique Business Creation → Venture Studio → Planetary OS
 ```
 
 Each level runs the same pattern at its own scale. The first holon (Alexander) must prototype everything before it replicates. The vision becomes legible through demonstration, not explanation. Stop explaining the planetary OS — build 10 working unique businesses. The explanation writes itself.
+
+---
+
+## Value Ladder v3.0 — 7-Step Playbook Mapping (April 17, 2026)
+
+*Supersedes v2.0 as the CANONICAL container → UI-step mapping. v2.0 remains the authoritative "three containers" frame; v3.0 is how those containers are EXPRESSED on the landing page and inside the product.*
+
+*Source: Funnel Clarity Sprint, Day 42. Final call (2026-04-17) after the copy drop: **steps and containers are different things.** The 7 UI steps are methodological stages (psychological progression). Commercial containers are how we charge. Two bundles express that distinction: **Ignition ($555)** covers Steps 2+3; **Build ($1,111 upfront + capped rev share)** covers Steps 4+5 and runs as a cohort, not 1:1. Steps 1, 6, 7 each map to their own container (Free, TBD, Venture Studio).*
+
+### The Mapping
+
+| UI Step | Canonical Subtitle | Commercial Container | Price | Delivery | Output |
+|---|---|---|---|---|---|
+| **1** | Name Your Top Talent | Free ZoG reveal | **Free** | Async (quiz + AI reflection) | "I can name my top talent out loud." |
+| **2** | Articulate it with Precision | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 3) | 1 live session (~60 min, first half of Ignition arc) | "I can describe my business in one sentence." |
+| **3** | Enhance it with Business Structure | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 2) | 1 live session (~90 min, second half of Ignition arc) | "I know the shape of my business." |
+| **4** | Build your First Unique Product | **Build cohort** — Step 4+5 in one container | **$1,111 upfront + $2.5K capped from first $10K revenue** (bundled with Step 5) | 4-week cohort (3 live + 1 integration) | "My first product exists — I can hand it to someone." |
+| **5** | Gift it or Sell it to Beta-Test | **Build cohort** — Step 4+5 in one container | Included in Build (bundled with Step 4) | Integration call + async group support inside the cohort | "People who got it say yes to more." |
+| **6** | Laser-Focus Tactically and Go Live | TBD — likely a light "Go-Live Intensive" or embedded in the Build epilogue | TBD (spec only) | TBD | "I have my first paying client." |
+| **7** | Grow & Scale with Others, in Flow | **Venture Studio** | 10% revenue share or equity | Ongoing | "My income is organically growing without me pushing." |
+
+### The Principle: Steps ≠ Containers
+
+> **Steps are methodology. Containers are commercial packaging. They do not have to be 1:1.**
+>
+> The 7-step circle is how a founder's psyche moves: name → articulate → structure → build → test → launch → scale. That progression is universal and shouldn't be bent to fit payment logic.
+>
+> Containers are how we charge. They bundle steps that belong together in one act of commitment:
+> - **Ignition ($555)** bundles Steps 2 + 3. The Sharpen (Step 2, ~60 min) and the Structure (Step 3, ~90 min) are one arc of clarity — splitting them into separate purchases would dilute "premium at every level" and force the founder to re-decide mid-collapse.
+> - **Build ($1,111 upfront + capped rev share)** bundles Steps 4 + 5. You cannot separate "build your first product" from "test it with real humans" — they're the same movement. The container is the cohort.
+>
+> This lets the UI stay honest to the methodology (7 stages, each with its own teaching) while the commerce stays clean (fewer decisions, bigger commitments, aligned with value landing).
+
+This extends the v2.0 "Three Containers" frame rather than replacing it: **The Naming** (free ZoG) → **Ignition** (Steps 2+3, the first collapse) → **Build** (Steps 4+5, PMF cohort) → **The Venture** (Step 7, ecosystem). The 7-step UI is how each container opens from the inside.
+
+### Why Build is a Cohort (Not 1:1)
+
+From *The Replication Engine* (April 2, 2026, below): the **Witnessing Effect** — person A watching person B get their business named in real time — is the unfair advantage of group delivery. 1:1 Build caps at Alexander's time. Cohort Build scales while preserving intimacy (4-6 people, 4 weeks).
+
+Reinforced by lived reality (2026-04-17): Sasha is currently running 1:1 sessions for 6 founders, each with many Build calls. The combined load is draining the transmission source. Writing *this* playbook and running group Builds advances the founders FASTER than walking each of them through individually — the cohort is an accelerant, not a compromise.
+
+### Open Decisions
+
+1. **Step 6 container.** Light "Go-Live Intensive" standalone ($333-555) vs. final call of the Build cohort. Holding open until first Build cohort graduates.
+2. **Step 7 = Venture Studio vs. Founder Collective.** Framing still moving. Holding both options open until the first 3-5 founders graduate Build.
+3. **Revenue share mechanics on Build.** $2.5K cap from first $10K revenue is the current spec. Revisit after Cohort 1.
+
+### UI Implementation Notes
+
+- `PLAYBOOK_STEPS[1].price = "$555"` with `bundleWith: [3]`; `PLAYBOOK_STEPS[2].price = "$555"` with `bundleWith: [2]` — same Stripe checkout, displayed on two steps.
+- `PLAYBOOK_STEPS[3].price = "$1,111 + rev share"` with `bundleWith: [5]`; `PLAYBOOK_STEPS[4]` mirrors with `bundleWith: [4]`.
+- Popover eyebrow renders "Bundled with Step N" when `bundleWith` is set — communicates the shared payment without collapsing the methodology step.
+- `useJourneyProgression.stageToStep()` semantics: `offer_complete` / `recipe_complete` → Step 4 active (Ignition bundle done → Build cohort active). No intermediate "Step 3 active" state — the two halves of Ignition are atomic.
+- Each step has a `ctaText` — the outcome-voice button label ("Sharpen Your Top Talent to 9+/10 in 60 mins", "Create Your Unique Business Structure at 9+/10 Resonance in 90 mins", etc.) — rendered in the circle popover and on the StepCard primary CTA.
+- The 7-step circle infographic displays full canonical subtitles as always-visible labels (no hover required) — `labelLines` array per step for 2-line layout.
+- Popover "What's included" has been renamed "Here's what you get" (Sasha's "Вот" prefix, 2026-04-17); StepCard's "Your result" → "Here's your result" for consistency.
 
 ---
 
