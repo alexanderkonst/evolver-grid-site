@@ -368,7 +368,7 @@ const StepCard = ({ step }: StepCardProps) => {
             className="text-[10px] uppercase tracking-[0.28em]"
             style={{ color: "rgba(231,233,229,0.45)" }}
           >
-            Your result
+            Here's your result
           </div>
           <p
             className="text-lg sm:text-xl md:text-2xl leading-snug max-w-[520px]"
@@ -418,7 +418,7 @@ const StepCard = ({ step }: StepCardProps) => {
               )}
               {checkoutLoading
                 ? "Opening checkout…"
-                : "Guidance to accelerate the process"}
+                : (step.ctaText ?? "Guidance to accelerate the process")}
             </span>
           </button>
           <div

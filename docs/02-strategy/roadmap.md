@@ -4,7 +4,7 @@
 >
 > **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
 >
-> *Last updated: 2026-04-17 — Day 43. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. **Funnel Clarity Sprint opened April 16** — landing → playbook flow spec, progressive unlock, two-CTA hero, email-before-ZoG, adapted resonance rating. Q1 (step 2/3 merge) = ✅ keep separate (map to $555 / $1,111+$2.5K ladder rungs; progressive unlock enforces sequence). Q2 (lane) = ✅ keep both — Cowork for corpus/docs/planning, Claude Code via `ai_tasks/PENDING_*.md` for heavy src/+supabase/ passes. The signal now travels without the apparatus; the apparatus is now for scale.*
+> *Last updated: 2026-04-17 — Day 43. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. **Funnel Clarity Sprint opened April 16** — landing → playbook flow spec, progressive unlock, two-CTA hero, email-before-ZoG, adapted resonance rating. Q1 (step 2/3 commercial packaging) = ✅ BUNDLE (Steps 2+3 = Ignition $555; Steps 4+5 = Build $1,111 + rev share cohort). Principle: steps are methodology, containers are commerce — they don't have to be 1:1. Q2 (lane) = ✅ parallelize — Cowork for corpus/docs/planning, Claude Code for heavy src/+supabase/ passes. The signal now travels without the apparatus; the apparatus is now for scale.*
 
 ---
 
@@ -57,12 +57,12 @@
 
 > **Intent:** close the loop between the landing page (7-step circle infographic = "the store") and the playbook pages, so a visitor can land → complete Step 1 (ZoG) → land back inside the logged-in shell with Step 2 visibly unlocked → buy any paid step via Stripe. Infographic treated as the store; every locked node previews price + inclusions + CTA; progressive reveal drives progression; emotional payoff on Step-1 completion.
 >
-> **Lane split:** Cowork (this file) holds the spec and the small corpus/UI patches. Heavy `src/` + `supabase/` work goes to Codex via `ai_tasks/PENDING_*.md` briefs referencing Fxx below.
+> **Lane split:** Cowork (this file) holds the spec and the small corpus/UI patches. Multi-file `src/` + `supabase/` work goes to Claude Code (parallel lane) — Codex is no longer in rotation as of 2026-04-17.
 
 ### Decisions landed
 
-- **Q1: Step 2 + Step 3 merge? → No, keep separate.** Step 2 ("Articulate") = $555 Ignition Session = single high-intensity sitting with Sasha; Step 3 ("Build") = $1,111 + $2.5K Build container = weeks of accompanied work. Merging collapses two distinct ladder rungs + two distinct transformations into one. Progressive unlock already enforces the sequence on the UI side, so no gamification cost to keeping them discrete.
-- **Q2: Claude Code vs Cowork lane? → Keep both.** Cowork = corpus, strategy, docs, session metabolism, surgical patches. Claude Code = multi-file implementation passes, infra-heavy work. Bridge = `ai_tasks/PENDING_*.md` briefs so either lane can hand off. (Same handoff pattern already proven on `/playbook/discover` polish.)
+- **Q1: Step 2+3 and Step 4+5 commercial packaging? → Bundle both pairs.** Final call 2026-04-17 after the copy drop + reflection: **steps ≠ containers**. The 7 UI steps are methodological stages; commercial containers bundle the steps that belong together as one act of commitment. Two bundles: **Ignition ($555)** = Steps 2+3 (Sharpen ~60 min + Structure ~90 min, one Stripe checkout, "Bundled with Step N" eyebrow on the popover); **Build ($1,111 upfront + $2.5K capped rev share)** = Steps 4+5, cohort not 1:1 (Witnessing Effect + the 1:1 drain Sasha is currently carrying across 6 founders — cohort is an accelerant, not a compromise). Implementation: `PLAYBOOK_STEPS[1,2].price = "$555"` with `bundleWith: [3]`/`[2]`; `PLAYBOOK_STEPS[3,4].price = "$1,111 + rev share"` with `bundleWith: [5]`/`[4]`. `stageToStep()` maps `offer_complete`/`recipe_complete` → 4 (Ignition done → Build active). Canvas v3.0 mapping in `alexanders_unique_business.md`.
+- **Q2: Claude Code vs Cowork lane? → Parallelize.** Cowork (this chat) = real-time strategy, corpus editing, session metabolism, surgical patches. Claude Code = fire-and-forget multi-file passes (e.g. Stripe webhook + edge function + schema migration together) that run in parallel while Sasha works on copy or strategy in Cowork. Coordination via `roadmap.md` + `ai_tasks/` briefs when handoff is needed. No more Codex lane.
 
 ### Tasks
 
@@ -74,23 +74,23 @@
 | F0c | Journey SectionsPanel → progressive 2-item state | Cowork | ✅ | `SectionsPanel.tsx` — `buildJourneySections(currentStep)` slices `PLAYBOOK_STEPS` to `currentStep`. Fresh user sees Overview + Step 1 only; each completion adds the next row |
 | F0d | Remove top-center logo on `/playbook/:slug` (redundant with top-right) | Cowork | ✅ | `SiteLogo.tsx` — `/playbook` already in the hidden paths list. Verified: only Panel 3's right-side logo renders on playbook routes |
 | **LANDING (two-CTA hero)** | | | | |
-| F1 | Landing hero: add second CTA "See the Playbook" next to "Claim your gift" | Codex | 🔴 | Scrolls to the circle infographic OR routes to `/playbook/discover` — pick one, A/B later |
+| F1 | Landing hero: add second CTA "See the Playbook" next to "Claim your gift" | Claude Code | 🔴 | Scrolls to the circle infographic OR routes to `/playbook/discover` — pick one, A/B later |
 | **EMAIL-BEFORE-ZoG (progressive profile)** | | | | |
-| F2 | Capture email *before* the ZoG quiz, not after. Magic-link auth on completion; user returns signed-in with a "set password" prompt as optional follow-up | Codex | 🔴 | Current flow gates email at save time (`Auth.tsx` stashes to sessionStorage). Invert: email gate first, then quiz, then write snapshot against already-known user via anon claim OR pre-created profile |
+| F2 | Capture email *before* the ZoG quiz, not after. Magic-link auth on completion; user returns signed-in with a "set password" prompt as optional follow-up | Claude Code | 🔴 | Current flow gates email at save time (`Auth.tsx` stashes to sessionStorage). Invert: email gate first, then quiz, then write snapshot against already-known user via anon claim OR pre-created profile |
 | **STEP-1 COMPLETION PAYOFF** | | | | |
-| F3 | Congratulations screen after ZoG with "Step 2 unlocked" reveal — animation/glow on pane 2's new "Step 2" entry synced with the circle node unlocking | Codex | 🔴 | Uses existing `onboarding_stage: "zog_complete"` as trigger. Hook into Panel 2's dynamic list (F0c). Glow = ring-halo animation reused from PlaybookCircleInfographic |
+| F3 | Congratulations screen after ZoG with "Step 2 unlocked" reveal — animation/glow on pane 2's new "Step 2" entry synced with the circle node unlocking | Claude Code | 🔴 | Uses existing `onboarding_stage: "zog_complete"` as trigger. Hook into Panel 2's dynamic list (F0c). Glow = ring-halo animation reused from PlaybookCircleInfographic |
 | **RESONANCE RATING** | | | | |
-| F4 | Adapt `src/components/ui/ResonanceRating.tsx` (1-10 scale, already used in product-builder) into the ZoG completion flow. Store rating against `user_id` in a new column on `zog_snapshots` or a new table `step_resonance_ratings(user_id, step_slug, rating, created_at)` | Codex | 🟡 | Gives us a drop-off signal + a lever for future iteration. Component is battle-tested across DeepICP/Pain/TP screens |
+| F4 | Adapt `src/components/ui/ResonanceRating.tsx` (1-10 scale, already used in product-builder) into the ZoG completion flow. Store rating against `user_id` in a new column on `zog_snapshots` or a new table `step_resonance_ratings(user_id, step_slug, rating, created_at)` | Claude Code | 🟡 | Gives us a drop-off signal + a lever for future iteration. Component is battle-tested across DeepICP/Pain/TP screens |
 | **STEP-CARD + PROGRESSIVE UNLOCK** | | | | |
 | F5 | All 7 StepCards live + each has its own CTA / price / inclusions — currently only Step 1 has real copy, rest `[PLACEHOLDER — Sasha fills in]` | Sasha (copy) | 🟡 | Me to seed Stripe price IDs in `playbookSteps.ts` once Sasha creates products in Stripe dashboard |
 | F6 | All CTAs locked except Step 1 — sequential unlock driven by `onboarding_stage` | Already shipped | ✅ | `useJourneyProgression` + StepCard already gate this |
-| F7 | Stripe webhook or verify-and-advance edge function — after successful checkout, flip `onboarding_stage` to next stage so the next step unlocks without manual refresh | Codex | 🔴 | `session_id` already in return URL; need `supabase/functions/verify-step-session/index.ts` that queries Stripe Checkout Session + advances stage |
+| F7 | Stripe webhook or verify-and-advance edge function — after successful checkout, flip `onboarding_stage` to next stage so the next step unlocks without manual refresh | Claude Code | 🔴 | `session_id` already in return URL; need `supabase/functions/verify-step-session/index.ts` that queries Stripe Checkout Session + advances stage |
 | **CONTENT PANE 2 (playbook page)** | | | | |
 | F8 | Same 2-item state on `/playbook/:slug` — same progressive reveal logic as F0c, just in the playbook route's shell | Cowork | 🟡 | If F0c touches `SectionsPanel.tsx` directly this is free; verify no route-specific fork exists |
 
 ### Handoff artifacts to produce
 
-- `ai_tasks/PENDING_funnel_clarity_sprint.md` — briefs F1, F2, F3, F4, F7 with explicit file targets, acceptance criteria, and references back to this sprint section.
+- Claude Code brief for F1, F2, F3, F4, F7 — either inline conversation or a single `ai_tasks/PENDING_funnel_clarity_sprint.md` if the brief needs to be durable. File targets, acceptance criteria, and references back to this sprint section.
 - Update `CLAUDE.md` Repo landmarks with `useJourneyProgression.ts` once it's referenced by more than one component (already is — PlaybookHero + SectionsPanel).
 
 ---

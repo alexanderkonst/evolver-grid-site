@@ -14,13 +14,22 @@ export type StepState = "completed" | "active" | "next" | "locked";
 /**
  * Maps onboarding_stage → methodology step number (1–7).
  *
- * Step 1: DISCOVER (Articulate Your Top Talent — ZoG quiz)
- * Step 2: PACKAGE  (Turn Your Talent Into a Business — Ignition session)
- * Step 3: BUILD    (Create Your Product)
- * Step 4: TEST     (Validate Through Gifting)
- * Step 5: LAUNCH   (Go Live With Precision)
- * Step 6: GROW     (Scale Your Revenue)
- * Step 7: SCALE    (Join the Founder Collective)
+ * Step 1: DISCOVER (Name Your Top Talent — free ZoG reveal)
+ * Step 2: PACKAGE  (Articulate it with Precision — Ignition, bundled with 3)
+ * Step 3: BUILD    (Enhance it with Business Structure — Ignition, bundled with 2)
+ * Step 4: PRODUCT  (Build your First Unique Product — Build cohort, bundled with 5)
+ * Step 5: TEST     (Gift it or Sell it to Beta-Test — Build cohort, bundled with 4)
+ * Step 6: LAUNCH   (Laser-Focus Tactically and Go Live)
+ * Step 7: SCALE    (Grow & Scale with Others, in Flow)
+ *
+ * Container model (2026-04-17 — final): steps are methodological stages,
+ * containers are commercial packaging. Two bundles:
+ *   - Ignition ($555)            → Steps 2 + 3
+ *   - Build ($1,111 + rev share) → Steps 4 + 5 (cohort, not 1:1)
+ *
+ * Stage semantics:
+ *   - offer_complete / recipe_complete = Ignition delivered → Step 4 active
+ *   - a future `build_complete` stage would advance to Step 6
  */
 function stageToStep(stage: string): number {
   switch (stage) {
@@ -28,17 +37,17 @@ function stageToStep(stage: string): number {
     case "started":
     case "zog_started":
     case "tour_complete":
-      return 1; // On step 1 — hasn't completed ZoG yet
+      return 1; // Hasn't completed ZoG yet
     case "zog_complete":
     case "qol_started":
     case "qol_complete":
-      return 2; // ZoG done → step 1 completed, step 2 is active
+      return 2; // ZoG done → Ignition (Step 2) active
     case "offer_complete":
     case "recipe_complete":
-      return 3; // Ignition done → step 2 completed, step 3 is active
+      return 4; // Ignition bundle done → Build cohort (Step 4) active
     case "unlocked":
     case "complete":
-      return 4; // Full unlock — step 3+ active (future expansion)
+      return 4; // Full unlock — Step 4+ active (future expansion)
     default:
       return 1;
   }
