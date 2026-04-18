@@ -10,6 +10,9 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "update:mission-manifest": "node scripts/update-mission-manifest.js",
+    "corpus:drift": "node scripts/corpus-drift/index.mjs",
+    "corpus:drift:md": "node scripts/corpus-drift/index.mjs --md",
+    "holomap:update": "node scripts/holomap-update/index.mjs",
     "test": "vitest run",
     "preview": "vite preview"
   },
