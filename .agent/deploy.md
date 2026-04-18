@@ -40,7 +40,7 @@ Both Cowork Claude and Claude Code should operate with these defaults:
    - `npx tsc --noEmit` (if `src/` touched)
    - any feature-specific smoke check
    A green local pipeline is the gate, not a reviewer's approval.
-4. **Keep everything reversible.** Since there's no review, the safety net is "easy to roll back." Atomic commits, clear commit messages (Sasha's one-word `deploy` gets overridden by AI commits when the AI itself commits — use descriptive single-sentence messages then), migrations with down-scripts.
+4. **Keep everything reversible.** Since there's no review, the safety net is "easy to roll back." Atomic commits, clear commit messages. The one-word `deploy` is the **terminal-sweep** message: when Sasha runs his one-liner, it batches whatever is uncommitted (most often Cowork-Claude edits left in dirty-tree) into a single snapshot commit labelled `deploy`. When the AI *itself* commits — i.e. Claude Code in autonomous mode via the MCP bridge — it must use a descriptive single-sentence message so `git log` stays readable. Migrations include down-scripts.
 5. **Don't skip hooks.** No `--no-verify`, no `--no-gpg-sign`. If a pre-commit hook fails, fix the underlying issue.
 6. **Never touch `main` force-push, never rewrite shared history.** The deploy command uses rebase-on-local-branch then merge; it does not rewrite remote main.
 7. **Irreversible prod actions still require Sasha's nod.** Data migrations that drop columns, anything that moves money, anything that deletes files on a live surface — pause, show the plan, wait for explicit yes. Everything else: ship.
@@ -61,10 +61,10 @@ Specifically, Claude Code should:
    - Any feature-specific smoke check called out in the brief.
 3. Rename the brief `ai_tasks/PENDING_*.md → ai_tasks/DONE_*.md` and append a **"Notes from execution"** section at the bottom (what changed vs brief, pattern divergences, new files/migrations, verification results).
 4. `git add -A` — stage everything.
-5. `git commit -m "<descriptive single-sentence>"` — NOT `"deploy"`. The one-word `deploy` message is reserved for Sasha's manual sweeps of his own uncommitted edits. AI commits always carry a readable message. Never use `--no-verify` or `--no-gpg-sign`.
+5. `git commit -m "<descriptive single-sentence>"` — NOT `"deploy"`. The one-word `deploy` is the terminal-sweep message used by Sasha's one-liner when it batches uncommitted dirty-tree edits into one snapshot. When Claude Code itself commits, each commit is a discrete unit of work — it should carry a readable message so `git log` is navigable. Never use `--no-verify` or `--no-gpg-sign`.
 6. `git push origin main` directly. This fires auto-deploy to all three surfaces. No PR. No staging. No branch.
 
-Exception — `dirty-tree mode`: only when a brief or dispatch call explicitly says "do not commit." In that case Claude Code leaves changes staged or working-tree-dirty, and Sasha sweeps with `deploy`. This is the escape hatch for work Sasha wants to eyeball before it ships.
+Exception — `dirty-tree mode`: when a brief or dispatch call explicitly says "do not commit," OR when work happens inside a Cowork session (where Claude edits files and Sasha sweeps with `deploy`). In both, the working tree is left dirty and the terminal one-liner batches it into one `deploy`-labelled snapshot. Dirty-tree is the eyeball-before-ship escape hatch — and, in practice, it's how Cowork-driven work reaches main by default.
 
 **Irreversible prod actions remain a hard stop.** If a brief implies dropping a DB column, deleting live storage files, moving money, or changing a live Stripe price id, Claude Code pauses, emits the plan, and waits for explicit approval before touching anything. Everything else ships.
 
