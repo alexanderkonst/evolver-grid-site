@@ -28,16 +28,16 @@ const MethodologyLandingPage = () => {
             color: "rgba(231,233,229,0.98)",
           }}
         >
-          Name Your Top Talent.{" "}
+          Find your top talent.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage: "linear-gradient(135deg, #8460ea, #29549f)",
             }}
           >
-            Monetize it.
+            Productize it.
           </span>{" "}
-          Scale Up Alongside Other Purpose Entrepreneurs.
+          Build it, Launch it, Scale it Alongside Other Purpose Entrepreneurs.
         </h1>
       </header>
 

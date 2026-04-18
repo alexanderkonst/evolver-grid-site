@@ -62,7 +62,7 @@ When Sasha asks to update/capture/bump, I edit `roadmap.md` directly — preserv
 
 ## The navigation instrument: `docs/02-strategy/morphogenetic_holomap.md`
 
-The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural state of his life's work — 12 perspectives × 6 evolutionary stages, current stage marked `►`, timing overlays 🐢/🎯/⚡.
+The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural state of his life's work — **27 perspectives × 7 evolutionary stages** (v2.0 topology, upgraded April 18, 2026 Day 44). Three octaves (base P1–P12 + Logos P13 + Inversion P14 + second octave P15–P26 + Crystallization P27), two axes (Masculine = Structure = Cube = 4 Quadrants × Feminine = Depth = Tetrahedron = 3 Dantians — Heart / Mind / Gut), two shocks (Mi–Fa = Love between Growth and Maturation · Si–Do = Crystallization between Transmission and Propagation). Current stage marked `►`, timing overlays 🐢/🎯/⚡. Historical v1.4 (12×6) addendums preserved verbatim in the file.
 
 **Auto-update protocol** (from the holomap itself):
 

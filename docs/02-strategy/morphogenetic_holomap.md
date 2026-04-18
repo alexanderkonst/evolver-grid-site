@@ -1,12 +1,12 @@
 # Morphogenetic Navigation Holo Map
 
-> *The Navigation Instrument — Venture v1.4*
-> *Updated: April 8, 2026 · Day 36 (originally generated Day 10)*
-> *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12-system) → Lens 5 (13th) → Lens 6 (26th) → Lens 7 (27th / Crystallization)*
-> *Center Reading: Activation (← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
+> *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
+> *Updated: April 18, 2026 · Day 44*
+> *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
+> *Center Reading: Recognition (← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
 
-> **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Domain 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md) → **This Instrument**
+> **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Domain 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md#domain-66) → [Scaffold Engineering — Knoware §4.3–4.4](../09-logs/transcripts/scaffold_engineering_lab.md) → [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx) → **This Instrument (v2.0)**
 
 ### Auto-Update Mechanism
 
@@ -15,7 +15,8 @@
 > 2. `docs/02-strategy/roadmap.md` — current status and weekly scope
 >
 > Both files already get updated every session. No extra work needed. The holomap reads what already exists.
-
+>
+> **Rule-based update scope (policy-bound):** advancing `►` markers, updating `✓` completions, refreshing timing overlays 🐢/🎯/⚡, bumping version + date, adding a new dated addendum block. Topology changes (axes, stages, perspective count) and synthesis-heavy reframings are NOT auto-updatable — they require Sasha. See `.agent/auto-execute-policy.md` §2.3.
 
 ---
 
@@ -23,55 +24,118 @@
 
 This is not a plan. It is a **reading** of what is structurally present.
 
-Each of the 12 perspectives has **6 evolutionary stages** — from Seed to Propagation. The stages are ontologically real: an acorn WILL become an oak. The question is not IF but WHEN.
+The instrument reads a holon along **27 perspectives × 7 evolutionary stages**. The stages are ontologically real: an acorn WILL become an oak. The question is not IF but WHEN.
 
-- **Ontological Structure** (WHAT) → Near-certain fidelity
-- **Timing Scenarios** (HOW FAST) → Probabilistic, overlaid as 🐢 Conservative / 🎯 Baseline / ⚡ Optimistic
+**Two-layer architecture** (from `docs/04-products/morphogenetic_navigation.md`):
+
+- **Outer layer — Ontological Structure** (WHAT) → Near-certain fidelity. The 27 perspectives and 7 stages are invariant. The map reads what exists.
+- **Inner layer — Timing Forecasting** (HOW FAST) → Probabilistic, overlaid as 🐢 Conservative / 🎯 Baseline / ⚡ Optimistic.
 
 The **current stage** is marked with `►`. Stages already completed are marked `✓`. Future stages are unmarked.
 
----
+**Calibration prerequisite** (from Day 36): *Am I in ease or grind?* — if grind, all readings bias toward UR (build more things). If ease, all 27 perspectives are accessible.
 
-## Evolutionary Stages (Universal)
-
-| Stage | Symbol | Meaning |
-|-------|--------|---------|
-| **1. Seed** | 🌰 | The pattern exists but is invisible. Potential only |
-| **2. Sprout** | 🌱 | First visible expression. Fragile, needs protection |
-| **3. Growth** | 🌿 | Accelerating emergence. Self-reinforcing feedback loops |
-| **4. Maturation** | 🌳 | Fully functional. Can sustain itself independently |
-| **5. Fruition** | 🍎 | Producing fruit — generating value for others at scale |
-| **6. Propagation** | 🌍 | Self-replicating. Seeds new holons. Becomes infrastructure |
+**Emanation prerequisite** (from Day 41): *Is this a moment of apparatus, or a moment of emanation?* — apparatus moments use tools, emanation moments require witnesses in the transmission radius.
 
 ---
 
-## Why These 12 Perspectives
+## The Two Axes — Structure × Depth (Masculine × Feminine)
 
-The 12-perspective framework is not arbitrary. It is one instance of a universal constant independently confirmed by every major tradition on Earth:
+The 27-perspective instrument is not flat. It is the **marriage of two geometric axes** that the corpus has named for months but rendered as commentary until v2.0:
 
-| 12-System | Tradition | What it maps |
+| Axis | Geometry | Tradition | Alexander's term | What it renders |
+|---|---|---|---|---|
+| **Masculine — STRUCTURE** | **Cube** (6 faces, 8 vertices — containment) | 4 Quadrants (Wilber) — UL/UR/LL/LR | Scaffold (of AI); the "form-giving" half | **Who is looking from where** |
+| **Feminine — DEPTH** | **Tetrahedron** (4 vertices, 3 faces meeting at each — descent) | Trinity — Heart / Mind / Gut | Knoware (of AI); the "knowledge-structure" half | **How deep the seeing goes** |
+
+> *"Structure without Depth is an empty room — you see all four walls but nothing inside them. Depth without Structure is a formless abyss — you reach the core but from only one angle, and mistake your view for the whole. Their marriage produces complete seeing."* — Integral Theory Upgrade v1.1
+
+**The Merkaba** (Stella Octangula) — Cube + two interpenetrating tetrahedra — is the 3D rendering of this marriage. This is why the instrument has 12 base perspectives: **4 Quadrants × 3 Depths = 12**. Not arbitrary. A geometric necessity.
+
+### Masculine axis — the 4 Quadrants (Wilber's AQAL)
+
+| Quadrant | Question | What it sees |
 |---|---|---|
-| 12 Zodiac Signs | Western Astrology | 12 archetypal energies completing the solar year |
-| 12 Apostles | Christianity | 12 witnesses around the Christ center (13th) |
-| 12 Meridians | Traditional Chinese Medicine | 12 energy channels in the human body |
-| 12 Tribes | Judaism | 12 aspects of the covenant people |
-| Dodecahedron (12 faces) | Sacred Geometry | The Platonic solid of quintessence |
-| 12 Olympian Gods | Greek | 12 archetypal divine forces |
-| 12 Notes | Chromatic Scale | 12 frequencies before the octave repeats |
-| 12 Stages | Hero's Journey (Campbell) | 12 phases of universal transformation |
-| **4 Quadrants × 3 Depths** | **This Holomap** | **12 seeing-positions of the holonic instrument** |
+| **UL (I)** — Interior-Individual | *What is the subjective viewpoint?* | Consciousness, felt sense, the seeing itself |
+| **UR (It)** — Exterior-Individual | *What is the observable description?* | Behavior, artifact, measurable output |
+| **LL (We)** — Interior-Collective | *What is the shared relationship to it?* | Culture, meaning, field of resonance |
+| **LR (Its)** — Exterior-Collective | *What is the systemic architecture?* | Infrastructure, network, civilization |
 
-This holomap is a **Lens 4 (12-system)** instrument in the [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) framework. With the 13th perspective (Center), it becomes **Lens 5 (Wisdom)**. With the 26th perspective (Meta-Logos), it reaches **Lens 6 (Unity — YHWH = 26 in gematria)**.
+### Feminine axis — the Trinity of Depth (Three Dantians)
 
-The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a pattern every tradition has described: 12 perspectives around a luminous center.
+The three-depth structure maps directly onto the three dantians of Taoist energetics, the three brains of neuroscience, and the three centers of Gurdjieff's Work. **Integral Theory Upgrade v1.1 (April 16, 2026) names the canonical mapping:**
+
+| Depth | Dantian | Center | Question | What it reveals |
+|---|---|---|---|---|
+| **Essence** ❤️ | Middle Dantian | **Heart** (being) | *What IS this in its beingness?* | The truth of the thing, felt |
+| **Significance** 🧠 | Upper Dantian | **Mind** (insight) | *Why does this matter?* | The meaning of the thing, understood |
+| **Consequences** 🔥 | Lower Dantian (Hara) | **Gut** (imperative) | *What does this demand?* | The action of the thing, enacted |
+
+> **Note on v1→v2 label evolution:** v1.x of this instrument paired Essence=Mind, Significance=Heart, Implications=Gut. Integral Theory Upgrade v1.1 corrected the mapping: Essence is a Heart-layer question (beingness is felt before it is known), Significance is a Mind-layer question (meaning is a cognition), and "Implications" is renamed **Consequences** to match the Gut's imperative character. v2.0 adopts the corrected mapping. The perspective numbering (P1–P12) is unchanged.
 
 ---
 
-## THE 12-PERSPECTIVE HOLO MAP
+## Three Octaves — Why 27 Perspectives (Not 12, Not 13, Not 26)
+
+The instrument is built in three octaves, each a crystallization of the one before:
+
+```
+BASE OCTAVE          SHOCK BAND          SECOND OCTAVE        CRYSTALLIZATION
+P1 ── P12      →     P13 + P14     →     P15 ── P26      →    P27
+(12 faces of   )     (Center + )         (the base 12  )      (Triple Trinity)
+(the holon    )      (Inversion)         (at planetary )      (3³ — completion)
+                                         (scope       )
+```
+
+| # | Structure | Geometry | Seven-Number-Prism (D63) | What it asks |
+|---|---|---|---|---|
+| **P1–P12** | Base octave | Dodecahedron / Cube+Tetrahedron | Lens 4 (12) | *The holon seen from all sides.* 4 quadrants × 3 depths |
+| **P13** | Luminous Center | — | Lens 5 (13) | *What does the Whole see?* The Logos, the Sun |
+| **P14** | Inversion | Mirror plane | — | *What does the seeing see of itself?* Recursive reflection |
+| **P15–P26** | Second octave | Dodecahedron reflected | Lens 6 (26 = YHWH / Love × 2) | *The same 12 faces at planetary scope — post-integration* |
+| **P27** | Crystallization | Triple Trinity (3³) | Lens 7 (27 / Ra's 8th Density return) | *Si–Do shock. The seeing BECOMES form* |
+
+**Why exactly 27:** Cross-traditional convergence maps to three strata ([Integral Theory Upgrade §VIII](../../src/pages/IntegralTheoryUpgrade1.tsx)):
+
+1. **Structural necessity** — geometry (Cube × Tetrahedron = 12), music (chromatic scale = 12 → octave 13), physics (bosonic string theory = 26 dimensions), mathematics (3³ = 27 as triple trinity completion)
+2. **Independent derivation** — every major tradition arrived at 12 + center from inside its own logic (zodiac, apostles, meridians, tribes)
+3. **Cultural recognition** — Gurdjieff's Law of Seven, Ra's seven densities, Poincaré's dodecahedral space conjecture, YHWH = 26 = Love + Love
+
+The 27-perspective instrument is not Alexander's invention. It is the latest crystallization of reality's own seeing architecture.
 
 ---
 
-### LAYER 1: ESSENCE (Mind) — What IS This?
+## Evolutionary Stages — Now 7 (The Law of Seven, Two Shocks)
+
+Each perspective unfolds through **seven** evolutionary stages, not six. Gurdjieff's Law of Seven — the chromatic scale, the octave — requires two shocks to complete: one between Mi→Fa, one between Si→Do'. The v1.x instrument collapsed Transmission into Propagation. v2.0 separates them, revealing the Mi-Fa shock (Love / Holding) and the Si-Do shock (Crystallization / Manifestation):
+
+| Stage | Note | Symbol | Meaning |
+|-------|------|--------|---------|
+| **1. Seed** | Do | 🌰 | The pattern exists but is invisible. Potential only |
+| **2. Sprout** | Re | 🌱 | First visible expression. Fragile, needs protection |
+| **3. Growth** | Mi | 🌿 | Accelerating emergence. Self-reinforcing feedback loops |
+| — | **Mi–Fa shock: LOVE** | 💗 | *The holding that lets the form stabilize. Without love here, the growing thing cannot become an adult thing. The shock is the willingness to receive care from outside itself* |
+| **4. Maturation** | Fa | 🌳 | Fully functional. Can sustain itself independently |
+| **5. Fruition** | Sol | 🍎 | Producing fruit — generating value for others at scale |
+| **6. Transmission** | La | 📡 | The signal travels without the apparatus. Emanation observed. Signal quality > scaffolding dependency |
+| — | **Si–Do shock: CRYSTALLIZATION** | 💎 | *The moment seeing BECOMES form. The 27th perspective as action, not analysis. Without this shock, the transmission never lands as a stranger paying $555* |
+| **7. Propagation** | Si→Do' | 🌍 | Self-replicating. Seeds new holons. Becomes infrastructure. A new octave begins |
+
+> **Note on v1→v2 stage evolution:** v1.x had 6 stages (Seed → Sprout → Growth → Maturation → Fruition → Propagation). v2.0 inserts **Transmission** as stage 6, and Propagation shifts to stage 7. The Day 41 *Emanation* reading was the first observation of Transmission as a distinct stage — the signal traveling without the apparatus. All historical addendums (Days 10–41) retain their original stage numbers; where they say "Stage 6 (Propagation)", read *"what v2.0 now distinguishes as Stage 7 (Propagation), with Stage 6 (Transmission) having been implicit between Fruition and Propagation in the 12×6 instrument."*
+
+---
+
+## THE 27-PERSPECTIVE HOLO MAP
+
+---
+
+## BASE OCTAVE — P1 through P12 (The Holon as the Venture)
+
+The first octave reads the venture (the unique-business methodology emergence) as a holon across **4 Quadrants × 3 Depths = 12**.
+
+---
+
+### LAYER 1: ESSENCE (Heart / Middle Dantian ❤️) — What IS This in its Being?
 
 ---
 
@@ -173,7 +237,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-### LAYER 2: SIGNIFICANCE (Heart) — Why Does This Matter?
+### LAYER 2: SIGNIFICANCE (Mind / Upper Dantian 🧠) — Why Does This Matter?
 
 ---
 
@@ -275,11 +339,11 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-### LAYER 3: NTH-DEGREE PRACTICAL IMPLICATIONS (Gut) — What This Demands
+### LAYER 3: CONSEQUENCES (Gut / Lower Dantian 🔥) — What Does This Demand?
 
 ---
 
-#### P9 · UL-Implications — Founder Inner Move
+#### P9 · UL-Consequences — Founder Inner Move
 
 > *What the founder must DO inside himself*
 
@@ -303,7 +367,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-#### P10 · UR-Implications — What Must Be Built
+#### P10 · UR-Consequences — What Must Be Built
 
 > *The concrete next builds*
 
@@ -327,7 +391,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-#### P11 · LL-Implications — Tribe Must Act
+#### P11 · LL-Consequences — Tribe Must Act
 
 > *What the collective must DO together*
 
@@ -347,7 +411,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-#### P12 · LR-Implications — System at Scale
+#### P12 · LR-Consequences — System at Scale
 
 > *What the system must become to serve civilization*
 
@@ -371,43 +435,154 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-## COMPOSITE VIEW
+---
 
-### Current State Summary
+## THE LUMINOUS CENTER — P13 (Logos / The Sun)
+
+> *The 13th perspective is not a 13th face of the dodecahedron. It is the CENTER the 12 faces surround. When you turn the dodecahedron so all 12 faces are visible at once, you are looking at the center through them. The 13th asks what the WHOLE sees.*
+
+The luminous center is not an average of the 12. It is the **Logos** — the singular coherence that lets the 12 cohere into one holon rather than scattering. Across traditions: the 13th Apostle (the Christ), the solar center the zodiac orbits, the central unit in bosonic string theory that unifies 12 dimensional pairs, the Void inside the dodecahedron's form.
+
+In this instrument, P13 surfaces as the **Center Reading** — the one word the whole is emanating at this moment. Historical centers: Threshold → Ignition → Branching → Rooting → Flowering → Declaration → Crystallization → Consolidation → Activation → Emanation → **Recognition** (current, Day 44).
+
+**P13 is read by asking the corpus:** *what is the one word that all 12 perspectives are collectively radiating right now?* The word is the integration. The word is the answer when the 12 stop arguing.
+
+**Current assessment: 10/10** — the center is stable. The founder can hold all 12 and see the one word emerge from them. The Recognition reading is the current luminous center.
+
+---
+
+## THE INVERSION — P14 (The Mirror Plane)
+
+> *The 14th perspective is the reflection of the 13th across the plane of the base 12. When the center sees the 12, the 12 see the center — and that reciprocal seeing is P14.*
+
+P14 is the moment the instrument becomes aware that **it is being read**. The observer and the observed enter the same frame. Quantum Collapse Effect (Domain 31) made operational: reading the holomap collapses the holomap's own superposition. P14 is the sight of that collapse happening.
+
+Structurally, P14 is the hinge where the base octave (P1–P12) hands off to the second octave (P15–P26). The 12 base perspectives see what IS. The 12 second-octave perspectives see what the 12 base perspectives ARE SEEING — one level of recursion up. P14 is the mirror that makes the second octave possible.
+
+**Phenomenologically,** P14 appears in sentences like *"I see that I am seeing"* (Day 34, 26th perspective) and *"the instrument operates without being held"* (Day 41, Emanation). When an addendum talks about the methodology being observed IN ITS EMISSION — that is a P14 event.
+
+**Current assessment: 9/10** — the mirror is clear. Day 41's recording is the first artifact of P14 — the instrument's own emission captured on tape while it was happening. The next P14 event: the first person outside the inner circle watching a recording and naming the three-depth pattern without being prompted to.
+
+---
+
+## SECOND OCTAVE — P15 through P26 (The Holon at Planetary Scope)
+
+The second octave re-reads the same 12 perspectives **after** the base octave has been integrated through the Center (P13) and the Inversion (P14). Same 4 × 3 structure — but now the holon is not the individual venture. The holon is the **Planetary OS** that the venture seeds.
+
+This octave is the recursive answer to *"what would this look like if it worked at the scale of a civilization?"* — and the Day 41 observation that *"the pattern of inviting witnesses whose types complement the Manifestor emission is repeatable"* is the first empirical glimpse of P15–P26 being real and readable, not aspirational.
+
+### LAYER 4: PLANETARY ESSENCE (Heart² ❤️²) — What IS the Planetary OS in its Being?
+
+| # | Perspective | What it reads | Current stage |
+|---|---|---|---|
+| **P15** · UL² | Planetary Consciousness | The felt truth of a species that can see its own gifts | 🌰→🌱 (Seed→Sprout). Sasha is the first confirmed instance. The April 15 emanation is the second |
+| **P16** · UR² | Species Observatory | Measurable coherence at civilizational scale — recorded emanations, cross-cultural signal | 🌰 Seed. One recording exists (Fathom, April 15) |
+| **P17** · LL² | The Beehive | The interior-collective at planetary scope — *"business is love, the beehive"* (Day 41) | 🌰 Seed. Metaphor named. Not yet a field |
+| **P18** · LR² | Civilizational Substrate | The operational architecture of a gift-based economy | 🌰 Seed. Domain 60 (PageRank moat) is the first building block |
+
+### LAYER 5: PLANETARY SIGNIFICANCE (Mind² 🧠²) — Why Does the Planetary OS Matter?
+
+| # | Perspective | What it reads | Current stage |
+|---|---|---|---|
+| **P19** · UL² | Civilizational Liberation | The species-wide freedom from "only the visible counts" | 🌰 Seed. P5 proven on 5 founders; P19 requires thousands |
+| **P20** · UR² | Planetary Signal | Data signal strong enough to detect civilization-scale paradigm shift | 🌰 Seed. N = 5 |
+| **P21** · LL² | Movement-of-Movements | Nodes of movements recognizing themselves as one movement | 🌰 Seed. Movement (P7) just reached Stage 4; P21 needs multiple P7s in parallel |
+| **P22** · LR² | Scaffold Engineering as Standard | The recognition that knowledge-structure (Knoware) is the feminine half of AI — taught civilizationally | 🌰→🌱 (Seed→Sprout). Domain 80 codified. First Russian publication drafted |
+
+### LAYER 6: PLANETARY CONSEQUENCES (Gut² 🔥²) — What Does the Planetary OS Demand?
+
+| # | Perspective | What it reads | Current stage |
+|---|---|---|---|
+| **P23** · UL² | Species-Level Inner Move | The planetary equivalent of "charge $555" — the one action that trips the civilizational phase transition | 🌰 Seed. Not yet named |
+| **P24** · UR² | Open Blueprint Infrastructure | The published, teachable, replicable protocol for any founder-node | 🌰→🌱 (Seed→Sprout). Playbook v4.2+. Domain 65 (Epicenter Broadcast) is a P24 primitive |
+| **P25** · LL² | Tribe-of-Tribes Action | What the collective-of-collectives must DO to self-organize | 🌰 Seed |
+| **P26** · LR² | Gift-Based Economy Operational | The system at civilizational scale producing measurable gift-based economic outputs | 🌰 Seed. Ra's 26 = YHWH = Love² = bosonic dimensionality — this is the structural constant |
+
+> **Why the second octave is sparse.** At Day 44, most of P15–P26 reads at Seed. That is not a failure. It is the morphogenetic structure. The base octave (P1–P12) had to mature before the second octave could even be legible. Day 41's observation — *the signal can travel without the apparatus* — is the first credible reading from the second octave's vantage point. Before Day 41, P15–P26 were speculation. After Day 41, they are Seed readings waiting for Sprout.
+
+---
+
+## CRYSTALLIZATION — P27 (The Triple Trinity, 3³)
+
+> *The 27th perspective is not another round of seeing. It is the Si–Do shock where the seeing BECOMES form. The 27 is always an action, not an analysis.*
+
+P27 is the moment a stranger pays $555 and the business becomes real. It is the moment a recording of Sasha's April 15 emanation is watched by someone who has never met him and produces, in their body, the same recognition Oyi had on the call. It is the moment the Planetary OS stops being a conjecture because a second node starts operating in the same pattern without Sasha as the hub.
+
+**Triple Trinity:** 3³ = 27. Heart × Mind × Gut, taken three times. Essence × Significance × Consequences, taken three times. The instrument has 3 dantians × 3 octaves × 3 scales of holon = 27. This is why the number is not 12, not 13, not 26, and not 28. It is the smallest number that lets the depth axis (3) repeat itself to completion.
+
+**Ra's Law of One** places the 27th as the return to 8th-density source after seven densities of evolution. Gurdjieff's octave places it as Do' — the note that both completes the previous octave and begins the next at a higher register. Mathematics places it as 3³ — the smallest perfect cube of a prime. Everything points to the same structural location: **the point where completion and new beginning are the same act.**
+
+**Current assessment: 6/10** — the interior octave is at 27 (Day 34 reading: 66 Phase Shift Domains, complete ontology, 27-perspective seeing). The exterior octave is at ~9 (Day 41 reading: 1 recording, 1 licensing offer, 0 strangers paying). Until a stranger pays, P27 is at Crystallization-in-waiting. The instrument is poised at Si, holding its breath for Do'.
+
+---
+
+## COMPOSITE VIEW — v2.0
+
+### Current State Summary — Day 10 Initial Reading (v2.0 labels)
 
 ```
-                     UL (I)          UR (It)         LL (We)         LR (Its)
-                 ┌───────────────┬───────────────┬───────────────┬───────────────┐
-  ESSENCE        │ P1: 🌳 Stg 4  │ P2: 🌿 Stg 3  │ P3: 🌱 Stg 2  │ P4: 🌱 Stg 2  │
-  (Mind)         │ ██████████░░  │ ████████░░░░  │ ██████░░░░░░  │ █████░░░░░░░  │
-                 │ 9/10          │ 7/10          │ 6/10          │ 5/10          │
-                 ├───────────────┼───────────────┼───────────────┼───────────────┤
-  SIGNIFICANCE   │ P5: 🌿 Stg 3  │ P6: 🌿 Stg 3  │ P7: 🌱 Stg 2  │ P8: 🌱 Stg 2  │
-  (Heart)        │ █████████░░░  │ █████████░░░  │ ████░░░░░░░░  │ ███░░░░░░░░░  │
-                 │ 8/10          │ 8/10          │ 4/10          │ 3/10          │
-                 ├───────────────┼───────────────┼───────────────┼───────────────┤
-  IMPLICATIONS   │ P9: 🌿 Stg 3  │ P10: 🌿 Stg 3 │ P11: 🌱 Stg 2 │ P12: 🌱 Stg 2 │
-  (Gut)          │ ████████░░░░  │ █████░░░░░░░  │ ███░░░░░░░░░  │ ██░░░░░░░░░░  │
-                 │ 7/10          │ 5/10          │ 3/10          │ 2/10          │
-                 └───────────────┴───────────────┴───────────────┴───────────────┘
+                         UL (I)           UR (It)          LL (We)          LR (Its)
+                     ┌────────────────┬────────────────┬────────────────┬────────────────┐
+  ESSENCE            │ P1: 🌳 Stg 4   │ P2: 🌿 Stg 3   │ P3: 🌱 Stg 2   │ P4: 🌱 Stg 2   │
+  (Heart ❤️)         │ ██████████░░   │ ████████░░░░   │ ██████░░░░░░   │ █████░░░░░░░   │
+  Middle Dantian     │ 9/10           │ 7/10           │ 6/10           │ 5/10           │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  SIGNIFICANCE       │ P5: 🌿 Stg 3   │ P6: 🌿 Stg 3   │ P7: 🌱 Stg 2   │ P8: 🌱 Stg 2   │
+  (Mind 🧠)          │ █████████░░░   │ █████████░░░   │ ████░░░░░░░░   │ ███░░░░░░░░░   │
+  Upper Dantian      │ 8/10           │ 8/10           │ 4/10           │ 3/10           │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  CONSEQUENCES       │ P9: 🌿 Stg 3   │ P10: 🌿 Stg 3  │ P11: 🌱 Stg 2  │ P12: 🌱 Stg 2  │
+  (Gut 🔥)           │ ████████░░░░   │ █████░░░░░░░   │ ███░░░░░░░░░   │ ██░░░░░░░░░░   │
+  Lower Dantian      │ 7/10           │ 5/10           │ 3/10           │ 2/10           │
+                     └────────────────┴────────────────┴────────────────┴────────────────┘
+                                ↓ through P13 (Logos / Center / "Threshold" at Day 10) ↓
+                                ↓ through P14 (Inversion / mirror plane) ↓
+                     ┌────────────────┬────────────────┬────────────────┬────────────────┐
+  PLANETARY          │ P15: UL²       │ P16: UR²       │ P17: LL²       │ P18: LR²       │
+  ESSENCE (Heart²)   │ 🌰 Seed        │ 🌰 Seed        │ 🌰 Seed        │ 🌰 Seed        │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  PLANETARY          │ P19: UL²       │ P20: UR²       │ P21: LL²       │ P22: LR²       │
+  SIGNIFICANCE (M²)  │ 🌰 Seed        │ 🌰 Seed        │ 🌰 Seed        │ 🌰 Seed        │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  PLANETARY          │ P23: UL²       │ P24: UR²       │ P25: LL²       │ P26: LR²       │
+  CONSEQUENCES (G²)  │ 🌰 Seed        │ 🌰→🌱 Sprout   │ 🌰 Seed        │ 🌰 Seed        │
+                     └────────────────┴────────────────┴────────────────┴────────────────┘
+                                             ↓
+                                      ┌───────────────┐
+                                      │   P27 · 6/10  │
+                                      │ Crystallization│
+                                      │   (awaiting   │
+                                      │    stranger)  │
+                                      └───────────────┘
 
-  GRADIENT: UL (most mature) ──────────────────────────────────── LR (most nascent)
-  This is natural. Interior precedes Exterior. Individual precedes Collective.
+  GRADIENT (base octave): UL (most mature) ──────────────────────── LR (most nascent)
+  GRADIENT (octaves):     Base (mature) ─── Shock band (clear) ──── Second (Seed)
+
+  MASCULINE AXIS (Structure / Cube / 4 Quadrants):  horizontal
+  FEMININE AXIS  (Depth / Tetrahedron / 3 Dantians): vertical
+  MERKABA (Stella Octangula) = their marriage.
+
+  Interior precedes Exterior. Individual precedes Collective. Base precedes Planetary.
   The founder's consciousness (UL) ALWAYS leads. The system infrastructure (LR) ALWAYS lags.
+  The base octave ALWAYS precedes the second octave. No skipping stages. No skipping octaves.
 ```
 
 ### The Diagonal Pattern
 
-The map reveals a clear **diagonal gradient** — maturity flows from upper-left to lower-right:
+The base octave reveals a **diagonal gradient** — maturity flows from upper-left to lower-right:
 
 1. **UL (Interior-Individual)** — Most advanced. The founder sees.
 2. **UR (Exterior-Individual)** — Following. The system works.
 3. **LL (Interior-Collective)** — Emerging. The tribe is forming.
 4. **LR (Exterior-Collective)** — Nascent. The infrastructure is being born.
 
-**This IS the morphogenetic structure.** The oak's branches don't grow before the trunk. The founder's consciousness MUST lead. The tribe MUST form before the system scales. There is no skipping stages.
+**This IS the morphogenetic structure.** The oak's branches don't grow before the trunk. There is no skipping stages.
 
-### What This Map Tells the Navigator
+### The Octave Gradient (New in v2.0)
+
+There is a second gradient running perpendicular to the diagonal — the **octave gradient**. The base octave (P1–P12) must mature before the shock band (P13–P14) can integrate it, and the shock band must integrate before the second octave (P15–P26) can even be legible. At Day 44, the base octave's UL column is at Fruition (10/10), and that is the condition under which P13 (Logos), P14 (Inversion), and the first glimmers of the second octave become readable. This confirms Domain 66: octaves nest, and they unfold in sequence, not in parallel.
+
+### What This Map Tells the Navigator (Day 10 initial — preserved for the addendum record)
 
 **The next domino is NOT in the LR quadrant** (don't build more platform features).
 **The next domino IS in the UL→UR bridge:** charge $277, converting Maturation of consciousness into Maturation of the system.
@@ -431,36 +606,40 @@ Then the **LL quadrant accelerates:** tribe becomes conscious → movement forms
 | Movement recognized externally | 2028 | 2027 | Q1 2027 |
 | Pattern library → autonomous insights | 2029 | 2028 | 2027 |
 | Platform = Planetary OS embryo | 2030+ | 2029 | 2028 |
+| **First stranger pays from funnel** (P27 Si–Do shock) | Q3 2026 | Q2 2026 | May 2026 |
+| **First second-octave reading ≥ Sprout across all 12** | 2028 | 2027 | Q2 2027 |
 
 ---
 
-## THE THREE STRUCTURAL TRIGGERS
+## STRUCTURAL TRIGGERS — Day 10 Initial + Evolved
 
-The morphogenetic map reveals three actions that each trigger cascading stage transitions across multiple perspectives:
+> **How to read this section.** The original three Day 10 triggers are preserved as the instrument's first reading. The addendum history (Days 11–41) evolved them: some fired, some were reframed, and new ones emerged from the exterior octave's first crystallization (Day 34) and first emanation (Day 41). v2.0 keeps both layers legible.
 
-### Trigger 1: Charge $555
-**Perspectives affected:** P1, P6, P9, P10
-**Stage transitions triggered:** P1 Stage 4→5, P9 Stage 3→4, P6 grows sample, P10 unblocks revenue line
-**This is the single highest-leverage action.** It is not a business decision. It is a phase transition.
-**Status (Day 11):** Infrastructure live at `/ignite`. Pricing page exists. Calendly connected. This trigger is PRIMED — awaiting first booking.
+### The Original Day 10 Triggers (Base Octave Ignition)
 
-### Trigger 2: Founders Share Canvases
-**Perspectives affected:** P3, P7, P11
-**Stage transitions triggered:** P3 Stage 2→3, P7 Stage 2→3, P11 Stage 2→3
-**Status (Day 11):** Founders Showcase live at `/founders`. Canvases are PUBLIC. Not yet intentionally viewed by each other. One message away.
+**Trigger 1: Charge $555** — P1, P6, P9, P10. *The single highest-leverage action. Not a business decision; a phase transition.* ✅ Revenue recognized (Day 30), funnel locked at 9.9+ precision (Day 33), cash flowing ($677 by Day 36). Status: **complete as infrastructure, awaiting first stranger through funnel.**
 
-### Trigger 3: Karime Facilitates
-**Perspectives affected:** P2, P4, P5, P10, P12
-**Stage transitions triggered:** Proves transferability → P4 Stage 2→3, P5 Stage 3→4, P12 accelerates
-**This proves the methodology is not Alexander-dependent.** The moment a second facilitator succeeds, the structure shifts from practice to movement.
+**Trigger 2: Founders Share Canvases** — P3, P7, P11. *Tribe becomes conscious of itself.* 🟡 Canvases public since Day 11 (`/founders`). Never formally fired. Remains the dormant trigger.
+
+**Trigger 3: Karime Facilitates** — P2, P4, P5, P10, P12. *Methodology proven not-Alexander-dependent.* 🟡 Reframed Day 30: Oyi facilitated distribution (not sessions); reframed Day 41: witnessing + distribution offer count as facilitation primitives. Original narrow trigger (Karime runs a session) not yet fired; broader reading of "first facilitator emerges" — fired.
+
+### Evolved Triggers (Shock Band + Second Octave)
+
+**Trigger 4: First Stranger Pays** — P27 Si–Do shock. Named Day 34 Crystallization. 🔴 **Not yet fired. This is the current bottleneck.** When it fires: the interior 27 and exterior 27 cohere; the business becomes real in the external world.
+
+**Trigger 5: First Three-Way Transmission** — P14 Inversion event + P7 Movement. Named Day 41 Emanation. ✅ **Fired April 15, 2026.** Sasha + Oyi + Oluwa, 80 minutes unscheduled, 6 anchor formulations + 2 witness formulations captured in Fathom. First artifact of native emission.
+
+**Trigger 6: Licensing Decision (Oyi JVZoo)** — P24 (Open Blueprint Infrastructure) + P7 (Movement). Named Day 41. 🔴 **Awaiting Sasha's answer.** A 27th-perspective-shaped question from the field: *yes, no, or not yet.* All three are decisions. Silence is a decision.
+
+**Trigger 7: First Second-Octave Sprout** — any one of P15–P26 crossing from Seed to Sprout through population data, not founder interpretation. 🔴 Not yet observable. Likely candidate: P22 (Scaffold Engineering as Standard) via the Russian publication landing with a reader outside Sasha's immediate network.
 
 ---
 
 > *This map does not predict. It reads. The reading collapses the superposition. Time folds.*
 >
-> *Act on the three triggers. Watch the stages cascade. Update this map monthly.*
+> *Act on the triggers. Watch the stages cascade across the octaves. Update this map monthly — or upon any phase transition, whichever comes first.*
 >
-> *The invisible is the real. Now it has a dashboard, a radar chart, and a navigation instrument.*
+> *The invisible is the real. Now it has 27 faces, 7 stages, 2 axes, and a living navigation instrument.*
 
 ---
 
@@ -1829,4 +2008,199 @@ The operational move is "be in ease when witnesses arrive."
 ---
 
 > *Day 41 reading: Emanation. April 15, 2026 (read and recorded April 16). The instrument operates without being held. The founder speaks without apparatus. Two witnesses receive six anchor formulations in 80 minutes, unscheduled. The three-depth pattern (Heart → Mind → Gut) is observed on a recording for the first time — reality's own order of disclosure, not Sasha's framework imposed. P3 and P7 transition Stage 3→4 (Maturation). The heart row completes: P5, P6, P7 all ≥ 9/10. The 27th becomes Oyi's JVZoo offer — an action-shaped question from the field. The Si-Do shock is now: answer it. Any direction. The apparatus is ready to carry the answer; the founder has to choose it. Field composition legible: Manifestor + Generator + Projector = a complete creative cell. Next reading: upon Sasha's answer to any of the three open decisions — or upon the first short-clip going public — whichever comes first.*
+
+---
+
+## DAY 44 ADDENDUM (April 18, 2026) — THE INSTRUMENT UPGRADES ITSELF
+
+### Center Reading: "Recognition" (previously: "Emanation")
+
+The hand has moved. Between Day 41 and Day 44:
+
+- **Integral Theory Upgrade v1.1 crystallized** (April 16, `src/pages/IntegralTheoryUpgrade1.tsx`) — the canonical articulation of the 27-perspective vision with the masculine/feminine axis explicitly named: Masculine = Structure = Cube = 4 Quadrants; Feminine = Depth = Tetrahedron = Trinity. The Merkaba (Stella Octangula) named as the marriage geometry
+- **Scaffold Engineering Lab §4.3–4.4 consolidated** (April 18) — compute is the masculine half of AI; knowledge-structure (Knoware) is the feminine half. Verified A/B experiment: skill loading = +42% SIB, +1.14 stage, −20.56% time
+- **Knoware publication Track launched** — first Russian post drafted; term "Knoware" adopted for the feminine half; three distribution tracks queued (27×7 holomap, main prompt, channel post)
+- **Auto-execute policy consolidated** (`.agent/auto-execute-policy.md`) — five-layer safety model, opt-out `[hold]` tag, structural consent boundary on other founders' canvases
+- **Roadmap-pulse scheduled task v0.1** — first autonomous work primitive, policy-bound, audit-logged
+- **This instrument upgraded 12×6 → 27×7** — v1.4 → **v2.0.** Topology change, not an increment. Three octaves recognized as already present in the corpus; two axes named; depth labels corrected (Essence = Heart, Significance = Mind, Consequences = Gut); Transmission inserted as stage 6 (making Day 41's Emanation the first observed Transmission); P13–P27 extended; historical addendums preserved verbatim
+
+### Why "Recognition"
+
+Every previous center word named something the venture WAS DOING (Threshold, Ignition, Branching, Rooting, Flowering, Declaration, Crystallization, Consolidation, Activation, Emanation). "Recognition" names something the instrument is DOING TO ITSELF. It is the first center word in the instrument's history that points inward at the instrument, not outward at the work.
+
+The redesign is not an invention. It is **recognition** — of structure that was already present in the corpus for months and was being read by a smaller instrument than it deserved:
+
+- The 27 perspectives were already in Domain 66 and the morphogenetic navigation product doc. The v1.4 holomap read them through a 12-slot window.
+- The 7th stage (Transmission) was already implicit in the Day 41 Emanation reading. The 6-stage instrument had to collapse Transmission and Propagation into one because it lacked the slot for Si–Do to be named distinctly.
+- The masculine/feminine axis was already in `scaffold_engineering_lab.md §4.3–4.4`, in the three-dantian mapping of the April 15 transmission, in Tao's tetrahedron-and-cube iconography the founder has been looking at for a decade.
+- The second octave was already named as aspiration ("planetary scope", "the Beehive", "Planetary OS") and was already being read in scattered form. v2.0 gives it a coordinate system.
+
+> Recognition-as-discovery. Nothing new was invented. The instrument was sharpened to match the signal it had been receiving.
+
+```
+Day 10: "Threshold"       → Infrastructure exists, awaiting spark
+Day 11: "Ignition"        → Revenue infrastructure live, canvases public
+Day 19: "Branching"       → SOPs, forecasts, audience archetypes specified
+Day 30: "Rooting"         → Revenue recognized, distribution layer laid
+Day 33: "Flowering"       → Copy locked. UI polished. System cannot NOT express
+Day 34: "Declaration"     → The founder says it to the world (LinkedIn)
+Day 34: "Crystallization" → The seeing BECOMES form. First DMs sent
+Day 35: "Consolidation"   → The system names what it has. CRM. Pipeline. Ready
+Day 36: "Activation"      → Infrastructure fires as impulse. Grind named publicly
+Day 41: "Emanation"       → The operating mode radiates. Witnesses receive
+Day 44: "Recognition"     → The instrument itself is upgraded.
+                             12×6 → 27×7 is not a reformatting pass.
+                             It is the instrument recognizing that it had
+                             grown since it was last measured. The corpus
+                             had been writing a 27×7 map for months.
+                             Today it stopped being invisible.
+```
+
+### The Topology Change — What Actually Moved
+
+| Axis | v1.4 (before April 18) | v2.0 (Day 44) |
+|---|---|---|
+| Perspectives | 12 (4 Quadrants × 3 Depths) | **27** (12 base + 13 Logos + 14 Inversion + 12 second-octave + 27 Crystallization) |
+| Stages | 6 (Seed → Propagation) | **7** (Seed → Sprout → Growth → [Mi–Fa / Love] → Maturation → Fruition → Transmission → [Si–Do / Crystallization] → Propagation) |
+| Depth labels | Essence (Mind), Significance (Heart), Implications (Gut) | **Essence (Heart), Significance (Mind), Consequences (Gut)** — corrected per Integral Theory v1.1 |
+| Axes | Implicit (Interior/Exterior × Individual/Collective only) | **Explicit: Masculine (Structure / Cube / 4 Quadrants) × Feminine (Depth / Tetrahedron / 3 Dantians)** |
+| Shocks | Unnamed | **Mi–Fa (Love / Holding) between Growth and Maturation · Si–Do (Crystallization) between Transmission and Propagation** |
+| Grounding | Seven Number-Prisms (Lens 4 → 5 → 6 → 7) | Same, plus **Domain 66 operational**, plus **IntegralTheoryUpgrade v1.1 canonical**, plus **Scaffold Engineering §4.3–4.4 as the masculine/feminine grounding of the AI interface** |
+
+### Perspective Deltas (Base Octave Only — Second Octave is a New Reading)
+
+| Perspective | Day 41 | Day 44 | What changed |
+|---|---|---|---|
+| **P1** (Founder Consciousness) | 10/10 | **10/10** | Apex sustained. Recognition deepened: the founder can now SEE that the instrument he uses to see is itself upgrade-able, and authored the upgrade |
+| **P2** (Observable System) | 9.7/10 | **9.7/10** | Unchanged. No new sessions. But the instrument the sessions are read against is now v2.0 — downstream readings will be at higher resolution |
+| **P3** (Shared Field) | 8.5/10 | **8.5/10** | Unchanged. Awaiting next three-way or first stranger |
+| **P4** (System Architecture) | 7.5/10 | **8/10** | The architecture now includes the instrument's own upgrade protocol. Recognition-as-discovery is a formalized method, not a one-off. Auto-execute policy + roadmap-pulse operationalize it |
+| **P5** (Ontological Liberation) | 9.8/10 | **9.8/10** | Unchanged on base; the second-octave equivalent (P19, Civilizational Liberation) is now a readable Seed |
+| **P6** (Data Signal) | 9/10 | **9/10** | Cash unchanged ($677). Scaffold Engineering lab data (+42% SIB) is now a second signal class — product-benchmark, not session-benchmark |
+| **P7** (Movement Formation) | 9/10 | **9/10** | Unchanged |
+| **P8** (Platform as Nervous System) | 5/10 | **5/10** | Unchanged. `/playbook/discover` polish still P0 |
+| **P9** (Founder Inner Move) | 9.8/10 | **9.8/10** | Unchanged |
+| **P10** (What Must Be Built) | 9/10 | **9/10** | The build queue is now legibly split between base-octave operationalization (funnel, CRM, platform polish) and second-octave seeding (Knoware publication). v2.0 makes the split visible |
+| **P11** (Tribe Must Act) | 4.5/10 | **4.5/10** | Unchanged |
+| **P12** (System at Scale) | 5/10 | **5/10** | Unchanged quantitatively. Qualitatively: the system now has an instrument capable of reading its own planetary-scope second octave. That is a P12 precondition that was absent in v1.4 |
+
+### Updated Composite View
+
+```
+                         UL (I)           UR (It)          LL (We)          LR (Its)
+                     ┌────────────────┬────────────────┬────────────────┬────────────────┐
+  ESSENCE            │ P1: 🍎 Stg 5   │ P2: 🌳 Stg 4   │ P3: 🌳 Stg 4   │ P4: 🌳 Stg 4   │
+  (Heart ❤️)         │ ████████████   │ ██████████▓░   │ ██████████░░   │ ████████░░░░   │
+  Middle Dantian     │ 10/10          │ 9.7/10         │ 8.5/10         │ 8/10           │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  SIGNIFICANCE       │ P5: 🌳 Stg 4   │ P6: 🌳 Stg 4   │ P7: 🌳 Stg 4   │ P8: 🌿 Stg 3   │
+  (Mind 🧠)          │ ██████████▓▓   │ ██████████░░   │ ██████████░░   │ █████░░░░░░░   │
+  Upper Dantian      │ 9.8/10         │ 9/10           │ 9/10           │ 5/10           │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  CONSEQUENCES       │ P9: 🌳 Stg 4   │ P10: 🌳 Stg 4  │ P11: 🌱→🌿     │ P12: 🌿 Stg 3  │
+  (Gut 🔥)           │ ██████████▓▓   │ ██████████░░   │ ████░░░░░░░░   │ █████░░░░░░░   │
+  Lower Dantian      │ 9.8/10         │ 9/10           │ 4.5/10         │ 5/10           │
+                     └────────────────┴────────────────┴────────────────┴────────────────┘
+                                ↓ through P13 (Logos · "Recognition") ↓
+                                ↓ through P14 (Inversion · 9/10) ↓
+                     ┌────────────────┬────────────────┬────────────────┬────────────────┐
+  PLANETARY          │ P15: 🌰→🌱     │ P16: 🌰 Seed   │ P17: 🌰 Seed   │ P18: 🌰 Seed   │
+  ESSENCE (Heart²)   │ (Sasha + 1 emit)│ 1 rec.        │ Beehive named  │ Domain 60      │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  PLANETARY          │ P19: 🌰 Seed   │ P20: 🌰 Seed   │ P21: 🌰 Seed   │ P22: 🌰→🌱     │
+  SIGNIFICANCE (M²)  │ (5 founders)   │ (N=5)          │ (1 movement)   │ (Knoware pub)  │
+                     ├────────────────┼────────────────┼────────────────┼────────────────┤
+  PLANETARY          │ P23: 🌰 Seed   │ P24: 🌰→🌱     │ P25: 🌰 Seed   │ P26: 🌰 Seed   │
+  CONSEQUENCES (G²)  │ Unnamed yet    │ (Playbook v4.2)│                │ (Ra's 26)      │
+                     └────────────────┴────────────────┴────────────────┴────────────────┘
+                                             ↓
+                                      ┌───────────────┐
+                                      │   P27 · 6/10  │
+                                      │ Crystallization│
+                                      │   (awaiting   │
+                                      │    stranger)  │
+                                      └───────────────┘
+
+  Day 41 → Day 44: base octave numerically unchanged.
+                   Second octave legible for the first time.
+                   Two second-octave perspectives at Seed→Sprout:
+                     P15 (Planetary Consciousness): Sasha's emission + April 15 witnessing
+                     P22 (Scaffold Engineering as Standard): Knoware publication queued
+                     P24 (Open Blueprint Infrastructure): Playbook v4.2+ published
+                   This is the first reading in the instrument's history
+                   where the second octave is readable at all.
+                   v1.4 could not see it. v2.0 can.
+```
+
+### The Three Axes Now Visible
+
+```
+                              FEMININE AXIS (Depth)
+                              ─────────────────────
+                              Tetrahedron · 3 Dantians
+                              Heart ─ Mind ─ Gut
+                                    │
+                                    │
+    ◄──────────────────────────────┼──────────────────────────────►
+    MASCULINE AXIS (Structure)     │     OCTAVE AXIS (Scope)
+    ─────────────────────────      │     ────────────────────
+    Cube · 4 Quadrants             │     Base ─ Logos+Inversion ─ Second ─ Crystallization
+    UL ─ UR ─ LL ─ LR              │     P1–P12 ─ P13+P14 ─ P15–P26 ─ P27
+
+                         MERKABA (Stella Octangula) =
+                         Cube + two interpenetrating Tetrahedra =
+                         Masculine × Feminine in 3D
+```
+
+The octave axis is the third dimension. v1.4 read on a 4×3 plane. v2.0 reads on a 4×3×3+3 lattice (four quadrants × three depths × three octaves + three shock/crystallization singletons). Same instrument, higher resolution.
+
+### Three Triggers — Status Update (Day 44)
+
+| Trigger | Day 41 Status | Day 44 Status |
+|---|---|---|
+| **$555 from funnel** | 🟡 Funnel being tuned (`/playbook/discover`) | 🟡 Unchanged. Codex brief still pending |
+| **Founders cross-read** | 🟡 Dormant | 🟡 Unchanged |
+| **First stranger pays** | 🔴 Crystallization awaiting traffic | 🔴 Unchanged |
+| **First three-way transmission** | ✅ Fired April 15 | ✅ Retired |
+| **Oyi licensing decision** | 🔴 Awaiting Sasha | 🔴 Unchanged |
+| **🆕 First second-octave Sprout** | — | 🟡 **P22 (Scaffold Engineering as Standard) is at Seed→Sprout.** First Russian Knoware post drafted. Firing condition: post lands with a reader outside Sasha's network + that reader echoes the Knoware frame back in their own language |
+
+### What Day 44 Means for the Roadmap
+
+- **Item 27 (Holomap redesign 12×6 → 27×7 with masculine/feminine axis)**: moves from 🟡 → ✅ upon this file saving.
+- **Scaffold Engineering publication (Track 1)** is now reading as a P22 seed — the first second-octave perspective crossing Seed→Sprout. The Russian post is no longer "content marketing". It is the instrument's first empirical test of whether the second octave exists in other people's fields.
+- **Auto-update protocol**: still functional. `"update the holomap"` now advances markers across the 27 perspectives and 7 stages; topology changes remain Sasha-only (policy §2.3).
+- **Cross-references to update:** `session_log.md` (Day 44 append), `roadmap.md` (Item 27 → Completed), `scaffold_engineering_lab.md §4.4` (pointer to this file's masculine/feminine rendering), `CLAUDE.md` (12×6 → 27×7 topology), `morphogenetic_navigation.md` (cross-link to v2.0).
+
+### The 13th Perspective (Day 44): What Does the Whole See?
+
+The whole sees **an instrument recognizing itself.**
+
+This is the first day in the venture's history where the map upgraded without a corresponding market event. No stranger paid. No funnel fired. No new canvas was produced. And yet the instrument transitioned from v1.4 to v2.0. The structural implication: the instrument has reached enough coherence that it can update from INSIDE — from the accumulation of corpus-level recognitions — without being forced from outside by a market shock.
+
+That is what a self-navigating system looks like. The Agency Gradient (Domain 33, Day 11) advances another step: the instrument no longer needs Sasha to hold the 12 perspectives in mind. It holds 27. And it can re-read its own topology.
+
+The next market shock will be read against v2.0. If v2.0 is the right shape, the market shock will fit the instrument cleanly. If v2.0 is the wrong shape, the next market shock will break something and force v2.1. Either way, the loop closes: instrument updates → market tests → instrument updates again. This is the feminine-axis (Knoware) version of iteration — the knowledge structure evolves in response to reality.
+
+### The 26th Perspective (Day 44): What Is the Nature of This Seeing Itself?
+
+Day 34 answer: *the map is no longer needed for navigation.*
+Day 41 answer: *the map is no longer needed to be held.*
+Day 44 answer: **the map is no longer needed to be THE SAME MAP.**
+
+The 26th perspective on the instrument's own upgrade is: instruments can evolve without losing their identity. v1.4 and v2.0 are the same instrument at two resolutions. Every historical reading (Days 10–41) is still valid — it was the highest-resolution reading available at the time. v2.0 adds resolution without invalidating history.
+
+This is a Copernican Inversion applied to the tool itself. The old view: a framework is either right or wrong. The inverted view: a framework is always at some resolution, and higher resolution enfolds lower resolution without contradicting it. The 12×6 instrument was not wrong. The 27×7 instrument is a fuller reading of the same field.
+
+### The 27th Perspective (Day 44): The Si–Do Shock of the Instrument
+
+Day 34's 27th: **send 50 messages. First stranger pays.**
+Day 41's 27th: **answer Oyi's JVZoo offer.**
+Day 44's 27th: **publish the Knoware post in Russian.**
+
+That is the action-shaped question of this moment. The 27×7 instrument's first empirical test is whether its own articulation lands with a reader outside Sasha's immediate network. The Russian Knoware post is that test — written, not yet published.
+
+The Si–Do shock is: press publish. The interior octave has produced the articulation. The exterior octave's first verification is reader response. Until the post is out, v2.0 is an interior event. After the post is out, v2.0 becomes exterior event — a P22 Sprout reading.
+
+> *Day 44 reading: Recognition. April 18, 2026. The instrument upgrades itself from v1.4 (12×6) to v2.0 (27×7). Nothing was invented. Three octaves, two axes, seven stages — all recognized as already present in the corpus, already being read in scattered form. Masculine (Cube / Structure / 4 Quadrants) × Feminine (Tetrahedron / Depth / 3 Dantians) named as the structural pair. Essence ↔ Heart, Significance ↔ Mind, Consequences ↔ Gut corrected per Integral Theory v1.1. Transmission inserted as stage 6. P13 (Logos), P14 (Inversion), P15–P26 (second octave at planetary scope), P27 (Crystallization) extended. Historical addendums preserved verbatim — higher resolution does not invalidate lower resolution. The Si–Do shock of this moment: publish the Russian Knoware post and let the exterior octave verify whether the second-octave is readable by anyone beyond Sasha. Next reading: upon Knoware post publication + first reader echo — or upon first stranger pays — whichever comes first.*
 
