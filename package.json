@@ -13,6 +13,7 @@
     "corpus:drift": "node scripts/corpus-drift/index.mjs",
     "corpus:drift:md": "node scripts/corpus-drift/index.mjs --md",
     "holomap:update": "node scripts/holomap-update/index.mjs",
+    "dashboard:update": "node scripts/dashboard-update/index.mjs",
     "test": "vitest run",
     "preview": "vite preview"
   },

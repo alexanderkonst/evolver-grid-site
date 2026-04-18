@@ -88,6 +88,72 @@ or Claude Code with the instruction: *"update the holomap based on this briefing
 
 ## Day 41 — Wednesday, April 15, 2026 (Hackathon Day 3 with Oyi — Agent Setup) **Location**: Mexico City **Theme**: Cowork agent operating manual + design stack adoption (pre-landing-page-rebuild) **Context**: Moon cycle week 2 (manifesting). Ceremony with Santa Maria and blue lotus. Tribe download received, to be poured after agent is properly set up. ### What We Built | Item | Impact | |------|--------| | **CLAUDE.md rewritten** | Pointer-only contract + navigation map. Previous parallel `memory/` compressions deleted. `docs/` is the source of truth; CLAUDE.md points into it, does not dup
 
+## 4b. CRM Snapshot — `docs/09-logs/broadcast_tracker.md`
+
+*v3.4 · April 12, 2026 · Energy Leak Audit: 5 relationships flagged (José, Terrina, Kirill, Roso, Cori). Mind virus named: loyalty-as-leak. Wrong-room broadcasting diagnosed. Transmission-to-wheel = audience access, not strategy.*
+
+- **Total contacts:** 26
+- **Cash received:** $1377
+- **Revenue-share contracts:** $277
+- **Energy leaks flagged:** 5
+
+### Stage distribution
+
+| Stage | Count |
+|---|---|
+| Planned | 7 |
+| In Conversation | 5 |
+| Build | 4 |
+| Agreement removed | 2 |
+| Paused | 2 |
+| Naming done | 1 |
+| Session 1 Complete | 1 |
+| Active Session | 1 |
+| Responded | 1 |
+| Scheduled | 1 |
+| Planned (via Kirill) | 1 |
+
+### Segment distribution
+
+CLIENT: 6 · COLLABORATOR: 5 · TBD: 5 · ADJACENT: 4 · ECOSYSTEM: 3 · ORIGINAL: 3 · BRIDGE: 2 · PAUSED: 2 · NODE: 1 · BULLSEYE: 1 · PAST-ZOG: 1 · HIGH-VALUE: 1
+
+### Active clients
+
+| # | Name | Stage | Container | Paid | Last Contact |
+|---|---|---|---|---|---|
+| 1 | Oyi | Build | The Build (deep, mid-stage) | $566 | Apr 10 |
+| 2 | Sergey | Build | The Build (advanced) | $0 | Mar |
+| 3 | Sandra | Build | The Build (early-stage) | $0 | Mar |
+| 4 | Karime | Build | The Build (active — deep) | $111 | Apr 10 |
+| 5 | Alexa | Naming done | The Naming complete | $0 | Mar |
+| 8 | Kirill | Session 1 Complete | The Naming (full) | $0 | Apr 14 |
+
+### Energy leaks — need boundary
+
+- **José** — Free coaching. Deep resonance but hasn't committed (quiz not taken) → Quiz completion → paid session, or release
+- **Terrina** — Receiving at a level without corresponding commitment → Define container or release
+- **Kirill** — Collaborator energy, no paid container → Licensing terms or release
+- **Roso** — Partnership paused. Free demo offered, no exchange → Paid demo or clean release
+- **Cori** — Same as Roso → Paid demo or clean release
+
+### Open items (top 10)
+
+- [ ] **Sandra:** Name the revenue share. Rec: 33% с первых $10K (= ~$3,300)
+- [ ] **Taylor:** Checkpoint conversation. "У нас есть соглашение. Давай профессионально или фиксируем паузу"
+- [ ] **Tracy:** Same checkpoint conversation
+- [ ] **Sergey:** Обозначить границу Build (3 paid sessions)
+- [ ] **Oyi:** Мексика — определить формат intensive (arriving Mon Apr 14)
+- [ ] **Roso + Cori:** Предложить демо-сессию каждому
+- [ ] **Instagram Creator switch** — 30 сек
+- [ ] **Original Truth Rebels** — разослать ссылку на фаннел
+- [ ] **Patricia Reed:** Follow up on ZoG quiz result — did she paste back the JSON and get the distilled uniqueness? Score?
+- [ ] **José da Veiga:** Guide to ZoG quiz (he watched video, deeply resonated, hasn't taken quiz yet)
+
+### Upcoming events
+
+- **Wed Apr 16, 10:30am CDMX** — Livestream conversation with Oluwa Adams (Alexander, Oluwa, Oyi (audience))
+- **Mon Apr 14** — Oyi arrives Mexico (Alexander, Oyi)
+
 ## 5. Alexander's Canvas — Header Snapshot
 
 <details><summary>First 100 lines of `alexanders_unique_business.md`</summary>
@@ -203,7 +269,7 @@ Read the inputs above, then update `docs/02-strategy/morphogenetic_holomap.md` i
 
 1. **Date stamp:** update the `Updated:` line to today.
 2. **Center reading:** only shift if section 4 shows a qualitative change in what's at the center of Sasha's attention.
-3. **► markers:** for each perspective whose stage changed, move the ► and add ✓ on previously-completed stages. Be conservative — only move ► when the evidence is in section 4.
+3. **► markers:** for each perspective whose stage changed, move the ► and add ✓ on previously-completed stages. Be conservative — only move ► when the evidence is in section 4 or 4b (CRM stage transitions, new paid clients, new energy leaks resolving).
 4. **Timing overlays (🐢/🎯/⚡):** re-evaluate if section 3 (weekly scope) materially changes velocity expectations.
 5. **Output shape:** write the update as an in-place edit to the holomap file. Surface each ► move in the reply with a one-line `P_N: <from> → <to>` note so the reasoning is visible.
 
