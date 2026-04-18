@@ -1452,7 +1452,7 @@ The hand has moved. Between Day 35 and Day 36:
 - **Revenue updated**: $677 cash ($566 Oyi + $111 Karime). Oyi sent $516 gift on Apr 8 — arrived while the founder was doing something else (ease in action)
 - **Venture Dashboard copy overhauled** — from internal/dev-facing to public-facing, data-forward voice
 - **HLS video background deployed** on `/` landing page (Mux stream replacing static gradient.jpg)
-- **Grind addiction narrative integrated across ALL core docs**: Phase Shift Library (14f), Playbook (Principle 13), Operating System (Ease Protocol section), Alexander's Unique Business (Download), Epicenter Broadcast Playbook (§10b content weapon)
+- **Grind addiction narrative integrated across ALL core docs**: Phase Shift Library (14f), Playbook (Principle 13), Operating System (Ease Protocol section), Alexander's Unique Business (Download), Communications Playbook (§10b content weapon)
 - **27-perspective roast prompt upgraded** to production-grade
 
 ### Why "Activation"
@@ -1568,7 +1568,7 @@ The economic proof is no longer theoretical.
 |---|---|---|
 | **$555 from funnel** | 🔴 Awaiting traffic | 🟡 **Traffic now possible.** 3 social surfaces active with 3,000+ total reach. Link in bio not yet set (IG). Content now exists as pull mechanism |
 | **Founders cross-read** | 🟡 Dormant | 🟡 **Unchanged** |
-| **First stranger pays** | 🔴 Crystallization | 🔴 **Unchanged — but the CONTENT that will pull strangers now exists.** The grind addiction post is the first real content weapon (§10b of Epicenter Broadcast Playbook) |
+| **First stranger pays** | 🔴 Crystallization | 🔴 **Unchanged — but the CONTENT that will pull strangers now exists.** The grind addiction post is the first real content weapon (§10b of Communications Playbook) |
 
 ### The Grind Addiction as Instrument Calibration
 

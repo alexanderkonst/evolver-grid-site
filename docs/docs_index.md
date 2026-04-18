@@ -96,7 +96,7 @@ docs/
 | [godfather_playbook.md](./03-playbooks/godfather_playbook.md) | Sales conversion — Godfather Offer Probe |
 | [customer_journey_playbook.md](./03-playbooks/customer_journey_playbook.md) | Gate A → Gate B conversion flow |
 | [distribution_playbook.md](./03-playbooks/distribution_playbook.md) | Philosophy, channels, growth loops |
-| [epicenter_broadcast_playbook.md](./03-playbooks/epicenter_broadcast_playbook.md) | **Tactical execution** — Surface SOP, locked texts, click-by-click |
+| [communications_playbook.md](./03-playbooks/communications_playbook.md) | **Tactical execution** — Surface SOP, locked texts, click-by-click (formerly: epicenter_broadcast_playbook.md, renamed 2026-04-18) |
 | [pain_theory_playbook.md](./03-playbooks/pain_theory_playbook.md) | Pain-point analysis (5-Layer Slicer) |
 
 **Path A: Product Creation** (UX → UI → Software → Brand — starts in parallel from Path B step 4)

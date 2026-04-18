@@ -277,7 +277,7 @@
 - [x] Domain 14f: Grind Addiction deepening — structural misidentification of what creates results
 - [x] Holomap Day 36: "Activation" — first social posts, instrument calibration protocol
 - [x] Unique Business Playbook — Principle 13 (Grind Addiction Diagnosis)
-- [x] Epicenter Broadcast Playbook v3.2 — §10b Grind Addiction Content Weapon
+- [x] Communications Playbook v3.2 — §10b Grind Addiction Content Weapon *(was: Epicenter Broadcast Playbook; renamed 2026-04-18)*
 - [x] Morphogenetic Navigation — Grind Addiction Interference Pattern section
 - [x] Alexander's OS — Ease Protocol operating section
 - [x] Alexander's Unique Business v8.1 — Grind Addiction Download + social activation

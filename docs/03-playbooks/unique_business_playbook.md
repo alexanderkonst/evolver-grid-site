@@ -3256,8 +3256,8 @@ Given the completed Unique Business Canvas for [founder name], run the Godfather
 | **3. Marketing** | [Marketing Playbook](./marketing_playbook.md) | Positioning, copy, core belief, packaging, tuning fork | Workflow 5 |
 | **4. Sales Strategy** | [Godfather Playbook](./godfather_playbook.md) + [Customer Journey Playbook](./customer_journey_playbook.md) | Conversion flow, response handling, proof structure, pricing confidence | Godfather Probe |
 | **5. Distribution** | [Distribution Playbook](./distribution_playbook.md) | Channel strategy, cold start, virality mechanics, philosophy | Workflow 8 |
-| **6. Surface Map + Smart Selection** | [Epicenter Broadcast Playbook §1-§2](./epicenter_broadcast_playbook.md) | Inventory ALL surfaces → select by reach + resonance → rank order | §1 |
-| **7. Activation / Broadcast** | [Epicenter Broadcast Playbook §2-§6](./epicenter_broadcast_playbook.md) | Click-by-click SOP per surface, locked texts, deployment schedule | §2 |
+| **6. Surface Map + Smart Selection** | [Communications Playbook §1-§2](./communications_playbook.md) | Inventory ALL surfaces → select by reach + resonance → rank order | §1 |
+| **7. Activation / Broadcast** | [Communications Playbook §2-§6](./communications_playbook.md) | Click-by-click SOP per surface, locked texts, deployment schedule | §2 |
 | **8. Campaign Tracking + Intelligence** | [Broadcast Tracker](../09-logs/broadcast_tracker.md) | Living data, response typology, field refraction intelligence (D68) | §9 |
 
 ### Path A: Product Creation (build the thing)

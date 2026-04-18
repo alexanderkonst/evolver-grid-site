@@ -3569,7 +3569,7 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 - `/docs/02-strategy/planetary_os_assembly.md` — Integral Ecosystem Builder Network (Step 12)
 - `/docs/06-architecture/integration_layer_manifesto.md` — Known Elephant Builders + Modular Open-Source Strategy
 - `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Adjacent Market B section
-- `/docs/03-playbooks/epicenter_broadcast_playbook.md` — v3.1: Tuning Fork texts, Sub-Tribe messaging, Content Strategy
+- `/docs/03-playbooks/communications_playbook.md` — v3.1: Tuning Fork texts, Sub-Tribe messaging, Content Strategy *(was epicenter_broadcast_playbook.md at the time of this entry; renamed 2026-04-18)*
 - `/docs/09-logs/broadcast_tracker.md` — Nabadi updated, Kirill/Karen/Soren/Valentin added, Karime = ACTIVE BRIDGE, Chris/Patricia as referrals
 - `/docs/02-strategy/roadmap.md` — Weekly scope (New Moon planting), status updated to 70 domains
 
@@ -3745,7 +3745,7 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 - `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — New Download: The Grind Addiction Diagnosis (April 8, 2026) + social activation milestone + v8.1 bump
 - `/docs/02-strategy/morphogenetic_holomap.md` — Day 36 Addendum: Center Reading "Activation." Full perspective deltas, composite view, structural discovery (ZoG ≡ grind diagnosis), instrument calibration protocol, content engine analysis. Header updated to v1.4
 - `/docs/03-playbooks/unique_business_playbook.md` — Principle 13: The Grind Addiction Diagnosis (for facilitators — how to name it in Session 1, signal table, defense mechanism)
-- `/docs/03-playbooks/epicenter_broadcast_playbook.md` — v3.2: Surface inventory updated (TG/IG/FB marked ✅), post-surface checklist updated (3/9), new §10b: The Grind Addiction Content Weapon (reusable core text, deployment log, why-it-converts table)
+- `/docs/03-playbooks/communications_playbook.md` — v3.2: Surface inventory updated (TG/IG/FB marked ✅), post-surface checklist updated (3/9), new §10b: The Grind Addiction Content Weapon (reusable core text, deployment log, why-it-converts table) *(was epicenter_broadcast_playbook.md at the time of this entry; renamed 2026-04-18)*
 - `/docs/04-products/morphogenetic_navigation.md` — New section: The Grind Addiction Interference Pattern (grinding as anti-observation, Ease Protocol as instrument calibration)
 - `/docs/09-logs/broadcast_tracker.md` — v3.1: TG/IG/FB marked ✅ Apr 8. 3/9 surfaces activated
 - `/docs/09-logs/session_log.md` — This entry
