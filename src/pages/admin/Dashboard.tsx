@@ -15,6 +15,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import BackButton from "@/components/BackButton";
+// CRM snapshot is generated at build time by scripts/emit-crm-snapshot.mjs
+// (npm prebuild hook), which uses scripts/sources/broadcast-tracker.mjs —
+// the canonical parser. The UI never reimplements the parser (hard
+// constraint from the Phase-1 brief).
+import crmSnapshot from "@/generated/crm-snapshot.json";
+
+type CrmSnapshot = {
+  generated_at: string;
+  version: string | null;
+  contactsCount: number;
+  stageDistribution: Record<string, number>;
+  segmentDistribution: Record<string, number>;
+  energyLeakCount: number;
+  cashReceivedUsd: number | null;
+  revShareContractsUsd: number | null;
+  upcomingEvents: Array<{
+    date: string;
+    event: string;
+    participants?: string;
+    notes?: string;
+  }>;
+  openItemsCount: number;
+  error?: string;
+};
+
+const crm = crmSnapshot as unknown as CrmSnapshot;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -99,9 +125,17 @@ function DashboardInner() {
                 sub="by last_touch_at"
               />
               <Metric
-                label="Revenue total"
-                value={`$${agg.revenueTotal.toFixed(0)}`}
-                sub="MRR: TBD"
+                label="Revenue (CRM)"
+                value={
+                  crm.cashReceivedUsd != null
+                    ? `$${crm.cashReceivedUsd.toLocaleString()}`
+                    : "—"
+                }
+                sub={
+                  crm.revShareContractsUsd != null
+                    ? `+$${crm.revShareContractsUsd.toLocaleString()} rev share`
+                    : "cash received"
+                }
               />
               <Metric
                 label="Stale (14d+)"
@@ -145,6 +179,8 @@ function DashboardInner() {
                 items={agg.stale14d}
               />
             </div>
+
+            <CrmOverlay />
           </>
         )}
       </div>
@@ -167,6 +203,112 @@ function Metric({
         <p className="text-xs uppercase tracking-wide text-white/50">{label}</p>
         <p className="text-2xl font-semibold tabular-nums">{value}</p>
         {sub && <p className="mt-1 text-xs text-white/40">{sub}</p>}
+      </CardContent>
+    </Card>
+  );
+}
+
+function CrmOverlay() {
+  const stageRows = Object.entries(crm.stageDistribution).sort(
+    (a, b) => b[1] - a[1],
+  );
+  const segRows = Object.entries(crm.segmentDistribution).sort(
+    (a, b) => b[1] - a[1],
+  );
+  const generated = new Date(crm.generated_at).toLocaleString();
+
+  return (
+    <Card className="liquid-glass ring-1 ring-white/10">
+      <CardHeader>
+        <CardTitle className="text-base">
+          CRM snapshot{" "}
+          <span className="text-xs text-white/50">
+            {crm.version ? `(${crm.version})` : ""} · {crm.contactsCount} contacts
+          </span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3 text-sm">
+        {crm.error ? (
+          <p className="text-xs text-red-400">
+            Parser error at build time: {crm.error}. Run{" "}
+            <code>npm run crm:snapshot</code>.
+          </p>
+        ) : null}
+
+        <div className="grid gap-4 md:grid-cols-3">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-white/50">
+              Pipeline by stage
+            </p>
+            <ul className="mt-1 space-y-0.5 text-xs text-white/80">
+              {stageRows.slice(0, 8).map(([stage, n]) => (
+                <li key={stage} className="flex justify-between">
+                  <span>{stage}</span>
+                  <span className="tabular-nums text-white/60">{n}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wide text-white/50">
+              By segment
+            </p>
+            <ul className="mt-1 space-y-0.5 text-xs text-white/80">
+              {segRows.slice(0, 8).map(([seg, n]) => (
+                <li key={seg} className="flex justify-between">
+                  <span>{seg}</span>
+                  <span className="tabular-nums text-white/60">{n}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wide text-white/50">
+              Signals
+            </p>
+            <ul className="mt-1 space-y-0.5 text-xs text-white/80">
+              <li className="flex justify-between">
+                <span>Energy leaks</span>
+                <span className="tabular-nums text-white/60">
+                  {crm.energyLeakCount}
+                </span>
+              </li>
+              <li className="flex justify-between">
+                <span>Open items</span>
+                <span className="tabular-nums text-white/60">
+                  {crm.openItemsCount}
+                </span>
+              </li>
+              <li className="flex justify-between">
+                <span>Upcoming events</span>
+                <span className="tabular-nums text-white/60">
+                  {crm.upcomingEvents.length}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {crm.upcomingEvents.length > 0 && (
+          <div>
+            <p className="text-xs uppercase tracking-wide text-white/50 mb-1">
+              Upcoming
+            </p>
+            <ul className="space-y-1 text-xs text-white/80">
+              {crm.upcomingEvents.map((e, i) => (
+                <li key={i}>
+                  <span className="text-white/60">{e.date}</span> — {e.event}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <p className="text-[10px] text-white/40">
+          Snapshot from <code>docs/09-logs/broadcast_tracker.md</code>,
+          generated {generated}. Refresh with{" "}
+          <code>npm run crm:snapshot</code>.
+        </p>
       </CardContent>
     </Card>
   );
