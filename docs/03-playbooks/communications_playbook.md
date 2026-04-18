@@ -434,6 +434,25 @@ aleksandrkonstantinov.com
 Thank you for being an original 🙏
 ```
 
+### The Referral Threshold — Satisfaction ≠ Enthusiasm *(added April 18, 2026 from Kennedy 2008, Ch 34)*
+
+> *"Satisfied customers don't refer. Only enthusiastic ones do. The referral threshold is not 'did we meet expectations' but 'did we exceed them so thoroughly the customer becomes a storyteller.'"* — Kennedy, paraphrased
+
+**The calibration question before any referral ask:**
+
+| Felt state in the client | Likelihood they refer |
+|---|---|
+| **Confused / disappointed** | Zero — and 30% of affluents just leave silently rather than complain, so you won't hear about it |
+| **Satisfied — expectations met** | ~Zero — "my dry cleaner gets my clothes clean" is not a story to tell at a dinner party |
+| **Enthusiastic — expectations exceeded** | High — they now *own the story of doing business with you* and telling it signals something about them |
+| **Evangelist — life-altering, named, rare** | Unprompted, repeated, bridge-type referrals (Karime / Oyi / Sergey-level) |
+
+**Operational consequence:** before deploying any of the referral scripts below, ask — *honestly* — which row each named client sits on. Asking a "satisfied" client for a referral burns credit with them (they feel the ask as pressure because there's no story to carry it). Asking an "enthusiastic" or "evangelist" client is pure amplification.
+
+**The storytellability test:** would the client, unprompted at a cocktail party, describe their session in a way that makes a listener say *"I need that"*? If yes → ask directly. If no → the work is to raise the experience first, not to push the ask.
+
+> **Why this matters for affluent tribes specifically:** surveys show the affluent are 30% less likely to return unsatisfactory merchandise, lodge complaints, or alert the vendor to mediocrity. They just go elsewhere. You can't rely on them to tell you when the experience was merely ordinary. You have to read it in the referral statistics: if a client hasn't sent someone in 60 days post-session, the experience landed at "satisfied," not "enthusiastic."
+
 ### Message Type: Referral Language (for Karime and close allies)
 
 > **Who:** People who actively refer others to you.
@@ -467,6 +486,26 @@ shows your #1 talent in about 2 minutes.
 I'd love for you to try it and tell me what you get.
 aleksandrkonstantinov.com
 ```
+
+---
+
+### Referrals on Purpose — 3 Strategies *(added April 18, 2026 from Kennedy 2008, Ch 34)*
+
+Up to this point referrals have been organic — Fibonacci growth through the Oyi → Sergey → Karime → two new names → Karime paid line. That's the signal that the myth is true. The point of this section is to make the next layer *on-purpose* without destroying the organic quality.
+
+**Strategy 1 — Create storyworthy experiences.** Satisfaction doesn't refer. Stories refer. The question to ask after every session: *"What moment did we just create that this person will describe at a dinner party in 48 hours?"* The Arletter-level moments ("I don't want to start crying"), the Oyi 8.8-Ric-Flair moment, the Karime "radically simple, universally applicable" moment — those are the referrals. If no such moment surfaces, the session landed at "satisfied" and no referral will follow no matter how much the client liked the outcome.
+
+**Strategy 2 — Recognize and reward referrers.** The affluent — and everyone, really — resents appreciation gaps. When someone refers and hears nothing back, they *quietly stop referring*. They don't tell you. The rule from Kennedy: the more affluent the referrer, the more personal the recognition. Never a generic gift card. Three tiers:
+
+| Referral type | Acknowledgment |
+|---|---|
+| One-time warm intro | Handwritten note + thank you within 24h — even if the intro doesn't convert |
+| Someone who's referred 2-3 times | Personal gift chosen for them (a book, something specific to their work or family) + named thanks |
+| Evangelist / bridge (Karime, Oyi-level) | Revenue share, named attribution in the methodology, invitation to co-create — *they become part of the brand* |
+
+**Strategy 3 — Track, measure, manage.** Currently nobody's holding the number. Add to the broadcast_tracker.md workflow: per-contact "referrals received" and "referrals sent by this person in the last 90d." The courageous move (per Kennedy): single out below-par referrers among the closest circle and have a direct conversation — *"I notice you've loved the work but haven't sent anyone. Is that because the experience didn't land the way I think it did, or is there something I'm missing about how to make the intro easy for you?"* This is not a guilt trip — it's a diagnostic.
+
+**Implementation gate:** don't activate Strategy 3's direct conversation until Strategies 1 and 2 have run for a full sprint cycle (4 weeks minimum). Asking for referrals before the experience is storyworthy, or before acknowledgment is automatic, collapses trust instead of building it.
 
 ---
 
@@ -575,6 +614,21 @@ Would love to see what people get.
 | 5 — Hesitation | Silence / "I'll think about it" | `No rush. People usually know when they're ready.` |
 | **5b — Proof seeker** | **"Show me it works" / "Do you have examples?"** | **See §IIb below — the José Response** |
 | — | No response (7+ days) | `Hey — just checking this landed. No rush.` |
+
+> **The Follow-Up Depth Rule** *(added April 18, 2026 from Kennedy 2008, Ch 30)*
+>
+> Counter-intuitive finding from direct-response data: **the higher the value of the prospect, the MORE follow-up touches are required — not fewer.** Across mass-market audiences, response tends to be flat: 1%+1%+1% from touches 1, 2, 3. Across affluent / high-value audiences, response is tiered: the second and third touches can yield more than the first; the fourth through twelfth yield more than the first three combined. Trust takes more communication to form at that level.
+>
+> **Operational consequence for the 5-step flow above:** do not conclude "no fit" after silence on step 5. The default Sasha's been running — 1-2 DM pings then drop — is correct for someone flooded with lukewarm leads, but it's the *wrong* default for the named shortlist (Patricia, José, the Skool 180, anyone who's already resonated once). For those:
+>
+> | Touch # | Cadence | Medium |
+> |---|---|---|
+> | 1-2 | Days 0-3 | DM / initial voice note |
+> | 3-5 | Days 5-14 | Different angle each time — a story, a question, a relevant piece of content |
+> | 6-9 | Days 20-45 | Low-pressure check-ins — "thought of you when I saw X" |
+> | 10-12 | Days 60-90 | Re-raise the hand — new piece of medicine, no ask |
+>
+> The mistake is treating absence of a fast yes as a no. For this tribe, silence often means "I'm integrating, sleeping on it, waiting for the right moment." The touches keep the door open without applying pressure. The rule from Generator strategy still holds: never initiate from your side — respond to any signal, but when there's been a signal once, the door stays open until they walk through or close it.
 
 ---
 
@@ -966,3 +1020,5 @@ This is a structural misidentification of what creates results.
 *Communications Playbook v3.2 — April 8, 2026*
 *First social activation: Telegram + IG + FB. Grind Addiction content weapon added. 3/9 surfaces live. Domains 65 + 67 + 68 + 69 + 14f + 75.*
 *Renamed from `epicenter_broadcast_playbook.md` → `communications_playbook.md` on 2026-04-18. Domain 65 "Epicenter Broadcast" remains the lineage anchor.*
+
+*v3.3 — April 18, 2026. Three enrichments from Kennedy 2008: (E6) Referral Threshold — satisfaction ≠ enthusiasm, added before §3b's referral scripts as a go/no-go gate; (E7) Referrals on Purpose — three strategies (storyworthy experiences · recognize/reward · track/measure) + the tiered acknowledgment ladder; (E8) Follow-Up Depth Rule — higher-value prospects need MORE touches, not fewer, 12-touch cadence across 90 days, counters the "ping twice then drop" default.*

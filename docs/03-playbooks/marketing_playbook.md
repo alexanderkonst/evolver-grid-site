@@ -420,6 +420,23 @@ What we NEVER say (filtered by Core Belief):
 | Emotional need | |
 | Pain Point A (where they are now) | |
 
+**E-Factor checklist — affluent tribe** *(added April 18, 2026 from Kennedy 2008, Ch 10)*
+
+Beyond the universal FLGGP drivers (Fear, Love, Guilt, Greed, Pride), the affluent carry a specific emotional stack. When filling in Heart for a self-mastery-seeking, already-transformed, program-fatigued tribe, check each of these against what's actually true — not what's flattering:
+
+| E-Factor | What it sounds like in their body |
+|---|---|
+| **Insecurity** | *"I worry about going backward — losing the status or freedom I've built"* |
+| **Fear of being found a faker** | *"They'll discover I don't really know what I'm doing"* — acute for self-taught affluents |
+| **Faux-pas dread** | *"I don't want to show up wrong in front of people who've 'arrived' further than I have"* |
+| **Validation of superiority** | *"I earned this through discipline, not luck — treat me accordingly"* |
+| **Aspirational acquisition** | *"I own (or am-a-member-of) X, therefore I am"* — ownership as identity claim |
+| **Feeding emotional emptiness** | *"I have the outer markers but the inside is hollow"* |
+| **Giving self gold stars** | *"After all, what's the point of having arrived if I can't acknowledge it?"* |
+| **Recognition as a Superior Being** | *"I want access, service, and deference my level has earned"* |
+
+**How to use in this ICP:** the Source Path Builder / Self-Mastery Seeker tribe is NOT primarily driven by the bottom three rows — they've already metabolized the "emotional emptiness" diagnosis (that's Grind Addiction, already integrated). They ARE primarily driven by the top three: insecurity, faker-fear, faux-pas dread. That's why the Controlled Collapse Conversion Pattern works — it names the fear they already carry rather than selling status they're past needing.
+
 ### Step 4.2: 🧠 Mind (What They Think About It)
 
 | Question | Answer |
@@ -1002,6 +1019,18 @@ A landing page is not a sales page. It is a **controlled collapse sequence** —
 
 Use near the final CTA. This one sentence does the work of a paragraph.
 
+### The Anchoring Corollary *(added April 18, 2026 from Kennedy 2008, Ch 39)*
+
+Controlled Collapse works because it arranges the transaction so the price stops being a question. Price-anchoring is the mechanism underneath. Kennedy's rule: **avoid same-category anchors; use dissimilar ones.**
+
+| Weak anchor (same category) | Strong anchor (dissimilar category) |
+|---|---|
+| "$555 is less than most coaching sessions" | "$555 is recovered by the first paying client this session names for you" |
+| "This costs less than a Saturday seminar" | "This costs less than one week of the time you've been spending on the wrong business structure" |
+| "Compare our price to other consultants" | "One clear business on one page vs. another 12 months circling this" |
+
+Same-category anchors invite shopping around. Dissimilar anchors collapse the comparison entirely — the reader now evaluates the price against their own felt cost, not against a competitor's line item. This is the price-level implementation of the Non-optionality Frame.
+
 ### How to Apply to Any Unique Business Landing Page
 
 1. After the recognition moment (ZoG, quiz, lead magnet output), insert a **consequence block**
@@ -1186,6 +1215,67 @@ The content CREATES the felt need for the session. Not by withholding — by GIV
 ---
 
 
+## Direct-Response Pricing Lineage (Dan Kennedy, 2008) — April 18, 2026
+
+> *Three pricing mechanics absorbed from Kennedy's `No B.S. Marketing to the Affluent`. These enrich (don't replace) the three pillars — Core Belief · Packaging · Frictionless Purchase. They name the economics under Sasha's already-premium ladder.*
+
+### The Transaction Size Principle (Ch 39)
+
+**Core math:** it takes roughly the same effort — often *less* — to sell $10,000 to 100 people than $1,000 to 1,000 people. Fewer marketers are hunting the $10K buyer; trust-building is the same conversation; the $10K buyer rarely hesitates on price once the fit is clear. Discounting almost never buys volume with high-intent prospects.
+
+| Revenue target | At $1,000 / unit | At $10,000 / unit | At $100,000 / unit |
+|---|---|---|---|
+| $1M | 1,000 sales | 100 sales | 10 sales |
+| $100K | 100 sales | 10 sales | 1 sale |
+| $10K | 10 sales | 1 sale | — |
+
+**The corollary (the real unlock):** higher transaction size funds better acquisition. A business earning $5K per sale can afford to spend $500-$1,000 acquiring each customer (shock-and-awe package, in-person coffee, a book mailed via FedEx). A business earning $50 per sale cannot. **You don't "compete on price" — you *outspend* on acquisition.** That's the actual moat.
+
+**Applied to the current value ladder:**
+
+| Rung | Unit price | Acquisition room |
+|---|---|---|
+| ZoG (free) | $0 | Signal-first content only |
+| Ignition (Steps 2+3) | $555 | ~$100-150 per sale — warm DM + tuning-fork post is enough |
+| Build cohort (Steps 4+5) | $1,111 + rev share | $200-500 per seat — can fund a mailed "shock-and-awe" for each cohort invite |
+| Future "Founder Month" / 1:1 | $10K+ | $1-2K per sale — white-glove everything, no expense spared |
+
+**The rule:** don't spend up before the rung earns it. Don't under-spend once the rung does.
+
+### The "Reassuringly Expensive" Principle (Ch 42)
+
+With an affluent, program-fatigued audience, **a low price creates suspicion, not attraction.** Kennedy's ad headline: *"Reassuringly Expensive."* The logic: at this point in their journey the buyer has seen too many $49 courses that went nowhere. A $555 price tag signals "this is not the $49 course that did nothing last time." A $197 price tag signals "this is that course again."
+
+| ❌ Low-price signal | ✅ Reassuringly-expensive signal |
+|---|---|
+| "Only $97 to get started" | "$555 — the price of committing to finish this once" |
+| "Special launch price: $199" | "This is the last package you buy before you build from who you are" |
+| Discounts, "today only," coupons | Stable price, no haggling, qualifying language instead |
+
+**Do not underprice a premium methodology to seem approachable.** Program-fatigued buyers read approachability as "more of the same cheap thing." Price is part of the positioning — inseparable from Core Belief.
+
+### The Slack Adjuster (Ch 41)
+
+> *"An occasional very-high-priced item that has so much margin and delivers such a big pile of profit that it makes up for large numbers of low-priced items."* — Kennedy, paraphrasing the used-car industry
+
+**Mechanism:** the ladder's top rung isn't just a revenue line — it's an anchor that re-priced everything below it. A $25K "Founder Month at the villa" sold once a quarter does three things: (1) makes the $1,111 Build feel obviously reasonable, (2) generates press/bragging rights (see Price-as-Publicity in `guerrilla_marketing_hacks.md`), (3) funds the runway to serve everyone else better.
+
+**Anatomy of a Slack Adjuster rung:**
+
+| Attribute | What it looks like |
+|---|---|
+| Frequency | Rare (1-4/year), not inventory |
+| Margin | ≥80% — nearly pure slack |
+| Delivery | White-glove, non-scalable, founder-led |
+| Positioning | Not sold — *offered* to a qualified shortlist |
+| Function | Anchor + PR + runway — not volume |
+
+**When to activate:** after the tier below is running reliably. Activating the slack adjuster before the $1,111 Build cohort has proven out is out-of-sequence — nothing to anchor against yet. When the Build has run 2-3 cohorts cleanly, the slack adjuster earns its place at the top.
+
+**Distinction from the normal ladder:** every rung on the regular ladder is *meant* to be climbed by most buyers. The slack adjuster is not. It exists to be *seen*, talked about, and taken by the rare buyer for whom $25K is the right shape of commitment. This distinction matters — if the top rung becomes a volume rung, you've lost the anchoring effect.
+
+---
+
 # Part IV: The Recursive Insight
 
 **Marketing is a product.**
@@ -1214,4 +1304,6 @@ This is **self-organizing infrastructure for mission manifestation**.
 *Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*
 *Updated: April 2, 2026 — Controlled Collapse Conversion Pattern (consequence block, micro-commitment, non-optionality, identity-shift CTA, pressure line). Curiosity Gap pattern established. Situational Identity Principle (transcend labels — use lived-experience language). Decision Language CTAs (protagonist > observer positioning).*
 *Updated: April 7, 2026 — Dual-Frequency Distribution Principle (content = signal-first, funnel = pain-first). Playbook-as-Lead-Magnet Pattern (Open Blueprint Paradox operationalized as Infographic Episodes).*
+
+*Updated: April 18, 2026 — Direct-Response Pricing Lineage absorbed from Kennedy 2008. Five enrichments: (E1) Affluent E-Factor checklist added to Phase 4 ICP Heart quadrant — surfaces the specific stack of insecurity/faker-fear/faux-pas-dread that drives the Self-Mastery Seeker tribe; (E4) Anchoring Corollary appended to Controlled Collapse — dissimilar-category anchors collapse comparison vs. same-category anchors that invite shopping; (E2) Transaction Size Principle — the math + the real unlock that higher transaction size funds better acquisition (you outspend, you don't out-discount); (E3) Slack Adjuster — rare ultra-premium rung as anchor + PR + runway, not a volume product; (E5) Reassuringly Expensive — low price breeds suspicion with program-fatigued buyers; price is positioning. Skipped from the book: optimism-selling (conflicts with pain-first funnel lane), "affluent-as-morally-superior" framing (conflicts with Core Belief), compiled mailing lists (wrong channel/era), celebrity endorsements (lineage-based trust is the better version here).*
 
