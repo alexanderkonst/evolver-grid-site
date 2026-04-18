@@ -4117,10 +4117,10 @@ Each level runs the same pattern at its own scale. The first holon (Alexander) m
 | **1** | Name Your Top Talent | Free ZoG reveal | **Free** | Async (quiz + AI reflection) | "I can name my top talent out loud." |
 | **2** | Articulate it with Precision | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 3) | 1 live session (~60 min, first half of Ignition arc) | "I can describe my business in one sentence." |
 | **3** | Enhance it with Business Structure | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 2) | 1 live session (~90 min, second half of Ignition arc) | "I know the shape of my business." |
-| **4** | Build your First Unique Product | **Build cohort** — Step 4+5 in one container | **$1,111 upfront + $2.5K capped from first $10K revenue** (bundled with Step 5) | 4-week cohort (3 live + 1 integration) | "My first product exists — I can hand it to someone." |
-| **5** | Gift it or Sell it to Beta-Test | **Build cohort** — Step 4+5 in one container | Included in Build (bundled with Step 4) | Integration call + async group support inside the cohort | "People who got it say yes to more." |
-| **6** | Laser-Focus Tactically and Go Live | TBD — likely a light "Go-Live Intensive" or embedded in the Build epilogue | TBD (spec only) | TBD | "I have my first paying client." |
-| **7** | Grow & Scale with Others, in Flow | **Venture Studio** | 10% revenue share or equity | Ongoing | "My income is organically growing without me pushing." |
+| **4** | Build your First Unique Product | **Build cohort** — Step 4+5 in one container | **$1,111 + rev share** (bundled with Step 5; full terms: $1,111 upfront + $2.5K capped from first $10K revenue) | 4-week cohort (3 live + 1 integration) | "My first product exists — I can hand it to someone." |
+| **5** | Gift it or Sell It To Beta-Test That Everything Works | **Build cohort** — Step 4+5 in one container | **$1,111 + rev share** (bundled with Step 4) | Integration call + async group support inside the cohort | "People who got it say yes to more." |
+| **6** | Laser-Focus Tactically and Go Live | TBD — likely a light "Go-Live Intensive" or embedded in the Build epilogue | TBD | TBD | "I have my first paying client." |
+| **7** | Grow & Scale with Others, in Flow | **Venture Studio** | 10% rev share or equity | Ongoing | "My income is organically growing without me pushing." |
 
 ### The Principle: Steps ≠ Containers
 

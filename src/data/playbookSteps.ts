@@ -366,6 +366,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     neonHsl: "hsl(290, 60%, 60%)",
     neonRgb: "180, 100, 220",
     labelLines: ["Grow & Scale", "with Others, in Flow"],
+    price: "10% rev share or equity",
     substeps: [
       {
         number: 1,
