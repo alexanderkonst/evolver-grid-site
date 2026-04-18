@@ -1,6 +1,7 @@
-# Epicenter Broadcast Playbook (Domain 65)
+# Communications Playbook
 
 > *The founder's execution engine for coherent radiation.*
+> *(Formerly: "Epicenter Broadcast Playbook" — renamed 2026-04-18. Lineage preserved: Domain 65 · Epicenter Broadcast.)*
 > *April 8, 2026 — v3.2: First social activation (Telegram + IG + FB) + Grind Addiction content weapon*
 > *© 2026 Alexander Konstantinov · For personal use*
 > *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence) + Domain 69 (Crystallization Antenna) + Domain 14f (Grind Addiction) + Domain 75 (Ease Protocol)*
@@ -962,5 +963,6 @@ This is a structural misidentification of what creates results.
 
 ---
 
-*Epicenter Broadcast Playbook v3.2 — April 8, 2026*
+*Communications Playbook v3.2 — April 8, 2026*
 *First social activation: Telegram + IG + FB. Grind Addiction content weapon added. 3/9 surfaces live. Domains 65 + 67 + 68 + 69 + 14f + 75.*
+*Renamed from `epicenter_broadcast_playbook.md` → `communications_playbook.md` on 2026-04-18. Domain 65 "Epicenter Broadcast" remains the lineage anchor.*
