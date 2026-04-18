@@ -1,6 +1,6 @@
 # Morphogenetic Holomap v1.4 → v2.0 — Visual Surface Upgrade
 
-## Status: PENDING
+## Status: DONE
 
 ## Priority: P1 — corpus is v2.0, visual surface is still v1.4
 
@@ -90,3 +90,63 @@ Sasha's standing principle (`.agent/scaffold-engineering`): the knowledge-struct
 ---
 
 *Brief generated 2026-04-18 (Day 44) by the Cowork session that shipped the corpus-side v1.4 → v2.0 upgrade. Cowork lane: docs/. Claude Code lane: src/. This brief is the bridge.*
+
+---
+
+## Notes from execution
+
+### What changed vs the brief
+
+All requirements fulfilled. The component was completely rewritten from ~1044 lines (v1.4) to ~1390 lines (v2.0) with the following structural changes:
+
+**Data model:**
+- `PerspectiveData.layer` type changed from `"Essence" | "Significance" | "Implications"` → `"Essence" | "Significance" | "Consequences"`
+- `PerspectiveData.shortId` renamed from `"*-Imp"` → `"*-Con"` throughout
+- Added `PerspectiveData.octave: "base" | "logos" | "inversion" | "second" | "crystallization"`
+- Added `PerspectiveData.dantian: "heart" | "mind" | "gut"`
+- `Stage` interface gained `note` field for musical note (Do/Re/Mi/Fa/Sol/La/Si→Do')
+- Added 15 new perspectives (P13–P27) with canonical data from the corpus
+
+**Stages:**
+- `STAGE_NAMES` expanded from 6 to 7: `["Seed", "Sprout", "Growth", "Maturation", "Fruition", "Transmission", "Propagation"]`
+- `STAGE_ICONS` updated: `["🌰", "🌱", "🌿", "🌳", "🍎", "📡", "🌍"]`
+- Added `STAGE_NOTES`: `["Do", "Re", "Mi", "Fa", "Sol", "La", "Si→Do'"]`
+- Added shock band constants: `MI_FA_SHOCK` (💗 LOVE between stage 3→4) and `SI_DO_SHOCK` (💎 CRYSTALLIZATION between stage 6→7)
+
+**Rendering:**
+- Added Merkaba glyph (✡) in header with explanation of Masculine × Feminine axes
+- Added 7-stage legend with visible shock indicators
+- Added Dantian filter (Feminine axis control) — 4-way selector: All / Heart / Mind / Gut
+- Shock indicators (💗 and 💎) now appear inline in perspective stage progress bars
+- P13 (Luminous Center) gets its own prominent section with center reading history
+- P14 (Inversion) gets its own section
+- Second octave (P15–P26) rendered as collapsible section (default collapsed since mostly Seed)
+- P27 (Crystallization) gets its own highlighted section with Si–Do shock theming
+- 7 Structural Triggers (expanded from 3) now display with stage labels
+
+**Copy updates:**
+- Header now reads "The Holo Map v2.0" with "27 perspectives × 7 stages × 2 axes (Masculine/Feminine) × 2 shocks (Mi-Fa / Si-Do)"
+- Day 44 Reading shown as "Recognition" (updated from Emanation)
+- All "Implications" strings replaced with "Consequences"
+- Layer labels include Dantian mapping: "ESSENCE (❤️ Heart / Middle Dantian)", etc.
+- Footer updated to "v2.0 · 27×7 Topology · April 18, 2026 (Day 44)"
+
+### Pattern divergences
+
+None. All changes followed the corpus as the authoritative source.
+
+### New files/migrations
+
+No new files. Single file rewrite: `src/pages/MorphogeneticHolomap.tsx`
+
+### Verification commands and results
+
+```
+$ npx tsc --noEmit
+(no output — clean compile)
+
+$ npm run test
+ Test Files  22 passed (22)
+      Tests  146 passed (146)
+   Duration  1.17s
+```
