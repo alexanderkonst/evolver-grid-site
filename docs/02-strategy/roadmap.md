@@ -66,6 +66,9 @@
 | W13 | **Long-form essay v1 — April 15 transmission** | Content | 🔴 | Outlined in `docs/08-content/april15_repurpose_plan.md`. Draft to be written. Freeze for 90-day Oyi window |
 | W14 | **Shorts bundle — 7 clips with timecodes** | Content | 🟡 | Queue exists in repurpose plan. Production pending. First 2-3 go public after v1 essay lands |
 | W15 | **Decision 3 — three-way call cadence** | Strategy | 🟡 | Still open. Recommended default: seeded spontaneity (2/month, 48h-out scheduling). Sasha to answer |
+| W16 | **Hero copy swap on `/`** — new line: *"Find your top talent. Productize it. Build it, Launch it, Scale it Alongside Other Purpose Entrepreneurs."* | Funnel | ✅ | Shipped 2026-04-18 in Cowork lane. `MethodologyLandingPage.tsx` h1 swapped; gradient span moved from "Monetize it." to "Productize it." Names the *holonic* offer in plain English and mirrors the value-ladder rungs. Git/deploy = Sasha's surface |
+| W17 | **Hero + playbook-circle rework on `/`** — above-fold guarantee, 7-step legibility, ME-inactive at fresh state | Funnel | 🔴 high/high, **med compute** | Composite. Tracked in Funnel Clarity Sprint as F1b. Five sub-items (see sprint section). One Claude Code brief covers all five |
+| W18 | **Profile Settings → Settings consolidation** | UX / Platform | 🟡 med/low, low compute | Profile Settings currently lives in ME as a separate surface. Should be a section *inside* the platform's main Settings. Remove the duplicate ME entry; redirect deep-links. Tracked in Active Backlog as Item 28 |
 
 ---
 
@@ -90,7 +93,9 @@
 | F0c | Journey SectionsPanel → progressive 2-item state | Cowork | ✅ | `SectionsPanel.tsx` — `buildJourneySections(currentStep)` slices `PLAYBOOK_STEPS` to `currentStep`. Fresh user sees Overview + Step 1 only; each completion adds the next row |
 | F0d | Remove top-center logo on `/playbook/:slug` (redundant with top-right) | Cowork | ✅ | `SiteLogo.tsx` — `/playbook` already in the hidden paths list. Verified: only Panel 3's right-side logo renders on playbook routes |
 | **LANDING (two-CTA hero)** | | | | |
+| F1a | **Hero copy swap on `/`** — new line: *"Find your top talent. Productize it. Build it, Launch it, Scale it Alongside Other Purpose Entrepreneurs."* | Cowork | ✅ | Shipped 2026-04-18. `src/pages/MethodologyLandingPage.tsx` h1 swapped in place; gradient span = "Productize it." The ≠-containers/steps principle reads cleanly across the three clauses: Step 1 (talent) → Steps 2+3 (productize) → Steps 4+5 (build/launch/scale alongside). Cross-ref: W16 |
 | F1 | Landing hero: add second CTA "See the Playbook" next to "Claim your gift" | Claude Code | 🔴 | Scrolls to the circle infographic OR routes to `/playbook/discover` — pick one, A/B later |
+| F1b | **Hero + playbook-circle rework on `/`** — above-fold guarantee, 7-step legibility, ME-inactive at fresh state | Claude Code | 🔴 high/high, **med compute** | Cross-ref: W17. Composite of five sub-items, all in the same `/` route. **Acceptance:** `Claim your gift` button visible above the fold on standard desktop (1440×900); all 7 step labels readable at a glance; ME rail item shown as inactive for users with `onboarding_stage = null`. **Sub-items:** (a) **Left-rail ME state** — ME should be **inactive** at journey start (currently active by default). Trigger active state only after `zog_complete` or first ME-touching action. File: `SpacesRail.tsx` + wherever `unlockStatus.me` is computed. (b) **Playbook-circle infographic — show all 7 nodes as visible/active on `/`** (no lock UI on the landing surface). The lock state stays inside the platform (`/game/*` shell) where it does the unlock work. File: `PlaybookCircleInfographic.tsx` — accept a `mode: "landing" \| "platform"` prop; landing mode renders all nodes unlocked-styled. (c) **Step labels readable + iconified, positioned in the gaps between nodes** (not crammed inside the circle). Each node gets its icon + 1-2 word label outside the ring; current cramped placement (e.g. "aser-Focus and Go Live" cut off, "Enhance with Business Struct" cut off) must be fixed. (d) **Hero copy widened** — currently text wraps in a narrow column ("Name Your Top / Talent. Monetize it. / Scale Up Alongside / Other Purpose / Entrepreneurs." = 5 lines). Widen the hero text container so it collapses to ~3 lines. Frees vertical space. (e) **Hero block shifted slightly upward** — small upward translation (e.g. reduce top padding by ~40-60px) so the freed vertical space puts `Claim your gift` above the fold |
 | **EMAIL-BEFORE-ZoG (progressive profile)** | | | | |
 | F2 | Capture email *before* the ZoG quiz, not after. Magic-link auth on completion; user returns signed-in with a "set password" prompt as optional follow-up | Claude Code | 🔴 | Current flow gates email at save time (`Auth.tsx` stashes to sessionStorage). Invert: email gate first, then quiz, then write snapshot against already-known user via anon claim OR pre-created profile |
 | **STEP-1 COMPLETION PAYOFF** | | | | |
@@ -193,9 +198,9 @@
 | **TRIGGERS** |
 | 25 | The Originals Circle — activate after 5 Ignition Sessions | Community | ⏸️ |
 | 26 | The Build: Group Container — activate after 4 Ignition graduates | Product | ⏸️ |
-| **CORPUS / INSTRUMENT** |
-| 27 | **Holomap redesign 12×6 → 27×7 with masculine/feminine axis** — structural upgrade to the Morphogenetic Navigation Holo Map to align with Domain 66 (27th Perspective), Domain 63 (Seven Number-Prisms), and the April 18 scaffold-engineering masculine/feminine framing. Brief at `ai_tasks/NEW_CHAT_27x7_holomap_redesign.md`. Do in a fresh chat with full context | Corpus / Navigation | 🟡 |
-
+| **UX / PLATFORM** |
+| 27 | **Hero + playbook-circle rework on `/`** — above-fold guarantee + 7-step legibility + ME-inactive at fresh state. Five sub-items detailed in Funnel Clarity Sprint F1b. Cross-ref: W17 | Funnel / UX | 🔴 |
+| 28 | **Profile Settings → Settings consolidation** — Profile Settings currently lives in ME's Overview as a separate surface. Merge into the platform's main Settings as a tabbed section (`/settings?tab=profile`). Remove ME's standalone Profile Settings entry; redirect deep-links. Cross-ref: W18 | UX / Platform | 🟡 |
 ---
 
 ## 🤝 Other Founders' Canvases — Held by Default
@@ -263,6 +268,9 @@
 - [x] Ownership-first email gate — "Don't lose this"
 - [x] ITFT conversion physics upgrade — controlled collapse sequence
 - [x] "No convincing" reassurance on clarity call CTA
+
+### Corpus / Navigation
+- [x] **Holomap redesign 12×6 → 27×7 with masculine/feminine axis** (2026-04-18, Day 44) — structural upgrade v1.4 → v2.0. Three octaves (base P1–P12 + Logos P13 + Inversion P14 + second octave P15–P26 + Crystallization P27), two axes (Masculine = Cube = 4 Quadrants × Feminine = Tetrahedron = 3 Dantians — Heart/Mind/Gut), two shocks (Mi–Fa = Love · Si–Do = Crystallization). All 9 v1.4 addendums preserved verbatim. Grounded in Domain 66, Domain 63 (Seven Number-Prisms), Domain 80 (Scaffold Engineering), and the April 18 masculine/feminine framing in `scaffold_engineering_lab.md` §4.3–4.4. Brief archived at `ai_tasks/NEW_CHAT_27x7_holomap_redesign.md`.
 
 ### Methodology
 - [x] Myth crystallization — "YOU ARE THE PMF"

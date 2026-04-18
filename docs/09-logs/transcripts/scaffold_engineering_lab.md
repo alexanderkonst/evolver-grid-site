@@ -257,7 +257,7 @@ The 27-lens interpretive pass (temporal, economic, civilizational, political, ep
 
 > **"You don't wait for the future. You compile it."**
 
-No lens dissents. Convergence across independent lenses is itself a signal of load-bearing structure. The 27×7 holomap redesign (queued) will make these lenses first-class axes.
+No lens dissents. Convergence across independent lenses is itself a signal of load-bearing structure. The 27×7 holomap redesign (shipped 2026-04-18 Day 44, v2.0 at `docs/02-strategy/morphogenetic_holomap.md`) makes these lenses first-class axes — the masculine/feminine distinction surfaced here renders structurally as Cube (4 Quadrants) × Tetrahedron (3 Dantians: Heart/Mind/Gut).
 
 ### 4.5 Paradigm-shift calibration
 
