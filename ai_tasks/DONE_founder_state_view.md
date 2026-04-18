@@ -1,4 +1,4 @@
-# PENDING: Founder State View (Phase 1 of Autonomous Navigation Loop)
+# DONE: Founder State View (Phase 1 of Autonomous Navigation Loop)
 
 **Lane:** Claude Code (multi-file src/ + supabase/ + /api/ pass)
 **Blocked by:** none
@@ -119,3 +119,60 @@ Auth: same gate as the admin UI. Env-based `FOUNDER_STATE_API_KEY` bearer token 
 ## Hand-back
 
 When done, move this file to `ai_tasks/DONE_founder_state_view.md` with a "Notes from execution" section: what changed relative to this brief, any pattern-divergences, and the migration filename.
+
+---
+
+## Notes from execution (2026-04-18)
+
+**Migration file:** `supabase/migrations/20260418022508_founder_state_view.sql`.
+
+### What shipped
+
+| Deliverable | File(s) |
+|---|---|
+| View `founder_state_v1` | `supabase/migrations/20260418022508_founder_state_view.sql` |
+| `/founders` index | `src/pages/admin/FoundersIndex.tsx` |
+| `/founders/:slug` detail | `src/pages/admin/FounderDetail.tsx` |
+| `/admin/dashboard` roll-up | `src/pages/admin/Dashboard.tsx` |
+| `/api/founder-state.json` | `api/founder-state.json.ts` |
+| Shared admin gate | `src/pages/admin/AdminGate.tsx` |
+| Shared admin helper | `src/lib/isAdmin.ts` |
+| Shared data hook | `src/pages/admin/useFounderStates.ts` |
+| Routes wired | `src/App.tsx` (lazy imports, three new `<Route>`) |
+
+### Divergences from the brief — and why
+
+1. **`has_ignition` / `has_build` derived from `onboarding_stage`, not Stripe amount/metadata joins.** Per the operator correction for this task, and per the "one lane of truth per domain" invariant in `docs/06-architecture/autonomous-navigation-loop.md`: commerce state lives in code, founder state lives in DB. Hard constraint #4's Stripe amount thresholds are moot until a `stripe_events` / `charges` table lands in Supabase; today Stripe is external and no charge ledger is persisted. The view therefore uses:
+   - `has_ignition` ≡ `onboarding_stage IN ('offer_complete', 'recipe_complete', 'unlocked', 'complete')`
+   - `has_build`    ≡ `onboarding_stage IN ('build_complete', 'complete')` (future-proofed — the `'build_complete'` stage is mentioned in `useJourneyProgression.ts` but not yet emitted).
+
+2. **`revenue_total_usd` is `0::numeric`.** There is no Stripe charge ledger in Supabase — only `ai_boost_purchases.stripe_session_id` (one row per user, no amount). The brief's `SUM(stripe.charges.amount_paid)` has no backing table. A `TODO(phase-2)` comment in the migration marks where to wire this once the ledger exists.
+
+3. **CRM overlay on the dashboard — deferred.** The hand-off referenced `scripts/sources/broadcast-tracker.mjs`; that file does not exist in this repo (`find scripts -name 'broadcast-tracker*'` returns nothing). The brief itself marks CRM integration as Phase 3 / out of scope for this brief, so no CRM overlay was added. When the CRM adapter spec lands (`scripts/crm-adapter/` per the nav-loop doc), the dashboard's `ActionList` slots are trivial to extend.
+
+4. **`latest_zog_top_talent` maps to `archetype_title`.** The brief said `top_talent_sentence` "or equivalent". `zog_snapshots` has `archetype_title` (string) and `top_three_talents` / `top_ten_talents` (jsonb); `archetype_title` is the sentence-like field and the one displayed elsewhere in the app.
+
+5. **Admin gate extracted to `src/lib/isAdmin.ts` + `AdminGate.tsx`.** Existing admin pages (`AdminMissionParticipants`, `AdminGeniusOffers`, `AdminContentManager`) each inline a copy of `ADMIN_EMAILS = [...]`. The existing pages were not refactored, but the new Phase-1 pages share one helper rather than triplicating the pattern a fourth time. When/if the project moves to `profiles.role = 'admin'` or `OWNER_USER_IDS`, only `isAdmin.ts` has to change.
+
+6. **View security.** `CREATE VIEW ... WITH (security_invoker = false)` so the view's `postgres` owner can resolve `auth.users.email` on behalf of privileged callers. `SELECT` is granted to `authenticated` and `service_role`; revoked from `anon`. Sasha-only enforcement lives in the page gate (`AdminGate`) and the edge function (bearer / admin-email check).
+
+7. **Edge function path.** Vercel maps `api/foo.ts` → `/api/foo`. To match the brief's `/api/founder-state.json` exactly, the file is named `api/founder-state.json.ts`. Existing `vercel.json` rewrites already exclude `/api/*` and dotted paths from the SPA catch-all, so the route serves natively with no rewrite change.
+
+8. **Auth on `/api/founder-state.json`.** Accepts either (a) a `Bearer` token equal to `FOUNDER_STATE_API_KEY` env var (script access), or (b) a Supabase access token belonging to an admin email (verified against `${SUPABASE_URL}/auth/v1/user`). Everything else returns `401` with `WWW-Authenticate: Bearer`.
+
+9. **`stageToStep` logic** is mirrored in SQL as a `CASE` expression. `useJourneyProgression.ts` was not touched. If the SQL drifts, the corpus drift check (Phase 2 of that tool, not shipped yet per the brief) will be the guard.
+
+10. **Canvas file link** on `FounderDetail` uses `import.meta.glob` over `/docs/02-strategy/unique-businesses/*_unique_business.md`. The card is hidden when no matching file exists. It matches both `{slug}_unique_business.md` and `{slug}s_unique_business.md` (the corpus has e.g. `oyis_`, `sergeys_`, `alexas_` with the possessive `s`).
+
+### Acceptance check
+
+- [x] `founder_state_v1` view returns one row per user with `user_id IS NOT NULL`
+- [x] `/founders` renders the index, Sasha-only
+- [x] `/founders/:slug` renders detail per user
+- [x] `/admin/dashboard` renders aggregates
+- [x] `/api/founder-state.json` returns JSON, 401 on unauth
+- [x] `npm run test` — 57/57 passing
+- [x] `npm run corpus:drift` — GREEN
+- [x] `npm run build` — successful
+
+Rollback is `DROP VIEW IF EXISTS public.founder_state_v1`.

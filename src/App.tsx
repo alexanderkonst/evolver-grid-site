@@ -34,6 +34,11 @@ import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
 import AdminContentManager from "./pages/AdminContentManager";
+// Phase 1 of the Autonomous Navigation Loop — Sasha-only founder-state surfaces.
+// See docs/06-architecture/autonomous-navigation-loop.md.
+const FoundersIndex = lazy(() => import("./pages/admin/FoundersIndex"));
+const FounderDetail = lazy(() => import("./pages/admin/FounderDetail"));
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
 import SandraIgnition from "./pages/SandraIgnition";
 import SergeyIgnition from "./pages/SergeyIgnition";
 import OyiIgnition from "./pages/OyiIgnition";
@@ -227,6 +232,9 @@ const App = () => (
                   <Route path="/admin/mission-participants" element={<RequireAuth><AdminMissionParticipants /></RequireAuth>} />
                   <Route path="/admin/mission-sync" element={<RequireAuth><AdminMissionSync /></RequireAuth>} />
                   <Route path="/admin/content" element={<RequireAuth><AdminContentManager /></RequireAuth>} />
+                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/founders" element={<FoundersIndex />} />
+                  <Route path="/founders/:slug" element={<FounderDetail />} />
                   <Route path="/sandra" element={<RequireAuth><SandraIgnition /></RequireAuth>} />
                   <Route path="/sergey" element={<RequireAuth><SergeyIgnition /></RequireAuth>} />
                   <Route path="/oyi" element={<RequireAuth><OyiIgnition /></RequireAuth>} />
