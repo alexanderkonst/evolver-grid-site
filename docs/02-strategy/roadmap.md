@@ -2,7 +2,15 @@
 
 > **This is not a project tracker. This is the living navigation instrument for Alexander's life work.**
 >
-> **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea"
+> **How to use:** "Read the roadmap and tell me what to focus on this week" · "What should we bump up?" · "Capture this idea" · "What am I waiting on?" · "Triage the roadmap"
+>
+> **Micro-notations** (use consistently so the dashboard + AI can read timing): `due YYYY-MM-DD` on deadlines · `since YYYY-MM-DD` on Waiting On items (when the ball went to the other side) · `started YYYY-MM-DD` on long-running Active items with no natural deadline.
+>
+> **Triage rules** (AI applies these on "update the roadmap" or "triage"):
+> 1. **Waiting On > 7 days** → surface for a nudge (re-ping, reframe, or close the loop).
+> 2. **Weekly Scope item still open after its week** → either roll to next week with a reason, demote to Active Backlog, or park.
+> 3. **Active Backlog item with `started` > 30 days ago and no forward motion** → revisit priority or move to Parked / Future.
+> 4. Items in Weekly Scope that are actually blocked on someone else's move belong in Waiting On, not in the 🔴 active lane. Mis-classification is the #1 source of "feels busy, nothing shipped."
 >
 > *Last updated: 2026-04-17 — Day 43. Holomap center = "Emanation" (Day 41 reading). April 15 Oluwa + Oyi transmission metabolized into 7 corpus artifacts. Decision 1 (licensing) = ✅ YES with negotiation checklist. Decision 2 (scaling) = ✅ Sequence C (three parallel tracks: Sessions + Licensed Distribution + Field Recordings). Decision 3 (cadence) still open. **Funnel Clarity Sprint opened April 16** — landing → playbook flow spec, progressive unlock, two-CTA hero, email-before-ZoG, adapted resonance rating. Q1 (step 2/3 commercial packaging) = ✅ BUNDLE (Steps 2+3 = Ignition $555; Steps 4+5 = Build $1,111 + rev share cohort). Principle: steps are methodology, containers are commerce — they don't have to be 1:1. Q2 (lane) = ✅ parallelize — Cowork for corpus/docs/planning, Claude Code for heavy src/+supabase/ passes. The signal now travels without the apparatus; the apparatus is now for scale.*
 
@@ -11,10 +19,11 @@
 ## Contents
 
 1. [This Week's Scope](#-this-weeks-scope-april-7-13)
-2. [Current Status](#current-status)
-3. [Active Backlog](#-active-backlog)
-4. [Parked / Future](#-parked--future)
-5. [Completed](#-completed)
+2. [Waiting On](#-waiting-on)
+3. [Current Status](#current-status)
+4. [Active Backlog](#-active-backlog)
+5. [Parked / Future](#-parked--future)
+6. [Completed](#-completed)
 
 ---
 
@@ -92,6 +101,26 @@
 
 - Claude Code brief for F1, F2, F3, F4, F7 — either inline conversation or a single `ai_tasks/PENDING_funnel_clarity_sprint.md` if the brief needs to be durable. File targets, acceptance criteria, and references back to this sprint section.
 - Update `CLAUDE.md` Repo landmarks with `useJourneyProgression.ts` once it's referenced by more than one component (already is — PlaybookHero + SectionsPanel).
+
+---
+
+## ⏳ Waiting On
+
+> Items where the ball is on the **other person's side**. Not Sasha's move. Track `since` so nudge windows are visible at a glance.
+>
+> **Rule:** anything `since > 7 days` gets surfaced on the next "triage the roadmap" pass — decide whether to nudge, reframe the ask, or close the loop and move on.
+
+| # | Item | Who | Since | Next move |
+|---|------|-----|-------|-----------|
+| WO1 | ZoG paste-back of distilled uniqueness JSON | Patricia Reed | *2026-04-__* (fill date of last send) | Soft ping with one-line invitation once `since > 7d` |
+| WO2 | ZoG quiz completion after the pre-watched video | José da Veiga | *since unset* | Send the guided link; then move to Waiting On with date |
+| WO3 | Rev-share in/out answer — $3K each pending | Taylor & Tracy | *2026-04-__* | Professional conversation. Set a hard "answer by" date on next contact |
+| WO4 | Acceptance of 33% rev-share agreement from first $10K | Sandra | *2026-04-__* | Named; awaiting her yes. Nudge at `since > 10d` |
+| WO5 | Three-way call cadence answer (Decision 3) | Sasha (self) | *2026-04-15* | Recommended default: seeded spontaneity, 2/month, 48h-out scheduling. Decide or archive |
+| WO6 | Signed v1 licensing deal terms | Oyi | *2026-04-17* | Use 11-row checklist in `open_questions_from_oyi_session.md`. Target: end of Mexico week |
+| WO7 | `/playbook/discover` polish merge (P0 unblock) | Claude Code lane | *2026-04-16* | Brief in `ai_tasks/PENDING_playbook_discover_polish.md`. Must land before Oyi pushes to list |
+
+> **Population rule:** when moving an item here, replace it in Weekly Scope / Active Backlog with a breadcrumb ("→ Waiting On · WOx") so there's one source of truth. When it comes back to Sasha's side, move it back with an updated `since`/`due`.
 
 ---
 
@@ -296,3 +325,5 @@
 *Roadmap v4.6 — April 17, 2026 (Day 43. Funnel Clarity Sprint opened. Q1 answered — step 2/3 stay separate, value ladder already enforces the surgical boundary. Q2 answered — keep both Cowork and Claude Code lanes, bridged by `ai_tasks/PENDING_*.md`. Four UI quick-wins shipped same day: Panel 3 opacity /15→/60, ME rail flicker eliminated, Journey SectionsPanel collapsed to progressive two-item state, redundant top-center logo confirmed hidden on `/playbook/*`. Five heavier items handed to Codex lane — F1 dual-CTA, F2 email-before-ZoG, F3 completion ceremony, F4 ResonanceRating storage, F7 Stripe webhook verify-and-advance.)*
 
 *Roadmap v4.6 — April 17, 2026 (Day 43. Funnel Clarity Sprint opened. Q1 step 2/3 merge = keep separate — two distinct ladder rungs, progressive unlock enforces the sequence. Q2 lane = keep both, bridge via ai_tasks/. F0 quick wins: panel-3 opacity, ME-rail flicker, 2-item journey pane, duplicate-logo removal — all Cowork-lane, same session. F1-F7 Codex-lane: two-CTA hero, email-before-ZoG magic link, step-1 completion payoff animation, resonance rating, Stripe verify-and-advance webhook. The landing IS the store; the completion IS the unlock; the unlock IS the nudge into paid progression.)*
+
+*Roadmap v4.7 — April 18, 2026 (Day 44. Methodology enrichment from the productivity skill. Three additive changes, no content lost: (1) new `⏳ Waiting On` section between Weekly Scope and Current Status — seven items lifted from the implicit "blocked on other side" backlog; (2) `due` / `since` / `started` micro-notations documented in the top callout so timing is machine-readable; (3) four explicit triage rules documented so the AI can run them on "update the roadmap" / "triage". Skipped: four flat buckets, weekly-rotation of Done, "Someday" — all regressions against existing structure. The roadmap stays the tracker; no parallel `TASKS.md`.)*
