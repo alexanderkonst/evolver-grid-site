@@ -11,6 +11,7 @@ const REVENUE_TIMELINE = [
   { day: 36, date: "Apr 8", total: 1231, label: "Oyi $516 gift" },
   { day: 40, date: "Apr 12", total: 1431, label: "Karime $200 in-kind" },
   { day: 41, date: "Apr 13", total: 1931, label: "Oyi $500 in-kind" },
+  { day: 44, date: "Apr 18", total: 1931, label: "Kirill joins — 7th founder" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -29,7 +30,7 @@ const KPIS = [
     label: "Genius Founders",
     value: "7",
     trend: "+1",
-    trendLabel: "this week",
+    trendLabel: "Apr 18",
     trendUp: true,
     detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill",
     color: "#6894d0",
@@ -48,7 +49,7 @@ const KPIS = [
 const SECONDARY_STATS = [
   { label: "Marketing Spend", value: "$0", accent: false },
   { label: "CRM Contacts", value: "31", accent: false },
-  { label: "Days Active", value: "43", accent: false },
+  { label: "Days Active", value: "44", accent: false },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
@@ -70,6 +71,8 @@ const TIMELINE = [
   { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically.", color: "#cea4ae" },
   { day: 40, date: "Apr 12", name: "Karime", type: "In-kind ($200)", desc: "Claude Pro subscription payment. Deepening operational partnership.", color: "#cea4ae" },
   { day: 41, date: "Apr 13", name: "Oyi", type: "In-kind ($500)", desc: "Comprehensive support: food, flights, transport. Sustained gratitude.", color: "#6894d0" },
+  { day: 43, date: "Apr 17", name: "Oyi", type: "Mexico Intensive Wrap", desc: "4-day Mexico hacker-house / collective venture building concludes. First in-person intensive at length. Oyi: \"This may be the best view in town. I am thankful.\"", color: "#6894d0" },
+  { day: 44, date: "Apr 18", name: "Kirill", type: "7th Founder Joins", desc: "Serial entrepreneur (17 businesses), integral practitioner, neuro-coaching trainer. Building QWATRA (AI-powered business interface) + GrowFox (health ecosystem). \"The 7th note in the octave — the tension that longs to resolve into something new.\"", color: "#b8a3d4" },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
@@ -129,7 +132,7 @@ const VentureDashboard = () => {
         <header className="mb-16 fade-in-section" id="dashboard-header">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-[#8460ea] animate-pulse" />
-            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white">Live · Day 43</span>
+            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white">Live · Day 44</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Venture Dashboard

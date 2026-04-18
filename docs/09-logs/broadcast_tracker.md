@@ -90,7 +90,7 @@
 |---|------|--------------|-----------------|
 | 1 | **José** | Free coaching. Deep resonance but hasn't committed (quiz not taken) | Quiz completion → paid session, or release |
 | 2 | **Terrina** | Receiving at a level without corresponding commitment | Define container or release |
-| 3 | **Kirill** | Collaborator energy, no paid container | Licensing terms or release |
+| 3 | ~~Kirill~~ | ~~Collaborator energy, no paid container~~ | ✅ **RESOLVED Apr 14** — upgraded through Session 1 (9.8 precision, all 7 artifacts drafted). Now CLIENT + NODE + founder-collective member (Apr 18, Day 44). See master table row 8 |
 | 4 | **Roso** | Partnership paused. Free demo offered, no exchange | Paid demo or clean release |
 | 5 | **Cori** | Same as Roso | Paid demo or clean release |
 
@@ -184,8 +184,10 @@
 
 | Date | Event | Participants | Notes |
 |------|-------|-------------|-------|
-| **Wed Apr 16, 10:30am CDMX** | **Livestream conversation with Oluwa Adams** | Alexander, Oluwa, Oyi (audience) | Topic: mastery / hero's journey / unique gift monetization. Transcript → AI for field amplification |
-| **Mon Apr 14** | **Oyi arrives Mexico** | Alexander, Oyi | Villa + intensive Build |
+| **Wed Apr 16, 10:30am CDMX** | ~~Livestream conversation with Oluwa Adams~~ → **delivered Apr 15 impromptu (3-way Zoom)** | Alexander, Oluwa, Oyi (audience) | Topic: mastery / hero's journey / unique gift monetization. Transcript → AI for field amplification. ✅ Done |
+| **Mon Apr 14 → Thu Apr 17** | **Oyi Mexico Intensive** (4-day hacker-house) | Alexander, Oyi | Villa + intensive Build + licensing negotiation. ✅ **DELIVERED Apr 17.** Oyi: *"One for the books. #OperationTimeCapsule #UniqueIsALifestyle #WeGoodOvaHere. I'm in."* |
+| **TBD — next week (post-Karime re-connect)** | **Founder-Collective Call — magic reveal + session exchange** | All 7 (Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill) | **Karime's proposal, Apr 18.** Each reveals magic in a small window; exchange full sessions from there onwards. Karime to circle back once off-screen weekend ends |
+| **TBD — post-collective-call** | **Next hacker-house — grow from 2 to more** | Alexander + invited: Sergey · Karime · Sandra · Alexa (via Sasha's Apr 18 invite) | Oaxaca or equivalent Pacific-coast venue. Format proven with Oyi: freedom, fulfilment, joy, fruits, scooters, co-building |
 
 ---
 
@@ -197,4 +199,6 @@
 ---
 
 *CRM v3.4 — April 12, 2026 · Energy Leak Audit: 5 relationships flagged (José, Terrina, Kirill, Roso, Cori). Mind virus named: loyalty-as-leak. Wrong-room broadcasting diagnosed. Transmission-to-wheel = audience access, not strategy.*
+
+*CRM v3.5 — April 18, 2026 (Day 44) · **The Collective self-identifies.** Oyi Mexico intensive ✅ delivered Apr 17 ("one for the books"). Kirill resolved from energy-leak → CLIENT/NODE → **founder-collective entry Apr 18 as 7th founder** ("the 7th note in the octave"). Karime's collective-magic-reveal call proposed. Sasha invited Sergey · Karime · Sandra · Alexa to next hacker-house. Upcoming events updated. Active energy-leak count: 4 (José, Terrina, Roso, Cori) — down from 5.*
 

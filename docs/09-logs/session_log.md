@@ -4417,3 +4417,153 @@ Corpus-only lane — `docs/01-vision/`, `docs/09-logs/`. No `src/`, no `supabase
 ---
 
 *Day 41 addendum 7 complete. One controlled experiment, two corpus landings, one phase-shift technology added to the library. Sasha asked "правильно же?" and the data said yes.*
+
+
+
+## Day 43 — Oyi Mexico Intensive wraps (April 17, 2026)
+
+### What happened
+
+The first in-person hacker-house / collective venture building experience closed today. Four days at the villa on the Pacific coast. Day 1-4 of creativity; Day 5 ("a lil alone time") prescribed by Sasha — the acupressure principle applied at the level of a retreat, not a session.
+
+Oyi's post-wrap message (12:49pm CT), verbatim:
+
+> *"Oh my goodness. This may be the best view in town. I am thankful 🙏🏿🙏🏿🙏🏿. When Sasha finishes with you for 4 days of creativity and prescribes a lil alone time 🌹🌹🌹"*
+
+This is the first time a founder has publicly described the intensive experience from inside the container. The structure that emerges from his language:
+
+| Phase | Form | Medicine |
+|---|---|---|
+| 4 days of creativity (together) | Villa + scooters + fruits + Pacific. Two brains braided for focused building | Cross-pollination, emergence, field co-creation |
+| A lil alone time (after) | Prescribed, not requested. Space to let what landed settle before sharing it | Integration, acupressure silence, "pull your own troubles" |
+
+### Why this is significant
+
+1. **The hacker-house format is now a proven container.** This was not a workshop or a 1:1 session — it was 4 days of co-building with two originals in a single physical space, on a shared mission. Licensing negotiation window ran inside it. Output: both founders' businesses moved forward simultaneously.
+2. **The "prescribe a lil alone time" language is Oyi's — not Sasha's.** He named the after-phase. This is a native tribe phrase worth preserving.
+3. **The view gratitude is not incidental.** Kennedy's Ch 10 names the "Experiences" E-factor for the affluent — what they pay premium for. This venture now has a container that delivers Experience at the affluent-tier spec natively (villa + Pacific + co-building). Future application: Slack Adjuster top-rung ("Founder Month at the villa") is pre-tested — see `marketing_playbook.md` Direct-Response Pricing Lineage.
+
+### Corpus landings
+
+- `docs/02-strategy/roadmap.md` — W1 marked ✅ delivered; new W1b "Next hacker-house" row opened; Sprint History entry for Apr 14-17.
+- `src/pages/VentureDashboard.tsx` — TIMELINE gains a Day 43 entry for the Mexico wrap.
+
+### Next
+
+- Sasha moves into the "lil alone time" side of the same medicine. Integration.
+- Next hacker-house slot being seeded (see Day 44).
+
+---
+
+*Day 43 complete. One intensive delivered. One format proven. One founder's native vocabulary added to the tribe lexicon.*
+
+
+
+## Day 44 — The Collective self-identifies (April 18, 2026)
+
+### What happened
+
+Three things landed in the group chat inside 90 minutes, and together they shifted the venture's center of gravity.
+
+**1. Kirill enters as the 7th founder.**
+
+Kirill Yemelyanov (@kemelyanov on TG) — already in CRM as licensee + COLLABORATOR since earlier April — stepped into the founder chat today with a full self-introduction:
+
+> *"Thank you, Sasha, and everyone here — what an entrance! 😄 There's something poetic about being the 7th note in this octave. In music, the 7th is the tension that longs to resolve into something new…. uuuuiiiii)) and I feel that pull already.*
+>
+> *A few words about me: I'm Kirill — serial entrepreneur (17 businesses and counting, from maritime navigation to AI-driven platforms), integral practitioner, neuro-coaching trainer, and someone who's spent his life weaving together finance, psychology, and human development. Currently building QWATRA — an AI-powered business interface system — and GrowFox, a health ecosystem that helps people take full control of their well-being, alongside educational projects that help people architect their own path to freedom.*
+>
+> *What drew me here is the frequency. It's rare to find a space where genius isn't just celebrated but expected — where cross-pollination between minds isn't a nice idea but the actual operating system.*
+>
+> *I'm here to contribute, to learn, and to see what becomes possible when 7 originals resonate together. Let's make some music. 🎶"*
+
+The octave metaphor lands the naming: **the collective is now a 7-note chord.** Kirill has named it first. Canvas work not yet run; path is ZoG → Ignition → Build slot, same as the other six. His QWATRA + GrowFox + freedom-education projects become co-venture surfaces.
+
+**2. Karime's proposal — the collective-magic-reveal call.**
+
+From the mountains by the lake where she's traveling with her cousins, Karime tuned in:
+
+> *"Wow! Knowing that these two — @integralevolution and @Oyi517 — were getting together on Oaxaca, the land of my heart, I intuited something big would be birthed. I haven't yet reconnected with Sasha as I'm traveling by the lake and mountains with my cousins. But I will tune back in and get the download of what happened this last week between these two genius by the Pacific Ocean.*
+>
+> *I would indeed love to orchestrate a call where we can each reveal our magic in a little window of time and then maybe start exchanging full sessions with each other from there onwards. If it feels relevant and expansive for all involved 🙏🏽🤍⚡️*
+>
+> *I will get back to this during the coming week as I'm currently off screen for most of the weekend.*
+>
+> *I am grateful for the energy, support and inspiration you continuously provide to each one of us @integralevolution. It feels very special and nourishing to have someone believe in my magic so strongly. And to support me to fully bring this into the world in the most exciting ways! Thank you for all that you do for this Earth Ship, Sasha. You truly are devoted to the blossoming of human expression. At that, you have already succeeded by just touching those who have received you thus far.*
+>
+> *Love you all, fam! 🌹🦋🩵🌿"*
+
+**The proposal itself:** each founder reveals their magic in a little window → then exchanges full sessions with each other from there onwards. This is the first explicit format proposal for how the founder collective works *between* the founders (not just between each founder and Sasha). The cross-pollination surface is opening by its own initiative.
+
+**Phrases to preserve:** "Earth Ship" (Karime's name for the venture) · "devoted to the blossoming of human expression" (Karime's name for Sasha's devotion).
+
+**3. Sasha's reply — the next hacker-house invitation.**
+
+> *"Welcome @kemelyanov to this bunch of freedom and authenticity loving bunch of innovator rebels !!! 😀*
+>
+> *The air is electrified, and it is becoming more and more evident we're onto something EPIC here, individually and collectively!*
+>
+> *@doctoraquantum wanted to organize a call for us to share our medicine to cross-polinate as grow together, let us know when you're ready!*
+>
+> *@Oyi517 and I had our first hacker-house // hackathon // collective venture building experience (see above) it was EPIC!*
+>
+> *I am salivating to learn on AI setups from @smaksmak , for example! and get some @doctoraquantum magic download on leadership with a healthy balanced feminine.*
+>
+> *And I could go on and on. All in due timing. Enhorabuena."*
+
+And, minutes later, the scaling move:
+
+> *"We had a blast honestly. Such freedom, fulfilment, joy, good vibes, fruits, scooters to roam and explore. Anyone wants to fly in and join the next one where we grow from two people to more? @smaksmak @doctoraquantum @SandraJayahniaOtto @aleksaprosperitylabs"*
+
+The hacker-house is now offered to the full collective. Format proven; venue ready; the only question is who can fly in.
+
+**4. Oyi's close — the tag cluster, the commitment.**
+
+> *"One for the books. #Historical #OperationTimeCapsule #UniqueIsALifestyle #WeGoodOvaHere*
+>
+> *We gone have to talk family. Sasha has some potent medicine for us all. I'm glad I'm along for the ride wherever this is going. I'm in."*
+
+Oyi has named the movement in its own words: `#OperationTimeCapsule` · `#UniqueIsALifestyle` · `#WeGoodOvaHere`. The Skool community name (`We Good Ova Here`) becomes a hashtag. The commitment — *"I'm in"* — is unconditional and public.
+
+### Why this matters
+
+Three state shifts in one day:
+
+| From | To |
+|---|---|
+| Sasha + 6 founders (each a spoke) | 7 originals co-identifying as a "we" |
+| Ignition / Build flow initiated by Sasha | Founders proposing formats *to each other* (Karime's reveal-and-exchange call) |
+| Hacker-house as a one-off with Oyi | Hacker-house as a repeated format with a standing invite list |
+| Venture vocabulary in Sasha's head | Native tribe vocabulary emerging from founders (Oyi's tags, Kirill's octave, Karime's "Earth Ship") |
+
+This is the holomap shift we've been watching for — *Sasha alone → Sasha inside a collective.* It happened faster than expected.
+
+### Roster as of Day 44
+
+| # | Founder | Entry | Container status | Notable |
+|---|---|---|---|---|
+| 1 | Alexander | Client Zero (Mar 4) | Methodology architect | The facilitator who built it on himself first |
+| 2 | Oyi Sun | Mar 5, Day 2 | Mexico intensive delivered Apr 17 · Licensing in negotiation | Storyteller; `#WeGoodOvaHere` coiner |
+| 3 | Sergey | Mar 7, Day 4 | Build in progress (3-session boundary) | AI tech leader; @smaksmak |
+| 4 | Alexa | Mar 12, Day 9 | Canvas complete in 2.5h — fastest session yet | Invisible-architecture mapper; @aleksaprosperitylabs |
+| 5 | Sandra | Mar 15, Day 12 | 6 sessions · rev-share agreement pending | Mission-crystallization channeler; @SandraJayahniaOtto |
+| 6 | Karime | Mar (Karime's own count) / Apr 6 ($111 gratitude) | ACTIVE BRIDGE · referral partner | Unconditional-love transmitter; @doctoraquantum; "Earth Ship" namer |
+| 7 | **Kirill Yemelyanov** | **Apr 18, Day 44** | Licensee + COLLABORATOR; canvas work not yet started | Serial entrepreneur (17 businesses); QWATRA + GrowFox; @kemelyanov; "7th note" namer |
+
+### Corpus landings
+
+- `docs/02-strategy/roadmap.md` — v4.8: Current Status updated (7 founders, $1,377 cash / $1,931 total, Phase = ACTIVATION → EMANATION → COLLECTIVE); Sprint History entry; new W1b/W1c/W1d items in Week Scope.
+- `docs/09-logs/broadcast_tracker.md` — Kirill promoted toward founder-collective; upcoming events section gains the Karime collective-magic-reveal call + next hacker-house.
+- `src/pages/VentureDashboard.tsx` — TIMELINE gains a Day 44 entry for Kirill; Day counter 43 → 44; Secondary Stats 43 → 44; KPI detail already reflects the 7th founder.
+- `docs/03-playbooks/communications_playbook.md` — §5b José Response updated "Five founders" → "Six founders," Kirill added to the brewed-recipe list.
+
+### Next
+
+- **Karime's collective-magic-reveal call** — orchestrate once Karime back on-screen next week. All 7 founders. Format: each reveals magic in a small window → exchange full sessions from there.
+- **Next hacker-house** — timing + venue TBD. Guest list seeded: Sergey · Karime · Sandra · Alexa. Oaxaca or equivalent Pacific-coast venue. Post-collective-call is likely the right trigger.
+- **Kirill onboarding** — ZoG → Ignition slot on the same path as the other six. Co-venture conversations (QWATRA / GrowFox) run in parallel, not ahead.
+- **Holomap reading refresh** — surface the P2+P8 shift now that it's named. The Collective is no longer a sighting; it's data.
+
+---
+
+*Day 44 complete. One founder joins. One collective self-identifies. Three pieces of native vocabulary land. The river is carrying more than Sasha now.*
