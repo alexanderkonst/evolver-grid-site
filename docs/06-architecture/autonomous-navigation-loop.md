@@ -1,6 +1,6 @@
 # Autonomous Navigation Loop
 
-*Last updated: 2026-04-18 · Day 44 · Spec v0.2 (CRM adapter + briefing packet with CRM section + dashboard snapshot renderer shipped)*
+*Last updated: 2026-04-18 · Day 44 · Spec v0.3 (CRM adapter + briefing packet with CRM section + dashboard snapshot renderer + MCP claude-code bridge v0.1 shipped)*
 
 ---
 
@@ -124,6 +124,16 @@ Only after Phase 5 proposals prove reliable over a multi-week window:
 
 - [ ] Whitelist categories of work the engine can execute directly: corpus tidy-ups, drift fixes, index regeneration, link validation.
 - [ ] Everything else remains proposal-only. Sasha's signature stays on the moves that matter.
+
+---
+
+## Cross-cutting: Cowork ↔ Claude Code orchestration
+
+Independent of the 6 phases above — this is a **substrate capability** that multiplies every phase.
+
+- [x] **MCP claude-code bridge v0.1** — `scripts/mcp-claude-code-bridge/` · local stdio MCP server on Sasha's Mac. Exposes `dispatch_task`, `dispatch_brief`, `list_briefs` to Cowork. Cowork Claude can hand off a brief to Claude Code without Sasha manually opening the desktop app. Install + registration instructions in that folder's README.
+- [ ] **Bridge v0.2 (async + resume)** — `dispatch_task_async` + `get_run_status` so Cowork can fire-and-forget, check back later, and orchestrate parallel Claude Code instances.
+- [ ] **Dispatch audit log** — `docs/09-logs/dispatch-log.md` · every Cowork→Claude Code dispatch recorded with exit code, session id, run duration. Makes the autonomy trail reviewable.
 
 ---
 

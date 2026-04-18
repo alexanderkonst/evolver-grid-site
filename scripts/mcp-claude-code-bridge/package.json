@@ -1,0 +1,21 @@
+{
+  "name": "mcp-claude-code-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local MCP server that lets Cowork Claude dispatch tasks to Claude Code (headless).",
+  "main": "server.mjs",
+  "bin": {
+    "mcp-claude-code-bridge": "server.mjs"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "smoke": "node smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
