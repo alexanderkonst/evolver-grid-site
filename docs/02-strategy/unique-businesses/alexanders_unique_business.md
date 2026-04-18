@@ -4140,7 +4140,7 @@ This extends the v2.0 "Three Containers" frame rather than replacing it: **The N
 
 From *The Replication Engine* (April 2, 2026, below): the **Witnessing Effect** — person A watching person B get their business named in real time — is the unfair advantage of group delivery. 1:1 Build caps at Alexander's time. Cohort Build scales while preserving intimacy (4-6 people, 4 weeks).
 
-Reinforced by lived reality (2026-04-17): Sasha is currently running 1:1 sessions for 6 founders, each with many Build calls. The combined load is draining the transmission source. Writing *this* playbook and running group Builds advances the founders FASTER than walking each of them through individually — the cohort is an accelerant, not a compromise.
+Reinforced by lived reality (2026-04-18): Sasha is currently running 1:1 sessions for **7 founders** (Alexander as Client Zero + Oyi · Sergey · Alexa · Sandra · Karime · Kirill — Kirill entered the collective Apr 18 as the 7th note in the octave). The combined load is draining the transmission source. Writing *this* playbook and running group Builds advances the founders FASTER than walking each of them through individually — the cohort is an accelerant, not a compromise.
 
 ### Open Decisions
 

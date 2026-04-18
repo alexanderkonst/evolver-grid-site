@@ -59,11 +59,27 @@ def _normalize(s: str) -> str:
 
 
 def _load_registry(cwd: Path) -> Dict[str, List[str]]:
-    """
+    r"""
     Parse all registry files. Returns {relative_file_path: [locked_paragraph, ...]}.
     Recognizes `### file: <path>` headers followed by the next ```text fenced block.
+
+    Fence-aware: directives (`### file: ...`) are only recognized when they
+    appear OUTSIDE a markdown code-fence. This prevents example/documentation
+    entries inside outer fences (in the "Format" section of canon-lock.md)
+    from being mis-parsed as real registrations. Fence state is tracked by
+    treating any line matching `^\s*```` as a toggle.
+
+    The ```text fence that immediately follows a real `### file:` directive
+    IS itself a fence-open, and we consume paragraph content until the next
+    ``` close. That loop is separate from the outer fence-state tracker used
+    for directive detection.
     """
     out: Dict[str, List[str]] = {}
+    fence_line_re = re.compile(r"^\s*```")
+    text_fence_re = re.compile(r"^\s*```text\s*$")
+    close_fence_re = re.compile(r"^\s*```\s*$")
+    directive_re = re.compile(r"^\s*###\s*file:\s*(.+?)\s*$")
+
     for rel in REGISTRY_PATHS:
         p = cwd / rel
         if not p.exists():
@@ -73,26 +89,44 @@ def _load_registry(cwd: Path) -> Dict[str, List[str]]:
         except Exception:
             continue
 
-        # Walk the file, locking every ### file: <path> header to the next ```text block.
         lines = txt.split("\n")
+
+        # Precompute in_fence[i] = "was line i inside an open fence, based on
+        # the state BEFORE this line's potential toggle". A line that itself
+        # is a fence marker is considered inside the fence iff we were already
+        # in one — i.e. it's the closing marker of that fence.
+        in_fence: List[bool] = [False] * len(lines)
+        state = False
+        for i, line in enumerate(lines):
+            if fence_line_re.match(line):
+                in_fence[i] = state
+                state = not state
+            else:
+                in_fence[i] = state
+
+        # Walk the file, locking every out-of-fence `### file:` header to the
+        # next ```text block.
         i = 0
         while i < len(lines):
-            m = re.match(r"^\s*###\s*file:\s*(.+?)\s*$", lines[i])
+            if in_fence[i]:
+                i += 1
+                continue
+            m = directive_re.match(lines[i])
             if not m:
                 i += 1
                 continue
             file_path = m.group(1).strip()
-            # Find next ```text fence
+            # Find next ```text fence (also skipping if currently inside a
+            # fence — shouldn't happen given we're already out, but guard).
             j = i + 1
-            while j < len(lines) and not re.match(r"^\s*```text\s*$", lines[j]):
+            while j < len(lines) and not text_fence_re.match(lines[j]):
                 j += 1
             if j >= len(lines):
                 i += 1
                 continue
-            # Collect until closing fence
             k = j + 1
             buf: List[str] = []
-            while k < len(lines) and not re.match(r"^\s*```\s*$", lines[k]):
+            while k < len(lines) and not close_fence_re.match(lines[k]):
                 buf.append(lines[k])
                 k += 1
             if k >= len(lines):
