@@ -49,7 +49,7 @@
 | W2 | ~~Oluwa Adams Livestream (Wed 10:30am CDMX)~~ → **April 15 transmission landed impromptu** | Build + Distribution | ✅ | Happened April 15 as three-way Zoom (Sasha + Oyi + Oluwa), 80 min, Fathom recorded. 6 anchor formulations, 2 witness formulations, 3 decisions surfaced. Metabolized into 7 corpus artifacts |
 | W3 | **Patricia Reed ZoG follow-up** | Sales | 🔴 | Did she paste back the JSON? Get her distilled uniqueness score. Pipeline → quiz completion |
 | W4 | **José da Veiga ZoG quiz** | Sales | 🔴 | Guide to quiz. He watched video, articulated the exact pain. Ready |
-| W5 | **Karime: Score Myth + Tribe v1.2** | Build | 🔴 | Body-score only. Heartbreak rewrite awaiting validation |
+| W5 | **Karime: Score Myth + Tribe v1.2** | Build | 🔴 | Body-score only. Heartbreak rewrite awaiting validation. `[hold]` — canvas work on another founder; Sasha drives, pulse doesn't touch (see *Other Founders' Canvases* section) |
 | W6 | **Sandra agreement** | Business | 🔴 | Name the revenue share. She asked. Rec: 33% from first $10K |
 | W7 | **Taylor & Tracy checkpoint** | Business | 🔴 | Professional conversation. Are they in or out? $3K each pending |
 | W8 | **Infographic Episodes — visual production** | Content | 🟡 | **~60% complete.** Founder creating from inspiration |
@@ -158,7 +158,7 @@
 | **SESSIONS (= PRIMARY BUILD — Sequence C tree)** |
 | 1 | Oyi Mexico intensive (Apr 14-20) | Build | 🔴 |
 | 2 | ~~Oluwa Adams livestream (Wed Apr 16, 10:30am)~~ — delivered April 15 impromptu (3-way transmission) | Build + Distribution | ✅ Done Apr 15 |
-| 3 | Karime: score Myth + Tribe v1.2 | Build | 🔴 |
+| 3 | Karime: score Myth + Tribe v1.2 → tracked under *Other Founders' Canvases* (held by default) | Build | 🔴 |
 | 4 | Patricia Reed: ZoG result follow-up | Sales | 🔴 |
 | 5 | José da Veiga: guide to ZoG quiz | Sales | 🔴 |
 | **REVENUE** |
@@ -188,6 +188,29 @@
 | **TRIGGERS** |
 | 25 | The Originals Circle — activate after 5 Ignition Sessions | Community | ⏸️ |
 | 26 | The Build: Group Container — activate after 4 Ignition graduates | Product | ⏸️ |
+| **CORPUS / INSTRUMENT** |
+| 27 | **Holomap redesign 12×6 → 27×7 with masculine/feminine axis** — structural upgrade to the Morphogenetic Navigation Holo Map to align with Domain 66 (27th Perspective), Domain 63 (Seven Number-Prisms), and the April 18 scaffold-engineering masculine/feminine framing. Brief at `ai_tasks/NEW_CHAT_27x7_holomap_redesign.md`. Do in a fresh chat with full context | Corpus / Navigation | 🟡 |
+
+---
+
+## 🤝 Other Founders' Canvases — Held by Default
+
+> **Consent boundary (added 2026-04-18).** Work that touches another founder's unique business canvas — myth, tribe, pain, promise, value ladder, scoring — is **held by default**. Sasha's AI instance does not spend tokens autonomously on a canvas whose owner hasn't given explicit consent. The `roadmap-pulse` task is structurally blocked from editing `docs/02-strategy/unique-businesses/*_unique_business.md` for any file except `alexanders_unique_business.md` (see `.agent/auto-execute-policy.md` §3).
+>
+> **Interactive Cowork sessions are unaffected** — Sasha drives those; the hold is specifically for unattended auto-execution.
+>
+> **Why here:** separating this section keeps canvas work visible (so Sasha can see everything pending) without mixing it into the main leverage-ordered backlog where `pulse` might otherwise misread it as docs-hygiene.
+
+| # | Founder | Item | Canvas file | Status |
+|---|---------|------|-------------|--------|
+| OF1 | **Karime** | Score Myth + Tribe v1.2 (body-score only; heartbreak rewrite awaiting validation) | *none yet — referenced via `alexanders_unique_business.md` testimonial threads; will get `karimes_unique_business.md` when Sasha scopes it* | 🔴 `[hold]` — Sasha drives in Session 3 context |
+| OF2 | **Kirill** | *(no active items)* | `kirills_unique_business.md` | 🟡 `[hold]` by default — any new items land here |
+| OF3 | **Sandra** | *(canvas work; the revenue-share agreement WO4 / Item 7 is non-canvas and stays in main roadmap)* | `sandras_unique_business.md` | 🟡 `[hold]` by default — any canvas work lands here |
+| OF4 | **Alex** | *(no active items)* | `alexas_unique_business.md` | 🟡 `[hold]` by default — any new items land here |
+| OF5 | **Sergey** | *(canvas work; Build-boundary communication Item 9 is non-canvas and stays in main roadmap)* | `sergeys_unique_business.md` | 🟡 `[hold]` by default — any canvas work lands here |
+| OF6 | **Oyi** | Canvas work is `[hold]` by default. Active licensing negotiation (W11, L1) is a **separate workflow** that touches `open_questions_from_oyi_session.md` and deal-terms files, not the canvas — stays in main roadmap | `oyis_unique_business.md` | 🟡 `[hold]` by default on the canvas file only |
+
+> **How to un-hold:** the founder gives explicit consent (written, in-session, or via Sasha's direct note). At that point Sasha removes `[hold]` from the item AND updates `.agent/auto-execute-policy.md` §3 to whitelist that specific canvas file. The structural rule is deliberately stricter than the tag — a missing tag won't accidentally un-hold a canvas.
 
 ---
 
@@ -329,3 +352,5 @@
 *Roadmap v4.6 — April 17, 2026 (Day 43. Funnel Clarity Sprint opened. Q1 step 2/3 merge = keep separate — two distinct ladder rungs, progressive unlock enforces the sequence. Q2 lane = keep both, bridge via ai_tasks/. F0 quick wins: panel-3 opacity, ME-rail flicker, 2-item journey pane, duplicate-logo removal — all Cowork-lane, same session. F1-F7 Codex-lane: two-CTA hero, email-before-ZoG magic link, step-1 completion payoff animation, resonance rating, Stripe verify-and-advance webhook. The landing IS the store; the completion IS the unlock; the unlock IS the nudge into paid progression.)*
 
 *Roadmap v4.7 — April 18, 2026 (Day 44. Methodology enrichment from the productivity skill. Three additive changes, no content lost: (1) new `⏳ Waiting On` section between Weekly Scope and Current Status — seven items lifted from the implicit "blocked on other side" backlog; (2) `due` / `since` / `started` micro-notations documented in the top callout so timing is machine-readable; (3) four explicit triage rules documented so the AI can run them on "update the roadmap" / "triage". Skipped: four flat buckets, weekly-rotation of Done, "Someday" — all regressions against existing structure. The roadmap stays the tracker; no parallel `TASKS.md`.)*
+
+*Roadmap v4.8 — April 18, 2026 (Day 44. Consent-boundary structurally encoded + holomap redesign task seeded. New `🤝 Other Founders' Canvases — Held by Default` subsection between Active Backlog and Parked, with six rows (Karime · Kirill · Sandra · Alex · Sergey · Oyi). Mechanism: `.agent/auto-execute-policy.md` §3 blacklist adds `docs/02-strategy/unique-businesses/*_unique_business.md` except `alexanders_unique_business.md` — structural rule is stricter than the `[hold]` tag, so a missing tag cannot accidentally un-hold a canvas. Non-canvas business (Sandra rev-share, Sergey Build-boundary, Taylor & Tracy, Oyi licensing) stays in the main roadmap because those don't touch the canvas files and are explicitly consented deal-making. New Active Backlog item 27: Holomap redesign 12×6 → 27×7 with masculine/feminine axis; brief prepared at `ai_tasks/NEW_CHAT_27x7_holomap_redesign.md` for the fresh chat Sasha is about to open.)*

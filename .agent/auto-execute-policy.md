@@ -74,7 +74,8 @@ Hard stop. Auto-execution must never touch these, even when the item appears to 
 - Any file under `specs/` that is flagged as locked (look for `canon-lock` frontmatter or a `🔒` header).
 - Any file called `*.env*`, `*credentials*`, `*secret*`, or matching `.*rc` if it holds credentials.
 - Master locked texts: Epicenter Broadcast, myth versions, value ladder versions (quote only, never rewrite — see `CLAUDE.md`).
-- Anything in `docs/02-strategy/unique-businesses/*_unique_business.md` that modifies the applied canvas structurally (v-bump). Small appendix additions to Sasha's own canvas are allowed under 2.1.
+- **Other founders' canvases** — any file matching `docs/02-strategy/unique-businesses/*_unique_business.md` **except `alexanders_unique_business.md`**. This is a consent boundary: Sasha does not spend his AI instance's tokens autonomously on a canvas whose owner has not given explicit consent to AI-assisted work between sessions. Held files right now: `kirills_unique_business.md`, `sandras_unique_business.md`, `alexas_unique_business.md`, `sergeys_unique_business.md`, `oyis_unique_business.md`. Un-holding requires the founder's consent AND an explicit whitelist addition here — a missing `[hold]` tag alone cannot un-hold a canvas.
+- **Sasha's own canvas** — `alexanders_unique_business.md` is auto-editable under 2.1 for small appendix additions only. Any structural modification of the applied canvas (v-bump, reworking artifacts, rewriting myth/tribe/pain/promise) still requires Sasha.
 - Git operations: no `push`, `force-push`, `amend`, `reset --hard`, `checkout --`, `clean -f`, `branch -D`, hook-skipping. No `gh pr create`, `gh pr merge`, or anything that lands on `main`. Git is Sasha's surface.
 - File deletions (require `mcp__cowork__allow_cowork_file_delete` — interactive only).
 - Any package management: no `npm install`, `pip install`, dependency changes.
