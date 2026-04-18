@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-04-18T02:39:58.751Z",
+  "version": "v3.4",
+  "contactsCount": 26,
+  "stageDistribution": {
+    "Build": 4,
+    "Naming done": 1,
+    "Agreement removed": 2,
+    "Session 1 Complete": 1,
+    "In Conversation": 5,
+    "Active Session": 1,
+    "Responded": 1,
+    "Paused": 2,
+    "Planned": 7,
+    "Scheduled": 1,
+    "Planned (via Kirill)": 1
+  },
+  "segmentDistribution": {
+    "CLIENT": 6,
+    "BRIDGE": 2,
+    "PAUSED": 2,
+    "NODE": 1,
+    "COLLABORATOR": 5,
+    "ECOSYSTEM": 3,
+    "ADJACENT": 4,
+    "BULLSEYE": 1,
+    "ORIGINAL": 3,
+    "PAST-ZOG": 1,
+    "TBD": 5,
+    "HIGH-VALUE": 1
+  },
+  "energyLeakCount": 5,
+  "cashReceivedUsd": 1377,
+  "revShareContractsUsd": 277,
+  "upcomingEvents": [
+    {
+      "date": "Wed Apr 16, 10:30am CDMX",
+      "event": "Livestream conversation with Oluwa Adams",
+      "participants": "Alexander, Oluwa, Oyi (audience)",
+      "notes": "Topic: mastery / hero's journey / unique gift monetization. Transcript → AI for field amplification"
+    },
+    {
+      "date": "Mon Apr 14",
+      "event": "Oyi arrives Mexico",
+      "participants": "Alexander, Oyi",
+      "notes": "Villa + intensive Build"
+    }
+  ],
+  "openItemsCount": 12
+}

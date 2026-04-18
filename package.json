@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/emit-crm-snapshot.mjs",
     "build": "vite build",
+    "crm:snapshot": "node scripts/emit-crm-snapshot.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "update:mission-manifest": "node scripts/update-mission-manifest.js",
