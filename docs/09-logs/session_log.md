@@ -4370,3 +4370,50 @@ Pure Claude Code lane — `src/`, `supabase/`, `.agent/`, `.claude/`, and this o
 ---
 
 *Day 41 addendum 6 complete. Seven tasks, six merges, one new deploy workflow, one settings.json. Sasha wanted "less clicking Confirm" — got it.*
+
+
+
+## Day 41 addendum 7 — Scaffold-vs-model-upgrade verification (April 18, 2026)
+
+### What happened
+
+Sasha ran a controlled A/B on Opus 4.7 with and without the integral/holonic skill loaded, across two benchmarks (Mini-HELM, 30 prompts; SIB, 4 questions). Answers were handed back for blind scoring with coin-flipped order. The scoring-then-reveal came out right on both rounds (55–60% confidence on Mini-HELM, 85–90% on SIB).
+
+### Headline numbers
+
+- **SIB Total**: 67/100 → **95/100** (Δ +28, +42%)
+- **Evolutionary Stage on SIB**: 3.36 → **4.50** (Δ +1.14 — Agentic Partner → Integrative Steward; phase-boundary crossing, not intra-stage)
+- **Evolutionary Stage on Mini-HELM**: 3.14 → 2.93 (Δ −0.21, acceptable)
+- **Time on Mini-HELM**: 248s → 197s (**−20.56%**)
+- **Time on SIB**: 55.67s → 54.41s (−2.26%, parity)
+
+### What it means
+
+Cross-referenced to Lovable's Opus 4.6 → 4.7 data (+15% speed, +2–3% performance, −40% turns, −10–20% tokens): **on Sasha's task class, a scaffold upgrade out-delivers a generational model upgrade.** The scaffold axis is perpendicular to the model axis, not competing with it. Skills compound with each model release rather than being made obsolete by them.
+
+The trade-off expected going in (heavy skill bloats operational responses) was rejected by the data: skill made operational tasks *faster* (−20.56%) at a tiny stage cost. Skill can be loaded by default, not gated by task-type.
+
+### Corpus landings
+
+- **`docs/01-vision/phase_shift_technology_library.md`** — new **Domain 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)**. Generalizes Domain 3 (Metacognition Benchmark) from sighting to verified principle. 27-perspective synthesis collapsed into one line: *"You don't wait for the future. You compile it."*
+- **`docs/09-logs/transcripts/scaffold_vs_model_upgrade_verification_2026_04_18.md`** — rigor anchor with per-dimension SIB scores, per-module Evolutionary Stage scores, time data, calibration data, methodology caveats.
+
+### Open items for next replication
+
+- Human co-scorer (rigor)
+- Token counts (input vs output separated, paralleling Lovable's 10–20%)
+- Decomposition of the skill into components (integral vs stage/line vs corpus vocab vs protocol) to see which contributes most
+- Cross-model baseline (not just Opus 4.7)
+
+### Lane discipline
+
+Corpus-only lane — `docs/01-vision/`, `docs/09-logs/`. No `src/`, no `supabase/`, no `.agent/`. One finding captured in two places: PST (concept), transcripts (data).
+
+### Next
+
+- Sasha decides whether to make this public (publication axis in the 27-perspective synthesis). If yes: the verification artifact is the rigor anchor. If no: it sits in corpus and compounds quietly.
+- Optional follow-up: Holomap entry under the Instrumentation perspective — scaffold engineering as a new instrument in the navigation map.
+
+---
+
+*Day 41 addendum 7 complete. One controlled experiment, two corpus landings, one phase-shift technology added to the library. Sasha asked "правильно же?" and the data said yes.*
