@@ -26,6 +26,7 @@ import { join } from "node:path";
 
 import { readHolomap } from "./parse-holomap.mjs";
 import { readRoadmap, readSessionLogSince, readAlexanderCanvasHeader } from "./parse-inputs.mjs";
+import { readBroadcastTracker } from "../sources/broadcast-tracker.mjs";
 
 function parseArgs(argv) {
   const args = { stdout: false, since: null };
@@ -42,11 +43,12 @@ function main() {
   const holomap = readHolomap();
   const roadmap = readRoadmap();
   const canvas = readAlexanderCanvasHeader();
+  const crm = safeRead(readBroadcastTracker);
 
   const sinceDate = args.since ?? holomap.updated;
   const sessionEntries = readSessionLogSince(sinceDate);
 
-  const packet = renderBriefingPacket({ holomap, roadmap, canvas, sessionEntries, sinceDate });
+  const packet = renderBriefingPacket({ holomap, roadmap, canvas, crm, sessionEntries, sinceDate });
 
   if (args.stdout) {
     console.log(packet);
@@ -59,11 +61,25 @@ function main() {
   console.log(`  → ${out}`);
   console.log(`  → ${sessionEntries.length} session-log entries since ${sinceDate ?? "beginning"}`);
   console.log(`  → ${holomap.perspectives.length} perspectives scanned (current ► markers captured)`);
+  if (crm) {
+    console.log(`  → ${crm.contacts.length} CRM contacts · ${crm.energyLeakCount} energy leaks · $${crm.cashReceivedUsd ?? 0} cash`);
+  } else {
+    console.log(`  → CRM read failed — broadcast_tracker.md not parsed (skipped in briefing)`);
+  }
   console.log("");
   console.log(`Next step: open Cowork chat and say "update the holomap using scripts/holomap-update/last-briefing.md"`);
 }
 
-function renderBriefingPacket({ holomap, roadmap, canvas, sessionEntries, sinceDate }) {
+function safeRead(readerFn) {
+  try {
+    return readerFn();
+  } catch (err) {
+    console.warn(`▸ Warning: ${readerFn.name} failed: ${err.message}`);
+    return null;
+  }
+}
+
+function renderBriefingPacket({ holomap, roadmap, canvas, crm, sessionEntries, sinceDate }) {
   const now = new Date().toISOString().slice(0, 10);
   const lines = [];
 
@@ -135,6 +151,86 @@ function renderBriefingPacket({ holomap, roadmap, canvas, sessionEntries, sinceD
     }
   }
 
+  // 4b. CRM snapshot from broadcast_tracker.md
+  lines.push(`## 4b. CRM Snapshot — \`docs/09-logs/broadcast_tracker.md\``);
+  lines.push("");
+  if (!crm) {
+    lines.push(`(broadcast_tracker.md could not be parsed — skipped)`);
+    lines.push("");
+  } else {
+    lines.push(`*${crm.version ?? ""} · ${crm.updatedNote ?? ""}*`);
+    lines.push("");
+
+    // Headline counts
+    lines.push(`- **Total contacts:** ${crm.contacts.length}`);
+    lines.push(`- **Cash received:** $${crm.cashReceivedUsd ?? 0}`);
+    lines.push(`- **Revenue-share contracts:** $${crm.revShareContractsUsd ?? 0}`);
+    lines.push(`- **Energy leaks flagged:** ${crm.energyLeakCount}`);
+    lines.push("");
+
+    // Stage distribution
+    lines.push(`### Stage distribution`);
+    lines.push("");
+    lines.push(`| Stage | Count |`);
+    lines.push(`|---|---|`);
+    const stageEntries = Object.entries(crm.stageDistribution).sort((a, b) => b[1] - a[1]);
+    for (const [stage, count] of stageEntries) {
+      lines.push(`| ${stage} | ${count} |`);
+    }
+    lines.push("");
+
+    // Segment distribution
+    lines.push(`### Segment distribution`);
+    lines.push("");
+    const segEntries = Object.entries(crm.segmentDistribution).sort((a, b) => b[1] - a[1]);
+    lines.push(segEntries.map(([s, c]) => `${s}: ${c}`).join(" · ") || "(none)");
+    lines.push("");
+
+    // Active clients (paying or in a container)
+    const activeClients = crm.contacts.filter((c) => c.segments.includes("CLIENT"));
+    if (activeClients.length) {
+      lines.push(`### Active clients`);
+      lines.push("");
+      lines.push(`| # | Name | Stage | Container | Paid | Last Contact |`);
+      lines.push(`|---|---|---|---|---|---|`);
+      for (const c of activeClients) {
+        lines.push(`| ${c.num} | ${c.name} | ${c.stage} | ${c.container} | ${c.paid} | ${c.lastContact} |`);
+      }
+      lines.push("");
+    }
+
+    // Energy leaks — the narrative line Sasha cares about
+    if (crm.energyLeaks.length) {
+      lines.push(`### Energy leaks — need boundary`);
+      lines.push("");
+      for (const l of crm.energyLeaks) {
+        lines.push(`- **${l.name}** — ${l.pattern} → ${l.boundary}`);
+      }
+      lines.push("");
+    }
+
+    // Open items — just the first N, tight
+    if (crm.openItems.length) {
+      lines.push(`### Open items (top ${Math.min(crm.openItems.length, 10)})`);
+      lines.push("");
+      for (const item of crm.openItems.slice(0, 10)) {
+        const check = item.done ? "x" : " ";
+        lines.push(`- [${check}] ${item.text}`);
+      }
+      lines.push("");
+    }
+
+    // Upcoming events
+    if (crm.upcomingEvents.length) {
+      lines.push(`### Upcoming events`);
+      lines.push("");
+      for (const e of crm.upcomingEvents) {
+        lines.push(`- **${e.date}** — ${e.event} (${e.participants})`);
+      }
+      lines.push("");
+    }
+  }
+
   // 5. Founder canvas state snapshot
   lines.push(`## 5. Alexander's Canvas — Header Snapshot`);
   lines.push("");
@@ -154,7 +250,7 @@ function renderBriefingPacket({ holomap, roadmap, canvas, sessionEntries, sinceD
   lines.push("");
   lines.push(`1. **Date stamp:** update the \`Updated:\` line to today.`);
   lines.push(`2. **Center reading:** only shift if section 4 shows a qualitative change in what's at the center of Sasha's attention.`);
-  lines.push(`3. **► markers:** for each perspective whose stage changed, move the ► and add ✓ on previously-completed stages. Be conservative — only move ► when the evidence is in section 4.`);
+  lines.push(`3. **► markers:** for each perspective whose stage changed, move the ► and add ✓ on previously-completed stages. Be conservative — only move ► when the evidence is in section 4 or 4b (CRM stage transitions, new paid clients, new energy leaks resolving).`);
   lines.push(`4. **Timing overlays (🐢/🎯/⚡):** re-evaluate if section 3 (weekly scope) materially changes velocity expectations.`);
   lines.push(`5. **Output shape:** write the update as an in-place edit to the holomap file. Surface each ► move in the reply with a one-line \`P_N: <from> → <to>\` note so the reasoning is visible.`);
   lines.push("");
