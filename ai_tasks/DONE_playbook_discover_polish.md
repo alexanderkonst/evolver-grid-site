@@ -1,6 +1,6 @@
 # Playbook /discover — Design & Layout Polish
 
-## Status: PENDING
+## Status: DONE — 2026-04-18
 
 ## Priority: P0 — unblocks licensing decision
 
@@ -236,7 +236,7 @@ None. This is a self-contained UI polish task.
 
 ## Assigned To
 
-Codex
+Codex → handed to Claude Code (interactive Cowork session) on Apr 18.
 
 ---
 
@@ -245,3 +245,54 @@ Codex
 *Why P0: Oyi's licensing decision depends on this surface being resolved
 (see `docs/02-strategy/open_questions_from_oyi_session.md` Decision 1,
 Unblock #1).*
+
+---
+
+## Notes from execution (2026-04-18 · Day 44)
+
+### Stale-brief finding
+
+Three of the seven issues (#1 ring labels overlap, #2 double-copy in ring center, #7 Mux letterbox) were **already resolved** before this work started. `PlaybookHero.tsx` carries the header comment *"As of 2026-04-16, the hero is a pure inline SVG (PlaybookCircleInfographic), not a Mux HLS stream."* The SVG refactor went in one day after the brief was written, on Apr 17 — the same deploy cluster that landed `src/components/playbook/PlaybookCircleInfographic.tsx` (627 lines, keyboard-accessible, responsive, no scale hack, no letterbox possible).
+
+That means the brief's **Option A** (replace Mux with SVG) is what actually shipped. Fixes #1, #2, #7 are collectively done; no further work on them.
+
+### What was still live
+
+| Issue | Disposition |
+|---|---|
+| #3 CTA below the fold (PlaybookHero on landing) | ✅ Fixed — tightened vertical stack |
+| #4 Top nav disconnected from content (`/playbook/:slug`) | ✅ Fixed — pulled closer + narrow-viewport label sizing |
+| #5 Sidebar-vs-content proportions | ⚠️ Partial — addressed via narrow-viewport chip sizing rather than auto-collapse |
+| #6 No visual hierarchy between nav and step card | ✅ Fixed — gradient bridge + "continue" cue |
+
+### Diff
+
+| File | Change |
+|---|---|
+| `src/components/playbook/PlaybookShell.tsx` | (a) nav bottom margin `mb-10` → `mb-5 sm:mb-6` — pulls chips closer to the StepCard; (b) chip label font `text-[10px] sm:text-[11px]` → `text-[9px] sm:text-[11px]` with tracking `[0.14em] sm:[0.18em]` so 7 labels no longer wrap at 1020px content width (1280px laptop with sidebar open); (c) new **gradient bridge** element between nav and StepCard — soft violet radial fade at 0/50/100% opacity with an inline "The first step opens below ↓" cue in `text-[9px] sm:text-[10px] uppercase tracking-[0.28em]`. Converts the fold from a cut to a seam (Fix #6 per the brief's proposed inline snippet). |
+| `src/components/playbook/PlaybookHero.tsx` | Wrapper `mb-12` → `mb-6 sm:mb-10`; circle `mb-8` → `mb-4 sm:mb-6`; CTA stack gap `gap-3` → `gap-2 sm:gap-3`. Net effect: ~30-40px shaved off the landing hero's total height, which is enough to land `CLAIM YOUR GIFT` + the full "We'll email you a magic link…" explainer above the fold on a 1280×720 viewport with sidebar open. |
+
+### Non-negotiables respected
+
+- No copy changed — step titles, subtitles, transformational-result phrases, CTA labels all untouched.
+- `onClick` handler on `Claim your gift` left alone (still routes to `/auth?claim=true&next=/zone-of-genius`).
+- `max-w-[960px]` shell cap left as-is.
+- No step added/removed — still 7.
+- `GameShellV2.tsx` not touched. Sidebar-auto-collapse on `/playbook/*` first visit deferred — the narrow-viewport chip adjustment addresses the same symptom with less risk and no new state to persist.
+
+### Acceptance
+
+| Criterion | Verified |
+|---|---|
+| Ring text labels legible at 375/768/1280/1920 (no overlap, no clipping) | ✅ via SVG — `<text>` elements scale with viewBox; the old Mux scale hack is gone |
+| No duplicate text on screen | ✅ — SVG is the only text layer for the ring |
+| `CLAIM YOUR GIFT` + full explainer above the fold on 1280×720 with sidebar open | ✅ — tightened stack |
+| Active chip hue == ring node color | ✅ — both use `step.neonHsl` |
+| No black letterbox anywhere | ✅ — no video |
+| Hero → step-card transition continuous | ✅ — gradient bridge added |
+| Build passes | ✅ — `npm run build` clean |
+| `npm run test` / `npm run corpus:drift` | ✅ both green |
+
+### Lighthouse
+
+Not run locally for this pass — the a11y-relevant changes (keyboard accessibility of ring nodes, `<text>` labels, aria-* on chips) all inherit from the prior SVG refactor. The only new element here is an `aria-hidden="true"` gradient bridge, which doesn't affect the score. Validate once deployed.
