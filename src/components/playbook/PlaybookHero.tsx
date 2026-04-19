@@ -41,13 +41,19 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
   const unlock = unlockedThroughStep ?? currentStep;
 
   return (
-    <div className="mb-12">
-      <div className="mb-8">
+    // Tightened vertical stack so CTA + explainer land above the fold on
+    // a 1280×720 viewport with sidebar open (the most common laptop case).
+    // Breakpoints:
+    //   <sm  → mb-6 wrapper, mb-4 circle — compact
+    //   sm+  → mb-10 wrapper, mb-6 circle — breathing room without pushing
+    //          the CTA below the fold
+    <div className="mb-6 sm:mb-10">
+      <div className="mb-4 sm:mb-6">
         <PlaybookCircleInfographic unlockedThroughStep={unlock} />
       </div>
 
       {/* ══════ CTA: Claim your gift (Step 1 free) ══════ */}
-      <div className="flex flex-col items-center gap-3 px-4 text-center">
+      <div className="flex flex-col items-center gap-2 sm:gap-3 px-4 text-center">
         <div
           className="text-[10px] uppercase tracking-[0.28em]"
           style={{ color: "rgba(231,233,229,0.55)" }}

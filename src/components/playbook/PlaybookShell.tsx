@@ -60,7 +60,7 @@ const PlaybookShell = ({
       {/* ═══════ TOP NAV: 7 steps ═══════ */}
       <nav
         aria-label="Playbook progression"
-        className="mb-10"
+        className="mb-5 sm:mb-6"
       >
         <ol className="flex items-start justify-between gap-1 sm:gap-2">
           {PLAYBOOK_STEPS.map((step, i) => {
@@ -136,8 +136,13 @@ const PlaybookShell = ({
 
                 <span
                   className={cn(
-                    "mt-2 text-[10px] sm:text-[11px] uppercase",
-                    "tracking-[0.18em] font-medium text-center",
+                    // Narrow-viewport (sidebar open on 1280px laptops)
+                    // gives the content column ~1020px; with 7 chips that
+                    // leaves each chip-label ~145px. 9px at narrow widths
+                    // prevents label wrapping. 11px at sm: keeps the
+                    // default crisp.
+                    "mt-2 text-[9px] sm:text-[11px] uppercase",
+                    "tracking-[0.14em] sm:tracking-[0.18em] font-medium text-center",
                     "transition-opacity duration-300",
                     state === "active" && "opacity-100",
                     state === "completed" && "opacity-60",
@@ -152,6 +157,26 @@ const PlaybookShell = ({
           })}
         </ol>
       </nav>
+
+      {/* ═══════ GRADIENT BRIDGE (nav → step card) ═══════
+          A soft violet fade that converts the fold from a cut to a seam.
+          Centered "continue" cue sits inside the gradient and signals
+          "the first step opens below" without adding a second CTA. */}
+      <div
+        aria-hidden="true"
+        className="relative flex items-center justify-center h-10 -mt-2 -mb-2 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, transparent 0%, rgba(132,96,234,0.08) 50%, transparent 100%)",
+        }}
+      >
+        <span
+          className="text-[9px] sm:text-[10px] uppercase tracking-[0.28em]"
+          style={{ color: "rgba(231,233,229,0.38)" }}
+        >
+          The first step opens below &nbsp;↓
+        </span>
+      </div>
 
       {/* ═══════ STEP CONTENT ═══════ */}
       <div>{children}</div>
