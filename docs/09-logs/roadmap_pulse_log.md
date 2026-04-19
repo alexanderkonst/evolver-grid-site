@@ -4,7 +4,58 @@
 
 ---
 
-## Pulse — 2026-04-18 17:04 (local, Mexico City)
+## Pulse — 2026-04-19 13:25 (local, Mexico City)
+
+Second run. Policy file read, parsed cleanly, opt-out model intact. Roadmap header still v4.9, week scope April 14-20 still open (Sunday → final day is tomorrow). Holomap header v2.0 / 27×7 / Day 44; the Knoware Telegram post landed late evening Apr 18 (Day 44 addendum) and crystallization shock (Si→Do') closed inside that 24h window. Nothing new in `ai_tasks/PENDING_*` since the Apr 18 17:04 pulse. The roadmap is materially unchanged from yesterday's pulse — same `[hold]` distribution, same out-of-scope filter outcomes, same undated Waiting On rows.
+
+Item #27 question from yesterday's pulse is **resolved**: the holomap redesign 12×6 → 27×7 was completed end-to-end on Day 44 and moved to Completed (`### Corpus / Navigation` block). The current Active Backlog Item 27 is now "Hero + playbook-circle rework on `/`" — a Claude Code lane item, structurally out of scope for autonomous execution.
+
+### Executed (0 items)
+none — the only docs-maintenance windows that opened in the last 24h (publishing the Knoware post; landing the v2.0 holomap) were synthesis-heavy work that Sasha drove interactively and that already wrote their own session-log entries. No 🔴 row in This Week's Scope or Active Backlog opened a new whitelist-fitting docs path between yesterday's pulse and now.
+
+### Aborts (0 items)
+none — nothing was attempted and bailed mid-work. All non-executable items were filtered upstream at classification.
+
+### Held by Sasha (1 item)
+- [W5] Karime: Score Myth + Tribe v1.2 — `[hold]` noted explicitly; canvas work on another founder. Sasha drives in Session 3 context. Same as yesterday.
+
+### Out-of-scope (for future policy review)
+Identical distribution to the Apr 18 17:04 pulse — no roadmap rows added or reclassified between runs. Briefly:
+
+- §3 blacklist — other founders' canvases (structurally held, stricter than tags): OF1 Karime, OF2 `kirills_unique_business.md`, OF3 `sandras_unique_business.md`, OF4 `alexas_unique_business.md`, OF5 `sergeys_unique_business.md`, OF6 `oyis_unique_business.md`.
+- §3 blacklist — application code paths (`src/`, `supabase/`, `api/`): W12/L2 `/playbook/discover` polish; F1, F2, F3, F4, F5, F7, F8; L4, L5; W17/Item 27 hero+circle rework; W18/Item 28 Profile Settings consolidation; W19, W20, Item 29 email gate + ZoG inside `GameShellV2`; Items 14, 15, 16-20.
+- §2 whitelist miss — relational / commercial / human decision: W1 (delivered), W1b, W1c, W1d, W3 Patricia, W4 José, W6 Sandra, W7 Taylor & Tracy, W10 Terrina, W11/L1 Oyi licensing, W15/L7 Decision 3 cadence, Items 6, 7, 8, 9, 12, 13, 21, 25, 26.
+- §2 whitelist miss — content production (not docs-maintenance): W8/Item 11 Infographic Episodes, W9 Content Pillars, W13/L3 long-form essay v1, W14/L6 shorts bundle, Items 23, 24.
+- §2.3 synthesis-heavy / topology-class — requires Sasha: Item 22 Holomap auto-update mechanism (meta-task, not the running of it). The previously-listed Item 27 holomap redesign is no longer in this bucket — it shipped Apr 18.
+
+### Briefs prepared for Claude Code (0 items)
+none — no roadmap row carries `[brief]`. Three pre-existing briefs (`PENDING_playbook_discover_polish.md`, `PENDING_directive_engine.md`, `PENDING_email_gate_and_zog_in_shell.md`, plus older `PENDING_resonance_rating.md` and `PENDING_MIGRATIONS.md`) remain queued and untouched.
+
+### Nudge list (Waiting On > 7 days)
+none. Dated rows aged forward 1 day:
+- WO5 (Decision 3 cadence) — `since 2026-04-15`, 4 days old.
+- WO6 (Oyi licensing) — `since 2026-04-17`, 2 days old. **Note:** licensing target was *"signed v1 by end of Oyi's Mexico week"* — this Sunday Apr 19 is plausibly that endpoint. If Oyi flies out Mon/Tue, the window closes inside 48h. Surfaced for awareness; no autonomous action.
+- WO7 (`/playbook/discover` merge) — `since 2026-04-16`, 3 days old.
+
+Undated rows (WO1 Patricia · WO2 José · WO3 Taylor & Tracy · WO4 Sandra) still carry placeholder `since 2026-04-__` or "since unset" — yesterday's open question #2 to Sasha is unanswered, so the triage rule still does not fire on these four. Re-surfaced below.
+
+### Triage list (Active Backlog stuck > 30 days)
+none — no Active Backlog row carries a machine-readable `started YYYY-MM-DD`. Yesterday's open question #3 unanswered; rule still silent.
+
+### Recommended next focus (one item)
+
+**W11 — Negotiate v1 licensing deal with Oyi.** Воскресенье Apr 19 — последний день Mexico-недели Oyi. Цитата роадмапа дословно: *"Target: signed v1 by end of Oyi's Mexico week."* Если Oyi улетает завтра или во вторник, окно закрывается в ближайшие 24-48 часов. 11-row checklist уже в `open_questions_from_oyi_session.md`. Всё остальное в 🔴-лейне либо блокируется на Claude Code (W17, W19, W20, F1-F7, L2), либо ждёт чужого хода (Patricia / José / Sandra / Taylor & Tracy), либо уже отгружено (W1, W2, W16, holomap v2.0, Knoware post).
+
+### Open questions for Sasha
+
+1. **Окно недели почти закрыто.** Текущий This Week's Scope = April 14-20. Сегодня Apr 19 (воскресенье), завтра последний день. Готовить новый scope April 21-27 со следующим pulse-прогоном (промоутить из Active Backlog в This Week, парковать невостребованное), или подождёшь, пока сам перевернёшь? (промоутить автоматически по правилам / подожду / перенеси целиком)
+
+2. **Висячий merge-маркер в `session_log.md`.** Строка 4421 содержит одинокий `<<<<<<< HEAD` без парных `=======` и `>>>>>>>` — артефакт неполного резолва конфликта, попал в файл между Day 41 addendum 7 и Day 43. Per policy §2.2 я не переписываю прошлые записи log'а автоматически. Удалить эту строку (тривиальная правка, контент не теряется), или оставить и сам разберёшься? (удалить / оставить / разобраться вручную)
+
+3. **Старые открытые вопросы из вчерашнего pulse'а.** Q2 (проставить `since 2026-04-18` на WO1-WO4) и Q3 (проставить `started` даты на 🟡 пункты 16-24) — не отвечены, триаж-правила из-за этого молчат на четырёх Waiting On и на девяти Active Backlog строках. Решение остаётся за тобой.
+
+---
+
 
 First run of the pulse task. Policy file read and parsed cleanly (opt-out model, five-layer safety). Roadmap v4.8, Day 44, current week scope April 14-20 still open. Holomap header already dated today, v2.0 / 27×7 topology. Session log most-recent entry is Day 41 addendum 7 (scaffold-engineering verification), also dated today. Nothing stale to repair from recent sessions.
 

@@ -4568,7 +4568,9 @@ This is the holomap shift we've been watching for — *Sasha alone → Sasha ins
 ---
 
 *Day 44 complete. One founder joins. One collective self-identifies. Three pieces of native vocabulary land. The river is carrying more than Sasha now.*
-=======
+
+---
+
 Roadmap pulse run 17:04 — 0 executed, 0 aborted, 1 held (W5 Karime canvas), 0 briefs — see roadmap_pulse_log.md.
 
 ---
@@ -4632,4 +4634,48 @@ The redesign demonstrates Domain 80 (Scaffold Engineering) in its own developmen
 ---
 
 *Day 44 complete. Structural upgrade v1.4 → v2.0 landed without ceremony. Recognition-as-discovery.*
->>>>>>> 666b8fb (deploy)
+
+---
+
+## Day 44 addendum — Knoware post published (April 18, 2026, late evening)
+
+### What happened
+
+After the v2.0 holomap instance shipped to production (`672b072` + subsequent deploys reaching `f94aacf` on `origin/main`), Sasha published the first external-facing Knoware post to Telegram. Russian-language, title *"Параллельная ось прогресса AI — и что на ней оказалось"*. Source: `docs/08-content/scaffold_engineering_post_draft_2026_04_18.md` v2.
+
+### Why this closes the 27th perspective on Day 44
+
+The 27th perspective (P27 Crystallization Lens in the newly-shipped v2.0 topology) collapses into one action when read through the Si–Do shock. On Day 44 that action had two structurally-bound halves:
+
+1. **Ship the instrument** — v2.0 holomap instance to production, so the tool of observation becomes public-facing.
+2. **Publish about the instrument** — the Knoware post, so the tool is named externally and replication is invited.
+
+Both landed inside the same 24-hour window. The caskade **corpus → code → prod → publication** is closed for the first time since the lab journal entry in February.
+
+### Structural readout
+
+- **Masculine axis** (Cube / 4 Quadrants): UR quadrant activated — external observable behavior shipped to public production infrastructure. UL quadrant activated — the interior observation (Day 44 "Recognition" reading) is now citable externally. LL quadrant activated — the collective is addressed (Russian Telegram audience invited as potential holonic replication group).
+- **Feminine axis** (Tetrahedron / 3 Dantians): Heart ready, Mind ready, Gut aligned. All three dantians converge on one artifact — the published post.
+- **Shock crossed**: Si → Do' (Crystallization). The experiment (private, Feb 12 + Apr 18 verification) crosses into external form (public announcement + replication invitation).
+
+### Files touched (this addendum)
+
+- `docs/08-content/scaffold_engineering_post_draft_2026_04_18.md` — finalized v2 (Knoware glossary added at first mention; metadata and internal block in English per new file-language feedback).
+- `docs/02-strategy/roadmap.md` — publication entry added to Completed / Corpus-Navigation section.
+- `docs/09-logs/session_log.md` — this addendum.
+
+### Pending (next)
+
+- Whitepaper with full protocol (SIB rubric, 4 question texts, Mini-HELM methodology, replication harness) — next.
+- Responses to replication inquiries as they arrive — triage and holonic-group assembly from 5–7 responding experts.
+- First live v2.0 holomap reading beyond Day 44 — next session.
+
+---
+
+*Day 44 addendum complete. The tool is shipped. The tool is named. Crystallization holds.*
+
+---
+
+## Day 45 — Sunday, April 19, 2026
+
+Roadmap pulse run 13:25 — 0 executed, 0 aborted, 1 held (W5 Karime canvas), 0 briefs — see roadmap_pulse_log.md.
