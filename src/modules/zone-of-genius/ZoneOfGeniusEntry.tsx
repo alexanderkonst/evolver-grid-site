@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import { supabase } from "@/integrations/supabase/client";
 import Hls from "hls.js";
 
@@ -485,6 +486,9 @@ const ZoneOfGeniusEntry = () => {
                     isSaved={isSaved}
                     onSave={handleSaveClick}
                     isSaving={isSaving}
+                    onResonanceRating={(rating) =>
+                        saveResonanceRating(profileId, "appleseed", rating)
+                    }
                 />
             </GameShellV2>
         );
@@ -543,6 +547,9 @@ const ZoneOfGeniusEntry = () => {
                     profileId={profileId ?? undefined}
                     onSaveToProfile={handleSaveExcalibur}
                     isSaving={isSaving}
+                    onResonanceRating={(rating) =>
+                        saveResonanceRating(profileId, "excalibur", rating)
+                    }
                     onLaunchProductBuilder={() => navigate("/product-builder")}
                     showProductBuilderButton={true}
                 />

@@ -9,6 +9,7 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import BackButton from "@/components/BackButton";
 
 const AppleseedView = () => {
@@ -17,15 +18,17 @@ const AppleseedView = () => {
   const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
   const [loading, setLoading] = useState(true);
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
+  const [profileId, setProfileId] = useState<string | null>(null);
 
   useEffect(() => {
     const load = async () => {
       const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
       setAppleseed(savedAppleseed);
       setExcalibur(savedExcalibur);
-      const profileId = await getOrCreateGameProfileId().catch(() => null);
-      if (profileId) {
-        setProfileUrl(`${window.location.origin}/profile/${profileId}`);
+      const pid = await getOrCreateGameProfileId().catch(() => null);
+      if (pid) {
+        setProfileId(pid);
+        setProfileUrl(`${window.location.origin}/profile/${pid}`);
       }
       setLoading(false);
     };
@@ -67,7 +70,14 @@ const AppleseedView = () => {
       <div className="px-4 pt-6">
         <BackButton to="/game/me" />
       </div>
-      <AppleseedDisplay appleseed={appleseed} profileUrl={profileUrl ?? undefined} />
+      <AppleseedDisplay
+        appleseed={appleseed}
+        profileId={profileId ?? undefined}
+        profileUrl={profileUrl ?? undefined}
+        onResonanceRating={(rating) =>
+          saveResonanceRating(profileId, "appleseed", rating)
+        }
+      />
       {!excalibur && (
         <div className="px-4 pb-10">
           <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-violet-50 p-6 text-center">

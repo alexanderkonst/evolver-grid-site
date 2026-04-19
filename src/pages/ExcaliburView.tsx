@@ -7,17 +7,22 @@ import { Button } from "@/components/ui/button";
 import ExcaliburDisplay from "@/modules/zone-of-genius/ExcaliburDisplay";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import BackButton from "@/components/BackButton";
 
 const ExcaliburView = () => {
   const navigate = useNavigate();
   const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [profileId, setProfileId] = useState<string | null>(null);
 
   useEffect(() => {
     const load = async () => {
       const { excalibur: savedExcalibur } = await loadSavedData();
       setExcalibur(savedExcalibur);
+      const pid = await getOrCreateGameProfileId().catch(() => null);
+      if (pid) setProfileId(pid);
       setLoading(false);
     };
     load();
@@ -60,6 +65,10 @@ const ExcaliburView = () => {
       </div>
       <ExcaliburDisplay
         excalibur={excalibur}
+        profileId={profileId ?? undefined}
+        onResonanceRating={(rating) =>
+          saveResonanceRating(profileId, "excalibur", rating)
+        }
         onLaunchProductBuilder={() => navigate("/product-builder")}
         showProductBuilderButton={true}
       />
