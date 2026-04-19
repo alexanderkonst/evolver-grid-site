@@ -357,12 +357,12 @@ const VentureDashboard = () => {
           </div>
         </section>
 
-        {/* ─── 12-Perspective Radar ────────────────────────────────── */}
+        {/* ─── 27-Perspective Radar ────────────────────────────────── */}
         <section id="radar-section" className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-lg font-medium text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Systemic View</h2>
-              <p className="text-[10px] text-white mt-0.5">12 perspectives · 4 quadrants × 3 depths</p>
+              <p className="text-[10px] text-white mt-0.5">27 perspectives · 4 quadrants × 3 dantians · 7 stages</p>
             </div>
             <a href="/holomap" className="text-[10px] text-[#6894d0] hover:text-[#8460ea] transition-colors px-3 py-1.5 rounded-lg border border-white/10 hover:border-[#8460ea]/30">
               Open Holomap →
