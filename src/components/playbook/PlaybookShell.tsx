@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lock } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
 
@@ -9,24 +9,21 @@ import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
  *
  * Layout:
  *   ┌──────────────────────────────────────────────────────────────┐
- *   │  1  ━  2  ━  3  ━  [4]  ━  5🔒 ━  6🔒 ━  7🔒                 │
+ *   │  ← Back to landing                                           │
+ *   │  1  ━  2  ━  3  ━  [4]  ━  5  ━  6  ━  7                     │
  *   │  discover package build TEST  launch grow  scale             │
  *   └──────────────────────────────────────────────────────────────┘
  *
- * States:
- *   - completed → dim pearl, tappable (returns to earlier step)
- *   - active    → electric violet, glowing ring
- *   - locked    → ghost with lock icon, not tappable yet
+ * States (Apr 2026 — Open Blueprint Paradox: nothing is gated):
+ *   - completed → dim pearl, tappable — steps already visited
+ *   - active    → electric violet, glowing ring — current step
+ *   - upcoming  → soft pearl, tappable — ALL later steps are free to preview
  *
- * `currentSlug` drives which node is active. Anything earlier is
- * considered completed; anything later is locked.
- *
- * For v1 we treat the progression purely by position in PLAYBOOK_STEPS.
- * When a real progression hook is wired (e.g. useJourneyProgression),
- * pass `getStepState` in as a prop to override.
+ * `currentSlug` drives which node is active. Earlier steps show as
+ * "completed" (visited), later steps show as "upcoming" — all clickable.
  */
 
-export type StepVisualState = "completed" | "active" | "locked";
+export type StepVisualState = "completed" | "active" | "upcoming";
 
 export type PlaybookShellProps = {
   currentSlug: string;
@@ -43,7 +40,7 @@ const defaultStateFor = (
   const stepIdx = PLAYBOOK_STEPS.findIndex((s) => s.slug === step.slug);
   if (stepIdx < currentIdx) return "completed";
   if (stepIdx === currentIdx) return "active";
-  return "locked";
+  return "upcoming";
 };
 
 const PlaybookShell = ({
@@ -56,7 +53,31 @@ const PlaybookShell = ({
     getStepState ? getStepState(s) : defaultStateFor(s, currentSlug);
 
   return (
-    <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-10 pb-20">
+    <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-6 pb-20">
+      {/* ═══════ BACK TO LANDING ═══════ */}
+      <div className="mb-5">
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className={cn(
+            "inline-flex items-center gap-2 py-1.5 px-3 rounded-full",
+            "text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium",
+            "transition-all duration-300 hover:scale-[1.02]",
+            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+          )}
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(231,233,229,0.08), rgba(231,233,229,0.02))",
+            border: "1px solid rgba(231,233,229,0.18)",
+            color: "rgba(231,233,229,0.75)",
+          }}
+          aria-label="Back to landing page"
+        >
+          <ArrowLeft className="w-3 h-3" aria-hidden="true" />
+          <span>Back to landing</span>
+        </button>
+      </div>
+
       {/* ═══════ TOP NAV: 7 steps ═══════ */}
       <nav
         aria-label="Playbook progression"
@@ -66,7 +87,8 @@ const PlaybookShell = ({
           {PLAYBOOK_STEPS.map((step, i) => {
             const state = resolveState(step);
             const isLast = i === PLAYBOOK_STEPS.length - 1;
-            const clickable = state !== "locked";
+            // Every step is clickable — Open Blueprint Paradox: nothing is gated.
+            const clickable = true;
 
             return (
               <li
@@ -89,17 +111,12 @@ const PlaybookShell = ({
 
                 <button
                   type="button"
-                  disabled={!clickable}
-                  onClick={() =>
-                    clickable && navigate(`/playbook/${step.slug}`)
-                  }
+                  onClick={() => navigate(`/playbook/${step.slug}`)}
                   className={cn(
                     "relative z-10 flex items-center justify-center",
                     "w-7 h-7 sm:w-8 sm:h-8 rounded-full text-xs font-semibold",
                     "transition-all duration-300",
-                    clickable
-                      ? "cursor-pointer hover:scale-110"
-                      : "cursor-not-allowed",
+                    "cursor-pointer hover:scale-110",
                     "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
                   )}
                   style={{
@@ -108,30 +125,21 @@ const PlaybookShell = ({
                         ? `radial-gradient(circle at 30% 30%, ${step.neonHsl}, rgba(132,96,234,0.75))`
                         : state === "completed"
                         ? "linear-gradient(135deg, rgba(231,233,229,0.7), rgba(200,183,216,0.5))"
-                        : "linear-gradient(135deg, rgba(231,233,229,0.12), rgba(231,233,229,0.05))",
-                    color:
-                      state === "locked"
-                        ? "rgba(231,233,229,0.45)"
-                        : "#0a1628",
+                        : "linear-gradient(135deg, rgba(231,233,229,0.25), rgba(231,233,229,0.1))",
+                    color: "#0a1628",
                     border:
                       state === "active"
                         ? `1px solid ${step.neonHsl}`
-                        : "1px solid rgba(231,233,229,0.15)",
+                        : "1px solid rgba(231,233,229,0.25)",
                     boxShadow:
                       state === "active"
                         ? `0 0 16px -2px ${step.neonHsl}, 0 0 32px -8px rgba(132,96,234,0.6)`
                         : "none",
                   }}
                   aria-current={state === "active" ? "step" : undefined}
-                  aria-label={`Step ${step.number}: ${step.appName}${
-                    state === "locked" ? " (locked)" : ""
-                  }`}
+                  aria-label={`Step ${step.number}: ${step.appName}`}
                 >
-                  {state === "locked" ? (
-                    <Lock className="w-3 h-3" />
-                  ) : (
-                    step.number
-                  )}
+                  {step.number}
                 </button>
 
                 <span
@@ -145,8 +153,8 @@ const PlaybookShell = ({
                     "tracking-[0.14em] sm:tracking-[0.18em] font-medium text-center",
                     "transition-opacity duration-300",
                     state === "active" && "opacity-100",
-                    state === "completed" && "opacity-60",
-                    state === "locked" && "opacity-35",
+                    state === "completed" && "opacity-65",
+                    state === "upcoming" && "opacity-55",
                   )}
                   style={{ color: "rgba(231,233,229,0.85)" }}
                 >
@@ -159,24 +167,15 @@ const PlaybookShell = ({
       </nav>
 
       {/* ═══════ GRADIENT BRIDGE (nav → step card) ═══════
-          A soft violet fade that converts the fold from a cut to a seam.
-          Centered "continue" cue sits inside the gradient and signals
-          "the first step opens below" without adding a second CTA. */}
+          Soft violet fade that converts the fold from a cut to a seam. */}
       <div
         aria-hidden="true"
-        className="relative flex items-center justify-center h-10 -mt-2 -mb-2 pointer-events-none"
+        className="relative h-6 -mt-2 -mb-2 pointer-events-none"
         style={{
           backgroundImage:
             "linear-gradient(180deg, transparent 0%, rgba(132,96,234,0.08) 50%, transparent 100%)",
         }}
-      >
-        <span
-          className="text-[9px] sm:text-[10px] uppercase tracking-[0.28em]"
-          style={{ color: "rgba(231,233,229,0.38)" }}
-        >
-          The first step opens below &nbsp;↓
-        </span>
-      </div>
+      />
 
       {/* ═══════ STEP CONTENT ═══════ */}
       <div>{children}</div>

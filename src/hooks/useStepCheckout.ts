@@ -22,6 +22,14 @@ export function useStepCheckout() {
     const { toast } = useToast();
 
     const startCheckout = async (step: PlaybookStep) => {
+        // ═══ Gate 0: free steps route directly to the tool (no checkout) ═══
+        // Step 1 (Zone of Genius) is free — clicking its CTA should start the
+        // quiz on the landing page, not show a "pricing coming soon" toast.
+        if (step.price === "Free") {
+            window.location.href = "/";
+            return;
+        }
+
         // ═══ Gate 1: no priceId set yet → friendly placeholder ═══
         if (!step.priceId) {
             toast({
