@@ -7146,3 +7146,99 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 *Alexander's Unique Business v8.7 — April 16, 2026 (Postscript added: Sasha's April 16 answers to Decisions 1 and 2. Licensing ✅ yes with specificity checklist. Scaling ✅ resolved as Sequence C — three parallel tracks. Decision 3 cadence still open. New canvas channel surfaced: licensed distribution via partner list.)*
 
+---
+
+## Bio v1.0 (April 19, 2026)
+
+**Primary (short):**
+> YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com
+
+**Extended (with credibility line):**
+> YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com
+> My approach was shaped by MIT, integral theory, launching technologies in Silicon Valley, various wisdom lineages, & hundreds of transformational processes with teams & leaders.
+
+**Usage:** All social media bios, link-in-bios, email signatures, community profiles, WhatsApp statuses. Domain: FindYourTopTalent.Com.
+
+---
+
+## Playbook Content v1.0 — Locked Substep Copy (April 19, 2026)
+
+*Canonical substep content for the 7-step playbook. Versioned here so nothing is lost. When content changes, create v1.1 / v2.0 below — do not overwrite.*
+
+### Step 1: Name Your Top Talent
+
+**CTA:** Find Your Top Talent
+**Pricing:** Free (gift)
+**What you get:** Your top talent distilled into 1 sentence in a couple of minutes
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | Ask your AI about your top talent | Use this prompt: "Based on all you know about me, what's my zone of genius?" |
+| 2 | Distill into one sentence, and actually write it down | Ask your AI to do this for you, and polish it yourself |
+| 3 | Work on it iteratively whenever you get new clarity | Keep it in an accessible place, update it, call it v2 or v1.1 or similarly |
+
+### Step 2: Articulate it with Precision
+
+**CTA:** Sharpen Your Top Talent to 9+/10 in 60 mins
+**Pricing:** Bundled with Step 3 ($555)
+**What you get:** One Sentence Top Talent that Lights You Up and That You Have Had All Your Life. Your Top Talent Sharpened to 9/10 or higher in 60 mins.
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | Iterate on the current articulation until it reaches 9/10 of resonance or higher | Use a guide that has arrived at 9.9+ resonance for themselves, or use a high-precision purpose discovery tool |
+| 2 | Reach at least 9/10 resonance | TLDR: the process we have designed is the recommended option to get to this result. Other methods will be suboptimal workarounds. Longer explanation: If you did our top talent reveal, you are likely at 6-8 out of 10 resonance. None of the personality tests I or AI know will get you any further than that. I am aware of only three sufficiently precise tools that I would recommend. Still, these high-precision tools 1) will give you a report, not a one distilled sentence which you need to iterate on it (hard to iterate on a long report) 2) hence, you will have to use AI and know how to synthesize iteratively (these clarity prompts will help), and 3) you will likely still need a guide and as of April 2026 I haven't met anyone I can recommend because there is a signal-to-noise threshold after which the top talent articulation is precise enough to reveal one's unique product. That threshold must be embodied by the guide and that's not yet common. |
+| 3 | Keep iterating as more clarity and insight into your top talent naturally emerges because it will trickle down across your entire business as improvements | Version your top talent statement, make it be "in your face" - in your notes app, as a post-it on your desk, as phone background, etc. |
+
+### Step 3: Enhance it with Business Structure
+
+**CTA:** Create your Unique Business Structure at 9+/10 resonance in 90 minutes
+**Pricing:** $555 one time payment
+**What you get:** Clarity and remembrance on what business your top talent was always pointing at. 7 business artifacts unique to YOUR business.
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | Find your Top Blind Spot | Ask your AI to reveal your top blind spot by Turning Your Top Talent Inside Out |
+| 2 | Turn Your Blind Spot into a Master Lie the world believes in, and Turn Your Top Talent into a Master Truth you stand behind | [TO BE FILLED] |
+| 3 | Produce the minimally viable set of key business artifacts — Translate the myth, talent and Blind Spot into the Pain of Having the Blind Spot, into Your Tribe, The Transformation Promise; and finally the user journey you take your tribe on | Just give your AI this playbook and you will get your unique business structure at 5-7 level of resonance. Then keep iterating until you get to 9.5+/10. Empirically this seems to be a sufficient precision to continue to the next step. |
+
+### Step 4: Build your First Unique Product
+
+**CTA:** Build Your First Unique Product Ready for Testing and Selling
+**Pricing:** $1111 upfront plus revenue share capped at $2.5k out of your first $10k
+**What you get:** Additional results: major learnings and improvements to your product, realization that you gain enormously by having your medicine received, excitement, entering flow state deeper, a boost of confidence, a sense of being useful, gratitude.
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | Iterate to bring the business artifacts to 9+/10 resonance | Roast the current version with AI (use roasting prompts at metaprompt.lovable.app), provide your inputs, then produce the next iteration, and repeat until you get to 9/10 or further. Recommend: arrive at 9/10, then continue with next steps. You will keep receiving further clarity towards 10, so make sure you version your work otherwise you likely get stuck in analysis paralysis. |
+| 2 | Solidify and Concretize The Transformational Promise, Turn it into a User Journey, a Value Ladder, and a Lead Magnet | Give AI transcripts of prior most aligned consulting/coaching calls and ask it to extract these artifacts |
+| 3 | Deliver Your Unique Product for the First time | Iterate Until You are Excited to Run It in this New Structured Way and Literally Can't Wait and Until you Arrive at a First Signature 1:1 session. Trust the first name that comes to mind, consciously focus on a clear tangible transformational result but don't overwhelm your client. |
+
+### Step 5: Gift it or Sell It To Beta-Test That Everything Works
+
+**CTA:** [TO BE FILLED — Sasha is working on it]
+**Pricing:** [TO BE FILLED]
+**What you get:** [TO BE FILLED]
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | [TO BE FILLED] | [TO BE FILLED] |
+| 2 | [TO BE FILLED] | [TO BE FILLED] |
+| 3 | [TO BE FILLED] | [TO BE FILLED] |
+
+### Step 6: Laser-Focus Tactically and Go Live
+
+**CTA:** [TO BE FILLED — Sasha is working on it]
+**Pricing:** [TO BE FILLED]
+**What you get:** [TO BE FILLED]
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | [TO BE FILLED] | [TO BE FILLED] |
+| 2 | [TO BE FILLED] | [TO BE FILLED] |
+
+> *Steps 5, 6, 7 are still being developed by Sasha (as of April 19, 2026).*
+
+---
+
+*Alexander's Unique Business v8.8 — April 19, 2026 (Bio v1.0 added: "YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com". Playbook Content v1.0 locked with full substep copy for Steps 1-4. Steps 5-6 scaffolded, awaiting Sasha's content.)*
+

@@ -97,6 +97,34 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
           We'll email you a magic link so your Zone-of-Genius result stays
           safe — no password, no spam.
         </p>
+
+        {/* ══════ CTA 2: See the Exact Playbook ══════ */}
+        <button
+          type="button"
+          onClick={() => navigate("/playbook")}
+          className={cn(
+            "group relative px-8 sm:px-10 py-3.5 rounded-full mt-2",
+            "text-sm sm:text-base font-semibold uppercase tracking-[0.18em]",
+            "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
+            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+          )}
+          style={{
+            color: "rgba(231,233,229,0.92)",
+            background: "rgba(231,233,229,0.06)",
+            border: "1px solid rgba(231,233,229,0.25)",
+            boxShadow: "0 12px 40px -14px rgba(132,96,234,0.35)",
+          }}
+        >
+          <span className="inline-flex items-center gap-3">
+            See the exact playbook
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   );

@@ -266,9 +266,9 @@ const App = () => (
                   {/* JOURNEY Space */}
                   <Route path="/game/journey" element={<JourneyPage />} />
                   <Route path="/game/journey/start" element={<ZoneOfGeniusEntry />} />
-                  {/* PLAYBOOK — reward surface after magic-link signup */}
-                  <Route path="/playbook" element={<Navigate to="/playbook/discover" replace />} />
-                  <Route path="/playbook/:slug" element={<RequireAuth><PlaybookPage /></RequireAuth>} />
+                  {/* PLAYBOOK — the full methodology playbook (public entry at /playbook) */}
+                  <Route path="/playbook" element={<PlaybookPage />} />
+                  <Route path="/playbook/:slug" element={<PlaybookPage />} />
                   {/* LEARN Space (was Transformation) */}
                   <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
