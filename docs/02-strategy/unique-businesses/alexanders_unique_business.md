@@ -7232,9 +7232,13 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ### Step 6: Laser-Focus Tactically and Go Live
 
 **Lives at:** `/` and `/playbook`
-**CTA:** [TO BE FILLED — Sasha is working on it]
-**Pricing:** [TO BE FILLED]
-**What you get:** [TO BE FILLED]
+**CTA:** Remove friction, accelerate your prep and launch fast
+**Pricing:** $1,111 upfront + $2,500 from your first $10k earned from your unique product/business
+**What you get:**
+- Playbooks and AI workflows
+- Check-ins with Sasha
+- Save a ton of time
+- Money-back guarantee (if you do your part)
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7242,18 +7246,18 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 | 2 | Create and activate a "master tuning fork" that repels non-clients and pulls in your bull's-eye tribe — the simplest possible frame of the transformation in ONE sentence | Lock ONE sentence that makes the wrong people quietly leave and the right people sit up. Then post it onto your key digital channels: (a) **bios** (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB) with the same line + same URL; (b) **ONE DM template** (personalize only the name); (c) **ONE life-update post** — what you just focused your life on, URL as only link, no pitch; (d) **ONE bold content piece** that diagnoses the pain the tribe lives in. |
 | 3 | Send a personal life-update + your lead magnet to 10/10 tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 10/10 aligned live communities. If demand isn't growing organically at this point, activate additional digital + physical surfaces, go upstream to aligned practitioners serving a similar ~10/10 tribe, and/or start outreach campaigns | Sit still, let names arise — trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can't). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook/methodology link) as the gift, not the ask. Parallel: write ONE short, culture-matched intro for each alive ~10/10 community where you're already a member — wherever appropriate. |
 
-### Step 7: Grow & Scale with Others, in Flow
+### Step 7: Turn Organic Growth into Scaling Impact and Revenue
 
 **Lives at:** `/` and `/playbook`
-**CTA:** [TO BE FILLED — Sasha is working on it]
+**CTA:** Join the impact founder collective
 **Pricing:** [TO BE FILLED]
 **What you get:** [TO BE FILLED]
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
-| 1 | [TO BE FILLED] | [TO BE FILLED] |
-| 2 | [TO BE FILLED] | [TO BE FILLED] |
-| 3 | [TO BE FILLED] | [TO BE FILLED] |
+| 1 | Get guidance from a whole team of venture scalers working with you | [TO BE FILLED] |
+| 2 | Enter a decentralized revenue-sharing coop scheme | [TO BE FILLED] |
+| 3 | Enjoy the next octave of the ride | [TO BE FILLED] |
 
 > *Steps 6 and 7 are still being developed by Sasha (as of April 20, 2026). Step 4 substep 3 also pending. Step 5 locked at v1.0.*
 
@@ -7262,4 +7266,6 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 *Alexander's Unique Business v8.9 — April 20, 2026 (Step 4 restructured: substeps now (1) Solidify Promise, (2) User Journey → Value Ladder → First Signature 1:1 Session, (3) TBD. Step 5 locked at v1.0: 5 intuitive tribe picks → record & track with AI → ~10 sessions across ~5 clients reveals bull's-eye tribe; CTA "Take a shortcut path" @ $333/month with checklist + messenger check-ins. Step 7 scaffold added: "Grow & Scale with Others, in Flow". Playbook now lives at `/` and `/playbook` — previously `/playbook/discover`.)*
 
 *Alexander's Unique Business v9.0 — April 20, 2026 (Step 6 substeps locked: (1) Build landing + funnel + lead magnet that transform ~10/10 tribe at every touchpoint — crystallize Steps 1–5 into ONE page + ONE funnel + playbook as free lead magnet, iterate with Godfather Offer Architect GPT until cold reader almost takes out card unprompted; (2) Create and activate "master tuning fork" — ONE sentence that repels non-clients and pulls bull's-eye, projected across bios + 1 DM + 1 life-update + 1 bold content piece; (3) Send personal life-update + lead magnet to 10/10 tribe-aligned people (especially community-holders), make intros in 10/10 aligned live communities, escalate to additional surfaces / upstream practitioners / outreach campaigns only if organic demand doesn't grow — weak-ties + community-holders favored over strong ties. Validated de facto from Days 36–46: Grind Addiction launch, 5 intuitive-batch DMs, Karime-as-bridge bringing 3 adjacent contacts, Kirill becoming a NODE, José near-conversion proving the funnel works. CTA/Pricing/What-you-get still TBD pending Sasha's decision.)*
+
+*Alexander's Unique Business v9.1 — April 20, 2026 (Step 6 commercial layer locked per Sasha: CTA "Remove friction, accelerate your prep and launch fast" · Pricing $1,111 upfront + $2,500 from your first $10k earned from your unique product/business · What you get: playbooks and AI workflows, check-ins with Sasha, save a ton of time, money-back guarantee if you do your part. Step 7 renamed "Turn Organic Growth into Scaling Impact and Revenue" with three substeps (guidance from venture-scalers team, decentralized rev-share coop scheme, enjoy the next octave) and CTA "Join the impact founder collective" — proven strategies, pricing, what-you-get pending Sasha's final vetted copy. Playbook UI fixes shipped in PlaybookShell.tsx + useStepCheckout.ts: (a) all 7 steps unlocked and clickable — Open Blueprint Paradox honored at the UI; (b) "Back to landing" link added at top of playbook; (c) Step 1 "Find Your Top Talent" CTA no longer shows confusing "Pricing coming soon" toast — free steps route directly to `/` where the ZoG quiz lives.)*
 
