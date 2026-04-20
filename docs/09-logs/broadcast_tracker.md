@@ -27,7 +27,7 @@
 
 | # | Name | Segment | Stage | Container | Sessions | Agreement | Paid | Pending | Channel | Last Contact | Notes |
 |---|------|---------|-------|-----------|----------|-----------|------|---------|---------|--------------|-------|
-| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$566** | — | ? | Apr 10 | All artifacts 9.9+. Mirror Session blueprinted. **$50 initial + $516 gift (Apr 8).** Flying to Mexico Monday Apr 14 — villa + intensive Build. Will be in audience for Oluwa livestream |
+| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$1,385** | — | ? | Apr 20 | All artifacts 9.9+. Mirror Session blueprinted. **Cash: $566 ($50 initial + $516 gift Apr 8). In-kind: $819 ($500 Mexico Apr 13 + $319 five gifts Apr 20).** Mexico intensive delivered Apr 14-17. |
 | 2 | **Sergey** | `CLIENT` | Build | The Build (advanced) | 5 | $277 rev share from first paid client | **$0** | $277 | Telegram | Mar | Product Kernel v1.0 (Мультиварка). 3 gift sessions delivered. Workflow handoff done. **Boundary: 3 paid sessions** |
 | 3 | **Sandra** | `CLIENT` | Build | The Build (early-stage) | ~6 | Rev share TBD — **she asked, needs answer** | **$0** | ⚠️ TBD | ? | Mar | Uniqueness + myth + tribe landed. Pain in progress. **Rec: 33% с первых $10K** |
 | 4 | **Karime** | `CLIENT` `BRIDGE` | Build | The Build (active — deep) | 3 | Gratitude → transitioning | **$111** | — | WhatsApp | Apr 10 | Active bridge (refers Chris + Patricia + Oluwa). $111 donation Apr 7. **Session #3 completed Apr 9 — 216 min, MASSIVE. Heartbreak Mechanism discovered. Uniqueness v1.1 scored 9.7, Shadow v1.2 scored 9.4. Myth + Tribe rewritten (v1.2 — heartbreak/steel). Asymptotic precision principle landed.** Co-creator energy |
@@ -60,7 +60,7 @@
 
 | Category | Amount |
 |----------|--------|
-| **Cash received** | **$1,377** ($1,066 Oyi + $311 Karime) |
+| **Total received** | **$1,696** (Oyi $1,385 [cash $566 + in-kind $819] · Karime $311 [cash $111 + in-kind $200]) |
 | **Revenue share contracts** | **$277** (Sergey) |
 | **Agreements removed** | Taylor ($3,000) + Tracy ($3,000) — removed Apr 15, renegotiation pending |
 | **Revenue share TBD** | Sandra (needs terms — rec: 33% с первых $10K) |
@@ -212,4 +212,6 @@
 *CRM v3.4 — April 12, 2026 · Energy Leak Audit: 5 relationships flagged (José, Terrina, Kirill, Roso, Cori). Mind virus named: loyalty-as-leak. Wrong-room broadcasting diagnosed. Transmission-to-wheel = audience access, not strategy.*
 
 *CRM v3.5 — April 18, 2026 (Day 44) · **The Collective self-identifies.** Oyi Mexico intensive ✅ delivered Apr 17 ("one for the books"). Kirill resolved from energy-leak → CLIENT/NODE → **founder-collective entry Apr 18 as 7th founder** ("the 7th note in the octave"). Karime's collective-magic-reveal call proposed. Sasha invited Sergey · Karime · Sandra · Alexa to next hacker-house. Upcoming events updated. Active energy-leak count: 4 (José, Terrina, Roso, Cori) — down from 5.*
+
+*CRM v3.6 — April 20, 2026 (Day 46) · Oyi: 5 in-kind gifts totaling $319 recorded (cumulative in-kind: $819, total from Oyi: $1,385). Total received across all founders: $1,696. Bio v1.0 added.*
 

@@ -12,6 +12,7 @@ const REVENUE_TIMELINE = [
   { day: 40, date: "Apr 12", total: 1431, label: "Karime $200 in-kind" },
   { day: 41, date: "Apr 13", total: 1931, label: "Oyi $500 in-kind" },
   { day: 44, date: "Apr 18", total: 1931, label: "Kirill joins — 7th founder" },
+  { day: 46, date: "Apr 20", total: 2250, label: "Oyi $319 in-kind (5 gifts)" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -19,11 +20,11 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     label: "Total Revenue",
-    value: "$1,654",
-    trend: "+$700",
-    trendLabel: "this week",
+    value: "$1,973",
+    trend: "+$319",
+    trendLabel: "Apr 20",
     trendUp: true,
-    detail: "Cash: $677 · In-kind: $700 · Rev share: $277",
+    detail: "Cash: $677 · In-kind: $1,019 · Rev share: $277",
     color: "#8460ea",
   },
   {
@@ -49,13 +50,13 @@ const KPIS = [
 const SECONDARY_STATS = [
   { label: "Marketing Spend", value: "$0", accent: false },
   { label: "CRM Contacts", value: "31", accent: false },
-  { label: "Days Active", value: "44", accent: false },
+  { label: "Days Active", value: "46", accent: false },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
 
 const REVENUE_BREAKDOWN = [
-  { name: "Oyi", cash: 566, inKind: 500, revShare: 0, type: "Cash + in-kind", status: "received", color: "#8460ea" },
+  { name: "Oyi", cash: 566, inKind: 819, revShare: 0, type: "Cash + in-kind", status: "received", color: "#8460ea" },
   { name: "Karime", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#6894d0" },
   { name: "Sergey", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#a7cbd4" },
 ];
@@ -73,6 +74,7 @@ const TIMELINE = [
   { day: 41, date: "Apr 13", name: "Oyi", type: "In-kind ($500)", desc: "Comprehensive support: food, flights, transport. Sustained gratitude.", color: "#6894d0" },
   { day: 43, date: "Apr 17", name: "Oyi", type: "Mexico Intensive Wrap", desc: "4-day Mexico hacker-house / collective venture building concludes. First in-person intensive at length. Oyi: \"This may be the best view in town. I am thankful.\"", color: "#6894d0" },
   { day: 44, date: "Apr 18", name: "Kirill", type: "7th Founder Joins", desc: "Serial entrepreneur (17 businesses), integral practitioner, neuro-coaching trainer. Building QWATRA (AI-powered business interface) + GrowFox (health ecosystem). \"The 7th note in the octave — the tension that longs to resolve into something new.\"", color: "#b8a3d4" },
+  { day: 46, date: "Apr 20", name: "Oyi", type: "In-kind ($319)", desc: "Five gifts totaling $319. Sustained gratitude continues — cumulative in-kind from Oyi now $819.", color: "#6894d0" },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
@@ -132,7 +134,7 @@ const VentureDashboard = () => {
         <header className="mb-16 fade-in-section" id="dashboard-header">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-[#8460ea] animate-pulse" />
-            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white">Live · Day 44</span>
+            <span className="text-[11px] font-medium tracking-[0.25em] uppercase text-white">Live · Day 46</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] text-white leading-tight mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Venture Dashboard
@@ -307,7 +309,7 @@ const VentureDashboard = () => {
             First $555 Ignition Session from Funnel
           </h3>
           <div className="flex items-center justify-center gap-6 text-[11px] text-white">
-            <span>$1,377 cash received</span>
+            <span>$1,696 received (cash + in-kind)</span>
             <span className="w-0.5 h-0.5 rounded-full bg-white/50" />
             <span>3 canvases to N=10</span>
             <span className="w-0.5 h-0.5 rounded-full bg-white/50" />
