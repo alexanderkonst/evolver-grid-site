@@ -207,8 +207,17 @@ interface SectionsPanelProps {
  * `currentStep` returned by useJourneyProgression is 1 for a fresh user,
  * 2 after ZoG, 3 after Ignition, etc. — so steps 1..currentStep is the
  * "everything up to and including what I'm working on now" window.
+ *
+ * "The Path" tail (Sasha, 2026-04-20):
+ *   Appended at the end of the list when the user is authenticated OR has
+ *   taken the ZoG (currentStep >= 2). This is a one-page value ladder
+ *   overview — intentionally off the public landing but reachable from
+ *   the JOURNEY pane for people already in the system.
  */
-const buildJourneySections = (currentStep: number): Section[] => {
+const buildJourneySections = (
+    currentStep: number,
+    showPathAccess: boolean,
+): Section[] => {
     const overview: Section = {
         id: "journey-overview",
         label: "1. Business Creation Playbook",
@@ -226,7 +235,17 @@ const buildJourneySections = (currentStep: number): Section[] => {
             path: `/playbook/${s.slug}`,
         }));
 
-    return [overview, ...visibleSteps];
+    const sections: Section[] = [overview, ...visibleSteps];
+
+    if (showPathAccess) {
+        sections.push({
+            id: "journey-path",
+            label: `${sections.length + 1}. The Path`,
+            path: "/path",
+        });
+    }
+
+    return sections;
 };
 
 const SectionsPanel = ({
@@ -253,10 +272,13 @@ const SectionsPanel = ({
         if (!baseData) return null;
 
         // JOURNEY → progressive reveal driven by onboarding_stage.
+        // Show "The Path" tail when the user is logged in OR has taken the
+        // ZoG (currentStep >= 2 means onboarding_stage is at least "zog_complete").
         if (activeSpaceId === "journey") {
+            const showPathAccess = !!userEmail || currentStep >= 2;
             return {
                 ...baseData,
-                sections: buildJourneySections(currentStep),
+                sections: buildJourneySections(currentStep, showPathAccess),
             };
         }
 

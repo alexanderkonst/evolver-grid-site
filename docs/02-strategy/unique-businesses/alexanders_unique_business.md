@@ -7233,7 +7233,7 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 **Lives at:** `/` and `/playbook`
 **CTA:** Remove friction, accelerate your prep and launch fast
-**Pricing:** $1,111 upfront + $2,500 from your first $10k earned from your unique product/business
+**Pricing:** $1,111 upfront + $2,222 from your first $10k earned from your unique product/business (1/3 of your first $10k — capped there, 0% after)
 **What you get:**
 - Playbooks and AI workflows
 - Check-ins with Sasha
@@ -7268,4 +7268,24 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 *Alexander's Unique Business v9.0 — April 20, 2026 (Step 6 substeps locked: (1) Build landing + funnel + lead magnet that transform ~10/10 tribe at every touchpoint — crystallize Steps 1–5 into ONE page + ONE funnel + playbook as free lead magnet, iterate with Godfather Offer Architect GPT until cold reader almost takes out card unprompted; (2) Create and activate "master tuning fork" — ONE sentence that repels non-clients and pulls bull's-eye, projected across bios + 1 DM + 1 life-update + 1 bold content piece; (3) Send personal life-update + lead magnet to 10/10 tribe-aligned people (especially community-holders), make intros in 10/10 aligned live communities, escalate to additional surfaces / upstream practitioners / outreach campaigns only if organic demand doesn't grow — weak-ties + community-holders favored over strong ties. Validated de facto from Days 36–46: Grind Addiction launch, 5 intuitive-batch DMs, Karime-as-bridge bringing 3 adjacent contacts, Kirill becoming a NODE, José near-conversion proving the funnel works. CTA/Pricing/What-you-get still TBD pending Sasha's decision.)*
 
 *Alexander's Unique Business v9.1 — April 20, 2026 (Step 6 commercial layer locked per Sasha: CTA "Remove friction, accelerate your prep and launch fast" · Pricing $1,111 upfront + $2,500 from your first $10k earned from your unique product/business · What you get: playbooks and AI workflows, check-ins with Sasha, save a ton of time, money-back guarantee if you do your part. Step 7 renamed "Turn Organic Growth into Scaling Impact and Revenue" with three substeps (guidance from venture-scalers team, decentralized rev-share coop scheme, enjoy the next octave) and CTA "Join the impact founder collective" — proven strategies, pricing, what-you-get pending Sasha's final vetted copy. Playbook UI fixes shipped in PlaybookShell.tsx + useStepCheckout.ts: (a) all 7 steps unlocked and clickable — Open Blueprint Paradox honored at the UI; (b) "Back to landing" link added at top of playbook; (c) Step 1 "Find Your Top Talent" CTA no longer shows confusing "Pricing coming soon" toast — free steps route directly to `/` where the ZoG quiz lives.)*
+
+*Alexander's Unique Business v9.2 — April 20, 2026 (LOCKED via deep strategic conversation with Sasha):*
+
+***Step 6 pricing finalized: $1,111 upfront + $2,222 from your first $10k = 1/3 of first $10k, capped.** Chose $1,111 over $555 upfront because: (a) by end of Step 5, founders have delivered 10 sessions and should have access to funds via paid clients, gratitude payments, or in-kind — anyone who can't is not ready for Step 6, which is diagnostic not bug; (b) self-selects cohort energy where rev-share is on the line; (c) math sings: $1,111 + $2,222 = $3,333 = exactly 1/3 of $10k; (d) creates "double-$1,111" rhythm with Step 4 Build; (e) avoids price collision with $555 Step 2+3 bundle.*
+
+***Step 7 activation trigger clarified (Sasha explicit: "please learn this, extremely important"):** Step 7 opens AFTER the founder has early product-market fit, the first $10k of revenue, AND organic demand. At that point: regroup → invitation into founder collective, framed as a DECENTRALIZED VENTURE STUDIO configuration. Not sold as a tier — earned and chosen. Current founder-collective (Oyi · Sergey · Alexa · Sandra · Karime · Kirill + Alexander) self-identified; that pattern continues.*
+
+***What the founder actually buys — framing locked:**  "$2,555 for the whole path to product-market fit" — NOT "to a business" (too simplistic). More fully: a hero's journey container. They'll hit programs and patterns as they build; Sasha guides them through. Transformation IS the value, alongside business structure and revenue. This is ENTRY-LEVEL PRICING. Sasha expects this to 10x eventually.*
+
+*REMOVE the "100% yours, forever" framing I had drafted — Sasha flagged it as weird, redundant, irrelevant. Also retire the "53% cumulative of first $10k" math as a cynical/reductive accountant-lens frame that ignores the cap, the ROI beyond $10k, and the transformation value being purchased.*
+
+***Timing locked:** Step 1 minutes (fully automated already) · Step 2+3 one 2-hour workshop · Step 4 "The Build" 3 weeks part-time · Step 5 DIY + check-ins, 1-2 weeks, capped 1 month · Step 6 "The Launch" 2-week container · Total: 6-8 weeks if they do their part at average speed.*
+
+***Every step is optional and delivers a complete transformation in itself.** If a founder stops after Step 3, they still got a huge transformation — nothing to reclaim, nothing to apologize for. Cleanness per stop.*
+
+*Automation vision held: Sasha wants to eventually automate the whole delivery (first to compress, then to remove himself as bottleneck). Building the software AFTER finding the 80/20 via manual delivery, not before. Step 1 already automated.*
+
+*Money-back guarantees to be designed for every step (pending). Step 6 trust-based, radically simple, one-page contract to be drafted later (Sasha will signal when).*
+
+*The Path (one-page value ladder) shipped at /path. Soft-gated: visible only to authenticated users OR those who've taken the ZoG (currentStep ≥ 2). Appears as the last item in the JOURNEY space second-pane SectionsPanel once gate is passed. Locked promise copy verbatim from Sasha: "The whole path: Solid FMF, early PMF, early traction, early organic demand. in 6–8 weeks. Provided 1) you do your part of the work, 2) at an average speed." Not linked from the public marketing landing — intentionally. Sasha confirmed: "NOONE YET I OR YOU ARE AWARE OF" is doing this specific stack with this promise in this timeframe with skin in the game. Confirmed as accurate.*
 
