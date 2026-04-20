@@ -7203,18 +7203,35 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 ### Step 4: Build your First Unique Product
 
+**Lives at:** `/` and `/playbook` (previously `/playbook/discover`)
 **CTA:** Build Your First Unique Product Ready for Testing and Selling
-**Pricing:** $1111 upfront plus revenue share capped at $2.5k out of your first $10k
-**What you get:** Additional results: major learnings and improvements to your product, realization that you gain enormously by having your medicine received, excitement, entering flow state deeper, a boost of confidence, a sense of being useful, gratitude.
+**Pricing:** $1,111 upfront + revenue share (capped at $2.5k out of your first $10k)
+**What you get:** A First Signature 1:1 Session with a clear tangible transformational result — ready to test and sell. Plus: major learnings and improvements to your product, realization that you gain enormously by having your medicine received, excitement, deeper flow state, a boost of confidence, a sense of being useful, gratitude.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
-| 1 | Iterate to bring the business artifacts to 9+/10 resonance | Roast the current version with AI (use roasting prompts at metaprompt.lovable.app), provide your inputs, then produce the next iteration, and repeat until you get to 9/10 or further. Recommend: arrive at 9/10, then continue with next steps. You will keep receiving further clarity towards 10, so make sure you version your work otherwise you likely get stuck in analysis paralysis. |
-| 2 | Solidify and Concretize The Transformational Promise, Turn it into a User Journey, a Value Ladder, and a Lead Magnet | Give AI transcripts of prior most aligned consulting/coaching calls and ask it to extract these artifacts |
-| 3 | Deliver Your Unique Product for the First time | Iterate Until You are Excited to Run It in this New Structured Way and Literally Can't Wait and Until you Arrive at a First Signature 1:1 session. Trust the first name that comes to mind, consciously focus on a clear tangible transformational result but don't overwhelm your client. |
+| 1 | Solidify and Concretize The Transformational Promise | Give AI transcripts of your prior most aligned consulting / coaching work and ask it to extract the through-line — the consistent A→B transformation you already deliver. |
+| 2 | Turn the A→B User Journey into a Value Ladder, and arrive at a First Signature 1:1 Session with a clear tangible transformational result that isn't overwhelming | Iterate until you are excited to run it in this new structured way and literally can't wait. Consciously focus on one clear tangible transformational result — don't overwhelm your client. |
+| 3 | [TO BE FILLED] | [TO BE FILLED] |
 
-### Step 5: Gift it or Sell It To Beta-Test That Everything Works
+### Step 5: Beta-Test That Everything Works by Gifting and/or Selling Your Unique Product
 
+**Lives at:** `/` and `/playbook`
+**CTA:** Take a shortcut path
+**Pricing:** $333/month
+**What you get:**
+- A shortcut strategy that accelerates this phase and spares you dead-ends and detours
+- Checklist + text (or short voicenote) check-ins with Sasha via messenger
+
+| # | Substep | One Proven Strategy |
+|---|---------|---------------------|
+| 1 | Intuitively identify 5 people in your network that are in your tribe | Watch for names of people in your network naturally bubbling up in your awareness. Write them down as they do — trust your first instinct even when the mind says "that must be a glitch" (that's exactly NOT a glitch). Send intuitive quick messages without overthinking it, offering them the transformational promise. |
+| 2 | Deliver your product, record it, track and analyze with AI, learn iteratively, track key metrics | Use a simple dashboard to track delivery + outcomes. Use an AI recorder like [fathom.video](https://fathom.video) or [Plaud](https://plaud.ai) so every session becomes a learning artifact. |
+| 3 | Polish your delivery and find your tribe with bull's-eye precision | When you reach ~10 sessions delivered across ~5 clients (numbers are arbitrary but empirical), that's where you start to know what you're doing — getting really good at delivering transformational results across flavors of people, and the bull's-eye tribe (aka beachhead market) emerges. |
+
+### Step 6: Laser-Focus Tactically and Go Live
+
+**Lives at:** `/` and `/playbook`
 **CTA:** [TO BE FILLED — Sasha is working on it]
 **Pricing:** [TO BE FILLED]
 **What you get:** [TO BE FILLED]
@@ -7225,8 +7242,9 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 | 2 | [TO BE FILLED] | [TO BE FILLED] |
 | 3 | [TO BE FILLED] | [TO BE FILLED] |
 
-### Step 6: Laser-Focus Tactically and Go Live
+### Step 7: Grow & Scale with Others, in Flow
 
+**Lives at:** `/` and `/playbook`
 **CTA:** [TO BE FILLED — Sasha is working on it]
 **Pricing:** [TO BE FILLED]
 **What you get:** [TO BE FILLED]
@@ -7235,10 +7253,11 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 |---|---------|---------------------|
 | 1 | [TO BE FILLED] | [TO BE FILLED] |
 | 2 | [TO BE FILLED] | [TO BE FILLED] |
+| 3 | [TO BE FILLED] | [TO BE FILLED] |
 
-> *Steps 5, 6, 7 are still being developed by Sasha (as of April 19, 2026).*
+> *Steps 6 and 7 are still being developed by Sasha (as of April 20, 2026). Step 4 substep 3 also pending. Step 5 locked at v1.0.*
 
 ---
 
-*Alexander's Unique Business v8.8 — April 19, 2026 (Bio v1.0 added: "YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com". Playbook Content v1.0 locked with full substep copy for Steps 1-4. Steps 5-6 scaffolded, awaiting Sasha's content.)*
+*Alexander's Unique Business v8.9 — April 20, 2026 (Step 4 restructured: substeps now (1) Solidify Promise, (2) User Journey → Value Ladder → First Signature 1:1 Session, (3) TBD. Step 5 locked at v1.0: 5 intuitive tribe picks → record & track with AI → ~10 sessions across ~5 clients reveals bull's-eye tribe; CTA "Take a shortcut path" @ $333/month with checklist + messenger check-ins. Step 7 scaffold added: "Grow & Scale with Others, in Flow". Playbook now lives at `/` and `/playbook` — previously `/playbook/discover`.)*
 
