@@ -209,35 +209,35 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     labelLines: ["Enhance with", "Business Structure"],
     price: "$555",
     bundleWith: [2],
-    ctaText: "Create Your Unique Business Structure at 9+/10 Resonance in 90 mins",
+    ctaText: "Create your Unique Business Structure at 9+/10 resonance in 90 minutes",
     included: [
+      "Clarity and remembrance on what business your top talent was always pointing at",
       "7 business artifacts unique to YOUR business",
-      "Clarity and remembrance of what your top talent was always pointing at",
     ],
     substeps: [
       {
         number: 1,
-        name: "See your Top Blind Spot",
+        name: "Find your Top Blind Spot",
         description:
-          "See your top blind spot — what stays hidden precisely because it is the shadow of your gift.",
+          "Find your top blind spot.",
         oneProvenStrategy:
-          "Ask your AI to reveal your top blind spot by turning your top talent inside out.",
+          "Ask your AI to reveal your top blind spot by Turning Your Top Talent Inside Out.",
       },
       {
         number: 2,
         name: "Turn Blind Spot into Master Lie and Master Truth",
         description:
-          "Turn your top blind spot into a Master Lie the world believes — and a Master Truth that has been your life's main quest, the axis of your hero's journey.",
+          "Turn your blind spot into a Master Lie the world believes in, and turn your top talent into a Master Truth you stand behind.",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.]",
+          "[TO BE FILLED]",
       },
       {
         number: 3,
-        name: "Translate into your Unique Business Structure",
+        name: "Produce the minimally viable set of key business artifacts",
         description:
-          "Translate the myth, talent, blind-spot pain, tribe, transformation promise, and the user journey you take your tribe on — into one coherent business structure.",
+          "Translate the myth, talent and blind spot into the Pain of Having the Blind Spot, into Your Tribe, The Transformation Promise; and finally the user journey you take your tribe on.",
         oneProvenStrategy:
-          "Give your AI this playbook and you will get your unique business structure at 5-7 resonance. Then keep iterating until you reach 9.5+/10 — empirically that is sufficient precision to continue to the next step.",
+          "Just give your AI this playbook and you will get your unique business structure at 5-7 level of resonance. Then keep iterating until you get to 9.5+/10. Empirically this seems to be a sufficient precision to continue to the next step.",
       },
     ],
   },
@@ -254,32 +254,34 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     bundleWith: [5],
     ctaText: "Build Your First Unique Product, Ready for Testing and Selling",
     included: [
-      "[PLACEHOLDER — Sasha fills in what's included in the cohort Build]",
+      "Major learnings and improvements to your product",
+      "Realization that you gain enormously by having your medicine received",
+      "Excitement, entering flow state deeper, a boost of confidence, a sense of being useful, gratitude",
     ],
     substeps: [
       {
         number: 1,
-        name: "Solidify and concretize the transformational promise",
+        name: "Iterate to bring the business artifacts to 9+/10 resonance",
         description:
-          "Solidify and concretize your transformational promise — using transcripts of your prior most aligned consulting or coaching work.",
+          "Iterate to bring the business artifacts to 9+/10 resonance.",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.]",
+          "Roast the current version with AI (use roasting prompts at metaprompt.lovable.app), provide your inputs, then produce the next iteration, and repeat until you get to 9/10 or further. I recommend: arrive at 9/10, then continue with next steps. You will keep receiving further clarity towards 10, so make sure you version your work otherwise you likely get stuck in analysis paralysis.",
       },
       {
         number: 2,
-        name: "Design your first signature 1:1 session",
+        name: "Solidify and Concretize The Transformational Promise",
         description:
-          "Turn the A→B user journey into a value ladder and arrive at a first signature 1:1 session with a clear, tangible transformational result that isn't overwhelming. Iterate until you are excited to run it in this new structured way — and literally can't wait.",
+          "Solidify and concretize the Transformational Promise, turn it into a User Journey, a Value Ladder, and a Lead Magnet.",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.]",
+          "Give AI transcripts of prior most aligned consulting/coaching calls and ask it to extract these artifacts.",
       },
       {
         number: 3,
-        name: "[PLACEHOLDER — Sasha fills in]",
+        name: "Deliver Your Unique Product for the First Time",
         description:
-          "[PLACEHOLDER — Sasha fills in.]",
+          "Deliver your unique product for the first time.",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.]",
+          "Iterate until you are excited to run it in this new structured way and literally can\u2019t wait and until you arrive at a first signature 1:1 session. Trust the first name that comes to mind, consciously focus on a clear tangible transformational result but don\u2019t overwhelm your client.",
       },
     ],
   },

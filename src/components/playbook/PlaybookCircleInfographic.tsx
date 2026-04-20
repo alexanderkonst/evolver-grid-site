@@ -1,31 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import { Lock, ArrowRight, Check } from "lucide-react";
+import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 
 /**
- * PlaybookCircleInfographic — the 7-note / 7-color holonic circle that also
- * acts as the store.
+ * PlaybookCircleInfographic — the 7-note / 7-color holonic circle.
  *
- * Click any node → a glass popover opens showing: step name, result promise,
- * price, and what's included. A primary CTA routes to the step page
- * (unlocked) or shows the gating requirement (locked). Progressive unlock:
- * step 1 is always open; steps 2–7 stay locked until the parent raises
- * `unlockedThroughStep`, but locked nodes are still clickable so the user
- * can peek at pricing and inclusions before completing earlier steps.
+ * Clean infographic mode: shows the 7-step ring with step numbers, lock
+ * icons, and always-visible labels. No popover cards — the circle is
+ * purely a visual navigation map.
  *
  * Implementation notes:
  *   • Pure inline SVG — 0 KB runtime cost, crisp at every viewport.
- *   • Each node wraps a real <button> inside <foreignObject>, so keyboard
- *     navigation and screen readers get real semantics for free.
- *   • Radix Popover anchors to the HTML button inside foreignObject — the
- *     popper measures bounding rects via the DOM, which works transparently
- *     through the SVG → foreignObject boundary.
  *   • Colors per node come from PLAYBOOK_STEPS.neonHsl — one source of truth.
  *   • `prefers-reduced-motion` disables all animations.
  *
@@ -67,174 +52,15 @@ const stateFor = (stepNumber: number, unlockedThrough: number): StepNodeState =>
 };
 
 /* ═══════════════════════════════════════════════════════════════════
- * StepPreviewCard — the popover body.
- * Shown when a user clicks any node. Layout matches the liquid-glass
- * blueprint: ~16px padding, Cormorant serif title, tight tracked eyebrow,
- * and a primary CTA that varies by unlock state.
- * ═══════════════════════════════════════════════════════════════════ */
-type StepPreviewCardProps = {
-  step: PlaybookStep;
-  state: StepNodeState;
-  unlockedThroughStep: number;
-  onOpenStep: (step: PlaybookStep) => void;
-};
-
-const StepPreviewCard = ({
-  step,
-  state,
-  unlockedThroughStep,
-  onOpenStep,
-}: StepPreviewCardProps) => {
-  const isLocked = state === "locked";
-  const priceLabel = step.price ?? "Pricing coming soon";
-  const included =
-    step.included && step.included.length > 0
-      ? step.included
-      : ["Full step walkthrough", "Three substeps, each with one proven strategy"];
-
-  return (
-    <div className="flex flex-col gap-4">
-      {/* ═══ Header: eyebrow + subtitle + price ═══ */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-1 min-w-0">
-          <span
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: step.neonHsl }}
-          >
-            Step {step.number} · {step.appName}
-            {step.bundleWith?.length ? (
-              <span className="opacity-70">
-                {" · Bundled with Step "}
-                {step.bundleWith.join(", ")}
-              </span>
-            ) : null}
-          </span>
-          <h4
-            className="text-lg leading-tight"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "rgba(231,233,229,0.98)",
-            }}
-          >
-            {step.subtitle}
-          </h4>
-        </div>
-        <span
-          className="shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]"
-          style={{
-            color: step.price ? step.neonHsl : "rgba(231,233,229,0.55)",
-            border: `1px solid ${step.price ? step.neonHsl : "rgba(231,233,229,0.18)"}`,
-            background: step.price
-              ? `hsla(${step.neonHsl.slice(4, -1)}, 0.1)`
-              : "rgba(231,233,229,0.04)",
-          }}
-        >
-          {priceLabel}
-        </span>
-      </div>
-
-      {/* ═══ Result promise ═══ */}
-      <p
-        className="text-[13px] italic leading-snug"
-        style={{ color: "rgba(231,233,229,0.72)" }}
-      >
-        &ldquo;{step.transformationalResult}&rdquo;
-      </p>
-
-      {/* ═══ Here's what you get (renamed from "What's included" —
-           Sasha 2026-04-17, "Вот" prefix) ═══ */}
-      <div className="flex flex-col gap-2">
-        <span
-          className="text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "rgba(231,233,229,0.45)" }}
-        >
-          Here's what you get
-        </span>
-        <ul className="flex flex-col gap-1.5">
-          {included.map((item, idx) => (
-            <li
-              key={idx}
-              className="flex items-start gap-2 text-[12px] leading-snug"
-              style={{ color: "rgba(231,233,229,0.82)" }}
-            >
-              <Check
-                className="mt-[3px] h-3 w-3 shrink-0"
-                style={{ color: step.neonHsl }}
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* ═══ Primary CTA ═══ */}
-      {isLocked ? (
-        <button
-          type="button"
-          disabled
-          className={cn(
-            "w-full rounded-full px-4 py-2.5",
-            "text-[11px] font-semibold uppercase tracking-[0.18em]",
-            "cursor-not-allowed opacity-70",
-          )}
-          style={{
-            color: "rgba(231,233,229,0.55)",
-            border: "1px solid rgba(231,233,229,0.14)",
-            background: "rgba(231,233,229,0.04)",
-          }}
-        >
-          <span className="inline-flex items-center justify-center gap-2">
-            <Lock className="h-3 w-3" />
-            {unlockedThroughStep === 0
-              ? "Start with step 1"
-              : `Complete step ${unlockedThroughStep} first`}
-          </span>
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={() => onOpenStep(step)}
-          className={cn(
-            "group w-full rounded-full px-4 py-2.5",
-            "text-[11px] font-semibold uppercase tracking-[0.18em] leading-snug",
-            "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-          )}
-          style={{
-            color: "rgba(231,233,229,0.98)",
-            backgroundImage:
-              "linear-gradient(135deg, rgba(132,96,234,0.85), rgba(41,84,159,0.85))",
-            border: "1px solid rgba(231,233,229,0.3)",
-            boxShadow: "0 12px 36px -12px rgba(132,96,234,0.5)",
-          }}
-        >
-          <span className="inline-flex items-center justify-center gap-2 text-center">
-            {step.ctaText ?? "Open this step"}
-            <ArrowRight
-              className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 shrink-0"
-              aria-hidden="true"
-            />
-          </span>
-        </button>
-      )}
-    </div>
-  );
-};
-
-/* ═══════════════════════════════════════════════════════════════════
  * PlaybookCircleInfographic — the main SVG composition.
+ * Clean infographic mode: nodes show step numbers/locks and labels.
+ * No popover cards — the circle is purely a visual map.
  * ═══════════════════════════════════════════════════════════════════ */
 const PlaybookCircleInfographic = ({
   unlockedThroughStep = 1,
-  onStepClick,
+  onStepClick: _onStepClick,
   className,
 }: PlaybookCircleInfographicProps) => {
-  const navigate = useNavigate();
-
-  const openStep = (step: PlaybookStep) => {
-    if (onStepClick) onStepClick(step);
-    else navigate(`/playbook/${step.slug}`);
-  };
 
   return (
     <figure
@@ -442,58 +268,8 @@ const PlaybookCircleInfographic = ({
                 </text>
               )}
 
-              {/* Keyboard-accessible click target wrapped in a Popover trigger.
-                  All nodes are clickable — locked ones open the popover so the
-                  user can peek at price/inclusions before completing prior steps. */}
-              <foreignObject
-                x={x - NODE_RADIUS - 6}
-                y={y - NODE_RADIUS - 6}
-                width={(NODE_RADIUS + 6) * 2}
-                height={(NODE_RADIUS + 6) * 2}
-              >
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <button
-                      type="button"
-                      className={cn(
-                        "w-full h-full rounded-full bg-transparent",
-                        "focus-visible:ring-2 focus-visible:ring-white/60 outline-none",
-                        "transition-transform duration-300 cursor-pointer",
-                        !isLocked && "hover:scale-110",
-                        isLocked && "hover:scale-105",
-                      )}
-                      aria-label={`Step ${step.number}: ${step.subtitle}${
-                        isLocked ? " (locked — click to see price and inclusions)" : ""
-                      }`}
-                      aria-current={isActive ? "step" : undefined}
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent
-                    align="center"
-                    sideOffset={16}
-                    className={cn(
-                      "w-80 border-0 p-5",
-                      "shadow-[0_32px_80px_-24px_rgba(0,0,0,0.65)]",
-                    )}
-                    style={{
-                      // Liquid-glass override — sidesteps shadcn's --popover
-                      // variable, which can get overridden inside GameShell.
-                      background: "rgba(10, 22, 40, 0.82)",
-                      backdropFilter: "blur(50px) saturate(160%)",
-                      WebkitBackdropFilter: "blur(50px) saturate(160%)",
-                      border: "1px solid rgba(231,233,229,0.12)",
-                      color: "rgba(231,233,229,0.98)",
-                    }}
-                  >
-                    <StepPreviewCard
-                      step={step}
-                      state={state}
-                      unlockedThroughStep={unlockedThroughStep}
-                      onOpenStep={openStep}
-                    />
-                  </PopoverContent>
-                </Popover>
-              </foreignObject>
+              {/* Clean infographic — no popover, just a transparent hit area
+                  for accessibility. The circle is a visual map, not a store. */}
             </g>
           );
         })}

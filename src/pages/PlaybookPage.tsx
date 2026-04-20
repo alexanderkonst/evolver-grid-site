@@ -5,15 +5,15 @@ import StepCard from "@/components/playbook/StepCard";
 import { getStepBySlug, PLAYBOOK_STEPS } from "@/data/playbookSteps";
 
 /**
- * PlaybookPage — the reward surface after magic-link signup.
+ * PlaybookPage — the full methodology playbook.
  *
  * Route pattern:
- *   /playbook            → redirect to /playbook/discover (handled in App.tsx)
- *   /playbook/:slug      → renders the matching step via PlaybookShell + StepCard
+ *   /playbook             → renders Step 1 (discover) — public, no auth
+ *   /playbook/:slug       → renders the matching step
  *
- * The 7-step infographic (PlaybookHero) lives ONLY on the landing page —
- * once the user is inside the playbook, the top step-nav in PlaybookShell
- * serves as their navigation and the StepCard is their focus.
+ * The "See the exact playbook" CTA on the landing page routes here.
+ * PlaybookShell provides top step-nav; StepCard renders the step content
+ * with substeps open by default.
  *
  * When :slug doesn't match a known step, we fall back to `discover`.
  */

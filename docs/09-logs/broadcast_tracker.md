@@ -191,6 +191,17 @@
 
 ---
 
+## Bio (Updated Apr 19, 2026)
+
+**Primary:**
+> YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com
+
+**Extended (with credibility line):**
+> YOUR TOP TALENT → GROWING INCOME: FindYourTopTalent.Com
+> My approach was shaped by MIT, integral theory, launching technologies in Silicon Valley, various wisdom lineages, & hundreds of transformational processes with teams & leaders.
+
+---
+
 ## Content Pillars (Locked Apr 10)
 
 1. **Talents → Business** — The unique business methodology. Zone of Genius → Build → Revenue
