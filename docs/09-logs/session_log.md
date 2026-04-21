@@ -4679,3 +4679,119 @@ Both landed inside the same 24-hour window. The caskade **corpus → code → pr
 ## Day 45 — Sunday, April 19, 2026
 
 Roadmap pulse run 13:25 — 0 executed, 0 aborted, 1 held (W5 Karime canvas), 0 briefs — see roadmap_pulse_log.md.
+
+---
+
+## Day 47 — Surface Reconstitution (April 21, 2026)
+
+### What happened
+
+One long carpentry pass. Not research, not sales, not canvas work. The venture's digital skin — landing, playbook, path, Zone of Genius reveal, shell, settings — was brought into coherence with the canvas text. Before today the canvas (v9.5) was ahead of the code. After today every public surface matches the vetted language.
+
+### Canvas → Code parity shipped
+
+**Playbook (`/playbook`, `/playbook/:slug`).**
+- Color spectrum redone UV → IR across the 7 steps (violet · indigo · blue · cyan · green · gold · red-orange). Single source of truth in `src/data/playbookSteps.ts`.
+- "Step N." number prefix added to every step's h1, colored in the step's own neon.
+- Step 1 relocated from `/playbook/discover` → `/playbook`. Legacy route redirects.
+- "Step N of 7 · APPNAME" eyebrow removed.
+- "See how" disclosure removed — substeps always visible.
+- Substep strategy buttons renamed "See one proven strategy" → **"Recommended How-To"**, all collapsed by default. Three substep titles read cleanly first; user opens what they want.
+- Connector line alignment + gap-bridging fixed (was misaligned + broke between chips 5 and 6).
+- Top-nav chips: all colored with their own neon (no grey-out), active distinguished by scale + halo.
+- Step labels use full vetted subtitles (not compressed DISCOVER/PACKAGE forms). Step 5 shortened to "Beta-Test That Everything Works by Gifting and/or Selling."
+- Hair-line separators between substeps removed. Consistent `space-y-3` rhythm.
+
+**Landing (`/`).**
+- Hero: *"Find Your Top Talent. Productize It. Build It, Launch It, Scale It Alongside Impact Entrepreneurs."* — every word title-cased, "Aspiring" removed per Sasha.
+- Six action words each gradient-colored to match step colors (v4 gradients: 40-55% lightness + matching drop-shadow glow). Earlier v2/v3 gradients read as washed-out "white cores" on light bg; v4 reads as saturated ink.
+- Non-highlighted text: dark navy `#0a1628` with light-pearl halo text-shadow for legibility on the now-light Panel 3.
+- CTAs stacked, equal width, max-w-[380px]: **"Find Your Top Talent"** (primary, marine-blue → royal-purple gradient) · **"See the Exact Playbook"** (secondary, glass).
+- Meta line moved below primary: *"↑ Claim your gift · Takes two minutes"*.
+- 7-step circle infographic **removed from landing**. Moved nowhere — retired. The top-nav chip bar at `/playbook` now carries the progression visualization.
+
+**/path.**
+- Fully public, no auth gate (previously had a soft-gate screen).
+- Wrapped in `GameShellV2 hideLogo` — renders inside the shell with no top-right logo.
+- "The Path" in caps, no period.
+- Promise split across three visual lines: *Solid Founder-Market Fit. Early Product-Market Fit, traction, and organic demand.* · *In 6–8 weeks.* · *Guaranteed.* (italic royal-purple)
+- Text aligned to landing typography (Cormorant Garamond font-semibold), no more thin/light mismatch.
+- Intentionally NOT listed in rail or second-pane. Reachable only by URL / share.
+
+**/zone-of-genius (the ZoG reveal module).**
+- Upfront email gate deleted from landing CTA — **"Find Your Top Talent"** now navigates directly to `/zone-of-genius`, no magic-link intermediate screen.
+- Whole module now renders inside `GameShellV2` (was orphan full-screen page). Main fractal logo hidden.
+- Result page **re-sequenced into one decision arc**:
+  1. The Reveal (archetype + tagline — tagline now emphasized, larger italic serif, strong glow)
+  2. The Rating (1–10 resonance — kept in place)
+  3. The Hook — tightened "Missing Bridge" copy per Sasha's synthesis (roughly 50% of prior length, structure = Recognition → Pivot → Consequence → Bridge → Reframe → Decision)
+  4. **Primary CTA: "Turn My Top Talent into a Growing Business"** → `/ignite#pricing-section` (was secondary; swap locked)
+  5. *"Want to learn more before acting?"* bridge line
+  6. Secondary CTA: "See exactly why this hasn't turned into income" (quiz)
+  7. Footer row — compact **Save to my inbox** pill (expands inline to single-field form) + Share dropdown. Save is no longer a blocking gate; it's a quiet service that links an email to the already-persisted anonymous profile.
+- Button copy fixed: "Reveal the unique way I naturally create value" → **"Find My Top Talent"**; "Discover My Zone of Genius" → **"Reveal My Top Talent"**.
+- Save success toast rewritten: *"✓ Saved. We sent your top talent to your inbox so you can come back to it."*
+- Bottom domain signature was clipping into the open share dropdown (the glitch). Removed. Signature still present in `RevelatoryHero` above the page.
+- Domain signature updated: `aleksandrkonstantinov.com` → **`FindYourTopTalent.Com`**.
+
+**Shell (`GameShellV2`).**
+- Panel 3 overlay: `bg-black/10` → `bg-transparent`. Global video overlay reduced `bg-[#0a0a1a]/20` → `/[0.05]`. Panel 3 is now nearly pure video.
+- `hideLogo` prop added to hide the top-right home icon on pages that don't want it (`/path`, `/zone-of-genius`).
+- Journey-family route resolution: `/`, `/playbook`, `/path`, `/my-artifacts` all set `activeSpaceId = "journey"` so Panel 2 renders with the right section list + close button.
+- **Locked spaces hidden entirely** (not shown with lock icons). GATED_SPACES array; anywhere `unlockStatus[id] === false`, the space is removed from the rail. Clean rail until you earn more.
+- ME space: visible always, locked until ZoG done — `unlockStatus.grow = zogComplete` (per Sasha's "visible but locked at first use").
+
+**SpacesRail (pane 1).**
+- Guest/Member placa wrapped in `<div>` not `<Link>` — non-clickable identity display.
+- Log Out / Log In button **swaps based on live auth state** via `supabase.auth.onAuthStateChange`. Logout fires a toast confirmation. Log In hidden on landing to not distract from the funnel.
+- Lucide clipart icons replaced with **colored typographic glyphs in Cormorant Garamond** (`GlyphIcon` component). Sasha's vetted set: JOURNEY ✵ · ME ❂ · LEARN ✹ · MEET ⚭ · COLLABORATE ⇶ · BUILD ⬢ · OFFER ⚛. Size 28px with neon text-shadow glow per space's hue.
+
+**SectionsPanel (pane 2).**
+- Journey pane simplified to three fixed items: **1. Start Here · 2. The Playbook · 3. The Path** (all title-cased). Progressive "Step N: ..." listing retired. "My Artifacts" appended as item 4 for authenticated users.
+
+**Settings consolidation.**
+- Profile Settings extracted from the ME space into a new `ProfileSettingsSection` component.
+- Main `Settings` page rewritten with shadcn Tabs: **Profile** + **Appearance**. Deep-linkable via `?tab=profile` / `?tab=appearance`.
+- Legacy `/settings` and `/game/me/settings` routes redirect to `/game/settings?tab=profile`.
+- "Profile Settings" link removed from ME overview; unused `Settings` icon import cleaned.
+- Old `Profile.tsx` import removed from `App.tsx`.
+
+**Data layer — artifacts.**
+- Migration `supabase/migrations/20260421020000_user_business_artifacts.sql` — new table + index + `updated_at` trigger + full RLS (select/insert/update/delete own) + idempotent seed of Sasha's five current artifacts (talent_sentence v2.0 · 9.9, myth/tribe/promise v1.0 · 9.5, unique_product v1.0 · 9.5). Lovable applied + types regenerated.
+- `src/pages/MyArtifactsPage.tsx` — RLS-scoped fetch, grouped by step, version + precision + content preview, empty state. Route `/my-artifacts` (RequireAuth). Sidebar entry appears when authenticated.
+
+**Money-back guarantees.**
+- Single-sentence guarantees inlined under each step's "What you get" in `alexanders_unique_business.md`. Structure per guarantee: *your part · my promise · automatic refund.* Steps 1 and 7 carry no guarantee by design.
+- Previous separate `money_back_guarantees.md` file deleted (doc creep).
+
+**Positioning copy locked in canvas.**
+- *"An aspiring founder walks in unable to explain what they do and walks out, 6–8 weeks later, with a running scalable business at early product-market fit."* — retires the weaker "5-factor combination" framing.
+- *"$2,555 for the whole path to product-market fit"* — not "to a business".
+- Step 6: $1,111 + $2,222 = 1/3 of first $10k (capped). CTA *"Remove friction, accelerate your prep and launch fast."*
+- Step 7: renamed "Turn Organic Growth into Scaling Impact and Revenue," CTA *"Join the impact founder collective."* Pricing by invitation, triggered at first $10k + organic demand.
+
+### Why this matters
+
+Before today the venture's public surface was a patchwork. Landing said one thing; playbook still carried stub copy; /path was gated; /zone-of-genius was a full-screen orphan with a mismatched email capture; settings was split across two locations; the sidebar icons were stock lucide. A visitor could see three different fonts, three different navigation patterns, and three different commercial framings depending on which route they hit.
+
+After today the surfaces cohere. One navigation. One typographic voice. One copy register. One funnel from landing → ZoG → result → commercial CTA. The canvas ↔ code delta that's lived since v8.5 collapsed to near-zero.
+
+**Holomap implication:** P8 (Platform as Nervous System) moves from Stage 3 (distinct modules) toward Stage 3+ (modules-becoming-coherent-system). Not yet Stage 4 (autonomous session work), but the substrate for that is now laid. P2 (Observable System) unchanged in count but up in quality — the five canvases are now reachable from one coherent front door. P4 (System Architecture) — Layer 2-3 cleaned; Layer 4 (unified shell) materially closer.
+
+### What's still open heading into Wednesday
+
+- **First funnel $555** — the crystallization (P27 Si–Do) is still what it was: *first stranger pays.* The infrastructure now exists end-to-end for that to happen cleanly. Nothing to build before the test — the test is sending messages.
+- **José da Veiga ZoG quiz** · **Patricia Reed paste-back** · **Sandra rev-share agreement** · **Taylor & Tracy checkpoint** — all still in Waiting On.
+- **Founder-collective call** — still awaiting Karime to circle back post-weekend.
+- **Next hacker-house** — venue + guests pending.
+- **Step 3 substep 2 "Master Lie → Master Truth" proven strategy** — still TBD. **Step 4 substep 3** — still TBD. **Step 7 proven strategies** — intentionally marked "[Pending Sasha's vetted text]" (the next-octave work he hasn't lived yet).
+
+### Next
+
+- Deploy the v4 gradients pass; verify "white core" resolves on light Panel 3.
+- Send the Wednesday launch DMs. 15-30 tribe-aligned weak-tie names, personal life-update + FindYourTopTalent.Com link.
+- Watch for the first funnel $555 — P27 Si–Do.
+
+---
+
+*Day 47 complete. The canvas and the code are one body now. Everything Sasha vetted in the corpus now shows up on the surface the tribe will touch. The carpentry that had to happen before the Wednesday message lands.*
