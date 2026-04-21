@@ -78,7 +78,7 @@ const MethodologyLandingPage = () => {
           >
             Scale
           </span>{" "}
-          it Alongside Aspiring Impact Entrepreneurs.
+          it Alongside Impact Entrepreneurs.
         </h1>
       </header>
 
