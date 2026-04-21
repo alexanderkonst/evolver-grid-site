@@ -373,7 +373,7 @@ const AppleseedDisplay = ({
                     ═══════════════════════════════════════════════ */}
                 <div className="text-right pr-3 pb-6">
                     <span className="text-[11px] text-white/30 hover:text-white/50 transition-opacity duration-500 cursor-default select-none">
-                        get yours → aleksandrkonstantinov.com
+                        get yours → FindYourTopTalent.Com
                     </span>
                 </div>
             </div>
