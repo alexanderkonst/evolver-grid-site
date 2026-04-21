@@ -353,7 +353,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         ? {
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
-            "grow": zogComplete,                                // After Step 1 — see your profile
+            "grow": true,                                       // ME — always open (Sasha, 2026-04-20): pinned at the top, no gate
             "learn": zogComplete,                               // After Step 1 — growth material
             "build": ignitionComplete,                          // After Step 2 — business canvas
             "meet": zogComplete,                                // After Step 1 — community events

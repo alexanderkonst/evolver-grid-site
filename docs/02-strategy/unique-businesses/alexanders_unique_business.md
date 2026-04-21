@@ -7289,3 +7289,27 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 *The Path (one-page value ladder) shipped at /path. Soft-gated: visible only to authenticated users OR those who've taken the ZoG (currentStep ≥ 2). Appears as the last item in the JOURNEY space second-pane SectionsPanel once gate is passed. Locked promise copy verbatim from Sasha: "The whole path: Solid FMF, early PMF, early traction, early organic demand. in 6–8 weeks. Provided 1) you do your part of the work, 2) at an average speed." Not linked from the public marketing landing — intentionally. Sasha confirmed: "NOONE YET I OR YOU ARE AWARE OF" is doing this specific stack with this promise in this timeframe with skin in the game. Confirmed as accurate.*
 
+*Alexander's Unique Business v9.3 — April 20, 2026 (landing + UX pass before Wednesday launch):*
+
+*Hero copy update: "Scale it Alongside Other **Purpose** Entrepreneurs" → "Scale it Alongside Other **Impact** Entrepreneurs" on the MethodologyLandingPage.*
+
+*Landing infographic locks removed (PlaybookCircleInfographic.tsx): no more lock icons on steps 3–7. Upcoming steps render visible but dimmer (group opacity 0.55). Consistent with Open Blueprint Paradox. The circle now says "here's the whole path" not "here's what you can't have yet."*
+
+*ME space in SpacesRail unlocked by default (no longer gated behind ZoG). Sasha's call: pin ME at the top, always visible. GameShellV2 unlockStatus for "grow" now returns true unconditionally.*
+
+*"/game" route retired — redirects to "/game/journey" (or can be collapsed further later).*
+
+*The Path promise upgraded: "Guaranteed." locked into the copy inline. FMF/PMF now spelled out in the promise itself (no more acronyms + glossary). Close line extended: "Every step is optional. Every step delivers a complete transformation in itself. Pay as you progress. Money-back guarantee on every step."*
+
+*Framing refinement (Sasha's correction): RETIRE the "unique combination of 5 factors" argument as a weak rhetorical move — any combination specific enough is unique by definition. The stronger argument: the transformational RESULT (a founder taken from "I can't explain what I do" to early PMF in 6-8 weeks with trust-based rev share) is unprecedented in the sense that matters — the integration of transformation-as-method + business crystallization + skin-in-the-game economics has no known precedent.*
+
+*FMF correction: "Founder-Market Fit" is NOT Sasha's coined term — it exists in startup lexicon (Tren Griffin, a16z) but is less mainstream than PMF. Earlier attribution corrected.*
+
+*Money-back guarantee to be designed for every step (pending). Step 6 version exists: "if you do your part, money-back guarantee."*
+
+*Still pending (Sasha's call before Wednesday launch):*
+*- Landing architecture: move primary CTA buttons ABOVE the infographic for warm traffic conversion latency reduction (proposed, awaiting confirmation to implement in PlaybookHero).*
+*- Second-pane artifacts view: show user's accomplished steps + their artifacts (uniqueness articulation, version, precision, business artifacts). MVP = Supabase table + display component + seed script for Alexander + 7 founders. Portfolio view across all founders = stretch goal.*
+*- Money-back guarantee copy for each of the 7 steps.*
+*- Step 6 one-page trust-based contract (Sasha will signal when).*
+

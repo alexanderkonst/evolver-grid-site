@@ -242,7 +242,8 @@ const App = () => (
                   <Route path="/intelligences" element={<RequireAuth><MultipleIntelligences /></RequireAuth>} />
                   <Route path="/genius-layer-matching" element={<RequireAuth><GeniusLayerMatching /></RequireAuth>} />
                   {/* Game Routes */}
-                  <Route path="/game" element={<RequireAuth><GameHome /></RequireAuth>} />
+                  {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
+                  <Route path="/game" element={<Navigate to="/game/journey" replace />} />
                   <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}

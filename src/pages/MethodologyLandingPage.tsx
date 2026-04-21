@@ -37,7 +37,7 @@ const MethodologyLandingPage = () => {
           >
             Productize it.
           </span>{" "}
-          Build it, Launch it, Scale it Alongside Other Purpose Entrepreneurs.
+          Build it, Launch it, Scale it Alongside Other Impact Entrepreneurs.
         </h1>
       </header>
 
