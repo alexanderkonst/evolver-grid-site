@@ -241,31 +241,6 @@ const PlaybookCircleInfographic = ({
                 filter="url(#soft-bloom)"
               />
 
-<<<<<<< HEAD
-              {/* Step number / lock icon */}
-              {isLocked ? (
-                <g transform={`translate(${x - 8}, ${y - 8})`}>
-                  <foreignObject width={16} height={16} aria-hidden="true">
-                    <Lock
-                      className="w-4 h-4"
-                      color="rgba(231,233,229,0.5)"
-                    />
-                  </foreignObject>
-                </g>
-              ) : (
-                <text
-                  x={x}
-                  y={y + 5}
-                  textAnchor="middle"
-                  fontFamily="'Cormorant Garamond', serif"
-                  fontSize={20}
-                  fontWeight={600}
-                  fill="rgba(231,233,229,0.98)"
-                >
-                  {step.number}
-                </text>
-              )}
-=======
               {/* Step number — always visible. No lock icons (Open Blueprint Paradox). */}
               <text
                 x={x}
@@ -278,7 +253,6 @@ const PlaybookCircleInfographic = ({
               >
                 {step.number}
               </text>
->>>>>>> 5195c16 (deploy)
 
               {/* Clean infographic — no popover, just a transparent hit area
                   for accessibility. The circle is a visual map, not a store. */}
