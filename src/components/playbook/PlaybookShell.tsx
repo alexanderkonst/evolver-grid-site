@@ -113,7 +113,7 @@ const PlaybookShell = ({
 
                 <button
                   type="button"
-                  onClick={() => navigate(`/playbook/${step.slug}`)}
+                  onClick={() => navigate(step.number === 1 ? "/playbook" : `/playbook/${step.slug}`)}
                   className={cn(
                     "relative z-10 flex items-center justify-center",
                     "w-7 h-7 sm:w-8 sm:h-8 rounded-full text-xs font-semibold",

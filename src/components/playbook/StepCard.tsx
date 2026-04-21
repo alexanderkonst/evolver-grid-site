@@ -91,7 +91,10 @@ const SubstepRow = ({
   onToggle: () => void;
 }) => {
   return (
-    <div className="py-5">
+    // Consistent vertical rhythm — every substep block gets the same
+    // top/bottom breathing regardless of whether it has a description
+    // (Sasha, 2026-04-21).
+    <div className="py-4">
       <div className="flex items-start gap-4">
         <div
           className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
@@ -104,10 +107,10 @@ const SubstepRow = ({
         >
           {substep.number}
         </div>
-        <div className="flex-1 pt-1">
+        <div className="flex-1 pt-1 space-y-3">
           {/* ══ Substep name */}
           <h3
-            className="text-base sm:text-lg font-semibold leading-tight mb-1.5"
+            className="text-base sm:text-lg font-semibold leading-snug"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "rgba(231,233,229,0.98)",
@@ -116,17 +119,17 @@ const SubstepRow = ({
             {substep.name}
           </h3>
 
-          {/* ══ Description (one line) — hidden if empty so rows stay tight */}
+          {/* ══ Description — only rendered if present */}
           {substep.description && (
             <p
-              className="text-sm sm:text-[15px] leading-relaxed mb-3"
+              className="text-sm sm:text-[15px] leading-relaxed"
               style={{ color: "rgba(231,233,229,0.8)" }}
             >
               {substep.description}
             </p>
           )}
 
-          {/* ══ "See one proven strategy" button */}
+          {/* ══ Recommended How-To button */}
           <button
             type="button"
             onClick={onToggle}
@@ -152,7 +155,7 @@ const SubstepRow = ({
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
-              open ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0",
+              open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0",
             )}
           >
             <div
@@ -283,10 +286,9 @@ const StepCard = ({ step }: StepCardProps) => {
         WebkitBackdropFilter: "blur(14px)",
       }}
     >
-      {/* ══ STEP HEADER — only the subtitle remains.
-          "Step N of 7 · [appName]" was redundant with the top nav chips.
-          "See how" button removed — content is always open (Sasha, 2026-04-21). */}
-      <header className="mb-6">
+      {/* ══ STEP HEADER — step number prefixed into the title so it's
+          clear these are sequential steps (Sasha, 2026-04-21). */}
+      <header className="mb-8">
         <h1
           className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
           style={{
@@ -294,6 +296,7 @@ const StepCard = ({ step }: StepCardProps) => {
             color: "rgba(231,233,229,0.98)",
           }}
         >
+          <span style={{ color: step.neonHsl }}>Step {step.number}.</span>{" "}
           {step.subtitle}
         </h1>
       </header>
