@@ -219,88 +219,90 @@ const AppleseedDisplay = ({
                 )}
 
                 {/* ═══════════════════════════════════════════════
-                    THE GAP — Sacred typographical journey
+                    THE GAP — tightened copy (Sasha, 2026-04-21)
                     ═══════════════════════════════════════════════ */}
-                <div className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-16" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                    
-                    {/* Validation */}
+                <div
+                    className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-10"
+                    style={{ fontFamily: "'Source Serif 4', serif" }}
+                >
+                    {/* Recognition */}
                     <div className="space-y-4">
                         <p className="text-lg md:text-xl text-white font-light tracking-wide leading-relaxed">
-                            You've been doing this for years.
+                            You've been doing this for years, haven't you?
                         </p>
                         <p className="text-base text-white/80 font-light tracking-wide leading-relaxed">
-                            People already come to you for it. <br/>
-                            You've delivered real results through this.
+                            Delivered real results through this.<br />
+                            People already come to you for it.
                         </p>
                     </div>
 
-                    {/* Collapse Shift */}
-                    <div className="space-y-6">
-                        <p className="text-lg text-white/90 font-light tracking-wide leading-relaxed">
-                            But this — by itself — doesn't become a business.
+                    {/* The Pivot */}
+                    <div className="space-y-4">
+                        <p className="text-lg text-white/95 font-light tracking-wide leading-relaxed">
+                            But haven't made it into a{" "}
+                            <span className="text-white font-medium uppercase tracking-wider">
+                                Growing Business
+                            </span>
+                            .
                         </p>
-                        <div className="flex flex-col gap-2">
-                            <p className="text-base text-white/70 italic">Because this is how you naturally think.</p>
-                            <p className="text-base font-medium text-white tracking-wide">
-                                It is not yet structured to be bought.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Consequence Block */}
-                    <div className="space-y-6">
-                        <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent mx-auto" />
-                        
-                        <div className="space-y-3">
-                            <p className="text-base text-white/80 leading-loose">
-                                Without turning this into something concrete:
-                            </p>
-                            <p className="text-sm text-white/65 leading-loose font-light">
-                                you keep explaining it differently every time<br/>
-                                people receive value — but do not always pay<br/>
-                                you remain in the loop of "almost there"
-                            </p>
-                        </div>
-                        
-                        <div className="pt-4 space-y-2">
-                            <p className="text-base text-white/85 tracking-wide">
-                                Months pass. Nothing fundamentally changes.
-                            </p>
-                            <p className="text-sm text-white/65 italic">
-                                And more time thinking about it cannot change it.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Clarity Bridge */}
-                    <div className="space-y-4 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
-                        <p className="text-lg text-white/80 uppercase tracking-[0.2em] font-sans mb-6">The Missing Bridge</p>
-                        <p className="text-xl text-white italic leading-loose">
-                            What exactly do I offer? <br/>
-                            Who is it for? <br/>
-                            Why would someone pay for this — consistently?
+                        <p className="text-base text-white/75 italic">Why?</p>
+                        <p className="text-base text-white/85 leading-relaxed">
+                            Because this is how{" "}
+                            <span className="text-white font-medium uppercase tracking-wider">
+                                You Naturally Operate
+                            </span>
+                            .
+                        </p>
+                        <p className="text-base text-white/85 leading-relaxed">
+                            <span className="text-white font-medium uppercase tracking-wider">
+                                Not Yet
+                            </span>{" "}
+                            a built, packaged, and distributed product people can buy.
                         </p>
                     </div>
 
-                    {/* Decision Line */}
-                    <div className="space-y-5">
-                        <p className="text-lg text-white/90 font-light tracking-wide leading-relaxed">
-                            This is where most people stop.
-                        </p>
-                        <p className="text-base font-light text-white/75">
-                            They recognize themselves…<br/>
-                            <span className="text-white font-medium mt-2 block">but never make it real.</span>
-                        </p>
+                    {/* Consequence */}
+                    <div className="space-y-3">
+                        <p className="text-base text-white/80 leading-loose">So:</p>
+                        <ul className="text-sm text-white/70 leading-loose font-light space-y-1 list-none">
+                            <li>you keep explaining it differently every time</li>
+                            <li>people receive value but do not pay</li>
+                            <li>you are stuck at &ldquo;seeing the light at the end of the tunnel&rdquo;</li>
+                        </ul>
                     </div>
 
-                    {/* Readiness reframe */}
-                    <div className="space-y-3 pb-8">
-                        <div className="w-1 h-1 rounded-full bg-[#b8a4f8]/50 mx-auto mb-6" />
+                    {/* The Missing Bridge */}
+                    <div className="space-y-5 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
+                        <p className="text-sm text-white/70 uppercase tracking-[0.2em] font-sans">
+                            Let's be clear
+                        </p>
+                        <p className="text-lg md:text-xl text-white leading-relaxed">
+                            The Missing Bridge to Money is Clarity on:
+                        </p>
+                        <ul className="text-base text-white/90 italic leading-loose space-y-2 list-none">
+                            <li>What exactly do I offer?</li>
+                            <li>Who is it for?</li>
+                            <li>Why would these people queue to pay?</li>
+                        </ul>
+                    </div>
+
+                    {/* Reframe */}
+                    <div className="space-y-3">
                         <p className="text-base text-white/80 tracking-wide font-light">
                             You don't need to be more ready.
                         </p>
-                        <p className="text-lg font-medium text-white tracking-wide">
-                            You simply need structure.
+                        <p className="text-base text-white/80 tracking-wide font-light">
+                            You don't need business education or gimmicks.
+                        </p>
+                        <p className="text-lg font-medium text-white tracking-wide mt-2">
+                            You simply need solid business structure.
+                        </p>
+                    </div>
+
+                    {/* Pre-CTA line */}
+                    <div className="pb-4">
+                        <p className="text-base text-white/85 italic">
+                            If you're done circling this — click below and let's make it real.
                         </p>
                     </div>
                 </div>
@@ -318,14 +320,15 @@ const AppleseedDisplay = ({
                 />
 
                 {/* ═══════════════════════════════════════════════
-                    STATE 2 & 3: PRIMARY + SECONDARY CTAs
-                    Linear flow — one job per moment
+                    CTAs — swapped primary/secondary (Sasha, 2026-04-21):
+                    "Turn My Top Talent into a Growing Business" is now the
+                    main action. The diagnostic quiz is the secondary learn-more.
                     ═══════════════════════════════════════════════ */}
                 <div className="max-w-md mx-auto space-y-4">
 
-                    {/* CTA 1 (PRIMARY): Quiz — diagnostic */}
+                    {/* CTA 1 (PRIMARY): Turn Top Talent into a Growing Business */}
                     <a
-                        href="/quiz"
+                        href="/ignite#pricing-section"
                         className="w-full flex items-center justify-between p-5 rounded-2xl
                                    liquid-glass-strong ring-1 ring-white/25
                                    shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
@@ -334,26 +337,41 @@ const AppleseedDisplay = ({
                                    transition-all duration-300 alive-card"
                     >
                         <div>
-                            <p className="text-base font-bold text-white uppercase tracking-wider" style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}>
-                                See exactly why this hasn't turned into income
+                            <p
+                                className="text-base font-bold text-white uppercase tracking-wider"
+                                style={{ textShadow: "0 0 20px rgba(240,194,127,0.3)" }}
+                            >
+                                Turn My Top Talent into a Growing Business
                             </p>
-                            <p className="text-xs text-white/50 mt-1">6-question diagnostic</p>
+                            <p className="text-xs text-white/50 mt-1 italic">
+                                I'm done circling this — let's make it real
+                            </p>
                         </div>
                         <span className="w-10 h-10 rounded-full bg-[#b8a4f8]/20 flex items-center justify-center flex-shrink-0 ml-4">
                             <ArrowRight className="w-5 h-5 text-[#b8a4f8]" />
                         </span>
                     </a>
 
-                    {/* CTA 2 (SECONDARY): Build */}
+                    {/* Mini bridge line */}
+                    <p className="text-center text-xs text-white/55 italic">
+                        Want to learn more before acting?
+                    </p>
+
+                    {/* CTA 2 (SECONDARY): Diagnostic quiz */}
                     <a
-                        href="/ignite#pricing-section"
+                        href="/quiz"
                         className="w-full flex items-center justify-center gap-3 p-4
                                    rounded-2xl liquid-glass ring-1 ring-white/15
                                    hover:ring-white/30 hover:bg-white/5
                                    transition-all duration-300 text-sm text-white/70
                                    hover:text-white uppercase tracking-wider font-medium"
                     >
-                        I'm done circling this — let's make it real
+                        <span>
+                            See exactly why this hasn't turned into income
+                            <span className="block normal-case tracking-normal text-[10px] text-white/40 mt-0.5">
+                                6-question diagnostic
+                            </span>
+                        </span>
                         <ArrowRight className="w-4 h-4" />
                     </a>
                 </div>
@@ -368,14 +386,10 @@ const AppleseedDisplay = ({
                     profileUrl={profileUrl}
                 />
 
-                {/* ═══════════════════════════════════════════════
-                    SIGNATURE / DOMAIN MARKER — passive virality
-                    ═══════════════════════════════════════════════ */}
-                <div className="text-right pr-3 pb-6">
-                    <span className="text-[11px] text-white/30 hover:text-white/50 transition-opacity duration-500 cursor-default select-none">
-                        get yours → FindYourTopTalent.Com
-                    </span>
-                </div>
+                {/* Bottom signature removed 2026-04-21 per Sasha — it was
+                    clipping into the open share dropdown and reading as a
+                    glitch. The identical signature still appears in
+                    RevelatoryHero above the page, so nothing is lost. */}
             </div>
         </>
     );

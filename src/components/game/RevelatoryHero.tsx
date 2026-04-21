@@ -127,9 +127,16 @@ const RevelatoryHero = ({
                     {title.replace(/✦/g, '').trim()}
                 </h1>
 
-                {/* Action Statement - Compact */}
+                {/* Action Statement — THE main information on the person's
+                    genius. Emphasized UI treatment (Sasha, 2026-04-21):
+                    larger, italic serif, glowy, centered in its own field. */}
                 {actionStatement && (
-                    <p className={`text-sm sm:text-base ${palette.textSecondary} max-w-xl mx-auto mb-2 leading-relaxed`}>
+                    <p
+                        className={`font-display text-lg sm:text-xl md:text-2xl italic ${palette.textPrimary} max-w-2xl mx-auto mt-2 mb-6 leading-snug`}
+                        style={{
+                            textShadow: `0 0 40px ${palette.glowColor}, 0 0 12px rgba(255,255,255,0.12)`,
+                        }}
+                    >
                         I {actionStatement}
                     </p>
                 )}
