@@ -350,7 +350,7 @@ const PathPage = () => {
                 <ArrowRight className="w-4 h-4 opacity-70" />
               </Link>
 
-              {/* Secondary — book the Ignition Session */}
+              {/* Secondary — book the Productize Yourself Session */}
               <Link
                 to="/ignite#pricing-section"
                 className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass inline-flex items-center justify-center gap-3"
@@ -359,7 +359,7 @@ const PathPage = () => {
                   textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                 }}
               >
-                Book your Ignition Session
+                Book your Productize Yourself Session
                 <ArrowRight className="w-4 h-4 opacity-60" />
               </Link>
             </div>
