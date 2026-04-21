@@ -151,9 +151,14 @@ const SpacesRail = ({
                 className
             )}
         >
-            {/* User Profile — identity display only. NOT clickable (Sasha, 2026-04-21). */}
+            {/* User Profile — Day 47 late pass (Sasha): mobile cleanup.
+                On mobile the rail is 72px wide and the "Guest · Member" label
+                block was both cramped AND visually disconnected from the icon
+                rhythm below it. Now: avatar alone on mobile (centered), full
+                name + level row on desktop (inline beside avatar).
+                NOT clickable — identity display only. */}
             <div className="p-2 md:p-3">
-                <div className="flex items-center gap-2 p-1.5 -m-1.5">
+                <div className="flex items-center justify-center md:justify-start gap-2 p-1.5 -m-1.5">
                     {avatarUrl ? (
                         <img
                             src={avatarUrl}
@@ -183,16 +188,8 @@ const SpacesRail = ({
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col items-center gap-1 mt-2 md:hidden">
-                    <span className="text-[10px] text-white/50">
-                        {userLevel ? `Level ${userLevel}` : 'Member'}
-                    </span>
-                    {userXp !== undefined && (
-                        <span className="text-[10px] text-white/30">
-                            {userXp} XP
-                        </span>
-                    )}
-                </div>
+                {/* Mobile-only Level/XP block removed Day 47 late pass — it was
+                    creating visual clutter between the avatar and the icon rail. */}
             </div>
 
             <ScrollArea className="flex-1">
@@ -263,14 +260,17 @@ const SpacesRail = ({
             </nav>
             </ScrollArea>
 
-            {/* Settings Button */}
-            <div className="p-2 md:p-3 border-t border-white/10 space-y-1">
+            {/* Footer — Day 47 late pass (Sasha): hard border-t divider removed;
+                Settings chip now matches the nav item styling (same padding,
+                same rounded-xl, same bg treatment) so the rail reads as one
+                continuous column rather than "nav above / footer below". */}
+            <div className="p-2 md:p-3 space-y-1">
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
                         "justify-center md:justify-start",
-                        "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
+                        "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title="Settings"
                 >

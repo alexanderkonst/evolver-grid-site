@@ -4,92 +4,75 @@ import { cn } from "@/lib/utils";
 /**
  * PlaybookHero — the CTAs below the landing's headline.
  *
- * As of 2026-04-21 (Sasha): the 7-step circle infographic was retired.
- * The landing is now hero headline + two buttons. The step-in-line
- * navigation lives at the top of /playbook (PlaybookShell), not here.
+ * Day 47 late pass (Sasha): buttons rewritten in Apple iOS 26 Liquid Glass
+ * style. Both CTAs now use pure glass (no colored fill, no arrows) and rely
+ * on text weight + glass tier to establish primary/secondary hierarchy. The
+ * meta line between them is no longer uppercase and is allowed to flow
+ * wider than the buttons so "Claim your gift · takes two minutes" reads
+ * naturally.
  *
- * Layout:
- *   [ Find your top talent → ]         ← primary (was "Claim your gift")
- *     ↑ Claim your gift · Takes two minutes  ← meta, small, arrow up
- *
- *   [ See the exact playbook →  ]       ← secondary
+ *   [ Find your top talent     ]  ← primary  (liquid-glass-strong)
+ *       ↑ Claim your gift · takes two minutes
+ *   [ See the exact playbook   ]  ← secondary (liquid-glass)
  */
 
 const PlaybookHero = () => {
   const navigate = useNavigate();
 
-  // Both CTA buttons stretch to the same width inside this max-w wrapper —
-  // Sasha, 2026-04-21: the two buttons must feel equal in weight.
+  // Both CTA buttons stretch to the same width inside this max-w wrapper.
+  // Pill shape (rounded-full), Apple Liquid Glass texture via utility class.
   const buttonBase = cn(
-    "group relative w-full rounded-full",
+    "relative w-full rounded-full",
     "px-6 py-4",
-    "text-sm sm:text-base font-semibold uppercase tracking-[0.18em]",
+    "text-sm sm:text-base font-semibold tracking-wide",
     "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-    "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+    "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none",
   );
 
   return (
     <div className="mb-6 sm:mb-10">
       <div className="flex flex-col items-center gap-3 px-4 text-center">
-        {/* Fixed-width container so both buttons are identical in size */}
-        <div className="flex flex-col items-stretch gap-3 w-full max-w-[380px]">
-          {/* Primary CTA — marine blue → royal purple gradient */}
+        {/* Primary CTA — heavy Apple Liquid Glass, no arrow, normal case. */}
+        <div className="w-full max-w-[380px]">
           <button
             type="button"
             onClick={() => navigate("/zone-of-genius")}
-            className={buttonBase}
+            className={cn(buttonBase, "liquid-glass-strong")}
             style={{
-              color: "rgba(245,245,250,0.98)",
-              backgroundImage:
-                "linear-gradient(135deg, #1a2f7a 0%, #2a3d95 55%, #5b21b6 100%)",
-              border: "1px solid rgba(255,255,255,0.18)",
-              boxShadow:
-                "0 22px 60px -18px rgba(26,47,122,0.65), inset 0 1px 1px rgba(255,255,255,0.18)",
+              color: "#0a1628",
+              textShadow: "0 1px 2px rgba(255,255,255,0.75)",
             }}
           >
-            <span className="inline-flex items-center justify-center gap-3">
-              Find your top talent
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </span>
+            Find your top talent
           </button>
+        </div>
 
-          {/* Meta line — BELOW the button with an up-arrow pointing to it.
-              Dark text now that Panel 3 is light. */}
-          <div
-            className="text-[10px] uppercase tracking-[0.28em] inline-flex items-center justify-center gap-2"
-            style={{ color: "rgba(26,30,58,0.6)" }}
-          >
-            <span aria-hidden="true">↑</span>
-            <span>Claim your gift · Takes two minutes</span>
-          </div>
+        {/* Meta line — Day 47 late pass (Sasha): de-cap'd and allowed wider
+            than the buttons so the phrase reads naturally. Own max-width
+            that exceeds 380px. */}
+        <div
+          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px]"
+          style={{
+            color: "rgba(26,30,58,0.65)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+          }}
+        >
+          <span aria-hidden="true">↑</span>
+          <span>Claim your gift · takes two minutes</span>
+        </div>
 
-          {/* Secondary — same width, glass look, unchanged palette */}
+        {/* Secondary — lighter Apple Liquid Glass, no arrow. */}
+        <div className="w-full max-w-[380px]">
           <button
             type="button"
             onClick={() => navigate("/playbook")}
-            className={buttonBase}
+            className={cn(buttonBase, "liquid-glass", "font-medium")}
             style={{
-              color: "rgba(26,30,58,0.88)",
-              background: "rgba(255,255,255,0.35)",
-              border: "1px solid rgba(26,30,58,0.25)",
-              boxShadow:
-                "0 12px 40px -14px rgba(26,30,58,0.2), inset 0 1px 1px rgba(255,255,255,0.5)",
+              color: "rgba(26,30,58,0.85)",
+              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
             }}
           >
-            <span className="inline-flex items-center justify-center gap-3">
-              See the exact playbook
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </span>
+            See the exact playbook
           </button>
         </div>
       </div>
