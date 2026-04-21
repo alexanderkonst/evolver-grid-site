@@ -108,12 +108,13 @@ const SubstepRow = ({
           {substep.number}
         </div>
         <div className="flex-1 pt-1 space-y-3">
-          {/* ══ Substep name */}
+          {/* ══ Substep name — dark navy, light halo for Panel 3 */}
           <h3
             className="text-base sm:text-lg font-semibold leading-snug"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              color: "rgba(231,233,229,0.98)",
+              color: "#0a1628",
+              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
             }}
           >
             {substep.name}
@@ -123,7 +124,7 @@ const SubstepRow = ({
           {substep.description && (
             <p
               className="text-sm sm:text-[15px] leading-relaxed"
-              style={{ color: "rgba(231,233,229,0.8)" }}
+              style={{ color: "rgba(26,30,58,0.78)" }}
             >
               {substep.description}
             </p>
@@ -173,7 +174,7 @@ const SubstepRow = ({
               </div>
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
-                style={{ color: "rgba(231,233,229,0.9)" }}
+                style={{ color: "rgba(26,30,58,0.88)" }}
               >
                 {substep.oneProvenStrategy}
               </p>
@@ -276,27 +277,31 @@ const StepCard = ({ step }: StepCardProps) => {
 
   return (
     <article
-      className="relative rounded-3xl p-6 sm:p-10 transition-all duration-500"
-      style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
-        border: "1px solid rgba(231,233,229,0.08)",
-        boxShadow: `0 24px 80px -32px rgba(${step.neonRgb},0.35), inset 0 1px 1px rgba(255,255,255,0.05)`,
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-      }}
+      className="relative rounded-3xl p-6 sm:p-10 transition-all duration-500 liquid-glass-strong"
     >
-      {/* ══ STEP HEADER — step number prefixed into the title so it's
-          clear these are sequential steps (Sasha, 2026-04-21). */}
+      {/* ══ STEP HEADER — Day 47 late pass (Sasha): flipped to dark navy
+          with the step's neon color as gradient highlight on "Step N." —
+          same treatment as landing page (Find Your Top Talent). */}
       <header className="mb-8">
         <h1
           className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "rgba(231,233,229,0.98)",
+            color: "#0a1628",
+            textShadow:
+              "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
           }}
         >
-          <span style={{ color: step.neonHsl }}>Step {step.number}.</span>{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${step.neonHsl} 0%, #0a1628 55%, ${step.neonHsl} 100%)`,
+              filter: `drop-shadow(0 0 12px ${step.neonHsl}) drop-shadow(0 0 3px rgba(${step.neonRgb},0.6))`,
+              textShadow: "none",
+            }}
+          >
+            Step {step.number}.
+          </span>{" "}
           {step.subtitle}
         </h1>
       </header>
