@@ -36,7 +36,8 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "evolver-grid-site"
+const SITE_NAME = "Aleksandr Konstantinov"
+const FROM_LOCAL_PART = "aleksandr"
 const SENDER_DOMAIN = "notify.aleksandrkonstantinov.com"
 const ROOT_DOMAIN = "aleksandrkonstantinov.com"
 const FROM_DOMAIN = "notify.aleksandrkonstantinov.com" // Domain shown in From address (may be root or sender subdomain)
