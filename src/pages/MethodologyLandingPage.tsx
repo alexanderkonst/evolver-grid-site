@@ -60,6 +60,14 @@ const MethodologyLandingPage = () => {
             textShadow:'none' stays on every span — prevents the parent
             h1's white halo from bleeding through transparent gradients.
           */}
+          {/*
+            v9 line structure (Day 47 late-late — Sasha):
+              Line 1: "Find Your [Top Talent]."
+              Line 2: "[Productize] It." ← on its own line, breathing room
+              Line 3: "[Build] It, [Launch] It, and [Scale] It"  ← "and" added
+              Line 4: "Alongside [Impact] Entrepreneurs"  ← no period at end
+                      (psychological: avoids "stop here" cue)
+          */}
           Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -73,7 +81,8 @@ const MethodologyLandingPage = () => {
           >
             Top Talent
           </span>
-          .{" "}
+          .
+          <br />
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -86,7 +95,8 @@ const MethodologyLandingPage = () => {
           >
             Productize
           </span>{" "}
-          It.{" "}
+          It.
+          <br />
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -112,7 +122,7 @@ const MethodologyLandingPage = () => {
           >
             Launch
           </span>{" "}
-          It,{" "}
+          It, and{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -125,7 +135,9 @@ const MethodologyLandingPage = () => {
           >
             Scale
           </span>{" "}
-          It Alongside{" "}
+          It
+          <br />
+          Alongside{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -138,7 +150,7 @@ const MethodologyLandingPage = () => {
           >
             Impact
           </span>{" "}
-          Entrepreneurs.
+          Entrepreneurs
         </h1>
       </header>
 
