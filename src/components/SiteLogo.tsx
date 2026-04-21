@@ -9,10 +9,16 @@ const SiteLogo = () => {
     const location = useLocation();
 
     // Hide on pages that have their own logo/hero treatment.
-    // `/playbook/*` has a top-right logo inside GameShellV2's Panel 3 already,
-    // so rendering a second centered one is redundant (flagged by Sasha 2026-04-17).
-    const hidden = ["/game", "/zone-of-genius/appleseed", "/playbook"];
-    const exactHidden = ["/", "/ignite", "/my-result"];
+    // Day 47 (Sasha): `/path` + `/zone-of-genius` + `/my-artifacts` added —
+    // all render inside GameShellV2 with `hideLogo`, the center logo is redundant.
+    const hidden = [
+        "/game",
+        "/zone-of-genius",
+        "/playbook",
+        "/path",
+        "/my-artifacts",
+    ];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
