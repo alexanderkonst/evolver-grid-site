@@ -363,20 +363,6 @@ const Intros = () => {
           </section>
         ))}
 
-        {/* Open — add your name */}
-        <section className="mb-14 p-6 bg-gradient-to-br from-[#8460ea]/5 to-[#c8b7d8]/10 rounded-2xl border border-[#8460ea]/15">
-          <h2 className="text-lg font-display font-bold mb-2">
-            This list is living.
-          </h2>
-          <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed">
-            If you are one of these people — or if you think of someone who
-            should be on it and isn't yet — the door is open. Sovereignty
-            first, alignment next. No extraction. Every node on this list
-            exists because the work serves a larger whole than any single
-            venture.
-          </p>
-        </section>
-
         {/* CTA */}
         <section className="text-center py-8 border-t border-[#1a1a2e]/10">
           <p className="text-sm uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
