@@ -55,7 +55,7 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
           className="text-[10px] uppercase tracking-[0.28em]"
           style={{ color: "rgba(231,233,229,0.55)" }}
         >
-          Step 1 is on us · Takes two minutes
+          Finding Your Top Talent is on us · Takes two minutes
         </div>
 
         <button
@@ -86,14 +86,6 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
             </span>
           </span>
         </button>
-
-        <p
-          className="text-xs sm:text-[13px] max-w-[380px]"
-          style={{ color: "rgba(231,233,229,0.6)" }}
-        >
-          We'll email you a magic link so your Zone-of-Genius result stays
-          safe — no password, no spam.
-        </p>
 
         {/* ══════ CTA 2: See the Exact Playbook ══════ */}
         <button
