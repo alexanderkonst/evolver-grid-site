@@ -193,47 +193,42 @@ interface SectionsPanelProps {
 }
 
 /**
- * Build the JOURNEY pane sections progressively.
+ * Build the JOURNEY pane sections.
  *
- * Rule (from Sasha, 2026-04-17):
- *   "The second pane should show two items:
- *      1. Business Creation Playbook
- *      2. Step 1: <step subtitle>
- *    Until the person has taken the next step, we don't show Step 2 yet."
+ * Rule (Sasha, 2026-04-21 v2): three items, always shown in this order:
+ *   1. Start here         → /             (the landing page)
+ *   2. The playbook       → /playbook     (the full 7-step methodology)
+ *   3. The path           → /path         (the value ladder)
  *
- * Translation: show Overview + Steps 1..currentStep. As the user finishes
- * each step (onboarding_stage advances), the next row appears here.
+ * If the user is authenticated, "My Artifacts" is appended at the end.
+ * The deeper progressive "Step N: ..." list is retired — it lived in a
+ * separate phase of the design. Can return later as a sub-section if
+ * Sasha calls for it.
  *
- * `currentStep` returned by useJourneyProgression is 1 for a fresh user,
- * 2 after ZoG, 3 after Ignition, etc. — so steps 1..currentStep is the
- * "everything up to and including what I'm working on now" window.
- *
- * "The Path" (Sasha, 2026-04-21): intentionally NOT in the rail. The
- *   /path page opens inside the shell but is reachable only by URL /
- *   share — never listed in pane 1 or pane 2.
+ * `currentStep` is kept in the signature for now in case we reintroduce
+ * progression-aware reveals; currently unused.
  */
 const buildJourneySections = (
-    currentStep: number,
+    _currentStep: number,
     showAuthedExtras: boolean,
 ): Section[] => {
-    const overview: Section = {
-        id: "journey-overview",
-        label: "1. Business Creation Playbook",
-        path: "/",
-    };
-
-    // Guard: clamp to the 1..7 range. `currentStep` shouldn't go out of bounds
-    // but the useJourneyProgression hook has a "future expansion" branch that
-    // could return 4+ — cap to 7 so we never slice beyond the array.
-    const visibleSteps = PLAYBOOK_STEPS
-        .filter((s) => s.number <= Math.min(currentStep, PLAYBOOK_STEPS.length))
-        .map((s, idx) => ({
-            id: `step-${s.number}`,
-            label: `${idx + 2}. Step ${s.number}: ${s.subtitle}`,
-            path: `/playbook/${s.slug}`,
-        }));
-
-    const sections: Section[] = [overview, ...visibleSteps];
+    const sections: Section[] = [
+        {
+            id: "journey-start-here",
+            label: "1. Start here",
+            path: "/",
+        },
+        {
+            id: "journey-the-playbook",
+            label: "2. The playbook",
+            path: "/playbook",
+        },
+        {
+            id: "journey-the-path",
+            label: "3. The path",
+            path: "/path",
+        },
+    ];
 
     // "My Artifacts" requires auth — each user's own artifacts, RLS-scoped.
     if (showAuthedExtras) {
@@ -243,9 +238,6 @@ const buildJourneySections = (
             path: "/my-artifacts",
         });
     }
-
-    // NOTE: "The Path" (/path) is deliberately NOT listed in the rail.
-    // Reachable by URL / share only.
 
     return sections;
 };
