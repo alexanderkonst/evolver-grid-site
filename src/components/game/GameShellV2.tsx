@@ -467,12 +467,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — lightest tint of the three panels so the
-                    right-hand workspace feels "lifted" above the navigation.
-                    Final progression (bg-black opacity): Rail 70 → Sections 40 →
-                    Content 20. The video breathes through the most here. */}
+                {/* Panel 3: Content — genuinely the lightest tier. Uses bg-black/10
+                    against Panel 2's bg-black/40. Progression (bg-black opacity):
+                    Rail 70 → Sections 40 → Content 10. Content breathes the most. */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/20"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/10"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">

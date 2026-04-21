@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { cn } from "@/lib/utils";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 /**
  * PathPage — a one-page view of the full 7-step path, commercial layer included.
@@ -11,12 +9,11 @@ import { cn } from "@/lib/utils";
  * the whole path, including the pricing ladder, is visible to anyone
  * who visits the URL. No auth gate, no ZoG prerequisite.
  *
- * Content is locked verbatim from Sasha. Copy updates go through Sasha.
+ * Shell (Sasha, 2026-04-21): renders INSIDE GameShellV2 so the spaces
+ * rail + sections pane stay present. But intentionally NOT listed in
+ * either pane — the page is reachable by URL / share, not by rail nav.
  *
- * The page appears in the JOURNEY space's second pane (SectionsPanel)
- * for authenticated users, and is shareable as a direct link — so Sasha
- * can send it to collaborators / curious prospects who've asked about
- * the pricing / ladder.
+ * Content is locked verbatim from Sasha. Copy updates go through Sasha.
  */
 
 // ─── The Ladder ─────────────────────────────────────────────────────────────
@@ -76,63 +73,33 @@ const LADDER: LadderRow[] = [
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const PathPage = () => {
-  const navigate = useNavigate();
-
   return (
-    <div
-      className="min-h-screen bg-[#0a0e1a] text-white"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
-    >
-      {/* ─── Ambient background ─────────────────────────────────────── */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute -top-20 -left-20 w-[700px] h-[700px] rounded-full opacity-[0.04]"
-          style={{
-            background:
-              "radial-gradient(circle, #8460ea 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute -bottom-40 -right-20 w-[600px] h-[600px] rounded-full opacity-[0.03]"
-          style={{
-            background:
-              "radial-gradient(circle, #6894d0 0%, transparent 70%)",
-          }}
-        />
-      </div>
+    <GameShellV2>
+      <div
+        className="relative text-white"
+        style={{ fontFamily: "'DM Sans', sans-serif" }}
+      >
+        {/* Ambient glows — decoration, layered above the shell's video bg */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute -top-20 -left-20 w-[700px] h-[700px] rounded-full opacity-[0.05]"
+            style={{
+              background:
+                "radial-gradient(circle, #8460ea 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute -bottom-40 -right-20 w-[600px] h-[600px] rounded-full opacity-[0.04]"
+            style={{
+              background:
+                "radial-gradient(circle, #6894d0 0%, transparent 70%)",
+            }}
+          />
+        </div>
 
-      <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
-        {/* ─── Back link ──────────────────────────────────────────── */}
-        <button
-          type="button"
-          onClick={() => navigate("/")}
-          className={cn(
-            "inline-flex items-center gap-2 py-1.5 px-3 rounded-full",
-            "text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium",
-            "transition-all duration-300 hover:scale-[1.02] mb-8",
-            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-          )}
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, rgba(231,233,229,0.08), rgba(231,233,229,0.02))",
-            border: "1px solid rgba(231,233,229,0.18)",
-            color: "rgba(231,233,229,0.75)",
-          }}
-          aria-label="Back to landing"
-        >
-          <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-          <span>Back to landing</span>
-        </button>
-
-        <>
-            {/* ─── The Promise (LOCKED COPY — verbatim from Sasha) ─── */}
+        <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
+            {/* ─── The Promise ─── */}
             <section className="mb-14">
-              <div
-                className="text-[10px] uppercase tracking-[0.32em] mb-4"
-                style={{ color: "rgba(132,96,234,0.85)" }}
-              >
-                The Path
-              </div>
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.15] mb-8"
                 style={{
@@ -140,7 +107,7 @@ const PathPage = () => {
                   color: "rgba(231,233,229,0.98)",
                 }}
               >
-                The whole path:
+                The whole path.
               </h1>
 
               <p
@@ -150,10 +117,8 @@ const PathPage = () => {
                   color: "rgba(231,233,229,0.95)",
                 }}
               >
-                Solid Founder-Market Fit, early Product-Market Fit, early
-                traction, early organic demand.
-                <br />
-                in 6–8 weeks.{" "}
+                Solid Founder-Market Fit. Early Product-Market Fit,
+                traction, and organic demand. In 6–8 weeks.{" "}
                 <span
                   style={{
                     color: "rgba(132,96,234,0.95)",
@@ -165,11 +130,10 @@ const PathPage = () => {
               </p>
 
               <p
-                className="text-sm sm:text-[15px] leading-relaxed mb-3"
+                className="text-sm sm:text-[15px] leading-relaxed"
                 style={{ color: "rgba(231,233,229,0.7)" }}
               >
-                Provided 1) you do your part of the work, 2) at an average
-                speed.
+                Provided you do your part, at an average speed.
               </p>
             </section>
 
@@ -296,9 +260,9 @@ const PathPage = () => {
                 Pay as you progress. Money-back guarantee on every step.
               </p>
             </div>
-        </>
+        </div>
       </div>
-    </div>
+    </GameShellV2>
   );
 };
 

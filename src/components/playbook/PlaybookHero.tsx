@@ -1,63 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import PlaybookCircleInfographic from "./PlaybookCircleInfographic";
-import { useJourneyProgression } from "@/hooks/useJourneyProgression";
 
 /**
- * PlaybookHero — the animated circular infographic at the top of the landing.
+ * PlaybookHero — the CTAs below the landing's headline.
  *
- * As of 2026-04-16, the hero is a pure inline SVG (PlaybookCircleInfographic),
- * not a Mux HLS stream. Benefits:
- *   • 0 KB network cost beyond the component itself — no CDN, no decoder
- *   • Each step is a real <button> (keyboard + screen-reader for free)
- *   • Crisp at any viewport (SVG viewBox)
- *   • Respects `prefers-reduced-motion`
- *   • Colors/labels pulled from PLAYBOOK_STEPS — single source of truth
+ * As of 2026-04-21 (Sasha): the 7-step circle infographic was retired.
+ * The landing is now hero headline + two buttons. The step-in-line
+ * navigation lives at the top of /playbook (PlaybookShell), not here.
  *
- * The circle itself is the store: each node routes to its playbook page.
- * All 7 steps are always visible (Open Blueprint Paradox) — upcoming steps
- * render dimmer but never gated.
+ * Layout:
+ *   [ Find your top talent → ]         ← primary (was "Claim your gift")
+ *     ↑ Claim your gift · Takes two minutes  ← meta, small, arrow up
  *
- * Layout (2026-04-20): primary CTAs render ABOVE the infographic so warm
- * traffic can act immediately. The circle below serves as depth / context
- * for visitors who want to see the whole path before choosing.
+ *   [ See the exact playbook →  ]       ← secondary
  */
 
-type PlaybookHeroProps = {
-  /**
-   * Optional manual override for the unlock high-water mark. If provided,
-   * this wins over the Supabase-derived step. Useful for demo/preview.
-   * Otherwise the circle reads `onboarding_stage` via useJourneyProgression
-   * and reacts to user progression automatically:
-   *   new / zog_started       → step 1 active (free gift)
-   *   zog_complete / qol_*    → step 2 active
-   *   offer/recipe_complete   → step 3 active
-   *   unlocked / complete     → step 4+
-   */
-  unlockedThroughStep?: number;
-};
-
-const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
+const PlaybookHero = () => {
   const navigate = useNavigate();
-  // Pull live progression from Supabase. Falls back to step 1 for
-  // unauthenticated visitors (the landing page's primary audience).
-  const { currentStep } = useJourneyProgression();
-  const unlock = unlockedThroughStep ?? currentStep;
 
   return (
-    // Buttons first (above the fold for warm traffic), infographic below
-    // as depth/context. Tightened vertical spacing so the primary CTA lands
-    // above the fold on a 1280×720 viewport with sidebar open.
     <div className="mb-6 sm:mb-10">
-      {/* ══════ CTAs (above the fold) ══════ */}
-      <div className="flex flex-col items-center gap-2 sm:gap-3 px-4 text-center mb-8 sm:mb-12">
-        <div
-          className="text-[10px] uppercase tracking-[0.28em]"
-          style={{ color: "rgba(231,233,229,0.55)" }}
-        >
-          Finding Your Top Talent is on us · Takes two minutes
-        </div>
-
+      <div className="flex flex-col items-center gap-3 px-4 text-center">
+        {/* Primary CTA — the button now names the outcome, not the gift */}
         <button
           type="button"
           onClick={() => navigate("/auth?claim=true&next=/zone-of-genius")}
@@ -77,7 +41,7 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
           }}
         >
           <span className="inline-flex items-center gap-3">
-            Claim your gift
+            Find your top talent
             <span
               aria-hidden="true"
               className="transition-transform duration-300 group-hover:translate-x-1"
@@ -87,12 +51,21 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
           </span>
         </button>
 
-        {/* ══════ CTA 2: See the Exact Playbook ══════ */}
+        {/* Meta line — BELOW the button now, with an up-arrow pointing to it */}
+        <div
+          className="text-[10px] uppercase tracking-[0.28em] inline-flex items-center gap-2"
+          style={{ color: "rgba(231,233,229,0.55)" }}
+        >
+          <span aria-hidden="true">↑</span>
+          <span>Claim your gift · Takes two minutes</span>
+        </div>
+
+        {/* Secondary — unchanged */}
         <button
           type="button"
           onClick={() => navigate("/playbook")}
           className={cn(
-            "group relative px-8 sm:px-10 py-3.5 rounded-full mt-2",
+            "group relative px-8 sm:px-10 py-3.5 rounded-full mt-4",
             "text-sm sm:text-base font-semibold uppercase tracking-[0.18em]",
             "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
@@ -114,11 +87,6 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
             </span>
           </span>
         </button>
-      </div>
-
-      {/* ══════ Infographic (context, below the fold) ══════ */}
-      <div>
-        <PlaybookCircleInfographic unlockedThroughStep={unlock} />
       </div>
     </div>
   );

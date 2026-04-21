@@ -208,10 +208,9 @@ interface SectionsPanelProps {
  * 2 after ZoG, 3 after Ignition, etc. — so steps 1..currentStep is the
  * "everything up to and including what I'm working on now" window.
  *
- * "The Path" tail (Sasha, 2026-04-21):
- *   Always appended — the path is publicly viewable at /path. No gate.
- *   Shown in the JOURNEY pane as a persistent overview of the full
- *   7-step value ladder.
+ * "The Path" (Sasha, 2026-04-21): intentionally NOT in the rail. The
+ *   /path page opens inside the shell but is reachable only by URL /
+ *   share — never listed in pane 1 or pane 2.
  */
 const buildJourneySections = (
     currentStep: number,
@@ -245,12 +244,8 @@ const buildJourneySections = (
         });
     }
 
-    // "The Path" is public — always shown, regardless of auth state.
-    sections.push({
-        id: "journey-path",
-        label: `${sections.length + 1}. The Path`,
-        path: "/path",
-    });
+    // NOTE: "The Path" (/path) is deliberately NOT listed in the rail.
+    // Reachable by URL / share only.
 
     return sections;
 };
