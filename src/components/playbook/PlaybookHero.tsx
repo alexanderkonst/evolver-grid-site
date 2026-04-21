@@ -15,8 +15,12 @@ import { useJourneyProgression } from "@/hooks/useJourneyProgression";
  *   • Colors/labels pulled from PLAYBOOK_STEPS — single source of truth
  *
  * The circle itself is the store: each node routes to its playbook page.
- * Progressive unlock: step 1 is always open (the free gift); 2–7 render
- * locked until the parent raises `unlockedThroughStep`.
+ * All 7 steps are always visible (Open Blueprint Paradox) — upcoming steps
+ * render dimmer but never gated.
+ *
+ * Layout (2026-04-20): primary CTAs render ABOVE the infographic so warm
+ * traffic can act immediately. The circle below serves as depth / context
+ * for visitors who want to see the whole path before choosing.
  */
 
 type PlaybookHeroProps = {
@@ -41,19 +45,12 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
   const unlock = unlockedThroughStep ?? currentStep;
 
   return (
-    // Tightened vertical stack so CTA + explainer land above the fold on
-    // a 1280×720 viewport with sidebar open (the most common laptop case).
-    // Breakpoints:
-    //   <sm  → mb-6 wrapper, mb-4 circle — compact
-    //   sm+  → mb-10 wrapper, mb-6 circle — breathing room without pushing
-    //          the CTA below the fold
+    // Buttons first (above the fold for warm traffic), infographic below
+    // as depth/context. Tightened vertical spacing so the primary CTA lands
+    // above the fold on a 1280×720 viewport with sidebar open.
     <div className="mb-6 sm:mb-10">
-      <div className="mb-4 sm:mb-6">
-        <PlaybookCircleInfographic unlockedThroughStep={unlock} />
-      </div>
-
-      {/* ══════ CTA: Claim your gift (Step 1 free) ══════ */}
-      <div className="flex flex-col items-center gap-2 sm:gap-3 px-4 text-center">
+      {/* ══════ CTAs (above the fold) ══════ */}
+      <div className="flex flex-col items-center gap-2 sm:gap-3 px-4 text-center mb-8 sm:mb-12">
         <div
           className="text-[10px] uppercase tracking-[0.28em]"
           style={{ color: "rgba(231,233,229,0.55)" }}
@@ -125,6 +122,11 @@ const PlaybookHero = ({ unlockedThroughStep }: PlaybookHeroProps) => {
             </span>
           </span>
         </button>
+      </div>
+
+      {/* ══════ Infographic (context, below the fold) ══════ */}
+      <div>
+        <PlaybookCircleInfographic unlockedThroughStep={unlock} />
       </div>
     </div>
   );
