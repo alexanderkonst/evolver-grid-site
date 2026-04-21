@@ -208,15 +208,14 @@ interface SectionsPanelProps {
  * 2 after ZoG, 3 after Ignition, etc. — so steps 1..currentStep is the
  * "everything up to and including what I'm working on now" window.
  *
- * "The Path" tail (Sasha, 2026-04-20):
- *   Appended at the end of the list when the user is authenticated OR has
- *   taken the ZoG (currentStep >= 2). This is a one-page value ladder
- *   overview — intentionally off the public landing but reachable from
- *   the JOURNEY pane for people already in the system.
+ * "The Path" tail (Sasha, 2026-04-21):
+ *   Always appended — the path is publicly viewable at /path. No gate.
+ *   Shown in the JOURNEY pane as a persistent overview of the full
+ *   7-step value ladder.
  */
 const buildJourneySections = (
     currentStep: number,
-    showPathAccess: boolean,
+    showAuthedExtras: boolean,
 ): Section[] => {
     const overview: Section = {
         id: "journey-overview",
@@ -237,18 +236,21 @@ const buildJourneySections = (
 
     const sections: Section[] = [overview, ...visibleSteps];
 
-    if (showPathAccess) {
+    // "My Artifacts" requires auth — each user's own artifacts, RLS-scoped.
+    if (showAuthedExtras) {
         sections.push({
             id: "journey-my-artifacts",
             label: `${sections.length + 1}. My Artifacts`,
             path: "/my-artifacts",
         });
-        sections.push({
-            id: "journey-path",
-            label: `${sections.length + 1}. The Path`,
-            path: "/path",
-        });
     }
+
+    // "The Path" is public — always shown, regardless of auth state.
+    sections.push({
+        id: "journey-path",
+        label: `${sections.length + 1}. The Path`,
+        path: "/path",
+    });
 
     return sections;
 };
@@ -277,13 +279,13 @@ const SectionsPanel = ({
         if (!baseData) return null;
 
         // JOURNEY → progressive reveal driven by onboarding_stage.
-        // Show "The Path" tail when the user is logged in OR has taken the
-        // ZoG (currentStep >= 2 means onboarding_stage is at least "zog_complete").
+        // "The Path" is always appended (public). "My Artifacts" requires
+        // authentication since it reads RLS-scoped user rows.
         if (activeSpaceId === "journey") {
-            const showPathAccess = !!userEmail || currentStep >= 2;
+            const showAuthedExtras = !!userEmail;
             return {
                 ...baseData,
-                sections: buildJourneySections(currentStep, showPathAccess),
+                sections: buildJourneySections(currentStep, showAuthedExtras),
             };
         }
 
