@@ -429,8 +429,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — light, lets video show through */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/20" />
+                {/* Base darkening overlay — minimal, so Panel 3 breathes.
+                    Lowered from /20 to /8 (Sasha, 2026-04-21). */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/[0.08]" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
@@ -479,7 +480,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     Progression (bg-black opacity): Rail 70 → Sections 40 → Content 6.
                     Content now barely tints the video. */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/[0.06]"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-transparent"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">

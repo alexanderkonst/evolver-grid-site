@@ -290,16 +290,12 @@ const StepCard = ({ step }: StepCardProps) => {
         WebkitBackdropFilter: "blur(14px)",
       }}
     >
-      {/* ══ STEP HEADER */}
+      {/* ══ STEP HEADER — only the subtitle remains.
+          "Step N of 7 · [appName]" was redundant with the top nav chips.
+          "See how" button removed — content is always open (Sasha, 2026-04-21). */}
       <header className="mb-6">
-        <div
-          className="text-[10px] uppercase tracking-[0.32em] mb-3"
-          style={{ color: step.neonHsl }}
-        >
-          Step {step.number} of 7 · {step.appName}
-        </div>
         <h1
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15] mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "rgba(231,233,229,0.98)",
@@ -307,45 +303,13 @@ const StepCard = ({ step }: StepCardProps) => {
         >
           {step.subtitle}
         </h1>
-
-        {/* ══ "See how" — step-level disclosure trigger */}
-        <button
-          type="button"
-          onClick={toggleSeeHow}
-          className={cn(
-            "inline-flex items-center gap-3 py-2.5 px-4 rounded-full",
-            "text-[11px] sm:text-xs uppercase tracking-[0.26em] font-semibold",
-            "transition-all duration-300 hover:scale-[1.02]",
-            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-          )}
-          style={{
-            backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.22), rgba(${step.neonRgb},0.08))`,
-            border: `1px solid rgba(${step.neonRgb},0.45)`,
-            color: "rgba(231,233,229,0.98)",
-            boxShadow: seeHowOpen
-              ? `0 0 22px -4px ${step.neonHsl}, inset 0 1px 1px rgba(255,255,255,0.08)`
-              : `0 0 10px -4px rgba(${step.neonRgb},0.4)`,
-          }}
-          aria-expanded={seeHowOpen}
-          aria-controls={`step-${step.number}-substeps`}
-        >
-          <Triangle
-            open={seeHowOpen}
-            neonHsl={step.neonHsl}
-            neonRgb={step.neonRgb}
-          />
-          <span>See how</span>
-        </button>
       </header>
 
-      {/* ══ 3 SUBSTEPS (revealed by "See how") */}
+      {/* ══ 3 SUBSTEPS — always visible */}
       <section
         id={`step-${step.number}-substeps`}
         aria-label="Substeps"
-        className={cn(
-          "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
-          seeHowOpen ? "max-h-[3000px] opacity-100 mb-10" : "max-h-0 opacity-0",
-        )}
+        className="mb-10"
       >
         {step.substeps.map((ss) => (
           <SubstepRow
