@@ -18,17 +18,31 @@ export type GlyphIconProps = {
 // Default size bumped 2026-04-21 (Sasha): the space-rail icons felt too
 // small at 20px. 28px reads as a real presence without overpowering the
 // label next to it.
+//
+// Day 47 late pass (Sasha): glyphs were rendering slightly off-center. The
+// previous `fontSize: size * 1.1` overflowed the size × size container and
+// pushed some glyphs up/left depending on their intrinsic metrics. Now:
+//   • fontSize tracks size exactly — no overflow
+//   • lineHeight = size (explicit px instead of unitless 1) — avoids any
+//     leading mismatch when Cormorant's line-height is > 1
+//   • grid + place-items:center — strictly tighter than flex centering
+//   • text-align center + letter-spacing 0 — removes any trailing space
+//     that some glyphs pick up from the font's default tracking
 const GlyphIcon = ({ glyph, color, size = 28 }: GlyphIconProps) => (
   <span
     aria-hidden="true"
-    className="inline-flex items-center justify-center flex-shrink-0 select-none"
+    className="flex-shrink-0 select-none"
     style={{
+      display: "grid",
+      placeItems: "center",
       width: size,
       height: size,
       fontFamily: "'Cormorant Garamond', serif",
-      fontSize: Math.round(size * 1.1),
+      fontSize: size,
+      lineHeight: `${size}px`,
       fontWeight: 600,
-      lineHeight: 1,
+      letterSpacing: 0,
+      textAlign: "center",
       color,
       textShadow: `0 0 12px ${color}80, 0 0 3px ${color}66`,
     }}
