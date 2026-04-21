@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { User, Sparkles, Briefcase, Map, Target, Boxes, Settings, ArrowRight } from "lucide-react";
+import { User, Sparkles, Briefcase, Map, Target, Boxes, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
@@ -124,16 +124,8 @@ const ProfileOverviewContent = () => {
                 </Link>
             </div>
 
-            {/* Settings Link */}
-            <div className="text-center">
-                <Link
-                    to="/game/me/settings"
-                    className="inline-flex items-center gap-2 text-sm text-white/30 hover:text-white/60 transition-colors"
-                >
-                    <Settings className="w-4 h-4" />
-                    Profile Settings
-                </Link>
-            </div>
+            {/* Profile settings moved to the unified Settings page (2026-04-21).
+                Reachable via the Settings button at the bottom of the spaces rail. */}
         </div>
     );
 };
