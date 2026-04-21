@@ -219,8 +219,9 @@ const TeamsSpace = () => {
                 return;
             }
 
-            const { data: participants } = await supabase
-                .from("mission_participants")
+            // Use the email-free public view for cross-team reads
+            const { data: participants } = await (supabase as any)
+                .from("mission_participants_public")
                 .select("user_id, mission_id, mission_title, share_consent")
                 .eq("mission_id", currentMission.mission_id)
                 .eq("share_consent", true)

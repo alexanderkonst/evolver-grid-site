@@ -113,8 +113,9 @@ const PeopleDirectory = () => {
           return;
         }
 
-        const { data: missionRows } = await supabase
-          .from("mission_participants")
+        // Use the email-free public view for cross-team reads
+        const { data: missionRows } = await (supabase as any)
+          .from("mission_participants_public")
           .select(
             "user_id, mission_id, mission_title, outcome_id, challenge_id, focus_area_id, pillar_id, created_at"
           )
