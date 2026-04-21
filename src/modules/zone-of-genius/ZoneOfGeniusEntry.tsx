@@ -561,12 +561,19 @@ const ZoneOfGeniusEntry = () => {
 
     return (
         <GameShellV2 hideNavigation={hideNav} hideLogo>
-            {/* HLS Video Background */}
-            <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-                <HlsBackground />
-                {/* Dark overlay to ensure white text remains legible */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
-            </div>
+            {/*
+              HLS video background only renders when we're NOT inside the
+              platform shell (Sasha, Day 47). The GameShellV2 already owns a
+              video background; stacking a second one creates a visible
+              horizontal edge at the top of Panel 3.
+            */}
+            {hideNav && (
+                <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
+                    <HlsBackground />
+                    {/* Dark overlay to ensure white text remains legible */}
+                    <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
+                </div>
+            )}
 
             <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
 

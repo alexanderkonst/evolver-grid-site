@@ -278,12 +278,14 @@ const SpacesRail = ({
                     <span className="hidden md:block text-sm font-medium">Settings</span>
                 </button>
                 {(() => {
-                    // Hide the Log In button on the landing page (/ or /game/journey)
-                    // so visitors enter through the funnel, not a generic auth screen.
-                    // Log Out stays visible everywhere for authenticated users.
+                    // Hide Log In on pages that are part of the unauthenticated
+                    // funnel (landing + ZoG reveal) so visitors don't get pulled
+                    // out of the flow. Log Out stays visible everywhere for
+                    // authenticated users.
                     const isLandingPage =
                         location.pathname === "/" ||
-                        location.pathname.startsWith("/game/journey");
+                        location.pathname.startsWith("/game/journey") ||
+                        location.pathname.startsWith("/zone-of-genius");
 
                     if (isAuthed === null) {
                         // Initial auth check — placeholder prevents rail jump.

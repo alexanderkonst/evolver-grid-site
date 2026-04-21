@@ -164,8 +164,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     useEffect(() => {
         // Root path `/` + the Journey-family URLs all belong to JOURNEY.
         // This ensures the sections pane renders (and is closable) on
-        // /playbook, /path, /my-artifacts — Sasha, 2026-04-21.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts"];
+        // /playbook, /path, /my-artifacts, /zone-of-genius — Sasha, 2026-04-21.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );
@@ -429,10 +429,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — intentionally almost invisible so
-                    Panel 3 reads as nearly pure video. Lowered to /[0.05]
-                    (Sasha, 2026-04-21 — another 30% lighter). */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/[0.05]" />
+                {/* Base darkening overlay — Day 47: lowered another 40% to
+                    /[0.03]. Panel 3 is now essentially raw video. Text relies
+                    on dark color + light-pearl text-shadow halo for legibility. */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/[0.03]" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
