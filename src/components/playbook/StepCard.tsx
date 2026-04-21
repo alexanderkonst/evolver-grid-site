@@ -179,15 +179,8 @@ const SubstepRow = ({
         </div>
       </div>
 
-      {/* ══ Hair-line divider between substeps */}
-      <div
-        aria-hidden="true"
-        className="h-[1px] w-full mt-5"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, rgba(231,233,229,0.02), rgba(231,233,229,0.12), rgba(231,233,229,0.02))",
-        }}
-      />
+      {/* Separator lines between substeps removed 2026-04-21 per Sasha —
+          vertical rhythm alone carries the structure. */}
     </div>
   );
 };
