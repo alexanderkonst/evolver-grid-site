@@ -1489,6 +1489,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_business_artifacts: {
+        Row: {
+          artifact_key: string
+          content: string | null
+          created_at: string
+          id: string
+          precision_score: number | null
+          step_number: number
+          updated_at: string
+          user_id: string
+          version: string
+        }
+        Insert: {
+          artifact_key: string
+          content?: string | null
+          created_at?: string
+          id?: string
+          precision_score?: number | null
+          step_number: number
+          updated_at?: string
+          user_id: string
+          version?: string
+        }
+        Update: {
+          artifact_key?: string
+          content?: string | null
+          created_at?: string
+          id?: string
+          precision_score?: number | null
+          step_number?: number
+          updated_at?: string
+          user_id?: string
+          version?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
