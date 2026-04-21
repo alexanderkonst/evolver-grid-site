@@ -7328,3 +7328,16 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 ***Wednesday launch context:** Sasha's vetted scope is locked. Everything shipped today hardens the landing/funnel/path experience for the final vetted draft he publishes Wednesday.*
 
+*Alexander's Unique Business v9.5 — April 21, 2026 (second-pane artifacts view MVP built in-house, not delegated to Lovable):*
+
+*Sasha flagged my earlier Lovable prompt as lazy — too much of the work could be done directly. Corrected. Built in-repo:*
+*- `supabase/migrations/20260421020000_user_business_artifacts.sql` — table + indexes + updated_at trigger + RLS (select/insert/update/delete own) + idempotent seed of Sasha's 5 current artifacts (talent_sentence v2.0/9.9, myth/tribe/promise v1.0/9.5, unique_product v1.0/9.5).*
+*- `src/pages/MyArtifactsPage.tsx` — RLS-scoped fetch, grouped by step, version + precision score + Cormorant-italic content preview with expand/collapse, empty state that CTAs back to the free Step 1.*
+*- Route `/my-artifacts` (RequireAuth) added to App.tsx.*
+*- Sidebar entry "N. My Artifacts" prepended before "N+1. The Path" in the JOURNEY second pane (same gate: authenticated OR ZoG done).*
+*- Roadmap item #30 updated from 🟡 Backlog to 🟢 MVP built.*
+
+*Lovable's remaining scope reduced to: (1) apply the migration against the live Supabase, (2) regenerate `src/integrations/supabase/types.ts`. The component uses a local `Artifact` interface + `as never`/`any` casts so the code builds clean pre-regen; after regen Lovable can drop the casts.*
+
+*Stretch goal `/portfolio` cross-user gallery remains in Roadmap #30 stretch section — unlocked once the other 6 founders have auth accounts and opt into publishing.*
+

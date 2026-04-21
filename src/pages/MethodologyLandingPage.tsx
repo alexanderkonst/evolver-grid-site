@@ -28,7 +28,24 @@ const MethodologyLandingPage = () => {
             color: "rgba(231,233,229,0.98)",
           }}
         >
-          Find your top talent.{" "}
+          {/*
+            Color per action verb — each uses the neon of its playbook step so
+            the title ↔ ring infographic link is felt, not explained.
+              "Find"      → Step 1 teal   (DISCOVER)
+              "Productize"→ Step 2 violet (PACKAGE)
+              "Build"     → Step 4 gold   (PRODUCT — the actual building)
+              "Launch"    → Step 6 green  (LAUNCH)
+              "Scale"     → Step 7 violet (SCALE)
+          */}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, hsl(175, 80%, 60%), hsl(175, 80%, 50%))",
+            }}
+          >
+            Find
+          </span>{" "}
+          your top talent.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -37,7 +54,33 @@ const MethodologyLandingPage = () => {
           >
             Productize it.
           </span>{" "}
-          Build it, Launch it, Scale it Alongside Other Impact Entrepreneurs.
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, hsl(45, 95%, 60%), hsl(38, 85%, 52%))",
+            }}
+          >
+            Build
+          </span>{" "}
+          it,{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, hsl(145, 65%, 55%), hsl(150, 60%, 45%))",
+            }}
+          >
+            Launch
+          </span>{" "}
+          it,{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, hsl(290, 65%, 65%), hsl(285, 60%, 55%))",
+            }}
+          >
+            Scale
+          </span>{" "}
+          it Alongside Other Impact Entrepreneurs.
         </h1>
       </header>
 

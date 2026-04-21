@@ -31,6 +31,7 @@ import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import PlaybookPage from "./pages/PlaybookPage";
 import PathPage from "./pages/PathPage";
+import MyArtifactsPage from "./pages/MyArtifactsPage";
 import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
@@ -273,6 +274,8 @@ const App = () => (
                   <Route path="/playbook/:slug" element={<PlaybookPage />} />
                   {/* THE PATH — one-page value ladder. Soft-gated (auth or ZoG done) by the page itself. */}
                   <Route path="/path" element={<PathPage />} />
+                  {/* MY ARTIFACTS — user's unique-business artifacts grouped by step. RLS-scoped. */}
+                  <Route path="/my-artifacts" element={<RequireAuth><MyArtifactsPage /></RequireAuth>} />
                   {/* LEARN Space (was Transformation) */}
                   <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />

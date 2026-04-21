@@ -380,11 +380,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     //     nudgeBadges.push('collaborate');
     // }
 
-    // Gradual reveal on Journey page — only show current space + next one
-    const isJourneyPage = location.pathname === '/' || location.pathname.startsWith('/game/journey');
-    const hiddenSpaces: string[] = isJourneyPage
-        ? ["learn", "meet", "collaborate", "build", "buysell"] // hide everything beyond JOURNEY + ME
-        : [];
+    // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
+    // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
+    // it reveals itself when the user earns it. JOURNEY and ME are always on.
+    const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "build", "buysell"] as const;
+    const hiddenSpaces: string[] = profileLoaded
+        ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
+        : // During the profile fetch, default to hiding gated spaces so there's
+          // no lock-then-hide flicker on first load.
+          [...GATED_SPACES];
 
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
