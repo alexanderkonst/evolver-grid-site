@@ -128,7 +128,8 @@ import ProductBuilderPage from "./pages/ProductBuilderPage";
 // Marketplace
 import CreatorPage from "./pages/CreatorPage";
 import PublicPageEditor from "./pages/PublicPageEditor";
-import Profile from "./pages/Profile";
+// Profile page retired 2026-04-21 — its content now lives inside the unified
+// Settings page (Profile tab) at /game/settings.
 import ToolsRedirect from "./pages/ToolsRedirect";
 import TestNavigation from "./pages/TestNavigation";
 import BrowseGuides from "./pages/marketplace/BrowseGuides";
@@ -217,7 +218,8 @@ const App = () => (
 
                   <Route path="/start" element={<RequireAuth><OnboardingPage /></RequireAuth>} />
                   <Route path="/profile" element={<Navigate to="/game/me" replace />} />
-                  <Route path="/settings" element={<RequireAuth><Profile /></RequireAuth>} />
+                  {/* Legacy /settings now redirects into the unified Settings page (Profile tab). */}
+                  <Route path="/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
                   <Route path="/game/settings" element={<RequireAuth><Settings /></RequireAuth>} />
                   <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/marketplace/browse" element={<Navigate to="/game/marketplace/browse" replace />} />
@@ -249,7 +251,8 @@ const App = () => (
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
                   <Route path="/game/me" element={<RequireAuth><ProfileOverview /></RequireAuth>} />
-                  <Route path="/game/me/settings" element={<RequireAuth><Profile /></RequireAuth>} />
+                  {/* Legacy ME-space Profile Settings now redirects to the unified Settings. */}
+                  <Route path="/game/me/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
                   <Route path="/game/me/mission" element={<RequireAuth><ProfileMissionSection /></RequireAuth>} />
                   <Route path="/game/me/assets" element={<RequireAuth><ProfileAssetsSection /></RequireAuth>} />
                   <Route path="/game/me/genius-business" element={<RequireAuth><GeniusBusiness /></RequireAuth>} />

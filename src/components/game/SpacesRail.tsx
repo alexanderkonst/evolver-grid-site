@@ -276,44 +276,61 @@ const SpacesRail = ({
                     <Settings className="w-5 h-5 flex-shrink-0" />
                     <span className="hidden md:block text-sm font-medium">Settings</span>
                 </button>
-                {isAuthed === null ? (
-                    // During the initial auth check — render a placeholder the
-                    // same height as the button so the rail doesn't jump.
-                    <div className="h-[32px]" aria-hidden="true" />
-                ) : isAuthed ? (
-                    <button
-                        onClick={async () => {
-                            await supabase.auth.signOut();
-                            toast({
-                                title: "You're logged out",
-                                description: "See you when you're back.",
-                            });
-                            navigate("/");
-                        }}
-                        className={cn(
-                            "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
-                            "justify-center md:justify-start",
-                            "text-white/30 hover:bg-red-500/20 hover:text-red-300"
-                        )}
-                        title="Log Out"
-                    >
-                        <LogOut className="w-4 h-4 flex-shrink-0" />
-                        <span className="hidden md:block text-xs font-medium">Log Out</span>
-                    </button>
-                ) : (
-                    <button
-                        onClick={() => navigate("/auth")}
-                        className={cn(
-                            "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
-                            "justify-center md:justify-start",
-                            "text-white/60 hover:bg-white/10 hover:text-white"
-                        )}
-                        title="Log In"
-                    >
-                        <LogIn className="w-4 h-4 flex-shrink-0" />
-                        <span className="hidden md:block text-xs font-medium">Log In</span>
-                    </button>
-                )}
+                {(() => {
+                    // Hide the Log In button on the landing page (/ or /game/journey)
+                    // so visitors enter through the funnel, not a generic auth screen.
+                    // Log Out stays visible everywhere for authenticated users.
+                    const isLandingPage =
+                        location.pathname === "/" ||
+                        location.pathname.startsWith("/game/journey");
+
+                    if (isAuthed === null) {
+                        // Initial auth check — placeholder prevents rail jump.
+                        return <div className="h-[32px]" aria-hidden="true" />;
+                    }
+                    if (isAuthed) {
+                        return (
+                            <button
+                                onClick={async () => {
+                                    await supabase.auth.signOut();
+                                    toast({
+                                        title: "You're logged out",
+                                        description: "See you when you're back.",
+                                    });
+                                    navigate("/");
+                                }}
+                                className={cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                                    "justify-center md:justify-start",
+                                    "text-white/30 hover:bg-red-500/20 hover:text-red-300"
+                                )}
+                                title="Log Out"
+                            >
+                                <LogOut className="w-4 h-4 flex-shrink-0" />
+                                <span className="hidden md:block text-xs font-medium">Log Out</span>
+                            </button>
+                        );
+                    }
+                    // Unauthenticated + on landing → hide entirely (don't divert from the funnel).
+                    if (isLandingPage) {
+                        return null;
+                    }
+                    // Unauthenticated + elsewhere → Log In is useful navigation.
+                    return (
+                        <button
+                            onClick={() => navigate("/auth")}
+                            className={cn(
+                                "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                                "justify-center md:justify-start",
+                                "text-white/60 hover:bg-white/10 hover:text-white"
+                            )}
+                            title="Log In"
+                        >
+                            <LogIn className="w-4 h-4 flex-shrink-0" />
+                            <span className="hidden md:block text-xs font-medium">Log In</span>
+                        </button>
+                    );
+                })()}
             </div>
         </div>
     );
