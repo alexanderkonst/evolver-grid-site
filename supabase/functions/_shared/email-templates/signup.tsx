@@ -44,7 +44,7 @@ export const SignupEmail = ({
 }: SignupEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>Confirm your email — your Zone of Genius awaits</Preview>
+    <Preview>Confirm your email — your Top Talent awaits</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
@@ -58,7 +58,7 @@ export const SignupEmail = ({
               <strong>{siteName}</strong>
             </Link>
             . Confirm <strong>{recipient}</strong> to activate your account and
-            unlock your Zone of Genius.
+            unlock your Top Talent.
           </Text>
           <Button style={button} href={confirmationUrl}>
             Confirm email

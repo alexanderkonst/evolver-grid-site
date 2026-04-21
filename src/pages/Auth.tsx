@@ -32,7 +32,7 @@ const Auth = () => {
 
   // Claim mode: the landing-page "Claim your gift" CTA lands the user here
   // with ?claim=true so they can enter just an email and carry on to their
-  // Zone of Genius result without picking a password first.
+  // Top Talent result without picking a password first.
   const claimMode = searchParams.get("claim") === "true";
   const mode = searchParams.get("mode"); // signup, login, or null
   const isOnboardingFlow = mode === "signup" || claimMode; // tinted UI
@@ -313,7 +313,7 @@ const Auth = () => {
                 Enter your email — your free result stays safe there.
               </CardTitle>
               <CardDescription className="text-[#4a4a6d]">
-                We'll email you a one-click magic link. You can dive into your Zone of Genius now; the link just keeps your result waiting when you're ready to come back.
+                We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -362,7 +362,7 @@ const Auth = () => {
             </CardTitle>
             <CardDescription className={isOnboardingFlow ? 'text-[#a4a3d0]' : ''}>
               {isOnboardingFlow
-                ? "Save your Zone of Genius and unlock your genius business."
+                ? "Save your Top Talent and unlock your genius business."
                 : "Create an account or log in to save your character progress across devices."}
             </CardDescription>
           </CardHeader>

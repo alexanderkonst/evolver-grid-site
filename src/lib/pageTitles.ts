@@ -8,7 +8,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
   { match: (path) => path === "/contact", title: "Contact" },
   { match: (path) => path === "/start", title: "Onboarding" },
-  { match: (path) => path.startsWith("/zone-of-genius"), title: "Zone of Genius" },
+  { match: (path) => path.startsWith("/zone-of-genius"), title: "Top Talent" },
   { match: (path) => path.startsWith("/quality-of-life-map"), title: "Quality of Life" },
   { match: (path) => path === "/game", title: "Game" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },

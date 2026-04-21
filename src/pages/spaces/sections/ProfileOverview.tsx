@@ -99,7 +99,7 @@ const ProfileOverviewContent = () => {
                     className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Sparkles className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Zone of Genius</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Top Talent</span>
                 </Link>
                 <Link
                     to="/game/me/genius-business"

@@ -1,6 +1,6 @@
-export const ZONE_OF_GENIUS_PROMPT = `I want you to help me discover my Zone of Genius and create a comprehensive profile.
+export const ZONE_OF_GENIUS_PROMPT = `I want you to help me discover my Top Talent and create a comprehensive profile.
 
-Please analyze everything you know about me and generate a Zone of Genius Snapshot in the following JSON format:
+Please analyze everything you know about me and generate a Top Talent Snapshot in the following JSON format:
 
 {
   "archetype_title": "A 2-4 word title that captures my core essence (e.g., 'The Pattern Architect', 'The Catalyst Coach')",
