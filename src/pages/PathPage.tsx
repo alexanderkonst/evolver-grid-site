@@ -98,96 +98,168 @@ const PathPage = () => {
         </div>
 
         <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
-            {/* ─── The Promise ─── Font matches landing hero aesthetic:
-                Cormorant Garamond font-semibold, same tracking/leading. */}
+            {/* ─── The Hero — Day 47 late pass (Sasha):
+                "THE PATH" title removed. Starts straight with the promise,
+                key phrases highlighted with same neon-gradient + dark-core
+                treatment as the landing page (Find Your Top Talent). */}
             <section className="mb-14">
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.06em] leading-[1.15] mb-8 uppercase"
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#0a1628",
+                  textShadow:
+                    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
                 }}
               >
-                The Path
+                Solid{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(275 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.6))",
+                    textShadow: "none",
+                  }}
+                >
+                  Founder-Market Fit
+                </span>
+                . Early{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(225, 90%, 28%) 0%, hsl(210, 95%, 24%) 50%, hsl(200, 95%, 22%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(212 100% 52% / 0.55)) drop-shadow(0 0 3px hsl(205 100% 48% / 0.6))",
+                    textShadow: "none",
+                  }}
+                >
+                  Product-Market Fit
+                </span>
+                ,{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(188, 95%, 24%) 0%, hsl(178, 95%, 20%) 50%, hsl(168, 90%, 22%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(180 100% 45% / 0.6)) drop-shadow(0 0 3px hsl(175 100% 42% / 0.65))",
+                    textShadow: "none",
+                  }}
+                >
+                  traction
+                </span>
+                , and{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(138, 85%, 22%) 0%, hsl(128, 90%, 18%) 50%, hsl(115, 85%, 20%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(130 100% 42% / 0.6)) drop-shadow(0 0 3px hsl(122 100% 38% / 0.65))",
+                    textShadow: "none",
+                  }}
+                >
+                  organic demand
+                </span>
+                .
               </h1>
 
-              <p
-                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
+              <h2
+                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-2"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#0a1628",
+                  textShadow:
+                    "0 0 20px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
                 }}
               >
-                Solid Founder-Market Fit. Early Product-Market Fit,
-                traction, and organic demand.
-              </p>
-
-              <p
-                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  color: "#0a1628",
-                }}
-              >
-                In 6–8 weeks.
-              </p>
+                In{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(15 100% 50% / 0.6)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.65))",
+                    textShadow: "none",
+                  }}
+                >
+                  6–8 weeks
+                </span>
+                .
+              </h2>
 
               <p
                 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-8 italic"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "#5b21b6",
                 }}
               >
-                Guaranteed.
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(265, 90%, 24%) 0%, hsl(280, 95%, 22%) 50%, hsl(295, 90%, 24%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 14px hsl(275 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(285 100% 50% / 0.6))",
+                    textShadow: "none",
+                  }}
+                >
+                  Guaranteed.
+                </span>
               </p>
 
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.7)" }}
+                style={{
+                  color: "rgba(26,30,58,0.7)",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                }}
               >
                 Provided you do your part, at an average speed.
               </p>
             </section>
 
-            {/* ─── The Ladder ─── */}
+            {/* ─── The Ladder — Day 47 late pass (Sasha):
+                Flipped from dark-glass-light-text to light-glass-dark-text.
+                Now consistent with the light Panel 3 + rest of the journey. */}
             <section
-              className="rounded-2xl overflow-hidden"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
-                border: "1px solid rgba(231,233,229,0.08)",
-                boxShadow:
-                  "0 24px 80px -32px rgba(132,96,234,0.35), inset 0 1px 1px rgba(255,255,255,0.05)",
-                backdropFilter: "blur(14px)",
-              }}
+              className="rounded-2xl overflow-hidden liquid-glass"
             >
               <div
-                className="px-6 py-4 border-b border-white/[0.06] flex items-baseline justify-between"
+                className="px-6 py-4 border-b flex items-baseline justify-between"
+                style={{ borderColor: "rgba(26,30,58,0.08)" }}
               >
                 <div
                   className="text-[10px] uppercase tracking-[0.28em]"
-                  style={{ color: "rgba(231,233,229,0.55)" }}
+                  style={{ color: "rgba(26,30,58,0.6)" }}
                 >
                   Pay as you progress
                 </div>
                 <div
                   className="text-[10px] uppercase tracking-[0.22em]"
-                  style={{ color: "rgba(231,233,229,0.4)" }}
+                  style={{ color: "rgba(26,30,58,0.5)" }}
                 >
                   7 steps · 6–8 weeks
                 </div>
               </div>
 
-              <div className="divide-y divide-white/[0.04]">
+              <div
+                className="divide-y"
+                style={{ borderColor: "rgba(26,30,58,0.08)" }}
+              >
                 {LADDER.map((row) => (
                   <div
                     key={row.step}
                     className="px-6 py-5 grid grid-cols-12 gap-4 items-start"
+                    style={{ borderTop: "1px solid rgba(26,30,58,0.06)" }}
                   >
                     <div
-                      className="col-span-12 sm:col-span-2 text-[10px] uppercase tracking-[0.22em] pt-1"
-                      style={{ color: "rgba(132,96,234,0.85)" }}
+                      className="col-span-12 sm:col-span-2 text-[10px] uppercase tracking-[0.22em] pt-1 font-semibold"
+                      style={{ color: "#5b21b6" }}
                     >
                       {row.step}
                     </div>
@@ -196,29 +268,29 @@ const PathPage = () => {
                         className="text-base sm:text-lg leading-snug mb-1"
                         style={{
                           fontFamily: "'Cormorant Garamond', serif",
-                          color: "rgba(231,233,229,0.95)",
+                          color: "#0a1628",
                         }}
                       >
                         {row.title}
                       </h3>
                       <p
                         className="text-[12px]"
-                        style={{ color: "rgba(231,233,229,0.55)" }}
+                        style={{ color: "rgba(26,30,58,0.6)" }}
                       >
                         {row.duration}
                       </p>
                     </div>
                     <div className="col-span-12 sm:col-span-4 sm:text-right">
                       <div
-                        className="text-base font-medium"
-                        style={{ color: "rgba(231,233,229,0.98)" }}
+                        className="text-base font-semibold"
+                        style={{ color: "#0a1628" }}
                       >
                         {row.price}
                       </div>
                       {row.priceDetail && (
                         <div
                           className="text-[11px] mt-1 leading-relaxed"
-                          style={{ color: "rgba(231,233,229,0.6)" }}
+                          style={{ color: "rgba(26,30,58,0.6)" }}
                         >
                           {row.priceDetail}
                         </div>
@@ -229,25 +301,27 @@ const PathPage = () => {
               </div>
 
               <div
-                className="px-6 py-4 border-t border-white/[0.06]"
+                className="px-6 py-4"
                 style={{
+                  borderTop: "1px solid rgba(26,30,58,0.08)",
                   backgroundImage:
-                    "linear-gradient(135deg, rgba(132,96,234,0.05), rgba(132,96,234,0.02))",
+                    "linear-gradient(135deg, rgba(132,96,234,0.06), rgba(132,96,234,0.02))",
                 }}
               >
                 <p
                   className="text-[12px] leading-relaxed"
-                  style={{ color: "rgba(231,233,229,0.7)" }}
+                  style={{ color: "rgba(26,30,58,0.72)" }}
                 >
                   The upfront path (Steps 1–5) totals{" "}
-                  <span style={{ color: "rgba(231,233,229,0.95)" }}>
+                  <span className="font-semibold" style={{ color: "#0a1628" }}>
                     $1,999
                   </span>
                   . Step 6 adds{" "}
-                  <span style={{ color: "rgba(231,233,229,0.95)" }}>
+                  <span className="font-semibold" style={{ color: "#0a1628" }}>
                     $1,111 upfront
                   </span>{" "}
-                  and <span style={{ color: "rgba(231,233,229,0.95)" }}>
+                  and{" "}
+                  <span className="font-semibold" style={{ color: "#0a1628" }}>
                     1/3 of your first $10k in revenue
                   </span>
                   {" "}— capped there. After that, 0%. Step 7 is by
@@ -257,18 +331,24 @@ const PathPage = () => {
               </div>
             </section>
 
-            {/* ─── Quiet close — dark text on now-light Panel 3 ─── */}
+            {/* ─── Quiet close ─── */}
             <div className="mt-10 text-center space-y-2">
               <p
                 className="text-[11px] leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.65)" }}
+                style={{
+                  color: "rgba(26,30,58,0.65)",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                }}
               >
                 Every step is optional. Every step delivers a complete
                 transformation in itself.
               </p>
               <p
                 className="text-[11px] leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.65)" }}
+                style={{
+                  color: "rgba(26,30,58,0.65)",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                }}
               >
                 Pay as you progress. Money-back guarantee on every step.
               </p>

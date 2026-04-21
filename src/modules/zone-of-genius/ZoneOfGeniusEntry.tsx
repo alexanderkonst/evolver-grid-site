@@ -601,7 +601,7 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(285, 95%, 42%) 0%, hsl(265, 100%, 38%) 50%, hsl(245, 95%, 40%) 100%)",
+                                    "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
                                 filter:
                                     "drop-shadow(0 0 12px hsl(275 100% 55% / 0.5)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.55))",
                                 textShadow: "none",
@@ -614,7 +614,7 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(28, 100%, 42%) 0%, hsl(15, 100%, 40%) 50%, hsl(2, 95%, 40%) 100%)",
+                                    "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
                                 filter:
                                     "drop-shadow(0 0 12px hsl(15 100% 50% / 0.5)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.55))",
                                 textShadow: "none",
@@ -640,7 +640,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(285, 95%, 42%) 0%, hsl(265, 100%, 38%) 50%, hsl(245, 95%, 40%) 100%)",
+                                        "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
                                     filter: "drop-shadow(0 0 10px hsl(275 100% 55% / 0.45))",
                                     textShadow: "none",
                                 }}
@@ -662,7 +662,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(225, 95%, 40%) 0%, hsl(210, 100%, 36%) 50%, hsl(200, 100%, 34%) 100%)",
+                                        "linear-gradient(135deg, hsl(225, 90%, 28%) 0%, hsl(210, 95%, 24%) 50%, hsl(200, 95%, 22%) 100%)",
                                     filter: "drop-shadow(0 0 10px hsl(212 100% 52% / 0.45))",
                                     textShadow: "none",
                                 }}
@@ -674,7 +674,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(28, 100%, 42%) 0%, hsl(15, 100%, 40%) 50%, hsl(2, 95%, 40%) 100%)",
+                                        "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
                                     filter: "drop-shadow(0 0 10px hsl(15 100% 50% / 0.45))",
                                     textShadow: "none",
                                 }}
