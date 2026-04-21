@@ -203,7 +203,10 @@ const App = () => (
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
                   <Route path="/my-result" element={<MyResult />} />
-                  <Route path="/integral_theory_upgrade1" element={<IntegralTheoryUpgrade1 />} />
+                  {/* Day 47 late pass (Sasha): /integral_theory_upgrade1 renamed to /27.
+                      Old path kept as redirect so any shared links stay alive. */}
+                  <Route path="/27" element={<IntegralTheoryUpgrade1 />} />
+                  <Route path="/integral_theory_upgrade1" element={<Navigate to="/27" replace />} />
                   <Route path="/intros" element={<Intros />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />

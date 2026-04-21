@@ -68,7 +68,7 @@ const GROWTH_STEPS: GrowthStep[] = [
     neonColor: "from-amber-400 to-amber-300",
     neonColorRgb: "251, 191, 36",
     content: "article-27",
-    linkTo: "/integral_theory_upgrade1",
+    linkTo: "/27",
   },
   {
     id: "integral-mystery-school",
