@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ChevronRight, Loader2 } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaybookStep, Substep } from "@/data/playbookSteps";
-import { useStepCheckout } from "@/hooks/useStepCheckout";
+// useStepCheckout was used by the per-step CTA block that was removed
+// 2026-04-21. The commercial flow now lives at /path + /game/settings.
 
 /**
  * StepCard — renders one of the 7 playbook steps.
@@ -211,7 +212,6 @@ const StepCard = ({ step }: StepCardProps) => {
   );
   // Payment CTA — launches Stripe one-time checkout when step.priceId is set,
   // otherwise shows a "pricing coming soon" toast.
-  const { startCheckout, isLoading: checkoutLoading } = useStepCheckout();
 
   // Re-seed state whenever the step slug changes (navigating 1 → 2 → …)
   // Default: everything open. Hash can override to collapse.
@@ -366,76 +366,9 @@ const StepCard = ({ step }: StepCardProps) => {
         ))}
       </section>
 
-      {/* ══ RESULT (what you get from this app) + CONSISTENT CTA */}
-      <div className="flex flex-col items-center gap-5 pt-4">
-        {/* Result promise — the transformational-result phrase, framed as
-            the outcome this "app" delivers. Consistent across all 7 steps. */}
-        <div className="flex flex-col items-center gap-2 text-center">
-          <div
-            className="text-[10px] uppercase tracking-[0.28em]"
-            style={{ color: "rgba(231,233,229,0.45)" }}
-          >
-            Here's your result
-          </div>
-          <p
-            className="text-lg sm:text-xl md:text-2xl leading-snug max-w-[520px]"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: "italic",
-              color: "rgba(231,233,229,0.95)",
-              letterSpacing: "0.005em",
-            }}
-          >
-            &ldquo;{step.transformationalResult}&rdquo;
-          </p>
-        </div>
-
-        {/* Consistent CTA — same label on every step. "Pay as you progress"
-            sits just below as the pricing/model hint. Click launches Stripe
-            one-time checkout when step.priceId is set; otherwise a friendly
-            "pricing coming soon" toast. */}
-        <div className="flex flex-col items-center gap-2">
-          <button
-            type="button"
-            onClick={() => startCheckout(step)}
-            disabled={checkoutLoading}
-            className={cn(
-              "px-7 sm:px-10 py-3.5 sm:py-4 rounded-full",
-              "text-xs sm:text-sm font-semibold uppercase tracking-[0.22em]",
-              "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
-              "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-              "disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100",
-            )}
-            style={{
-              color: "rgba(231,233,229,0.98)",
-              backgroundImage:
-                "linear-gradient(135deg, rgba(132,96,234,0.9), rgba(41,84,159,0.9))",
-              border: "1px solid rgba(231,233,229,0.4)",
-              boxShadow:
-                "0 20px 60px -18px rgba(132,96,234,0.7), inset 0 1px 1px rgba(255,255,255,0.22)",
-            }}
-            aria-busy={checkoutLoading}
-          >
-            <span className="inline-flex items-center gap-2">
-              {checkoutLoading && (
-                <Loader2
-                  aria-hidden="true"
-                  className="h-4 w-4 animate-spin"
-                />
-              )}
-              {checkoutLoading
-                ? "Opening checkout…"
-                : (step.ctaText ?? "Guidance to accelerate the process")}
-            </span>
-          </button>
-          <div
-            className="text-[10px] uppercase tracking-[0.32em]"
-            style={{ color: "rgba(231,233,229,0.55)" }}
-          >
-            Pay as you progress
-          </div>
-        </div>
-      </div>
+      {/* The "Here's your result" + CTA + "Pay as you progress" block was
+          removed 2026-04-21 per Sasha — every step's substeps stand alone.
+          Commercial layer lives on /path, not inside each step card. */}
     </article>
   );
 };
