@@ -4,6 +4,7 @@ import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
 import geniusLogo from "@/assets/ignite-logo.png";
+import GameShellV2 from "@/components/game/GameShellV2";
 
 interface ZoneOfGeniusAssessmentLayoutProps {
   renderMode?: "standalone" | "embedded";
