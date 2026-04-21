@@ -221,8 +221,9 @@ const Matchmaking = () => {
 
       let missionParticipants = new Set<string>();
       if (currentMission?.mission_id) {
-        const { data: participantRows } = await supabase
-          .from("mission_participants")
+        // Use the email-free public view for cross-team reads
+        const { data: participantRows } = await (supabase as any)
+          .from("mission_participants_public")
           .select("user_id")
           .eq("mission_id", currentMission.mission_id)
           .eq("share_consent", true)
