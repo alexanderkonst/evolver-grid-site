@@ -545,7 +545,7 @@ const IgniteSession = () => {
             <div className="flex items-baseline justify-center gap-1 mb-4">
               <span className="text-5xl md:text-6xl font-medium text-white tracking-tight font-serif">$555</span>
             </div>
-            <p className="text-xs text-white/55">One session. One business.</p>
+            <p className="text-xs text-white/55">In 2 hours</p>
           </div>
 
           {/* Guarantee */}

@@ -430,14 +430,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
                 {/*
-                  Base wash — Day 47 (Sasha, later same day): inverted from dark
-                  to light. Dropping the dark overlay to /[0.03] was already
-                  imperceptible, so we pushed past zero into a subtle WHITE wash
-                  (/0.15). Net effect: Panel 3 is visibly brighter, dark patches
-                  of the video are softened, dark-navy hero text reads cleaner.
-                  Same slider, same approach — just past the neutral point.
+                  Base wash — Day 47 iter 2 (Sasha): +40% lighter.
+                  /0.15 → /0.21 white wash. Panel 3 now reads as clearly
+                  frosted/light rather than "mostly raw video". Same slider,
+                  same direction — nudged up another step.
                 */}
-                <div className="absolute inset-0 bg-white/[0.15]" />
+                <div className="absolute inset-0 bg-white/[0.21]" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
