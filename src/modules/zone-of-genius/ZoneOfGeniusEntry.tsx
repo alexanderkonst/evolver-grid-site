@@ -601,9 +601,9 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
+                                    "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
                                 filter:
-                                    "drop-shadow(0 0 12px hsl(275 100% 55% / 0.5)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.55))",
+                                    "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
                                 textShadow: "none",
                             }}
                         >
@@ -614,9 +614,9 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
+                                    "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
                                 filter:
-                                    "drop-shadow(0 0 12px hsl(15 100% 50% / 0.5)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.55))",
+                                    "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
                                 textShadow: "none",
                             }}
                         >
@@ -640,8 +640,8 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(275 100% 55% / 0.45))",
+                                        "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
                                     textShadow: "none",
                                 }}
                             >
@@ -662,8 +662,8 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(225, 90%, 28%) 0%, hsl(210, 95%, 24%) 50%, hsl(200, 95%, 22%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(212 100% 52% / 0.45))",
+                                        "linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45))",
                                     textShadow: "none",
                                 }}
                             >
@@ -674,8 +674,8 @@ const ZoneOfGeniusEntry = () => {
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(15 100% 50% / 0.45))",
+                                        "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
                                     textShadow: "none",
                                 }}
                             >
