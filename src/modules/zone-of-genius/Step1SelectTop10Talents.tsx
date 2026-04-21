@@ -73,7 +73,7 @@ const Step1SelectTop10Talents = () => {
         <p
           className="text-sm max-w-xl mx-auto"
           style={{
-            color: "rgba(26,30,58,0.7)",
+            color: "rgba(26,30,58,0.82)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
@@ -96,7 +96,7 @@ const Step1SelectTop10Talents = () => {
                 {" / "}{maxSelectable}
               </span>
             </div>
-            <span className="text-xs" style={{ color: "rgba(26,30,58,0.55)" }}>talents selected</span>
+            <span className="text-xs" style={{ color: "rgba(26,30,58,0.72)" }}>talents selected</span>
           </div>
 
           {showMaxWarning && (
@@ -156,7 +156,7 @@ const Step1SelectTop10Talents = () => {
               </h3>
               <p
                 className="text-xs leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.65)" }}
+                style={{ color: "rgba(26,30,58,0.78)" }}
               >
                 {talent.description}
               </p>
@@ -210,7 +210,7 @@ const Step1SelectTop10Talents = () => {
             >
               {localSelected.length} / {maxSelectable}
             </span>
-            <span className="text-xs" style={{ color: "rgba(26,30,58,0.55)" }}>selected</span>
+            <span className="text-xs" style={{ color: "rgba(26,30,58,0.72)" }}>selected</span>
           </div>
           <button
             onClick={handleBack}

@@ -23,14 +23,15 @@ const ZoneOfGeniusAssessmentLayout = ({
 
   const stepIndicator = (
     <div className="text-center mb-8">
-      {/* Logo */}
+      {/* Logo — Day 47 very-late pass (Sasha): 2.5× larger (48px → 120px).
+          The star mark now reads as a real presence, not a tiny ornament. */}
       <img
         src={geniusLogo}
         alt="Genius Business"
-        className="w-[48px] h-auto mx-auto opacity-80 mb-4"
+        className="w-[120px] h-auto mx-auto opacity-85 mb-5"
       />
 
-      {/* Title — Day 47 late pass: dark navy on light Panel 3 */}
+      {/* Title — dark navy on light Panel 3 */}
       <h1
         className="text-2xl sm:text-3xl font-semibold mb-3"
         style={{
@@ -41,10 +42,12 @@ const ZoneOfGeniusAssessmentLayout = ({
       >
         Discover Your Top Talent
       </h1>
+      {/* Day 47 very-late pass: darker body/muted text for legibility
+          (was 0.55 → 0.7). */}
       <p
         className="text-sm mb-6"
         style={{
-          color: "rgba(26,30,58,0.55)",
+          color: "rgba(26,30,58,0.7)",
           textShadow: "0 1px 2px rgba(255,255,255,0.6)",
         }}
       >

@@ -1,18 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Download, ExternalLink, ArrowLeft, ArrowRight, RefreshCw, Sparkles } from "lucide-react";
+import { Download, ArrowLeft, ArrowRight, Mail, Share2 } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
-import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
-import InviteFriendPrompt from "@/components/sharing/InviteFriendPrompt";
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -33,6 +31,13 @@ const Step4GenerateSnapshot = () => {
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const snapshotRef = useRef<HTMLDivElement>(null);
 
+  // Day 47 very-late pass (Sasha): save pill state — mirrors AppleseedDisplay
+  // pattern. User enters email → save-zog-result edge function creates silent
+  // account + saves snapshot + sends magic-link email + enqueues nurture sequence.
+  const [saveExpanded, setSaveExpanded] = useState(false);
+  const [saveEmail, setSaveEmail] = useState("");
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+
   // Parse the snapshot sections
   const parsedSnapshot = snapshotMarkdown ? parseSnapshotSections(snapshotMarkdown) : null;
 
@@ -50,6 +55,51 @@ const Step4GenerateSnapshot = () => {
   }, []);
 
   const basePath = getZogAssessmentBasePath(location.pathname);
+
+  // Day 47 very-late pass: fix "You are a The Performing Sage of Justice"
+  // article collision. AI sometimes returns archetypes prefixed with "The".
+  // Strip "The " so "You are a" flows naturally.
+  const cleanedArchetypeTitle = (parsedSnapshot?.archetypeTitle || "").replace(
+    /^(the|a|an)\s+/i,
+    "",
+  );
+
+  // Build an AppleseedData-shaped payload so we can reuse save-zog-result
+  // (which enqueues the 3-email nurture sequence). The guided snapshot
+  // doesn't naturally have a bullseyeSentence — use the first sentence of
+  // the description as a best-effort equivalent.
+  const buildSavePayload = () => ({
+    vibrationalKey: { name: cleanedArchetypeTitle },
+    bullseyeSentence:
+      (parsedSnapshot?.description || "").split(/\.\s+/)[0]?.slice(0, 280) || "",
+    threeLenses: {
+      actions: top3Talents.map((t) => t.name),
+      primeDriver: parsedSnapshot?.masteryAction || "",
+      archetype: cleanedArchetypeTitle,
+    },
+  });
+
+  const handleSaveSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!saveEmail.trim() || !saveEmail.includes("@")) return;
+      setSaveState("saving");
+      try {
+        await supabase.functions.invoke("save-zog-result", {
+          body: {
+            email: saveEmail.trim(),
+            appleseedData: buildSavePayload(),
+            source: "zog_guided_save",
+          },
+        });
+      } catch {
+        // Non-blocking — snapshot is already persisted to zog_snapshots.
+      }
+      setSaveState("saved");
+      toast.success("Saved. We sent your Top Talent to your inbox.");
+    },
+    [saveEmail, parsedSnapshot],
+  );
 
   useEffect(() => {
     if (orderedTalentIds.length === 0) {
@@ -398,7 +448,7 @@ GENERAL STYLE RULES:
                   textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
                 }}
               >
-                You are a {parsedSnapshot.archetypeTitle}
+                You are a {cleanedArchetypeTitle}
               </h1>
               <p
                 className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto font-medium"
@@ -437,276 +487,319 @@ GENERAL STYLE RULES:
           </div>
         ) : parsedSnapshot ? (
           <>
-            <InviteFriendPrompt
-              profileId={profileId}
-              source="src/modules/zone-of-genius/Step4GenerateSnapshot.tsx"
-              className="mb-8"
-            />
-            {/* Main Layout: Two columns */}
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
-              {/* LEFT COLUMN */}
-              <div className="space-y-6">
-                {/* Character Card */}
-                <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
-                  <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(26,30,58,0.5)" }}>
-                    Top Talent Character Card
+            {/* Day 47 very-late pass (Sasha): single-column flow matching the
+                AI-lane AppleseedDisplay. Removed: InviteFriendPrompt (bulky,
+                low-value at peak engagement), two-column aside layout, separate
+                "If This Hit Home" card (consolidated into primary CTA below),
+                "Save & Continue" button (was routing to auth). Added: save-pill
+                email capture + a single prominent commercial CTA. Demoted:
+                Download PDF → small footer link. */}
+            <div className="max-w-2xl mx-auto space-y-6">
+              {/* Character Card */}
+              <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
+                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(26,30,58,0.55)" }}>
+                  Top Talent Character Card
+                </p>
+                <p className="text-xs mb-6" style={{ color: "rgba(26,30,58,0.55)" }}>
+                  Generated on: {currentDate}
+                </p>
+
+                <h2
+                  className="text-2xl sm:text-3xl font-bold text-center mb-6"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#0a1628",
+                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                  }}
+                >
+                  {cleanedArchetypeTitle}
+                </h2>
+
+                <div className="mb-6">
+                  <p
+                    className="text-sm sm:text-base leading-relaxed"
+                    style={{ color: "rgba(26,30,58,0.88)" }}
+                  >
+                    {parsedSnapshot.description}
                   </p>
-                  <p className="text-xs mb-6" style={{ color: "rgba(26,30,58,0.5)" }}>
-                    Generated on: {currentDate}
-                  </p>
+                </div>
 
-                  <h2
-                    className="text-2xl sm:text-3xl font-bold text-center mb-6"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "#0a1628",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.7)",
-                    }}
-                  >
-                    {parsedSnapshot.archetypeTitle}
-                  </h2>
-
-                  <div className="mb-6">
-                    <p
-                      className="text-sm sm:text-base leading-relaxed"
-                      style={{ color: "rgba(26,30,58,0.82)" }}
-                    >
-                      {parsedSnapshot.description}
-                    </p>
-                  </div>
-
-                  <div
-                    className="flex flex-wrap justify-center gap-2 pt-4"
-                    style={{ borderTop: "1px solid rgba(26,30,58,0.08)" }}
-                  >
-                    {top3Talents.map(talent => (
-                      <span
-                        key={talent.id}
-                        className="inline-flex items-center rounded-full px-4 py-2 text-xs sm:text-sm font-medium"
-                        style={{
-                          backgroundColor: "rgba(91,33,182,0.12)",
-                          color: "#5b21b6",
-                        }}
-                      >
-                        {talent.name}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-
-                {/* Panel A: Superpowers in Action */}
-                <article className="liquid-glass rounded-2xl p-6">
-                  <h3
-                    className="text-lg font-semibold mb-2"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "#0a1628",
-                    }}
-                  >
-                    Superpowers in Action
-                  </h3>
-                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
-                    How this genius tends to show up when you are on.
-                  </p>
-                  <ul
-                    className="space-y-2 text-sm list-disc list-inside"
-                    style={{ color: "rgba(26,30,58,0.82)" }}
-                  >
-                    {formatBullets(parsedSnapshot.superpowers)}
-                  </ul>
-                </article>
-
-                {/* Panel B: Your Edge */}
-                <article className="liquid-glass rounded-2xl p-6">
-                  <h3
-                    className="text-lg font-semibold mb-2"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "#0a1628",
-                    }}
-                  >
-                    Your Edge (Where You Trip Yourself Up)
-                  </h3>
-                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
-                    Your supershadow — the flip side of your gift. Growth happens here.
-                  </p>
-                  <ul
-                    className="space-y-2 text-sm list-disc list-inside"
-                    style={{ color: "rgba(26,30,58,0.82)" }}
-                  >
-                    {formatBullets(parsedSnapshot.edge)}
-                  </ul>
-                </article>
-
-                {/* Panel C: Where This Genius Thrives */}
-                <article className="liquid-glass rounded-2xl p-6">
-                  <h3
-                    className="text-lg font-semibold mb-2"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "#0a1628",
-                    }}
-                  >
-                    Where This Genius Thrives
-                  </h3>
-                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
-                    Environments and roles where this pattern tends to shine.
-                  </p>
-                  <ul
-                    className="space-y-2 text-sm list-disc list-inside"
-                    style={{ color: "rgba(26,30,58,0.82)" }}
-                  >
-                    {formatBullets(parsedSnapshot.thrives)}
-                  </ul>
-                </article>
-
-                {/* Panel D: Mastery Action */}
-                {parsedSnapshot.masteryAction && (
-                  <article className="liquid-glass-strong rounded-2xl p-6">
-                    <h3
-                      className="text-lg font-semibold mb-2"
+                <div
+                  className="flex flex-wrap justify-center gap-2 pt-4"
+                  style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
+                >
+                  {top3Talents.map(talent => (
+                    <span
+                      key={talent.id}
+                      className="inline-flex items-center rounded-full px-4 py-2 text-xs sm:text-sm font-medium"
                       style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        color: "#0a1628",
+                        backgroundColor: "rgba(91,33,182,0.15)",
+                        color: "#5b21b6",
                       }}
                     >
-                      🔁 Your Mastery Action
-                    </h3>
-                    <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
-                      One repeatable action that builds mastery over time.
-                    </p>
-                    <p
-                      className="text-base font-medium leading-relaxed"
-                      style={{ color: "#0a1628" }}
-                    >
-                      {parsedSnapshot.masteryAction}
-                    </p>
-                  </article>
-                )}
+                      {talent.name}
+                    </span>
+                  ))}
+                </div>
+              </article>
 
-              </div>
+              {/* Panel A: Superpowers in Action */}
+              <article className="liquid-glass rounded-2xl p-6">
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#0a1628",
+                  }}
+                >
+                  Superpowers in Action
+                </h3>
+                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                  How this genius tends to show up when you are on.
+                </p>
+                <ul
+                  className="space-y-2 text-sm list-disc list-inside"
+                  style={{ color: "rgba(26,30,58,0.88)" }}
+                >
+                  {formatBullets(parsedSnapshot.superpowers)}
+                </ul>
+              </article>
 
-              {/* RIGHT COLUMN */}
-              <aside className="space-y-6">
-                {/* Download PDF button */}
-                <button
-                  type="button"
-                  onClick={handleDownloadPDF}
-                  disabled={isDownloading}
-                  className="w-full liquid-glass-strong inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+              {/* Panel B: Your Edge */}
+              <article className="liquid-glass rounded-2xl p-6">
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#0a1628",
+                  }}
+                >
+                  Your Edge (Where You Trip Yourself Up)
+                </h3>
+                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                  Your supershadow — the flip side of your gift. Growth happens here.
+                </p>
+                <ul
+                  className="space-y-2 text-sm list-disc list-inside"
+                  style={{ color: "rgba(26,30,58,0.88)" }}
+                >
+                  {formatBullets(parsedSnapshot.edge)}
+                </ul>
+              </article>
+
+              {/* Panel C: Where This Genius Thrives */}
+              <article className="liquid-glass rounded-2xl p-6">
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#0a1628",
+                  }}
+                >
+                  Where This Genius Thrives
+                </h3>
+                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                  Environments and roles where this pattern tends to shine.
+                </p>
+                <ul
+                  className="space-y-2 text-sm list-disc list-inside"
+                  style={{ color: "rgba(26,30,58,0.88)" }}
+                >
+                  {formatBullets(parsedSnapshot.thrives)}
+                </ul>
+              </article>
+
+              {/* Panel D: Mastery Action */}
+              {parsedSnapshot.masteryAction && (
+                <article className="liquid-glass-strong rounded-2xl p-6">
+                  <h3
+                    className="text-lg font-semibold mb-2"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#0a1628",
+                    }}
+                  >
+                    🔁 Your Mastery Action
+                  </h3>
+                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                    One repeatable action that builds mastery over time.
+                  </p>
+                  <p
+                    className="text-base font-medium leading-relaxed"
+                    style={{ color: "#0a1628" }}
+                  >
+                    {parsedSnapshot.masteryAction}
+                  </p>
+                </article>
+              )}
+
+              {/* ═══════════════════════════════════════════════════════
+                  PRIMARY CTA — consolidated commercial bridge (replaces
+                  the former "If This Hit Home" right-column card). Same
+                  destination as AI-lane primary CTA: /ignite#pricing-section.
+                  ═══════════════════════════════════════════════════════ */}
+              <article className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center mt-10">
+                <p
+                  className="text-xs uppercase tracking-[0.2em] mb-3"
+                  style={{ color: "rgba(26,30,58,0.6)" }}
+                >
+                  The next step
+                </p>
+                <h3
+                  className="text-xl sm:text-2xl font-semibold mb-3"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#0a1628",
+                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                  }}
+                >
+                  Ready to turn this into a business?
+                </h3>
+                <p
+                  className="text-sm mb-5 max-w-lg mx-auto leading-relaxed"
+                  style={{ color: "rgba(26,30,58,0.78)" }}
+                >
+                  You've named your Top Talent. The next step is structuring
+                  it into something people can buy. Aleksandr runs a focused
+                  Productize Yourself Session to compile your entire unique
+                  business on one page.
+                </p>
+                <p
+                  className="text-sm font-semibold mb-5"
+                  style={{ color: "#0a1628" }}
+                >
+                  $555 · 2 hours · Money-back guarantee
+                </p>
+                <a
+                  href="/ignite#pricing-section"
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold liquid-glass-strong transition-all hover:scale-[1.02] active:scale-95"
                   style={{
                     color: "#0a1628",
                     textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                   }}
                 >
-                  {isDownloading ? (
-                    <>
-                      <span className="premium-spinner w-4 h-4" />
-                      <span>Generating PDF...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Download className="w-4 h-4" />
-                      <span>Download My Snapshot (PDF)</span>
-                    </>
-                  )}
-                </button>
+                  Book your Productize Yourself Session
+                  <ArrowRight className="w-4 h-4 opacity-70" />
+                </a>
+              </article>
 
-                {/* Session card — Day 47 late pass (Sasha): legacy $297 Career
-                    Re-Ignition card retired. Now routes to the canonical Ignition
-                    Session at /ignite#pricing-section — same destination as the
-                    AI-route primary CTA. One product, one price: $555. */}
-                <article className="liquid-glass rounded-2xl p-5">
-                  <h3
-                    className="text-sm font-semibold mb-2"
-                    style={{ color: "#0a1628" }}
-                  >
-                    Ready to turn this into a business?
-                  </h3>
-                  <p
-                    className="text-xs mb-3"
+              {/* ═══════════════════════════════════════════════════════
+                  SAVE PILL — matches AI-lane pattern. On submit, fires
+                  save-zog-result which creates a silent account, saves
+                  the snapshot, sends a magic-link email, and enqueues the
+                  3-email nurture sequence.
+                  ═══════════════════════════════════════════════════════ */}
+              <div className="max-w-md mx-auto pt-2">
+                {saveState === "saved" ? (
+                  <p className="text-center text-xs" style={{ color: "rgba(26,30,58,0.6)" }}>
+                    ✓ Saved. We sent your Top Talent to your inbox so you can come back to it.
+                  </p>
+                ) : !saveExpanded ? (
+                  <button
+                    type="button"
+                    onClick={() => setSaveExpanded(true)}
+                    className="w-full flex items-center justify-center gap-2 p-3 rounded-full liquid-glass hover:scale-[1.015] active:scale-[0.985] transition-all duration-300 text-xs"
                     style={{ color: "rgba(26,30,58,0.7)" }}
                   >
-                    You've named your Top Talent. The next step is structuring it into
-                    something people can buy. Aleksandr runs a focused Productize
-                    Yourself Session to compile your entire unique business on one page.
-                  </p>
-                  <p
-                    className="text-xs font-semibold mb-3"
-                    style={{ color: "#0a1628" }}
-                  >
-                    $555 · 2 hours · Money-back guarantee
-                  </p>
-                  <a
-                    href="/ignite#pricing-section"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium liquid-glass-strong transition-all hover:scale-[1.02]"
-                    style={{
-                      color: "#0a1628",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-                    }}
-                  >
-                    Book your Productize Yourself Session
-                    <ArrowRight className="w-3 h-3" />
-                  </a>
-                </article>
-              </aside>
-            </div>
-
-            {/* Footer: Magic button */}
-            <div
-              className="mt-16 pt-8 text-center space-y-6"
-              style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
-            >
-              <p
-                className="text-sm max-w-2xl mx-auto"
-                style={{ color: "rgba(26,30,58,0.65)" }}
-              >
-                Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                {returnTo === "genius-offer" ? (
-                  <button
-                    onClick={() => navigate("/genius-offer-intake?from=zog")}
-                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2"
-                    style={{
-                      color: "#0a1628",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-                    }}
-                  >
-                    <Sparkles size={16} style={{ color: "#5b21b6" }} />
-                    Continue to Genius Offer Creation
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Save my top talent result for later</span>
                   </button>
                 ) : (
-                  <button
-                    onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
-                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full transition-all hover:scale-[1.02] active:scale-95"
-                    style={{
-                      color: "#0a1628",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-                    }}
+                  <form
+                    onSubmit={handleSaveSubmit}
+                    className="flex items-center gap-2 p-2 rounded-full liquid-glass"
                   >
-                    Save & Continue
-                  </button>
+                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "rgba(26,30,58,0.45)" }} />
+                    <input
+                      type="email"
+                      value={saveEmail}
+                      onChange={(e) => setSaveEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      autoFocus
+                      className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
+                      style={{ color: "#0a1628" }}
+                      required
+                    />
+                    <button
+                      type="submit"
+                      disabled={saveState === "saving" || !saveEmail.trim()}
+                      className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white bg-[#8460ea]/90 hover:bg-[#8460ea] disabled:opacity-40 transition-colors"
+                    >
+                      {saveState === "saving" ? "Saving…" : "Send it"}
+                    </button>
+                  </form>
                 )}
               </div>
 
-              <div className="flex items-center justify-center gap-4 text-sm">
-                <button
-                  onClick={handleBack}
-                  className="transition-colors"
-                  style={{ color: "rgba(26,30,58,0.5)" }}
-                >
-                  ← Back
-                </button>
-                <span style={{ color: "rgba(26,30,58,0.2)" }}>|</span>
-                <button
-                  onClick={handleStartNew}
-                  className="transition-colors"
-                  style={{ color: "rgba(26,30,58,0.5)" }}
-                >
-                  Start Over
-                </button>
+              {/* ═══════════════════════════════════════════════════════
+                  FOOTER — quiet row of tertiary options: PDF / Share /
+                  Back / Start Over. Everything de-emphasized.
+                  ═══════════════════════════════════════════════════════ */}
+              <div
+                className="mt-10 pt-8 flex flex-col items-center gap-4 text-sm"
+                style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
+              >
+                <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
+                  <button
+                    type="button"
+                    onClick={handleDownloadPDF}
+                    disabled={isDownloading}
+                    className="inline-flex items-center gap-1.5 transition-colors hover:underline"
+                    style={{ color: "rgba(26,30,58,0.6)" }}
+                  >
+                    {isDownloading ? (
+                      <>
+                        <span className="premium-spinner w-3 h-3" />
+                        <span>Generating PDF…</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download PDF</span>
+                      </>
+                    )}
+                  </button>
+                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (typeof navigator !== "undefined" && navigator.share) {
+                        navigator.share({
+                          title: "My Top Talent",
+                          text: `I just discovered my Top Talent: ${cleanedArchetypeTitle}.`,
+                          url: `${window.location.origin}/zone-of-genius`,
+                        }).catch(() => {});
+                      } else {
+                        navigator.clipboard?.writeText(`${window.location.origin}/zone-of-genius`);
+                        toast.success("Link copied — share with a friend.");
+                      }
+                    }}
+                    className="inline-flex items-center gap-1.5 transition-colors hover:underline"
+                    style={{ color: "rgba(26,30,58,0.6)" }}
+                  >
+                    <Share2 className="w-3.5 h-3.5" />
+                    <span>Share this reveal</span>
+                  </button>
+                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <button
+                    type="button"
+                    onClick={handleBack}
+                    className="inline-flex items-center gap-1.5 transition-colors hover:underline"
+                    style={{ color: "rgba(26,30,58,0.6)" }}
+                  >
+                    <ArrowLeft className="w-3 h-3" />
+                    <span>Back</span>
+                  </button>
+                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <button
+                    type="button"
+                    onClick={handleStartNew}
+                    className="transition-colors hover:underline"
+                    style={{ color: "rgba(26,30,58,0.6)" }}
+                  >
+                    Start Over
+                  </button>
+                </div>
               </div>
             </div>
 
