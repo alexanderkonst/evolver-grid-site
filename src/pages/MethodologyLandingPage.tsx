@@ -40,7 +40,7 @@ const MethodologyLandingPage = () => {
             Each gradient uses 3 hue-shifted stops so it reads as a true
             gradient, not a solid tint.
           */}
-          Find your{" "}
+          Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -48,9 +48,9 @@ const MethodologyLandingPage = () => {
                 "linear-gradient(135deg, hsl(170, 90%, 68%), hsl(190, 80%, 60%), hsl(210, 75%, 65%))",
             }}
           >
-            top talent
+            Top Talent
           </span>
-          . Productize it.{" "}
+          . Productize It.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -60,7 +60,7 @@ const MethodologyLandingPage = () => {
           >
             Build
           </span>{" "}
-          it,{" "}
+          It,{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -70,7 +70,7 @@ const MethodologyLandingPage = () => {
           >
             Launch
           </span>{" "}
-          it,{" "}
+          It,{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -80,7 +80,7 @@ const MethodologyLandingPage = () => {
           >
             Scale
           </span>{" "}
-          it Alongside Impact Entrepreneurs.
+          It Alongside Impact Entrepreneurs.
         </h1>
       </header>
 
