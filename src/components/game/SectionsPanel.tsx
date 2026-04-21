@@ -239,6 +239,11 @@ const buildJourneySections = (
 
     if (showPathAccess) {
         sections.push({
+            id: "journey-my-artifacts",
+            label: `${sections.length + 1}. My Artifacts`,
+            path: "/my-artifacts",
+        });
+        sections.push({
             id: "journey-path",
             label: `${sections.length + 1}. The Path`,
             path: "/path",
