@@ -117,9 +117,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
+                      "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(275 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.6))",
+                      "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
                     textShadow: "none",
                   }}
                 >
@@ -130,9 +130,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(225, 90%, 28%) 0%, hsl(210, 95%, 24%) 50%, hsl(200, 95%, 22%) 100%)",
+                      "linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(212 100% 52% / 0.55)) drop-shadow(0 0 3px hsl(205 100% 48% / 0.6))",
+                      "drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45))",
                     textShadow: "none",
                   }}
                 >
@@ -143,9 +143,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(188, 95%, 24%) 0%, hsl(178, 95%, 20%) 50%, hsl(168, 90%, 22%) 100%)",
+                      "linear-gradient(135deg, hsl(188, 85%, 28%) 0%, hsl(178, 85%, 24%) 50%, hsl(168, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(180 100% 45% / 0.6)) drop-shadow(0 0 3px hsl(175 100% 42% / 0.65))",
+                      "drop-shadow(0 0 10px hsl(180 95% 45% / 0.38)) drop-shadow(0 0 3px hsl(175 95% 42% / 0.45))",
                     textShadow: "none",
                   }}
                 >
@@ -156,9 +156,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(138, 85%, 22%) 0%, hsl(128, 90%, 18%) 50%, hsl(115, 85%, 20%) 100%)",
+                      "linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(130 100% 42% / 0.6)) drop-shadow(0 0 3px hsl(122 100% 38% / 0.65))",
+                      "drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45))",
                     textShadow: "none",
                   }}
                 >
@@ -181,9 +181,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
+                      "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(15 100% 50% / 0.6)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.65))",
+                      "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
                     textShadow: "none",
                   }}
                 >
@@ -202,9 +202,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(265, 90%, 24%) 0%, hsl(280, 95%, 22%) 50%, hsl(295, 90%, 24%) 100%)",
+                      "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
                     filter:
-                      "drop-shadow(0 0 14px hsl(275 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(285 100% 50% / 0.6))",
+                      "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
                     textShadow: "none",
                   }}
                 >

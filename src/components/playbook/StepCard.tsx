@@ -279,9 +279,13 @@ const StepCard = ({ step }: StepCardProps) => {
     <article
       className="relative rounded-3xl p-6 sm:p-10 transition-all duration-500 liquid-glass-strong"
     >
-      {/* ══ STEP HEADER — Day 47 late pass (Sasha): flipped to dark navy
-          with the step's neon color as gradient highlight on "Step N." —
-          same treatment as landing page (Find Your Top Talent). */}
+      {/* ══ STEP HEADER — Day 47 iter 5 (Sasha): "purple too faint" fix.
+          Previous approach used a `neonHsl → #0a1628 → neonHsl` gradient
+          bg-clipped to the text. At small sizes the navy center dominated
+          and the step color barely read. New approach: SOLID darkened
+          step color (via color-mix with navy) + neon text-shadow glow in
+          the step's hue. Letter fills with readable ink, glow provides
+          the neon aura. No more bg-clip gymnastics. */}
       <header className="mb-8">
         <h1
           className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
@@ -293,11 +297,15 @@ const StepCard = ({ step }: StepCardProps) => {
           }}
         >
           <span
-            className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: `linear-gradient(135deg, ${step.neonHsl} 0%, #0a1628 55%, ${step.neonHsl} 100%)`,
-              filter: `drop-shadow(0 0 12px ${step.neonHsl}) drop-shadow(0 0 3px rgba(${step.neonRgb},0.6))`,
-              textShadow: "none",
+              // Blend the step's pale neon with navy so the letters are
+              // SATURATED and READABLE rather than a washed-out gradient.
+              // 55% step color + 45% deep navy lands at ~40% lightness.
+              color: `color-mix(in srgb, ${step.neonHsl} 55%, #0a1628 45%)`,
+              // Neon aura — stronger than the hero words because "Step N."
+              // is the signature accent of the page. Two layered glows in
+              // the step's hue for depth without shouting.
+              textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), 0 1px 2px rgba(255,255,255,0.7)`,
             }}
           >
             Step {step.number}.
