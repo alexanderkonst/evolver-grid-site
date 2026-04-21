@@ -651,57 +651,73 @@ Stripe-hosted checkout, fixed price $555. No coupons, no variants, no upsells on
 
 These are real — not aspirational. GFOA should treat them as surface-level optimization targets.
 
-### 9.1 `/ignite` pricing block says both "In 90 minutes" AND "In 2 hours"
+### 9.1 ~~`/ignite` pricing block says both "In 90 minutes" AND "In 2 hours"~~ ✅ FIXED Day 47 late pass
 
-On `/ignite` S7 pricing section:
-- Eyebrow above the "We define / Who / Why / How to" list: **IN 90 MINUTES**
-- Tagline under the $555 price: **In 2 hours**
+All references on `/ignite` normalized to **"2 hours"** (hero subhead, S4 "What Happens In 2 Hours", S5 About "I sit with someone for 2 hours", S7 eyebrow + tagline). `playbookSteps.ts` ctaText for Step 3 also updated to 2 hours.
 
-Sasha updated the tagline Day 47 (was "One session. One business.") but left the eyebrow. Also leaked elsewhere on the page:
-- Section S1 subhead: "In 90 minutes, we take what you already do..."
-- Section S4 heading: "What Happens In 90 Minutes"
-- Section S5 about copy: "I sit with someone for 90 minutes..."
-- Section S8 pricing card (PrimaryCTA component): price appears as `$555` only — no duration
+### 9.2 ~~Step 4 guided-assessment result card mentions "$297 · 90 minutes" Career Re-Ignition Session~~ ✅ FIXED Day 47 late pass
 
-Decision needed: is the session 90 minutes or 2 hours? Update all copy to match.
+The right-column "If This Hit Home" card was rewritten to match the canonical $555 Ignition Session. New copy:
 
-### 9.2 Step 4 guided-assessment result card mentions "$297 · 90 minutes" Career Re-Ignition Session
+> **Ready to turn this into a business?**
+> You've named your Top Talent. The next step is structuring it into something people can buy. Aleksandr runs a focused Ignition Session to compile your entire unique business on one page.
+>
+> **$555 · 2 hours · Money-back guarantee**
+>
+> [ Book your Ignition Session → ]
 
-Hardcoded in `Step4GenerateSnapshot.tsx` right column "If This Hit Home" card. This is a *different* product at a *different* price, not the $555 Ignition Session.
+Link changed from `calendly.com/konstantinov` to `/ignite#pricing-section` — so guided-lane users now land in the same commercial page as AI-lane users. PDF footer also updated (was "90-minute Career Re-Ignition Session at calendly.com"; now "$555 · 2 hours · Book at aleksandrkonstantinov.com/ignite").
 
-Guests who complete the guided lane see `$297`, but guests who complete the AI lane see a CTA to `/ignite#pricing-section` where they'll be asked for `$555`.
+### 9.3 ~~`/quiz` still requires auth~~ ✅ FIXED Day 47 late pass
 
-Decision needed: consolidate to one product, one price. Either update Step 4 card to reference the $555 session (and reuse Calendly/Stripe links), or explicitly differentiate the two SKUs.
+`RequireAuth` removed from `/quiz` route. The 6-question diagnostic is now public, matching the rest of the funnel's no-friction-until-purchase pattern.
 
-### 9.3 `/quiz` still requires auth
+### 9.4 ~~`/path` has no CTA~~ ✅ FIXED Day 47 late pass
 
-Secondary CTA from ZoG result ("See exactly why this hasn't turned into income / 6-question diagnostic") routes through `/auth` before rendering the diagnostic. Everything else in the funnel is now open.
+Two CTAs added below the ladder:
+- **Primary** (liquid-glass-strong pill): *Start free with Step 1* → `/zone-of-genius`
+- **Secondary** (liquid-glass pill): *Book your Ignition Session* → `/ignite#pricing-section`
 
-Decision: remove `RequireAuth` from `/quiz`, OR accept that the diagnostic is a gated reassurance tool only offered after sign-up.
+Both use Apple Liquid Glass. No arrows (matching landing CTAs).
 
-### 9.4 `/path` has no CTA
+### 9.5 ~~No post-Stripe confirmation page~~ ✅ HANDLED in Stripe
 
-The value ladder is beautiful and complete but offers no way to act. Users who read it and want to buy have to navigate back to `/` or `/zone-of-genius` and re-enter the funnel.
+Stripe checkout is configured with a success URL that redirects to Cal.com directly — handled at the Stripe dashboard level, not in-app. No action needed on the codebase.
 
-Decision: add a Step-1-anchored "Start free with Step 1" CTA (routes to `/zone-of-genius`), and a "Book your Ignition Session" CTA on Step 2+3 (routes to `/ignite`).
+### 9.6 Save-pill email — BASELINE EXISTS, IMPROVEMENTS PROPOSED
 
-### 9.5 No post-Stripe confirmation page
+**Current state** (verified in `supabase/functions/save-zog-result/index.ts`):
+- Edge function creates a silent auth user (random password, no confirmation), creates a game_profile with an `access_token`, writes the Appleseed snapshot, and sends a Resend email.
+- Sender: `onboarding@resend.dev` (generic, not branded).
+- Body: archetype name in violet-blue gradient + bullseye sentence in italic + single CTA button `View my result` → `${SITE_URL}/my-result?token=${accessToken}`.
+- Also inserts to `divine_timing_leads` for backwards compat.
 
-After paying on Stripe, the user sees Stripe's own receipt page, then… nothing. They have to come back to `/ignite`, scroll, and find the "Already paid? Book your session here →" Cal.com link.
+**Gaps for GFOA attention:**
+1. **Sender is generic.** `onboarding@resend.dev` flags as third-party in Gmail preview. Should be `aleksandr@aleksandrkonstantinov.com` once that domain is verified in Resend.
+2. **No commercial bridge.** The email says "View my result" but doesn't invite the next step (booking the Ignition Session). A user who comes back via the link re-enters the /my-result page, not the commercial CTA.
+3. **No nurture sequence.** One-shot email. After 48h of silence, nothing.
 
-Decision: either configure a Stripe redirect URL to a branded `/thank-you` page (with Cal.com embedded), OR include the Cal.com link in the Stripe email receipt template.
+**Recommended baseline (single email v2):**
+- Branded sender
+- Keep the hero (archetype + bullseye)
+- Add the Three Lenses block (Top Talents / Prime Driver / Archetype) — reinforces specificity
+- Two CTAs instead of one:
+  - Primary: "Book your Ignition Session · $555" → `/ignite#pricing-section`
+  - Secondary: "View my full result" → `/my-result?token=...` (current default)
 
-### 9.6 No welcome/nurture email after save-pill capture
+**Optional nurture ladder** (post-launch, if conversion is the bottleneck):
+- **T+48h:** gentle check-in — "What's shifted since you read this?" — no CTA, just a question
+- **T+7d:** "Your top talent is still you. Ready to package it?" — Ignition CTA
 
-When a user submits their email via the save pill on the ZoG result page, the result goes to `save-zog-result` edge function. I don't know if that function sends an immediate email. If not, users who save "for later" may never come back.
+### 9.7 ~~`/ignite` uses dark-glass shell, rest of funnel is light-glass~~ ✅ HARMONIZED Day 47 late pass
 
-Decision: verify `save-zog-result` sends an email with the result + a link back to the canonical URL. If not, add it.
+Decision (Sasha): keep the dark color scheme as the "decision room" feel — but wrap `/ignite` in `GameShellV2` so the spaces rail + sections panel are present. Implementation:
+- Always wrap in `GameShellV2 hideLogo` (was conditional on `/game/*` path).
+- `HlsBackground` converted from `fixed` → `absolute` positioning so video is scoped to Panel 3.
+- Dark overlay (`bg-black/55`) also scoped to Panel 3 via absolute positioning.
+- Own `<SiteLogo />` removed (shell owns it).
 
-### 9.7 Ignite sales page uses dark-glass shell, rest of funnel is light-glass
-
-Intentional or leftover? The ZoG entry + result + assessment + Path + Playbook + Landing are now all light-Panel-3 + dark-navy text. `/ignite` is still dark-mode with white text. Visually it's a clean tone shift into the commercial moment — could be read as "this is serious now." Could also be read as "wait, did I just leave the site?"
-
-Decision: either embrace the dark shift (add explicit framing — "The decision room") or harmonize `/ignite` with the rest of the funnel's light palette.
+Net effect: Panel 1 (spaces rail) and Panel 2 (sections panel) stay visually consistent with the rest of the journey. Panel 3 becomes the "decision room" — dark wash, white text, the same high-intensity sales aesthetic as before. User retains shell context (spaces rail, settings, back to journey) without losing the moody commercial tone.
 
 ### 9.8 Primary Landing CTA meta reads "Claim your gift · takes two minutes"
 

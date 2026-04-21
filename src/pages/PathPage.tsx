@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 /**
@@ -330,6 +332,37 @@ const PathPage = () => {
                 </p>
               </div>
             </section>
+
+            {/* ─── CTAs — Day 47 late pass (Sasha): page no longer dead-ends.
+                Primary lands Step 1 free (ZoG reveal); secondary lands the
+                $555 Ignition Session directly at the /ignite pricing block. */}
+            <div className="mt-10 flex flex-col items-center gap-3">
+              {/* Primary — start free with Step 1 */}
+              <Link
+                to="/zone-of-genius"
+                className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass-strong inline-flex items-center justify-center gap-3"
+                style={{
+                  color: "#0a1628",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.75)",
+                }}
+              >
+                Start free with Step 1
+                <ArrowRight className="w-4 h-4 opacity-70" />
+              </Link>
+
+              {/* Secondary — book the Ignition Session */}
+              <Link
+                to="/ignite#pricing-section"
+                className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass inline-flex items-center justify-center gap-3"
+                style={{
+                  color: "rgba(26,30,58,0.85)",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                }}
+              >
+                Book your Ignition Session
+                <ArrowRight className="w-4 h-4 opacity-60" />
+              </Link>
+            </div>
 
             {/* ─── Quiet close ─── */}
             <div className="mt-10 text-center space-y-2">
