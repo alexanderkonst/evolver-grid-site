@@ -148,6 +148,7 @@ import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
 import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
+import Intros from "./pages/Intros";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -203,6 +204,7 @@ const App = () => (
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
                   <Route path="/my-result" element={<MyResult />} />
                   <Route path="/integral_theory_upgrade1" element={<IntegralTheoryUpgrade1 />} />
+                  <Route path="/intros" element={<Intros />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<PublicProfile />} />
                   <Route path="/p/:slug" element={<CreatorPage />} />
