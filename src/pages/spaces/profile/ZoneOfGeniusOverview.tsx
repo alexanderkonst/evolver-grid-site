@@ -30,7 +30,7 @@ interface AppleseedData {
 }
 
 /**
- * ZoneOfGeniusOverview - Shows the saved Zone of Genius data
+ * ZoneOfGeniusOverview - Shows the saved Top Talent data
  */
 const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
@@ -94,7 +94,7 @@ const ZoneOfGeniusOverview = () => {
                     setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
                 }
             } catch (err) {
-                console.error("Error loading Zone of Genius data:", err);
+                console.error("Error loading Top Talent data:", err);
             } finally {
                 setLoading(false);
             }
@@ -124,9 +124,9 @@ const ZoneOfGeniusOverview = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
+                        <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Discover Your Zone of Genius</h1>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Discover Your Top Talent</h1>
                     <p className="text-[#a4a3d0] mb-6">
                         Take the 15-minute assessment to uncover your unique genius.
                     </p>
@@ -148,7 +148,7 @@ const ZoneOfGeniusOverview = () => {
                 {/* Hero - Updated to match RevelatoryHero styling */}
                 <div className="text-center py-8 bg-gradient-to-br from-[#c8b7d8] via-[#d4d1e8] to-[#e7e9f5] rounded-2xl">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
-                        <img src="/dodecahedron.png" alt="Zone of Genius" className="w-full h-full object-cover" />
+                        <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
                     </div>
                     <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2">My Genius Is To Be A</p>
                     <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-3">

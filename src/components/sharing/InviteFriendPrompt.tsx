@@ -33,7 +33,7 @@ const InviteFriendPrompt = ({
   const resolvedText = useMemo(() => {
     return (
       shareText ||
-      "I just discovered my Zone of Genius. Want to see yours too?"
+      "I just discovered my Top Talent. Want to see yours too?"
     );
   }, [shareText]);
 
@@ -68,7 +68,7 @@ const InviteFriendPrompt = ({
     setIsSharing(true);
     const canShare = typeof navigator !== "undefined" && !!navigator.share;
     const payload = {
-      title: "Discover Your Zone of Genius",
+      title: "Discover Your Top Talent",
       text: resolvedText,
       url: resolvedUrl,
     };

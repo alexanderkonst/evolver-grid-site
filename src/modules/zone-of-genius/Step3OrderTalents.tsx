@@ -203,7 +203,7 @@ const Step3OrderTalents = () => {
           }}
         >
           <Sparkles size={14} style={{ color: "#5b21b6" }} />
-          Generate My Zone of Genius
+          Generate My Top Talent
         </button>
       </div>
 

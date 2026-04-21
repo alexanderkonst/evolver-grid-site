@@ -33,7 +33,7 @@ const SignupModal = ({
     onOpenChange,
     onSuccess,
     title = "Save Your Genius",
-    description = "Create an account to save your Zone of Genius and unlock your profile",
+    description = "Create an account to save your Top Talent and unlock your profile",
 }: SignupModalProps) => {
     const [searchParams] = useSearchParams();
     const [email, setEmail] = useState("");

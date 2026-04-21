@@ -59,7 +59,7 @@ const Triangle = ({
     aria-hidden="true"
     className="inline-flex items-center justify-center w-5 h-5 rounded-full transition-all duration-300"
     style={{
-      backgroundImage: `radial-gradient(circle at 30% 30%, rgba(${neonRgb},0.35), rgba(${neonRgb},0.05))`,
+      backgroundImage: `radial-gradient(circle at 30% 30%, rgba(${neonRgb},0.45), rgba(${neonRgb},0.08))`,
       boxShadow: open
         ? `0 0 14px -2px ${neonHsl}, 0 0 26px -6px rgba(${neonRgb},0.5)`
         : `0 0 6px -2px rgba(${neonRgb},0.4)`,
@@ -70,7 +70,9 @@ const Triangle = ({
         "w-3 h-3 transition-transform duration-300",
         open && "rotate-90",
       )}
-      style={{ color: neonHsl }}
+      // Day 47 iter 6 (Sasha): darken the chevron to readable saturation.
+      // Raw neonHsl is 68-72% lightness — too pale on light Panel 3.
+      style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
     />
   </span>
 );
@@ -99,9 +101,11 @@ const SubstepRow = ({
         <div
           className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.2), rgba(${neonRgb},0.05))`,
-            border: `1px solid rgba(${neonRgb},0.4)`,
-            color: neonHsl,
+            backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.28), rgba(${neonRgb},0.08))`,
+            border: `1px solid rgba(${neonRgb},0.5)`,
+            // Day 47 iter 6 (Sasha): darken the substep number to readable
+            // saturation (was raw pale neonHsl, ~68-72% lightness).
+            color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
             boxShadow: `0 0 10px -4px rgba(${neonRgb},0.5)`,
           }}
         >
@@ -130,29 +134,32 @@ const SubstepRow = ({
             </p>
           )}
 
-          {/* ══ Recommended How-To button */}
-          <button
-            type="button"
-            onClick={onToggle}
-            className={cn(
-              "inline-flex items-center gap-2 py-2 px-3 rounded-full",
-              "text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold",
-              "transition-all duration-300 hover:scale-[1.02]",
-              "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-            )}
-            style={{
-              backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.18), rgba(${neonRgb},0.06))`,
-              border: `1px solid rgba(${neonRgb},0.35)`,
-              color: neonHsl,
-              boxShadow: open ? `0 0 18px -4px ${neonHsl}` : "none",
-            }}
-            aria-expanded={open}
-          >
-            <Triangle open={open} neonHsl={neonHsl} neonRgb={neonRgb} />
-            <span>Recommended How-To</span>
-          </button>
+          {/* ══ Recommended How-To button — Day 47 iter 6 (Sasha): centered */}
+          <div className="flex justify-center pt-2">
+            <button
+              type="button"
+              onClick={onToggle}
+              className={cn(
+                "inline-flex items-center gap-2 py-2 px-4 rounded-full",
+                "text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold",
+                "transition-all duration-300 hover:scale-[1.02]",
+                "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+              )}
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.22), rgba(${neonRgb},0.08))`,
+                border: `1px solid rgba(${neonRgb},0.45)`,
+                // Day 47 iter 6: darken label for readability on light Panel 3.
+                color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
+                boxShadow: open ? `0 0 18px -4px ${neonHsl}` : "none",
+              }}
+              aria-expanded={open}
+            >
+              <Triangle open={open} neonHsl={neonHsl} neonRgb={neonRgb} />
+              <span>Recommended How-To</span>
+            </button>
+          </div>
 
-          {/* ══ One Proven Strategy reveal */}
+          {/* ══ One Proven Strategy reveal — centered */}
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
@@ -160,15 +167,16 @@ const SubstepRow = ({
             )}
           >
             <div
-              className="rounded-2xl p-4 sm:p-5"
+              className="rounded-2xl p-4 sm:p-5 mx-auto max-w-2xl"
               style={{
-                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.08), rgba(${neonRgb},0.02))`,
-                border: `1px solid rgba(${neonRgb},0.18)`,
+                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.1), rgba(${neonRgb},0.03))`,
+                border: `1px solid rgba(${neonRgb},0.25)`,
               }}
             >
               <div
                 className="text-[10px] uppercase tracking-[0.28em] font-semibold mb-2"
-                style={{ color: neonHsl }}
+                // Day 47 iter 6: darken the label for readability.
+                style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
               >
                 One Proven Strategy
               </div>

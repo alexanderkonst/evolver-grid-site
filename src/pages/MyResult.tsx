@@ -110,7 +110,7 @@ const MyResult = () => {
                     <div className="max-w-2xl w-full space-y-8">
                         {/* Subtle header */}
                         <div className="text-center">
-                            <p className="text-[10px] uppercase tracking-[4px] text-white/30 mb-2">Your Zone of Genius</p>
+                            <p className="text-[10px] uppercase tracking-[4px] text-white/30 mb-2">Your Top Talent</p>
                         </div>
 
                         {/* The reveal — same component as the live funnel */}

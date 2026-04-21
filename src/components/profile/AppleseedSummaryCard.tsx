@@ -22,7 +22,7 @@ const AppleseedSummaryCard = ({ appleseed }: AppleseedSummaryCardProps) => {
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-amber-600 font-medium mb-1">Your Zone of Genius</p>
+            <p className="text-xs text-amber-600 font-medium mb-1">Your Top Talent</p>
             <h3 className="text-lg font-bold text-[#2c3150] mb-1 truncate">
               ✦ {appleseed.vibrationalKey.name} ✦
             </h3>
