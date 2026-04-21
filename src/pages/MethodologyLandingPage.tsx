@@ -25,7 +25,9 @@ const MethodologyLandingPage = () => {
           className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "rgba(231,233,229,0.98)",
+            // Panel 3 is now nearly transparent (bg-black/[0.06]) so dark
+            // text reads better than white on the light video areas.
+            color: "#1a1e3a",
           }}
         >
           {/*
