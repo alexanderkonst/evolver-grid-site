@@ -598,19 +598,13 @@ const ZoneOfGeniusEntry = () => {
                         <span style={{ textShadow: '0 0 25px rgba(240,194,127,0.5), 0 0 50px rgba(240,194,127,0.25)' }}>actually pay for</span>?
                     </h1>
 
-                    {/* Separator */}
-                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
-
-                    {/* Three short truths */}
+                    {/* Two short truths — separator line removed per Sasha Day 47 */}
                     <div className="space-y-4 max-w-lg mx-auto">
                         <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
                             There's a <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>unique way</span> you think and solve problems.
                         </p>
-                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            People <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>already come to you</span> for it.
-                        </p>
                         <p className="text-base sm:text-lg text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>structured</span> into something they can quickly <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>say yes</span> to.
+                            It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>packaged</span> into a product people can <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>purchase</span>.
                         </p>
                     </div>
                 </div>
