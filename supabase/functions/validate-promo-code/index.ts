@@ -6,8 +6,13 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Valid promo codes for server-side validation
-const VALID_PROMO_CODES = ['GIFTED', 'AIUPGRADEGIFT'];
+// Valid promo codes are loaded from the VALID_PROMO_CODES secret (comma-separated).
+// Falls back to the historical defaults so existing flows keep working until the
+// secret is configured. Rotate by updating the secret — no code deploy needed.
+const VALID_PROMO_CODES: string[] = (Deno.env.get("VALID_PROMO_CODES") ?? "GIFTED,AIUPGRADEGIFT")
+  .split(",")
+  .map((code) => code.trim())
+  .filter((code) => code.length > 0);
 
 interface ValidateRequest {
   promoCode: string;

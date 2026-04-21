@@ -90,8 +90,9 @@ const PublicProfile = () => {
 
       const resolvedUserId = (profileData as { user_id?: string | null })?.user_id || userId || "";
 
-      const { data: missionData } = await supabase
-        .from("mission_participants")
+      // Use the email-free public view for cross-user public profile reads
+      const { data: missionData } = await (supabase as any)
+        .from("mission_participants_public")
         .select("mission_title, intro_text")
         .eq("user_id", resolvedUserId)
         .eq("share_consent", true)
