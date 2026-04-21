@@ -66,10 +66,12 @@ const PlaybookShell = ({
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}
           style={{
+            // Dark navy text + subtle light glass background for Panel 3's
+            // now-light look (Sasha, 2026-04-21).
             backgroundImage:
-              "linear-gradient(135deg, rgba(231,233,229,0.08), rgba(231,233,229,0.02))",
-            border: "1px solid rgba(231,233,229,0.18)",
-            color: "rgba(231,233,229,0.75)",
+              "linear-gradient(135deg, rgba(26,30,58,0.08), rgba(26,30,58,0.02))",
+            border: "1px solid rgba(26,30,58,0.2)",
+            color: "rgba(26,30,58,0.85)",
           }}
           aria-label="Back to landing page"
         >
@@ -87,24 +89,24 @@ const PlaybookShell = ({
           {PLAYBOOK_STEPS.map((step, i) => {
             const state = resolveState(step);
             const isLast = i === PLAYBOOK_STEPS.length - 1;
-            // Every step is clickable — Open Blueprint Paradox: nothing is gated.
-            const clickable = true;
+            const isActive = state === "active";
 
             return (
               <li
                 key={step.slug}
                 className="flex-1 flex flex-col items-center relative"
               >
-                {/* Connector line to next step */}
+                {/* Connector line to next step — now centered vertically on
+                    the number chip (14 / 16 = mobile / desktop button radius)
+                    and widened by one gap-step so the line doesn't break
+                    between chips. */}
                 {!isLast && (
                   <span
                     aria-hidden="true"
-                    className="absolute top-[14px] left-1/2 w-full h-[1px] pointer-events-none"
+                    className="absolute top-[13px] sm:top-[15px] left-1/2 h-[1px] pointer-events-none w-[calc(100%+0.25rem)] sm:w-[calc(100%+0.5rem)]"
                     style={{
                       backgroundImage:
-                        state === "completed"
-                          ? "linear-gradient(90deg, rgba(132,96,234,0.5), rgba(132,96,234,0.2))"
-                          : "linear-gradient(90deg, rgba(231,233,229,0.15), rgba(231,233,229,0.05))",
+                        "linear-gradient(90deg, rgba(26,30,58,0.22), rgba(26,30,58,0.12))",
                     }}
                   />
                 )}
@@ -116,27 +118,26 @@ const PlaybookShell = ({
                     "relative z-10 flex items-center justify-center",
                     "w-7 h-7 sm:w-8 sm:h-8 rounded-full text-xs font-semibold",
                     "transition-all duration-300",
-                    "cursor-pointer hover:scale-110",
+                    "cursor-pointer",
                     "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+                    // Active steps sit slightly larger for clear UI hierarchy
+                    // without greying everything else.
+                    isActive ? "scale-[1.18] hover:scale-[1.22]" : "hover:scale-110",
                   )}
                   style={{
-                    backgroundImage:
-                      state === "active"
-                        ? `radial-gradient(circle at 30% 30%, ${step.neonHsl}, rgba(132,96,234,0.75))`
-                        : state === "completed"
-                        ? "linear-gradient(135deg, rgba(231,233,229,0.7), rgba(200,183,216,0.5))"
-                        : "linear-gradient(135deg, rgba(231,233,229,0.25), rgba(231,233,229,0.1))",
+                    // Every step carries its own neon color — no more grey
+                    // "upcoming" state (Sasha, 2026-04-21). Active is
+                    // distinguished by scale + glow ring, not by color delta.
+                    backgroundImage: `radial-gradient(circle at 30% 30%, ${step.neonHsl}, rgba(132,96,234,0.6))`,
                     color: "#0a1628",
-                    border:
-                      state === "active"
-                        ? `1px solid ${step.neonHsl}`
-                        : "1px solid rgba(231,233,229,0.25)",
-                    boxShadow:
-                      state === "active"
-                        ? `0 0 16px -2px ${step.neonHsl}, 0 0 32px -8px rgba(132,96,234,0.6)`
-                        : "none",
+                    border: isActive
+                      ? `1.5px solid ${step.neonHsl}`
+                      : "1px solid rgba(26,30,58,0.2)",
+                    boxShadow: isActive
+                      ? `0 0 0 3px rgba(255,255,255,0.5), 0 0 18px -2px ${step.neonHsl}, 0 0 32px -8px rgba(132,96,234,0.6)`
+                      : `0 1px 3px rgba(26,30,58,0.15)`,
                   }}
-                  aria-current={state === "active" ? "step" : undefined}
+                  aria-current={isActive ? "step" : undefined}
                   aria-label={`Step ${step.number}: ${step.subtitle}`}
                 >
                   {step.number}
@@ -144,22 +145,15 @@ const PlaybookShell = ({
 
                 <span
                   className={cn(
-                    // Full vetted step name (Sasha, 2026-04-21). Small font +
-                    // narrow column forces clean wrapping across 2–4 lines.
-                    // The ring hierarchy comes from the number chip; the label
-                    // under it is honest, not compressed.
-                    "mt-2 text-[9px] sm:text-[10px]",
-                    "leading-[1.2] font-medium text-center",
-                    "transition-opacity duration-300",
+                    // Dark, sans-serif, non-italic per Sasha (2026-04-21).
+                    // Full vetted step name; wraps inside the narrow column.
+                    "mt-2 text-[10px] sm:text-[11px]",
+                    "leading-[1.25] text-center",
                     "max-w-[110px] sm:max-w-[130px]",
-                    state === "active" && "opacity-100",
-                    state === "completed" && "opacity-65",
-                    state === "upcoming" && "opacity-55",
+                    isActive ? "font-semibold" : "font-medium",
                   )}
                   style={{
-                    color: "rgba(231,233,229,0.85)",
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontStyle: "italic",
+                    color: isActive ? "#0a1628" : "rgba(26,30,58,0.85)",
                   }}
                 >
                   {step.subtitle}

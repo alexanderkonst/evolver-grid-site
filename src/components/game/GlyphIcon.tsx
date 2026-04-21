@@ -15,7 +15,10 @@ export type GlyphIconProps = {
   size?: number;
 };
 
-const GlyphIcon = ({ glyph, color, size = 20 }: GlyphIconProps) => (
+// Default size bumped 2026-04-21 (Sasha): the space-rail icons felt too
+// small at 20px. 28px reads as a real presence without overpowering the
+// label next to it.
+const GlyphIcon = ({ glyph, color, size = 28 }: GlyphIconProps) => (
   <span
     aria-hidden="true"
     className="inline-flex items-center justify-center flex-shrink-0 select-none"
@@ -23,11 +26,11 @@ const GlyphIcon = ({ glyph, color, size = 20 }: GlyphIconProps) => (
       width: size,
       height: size,
       fontFamily: "'Cormorant Garamond', serif",
-      fontSize: Math.round(size * 1.05),
+      fontSize: Math.round(size * 1.1),
       fontWeight: 600,
       lineHeight: 1,
       color,
-      textShadow: `0 0 10px ${color}66, 0 0 2px ${color}55`,
+      textShadow: `0 0 12px ${color}80, 0 0 3px ${color}66`,
     }}
   >
     {glyph}

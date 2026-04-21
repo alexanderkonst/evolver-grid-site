@@ -289,7 +289,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     number: 5,
     slug: "test",
     appName: "TEST",
-    subtitle: "Beta-Test That Everything Works by Gifting and/or Selling Your Unique Product",
+    subtitle: "Beta-Test That Everything Works by Gifting and/or Selling",
     transformationalResult: "People who got it say yes to more.",
     neonHsl: "hsl(330, 70%, 60%)",
     neonRgb: "220, 80, 140",

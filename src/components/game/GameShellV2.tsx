@@ -160,8 +160,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
     // Determine active space from URL
     useEffect(() => {
-        // Root path `/` is the Journey space
-        if (location.pathname === "/") {
+        // Root path `/` + the Journey-family URLs all belong to JOURNEY.
+        // This ensures the sections pane renders (and is closable) on
+        // /playbook, /path, /my-artifacts — Sasha, 2026-04-21.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts"];
+        const isJourneyFamily = journeyPaths.some(
+            (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
+        );
+        if (isJourneyFamily || location.pathname.startsWith("/game/journey")) {
             setActiveSpaceId("journey");
             return;
         }
