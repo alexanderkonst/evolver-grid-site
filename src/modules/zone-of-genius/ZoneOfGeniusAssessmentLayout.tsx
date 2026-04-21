@@ -104,24 +104,25 @@ const ZoneOfGeniusAssessmentLayout = ({
     );
   }
 
+  // Day 47 (Sasha): the guided assessment now lives inside the same
+  // GameShellV2 that carries /zone-of-genius, /playbook, /path, /my-artifacts.
+  // The old standalone dark shell (bg-black + gradient.jpg + /65 overlay) was
+  // "the legacy shell" — a visual fork from the rest of the journey. Removed.
   return (
     <ZoneOfGeniusProvider>
-      <div className="min-h-dvh flex flex-col bg-black text-white overflow-hidden" style={{ fontFamily: "'Poppins', sans-serif" }}>
-        {/* Gradient background — matches ZoG entry page */}
-        <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-          <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-          <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
-        </div>
-
-        <main className="relative z-10 flex-1 pt-16 pb-16 px-4 sm:px-6 lg:px-8">
+      <GameShellV2 hideLogo>
+        <div
+          className="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 pt-16 pb-16"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
           <div className="container mx-auto max-w-6xl">
             {stepIndicator}
 
             {/* Step Content */}
             <Outlet />
           </div>
-        </main>
-      </div>
+        </div>
+      </GameShellV2>
     </ZoneOfGeniusProvider>
   );
 };
