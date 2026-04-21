@@ -208,11 +208,11 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
   {
     id: "p8", shortId: "LR-Sig", quadrant: "LR", layer: "Significance", dantian: "mind", octave: "base",
     title: "Platform as Nervous System", subtitle: "Evolver as digital substrate recording species awakening",
-    currentStage: 3, score: 5,
+    currentStage: 3, score: 6,
     stages: [
       { name: "Seed", note: "Do", icon: "🌰", desc: "Code repo exists. Features built", status: "done" },
       { name: "Sprout", note: "Re", icon: "🌱", desc: "ZoG, Canvas, game shell operational", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Day 47 Surface Reconstitution — all surfaces (landing, playbook, path, ZoG, settings, rail) now cohere under one navigation and one voice. My Artifacts table live. Canvas ↔ code parity reached", status: "current" },
+      { name: "Growth", note: "Mi", icon: "🌿", desc: "Day 47 two-pass integration. MORNING: all surfaces cohere under one navigation + voice. EVENING: /ignite, /auth, /game/settings absorbed into shell; save-pill uses Supabase magic link → post-auth landing on fuller Top Talent profile; 3-email nurture sequence (Day 1 / Day 2 / Day 8) queued on every save, dispatched by pg_cron → edge function every 10 min. First autonomous rhythm — follow-up runs without founder attention", status: "current" },
       { name: "Maturation", note: "Fa", icon: "🌳", desc: "Platform facilitates portions of sessions autonomously. Pattern library visible", status: "future" },
       { name: "Fruition", note: "Sol", icon: "🍎", desc: "Platform IS the methodology. Human facilitator optional. AI precision > 8/10", status: "future" },
       { name: "Transmission", note: "La", icon: "📡", desc: "Platform self-evolves. Users contribute to patterns without prompting", status: "future" },
@@ -222,7 +222,7 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Q1 '27", baseline: "Q3 '26", optimistic: "Q2 '26" },
       { conservative: "2028", baseline: "Q2 '27", optimistic: "Q4 '26" },
     ],
-    shadow: { name: "Platform Without People", description: "Building the nervous system before enough neurons exist. Softened Day 47: the cohered platform is now ready for traffic.", status: "integrating" },
+    shadow: { name: "Platform Without People", description: "Building the nervous system before enough neurons exist. Softened further Day 47 evening: nervous system now has a heartbeat (cron-driven nurture) — ready for traffic AND self-sustaining follow-through.", status: "integrating" },
     nextMilestone: "First funnel $555 (P27 trigger) → then AI-generated session prep",
   },
   {
@@ -566,6 +566,11 @@ const ALL_PERSPECTIVES: PerspectiveData[] = [
 
 // ─── 13th Perspective — The Center Reading ───────────────────────────────────
 
+// Day 47 holomap reading — two passes in one day.
+// Morning: Surface Reconstitution (v1 of the Coherence reading).
+// Evening: Integration Pass (v2 — extended below, word unchanged).
+// The word stays "Coherence" because both passes are the same move — canvas
+// becoming code becoming machinery — just further along the same trajectory.
 const CENTER = {
   word: "Coherence",
   previousWords: [
@@ -581,13 +586,13 @@ const CENTER = {
     "Emanation",
     "Recognition",
   ],
-  date: "April 21, 2026 — Day 47",
+  date: "April 21, 2026 — Day 47 (morning + evening)",
   description:
-    "Surface Reconstitution. Canvas ↔ code parity reached in one carpentry pass. Landing, playbook, path, Zone of Genius, settings, sidebar — all now speak the same vetted language, with the same typography, under one navigation. The tribe arriving Wednesday will meet one body, not a patchwork.",
+    "Coherence, in two passes. MORNING: canvas ↔ code parity reached. Landing, playbook, path, Zone of Genius, settings, sidebar — all speak the same vetted language under one navigation. EVENING: surface ↔ machinery parity. /ignite, /auth, /game/settings all reabsorbed into the unified shell. Zone of Genius renamed Top Talent; Ignition Session renamed Productize Yourself Session. The save-pill email now uses a Supabase magic link that drops users directly into their fuller profile on return. A 3-email nurture sequence (Day 1 / Day 2 / Day 8) queues automatically on every save, dispatched by a pg_cron → edge-function pipeline — the platform's first autonomous rhythm. The tribe arriving Wednesday will meet a living funnel — not a carefully-tended landing page with a form attached to it.",
   mapping: {
-    essence: "The seeing now shows up as itself, not as scattered approximations",
-    significance: "The platform-as-nervous-system crosses from module-soup toward coherent whole",
-    consequences: "Every surface now carries the same message; conversions can be read cleanly",
+    essence: "The seeing now shows up as itself across every surface, and continues speaking after the user leaves",
+    significance: "Platform-as-nervous-system gains a heartbeat — cron-driven follow-through runs without founder attention",
+    consequences: "One voice, one navigation, one funnel from first touch through eight-day nurture to booked session",
   },
 };
 

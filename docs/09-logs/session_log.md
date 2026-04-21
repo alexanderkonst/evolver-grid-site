@@ -4794,4 +4794,159 @@ After today the surfaces cohere. One navigation. One typographic voice. One copy
 
 ---
 
-*Day 47 complete. The canvas and the code are one body now. Everything Sasha vetted in the corpus now shows up on the surface the tribe will touch. The carpentry that had to happen before the Wednesday message lands.*
+*Day 47 (morning/afternoon) complete. The canvas and the code are one body now. Everything Sasha vetted in the corpus now shows up on the surface the tribe will touch. The carpentry that had to happen before the Wednesday message lands.*
+
+---
+
+## Day 47 (evening) — Integration Pass (April 21, 2026 continued)
+
+### What happened
+
+Same Day 47, second half. After the morning's canvas↔code parity pass the surfaces cohered typographically. The evening pushed past "looks the same" into "behaves as one system." Three distinct workstreams converged:
+
+1. **Terminology rename** — "Zone of Genius" → **Top Talent** and "Ignition Session" → **Productize Yourself Session** across the active public funnel. The brand now matches the domain (`FindYourTopTalent.Com`).
+2. **Architectural unification** — `/ignite`, `/auth`, `/game/settings`, `/game/me` all reabsorbed into `GameShellV2`. No more rogue layouts. The ME space collapsed to a single focus: Top Talent.
+3. **Post-save continuity** — the save-pill email now uses a Supabase magic link that drops users directly into their `/game/me/zone-of-genius` profile on return. A 3-email nurture sequence (Day 1 / Day 2 / Day 8) is queued automatically on save, dispatched by a pg_cron → edge-function pipeline.
+
+### Design system — v8 harmonized neon gradients
+
+Earlier in the day I proposed collapsing the 6 hero hues to 3 families. Sasha rejected: "Rainbow (UV→IR) we KEEP. We got seven steps, and they are an octave. We just play with nuances, flavors." Corrected.
+
+v8 rules (applied to every gradient-highlighted word on `/`, `/path`, `/zone-of-genius`, `/playbook` Step 2 callout):
+- Lightness uniform at 28% (center stop 24%, edge 26%)
+- Saturation uniform at 85%
+- Same 135deg / 3-stop / tight hue range per word
+- Primary glow 10px blur @ 0.38 opacity
+- Secondary glow 3px blur @ 0.45 opacity
+- Only the HUE varies, preserving UV→IR step mapping
+
+Net: rainbow intact, treatment identical — reads as a unified family spanning the spectrum, not six intensities shouting.
+
+**StepCard "Step N." accent** — fixed a separate issue where the step number was rendered with a `neonHsl → navy → neonHsl` gradient that got washed out at small sizes. Replaced with solid `color-mix(in srgb, ${step.neonHsl} 55%, #0a1628 45%)` + neon text-shadow glow in the step's hue. Letter fills with readable saturated ink; the aura gives it presence.
+
+### Surface architecture — full shell absorption
+
+**`/ignite` wrapped in `GameShellV2`** — previously `/ignite` rendered standalone with its own `HlsBackground` + `bg-black/45` overlay. Now always wrapped in `GameShellV2 hideLogo`. The HlsBackground + dark wash are scoped to Panel 3 via absolute positioning (was fixed, was leaking over Panel 1 and Panel 2). The "decision room" dark aesthetic is preserved inside Panel 3 while the spaces rail + sections panel stay visually consistent with the rest of the journey. Own `<SiteLogo />` call retired — shell owns the logo.
+
+**`/auth` wrapped in `GameShellV2`** — all three Auth render paths (Forgot Password, Claim mode, Normal Login/Signup) now wrap in `GameShellV2 hideLogo`. Legacy `<Navigation />` + `<Footer />` imports and calls deleted. No more "old shell" flash on sign-in.
+
+**`/game/settings` made public** — Settings button on the landing spaces rail was routing guests to `/auth?redirect=%2Fgame%2Fsettings`. Now the route itself is public; the Settings page handles guest state gracefully. Guests can access theme / appearance without being pulled out of the funnel.
+
+**`/quiz` made public** — secondary CTA on the Top Talent result page ("See exactly why this hasn't turned into income") no longer gates guests through auth.
+
+**`/game/me` collapsed to Top Talent only** — SectionsPanel `grow` config previously had 7 sections (Overview, My Mission, Zone of Genius w/ 12 subsections, Genius Business, Quality of Life, Assets, Settings). Reduced to ONE section: **Top Talent** with its 13 subsections. The other 6 retired from the rail until the user has earned those capabilities. `/game/me` URL now redirects to `/game/me/zone-of-genius` so post-auth users land on their Top Talent directly, no generic welcome page.
+
+### Post-save flow v2 — magic-link authentication
+
+**`save-zog-result/index.ts` rewritten** — the edge function now calls `supabase.auth.admin.generateLink({ type: 'magiclink' })` to generate a Supabase auth link with `redirectTo=${SITE_URL}/auth/callback?next=/game/me`. The email body uses that link instead of the previous token-based `/my-result?token=...` URL. Click → auth callback exchanges tokens → redirects to `/game/me` → shows the fuller Top Talent profile (locked ME space unlocks because `onboarding_stage='zog_complete'` was set by the save).
+
+**Email 1 (save confirm) upgraded:**
+- Sender: `Aleksandr Konstantinov <aleksandr@notify.aleksandrkonstantinov.com>` (was `onboarding@resend.dev`)
+- Subject: `Your Top Talent: ${archetype}`
+- Body: archetype hero + bullseye in italic + **Three Lenses block** (Top Talents / Prime Driver / Archetype) + magic-link button "Open my full Top Talent profile →" + **commercial bridge card** "Ready to turn this into a business?" → `/ignite#pricing-section` + signature with `FindYourTopTalent.Com`
+
+### Nurture email infrastructure — built
+
+**Migration** `supabase/migrations/20260422010000_nurture_email_queue.sql`:
+- New `nurture_email_queue` table (email, profile_id, email_type ∈ {day1, day2, day8}, scheduled_for, sent_at, payload JSONB, status ∈ {pending, sent, failed, cancelled}, attempts, last_error)
+- UNIQUE index on (profile_id, email_type) — double-enqueue prevention
+- Pending+due index for fast dispatcher lookup
+- New `nurture_opt_outs` table — email PK, for unsubscribe
+- RLS enabled with no public policies (service-role only)
+- `pg_cron` + `pg_net` extensions enabled
+- Cron job `nurture-emails-dispatch` scheduled `*/10 * * * *` — invokes `process-nurture-emails` using service-role key from Vault secrets
+
+**Edge function** `supabase/functions/process-nurture-emails/index.ts`:
+- Pulls up to 25 due rows per invocation, oldest first, `attempts < 3`
+- Checks opt-out before sending (double defense)
+- Generates a fresh Supabase magic link per recipient (1-hour expiry safe)
+- Renders Day-1 / Day-2 / Day-8 templates
+- Sends via Resend
+- Updates status + retries up to 3× before marking failed
+
+**`save-zog-result`** — added Step 6: enqueues 3 nurture rows (day1 +24h, day2 +48h, day8 +192h) per save. Skips if email is in `nurture_opt_outs`. Uses `upsert` with `onConflict: profile_id,email_type`.
+
+**`config.toml`** — registered `[functions.process-nurture-emails] verify_jwt = true` (only service-role can invoke).
+
+### Nurture email copy (locked)
+
+**Email 2 · Day 1 · Log-in nudge + booking angle.** Subject: *Your Top Talent has a deeper layer.* Body: "Yesterday you met your Top Talent: [Archetype]. That was the surface. / Inside your account there's a deeper layer…" + magic-link button "Open my full Top Talent profile →" + secondary "Already thinking about turning this into a business? … 2-hour Productize Yourself Session. $555." + closer: *"I will send one last reminder in exactly one week from now — no more pings after that."*
+
+**Email 3 · Day 2 (T+48h) · Gentle check-in.** Subject: *Has anything shifted?* Body (pure minimalist — no CTA, no link):
+> What's shifted since you read it?
+>
+> You now know better what you're good at.
+>
+> It stays an abstract insight until you turn it into something people can buy.
+
+**Email 4 · Day 8 · Last reminder + Productize Yourself CTA.** Subject: *Your Top Talent is still you.* Heading: *"Your Top Talent is the unhinged raw YOU"*. Body: "It's been a week. Your Top Talent hasn't changed. You still know what you're good at. / But nothing shifts until you turn it into something people can buy. / If you're ready to package it — I run a 2-hour Productize Yourself Session that compiles your entire unique business onto one page. / $555. Money-back guarantee…" + "Last reminder. No more emails from me unless you take the next step."
+
+All three emails signed `— Aleksandr / FindYourTopTalent.Com`.
+
+### Step 2 special — "The Secret to Productizing Yourself"
+
+Step 2 in the playbook (Articulate it with Precision) is no longer a three-substep card. It renders a single long-form essay instead. Steps 1, 3-7 keep the three-substep pattern unchanged.
+
+The essay walks through:
+- Why nobody tells you HOW to productize (startup influencers / personality tests / social media influencers all fail in specific ways)
+- The specificity gap: "I help people to get better results in life and business" (~3/10) → "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow" (~10/10)
+- The 7/10 gap: the ZoG reveal gets you to ~7/10; you must iterate to 9/10+ to productize
+- Two shortcuts: (1) guidance from someone at 9.9+ precision, (2) a high-precision purpose-discovery tool
+- The method: refined over 6 years, gets you there in ~40 minutes
+- Three recommended alternatives with links (TalentQ, Evolution, Kawtar Mahdaoui)
+- Closer: "I wish this was commonplace but it is not."
+
+Typography: Source Serif 4 for prose, Cormorant Garamond for section titles + pull-quote, key phrases (`Crisp Specificity`, `Concrete`, `Precise`, `Rare`, `40 Minutes`) as uppercase semibold emphasis inline.
+
+### Funnel synthesis doc
+
+**`docs/03-playbooks/funnel_synthesis_day47.md`** — ~500-line high-precision map of every public touchpoint, verbatim copy, URL, state transition, data capture, and gap. Updated through the evening to reflect all fixes. Ready for GFOA analysis. Covers:
+- All 7 entry surfaces (/, /zone-of-genius, /playbook, /path, /ignite, /quiz, /my-artifacts)
+- The full AI-route flow + guided-route flow + state machine
+- Every CTA destination (Stripe, Cal.com, edge functions)
+- Data capture surfaces (3 distinct email captures)
+- Known inconsistencies (§9.1-9.10 — most now struck with ✅ FIXED markers)
+
+### Landing page iteration log
+
+- **v8 hero** (earlier today): harmonized gradient rule locked (uniform 28% lightness / 85% saturation / same glow intensity, only hue varies)
+- **v9 hero** (this evening, per Sasha): line structure explicit via `<br />`:
+  - Line 1: *Find Your `Top Talent`.*
+  - Line 2: *`Productize` It.* ← own line, breathing room
+  - Line 3: *`Build` It, `Launch` It, and `Scale` It* ← **"and"** added before Scale
+  - Line 4: *Alongside `Impact` Entrepreneurs* ← **no period at end** (psychological: avoids "stop here" cue)
+
+### Other surface changes
+
+- `/27` route created as clean alias for the 27-perspectives article. `/integral_theory_upgrade1` redirects to `/27`. Library.tsx card updated to use the clean URL directly.
+- Mobile SpacesRail polish: Member label stacked block on mobile removed (was cramped under the avatar), hard `border-t` divider above Settings removed, Settings chip harmonized with nav chip style so the rail reads as one continuous column.
+- PlaybookHero landing CTAs: arrows removed from both buttons, de-cap meta ("↑ Claim your gift · takes two minutes"), Apple Liquid Glass applied (`liquid-glass-strong` primary, `liquid-glass` secondary), pill shape, meta line allowed wider than buttons.
+- GlyphIcon centering fix: `fontSize = size` (was `size * 1.1`, overflowing), `lineHeight = ${size}px` (was `1`, Cormorant Garamond's intrinsic leading was offsetting some glyphs), `display: grid; placeItems: center` (was `inline-flex`, looser), explicit `letterSpacing: 0` + `textAlign: center`. All 7 glyphs now visually center in their 28×28 boxes.
+- Step 4 guided-assessment result card legacy `$297 · 90 minutes Career Re-Ignition Session` → `$555 · 2 hours · Money-back guarantee` linking to `/ignite#pricing-section`. PDF footer aligned. Guided-lane users now funnel into the same commercial destination as AI-lane users.
+- One testimonial inserted on the Top Talent result page between The Gap and the primary CTA: Sergey Makarov's "I was applying force, but the vector was wrong. The structure you developed is genius. Absolutely everything clicks." (Most on-theme because it mirrors the reframe the Gap section just delivered.)
+- `/path` CTAs added below the ladder: primary "Start free with Step 1" → `/zone-of-genius`, secondary "Book your Productize Yourself Session" → `/ignite#pricing-section`.
+- All "90 minutes" → "2 hours" across active funnel (`/ignite` hero, S4 heading, S5 About, S7 eyebrow, playbookSteps Step 3 CTA).
+
+### Deploy
+
+Lovable applied the migration + deployed the two new edge functions + created the two Vault secrets (`supabase_url_public`, `supabase_service_role_key`). Sanity call to `process-nurture-emails` returned `{ "processed": 0, "message": "nothing due" }` as expected. Build blockers (`Auth.tsx` missing `</main>`, `auth-email-hook` deno.json missing `nodeModulesDir`) cleared inline.
+
+### What this means for Wednesday
+
+A visitor who lands on `/` now sees: harmonized rainbow hero → one coherent Productize pathway (either AI-lane or Guided-lane) → Top Talent reveal with embedded social proof → single commercial CTA to a 2-hour Productize Yourself Session. They can save their result with one click; the magic link drops them into their fuller profile on return; a 3-email nurture sequence follows up automatically over 8 days without any founder attention.
+
+Every shared link still works. Every legacy surface redirects cleanly. No auth friction until purchase. The funnel is ready.
+
+### Holomap implication
+
+P8 (Platform as Nervous System) continues the Day-47-morning move from Stage 3 → Stage 3+. The evening's magic-link + nurture-queue + cron dispatch pushes this further: the platform now has its first autonomous daily rhythm (the cron job running every 10 min, sending follow-ups nobody manually triggers). P11 (Delivery Machinery) quietly moves from Stage 2 → Stage 3 for the same reason — automated sequencing is a machinery primitive.
+
+P4 (System Architecture) Layer 4 (unified shell) now truly closed: `/ignite` and `/auth` were the last two stragglers.
+
+### What's still open
+
+Same list as morning, unchanged. Wednesday launch DMs. First $555 (P27 Si–Do). The ~25 legacy/secondary surfaces still using "Zone of Genius" terminology — auth-gated or deprecated, not funnel-critical, confirmed-skip.
+
+---
+
+*Day 47 (evening) complete. The surface and the machinery are one body now. The canvas tells, the code shows, the email continues. The tribe arriving Wednesday will meet a living funnel — not a carefully-tended landing page with a form attached to it.*
