@@ -36,7 +36,7 @@ const PlaybookHero = () => {
           {/* Primary CTA — marine blue → royal purple gradient */}
           <button
             type="button"
-            onClick={() => navigate("/auth?claim=true&next=/zone-of-genius")}
+            onClick={() => navigate("/zone-of-genius")}
             className={buttonBase}
             style={{
               color: "rgba(245,245,250,0.98)",
