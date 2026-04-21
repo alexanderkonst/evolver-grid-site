@@ -40,22 +40,21 @@ const MethodologyLandingPage = () => {
               neon glow halo around the gradient-clipped letters.
           */}
           {/*
-            Neon gradients v5 (Day 47 later-same-day): the "white core" was NOT
-            a gradient-lightness bug — it was the parent h1's white text-shadow
-            (`0 1px 2px rgba(255,255,255,0.8)`) INHERITING into each gradient
-            span. Because the span has `color: transparent`, that white shadow
-            renders behind the gradient-clipped glyphs and bleeds through the
-            letter interiors — reading as a white core. Fix: explicitly set
-            `textShadow: 'none'` on every gradient span so only the neon
-            gradient + its own colored drop-shadow glow show. Non-highlighted
-            words keep the parent's white halo for legibility on the video bg.
+            Neon gradients v6 (Day 47 iter 3): gradient lightness dropped
+            from the 40-48% range down to 20-32% — letters now read as
+            saturated INK with a neon aura, rather than rainbow pastel.
+            Previous issue was "too rainbowy"; fix is darker centers so the
+            drop-shadow glow does the neon work, not the letter fill.
+            v5 note kept for reference: textShadow:'none' on each span
+            prevents parent h1's white halo from bleeding into gradient
+            glyphs (the "white core" bug).
           */}
           Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(285, 95%, 42%) 0%, hsl(265, 100%, 38%) 50%, hsl(245, 95%, 40%) 100%)",
+                "linear-gradient(135deg, hsl(285, 90%, 30%) 0%, hsl(265, 95%, 24%) 50%, hsl(245, 90%, 28%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(275 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.6))",
               textShadow: "none",
@@ -68,7 +67,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(255, 95%, 42%) 0%, hsl(240, 100%, 38%) 50%, hsl(225, 95%, 40%) 100%)",
+                "linear-gradient(135deg, hsl(255, 90%, 30%) 0%, hsl(240, 95%, 24%) 50%, hsl(225, 90%, 28%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(245 100% 55% / 0.55)) drop-shadow(0 0 3px hsl(235 100% 50% / 0.6))",
               textShadow: "none",
@@ -81,7 +80,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(225, 95%, 40%) 0%, hsl(210, 100%, 36%) 50%, hsl(200, 100%, 34%) 100%)",
+                "linear-gradient(135deg, hsl(225, 90%, 28%) 0%, hsl(210, 95%, 24%) 50%, hsl(200, 95%, 22%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(212 100% 52% / 0.55)) drop-shadow(0 0 3px hsl(205 100% 48% / 0.6))",
               textShadow: "none",
@@ -94,7 +93,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(188, 100%, 34%) 0%, hsl(178, 100%, 30%) 50%, hsl(168, 95%, 32%) 100%)",
+                "linear-gradient(135deg, hsl(188, 95%, 24%) 0%, hsl(178, 95%, 20%) 50%, hsl(168, 90%, 22%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(180 100% 45% / 0.6)) drop-shadow(0 0 3px hsl(175 100% 42% / 0.65))",
               textShadow: "none",
@@ -107,7 +106,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(138, 85%, 32%) 0%, hsl(128, 95%, 28%) 50%, hsl(115, 90%, 30%) 100%)",
+                "linear-gradient(135deg, hsl(138, 85%, 22%) 0%, hsl(128, 90%, 18%) 50%, hsl(115, 85%, 20%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(130 100% 42% / 0.6)) drop-shadow(0 0 3px hsl(122 100% 38% / 0.65))",
               textShadow: "none",
@@ -120,7 +119,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(28, 100%, 42%) 0%, hsl(15, 100%, 40%) 50%, hsl(2, 95%, 40%) 100%)",
+                "linear-gradient(135deg, hsl(28, 95%, 32%) 0%, hsl(15, 95%, 28%) 50%, hsl(2, 90%, 30%) 100%)",
               filter:
                 "drop-shadow(0 0 14px hsl(15 100% 50% / 0.6)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.65))",
               textShadow: "none",
