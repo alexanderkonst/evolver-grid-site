@@ -256,18 +256,18 @@ const PathPage = () => {
               </div>
             </section>
 
-            {/* ─── Quiet close ─── */}
+            {/* ─── Quiet close — dark text on now-light Panel 3 ─── */}
             <div className="mt-10 text-center space-y-2">
               <p
                 className="text-[11px] leading-relaxed"
-                style={{ color: "rgba(231,233,229,0.55)" }}
+                style={{ color: "rgba(26,30,58,0.65)" }}
               >
                 Every step is optional. Every step delivers a complete
                 transformation in itself.
               </p>
               <p
                 className="text-[11px] leading-relaxed"
-                style={{ color: "rgba(231,233,229,0.55)" }}
+                style={{ color: "rgba(26,30,58,0.65)" }}
               >
                 Pay as you progress. Money-back guarantee on every step.
               </p>
