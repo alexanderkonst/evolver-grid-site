@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Lock } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { useJourneyProgression } from "@/hooks/useJourneyProgression";
+import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -10,18 +7,16 @@ import { cn } from "@/lib/utils";
  *
  * Route: /path
  *
- * Access gate (per Sasha, 2026-04-20):
- *   - Visible to users who are authenticated OR have taken the Zone of
- *     Genius quiz (the step-1 free reveal). Everyone else sees a soft
- *     "take the first step to unlock" nudge that routes them back to `/`.
+ * Access (Sasha, 2026-04-21): fully public. Open Blueprint Paradox —
+ * the whole path, including the pricing ladder, is visible to anyone
+ * who visits the URL. No auth gate, no ZoG prerequisite.
  *
  * Content is locked verbatim from Sasha. Copy updates go through Sasha.
  *
- * The page is intentionally NOT linked from the marketing landing. It
- * appears in the JOURNEY space's second pane (SectionsPanel) once the
- * user is logged in, and is shareable as a direct link — so Sasha can
- * send it to collaborators / curious prospects who've asked about the
- * pricing / ladder.
+ * The page appears in the JOURNEY space's second pane (SectionsPanel)
+ * for authenticated users, and is shareable as a direct link — so Sasha
+ * can send it to collaborators / curious prospects who've asked about
+ * the pricing / ladder.
  */
 
 // ─── The Ladder ─────────────────────────────────────────────────────────────
@@ -78,22 +73,10 @@ const LADDER: LadderRow[] = [
   },
 ];
 
-// ─── Access gating ──────────────────────────────────────────────────────────
+// ─── Component ──────────────────────────────────────────────────────────────
 
 const PathPage = () => {
   const navigate = useNavigate();
-  const { currentStep, loading: journeyLoading } = useJourneyProgression();
-  const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setIsAuthed(!!user);
-    });
-  }, []);
-
-  const loading = isAuthed === null || journeyLoading;
-  // Access: authenticated OR has taken ZoG (currentStep ≥ 2 = ZoG done).
-  const hasAccess = isAuthed === true || currentStep >= 2;
 
   return (
     <div
@@ -141,55 +124,7 @@ const PathPage = () => {
           <span>Back to landing</span>
         </button>
 
-        {loading ? (
-          <div className="py-32 text-center text-white/50 text-sm">
-            Loading…
-          </div>
-        ) : !hasAccess ? (
-          /* ─── Soft gate for unauthenticated, non-ZoG users ─── */
-          <div
-            className="rounded-3xl p-10 text-center"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
-              border: "1px solid rgba(231,233,229,0.08)",
-              boxShadow:
-                "0 24px 80px -32px rgba(132,96,234,0.35), inset 0 1px 1px rgba(255,255,255,0.05)",
-              backdropFilter: "blur(14px)",
-            }}
-          >
-            <Lock className="w-5 h-5 mx-auto mb-4 text-white/40" />
-            <h1
-              className="text-2xl sm:text-3xl font-medium mb-4"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            >
-              Take the first step to see the whole path
-            </h1>
-            <p className="text-[15px] text-white/70 mb-8 max-w-md mx-auto leading-relaxed">
-              The path opens once you've named your top talent. Start with
-              Step 1 — it's free and takes a few minutes.
-            </p>
-            <button
-              type="button"
-              onClick={() => navigate("/")}
-              className={cn(
-                "px-7 py-3 rounded-full text-xs font-semibold",
-                "uppercase tracking-[0.22em] transition-all",
-                "hover:scale-[1.03]",
-              )}
-              style={{
-                color: "rgba(231,233,229,0.98)",
-                backgroundImage:
-                  "linear-gradient(135deg, rgba(132,96,234,0.9), rgba(41,84,159,0.9))",
-                border: "1px solid rgba(231,233,229,0.4)",
-                boxShadow: "0 20px 60px -18px rgba(132,96,234,0.7)",
-              }}
-            >
-              Find Your Top Talent
-            </button>
-          </div>
-        ) : (
-          <>
+        <>
             {/* ─── The Promise (LOCKED COPY — verbatim from Sasha) ─── */}
             <section className="mb-14">
               <div
@@ -361,8 +296,7 @@ const PathPage = () => {
                 Pay as you progress. Money-back guarantee on every step.
               </p>
             </div>
-          </>
-        )}
+        </>
       </div>
     </div>
   );
