@@ -429,10 +429,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — Day 47: lowered another 40% to
-                    /[0.03]. Panel 3 is now essentially raw video. Text relies
-                    on dark color + light-pearl text-shadow halo for legibility. */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/[0.03]" />
+                {/*
+                  Base wash — Day 47 (Sasha, later same day): inverted from dark
+                  to light. Dropping the dark overlay to /[0.03] was already
+                  imperceptible, so we pushed past zero into a subtle WHITE wash
+                  (/0.15). Net effect: Panel 3 is visibly brighter, dark patches
+                  of the video are softened, dark-navy hero text reads cleaner.
+                  Same slider, same approach — just past the neutral point.
+                */}
+                <div className="absolute inset-0 bg-white/[0.15]" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">

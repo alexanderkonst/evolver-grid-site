@@ -54,7 +54,9 @@ const PlaybookShell = ({
 
   return (
     <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-6 pb-20">
-      {/* ═══════ BACK TO LANDING ═══════ */}
+      {/* ═══════ BACK (→ "/" Start Here) ═══════ */}
+      {/* Day 47 later-same-day (Sasha): "BACK TO LANDING" → just "BACK".
+          Destination unchanged — still navigates to "/" (Start Here). */}
       <div className="mb-5">
         <button
           type="button"
@@ -66,8 +68,6 @@ const PlaybookShell = ({
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}
           style={{
-            // Dark navy text + subtle light glass background for Panel 3's
-            // now-light look (Sasha, 2026-04-21).
             backgroundImage:
               "linear-gradient(135deg, rgba(26,30,58,0.08), rgba(26,30,58,0.02))",
             border: "1px solid rgba(26,30,58,0.2)",
@@ -76,7 +76,7 @@ const PlaybookShell = ({
           aria-label="Back to landing page"
         >
           <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-          <span>Back to landing</span>
+          <span>Back</span>
         </button>
       </div>
 

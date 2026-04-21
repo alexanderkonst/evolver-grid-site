@@ -192,10 +192,17 @@ const RevelatoryHero = ({
                     </div>
                 )}
 
-                {/* Screenshot prompt + signature */}
+                {/* Screenshot prompt + signature — Day 47 late pass (Sasha):
+                    dark variant when palette is light. */}
                 <div className="mt-4 text-center">
-                    <p className="text-xs text-white/70 italic">Screenshot this.</p>
-                    <p className="text-xs text-white/60">get yours → FindYourTopTalent.Com</p>
+                    <p className={`text-xs italic ${darkMode ? 'text-white/70' : ''}`}
+                       style={darkMode ? undefined : { color: 'rgba(26,30,58,0.7)' }}>
+                        Screenshot this.
+                    </p>
+                    <p className={`text-xs ${darkMode ? 'text-white/60' : ''}`}
+                       style={darkMode ? undefined : { color: 'rgba(26,30,58,0.6)' }}>
+                        get yours → FindYourTopTalent.Com
+                    </p>
                 </div>
             </div>
 

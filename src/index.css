@@ -2,20 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========================================
-   LIQUID GLASS MORPHISM
-   Two-tier glass effect system
-   ======================================== */
+/* ==========================================================================
+   LIQUID GLASS — Apple iOS 26 spec (Day 47 late pass, Sasha)
+   ==========================================================================
+   Replicates Apple App Store / Control Center Liquid Glass:
+     1. Heavy backdrop-filter blur + saturate boost → bg colors pop through
+     2. Visible white tint (not the old near-invisible 0.01)
+     3. Asymmetric edge — bright specular highlight on top, dark rim on bottom
+     4. Layered drop shadow → the material *floats*
+
+   The ::before pseudo-element draws the asymmetric edge light (top bright,
+   bottom dark). The inset box-shadows add the crisp specular highlight and
+   rim. The outer shadows make the element read as physically suspended.
+
+   Full design spec + usage pattern: docs/03-playbooks/glassmorphism_blueprint.md
+   ========================================================================== */
 
 @layer components {
-  /* Light glass — subtle overlay for cards, pills, sections */
+  /* LIGHT GLASS — cards, sections, pills, chips. */
   .liquid-glass {
-    background: rgba(255, 255, 255, 0.01);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: none;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55),    /* top specular highlight */
+      inset 0 -0.5px 0 0 rgba(0, 0, 0, 0.08),        /* bottom rim shadow */
+      0 4px 16px -4px rgba(0, 0, 0, 0.12),           /* near drop */
+      0 20px 48px -20px rgba(0, 0, 0, 0.22);         /* far drop (floats) */
     position: relative;
     overflow: hidden;
   }
@@ -24,26 +38,31 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.4px;
+    padding: 1px;
+    /* Asymmetric edge: bright at top, darkening toward bottom. */
     background: linear-gradient(180deg,
-      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
-      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+      rgba(255, 255, 255, 0.60) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(255, 255, 255, 0.00) 50%,
+      rgba(0, 0, 0, 0.06) 70%,
+      rgba(0, 0, 0, 0.12) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
 
-  /* Strong glass — heavy overlay for CTAs, pricing panels */
+  /* STRONG GLASS — CTAs, prominent panels, pricing cards. */
   .liquid-glass-strong {
-    background: rgba(255, 255, 255, 0.03);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
-    border: none;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05),
-                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 0.5px solid rgba(255, 255, 255, 0.30);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.70),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.10),
+      0 6px 24px -4px rgba(0, 0, 0, 0.18),
+      0 32px 64px -24px rgba(0, 0, 0, 0.32);
     position: relative;
     overflow: hidden;
   }
@@ -52,11 +71,13 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.4px;
+    padding: 1px;
     background: linear-gradient(180deg,
-      rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 20%,
-      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.5) 100%);
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.25) 25%,
+      rgba(255, 255, 255, 0.00) 50%,
+      rgba(0, 0, 0, 0.08) 75%,
+      rgba(0, 0, 0, 0.16) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
