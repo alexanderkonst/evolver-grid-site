@@ -628,8 +628,8 @@ GENERAL STYLE RULES:
                     style={{ color: "rgba(26,30,58,0.7)" }}
                   >
                     You've named your Top Talent. The next step is structuring it into
-                    something people can buy. Aleksandr runs a focused Ignition Session
-                    to compile your entire unique business on one page.
+                    something people can buy. Aleksandr runs a focused Productize
+                    Yourself Session to compile your entire unique business on one page.
                   </p>
                   <p
                     className="text-xs font-semibold mb-3"
@@ -645,7 +645,7 @@ GENERAL STYLE RULES:
                       textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                     }}
                   >
-                    Book your Ignition Session
+                    Book your Productize Yourself Session
                     <ArrowRight className="w-3 h-3" />
                   </a>
                 </article>
@@ -807,8 +807,8 @@ GENERAL STYLE RULES:
                   </h3>
                   <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
                     You've named your Top Talent. The next step is structuring it into something people
-                    can buy. Aleksandr runs a focused Ignition Session to compile your entire unique
-                    business on one page.
+                    can buy. Aleksandr runs a focused Productize Yourself Session to compile your entire
+                    unique business on one page.
                   </p>
                   <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
                     $555 · 2 hours · Book at aleksandrkonstantinov.com/ignite
