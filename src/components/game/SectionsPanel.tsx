@@ -46,55 +46,36 @@ const SPACE_SECTIONS: SpaceSections = {
     //         { id: "recommended", label: "Recommended Action", path: "/game/next-move" },
     //     ],
     // },
-    // ME Space (was Profile/GROW)
+    // ME Space — Day 47 late pass (Sasha): collapsed to ONLY Top Talent.
+    // The Me space is now a single-focus view: your Top Talent profile.
+    // Other sections (My Mission, Genius Business, Quality of Life, Assets,
+    // Settings) retired from the Me rail until the user has earned those
+    // capabilities. Settings still reachable via Panel 1 footer button.
+    // URL paths kept as `/game/me/zone-of-genius/*` for backwards compat;
+    // UI labels renamed to "Top Talent" per the rename pass.
     grow: {
         title: "ME",
         sections: [
-            { id: "overview", label: "Overview", path: "/game/me" },
-            { id: "mission", label: "My Mission", path: "/game/me/mission" },
             {
-                id: "zog",
-                label: "Zone of Genius",
+                id: "top-talent",
+                label: "Top Talent",
                 path: "/game/me/zone-of-genius",
                 subSections: [
-                    { id: "zog-overview", label: "Overview", path: "/game/me/zone-of-genius" },
-                    { id: "zog-bullseye", label: "Bullseye Sentence", path: "/game/me/zone-of-genius/bullseye" },
-                    { id: "zog-vibrational-key", label: "Vibrational Key", path: "/game/me/zone-of-genius/vibrational-key" },
-                    { id: "zog-three-lenses", label: "Three Lenses", path: "/game/me/zone-of-genius/three-lenses" },
-                    { id: "zog-appreciated-for", label: "Appreciated For", path: "/game/me/zone-of-genius/appreciated-for" },
-                    { id: "zog-mastery", label: "Mastery Stages", path: "/game/me/zone-of-genius/mastery" },
-                    { id: "zog-activities", label: "Professional Activities", path: "/game/me/zone-of-genius/activities" },
-                    { id: "zog-roles", label: "Roles & Environments", path: "/game/me/zone-of-genius/roles" },
-                    { id: "zog-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
-                    { id: "zog-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
-                    { id: "zog-life-scene", label: "Life Scene", path: "/game/me/zone-of-genius/life-scene" },
-                    { id: "zog-visual-codes", label: "Visual Codes", path: "/game/me/zone-of-genius/visual-codes" },
-                    { id: "zog-elevator-pitch", label: "Elevator Pitch", path: "/game/me/zone-of-genius/elevator-pitch" },
+                    { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
+                    { id: "tt-bullseye", label: "Bullseye Sentence", path: "/game/me/zone-of-genius/bullseye" },
+                    { id: "tt-vibrational-key", label: "Vibrational Key", path: "/game/me/zone-of-genius/vibrational-key" },
+                    { id: "tt-three-lenses", label: "Three Lenses", path: "/game/me/zone-of-genius/three-lenses" },
+                    { id: "tt-appreciated-for", label: "Appreciated For", path: "/game/me/zone-of-genius/appreciated-for" },
+                    { id: "tt-mastery", label: "Mastery Stages", path: "/game/me/zone-of-genius/mastery" },
+                    { id: "tt-activities", label: "Professional Activities", path: "/game/me/zone-of-genius/activities" },
+                    { id: "tt-roles", label: "Roles & Environments", path: "/game/me/zone-of-genius/roles" },
+                    { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
+                    { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
+                    { id: "tt-life-scene", label: "Life Scene", path: "/game/me/zone-of-genius/life-scene" },
+                    { id: "tt-visual-codes", label: "Visual Codes", path: "/game/me/zone-of-genius/visual-codes" },
+                    { id: "tt-elevator-pitch", label: "Elevator Pitch", path: "/game/me/zone-of-genius/elevator-pitch" },
                 ],
             },
-            {
-                id: "genius-business",
-                label: "Genius Business",
-                path: "/game/me/genius-business",
-                subSections: [
-                    { id: "gb-overview", label: "Overview", path: "/game/me/genius-business" },
-                    { id: "gb-audience", label: "Ideal Client", path: "/game/me/genius-business/audience" },
-                    { id: "gb-promise", label: "Promise", path: "/game/me/genius-business/promise" },
-                    { id: "gb-channels", label: "Channels", path: "/game/me/genius-business/channels" },
-                    { id: "gb-vision", label: "Vision", path: "/game/me/genius-business/vision" },
-                ],
-            },
-            {
-                id: "qol",
-                label: "Quality of Life",
-                path: "/quality-of-life-map/assessment",
-                subSections: [
-                    { id: "assessment", label: "Assessment", path: "/quality-of-life-map/assessment" },
-                    { id: "results", label: "Results", path: "/quality-of-life-map/results" },
-                ],
-            },
-            { id: "assets", label: "Assets", path: "/game/me/assets" },
-            { id: "settings", label: "Settings", path: "/game/me/settings" },
         ],
     },
     // LEARN Space

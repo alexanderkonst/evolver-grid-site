@@ -39,7 +39,7 @@ const ZoneOfGeniusAssessmentLayout = ({
           textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
         }}
       >
-        Discover Your Zone of Genius
+        Discover Your Top Talent
       </h1>
       <p
         className="text-sm mb-6"
