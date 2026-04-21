@@ -248,7 +248,6 @@ const PlaybookCircleInfographic = ({
                 <g transform={`translate(${x - 8}, ${y - 8})`}>
                   <foreignObject width={16} height={16} aria-hidden="true">
                     <Lock
-                      // @ts-expect-error — lucide-react supports className fine inside foreignObject
                       className="w-4 h-4"
                       color="rgba(231,233,229,0.5)"
                     />
