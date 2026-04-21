@@ -269,13 +269,14 @@ serve(async (req) => {
 
                 <div style="background: rgba(240,194,127,0.06); border: 1px solid rgba(240,194,127,0.15); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
                   <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 0 0 10px 0; font-weight: 500;">Ready to turn this into a business?</p>
-                  <p style="color: rgba(255,255,255,0.55); font-size: 13px; margin: 0 0 14px 0; line-height: 1.6;">Aleksandr runs a 2-hour Ignition Session that compiles your entire unique business onto one page. $555. Money-back guarantee.</p>
-                  <a href="${SITE_URL}/ignite#pricing-section" style="display: inline-block; color: rgba(240,194,127,0.9); text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(240,194,127,0.3);">Book your Ignition Session →</a>
+                  <p style="color: rgba(255,255,255,0.55); font-size: 13px; margin: 0 0 14px 0; line-height: 1.6;">Aleksandr runs a 2-hour Productize Yourself Session that compiles your entire unique business onto one page. $555. Money-back guarantee.</p>
+                  <a href="${SITE_URL}/ignite#pricing-section" style="display: inline-block; color: rgba(240,194,127,0.9); text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(240,194,127,0.3);">Book your Productize Yourself Session →</a>
                 </div>
 
                 <div style="text-align: center; margin-top: 28px;">
                   <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin: 0;">This is your unique genius. It doesn't expire.</p>
-                  <p style="color: rgba(255,255,255,0.25); font-size: 11px; margin: 4px 0 0 0;">— Aleksandr</p>
+                  <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin: 6px 0 0 0;">— Aleksandr</p>
+                  <p style="color: rgba(255,255,255,0.25); font-size: 11px; margin: 2px 0 0 0;"><a href="${SITE_URL}" style="color: rgba(255,255,255,0.35); text-decoration: none;">FindYourTopTalent.Com</a></p>
                 </div>
               </div>
             `,
@@ -295,7 +296,60 @@ serve(async (req) => {
       console.warn("[save-zog-result] RESEND_API_KEY not set, skipping email");
     }
 
-    // ── Step 6: Also save to divine_timing_leads for backwards compat ──
+    // ── Step 6: Enqueue Day-1 / Day-2 / Day-8 nurture emails ───────
+    // Day 47 late pass (Sasha): scheduled follow-up sequence. A pg_cron
+    // job (see 20260422010000_nurture_email_queue.sql) invokes
+    // process-nurture-emails every 10 min to dispatch due rows.
+    //
+    // UNIQUE(profile_id, email_type) index prevents double-enqueue if a
+    // user saves twice, re-takes the assessment, etc.
+    try {
+      // Skip enqueue if the user has opted out previously.
+      const { data: optOut } = await supabase
+        .from("nurture_opt_outs")
+        .select("email")
+        .eq("email", normalizedEmail)
+        .maybeSingle();
+
+      if (!optOut) {
+        const now = new Date();
+        const day1 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        const day2 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+        const day8 = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
+
+        // Payload snapshot for template rendering at send time
+        const payload = {
+          archetype: appleseedData.vibrationalKey?.name || "Your Top Talent",
+          bullseye: appleseedData.bullseyeSentence || "",
+          top_talents: appleseedData.threeLenses?.actions?.slice(0, 5) || [],
+          prime_driver: appleseedData.threeLenses?.primeDriver || "",
+          archetype_lens: appleseedData.threeLenses?.archetype || "",
+        };
+
+        // Regenerate magic link per scheduled send? For now, use the same
+        // link we just emailed. Supabase magic links typically expire in 1h;
+        // each send regenerates at dispatch time (see process-nurture-emails).
+        // Here we just enqueue — the dispatcher generates fresh links.
+        await supabase
+          .from("nurture_email_queue")
+          .upsert(
+            [
+              { email: normalizedEmail, profile_id: profileId, email_type: "day1", scheduled_for: day1.toISOString(), payload },
+              { email: normalizedEmail, profile_id: profileId, email_type: "day2", scheduled_for: day2.toISOString(), payload },
+              { email: normalizedEmail, profile_id: profileId, email_type: "day8", scheduled_for: day8.toISOString(), payload },
+            ],
+            { onConflict: "profile_id,email_type", ignoreDuplicates: false }
+          );
+
+        console.log("[save-zog-result] Enqueued 3 nurture emails for:", normalizedEmail);
+      } else {
+        console.log("[save-zog-result] User previously opted out — skipping nurture enqueue:", normalizedEmail);
+      }
+    } catch (nurtureErr) {
+      console.error("[save-zog-result] Nurture enqueue failed (non-fatal):", nurtureErr);
+    }
+
+    // ── Step 7: Also save to divine_timing_leads for backwards compat ──
     try {
       await supabase.from("divine_timing_leads").insert({
         email: normalizedEmail,

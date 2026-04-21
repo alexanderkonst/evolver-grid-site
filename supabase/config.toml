@@ -102,5 +102,12 @@ verify_jwt = false
 [functions.process-email-queue]
 verify_jwt = true
 
+# Day 47 late pass (Sasha): nurture-sequence dispatcher. Invoked by pg_cron
+# every 10 min (see migration 20260422010000_nurture_email_queue.sql).
+# verify_jwt = true so only the service-role key (used by the cron job)
+# can call it — not random public callers.
+[functions.process-nurture-emails]
+verify_jwt = true
+
 [functions.auth-email-hook]
 verify_jwt = false
