@@ -467,11 +467,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — genuinely the lightest tier. Uses bg-black/10
-                    against Panel 2's bg-black/40. Progression (bg-black opacity):
-                    Rail 70 → Sections 40 → Content 10. Content breathes the most. */}
+                {/* Panel 3: Content — lightened another 40% per Sasha (2026-04-21).
+                    Progression (bg-black opacity): Rail 70 → Sections 40 → Content 6.
+                    Content now barely tints the video. */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/10"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-black/[0.06]"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">

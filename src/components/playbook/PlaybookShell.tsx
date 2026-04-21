@@ -137,28 +137,32 @@ const PlaybookShell = ({
                         : "none",
                   }}
                   aria-current={state === "active" ? "step" : undefined}
-                  aria-label={`Step ${step.number}: ${step.appName}`}
+                  aria-label={`Step ${step.number}: ${step.subtitle}`}
                 >
                   {step.number}
                 </button>
 
                 <span
                   className={cn(
-                    // Narrow-viewport (sidebar open on 1280px laptops)
-                    // gives the content column ~1020px; with 7 chips that
-                    // leaves each chip-label ~145px. 9px at narrow widths
-                    // prevents label wrapping. 11px at sm: keeps the
-                    // default crisp.
-                    "mt-2 text-[9px] sm:text-[11px] uppercase",
-                    "tracking-[0.14em] sm:tracking-[0.18em] font-medium text-center",
+                    // Full vetted step name (Sasha, 2026-04-21). Small font +
+                    // narrow column forces clean wrapping across 2–4 lines.
+                    // The ring hierarchy comes from the number chip; the label
+                    // under it is honest, not compressed.
+                    "mt-2 text-[9px] sm:text-[10px]",
+                    "leading-[1.2] font-medium text-center",
                     "transition-opacity duration-300",
+                    "max-w-[110px] sm:max-w-[130px]",
                     state === "active" && "opacity-100",
                     state === "completed" && "opacity-65",
                     state === "upcoming" && "opacity-55",
                   )}
-                  style={{ color: "rgba(231,233,229,0.85)" }}
+                  style={{
+                    color: "rgba(231,233,229,0.85)",
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontStyle: "italic",
+                  }}
                 >
-                  {step.appName}
+                  {step.subtitle}
                 </span>
               </li>
             );

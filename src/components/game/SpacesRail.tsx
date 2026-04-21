@@ -20,21 +20,19 @@ interface SpaceItem {
     path: string;
 }
 
-// Each space gets a typographic glyph in Cormorant Garamond tinted with
-// its own brand hue. Replaces the lucide clipart icons (Sasha, 2026-04-21).
-// Glyph picks — iterate freely; each is one Unicode codepoint:
-//   JOURNEY     ☽  waxing crescent — the quiet arc of becoming
-//   ME          ☉  sun — the self, the center
-//   LEARN       ✦  four-point star — insight
-//   MEET        ❋  six-petal bloom — gathering / presence
-//   COLLABORATE ⬡  hexagonal cell — community as lattice
-//   BUILD       △  upward triangle — manifestation
-//   OFFER       ◈  diamond — the gift, crystallised
+// Sasha's chosen glyphs (2026-04-21, v2):
+//   JOURNEY     ✵
+//   ME          ❂
+//   LEARN       ✹
+//   MEET        ⚭
+//   COLLABORATE ⇶
+//   BUILD       ⬢
+//   OFFER       ⚛
 const SPACES: SpaceItem[] = [
     {
         id: "journey",
         label: "JOURNEY",
-        icon: <GlyphIcon glyph="☽" color="hsl(175, 80%, 60%)" />,
+        icon: <GlyphIcon glyph="✵" color="hsl(175, 80%, 60%)" />,
         path: "/game/journey",
     },
     // Hidden until built — uncomment to re-enable
@@ -47,37 +45,37 @@ const SPACES: SpaceItem[] = [
     {
         id: "grow",
         label: "ME",
-        icon: <GlyphIcon glyph="☉" color="hsl(265, 70%, 72%)" />,
+        icon: <GlyphIcon glyph="❂" color="hsl(265, 70%, 72%)" />,
         path: "/game/me",
     },
     {
         id: "learn",
         label: "LEARN",
-        icon: <GlyphIcon glyph="✦" color="hsl(210, 75%, 68%)" />,
+        icon: <GlyphIcon glyph="✹" color="hsl(210, 75%, 68%)" />,
         path: "/game/learn",
     },
     {
         id: "meet",
         label: "MEET",
-        icon: <GlyphIcon glyph="❋" color="hsl(145, 65%, 60%)" />,
+        icon: <GlyphIcon glyph="⚭" color="hsl(145, 65%, 60%)" />,
         path: "/game/meet",
     },
     {
         id: "collaborate",
         label: "COLLABORATE",
-        icon: <GlyphIcon glyph="⬡" color="hsl(325, 65%, 65%)" />,
+        icon: <GlyphIcon glyph="⇶" color="hsl(325, 65%, 65%)" />,
         path: "/game/collaborate",
     },
     {
         id: "build",
         label: "BUILD",
-        icon: <GlyphIcon glyph="△" color="hsl(45, 90%, 62%)" />,
+        icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" />,
         path: "/game/build",
     },
     {
         id: "buysell",
         label: "OFFER",
-        icon: <GlyphIcon glyph="◈" color="hsl(15, 85%, 65%)" />,
+        icon: <GlyphIcon glyph="⚛" color="hsl(15, 85%, 65%)" />,
         path: "/game/marketplace",
     },
 ];
