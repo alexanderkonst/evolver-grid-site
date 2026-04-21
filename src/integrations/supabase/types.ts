@@ -1272,6 +1272,77 @@ export type Database = {
         }
         Relationships: []
       }
+      nurture_email_queue: {
+        Row: {
+          attempts: number
+          created_at: string
+          email: string
+          email_type: string
+          id: string
+          last_error: string | null
+          payload: Json
+          profile_id: string | null
+          scheduled_for: string
+          sent_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          email: string
+          email_type: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          profile_id?: string | null
+          scheduled_for: string
+          sent_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          email?: string
+          email_type?: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          profile_id?: string | null
+          scheduled_for?: string
+          sent_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nurture_email_queue_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      nurture_opt_outs: {
+        Row: {
+          email: string
+          opted_out_at: string
+          reason: string | null
+        }
+        Insert: {
+          email: string
+          opted_out_at?: string
+          reason?: string | null
+        }
+        Update: {
+          email?: string
+          opted_out_at?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       player_upgrades: {
         Row: {
           completed_at: string | null

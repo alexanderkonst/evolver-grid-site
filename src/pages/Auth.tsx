@@ -341,9 +341,10 @@ const Auth = () => {
                 <p className="text-xs text-[#6b6a8a] text-center pt-2">
                   No password to pick. No spam. Just your result, ready when you are.
                 </p>
-              </form>
+                </form>
             </CardContent>
           </Card>
+        </main>
         </div>
       </GameShellV2>
     );
