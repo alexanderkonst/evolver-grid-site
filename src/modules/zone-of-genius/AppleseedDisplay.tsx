@@ -53,7 +53,7 @@ const OwnershipSection = ({
     if (emailUnlocked || isSaved) {
         return (
             <div className="text-center py-2">
-                <p className="text-xs text-white/50">
+                <p className="text-xs" style={{ color: "rgba(26,30,58,0.6)" }}>
                     ✓ Saved. We sent your top talent to your inbox so you can come back to it.
                 </p>
             </div>
@@ -67,10 +67,10 @@ const OwnershipSection = ({
                     type="button"
                     onClick={() => setExpanded(true)}
                     className="w-full flex items-center justify-center gap-2 p-3
-                               rounded-full liquid-glass ring-1 ring-white/15
-                               hover:ring-white/30 hover:bg-white/5
-                               transition-all duration-300 text-xs text-white/60
-                               hover:text-white/85"
+                               rounded-full liquid-glass
+                               hover:scale-[1.015] active:scale-[0.985]
+                               transition-all duration-300 text-xs"
+                    style={{ color: "rgba(26,30,58,0.7)" }}
                 >
                     <Mail className="w-3.5 h-3.5" />
                     <span>Save my top talent result for later</span>
@@ -78,16 +78,17 @@ const OwnershipSection = ({
             ) : (
                 <form
                     onSubmit={handleEmailSubmit}
-                    className="flex items-center gap-2 p-2 rounded-full liquid-glass ring-1 ring-white/15"
+                    className="flex items-center gap-2 p-2 rounded-full liquid-glass"
                 >
-                    <Mail className="w-3.5 h-3.5 ml-2 text-white/40 flex-shrink-0" />
+                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "rgba(26,30,58,0.45)" }} />
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your@email.com"
                         autoFocus
-                        className="flex-1 bg-transparent border-0 text-sm text-white/85 placeholder:text-white/25 focus:outline-none min-w-0"
+                        className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
+                        style={{ color: "#0a1628" }}
                         required
                     />
                     <button
@@ -162,6 +163,12 @@ const AppleseedDisplay = ({
     const [emailUnlocked, setEmailUnlocked] = useState(false);
     const [emailSaving, setEmailSaving] = useState(false);
 
+    // Day 47 late pass (Sasha): result page was opening mid-scroll (the
+    // generation flow's scroll position carried over). Force top on mount.
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+    }, []);
+
     const handleEmailSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email.trim() || !email.includes('@')) return;
@@ -210,7 +217,10 @@ const AppleseedDisplay = ({
             */}
 
             <div className="relative z-10 max-w-2xl mx-auto px-4 py-2 space-y-6">
-                {/* Epic Revelatory Hero - The core genius reveal */}
+                {/* Epic Revelatory Hero - The core genius reveal.
+                    Day 47 late pass (Sasha): dropped `darkMode` so the hero uses
+                    the light palette (dark slate text on soft white gradient) —
+                    consistent with the now-light Panel 3. */}
                 <RevelatoryHero
                     type="appleseed"
                     title={appleseed.vibrationalKey.name}
@@ -221,7 +231,6 @@ const AppleseedDisplay = ({
                         primeDriver: appleseed.threeLenses.primeDriver,
                         archetype: appleseed.threeLenses.archetype,
                     }}
-                    darkMode
                 />
 
                 {/* Resonance Rating */}
@@ -233,18 +242,23 @@ const AppleseedDisplay = ({
                 )}
 
                 {/* ═══════════════════════════════════════════════
-                    THE GAP — tightened copy (Sasha, 2026-04-21)
+                    THE GAP — Day 47 late pass (Sasha): all flipped to
+                    dark navy for the now-light Panel 3.
                     ═══════════════════════════════════════════════ */}
                 <div
                     className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-10"
-                    style={{ fontFamily: "'Source Serif 4', serif" }}
+                    style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        color: "#0a1628",
+                        textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                    }}
                 >
                     {/* Recognition */}
                     <div className="space-y-4">
-                        <p className="text-lg md:text-xl text-white font-light tracking-wide leading-relaxed">
+                        <p className="text-lg md:text-xl font-light tracking-wide leading-relaxed" style={{ color: "#0a1628" }}>
                             You've been doing this for years, haven't you?
                         </p>
-                        <p className="text-base text-white/80 font-light tracking-wide leading-relaxed">
+                        <p className="text-base font-light tracking-wide leading-relaxed" style={{ color: "rgba(26,30,58,0.78)" }}>
                             Delivered real results through this.<br />
                             People already come to you for it.
                         </p>
@@ -252,23 +266,23 @@ const AppleseedDisplay = ({
 
                     {/* The Pivot */}
                     <div className="space-y-4">
-                        <p className="text-lg text-white/95 font-light tracking-wide leading-relaxed">
+                        <p className="text-lg font-light tracking-wide leading-relaxed" style={{ color: "#0a1628" }}>
                             But haven't made it into a{" "}
-                            <span className="text-white font-medium uppercase tracking-wider">
+                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
                                 Growing Business
                             </span>
                             .
                         </p>
-                        <p className="text-base text-white/75 italic">Why?</p>
-                        <p className="text-base text-white/85 leading-relaxed">
+                        <p className="text-base italic" style={{ color: "rgba(26,30,58,0.7)" }}>Why?</p>
+                        <p className="text-base leading-relaxed" style={{ color: "rgba(26,30,58,0.82)" }}>
                             Because this is how{" "}
-                            <span className="text-white font-medium uppercase tracking-wider">
+                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
                                 You Naturally Operate
                             </span>
                             .
                         </p>
-                        <p className="text-base text-white/85 leading-relaxed">
-                            <span className="text-white font-medium uppercase tracking-wider">
+                        <p className="text-base leading-relaxed" style={{ color: "rgba(26,30,58,0.82)" }}>
+                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
                                 Not Yet
                             </span>{" "}
                             a built, packaged, and distributed product people can buy.
@@ -277,23 +291,25 @@ const AppleseedDisplay = ({
 
                     {/* Consequence */}
                     <div className="space-y-3">
-                        <p className="text-base text-white/80 leading-loose">So:</p>
-                        <ul className="text-sm text-white/70 leading-loose font-light space-y-1 list-none">
+                        <p className="text-base leading-loose" style={{ color: "rgba(26,30,58,0.78)" }}>So:</p>
+                        <ul className="text-sm leading-loose font-light space-y-1 list-none" style={{ color: "rgba(26,30,58,0.72)" }}>
                             <li>you keep explaining it differently every time</li>
                             <li>people receive value but do not pay</li>
                             <li>you are stuck at &ldquo;seeing the light at the end of the tunnel&rdquo;</li>
                         </ul>
                     </div>
 
-                    {/* The Missing Bridge */}
-                    <div className="space-y-5 p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] shadow-[0_0_40px_rgba(0,0,0,0.2)]">
-                        <p className="text-sm text-white/70 uppercase tracking-[0.2em] font-sans">
+                    {/* The Missing Bridge — light-glass panel on light Panel 3 */}
+                    <div
+                        className="space-y-5 p-8 rounded-2xl liquid-glass"
+                    >
+                        <p className="text-sm uppercase tracking-[0.2em] font-sans" style={{ color: "rgba(26,30,58,0.65)" }}>
                             Let's be clear
                         </p>
-                        <p className="text-lg md:text-xl text-white leading-relaxed">
+                        <p className="text-lg md:text-xl leading-relaxed" style={{ color: "#0a1628" }}>
                             The Missing Bridge to Money is Clarity on:
                         </p>
-                        <ul className="text-base text-white/90 italic leading-loose space-y-2 list-none">
+                        <ul className="text-base italic leading-loose space-y-2 list-none" style={{ color: "rgba(26,30,58,0.88)" }}>
                             <li>What exactly do I offer?</li>
                             <li>Who is it for?</li>
                             <li>Why would these people queue to pay?</li>
@@ -302,20 +318,20 @@ const AppleseedDisplay = ({
 
                     {/* Reframe */}
                     <div className="space-y-3">
-                        <p className="text-base text-white/80 tracking-wide font-light">
+                        <p className="text-base tracking-wide font-light" style={{ color: "rgba(26,30,58,0.78)" }}>
                             You don't need to be more ready.
                         </p>
-                        <p className="text-base text-white/80 tracking-wide font-light">
+                        <p className="text-base tracking-wide font-light" style={{ color: "rgba(26,30,58,0.78)" }}>
                             You don't need business education or gimmicks.
                         </p>
-                        <p className="text-lg font-medium text-white tracking-wide mt-2">
+                        <p className="text-lg font-semibold tracking-wide mt-2" style={{ color: "#0a1628" }}>
                             You simply need solid business structure.
                         </p>
                     </div>
 
                     {/* Pre-CTA line */}
                     <div className="pb-4">
-                        <p className="text-base text-white/85 italic">
+                        <p className="text-base italic" style={{ color: "rgba(26,30,58,0.82)" }}>
                             If you're done circling this — click below and let's make it real.
                         </p>
                     </div>
@@ -332,34 +348,39 @@ const AppleseedDisplay = ({
                     ═══════════════════════════════════════════════ */}
                 <div className="max-w-md mx-auto space-y-4">
 
-                    {/* CTA 1 (PRIMARY): Turn Top Talent into a Growing Business */}
+                    {/* CTA 1 (PRIMARY) — Day 47 late pass: dark text, Apple Liquid Glass */}
                     <a
                         href="/ignite#pricing-section"
                         className="w-full flex items-center justify-between p-5 rounded-2xl
-                                   liquid-glass-strong ring-1 ring-white/25
-                                   shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
-                                   hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
+                                   liquid-glass-strong
                                    hover:scale-[1.02] active:scale-95
                                    transition-all duration-300 alive-card"
+                        style={{ color: "#0a1628" }}
                     >
                         <div>
-                            {/* Subtitle "I'm done circling this — let's make it real"
-                                dropped Day 47 — the pre-CTA line above the button
-                                already carries that voice. */}
                             <p
-                                className="text-base font-bold text-white uppercase tracking-wider"
-                                style={{ textShadow: "0 0 20px rgba(240,194,127,0.3)" }}
+                                className="text-base font-semibold tracking-wide"
+                                style={{
+                                    color: "#0a1628",
+                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                }}
                             >
                                 Turn My Top Talent into a Growing Business
                             </p>
                         </div>
-                        <span className="w-10 h-10 rounded-full bg-[#b8a4f8]/20 flex items-center justify-center flex-shrink-0 ml-4">
-                            <ArrowRight className="w-5 h-5 text-[#b8a4f8]" />
+                        <span
+                            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-4"
+                            style={{ backgroundColor: "rgba(132,96,234,0.15)" }}
+                        >
+                            <ArrowRight className="w-5 h-5" style={{ color: "#5b21b6" }} />
                         </span>
                     </a>
 
                     {/* Mini bridge line */}
-                    <p className="text-center text-xs text-white/55 italic">
+                    <p
+                        className="text-center text-xs italic"
+                        style={{ color: "rgba(26,30,58,0.62)" }}
+                    >
                         Want to learn more before acting?
                     </p>
 
@@ -367,14 +388,17 @@ const AppleseedDisplay = ({
                     <a
                         href="/quiz"
                         className="w-full flex items-center justify-center gap-3 p-4
-                                   rounded-2xl liquid-glass ring-1 ring-white/15
-                                   hover:ring-white/30 hover:bg-white/5
-                                   transition-all duration-300 text-sm text-white/70
-                                   hover:text-white uppercase tracking-wider font-medium"
+                                   rounded-2xl liquid-glass
+                                   hover:scale-[1.015] active:scale-[0.985]
+                                   transition-all duration-300 text-sm tracking-wide font-medium"
+                        style={{ color: "rgba(26,30,58,0.82)" }}
                     >
                         <span>
                             See exactly why this hasn't turned into income
-                            <span className="block normal-case tracking-normal text-[10px] text-white/40 mt-0.5">
+                            <span
+                                className="block tracking-normal text-[10px] mt-0.5"
+                                style={{ color: "rgba(26,30,58,0.55)" }}
+                            >
                                 6-question diagnostic
                             </span>
                         </span>

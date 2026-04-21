@@ -577,34 +577,111 @@ const ZoneOfGeniusEntry = () => {
 
             <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
 
-                {/* Header — Godfather "front door" */}
+                {/* Header — Day 47 later-same-day (Sasha): matched to /path + /playbook
+                    hero aesthetic. Dark-navy Cormorant Garamond with soft white halo,
+                    no CAPS, inline neon-gradient highlights on key phrases. */}
                 <div className="text-center mb-10">
                     {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-6 ring-1 ring-white/10 breathing-card">
+                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-6 ring-1 ring-[#0a1628]/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Headline — CAPS */}
+                    {/* Headline — normal case, dark navy, Cormorant Garamond */}
                     <h1
-                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-display text-white leading-[1.35] max-w-2xl mx-auto mb-8 uppercase tracking-[0.04em]"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-8"
                         style={{
-                            textShadow: '0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(132,96,234,0.1)',
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "#0a1628",
+                            textShadow:
+                                "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
                         }}
                     >
-                        Why is it still so hard to{' '}
-                        <span style={{ textShadow: '0 0 25px rgba(240,194,127,0.5), 0 0 50px rgba(240,194,127,0.25)' }}>explain what you do</span>
-                        {' '}<span className="text-white/60">—</span>{' '}
-                        and turn it into something people{' '}
-                        <span style={{ textShadow: '0 0 25px rgba(240,194,127,0.5), 0 0 50px rgba(240,194,127,0.25)' }}>actually pay for</span>?
+                        Why is it still so hard to{" "}
+                        <span
+                            className="bg-clip-text text-transparent"
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(135deg, hsl(285, 95%, 42%) 0%, hsl(265, 100%, 38%) 50%, hsl(245, 95%, 40%) 100%)",
+                                filter:
+                                    "drop-shadow(0 0 12px hsl(275 100% 55% / 0.5)) drop-shadow(0 0 3px hsl(260 100% 50% / 0.55))",
+                                textShadow: "none",
+                            }}
+                        >
+                            explain what you do
+                        </span>
+                        {" "}— and turn it into something people{" "}
+                        <span
+                            className="bg-clip-text text-transparent"
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(135deg, hsl(28, 100%, 42%) 0%, hsl(15, 100%, 40%) 50%, hsl(2, 95%, 40%) 100%)",
+                                filter:
+                                    "drop-shadow(0 0 12px hsl(15 100% 50% / 0.5)) drop-shadow(0 0 3px hsl(8 100% 48% / 0.55))",
+                                textShadow: "none",
+                            }}
+                        >
+                            actually pay for
+                        </span>
+                        ?
                     </h1>
 
-                    {/* Two short truths — separator line removed per Sasha Day 47 */}
+                    {/* Two short truths — dark navy with soft white halo */}
                     <div className="space-y-4 max-w-lg mx-auto">
-                        <p className="text-base sm:text-lg text-white leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            There's a <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>unique way</span> you think and solve problems.
+                        <p
+                            className="text-base sm:text-lg leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "#0a1628",
+                                textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+                            }}
+                        >
+                            There's a{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(135deg, hsl(285, 95%, 42%) 0%, hsl(265, 100%, 38%) 50%, hsl(245, 95%, 40%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(275 100% 55% / 0.45))",
+                                    textShadow: "none",
+                                }}
+                            >
+                                unique way
+                            </span>{" "}
+                            you think and solve problems.
                         </p>
-                        <p className="text-base sm:text-lg text-white/85 italic leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", textShadow: '0 0 20px rgba(240,194,127,0.2)' }}>
-                            It just hasn't been <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>packaged</span> into a product people can <span style={{ textShadow: '0 0 18px rgba(240,194,127,0.5), 0 0 35px rgba(240,194,127,0.2)' }}>purchase</span>.
+                        <p
+                            className="text-base sm:text-lg italic leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "rgba(26,30,58,0.8)",
+                                textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.7)",
+                            }}
+                        >
+                            It just hasn't been{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(135deg, hsl(225, 95%, 40%) 0%, hsl(210, 100%, 36%) 50%, hsl(200, 100%, 34%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(212 100% 52% / 0.45))",
+                                    textShadow: "none",
+                                }}
+                            >
+                                packaged
+                            </span>{" "}
+                            into a product people can{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(135deg, hsl(28, 100%, 42%) 0%, hsl(15, 100%, 40%) 50%, hsl(2, 95%, 40%) 100%)",
+                                    filter: "drop-shadow(0 0 10px hsl(15 100% 50% / 0.45))",
+                                    textShadow: "none",
+                                }}
+                            >
+                                purchase
+                            </span>
+                            .
                         </p>
                     </div>
                 </div>
@@ -616,26 +693,39 @@ const ZoneOfGeniusEntry = () => {
                     </div>
                 )}
 
+                {/* ═══════════════════════════════════════════════════════
+                    Step subsections — Day 47 late pass (Sasha):
+                    All dark-navy text + soft white halo + normal case.
+                    Matches /path and /playbook hero aesthetic.
+                    ═══════════════════════════════════════════════════════ */}
+
                 {/* Step: Choice */}
                 {step === "choice" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
-                        {/* Primary CTA — breathing alive feel */}
                         <div className="text-center">
                             <button
-                                className="w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
-                                           text-white font-bold text-lg sm:text-xl tracking-wider uppercase
-                                           ring-1 ring-white/25
-                                           shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
-                                           hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
-                                           hover:scale-[1.03] active:scale-95
+                                className="w-full max-w-md mx-auto rounded-2xl px-10 py-6
+                                           font-semibold text-lg sm:text-xl
                                            transition-all duration-300 ease-out
+                                           hover:scale-[1.02] active:scale-95
                                            flex items-center justify-center gap-4
                                            alive-card"
-                                style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
+                                style={{
+                                    fontFamily: "'DM Sans', sans-serif",
+                                    color: "#0a1628",
+                                    backgroundImage:
+                                        "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
+                                    border: "1px solid rgba(26,30,58,0.18)",
+                                    backdropFilter: "blur(14px)",
+                                    WebkitBackdropFilter: "blur(14px)",
+                                    boxShadow:
+                                        "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
+                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                }}
                                 onClick={() => setStep("choice-route")}
                             >
-                                Find My Top Talent
-                                <ArrowRight className="w-5 h-5 opacity-80" />
+                                Find my top talent
+                                <ArrowRight className="w-5 h-5 opacity-70" />
                             </button>
                         </div>
                     </div>
@@ -645,7 +735,14 @@ const ZoneOfGeniusEntry = () => {
                 {step === "choice-route" && (
                     <div ref={stepContentRef} className="space-y-8 animate-in fade-in duration-500">
                         <div className="text-center">
-                            <h2 className="text-xl font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            <h2
+                                className="text-xl font-light tracking-wide"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "rgba(26,30,58,0.82)",
+                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                }}
+                            >
                                 How do you want to reveal it?
                             </h2>
                         </div>
@@ -653,51 +750,77 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-6 rounded-2xl liquid-glass
-                                           ring-1 ring-white/10
-                                           hover:ring-[#8460ea]/40
-                                           hover:shadow-[0_0_30px_rgba(132,96,234,0.15)]
-                                           transition-all duration-300 
+                                className="w-full p-6 rounded-2xl
+                                           transition-all duration-300
                                            text-left flex items-start gap-4 group
                                            hover:scale-[1.015] active:scale-[0.985]
                                            animate-in fade-in slide-in-from-bottom-2 duration-400"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
+                                    border: "1px solid rgba(26,30,58,0.14)",
+                                    backdropFilter: "blur(12px)",
+                                    WebkitBackdropFilter: "blur(12px)",
+                                    color: "#0a1628",
+                                }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-full bg-[#8460ea]/15 shrink-0
-                                                    group-hover:bg-[#8460ea]/25 transition-colors duration-300">
-                                        <Bot className="w-5 h-5 text-[#8460ea]" />
+                                    <div className="p-3 rounded-full shrink-0 transition-colors duration-300"
+                                        style={{ backgroundColor: "rgba(132,96,234,0.15)" }}>
+                                        <Bot className="w-5 h-5" style={{ color: "#5b21b6" }} />
                                     </div>
                                     <div>
-                                        <p className="text-base font-bold text-white/90 group-hover:text-white transition-colors tracking-wide">
+                                        <p
+                                            className="text-base font-semibold tracking-wide"
+                                            style={{ color: "#0a1628" }}
+                                        >
                                             🤖 Faster (1 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-1 leading-relaxed">Ask your AI & paste its response → get your pattern instantly</p>
+                                        <p
+                                            className="text-xs mt-1 leading-relaxed"
+                                            style={{ color: "rgba(26,30,58,0.65)" }}
+                                        >
+                                            Ask your AI & paste its response → get your pattern instantly
+                                        </p>
                                     </div>
                                 </div>
                             </button>
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-6 rounded-2xl liquid-glass
-                                           ring-1 ring-white/10
-                                           hover:ring-[#6894d0]/40
-                                           hover:shadow-[0_0_30px_rgba(104,148,208,0.15)]
-                                           transition-all duration-300 
+                                className="w-full p-6 rounded-2xl
+                                           transition-all duration-300
                                            text-left flex items-start gap-4 group
                                            hover:scale-[1.015] active:scale-[0.985]
                                            animate-in fade-in slide-in-from-bottom-2 duration-400"
-                                style={{ animationDelay: '100ms' }}
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
+                                    border: "1px solid rgba(26,30,58,0.14)",
+                                    backdropFilter: "blur(12px)",
+                                    WebkitBackdropFilter: "blur(12px)",
+                                    color: "#0a1628",
+                                    animationDelay: "100ms",
+                                }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-full bg-[#6894d0]/15 shrink-0
-                                                    group-hover:bg-[#6894d0]/25 transition-colors duration-300">
-                                        <ClipboardList className="w-5 h-5 text-[#6894d0]" />
+                                    <div className="p-3 rounded-full shrink-0 transition-colors duration-300"
+                                        style={{ backgroundColor: "rgba(104,148,208,0.18)" }}>
+                                        <ClipboardList className="w-5 h-5" style={{ color: "#1e40af" }} />
                                     </div>
                                     <div>
-                                        <p className="text-base font-bold text-white/90 group-hover:text-white transition-colors tracking-wide">
+                                        <p
+                                            className="text-base font-semibold tracking-wide"
+                                            style={{ color: "#0a1628" }}
+                                        >
                                             📋 Guided (10–15 min)
                                         </p>
-                                        <p className="text-xs text-white/35 mt-1 leading-relaxed">Assessment of your top talents</p>
+                                        <p
+                                            className="text-xs mt-1 leading-relaxed"
+                                            style={{ color: "rgba(26,30,58,0.65)" }}
+                                        >
+                                            Assessment of your top talents
+                                        </p>
                                     </div>
                                 </div>
                             </button>
@@ -709,20 +832,50 @@ const ZoneOfGeniusEntry = () => {
                 {step === "ai-prompt" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
-                            <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            <h2
+                                className="text-lg font-light tracking-wide"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "rgba(26,30,58,0.82)",
+                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                }}
+                            >
                                 Copy this prompt into your AI
                             </h2>
-                            <p className="text-xs text-white/30">ChatGPT, Claude, Gemini — any will work</p>
+                            <p
+                                className="text-xs"
+                                style={{ color: "rgba(26,30,58,0.55)" }}
+                            >
+                                ChatGPT, Claude, Gemini — any will work
+                            </p>
                         </div>
 
-                        <div className="relative rounded-2xl liquid-glass ring-1 ring-white/10">
-                            <pre className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 text-white/15 selection:bg-[#8460ea]/20">
+                        <div
+                            className="relative rounded-2xl"
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12))",
+                                border: "1px solid rgba(26,30,58,0.12)",
+                                backdropFilter: "blur(12px)",
+                                WebkitBackdropFilter: "blur(12px)",
+                            }}
+                        >
+                            <pre
+                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#8460ea]/20"
+                                style={{ color: "rgba(26,30,58,0.45)" }}
+                            >
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="absolute top-3 right-3 bg-white/5 backdrop-blur-sm border-white/15 text-white/70 hover:bg-white/10 hover:text-white shadow-sm text-xs rounded-lg"
+                                className="absolute top-3 right-3 shadow-sm text-xs rounded-lg"
+                                style={{
+                                    backgroundColor: "rgba(255,255,255,0.35)",
+                                    borderColor: "rgba(26,30,58,0.2)",
+                                    color: "#0a1628",
+                                    backdropFilter: "blur(8px)",
+                                }}
                                 onClick={handleCopyPrompt}
                             >
                                 {copied ? (
@@ -740,26 +893,35 @@ const ZoneOfGeniusEntry = () => {
                         </div>
 
                         <button
-                            className="w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
-                                       text-white font-bold text-lg tracking-wider uppercase
-                                       ring-1 ring-white/25
-                                       shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
-                                       hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
-                                       hover:scale-[1.03] active:scale-95
+                            className="w-full max-w-md mx-auto rounded-2xl px-10 py-6
+                                       font-semibold text-lg
                                        transition-all duration-300 ease-out
+                                       hover:scale-[1.02] active:scale-95
                                        flex items-center justify-center gap-4
                                        alive-card"
-                            style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
+                            style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                color: "#0a1628",
+                                backgroundImage:
+                                    "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
+                                border: "1px solid rgba(26,30,58,0.18)",
+                                backdropFilter: "blur(14px)",
+                                WebkitBackdropFilter: "blur(14px)",
+                                boxShadow:
+                                    "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
+                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            }}
                             onClick={() => setStep("paste-response")}
                         >
                             I've got my AI's response
-                            <ArrowRight className="w-5 h-5 opacity-80" />
+                            <ArrowRight className="w-5 h-5 opacity-70" />
                         </button>
 
                         <div className="text-center pt-2">
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="text-[11px] text-white/60 hover:text-white/90 transition-colors duration-300 tracking-wide"
+                                className="text-[11px] transition-colors duration-300 tracking-wide hover:underline"
+                                style={{ color: "rgba(26,30,58,0.6)" }}
                             >
                                 I'll do the guided assessment instead →
                             </button>
@@ -771,36 +933,63 @@ const ZoneOfGeniusEntry = () => {
                 {step === "paste-response" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
-                            <h2 className="text-lg font-light text-white/80 tracking-wide" style={{ fontFamily: "'Source Serif 4', serif" }}>
+                            <h2
+                                className="text-lg font-light tracking-wide"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "rgba(26,30,58,0.82)",
+                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                }}
+                            >
                                 Paste your AI's response
                             </h2>
-                            <p className="text-xs text-white/30">The full response — we'll extract your pattern from it</p>
+                            <p
+                                className="text-xs"
+                                style={{ color: "rgba(26,30,58,0.55)" }}
+                            >
+                                The full response — we'll extract your pattern from it
+                            </p>
                         </div>
 
                         <Textarea
                             value={aiResponse}
                             onChange={(e) => setAiResponse(e.target.value)}
                             placeholder="Paste your AI's response here..."
-                            className="min-h-[200px] font-mono text-sm rounded-2xl bg-white/[0.03] backdrop-blur-sm border-white/10 focus:border-[#8460ea]/30 focus:ring-1 focus:ring-[#8460ea]/20 text-white/80 placeholder:text-white/15 transition-all duration-300"
+                            className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
+                            style={{
+                                backgroundColor: "rgba(255,255,255,0.30)",
+                                borderColor: "rgba(26,30,58,0.14)",
+                                color: "#0a1628",
+                                backdropFilter: "blur(12px)",
+                                WebkitBackdropFilter: "blur(12px)",
+                            }}
                         />
 
                         <button
-                            className={`w-full max-w-md mx-auto liquid-glass-strong rounded-2xl px-10 py-6
-                                       text-white font-bold text-lg tracking-wider uppercase
-                                       ring-1 ring-white/25
-                                       shadow-[0_0_40px_rgba(240,194,127,0.2),0_0_80px_rgba(132,96,234,0.15)]
-                                       hover:shadow-[0_0_60px_rgba(240,194,127,0.35),0_0_100px_rgba(132,96,234,0.25)]
-                                       hover:scale-[1.03] active:scale-95
+                            className={`w-full max-w-md mx-auto rounded-2xl px-10 py-6
+                                       font-semibold text-lg
                                        transition-all duration-300 ease-out
+                                       hover:scale-[1.02] active:scale-95
                                        disabled:opacity-60 disabled:hover:scale-100 disabled:shadow-none
                                        flex items-center justify-center gap-4
-                                       ${aiResponse.trim() ? 'alive-card' : ''}`}
-                            style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
+                                       ${aiResponse.trim() ? "alive-card" : ""}`}
+                            style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                color: "#0a1628",
+                                backgroundImage:
+                                    "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
+                                border: "1px solid rgba(26,30,58,0.18)",
+                                backdropFilter: "blur(14px)",
+                                WebkitBackdropFilter: "blur(14px)",
+                                boxShadow:
+                                    "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
+                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            }}
                             onClick={handleGenerateAppleseed}
                             disabled={isProcessing || !aiResponse.trim()}
                         >
-                            {isProcessing ? "Revealing..." : "Reveal My Top Talent"}
-                            <Sparkles className="w-5 h-5 opacity-80" />
+                            {isProcessing ? "Revealing..." : "Reveal my top talent"}
+                            <Sparkles className="w-5 h-5 opacity-70" />
                         </button>
                     </div>
                 )}

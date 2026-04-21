@@ -41,26 +41,25 @@ const AppleseedRitualLoading = ({
 
     return (
         <>
-            {/* Gradient background — matches ZoG entry page */}
-            <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-                <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-                <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
-            </div>
+            {/* Day 47 late pass (Sasha): own fixed dark bg removed. The
+                loader now sits directly on GameShellV2's ambient Panel 3 —
+                same light treatment as the rest of the journey. */}
 
             <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
                 {/* Sacred Geometry Animation */}
                 <div className="relative w-32 h-32 mb-8">
                     {/* Outer ring */}
-                    <div className="absolute inset-0 border-2 border-white/15 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                    <div className="absolute inset-0 border-2 rounded-full animate-spin"
+                        style={{ animationDuration: '8s', borderColor: 'rgba(26,30,58,0.18)' }} />
 
                     {/* Middle ring */}
-                    <div className="absolute inset-4 border-2 border-[#8460ea]/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                    <div className="absolute inset-4 border-2 border-[#8460ea]/40 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
 
                     {/* Inner ring */}
-                    <div className="absolute inset-8 border-2 border-[#8460ea]/50 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                    <div className="absolute inset-8 border-2 border-[#8460ea]/55 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
 
                     {/* Center glow with dodecahedron */}
-                    <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/20 to-[#8460ea]/15 backdrop-blur-sm rounded-full animate-pulse flex items-center justify-center">
+                    <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/30 to-[#8460ea]/20 backdrop-blur-sm rounded-full animate-pulse flex items-center justify-center">
                         <img
                             src="/dodecahedron.png"
                             alt="Soul"
@@ -72,7 +71,7 @@ const AppleseedRitualLoading = ({
                     {[...Array(6)].map((_, i) => (
                         <div
                             key={i}
-                            className="absolute w-2 h-2 bg-[#8460ea]/40 rounded-full animate-ping"
+                            className="absolute w-2 h-2 bg-[#8460ea]/50 rounded-full animate-ping"
                             style={{
                                 top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
                                 left: `${50 + Math.cos(i * 60 * Math.PI / 180) * 40}%`,
@@ -83,23 +82,35 @@ const AppleseedRitualLoading = ({
                     ))}
                 </div>
 
-                {/* Phase text */}
+                {/* Phase text — dark navy for light Panel 3 */}
                 <div className="h-8 mb-4">
-                    <p className="text-lg text-white/90 animate-pulse transition-all duration-500">
+                    <p
+                        className="text-lg animate-pulse transition-all duration-500"
+                        style={{
+                            color: "#0a1628",
+                            textShadow: "0 0 18px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
+                        }}
+                    >
                         {PHASES[phaseIndex]}
                     </p>
                 </div>
 
                 {/* Progress bar — glass treatment */}
-                <div className="w-64 h-1.5 liquid-glass rounded-full overflow-hidden ring-1 ring-white/10">
+                <div className="w-64 h-1.5 liquid-glass rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-gradient-to-r from-[#8460ea]/60 to-[#6894d0]/50 transition-all duration-100 ease-out rounded-full"
+                        className="h-full bg-gradient-to-r from-[#8460ea]/80 to-[#6894d0]/70 transition-all duration-100 ease-out rounded-full"
                         style={{ width: `${progress}%` }}
                     />
                 </div>
 
                 {/* Decorative text */}
-                <p className="mt-8 text-sm text-white/70">
+                <p
+                    className="mt-8 text-sm"
+                    style={{
+                        color: "rgba(26,30,58,0.7)",
+                        textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                    }}
+                >
                     Your Zone of Genius is being articulated...
                 </p>
             </div>
