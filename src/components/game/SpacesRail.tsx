@@ -112,6 +112,24 @@ const SpacesRail = ({
 }: SpacesRailProps) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { toast } = useToast();
+
+    // Track live auth state so the Log In / Log Out button reflects reality
+    // regardless of what props the parent happens to pass in.
+    const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
+    useEffect(() => {
+        let cancelled = false;
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!cancelled) setIsAuthed(!!session?.user);
+        });
+        const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+            setIsAuthed(!!session?.user);
+        });
+        return () => {
+            cancelled = true;
+            listener.subscription.unsubscribe();
+        };
+    }, []);
 
     const isActive = (path: string) => {
         if (activeSpaceId) {
@@ -132,12 +150,9 @@ const SpacesRail = ({
                 className
             )}
         >
-            {/* User Profile */}
+            {/* User Profile — identity display only. NOT clickable (Sasha, 2026-04-21). */}
             <div className="p-2 md:p-3">
-                <Link
-                    to="/game/me"
-                    className="flex items-center gap-2 hover:bg-white/10 rounded-lg p-1.5 -m-1.5 transition-colors"
-                >
+                <div className="flex items-center gap-2 p-1.5 -m-1.5">
                     {avatarUrl ? (
                         <img
                             src={avatarUrl}
@@ -166,7 +181,7 @@ const SpacesRail = ({
                             )}
                         </div>
                     </div>
-                </Link>
+                </div>
                 <div className="flex flex-col items-center gap-1 mt-2 md:hidden">
                     <span className="text-[10px] text-white/50">
                         {userLevel ? `Level ${userLevel}` : 'Member'}
@@ -261,21 +276,44 @@ const SpacesRail = ({
                     <Settings className="w-5 h-5 flex-shrink-0" />
                     <span className="hidden md:block text-sm font-medium">Settings</span>
                 </button>
-                <button
-                    onClick={async () => {
-                        await supabase.auth.signOut();
-                        navigate("/");
-                    }}
-                    className={cn(
-                        "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
-                        "justify-center md:justify-start",
-                        "text-white/30 hover:bg-red-500/20 hover:text-red-300"
-                    )}
-                    title="Log Out"
-                >
-                    <LogOut className="w-4 h-4 flex-shrink-0" />
-                    <span className="hidden md:block text-xs font-medium">Log Out</span>
-                </button>
+                {isAuthed === null ? (
+                    // During the initial auth check — render a placeholder the
+                    // same height as the button so the rail doesn't jump.
+                    <div className="h-[32px]" aria-hidden="true" />
+                ) : isAuthed ? (
+                    <button
+                        onClick={async () => {
+                            await supabase.auth.signOut();
+                            toast({
+                                title: "You're logged out",
+                                description: "See you when you're back.",
+                            });
+                            navigate("/");
+                        }}
+                        className={cn(
+                            "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                            "justify-center md:justify-start",
+                            "text-white/30 hover:bg-red-500/20 hover:text-red-300"
+                        )}
+                        title="Log Out"
+                    >
+                        <LogOut className="w-4 h-4 flex-shrink-0" />
+                        <span className="hidden md:block text-xs font-medium">Log Out</span>
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => navigate("/auth")}
+                        className={cn(
+                            "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                            "justify-center md:justify-start",
+                            "text-white/60 hover:bg-white/10 hover:text-white"
+                        )}
+                        title="Log In"
+                    >
+                        <LogIn className="w-4 h-4 flex-shrink-0" />
+                        <span className="hidden md:block text-xs font-medium">Log In</span>
+                    </button>
+                )}
             </div>
         </div>
     );
