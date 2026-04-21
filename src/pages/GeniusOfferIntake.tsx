@@ -14,6 +14,17 @@ import BoldText from "@/components/BoldText";
 import BackButton from "@/components/BackButton";
 import { User } from "@supabase/supabase-js";
 import { GENIUS_OFFER_PROMPT_FULL, GENIUS_OFFER_PROMPT_SHORT } from "@/prompts";
+import { z } from "zod";
+
+// Zod schema mirrors the database CHECK constraints to give users a clean
+// error before the request hits the backend.
+const intakeSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(200),
+  email: z.string().trim().email("Invalid email address").max(320),
+  ai_summary: z.string().max(20000).optional().nullable(),
+  products_sold: z.string().max(10000).optional().nullable(),
+  best_clients: z.string().max(10000).optional().nullable(),
+});
 
 type WizardStep =
   | "auth"
@@ -228,16 +239,32 @@ const GeniusOfferIntake = () => {
     setSaving(true);
 
     try {
+      // Validate inputs client-side before hitting the database
+      const parsed = intakeSchema.safeParse({
+        name: progress.name,
+        email: progress.email,
+        ai_summary: progress.ai_summary,
+        products_sold: progress.products_sold,
+        best_clients: progress.best_clients,
+      });
+      if (!parsed.success) {
+        const firstError = parsed.error.errors[0]?.message ?? "Please review your inputs.";
+        toast({ title: firstError, variant: "destructive" });
+        setSaving(false);
+        return;
+      }
+      const validated = parsed.data;
+
       // Insert the request
       const { error } = await supabase.from("genius_offer_requests").insert({
         user_id: user.id,
-        name: progress.name,
-        email: progress.email,
+        name: validated.name,
+        email: validated.email,
         has_ai_assistant: progress.has_ai_assistant || false,
         source_branch: progress.has_ai_assistant ? "ai" : "tests",
-        ai_summary_raw: progress.ai_summary || null,
-        products_sold: progress.products_sold || null,
-        best_clients: progress.best_clients || null,
+        ai_summary_raw: validated.ai_summary || null,
+        products_sold: validated.products_sold || null,
+        best_clients: validated.best_clients || null,
         status: "intake_received",
       });
 
@@ -246,8 +273,8 @@ const GeniusOfferIntake = () => {
       // Trigger email notification
       await supabase.functions.invoke("send-genius-offer-notification", {
         body: {
-          name: progress.name,
-          email: progress.email,
+          name: validated.name,
+          email: validated.email,
           sourceBranch: progress.has_ai_assistant ? "ai" : "tests",
         },
       });
