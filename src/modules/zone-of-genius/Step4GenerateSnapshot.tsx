@@ -369,21 +369,14 @@ GENERAL STYLE RULES:
     day: 'numeric'
   });
 
+  // Day 47 (Sasha): Step 4 no longer brings its own full-page dark shell.
+  // The parent ZoneOfGeniusAssessmentLayout now wraps in GameShellV2, so
+  // we just render the content — same ambient bg as the rest of the journey.
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      {/* Gradient background — matches ZoG entry page */}
-      <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-        <img src="/gradient.jpg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
-      </div>
-
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
-        {/* Step indicator */}
-        <div className="flex items-center justify-center mb-6">
-          <p className="text-xs font-medium uppercase tracking-widest text-white/30">
-            STEP 5 OF 5 · LIFELINE SNAPSHOT
-          </p>
-        </div>
+    <div className="text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <main className="relative z-10 mx-auto max-w-6xl pb-20 pt-4">
+        {/* Day 47: redundant "STEP 5 OF 5 · LIFELINE SNAPSHOT" eyebrow removed —
+            the parent AssessmentLayout already renders the step progress pills. */}
 
         {/* Hero: Result reveal */}
         <section className="liquid-glass rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center mb-12 ring-1 ring-white/10">
