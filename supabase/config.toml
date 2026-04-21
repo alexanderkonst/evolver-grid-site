@@ -98,3 +98,6 @@ verify_jwt = false
 
 [functions.save-zog-result]
 verify_jwt = false
+
+[functions.process-email-queue]
+verify_jwt = true
