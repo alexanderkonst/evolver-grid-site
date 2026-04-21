@@ -74,7 +74,7 @@ const LADDER: LadderRow[] = [
 
 const PathPage = () => {
   return (
-    <GameShellV2>
+    <GameShellV2 hideLogo>
       <div
         className="relative"
         style={{ fontFamily: "'DM Sans', sans-serif", color: "#1a1e3a" }}
@@ -98,10 +98,11 @@ const PathPage = () => {
         </div>
 
         <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
-            {/* ─── The Promise ─── */}
+            {/* ─── The Promise ─── Font matches landing hero aesthetic:
+                Cormorant Garamond font-semibold, same tracking/leading. */}
             <section className="mb-14">
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.08em] leading-[1.15] mb-8 uppercase"
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.06em] leading-[1.15] mb-8 uppercase"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#0a1628",
@@ -111,7 +112,7 @@ const PathPage = () => {
               </h1>
 
               <p
-                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-3"
+                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#0a1628",
@@ -122,7 +123,7 @@ const PathPage = () => {
               </p>
 
               <p
-                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-3"
+                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#0a1628",
@@ -132,7 +133,7 @@ const PathPage = () => {
               </p>
 
               <p
-                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-8 italic"
+                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-8 italic"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "#5b21b6",
