@@ -3,7 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*
-> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md)*
+> *Current version: **v9.6** (April 21, 2026 — Day 47 evening · Integration Pass). Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
+> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.3)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
 > **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.
@@ -7341,3 +7342,43 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 *Stretch goal `/portfolio` cross-user gallery remains in Roadmap #30 stretch section — unlocked once the other 6 founders have auth accounts and opt into publishing.*
 
+
+*Alexander's Unique Business v9.6 — April 21, 2026 (Day 47 evening — Integration Pass):*
+
+***Brand rename — shipped across active public funnel:** "Zone of Genius" → **"Top Talent"** everywhere user-facing. Domain now matches brand (`FindYourTopTalent.Com`). Entry page, reveal page, assessment (all 4 steps), ritual loading, share prompt, Auth claim copy, MyResult, save-zog-result email body, SignupModal, pageTitles, AppleseedSummaryCard, ProfileOverview. URL paths (`/zone-of-genius/*`, `/game/me/zone-of-genius/*`), component filenames, and DB columns (`zog_snapshots`, `zone_of_genius_completed`) intentionally preserved to protect backwards-compat with shared links. ~25 auth-gated / legacy surfaces skipped by explicit decision — not funnel-critical.*
+
+***Commercial product rename — shipped across active public funnel:** "Ignition Session" → **"Productize Yourself Session"** on `/ignite` (document title, hero subhead, section comments, YouTube title, all S7 pricing block copy), pageTitles browser tab, `/path` secondary CTA, Step 4 guided result "If This Hit Home" card + PDF footer, save-zog-result Email 1 commercial bridge, all 3 nurture email templates. The name now matches the action: the session productizes YOU into something people can buy.*
+
+***Session duration locked:** "2 hours" (was inconsistent across page — "90 minutes" in eyebrow, "In 2 hours" under price, "2 hours" in About; normalized to 2 hours everywhere active). `playbookSteps.ts` Step 3 ctaText also updated.*
+
+***Session pricing unified to $555:** Legacy "$297 · 90-minute Career Re-Ignition Session" reference in Step 4 guided-assessment result card retired. Now points to `/ignite#pricing-section` with canonical $555 · 2 hours · money-back guarantee. Both AI-lane and guided-lane users funnel to the same commercial destination. PDF footer updated to match.*
+
+***Post-save continuity upgraded:** Save-pill email now uses a Supabase-issued magic link (`auth.admin.generateLink({ type: 'magiclink' })`) with `redirectTo=/auth/callback?next=/game/me`. Click authenticates the user and drops them in their fuller Top Talent profile. ME space unlocks automatically because `onboarding_stage='zog_complete'` is set at save time. No more token-based `/my-result` static page as the post-save landing.*
+
+***ME space single-focus:** `/game/me` redirects to `/game/me/zone-of-genius`. SectionsPanel `grow` config reduced from 7 sections (Overview / Mission / ZoG / Genius Business / Quality of Life / Assets / Settings) to ONE section: **Top Talent** with its 13 subsections. Other 6 retired from the rail until the user has earned those capabilities. Settings remains reachable via Panel 1 footer button.*
+
+***3-email nurture sequence — shipped:** Auto-queued on every save into new `nurture_email_queue` table. Dispatched by `process-nurture-emails` edge function via pg_cron `*/10 * * * *`. Double-opt-out protection via `nurture_opt_outs` table. Retries to 3× before marking failed. Copy (locked by Sasha):*
+*- **Day 1 · Log-in nudge + booking angle** — subject "Your Top Talent has a deeper layer", magic-link "Open my full Top Talent profile →" primary + commercial bridge "Book your Productize Yourself Session →" + closer "I will send one last reminder in exactly one week from now — no more pings after that."*
+*- **Day 2 (T+48h) · Gentle check-in** — subject "Has anything shifted?", pure minimalist body: "What's shifted since you read it? / You now know better what you're good at. / It stays an abstract insight until you turn it into something people can buy." No CTA, no link.*
+*- **Day 8 · Last reminder** — subject "Your Top Talent is still you", heading "Your Top Talent is the unhinged raw YOU", body introduces 2-hour Productize Yourself Session with money-back guarantee, CTA "Book your Productize Yourself Session — $555 →", closer "Last reminder. No more emails from me unless you take the next step."*
+*All emails sign off with `— Aleksandr / FindYourTopTalent.Com`. Sender: `Aleksandr Konstantinov <aleksandr@notify.aleksandrkonstantinov.com>`.*
+
+***Step 2 in the playbook rewritten as single-essay format:** "Articulate it with Precision" no longer decomposes into three substeps. It renders as one long-form essay titled "The Secret to Productizing Yourself." Argues: startup influencers / personality tests / social media influencers all fail to tell you HOW; the specificity gap goes from vague "I help people get better results" (~3/10) to Sasha's own example "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow" (~10/10); the ZoG reveal gets you to ~7/10, you must iterate to 9/10+ to productize; two shortcuts — (1) guidance from someone at 9.9+ precision, (2) high-precision purpose-discovery tool; Sasha's method refined over 6 years gets you there in ~40 minutes; three recommended alternatives: [TalentQ](https://talentq.me/), [Evolution](https://www.evolution.life/), [Kawtar Mahdaoui](https://www.linkedin.com/in/kawtar-mahdaoui-a3337810a/). Steps 1 + 3-7 keep three-substep pattern.*
+
+***Funnel synthesis doc produced:** `docs/03-playbooks/funnel_synthesis_day47.md` — ~500 lines, every public touchpoint with verbatim copy, URLs, state transitions, data capture, known gaps. For GFOA analysis.*
+
+***Landing hero v9 line structure:** Explicit `<br />` breaks so Productize It sits on its own line, "and" before Scale, no period after Entrepreneurs (psychological: avoids "stop here" cue). Gradient harmonization v8 rules locked: uniform 28% lightness / 85% saturation / same gradient structure / softer glows (10px @ 0.38 opacity primary, 3px @ 0.45 secondary). Rainbow UV→IR octave preserved (Sasha's rule: 7 steps = octave, load-bearing — we harmonize treatment, not hue).*
+
+***Architecture: /ignite and /auth absorbed into the unified shell.** `/ignite` always wraps in `GameShellV2 hideLogo` with HlsBackground scoped to Panel 3 via absolute positioning (dark "decision room" preserved inside Panel 3; Panel 1 + Panel 2 stay visually consistent). `/auth` all 3 render paths (forgot-password, claim, login/signup) wrap in shell; legacy `<Navigation />` + `<Footer />` retired. `/game/settings` made public so landing-rail Settings button works for guests. `/quiz` made public (was gated; secondary CTA from ZoG result no longer adds friction). No rogue layouts remain in the active funnel.*
+
+***Mobile polish:** SpacesRail avatar centered on mobile, awkward Level/XP text block below avatar retired, hard `border-t` divider above Settings removed so rail reads as one continuous column. GlyphIcon centering fix: `fontSize = size` (was `size * 1.1`, overflowing), `lineHeight = ${size}px` (was `1`, Cormorant's intrinsic leading offset some glyphs), `display: grid; placeItems: center`. All 7 rail glyphs now visually center in their 28×28 boxes.*
+
+***Landing CTAs refined:** Arrows removed from both buttons. Apple Liquid Glass applied (`liquid-glass-strong` primary, `liquid-glass` secondary). Pill shape. Meta line "↑ Claim your gift · takes two minutes" de-cap'd and allowed wider than the 380px button max-width.*
+
+***/path CTAs added:** Previously dead-ended. Now: primary "Start free with Step 1" → `/zone-of-genius`, secondary "Book your Productize Yourself Session" → `/ignite#pricing-section`. Both use Apple Liquid Glass.*
+
+***One testimonial on the Top Talent result page:** Sergey Makarov's "I was applying force, but the vector was wrong. The structure you developed is genius. Absolutely everything clicks." Inserted between The Gap and the primary CTA — directly mirrors the reframe the Gap section just delivered.*
+
+***StepCard "Step N." accent fix:** Was using a `neonHsl → navy → neonHsl` gradient bg-clipped to text — washed out at small sizes, the navy center dominated. Now uses solid `color-mix(in srgb, ${neonHsl} 55%, #0a1628 45%)` + neon text-shadow glow in the step's hue. Letter fills with readable saturated ink; the aura gives it presence without shouting.*
+
+***Still open heading into Wednesday (unchanged from morning pass):** First $555 funnel (P27 Si–Do). Launch DMs. José da Veiga ZoG quiz guidance. Patricia Reed paste-back. Sandra rev-share agreement. Taylor & Tracy checkpoint. Founder-collective call logistics. Next hacker-house venue.*
