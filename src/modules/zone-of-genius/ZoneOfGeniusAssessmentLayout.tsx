@@ -27,51 +27,85 @@ const ZoneOfGeniusAssessmentLayout = ({
       <img
         src={geniusLogo}
         alt="Genius Business"
-        className="w-[48px] h-auto mx-auto opacity-70 mb-4"
+        className="w-[48px] h-auto mx-auto opacity-80 mb-4"
       />
 
-      {/* Title */}
-      <h1 className="text-2xl sm:text-3xl font-semibold text-white/90 mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      {/* Title — Day 47 late pass: dark navy on light Panel 3 */}
+      <h1
+        className="text-2xl sm:text-3xl font-semibold mb-3"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          color: "#0a1628",
+          textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+        }}
+      >
         Discover Your Zone of Genius
       </h1>
-      <p className="text-white/40 text-sm mb-6">
+      <p
+        className="text-sm mb-6"
+        style={{
+          color: "rgba(26,30,58,0.55)",
+          textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+        }}
+      >
         Step {activeStep} of {steps.length}
       </p>
 
-      {/* Progress bar — liquid glass */}
+      {/* Progress bar — dark-on-light */}
       <div className="max-w-md mx-auto mb-6">
-        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+        <div
+          className="h-1.5 rounded-full overflow-hidden"
+          style={{ backgroundColor: "rgba(26,30,58,0.12)" }}
+        >
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"
             style={{
               width: `${progress}%`,
-              background: 'linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))',
+              background: "linear-gradient(90deg, #5b21b6, #8460ea)",
             }}
           />
         </div>
       </div>
 
-      {/* Step pills — glass */}
+      {/* Step pills — dark text on light Panel 3 */}
       <div className="flex items-center justify-center gap-1.5 sm:gap-2">
         {steps.map((step, idx) => (
           <React.Fragment key={step.number}>
             <div
               className={cn(
                 "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] sm:text-xs transition-all",
-                activeStep >= step.number
-                  ? "bg-white/15 text-white font-medium"
-                  : "bg-white/5 text-white/30"
               )}
+              style={
+                activeStep >= step.number
+                  ? {
+                      backgroundColor: "rgba(26,30,58,0.12)",
+                      color: "#0a1628",
+                      fontWeight: 500,
+                    }
+                  : {
+                      backgroundColor: "rgba(26,30,58,0.04)",
+                      color: "rgba(26,30,58,0.45)",
+                    }
+              }
             >
               <div
                 className={cn(
                   "w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-semibold transition-all",
-                  activeStep > step.number
-                    ? "bg-white/30 text-white"
-                    : activeStep === step.number
-                      ? "bg-white/20 text-white ring-1 ring-white/30"
-                      : "bg-white/5 text-white/30"
                 )}
+                style={
+                  activeStep > step.number
+                    ? { backgroundColor: "#5b21b6", color: "#ffffff" }
+                    : activeStep === step.number
+                      ? {
+                          backgroundColor: "rgba(91,33,182,0.15)",
+                          color: "#5b21b6",
+                          boxShadow: "inset 0 0 0 1px rgba(91,33,182,0.4)",
+                        }
+                      : {
+                          backgroundColor: "rgba(26,30,58,0.06)",
+                          color: "rgba(26,30,58,0.45)",
+                        }
+                }
               >
                 {activeStep > step.number ? "✓" : step.number}
               </div>
@@ -79,10 +113,13 @@ const ZoneOfGeniusAssessmentLayout = ({
             </div>
             {idx < steps.length - 1 && (
               <div
-                className={cn(
-                  "w-4 sm:w-6 h-px transition-all",
-                  activeStep > step.number ? "bg-white/30" : "bg-white/10"
-                )}
+                className="w-4 sm:w-6 h-px transition-all"
+                style={{
+                  backgroundColor:
+                    activeStep > step.number
+                      ? "rgba(91,33,182,0.4)"
+                      : "rgba(26,30,58,0.15)",
+                }}
               />
             )}
           </React.Fragment>
