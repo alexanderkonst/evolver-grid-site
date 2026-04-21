@@ -337,6 +337,36 @@ const AppleseedDisplay = ({
                     </div>
                 </div>
 
+                {/* Social proof — Day 47 late pass (Sasha): ONE testimonial, inserted
+                    between "The Gap" and the primary CTA. Sergey's quote is the most
+                    on-theme because "I was applying force, but the vector was wrong"
+                    IS the reframe the whole Gap section just delivered. */}
+                <figure
+                    className="liquid-glass rounded-2xl p-6 max-w-lg mx-auto text-center"
+                    style={{ fontFamily: "'Source Serif 4', serif" }}
+                >
+                    <blockquote
+                        className="text-base md:text-lg leading-relaxed italic"
+                        style={{
+                            color: "#0a1628",
+                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                        }}
+                    >
+                        "I was applying force, but the vector was wrong.
+                        The structure you developed is genius. Absolutely
+                        everything clicks."
+                    </blockquote>
+                    <figcaption
+                        className="mt-4 text-xs"
+                        style={{
+                            color: "rgba(26,30,58,0.65)",
+                            fontFamily: "'DM Sans', sans-serif",
+                        }}
+                    >
+                        — <strong style={{ color: "#0a1628" }}>Sergey Jay Makarov</strong>, Serial Founder &amp; System Architect
+                    </figcaption>
+                </figure>
+
                 {/* OwnershipSection used to sit here as a blocking email gate.
                     Moved to the footer row below the CTAs (Sasha, 2026-04-21)
                     as a quiet save-to-inbox option, not a barrier. */}

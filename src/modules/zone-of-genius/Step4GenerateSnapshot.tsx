@@ -4,7 +4,7 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Download, ExternalLink, ArrowLeft, RefreshCw, Sparkles } from "lucide-react";
+import { Download, ExternalLink, ArrowLeft, ArrowRight, RefreshCw, Sparkles } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -612,39 +612,41 @@ GENERAL STYLE RULES:
                   )}
                 </button>
 
-                {/* Session card: If This Hit Home */}
+                {/* Session card — Day 47 late pass (Sasha): legacy $297 Career
+                    Re-Ignition card retired. Now routes to the canonical Ignition
+                    Session at /ignite#pricing-section — same destination as the
+                    AI-route primary CTA. One product, one price: $555. */}
                 <article className="liquid-glass rounded-2xl p-5">
                   <h3
                     className="text-sm font-semibold mb-2"
                     style={{ color: "#0a1628" }}
                   >
-                    If This Hit Home
+                    Ready to turn this into a business?
                   </h3>
                   <p
                     className="text-xs mb-3"
                     style={{ color: "rgba(26,30,58,0.7)" }}
                   >
-                    If this description feels uncannily accurate and you want help turning it into concrete career moves,
-                    Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
+                    You've named your Top Talent. The next step is structuring it into
+                    something people can buy. Aleksandr runs a focused Ignition Session
+                    to compile your entire unique business on one page.
                   </p>
                   <p
                     className="text-xs font-semibold mb-3"
                     style={{ color: "#0a1628" }}
                   >
-                    $297 · 90 minutes
+                    $555 · 2 hours · Money-back guarantee
                   </p>
                   <a
-                    href="https://www.calendly.com/konstantinov"
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/ignite#pricing-section"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium liquid-glass-strong transition-all hover:scale-[1.02]"
                     style={{
                       color: "#0a1628",
                       textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                     }}
                   >
-                    Book a Deep-Dive Session
-                    <ExternalLink className="w-3 h-3" />
+                    Book your Ignition Session
+                    <ArrowRight className="w-3 h-3" />
                   </a>
                 </article>
               </aside>
@@ -798,18 +800,18 @@ GENERAL STYLE RULES:
                   </div>
                 )}
 
-                {/* PDF Footer CTA */}
+                {/* PDF Footer CTA — Day 47 late pass: aligned with /ignite canonical */}
                 <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid rgba(164,163,208,0.2)' }}>
                   <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#2c3150', marginBottom: '8px' }}>
-                    Ready to Turn Insight into Action?
+                    Ready to turn this into a business?
                   </h3>
                   <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
-                    This is just the beginning. If you'd like support translating your Zone of Genius into a clear,
-                    confident career move, Aleksandr offers a focused 90-minute Career Re-Ignition Session to
-                    transform your ZoG insights into a 3-step strategic action plan to land your next fulfilling role.
+                    You've named your Top Talent. The next step is structuring it into something people
+                    can buy. Aleksandr runs a focused Ignition Session to compile your entire unique
+                    business on one page.
                   </p>
                   <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
-                    Book My Career Re-Ignition Session at calendly.com/konstantinov
+                    $555 · 2 hours · Book at aleksandrkonstantinov.com/ignite
                   </p>
                 </div>
               </div>

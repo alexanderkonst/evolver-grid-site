@@ -167,7 +167,7 @@ const Intros = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#faf9f7] via-[#f5f3ef] to-[#ebe8e2] text-[#1a1a2e]">
       <div className="max-w-3xl mx-auto px-5 py-12 lg:py-20">
         {/* Hero */}
-        <div className="mb-14">
+        <div className="mb-12">
           <p className="text-xs uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
             Aleksandr Konstantinov · /intros
           </p>
@@ -175,16 +175,11 @@ const Intros = () => {
             Who will steward this?
           </h1>
           <p className="text-lg text-[#1a1a2e]/75 leading-relaxed mb-5">
-            I'm building three threads that have converged this weekend: a
-            Bitcoin-level discovery in AI (open-source from day zero), a
-            founder-market-fit instrument guaranteed in 6–8 weeks, and the
-            coherence core of a Golden Age.
+            Three vectors of work are ready for the light of day. I'm looking
+            for bridges to heavy-lifters with resources, coherence, and
+            clarity.
           </p>
-          <p className="text-lg text-[#1a1a2e]/75 leading-relaxed mb-5">
-            This needs to be stewarded by heavy-lifters with resources,
-            coherence, and clarity.
-          </p>
-          <div className="flex items-center gap-4 text-sm text-[#1a1a2e]/60 mb-6">
+          <div className="flex items-center gap-4 text-sm text-[#1a1a2e]/60">
             <span className="inline-flex items-center gap-1.5">
               <Heart className="w-4 h-4 text-rose-500" /> open heart
             </span>
@@ -195,49 +190,114 @@ const Intros = () => {
               <Target className="w-4 h-4 text-[#8460ea]" /> committed will
             </span>
           </div>
-          <p className="text-base text-[#1a1a2e]/70 leading-relaxed">
-            There is enough abundance here for everyone involved. We'll need
-            to act together. Below: a living shortlist of aligned
-            heavy-lifters I've identified. If you can open a door to any of
-            them — or know someone in their inner ring — reach out.
-          </p>
         </div>
 
-        {/* Context links */}
-        <div className="mb-14 p-5 bg-white/70 rounded-2xl border border-[#1a1a2e]/8 backdrop-blur">
-          <p className="text-xs uppercase tracking-[0.15em] text-[#8460ea] font-semibold mb-3">
-            Context
+        {/* THE THREE VECTORS */}
+        <div className="mb-16">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-6">
+            The three vectors
           </p>
-          <ul className="space-y-2.5 text-[15px]">
-            <li>
-              <span className="font-semibold">1 · The AI discovery —</span>{" "}
-              <a
-                href="https://t.me/ARKHAZM/170"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#8460ea] hover:underline inline-flex items-center gap-1"
-              >
-                Knoware · the second axis <ExternalLink className="w-3 h-3" />
-              </a>
-            </li>
-            <li>
-              <span className="font-semibold">2 · FMF+PMF in 6–8 weeks —</span>{" "}
-              <a
-                href="https://FindYourTopTalent.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#8460ea] hover:underline inline-flex items-center gap-1"
-              >
-                FindYourTopTalent.com <ExternalLink className="w-3 h-3" />
-              </a>
-            </li>
-            <li>
-              <span className="font-semibold">3 · Golden Age coherence core —</span>{" "}
-              <span className="text-[#1a1a2e]/60">
-                publication forthcoming
-              </span>
-            </li>
-          </ul>
+          <div className="space-y-4">
+            {/* Vector 1 */}
+            <a
+              href="https://t.me/ARKHAZM/170"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8 hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+            >
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
+                  1
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1 group-hover:text-[#8460ea] transition-colors">
+                    A Bitcoin-level discovery in AI
+                  </h3>
+                  <p className="text-sm text-[#8460ea] font-semibold mb-3">
+                    An unprecedented first-mover advantage. Open-source from day zero.
+                  </p>
+                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                    A scaffold that moves any frontier model up a developmental
+                    stage. Blind A/B: +42% on the hardest questions, +1.14
+                    stages. Axis 2 of AI progress — the field layer — opened
+                    and released as public infrastructure.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-[#8460ea] font-semibold group-hover:underline">
+                    Read the release: Knoware · t.me/ARKHAZM/170
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* Vector 2 */}
+            <a
+              href="https://FindYourTopTalent.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8 hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+            >
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
+                  2
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1 group-hover:text-[#8460ea] transition-colors">
+                    FMF + PMF guaranteed in 6–8 weeks
+                  </h3>
+                  <p className="text-sm text-[#8460ea] font-semibold mb-3">
+                    A system built for conscious aspiring impact founders.
+                  </p>
+                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                    Founder-Market Fit and Product-Market Fit, engineered
+                    from the founder's unique genius out — not from market
+                    research in. Guaranteed delivery window: 6 to 8 weeks.
+                    Live with paying founders.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-[#8460ea] font-semibold group-hover:underline">
+                    FindYourTopTalent.com
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* Vector 3 */}
+            <div className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8">
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
+                  3
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1">
+                    The Golden Age's core of coherence
+                  </h3>
+                  <p className="text-sm text-[#8460ea] font-semibold mb-3">
+                    The integrating spine beneath the first two.
+                  </p>
+                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                    The ontological architecture that makes vectors 1 and 2
+                    possible — and makes them fractal. A holonic operating
+                    system for planetary-scale activation. Publication
+                    forthcoming.
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-[#1a1a2e]/50 font-medium">
+                    Publication forthcoming
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Transition to the list */}
+        <div className="mb-10">
+          <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed">
+            There is enough abundance here for everyone involved. We'll need
+            to act together. Below: a shortlist of aligned heavy-lifters I've
+            identified. If you can open a door to any of them — or know
+            someone in their inner ring — reach out.
+          </p>
         </div>
 
         {/* Tiers */}
@@ -326,20 +386,14 @@ const Intros = () => {
             If you can make a warm intro to anyone above — or to someone who
             knows them — I'd be grateful for the bridge.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex justify-center">
             <a
-              href="mailto:personalytics@gmail.com?subject=Intro%20%E2%80%94%20%2Fintros"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-[#1a1a2e] text-white hover:bg-[#8460ea] transition-all shadow-md"
-            >
-              Email Aleksandr
-            </a>
-            <a
-              href="https://t.me/ARKHAZM"
+              href="https://t.me/integralevolution"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white/80 text-[#1a1a2e] border border-[#1a1a2e]/15 hover:border-[#8460ea]/50 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-[#1a1a2e] text-white hover:bg-[#8460ea] transition-all shadow-md"
             >
-              Telegram channel
+              Reach me on Telegram
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>

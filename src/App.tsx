@@ -236,7 +236,10 @@ const App = () => (
                   <Route path="/mens-circle" element={<RequireAuth><MensCircle /></RequireAuth>} />
                   <Route path="/mens-circle/thank-you" element={<RequireAuth><MensCircleThankYou /></RequireAuth>} />
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
-                  <Route path="/quiz" element={<RequireAuth><GeniusQuiz /></RequireAuth>} />
+                  {/* Day 47 late pass (Sasha): /quiz is now public. It's the
+                      secondary CTA from the ZoG result ("See exactly why this
+                      hasn't turned into income") — auth before that is pure friction. */}
+                  <Route path="/quiz" element={<GeniusQuiz />} />
                   <Route path="/genius-offer-intake" element={<RequireAuth><GeniusOfferIntake /></RequireAuth>} />
                   <Route path="/admin/genius-offers" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
                   <Route path="/genius-admin" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />

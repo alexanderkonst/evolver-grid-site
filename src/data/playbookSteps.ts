@@ -214,7 +214,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     labelLines: ["Enhance with", "Business Structure"],
     price: "$555",
     bundleWith: [2],
-    ctaText: "Create your Unique Business Structure at 9+/10 resonance in 90 minutes",
+    ctaText: "Create your Unique Business Structure at 9+/10 resonance in 2 hours",
     included: [
       "Clarity and remembrance on what business your top talent was always pointing at",
       "7 business artifacts unique to YOUR business",

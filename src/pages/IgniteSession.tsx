@@ -4,7 +4,7 @@ import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "../components/game/GameShellV2";
-import SiteLogo from "@/components/SiteLogo";
+// SiteLogo import removed Day 47 late pass — GameShellV2 now owns the logo.
 import { useState, useRef, useEffect, useCallback } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
@@ -56,7 +56,10 @@ const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-busine
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
 
 
-/* ─── HLS Background Video ────────────────────────────────── */
+/* ─── HLS Background Video ──────────────────────────────────
+   Day 47 late pass (Sasha): changed from `fixed` → `absolute` so the video
+   scopes to Panel 3 when this page is wrapped in GameShellV2, rather than
+   leaking over the spaces rail + sections panel. */
 const HlsBackground = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -83,7 +86,7 @@ const HlsBackground = () => {
       loop
       muted
       playsInline
-      className="fixed inset-0 w-full h-full object-cover z-0"
+      className="absolute inset-0 w-full h-full object-cover z-0"
       aria-hidden="true"
     />
   );
@@ -258,7 +261,8 @@ const MicroCommitmentBlock = () => {
 
 const IgniteSession = () => {
   const location = useLocation();
-  const inShell = location.pathname.startsWith("/game/");
+  // `inShell` flag retired Day 47 late pass — GameShellV2 is now the
+  // wrapper regardless of URL. `location` still used for hash scrolling below.
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const testimonials = useTestimonials();
 
@@ -283,15 +287,18 @@ const IgniteSession = () => {
   }, [location.hash]);
 
   const content = (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden font-sans" id="ignite-page">
+    // Day 47 late pass (Sasha): `/ignite` is now always rendered inside
+    // GameShellV2. The wrapper is a relative container (not min-h-screen
+    // bg-black fixed), video + dark overlay are scoped to THIS page's
+    // Panel 3 area via `absolute` positioning — they no longer cover the
+    // spaces rail and sections panel. Own SiteLogo removed (shell owns it).
+    <div className="relative min-h-dvh text-white overflow-hidden font-sans" id="ignite-page">
 
-      {/* VIDEO BACKGROUND */}
+      {/* VIDEO BACKGROUND — scoped to Panel 3 via absolute positioning */}
       <HlsBackground />
 
-      {/* Dark overlay */}
-      <div className="fixed inset-0 bg-black/45 z-[1]" aria-hidden="true" />
-
-      <SiteLogo />
+      {/* Dark wash — the "decision room" feel, scoped to Panel 3 */}
+      <div className="absolute inset-0 bg-black/55 z-[1]" aria-hidden="true" />
 
       {/* CONTENT LAYER */}
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
@@ -315,7 +322,7 @@ const IgniteSession = () => {
           </h1>
 
           <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed">
-            In 90 minutes, we take what you already do —<br/>
+            In 2 hours, we take what you already do —<br/>
             and turn it into:
           </p>
           <div className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed space-y-1">
@@ -431,7 +438,7 @@ const IgniteSession = () => {
         {/* S4: HOW IT WORKS */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
           <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
-            <BoldText>What Happens In 90 Minutes</BoldText>
+            <BoldText>What Happens In 2 Hours</BoldText>
           </h2>
           <p className="text-xs text-white/45 text-center">This is not coaching. You leave with a document, not a feeling.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -485,7 +492,7 @@ const IgniteSession = () => {
               "What is mine to build?"
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-1">
-              What I do now is simple: I sit with someone for 90 minutes, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends.
+              What I do now is simple: I sit with someone for 2 hours, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends.
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em>Aleksandr Konstantinov</em>
@@ -524,7 +531,7 @@ const IgniteSession = () => {
               <p>→ you keep circling the same question</p>
               <p>→ nothing fundamentally changes</p>
             </div>
-            <p className="text-xs text-white/40 uppercase tracking-widest text-center pt-2">In 90 minutes</p>
+            <p className="text-xs text-white/40 uppercase tracking-widest text-center pt-2">In 2 hours</p>
             <div className="space-y-2 text-left">
               {[
                 { arrow: "We define", result: "exactly what you do" },
@@ -680,8 +687,11 @@ const IgniteSession = () => {
     </div>
   );
 
-  if (inShell) return <GameShellV2>{content}</GameShellV2>;
-  return content;
+  // Day 47 late pass (Sasha): ALWAYS wrap in GameShellV2 — previously
+  // only wrapped when URL started with /game/. Now /ignite is part of the
+  // unified journey shell. `hideLogo` because shell's top-right logo tile
+  // would double-up with the genius-business logo we render in the hero.
+  return <GameShellV2 hideLogo>{content}</GameShellV2>;
 };
 
 export default IgniteSession;
