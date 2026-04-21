@@ -215,17 +215,17 @@ const buildJourneySections = (
     const sections: Section[] = [
         {
             id: "journey-start-here",
-            label: "1. Start here",
+            label: "1. Start Here",
             path: "/",
         },
         {
             id: "journey-the-playbook",
-            label: "2. The playbook",
+            label: "2. The Playbook",
             path: "/playbook",
         },
         {
             id: "journey-the-path",
-            label: "3. The path",
+            label: "3. The Path",
             path: "/path",
         },
     ];

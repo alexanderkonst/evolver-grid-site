@@ -272,8 +272,10 @@ const App = () => (
                   {/* JOURNEY Space */}
                   <Route path="/game/journey" element={<JourneyPage />} />
                   <Route path="/game/journey/start" element={<ZoneOfGeniusEntry />} />
-                  {/* PLAYBOOK — the full methodology playbook (public entry at /playbook) */}
+                  {/* PLAYBOOK — Step 1 is at /playbook itself (no `/discover` slug).
+                      Legacy /playbook/discover redirects to /playbook. */}
                   <Route path="/playbook" element={<PlaybookPage />} />
+                  <Route path="/playbook/discover" element={<Navigate to="/playbook" replace />} />
                   <Route path="/playbook/:slug" element={<PlaybookPage />} />
                   {/* THE PATH — one-page value ladder. Soft-gated (auth or ZoG done) by the page itself. */}
                   <Route path="/path" element={<PathPage />} />
