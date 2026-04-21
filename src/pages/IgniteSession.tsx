@@ -267,7 +267,7 @@ const IgniteSession = () => {
   const testimonials = useTestimonials();
 
   useEffect(() => {
-    document.title = "You've Been Giving Your Best Work Away for Free — Ignition Session";
+    document.title = "You've Been Giving Your Best Work Away for Free — Productize Yourself Session";
     trackPageView('ignite_view');
     return () => { document.title = "Genius Business"; };
   }, []);
@@ -342,7 +342,7 @@ const IgniteSession = () => {
 
 
           <div className="flex flex-col items-center gap-4 pt-6">
-            {/* Paid path: Ignition Session */}
+            {/* Paid path: Productize Yourself Session */}
             <Button size="lg" asChild>
               <a
                 href={STRIPE_PAYMENT_LINK}
@@ -383,7 +383,7 @@ const IgniteSession = () => {
         {/* S1.5: VIDEO */}
         <section id="hero-video" aria-label="Methodology video" className="space-y-5">
           <div className="liquid-glass rounded-2xl p-1">
-            <LazyYouTube id="afWWcXUqnLI" title="The Ignition Session — Methodology Overview" />
+            <LazyYouTube id="afWWcXUqnLI" title="The Productize Yourself Session — Methodology Overview" />
           </div>
           <p className="text-xs text-white/45 text-center italic">
             If you're still thinking about this after watching… you already know.
