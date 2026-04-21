@@ -209,7 +209,9 @@ const App = () => (
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
-                  <Route path="/ignite" element={<RequireAuth><IgniteSession /></RequireAuth>} />
+                  {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
+                      here directly. Auth at the pricing step was redundant funnel friction. */}
+                  <Route path="/ignite" element={<IgniteSession />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:category" element={<Library />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
@@ -366,7 +368,10 @@ const App = () => (
                   <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
                   <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
                   <Route path="/zone-of-genius/entry" element={<RequireAuth><ZoneOfGeniusEntry /></RequireAuth>} />
-                  <Route path="/zone-of-genius/assessment" element={<RequireAuth><ZoneOfGeniusAssessmentLayout /></RequireAuth>}>
+                  {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
+                      added friction AND showed the legacy shell; guests can now complete
+                      the guided path and be offered to save on the result page. */}
+                  <Route path="/zone-of-genius/assessment" element={<ZoneOfGeniusAssessmentLayout />}>
                     <Route index element={<Step1SelectTop10Talents />} />
                     <Route path="step-1" element={<Step1SelectTop10Talents />} />
                     <Route path="step-2" element={<Step2SelectTop3CoreTalents />} />

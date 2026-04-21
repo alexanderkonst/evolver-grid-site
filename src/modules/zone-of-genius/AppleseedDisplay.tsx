@@ -73,7 +73,7 @@ const OwnershipSection = ({
                                hover:text-white/85"
                 >
                     <Mail className="w-3.5 h-3.5" />
-                    <span>Save this to my inbox</span>
+                    <span>Save my top talent result for later</span>
                 </button>
             ) : (
                 <form
@@ -200,16 +200,14 @@ const AppleseedDisplay = ({
 
     return (
         <>
-            {/* Gradient background — matches ZoG entry page */}
-            <div className="fixed inset-0 z-0 bg-[#0a0a1a]">
-                <img 
-                    src="/gradient.jpg" 
-                    alt="" 
-                    className="w-full h-full object-cover" 
-                    aria-hidden="true"
-                />
-                <div className="absolute inset-0 bg-[#0a0a1a]/65 backdrop-blur-[2px]" />
-            </div>
+            {/*
+              Day 47 (Sasha): Background equalized with the rest of the journey.
+              The old full-viewport dark gradient (bg-[#0a0a1a] + /65 overlay)
+              blacked out GameShellV2's ambient Panel 3 tone and made the result
+              page feel like a different product from the ZoG entry page. Now we
+              let Panel 3's native background show through — same palette as
+              /zone-of-genius, /playbook, /path.
+            */}
 
             <div className="relative z-10 max-w-2xl mx-auto px-4 py-2 space-y-6">
                 {/* Epic Revelatory Hero - The core genius reveal */}
@@ -345,14 +343,14 @@ const AppleseedDisplay = ({
                                    transition-all duration-300 alive-card"
                     >
                         <div>
+                            {/* Subtitle "I'm done circling this — let's make it real"
+                                dropped Day 47 — the pre-CTA line above the button
+                                already carries that voice. */}
                             <p
                                 className="text-base font-bold text-white uppercase tracking-wider"
                                 style={{ textShadow: "0 0 20px rgba(240,194,127,0.3)" }}
                             >
                                 Turn My Top Talent into a Growing Business
-                            </p>
-                            <p className="text-xs text-white/50 mt-1 italic">
-                                I'm done circling this — let's make it real
                             </p>
                         </div>
                         <span className="w-10 h-10 rounded-full bg-[#b8a4f8]/20 flex items-center justify-center flex-shrink-0 ml-4">
