@@ -76,8 +76,8 @@ const PathPage = () => {
   return (
     <GameShellV2>
       <div
-        className="relative text-white"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
+        className="relative"
+        style={{ fontFamily: "'DM Sans', sans-serif", color: "#1a1e3a" }}
       >
         {/* Ambient glows — decoration, layered above the shell's video bg */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -101,37 +101,49 @@ const PathPage = () => {
             {/* ─── The Promise ─── */}
             <section className="mb-14">
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.15] mb-8"
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.08em] leading-[1.15] mb-8 uppercase"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "rgba(231,233,229,0.98)",
+                  color: "#0a1628",
                 }}
               >
-                The whole path.
+                The Path
               </h1>
 
               <p
-                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-6"
+                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-3"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "rgba(231,233,229,0.95)",
+                  color: "#0a1628",
                 }}
               >
                 Solid Founder-Market Fit. Early Product-Market Fit,
-                traction, and organic demand. In 6–8 weeks.{" "}
-                <span
-                  style={{
-                    color: "rgba(132,96,234,0.95)",
-                    fontStyle: "italic",
-                  }}
-                >
-                  Guaranteed.
-                </span>
+                traction, and organic demand.
+              </p>
+
+              <p
+                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-3"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "#0a1628",
+                }}
+              >
+                In 6–8 weeks.
+              </p>
+
+              <p
+                className="text-xl sm:text-2xl md:text-[28px] leading-snug mb-8 italic"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "#5b21b6",
+                }}
+              >
+                Guaranteed.
               </p>
 
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
-                style={{ color: "rgba(231,233,229,0.7)" }}
+                style={{ color: "rgba(26,30,58,0.7)" }}
               >
                 Provided you do your part, at an average speed.
               </p>

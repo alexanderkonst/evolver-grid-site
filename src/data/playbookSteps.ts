@@ -114,6 +114,11 @@ export type PlaybookStep = {
  * one-proven-strategy paragraphs with his own text. Step names (subtitles)
  * and transformational results are CANONICAL as of 2026-04-16 (Day 41).
  */
+// Color spectrum (Sasha, 2026-04-21): UV → IR — violet through the rainbow
+// to red-orange. Each step's neonHsl is a single hue stop on the arc.
+// Step 1 violet · Step 2 indigo · Step 3 blue · Step 4 cyan · Step 5 green
+// · Step 6 gold · Step 7 red-orange. High saturation + mid-lightness so each
+// reads as neon, not pastel.
 export const PLAYBOOK_STEPS: PlaybookStep[] = [
   {
     number: 1,
@@ -121,8 +126,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "DISCOVER",
     subtitle: "Name Your Top Talent",
     transformationalResult: "I can name my top talent out loud.",
-    neonHsl: "hsl(175, 80%, 55%)",
-    neonRgb: "0, 210, 190",
+    neonHsl: "hsl(280, 85%, 68%)",
+    neonRgb: "180, 95, 240",
     labelLines: ["Name Your", "Top Talent"],
     price: "Free",
     ctaText: "Find Your Top Talent",
@@ -161,8 +166,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "PACKAGE",
     subtitle: "Articulate it with Precision",
     transformationalResult: "I can describe my business in one sentence.",
-    neonHsl: "hsl(260, 70%, 65%)",
-    neonRgb: "140, 100, 234",
+    neonHsl: "hsl(248, 85%, 68%)",
+    neonRgb: "110, 100, 240",
     labelLines: ["Articulate it", "with Precision"],
     price: "$555",
     bundleWith: [3],
@@ -204,8 +209,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "BUILD",
     subtitle: "Enhance it with Business Structure",
     transformationalResult: "I know the shape of my business.",
-    neonHsl: "hsl(210, 70%, 60%)",
-    neonRgb: "70, 140, 220",
+    neonHsl: "hsl(210, 90%, 62%)",
+    neonRgb: "56, 140, 235",
     labelLines: ["Enhance with", "Business Structure"],
     price: "$555",
     bundleWith: [2],
@@ -247,8 +252,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "PRODUCT",
     subtitle: "Build your First Unique Product",
     transformationalResult: "My first product exists — I can hand it to someone.",
-    neonHsl: "hsl(45, 90%, 55%)",
-    neonRgb: "230, 190, 30",
+    neonHsl: "hsl(180, 85%, 55%)",
+    neonRgb: "35, 220, 220",
     labelLines: ["Build your First", "Unique Product"],
     price: "$1,111 + rev share",
     bundleWith: [5],
@@ -291,35 +296,32 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "TEST",
     subtitle: "Beta-Test That Everything Works by Gifting and/or Selling",
     transformationalResult: "People who got it say yes to more.",
-    neonHsl: "hsl(330, 70%, 60%)",
-    neonRgb: "220, 80, 140",
+    neonHsl: "hsl(130, 75%, 55%)",
+    neonRgb: "65, 220, 105",
     labelLines: ["Gift or Sell", "to Beta-Test"],
     price: "$1,111 + rev share",
     bundleWith: [4],
     substeps: [
       {
         number: 1,
-        name: "Gift the first three",
-        description:
-          "Gift the first three — full value, no price, full presence.",
+        name: "Intuitively identify 5 people in your network that are in your tribe",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Pick three people who match the tribe description exactly. Deliver as if they paid premium. Tell them: 'I need to know if this lands.'",
+          "Watch for names of people in your network naturally bubbling up in your awareness. Write them down as they do — trust your first instinct even when the mind says \u201Cthat must be a glitch\u201D (that\u2019s exactly NOT a glitch). Send intuitive quick messages without overthinking it, offering them the transformational promise.",
       },
       {
         number: 2,
-        name: "Capture the shift",
-        description:
-          "Capture the shift — in their words, before the afterglow fades.",
+        name: "Deliver your product, record it, track and analyze with AI, learn iteratively, track key metrics",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Within 48 hours ask: what changed in you? And: what would you tell a friend who's stuck where you were? Those are your testimonials and your marketing copy.",
+          "Use a simple dashboard to track delivery + outcomes. Use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
       },
       {
         number: 3,
-        name: "Read the signal",
-        description:
-          "Read the signal — who wants more, who referred, who paid.",
+        name: "Polish your delivery and find your tribe with bull\u2019s-eye precision",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Three gifts, three signals. Two of three want more → the ground is real. One of three refers → distribution is starting. Zero reach back → return to step two.",
+          "When you reach ~10 sessions delivered across ~5 clients (numbers are arbitrary but empirical), that\u2019s where you start to know what you\u2019re doing — getting really good at delivering transformational results across flavors of people, and the bull\u2019s-eye tribe (aka beachhead market) emerges.",
       },
     ],
   },
@@ -329,33 +331,30 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "LAUNCH",
     subtitle: "Laser-Focus Tactically and Go Live",
     transformationalResult: "I have my first paying client.",
-    neonHsl: "hsl(145, 60%, 50%)",
-    neonRgb: "50, 190, 100",
+    neonHsl: "hsl(45, 98%, 60%)",
+    neonRgb: "255, 200, 40",
     labelLines: ["Laser-Focus and", "Go Live"],
     substeps: [
       {
         number: 1,
-        name: "Name the price",
-        description:
-          "Name the price — premium, specific, with the reason underneath.",
+        name: "Build landing, funnel, and lead magnet that transform your ~10/10 tribe at every touchpoint",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Price the transformation, not the hours. Fixed price per container, no sliding scale. Write why this number feels right, for you.",
+          "Crystallize everything from Steps 1–5 into ONE landing page + ONE funnel + the playbook as the free lead magnet. Give out the methodology of how you get people to the transformational result as best and as openly as you can so that it becomes a DIY recipe. Every word, every CTA, every screen transition should name their lived pain, collapse indecision into consciousness of the cost of consequences, and use identity-shift language. Use Godfather Offer Architect GPT or equivalent; run 5–10+ rounds of live iteration until the page can close without you on the call. Test of success: a cold ~10/10 aligned reader almost takes out their card unprompted. If yes, the page is live. If not, keep iterating.",
       },
       {
         number: 2,
-        name: "Send the invitation",
-        description:
-          "Send the specific invitation — not a broadcast, a direct message.",
+        name: "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your bull\u2019s-eye tribe \u2014 the simplest possible frame of the transformation in ONE sentence",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] One message to one person: name the pain, name the shift, name the price. 'I'm opening three spots — want one?' Send ten before posting socially.",
+          "Lock ONE sentence that makes the wrong people quietly leave and the right people sit up. Then post it onto your key digital channels: (a) bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB) with the same line + same URL; (b) ONE DM template (personalize only the name); (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in.",
       },
       {
         number: 3,
-        name: "Hold the first session",
-        description:
-          "Hold the first paid session with the same care as the free ones.",
+        name: "Send a personal life-update + your lead magnet to 10/10 tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 10/10 aligned live communities. If demand isn\u2019t growing organically at this point, activate additional digital + physical surfaces, go upstream to aligned practitioners serving a similar ~10/10 tribe, and/or start outreach campaigns",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] The money doesn't change the work — it names the commitment. Deliver the same depth. Notice what the payment opens.",
+          "Sit still, let names arise \u2014 trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can\u2019t). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook / methodology link) as the gift, not the ask. Parallel: write ONE short, culture-matched intro for each alive ~10/10 community where you\u2019re already a member \u2014 wherever appropriate.",
       },
     ],
   },
@@ -365,33 +364,31 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "SCALE",
     subtitle: "Turn Organic Growth into Scaling Impact and Revenue",
     transformationalResult: "My income is organically growing without me pushing.",
-    neonHsl: "hsl(290, 60%, 60%)",
-    neonRgb: "180, 100, 220",
+    neonHsl: "hsl(10, 95%, 62%)",
+    neonRgb: "250, 95, 60",
     labelLines: ["Grow & Scale", "with Others, in Flow"],
     price: "10% rev share or equity",
     substeps: [
       {
         number: 1,
-        name: "Multiply what works",
-        description:
-          "Find the channel that already works — and do more of only that.",
+        name: "Get guidance from a whole team of venture scalers working with you",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Map where your first three clients came from. The channel with two or more of them is your channel. Multiply it by three before adding anything new.",
+          "[Pending Sasha's vetted text]",
       },
       {
         number: 2,
-        name: "Systematise the session",
-        description:
-          "Systematise the sessions — keep the soul, document the steps.",
+        name: "Enter a decentralized revenue-sharing coop scheme",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] After each session, write what you did in order. What you do every time is the spine. What you adapt each time is the art — leave it alone.",
+          "[Pending Sasha's vetted text]",
       },
       {
         number: 3,
-        name: "Gather the circle",
-        description: "Gather the circle — peers, not followers.",
+        name: "Enjoy the next octave of the ride",
+        description: "",
         oneProvenStrategy:
-          "[PLACEHOLDER — Sasha fills in.] Five founders, each holding a different unique business. Meet monthly. Share one question and one result. No leader role — the rotation is the leader.",
+          "[Pending Sasha's vetted text]",
       },
     ],
   },
