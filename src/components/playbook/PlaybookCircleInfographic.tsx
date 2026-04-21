@@ -67,11 +67,11 @@ const PlaybookCircleInfographic = ({
       aria-label="The seven-step journey — holonic completion circle"
     >
       <svg
-        // viewBox is expanded horizontally (~-80 → 560) and vertically
-        // (~-30 → 510) beyond the 480×480 ring so multi-line step labels
-        // sitting outside the ring have breathing room. Center stays at
-        // (240, 240) — only the canvas around it grows.
-        viewBox="-80 -30 640 540"
+        // viewBox expanded generously on the sides (~-160 → 640) so the
+        // longest multi-word labels at 3 and 9 o'clock ("Enhance with
+        // Business Structure", "Laser-Focus and Go Live") never clip.
+        // Center stays at (240, 240) — only the canvas grows.
+        viewBox="-160 -40 800 560"
         className="w-full h-auto block"
         role="img"
         aria-labelledby="playbook-circle-title playbook-circle-desc"
