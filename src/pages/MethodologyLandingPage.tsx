@@ -25,28 +25,28 @@ const MethodologyLandingPage = () => {
           className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            // Panel 3 is now nearly transparent (bg-black/[0.06]) so dark
-            // text reads better than white on the light video areas.
-            color: "#1a1e3a",
+            // Panel 3 is nearly transparent so dark text reads better than
+            // white on the varied video areas. Soft white halo + subtle
+            // depth shadow lift the letters on any background patch.
+            color: "#0a1628",
+            textShadow:
+              "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
           }}
         >
           {/*
-            Highlights (Sasha, 2026-04-21 v2): every action word maps to the
-            spectrum of playbook step colors (UV → IR). Each gradient uses 3
-            hue stops around the step's base neon for depth.
-              "Top Talent" → Step 1 violet
-              "Productize" → Step 2 indigo
-              "Build"      → Step 3 blue
-              "Launch"     → Step 4 cyan
-              "Scale"      → Step 5 green
-              "Impact"     → Step 7 red-orange (the destination)
+            Highlights (Sasha, 2026-04-21 v3 — NEON + glow):
+              Each word maps to a playbook step color. Gradients span wider
+              hue ranges for visible flow. `filter: drop-shadow` adds the
+              neon glow halo around the gradient-clipped letters.
           */}
           Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(290, 90%, 72%), hsl(280, 85%, 68%), hsl(270, 85%, 65%))",
+                "linear-gradient(135deg, hsl(300, 100%, 78%) 0%, hsl(280, 100%, 68%) 45%, hsl(255, 100%, 62%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(280 100% 70% / 0.65)) drop-shadow(0 0 6px hsl(260 100% 65% / 0.55))",
             }}
           >
             Top Talent
@@ -56,7 +56,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(258, 90%, 72%), hsl(248, 85%, 68%), hsl(238, 85%, 65%))",
+                "linear-gradient(135deg, hsl(270, 100%, 75%) 0%, hsl(248, 100%, 65%) 50%, hsl(225, 100%, 60%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(250 100% 65% / 0.65)) drop-shadow(0 0 6px hsl(240 100% 60% / 0.55))",
             }}
           >
             Productize
@@ -66,7 +68,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(220, 90%, 68%), hsl(210, 90%, 62%), hsl(200, 85%, 60%))",
+                "linear-gradient(135deg, hsl(230, 100%, 70%) 0%, hsl(210, 100%, 60%) 50%, hsl(195, 100%, 55%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(215 100% 60% / 0.65)) drop-shadow(0 0 6px hsl(200 100% 55% / 0.55))",
             }}
           >
             Build
@@ -76,7 +80,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(190, 85%, 60%), hsl(180, 85%, 55%), hsl(170, 80%, 55%))",
+                "linear-gradient(135deg, hsl(195, 100%, 65%) 0%, hsl(180, 100%, 55%) 50%, hsl(165, 95%, 55%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(180 100% 55% / 0.7)) drop-shadow(0 0 6px hsl(170 100% 55% / 0.6))",
             }}
           >
             Launch
@@ -86,7 +92,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(140, 80%, 60%), hsl(130, 75%, 55%), hsl(120, 70%, 52%))",
+                "linear-gradient(135deg, hsl(150, 100%, 65%) 0%, hsl(130, 95%, 55%) 50%, hsl(100, 90%, 52%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(130 100% 55% / 0.7)) drop-shadow(0 0 6px hsl(115 100% 55% / 0.55))",
             }}
           >
             Scale
@@ -96,7 +104,9 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(25, 100%, 65%), hsl(15, 100%, 62%), hsl(5, 95%, 60%))",
+                "linear-gradient(135deg, hsl(45, 100%, 65%) 0%, hsl(20, 100%, 62%) 50%, hsl(0, 100%, 58%) 100%)",
+              filter:
+                "drop-shadow(0 0 18px hsl(20 100% 60% / 0.7)) drop-shadow(0 0 6px hsl(5 100% 55% / 0.55))",
             }}
           >
             Impact

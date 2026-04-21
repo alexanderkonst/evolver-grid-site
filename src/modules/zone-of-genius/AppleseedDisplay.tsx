@@ -25,6 +25,13 @@ interface AppleseedDisplayProps {
  * Step 1: Save (dominant). Step 2: Share (collapsed, delayed).
  * Sequence: See self → Own it → Then share it.
  */
+/**
+ * OwnershipSection — compact inline save (Sasha, 2026-04-21).
+ *
+ * No longer a blocking gate above the CTAs. Lives in the footer row next
+ * to share — subtle, click to expand inline, single-field. The anonymous
+ * profile is already persisted; this just links an email to it.
+ */
 const OwnershipSection = ({
     emailUnlocked,
     isSaved,
@@ -40,50 +47,59 @@ const OwnershipSection = ({
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
 }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    // Success state — quiet confirmation, no form.
+    if (emailUnlocked || isSaved) {
+        return (
+            <div className="text-center py-2">
+                <p className="text-xs text-white/50">
+                    ✓ Saved. We sent your top talent to your inbox so you can come back to it.
+                </p>
+            </div>
+        );
+    }
+
     return (
-        <div className="space-y-6 pt-4 max-w-md mx-auto">
-
-            {/* EMAIL GATE — "Don't lose this" */}
-            {!emailUnlocked && !isSaved && (
-                <div className="space-y-3 text-center">
-                    <p className="text-sm font-semibold text-white/80">Save this and come back to it anytime</p>
-                    <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-3 p-5 rounded-xl liquid-glass ring-1 ring-white/10">
-                        <p className="text-xs text-white/45 leading-relaxed">
-                            Access your result later + build on it when you're ready
-                        </p>
-                        <div className="relative w-full">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/25" />
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="your@email.com"
-                                className="w-full pl-9 pr-3 py-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-white/80 placeholder:text-white/20 focus:outline-none focus:border-[#8460ea]/40 transition-colors"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            disabled={emailSaving || !email.trim()}
-                            className="w-full liquid-glass-strong rounded-full px-6 py-3.5 text-white font-semibold text-base
-                                       ring-1 ring-white/20
-                                       shadow-[0_0_30px_rgba(132,96,234,0.2)]
-                                       hover:shadow-[0_0_40px_rgba(132,96,234,0.35)]
-                                       hover:scale-105 active:scale-95
-                                       transition-all duration-300 ease-out
-                                       disabled:opacity-40"
-                        >
-                            {emailSaving ? 'Saving...' : 'Save my result'}
-                        </button>
-                    </form>
-                </div>
-            )}
-
-            {/* ─── SUCCESS STATE: after save ─── */}
-            {(emailUnlocked || isSaved) && (
-                <div className="text-center py-2">
-                    <p className="text-sm text-white/50">✓ Saved. We sent your Zone of Genius to your inbox.</p>
-                </div>
+        <div className="max-w-md mx-auto">
+            {!expanded ? (
+                <button
+                    type="button"
+                    onClick={() => setExpanded(true)}
+                    className="w-full flex items-center justify-center gap-2 p-3
+                               rounded-full liquid-glass ring-1 ring-white/15
+                               hover:ring-white/30 hover:bg-white/5
+                               transition-all duration-300 text-xs text-white/60
+                               hover:text-white/85"
+                >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Save this to my inbox</span>
+                </button>
+            ) : (
+                <form
+                    onSubmit={handleEmailSubmit}
+                    className="flex items-center gap-2 p-2 rounded-full liquid-glass ring-1 ring-white/15"
+                >
+                    <Mail className="w-3.5 h-3.5 ml-2 text-white/40 flex-shrink-0" />
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="your@email.com"
+                        autoFocus
+                        className="flex-1 bg-transparent border-0 text-sm text-white/85 placeholder:text-white/25 focus:outline-none min-w-0"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        disabled={emailSaving || !email.trim()}
+                        className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white
+                                   bg-[#8460ea]/90 hover:bg-[#8460ea]
+                                   disabled:opacity-40 transition-colors"
+                    >
+                        {emailSaving ? "Saving…" : "Send it"}
+                    </button>
+                </form>
             )}
         </div>
     );
@@ -307,22 +323,14 @@ const AppleseedDisplay = ({
                     </div>
                 </div>
 
-                {/* ═══════════════════════════════════════════════
-                    STATE 1: OWNERSHIP (save/email gate)
-                    ═══════════════════════════════════════════════ */}
-                <OwnershipSection
-                    emailUnlocked={emailUnlocked}
-                    isSaved={isSaved}
-                    email={email}
-                    setEmail={setEmail}
-                    emailSaving={emailSaving}
-                    handleEmailSubmit={handleEmailSubmit}
-                />
+                {/* OwnershipSection used to sit here as a blocking email gate.
+                    Moved to the footer row below the CTAs (Sasha, 2026-04-21)
+                    as a quiet save-to-inbox option, not a barrier. */}
 
                 {/* ═══════════════════════════════════════════════
-                    CTAs — swapped primary/secondary (Sasha, 2026-04-21):
-                    "Turn My Top Talent into a Growing Business" is now the
-                    main action. The diagnostic quiz is the secondary learn-more.
+                    CTAs — primary/secondary (Sasha, 2026-04-21):
+                    "Turn My Top Talent into a Growing Business" is the main
+                    action. The diagnostic quiz is the secondary learn-more.
                     ═══════════════════════════════════════════════ */}
                 <div className="max-w-md mx-auto space-y-4">
 
@@ -377,14 +385,26 @@ const AppleseedDisplay = ({
                 </div>
 
                 {/* ═══════════════════════════════════════════════
-                    SHARE MODULE — delayed, collapsed, non-intrusive
-                    Below CTAs, visually de-emphasized
+                    FOOTER ROW — save + share, both de-emphasized
+                    (Sasha, 2026-04-21). Primary decision already lived
+                    in the CTAs above; this is the escape hatch for
+                    "not ready right now."
                     ═══════════════════════════════════════════════ */}
-                <DelayedShare
-                    appleseed={appleseed}
-                    profileId={profileId}
-                    profileUrl={profileUrl}
-                />
+                <div className="max-w-md mx-auto space-y-3 pt-6">
+                    <OwnershipSection
+                        emailUnlocked={emailUnlocked}
+                        isSaved={isSaved}
+                        email={email}
+                        setEmail={setEmail}
+                        emailSaving={emailSaving}
+                        handleEmailSubmit={handleEmailSubmit}
+                    />
+                    <DelayedShare
+                        appleseed={appleseed}
+                        profileId={profileId}
+                        profileUrl={profileUrl}
+                    />
+                </div>
 
                 {/* Bottom signature removed 2026-04-21 per Sasha — it was
                     clipping into the open share dropdown and reading as a
