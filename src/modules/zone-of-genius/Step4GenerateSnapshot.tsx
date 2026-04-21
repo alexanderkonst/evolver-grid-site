@@ -373,37 +373,59 @@ GENERAL STYLE RULES:
   // The parent ZoneOfGeniusAssessmentLayout now wraps in GameShellV2, so
   // we just render the content — same ambient bg as the rest of the journey.
   return (
-    <div className="text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", color: "#0a1628" }}>
       <main className="relative z-10 mx-auto max-w-6xl pb-20 pt-4">
         {/* Day 47: redundant "STEP 5 OF 5 · LIFELINE SNAPSHOT" eyebrow removed —
             the parent AssessmentLayout already renders the step progress pills. */}
 
-        {/* Hero: Result reveal */}
-        <section className="liquid-glass rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center mb-12 ring-1 ring-white/10">
-          <p className="text-sm uppercase tracking-widest text-white/30 mb-4">
+        {/* Hero: Result reveal — Day 47 late pass: dark text + Apple Liquid Glass */}
+        <section
+          className="liquid-glass rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center mb-12"
+        >
+          <p
+            className="text-sm uppercase tracking-widest mb-4"
+            style={{ color: "rgba(26,30,58,0.55)" }}
+          >
             Your Zone of Genius
           </p>
           {parsedSnapshot ? (
             <>
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white"
-                style={{ textShadow: '0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(255,255,255,0.08)' }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "#0a1628",
+                  textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+                }}
               >
                 You are a {parsedSnapshot.archetypeTitle}
               </h1>
-              <p className="mt-4 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto font-medium">
+              <p
+                className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto font-medium"
+                style={{
+                  color: "rgba(26,30,58,0.75)",
+                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                }}
+              >
                 Now you have words for what makes you, you.
               </p>
             </>
           ) : (
             <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white"
-              style={{ textShadow: '0 0 30px rgba(255,255,255,0.3)' }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#0a1628",
+                textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
+              }}
             >
               Discovering Your Zone of Genius...
             </h1>
           )}
-          <p className="mt-4 text-sm text-white/30 max-w-2xl mx-auto">
+          <p
+            className="mt-4 text-sm max-w-2xl mx-auto"
+            style={{ color: "rgba(26,30,58,0.55)" }}
+          >
             This is your current character card — a starting point, not a final verdict.
           </p>
         </section>
@@ -425,29 +447,46 @@ GENERAL STYLE RULES:
               {/* LEFT COLUMN */}
               <div className="space-y-6">
                 {/* Character Card */}
-                <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10 ring-1 ring-white/10">
-                  <p className="text-xs uppercase tracking-widest text-white/25 mb-1">
+                <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
+                  <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(26,30,58,0.5)" }}>
                     Zone of Genius Character Card
                   </p>
-                  <p className="text-xs text-white/25 mb-6">
+                  <p className="text-xs mb-6" style={{ color: "rgba(26,30,58,0.5)" }}>
                     Generated on: {currentDate}
                   </p>
 
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6">
+                  <h2
+                    className="text-2xl sm:text-3xl font-bold text-center mb-6"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#0a1628",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                    }}
+                  >
                     {parsedSnapshot.archetypeTitle}
                   </h2>
 
                   <div className="mb-6">
-                    <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+                    <p
+                      className="text-sm sm:text-base leading-relaxed"
+                      style={{ color: "rgba(26,30,58,0.82)" }}
+                    >
                       {parsedSnapshot.description}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap justify-center gap-2 pt-4 border-t border-white/10">
+                  <div
+                    className="flex flex-wrap justify-center gap-2 pt-4"
+                    style={{ borderTop: "1px solid rgba(26,30,58,0.08)" }}
+                  >
                     {top3Talents.map(talent => (
                       <span
                         key={talent.id}
-                        className="inline-flex items-center rounded-full bg-white/15 px-4 py-2 text-xs sm:text-sm font-medium text-white/80"
+                        className="inline-flex items-center rounded-full px-4 py-2 text-xs sm:text-sm font-medium"
+                        style={{
+                          backgroundColor: "rgba(91,33,182,0.12)",
+                          color: "#5b21b6",
+                        }}
                       >
                         {talent.name}
                       </span>
@@ -456,54 +495,90 @@ GENERAL STYLE RULES:
                 </article>
 
                 {/* Panel A: Superpowers in Action */}
-                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
-                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                <article className="liquid-glass rounded-2xl p-6">
+                  <h3
+                    className="text-lg font-semibold mb-2"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#0a1628",
+                    }}
+                  >
                     Superpowers in Action
                   </h3>
-                  <p className="text-xs text-white/35 mb-3">
+                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
                     How this genius tends to show up when you are on.
                   </p>
-                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                  <ul
+                    className="space-y-2 text-sm list-disc list-inside"
+                    style={{ color: "rgba(26,30,58,0.82)" }}
+                  >
                     {formatBullets(parsedSnapshot.superpowers)}
                   </ul>
                 </article>
 
                 {/* Panel B: Your Edge */}
-                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
-                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                <article className="liquid-glass rounded-2xl p-6">
+                  <h3
+                    className="text-lg font-semibold mb-2"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#0a1628",
+                    }}
+                  >
                     Your Edge (Where You Trip Yourself Up)
                   </h3>
-                  <p className="text-xs text-white/35 mb-3">
+                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
                     Your supershadow — the flip side of your gift. Growth happens here.
                   </p>
-                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                  <ul
+                    className="space-y-2 text-sm list-disc list-inside"
+                    style={{ color: "rgba(26,30,58,0.82)" }}
+                  >
                     {formatBullets(parsedSnapshot.edge)}
                   </ul>
                 </article>
 
                 {/* Panel C: Where This Genius Thrives */}
-                <article className="liquid-glass rounded-2xl p-6 ring-1 ring-white/8">
-                  <h3 className="text-lg font-semibold text-white/90 mb-2">
+                <article className="liquid-glass rounded-2xl p-6">
+                  <h3
+                    className="text-lg font-semibold mb-2"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "#0a1628",
+                    }}
+                  >
                     Where This Genius Thrives
                   </h3>
-                  <p className="text-xs text-white/35 mb-3">
+                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
                     Environments and roles where this pattern tends to shine.
                   </p>
-                  <ul className="space-y-2 text-sm text-white/70 list-disc list-inside">
+                  <ul
+                    className="space-y-2 text-sm list-disc list-inside"
+                    style={{ color: "rgba(26,30,58,0.82)" }}
+                  >
                     {formatBullets(parsedSnapshot.thrives)}
                   </ul>
                 </article>
 
                 {/* Panel D: Mastery Action */}
                 {parsedSnapshot.masteryAction && (
-                  <article className="liquid-glass-strong rounded-2xl p-6 ring-1 ring-white/15">
-                    <h3 className="text-lg font-semibold text-white/90 mb-2">
+                  <article className="liquid-glass-strong rounded-2xl p-6">
+                    <h3
+                      className="text-lg font-semibold mb-2"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "#0a1628",
+                      }}
+                    >
                       🔁 Your Mastery Action
                     </h3>
-                    <p className="text-xs text-white/35 mb-3">
+                    <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.55)" }}>
                       One repeatable action that builds mastery over time.
                     </p>
-                    <p className="text-base text-white/80 font-medium leading-relaxed">
+                    <p
+                      className="text-base font-medium leading-relaxed"
+                      style={{ color: "#0a1628" }}
+                    >
                       {parsedSnapshot.masteryAction}
                     </p>
                   </article>
@@ -518,7 +593,11 @@ GENERAL STYLE RULES:
                   type="button"
                   onClick={handleDownloadPDF}
                   disabled={isDownloading}
-                  className="w-full liquid-glass-strong inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+                  className="w-full liquid-glass-strong inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+                  style={{
+                    color: "#0a1628",
+                    textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                  }}
                 >
                   {isDownloading ? (
                     <>
@@ -534,22 +613,35 @@ GENERAL STYLE RULES:
                 </button>
 
                 {/* Session card: If This Hit Home */}
-                <article className="liquid-glass rounded-2xl p-5 ring-1 ring-white/8">
-                  <h3 className="text-sm font-semibold text-white/90 mb-2">
+                <article className="liquid-glass rounded-2xl p-5">
+                  <h3
+                    className="text-sm font-semibold mb-2"
+                    style={{ color: "#0a1628" }}
+                  >
                     If This Hit Home
                   </h3>
-                  <p className="text-xs text-white/50 mb-3">
+                  <p
+                    className="text-xs mb-3"
+                    style={{ color: "rgba(26,30,58,0.7)" }}
+                  >
                     If this description feels uncannily accurate and you want help turning it into concrete career moves,
                     Aleksandr offers a focused Career Re-Ignition Session to design a 3-step plan around your Zone of Genius.
                   </p>
-                  <p className="text-xs font-semibold text-white/70 mb-3">
+                  <p
+                    className="text-xs font-semibold mb-3"
+                    style={{ color: "#0a1628" }}
+                  >
                     $297 · 90 minutes
                   </p>
                   <a
                     href="https://www.calendly.com/konstantinov"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-white/80 liquid-glass-strong ring-1 ring-white/15 hover:ring-white/25 transition-all hover:scale-[1.02]"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium liquid-glass-strong transition-all hover:scale-[1.02]"
+                    style={{
+                      color: "#0a1628",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                    }}
                   >
                     Book a Deep-Dive Session
                     <ExternalLink className="w-3 h-3" />
@@ -559,8 +651,14 @@ GENERAL STYLE RULES:
             </div>
 
             {/* Footer: Magic button */}
-            <div className="mt-16 pt-8 border-t border-white/10 text-center space-y-6">
-              <p className="text-sm text-white/40 max-w-2xl mx-auto">
+            <div
+              className="mt-16 pt-8 text-center space-y-6"
+              style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
+            >
+              <p
+                className="text-sm max-w-2xl mx-auto"
+                style={{ color: "rgba(26,30,58,0.65)" }}
+              >
                 Ready to put your genius to work? Start growing with daily practices tailored to your unique pattern.
               </p>
 
@@ -568,15 +666,23 @@ GENERAL STYLE RULES:
                 {returnTo === "genius-offer" ? (
                   <button
                     onClick={() => navigate("/genius-offer-intake?from=zog")}
-                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2"
+                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2"
+                    style={{
+                      color: "#0a1628",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                    }}
                   >
-                    <Sparkles size={16} />
+                    <Sparkles size={16} style={{ color: "#5b21b6" }} />
                     Continue to Genius Offer Creation
                   </button>
                 ) : (
                   <button
                     onClick={() => navigate(getPostZogRedirect(returnTo) || "/quality-of-life-map/assessment?return=onboarding")}
-                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full text-white ring-1 ring-white/20 hover:ring-white/30 transition-all hover:scale-[1.02] active:scale-95"
+                    className="liquid-glass-strong px-8 py-3 text-base font-semibold rounded-full transition-all hover:scale-[1.02] active:scale-95"
+                    style={{
+                      color: "#0a1628",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                    }}
                   >
                     Save & Continue
                   </button>
@@ -586,14 +692,16 @@ GENERAL STYLE RULES:
               <div className="flex items-center justify-center gap-4 text-sm">
                 <button
                   onClick={handleBack}
-                  className="text-white/30 hover:text-white/60 transition-colors"
+                  className="transition-colors"
+                  style={{ color: "rgba(26,30,58,0.5)" }}
                 >
                   ← Back
                 </button>
-                <span className="text-white/10">|</span>
+                <span style={{ color: "rgba(26,30,58,0.2)" }}>|</span>
                 <button
                   onClick={handleStartNew}
-                  className="text-white/30 hover:text-white/60 transition-colors"
+                  className="transition-colors"
+                  style={{ color: "rgba(26,30,58,0.5)" }}
                 >
                   Start Over
                 </button>
