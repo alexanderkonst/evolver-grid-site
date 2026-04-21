@@ -7182,6 +7182,7 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 **CTA:** Sharpen Your Top Talent to 9+/10 in 60 mins
 **Pricing:** Bundled with Step 3 ($555)
 **What you get:** One Sentence Top Talent that Lights You Up and That You Have Had All Your Life. Your Top Talent Sharpened to 9/10 or higher in 60 mins.
+**Guarantee:** Show up for the 2-hour workshop. If you don't leave with your top talent at 9/10+ and your unique business on one page — full refund.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7192,8 +7193,9 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ### Step 3: Enhance it with Business Structure
 
 **CTA:** Create your Unique Business Structure at 9+/10 resonance in 90 minutes
-**Pricing:** $555 one time payment
+**Pricing:** $555 one time payment (bundled with Step 2)
 **What you get:** Clarity and remembrance on what business your top talent was always pointing at. 7 business artifacts unique to YOUR business.
+**Guarantee:** Show up for the 2-hour workshop. If you don't leave with your top talent at 9/10+ and your unique business on one page — full refund.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7205,8 +7207,9 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 **Lives at:** `/` and `/playbook` (previously `/playbook/discover`)
 **CTA:** Build Your First Unique Product Ready for Testing and Selling
-**Pricing:** $1,111 upfront + revenue share (capped at $2.5k out of your first $10k)
+**Pricing:** $1,111 upfront (no rev share — the rev share lives at Step 6)
 **What you get:** A First Signature 1:1 Session with a clear tangible transformational result — ready to test and sell. Plus: major learnings and improvements to your product, realization that you gain enormously by having your medicine received, excitement, deeper flow state, a boost of confidence, a sense of being useful, gratitude.
+**Guarantee:** Complete the 3-week cohort. If you don't finish with your first unique product ready to deliver — full refund.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7218,10 +7221,12 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 **Lives at:** `/` and `/playbook`
 **CTA:** Take a shortcut path
-**Pricing:** $333/month
+**Pricing:** $333/month (capped at 1 month)
 **What you get:**
 - A shortcut strategy that accelerates this phase and spares you dead-ends and detours
 - Checklist + text (or short voicenote) check-ins with Sasha via messenger
+
+**Guarantee:** Engage the check-ins and work the shortcut. If you don't deliver to 3+ people in 30 days — full refund.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7238,7 +7243,8 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 - Playbooks and AI workflows
 - Check-ins with Sasha
 - Save a ton of time
-- Money-back guarantee (if you do your part)
+
+**Guarantee:** Complete the 2-week container and send 20+ personal life-updates. If you don't land your first paying client within 60 days of the container's close — full refund of the $1,111. Rev share never triggers.
 
 | # | Substep | One Proven Strategy |
 |---|---------|---------------------|
@@ -7308,8 +7314,17 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 *Money-back guarantee to be designed for every step (pending). Step 6 version exists: "if you do your part, money-back guarantee."*
 
 *Still pending (Sasha's call before Wednesday launch):*
-*- Landing architecture: move primary CTA buttons ABOVE the infographic for warm traffic conversion latency reduction (proposed, awaiting confirmation to implement in PlaybookHero).*
-*- Second-pane artifacts view: show user's accomplished steps + their artifacts (uniqueness articulation, version, precision, business artifacts). MVP = Supabase table + display component + seed script for Alexander + 7 founders. Portfolio view across all founders = stretch goal.*
-*- Money-back guarantee copy for each of the 7 steps.*
 *- Step 6 one-page trust-based contract (Sasha will signal when).*
+
+*Alexander's Unique Business v9.4 — April 20, 2026 (final pass before Wednesday launch):*
+
+***Locked positioning statement (Sasha's tightened version):** "An aspiring founder walks in unable to explain what they do and walks out, 6–8 weeks later, with a running scalable business at early product-market fit." Use this as the core claim — retire the older "uniqueness + transformation + 6-8 week PMF + rev share + hero's journey combination" formulation as rhetorically weak.*
+
+***Landing architecture flipped (shipped):** Primary CTAs ("Claim your gift" + "See the exact playbook") now render ABOVE the 7-step infographic in PlaybookHero. Warm traffic acts immediately; infographic serves as depth/context below. Above-fold conversion latency reduced.*
+
+***Money-back guarantees inlined per step (doc-creep corrected):** Single-sentence guarantees now live under each step's "What you get" line in the Playbook Content section above. Structure kept simple: your part + my promise + refund. Steps 1 and 7 carry none (gift / invitation-only). The separate guarantees doc was removed per Sasha's pushback on doc creep.*
+
+***Roadmap item #30 added:** Second-pane artifacts view for the JOURNEY space — user's accomplished steps + their artifacts (uniqueness articulation + version + precision + business artifacts). MVP scope = Supabase table + seed script for Alexander + 7 founders + inline display in SectionsPanel. Stretch = /portfolio cross-user gallery as "the portfolio of unique businesses" exhibit. Recorded per Sasha: "FRESH, RIGHT, YUMMY."*
+
+***Wednesday launch context:** Sasha's vetted scope is locked. Everything shipped today hardens the landing/funnel/path experience for the final vetted draft he publishes Wednesday.*
 
