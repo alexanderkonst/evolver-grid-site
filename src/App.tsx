@@ -227,7 +227,11 @@ const App = () => (
                   <Route path="/profile" element={<Navigate to="/game/me" replace />} />
                   {/* Legacy /settings now redirects into the unified Settings page (Profile tab). */}
                   <Route path="/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
-                  <Route path="/game/settings" element={<RequireAuth><Settings /></RequireAuth>} />
+                  {/* Day 47 late pass (Sasha): Settings is now public.
+                      The Settings button in the rail is visible on the landing
+                      page, and routing guests to /auth was breaking the funnel.
+                      The Settings page itself handles guest state gracefully. */}
+                  <Route path="/game/settings" element={<Settings />} />
                   <Route path="/marketplace" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/marketplace/browse" element={<Navigate to="/game/marketplace/browse" replace />} />
                   <Route path="/marketplace/create-page" element={<RequireAuth><PublicPageEditor /></RequireAuth>} />
@@ -260,7 +264,12 @@ const App = () => (
                   <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
-                  <Route path="/game/me" element={<RequireAuth><ProfileOverview /></RequireAuth>} />
+                  {/* Day 47 late pass (Sasha): /game/me is now a single-focus
+                      Top Talent view. No welcome landing page — users arrive
+                      here post-auth (via magic link from save-result email)
+                      and see their fuller Top Talent profile directly. */}
+                  <Route path="/game/me" element={<Navigate to="/game/me/zone-of-genius" replace />} />
+                  <Route path="/game/me/overview" element={<RequireAuth><ProfileOverview /></RequireAuth>} />
                   {/* Legacy ME-space Profile Settings now redirects to the unified Settings. */}
                   <Route path="/game/me/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
                   <Route path="/game/me/mission" element={<RequireAuth><ProfileMissionSection /></RequireAuth>} />

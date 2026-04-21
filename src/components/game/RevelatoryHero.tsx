@@ -107,7 +107,7 @@ const RevelatoryHero = ({
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden mb-3">
                     <img
                         src="/zone-of-genius-logo.png"
-                        alt="Zone of Genius"
+                        alt="Top Talent"
                         className="w-full h-full object-cover"
                     />
                 </div>

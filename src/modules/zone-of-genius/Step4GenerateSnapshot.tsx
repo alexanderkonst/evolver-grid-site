@@ -87,7 +87,7 @@ const Step4GenerateSnapshot = () => {
 
       const generatedText = data?.generatedText || "";
       setSnapshotMarkdown(generatedText);
-      toast.success("Your Zone of Genius Snapshot is ready!");
+      toast.success("Your Top Talent Snapshot is ready!");
 
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
@@ -169,7 +169,7 @@ const Step4GenerateSnapshot = () => {
           .eq('id', profileId);
       }
 
-      toast.success("Your Zone of Genius has been saved!");
+      toast.success("Your Top Talent has been saved!");
       const redirectPath = getPostZogRedirect(returnTo);
       if (redirectPath) {
         setTimeout(() => navigate(redirectPath), 800);
@@ -212,7 +212,7 @@ const Step4GenerateSnapshot = () => {
     top10Talents: { id: number; name: string; description: string; }[];
     top3OrderedTalents: { id: number; name: string; description: string; }[];
   }): string {
-    return `You are helping a person integrate their Zone of Genius.
+    return `You are helping a person integrate their Top Talent.
 They have just completed an assessment where they selected their Top 10 talents and Top 3 core talents.
 Use the information below to generate a short, premium, highly practical snapshot of their pattern.
 
@@ -227,9 +227,9 @@ OUTPUT:
 Write plain text (no markdown headings) with the following clearly labeled sections, in this exact order:
 
 Archetype Title:
-– 1 short phrase that names their Zone of Genius archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
+– 1 short phrase that names their Top Talent archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
 
-Your Zone of Genius Description (3–4 rich sentences):
+Your Top Talent Description (3–4 rich sentences):
 – What this genius naturally seeks or does when active.
 – How it shows up when they are at their best.
 – The unique value they bring to environments.
@@ -251,7 +251,7 @@ Where This Genius Thrives (exactly 6 bullets):
 – Mix specificity: include role types, cultural fit, ideal collaborators, and contribution directions.
 
 Mastery Action:
-– Answer this question: "Knowing my Zone of Genius and all you know about me, what's one action that if repeated again and again, successfully leads me to being more masterful each time this action is performed?"
+– Answer this question: "Knowing my Top Talent and all you know about me, what's one action that if repeated again and again, successfully leads me to being more masterful each time this action is performed?"
 – Write exactly 1 sentence, max 25 words.
 – Be specific, concrete, and actionable. This should be a repeatable practice, not a vague aspiration.
 – Example: "Spend 15 minutes daily sketching system diagrams that connect disparate ideas into unified frameworks."
@@ -268,10 +268,10 @@ GENERAL STYLE RULES:
   function parseSnapshotSections(text: string) {
     const sections: Record<string, string> = {};
 
-    const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Your Zone of Genius Description:|$)/s);
+    const archetypeMatch = text.match(/Archetype Title:\s*[-–]?\s*(.+?)(?=\n\n|Your Top Talent Description:|$)/s);
     sections.archetypeTitle = archetypeMatch?.[1]?.trim() || "";
 
-    const descriptionMatch = text.match(/Your Zone of Genius Description.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
+    const descriptionMatch = text.match(/Your Top Talent Description.*?:\s*[-–]?\s*(.+?)(?=\n\n|Superpowers in Action:|$)/s);
     sections.description = descriptionMatch?.[1]?.trim() || "";
 
     const superpowersMatch = text.match(/Superpowers in Action.*?:\s*(.+?)(?=\n\n|Your Edge:|$)/s);
@@ -386,7 +386,7 @@ GENERAL STYLE RULES:
             className="text-sm uppercase tracking-widest mb-4"
             style={{ color: "rgba(26,30,58,0.55)" }}
           >
-            Your Zone of Genius
+            Your Top Talent
           </p>
           {parsedSnapshot ? (
             <>
@@ -419,7 +419,7 @@ GENERAL STYLE RULES:
                 textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
               }}
             >
-              Discovering Your Zone of Genius...
+              Discovering Your Top Talent...
             </h1>
           )}
           <p
@@ -449,7 +449,7 @@ GENERAL STYLE RULES:
                 {/* Character Card */}
                 <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
                   <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(26,30,58,0.5)" }}>
-                    Zone of Genius Character Card
+                    Top Talent Character Card
                   </p>
                   <p className="text-xs mb-6" style={{ color: "rgba(26,30,58,0.5)" }}>
                     Generated on: {currentDate}
@@ -723,7 +723,7 @@ GENERAL STYLE RULES:
                 {/* PDF Header */}
                 <div style={{ textAlign: 'center', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #a4a3d020' }}>
                   <p style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(44,49,80,0.5)', marginBottom: '4px' }}>
-                    Zone of Genius Character Card
+                    Top Talent Character Card
                   </p>
                   <p style={{ fontSize: '11px', color: 'rgba(44,49,80,0.5)', marginBottom: '24px' }}>
                     Generated on: {currentDate}

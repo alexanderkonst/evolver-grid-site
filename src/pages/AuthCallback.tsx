@@ -103,7 +103,7 @@ const AuthCallback = () => {
       <div className="text-center space-y-4">
         <Loader2 className="w-10 h-10 text-[#8460ea] animate-spin mx-auto" />
         <p className="text-[#2c3150] font-medium">Signing you in…</p>
-        <p className="text-sm text-[#6b6a8a]">Attaching your Zone of Genius result.</p>
+        <p className="text-sm text-[#6b6a8a]">Attaching your Top Talent result.</p>
       </div>
     </div>
   );

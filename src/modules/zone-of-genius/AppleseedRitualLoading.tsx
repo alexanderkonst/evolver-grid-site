@@ -111,7 +111,7 @@ const AppleseedRitualLoading = ({
                         textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                     }}
                 >
-                    Your Zone of Genius is being articulated...
+                    Your Top Talent is being articulated...
                 </p>
             </div>
         </>

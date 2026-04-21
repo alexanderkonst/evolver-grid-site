@@ -7,8 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+// Day 47 late pass (Sasha): legacy Navigation + Footer retired — Auth now
+// renders inside GameShellV2 like every other public surface.
+import GameShellV2 from "@/components/game/GameShellV2";
 import { ArrowLeft, Mail, Sparkles } from "lucide-react";
 import { captureReferralIdFromUrl } from "@/lib/gameProfile";
 
@@ -230,9 +231,8 @@ const Auth = () => {
   // ── Forgot Password View ────────────────────────────────────────────
   if (showForgotPassword) {
     return (
-      <div className="min-h-dvh flex flex-col bg-background">
-        <Navigation />
-        <main className="flex-grow flex items-center justify-center px-4 py-24">
+      <GameShellV2 hideLogo>
+        <main className="min-h-dvh flex items-center justify-center px-4 py-24">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
@@ -294,19 +294,15 @@ const Auth = () => {
             </CardContent>
           </Card>
         </main>
-        <Footer />
-      </div>
+      </GameShellV2>
     );
   }
 
   // ── Claim-your-gift View (?claim=true) ─────────────────────────────
   if (claimMode) {
     return (
-      <div className="min-h-dvh flex flex-col bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]">
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.08)_0%,transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
-        </div>
+      <GameShellV2 hideLogo>
+        <div className="min-h-dvh relative">
         <main className="flex-grow flex items-center justify-center px-4 py-24 relative z-10">
           <Card className="w-full max-w-md bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]">
             <CardHeader className="text-center">
@@ -348,25 +344,15 @@ const Auth = () => {
               </form>
             </CardContent>
           </Card>
-        </main>
-      </div>
+        </div>
+      </GameShellV2>
     );
   }
 
   // ── Normal Auth View (login / signup tabs) ─────────────────────────
   return (
-    <div className={`min-h-dvh flex flex-col ${isOnboardingFlow
-      ? 'bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]'
-      : 'bg-background'}`}>
-      {/* Wabi-sabi Bokeh Overlay for onboarding */}
-      {isOnboardingFlow && (
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.08)_0%,transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.12)_0%,transparent_50%)]" />
-        </div>
-      )}
-      {!isOnboardingFlow && <Navigation />}
-      <main className="flex-grow flex items-center justify-center px-4 py-24 relative z-10">
+    <GameShellV2 hideLogo>
+      <main className="min-h-dvh flex items-center justify-center px-4 py-24 relative z-10">
         <Card className={`w-full max-w-md ${isOnboardingFlow
           ? 'bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]'
           : ''}`}>
@@ -526,8 +512,7 @@ const Auth = () => {
           </CardContent>
         </Card>
       </main>
-      {!isOnboardingFlow && <Footer />}
-    </div>
+    </GameShellV2>
   );
 };
 

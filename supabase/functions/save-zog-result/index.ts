@@ -194,18 +194,45 @@ serve(async (req) => {
       })
       .eq("id", profileId);
 
-    // ── Step 5: Send access email via Resend ───────────────────────
+    // ── Step 5: Generate magic link + send Email 1 via Resend ─────
+    // Day 47 late pass (Sasha): send a Supabase magic-link instead of a
+    // token-based /my-result URL. On click the user authenticates and lands
+    // in `/game/me` where their fuller Top Talent profile surfaces.
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     const SITE_URL = Deno.env.get("SITE_URL") || "https://aleksandrkonstantinov.com";
 
+    // Generate the magic link (admin-issued, redirects to /game/me on success)
+    let magicLink = `${SITE_URL}/auth?next=%2Fgame%2Fme`;
+    try {
+      const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+        type: "magiclink",
+        email: normalizedEmail,
+        options: {
+          redirectTo: `${SITE_URL}/auth/callback?next=/game/me`,
+        },
+      });
+      if (linkError) {
+        console.error("[save-zog-result] generateLink error:", linkError);
+      } else if (linkData?.properties?.action_link) {
+        magicLink = linkData.properties.action_link;
+      }
+    } catch (err) {
+      console.error("[save-zog-result] generateLink threw:", err);
+      // Fallback URL still works — user types email + gets magic link via /auth
+    }
+
     if (RESEND_API_KEY) {
-      const accessLink = `${SITE_URL}/my-result?token=${accessToken}`;
       const archetypeName = escapeHtml(
-        appleseedData.vibrationalKey?.name || "Your Genius"
+        appleseedData.vibrationalKey?.name || "Your Top Talent"
       );
       const bullseye = escapeHtml(
         appleseedData.bullseyeSentence || ""
       );
+      const actions = Array.isArray(appleseedData.threeLenses?.actions)
+        ? appleseedData.threeLenses.actions.slice(0, 5).map(escapeHtml).join(" · ")
+        : "";
+      const primeDriver = escapeHtml(appleseedData.threeLenses?.primeDriver || "");
+      const archetypeLens = escapeHtml(appleseedData.threeLenses?.archetype || "");
 
       try {
         const emailResponse = await fetch("https://api.resend.com/emails", {
@@ -215,24 +242,40 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Aleksandr <onboarding@resend.dev>",
+            from: "Aleksandr Konstantinov <aleksandr@notify.aleksandrkonstantinov.com>",
             to: [normalizedEmail],
-            subject: `Your Zone of Genius: ${appleseedData.vibrationalKey?.name || "Saved"}`,
+            subject: `Your Top Talent: ${appleseedData.vibrationalKey?.name || "Saved"}`,
             html: `
-              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 520px; margin: 0 auto; background: #0a0a1a; color: #e2e8f0; padding: 40px 32px; border-radius: 16px;">
-                <div style="text-align: center; margin-bottom: 32px;">
-                  <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Your Zone of Genius</div>
-                  <div style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px;">${archetypeName}</div>
-                  ${bullseye ? `<div style="font-size: 15px; color: rgba(255,255,255,0.6); font-style: italic;">"I ${bullseye}"</div>` : ""}
+              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; background: #0a0a1a; color: #e2e8f0; padding: 40px 32px; border-radius: 16px;">
+                <div style="text-align: center; margin-bottom: 28px;">
+                  <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-bottom: 10px;">Your Top Talent</div>
+                  <div style="font-size: 30px; font-weight: 700; background: linear-gradient(135deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 14px; line-height: 1.2;">${archetypeName}</div>
+                  ${bullseye ? `<div style="font-size: 16px; color: rgba(255,255,255,0.75); font-style: italic; line-height: 1.5;">"I ${bullseye}"</div>` : ""}
                 </div>
 
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px;">
-                  <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin: 0 0 16px 0;">Your result is saved. Come back to it anytime.</p>
-                  <a href="${accessLink}" style="display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">View my result</a>
+                ${actions || primeDriver || archetypeLens ? `
+                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
+                  ${actions ? `<div style="margin-bottom: 12px;"><div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35); margin-bottom: 4px;">Top Talents</div><div style="font-size: 14px; color: rgba(255,255,255,0.85);">${actions}</div></div>` : ""}
+                  ${primeDriver ? `<div style="margin-bottom: 12px;"><div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35); margin-bottom: 4px;">Prime Driver</div><div style="font-size: 14px; color: rgba(255,255,255,0.85);">${primeDriver}</div></div>` : ""}
+                  ${archetypeLens ? `<div><div style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35); margin-bottom: 4px;">Archetype</div><div style="font-size: 14px; color: rgba(255,255,255,0.85);">${archetypeLens}</div></div>` : ""}
+                </div>
+                ` : ""}
+
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 20px;">
+                  <p style="color: rgba(255,255,255,0.75); font-size: 14px; margin: 0 0 8px 0; font-weight: 500;">There's a fuller layer waiting inside.</p>
+                  <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin: 0 0 18px 0;">Where this pattern shines, trips you up, and the one action that sharpens it over time.</p>
+                  <a href="${magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my full Top Talent profile →</a>
                 </div>
 
-                <div style="text-align: center; margin-top: 32px;">
+                <div style="background: rgba(240,194,127,0.06); border: 1px solid rgba(240,194,127,0.15); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
+                  <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 0 0 10px 0; font-weight: 500;">Ready to turn this into a business?</p>
+                  <p style="color: rgba(255,255,255,0.55); font-size: 13px; margin: 0 0 14px 0; line-height: 1.6;">Aleksandr runs a 2-hour Ignition Session that compiles your entire unique business onto one page. $555. Money-back guarantee.</p>
+                  <a href="${SITE_URL}/ignite#pricing-section" style="display: inline-block; color: rgba(240,194,127,0.9); text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(240,194,127,0.3);">Book your Ignition Session →</a>
+                </div>
+
+                <div style="text-align: center; margin-top: 28px;">
                   <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin: 0;">This is your unique genius. It doesn't expire.</p>
+                  <p style="color: rgba(255,255,255,0.25); font-size: 11px; margin: 4px 0 0 0;">— Aleksandr</p>
                 </div>
               </div>
             `,
@@ -240,15 +283,13 @@ serve(async (req) => {
         });
 
         if (emailResponse.ok) {
-          console.log("[save-zog-result] Access email sent to:", normalizedEmail);
+          console.log("[save-zog-result] Magic-link email sent to:", normalizedEmail);
         } else {
           const errData = await emailResponse.text();
           console.error("[save-zog-result] Resend error:", errData);
-          // Don't throw — email failure shouldn't block the save
         }
       } catch (emailErr) {
         console.error("[save-zog-result] Email send failed:", emailErr);
-        // Non-blocking — the result is still saved
       }
     } else {
       console.warn("[save-zog-result] RESEND_API_KEY not set, skipping email");
