@@ -215,9 +215,18 @@ const PathPage = () => {
                   color: "rgba(231,233,229,0.95)",
                 }}
               >
-                Solid FMF, early PMF, early traction, early organic demand.
+                Solid Founder-Market Fit, early Product-Market Fit, early
+                traction, early organic demand.
                 <br />
-                in 6–8 weeks.
+                in 6–8 weeks.{" "}
+                <span
+                  style={{
+                    color: "rgba(132,96,234,0.95)",
+                    fontStyle: "italic",
+                  }}
+                >
+                  Guaranteed.
+                </span>
               </p>
 
               <p
@@ -226,14 +235,6 @@ const PathPage = () => {
               >
                 Provided 1) you do your part of the work, 2) at an average
                 speed.
-              </p>
-
-              <p
-                className="text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: "rgba(231,233,229,0.4)" }}
-              >
-                FMF · Founder-Market Fit &nbsp;&middot;&nbsp; PMF ·
-                Product-Market Fit
               </p>
             </section>
 
@@ -345,13 +346,21 @@ const PathPage = () => {
             </section>
 
             {/* ─── Quiet close ─── */}
-            <p
-              className="text-[11px] text-center mt-10 leading-relaxed"
-              style={{ color: "rgba(231,233,229,0.4)" }}
-            >
-              Every step is optional. Every step delivers a complete
-              transformation in itself. You climb as far as you want.
-            </p>
+            <div className="mt-10 text-center space-y-2">
+              <p
+                className="text-[11px] leading-relaxed"
+                style={{ color: "rgba(231,233,229,0.55)" }}
+              >
+                Every step is optional. Every step delivers a complete
+                transformation in itself.
+              </p>
+              <p
+                className="text-[11px] leading-relaxed"
+                style={{ color: "rgba(231,233,229,0.55)" }}
+              >
+                Pay as you progress. Money-back guarantee on every step.
+              </p>
+            </div>
           </>
         )}
       </div>

@@ -1,13 +1,12 @@
-import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
 
 /**
  * PlaybookCircleInfographic — the 7-note / 7-color holonic circle.
  *
- * Clean infographic mode: shows the 7-step ring with step numbers, lock
- * icons, and always-visible labels. No popover cards — the circle is
- * purely a visual navigation map.
+ * Clean infographic mode: shows the 7-step ring with step numbers and
+ * always-visible labels. No lock icons — Open Blueprint Paradox says
+ * show everything. Upcoming steps are visible but dimmer; no gating.
  *
  * Implementation notes:
  *   • Pure inline SVG — 0 KB runtime cost, crisp at every viewport.
@@ -19,14 +18,14 @@ import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
  *   - Node i angle: θ_i = -90° + i·(360°/7) (clockwise from 12 o'clock)
  */
 
-type StepNodeState = "completed" | "active" | "locked";
+type StepNodeState = "completed" | "active" | "upcoming";
 
 export type PlaybookCircleInfographicProps = {
   /**
-   * Highest step number the user has unlocked (default 1 — the free gift).
+   * Highest step number the user is currently on (default 1 — the free gift).
    * Steps < unlockedThroughStep render as `completed`;
    * the step == unlockedThroughStep is `active`;
-   * everything beyond is `locked`.
+   * everything beyond is `upcoming` (visible but dimmer — never gated).
    */
   unlockedThroughStep?: number;
   /** Optional callback when a node is clicked; defaults to route push. */
@@ -48,7 +47,7 @@ const nodeXY = (i: number) => {
 const stateFor = (stepNumber: number, unlockedThrough: number): StepNodeState => {
   if (stepNumber < unlockedThrough) return "completed";
   if (stepNumber === unlockedThrough) return "active";
-  return "locked";
+  return "upcoming";
 };
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -205,7 +204,7 @@ const PlaybookCircleInfographic = ({
           const { x, y } = nodeXY(i);
           const state = stateFor(step.number, unlockedThroughStep);
           const isActive = state === "active";
-          const isLocked = state === "locked";
+          const isUpcoming = state === "upcoming";
           return (
             <g
               key={step.slug}
@@ -214,6 +213,7 @@ const PlaybookCircleInfographic = ({
                 ["--stagger" as string]: `${i * 120}ms`,
                 transformOrigin: `${x}px ${y}px`,
               }}
+              opacity={isUpcoming ? 0.55 : 1}
             >
               {/* Halo (only for active node) */}
               {isActive && (
@@ -230,19 +230,18 @@ const PlaybookCircleInfographic = ({
                 />
               )}
 
-              {/* Node body */}
+              {/* Node body — every step is visible; upcoming = dimmer via group opacity */}
               <circle
                 cx={x}
                 cy={y}
                 r={NODE_RADIUS}
-                fill={
-                  isLocked ? "rgba(231,233,229,0.06)" : `url(#node-grad-${step.number})`
-                }
-                stroke={isLocked ? "rgba(231,233,229,0.2)" : step.neonHsl}
+                fill={`url(#node-grad-${step.number})`}
+                stroke={step.neonHsl}
                 strokeWidth={isActive ? 2 : 1}
-                filter={isLocked ? undefined : "url(#soft-bloom)"}
+                filter="url(#soft-bloom)"
               />
 
+<<<<<<< HEAD
               {/* Step number / lock icon */}
               {isLocked ? (
                 <g transform={`translate(${x - 8}, ${y - 8})`}>
@@ -266,6 +265,20 @@ const PlaybookCircleInfographic = ({
                   {step.number}
                 </text>
               )}
+=======
+              {/* Step number — always visible. No lock icons (Open Blueprint Paradox). */}
+              <text
+                x={x}
+                y={y + 5}
+                textAnchor="middle"
+                fontFamily="'Cormorant Garamond', serif"
+                fontSize={20}
+                fontWeight={600}
+                fill="rgba(231,233,229,0.98)"
+              >
+                {step.number}
+              </text>
+>>>>>>> 5195c16 (deploy)
 
               {/* Clean infographic — no popover, just a transparent hit area
                   for accessibility. The circle is a visual map, not a store. */}
@@ -315,7 +328,7 @@ const PlaybookCircleInfographic = ({
               letterSpacing="0.08em"
               fontWeight={state === "active" ? 700 : 600}
               fill="rgba(231,233,229,0.92)"
-              opacity={state === "locked" ? 0.45 : state === "active" ? 1 : 0.8}
+              opacity={state === "upcoming" ? 0.6 : state === "active" ? 1 : 0.8}
               aria-hidden="true"
               style={{
                 textShadow:
