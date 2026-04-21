@@ -353,7 +353,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         ? {
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
-            "grow": true,                                       // ME — always open (Sasha, 2026-04-20): pinned at the top, no gate
+            "grow": zogComplete,                                // ME — visible always, locked until ZoG done (Sasha, 2026-04-21)
             "learn": zogComplete,                               // After Step 1 — growth material
             "build": ignitionComplete,                          // After Step 2 — business canvas
             "meet": zogComplete,                                // After Step 1 — community events
@@ -467,12 +467,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </button>
                 )}
 
-                {/* Panel 3: Content — ~60% tint on top of the video background
-                    so long-form copy reads cleanly while the video still
-                    breathes through at the edges. Progression: Rail (heaviest) →
-                    Sections (medium) → Content (60% — lightest tier but legible). */}
+                {/* Panel 3: Content — lightest tint of the three panels so the
+                    right-hand workspace feels "lifted" above the navigation.
+                    Final progression (bg-black opacity): Rail 70 → Sections 40 →
+                    Content 20. The video breathes through the most here. */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/60"
+                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-[#0a0a1a]/20"
                 >
                     {/* Logo — fixed upper right */}
                     <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">

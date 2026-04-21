@@ -29,35 +29,31 @@ const MethodologyLandingPage = () => {
           }}
         >
           {/*
-            Color per action verb — each uses the neon of its playbook step so
-            the title ↔ ring infographic link is felt, not explained.
-              "Find"      → Step 1 teal   (DISCOVER)
-              "Productize"→ Step 2 violet (PACKAGE)
-              "Build"     → Step 4 gold   (PRODUCT — the actual building)
-              "Launch"    → Step 6 green  (LAUNCH)
-              "Scale"     → Step 7 violet (SCALE)
+            Highlights (Sasha, 2026-04-21):
+              "top talent" → teal/cyan/blue gradient (Step 1 DISCOVER family)
+              "Productize it" → plain white (no highlight)
+              "Build"     → amber/orange/coral (Step 4 PRODUCT family)
+              "Launch"    → emerald/teal (Step 6 LAUNCH family)
+              "Scale"     → violet/magenta/pink (Step 7 SCALE family)
+            Each gradient uses 3 hue-shifted stops so it reads as a true
+            gradient, not a solid tint.
           */}
+          Find your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(135deg, hsl(175, 80%, 60%), hsl(175, 80%, 50%))",
+              backgroundImage:
+                "linear-gradient(135deg, hsl(170, 90%, 68%), hsl(190, 80%, 60%), hsl(210, 75%, 65%))",
             }}
           >
-            Find
-          </span>{" "}
-          your top talent.{" "}
+            top talent
+          </span>
+          . Productize it.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(135deg, #8460ea, #29549f)",
-            }}
-          >
-            Productize it.
-          </span>{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage: "linear-gradient(135deg, hsl(45, 95%, 60%), hsl(38, 85%, 52%))",
+              backgroundImage:
+                "linear-gradient(135deg, hsl(50, 100%, 68%), hsl(35, 95%, 62%), hsl(15, 90%, 65%))",
             }}
           >
             Build
@@ -66,7 +62,8 @@ const MethodologyLandingPage = () => {
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(135deg, hsl(145, 65%, 55%), hsl(150, 60%, 45%))",
+              backgroundImage:
+                "linear-gradient(135deg, hsl(155, 75%, 62%), hsl(165, 65%, 52%), hsl(180, 60%, 58%))",
             }}
           >
             Launch
@@ -75,12 +72,13 @@ const MethodologyLandingPage = () => {
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(135deg, hsl(290, 65%, 65%), hsl(285, 60%, 55%))",
+              backgroundImage:
+                "linear-gradient(135deg, hsl(275, 75%, 72%), hsl(300, 70%, 62%), hsl(330, 70%, 65%))",
             }}
           >
             Scale
           </span>{" "}
-          it Alongside Other Impact Entrepreneurs.
+          it Alongside Aspiring Impact Entrepreneurs.
         </h1>
       </header>
 
