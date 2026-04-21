@@ -145,7 +145,7 @@ const SubstepRow = ({
             aria-expanded={open}
           >
             <Triangle open={open} neonHsl={neonHsl} neonRgb={neonRgb} />
-            <span>See one proven strategy</span>
+            <span>Recommended How-To</span>
           </button>
 
           {/* ══ One Proven Strategy reveal */}
@@ -197,34 +197,27 @@ const parseHash = (raw: string): { seeHow: boolean; substep: number | null } => 
 };
 
 const StepCard = ({ step }: StepCardProps) => {
-  // Step-level "See how" disclosure — wraps the 3 substeps. Open by default.
+  // Step-level "See how" is gone (Sasha, 2026-04-21) but seeHowOpen is kept
+  // as a compat flag — always true — in case hash-based deep links reference it.
   const [seeHowOpen, setSeeHowOpen] = useState(true);
-  // Substep-level "See one proven strategy" — all open by default.
-  const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(
-    new Set(step.substeps.map((s) => s.number)),
-  );
-  // Payment CTA — launches Stripe one-time checkout when step.priceId is set,
-  // otherwise shows a "pricing coming soon" toast.
+  // Substep-level "Recommended How-To" — all CLOSED by default so the three
+  // substeps read cleanly first. User opens what they want to explore.
+  const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(new Set());
 
   // Re-seed state whenever the step slug changes (navigating 1 → 2 → …)
-  // Default: everything open. Hash can override to collapse.
+  // Default: all substep strategies closed. Hash #how-N opens that one.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const { seeHow, substep } = parseHash(window.location.hash);
-    // If no hash, default to all open
-    const hasHash = window.location.hash.length > 0;
-    setSeeHowOpen(hasHash ? seeHow : true);
+    const { substep } = parseHash(window.location.hash);
+    setSeeHowOpen(true);
     setOpenSubsteps(
-      hasHash
-        ? substep !== null && step.substeps.some((s) => s.number === substep)
-          ? new Set([substep])
-          : new Set()
-        : new Set(step.substeps.map((s) => s.number)),
+      substep !== null && step.substeps.some((s) => s.number === substep)
+        ? new Set([substep])
+        : new Set(),
     );
 
     const onHashChange = () => {
-      const { seeHow: sh, substep: ss } = parseHash(window.location.hash);
-      setSeeHowOpen(sh);
+      const { substep: ss } = parseHash(window.location.hash);
       if (ss !== null && step.substeps.some((s) => s.number === ss)) {
         setOpenSubsteps((prev) => {
           const next = new Set(prev);
