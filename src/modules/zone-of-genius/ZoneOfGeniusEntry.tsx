@@ -631,7 +631,7 @@ const ZoneOfGeniusEntry = () => {
                                 style={{ textShadow: '0 0 20px rgba(240,194,127,0.3)' }}
                                 onClick={() => setStep("choice-route")}
                             >
-                                Reveal the unique way I naturally create value
+                                Find My Top Talent
                                 <ArrowRight className="w-5 h-5 opacity-80" />
                             </button>
                         </div>
@@ -796,7 +796,7 @@ const ZoneOfGeniusEntry = () => {
                             onClick={handleGenerateAppleseed}
                             disabled={isProcessing || !aiResponse.trim()}
                         >
-                            {isProcessing ? "Discovering..." : "Discover My Zone of Genius"}
+                            {isProcessing ? "Revealing..." : "Reveal My Top Talent"}
                             <Sparkles className="w-5 h-5 opacity-80" />
                         </button>
                     </div>
