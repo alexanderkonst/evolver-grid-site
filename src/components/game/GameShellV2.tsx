@@ -429,9 +429,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             {/* Full-screen animated video background — behind all three panels */}
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
-                {/* Base darkening overlay — minimal, so Panel 3 breathes.
-                    Lowered from /20 to /8 (Sasha, 2026-04-21). */}
-                <div className="absolute inset-0 bg-[#0a0a1a]/[0.08]" />
+                {/* Base darkening overlay — intentionally almost invisible so
+                    Panel 3 reads as nearly pure video. Lowered to /[0.05]
+                    (Sasha, 2026-04-21 — another 30% lighter). */}
+                <div className="absolute inset-0 bg-[#0a0a1a]/[0.05]" />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
@@ -482,18 +483,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 <main
                     className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-transparent"
                 >
-                    {/* Logo — fixed upper right */}
-                    <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
-                        <div
-                            className="w-full h-full rounded-lg overflow-hidden"
-                            style={{
-                                WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                                maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                            }}
-                        >
-                            <img src={logoSrc} alt="Home" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" draggable={false} />
-                        </div>
-                    </Link>
+                    {/* Logo — fixed upper right. Hidden when hideLogo prop is set. */}
+                    {!hideLogo && (
+                        <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
+                            <div
+                                className="w-full h-full rounded-lg overflow-hidden"
+                                style={{
+                                    WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                                    maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                                }}
+                            >
+                                <img src={logoSrc} alt="Home" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" draggable={false} />
+                            </div>
+                        </Link>
+                    )}
                     <div className="page-transition-enter">
                         {children}
                     </div>

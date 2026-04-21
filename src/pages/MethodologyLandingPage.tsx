@@ -31,31 +31,42 @@ const MethodologyLandingPage = () => {
           }}
         >
           {/*
-            Highlights (Sasha, 2026-04-21):
-              "top talent" → teal/cyan/blue gradient (Step 1 DISCOVER family)
-              "Productize it" → plain white (no highlight)
-              "Build"     → amber/orange/coral (Step 4 PRODUCT family)
-              "Launch"    → emerald/teal (Step 6 LAUNCH family)
-              "Scale"     → violet/magenta/pink (Step 7 SCALE family)
-            Each gradient uses 3 hue-shifted stops so it reads as a true
-            gradient, not a solid tint.
+            Highlights (Sasha, 2026-04-21 v2): every action word maps to the
+            spectrum of playbook step colors (UV → IR). Each gradient uses 3
+            hue stops around the step's base neon for depth.
+              "Top Talent" → Step 1 violet
+              "Productize" → Step 2 indigo
+              "Build"      → Step 3 blue
+              "Launch"     → Step 4 cyan
+              "Scale"      → Step 5 green
+              "Impact"     → Step 7 red-orange (the destination)
           */}
           Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(170, 90%, 68%), hsl(190, 80%, 60%), hsl(210, 75%, 65%))",
+                "linear-gradient(135deg, hsl(290, 90%, 72%), hsl(280, 85%, 68%), hsl(270, 85%, 65%))",
             }}
           >
             Top Talent
           </span>
-          . Productize It.{" "}
+          .{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(50, 100%, 68%), hsl(35, 95%, 62%), hsl(15, 90%, 65%))",
+                "linear-gradient(135deg, hsl(258, 90%, 72%), hsl(248, 85%, 68%), hsl(238, 85%, 65%))",
+            }}
+          >
+            Productize
+          </span>{" "}
+          It.{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, hsl(220, 90%, 68%), hsl(210, 90%, 62%), hsl(200, 85%, 60%))",
             }}
           >
             Build
@@ -65,7 +76,7 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(155, 75%, 62%), hsl(165, 65%, 52%), hsl(180, 60%, 58%))",
+                "linear-gradient(135deg, hsl(190, 85%, 60%), hsl(180, 85%, 55%), hsl(170, 80%, 55%))",
             }}
           >
             Launch
@@ -75,12 +86,22 @@ const MethodologyLandingPage = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(275, 75%, 72%), hsl(300, 70%, 62%), hsl(330, 70%, 65%))",
+                "linear-gradient(135deg, hsl(140, 80%, 60%), hsl(130, 75%, 55%), hsl(120, 70%, 52%))",
             }}
           >
             Scale
           </span>{" "}
-          It Alongside Impact Entrepreneurs.
+          It Alongside{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, hsl(25, 100%, 65%), hsl(15, 100%, 62%), hsl(5, 95%, 60%))",
+            }}
+          >
+            Impact
+          </span>{" "}
+          Entrepreneurs.
         </h1>
       </header>
 
