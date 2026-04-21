@@ -85,6 +85,8 @@ interface GameShellV2Props {
     hideNavigation?: boolean;
     /** Force show navigation even during onboarding (for tour spotlight) */
     showNavigation?: boolean;
+    /** Hide the top-right home/logo tile (for full-bleed pages like /path) */
+    hideLogo?: boolean;
 }
 
 /**
@@ -93,7 +95,7 @@ interface GameShellV2Props {
  * Panel 2: SectionsPanel (sections list)  
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation }: GameShellV2Props) => {
+export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo }: GameShellV2Props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
