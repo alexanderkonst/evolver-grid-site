@@ -1639,7 +1639,66 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      mission_participants_public: {
+        Row: {
+          challenge_id: string | null
+          created_at: string | null
+          email_frequency: string | null
+          first_name: string | null
+          focus_area_id: string | null
+          id: string | null
+          intro_text: string | null
+          mission_id: string | null
+          mission_title: string | null
+          notified_at: string | null
+          notify_level: string | null
+          outcome_id: string | null
+          pillar_id: string | null
+          share_consent: boolean | null
+          user_id: string | null
+          wants_to_integrate: boolean | null
+          wants_to_lead: boolean | null
+        }
+        Insert: {
+          challenge_id?: string | null
+          created_at?: string | null
+          email_frequency?: string | null
+          first_name?: string | null
+          focus_area_id?: string | null
+          id?: string | null
+          intro_text?: string | null
+          mission_id?: string | null
+          mission_title?: string | null
+          notified_at?: string | null
+          notify_level?: string | null
+          outcome_id?: string | null
+          pillar_id?: string | null
+          share_consent?: boolean | null
+          user_id?: string | null
+          wants_to_integrate?: boolean | null
+          wants_to_lead?: boolean | null
+        }
+        Update: {
+          challenge_id?: string | null
+          created_at?: string | null
+          email_frequency?: string | null
+          first_name?: string | null
+          focus_area_id?: string | null
+          id?: string | null
+          intro_text?: string | null
+          mission_id?: string | null
+          mission_title?: string | null
+          notified_at?: string | null
+          notify_level?: string | null
+          outcome_id?: string | null
+          pillar_id?: string | null
+          share_consent?: boolean | null
+          user_id?: string | null
+          wants_to_integrate?: boolean | null
+          wants_to_lead?: boolean | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
