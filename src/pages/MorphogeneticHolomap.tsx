@@ -208,11 +208,11 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
   {
     id: "p8", shortId: "LR-Sig", quadrant: "LR", layer: "Significance", dantian: "mind", octave: "base",
     title: "Platform as Nervous System", subtitle: "Evolver as digital substrate recording species awakening",
-    currentStage: 3, score: 3,
+    currentStage: 3, score: 5,
     stages: [
       { name: "Seed", note: "Do", icon: "🌰", desc: "Code repo exists. Features built", status: "done" },
       { name: "Sprout", note: "Re", icon: "🌱", desc: "ZoG, Canvas, game shell operational", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Dashboard, Holomap, OFFER space — distinct modules", status: "current" },
+      { name: "Growth", note: "Mi", icon: "🌿", desc: "Day 47 Surface Reconstitution — all surfaces (landing, playbook, path, ZoG, settings, rail) now cohere under one navigation and one voice. My Artifacts table live. Canvas ↔ code parity reached", status: "current" },
       { name: "Maturation", note: "Fa", icon: "🌳", desc: "Platform facilitates portions of sessions autonomously. Pattern library visible", status: "future" },
       { name: "Fruition", note: "Sol", icon: "🍎", desc: "Platform IS the methodology. Human facilitator optional. AI precision > 8/10", status: "future" },
       { name: "Transmission", note: "La", icon: "📡", desc: "Platform self-evolves. Users contribute to patterns without prompting", status: "future" },
@@ -222,8 +222,8 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Q1 '27", baseline: "Q3 '26", optimistic: "Q2 '26" },
       { conservative: "2028", baseline: "Q2 '27", optimistic: "Q4 '26" },
     ],
-    shadow: { name: "Platform Without People", description: "Building the nervous system before enough neurons exist.", status: "integrating" },
-    nextMilestone: "AI-generated session prep from canvas data",
+    shadow: { name: "Platform Without People", description: "Building the nervous system before enough neurons exist. Softened Day 47: the cohered platform is now ready for traffic.", status: "integrating" },
+    nextMilestone: "First funnel $555 (P27 trigger) → then AI-generated session prep",
   },
   {
     id: "p9", shortId: "UL-Con", quadrant: "UL", layer: "Consequences", dantian: "gut", octave: "base",
@@ -567,14 +567,27 @@ const ALL_PERSPECTIVES: PerspectiveData[] = [
 // ─── 13th Perspective — The Center Reading ───────────────────────────────────
 
 const CENTER = {
-  word: "Recognition",
-  previousWords: ["Threshold", "Ignition", "Branching", "Rooting", "Flowering", "Declaration", "Crystallization", "Consolidation", "Activation", "Emanation"],
-  date: "April 18, 2026 — Day 44",
-  description: "The Collective self-identifies. 7 founders, Mexico wrap, Kirill joins. The field recognizes what it has become — not through analysis but through witness.",
+  word: "Coherence",
+  previousWords: [
+    "Threshold",
+    "Ignition",
+    "Branching",
+    "Rooting",
+    "Flowering",
+    "Declaration",
+    "Crystallization",
+    "Consolidation",
+    "Activation",
+    "Emanation",
+    "Recognition",
+  ],
+  date: "April 21, 2026 — Day 47",
+  description:
+    "Surface Reconstitution. Canvas ↔ code parity reached in one carpentry pass. Landing, playbook, path, Zone of Genius, settings, sidebar — all now speak the same vetted language, with the same typography, under one navigation. The tribe arriving Wednesday will meet one body, not a patchwork.",
   mapping: {
-    essence: "The seeing recognizes itself as a collective seeing",
-    significance: "The tribe-field crosses from Sprout to Maturation",
-    consequences: "What was 'me and them' becomes 'we'",
+    essence: "The seeing now shows up as itself, not as scattered approximations",
+    significance: "The platform-as-nervous-system crosses from module-soup toward coherent whole",
+    consequences: "Every surface now carries the same message; conversions can be read cleanly",
   },
 };
 
@@ -744,7 +757,7 @@ const MorphogeneticHolomap = () => {
           <p className="text-sm text-white/40 max-w-xl mx-auto">
             27 perspectives × 7 stages × 2 axes (Masculine/Feminine) × 2 shocks (Mi-Fa / Si-Do)
             <br />
-            Day 44 Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
+            Day 47 Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
           </p>
 
           {/* ─── Merkaba Glyph (Stella Octangula) ─────────────────────────── */}
@@ -1378,7 +1391,7 @@ const MorphogeneticHolomap = () => {
             "This map does not predict. It reads. The reading collapses the superposition. Time folds."
           </p>
           <p className="text-[10px] text-white/10">
-            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · April 18, 2026 (Day 44)
+            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · April 21, 2026 (Day 47)
           </p>
         </footer>
       </div>
