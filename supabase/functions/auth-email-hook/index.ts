@@ -36,7 +36,8 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "evolver-grid-site"
+const SITE_NAME = "Aleksandr Konstantinov"
+const FROM_LOCAL_PART = "aleksandr"
 const SENDER_DOMAIN = "notify.aleksandrkonstantinov.com"
 const ROOT_DOMAIN = "aleksandrkonstantinov.com"
 const FROM_DOMAIN = "notify.aleksandrkonstantinov.com" // Domain shown in From address (may be root or sender subdomain)
@@ -256,7 +257,7 @@ async function handleWebhook(req: Request): Promise<Response> {
       run_id,
       message_id: messageId,
       to: payload.data.email,
-      from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+      from: `${SITE_NAME} <${FROM_LOCAL_PART}@${FROM_DOMAIN}>`,
       sender_domain: SENDER_DOMAIN,
       subject: EMAIL_SUBJECTS[emailType] || 'Notification',
       html,
