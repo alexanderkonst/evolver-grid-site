@@ -245,28 +245,14 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The Secret to Productizing Yourself
       </h2>
 
-      <p className="mb-5">This step is where almost everyone gets stuck.</p>
-
-      <p className="mb-5">Startup Influencers say "Productize yourself".</p>
-
       <p className="mb-5">
-        Personality tests give unmonetizable "too much text" reports. We go "now what?" and archive it in your inbox foreva.
+        Personality tests give you unmonetizable "too long didn't read" reports. You go "so now what?" and archive it in your inbox foreva.
       </p>
 
-      <p className="mb-5">
-        Social media influencers say "monetize who you are", "build your authentic brand".
-      </p>
-
-      <p className="mb-5">They don't tell us HOW, or give us frustrating fluff.</p>
-
-      <p className="mb-5">Right or wrong?</p>
-
-      <p className="mb-8">Chances are — you've been there, done that.</p>
-
-      <p className="mb-5">So, what's the dealio here? What's the secret?</p>
+      <p className="mb-8">They don't tell us HOW. They hand us frustrating fluff.</p>
 
       <p className="mb-5">
-        There is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
+        The catch is that there is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
       {/* Example — minimal left-rule offset, no font change */}
@@ -274,30 +260,38 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         className="mb-5 pl-4 border-l"
         style={{ borderColor: "rgba(26,30,58,0.25)" }}
       >
-        My example at ~10/10 specificity: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
+        Let me share my example at ~10/10 precision: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
+      </p>
+
+      <p className="mb-5">
+        It is sufficiently SPECIFIC, which then makes my entire business offer a laser beam that has this same specificity.
       </p>
 
       <p className="mb-8">
-        This is CONCRETE, and my business is a laser beam that reflects that clarity. It repels most, and pulls in highly aligned clients.
+        This level of clarity pulls in highly aligned clients, and repels others.
       </p>
 
-      <p className="mb-5">How do YOU get your sufficiently PRECISE top talent?</p>
+      <p className="mb-5">So how do YOU get YOUR top talent to sufficient PRECISION?</p>
 
       <p className="mb-5">Here is the secret.</p>
 
       <p className="mb-5">The top talent reveal on this page gets you to ~7/10.</p>
 
       <p className="mb-8">
-        But you must iterate on your top talent's articulation until you reach 9/10 resonance or higher to productize yourself.
+        You must reach 9/10 resonance (or higher) to productize yourself.
       </p>
 
       <p className="mb-5">How do people get there?</p>
 
-      <p className="mb-5">They do months or years of focused introspection.</p>
+      <p className="mb-5">They do years of focused introspection, and iteration on the wording.</p>
+
+      <p className="mb-8">That's what I did.</p>
 
       <p className="mb-5">Is there a shortcut?</p>
 
-      <p className="mb-3">Yes, I know two.</p>
+      <p className="mb-3">Yes indeed.</p>
+
+      <p className="mb-3">I know two.</p>
 
       <ol className="mb-8 space-y-2 list-decimal list-outside ml-6">
         <li>You get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.</li>
@@ -305,7 +299,11 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       </ol>
 
       <p className="mb-5">
-        Truth is, this is still RARE in 2026. The method I developed and refined over the last six years gets you there in about 40 minutes.
+        Truth is, such guides or tools are still EXTREMELY RARE as of 2026.
+      </p>
+
+      <p className="mb-5">
+        The method I developed and refined over the last six years gets you there in about 40 minutes.
       </p>
 
       <p className="mb-5">
@@ -316,7 +314,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         .
       </p>
 
-      <p>I wish this was commonplace but it is not.</p>
+      <p>I wish these were commonplace but they are not.</p>
     </section>
   );
 };
