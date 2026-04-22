@@ -430,12 +430,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             <div className="fixed inset-0 z-0">
                 <MuxVideoBackground />
                 {/*
-                  Base wash — Day 47 iter 2 (Sasha): +40% lighter.
-                  /0.15 → /0.21 white wash. Panel 3 now reads as clearly
-                  frosted/light rather than "mostly raw video". Same slider,
-                  same direction — nudged up another step.
+                  Base wash — skin-aware. Aurora: white wash /0.21 (daylight
+                  frost). Navy+Gold: deep navy wash /0.82 (evening, video
+                  barely flickers through). Var lives in index.css per skin.
                 */}
-                <div className="absolute inset-0 bg-white/[0.21]" />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundColor:
+                      "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
+                  }}
+                />
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
