@@ -292,7 +292,7 @@ const AssetMappingLanding = () => {
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                             >
                                 <Brain className="w-6 h-6 text-primary mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">Use AI to extract</h3>
@@ -301,7 +301,7 @@ const AssetMappingLanding = () => {
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                             >
                                 <ListChecks className="w-6 h-6 text-primary mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">Add manually</h3>

@@ -500,7 +500,7 @@ const BuildCanvasPage = () => {
             {/* CTA */}
             <div className="space-y-3">
               <Button
-                className="bg-primary hover:bg-[#7350d0] text-white px-8 py-5 text-base rounded-xl transition-all duration-300 hover:shadow-[0_4px_20px_rgba(132,96,234,0.4)] hover:-translate-y-0.5"
+                className="bg-primary hover:bg-primary/80 text-white px-8 py-5 text-base rounded-xl transition-all duration-300 hover:shadow-[0_4px_20px_rgba(132,96,234,0.4)] hover:-translate-y-0.5"
                 onClick={() => window.open("https://www.calendly.com/konstantinov", "_blank")}
               >
                 <Flame className="w-4 h-4 mr-2" />
@@ -587,14 +587,14 @@ const BuildCanvasPage = () => {
             <div className="flex gap-2">
               <button
                 onClick={expandAll}
-                className="text-[11px] text-primary hover:text-[#7350d0] transition-colors"
+                className="text-[11px] text-primary hover:text-primary/80 transition-colors"
               >
                 Expand all
               </button>
               <span className="text-muted-foreground/30">·</span>
               <button
                 onClick={collapseAll}
-                className="text-[11px] text-primary hover:text-[#7350d0] transition-colors"
+                className="text-[11px] text-primary hover:text-primary/80 transition-colors"
               >
                 Collapse all
               </button>
@@ -630,7 +630,7 @@ const BuildCanvasPage = () => {
           {/* ── Actions ── */}
           <div className="grid grid-cols-2 gap-3">
             <Button
-              className="bg-primary hover:bg-[#7350d0] text-white rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(132,96,234,0.3)] hover:-translate-y-0.5"
+              className="bg-primary hover:bg-primary/80 text-white rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(132,96,234,0.3)] hover:-translate-y-0.5"
               onClick={() => navigate("/game/build/product-builder")}
             >
               <Zap className="w-4 h-4 mr-1.5" />

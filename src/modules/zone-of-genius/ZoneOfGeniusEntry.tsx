@@ -587,24 +587,22 @@ const ZoneOfGeniusEntry = () => {
                 </div>
             )}
 
-            <div className="relative z-10 p-5 lg:p-10 pt-16 lg:pt-20 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
+            <div className="relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
 
-                {/* Header — Day 47 later-same-day (Sasha): matched to /path + /playbook
-                    hero aesthetic. Dark-navy Cormorant Garamond with soft white halo,
-                    no CAPS, inline neon-gradient highlights on key phrases. */}
-                <div className="text-center mb-10">
-                    {/* Dodecahedron — breathing icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-6 ring-1 ring-[#0a1628]/10 breathing-card">
+                {/* Header — Day 48 (Sasha): vertical rhythm compressed so hero +
+                    CTA fit on one viewport. Logo shrunk ~50% (20 → 10).
+                    Hero questions rewritten so the `?` stays attached to the
+                    last gradient word (no more orphaned "?" on its own line)
+                    and each question sits inside a text-balance block so the
+                    browser picks more even line lengths. */}
+                <div className="text-center mb-6">
+                    {/* Dodecahedron — 50% smaller per Sasha */}
+                    <div className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden mb-3 ring-1 ring-[#0a1628]/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Headline — Day 47 iter 10 (GFOA v2.0):
-                        Hero question split into two lines. Each question stands
-                        as its own beat, creating two distinct recognition hooks
-                        instead of one long compound sentence. Gradient
-                        highlights retained on the load-bearing phrases. */}
                     <h1
-                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-8"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-5 space-y-3"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             color: "var(--skin-text-primary, #0a1628)",
@@ -612,45 +610,43 @@ const ZoneOfGeniusEntry = () => {
                                 "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                         }}
                     >
-                        Why is it still so hard to{" "}
-                        <span
-                            className="bg-clip-text text-transparent"
-                            style={{
-                                backgroundImage:
-                                    "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
-                                filter:
-                                    "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
-                                textShadow: "none",
-                            }}
-                        >
-                            explain what you do
+                        <span className="block text-balance">
+                            Why is it still so hard to{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage:
+                                        "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
+                                    filter:
+                                        "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
+                                    textShadow: "none",
+                                }}
+                            >
+                                explain what you do?
+                            </span>
                         </span>
-                        ?
-                        <br />
-                        <br />
-                        And turn it into something people{" "}
-                        <span
-                            className="bg-clip-text text-transparent"
-                            style={{
-                                backgroundImage:
-                                    "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%))",
-                                filter:
-                                    "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48)))",
-                                textShadow: "none",
-                            }}
-                        >
-                            actually pay for
+                        <span className="block text-balance">
+                            And turn it into something people{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={{
+                                    backgroundImage:
+                                        "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%))",
+                                    filter:
+                                        "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48)))",
+                                    textShadow: "none",
+                                }}
+                            >
+                                actually pay for?
+                            </span>
                         </span>
-                        ?
                     </h1>
 
-                    {/* Recognition block — Day 47 iter 10 (GFOA v2.0):
-                        Replaced the abstract "unique way you think and solve
-                        problems" two-line truth with concrete recognition copy
-                        that names the exact pain the tribe is living in. */}
-                    <div className="space-y-3 max-w-lg mx-auto">
+                    {/* Recognition block — Day 48 tighten: spacing reduced so
+                        the full hero + CTA fit a single viewport without scroll. */}
+                    <div className="space-y-2 max-w-lg mx-auto">
                         <p
-                            className="text-base sm:text-lg leading-relaxed"
+                            className="text-base sm:text-lg leading-snug"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
@@ -660,7 +656,7 @@ const ZoneOfGeniusEntry = () => {
                             You already help people.
                         </p>
                         <p
-                            className="text-base sm:text-lg leading-relaxed"
+                            className="text-base sm:text-lg leading-snug"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
@@ -672,7 +668,7 @@ const ZoneOfGeniusEntry = () => {
                     </div>
 
                     {/* Recognition bullets — If this sounds familiar */}
-                    <div className="mt-8 max-w-lg mx-auto text-left">
+                    <div className="mt-5 max-w-lg mx-auto text-left">
                         <p
                             className="text-sm mb-3 text-center"
                             style={{
@@ -684,7 +680,7 @@ const ZoneOfGeniusEntry = () => {
                             If this sounds familiar:
                         </p>
                         <ul
-                            className="space-y-2 text-sm sm:text-base"
+                            className="space-y-1.5 text-sm sm:text-[15px] leading-snug"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",

@@ -286,13 +286,18 @@ const SpacesRail = ({
                 </button>
                 {(() => {
                     // Hide Log In on pages that are part of the unauthenticated
-                    // funnel (landing + ZoG reveal) so visitors don't get pulled
-                    // out of the flow. Log Out stays visible everywhere for
-                    // authenticated users.
+                    // funnel (landing + ZoG reveal + playbook + path + settings)
+                    // so visitors don't get pulled out of the flow. Log Out
+                    // stays visible everywhere for authenticated users.
+                    // Day 48 (Sasha): /game/settings added — guests can tour
+                    // Appearance without a Log In nag.
                     const isLandingPage =
                         location.pathname === "/" ||
                         location.pathname.startsWith("/game/journey") ||
-                        location.pathname.startsWith("/zone-of-genius");
+                        location.pathname.startsWith("/zone-of-genius") ||
+                        location.pathname.startsWith("/playbook") ||
+                        location.pathname === "/path" ||
+                        location.pathname === "/game/settings";
 
                     if (isAuthed === null) {
                         // Initial auth check — placeholder prevents rail jump.

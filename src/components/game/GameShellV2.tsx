@@ -165,7 +165,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // Root path `/` + the Journey-family URLs all belong to JOURNEY.
         // This ensures the sections pane renders (and is closable) on
         // /playbook, /path, /my-artifacts, /zone-of-genius — Sasha, 2026-04-21.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius"];
+        // Day 48 (Sasha): /game/settings joins the family so Pane 2 stays
+        // visible on Settings with the same Journey section list.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );

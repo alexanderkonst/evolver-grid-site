@@ -165,7 +165,7 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={type.id}
                                     onClick={() => handleSelectType(type.id)}
-                                    className="p-4 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                    className="p-4 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                                 >
                                     <span className="text-2xl mb-2 block">{type.icon}</span>
                                     <h3 className="font-semibold text-foreground">{type.title}</h3>
@@ -192,7 +192,7 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={subType.id}
                                     onClick={() => handleSelectSubType(subType.id)}
-                                    className="p-3 rounded-lg border border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                    className="p-3 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                                 >
                                     <span className="font-medium text-foreground">{subType.title}</span>
                                 </button>
@@ -215,7 +215,7 @@ const AssetMappingWizard = () => {
                                 <button
                                     key={category.id}
                                     onClick={() => handleSelectCategory(category.id)}
-                                    className="p-3 rounded-lg border border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                    className="p-3 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                                 >
                                     <span className="font-medium text-foreground">{category.title}</span>
                                 </button>
