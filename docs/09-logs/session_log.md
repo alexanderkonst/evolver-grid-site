@@ -4950,3 +4950,147 @@ Same list as morning, unchanged. Wednesday launch DMs. First $555 (P27 Si–Do).
 ---
 
 *Day 47 (evening) complete. The surface and the machinery are one body now. The canvas tells, the code shows, the email continues. The tribe arriving Wednesday will meet a living funnel — not a carefully-tended landing page with a form attached to it.*
+
+---
+
+## Day 47 (late night) — GFOA Patch + Skin System (April 21, 2026 continued)
+
+### What happened
+
+Same Day 47, third pass. After the evening's machinery integration the surface still read "good, not great" — GFOA (Godfather Offer Architect GPT) returned a v1.1 + v1.2 design patch on the funnel synthesis doc. Sasha also wanted to open a door for a future visual identity — the Navy + Gold aesthetic he'd been sketching — WITHOUT touching Aurora (the current live skin) for public traffic. One continuous pass addressed both.
+
+Three workstreams converged:
+
+1. **GFOA hero redesign** — the landing hero went through v10 → v11 → v12 tonight. Two-layer architecture locked: **recognition first, structure second.** Layer 1 = impact headline + smaller echo + editorial ornament. Layer 2 = 4-line compressed path with scarcity-coded color (7 highlights → 3 highlights).
+2. **Copy refinements on Path + Step 2 + CTAs** — "Investors Loving It" added as a 7th path beat; Step 2 essay rewritten in Sasha's exact language; button copy reverified against Judge EB spec; secondary CTA restored as a button (not text link) per Sasha's hierarchy pushback.
+3. **Skin system architecture** — CSS custom property layer + `data-skin` attribute + React Context + persistence + `/preview` route with temporary skin push-pop. Navy + Gold now renders as a full alternate surface on `/preview` with zero risk to Aurora.
+
+### Landing hero — v10 → v12
+
+**v10 (early tonight, GFOA v1.1 patch landed):** Two-layer hero. Recognition opener first ("You can't clearly explain what you do / So it's not turning into something people pay for"); compressed structure second (the 4-line path). Initial placement — recognition + structure stacked with tight spacing. Rainbow still intact on 7 words.
+
+**v11 (mid-tonight):** GFOA v1.2 pushed one level further:
+- Added **editorial ornament** between the two layers — `——— ✦ ———`, thin gradient rule + gold star centerpiece. Zero functional, whole-page lift.
+- **Color reduction**: 7 gradient-highlighted words → **3** (Top Talent, Productize, Scale). Build / Launch / Revenue / Impact now render in neutral dark navy. Rainbow retires on the landing. The 7-step methodology keeps its full UV→IR octave at `/playbook` (Sasha's rule: "as long as the seven round steps on top of the playbook have the colors they have"). Color regains meaning by scarcity.
+- **Path rhythm**: 4 lines become 4 `<p>` blocks with `space-y-1.5 sm:space-y-2` — path rhythm, not paragraph.
+
+**v12 (late tonight):** Hierarchy restored inside Layer 1:
+- First line bold + large (impact beat): **"You can't clearly explain what you do."**
+- Second line smaller + lighter (echo beat): **"So it's not turning into something people pay for."**
+- Clear spacing between so the echo reads as a second note, not a continuation.
+
+**v12.1 (very late, Sasha's final copy polish):**
+- *"explain"* → **"say"** — "You can't clearly **say** what you do." More colloquial, less Latinate, carries the pain without the therapy-speak.
+- *"So it's not turning into something people pay for"* → **"So people don't buy."** Compressed 8 words → 4. The echo beat now lands with the weight of a period.
+- Container compressed further (max-w 740 → 640, py-10/16 → py-6/8) so the whole hero (title + echo + ornament + structure + CTA + meta + text link) fits on one viewport without scroll at common desktop heights.
+
+Canonical hero locked:
+
+> **You can't clearly say what you do.**
+> *So people don't buy.*
+>
+> *——— ✦ ———*
+>
+> Find Your **Top Talent**.
+> **Productize** Yourself.
+> Build it. Launch it.
+> **Scale** your Revenue and Impact.
+
+### Path page — "Investors Loving It" added as 7th beat
+
+`/path` hero was 6 beats. Sasha called it: the methodology is 7 steps, the path hero should rhythm as 7 beats, and the missing beat is the investor-loving signal that validates early PMF externally.
+
+Before: *Solid Founder-Market Fit. Early Product-Market Fit. Traction. Organic Demand. In 6–8 Weeks. Guaranteed.*
+After: *Solid Founder-Market Fit. Early Product-Market Fit. Traction. Organic Demand. **Investors Loving It.** In 6–8 Weeks. Guaranteed.*
+
+Rhythm fix: all-periods (was comma-period mix). Drum-like. Each beat stops. "Investors Loving It" colored with Step 6 gradient (orange-gold, fits within UV→IR octave).
+
+### Step 2 essay — final rewrite with Sasha's exact language
+
+Sasha rewrote the Step 2 essay himself and handed me the text to paste. Key locks:
+
+- Opening hook updated: **"Personality tests give you unmonetizable 'too long didn't read' reports. They don't tell us HOW. They hand us frustrating fluff."**
+- Specificity gap reframed as a long road, not a trick: **"The catch is that there is a looong way..."**
+- Sasha's own articulation introduced as a concrete anchor: **"Let me share my example at ~10/10 precision:"**
+- Why precision scales: **"It is sufficiently SPECIFIC, which then makes my entire business offer a laser beam that has this same specificity."**
+- Typos corrected: *"the this"* → *"this"*, *"pull in"* → *"pulls in"*.
+- Link list trimmed from 3 to 2 recommended alternatives: `<a href="https://talentq.me/">TalentQ</a>` and `<a href="https://www.evolution.life/">Evolution</a>`. Kawtar Mahdaoui removed per Sasha.
+
+### CTA refinements
+
+**Primary CTA copy verification.** Sasha flagged the button as "not matching Judge EB spec." Code already had `Find your top talent` lowercase — matched spec. Cache issue. Told him to hard-refresh (Cmd+Shift+R).
+
+**Secondary CTA restored as button.** Earlier pass (per GFOA v1.2) I'd demoted "See the exact playbook" from a liquid-glass pill to a plain text link. Sasha pushed back: *"It's too small and disproportionate to the importance of how it is."* Per his "hierarchy not removal" principle, restored as a full `liquid-glass` button at the same 380px max-width as primary, just de-ranked via `font-medium` (vs `font-semibold`) and 85% opacity navy text. Reads as "the other door" in the Open Blueprint Paradox, not as a footnote.
+
+**Panel 3 background lightened** (Sasha's 4th request of the night). `GameShellV2.tsx` panel 3 wash bumped from `bg-white/[0.21]` → `rgba(255, 255, 255, 0.38)`. Meaningful lightness increase; text-over-video legibility still tested fine on the Mux stream.
+
+### Skin system — architecture
+
+Sasha's framing: *"We're not going to switch it on, but we're going to prepare, and we're going to have a test ground for me only."* The goal is a proving ground for alternate skins (Navy + Gold first) that leaves Aurora byte-identical for public traffic.
+
+Chose: **CSS custom properties + `data-skin` attribute on `<html>` + React Context + temporary-push API + dedicated `/preview` route.**
+
+**New files:**
+
+- `src/contexts/SkinContext.tsx` — `SkinProvider` with `skin`, `setSkin`, `pushTemporarySkin(next)` API. Persists selection to `localStorage['app-skin']`. Applies skin via `document.documentElement.dataset.skin = skin` in a `useEffect`. The `pushTemporarySkin` returns a cleanup function that restores the user's persisted skin on unmount — used by the preview route to avoid leaking the alt skin into regular navigation. Type: `Skin = 'aurora' | 'navy-gold'`.
+- `src/pages/SkinPreview.tsx` — `/preview` route. Calls `pushTemporarySkin('navy-gold')` in a `useEffect`, renders `<JourneyPage />` (the landing) inside the Navy+Gold skin, and shows a floating bottom-right banner: *"✦ Navy + Gold preview · Back to Aurora →"* linking back to `/`. Discoverable by URL only; not linked from any navigation. Cleanup on unmount restores Aurora.
+
+**Modified files:**
+
+- `src/App.tsx` — `<SkinProvider>` wraps `<TooltipProvider>` inside `<ThemeProvider>`. `/preview` route added before the catch-all 404.
+- `src/index.css` — appended a skin-token layer at the bottom. `:root, [data-skin="aurora"]` defines Aurora's values for ~30 tokens (text primary/body/muted, halos, panel wash, ornament rule + star + shadow, CTA text/bg/border/shadow/icon/icon-shadow/text-shadow, 3 gradient accents with bg + glow pairs, secondary link color). `[data-skin="navy-gold"]` inverts them (cream text on deep navy panels, gold CTA with navy text, monochrome gold accents).
+- `src/pages/MethodologyLandingPage.tsx` — every inline style refactored to `var(--skin-name, aurora-fallback-value)`. Fallback pattern means if a token is missing, Aurora renders — Aurora ships unchanged when no skin is set.
+- `src/components/playbook/PlaybookHero.tsx` — primary CTA background, border, shadow, text color, icon color, icon shadow all refactored to skin vars. Secondary CTA text color + halo → skin vars. Liquid glass classes unchanged.
+- `src/components/game/GameShellV2.tsx` — panel 3 wash `<div className="absolute inset-0 bg-white/[0.21]" />` → `<div className="absolute inset-0" style={{ backgroundColor: "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))" }} />`. Aurora fallback baked in.
+
+**The fallback trick.** CSS var's second argument accepts a full value, and `var()` parses to its matching `)` so multi-comma values work (`var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8))`). This avoids `!important` escalation: inline styles that reference a var with Aurora's own value as fallback produce byte-identical Aurora output when no skin is set.
+
+**Why not `setSkin` everywhere?** Because Aurora must remain the default for all traffic. Persisting a skin choice to `localStorage` is fine for Sasha's own browser (he can visit `/preview` and come back to Aurora cleanly via the cleanup); a real `setSkin` call from UI would have to wait until Navy+Gold is decided to be shippable. For now, `setSkin` exists in the API but isn't called from any surface other than the preview.
+
+### What renders in Navy + Gold on `/preview` right now
+
+Headline, echo, ornament, 3-color path structure, primary CTA (now a gold gradient pill with navy text on a deep-navy panel), secondary CTA (cream text on deep-navy liquid glass), panel 3 wash (deep navy-black instead of white). Nav, sections panel, spaces rail, footer — still render as Aurora because those surfaces haven't been refactored to skin tokens yet. Intentional: this is a preview of the skin's headline moves, not a full site theme.
+
+### GFOA v1.1 + v1.2 — what actually shipped
+
+From GFOA's patch recommendations, tonight implemented:
+- ✅ Two-layer recognition-first hero (v1.1)
+- ✅ Editorial ornament between layers (v1.2)
+- ✅ Color scarcity — 7 highlights → 3 on landing (v1.2)
+- ✅ Path rhythm — 4 `<p>` blocks with breathing room (v1.2)
+- ✅ Primary CTA gold-ink treatment (implemented via skin CTA vars; shows up in Navy+Gold preview)
+- ✅ Secondary CTA hierarchy — de-ranked via weight/tone, not removed
+
+Not implemented (Sasha declined or deferred):
+- ❌ Removing glass entirely — Sasha held the line: *"Glassmorphism doesn't subtract, it adds."* Kept glass on CTA and panels; GFOA agreed with the nuance that glass shifts role from decoration to structure.
+- ❌ Removing the 7-step playbook circle — already retired from landing in morning; playbook top-nav carries the progression.
+- ⏸️ Full Navy+Gold rollout to public — deferred per Sasha's explicit framing ("not going to switch it on").
+
+### Context-at-1M exchange
+
+Sasha asked: *"I see that our context is at 1 million. Does it mean that we need to start a new thread, or does it simply mean that the system will reset or summarize or whatever by itself?"*
+
+Answered: at 1M the Claude assistant will auto-compact via summary on the next turn — no hard reset, no lost work committed to disk. Advised push through tonight's remaining small fixes, start a new thread tomorrow AM with a brief handoff note pointing to the day's commits + docs. No urgency to restart mid-task.
+
+### Deploy
+
+Lovable auto-deployed all tonight's changes. Preview route live at `/preview`. Aurora verified unchanged on `/` (byte-identical render — the fallback pattern worked). Navy+Gold preview renders correctly on the landing panel 3 with gold CTA + deep navy wash.
+
+### Holomap implication
+
+P4 (System Architecture) — adds an aesthetic layer to Layer 4. The unified shell is now theme-able. Not a new capability count, but a readiness signal: the platform can host multiple visual identities without rewrites.
+
+P8 (Platform as Nervous System) — no numeric change. Qualitatively, the platform now has **optionality** as a property. It can look different for different audiences/stages without branching the codebase. Opens the door to per-tier or per-partner skinning post-launch.
+
+P2 (Observable System) — unchanged in count. Quality note: the GFOA feedback loop is now a documented input channel. An external critic's patch can be metabolized into concrete copy + layout + color moves within one evening. That's a new cadence.
+
+### What's still open heading into Wednesday
+
+Same short list as morning and evening:
+- **First $555** (P27 Si–Do). Launch DMs.
+- José da Veiga ZoG quiz · Patricia Reed paste-back · Sandra rev-share · Taylor & Tracy checkpoint · Founder-collective call · Next hacker-house.
+- Full Navy+Gold rollout decision — held. Sasha's call to flip the switch or keep it preview-only.
+
+---
+
+*Day 47 (late night) complete. The hero now reads like a Cartier ad with path-rhythm underneath. The secondary CTA is a door, not a footnote. The site has two skins without telling anyone. The funnel is Wednesday-ready.*
