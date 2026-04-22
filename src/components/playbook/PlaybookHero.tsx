@@ -87,20 +87,21 @@ const PlaybookHero = () => {
           <span>Takes 2 minutes. No signup.</span>
         </div>
 
-        {/* Secondary — lighter Apple Liquid Glass, no arrow. */}
-        <div className="w-full max-w-[380px] mt-2">
-          <button
-            type="button"
-            onClick={() => navigate("/playbook")}
-            className={cn(buttonBase, "liquid-glass", "font-medium")}
-            style={{
-              color: "rgba(26,30,58,0.85)",
-              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-            }}
-          >
-            See the exact playbook
-          </button>
-        </div>
+        {/* Secondary — Day 47 iter 13 (Sasha + mockup): demoted from
+            heavy glass pill to a subtle text link. "or see the exact
+            playbook" — preserves Open Blueprint Paradox (both doors visible)
+            without competing with the primary CTA's weight. */}
+        <button
+          type="button"
+          onClick={() => navigate("/playbook")}
+          className="text-xs mt-1 transition-colors hover:underline underline-offset-4"
+          style={{
+            color: "rgba(26,30,58,0.6)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+          }}
+        >
+          or see the exact playbook
+        </button>
       </div>
     </div>
   );

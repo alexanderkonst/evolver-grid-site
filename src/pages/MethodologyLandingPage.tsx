@@ -18,9 +18,13 @@ import PlaybookHero from "@/components/playbook/PlaybookHero";
  */
 const MethodologyLandingPage = () => {
   return (
-    <div className="max-w-[740px] mx-auto px-5 py-10 md:py-16">
+    /* Day 47 iter 13 (Sasha + mockup proportions):
+       Container compressed (max-w 740 → 640, py-10/16 → py-6/8) so the
+       whole hero (title + echo + ornament + structure + CTA + meta + text
+       link) fits on one viewport without scroll at common desktop heights. */
+    <div className="max-w-[640px] mx-auto px-5 py-6 md:py-8">
       {/* ═══════ NAME ═══════ */}
-      <header className="text-center mb-10 px-4">
+      <header className="text-center mb-6 px-4">
         {/*
           Hero v10 (Day 47 iter 10 — Sasha + GFOA synthesis):
           Two-layer hero. Recognition FIRST, structure SECOND.
@@ -71,7 +75,7 @@ const MethodologyLandingPage = () => {
             (Sasha, from ChatGPT mockup): thin gradient rule + gold star
             centerpiece. Zero functional, whole-page lift. */}
         <div
-          className="flex items-center justify-center gap-4 my-6 sm:my-8 max-w-md mx-auto"
+          className="flex items-center justify-center gap-4 my-5 sm:my-6 max-w-md mx-auto"
           aria-hidden="true"
         >
           <span
@@ -113,7 +117,7 @@ const MethodologyLandingPage = () => {
               (c) Font weight + tracking unchanged from prior iteration.
           */}
         <div
-          className="space-y-4 sm:space-y-5"
+          className="space-y-1.5 sm:space-y-2"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "#0a1628",
@@ -122,7 +126,7 @@ const MethodologyLandingPage = () => {
           }}
         >
           {/* Line 1: Find Your [Top Talent]. */}
-          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
             Find Your{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -140,7 +144,7 @@ const MethodologyLandingPage = () => {
           </p>
 
           {/* Line 2: [Productize] Yourself. */}
-          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={{
@@ -157,12 +161,12 @@ const MethodologyLandingPage = () => {
           </p>
 
           {/* Line 3: Build it. Launch it. — NEUTRAL (no gradient). */}
-          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
             Build it. Launch it.
           </p>
 
           {/* Line 4: [Scale] your Revenue and Impact. */}
-          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={{
