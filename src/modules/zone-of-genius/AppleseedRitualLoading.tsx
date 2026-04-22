@@ -87,8 +87,8 @@ const AppleseedRitualLoading = ({
                     <p
                         className="text-lg animate-pulse transition-all duration-500"
                         style={{
-                            color: "#0a1628",
-                            textShadow: "0 0 18px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
+                            color: "var(--skin-text-primary, #0a1628)",
+                            textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75))",
                         }}
                     >
                         {PHASES[phaseIndex]}
@@ -107,8 +107,8 @@ const AppleseedRitualLoading = ({
                 <p
                     className="mt-8 text-sm"
                     style={{
-                        color: "rgba(26,30,58,0.7)",
-                        textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
                 >
                     Your Top Talent is being articulated...

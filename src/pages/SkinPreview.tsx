@@ -1,62 +1,52 @@
 /**
- * SkinPreview — Day 47 very-late-night (Sasha).
+ * SkinPreview — `/preview` entry point.
  *
- * `/preview` route. Forces the Navy+Gold skin while this page is mounted,
- * reverts to the user's persisted skin on unmount.
+ * Day 47 very-late-night → autonomous night pass (Sasha):
  *
- * What's visible in Navy+Gold here (as of first pass):
- *   - Landing hero (h1 + echo + ornament + 4-line structure)
- *   - Primary CTA + secondary text link (PlaybookHero)
- *   - Panel 3 wash
+ * Previously a standalone route that rendered the landing inside a
+ * temporary skin push, reverting on unmount. That scoped the preview
+ * to a single view.
  *
- * Everything else (nav, sections panel, footer, etc.) renders as Aurora
- * until we migrate those surfaces too. That's intentional — the preview
- * shows the skin's headline moves without risking full-site drift.
+ * Now: `/preview` is a thin entry ramp. It flips the skin to
+ * `navy-gold` via `setSkin` (persisted in localStorage) and redirects
+ * to `/`. The `<PreviewBanner />` mounted at App root stays visible
+ * on every route while the alt skin is active. Clicking Exit on that
+ * banner calls `setSkin('aurora')` and returns home.
  *
- * Discoverable by URL only (not linked from any nav). Gated by nobody
- * typing `/preview` unless they know to.
+ * Result: Sasha can tour the ENTIRE site in Navy+Gold, not just the
+ * landing. Navigate to /playbook, /path, /zone-of-genius, /ignite,
+ * /game/settings, /my-artifacts — all render Navy+Gold until he
+ * presses Exit.
+ *
+ * Implementation note: we flip the skin INSIDE `useEffect` and gate
+ * the Navigate on a `ready` flag. Rendering `<Navigate>` directly
+ * would cause its own internal effect to fire BEFORE this component's
+ * effect (React fires child effects before parent effects on mount),
+ * which would unmount SkinPreview before `setSkin` ever ran — the
+ * skin would never actually flip. The `ready` flag makes sure the
+ * setSkin call commits first, then we navigate.
  */
 
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import JourneyPage from "./JourneyPage";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useSkin } from "@/contexts/SkinContext";
 
 const SkinPreview = () => {
-  const { pushTemporarySkin } = useSkin();
+  const { setSkin } = useSkin();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Push navy-gold while mounted. Cleanup restores prior skin.
-    const restore = pushTemporarySkin("navy-gold");
-    return restore;
-  }, [pushTemporarySkin]);
+    setSkin("navy-gold");
+    // Defer the navigate to the next frame so the skin flip has
+    // committed to the DOM (data-skin attribute + localStorage) before
+    // the route changes. Otherwise the landing might first paint in
+    // Aurora for one tick and then re-render as Navy+Gold.
+    const raf = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(raf);
+  }, [setSkin]);
 
-  return (
-    <>
-      <JourneyPage />
-
-      {/* Floating preview banner — bottom-right, discreet. Clickable to
-          return to Aurora (home). Styled so it reads in both skins. */}
-      <Link
-        to="/"
-        className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all hover:scale-[1.03] active:scale-[0.98]"
-        style={{
-          backgroundColor: "rgba(10, 22, 40, 0.85)",
-          color: "#d4af37",
-          border: "1px solid rgba(212, 175, 55, 0.4)",
-          boxShadow:
-            "0 10px 30px -8px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-        }}
-      >
-        <span aria-hidden="true" style={{ color: "#d4af37" }}>✦</span>
-        <span>Navy + Gold preview</span>
-        <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>
-        <span style={{ opacity: 0.7 }}>Back to Aurora →</span>
-      </Link>
-    </>
-  );
+  if (!ready) return null;
+  return <Navigate to="/" replace />;
 };
 
 export default SkinPreview;

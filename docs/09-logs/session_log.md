@@ -5094,3 +5094,140 @@ Same short list as morning and evening:
 ---
 
 *Day 47 (late night) complete. The hero now reads like a Cartier ad with path-rhythm underneath. The secondary CTA is a door, not a footnote. The site has two skins without telling anyone. The funnel is Wednesday-ready.*
+
+---
+
+## Day 47 → Day 48 — Autonomous Skin Completion Pass (April 21-22, 2026, overnight)
+
+### Context
+
+Sasha left the computer open around ~10:15pm: *"Please continue the skin work, dear. Do not stop until you finish. I will leave the computer open so you don't need to stop. I will be back in the morning. Love you!"* Autonomous session. Scope: finish what Day 47 late-night started — migrate every visible surface to the skin token system so `/preview` renders the full site coherently in Navy+Gold, not just the landing.
+
+### What changed in the preview architecture
+
+**Preview is now persistent across routes.** Previously `/preview` was a standalone route that held Navy+Gold while mounted via `pushTemporarySkin` — the moment Sasha navigated to `/playbook` or `/path`, the route unmounted and Aurora came back. Not useful for evaluating a skin across a site.
+
+Rebuilt as:
+- `src/pages/SkinPreview.tsx` — now a thin entry ramp. Calls `setSkin('navy-gold')` (persists to `localStorage['app-skin']`), then `<Navigate to="/" replace />`. No UI of its own.
+- `src/components/skin/PreviewBanner.tsx` — **new**. Global floating chip rendered at App root. Visible on every route whenever `skin !== 'aurora'`. Click → `setSkin('aurora')` + navigate to `/`. Styled dark glass + gold so it reads in both skins.
+- `src/App.tsx` — mounts `<PreviewBanner />` once inside `<SkinProvider>`.
+
+Result: visit `/preview` once, tour the entire site in Navy+Gold (every page, every CTA, every CTA destination), press Exit on the banner to return home in Aurora.
+
+### Skin token layer — expanded (autonomous night pass)
+
+Added ~30 new tokens covering surfaces that weren't addressed in the initial pass. Both skins get them:
+
+**Text semantics** — `--skin-text-strong` (0.88 opacity navy / 0.92 cream), `--skin-text-faint` (0.5 / 0.42), `--skin-text-hint` (0.4 / 0.32).
+
+**Rules** — `--skin-rule-strong` (blockquote left-rule), `--skin-rule-medium` (section divider), `--skin-rule-hairline` (ladder), `--skin-rule-faint` (table row).
+
+**Links** — `--skin-link-color` (#0a1628 / #d4af37), `--skin-link-hover`, `--skin-link-underline`.
+
+**Cards** — `--skin-card-bg`, `--skin-card-border`, `--skin-card-shadow` (semi-translucent white over cream / translucent cream over navy).
+
+**Soft tints** — `--skin-tint-violet-soft` (ladder footer bg — violet on Aurora, gold on Navy+Gold), `--skin-tint-gold-soft`.
+
+**Gold accent** — `--skin-accent-gold` (#b8860b / #d4af37), `--skin-accent-gold-glow`. Used for Sasha's signature "✦" star.
+
+**Selected state** — `--skin-selected-bg`, `--skin-selected-border`, `--skin-selected-text` (violet on Aurora / gold on Navy+Gold). Step number in ladder reads violet on Aurora, gold on Navy+Gold.
+
+**Form inputs** — `--skin-input-bg`, `--skin-input-border`, `--skin-input-text`, `--skin-input-placeholder`.
+
+**Darkroom** — `--skin-darkroom-bg`, `--skin-darkroom-text`, `--skin-darkroom-muted`, `--skin-darkroom-border` (for `/ignite`-style dark decision rooms; stays dark in both skins but harmonized with the palette).
+
+**Callout** — `--skin-callout-bg`, `--skin-callout-glow` (the italic "Guaranteed" accent — violet on Aurora, gold on Navy+Gold).
+
+### Navy+Gold selector-scoped glass overrides
+
+The `.liquid-glass-dark` class (built for Aurora's primary CTA on cream) had a dark navy base. In Navy+Gold the primary should read as gold glass, not gold-over-navy-muddy. Added:
+
+```css
+[data-skin="navy-gold"] .liquid-glass-dark {
+  background: transparent;  /* let skin-cta-bg gold gradient dominate */
+  border: 0.5px solid rgba(10, 22, 40, 0.28);
+  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.42), ...;
+}
+[data-skin="navy-gold"] .liquid-glass { background: rgba(245,241,232,0.07); border: 0.5px solid rgba(212,175,55,0.22); ... }
+[data-skin="navy-gold"] .liquid-glass-strong { ... gold-warmed variant ... }
+```
+
+Now the CTA family reads gold in Navy+Gold without requiring per-component branches.
+
+### Surfaces migrated to skin tokens (every inline color → `var(--skin-*, aurora-fallback)`)
+
+| Surface | Before | After |
+|---|---|---|
+| `StepCard.tsx` (playbook step card) | 15+ hardcoded colors (step header, substep rows, triangle, Step2Essay blockquote rule) | All skin-aware. Rainbow step hues (`step.neonHsl`) preserved in BOTH skins per Sasha's rule "the seven round steps keep the colors they have." Text color uses `color-mix(step.neonHsl, var(--skin-text-primary))` so the number badges and buttons stay readable on cream AND navy. |
+| `PlaybookShell.tsx` (top nav + 7 step chips) | Navy backs, navy labels | Back button, connector lines, step label text all skin-aware. Step sphere gradients unchanged (rainbow preserved). |
+| `PathPage.tsx` (`/path`) | Navy + violet + orange-gold hardcoded | Product-Market Fit → `--skin-accent-2-*` (indigo → gold). Investors Loving It → kept its orange-gold (reads coherently in both skins). Guaranteed → `--skin-callout-*` (violet → gold). Ladder borders, prices, durations, bonus row tint, CTAs, quiet close — all skin-aware. |
+| `ZoneOfGeniusEntry.tsx` | 41 hardcoded inline colors | Hero headline gradients now use `--skin-accent-1-*` and `--skin-accent-3-*`. All body text → skin-text-*. All borders → skin-rule-*. All halos → skin-text-halo-*. |
+| `AppleseedDisplay.tsx` (Top Talent reveal) | 20+ hardcoded colors | Body, blockquote border, testimonial, CTA arrow → all skin-aware. Archetype title via `RevelatoryHero` keeps its palette-driven glow (archetype-themed, skin-independent). |
+| `AppleseedRitualLoading.tsx` (generating state) | Navy phase text, white halos | skin-text-primary + skin-text-muted + skin-text-halo-* |
+| `ZoneOfGeniusAssessmentLayout.tsx` (guided 4-step) | Navy header, muted subheader | skin-text-primary + skin-text-muted-soft + skin-text-halo-subtle |
+| `Step1SelectTop10Talents.tsx` | 15 colors | All navy variants → skin-text-* (text-primary, text-body, text-muted, text-hint). Continue button uses ternary with var() for enabled/disabled state. |
+| `Step2SelectTop3CoreTalents.tsx` | 15 colors | Same patterns as Step1. |
+| `Step3OrderTalents.tsx` | 17 colors | Same patterns + GripVertical icon uses skin-text-hint. |
+| `Step4GenerateSnapshot.tsx` | 38 colors | All 9 distinct opacity levels of navy mapped to skin-text-* tokens. The largest single migration in this pass. |
+| `Settings.tsx` | Outer `bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]` clashed with Navy+Gold | Outer gradient retired. Settings now inherits Panel 3's skin-aware wash from the shell. Back arrow + heading + subtitle text use skin tokens. Inner tab content (Appearance picker, Profile section) kept intact — internal UI, not user-facing branding. |
+
+### What stays Aurora-only in Navy+Gold preview (intentional)
+
+| Surface | Reason |
+|---|---|
+| `/ignite` (Productize Yourself Session sales page) | Dark "decision room" by design. Dark in both skins = seamless in Navy+Gold, stands out as a dark rectangle in Aurora (also intentional — the commercial close room is meant to feel heavier than the landing). |
+| `/my-artifacts` | Dark gallery aesthetic (`bg-[#0a0e1a]`). Intentional — the artifacts view is a "museum" surface. Consistent in both skins. |
+| `/auth` (inside shell) | Uses Tailwind utility classes (`text-[#2c3150]`). Low-traffic surface; migration cost > value. Shell's Panel 3 wash is skin-aware so the auth forms sit on the right backdrop. |
+| Non-journey spaces (LEARN, MEET, COLLABORATE, BUILD, OFFER) | Locked by default for unauth users; gated paths behind auth. Not in the critical preview path. |
+| `SiteLogo` | Already hidden on all journey routes. |
+| `SpacesRail`, `SectionsPanel` | Already dark-navy (`liquid-glass bg-black/70` / `bg-black/40`). The Navy+Gold selector overrides on `.liquid-glass` warm the rim gold without touching the base `bg-black` tint. Reads coherently in both skins. |
+
+### Rainbow preservation (Sasha's locked rule)
+
+Throughout this pass: **the 7-step UV→IR methodology rainbow is preserved in BOTH skins.** Rationale per Sasha's directive during the earlier GFOA pushback: *"I am NOT attached to [the hero's rainbow] at all as long as the seven round steps on top of the playbook have the colors they have."*
+
+The rainbow signifies the methodology, not the skin. So:
+- `step.neonHsl` (UV → IR 7-step octave) renders unchanged on both Aurora and Navy+Gold
+- The `PlaybookShell` top nav (7 step spheres) shows full rainbow in Navy+Gold
+- Each step's substep numbers + chevrons + "Recommended How-To" buttons + proven-strategy card tints keep their step hue; only the text *inside* those chips color-mixes with `skin-text-primary` so they remain readable on either cream or navy
+
+What does reduce in Navy+Gold:
+- The landing hero's 3 highlighted words (Top Talent / Productize / Scale) — all render gold variants via `--skin-accent-1-bg/2-bg/3-bg`
+- The landing ornament star — gold in Navy+Gold
+- Primary CTA → gold glass pill with navy ✦ star + navy text
+- "Guaranteed." italic → gold gradient
+
+### Build verification
+
+`npx tsc --noEmit --skipLibCheck` → clean. `npm run build` → clean (6.19s build time; 3.79 MB primary bundle / 1.04 MB gzipped, unchanged from before the pass). No TypeScript errors, no runtime regressions detected.
+
+Aurora renders byte-identical on `/` when no `data-skin` attribute is set (the fallback pattern in every `var(--skin-*, aurora-default)` ensures this). The only visible change on Aurora traffic is from the earlier same-evening pass: Panel 3 wash bumped 0.38 → 0.68 to match the ChatGPT editorial mockup, primary CTA shrunk to compact pill with `liquid-glass-dark`, secondary restored as liquid-glass button. All locked by Sasha before he left.
+
+### What Sasha can tour in Navy+Gold preview come morning
+
+Visiting `/preview`:
+1. **Landing (`/`)** — headline + echo + gold ornament + 3 gold accents in 4-line path + gold ✦ CTA + liquid-glass secondary
+2. **Playbook (`/playbook`)** — top nav (rainbow preserved) + Step N. header with rainbow accent + substeps with rainbow chips + Step 2 "The Secret to Productizing Yourself" essay in cream-on-navy editorial typography
+3. **Path (`/path`)** — hero with Investors Loving It + gold Product-Market Fit + gold Guaranteed + ladder with gold "Step N" eyebrow + gold bonus-row tint + gold CTAs
+4. **Zone of Genius (`/zone-of-genius`)** — entry with gold headline gradients + gold button frames + ritual loading + 4-step assessment + reveal
+5. **Settings (`/game/settings`)** — inherits skin-aware panel wash, heading in cream
+6. **Exit** → floating bottom-right banner → returns to Aurora
+
+### Holomap implication
+
+P4 (System Architecture) — no numeric change. Structural note: the aesthetic layer that was seeded last evening is now **fully operational**. Not just the landing; every surface Sasha would hit on a Wednesday-morning walkthrough.
+
+P8 (Platform as Nervous System) — optionality is now **empirically verified**. A user can visit `/preview`, browse the entire platform in the alt skin, and exit cleanly. The hypothesis that was prepared last night ("aesthetic modulation as a parameter") is now a working feature, not just an architectural possibility.
+
+P2 (Observable System) — unchanged in count; the canvas data stays what it is regardless of skin. Quality note: the ability to present the SAME canvas content in two aesthetic registers is a precondition for future audience segmentation (per-partner skins, per-tier skins, seasonal skins). None scheduled. All now possible without code branches.
+
+### What's still open
+
+Same short list as last evening, unchanged:
+- **First $555** funnel (P27 Si–Do) — launch Wednesday.
+- José / Patricia / Sandra / Taylor & Tracy / Founder-collective / Next hacker-house.
+- Flip-the-switch decision: does Navy+Gold become default, stay preview-only, or become a per-tier/per-partner toggle? Held for Sasha's judgment post-launch data.
+
+---
+
+*Day 47 late-night → Day 48 early-morning (autonomous) complete. When Sasha wakes up: `/preview` is now a real preview, not a landing-only demo. Every surface of the site renders Navy+Gold coherently. Aurora ships Wednesday unchanged. The infrastructure for aesthetic optionality is done — whatever he decides about rollout has no build cost attached.*

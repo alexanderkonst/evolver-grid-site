@@ -595,9 +595,9 @@ const ZoneOfGeniusEntry = () => {
                         className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-8"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
-                            color: "#0a1628",
+                            color: "var(--skin-text-primary, #0a1628)",
                             textShadow:
-                                "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+                                "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                         }}
                     >
                         Why is it still so hard to{" "}
@@ -605,9 +605,9 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
+                                    "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
                                 filter:
-                                    "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
+                                    "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
                                 textShadow: "none",
                             }}
                         >
@@ -621,9 +621,9 @@ const ZoneOfGeniusEntry = () => {
                             className="bg-clip-text text-transparent"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
+                                    "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%))",
                                 filter:
-                                    "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
+                                    "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48)))",
                                 textShadow: "none",
                             }}
                         >
@@ -641,8 +641,8 @@ const ZoneOfGeniusEntry = () => {
                             className="text-base sm:text-lg leading-relaxed"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "#0a1628",
-                                textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+                                color: "var(--skin-text-primary, #0a1628)",
+                                textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
                             }}
                         >
                             You already help people.
@@ -651,8 +651,8 @@ const ZoneOfGeniusEntry = () => {
                             className="text-base sm:text-lg leading-relaxed"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "rgba(26,30,58,0.85)",
-                                textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.7)",
+                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                                textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.7))",
                             }}
                         >
                             You just don't have a clear way to say what you do.
@@ -665,8 +665,8 @@ const ZoneOfGeniusEntry = () => {
                             className="text-sm mb-3 text-center"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "rgba(26,30,58,0.75)",
-                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                             }}
                         >
                             If this sounds familiar:
@@ -675,20 +675,20 @@ const ZoneOfGeniusEntry = () => {
                             className="space-y-2 text-sm sm:text-base"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "rgba(26,30,58,0.85)",
-                                textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                             }}
                         >
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                                 <span>You've helped people — but don't have a clear offer.</span>
                             </li>
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                                 <span>You over-explain what you do — and people get confused.</span>
                             </li>
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                                 <span>You feel like something is there — but can't pin it down.</span>
                             </li>
                         </ul>
@@ -721,15 +721,15 @@ const ZoneOfGeniusEntry = () => {
                                            alive-card"
                                 style={{
                                     fontFamily: "'DM Sans', sans-serif",
-                                    color: "#0a1628",
+                                    color: "var(--skin-text-primary, #0a1628)",
                                     backgroundImage:
                                         "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                    border: "1px solid rgba(26,30,58,0.18)",
+                                    border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
                                     backdropFilter: "blur(14px)",
                                     WebkitBackdropFilter: "blur(14px)",
                                     boxShadow:
                                         "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                                 onClick={() => setStep("choice-route")}
                             >
@@ -748,8 +748,8 @@ const ZoneOfGeniusEntry = () => {
                                 className="text-xl font-light tracking-wide"
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
-                                    color: "rgba(26,30,58,0.82)",
-                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                             >
                                 How do you want to reveal it?
@@ -767,10 +767,10 @@ const ZoneOfGeniusEntry = () => {
                                 style={{
                                     backgroundImage:
                                         "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
-                                    border: "1px solid rgba(26,30,58,0.14)",
+                                    border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.14))",
                                     backdropFilter: "blur(12px)",
                                     WebkitBackdropFilter: "blur(12px)",
-                                    color: "#0a1628",
+                                    color: "var(--skin-text-primary, #0a1628)",
                                 }}
                             >
                                 <div className="flex items-center gap-4">
@@ -781,13 +781,13 @@ const ZoneOfGeniusEntry = () => {
                                     <div>
                                         <p
                                             className="text-base font-semibold tracking-wide"
-                                            style={{ color: "#0a1628" }}
+                                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
                                         >
                                             🤖 Faster (1 min)
                                         </p>
                                         <p
                                             className="text-xs mt-1 leading-relaxed"
-                                            style={{ color: "rgba(26,30,58,0.65)" }}
+                                            style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}
                                         >
                                             Ask your AI & paste its response → get your pattern instantly
                                         </p>
@@ -805,10 +805,10 @@ const ZoneOfGeniusEntry = () => {
                                 style={{
                                     backgroundImage:
                                         "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
-                                    border: "1px solid rgba(26,30,58,0.14)",
+                                    border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.14))",
                                     backdropFilter: "blur(12px)",
                                     WebkitBackdropFilter: "blur(12px)",
-                                    color: "#0a1628",
+                                    color: "var(--skin-text-primary, #0a1628)",
                                     animationDelay: "100ms",
                                 }}
                             >
@@ -820,13 +820,13 @@ const ZoneOfGeniusEntry = () => {
                                     <div>
                                         <p
                                             className="text-base font-semibold tracking-wide"
-                                            style={{ color: "#0a1628" }}
+                                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
                                         >
                                             📋 Guided (10–15 min)
                                         </p>
                                         <p
                                             className="text-xs mt-1 leading-relaxed"
-                                            style={{ color: "rgba(26,30,58,0.65)" }}
+                                            style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}
                                         >
                                             Assessment of your top talents
                                         </p>
@@ -845,15 +845,15 @@ const ZoneOfGeniusEntry = () => {
                                 className="text-lg font-light tracking-wide"
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
-                                    color: "rgba(26,30,58,0.82)",
-                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                             >
                                 Copy this prompt into your AI
                             </h2>
                             <p
                                 className="text-xs"
-                                style={{ color: "rgba(26,30,58,0.55)" }}
+                                style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
                             >
                                 ChatGPT, Claude, Gemini — any will work
                             </p>
@@ -864,14 +864,14 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 backgroundImage:
                                     "linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12))",
-                                border: "1px solid rgba(26,30,58,0.12)",
+                                border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.12))",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
                         >
                             <pre
                                 className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#8460ea]/20"
-                                style={{ color: "rgba(26,30,58,0.45)" }}
+                                style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
                             >
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
@@ -882,7 +882,7 @@ const ZoneOfGeniusEntry = () => {
                                 style={{
                                     backgroundColor: "rgba(255,255,255,0.35)",
                                     borderColor: "rgba(26,30,58,0.2)",
-                                    color: "#0a1628",
+                                    color: "var(--skin-text-primary, #0a1628)",
                                     backdropFilter: "blur(8px)",
                                 }}
                                 onClick={handleCopyPrompt}
@@ -910,15 +910,15 @@ const ZoneOfGeniusEntry = () => {
                                        alive-card"
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
-                                color: "#0a1628",
+                                color: "var(--skin-text-primary, #0a1628)",
                                 backgroundImage:
                                     "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                border: "1px solid rgba(26,30,58,0.18)",
+                                border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
                                 backdropFilter: "blur(14px)",
                                 WebkitBackdropFilter: "blur(14px)",
                                 boxShadow:
                                     "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                             }}
                             onClick={() => setStep("paste-response")}
                         >
@@ -930,7 +930,7 @@ const ZoneOfGeniusEntry = () => {
                             <button
                                 onClick={handleStartManualAssessment}
                                 className="text-[11px] transition-colors duration-300 tracking-wide hover:underline"
-                                style={{ color: "rgba(26,30,58,0.6)" }}
+                                style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                             >
                                 I'll do the guided assessment instead →
                             </button>
@@ -946,15 +946,15 @@ const ZoneOfGeniusEntry = () => {
                                 className="text-lg font-light tracking-wide"
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
-                                    color: "rgba(26,30,58,0.82)",
-                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                             >
                                 Paste your AI's response
                             </h2>
                             <p
                                 className="text-xs"
-                                style={{ color: "rgba(26,30,58,0.55)" }}
+                                style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
                             >
                                 The full response — we'll extract your pattern from it
                             </p>
@@ -968,7 +968,7 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 backgroundColor: "rgba(255,255,255,0.30)",
                                 borderColor: "rgba(26,30,58,0.14)",
-                                color: "#0a1628",
+                                color: "var(--skin-text-primary, #0a1628)",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
@@ -984,15 +984,15 @@ const ZoneOfGeniusEntry = () => {
                                        ${aiResponse.trim() ? "alive-card" : ""}`}
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
-                                color: "#0a1628",
+                                color: "var(--skin-text-primary, #0a1628)",
                                 backgroundImage:
                                     "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                border: "1px solid rgba(26,30,58,0.18)",
+                                border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
                                 backdropFilter: "blur(14px)",
                                 WebkitBackdropFilter: "blur(14px)",
                                 boxShadow:
                                     "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                             }}
                             onClick={handleGenerateAppleseed}
                             disabled={isProcessing || !aiResponse.trim()}

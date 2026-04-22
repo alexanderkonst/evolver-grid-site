@@ -53,7 +53,7 @@ const OwnershipSection = ({
     if (emailUnlocked || isSaved) {
         return (
             <div className="text-center py-2">
-                <p className="text-xs" style={{ color: "rgba(26,30,58,0.6)" }}>
+                <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
                     ✓ Saved. We sent your top talent to your inbox so you can come back to it.
                 </p>
             </div>
@@ -70,7 +70,7 @@ const OwnershipSection = ({
                                rounded-full liquid-glass
                                hover:scale-[1.015] active:scale-[0.985]
                                transition-all duration-300 text-xs"
-                    style={{ color: "rgba(26,30,58,0.7)" }}
+                    style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
                 >
                     <Mail className="w-3.5 h-3.5" />
                     <span>Save my top talent result for later</span>
@@ -80,7 +80,7 @@ const OwnershipSection = ({
                     onSubmit={handleEmailSubmit}
                     className="flex items-center gap-2 p-2 rounded-full liquid-glass"
                 >
-                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "rgba(26,30,58,0.45)" }} />
+                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }} />
                     <input
                         type="email"
                         value={email}
@@ -88,7 +88,7 @@ const OwnershipSection = ({
                         placeholder="your@email.com"
                         autoFocus
                         className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
-                        style={{ color: "#0a1628" }}
+                        style={{ color: "var(--skin-text-primary, #0a1628)" }}
                         required
                     />
                     <button
@@ -252,31 +252,31 @@ const AppleseedDisplay = ({
                     className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-6"
                     style={{
                         fontFamily: "'Source Serif 4', serif",
-                        color: "#0a1628",
-                        textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                        color: "var(--skin-text-primary, #0a1628)",
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                     }}
                 >
                     <p
                         className="text-lg md:text-xl leading-relaxed"
-                        style={{ color: "#0a1628", fontWeight: 500 }}
+                        style={{ color: "var(--skin-text-primary, #0a1628)", fontWeight: 500 }}
                     >
                         Right now, you don't have a clear way to say what you do.
                     </p>
 
                     <ul
                         className="text-base leading-relaxed space-y-3 list-none text-left max-w-md mx-auto"
-                        style={{ color: "rgba(26,30,58,0.85)" }}
+                        style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.85))" }}
                     >
                         <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                             <span>If you can't explain it clearly → people don't understand it.</span>
                         </li>
                         <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                             <span>If people don't understand it → they don't buy.</span>
                         </li>
                         <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                             <span>So nothing changes — even if you're actually good at what you do.</span>
                         </li>
                     </ul>
@@ -284,13 +284,13 @@ const AppleseedDisplay = ({
                     <div className="space-y-2 pt-4">
                         <p
                             className="text-base leading-relaxed"
-                            style={{ color: "rgba(26,30,58,0.85)" }}
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.85))" }}
                         >
                             This isn't about trying harder.
                         </p>
                         <p
                             className="text-lg leading-relaxed"
-                            style={{ color: "#0a1628", fontWeight: 500 }}
+                            style={{ color: "var(--skin-text-primary, #0a1628)", fontWeight: 500 }}
                         >
                             It's about saying what you do in a way people buy.
                         </p>
@@ -308,8 +308,8 @@ const AppleseedDisplay = ({
                     <blockquote
                         className="text-base md:text-lg leading-relaxed italic"
                         style={{
-                            color: "#0a1628",
-                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            color: "var(--skin-text-primary, #0a1628)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
                         "I was applying force, but the vector was wrong.
@@ -319,11 +319,11 @@ const AppleseedDisplay = ({
                     <figcaption
                         className="mt-4 text-xs"
                         style={{
-                            color: "rgba(26,30,58,0.65)",
+                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))",
                             fontFamily: "'DM Sans', sans-serif",
                         }}
                     >
-                        — <strong style={{ color: "#0a1628" }}>Sergey Jay Makarov</strong>, Serial Founder &amp; System Architect
+                        — <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>Sergey Jay Makarov</strong>, Serial Founder &amp; System Architect
                     </figcaption>
                 </figure>
 
@@ -343,9 +343,9 @@ const AppleseedDisplay = ({
                         className="text-center text-sm sm:text-base mb-1"
                         style={{
                             fontFamily: "'Source Serif 4', serif",
-                            color: "#0a1628",
+                            color: "var(--skin-text-primary, #0a1628)",
                             fontWeight: 500,
-                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
                         We fix this in 2 hours.
@@ -354,9 +354,9 @@ const AppleseedDisplay = ({
                         className="text-center text-sm sm:text-base mb-4"
                         style={{
                             fontFamily: "'Source Serif 4', serif",
-                            color: "#0a1628",
+                            color: "var(--skin-text-primary, #0a1628)",
                             fontWeight: 500,
-                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
                         Or you don't pay.
@@ -369,14 +369,14 @@ const AppleseedDisplay = ({
                                    liquid-glass-strong
                                    hover:scale-[1.02] active:scale-95
                                    transition-all duration-300 alive-card"
-                        style={{ color: "#0a1628" }}
+                        style={{ color: "var(--skin-text-primary, #0a1628)" }}
                     >
                         <div>
                             <p
                                 className="text-base font-semibold tracking-wide"
                                 style={{
-                                    color: "#0a1628",
-                                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                                    color: "var(--skin-text-primary, #0a1628)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                             >
                                 Turn My Top Talent into a Growing Business
@@ -386,14 +386,14 @@ const AppleseedDisplay = ({
                             className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-4"
                             style={{ backgroundColor: "rgba(132,96,234,0.15)" }}
                         >
-                            <ArrowRight className="w-5 h-5" style={{ color: "#5b21b6" }} />
+                            <ArrowRight className="w-5 h-5" style={{ color: "var(--skin-selected-text, #5b21b6)" }} />
                         </span>
                     </a>
 
                     {/* Mini bridge line */}
                     <p
                         className="text-center text-xs italic"
-                        style={{ color: "rgba(26,30,58,0.62)" }}
+                        style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
                     >
                         Want to learn more before acting?
                     </p>
@@ -405,13 +405,13 @@ const AppleseedDisplay = ({
                                    rounded-2xl liquid-glass
                                    hover:scale-[1.015] active:scale-[0.985]
                                    transition-all duration-300 text-sm tracking-wide font-medium"
-                        style={{ color: "rgba(26,30,58,0.82)" }}
+                        style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
                     >
                         <span>
                             See exactly why this hasn't turned into income
                             <span
                                 className="block tracking-normal text-[10px] mt-0.5"
-                                style={{ color: "rgba(26,30,58,0.55)" }}
+                                style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
                             >
                                 6-question diagnostic
                             </span>

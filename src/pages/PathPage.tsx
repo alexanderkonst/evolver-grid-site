@@ -79,7 +79,10 @@ const PathPage = () => {
     <GameShellV2 hideLogo>
       <div
         className="relative"
-        style={{ fontFamily: "'DM Sans', sans-serif", color: "#1a1e3a" }}
+        style={{
+          fontFamily: "'DM Sans', sans-serif",
+          color: "var(--skin-text-primary, #1a1e3a)",
+        }}
       >
         {/* Ambient glows — decoration, layered above the shell's video bg */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -114,9 +117,9 @@ const PathPage = () => {
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "#0a1628",
+                  color: "var(--skin-text-primary, #0a1628)",
                   textShadow:
-                    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+                    "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                 }}
               >
                 Solid Founder-Market Fit. Early{" "}
@@ -124,9 +127,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%)",
+                      "var(--skin-accent-2-bg, linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%))",
                     filter:
-                      "drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45))",
+                      "var(--skin-accent-2-glow, drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45)))",
                     textShadow: "none",
                   }}
                 >
@@ -152,9 +155,9 @@ const PathPage = () => {
                 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-2"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "#0a1628",
+                  color: "var(--skin-text-primary, #0a1628)",
                   textShadow:
-                    "0 0 20px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+                    "var(--skin-text-halo-subtle, 0 0 20px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
                 }}
               >
                 In 6–8 Weeks.
@@ -170,9 +173,9 @@ const PathPage = () => {
                   className="bg-clip-text text-transparent"
                   style={{
                     backgroundImage:
-                      "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
+                      "var(--skin-callout-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
                     filter:
-                      "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
+                      "var(--skin-callout-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
                     textShadow: "none",
                   }}
                 >
@@ -183,8 +186,9 @@ const PathPage = () => {
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
                 style={{
-                  color: "rgba(26,30,58,0.7)",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                  color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
                 Provided you do your part, at an average speed.
@@ -199,17 +203,22 @@ const PathPage = () => {
             >
               <div
                 className="px-6 py-4 border-b flex items-baseline justify-between"
-                style={{ borderColor: "rgba(26,30,58,0.08)" }}
+                style={{
+                  borderColor:
+                    "var(--skin-rule-hairline, rgba(26,30,58,0.08))",
+                }}
               >
                 <div
                   className="text-[10px] uppercase tracking-[0.28em]"
-                  style={{ color: "rgba(26,30,58,0.6)" }}
+                  style={{
+                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                  }}
                 >
                   Pay as you progress
                 </div>
                 <div
                   className="text-[10px] uppercase tracking-[0.22em]"
-                  style={{ color: "rgba(26,30,58,0.5)" }}
+                  style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}
                 >
                   7 steps · 6–8 weeks
                 </div>
@@ -217,17 +226,25 @@ const PathPage = () => {
 
               <div
                 className="divide-y"
-                style={{ borderColor: "rgba(26,30,58,0.08)" }}
+                style={{
+                  borderColor:
+                    "var(--skin-rule-hairline, rgba(26,30,58,0.08))",
+                }}
               >
                 {LADDER.map((row) => (
                   <div
                     key={row.step}
                     className="px-6 py-5 grid grid-cols-12 gap-4 items-start"
-                    style={{ borderTop: "1px solid rgba(26,30,58,0.06)" }}
+                    style={{
+                      borderTop:
+                        "1px solid var(--skin-rule-faint, rgba(26,30,58,0.06))",
+                    }}
                   >
                     <div
                       className="col-span-12 sm:col-span-2 text-[10px] uppercase tracking-[0.22em] pt-1 font-semibold"
-                      style={{ color: "#5b21b6" }}
+                      style={{
+                        color: "var(--skin-selected-text, #5b21b6)",
+                      }}
                     >
                       {row.step}
                     </div>
@@ -236,14 +253,17 @@ const PathPage = () => {
                         className="text-base sm:text-lg leading-snug mb-1"
                         style={{
                           fontFamily: "'Cormorant Garamond', serif",
-                          color: "#0a1628",
+                          color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
                         {row.title}
                       </h3>
                       <p
                         className="text-[12px]"
-                        style={{ color: "rgba(26,30,58,0.6)" }}
+                        style={{
+                          color:
+                            "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                        }}
                       >
                         {row.duration}
                       </p>
@@ -251,14 +271,19 @@ const PathPage = () => {
                     <div className="col-span-12 sm:col-span-4 sm:text-right">
                       <div
                         className="text-base font-semibold"
-                        style={{ color: "#0a1628" }}
+                        style={{
+                          color: "var(--skin-text-primary, #0a1628)",
+                        }}
                       >
                         {row.price}
                       </div>
                       {row.priceDetail && (
                         <div
                           className="text-[11px] mt-1 leading-relaxed"
-                          style={{ color: "rgba(26,30,58,0.6)" }}
+                          style={{
+                            color:
+                              "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                          }}
                         >
                           {row.priceDetail}
                         </div>
@@ -271,25 +296,37 @@ const PathPage = () => {
               <div
                 className="px-6 py-4"
                 style={{
-                  borderTop: "1px solid rgba(26,30,58,0.08)",
+                  borderTop:
+                    "1px solid var(--skin-rule-hairline, rgba(26,30,58,0.08))",
                   backgroundImage:
-                    "linear-gradient(135deg, rgba(132,96,234,0.06), rgba(132,96,234,0.02))",
+                    "var(--skin-tint-violet-soft, linear-gradient(135deg, rgba(132,96,234,0.06), rgba(132,96,234,0.02)))",
                 }}
               >
                 <p
                   className="text-[12px] leading-relaxed"
-                  style={{ color: "rgba(26,30,58,0.72)" }}
+                  style={{
+                    color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                  }}
                 >
                   The upfront path (Steps 1–5) totals{" "}
-                  <span className="font-semibold" style={{ color: "#0a1628" }}>
+                  <span
+                    className="font-semibold"
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                  >
                     $1,999
                   </span>
                   . Step 6 adds{" "}
-                  <span className="font-semibold" style={{ color: "#0a1628" }}>
+                  <span
+                    className="font-semibold"
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                  >
                     $1,111 upfront
                   </span>{" "}
                   and{" "}
-                  <span className="font-semibold" style={{ color: "#0a1628" }}>
+                  <span
+                    className="font-semibold"
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                  >
                     1/3 of your first $10k in revenue
                   </span>
                   {" "}— capped there. After that, 0%. Step 7 is by
@@ -301,28 +338,29 @@ const PathPage = () => {
 
             {/* ─── CTAs — Day 47 late pass (Sasha): page no longer dead-ends.
                 Primary lands Step 1 free (ZoG reveal); secondary lands the
-                $555 Ignition Session directly at the /ignite pricing block. */}
+                $555 Ignition Session directly at the /ignite pricing block.
+                Skin-aware: both read in Aurora and Navy+Gold. */}
             <div className="mt-10 flex flex-col items-center gap-3">
-              {/* Primary — start free with Step 1 */}
               <Link
                 to="/zone-of-genius"
                 className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass-strong inline-flex items-center justify-center gap-3"
                 style={{
-                  color: "#0a1628",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.75)",
+                  color: "var(--skin-text-primary, #0a1628)",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75))",
                 }}
               >
                 Start free with Step 1
                 <ArrowRight className="w-4 h-4 opacity-70" />
               </Link>
 
-              {/* Secondary — book the Productize Yourself Session */}
               <Link
                 to="/ignite#pricing-section"
                 className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass inline-flex items-center justify-center gap-3"
                 style={{
-                  color: "rgba(26,30,58,0.85)",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                  color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
                 Book your Productize Yourself Session
@@ -335,8 +373,9 @@ const PathPage = () => {
               <p
                 className="text-[11px] leading-relaxed"
                 style={{
-                  color: "rgba(26,30,58,0.65)",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                  color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
                 Every step is optional. Every step delivers a complete
@@ -345,8 +384,9 @@ const PathPage = () => {
               <p
                 className="text-[11px] leading-relaxed"
                 style={{
-                  color: "rgba(26,30,58,0.65)",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                  color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
                 Pay as you progress. Money-back guarantee on every step.
