@@ -242,97 +242,57 @@ const AppleseedDisplay = ({
                 )}
 
                 {/* ═══════════════════════════════════════════════
-                    THE GAP — Day 47 late pass (Sasha): all flipped to
-                    dark navy for the now-light Panel 3.
+                    THE GAP — Day 47 iter 10 (Sasha + GFOA v2.0):
+                    full copy replacement. Tighter. Named chain. Same
+                    visual container, fewer words, sharper bite. Preserves
+                    placement (post-archetype reveal), preserves text-only
+                    shape (no new visual structure).
                     ═══════════════════════════════════════════════ */}
                 <div
-                    className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-10"
+                    className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-6"
                     style={{
                         fontFamily: "'Source Serif 4', serif",
                         color: "#0a1628",
                         textShadow: "0 1px 2px rgba(255,255,255,0.7)",
                     }}
                 >
-                    {/* Recognition */}
-                    <div className="space-y-4">
-                        <p className="text-lg md:text-xl font-light tracking-wide leading-relaxed" style={{ color: "#0a1628" }}>
-                            You've been doing this for years, haven't you?
-                        </p>
-                        <p className="text-base font-light tracking-wide leading-relaxed" style={{ color: "rgba(26,30,58,0.78)" }}>
-                            Delivered real results through this.<br />
-                            People already come to you for it.
-                        </p>
-                    </div>
-
-                    {/* The Pivot */}
-                    <div className="space-y-4">
-                        <p className="text-lg font-light tracking-wide leading-relaxed" style={{ color: "#0a1628" }}>
-                            But haven't made it into a{" "}
-                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
-                                Growing Business
-                            </span>
-                            .
-                        </p>
-                        <p className="text-base italic" style={{ color: "rgba(26,30,58,0.7)" }}>Why?</p>
-                        <p className="text-base leading-relaxed" style={{ color: "rgba(26,30,58,0.82)" }}>
-                            Because this is how{" "}
-                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
-                                You Naturally Operate
-                            </span>
-                            .
-                        </p>
-                        <p className="text-base leading-relaxed" style={{ color: "rgba(26,30,58,0.82)" }}>
-                            <span className="font-semibold uppercase tracking-wider" style={{ color: "#0a1628" }}>
-                                Not Yet
-                            </span>{" "}
-                            a built, packaged, and distributed product people can buy.
-                        </p>
-                    </div>
-
-                    {/* Consequence */}
-                    <div className="space-y-3">
-                        <p className="text-base leading-loose" style={{ color: "rgba(26,30,58,0.78)" }}>So:</p>
-                        <ul className="text-sm leading-loose font-light space-y-1 list-none" style={{ color: "rgba(26,30,58,0.72)" }}>
-                            <li>you keep explaining it differently every time</li>
-                            <li>people receive value but do not pay</li>
-                            <li>you are stuck at &ldquo;seeing the light at the end of the tunnel&rdquo;</li>
-                        </ul>
-                    </div>
-
-                    {/* The Missing Bridge — light-glass panel on light Panel 3 */}
-                    <div
-                        className="space-y-5 p-8 rounded-2xl liquid-glass"
+                    <p
+                        className="text-lg md:text-xl leading-relaxed"
+                        style={{ color: "#0a1628", fontWeight: 500 }}
                     >
-                        <p className="text-sm uppercase tracking-[0.2em] font-sans" style={{ color: "rgba(26,30,58,0.65)" }}>
-                            Let's be clear
-                        </p>
-                        <p className="text-lg md:text-xl leading-relaxed" style={{ color: "#0a1628" }}>
-                            The Missing Bridge to Money is Clarity on:
-                        </p>
-                        <ul className="text-base italic leading-loose space-y-2 list-none" style={{ color: "rgba(26,30,58,0.88)" }}>
-                            <li>What exactly do I offer?</li>
-                            <li>Who is it for?</li>
-                            <li>Why would these people queue to pay?</li>
-                        </ul>
-                    </div>
+                        Right now, you don't have a clear way to say what you do.
+                    </p>
 
-                    {/* Reframe */}
-                    <div className="space-y-3">
-                        <p className="text-base tracking-wide font-light" style={{ color: "rgba(26,30,58,0.78)" }}>
-                            You don't need to be more ready.
-                        </p>
-                        <p className="text-base tracking-wide font-light" style={{ color: "rgba(26,30,58,0.78)" }}>
-                            You don't need business education or gimmicks.
-                        </p>
-                        <p className="text-lg font-semibold tracking-wide mt-2" style={{ color: "#0a1628" }}>
-                            You simply need solid business structure.
-                        </p>
-                    </div>
+                    <ul
+                        className="text-base leading-relaxed space-y-3 list-none text-left max-w-md mx-auto"
+                        style={{ color: "rgba(26,30,58,0.85)" }}
+                    >
+                        <li className="flex gap-3">
+                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span>If you can't explain it clearly → people don't understand it.</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span>If people don't understand it → they don't buy.</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                            <span>So nothing changes — even if you're actually good at what you do.</span>
+                        </li>
+                    </ul>
 
-                    {/* Pre-CTA line */}
-                    <div className="pb-4">
-                        <p className="text-base italic" style={{ color: "rgba(26,30,58,0.82)" }}>
-                            If you're done circling this — click below and let's make it real.
+                    <div className="space-y-2 pt-4">
+                        <p
+                            className="text-base leading-relaxed"
+                            style={{ color: "rgba(26,30,58,0.85)" }}
+                        >
+                            This isn't about trying harder.
+                        </p>
+                        <p
+                            className="text-lg leading-relaxed"
+                            style={{ color: "#0a1628", fontWeight: 500 }}
+                        >
+                            It's about saying what you do in a way people buy.
                         </p>
                     </div>
                 </div>
@@ -378,7 +338,31 @@ const AppleseedDisplay = ({
                     ═══════════════════════════════════════════════ */}
                 <div className="max-w-md mx-auto space-y-4">
 
-                    {/* CTA 1 (PRIMARY) — Day 47 late pass: dark text, Apple Liquid Glass */}
+                    {/* Framing line above primary CTA — Day 47 iter 10 (GFOA v2.0) */}
+                    <p
+                        className="text-center text-sm sm:text-base mb-1"
+                        style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            color: "#0a1628",
+                            fontWeight: 500,
+                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                        }}
+                    >
+                        We fix this in 2 hours.
+                    </p>
+                    <p
+                        className="text-center text-sm sm:text-base mb-4"
+                        style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            color: "#0a1628",
+                            fontWeight: 500,
+                            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                        }}
+                    >
+                        Or you don't pay.
+                    </p>
+
+                    {/* CTA 1 (PRIMARY) — Apple Liquid Glass */}
                     <a
                         href="/ignite#pricing-section"
                         className="w-full flex items-center justify-between p-5 rounded-2xl

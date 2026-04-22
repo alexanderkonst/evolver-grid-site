@@ -586,7 +586,11 @@ const ZoneOfGeniusEntry = () => {
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
                     </div>
 
-                    {/* Headline — normal case, dark navy, Cormorant Garamond */}
+                    {/* Headline — Day 47 iter 10 (GFOA v2.0):
+                        Hero question split into two lines. Each question stands
+                        as its own beat, creating two distinct recognition hooks
+                        instead of one long compound sentence. Gradient
+                        highlights retained on the load-bearing phrases. */}
                     <h1
                         className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-8"
                         style={{
@@ -609,7 +613,10 @@ const ZoneOfGeniusEntry = () => {
                         >
                             explain what you do
                         </span>
-                        {" "}— and turn it into something people{" "}
+                        ?
+                        <br />
+                        <br />
+                        And turn it into something people{" "}
                         <span
                             className="bg-clip-text text-transparent"
                             style={{
@@ -625,8 +632,11 @@ const ZoneOfGeniusEntry = () => {
                         ?
                     </h1>
 
-                    {/* Two short truths — dark navy with soft white halo */}
-                    <div className="space-y-4 max-w-lg mx-auto">
+                    {/* Recognition block — Day 47 iter 10 (GFOA v2.0):
+                        Replaced the abstract "unique way you think and solve
+                        problems" two-line truth with concrete recognition copy
+                        that names the exact pain the tribe is living in. */}
+                    <div className="space-y-3 max-w-lg mx-auto">
                         <p
                             className="text-base sm:text-lg leading-relaxed"
                             style={{
@@ -635,54 +645,53 @@ const ZoneOfGeniusEntry = () => {
                                 textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
                             }}
                         >
-                            There's a{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage:
-                                        "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
-                                    textShadow: "none",
-                                }}
-                            >
-                                unique way
-                            </span>{" "}
-                            you think and solve problems.
+                            You already help people.
                         </p>
                         <p
-                            className="text-base sm:text-lg italic leading-relaxed"
+                            className="text-base sm:text-lg leading-relaxed"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "rgba(26,30,58,0.8)",
+                                color: "rgba(26,30,58,0.85)",
                                 textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.7)",
                             }}
                         >
-                            It just hasn't been{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage:
-                                        "linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45))",
-                                    textShadow: "none",
-                                }}
-                            >
-                                packaged
-                            </span>{" "}
-                            into a product people can{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage:
-                                        "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
-                                    filter: "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
-                                    textShadow: "none",
-                                }}
-                            >
-                                purchase
-                            </span>
-                            .
+                            You just don't have a clear way to say what you do.
                         </p>
+                    </div>
+
+                    {/* Recognition bullets — If this sounds familiar */}
+                    <div className="mt-8 max-w-lg mx-auto text-left">
+                        <p
+                            className="text-sm mb-3 text-center"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "rgba(26,30,58,0.75)",
+                                textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+                            }}
+                        >
+                            If this sounds familiar:
+                        </p>
+                        <ul
+                            className="space-y-2 text-sm sm:text-base"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "rgba(26,30,58,0.85)",
+                                textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                            }}
+                        >
+                            <li className="flex gap-3">
+                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span>You've helped people — but don't have a clear offer.</span>
+                            </li>
+                            <li className="flex gap-3">
+                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span>You over-explain what you do — and people get confused.</span>
+                            </li>
+                            <li className="flex gap-3">
+                                <span aria-hidden="true" style={{ color: "rgba(26,30,58,0.5)" }}>–</span>
+                                <span>You feel like something is there — but can't pin it down.</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
