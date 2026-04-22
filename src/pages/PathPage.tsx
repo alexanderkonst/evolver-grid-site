@@ -100,10 +100,15 @@ const PathPage = () => {
         </div>
 
         <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
-            {/* ─── The Hero — Day 47 late pass (Sasha):
-                "THE PATH" title removed. Starts straight with the promise,
-                key phrases highlighted with same neon-gradient + dark-core
-                treatment as the landing page (Find Your Top Talent). */}
+            {/* ─── The Hero — Day 47 very-late-night (Sasha):
+                Color scarcity applied (same rule as the landing — "7
+                highlights is too much, reduce to 3"). Only 3 beats carry
+                gradient ink now: Product-Market Fit (the holy grail),
+                Investors Loving It (the newest validation beat), and
+                Guaranteed (the promise anchor). The other 4 beats —
+                Founder-Market Fit, Traction, Organic Demand, 6-8 Weeks —
+                render as neutral dark navy, letting the 3 accents do
+                the lifting. Color regains meaning by scarcity. */}
             <section className="mb-14">
               <h1
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
@@ -114,20 +119,7 @@ const PathPage = () => {
                     "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
                 }}
               >
-                Solid{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
-                    filter:
-                      "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
-                    textShadow: "none",
-                  }}
-                >
-                  Founder-Market Fit
-                </span>
-                . Early{" "}
+                Solid Founder-Market Fit. Early{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
@@ -140,33 +132,7 @@ const PathPage = () => {
                 >
                   Product-Market Fit
                 </span>
-                .{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, hsl(188, 85%, 28%) 0%, hsl(178, 85%, 24%) 50%, hsl(168, 85%, 26%) 100%)",
-                    filter:
-                      "drop-shadow(0 0 10px hsl(180 95% 45% / 0.38)) drop-shadow(0 0 3px hsl(175 95% 42% / 0.45))",
-                    textShadow: "none",
-                  }}
-                >
-                  Traction
-                </span>
-                .{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%)",
-                    filter:
-                      "drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45))",
-                    textShadow: "none",
-                  }}
-                >
-                  Organic Demand
-                </span>
-                .{" "}
+                . Traction. Organic Demand.{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
@@ -191,20 +157,7 @@ const PathPage = () => {
                     "0 0 20px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
                 }}
               >
-                In{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
-                    filter:
-                      "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
-                    textShadow: "none",
-                  }}
-                >
-                  6–8 Weeks
-                </span>
-                .
+                In 6–8 Weeks.
               </h2>
 
               <p
