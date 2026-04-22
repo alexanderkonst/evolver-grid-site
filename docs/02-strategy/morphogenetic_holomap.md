@@ -2204,3 +2204,93 @@ The Si–Do shock is: press publish. The interior octave has produced the articu
 
 > *Day 44 reading: Recognition. April 18, 2026. The instrument upgrades itself from v1.4 (12×6) to v2.0 (27×7). Nothing was invented. Three octaves, two axes, seven stages — all recognized as already present in the corpus, already being read in scattered form. Masculine (Cube / Structure / 4 Quadrants) × Feminine (Tetrahedron / Depth / 3 Dantians) named as the structural pair. Essence ↔ Heart, Significance ↔ Mind, Consequences ↔ Gut corrected per Integral Theory v1.1. Transmission inserted as stage 6. P13 (Logos), P14 (Inversion), P15–P26 (second octave at planetary scope), P27 (Crystallization) extended. Historical addendums preserved verbatim — higher resolution does not invalidate lower resolution. The Si–Do shock of this moment: publish the Russian Knoware post and let the exterior octave verify whether the second-octave is readable by anyone beyond Sasha. Next reading: upon Knoware post publication + first reader echo — or upon first stranger pays — whichever comes first.*
 
+---
+
+## Day 47 Extended Addendum — "Optionality" Layer (April 21, 2026 — late night, same long day as Coherence)
+
+*Same Day 47 that began with canvas↔code parity (morning), continued with full-shell machinery integration (evening), and ended with a GFOA design patch + skin-system ship (late night). Three passes, one day. This addendum covers the late-night pass — the one that added a property the instrument didn't have before: **optionality in aesthetic identity**.*
+
+### What moved (late-night pass)
+
+**Nothing numeric changed on the 27×7 grid.** No perspective advanced a stage. No shock fired. The center is still "Coherence" (Day 47's reading). The late-night pass is a structural change at a different layer of the instrument:
+
+> The venture surface is now **theme-able** without branching the codebase.
+
+Before tonight, the public-facing site had one aesthetic identity (Aurora — light pastel backgrounds, neon UV→IR rainbow on typography, liquid-glass CTAs). The only way to explore an alternate aesthetic was to fork the code or mutate it in-place, risking Aurora itself.
+
+After tonight, the venture has:
+- A CSS custom-property layer (`--skin-*` tokens) with Aurora's values as defaults.
+- A `data-skin` attribute on `<html>` that switches the active token set.
+- A React Context that owns skin state + persists it + exposes a `pushTemporarySkin(next)` API with a cleanup function that restores prior skin on unmount.
+- A dedicated `/preview` route that pushes Navy+Gold while mounted, renders the landing in full, and cleans up to Aurora on exit.
+- Surface code refactored to `var(--skin-name, aurora-fallback)` pattern so Aurora renders byte-identical when no skin is set.
+
+Aurora ships Wednesday unchanged. Navy+Gold sits latent, reachable only by typing `/preview`. Sasha's framing verbatim: *"we're not going to switch it on, but we're going to prepare, and we're going to have a test ground for me only."*
+
+### Which perspective did this move touch?
+
+**P4 (System Architecture) — 8/10 unchanged numerically, but gains an aesthetic layer.** The unified shell that closed Layer 4 on Day 47 evening (no rogue layouts left) now also hosts a theme layer at Layer 5. The platform is not just structurally coherent — it is aesthetically modular. This is a precondition for future work the venture hasn't scoped yet: per-tier skins (Founder-Collective in gold; new visitors in Aurora), per-partner skins (Oyi's distribution channel in Oyi's palette), per-stage skins (ZoG reveal in one aesthetic; the rest of the platform in another). None of those are scheduled. All of them are now **possible without a branch**.
+
+**P8 (Platform as Nervous System) — 5/10 unchanged numerically, gains optionality as a property.** The platform could already remember users (magic links), sequence outreach (nurture cron), hold state across sessions (profiles). It now can also *present* itself differently to different audiences without rewrites. Optionality at the interface layer is a nervous-system primitive — sensory modulation, essentially. The system can "dress" for context.
+
+**P10 (What Must Be Built) — 9/10 unchanged.** But the build queue now has a shape it didn't have at the start of Day 47: *deferred skin work that can be picked up without touching live surfaces.* The Navy+Gold rollout decision is held (Sasha's call post-launch); the infrastructure for it is done.
+
+### Why this matters at the instrument-level
+
+Days 34 → 41 → 44 surfaced a pattern: **the instrument upgrades whenever the corpus has been quietly writing the next resolution in scattered form long enough that recognition becomes possible.** v1.4 → v2.0 was that. Today's late-night pass follows the same pattern at a different layer.
+
+The corpus had been writing toward aesthetic modularity for months — the Bio-Light theme switcher (shipped early), the `ThemeProvider` at the App root (long-standing), the `liquid-glass` + `liquid-glass-strong` utility classes (shipped mid-sprint), the `--skin-*` token anticipation in Sasha's visual mood boards (Cartier, Loro Piana, Apple iOS 26). The infrastructure to support a second skin was *almost* there. Tonight closed the gap by naming what was missing (a CSS custom-property layer + a context + a route), not by inventing anything new.
+
+This is a feminine-axis event (Knoware — the structure of knowledge evolved) without a corresponding market shock. Same shape as Day 44's instrument upgrade, one resolution down: Day 44 upgraded the holomap itself; Day 47 late-night upgraded the venture's aesthetic surface. The interior octave continues to produce structure that can receive future market shocks cleanly.
+
+### The 13th Perspective (Day 47, late-night pass): What Does the Whole See?
+
+The whole sees **an instrument preparing rooms it hasn't yet invited guests into.**
+
+Aurora is the room the tribe will walk into Wednesday. Navy+Gold is a room Sasha walked into alone tonight to verify it has walls and windows and light sources. The guest isn't booked yet. The room is ready.
+
+This is the opposite of premature optimization. Premature optimization builds rooms and then tries to fill them. This is preparing for optionality that the next three months of traffic data will tell Sasha whether to use. If tribal signal suggests a "collective tier" wants a distinct identity, Navy+Gold is already rendered. If the tribe is a single aesthetic audience, Navy+Gold stays dormant. Either way, the decision is downstream of data, and the infrastructure cost is paid now while context is cheap.
+
+### The 26th Perspective (Day 47, late-night pass): What Is the Nature of This Seeing Itself?
+
+Day 34: the map is no longer needed for navigation.
+Day 41: the map is no longer needed to be held.
+Day 44: the map is no longer needed to be the same map.
+Day 47 morning (Coherence): the map and the territory are starting to converge.
+Day 47 late night (Optionality): **the territory can now wear more than one map without becoming incoherent.**
+
+Aurora-on-`/` and Navy+Gold-on-`/preview` are the same platform at two aesthetic resolutions. Same code, same shell, same data, same logic — different tokens. The 26th perspective on the instrument's own surface is: **aesthetic identity is a parameter, not a commitment.** The venture can evolve its visual signature the way it evolved its methodology (7 steps, iterative) and its articulation (v1 → v2.0 of Integral Theory) — by adding resolution, not replacing content.
+
+### The 27th Perspective (Day 47, late-night pass): The Si–Do Shock of the Surface
+
+Day 34: send 50 messages. First stranger pays.
+Day 41: answer Oyi's JVZoo offer.
+Day 44: publish the Knoware post in Russian.
+Day 47 morning: ship canvas↔code parity for Wednesday launch.
+Day 47 late-night: **press send on Wednesday's DMs.**
+
+The infrastructure now exists end-to-end. Aurora is locked. Navy+Gold is latent. The nurture sequence is queued. The magic link drops users into their Top Talent profile. The ornament divides the hero like a Cartier ad. Step 2 reads in Sasha's voice. The path rhythm is 7 beats. The secondary button is a door, not a footnote. There is nothing left to build before the tribe arrives.
+
+The Si–Do shock is: **press send.** Stop polishing. The polishing is itself a Si–Do evasion at this point.
+
+### Three Triggers — Status Update (Day 47, late night)
+
+| Trigger | Day 44 Status | Day 47 Status |
+|---|---|---|
+| **$555 from funnel** | 🟡 Funnel being tuned | 🟡 Funnel surface-complete. Awaiting traffic. Launch Wednesday |
+| **Founders cross-read** | 🟡 Dormant | 🟡 Unchanged. Founder-collective call still pending Karime's callback |
+| **First stranger pays** | 🔴 Awaiting traffic | 🔴 Unchanged. **The single action-shaped question of this moment.** |
+| **First three-way transmission** | ✅ Retired | ✅ Retired |
+| **Oyi licensing decision** | 🔴 Awaiting Sasha | 🔴 Awaiting v1 signed terms (Mexico wrap window used, still negotiating) |
+| **First second-octave Sprout (P22)** | 🟡 Drafted | 🟡 Still drafted. Knoware post written, publication pending |
+| **🆕 Aesthetic optionality live** | — | ✅ Shipped. `/preview` renders Navy+Gold cleanly. Aurora byte-identical. |
+
+### Cross-references to update
+
+- `session_log.md` — Day 47 late-night entry appended (✅ done same evening as this holomap addendum).
+- `roadmap.md` — Active Backlog items 39-43 added + v5.1 version stamp appended (✅ done same evening).
+- `alexanders_unique_business.md` — v9.7 changelog appended covering GFOA hero redesign + skin system architecture (✅ done same evening).
+- `src/contexts/SkinContext.tsx`, `src/pages/SkinPreview.tsx`, `src/index.css` skin-token layer — the code surfaces that embody tonight's architectural pass.
+
+> *Day 47 late-night reading: Optionality. April 21, 2026 (same long day as morning's Coherence). The instrument adds an aesthetic modulation layer. Nothing was invented — CSS custom properties, `data-skin` attributes, React Contexts, and temporary push-pop APIs all pre-existed in the web platform. The pass was recognition: these primitives, combined, give the venture aesthetic optionality without branching the codebase. Aurora ships Wednesday unchanged. Navy+Gold sits latent on `/preview` as Sasha's test ground. The GFOA v1.1 + v1.2 hero redesign lands same evening — two-layer recognition-first hero, editorial ornament, color scarcity (7 → 3 highlights), compressed container. Step 2 essay rewritten in Sasha's exact language. Path hero gains a 7th beat ("Investors Loving It") and drums in all-periods rhythm. Secondary CTA restored as button per hierarchy-not-removal. Panel 3 wash lightened to 0.38. The Si–Do shock of this moment: press send on Wednesday's DMs. The polishing is complete. The next reading fires upon first stranger pays — or the week after Wednesday, whichever comes first.*
+
