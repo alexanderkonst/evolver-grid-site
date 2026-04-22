@@ -103,7 +103,13 @@ const PlaybookShell = ({
                 {!isLast && (
                   <span
                     aria-hidden="true"
-                    className="absolute top-[13px] sm:top-[15px] left-1/2 h-[1px] pointer-events-none w-[calc(100%+0.25rem)] sm:w-[calc(100%+0.5rem)]"
+                    // Day 47 iter 9 (Sasha): line now passes through the EXACT
+                    // vertical center of each step sphere. Button is w-7 h-7
+                    // (28px) on mobile and sm:w-8 sm:h-8 (32px) on desktop —
+                    // centers at 14px and 16px respectively. A 2px line
+                    // positioned at top-[13px]/sm:top-[15px] spans y=13..15
+                    // and y=15..17, centered ON the sphere midlines.
+                    className="absolute top-[13px] sm:top-[15px] left-1/2 h-[2px] pointer-events-none w-[calc(100%+0.25rem)] sm:w-[calc(100%+0.5rem)]"
                     style={{
                       backgroundImage:
                         "linear-gradient(90deg, rgba(26,30,58,0.22), rgba(26,30,58,0.12))",

@@ -1,10 +1,54 @@
-# Funnel Synthesis — Current State, Day 47 (2026-04-21 evening)
+# Funnel Synthesis — Current State, Day 47 (2026-04-21 late night)
 
-> High-precision map of every user touchpoint, action, and piece of copy in Aleksandr's funnel, as actually implemented in the codebase tonight. Intended input for GFOA analysis.
+> High-precision map of every user touchpoint, action, and piece of copy in Aleksandr's funnel, as actually implemented in the codebase tonight. Intended input for **GFOA (Godfather Offer Architect) analysis**.
 >
 > **Scope:** Public funnel (no-auth → paid commercial session). Authenticated surfaces (/game/*, /my-artifacts) are deliberately omitted — they are post-purchase product, not acquisition funnel.
 >
 > **Fidelity:** Every copy quote below is lifted verbatim from the live codebase. Every URL is a real route. Every conversion link is the real destination. Where I don't know something, I say so.
+
+---
+
+## 0.0. Sasha's Spiel — how this funnel gets USED (the launch plan)
+
+*Added Day 47 late night per Sasha so GFOA sees the full intent, not just the mechanics.*
+
+The funnel exists to deliver a **transformational result** — taking a conscious aspiring impact founder from "I can't explain what I do and nobody pays me for it" to "I have a one-sentence business at early product-market fit" in 6–8 weeks. The funnel's entire architecture (copy, gates, emails, price points, follow-ups) is shaped around that transformation. It is not a lead-generation machine sitting next to a session business — the funnel IS the front door of the session business, and the session IS the transformation.
+
+**Who the funnel is for.** The tribe Sasha targets: **conscious aspiring impact founders** — specifically people who (a) have proven their value delivering real results for other people, (b) know they're carrying something unique but can't yet name it, (c) are circling the question "what is mine to build?", (d) have tried personality tests / productize-yourself content / authentic-brand coaching and found none of it tells them *how*. The pain lives in the gap between "I know I have a gift" and "I have a business people pay for." The full pain / tribe / myth / promise architecture lives in `docs/02-strategy/unique-businesses/alexanders_unique_business.md` — the canonical source for who this is for, what they carry, and what they walk away with. Stays canonical through this funnel pass.
+
+**How Sasha launches it.** He sends a personal life-update to his most aligned tribe — ~10/10 resonance humans he's named intuitively, especially those holding aligned communities (the weak-tie / community-holder overlap is where the signal travels). The message is a gift, not a pitch. It contains exactly one URL: **`FindYourTopTalent.Com`** (→ `/zone-of-genius`). The only thing the recipient is invited to do is find their top talent. The **playbook** (`/playbook`) is referenced as the methodology-given-away (Open Blueprint Paradox: give the method fully, precision IS the product). The **path** (`/path`) is **not** mentioned to people who don't ask about pricing or don't open it themselves — the path is a receiver-driven surface, not a sender-driven one.
+
+**The two lead magnets.** Sasha has TWO lead magnets, and they are complementary, not redundant:
+
+1. **The Find-Your-Top-Talent reveal** (`/zone-of-genius`) — experiential. The visitor *does* the reveal and emerges with an archetype, a bullseye sentence, and Three Lenses. They feel seen before they're sold to. The Gap section on the result page names the structural problem the reveal can't fully fix on its own.
+2. **The exact playbook** (`/playbook`) — intellectual. The whole 7-step methodology is visible, including Step 2's essay explaining why most people get stuck at specificity and what the shortcut is. The visitor *reads* the method and either thinks "I can do this myself" (great — they got value and left) or "I want this run on me with a guide" (perfect — they buy).
+
+Both lead magnets deliver on the promise that the email made: *the gift is given*. Whether the visitor proceeds to book the Productize Yourself Session is now a function of their own moment and their own math — the funnel has already transferred value.
+
+**What happens when they land.** Most people who open the email will first click into `/zone-of-genius` because the URL carries that phrase. The entry page offers two lanes — AI-assisted (1 min) and guided (10–15 min). Both converge on the same result shell. At peak emotional recognition (just after their archetype reveals), they encounter **"The Gap"** — a structured argument that reframes the problem they've been feeling as a **structural gap** rather than a **readiness gap**. Readiness reframes lock people in loops ("I need to do more work on myself"); structural reframes open action ("I need a different scaffold"). The Gap section walks: recognition → pivot → consequence → missing bridge → reframe → decision.
+
+The decision they're offered: **Book the 2-hour Productize Yourself Session — $555, money-back guarantee.** This is the singular commercial container that takes them from the top talent sentence they now have to a full unique business on one page. No upsell cascade, no tripwires, no waitlist, no fake scarcity. One product, one price, one guarantee. The guarantee language is operative: *"If you don't leave with a one-sentence business you recognize as yours, you don't pay."* It removes the risk from the buyer AND sets Sasha's delivery standard.
+
+**What happens if they don't book that day.** Two things fire automatically:
+- Secondary option on the result page: the 6-question diagnostic (`/quiz`) — for people who need more reassurance that this applies to them before buying.
+- Save-pill email capture — the visitor enters their email, a silent account is created, the snapshot is persisted, a magic-link email goes out, and a **3-email nurture sequence** queues: Day 1 (log-in nudge + booking angle + "last reminder in one week" note), Day 2 (gentle check-in, pure minimalist: *"What's shifted since you read it?"*), Day 8 (last reminder + Productize Yourself CTA + explicit *"no more emails unless you take the next step"*).
+
+Each email is sent by `aleksandr@notify.aleksandrkonstantinov.com` (branded), signed `— Aleksandr / FindYourTopTalent.Com`. Dispatched by `pg_cron` every 10 min via the `process-nurture-emails` edge function.
+
+**What the session delivers.** At `/ignite` the pitch is consolidated: *"In 2 hours, we take what you already do — and turn it into: → a clear one-sentence business, → a real offer, → something people understand — and pay for."* The session runs 2 hours, 1:1, with AI compiling the canvas live in-session. The deliverable is a **one-page offer** — not a feeling, a document. Guarantee: if the client doesn't leave with a one-sentence business they recognize as theirs, they don't pay.
+
+**What happens after they buy.** Stripe handles payment + redirects to Cal.com (Sasha's configuration in the Stripe dashboard). Cal.com schedules the 2-hour session. Post-session artifacts land in the client's authenticated `/game/me` space (the ME space collapsed on Day 47 to Top Talent only, but the architecture supports extending it later for deeper business artifacts — the `user_business_artifacts` table shipped Day 47 morning is the substrate).
+
+**Why this funnel is a transformation machine, not a marketing machine.** The decisive move was removing every piece of friction that wasn't a conscious commitment:
+- No auth gate before purchase — `/zone-of-genius`, `/zone-of-genius/assessment`, `/playbook`, `/path`, `/ignite`, `/quiz` all public.
+- No email-before-reveal gate — the reveal happens, THEN the save pill offers to remember it.
+- No "signup to see your result" wall — the full reveal renders for guests.
+- No dark patterns on `/ignite` — guarantee up front, fallback free clarity-call, delayed-interest capture for users who aren't ready.
+- No product cascade — one product, one price, one guarantee.
+
+Net: the funnel's shape mirrors the methodology's shape. Both say *"the gift is given first, the commercial relationship is the invitation to continue."* Both hold the same ethical posture. The congruence between message and mechanism is itself part of what makes the conversion work on this particular tribe.
+
+---
 
 ---
 
@@ -513,25 +557,59 @@ User clicks Stripe CTA → external checkout → on success, Stripe redirects to
 
 ### 6.1 `/playbook` — the methodology exposed
 
-Open Blueprint Paradox in action. The entire 7-step methodology is readable, free, no gate.
+Open Blueprint Paradox in action. The entire 7-step methodology is readable, free, no gate. **This is Lead Magnet #2** (see §0.0 Spiel).
 
-**Layout:** Back button → seven-step pill nav (each chip a colored circle with step number + step subtitle below) → gradient bridge → StepCard for the active step.
+**Layout:** Back button → seven-step pill nav (each chip a colored circle with step number + step subtitle below, line connecting the centers) → gradient bridge → StepCard for the active step.
 
-**7 steps (from `src/data/playbookSteps.ts`):**
+**7 steps — current copy verbatim from `src/data/playbookSteps.ts`:**
 
-1. **Step 1 — Name Your Top Talent** (violet)
-2. **Step 2 — Articulate it with Precision** (indigo)
-3. **Step 3 — Enhance it with Business Structure** (blue)
-4. **Step 4 — Build your First Unique Product** (cyan)
-5. **Step 5 — Beta-Test That Everything Works by Gifting and/or Selling** (green)
-6. **Step 6 — Laser-Focus Tactically and Go Live** (orange)
-7. **Step 7 — Turn Organic Growth into Scaling Impact and Revenue** (red)
+#### Step 1 — Name Your Top Talent · violet · FREE
+*Transformational result: "I can name my top talent out loud."*
+- **1.1 Ask your AI about your top talent.** Recommended How-To: *Use this prompt: "Based on all you know about me, what's my zone of genius?"*
+- **1.2 Distill it into one sentence — and actually write it down.** Recommended How-To: *Ask your AI to do this for you, and then polish it yourself.*
+- **1.3 Iterate whenever new clarity emerges.** Recommended How-To: *Keep it in an accessible place, update it, and call each version v1.1, v2, and so on.*
+
+#### Step 2 — Articulate it with Precision · indigo · $555 (bundled with Step 3)
+*Transformational result: "I can describe my business in one sentence." · CTA: "Sharpen Your Top Talent to 9+/10 in 60 mins"*
+
+**Step 2 is special — it renders as one long-form essay titled "The Secret to Productizing Yourself" instead of three substeps.** The essay argues why nobody tells you HOW to productize (startup influencers / personality tests / social media influencers all fail in specific ways), lays out the specificity gap (vague "I help people get better results" ~3/10 → Sasha's example at ~10/10 specificity: *"I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow"*), and reveals the shortcut: the ZoG reveal gets you to ~7/10, then you must iterate to 9/10+, and there are two shortcuts — (1) guidance from someone at 9.9+ precision, (2) a high-precision purpose-discovery tool. Sasha's method does it in ~40 minutes. Two external tools quietly linked (numbered "1" and "2", no brand names surfaced).
+
+#### Step 3 — Enhance it with Business Structure · blue · $555 (bundled with Step 2)
+*Transformational result: "I know the shape of my business." · CTA: "Create your Unique Business Structure at 9+/10 resonance in 2 hours"*
+- **3.1 Find your Top Blind Spot.** Recommended How-To: *Ask your AI to reveal your top blind spot by Turning Your Top Talent Inside Out.*
+- **3.2 Turn Blind Spot into Master Lie and Master Truth.** Recommended How-To: *[TO BE FILLED — pending Sasha's vetted text]*
+- **3.3 Produce the minimally viable set of key business artifacts.** Description: *Translate the myth, talent and blind spot into the Pain of Having the Blind Spot, into Your Tribe, The Transformation Promise; and finally the user journey you take your tribe on.* Recommended How-To: *Just give your AI this playbook and you will get your unique business structure at 5-7 level of resonance. Then keep iterating until you get to 9.5+/10. Empirically this seems to be a sufficient precision to continue to the next step.*
+
+#### Step 4 — Build your First Unique Product · cyan · $1,111 + rev share (bundled with Step 5)
+*Transformational result: "My first product exists — I can hand it to someone." · CTA: "Build Your First Unique Product, Ready for Testing and Selling"*
+- **4.1 Iterate to bring the business artifacts to 9+/10 resonance.** Recommended How-To: *Roast the current version with AI (use roasting prompts at metaprompt.lovable.app), provide your inputs, then produce the next iteration, and repeat until you get to 9/10 or further. I recommend: arrive at 9/10, then continue with next steps. You will keep receiving further clarity towards 10, so make sure you version your work otherwise you likely get stuck in analysis paralysis.*
+- **4.2 Solidify and Concretize The Transformational Promise.** Recommended How-To: *Give AI transcripts of prior most aligned consulting/coaching calls and ask it to extract these artifacts.*
+- **4.3 Deliver Your Unique Product for the First Time.** Recommended How-To: *Iterate until you are excited to run it in this new structured way and literally can't wait and until you arrive at a first signature 1:1 session. Trust the first name that comes to mind, consciously focus on a clear tangible transformational result but don't overwhelm your client.*
+
+#### Step 5 — Beta-Test That Everything Works by Gifting and/or Selling · green · $1,111 + rev share (bundled with Step 4)
+*Transformational result: "People who got it say yes to more."*
+- **5.1 Intuitively identify 5 people in your network that are in your tribe.** Recommended How-To: *Watch for names of people in your network naturally bubbling up in your awareness. Write them down as they do — trust your first instinct even when the mind says "that must be a glitch" (that's exactly NOT a glitch). Send intuitive quick messages without overthinking it, offering them the transformational promise.*
+- **5.2 Deliver your product, record it, track and analyze with AI, learn iteratively, track key metrics.** Recommended How-To: *Use a simple dashboard to track delivery + outcomes. Use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.*
+- **5.3 Polish your delivery and find your tribe with bull's-eye precision.** Recommended How-To: *When you reach ~10 sessions delivered across ~5 clients (numbers are arbitrary but empirical), that's where you start to know what you're doing — getting really good at delivering transformational results across flavors of people, and the bull's-eye tribe (aka beachhead market) emerges.*
+
+#### Step 6 — Laser-Focus Tactically and Go Live · orange-gold
+*Transformational result: "I have my first paying client."*
+- **6.1 Build landing, funnel, and lead magnet that transform your ~10/10 tribe at every touchpoint.** Recommended How-To: *Crystallize everything from Steps 1–5 into ONE landing page + ONE funnel + the playbook as the free lead magnet. Give out the methodology of how you get people to the transformational result as best and as openly as you can so that it becomes a DIY recipe. Every word, every CTA, every screen transition should name their lived pain, collapse indecision into consciousness of the cost of consequences, and use identity-shift language. Use Godfather Offer Architect GPT or equivalent; run 5–10+ rounds of live iteration until the page can close without you on the call. Test of success: a cold ~10/10 aligned reader almost takes out their card unprompted. If yes, the page is live. If not, keep iterating.*
+- **6.2 Create and activate a "master tuning fork" that repels non-clients and pulls in your bull's-eye tribe — the simplest possible frame of the transformation in ONE sentence.** Recommended How-To: *Lock ONE sentence that makes the wrong people quietly leave and the right people sit up. Then post it onto your key digital channels: (a) bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB) with the same line + same URL; (b) ONE DM template (personalize only the name); (c) ONE life-update post — what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in.*
+- **6.3 Send a personal life-update + your lead magnet to 10/10 tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 10/10 aligned live communities. If demand isn't growing organically at this point, activate additional digital + physical surfaces, go upstream to aligned practitioners serving a similar ~10/10 tribe, and/or start outreach campaigns.** Recommended How-To: *Sit still, let names arise — trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can't). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook / methodology link) as the gift, not the ask. Parallel: write ONE short, culture-matched intro for each alive ~10/10 community where you're already a member — wherever appropriate.*
+
+#### Step 7 — Turn Organic Growth into Scaling Impact and Revenue · red-orange · 10% rev share or equity
+*Transformational result: "My income is organically growing without me pushing."*
+- **7.1 Get guidance from a whole team of venture scalers working with you.** Recommended How-To: *[Pending Sasha's vetted text — this step is the next octave he hasn't fully lived yet]*
+- **7.2 Enter a decentralized revenue-sharing coop scheme.** Recommended How-To: *[Pending Sasha's vetted text]*
+- **7.3 Enjoy the next octave of the ride.** Recommended How-To: *[Pending Sasha's vetted text]*
 
 **StepCard structure (per active step):**
-- Hero title: "Step N. [subtitle]" — step number rendered as a neon→navy→neon gradient in the step's signature color
-- Three substeps (always visible): each substep has a number, name, description, and a "Recommended How-To" toggle that reveals "One Proven Strategy" in a light-glass card
+- Hero title: *"Step N. [subtitle]"* — step number rendered with the step's signature neon color (via `color-mix(in srgb, neonHsl 55%, #0a1628 45%)` for readable ink + a matching neon text-shadow glow)
+- For Step 2: single essay block (no substeps, no dropdowns)
+- For Steps 1 + 3-7: three substeps always visible; each has a **"Recommended How-To"** toggle that reveals the strategy in a light-glass card (the "ONE PROVEN STRATEGY" eyebrow label retired Day 47 late night — the revealed paragraph IS the strategy)
 
-No per-step CTA block. The commercial flow lives on `/path` and `/ignite`, not inside each step.
+No per-step CTA block. The commercial flow lives on `/path` and `/ignite`, not inside each step. The playbook's job is to give the method fully, not to sell.
 
 ### 6.2 `/path` — the value ladder
 
