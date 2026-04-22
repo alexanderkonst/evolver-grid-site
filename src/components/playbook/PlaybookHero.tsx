@@ -81,24 +81,24 @@ const PlaybookHero = () => {
         <div
           className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
           style={{
-            color: "rgba(26,30,58,0.65)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+            textShadow:
+              "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
           <span>Takes 2 minutes. No signup.</span>
         </div>
 
-        {/* Secondary — Day 47 iter 13 (Sasha + mockup): demoted from
-            heavy glass pill to a subtle text link. "or see the exact
-            playbook" — preserves Open Blueprint Paradox (both doors visible)
+        {/* Secondary — text link. Preserves Open Blueprint Paradox
             without competing with the primary CTA's weight. */}
         <button
           type="button"
           onClick={() => navigate("/playbook")}
           className="text-xs mt-1 transition-colors hover:underline underline-offset-4"
           style={{
-            color: "rgba(26,30,58,0.6)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+            color: "var(--skin-link-secondary, rgba(26,30,58,0.6))",
+            textShadow:
+              "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
           or see the exact playbook
