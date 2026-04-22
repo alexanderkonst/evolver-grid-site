@@ -68,7 +68,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          So people don't buy.
+          So people don't buy it.
         </p>
 
         {/* Editorial ornament between the two layers — Day 47 iter 11

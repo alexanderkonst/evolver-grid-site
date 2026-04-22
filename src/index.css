@@ -145,11 +145,15 @@
 
 :root,
 [data-skin="aurora"] {
-  /* ── Text ── */
-  --skin-text-primary: #0a1628;
-  --skin-text-body: rgba(26, 30, 58, 0.85);
-  --skin-text-muted: rgba(26, 30, 58, 0.7);
-  --skin-text-muted-soft: rgba(26, 30, 58, 0.6);
+  /* ── Text ──
+     Day 48 (Sasha): primary shifted from near-black (#0a1628) to a
+     saturated marine navy (#0b2a5a) so the hero reads as blue, not
+     black, against the cream Aurora panel. Body/muted scales derived
+     from the same hue family. */
+  --skin-text-primary: #0b2a5a;
+  --skin-text-body: rgba(11, 42, 90, 0.85);
+  --skin-text-muted: rgba(11, 42, 90, 0.72);
+  --skin-text-muted-soft: rgba(11, 42, 90, 0.6);
 
   /* ── Text shadows / halos ── */
   --skin-text-halo-strong: 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15);
@@ -158,15 +162,14 @@
 
   /* ── Panel washes — THREE-TIER HIERARCHY ──
      Rule (Sasha, Day 48): Pane 1 is darkest, Pane 2 is middle, Pane 3 is
-     lightest. The contrast between the three reads as "app-shell depth"
-     — dark navigation rail → mid section list → luminous content.
-     Aurora ships as-is (dark/mid black tints over video + white wash on
-     Pane 3 = clear light hierarchy). Navy+Gold mirrors the hierarchy in
-     its own palette (solid navy rail → translucent navy list → thin
-     navy haze letting Mux aurora glows shine through). */
-  --skin-panel-1-bg: rgba(0, 0, 0, 0.70);     /* Pane 1 — SpacesRail */
-  --skin-panel-2-bg: rgba(0, 0, 0, 0.40);     /* Pane 2 — SectionsPanel */
-  --skin-panel-wash: rgba(255, 255, 255, 0.68); /* Pane 3 — content area */
+     lightest. Dark navigation rail → mid section list → luminous content.
+     Day 48 later (Sasha): retired the plain-black tints on Panes 1 + 2
+     in favour of saturated marine/navy blues. Pane 1 reads as deep ocean
+     (not black), Pane 2 as lit navy overlay (not dark wash). Feels more
+     editorial-magazine, less browser-chrome-tool. */
+  --skin-panel-1-bg: rgba(8, 20, 44, 0.86);    /* Pane 1 — marine navy rail */
+  --skin-panel-2-bg: rgba(14, 32, 68, 0.42);   /* Pane 2 — lit navy overlay */
+  --skin-panel-wash: rgba(255, 255, 255, 0.68); /* Pane 3 — luminous content */
 
   /* ── Ornament (hero divider) ── */
   --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
@@ -174,16 +177,22 @@
   --skin-ornament-shadow: 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7);
 
   /* ── Primary CTA ──
-     Day 47 iter 16 (Sasha, very late): translucent navy so the
-     `liquid-glass-dark` backdrop-blur shows through. Still reads
-     as a dark primary, now with actual glass depth. */
-  --skin-cta-bg: linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%);
+     Day 48 later (Sasha): gold glow added around the dark primary
+     button so it reads like the mockup — deep navy pill haloed in
+     warm gold, the ✦ star shimmering inside. Glow rendered as a
+     layered box-shadow (tight + broad) on top of the liquid-glass-dark
+     edge. */
+  --skin-cta-bg: linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(18,28,56,0.72) 50%, rgba(10,22,40,0.82) 100%);
   --skin-cta-text: rgba(245, 245, 250, 0.98);
   --skin-cta-border: rgba(255, 255, 255, 0.14);
-  --skin-cta-shadow: none; /* handled by .liquid-glass-dark */
-  --skin-cta-text-shadow: 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35);
-  --skin-cta-icon: rgba(240, 194, 127, 0.92);
-  --skin-cta-icon-shadow: 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8);
+  --skin-cta-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.28),
+    0 0 18px -4px rgba(240, 194, 127, 0.45),
+    0 0 40px -8px rgba(212, 175, 55, 0.28),
+    0 10px 24px -10px rgba(10, 22, 40, 0.55);
+  --skin-cta-text-shadow: 0 0 16px rgba(240,194,127,0.28), 0 1px 2px rgba(0,0,0,0.35);
+  --skin-cta-icon: rgba(244, 212, 114, 0.98);
+  --skin-cta-icon-shadow: 0 0 12px rgba(244,212,114,0.8), 0 0 4px rgba(212,175,55,0.9);
 
   /* ── Gradient accent words (Top Talent / Productize / Scale) ── */
   --skin-accent-1-bg: linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%);
@@ -263,14 +272,14 @@
   --skin-text-halo-subtle: 0 0 18px rgba(212,175,55,0.15), 0 1px 2px rgba(245,241,232,0.18);
   --skin-text-halo-soft:   0 1px 2px rgba(0,0,0,0.55);
 
-  /* Panel washes — Navy+Gold three-tier hierarchy (Day 48).
-     Pane 1 darkest → Pane 2 mid → Pane 3 lightest, same rule as Aurora.
-     Previous 0.82 on Pane 3 inverted the hierarchy (Pane 3 darker than
-     Pane 1) — corrected to 0.28 so Mux aurora glows shine through and
-     the content area reads LUMINOUS, not suffocating. */
-  --skin-panel-1-bg:   rgba(4, 8, 20, 0.88);    /* Pane 1 — SpacesRail, near-opaque */
-  --skin-panel-2-bg:   rgba(8, 14, 28, 0.55);   /* Pane 2 — SectionsPanel, mid */
-  --skin-panel-wash:   rgba(10, 22, 40, 0.28);  /* Pane 3 — lightest, video aurora glows through */
+  /* Panel washes — Navy+Gold three-tier hierarchy.
+     Day 48 later (Sasha): Navy+Gold aligns with the new marine-family
+     rail + navy overlay that Aurora now also carries. Pane 1 deeper
+     near-opaque ocean, Pane 2 lit navy translucent, Pane 3 thin haze
+     letting Mux aurora glows through. */
+  --skin-panel-1-bg:   rgba(4, 12, 30, 0.92);   /* Pane 1 — deepest ocean */
+  --skin-panel-2-bg:   rgba(10, 24, 52, 0.58);  /* Pane 2 — lit navy */
+  --skin-panel-wash:   rgba(10, 22, 40, 0.28);  /* Pane 3 — lightest */
 
   /* Ornament — pure gold, stronger glow */
   --skin-ornament-rule:  rgba(212, 175, 55, 0.4);
