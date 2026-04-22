@@ -140,7 +140,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
             {currentStep === "connect" && (
                 <div>
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-[#6894d0]/20 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                             <Users className="w-5 h-5 text-primary" />
                         </div>
                         <h2 className="text-xl font-bold text-foreground">
@@ -316,7 +316,7 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                     <div
                         key={step}
                         className={`w-2 h-2 rounded-full transition-colors ${currentStep === step
-                                ? "bg-[#2c3150]"
+                                ? "bg-foreground"
                                 : i < ["celebration", "connect", "notifications", "submissions"].indexOf(currentStep)
                                     ? "bg-muted"
                                     : "bg-muted/40"

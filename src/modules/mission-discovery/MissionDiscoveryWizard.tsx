@@ -37,8 +37,8 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
                     className={`
               w-full text-left px-3 py-3 rounded-lg text-sm transition-colors min-h-[44px]
               ${selectedId === item.id
-                            ? "bg-[#6894d0] text-white"
-                            : "bg-white border border-border text-foreground hover:border-[#6894d0] hover:bg-primary/90/5"
+                            ? "bg-primary text-white"
+                            : "bg-white border border-border text-foreground hover:border-primary hover:bg-primary/5"
                         }
               ${(disabled || readOnly) ? "cursor-not-allowed" : "cursor-pointer"}
             `}
@@ -391,8 +391,8 @@ const MissionDiscoveryWizard = () => {
                                     className={`
                     w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
                     ${selectedMissionId === mission.id
-                                            ? "bg-[#6894d0] text-white"
-                                            : "bg-white border border-border text-foreground hover:border-[#6894d0] hover:bg-primary/90/5"
+                                            ? "bg-primary text-white"
+                                            : "bg-white border border-border text-foreground hover:border-primary hover:bg-primary/5"
                                         }
                     ${isReadOnly ? "cursor-not-allowed" : "cursor-pointer"}
                   `}

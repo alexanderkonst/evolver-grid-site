@@ -381,7 +381,7 @@ const MissionDiscoveryLanding = () => {
 
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left group"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left group"
                             >
                                 <Check className="w-6 h-6 text-blue-500 mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">Yes, I have clarity</h3>
@@ -390,7 +390,7 @@ const MissionDiscoveryLanding = () => {
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left group"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left group"
                             >
                                 <HelpCircle className="w-6 h-6 text-blue-500 mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">I need to discover it</h3>
@@ -414,7 +414,7 @@ const MissionDiscoveryLanding = () => {
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("paste-response")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                             >
                                 <Brain className="w-6 h-6 text-primary mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">Yes, I have an AI</h3>
@@ -423,7 +423,7 @@ const MissionDiscoveryLanding = () => {
 
                             <button
                                 onClick={() => setStep("type-manually")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
                             >
                                 <ListChecks className="w-6 h-6 text-primary mb-3" />
                                 <h3 className="font-semibold text-foreground mb-1">No, I'll type it</h3>

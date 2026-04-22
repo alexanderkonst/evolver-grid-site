@@ -64,7 +64,7 @@ const MyProductsPage = () => {
                                 <Button
                                     size="sm"
                                     onClick={() => business.productUrl && navigate(business.productUrl)}
-                                    className="bg-primary hover:bg-[#7350d0] text-white text-xs"
+                                    className="bg-primary hover:bg-primary/80 text-white text-xs"
                                 >
                                     <ExternalLink className="w-3.5 h-3.5 mr-1" />
                                     View Page

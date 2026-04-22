@@ -74,7 +74,7 @@ const RefineBusinessPage: React.FC = () => {
                         <Button
                             size="lg"
                             onClick={() => navigate("/game/build/product-builder")}
-                            className="bg-primary hover:bg-[#7350d0] text-white px-8"
+                            className="bg-primary hover:bg-primary/80 text-white px-8"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
                             Build First
@@ -130,7 +130,7 @@ const RefineBusinessPage: React.FC = () => {
                                 }}
                                 className={`w-full text-left rounded-xl border p-5 transition-all ${option.available
                                         ? "bg-white border-border hover:border-primary/40 hover:shadow-sm cursor-pointer"
-                                        : "bg-[#f5f5f7] border-border/10 opacity-60 cursor-not-allowed"
+                                        : "bg-muted/30 border-border/10 opacity-60 cursor-not-allowed"
                                     }`}
                             >
                                 <div className="flex items-start gap-4">

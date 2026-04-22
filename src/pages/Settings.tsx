@@ -30,27 +30,42 @@ interface SkinOption {
     id: Skin;
     label: string;
     tagline: string;
-    description: string;
-    /** Small square preview — the skin's signature two-color pairing. */
-    swatch: { from: string; to: string };
+    /** CSS `background` value used for the swatch — must visually reflect
+     *  the skin's actual identity (pearlescent rainbow for Aurora, deep
+     *  navy with a gold star for Navy+Gold). Day 48 (Sasha): the swatches
+     *  should communicate each skin at a glance. */
+    swatchBackground: string;
+    /** Optional overlay content (e.g. the gold ✦ on Navy+Gold). */
+    swatchOverlay?: React.ReactNode;
 }
 
 const SKIN_OPTIONS: SkinOption[] = [
     {
         id: "aurora",
         label: "Aurora",
-        tagline: "Light · pearlescent · rainbow highlights",
-        description:
-            "The default Genius Business skin. Cream-and-pastel editorial canvas with a UV→IR rainbow running through the 7-step methodology. Optimized for daylight reading and maximum clarity.",
-        swatch: { from: "#f5f1e8", to: "#d4af37" },
+        tagline: "Light · pearlescent · rainbow",
+        swatchBackground:
+            "linear-gradient(135deg, #f5f1e8 0%, #fde2e4 22%, #dbeafe 48%, #bbf7d0 72%, #fef3c7 100%)",
     },
     {
         id: "navy-gold",
         label: "Navy + Gold",
-        tagline: "Deep navy · gold accents · editorial dark",
-        description:
-            "Premium editorial alternate. Deep navy panels with a single gold metal accent. The methodology rainbow stays rainbow; hero highlights render in a gold family. Optimized for evening reading and ceremonial focus.",
-        swatch: { from: "#0a1628", to: "#d4af37" },
+        tagline: "Deep navy · gold · editorial dark",
+        swatchBackground:
+            "linear-gradient(135deg, #04081a 0%, #0a1628 55%, #142244 100%)",
+        swatchOverlay: (
+            <span
+                aria-hidden="true"
+                className="absolute inset-0 flex items-center justify-center text-lg"
+                style={{
+                    color: "#d4af37",
+                    textShadow:
+                        "0 0 10px rgba(244,212,114,0.7), 0 0 3px rgba(212,175,55,0.85)",
+                }}
+            >
+                ✦
+            </span>
+        ),
     },
 ];
 
@@ -59,31 +74,18 @@ const AppearanceTab = () => {
 
     return (
         <div className="space-y-6">
-            <div
-                className="rounded-2xl p-5 sm:p-6 space-y-4"
-                style={{
-                    backgroundColor: "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
-                    border: "1px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
-                    boxShadow:
-                        "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
-                }}
-            >
+            {/* Day 48 (Sasha): card + options rendered with shadcn tokens
+                (bg-card / text-foreground / border-border / text-muted-foreground)
+                so Aurora and Navy+Gold don't mix tints. All tokens resolve
+                through the [data-skin] CSS-var block in index.css. */}
+            <div className="rounded-2xl p-5 sm:p-6 space-y-4 bg-card border border-border shadow-sm">
                 <div className="flex items-start gap-3">
-                    <Palette
-                        className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))" }}
-                    />
+                    <Palette className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground" />
                     <div>
-                        <h2
-                            className="text-base font-semibold leading-tight"
-                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                        >
+                        <h2 className="text-base font-semibold leading-tight text-foreground">
                             Skin
                         </h2>
-                        <p
-                            className="text-sm mt-1 leading-relaxed"
-                            style={{ color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))" }}
-                        >
+                        <p className="text-sm mt-1 leading-relaxed text-muted-foreground">
                             Pick the aesthetic that feels right. Applies instantly across the
                             whole app; we remember your choice on this device.
                         </p>
@@ -102,92 +104,50 @@ const AppearanceTab = () => {
                                 onClick={() => setSkin(opt.id)}
                                 className={cn(
                                     "relative text-left rounded-xl p-4 transition-all duration-200",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                                    "bg-background border",
                                     "hover:scale-[1.01] active:scale-[0.995]",
-                                    active ? "ring-2" : "ring-1",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                    active
+                                        ? "border-primary ring-2 ring-primary/35 shadow-md"
+                                        : "border-border shadow-sm",
                                 )}
-                                style={{
-                                    backgroundColor:
-                                        "var(--skin-input-bg, rgba(255, 255, 255, 0.6))",
-                                    borderColor: "transparent",
-                                    ...(active
-                                        ? {
-                                              // Selected ring uses the skin's own "selected" accent.
-                                              boxShadow:
-                                                  "0 0 0 2px var(--skin-selected-border, rgba(132, 96, 234, 0.45)), 0 8px 24px -10px rgba(10, 22, 40, 0.18)",
-                                          }
-                                        : {
-                                              boxShadow:
-                                                  "0 0 0 1px var(--skin-rule-medium, rgba(26, 30, 58, 0.14)), 0 4px 12px -6px rgba(10, 22, 40, 0.1)",
-                                          }),
-                                }}
                             >
-                                <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-center justify-between gap-3">
                                     <div className="flex items-center gap-3 min-w-0">
-                                        {/* Preview swatch — the skin's signature duotone. */}
+                                        {/* Preview swatch — each skin's actual identity at a glance. */}
                                         <div
                                             aria-hidden="true"
-                                            className="w-10 h-10 rounded-lg flex-shrink-0"
+                                            className="relative w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden border border-border"
                                             style={{
-                                                backgroundImage: `linear-gradient(135deg, ${opt.swatch.from} 0%, ${opt.swatch.to} 100%)`,
+                                                background: opt.swatchBackground,
                                                 boxShadow:
-                                                    "inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
+                                                    "inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.12)",
                                             }}
-                                        />
+                                        >
+                                            {opt.swatchOverlay}
+                                        </div>
                                         <div className="min-w-0">
-                                            <div
-                                                className="text-sm font-semibold leading-tight"
-                                                style={{
-                                                    color: "var(--skin-text-primary, #0a1628)",
-                                                }}
-                                            >
+                                            <div className="text-sm font-semibold leading-tight text-foreground">
                                                 {opt.label}
                                             </div>
-                                            <div
-                                                className="text-xs mt-0.5 leading-snug"
-                                                style={{
-                                                    color: "var(--skin-text-muted-soft, rgba(26, 30, 58, 0.6))",
-                                                }}
-                                            >
+                                            <div className="text-xs mt-0.5 leading-snug text-muted-foreground">
                                                 {opt.tagline}
                                             </div>
                                         </div>
                                     </div>
                                     {active && (
                                         <span
-                                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
-                                            style={{
-                                                backgroundColor:
-                                                    "var(--skin-selected-text, #8460ea)",
-                                            }}
                                             aria-hidden="true"
+                                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-primary"
                                         >
-                                            <Check className="w-3 h-3 text-white" />
+                                            <Check className="w-3 h-3 text-primary-foreground" />
                                         </span>
                                     )}
                                 </div>
-                                <p
-                                    className="text-xs mt-3 leading-relaxed"
-                                    style={{
-                                        color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))",
-                                    }}
-                                >
-                                    {opt.description}
-                                </p>
                             </button>
                         );
                     })}
                 </div>
-
-                <p
-                    className="text-[11px] leading-relaxed pt-1"
-                    style={{
-                        color: "var(--skin-text-faint, rgba(26, 30, 58, 0.5))",
-                    }}
-                >
-                    You can also flip to Navy + Gold by visiting <code>/preview</code> directly, or
-                    back to Aurora via either this toggle or the floating indicator.
-                </p>
             </div>
         </div>
     );
@@ -212,31 +172,16 @@ const Settings = () => {
                     <div className="flex items-center gap-4 mb-8">
                         <button
                             onClick={() => navigate(-1)}
-                            className="p-2 rounded-lg transition-colors hover:bg-white/10"
+                            className="p-2 rounded-lg transition-colors hover:bg-accent"
                             aria-label="Back"
                         >
-                            <ArrowLeft
-                                className="w-5 h-5"
-                                style={{
-                                    color: "var(--skin-text-muted, rgba(44,49,80,0.7))",
-                                }}
-                            />
+                            <ArrowLeft className="w-5 h-5 text-muted-foreground" />
                         </button>
                         <div>
-                            <h1
-                                className="text-2xl font-bold"
-                                style={{
-                                    color: "var(--skin-text-primary, #2c3150)",
-                                }}
-                            >
+                            <h1 className="text-2xl font-bold text-foreground">
                                 Settings
                             </h1>
-                            <p
-                                className="text-sm"
-                                style={{
-                                    color: "var(--skin-text-muted-soft, rgba(44,49,80,0.6))",
-                                }}
-                            >
+                            <p className="text-sm text-muted-foreground">
                                 Your account and preferences
                             </p>
                         </div>

@@ -201,14 +201,14 @@ const EventDetail = () => {
   const visibility = event.visibility ?? "public";
   const visibilityConfig = {
     public: { label: "Public", icon: Globe, className: "bg-muted text-foreground" },
-    community: { label: "Community", icon: Users, className: "bg-[#6894d0]/10 text-primary" },
+    community: { label: "Community", icon: Users, className: "bg-primary/10 text-primary" },
     private: { label: "Private", icon: Lock, className: "bg-muted text-foreground" },
-    team: { label: "Team", icon: UserCheck, className: "bg-[#b1c9b6]/20 text-foreground" },
+    team: { label: "Team", icon: UserCheck, className: "bg-muted/40 text-foreground" },
   } as const;
   const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
 
   return (
-    <div className="min-h-dvh bg-[#f8f9fc]">
+    <div className="min-h-dvh bg-background">
       {/* Hero Image */}
       <div className="h-48 sm:h-64 bg-amber-100 relative">
         {event.photo_url ? (
