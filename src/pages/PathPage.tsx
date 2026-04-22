@@ -140,7 +140,7 @@ const PathPage = () => {
                 >
                   Product-Market Fit
                 </span>
-                ,{" "}
+                .{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
@@ -165,6 +165,19 @@ const PathPage = () => {
                   }}
                 >
                   Organic Demand
+                </span>
+                .{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, hsl(45, 95%, 32%) 0%, hsl(38, 95%, 28%) 50%, hsl(28, 90%, 30%) 100%)",
+                    filter:
+                      "drop-shadow(0 0 10px hsl(40 100% 50% / 0.4)) drop-shadow(0 0 3px hsl(35 100% 48% / 0.48))",
+                    textShadow: "none",
+                  }}
+                >
+                  Investors Loving It
                 </span>
                 .
               </h1>
