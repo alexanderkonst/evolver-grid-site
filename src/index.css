@@ -544,6 +544,30 @@ All colors MUST be HSL.
     --input: 220 20% 22%;
     --ring: 45 100% 65%;
   }
+
+  /* Navy+Gold mirrors the shadcn dark palette so Card / Input / Label /
+     Tabs / Button and every other shadcn component auto-adapts to the
+     skin without needing per-component branches. Gold accent in place of
+     dark-mode's blue accent. Day 48 (Sasha). */
+  [data-skin="navy-gold"] {
+    --background: 220 40% 8%;
+    --foreground: 35 30% 92%;
+    --card: 220 35% 11%;
+    --card-foreground: 35 30% 92%;
+    --popover: 220 35% 11%;
+    --popover-foreground: 35 30% 92%;
+    --primary: 45 75% 55%;             /* gold */
+    --primary-foreground: 220 40% 10%;
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 35 30% 92%;
+    --muted: 220 20% 14%;
+    --muted-foreground: 35 20% 75%;
+    --accent: 45 75% 55%;              /* gold accent */
+    --accent-foreground: 220 40% 10%;
+    --border: 45 25% 22%;              /* warm gold-tinted border */
+    --input: 220 20% 14%;
+    --ring: 45 75% 55%;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
