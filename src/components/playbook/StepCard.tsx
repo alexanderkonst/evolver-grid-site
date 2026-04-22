@@ -177,12 +177,9 @@ const SubstepRow = ({
                 border: `1px solid rgba(${neonRgb},0.25)`,
               }}
             >
-              <div
-                className="text-[10px] uppercase tracking-[0.28em] font-semibold mb-2"
-                style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
-              >
-                One Proven Strategy
-              </div>
+              {/* Day 47 iter 9 (Sasha): "ONE PROVEN STRATEGY" eyebrow
+                  retired. The revealed paragraph IS the strategy — the
+                  label was redundant scaffolding. */}
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
                 style={{ color: "rgba(26,30,58,0.88)" }}
@@ -201,40 +198,44 @@ const SubstepRow = ({
 };
 
 // ───── Step 2 Essay — "The Secret to Productizing Yourself" ─────
-// Day 47 iter 6 (Sasha): Step 2 (Articulate it with Precision) is special.
-// It doesn't decompose into three substeps — it's one long-form argument
-// about why most people get stuck here and what the shortcut is.
-const Step2Essay = ({ neonHsl, neonRgb }: { neonHsl: string; neonRgb: string }) => {
+// Day 47 iter 8 (Sasha): editorial pass. Previous version played with the
+// font too much — jumping sizes, weights, italics, colors, and line-heights
+// across paragraphs. Replaced with one consistent editorial voice:
+//   • one font for body (Source Serif 4)
+//   • one color (#0a1628, dark navy)
+//   • one size (text-base sm:text-[17px])
+//   • one line-height (leading-relaxed)
+//   • no italics on paragraphs
+//   • no colored inline emphasis — Sasha's natural uppercase (HOW, CRISP
+//     SPECIFICITY, YOU, PRECISE, RARE) carries the emphasis in the language
+//     itself, doesn't need CSS on top
+// The only visual offset is the example (left-rule) and the numbered list.
+// Links reduced to "1" and "2" — the tool names are not promoted. Third
+// tool (Kawtar) removed entirely per Sasha.
+const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
+  const bodyStyle: React.CSSProperties = {
+    color: "#0a1628",
+    fontFamily: "'Source Serif 4', Georgia, serif",
+  };
+
   const linkStyle: React.CSSProperties = {
-    color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
+    color: "#0a1628",
     textDecoration: "underline",
     textDecorationThickness: "1px",
     textUnderlineOffset: "3px",
     fontWeight: 600,
   };
 
-  const emphasis = (text: string) => (
-    <span
-      className="font-semibold uppercase tracking-wide"
-      style={{ color: "#0a1628" }}
-    >
-      {text}
-    </span>
-  );
-
   return (
     <section
       id="step-2-essay"
       aria-label="The Secret to Productizing Yourself"
-      className="mb-10 max-w-2xl mx-auto"
-      style={{
-        color: "#0a1628",
-        fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
-      }}
+      className="mb-10 max-w-2xl mx-auto text-base sm:text-[17px] leading-relaxed"
+      style={bodyStyle}
     >
       {/* ── Title ── */}
       <h2
-        className="text-xl sm:text-2xl md:text-3xl font-semibold leading-[1.25] mb-8 text-center"
+        className="text-xl sm:text-2xl md:text-3xl font-semibold leading-[1.25] mb-10 text-center"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
           color: "#0a1628",
@@ -244,236 +245,78 @@ const Step2Essay = ({ neonHsl, neonRgb }: { neonHsl: string; neonRgb: string }) 
         The Secret to Productizing Yourself
       </h2>
 
-      {/* ── Opening hook ── */}
-      <p
-        className="text-base sm:text-lg leading-relaxed mb-6"
-        style={{ color: "#0a1628", fontWeight: 500 }}
-      >
-        This step is where almost everyone gets stuck.
+      <p className="mb-5">This step is where almost everyone gets stuck.</p>
+
+      <p className="mb-5">Startup Influencers say "Productize yourself".</p>
+
+      <p className="mb-5">
+        Personality tests give unmonetizable "too much text" reports. We go "now what?" and archive it in your inbox foreva.
       </p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-3"
-        style={{ color: "rgba(26,30,58,0.82)" }}
-      >
-        Startup Influencers say "Productize yourself".
+      <p className="mb-5">
+        Social media influencers say "monetize who you are", "build your authentic brand".
       </p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-3"
-        style={{ color: "rgba(26,30,58,0.82)" }}
-      >
-        Personality tests give unmonetizable "too much text" reports.
-        We go "now what?" and archive it in your inbox foreva.
+      <p className="mb-5">They don't tell us HOW, or give us frustrating fluff.</p>
+
+      <p className="mb-5">Right or wrong?</p>
+
+      <p className="mb-8">Chances are — you've been there, done that.</p>
+
+      <p className="mb-5">So, what's the dealio here? What's the secret?</p>
+
+      <p className="mb-5">
+        There is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
+      {/* Example — minimal left-rule offset, no font change */}
       <p
-        className="text-sm sm:text-base leading-relaxed mb-3"
-        style={{ color: "rgba(26,30,58,0.82)" }}
+        className="mb-5 pl-4 border-l"
+        style={{ borderColor: "rgba(26,30,58,0.25)" }}
       >
-        Social media influencers say "monetize who you are", "build
-        your authentic brand".
+        My example at ~10/10 specificity: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
       </p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-6"
-        style={{ color: "rgba(26,30,58,0.82)" }}
-      >
-        They don't tell us HOW, or give us frustrating fluff.
+      <p className="mb-8">
+        This is CONCRETE, and my business is a laser beam that reflects that clarity. It repels most, and pulls in highly aligned clients.
       </p>
 
-      <p
-        className="text-sm sm:text-base italic leading-relaxed mb-2"
-        style={{ color: "rgba(26,30,58,0.7)" }}
-      >
-        Right or wrong?
+      <p className="mb-5">How do YOU get your sufficiently PRECISE top talent?</p>
+
+      <p className="mb-5">Here is the secret.</p>
+
+      <p className="mb-5">The top talent reveal on this page gets you to ~7/10.</p>
+
+      <p className="mb-8">
+        But you must iterate on your top talent's articulation until you reach 9/10 resonance or higher to productize yourself.
       </p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-8"
-        style={{ color: "rgba(26,30,58,0.82)" }}
-      >
-        Chances are — you've been there, done that.
-      </p>
+      <p className="mb-5">How do people get there?</p>
 
-      {/* ── Pivot ── */}
-      <p
-        className="text-base sm:text-lg italic leading-relaxed mb-6"
-        style={{ color: "#0a1628" }}
-      >
-        So, what's the dealio here? What's the secret?
-      </p>
+      <p className="mb-5">They do months or years of focused introspection.</p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-6"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        There is a looong way from the vague{" "}
-        <em>"I help people to get better results in life and business"</em>{" "}
-        to a 9/10 {emphasis("Crisp Specificity")} of what you do.
-      </p>
+      <p className="mb-5">Is there a shortcut?</p>
 
-      {/* ── Pull quote — Sasha's example ── */}
-      <blockquote
-        className="rounded-2xl p-5 sm:p-6 my-8 mx-auto max-w-xl"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.1), rgba(${neonRgb},0.03))`,
-          border: `1px solid rgba(${neonRgb},0.25)`,
-        }}
-      >
-        <p
-          className="text-[10px] uppercase tracking-[0.24em] font-semibold mb-3"
-          style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
-        >
-          My Example · ~10/10 Specificity
-        </p>
-        <p
-          className="text-base sm:text-lg italic leading-relaxed"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
-          }}
-        >
-          I assist conscious aspiring impact founders turn their top
-          talent into a growing scalable business in flow.
-        </p>
-      </blockquote>
+      <p className="mb-3">Yes, I know two.</p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-8"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        This is {emphasis("Concrete")}, and my business is a laser beam
-        that reflects that clarity. It repels most, and pulls in highly
-        aligned clients.
-      </p>
-
-      {/* ── The question ── */}
-      <p
-        className="text-base sm:text-lg font-medium leading-relaxed mb-4"
-        style={{ color: "#0a1628" }}
-      >
-        How do YOU get your sufficiently {emphasis("Precise")} top talent?
-      </p>
-
-      <p
-        className="text-base sm:text-lg italic leading-relaxed mb-8"
-        style={{
-          color: `color-mix(in srgb, ${neonHsl} 50%, #0a1628 50%)`,
-          fontFamily: "'Cormorant Garamond', serif",
-        }}
-      >
-        Here is the secret.
-      </p>
-
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-3"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        The top talent reveal on this page gets you to ~7/10.
-      </p>
-
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-8"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        But you must iterate on your top talent's articulation until you
-        reach 9/10 resonance or higher to productize yourself.
-      </p>
-
-      {/* ── How & the two shortcuts ── */}
-      <p
-        className="text-sm sm:text-base italic leading-relaxed mb-2"
-        style={{ color: "rgba(26,30,58,0.7)" }}
-      >
-        How do people get there?
-      </p>
-
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-6"
-        style={{ color: "rgba(26,30,58,0.82)" }}
-      >
-        They do months or years of focused introspection.
-      </p>
-
-      <p
-        className="text-sm sm:text-base italic leading-relaxed mb-2"
-        style={{ color: "rgba(26,30,58,0.7)" }}
-      >
-        Is there a shortcut?
-      </p>
-
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-4"
-        style={{ color: "#0a1628", fontWeight: 500 }}
-      >
-        Yes, I know two.
-      </p>
-
-      <ol
-        className="text-sm sm:text-base leading-relaxed mb-8 space-y-3 list-decimal list-outside ml-6"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        <li>
-          You get guidance from someone who has reached 9.9+ precision
-          for themselves and shares it with others.
-        </li>
-        <li>
-          You use a high-precision purpose-discovery tool. Or both.
-        </li>
+      <ol className="mb-8 space-y-2 list-decimal list-outside ml-6">
+        <li>You get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.</li>
+        <li>You use a high-precision purpose-discovery tool. Or both.</li>
       </ol>
 
-      {/* ── The method + recommendations ── */}
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-8"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        Truth is, this is still {emphasis("Rare")} in 2026. The method
-        I developed and refined over the last six years gets you there
-        in about {emphasis("40 Minutes")}.
+      <p className="mb-5">
+        Truth is, this is still RARE in 2026. The method I developed and refined over the last six years gets you there in about 40 minutes.
       </p>
 
-      <p
-        className="text-sm sm:text-base leading-relaxed mb-3"
-        style={{ color: "rgba(26,30,58,0.88)" }}
-      >
-        I am aware only a handful of other tools and guides I'd dare
-        recommend:{" "}
-        <a
-          href="https://talentq.me/"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          TalentQ
-        </a>
+      <p className="mb-5">
+        I only know a couple of other tools that I dare recommend:{" "}
+        <a href="https://talentq.me/" target="_blank" rel="noreferrer noopener" style={linkStyle}>1</a>
         ,{" "}
-        <a
-          href="https://www.evolution.life/"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          Evolution
-        </a>
-        ,{" "}
-        <a
-          href="https://www.linkedin.com/in/kawtar-mahdaoui-a3337810a/"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          Kawtar Mahdaoui
-        </a>
+        <a href="https://www.evolution.life/" target="_blank" rel="noreferrer noopener" style={linkStyle}>2</a>
         .
       </p>
 
-      <p
-        className="text-sm sm:text-base italic leading-relaxed"
-        style={{ color: "rgba(26,30,58,0.7)" }}
-      >
-        I wish this was commonplace but it is not.
-      </p>
+      <p>I wish this was commonplace but it is not.</p>
     </section>
   );
 };
