@@ -159,12 +159,10 @@ const SpacesRail = ({
                     "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
             }}
         >
-            {/* User Profile — Day 47 late pass (Sasha): mobile cleanup.
-                On mobile the rail is 72px wide and the "Guest · Member" label
-                block was both cramped AND visually disconnected from the icon
-                rhythm below it. Now: avatar alone on mobile (centered), full
-                name + level row on desktop (inline beside avatar).
-                NOT clickable — identity display only. */}
+            {/* Brand lockup — Day 48 (Sasha): replaced the "Guest / Member"
+                identity block with a "FIND YOUR TOP TALENT" brand header so
+                the rail opens with the product name, not the user's auth
+                state. Avatar kept for authenticated users (no-op for guests). */}
             <div className="p-2 md:p-3">
                 <div className="flex items-center justify-center md:justify-start gap-2 p-1.5 -m-1.5">
                     {avatarUrl ? (
@@ -183,17 +181,18 @@ const SpacesRail = ({
                         </div>
                     )}
                     <div className="hidden md:block overflow-hidden flex-1 min-w-0">
-                        <p className="text-white font-medium text-sm truncate">{displayName}</p>
-                        <div className="flex items-center gap-2 text-xs">
-                            <span className="text-white/50">
-                                {userLevel ? `Level ${userLevel}` : 'Member'}
-                            </span>
-                            {userXp !== undefined && (
-                                <span className="text-white/30">
-                                    {userXp} XP
-                                </span>
-                            )}
-                        </div>
+                        <p
+                            className="text-[11px] tracking-[0.18em] uppercase font-semibold leading-tight"
+                            style={{ color: "#d4af37" }}
+                        >
+                            Find Your
+                        </p>
+                        <p
+                            className="text-[11px] tracking-[0.18em] uppercase font-semibold leading-tight"
+                            style={{ color: "#d4af37" }}
+                        >
+                            Top Talent
+                        </p>
                     </div>
                 </div>
                 {/* Mobile-only Level/XP block removed Day 47 late pass — it was

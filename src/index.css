@@ -161,14 +161,13 @@
   --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
 
   /* ── Panel washes — THREE-TIER HIERARCHY ──
-     Rule (Sasha, Day 48): Pane 1 is darkest, Pane 2 is middle, Pane 3 is
-     lightest. Dark navigation rail → mid section list → luminous content.
-     Day 48 later (Sasha): retired the plain-black tints on Panes 1 + 2
-     in favour of saturated marine/navy blues. Pane 1 reads as deep ocean
-     (not black), Pane 2 as lit navy overlay (not dark wash). Feels more
-     editorial-magazine, less browser-chrome-tool. */
-  --skin-panel-1-bg: rgba(8, 20, 44, 0.86);    /* Pane 1 — marine navy rail */
-  --skin-panel-2-bg: rgba(14, 32, 68, 0.42);   /* Pane 2 — lit navy overlay */
+     Rule (Sasha, Day 48): Pane 1 darkest, Pane 2 middle, Pane 3 lightest.
+     Day 48 later-still (Sasha): the prior marine was reading as denim —
+     too gray-blue. Shifted to saturated dark-electric / Moroccan /
+     Majorelle royal blue. Higher chroma on the same darkness axis, so
+     the hue lands as deep ink royal, not washed-denim. */
+  --skin-panel-1-bg: rgba(12, 30, 110, 0.88);  /* Pane 1 — dark electric royal */
+  --skin-panel-2-bg: rgba(22, 52, 150, 0.46);  /* Pane 2 — lit royal overlay */
   --skin-panel-wash: rgba(255, 255, 255, 0.68); /* Pane 3 — luminous content */
 
   /* ── Ornament (hero divider) ── */
@@ -273,13 +272,12 @@
   --skin-text-halo-soft:   0 1px 2px rgba(0,0,0,0.55);
 
   /* Panel washes — Navy+Gold three-tier hierarchy.
-     Day 48 later (Sasha): Navy+Gold aligns with the new marine-family
-     rail + navy overlay that Aurora now also carries. Pane 1 deeper
-     near-opaque ocean, Pane 2 lit navy translucent, Pane 3 thin haze
-     letting Mux aurora glows through. */
-  --skin-panel-1-bg:   rgba(4, 12, 30, 0.92);   /* Pane 1 — deepest ocean */
-  --skin-panel-2-bg:   rgba(10, 24, 52, 0.58);  /* Pane 2 — lit navy */
-  --skin-panel-wash:   rgba(10, 22, 40, 0.28);  /* Pane 3 — lightest */
+     Day 48 later-still (Sasha): Navy+Gold also upgraded from marine-denim
+     to dark-electric royal. Slightly deeper than Aurora's version so the
+     royal register reads as ceremonial dark, not daylight royal. */
+  --skin-panel-1-bg:   rgba(8, 22, 90, 0.92);    /* Pane 1 — deepest royal ink */
+  --skin-panel-2-bg:   rgba(14, 34, 120, 0.58);  /* Pane 2 — lit royal */
+  --skin-panel-wash:   rgba(10, 22, 40, 0.28);   /* Pane 3 — lightest */
 
   /* Ornament — pure gold, stronger glow */
   --skin-ornament-rule:  rgba(212, 175, 55, 0.4);

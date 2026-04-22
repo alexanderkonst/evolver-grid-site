@@ -340,6 +340,41 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         .
       </p>
 
+      {/* Day 48 (Sasha): three purpose coaches to work with. Paul + John
+          links open WhatsApp with a pre-composed intro message; Kawtar
+          goes straight to LinkedIn. No names surfaced — consistent with
+          how the tools above are rendered as anonymous numbered links. */}
+      <p>
+        You could work with a purpose coach too, I'd recommend:{" "}
+        <a
+          href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
+          target="_blank"
+          rel="noreferrer noopener"
+          style={linkStyle}
+        >
+          1
+        </a>
+        ,{" "}
+        <a
+          href="https://wa.me/447771911220?text=Hi%20John%2C%20Aleksandr%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
+          target="_blank"
+          rel="noreferrer noopener"
+          style={linkStyle}
+        >
+          2
+        </a>
+        ,{" "}
+        <a
+          href="https://www.linkedin.com/in/kawtar-mahdaoui-a3337810a/"
+          target="_blank"
+          rel="noreferrer noopener"
+          style={linkStyle}
+        >
+          3
+        </a>
+        .
+      </p>
+
       <p>I wish these were commonplace but they are not.</p>
     </section>
   );
