@@ -51,9 +51,9 @@ const MethodologyLandingPage = () => {
           className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-5 sm:mb-6"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
           You can't clearly say what you do.
@@ -63,12 +63,12 @@ const MethodologyLandingPage = () => {
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 400,
-            color: "rgba(26,30,58,0.7)",
+            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
             textShadow:
-              "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+              "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          So people don't buy it.
+          So people don't buy.
         </p>
 
         {/* Editorial ornament between the two layers — Day 47 iter 11
@@ -82,15 +82,15 @@ const MethodologyLandingPage = () => {
             className="flex-1 h-px"
             style={{
               background:
-                "linear-gradient(to right, transparent, rgba(26,30,58,0.25))",
+                "linear-gradient(to right, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
             }}
           />
           <span
             className="text-base"
             style={{
-              color: "rgba(184,134,11,0.85)",
+              color: "var(--skin-ornament-star, rgba(184,134,11,0.85))",
               textShadow:
-                "0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7)",
+                "var(--skin-ornament-shadow, 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7))",
             }}
           >
             ✦
@@ -99,7 +99,7 @@ const MethodologyLandingPage = () => {
             className="flex-1 h-px"
             style={{
               background:
-                "linear-gradient(to left, transparent, rgba(26,30,58,0.25))",
+                "linear-gradient(to left, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
             }}
           />
         </div>
@@ -120,9 +120,9 @@ const MethodologyLandingPage = () => {
           className="space-y-1.5 sm:space-y-2"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
           {/* Line 1: Find Your [Top Talent]. */}
@@ -132,9 +132,9 @@ const MethodologyLandingPage = () => {
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
+                  "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
                 filter:
-                  "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
+                  "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
                 textShadow: "none",
               }}
             >
@@ -149,9 +149,9 @@ const MethodologyLandingPage = () => {
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%)",
+                  "var(--skin-accent-2-bg, linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%))",
                 filter:
-                  "drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45))",
+                  "var(--skin-accent-2-glow, drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45)))",
                 textShadow: "none",
               }}
             >
@@ -171,9 +171,9 @@ const MethodologyLandingPage = () => {
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%)",
+                  "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%))",
                 filter:
-                  "drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45))",
+                  "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45)))",
                 textShadow: "none",
               }}
             >
