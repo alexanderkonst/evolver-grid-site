@@ -139,22 +139,23 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         number: 1,
         name: "Ask your AI about your top talent",
         description: "",
+        // Day 48 (Sasha): appended the reveal alternative so the tribe
+        // knows Step 1 is also solved by taking the test on this site —
+        // not only by prompting their own AI.
         oneProvenStrategy:
-          "Use this prompt: \u201CBased on all you know about me, what\u2019s my zone of genius?\u201D",
+          "Use this prompt: \u201CBased on all you know about me, what\u2019s my zone of genius?\u201D Or do the top talent reveal on this page. That gets you to a precision of resonance higher than practically any personality test on the planet or AI on its own.",
       },
       {
         number: 2,
         name: "Distill it into one sentence — and actually write it down",
-        description:
-          "Distill your top talent into one sentence, and actually write it down.",
+        description: "",
         oneProvenStrategy:
           "Ask your AI to do this for you, and then polish it yourself.",
       },
       {
         number: 3,
         name: "Iterate whenever new clarity emerges",
-        description:
-          "Work on it iteratively whenever you get new clarity.",
+        description: "",
         oneProvenStrategy:
           "Keep it in an accessible place, update it, and call each version v1.1, v2, and so on.",
       },
