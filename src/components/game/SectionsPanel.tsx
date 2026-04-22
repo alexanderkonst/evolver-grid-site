@@ -320,14 +320,16 @@ const SectionsPanel = ({
             className={cn(
                 "w-[260px] flex flex-col",
                 "liquid-glass",
-                "border-r border-white/10",
                 className
             )}
-            /* Day 48 (Sasha): swapped hardcoded bg-black/40 for skin-aware
-               --skin-panel-2-bg. Three-tier hierarchy preserved in both
-               skins: Pane 1 darkest, Pane 2 middle, Pane 3 lightest. */
+            /* Day 48 later (Sasha): Pane 2 now pulls the lit-navy overlay
+               (--skin-panel-2-bg) with a subtle gold right-edge seam that
+               mirrors the mockup. When minimized the same treatment reads
+               as a thin gold line between rail and content. */
             style={{
-                backgroundColor: "var(--skin-panel-2-bg, rgba(0, 0, 0, 0.40))",
+                backgroundColor: "var(--skin-panel-2-bg, rgba(14, 32, 68, 0.42))",
+                boxShadow:
+                    "inset -1px 0 0 rgba(212, 175, 55, 0.25), 2px 0 18px -8px rgba(244, 212, 114, 0.22)",
             }}
         >
             {/* Close button (only when onClose provided) */}

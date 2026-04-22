@@ -146,16 +146,17 @@ const SpacesRail = ({
     return (
         <div
             className={cn(
-                "w-[72px] lg:w-[280px] flex flex-col border-r border-white/10",
+                "w-[72px] lg:w-[280px] flex flex-col",
                 "liquid-glass",
                 className
             )}
-            /* Day 48 (Sasha): swapped hardcoded bg-black/70 for skin-aware
-               --skin-panel-1-bg. Aurora keeps black/0.70 (unchanged via
-               fallback), Navy+Gold uses near-opaque deep navy so Pane 1
-               remains the darkest of the three panes in that skin. */
+            /* Day 48 later (Sasha): Pane 1 pulls --skin-panel-1-bg (marine
+               navy in both skins) + a warm gold right-edge glow so the
+               seam between rail and content reads like the mockup. */
             style={{
-                backgroundColor: "var(--skin-panel-1-bg, rgba(0, 0, 0, 0.70))",
+                backgroundColor: "var(--skin-panel-1-bg, rgba(8, 20, 44, 0.86))",
+                boxShadow:
+                    "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
             }}
         >
             {/* User Profile — Day 47 late pass (Sasha): mobile cleanup.
@@ -221,14 +222,18 @@ const SpacesRail = ({
                             className={cn(
                                 "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 relative group",
                                 "justify-center md:justify-start",
-                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
                                     ? "bg-white/5 text-white/30 cursor-not-allowed"
                                     : active
-                                        ? "liquid-glass-strong text-white shadow-lg shadow-white/10 ring-1 ring-white/20"
+                                        // Day 48 (Sasha): active chip gains a gold ring + gold
+                                        // halo, matching the mockup's warm-metal accent on the
+                                        // marine rail. Text bumps to cream-white so it reads
+                                        // against the gold frame.
+                                        ? "bg-white/5 text-white ring-1 ring-[#d4af37]/55 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:translate-y-[-1px] active:translate-y-0"
+                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/25 hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             title={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
                         >
@@ -257,9 +262,10 @@ const SpacesRail = ({
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
-                            {/* Active indicator */}
+                            {/* Active indicator — gold pip that aligns with the
+                                mockup's warm-metal accent on the marine rail. */}
                             {active && (
-                                <div className="absolute left-0 w-1 h-8 bg-white rounded-r-full -translate-x-1/2" />
+                                <div className="absolute left-0 w-1 h-8 rounded-r-full -translate-x-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
                     );

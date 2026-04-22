@@ -482,14 +482,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     />
                 </div>
 
-                {/* Expand button when Panel 2 is collapsed */}
+                {/* Expand button when Panel 2 is collapsed — Day 48 (Sasha):
+                    narrower (w-8 → w-5) and dressed with a subtle gold edge
+                    glow to match the mockup's warm-metal seam between rail
+                    and content. */}
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-8 liquid-glass flex items-center justify-center border-r border-white/10 transition-colors hover:bg-white/10"
+                        className="h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/5 relative group"
                         title="Expand sidebar (⌘B)"
+                        style={{
+                            backgroundColor: "var(--skin-panel-2-bg, rgba(14, 32, 68, 0.42))",
+                            boxShadow:
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.35), 2px 0 18px -6px rgba(244, 212, 114, 0.3)",
+                        }}
                     >
-                        <PanelLeft className="w-4 h-4 text-white/50" />
+                        <PanelLeft className="w-3 h-3 text-[#d4af37]/70 group-hover:text-[#d4af37] transition-colors" />
                     </button>
                 )}
 

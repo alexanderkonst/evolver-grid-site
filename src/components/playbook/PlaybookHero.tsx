@@ -52,14 +52,15 @@ const PlaybookHero = () => {
           )}
           style={{
             color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-            // The liquid-glass-dark class supplies background-color +
-            // backdrop-blur + inner highlights + outer drop shadow.
-            // We layer the skin-cta-bg (translucent navy or gold
-            // gradient) on top as a background-image so the color
-            // tint still reads "navy" in Aurora / "gold" in Navy+Gold,
-            // while the glass effect underneath provides depth.
+            // liquid-glass-dark supplies the backdrop-blur + inner edge
+            // highlight. We layer the skin-cta-bg gradient on top + the
+            // skin-cta-shadow which carries the gold halo in both skins
+            // (Aurora: gold glow on dark navy button; Navy+Gold: subtle
+            // gold rim since the button is gold-tinted already).
             backgroundImage:
               "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+            boxShadow:
+              "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
             textShadow:
               "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
           }}
