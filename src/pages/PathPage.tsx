@@ -151,7 +151,7 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  traction
+                  Traction
                 </span>
                 , and{" "}
                 <span
@@ -164,7 +164,7 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  organic demand
+                  Organic Demand
                 </span>
                 .
               </h1>
@@ -189,7 +189,7 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  6–8 weeks
+                  6–8 Weeks
                 </span>
                 .
               </h2>

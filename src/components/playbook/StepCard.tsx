@@ -134,8 +134,11 @@ const SubstepRow = ({
             </p>
           )}
 
-          {/* ══ Recommended How-To button — Day 47 iter 6 (Sasha): centered */}
-          <div className="flex justify-center pt-2">
+          {/* ══ Recommended How-To button — Day 47 iter 7 (Sasha): LEFT-aligned
+              with the substep name text (reverting the earlier centered variant).
+              The button sits in the content column naturally, flush with the
+              substep's h3 title — matches vertical rhythm + reading flow. */}
+          <div className="pt-2">
             <button
               type="button"
               onClick={onToggle}
@@ -148,7 +151,6 @@ const SubstepRow = ({
               style={{
                 backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.22), rgba(${neonRgb},0.08))`,
                 border: `1px solid rgba(${neonRgb},0.45)`,
-                // Day 47 iter 6: darken label for readability on light Panel 3.
                 color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
                 boxShadow: open ? `0 0 18px -4px ${neonHsl}` : "none",
               }}
@@ -159,7 +161,9 @@ const SubstepRow = ({
             </button>
           </div>
 
-          {/* ══ One Proven Strategy reveal — centered */}
+          {/* ══ One Proven Strategy reveal — also left-aligned with the
+              substep column (removed the mx-auto max-w-2xl that was
+              centering it in the prior iteration). */}
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
@@ -167,7 +171,7 @@ const SubstepRow = ({
             )}
           >
             <div
-              className="rounded-2xl p-4 sm:p-5 mx-auto max-w-2xl"
+              className="rounded-2xl p-4 sm:p-5"
               style={{
                 backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.1), rgba(${neonRgb},0.03))`,
                 border: `1px solid rgba(${neonRgb},0.25)`,
@@ -175,7 +179,6 @@ const SubstepRow = ({
             >
               <div
                 className="text-[10px] uppercase tracking-[0.28em] font-semibold mb-2"
-                // Day 47 iter 6: darken the label for readability.
                 style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
               >
                 One Proven Strategy
