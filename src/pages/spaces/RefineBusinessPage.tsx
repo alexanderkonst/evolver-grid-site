@@ -62,19 +62,19 @@ const RefineBusinessPage: React.FC = () => {
             <GameShellV2>
                 <ErrorBoundary>
                     <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center py-20">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#8460ea]/10 mb-6">
-                            <RefreshCw className="w-8 h-8 text-[#8460ea]" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                            <RefreshCw className="w-8 h-8 text-primary" />
                         </div>
-                        <h1 className="text-2xl font-bold text-[#2c3150] mb-3">
+                        <h1 className="text-2xl font-bold text-foreground mb-3">
                             Nothing to Refine Yet
                         </h1>
-                        <p className="text-[#2c3150]/60 mb-8 max-w-md mx-auto">
+                        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
                             First, build your Genius Business using the Product Builder. Then come back here to refine and iterate.
                         </p>
                         <Button
                             size="lg"
                             onClick={() => navigate("/game/build/product-builder")}
-                            className="bg-[#8460ea] hover:bg-[#7350d0] text-white px-8"
+                            className="bg-primary hover:bg-[#7350d0] text-white px-8"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
                             Build First
@@ -92,24 +92,24 @@ const RefineBusinessPage: React.FC = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <RefreshCw className="w-6 h-6 text-[#8460ea]" />
-                            <h1 className="text-2xl font-bold text-[#2c3150]">Refine My Genius Business</h1>
+                            <RefreshCw className="w-6 h-6 text-primary" />
+                            <h1 className="text-2xl font-bold text-foreground">Refine My Genius Business</h1>
                         </div>
-                        <p className="text-[#2c3150]/60">
+                        <p className="text-muted-foreground">
                             Each refinement cycle sharpens your business. Choose what to improve.
                         </p>
                     </div>
 
                     {/* Current Product Summary */}
-                    <div className="bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm p-4 mb-8 flex items-center gap-4">
-                        <div className="p-2 rounded-lg bg-[#8460ea]/10">
-                            <Sparkles className="w-5 h-5 text-[#8460ea]" />
+                    <div className="bg-white rounded-xl border border-border shadow-sm p-4 mb-8 flex items-center gap-4">
+                        <div className="p-2 rounded-lg bg-primary/10">
+                            <Sparkles className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-[#2c3150] truncate">
+                            <p className="font-semibold text-foreground truncate">
                                 {business.landingContent?.headline || "My Genius Product"}
                             </p>
-                            <p className="text-xs text-[#2c3150]/50">Current version · Published</p>
+                            <p className="text-xs text-muted-foreground">Current version · Published</p>
                         </div>
                         <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-semibold flex-shrink-0">
                             Live
@@ -129,29 +129,29 @@ const RefineBusinessPage: React.FC = () => {
                                     }
                                 }}
                                 className={`w-full text-left rounded-xl border p-5 transition-all ${option.available
-                                        ? "bg-white border-[#a4a3d0]/20 hover:border-[#8460ea]/40 hover:shadow-sm cursor-pointer"
-                                        : "bg-[#f5f5f7] border-[#a4a3d0]/10 opacity-60 cursor-not-allowed"
+                                        ? "bg-white border-border hover:border-primary/40 hover:shadow-sm cursor-pointer"
+                                        : "bg-[#f5f5f7] border-border/10 opacity-60 cursor-not-allowed"
                                     }`}
                             >
                                 <div className="flex items-start gap-4">
-                                    <div className={`p-2.5 rounded-xl flex-shrink-0 ${option.available ? "bg-[#8460ea]/10" : "bg-[#a4a3d0]/10"
+                                    <div className={`p-2.5 rounded-xl flex-shrink-0 ${option.available ? "bg-primary/10" : "bg-muted/30"
                                         }`}>
-                                        <option.icon className={`w-5 h-5 ${option.available ? "text-[#8460ea]" : "text-[#a4a3d0]"
+                                        <option.icon className={`w-5 h-5 ${option.available ? "text-primary" : "text-muted-foreground"
                                             }`} />
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-1">
-                                            <h3 className="font-semibold text-[#2c3150]">{option.title}</h3>
+                                            <h3 className="font-semibold text-foreground">{option.title}</h3>
                                             {!option.available && (
-                                                <span className="flex items-center gap-1 text-xs text-[#a4a3d0]">
+                                                <span className="flex items-center gap-1 text-xs text-muted-foreground">
                                                     <Lock className="w-3 h-3" /> Coming soon
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-sm text-[#2c3150]/60">{option.description}</p>
+                                        <p className="text-sm text-muted-foreground">{option.description}</p>
                                     </div>
                                     {option.available && (
-                                        <ArrowRight className="w-5 h-5 text-[#a4a3d0] flex-shrink-0 mt-1" />
+                                        <ArrowRight className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
                                     )}
                                 </div>
                             </button>
@@ -160,7 +160,7 @@ const RefineBusinessPage: React.FC = () => {
 
                     {/* Info */}
                     <div className="mt-8 text-center">
-                        <p className="text-xs text-[#2c3150]/40">
+                        <p className="text-xs text-muted-foreground">
                             Refinement iterations will improve your existing product without losing your current work.
                         </p>
                     </div>

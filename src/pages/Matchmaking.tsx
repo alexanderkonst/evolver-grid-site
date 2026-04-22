@@ -504,7 +504,7 @@ const Matchmaking = () => {
             <section>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Boxes className="w-5 h-5 text-[#8460ea]" />
+                  <Boxes className="w-5 h-5 text-primary" />
                   <h2 className="text-lg font-semibold text-white">AI-Powered Matches</h2>
                 </div>
                 <p className="text-sm text-white/40">Win-win collaboration proposals powered by your full profile.</p>
@@ -554,7 +554,7 @@ const Matchmaking = () => {
             <section>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Users className="w-5 h-5 text-[#6894d0]" />
+                  <Users className="w-5 h-5 text-primary" />
                   <h2 className="text-lg font-semibold text-white">Your Genius Matches</h2>
                 </div>
                 <p className="text-sm text-white/40">People in the network whose Zone of Genius complements yours.</p>

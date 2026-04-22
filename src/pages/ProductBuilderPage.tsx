@@ -64,8 +64,8 @@ const ProductBuilderPage = () => {
                                                 className={cn(
                                                     "flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all text-xs font-semibold",
                                                     currentStep >= step.number
-                                                        ? "border-[#8460ea] bg-[#8460ea] text-white"
-                                                        : "border-[#a4a3d0]/40 bg-white text-[#2c3150]/50"
+                                                        ? "border-primary bg-primary text-white"
+                                                        : "border-border bg-white text-muted-foreground"
                                                 )}
                                             >
                                                 {step.number}
@@ -74,7 +74,7 @@ const ProductBuilderPage = () => {
                                                 <div
                                                     className={cn(
                                                         "w-4 h-0.5 transition-all",
-                                                        currentStep > step.number ? "bg-[#8460ea]" : "bg-[#a4a3d0]/30"
+                                                        currentStep > step.number ? "bg-primary" : "bg-muted/40"
                                                     )}
                                                 />
                                             )}

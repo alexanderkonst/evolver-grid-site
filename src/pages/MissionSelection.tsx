@@ -160,11 +160,11 @@ const MissionSelection = () => {
     <GameShellV2>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl space-y-6">
-          <div className="flex items-center gap-3 text-[#2c3150]">
+          <div className="flex items-center gap-3 text-foreground">
             <Target className="w-6 h-6" />
             <div>
               <h1 className="text-2xl sm:text-3xl font-semibold">Mission Selection</h1>
-              <p className="text-sm text-[#2c3150]/60">Choose a mission that reflects what you are here to build.</p>
+              <p className="text-sm text-muted-foreground">Choose a mission that reflects what you are here to build.</p>
             </div>
           </div>
 
@@ -212,8 +212,8 @@ const MissionSelection = () => {
             </SelectContent>
           </Select>
 
-          <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-            <p className="text-sm font-medium text-[#2c3150] mb-2">Describe your specific mission (optional)</p>
+          <div className="rounded-2xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <p className="text-sm font-medium text-foreground mb-2">Describe your specific mission (optional)</p>
             <Textarea
               value={missionNote}
               onChange={(event) => setMissionNote(event.target.value)}

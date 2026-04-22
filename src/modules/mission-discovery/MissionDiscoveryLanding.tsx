@@ -87,7 +87,7 @@ const getPillarColor = (pillarId?: string) => {
         'env': 'bg-emerald-100 text-emerald-700',
         'culture': 'bg-pink-100 text-pink-700',
     };
-    return colors[pillarId || ''] || 'bg-[#f0f4ff] text-[#2c3150]';
+    return colors[pillarId || ''] || 'bg-muted text-foreground';
 };
 
 const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null> => {
@@ -260,23 +260,23 @@ const MissionDiscoveryLanding = () => {
             <div className="max-w-3xl mx-auto px-4 py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#f0f4ff] mb-4">
-                        <Sparkles className="w-8 h-8 text-[#2c3150]" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+                        <Sparkles className="w-8 h-8 text-foreground" />
                     </div>
                     <h1 className="text-4xl font-bold font-display aurora-text mb-3">Mission Discovery</h1>
-                    <p className="text-lg text-[rgba(44,49,80,0.7)]">Find your contribution to the planet</p>
+                    <p className="text-lg text-muted-foreground">Find your contribution to the planet</p>
                 </div>
 
                 {/* Step: Matches */}
                 {matches && matches.length > 0 && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-2xl font-semibold text-[#2c3150]">Top mission matches</h2>
-                            <p className="text-base text-[rgba(44,49,80,0.7)]">Choose a mission that resonates with you.</p>
+                            <h2 className="text-2xl font-semibold text-foreground">Top mission matches</h2>
+                            <p className="text-base text-muted-foreground">Choose a mission that resonates with you.</p>
                         </div>
                         <div className="space-y-4">
                             {matches.map(match => (
-                                <div key={match.mission.id} className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                                <div key={match.mission.id} className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-5 hover:border-border transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                                     <div className="mb-4">
                                         {/* Pillar + Focus Area pills */}
                                         <div className="flex flex-wrap gap-2 mb-3">
@@ -286,20 +286,20 @@ const MissionDiscoveryLanding = () => {
                                                 </span>
                                             )}
                                             {match.context.focusArea && (
-                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]">
+                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-muted text-muted-foreground">
                                                     {match.context.focusArea}
                                                 </span>
                                             )}
                                         </div>
                                         {/* Title */}
-                                        <h3 className="text-lg font-semibold text-[#2c3150] mb-1">{match.mission.title}</h3>
+                                        <h3 className="text-lg font-semibold text-foreground mb-1">{match.mission.title}</h3>
                                         {/* Statement (only if different from title) */}
                                         {match.mission.statement !== match.mission.title && (
-                                            <p className="text-sm text-[rgba(44,49,80,0.7)]">{match.mission.statement}</p>
+                                            <p className="text-sm text-muted-foreground">{match.mission.statement}</p>
                                         )}
                                         {/* Challenge + Outcome context */}
                                         {(match.context.challenge || match.context.outcome) && (
-                                            <p className="text-xs text-[#2c3150]/60 mt-2">
+                                            <p className="text-xs text-muted-foreground mt-2">
                                                 {[match.context.challenge, match.context.outcome].filter(Boolean).join(' → ')}
                                             </p>
                                         )}
@@ -336,8 +336,8 @@ const MissionDiscoveryLanding = () => {
                 {matches && matches.length === 0 && (
                     <div className="space-y-6">
                         <div className="text-center">
-                            <h2 className="text-xl font-semibold text-[#2c3150]">No strong matches yet</h2>
-                            <p className="text-sm text-[rgba(44,49,80,0.7)]">Try adding more detail or use the full wizard.</p>
+                            <h2 className="text-xl font-semibold text-foreground">No strong matches yet</h2>
+                            <p className="text-sm text-muted-foreground">Try adding more detail or use the full wizard.</p>
                         </div>
                         <div className="flex flex-wrap gap-3 justify-center">
                             <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
@@ -349,7 +349,7 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Clarity Check */}
                 {step === "clarity-check" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-lg text-[#2c3150] mb-6">
+                        <p className="text-center text-lg text-foreground mb-6">
                             Do you already have clarity on your mission or purpose?
                         </p>
 
@@ -359,19 +359,19 @@ const MissionDiscoveryLanding = () => {
                                 <button
                                     onClick={handleMatchFromExcalibur}
                                     disabled={isMatchingFromExcalibur}
-                                    className="p-6 rounded-xl border-2 border-[#8460ea]/30 bg-[#8460ea]/5 hover:border-[#8460ea] transition-colors text-left group sm:col-span-2"
+                                    className="p-6 rounded-xl border-2 border-primary/30 bg-primary/5 hover:border-primary transition-colors text-left group sm:col-span-2"
                                 >
                                     <div className="flex items-center gap-3">
                                         {isMatchingFromExcalibur ? (
                                             <span className="premium-spinner w-6 h-6" />
                                         ) : (
-                                            <Sword className="w-6 h-6 text-[#8460ea]" />
+                                            <Sword className="w-6 h-6 text-primary" />
                                         )}
                                         <div>
-                                            <h3 className="font-semibold text-[#2c3150] mb-1">
+                                            <h3 className="font-semibold text-foreground mb-1">
                                                 {isMatchingFromExcalibur ? 'Finding your missions...' : 'Suggest from my Excalibur'}
                                             </h3>
-                                            <p className="text-sm text-[rgba(44,49,80,0.7)]">
+                                            <p className="text-sm text-muted-foreground">
                                                 AI will match your Unique Offer to the most aligned missions
                                             </p>
                                         </div>
@@ -381,24 +381,24 @@ const MissionDiscoveryLanding = () => {
 
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left group"
+                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left group"
                             >
                                 <Check className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-[#2c3150] mb-1">Yes, I have clarity</h3>
-                                <p className="text-sm text-[#2c3150]/60">I know what I'm here to do</p>
+                                <h3 className="font-semibold text-foreground mb-1">Yes, I have clarity</h3>
+                                <p className="text-sm text-muted-foreground">I know what I'm here to do</p>
                             </button>
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left group"
+                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left group"
                             >
                                 <HelpCircle className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-[#2c3150] mb-1">I need to discover it</h3>
-                                <p className="text-sm text-[#2c3150]/60">Take me through the wizard</p>
+                                <h3 className="font-semibold text-foreground mb-1">I need to discover it</h3>
+                                <p className="text-sm text-muted-foreground">Take me through the wizard</p>
                             </button>
                         </div>
 
-                        <p className="text-center text-xs text-[#2c3150]/60 mt-6">
+                        <p className="text-center text-xs text-muted-foreground mt-6">
                             You can add more missions later — start with the one you're most excited about!
                         </p>
                     </div>
@@ -407,33 +407,33 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Has AI */}
                 {step === "has-ai" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-[#2c3150] mb-6">
+                        <p className="text-center text-foreground mb-6">
                             Do you have an AI model (ChatGPT, Claude, etc.) that you've discussed your mission with?
                         </p>
 
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("paste-response")}
-                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
                             >
-                                <Brain className="w-6 h-6 text-[#6894d0] mb-3" />
-                                <h3 className="font-semibold text-[#2c3150] mb-1">Yes, I have an AI</h3>
-                                <p className="text-sm text-[#2c3150]/60">I'll paste its response</p>
+                                <Brain className="w-6 h-6 text-primary mb-3" />
+                                <h3 className="font-semibold text-foreground mb-1">Yes, I have an AI</h3>
+                                <p className="text-sm text-muted-foreground">I'll paste its response</p>
                             </button>
 
                             <button
                                 onClick={() => setStep("type-manually")}
-                                className="p-6 rounded-xl border-2 border-[#a4a3d0]/20 hover:border-[#6894d0] hover:bg-[#6894d0]/5 transition-colors text-left"
+                                className="p-6 rounded-xl border-2 border-border hover:border-[#6894d0] hover:bg-primary/90/5 transition-colors text-left"
                             >
-                                <ListChecks className="w-6 h-6 text-[#6894d0] mb-3" />
-                                <h3 className="font-semibold text-[#2c3150] mb-1">No, I'll type it</h3>
-                                <p className="text-sm text-[#2c3150]/60">Write my mission manually</p>
+                                <ListChecks className="w-6 h-6 text-primary mb-3" />
+                                <h3 className="font-semibold text-foreground mb-1">No, I'll type it</h3>
+                                <p className="text-sm text-muted-foreground">Write my mission manually</p>
                             </button>
                         </div>
 
                         <button
                             onClick={() => setStep("clarity-check")}
-                            className="w-full text-sm text-[#2c3150]/60 hover:text-[#2c3150] mt-4"
+                            className="w-full text-sm text-muted-foreground hover:text-foreground mt-4"
                         >
                             ← Go back
                         </button>
@@ -443,11 +443,11 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Paste AI Response */}
                 {step === "paste-response" && !matches && (
                     <div className="space-y-6">
-                        <div className="bg-[#f0f4ff]/50 rounded-xl p-4 border border-[#a4a3d0]/20">
+                        <div className="bg-muted/40 rounded-xl p-4 border border-border">
                             <div className="flex items-start justify-between mb-2">
                                 <div>
-                                    <h3 className="font-semibold text-[#2c3150] text-sm">Prompt for your AI</h3>
-                                    <p className="text-xs text-[#2c3150]/60">Copy this and ask your AI model</p>
+                                    <h3 className="font-semibold text-foreground text-sm">Prompt for your AI</h3>
+                                    <p className="text-xs text-muted-foreground">Copy this and ask your AI model</p>
                                 </div>
                                 <Button
                                     variant="outline"
@@ -459,13 +459,13 @@ const MissionDiscoveryLanding = () => {
                                     {copied ? "Copied!" : "Copy"}
                                 </Button>
                             </div>
-                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-[#a4a3d0]/10 max-h-32 overflow-y-auto prompt-barely-visible">
+                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-border/10 max-h-32 overflow-y-auto prompt-barely-visible">
                                 {MISSION_DISCOVERY_PROMPT}
                             </pre>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-[#2c3150] mb-2">
+                            <label className="block text-sm font-medium text-foreground mb-2">
                                 Paste AI's response here
                             </label>
                             <Textarea
@@ -499,7 +499,7 @@ const MissionDiscoveryLanding = () => {
                 {step === "type-manually" && !matches && (
                     <div className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-[#2c3150] mb-2">
+                            <label className="block text-sm font-medium text-foreground mb-2">
                                 Describe your mission
                             </label>
                             <Textarea
@@ -508,7 +508,7 @@ const MissionDiscoveryLanding = () => {
                                 placeholder="What is your contribution to the planet? What change do you want to create?"
                                 className="min-h-[200px]"
                             />
-                            <p className="text-xs text-[#2c3150]/60 mt-2">
+                            <p className="text-xs text-muted-foreground mt-2">
                                 Be specific about the problems you want to solve and the impact you want to have.
                             </p>
                         </div>
@@ -533,7 +533,7 @@ const MissionDiscoveryLanding = () => {
                         <div className="text-center">
                             <button
                                 onClick={handleGoToWizard}
-                                className="text-sm text-[#2c3150]/60 hover:text-[#2c3150]"
+                                className="text-sm text-muted-foreground hover:text-foreground"
                             >
                                 Or take the guided wizard instead →
                             </button>

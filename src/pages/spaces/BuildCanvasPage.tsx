@@ -290,7 +290,7 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
 
         {/* Expand chevron */}
         {hasContent && (
-          <div className="flex-shrink-0 mt-1 text-white/30 group-hover:text-[#8460ea] transition-colors">
+          <div className="flex-shrink-0 mt-1 text-white/30 group-hover:text-primary transition-colors">
             {isExpanded ? (
               <ChevronUp className="w-4 h-4" />
             ) : (
@@ -339,7 +339,7 @@ const CanvasProgress = ({ status }: { status: CanvasArtifactStatus }) => {
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs">
         <span className="text-white/40">Canvas Completion</span>
-        <span className="font-mono text-[#8460ea]">
+        <span className="font-mono text-primary">
           {landed}/{total} landed
         </span>
       </div>
@@ -439,7 +439,7 @@ const BuildCanvasPage = () => {
             {/* Hero */}
             <div className="relative mb-8">
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#8460ea]/10 to-[#c8b7d8]/15 mb-5">
-                <Layers className="w-9 h-9 text-[#8460ea]" />
+                <Layers className="w-9 h-9 text-primary" />
               </div>
               <h1 className="text-2xl font-display font-bold text-white mb-2">
                 Unique Business Canvas
@@ -456,7 +456,7 @@ const BuildCanvasPage = () => {
               {ARTIFACT_META.map((artifact) => (
                 <div
                   key={artifact.key}
-                  className="flex items-center gap-3 p-3 rounded-xl border border-[#a4a3d0]/8"
+                  className="flex items-center gap-3 p-3 rounded-xl border border-border/8"
                   style={{ background: `linear-gradient(135deg, ${artifact.bgFrom}, ${artifact.bgTo})` }}
                 >
                   <div
@@ -477,7 +477,7 @@ const BuildCanvasPage = () => {
 
             {/* The derivation chain visual */}
             <div className="mb-8 p-4 rounded-xl liquid-glass ring-1 ring-white/10 max-w-md mx-auto">
-              <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2 font-medium">
+              <p className="text-xs text-primary uppercase tracking-widest mb-2 font-medium">
                 How it works
               </p>
               <div className="flex items-center justify-center gap-1 text-[11px] text-white/30 font-mono flex-wrap">
@@ -500,13 +500,13 @@ const BuildCanvasPage = () => {
             {/* CTA */}
             <div className="space-y-3">
               <Button
-                className="bg-[#8460ea] hover:bg-[#7350d0] text-white px-8 py-5 text-base rounded-xl transition-all duration-300 hover:shadow-[0_4px_20px_rgba(132,96,234,0.4)] hover:-translate-y-0.5"
+                className="bg-primary hover:bg-[#7350d0] text-white px-8 py-5 text-base rounded-xl transition-all duration-300 hover:shadow-[0_4px_20px_rgba(132,96,234,0.4)] hover:-translate-y-0.5"
                 onClick={() => window.open("https://www.calendly.com/konstantinov", "_blank")}
               >
                 <Flame className="w-4 h-4 mr-2" />
                 Book Ignition Session — $555
               </Button>
-              <p className="text-xs text-[#a4a3d0]">
+              <p className="text-xs text-muted-foreground">
                 60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time
               </p>
             </div>
@@ -552,9 +552,9 @@ const BuildCanvasPage = () => {
             />
             <div className="relative z-10">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-sm mb-4 ring-1 ring-white/10">
-                <Layers className="w-7 h-7 text-[#8460ea]" />
+                <Layers className="w-7 h-7 text-primary" />
               </div>
-              <p className="text-[11px] text-[#8460ea] uppercase tracking-[0.2em] mb-2 font-medium">
+              <p className="text-[11px] text-primary uppercase tracking-[0.2em] mb-2 font-medium">
                 Unique Business Canvas · {canvas.version}
               </p>
               <h1 className="text-2xl lg:text-3xl font-display font-bold text-white mb-1">
@@ -587,14 +587,14 @@ const BuildCanvasPage = () => {
             <div className="flex gap-2">
               <button
                 onClick={expandAll}
-                className="text-[11px] text-[#8460ea] hover:text-[#7350d0] transition-colors"
+                className="text-[11px] text-primary hover:text-[#7350d0] transition-colors"
               >
                 Expand all
               </button>
-              <span className="text-[#a4a3d0]/30">·</span>
+              <span className="text-muted-foreground/30">·</span>
               <button
                 onClick={collapseAll}
-                className="text-[11px] text-[#8460ea] hover:text-[#7350d0] transition-colors"
+                className="text-[11px] text-primary hover:text-[#7350d0] transition-colors"
               >
                 Collapse all
               </button>
@@ -618,7 +618,7 @@ const BuildCanvasPage = () => {
           {/* ── Session Notes ── */}
           {canvas.notes && (
             <div className="p-4 liquid-glass rounded-xl ring-1 ring-white/10">
-              <p className="text-[11px] text-[#8460ea] uppercase tracking-wider mb-2 font-medium">
+              <p className="text-[11px] text-primary uppercase tracking-wider mb-2 font-medium">
                 Session Notes
               </p>
               <p className="text-sm text-white/60 leading-relaxed whitespace-pre-wrap">
@@ -630,7 +630,7 @@ const BuildCanvasPage = () => {
           {/* ── Actions ── */}
           <div className="grid grid-cols-2 gap-3">
             <Button
-              className="bg-[#8460ea] hover:bg-[#7350d0] text-white rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(132,96,234,0.3)] hover:-translate-y-0.5"
+              className="bg-primary hover:bg-[#7350d0] text-white rounded-xl transition-all duration-300 hover:shadow-[0_4px_16px_rgba(132,96,234,0.3)] hover:-translate-y-0.5"
               onClick={() => navigate("/game/build/product-builder")}
             >
               <Zap className="w-4 h-4 mr-1.5" />
@@ -649,14 +649,14 @@ const BuildCanvasPage = () => {
           {/* ── Quick Links ── */}
           <div className="grid grid-cols-2 gap-2 text-center">
             <button
-              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-[#8460ea]"
+              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-primary"
               onClick={() => navigate("/game/build/my-business")}
             >
               <Eye className="w-4 h-4 mx-auto mb-1" />
               My Business
             </button>
             <button
-              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-[#8460ea]"
+              className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-primary"
               onClick={() => navigate("/the-originals")}
             >
               <Users className="w-4 h-4 mx-auto mb-1" />
