@@ -95,13 +95,13 @@ const Step3OrderTalents = () => {
         <p
           className="text-sm max-w-xl mx-auto"
           style={{
-            color: "rgba(26,30,58,0.7)",
+            color: "rgba(26,30,58,0.82)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
           Put your 3 core talents in order, from <strong style={{ color: "#0a1628" }}>most defining</strong> (#1) to third (#3).
         </p>
-        <p className="text-xs" style={{ color: "rgba(26,30,58,0.55)" }}>
+        <p className="text-xs" style={{ color: "rgba(26,30,58,0.7)" }}>
           Drag or use arrows to reorder.
         </p>
       </div>
@@ -159,7 +159,7 @@ const Step3OrderTalents = () => {
                   ? { backgroundColor: "#5b21b6", color: "#ffffff" }
                   : index === 1
                     ? { backgroundColor: "rgba(91,33,182,0.2)", color: "#5b21b6" }
-                    : { backgroundColor: "rgba(26,30,58,0.08)", color: "rgba(26,30,58,0.55)" }
+                    : { backgroundColor: "rgba(26,30,58,0.08)", color: "rgba(26,30,58,0.7)" }
               }
             >
               {index + 1}
@@ -169,14 +169,14 @@ const Step3OrderTalents = () => {
             <div className="flex-1 min-w-0">
               <p
                 className="text-[10px] uppercase tracking-wider font-medium mb-0.5"
-                style={{ color: "rgba(26,30,58,0.55)" }}
+                style={{ color: "rgba(26,30,58,0.7)" }}
               >
                 {rankLabels[index]}
               </p>
               <h3 className="text-sm font-semibold" style={{ color: "#0a1628" }}>
                 {talent.name}
               </h3>
-              <p className="text-xs truncate" style={{ color: "rgba(26,30,58,0.6)" }}>
+              <p className="text-xs truncate" style={{ color: "rgba(26,30,58,0.75)" }}>
                 {talent.description}
               </p>
             </div>
@@ -189,7 +189,7 @@ const Step3OrderTalents = () => {
         <button
           onClick={handleBack}
           className="liquid-glass flex items-center gap-2 px-5 py-2.5 rounded-full text-sm transition-all hover:scale-[1.02]"
-          style={{ color: "rgba(26,30,58,0.7)" }}
+          style={{ color: "rgba(26,30,58,0.82)" }}
         >
           <ArrowLeft size={14} />
           Back
@@ -221,7 +221,7 @@ const Step3OrderTalents = () => {
           <button
             onClick={handleBack}
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
-            style={{ color: "rgba(26,30,58,0.7)" }}
+            style={{ color: "rgba(26,30,58,0.82)" }}
           >
             Back
           </button>
