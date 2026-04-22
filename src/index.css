@@ -85,7 +85,112 @@
   }
 }
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* ==========================================================================
+   SKIN SYSTEM — Day 47 very-late-night (Sasha)
+   ==========================================================================
+   Two skins, switched via `<html data-skin="aurora|navy-gold">`:
+
+     • aurora    — the default / shipped skin (light-pastel + rainbow neon)
+     • navy-gold — premium editorial alternate (deep navy + gold accents)
+
+   Components opt-in by reading `var(--skin-*)` tokens. Fallbacks in each
+   var() call preserve Aurora behavior if a token is somehow missing.
+   Any component still using hardcoded inline colors simply renders as
+   Aurora regardless of skin — so we can migrate surfaces progressively.
+
+   Refactored so far (Day 47 iter 14):
+     - MethodologyLandingPage (hero + ornament + layer 2 accents)
+     - PlaybookHero (primary CTA + secondary text link)
+     - GameShellV2 Panel 3 wash
+   Everything else: Aurora-only for now, expand post-launch.
+   ========================================================================== */
+
+:root,
+[data-skin="aurora"] {
+  /* ── Text ── */
+  --skin-text-primary: #0a1628;
+  --skin-text-body: rgba(26, 30, 58, 0.85);
+  --skin-text-muted: rgba(26, 30, 58, 0.7);
+  --skin-text-muted-soft: rgba(26, 30, 58, 0.6);
+
+  /* ── Text shadows / halos ── */
+  --skin-text-halo-strong: 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15);
+  --skin-text-halo-subtle: 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75);
+  --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
+
+  /* ── Panel 3 overlay ── */
+  --skin-panel-wash: rgba(255, 255, 255, 0.21);
+
+  /* ── Ornament (hero divider) ── */
+  --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
+  --skin-ornament-star:  rgba(184, 134, 11, 0.85);
+  --skin-ornament-shadow: 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7);
+
+  /* ── Primary CTA ── */
+  --skin-cta-bg: linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%);
+  --skin-cta-text: rgba(245, 245, 250, 0.98);
+  --skin-cta-border: rgba(255, 255, 255, 0.12);
+  --skin-cta-shadow: 0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18);
+  --skin-cta-text-shadow: 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35);
+  --skin-cta-icon: rgba(240, 194, 127, 0.9);
+  --skin-cta-icon-shadow: 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8);
+
+  /* ── Gradient accent words (Top Talent / Productize / Scale) ── */
+  --skin-accent-1-bg: linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45));
+  --skin-accent-2-bg: linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45));
+  --skin-accent-3-bg: linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45));
+
+  /* ── Secondary text link ── */
+  --skin-link-secondary: rgba(26, 30, 58, 0.6);
+}
+
+/* ── Navy + Gold — premium editorial alternate ───────────────────────── */
+[data-skin="navy-gold"] {
+  /* Text — cream/ivory on deep navy. Warm not cold. */
+  --skin-text-primary: #f5f1e8;
+  --skin-text-body: rgba(245, 241, 232, 0.85);
+  --skin-text-muted: rgba(245, 241, 232, 0.62);
+  --skin-text-muted-soft: rgba(245, 241, 232, 0.48);
+
+  /* Halos swap from white → warm gold glow behind text */
+  --skin-text-halo-strong: 0 0 22px rgba(212,175,55,0.18), 0 1px 2px rgba(245,241,232,0.2), 0 2px 12px rgba(0,0,0,0.55);
+  --skin-text-halo-subtle: 0 0 18px rgba(212,175,55,0.15), 0 1px 2px rgba(245,241,232,0.18);
+  --skin-text-halo-soft:   0 1px 2px rgba(0,0,0,0.55);
+
+  /* Panel 3 wash — dark navy near-opaque. Video barely flickers through. */
+  --skin-panel-wash: rgba(10, 22, 40, 0.82);
+
+  /* Ornament — pure gold, stronger glow */
+  --skin-ornament-rule:  rgba(212, 175, 55, 0.4);
+  --skin-ornament-star:  #d4af37;
+  --skin-ornament-shadow: 0 0 14px rgba(212,175,55,0.7), 0 0 4px rgba(244,208,111,0.85);
+
+  /* Primary CTA — INVERTED: gold button, navy text, navy star */
+  --skin-cta-bg: linear-gradient(135deg, #e6c35a 0%, #d4af37 50%, #b8941e 100%);
+  --skin-cta-text: #0a1628;
+  --skin-cta-border: rgba(10, 22, 40, 0.25);
+  --skin-cta-shadow: 0 20px 50px -18px rgba(212,175,55,0.45), 0 0 0 1px rgba(212,175,55,0.3), inset 0 1px 1px rgba(255,255,255,0.35);
+  --skin-cta-text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+  --skin-cta-icon: #0a1628;
+  --skin-cta-icon-shadow: 0 0 6px rgba(10,22,40,0.45);
+
+  /* Gradient accents — all three in the gold family (monochrome, not rainbow).
+     Slightly different shade per word so they don't read identical. */
+  --skin-accent-1-bg: linear-gradient(135deg, #f4d472 0%, #d4af37 50%, #b8941e 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 10px rgba(244,212,114,0.55)) drop-shadow(0 0 3px rgba(212,175,55,0.6));
+  --skin-accent-2-bg: linear-gradient(135deg, #e8c565 0%, #c29f2f 50%, #a08419 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 10px rgba(232,197,101,0.55)) drop-shadow(0 0 3px rgba(194,159,47,0.6));
+  --skin-accent-3-bg: linear-gradient(135deg, #efcf68 0%, #cea02f 50%, #ad8619 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 10px rgba(239,207,104,0.55)) drop-shadow(0 0 3px rgba(206,160,47,0.6));
+
+  /* Secondary link — soft cream */
+  --skin-link-secondary: rgba(245, 241, 232, 0.55);
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 

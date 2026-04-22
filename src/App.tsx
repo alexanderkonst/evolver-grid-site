@@ -13,6 +13,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { getPageTitle } from "@/lib/pageTitles";
 import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { SkinProvider } from "@/contexts/SkinContext";
+import SkinPreview from "./pages/SkinPreview";
 import LandingPage from "./pages/LandingPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
@@ -182,6 +184,7 @@ const TitleManager = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
+      <SkinProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -427,6 +430,12 @@ const App = () => (
                   <Route path="/dashboard" element={<VentureDashboard />} />
                   <Route path="/holomap" element={<RequireAuth><MorphogeneticHolomap /></RequireAuth>} />
                   <Route path="/founders" element={<RequireAuth><FoundersShowcase /></RequireAuth>} />
+                  {/* Day 47 very-late-night (Sasha): skin preview route.
+                      /preview forces the Navy+Gold skin while mounted, so
+                      Sasha can test the alternate aesthetic without affecting
+                      the shipped Aurora experience for anyone else.
+                      Not linked from any nav — discoverable by URL only. */}
+                  <Route path="/preview" element={<SkinPreview />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
@@ -435,6 +444,7 @@ const App = () => (
           </ErrorBoundary>
         </BrowserRouter>
       </TooltipProvider>
+      </SkinProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );

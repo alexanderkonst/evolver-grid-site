@@ -47,21 +47,22 @@ const PlaybookHero = () => {
               "inline-flex items-center justify-center gap-3",
             )}
             style={{
-              color: "rgba(245,245,250,0.98)",
+              color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
               backgroundImage:
-                "linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%)",
-              border: "1px solid rgba(255,255,255,0.12)",
+                "var(--skin-cta-bg, linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%))",
+              border: "1px solid var(--skin-cta-border, rgba(255,255,255,0.12))",
               boxShadow:
-                "0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18)",
-              textShadow: "0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35)",
+                "var(--skin-cta-shadow, 0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18))",
+              textShadow:
+                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
             }}
           >
             <span
               aria-hidden="true"
               style={{
-                color: "rgba(240,194,127,0.9)",
+                color: "var(--skin-cta-icon, rgba(240,194,127,0.9))",
                 textShadow:
-                  "0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8)",
+                  "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
               }}
             >
               ✦
