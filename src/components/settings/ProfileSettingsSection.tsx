@@ -377,7 +377,7 @@ const ProfileSettingsSection = () => {
                             {purchases.length > 0 ? (
                                 <div className="space-y-2">
                                     {purchases.map(purchase => (
-                                        <div key={purchase.id} className="flex items-center justify-between p-3 bg-[#f0f4ff]/50 rounded-lg">
+                                        <div key={purchase.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
                                             <div>
                                                 <p className="font-medium text-sm text-foreground">AI Intelligence Boost</p>
                                                 <p className="text-xs text-muted-foreground">via {formatPurchaseSource(purchase.source)}</p>
