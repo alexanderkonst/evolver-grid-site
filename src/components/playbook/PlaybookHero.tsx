@@ -47,9 +47,9 @@ const PlaybookHero = () => {
           </button>
         </div>
 
-        {/* Meta line — Day 47 late pass (Sasha): de-cap'd and allowed wider
-            than the buttons so the phrase reads naturally. Own max-width
-            that exceeds 380px. */}
+        {/* Meta line — Day 47 iter 10 (Sasha + GFOA v2.0):
+            "Claim your gift · takes two minutes" → "Takes 2 minutes. No signup."
+            Sharper, no ask, removes friction anxiety up front. */}
         <div
           className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px]"
           style={{
@@ -58,7 +58,7 @@ const PlaybookHero = () => {
           }}
         >
           <span aria-hidden="true">↑</span>
-          <span>Claim your gift · takes two minutes</span>
+          <span>Takes 2 minutes. No signup.</span>
         </div>
 
         {/* Secondary — lighter Apple Liquid Glass, no arrow. */}
