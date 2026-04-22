@@ -15,6 +15,7 @@ import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
+import PreviewBanner from "@/components/skin/PreviewBanner";
 import LandingPage from "./pages/LandingPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
@@ -194,6 +195,7 @@ const App = () => (
           <SiteLogo />
           <TitleManager />
           <ScrollRestoration />
+          <PreviewBanner />
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <PageTransition>

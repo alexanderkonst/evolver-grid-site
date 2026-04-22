@@ -70,8 +70,9 @@ const PlaybookShell = ({
           style={{
             backgroundImage:
               "linear-gradient(135deg, rgba(26,30,58,0.08), rgba(26,30,58,0.02))",
-            border: "1px solid rgba(26,30,58,0.2)",
-            color: "rgba(26,30,58,0.85)",
+            border:
+              "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
+            color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
           }}
           aria-label="Back to landing page"
         >
@@ -112,7 +113,7 @@ const PlaybookShell = ({
                     className="absolute top-[13px] sm:top-[15px] left-1/2 h-[2px] pointer-events-none w-[calc(100%+0.25rem)] sm:w-[calc(100%+0.5rem)]"
                     style={{
                       backgroundImage:
-                        "linear-gradient(90deg, rgba(26,30,58,0.22), rgba(26,30,58,0.12))",
+                        "linear-gradient(90deg, var(--skin-rule-strong, rgba(26,30,58,0.22)), var(--skin-rule-medium, rgba(26,30,58,0.12)))",
                     }}
                   />
                 )}
@@ -131,14 +132,14 @@ const PlaybookShell = ({
                     isActive ? "scale-[1.18] hover:scale-[1.22]" : "hover:scale-110",
                   )}
                   style={{
-                    // Every step carries its own neon color — no more grey
-                    // "upcoming" state (Sasha, 2026-04-21). Active is
-                    // distinguished by scale + glow ring, not by color delta.
+                    // Rainbow UV→IR octave preserved in BOTH skins — Sasha's rule:
+                    // "the seven round steps on top of the playbook keep the
+                    // colors they have". Only the number glyph color adapts.
                     backgroundImage: `radial-gradient(circle at 30% 30%, ${step.neonHsl}, rgba(132,96,234,0.6))`,
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                     border: isActive
                       ? `1.5px solid ${step.neonHsl}`
-                      : "1px solid rgba(26,30,58,0.2)",
+                      : "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
                     boxShadow: isActive
                       ? `0 0 0 3px rgba(255,255,255,0.5), 0 0 18px -2px ${step.neonHsl}, 0 0 32px -8px rgba(132,96,234,0.6)`
                       : `0 1px 3px rgba(26,30,58,0.15)`,
@@ -159,7 +160,9 @@ const PlaybookShell = ({
                     isActive ? "font-semibold" : "font-medium",
                   )}
                   style={{
-                    color: isActive ? "#0a1628" : "rgba(26,30,58,0.85)",
+                    color: isActive
+                      ? "var(--skin-text-primary, #0a1628)"
+                      : "var(--skin-link-secondary, rgba(26,30,58,0.85))",
                   }}
                 >
                   {step.subtitle}

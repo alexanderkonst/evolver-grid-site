@@ -51,14 +51,14 @@ const Step2SelectTop3CoreTalents = () => {
   const canContinue = localSelected.length === 3;
 
   return (
-    <div className="space-y-6" style={{ color: "#0a1628" }}>
+    <div className="space-y-6" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
       {/* Header — Day 47 late pass: dark text on light Panel 3 */}
       <div className="text-center space-y-2">
         <h2
           className="text-xl sm:text-2xl font-semibold"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
@@ -67,11 +67,11 @@ const Step2SelectTop3CoreTalents = () => {
         <p
           className="text-sm max-w-xl mx-auto"
           style={{
-            color: "rgba(26,30,58,0.82)",
+            color: "var(--skin-text-body, rgba(26,30,58,0.82))",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Now narrow it down. Which <strong style={{ color: "#0a1628" }}>3</strong> do you love doing the most?
+          Now narrow it down. Which <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>3</strong> do you love doing the most?
           The ones you'd keep even if you had to drop the rest.
         </p>
       </div>
@@ -82,14 +82,14 @@ const Step2SelectTop3CoreTalents = () => {
           <div className="flex items-center gap-3">
             <div
               className="text-xl font-bold transition-colors"
-              style={{ color: canContinue ? "#0a1628" : "rgba(26,30,58,0.7)" }}
+              style={{ color: canContinue ? "var(--skin-text-primary, #0a1628)" : "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
               {localSelected.length}
-              <span className="font-normal text-sm" style={{ color: "rgba(26,30,58,0.4)" }}>
+              <span className="font-normal text-sm" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.4))" }}>
                 {" / 3"}
               </span>
             </div>
-            <span className="text-xs" style={{ color: "rgba(26,30,58,0.72)" }}>core talents selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>core talents selected</span>
           </div>
 
           {showMaxWarning && (
@@ -107,7 +107,7 @@ const Step2SelectTop3CoreTalents = () => {
                 canContinue ? "opacity-100" : "opacity-40 cursor-not-allowed"
               )}
               style={{
-                color: "#0a1628",
+                color: "var(--skin-text-primary, #0a1628)",
                 textShadow: "0 1px 2px rgba(255,255,255,0.6)",
               }}
             >
@@ -130,7 +130,7 @@ const Step2SelectTop3CoreTalents = () => {
                 "hover:scale-[1.02] active:scale-[0.98]",
                 isSelected ? "liquid-glass-strong" : "liquid-glass"
               )}
-              style={{ color: "#0a1628" }}
+              style={{ color: "var(--skin-text-primary, #0a1628)" }}
             >
               {isSelected && (
                 <div
@@ -142,13 +142,13 @@ const Step2SelectTop3CoreTalents = () => {
               )}
               <h3
                 className="text-sm font-semibold mb-1 pr-7"
-                style={{ color: "#0a1628" }}
+                style={{ color: "var(--skin-text-primary, #0a1628)" }}
               >
                 {talent.name}
               </h3>
               <p
                 className="text-xs leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.78)" }}
+                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.78))" }}
               >
                 {talent.description}
               </p>
@@ -162,7 +162,7 @@ const Step2SelectTop3CoreTalents = () => {
         <button
           onClick={handleBack}
           className="liquid-glass flex items-center gap-2 px-5 py-2.5 rounded-full text-sm transition-all hover:scale-[1.02]"
-          style={{ color: "rgba(26,30,58,0.82)" }}
+          style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
         >
           <ArrowLeft size={14} />
           Back
@@ -175,7 +175,7 @@ const Step2SelectTop3CoreTalents = () => {
             canContinue ? "opacity-100" : "opacity-40 cursor-not-allowed"
           )}
           style={{
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
@@ -198,16 +198,16 @@ const Step2SelectTop3CoreTalents = () => {
           <div className="flex items-center gap-2">
             <span
               className="text-lg font-bold"
-              style={{ color: canContinue ? "#0a1628" : "rgba(26,30,58,0.7)" }}
+              style={{ color: canContinue ? "var(--skin-text-primary, #0a1628)" : "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
               {localSelected.length} / 3
             </span>
-            <span className="text-xs" style={{ color: "rgba(26,30,58,0.72)" }}>selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>selected</span>
           </div>
           <button
             onClick={handleBack}
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
-            style={{ color: "rgba(26,30,58,0.82)" }}
+            style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
           >
             Back
           </button>
@@ -220,7 +220,7 @@ const Step2SelectTop3CoreTalents = () => {
             canContinue ? "opacity-100" : "opacity-40 cursor-not-allowed"
           )}
           style={{
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >

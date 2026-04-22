@@ -423,7 +423,7 @@ GENERAL STYLE RULES:
   // The parent ZoneOfGeniusAssessmentLayout now wraps in GameShellV2, so
   // we just render the content — same ambient bg as the rest of the journey.
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif", color: "#0a1628" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", color: "var(--skin-text-primary, #0a1628)" }}>
       <main className="relative z-10 mx-auto max-w-6xl pb-20 pt-4">
         {/* Day 47: redundant "STEP 5 OF 5 · LIFELINE SNAPSHOT" eyebrow removed —
             the parent AssessmentLayout already renders the step progress pills. */}
@@ -434,7 +434,7 @@ GENERAL STYLE RULES:
         >
           <p
             className="text-sm uppercase tracking-widest mb-4"
-            style={{ color: "rgba(26,30,58,0.55)" }}
+            style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
           >
             Your Top Talent
           </p>
@@ -444,7 +444,7 @@ GENERAL STYLE RULES:
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  color: "#0a1628",
+                  color: "var(--skin-text-primary, #0a1628)",
                   textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
                 }}
               >
@@ -453,7 +453,7 @@ GENERAL STYLE RULES:
               <p
                 className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto font-medium"
                 style={{
-                  color: "rgba(26,30,58,0.75)",
+                  color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
                   textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                 }}
               >
@@ -465,7 +465,7 @@ GENERAL STYLE RULES:
               className="text-3xl sm:text-4xl lg:text-5xl font-bold"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                color: "#0a1628",
+                color: "var(--skin-text-primary, #0a1628)",
                 textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
               }}
             >
@@ -474,7 +474,7 @@ GENERAL STYLE RULES:
           )}
           <p
             className="mt-4 text-sm max-w-2xl mx-auto"
-            style={{ color: "rgba(26,30,58,0.55)" }}
+            style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
           >
             This is your current character card — a starting point, not a final verdict.
           </p>
@@ -497,10 +497,10 @@ GENERAL STYLE RULES:
             <div className="max-w-2xl mx-auto space-y-6">
               {/* Character Card */}
               <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
-                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(26,30,58,0.55)" }}>
+                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>
                   Top Talent Character Card
                 </p>
-                <p className="text-xs mb-6" style={{ color: "rgba(26,30,58,0.55)" }}>
+                <p className="text-xs mb-6" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>
                   Generated on: {currentDate}
                 </p>
 
@@ -508,7 +508,7 @@ GENERAL STYLE RULES:
                   className="text-2xl sm:text-3xl font-bold text-center mb-6"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                     textShadow: "0 1px 2px rgba(255,255,255,0.7)",
                   }}
                 >
@@ -518,7 +518,7 @@ GENERAL STYLE RULES:
                 <div className="mb-6">
                   <p
                     className="text-sm sm:text-base leading-relaxed"
-                    style={{ color: "rgba(26,30,58,0.88)" }}
+                    style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
                   >
                     {parsedSnapshot.description}
                   </p>
@@ -549,17 +549,17 @@ GENERAL STYLE RULES:
                   className="text-lg font-semibold mb-2"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                   }}
                 >
                   Superpowers in Action
                 </h3>
-                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
                   How this genius tends to show up when you are on.
                 </p>
                 <ul
                   className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "rgba(26,30,58,0.88)" }}
+                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
                 >
                   {formatBullets(parsedSnapshot.superpowers)}
                 </ul>
@@ -571,17 +571,17 @@ GENERAL STYLE RULES:
                   className="text-lg font-semibold mb-2"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                   }}
                 >
                   Your Edge (Where You Trip Yourself Up)
                 </h3>
-                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
                   Your supershadow — the flip side of your gift. Growth happens here.
                 </p>
                 <ul
                   className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "rgba(26,30,58,0.88)" }}
+                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
                 >
                   {formatBullets(parsedSnapshot.edge)}
                 </ul>
@@ -593,17 +593,17 @@ GENERAL STYLE RULES:
                   className="text-lg font-semibold mb-2"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                   }}
                 >
                   Where This Genius Thrives
                 </h3>
-                <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
                   Environments and roles where this pattern tends to shine.
                 </p>
                 <ul
                   className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "rgba(26,30,58,0.88)" }}
+                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
                 >
                   {formatBullets(parsedSnapshot.thrives)}
                 </ul>
@@ -616,17 +616,17 @@ GENERAL STYLE RULES:
                     className="text-lg font-semibold mb-2"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      color: "#0a1628",
+                      color: "var(--skin-text-primary, #0a1628)",
                     }}
                   >
                     🔁 Your Mastery Action
                   </h3>
-                  <p className="text-xs mb-3" style={{ color: "rgba(26,30,58,0.65)" }}>
+                  <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
                     One repeatable action that builds mastery over time.
                   </p>
                   <p
                     className="text-base font-medium leading-relaxed"
-                    style={{ color: "#0a1628" }}
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
                   >
                     {parsedSnapshot.masteryAction}
                   </p>
@@ -641,7 +641,7 @@ GENERAL STYLE RULES:
               <article className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center mt-10">
                 <p
                   className="text-xs uppercase tracking-[0.2em] mb-3"
-                  style={{ color: "rgba(26,30,58,0.6)" }}
+                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                 >
                   The next step
                 </p>
@@ -649,7 +649,7 @@ GENERAL STYLE RULES:
                   className="text-xl sm:text-2xl font-semibold mb-3"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                     textShadow: "0 1px 2px rgba(255,255,255,0.7)",
                   }}
                 >
@@ -657,7 +657,7 @@ GENERAL STYLE RULES:
                 </h3>
                 <p
                   className="text-sm mb-5 max-w-lg mx-auto leading-relaxed"
-                  style={{ color: "rgba(26,30,58,0.78)" }}
+                  style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.78))" }}
                 >
                   You've named your Top Talent. The next step is structuring
                   it into something people can buy. Aleksandr runs a focused
@@ -666,7 +666,7 @@ GENERAL STYLE RULES:
                 </p>
                 <p
                   className="text-sm font-semibold mb-5"
-                  style={{ color: "#0a1628" }}
+                  style={{ color: "var(--skin-text-primary, #0a1628)" }}
                 >
                   $555 · 2 hours · Money-back guarantee
                 </p>
@@ -674,7 +674,7 @@ GENERAL STYLE RULES:
                   href="/ignite#pricing-section"
                   className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold liquid-glass-strong transition-all hover:scale-[1.02] active:scale-95"
                   style={{
-                    color: "#0a1628",
+                    color: "var(--skin-text-primary, #0a1628)",
                     textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                   }}
                 >
@@ -691,7 +691,7 @@ GENERAL STYLE RULES:
                   ═══════════════════════════════════════════════════════ */}
               <div className="max-w-md mx-auto pt-2">
                 {saveState === "saved" ? (
-                  <p className="text-center text-xs" style={{ color: "rgba(26,30,58,0.6)" }}>
+                  <p className="text-center text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
                     ✓ Saved. We sent your Top Talent to your inbox so you can come back to it.
                   </p>
                 ) : !saveExpanded ? (
@@ -699,7 +699,7 @@ GENERAL STYLE RULES:
                     type="button"
                     onClick={() => setSaveExpanded(true)}
                     className="w-full flex items-center justify-center gap-2 p-3 rounded-full liquid-glass hover:scale-[1.015] active:scale-[0.985] transition-all duration-300 text-xs"
-                    style={{ color: "rgba(26,30,58,0.7)" }}
+                    style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
                   >
                     <Mail className="w-3.5 h-3.5" />
                     <span>Save my top talent result for later</span>
@@ -709,7 +709,7 @@ GENERAL STYLE RULES:
                     onSubmit={handleSaveSubmit}
                     className="flex items-center gap-2 p-2 rounded-full liquid-glass"
                   >
-                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "rgba(26,30,58,0.45)" }} />
+                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }} />
                     <input
                       type="email"
                       value={saveEmail}
@@ -717,7 +717,7 @@ GENERAL STYLE RULES:
                       placeholder="your@email.com"
                       autoFocus
                       className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
-                      style={{ color: "#0a1628" }}
+                      style={{ color: "var(--skin-text-primary, #0a1628)" }}
                       required
                     />
                     <button
@@ -745,7 +745,7 @@ GENERAL STYLE RULES:
                     onClick={handleDownloadPDF}
                     disabled={isDownloading}
                     className="inline-flex items-center gap-1.5 transition-colors hover:underline"
-                    style={{ color: "rgba(26,30,58,0.6)" }}
+                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                   >
                     {isDownloading ? (
                       <>
@@ -759,7 +759,7 @@ GENERAL STYLE RULES:
                       </>
                     )}
                   </button>
-                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
                   <button
                     type="button"
                     onClick={() => {
@@ -775,27 +775,27 @@ GENERAL STYLE RULES:
                       }
                     }}
                     className="inline-flex items-center gap-1.5 transition-colors hover:underline"
-                    style={{ color: "rgba(26,30,58,0.6)" }}
+                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                   >
                     <Share2 className="w-3.5 h-3.5" />
                     <span>Share this reveal</span>
                   </button>
-                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
                   <button
                     type="button"
                     onClick={handleBack}
                     className="inline-flex items-center gap-1.5 transition-colors hover:underline"
-                    style={{ color: "rgba(26,30,58,0.6)" }}
+                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                   >
                     <ArrowLeft className="w-3 h-3" />
                     <span>Back</span>
                   </button>
-                  <span style={{ color: "rgba(26,30,58,0.2)" }}>·</span>
+                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
                   <button
                     type="button"
                     onClick={handleStartNew}
                     className="transition-colors hover:underline"
-                    style={{ color: "rgba(26,30,58,0.6)" }}
+                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                   >
                     Start Over
                   </button>

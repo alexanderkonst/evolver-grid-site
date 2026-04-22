@@ -45,7 +45,10 @@ export type StepCardProps = {
   step: PlaybookStep;
 };
 
-/** Triangle button adornment with soft radial glow per step color. */
+/** Triangle button adornment with soft radial glow per step color.
+ *  Chevron color uses color-mix against skin-text-primary so it lands
+ *  ~40% lightness on both Aurora (mixed with deep navy) and Navy+Gold
+ *  (mixed with cream — still readable on the colored tint). */
 const Triangle = ({
   open,
   neonHsl,
@@ -70,9 +73,9 @@ const Triangle = ({
         "w-3 h-3 transition-transform duration-300",
         open && "rotate-90",
       )}
-      // Day 47 iter 6 (Sasha): darken the chevron to readable saturation.
-      // Raw neonHsl is 68-72% lightness — too pale on light Panel 3.
-      style={{ color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)` }}
+      style={{
+        color: `color-mix(in srgb, ${neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
+      }}
     />
   </span>
 );
@@ -103,41 +106,42 @@ const SubstepRow = ({
           style={{
             backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.28), rgba(${neonRgb},0.08))`,
             border: `1px solid rgba(${neonRgb},0.5)`,
-            // Day 47 iter 6 (Sasha): darken the substep number to readable
-            // saturation (was raw pale neonHsl, ~68-72% lightness).
-            color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
+            // color-mix against skin-text-primary so the digit reads on
+            // both light (Aurora) and dark (Navy+Gold) panels.
+            color: `color-mix(in srgb, ${neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
             boxShadow: `0 0 10px -4px rgba(${neonRgb},0.5)`,
           }}
         >
           {substep.number}
         </div>
         <div className="flex-1 pt-1 space-y-3">
-          {/* ══ Substep name — dark navy, light halo for Panel 3 */}
+          {/* ══ Substep name — skin-aware text + halo */}
           <h3
             className="text-base sm:text-lg font-semibold leading-snug"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              color: "#0a1628",
-              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
             }}
           >
             {substep.name}
           </h3>
 
-          {/* ══ Description — only rendered if present */}
+          {/* ══ Description — skin-aware muted body */}
           {substep.description && (
             <p
               className="text-sm sm:text-[15px] leading-relaxed"
-              style={{ color: "rgba(26,30,58,0.78)" }}
+              style={{ color: "var(--skin-text-body, rgba(26,30,58,0.78))" }}
             >
               {substep.description}
             </p>
           )}
 
-          {/* ══ Recommended How-To button — Day 47 iter 7 (Sasha): LEFT-aligned
-              with the substep name text (reverting the earlier centered variant).
-              The button sits in the content column naturally, flush with the
-              substep's h3 title — matches vertical rhythm + reading flow. */}
+          {/* ══ Recommended How-To button — keeps the step's rainbow
+              neon hue in BOTH skins (methodological signature per Sasha's
+              rule: "the seven round steps keep the colors they have").
+              Text color uses color-mix with skin text-primary so it
+              stays readable on either light or dark panel. */}
           <div className="pt-2">
             <button
               type="button"
@@ -151,7 +155,7 @@ const SubstepRow = ({
               style={{
                 backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.22), rgba(${neonRgb},0.08))`,
                 border: `1px solid rgba(${neonRgb},0.45)`,
-                color: `color-mix(in srgb, ${neonHsl} 45%, #0a1628 55%)`,
+                color: `color-mix(in srgb, ${neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
                 boxShadow: open ? `0 0 18px -4px ${neonHsl}` : "none",
               }}
               aria-expanded={open}
@@ -161,9 +165,9 @@ const SubstepRow = ({
             </button>
           </div>
 
-          {/* ══ One Proven Strategy reveal — also left-aligned with the
-              substep column (removed the mx-auto max-w-2xl that was
-              centering it in the prior iteration). */}
+          {/* ══ One Proven Strategy reveal — strategy prose uses skin
+              body text so it reads cream on Navy+Gold and dark navy
+              on Aurora. Container tint is step-colored (rainbow intact). */}
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
@@ -177,12 +181,9 @@ const SubstepRow = ({
                 border: `1px solid rgba(${neonRgb},0.25)`,
               }}
             >
-              {/* Day 47 iter 9 (Sasha): "ONE PROVEN STRATEGY" eyebrow
-                  retired. The revealed paragraph IS the strategy — the
-                  label was redundant scaffolding. */}
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
-                style={{ color: "rgba(26,30,58,0.88)" }}
+                style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
               >
                 {substep.oneProvenStrategy}
               </p>
@@ -214,12 +215,12 @@ const SubstepRow = ({
 // tool (Kawtar) removed entirely per Sasha.
 const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
   const bodyStyle: React.CSSProperties = {
-    color: "#0a1628",
+    color: "var(--skin-text-primary, #0a1628)",
     fontFamily: "'Source Serif 4', Georgia, serif",
   };
 
   const linkStyle: React.CSSProperties = {
-    color: "#0a1628",
+    color: "var(--skin-link-color, #0a1628)",
     textDecoration: "underline",
     textDecorationThickness: "1px",
     textUnderlineOffset: "3px",
@@ -251,8 +252,9 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         className="text-xl sm:text-2xl md:text-3xl font-semibold leading-[1.25] text-center"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
-          color: "#0a1628",
-          textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          color: "var(--skin-text-primary, #0a1628)",
+          textShadow:
+            "var(--skin-text-halo-subtle, 0 1px 2px rgba(255,255,255,0.7))",
         }}
       >
         The Secret to Productizing Yourself
@@ -276,10 +278,13 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The catch is that there is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
-      {/* Example — minimal left-rule offset, no font change */}
+      {/* Example — minimal left-rule offset, no font change.
+          Rule color skin-aware: dark-navy on Aurora, warm gold on Navy+Gold. */}
       <p
         className="pl-4 border-l"
-        style={{ borderColor: "rgba(26,30,58,0.25)" }}
+        style={{
+          borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
+        }}
       >
         Let me share my example at ~10/10 precision: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
       </p>
@@ -442,21 +447,17 @@ const StepCard = ({ step }: StepCardProps) => {
           className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+              "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
           <span
             style={{
-              // Blend the step's pale neon with navy so the letters are
-              // SATURATED and READABLE rather than a washed-out gradient.
-              // 55% step color + 45% deep navy lands at ~40% lightness.
-              color: `color-mix(in srgb, ${step.neonHsl} 55%, #0a1628 45%)`,
-              // Neon aura — stronger than the hero words because "Step N."
-              // is the signature accent of the page. Two layered glows in
-              // the step's hue for depth without shouting.
-              textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), 0 1px 2px rgba(255,255,255,0.7)`,
+              // Step color blended with skin-text-primary so it stays
+              // readable on either light (Aurora) or dark (Navy+Gold) panel.
+              color: `color-mix(in srgb, ${step.neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
+              textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,
             }}
           >
             Step {step.number}.

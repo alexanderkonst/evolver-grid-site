@@ -79,14 +79,14 @@ const Step3OrderTalents = () => {
   const rankLabels = ["Primary Genius", "Secondary Genius", "Supporting Genius"];
 
   return (
-    <div className="space-y-6" style={{ color: "#0a1628" }}>
+    <div className="space-y-6" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
       {/* Header — Day 47 late pass: dark text on light Panel 3 */}
       <div className="text-center space-y-2">
         <h2
           className="text-xl sm:text-2xl font-semibold"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
@@ -95,13 +95,13 @@ const Step3OrderTalents = () => {
         <p
           className="text-sm max-w-xl mx-auto"
           style={{
-            color: "rgba(26,30,58,0.82)",
+            color: "var(--skin-text-body, rgba(26,30,58,0.82))",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Put your 3 core talents in order, from <strong style={{ color: "#0a1628" }}>most defining</strong> (#1) to third (#3).
+          Put your 3 core talents in order, from <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>most defining</strong> (#1) to third (#3).
         </p>
-        <p className="text-xs" style={{ color: "rgba(26,30,58,0.7)" }}>
+        <p className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}>
           Drag or use arrows to reorder.
         </p>
       </div>
@@ -120,10 +120,10 @@ const Step3OrderTalents = () => {
               "flex items-center gap-3 p-4 rounded-xl cursor-move transition-all duration-200 liquid-glass",
               draggedIndex === index && "opacity-50"
             )}
-            style={{ color: "#0a1628" }}
+            style={{ color: "var(--skin-text-primary, #0a1628)" }}
           >
             {/* Drag handle */}
-            <GripVertical size={16} className="shrink-0" style={{ color: "rgba(26,30,58,0.3)" }} />
+            <GripVertical size={16} className="shrink-0" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.3))" }} />
 
             {/* Arrows */}
             <div className="flex flex-col gap-0.5 shrink-0">
@@ -136,7 +136,7 @@ const Step3OrderTalents = () => {
                 )}
                 style={{ backgroundColor: "transparent" }}
               >
-                <ChevronUp size={16} style={{ color: "#0a1628" }} />
+                <ChevronUp size={16} style={{ color: "var(--skin-text-primary, #0a1628)" }} />
               </button>
               <button
                 onClick={() => moveDown(index)}
@@ -147,7 +147,7 @@ const Step3OrderTalents = () => {
                 )}
                 style={{ backgroundColor: "transparent" }}
               >
-                <ChevronDown size={16} style={{ color: "#0a1628" }} />
+                <ChevronDown size={16} style={{ color: "var(--skin-text-primary, #0a1628)" }} />
               </button>
             </div>
 
@@ -159,7 +159,7 @@ const Step3OrderTalents = () => {
                   ? { backgroundColor: "#5b21b6", color: "#ffffff" }
                   : index === 1
                     ? { backgroundColor: "rgba(91,33,182,0.2)", color: "#5b21b6" }
-                    : { backgroundColor: "rgba(26,30,58,0.08)", color: "rgba(26,30,58,0.7)" }
+                    : { backgroundColor: "rgba(26,30,58,0.08)", color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }
               }
             >
               {index + 1}
@@ -169,14 +169,14 @@ const Step3OrderTalents = () => {
             <div className="flex-1 min-w-0">
               <p
                 className="text-[10px] uppercase tracking-wider font-medium mb-0.5"
-                style={{ color: "rgba(26,30,58,0.7)" }}
+                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
               >
                 {rankLabels[index]}
               </p>
-              <h3 className="text-sm font-semibold" style={{ color: "#0a1628" }}>
+              <h3 className="text-sm font-semibold" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
                 {talent.name}
               </h3>
-              <p className="text-xs truncate" style={{ color: "rgba(26,30,58,0.75)" }}>
+              <p className="text-xs truncate" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>
                 {talent.description}
               </p>
             </div>
@@ -189,7 +189,7 @@ const Step3OrderTalents = () => {
         <button
           onClick={handleBack}
           className="liquid-glass flex items-center gap-2 px-5 py-2.5 rounded-full text-sm transition-all hover:scale-[1.02]"
-          style={{ color: "rgba(26,30,58,0.82)" }}
+          style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
         >
           <ArrowLeft size={14} />
           Back
@@ -198,7 +198,7 @@ const Step3OrderTalents = () => {
           onClick={handleContinue}
           className="liquid-glass-strong flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-[1.02] active:scale-95"
           style={{
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
@@ -221,7 +221,7 @@ const Step3OrderTalents = () => {
           <button
             onClick={handleBack}
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
-            style={{ color: "rgba(26,30,58,0.82)" }}
+            style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
           >
             Back
           </button>
@@ -230,7 +230,7 @@ const Step3OrderTalents = () => {
           onClick={handleContinue}
           className="w-full liquid-glass-strong px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-2"
           style={{
-            color: "#0a1628",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >

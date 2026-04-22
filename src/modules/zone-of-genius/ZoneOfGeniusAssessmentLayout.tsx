@@ -36,8 +36,8 @@ const ZoneOfGeniusAssessmentLayout = ({
         className="text-2xl sm:text-3xl font-semibold mb-3"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
-          color: "#0a1628",
-          textShadow: "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+          color: "var(--skin-text-primary, #0a1628)",
+          textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
         }}
       >
         Discover Your Top Talent
@@ -47,8 +47,8 @@ const ZoneOfGeniusAssessmentLayout = ({
       <p
         className="text-sm mb-6"
         style={{
-          color: "rgba(26,30,58,0.7)",
-          textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+          color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+          textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
         }}
       >
         Step {activeStep} of {steps.length}
@@ -82,12 +82,12 @@ const ZoneOfGeniusAssessmentLayout = ({
                 activeStep >= step.number
                   ? {
                       backgroundColor: "rgba(26,30,58,0.12)",
-                      color: "#0a1628",
+                      color: "var(--skin-text-primary, #0a1628)",
                       fontWeight: 500,
                     }
                   : {
                       backgroundColor: "rgba(26,30,58,0.04)",
-                      color: "rgba(26,30,58,0.45)",
+                      color: "var(--skin-text-hint, rgba(26,30,58,0.45))",
                     }
               }
             >
@@ -106,7 +106,7 @@ const ZoneOfGeniusAssessmentLayout = ({
                         }
                       : {
                           backgroundColor: "rgba(26,30,58,0.06)",
-                          color: "rgba(26,30,58,0.45)",
+                          color: "var(--skin-text-hint, rgba(26,30,58,0.45))",
                         }
                 }
               >

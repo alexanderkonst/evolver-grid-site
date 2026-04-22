@@ -125,19 +125,42 @@ const Settings = () => {
 
     return (
         <GameShellV2>
-            <div className="min-h-dvh bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#e7e9e5]">
+            {/* Day 47 very-late-night (autonomous skin pass):
+                Outer gradient retired — Settings now inherits Panel 3's
+                skin-aware wash from the shell. Previously this was a
+                hardcoded pearl gradient that clashed with Navy+Gold. */}
+            <div className="min-h-dvh">
                 <div className="max-w-3xl mx-auto p-6">
                     <div className="flex items-center gap-4 mb-8">
                         <button
                             onClick={() => navigate(-1)}
-                            className="p-2 hover:bg-[#f0f4ff] rounded-lg transition-colors"
+                            className="p-2 rounded-lg transition-colors hover:bg-white/10"
                             aria-label="Back"
                         >
-                            <ArrowLeft className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
+                            <ArrowLeft
+                                className="w-5 h-5"
+                                style={{
+                                    color: "var(--skin-text-muted, rgba(44,49,80,0.7))",
+                                }}
+                            />
                         </button>
                         <div>
-                            <h1 className="text-2xl font-bold text-[#2c3150]">Settings</h1>
-                            <p className="text-sm text-[#2c3150]/60">Your account and preferences</p>
+                            <h1
+                                className="text-2xl font-bold"
+                                style={{
+                                    color: "var(--skin-text-primary, #2c3150)",
+                                }}
+                            >
+                                Settings
+                            </h1>
+                            <p
+                                className="text-sm"
+                                style={{
+                                    color: "var(--skin-text-muted-soft, rgba(44,49,80,0.6))",
+                                }}
+                            >
+                                Your account and preferences
+                            </p>
                         </div>
                     </div>
 
