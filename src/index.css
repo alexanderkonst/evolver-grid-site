@@ -156,14 +156,17 @@
   --skin-text-halo-subtle: 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75);
   --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
 
-  /* ── Panel 3 overlay ──
-     Day 47 iter 16 (Sasha, very late): bumped to /0.68 to match the
-     ChatGPT editorial mockup — a clean cream pearlescent where the
-     Mux video contributes only subtle aurora diffractions, not
-     competing pink/purple blobs. Previous 0.21 was too transparent
-     (video dominated), 0.38 was still too busy. 0.68 lands at the
-     "soft paper with faint shimmer" register the hero needs. */
-  --skin-panel-wash: rgba(255, 255, 255, 0.68);
+  /* ── Panel washes — THREE-TIER HIERARCHY ──
+     Rule (Sasha, Day 48): Pane 1 is darkest, Pane 2 is middle, Pane 3 is
+     lightest. The contrast between the three reads as "app-shell depth"
+     — dark navigation rail → mid section list → luminous content.
+     Aurora ships as-is (dark/mid black tints over video + white wash on
+     Pane 3 = clear light hierarchy). Navy+Gold mirrors the hierarchy in
+     its own palette (solid navy rail → translucent navy list → thin
+     navy haze letting Mux aurora glows shine through). */
+  --skin-panel-1-bg: rgba(0, 0, 0, 0.70);     /* Pane 1 — SpacesRail */
+  --skin-panel-2-bg: rgba(0, 0, 0, 0.40);     /* Pane 2 — SectionsPanel */
+  --skin-panel-wash: rgba(255, 255, 255, 0.68); /* Pane 3 — content area */
 
   /* ── Ornament (hero divider) ── */
   --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
@@ -260,8 +263,14 @@
   --skin-text-halo-subtle: 0 0 18px rgba(212,175,55,0.15), 0 1px 2px rgba(245,241,232,0.18);
   --skin-text-halo-soft:   0 1px 2px rgba(0,0,0,0.55);
 
-  /* Panel 3 wash — dark navy near-opaque. Video barely flickers through. */
-  --skin-panel-wash: rgba(10, 22, 40, 0.82);
+  /* Panel washes — Navy+Gold three-tier hierarchy (Day 48).
+     Pane 1 darkest → Pane 2 mid → Pane 3 lightest, same rule as Aurora.
+     Previous 0.82 on Pane 3 inverted the hierarchy (Pane 3 darker than
+     Pane 1) — corrected to 0.28 so Mux aurora glows shine through and
+     the content area reads LUMINOUS, not suffocating. */
+  --skin-panel-1-bg:   rgba(4, 8, 20, 0.88);    /* Pane 1 — SpacesRail, near-opaque */
+  --skin-panel-2-bg:   rgba(8, 14, 28, 0.55);   /* Pane 2 — SectionsPanel, mid */
+  --skin-panel-wash:   rgba(10, 22, 40, 0.28);  /* Pane 3 — lightest, video aurora glows through */
 
   /* Ornament — pure gold, stronger glow */
   --skin-ornament-rule:  rgba(212, 175, 55, 0.4);

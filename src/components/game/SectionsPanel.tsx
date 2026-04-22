@@ -319,10 +319,16 @@ const SectionsPanel = ({
         <div
             className={cn(
                 "w-[260px] flex flex-col",
-                "liquid-glass bg-black/40",
+                "liquid-glass",
                 "border-r border-white/10",
                 className
             )}
+            /* Day 48 (Sasha): swapped hardcoded bg-black/40 for skin-aware
+               --skin-panel-2-bg. Three-tier hierarchy preserved in both
+               skins: Pane 1 darkest, Pane 2 middle, Pane 3 lightest. */
+            style={{
+                backgroundColor: "var(--skin-panel-2-bg, rgba(0, 0, 0, 0.40))",
+            }}
         >
             {/* Close button (only when onClose provided) */}
             {onClose && (

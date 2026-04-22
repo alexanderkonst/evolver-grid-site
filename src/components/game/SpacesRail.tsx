@@ -147,9 +147,16 @@ const SpacesRail = ({
         <div
             className={cn(
                 "w-[72px] lg:w-[280px] flex flex-col border-r border-white/10",
-                "liquid-glass bg-black/70",
+                "liquid-glass",
                 className
             )}
+            /* Day 48 (Sasha): swapped hardcoded bg-black/70 for skin-aware
+               --skin-panel-1-bg. Aurora keeps black/0.70 (unchanged via
+               fallback), Navy+Gold uses near-opaque deep navy so Pane 1
+               remains the darkest of the three panes in that skin. */
+            style={{
+                backgroundColor: "var(--skin-panel-1-bg, rgba(0, 0, 0, 0.70))",
+            }}
         >
             {/* User Profile — Day 47 late pass (Sasha): mobile cleanup.
                 On mobile the rail is 72px wide and the "Guest · Member" label
