@@ -191,17 +191,46 @@ const ProfileSettingsSection = () => {
         );
     }
 
+    // Day 48 (Sasha): guest state — Settings is public; the Profile tab
+    // shows a short "log in" prompt instead of redirecting the visitor.
+    if (!user) {
+        return (
+            <div className="space-y-6">
+                <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <User className="h-5 w-5 text-muted-foreground" />
+                            <div>
+                                <CardTitle className="text-lg">Profile</CardTitle>
+                                <CardDescription>
+                                    You're browsing as a guest. Log in to manage your personal information, review purchases, and reset your progress.
+                                </CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <Button onClick={() => navigate("/auth?redirect=/game/settings")}>
+                            Log in or sign up
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-6">
-            {/* Personal Info */}
-            <Card className="bg-white/90 backdrop-blur-sm border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            {/* Personal Info — shadcn Card uses bg-card/text-foreground which
+                respect the skin via the [data-skin="navy-gold"] mirror of the
+                dark palette. No more hardcoded Aurora tints. */}
+            <Card>
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <User className="h-5 w-5 text-[#2c3150]/60" />
+                            <User className="h-5 w-5 text-muted-foreground" />
                             <div>
-                                <CardTitle className="text-[#2c3150] font-sans text-lg">Personal Information</CardTitle>
-                                <CardDescription className="text-[#2c3150]/60 font-sans">Your basic account details</CardDescription>
+                                <CardTitle className="text-lg">Personal Information</CardTitle>
+                                <CardDescription>Your basic account details</CardDescription>
                             </div>
                         </div>
                         {!isEditing && (
@@ -241,7 +270,7 @@ const ProfileSettingsSection = () => {
                                                 onClick={() => toggleLanguage(language)}
                                                 className={`rounded-full border px-3 py-1 text-sm transition ${isSelected
                                                     ? "border-amber-300 bg-amber-50 text-amber-900"
-                                                    : "border-[#a4a3d0]/20 bg-white text-[rgba(44,49,80,0.7)] hover:border-[#a4a3d0]/40"
+                                                    : "border-border bg-background text-muted-foreground hover:border-border/60"
                                                     }`}
                                                 aria-pressed={isSelected}
                                             >
@@ -299,20 +328,20 @@ const ProfileSettingsSection = () => {
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-sm text-[#2c3150]/60">First Name</p>
-                                    <p className="font-medium text-[#2c3150]">{profile?.first_name || "—"}</p>
+                                    <p className="text-sm text-muted-foreground">First Name</p>
+                                    <p className="font-medium text-foreground">{profile?.first_name || "—"}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm text-[#2c3150]/60">Last Name</p>
-                                    <p className="font-medium text-[#2c3150]">{profile?.last_name || "—"}</p>
+                                    <p className="text-sm text-muted-foreground">Last Name</p>
+                                    <p className="font-medium text-foreground">{profile?.last_name || "—"}</p>
                                 </div>
                             </div>
                             <div>
-                                <p className="text-sm text-[#2c3150]/60">Email</p>
-                                <p className="font-medium text-[#2c3150]">{user?.email}</p>
+                                <p className="text-sm text-muted-foreground">Email</p>
+                                <p className="font-medium text-foreground">{user?.email}</p>
                             </div>
                             <div>
-                                <p className="text-sm text-[#2c3150]/60">Languages</p>
+                                <p className="text-sm text-muted-foreground">Languages</p>
                                 {profile?.spoken_languages && profile.spoken_languages.length > 0 ? (
                                     <div className="mt-2 flex flex-wrap gap-2">
                                         {profile.spoken_languages.map(language => (
@@ -320,7 +349,7 @@ const ProfileSettingsSection = () => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="font-medium text-[#2c3150]">—</p>
+                                    <p className="font-medium text-foreground">—</p>
                                 )}
                             </div>
                         </div>
@@ -329,13 +358,13 @@ const ProfileSettingsSection = () => {
             </Card>
 
             {/* Billing */}
-            <Card className="bg-white/90 backdrop-blur-sm border-[#a4a3d0]/20 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <Card className="">
                 <CardHeader>
                     <div className="flex items-center gap-3">
-                        <CreditCard className="h-5 w-5 text-[#2c3150]/60" />
+                        <CreditCard className="h-5 w-5 text-muted-foreground" />
                         <div>
-                            <CardTitle className="text-[#2c3150] font-sans text-lg">Billing & Purchases</CardTitle>
-                            <CardDescription className="text-[#2c3150]/60 font-sans">
+                            <CardTitle className="text-foreground font-sans text-lg">Billing & Purchases</CardTitle>
+                            <CardDescription className="text-muted-foreground font-sans">
                                 Your purchase history and subscription management
                             </CardDescription>
                         </div>
@@ -344,26 +373,26 @@ const ProfileSettingsSection = () => {
                 <CardContent>
                     <div className="space-y-6">
                         <div>
-                            <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Purchase History</h4>
+                            <h4 className="text-sm font-medium mb-3 text-foreground">Purchase History</h4>
                             {purchases.length > 0 ? (
                                 <div className="space-y-2">
                                     {purchases.map(purchase => (
                                         <div key={purchase.id} className="flex items-center justify-between p-3 bg-[#f0f4ff]/50 rounded-lg">
                                             <div>
-                                                <p className="font-medium text-sm text-[#2c3150]">AI Intelligence Boost</p>
-                                                <p className="text-xs text-[#2c3150]/60">via {formatPurchaseSource(purchase.source)}</p>
+                                                <p className="font-medium text-sm text-foreground">AI Intelligence Boost</p>
+                                                <p className="text-xs text-muted-foreground">via {formatPurchaseSource(purchase.source)}</p>
                                             </div>
-                                            <p className="text-sm text-[#2c3150]/60">{formatDate(purchase.created_at)}</p>
+                                            <p className="text-sm text-muted-foreground">{formatDate(purchase.created_at)}</p>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text-sm text-[#2c3150]/60 py-4 text-center">No purchases yet</p>
+                                <p className="text-sm text-muted-foreground py-4 text-center">No purchases yet</p>
                             )}
                         </div>
                         <div className="pt-4 border-t">
-                            <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Subscription Management</h4>
-                            <p className="text-sm text-[#2c3150]/60 mb-4">
+                            <h4 className="text-sm font-medium mb-3 text-foreground">Subscription Management</h4>
+                            <p className="text-sm text-muted-foreground mb-4">
                                 Manage your active subscriptions, update payment methods, or cancel.
                             </p>
                             <Button variant="outline" onClick={openPortal} disabled={isPortalLoading}>
