@@ -7382,3 +7382,74 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***StepCard "Step N." accent fix:** Was using a `neonHsl → navy → neonHsl` gradient bg-clipped to text — washed out at small sizes, the navy center dominated. Now uses solid `color-mix(in srgb, ${neonHsl} 55%, #0a1628 45%)` + neon text-shadow glow in the step's hue. Letter fills with readable saturated ink; the aura gives it presence without shouting.*
 
 ***Still open heading into Wednesday (unchanged from morning pass):** First $555 funnel (P27 Si–Do). Launch DMs. José da Veiga ZoG quiz guidance. Patricia Reed paste-back. Sandra rev-share agreement. Taylor & Tracy checkpoint. Founder-collective call logistics. Next hacker-house venue.*
+
+*Alexander's Unique Business v9.7 — April 21, 2026 (Day 47 late night — GFOA Patch + Skin System):*
+
+***Landing hero redesigned v10 → v12 per GFOA v1.1 + v1.2 feedback.** Two-layer recognition-first architecture. Layer 1 — impact + echo:*
+
+> ***You can't clearly say what you do.***
+> *So people don't buy.*
+
+*First line bold + large (impact beat). Second line smaller + lighter (echo beat). Clear spacing between so the echo reads as a second note, not a continuation. "say" replaces "explain" (less Latinate, more colloquial). "So people don't buy." compressed from earlier "So it's not turning into something people pay for" — 8 words → 4, lands with period weight.*
+
+***Editorial ornament inserted between Layer 1 and Layer 2**: thin gradient rule + gold `✦` star centerpiece + thin gradient rule. Zero functional, whole-page lift. Pulled from the Cartier/Loro Piana visual register Sasha referenced earlier in the session.*
+
+***Layer 2 — compressed structure with color scarcity (7 highlights → 3):***
+
+> *Find Your **Top Talent**. (violet)*
+> ***Productize** Yourself. (indigo)*
+> *Build it. Launch it. (neutral navy)*
+> ***Scale** your Revenue and Impact. (green)*
+
+*Only three words carry gradient accents: Top Talent, Productize, Scale. Build, Launch, Revenue, Impact render neutral dark navy. Rainbow retires on the landing; color regains meaning by scarcity. 4 separate `<p>` blocks with `space-y-1.5 sm:space-y-2` give path rhythm, not paragraph. Container compressed (max-w 740 → 640, py-10/16 → py-6/8) so the whole hero (headline + echo + ornament + 4-line structure + CTA + meta + secondary) fits on one viewport without scroll at common desktop heights.*
+
+***CRITICAL: the 7-step UV→IR octave survives unchanged on `/playbook`.** Per Sasha's explicit directive during tonight's GFOA pushback: *"I am NOT attached to that at all actually as long as the seven round steps on top of the playbook have the colors they have."* The landing gets 3 highlights; the methodology page keeps its full rainbow. No ontological conflict — the landing reads as "3 beats with 3 accents," not as a diluted rainbow.*
+
+***Path hero upgraded to 7-beat all-periods rhythm with new beat.** Was 6 beats, comma-period mix. Now:*
+
+> *Solid Founder-Market Fit. Early Product-Market Fit. Traction. Organic Demand. **Investors Loving It.** In 6–8 Weeks. Guaranteed.*
+
+*Rhythm change: all periods, drum-like, each beat stops. Adds "Investors Loving It" as the 7th beat — the externally-verifiable early-PMF signal that completes the proof stack. Step 6 orange-gold gradient applied, fits within UV→IR octave.*
+
+***Step 2 essay rewritten in Sasha's exact language (final copy lock):***
+
+*- Opening hook: **"Personality tests give you unmonetizable 'too long didn't read' reports. They don't tell us HOW. They hand us frustrating fluff."***
+*- Specificity reframed as a long road, not a trick: **"The catch is that there is a looong way..."***
+*- Own articulation introduced: **"Let me share my example at ~10/10 precision:"** followed by the anchored `conscious aspiring impact founders turn their top talent into a growing scalable business in flow` line.*
+*- Why precision scales: **"It is sufficiently SPECIFIC, which then makes my entire business offer a laser beam that has this same specificity."***
+*- Typos corrected: "the this" → "this"; "pull in" → "pulls in".*
+*- Link list trimmed from 3 to 2 recommended alternatives: [TalentQ](https://talentq.me/) + [Evolution](https://www.evolution.life/). Kawtar Mahdaoui removed per Sasha.*
+
+***Secondary CTA restored as a button, not a text link.** Earlier pass (per GFOA v1.2) I'd demoted "See the exact playbook" from a `liquid-glass` pill to a plain text link to clear visual hierarchy. Sasha pushed back: *"It's too small and disproportionate to the importance of how it is. It's not a footnote — it IS the path's other door."* Restored as a full `liquid-glass` button at the same 380px max-width as primary, de-ranked via `font-medium` (vs `font-semibold`) and ~85% opacity navy text. Reads as "the other door" in the Open Blueprint Paradox, not as a demoted option. **Principle locked: hierarchy not removal.***
+
+***Panel 3 wash lightened (Sasha's 4th request).** `GameShellV2.tsx` panel 3 wash bumped from `bg-white/[0.21]` → `rgba(255, 255, 255, 0.38)`. Light enough for the editorial hero to breathe without losing video background presence on Mux stream.*
+
+***Skin system shipped as preview-only infrastructure.** Sasha's framing verbatim: *"we're not going to switch it on, but we're going to prepare, and we're going to have a test ground for me only."* Architecture:*
+*- `src/contexts/SkinContext.tsx` — `SkinProvider` with `skin`, `setSkin`, `pushTemporarySkin(next)` API. Persists to `localStorage['app-skin']`. Applies via `document.documentElement.dataset.skin`. `pushTemporarySkin` returns a cleanup fn that restores prior skin on unmount.*
+*- `src/pages/SkinPreview.tsx` — `/preview` route. Pushes navy-gold while mounted, renders `<JourneyPage />`, floating bottom-right banner "✦ Navy + Gold preview · Back to Aurora →" linking home. Discoverable by URL only; not linked from any nav.*
+*- `src/index.css` — skin-token layer at bottom. `:root, [data-skin="aurora"]` + `[data-skin="navy-gold"]`. ~30 tokens per skin (text primary/body/muted, halos, panel wash, ornament rule + star + shadow, CTA text/bg/border/shadow/icon + icon-shadow + text-shadow, 3 gradient accents with bg + glow pairs, secondary link color).*
+*- `MethodologyLandingPage.tsx`, `PlaybookHero.tsx`, `GameShellV2.tsx` refactored to `var(--skin-name, aurora-fallback)` pattern so Aurora renders byte-identical when no skin is set (inline style with Aurora's own value as the fallback means `!important` is never needed).*
+*- Verified: Aurora on `/` is pixel-identical to pre-skin-system state. Navy+Gold renders correctly on `/preview` — deep navy panels + cream text + gold CTA with navy text + gold ornament star.*
+*- Nav, sections panel, spaces rail, footer remain Aurora even on `/preview` — those surfaces haven't been refactored to skin tokens yet. Intentional: preview shows headline moves without risking full-site drift.*
+
+***GFOA v1.2 moves NOT implemented (explicit declines):***
+*- **Removing glassmorphism entirely** — Sasha held the line: *"Glassmorphism doesn't subtract, it adds."* Kept glass on CTA and panels; GFOA agreed with the nuance that glass shifts role from decoration to structure.*
+*- **Full Navy+Gold rollout to public** — deferred per Sasha's explicit framing. Aurora remains the Wednesday-launch skin.*
+
+***Landing copy locked heading into Wednesday:***
+
+> ***You can't clearly say what you do.***
+> *So people don't buy.*
+>
+> *——— ✦ ———*
+>
+> *Find Your **Top Talent**.*
+> ***Productize** Yourself.*
+> *Build it. Launch it.*
+> ***Scale** your Revenue and Impact.*
+>
+> *[Find your top talent] ← primary (dark navy gradient + gold ✦ + arrow)*
+> *Takes 2 minutes. No signup.*
+> *[See the exact playbook] ← secondary (liquid glass)*
+
+***Still open heading into Wednesday (unchanged from earlier passes):** First $555 funnel (P27 Si–Do). Launch DMs. José da Veiga ZoG quiz guidance. Patricia Reed paste-back. Sandra rev-share agreement. Taylor & Tracy checkpoint. Founder-collective call logistics. Next hacker-house venue. Navy+Gold rollout decision (held — Sasha's call on whether to flip the default skin post-launch).*
