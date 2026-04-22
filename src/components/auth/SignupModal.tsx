@@ -137,30 +137,30 @@ const SignupModal = ({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-md bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] border-[#a4a3d0]/30">
+            <DialogContent className="sm:max-w-md">
                 <DialogHeader className="text-center pb-2">
                     <div className="mx-auto w-14 h-14 rounded-full bg-gradient-to-br from-[#8460ea] to-[#29549f] flex items-center justify-center mb-4">
                         <Sparkles className="w-7 h-7 text-white" />
                     </div>
-                    <DialogTitle className="text-xl font-semibold text-[#2c3150]">
+                    <DialogTitle className="text-xl font-semibold text-foreground">
                         {title}
                     </DialogTitle>
-                    <DialogDescription className="text-[#a4a3d0]">
+                    <DialogDescription className="text-muted-foreground">
                         {description}
                     </DialogDescription>
                 </DialogHeader>
 
                 <Tabs defaultValue="signup" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 bg-[#a4a3d0]/20">
+                    <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger
                             value="signup"
-                            className="data-[state=active]:bg-white data-[state=active]:text-[#8460ea]"
+                            className="data-[state=active]:bg-background data-[state=active]:text-primary"
                         >
                             Sign Up
                         </TabsTrigger>
                         <TabsTrigger
                             value="login"
-                            className="data-[state=active]:bg-white data-[state=active]:text-[#8460ea]"
+                            className="data-[state=active]:bg-background data-[state=active]:text-primary"
                         >
                             Log In
                         </TabsTrigger>
@@ -170,7 +170,7 @@ const SignupModal = ({
                         <form onSubmit={handleSignUp} className="space-y-4">
                             <div className="grid grid-cols-2 gap-3">
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="signup-firstname" className="text-[#2c3150]">First Name</Label>
+                                    <Label htmlFor="signup-firstname" className="text-foreground">First Name</Label>
                                     <Input
                                         id="signup-firstname"
                                         type="text"
@@ -178,11 +178,11 @@ const SignupModal = ({
                                         value={firstName}
                                         onChange={(e) => setFirstName(e.target.value)}
                                         required
-                                        className="bg-white/80"
+                                        className="bg-background/80"
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="signup-lastname" className="text-[#2c3150]">Last Name</Label>
+                                    <Label htmlFor="signup-lastname" className="text-foreground">Last Name</Label>
                                     <Input
                                         id="signup-lastname"
                                         type="text"
@@ -190,12 +190,12 @@ const SignupModal = ({
                                         value={lastName}
                                         onChange={(e) => setLastName(e.target.value)}
                                         required
-                                        className="bg-white/80"
+                                        className="bg-background/80"
                                     />
                                 </div>
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="signup-email" className="text-[#2c3150]">Email</Label>
+                                <Label htmlFor="signup-email" className="text-foreground">Email</Label>
                                 <Input
                                     id="signup-email"
                                     type="email"
@@ -203,11 +203,11 @@ const SignupModal = ({
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="bg-white/80"
+                                    className="bg-background/80"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="signup-password" className="text-[#2c3150]">Password</Label>
+                                <Label htmlFor="signup-password" className="text-foreground">Password</Label>
                                 <Input
                                     id="signup-password"
                                     type="password"
@@ -216,9 +216,9 @@ const SignupModal = ({
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                     minLength={6}
-                                    className="bg-white/80"
+                                    className="bg-background/80"
                                 />
-                                <p className="text-xs text-[#a4a3d0]">
+                                <p className="text-xs text-muted-foreground">
                                     At least 6 characters
                                 </p>
                             </div>
@@ -236,7 +236,7 @@ const SignupModal = ({
                     <TabsContent value="login" className="mt-4">
                         <form onSubmit={handleLogin} className="space-y-4">
                             <div className="space-y-1.5">
-                                <Label htmlFor="login-email" className="text-[#2c3150]">Email</Label>
+                                <Label htmlFor="login-email" className="text-foreground">Email</Label>
                                 <Input
                                     id="login-email"
                                     type="email"
@@ -244,11 +244,11 @@ const SignupModal = ({
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="bg-white/80"
+                                    className="bg-background/80"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="login-password" className="text-[#2c3150]">Password</Label>
+                                <Label htmlFor="login-password" className="text-foreground">Password</Label>
                                 <Input
                                     id="login-password"
                                     type="password"
@@ -256,7 +256,7 @@ const SignupModal = ({
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
-                                    className="bg-white/80"
+                                    className="bg-background/80"
                                 />
                             </div>
                             <Button
