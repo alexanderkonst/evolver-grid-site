@@ -445,16 +445,25 @@ const ZoneOfGeniusEntry = () => {
                 {anonymousSave.status !== "idle" && (
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
-                            <div className="rounded-xl bg-[#8460ea]/10 border border-[#8460ea]/20 px-5 py-4 text-sm text-[#2c3150]">
+                            <div
+                                className="rounded-xl bg-[#8460ea]/10 border border-[#8460ea]/20 px-5 py-4 text-sm"
+                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                            >
                                 Saving your result to <strong>{anonymousSave.email}</strong>…
                             </div>
                         )}
                         {anonymousSave.status === "sent" && (
-                            <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-5 py-4 text-sm text-[#2c3150]">
+                            <div
+                                className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-5 py-4 text-sm"
+                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                            >
                                 <p className="font-medium">
                                     Result saved. Check your email — the magic link unlocks your full playbook.
                                 </p>
-                                <p className="mt-1 text-[#4a4a6d]">
+                                <p
+                                    className="mt-1"
+                                    style={{ color: "var(--skin-text-muted, #4a4a6d)" }}
+                                >
                                     Sent to <strong>{anonymousSave.email}</strong>.{" "}
                                     <button
                                         type="button"
@@ -467,7 +476,10 @@ const ZoneOfGeniusEntry = () => {
                             </div>
                         )}
                         {anonymousSave.status === "error" && (
-                            <div className="rounded-xl bg-red-500/10 border border-red-500/20 px-5 py-4 text-sm text-[#2c3150]">
+                            <div
+                                className="rounded-xl bg-red-500/10 border border-red-500/20 px-5 py-4 text-sm"
+                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                            >
                                 <p>
                                     We couldn't save your result to <strong>{anonymousSave.email}</strong>.{" "}
                                     <button

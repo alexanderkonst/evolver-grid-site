@@ -297,8 +297,21 @@ const IgniteSession = () => {
       {/* VIDEO BACKGROUND — scoped to Panel 3 via absolute positioning */}
       <HlsBackground />
 
-      {/* Dark wash — the "decision room" feel, scoped to Panel 3 */}
-      <div className="absolute inset-0 bg-black/55 z-[1]" aria-hidden="true" />
+      {/* Dark wash — "decision room" feel, scoped to Panel 3.
+          Day 48 (Sasha): wash darkened substantially from bg-black/55 to
+          a skin-aware near-opaque darkroom tint. When /ignite is contained
+          inside the shell (smaller than full viewport), the HLS video
+          rainbow animation reads as "squeezed aurora" at 55% opacity.
+          The darkroom token lands ~0.92-0.95 opacity in both skins,
+          killing the aurora bleed while preserving a hint of center-
+          pulse motion beneath. */}
+      <div
+        className="absolute inset-0 z-[1]"
+        aria-hidden="true"
+        style={{
+          backgroundColor: "var(--skin-darkroom-bg, rgba(10, 10, 26, 0.92))",
+        }}
+      />
 
       {/* CONTENT LAYER */}
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">

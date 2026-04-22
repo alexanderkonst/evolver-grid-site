@@ -30,8 +30,14 @@ const ResonanceRating = ({
         return (
             <div className="text-center py-3 animate-in fade-in duration-500">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8460ea]/10 to-[#a78bfa]/10 rounded-full">
-                    <Sparkles className="w-4 h-4 text-[#8460ea]" />
-                    <span className="text-sm text-[#2c3150]">
+                    <Sparkles
+                        className="w-4 h-4"
+                        style={{ color: "var(--skin-selected-text, #8460ea)" }}
+                    />
+                    <span
+                        className="text-sm"
+                        style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                    >
                         Thank you! {selectedRating === 10 ? "🎯 Perfect resonance!" : `Rated ${selectedRating}/10`}
                     </span>
                 </div>
@@ -41,7 +47,10 @@ const ResonanceRating = ({
 
     return (
         <div className="py-4 space-y-3">
-            <p className="text-center text-sm text-[#6b7280] leading-relaxed px-2">
+            <p
+                className="text-center text-sm leading-relaxed px-2"
+                style={{ color: "var(--skin-text-muted, #6b7280)" }}
+            >
                 {question}
             </p>
             <div className="flex justify-center gap-1.5 flex-wrap px-2">
@@ -54,11 +63,29 @@ const ResonanceRating = ({
                             w-9 h-9 rounded-lg text-sm font-medium
                             transition-all duration-200
                             ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-110'}
-                            ${selectedRating === num
-                                ? 'bg-[#8460ea] text-white shadow-lg shadow-[#8460ea]/30'
-                                : 'bg-white border border-[#e5e7eb] text-[#374151] hover:border-[#8460ea] hover:text-[#8460ea]'
-                            }
                         `}
+                        style={
+                            selectedRating === num
+                                ? {
+                                      backgroundColor:
+                                          "var(--skin-selected-text, #8460ea)",
+                                      color: "#ffffff",
+                                      boxShadow:
+                                          "0 10px 15px -3px rgba(132, 96, 234, 0.3)",
+                                      borderColor: "transparent",
+                                      borderWidth: "1px",
+                                      borderStyle: "solid",
+                                  }
+                                : {
+                                      backgroundColor:
+                                          "var(--skin-input-bg, #ffffff)",
+                                      borderColor:
+                                          "var(--skin-rule-medium, #e5e7eb)",
+                                      borderWidth: "1px",
+                                      borderStyle: "solid",
+                                      color: "var(--skin-text-primary, #374151)",
+                                  }
+                        }
                     >
                         {num}
                     </button>
