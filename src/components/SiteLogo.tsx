@@ -8,17 +8,22 @@ import { Link, useLocation } from "react-router-dom";
 const SiteLogo = () => {
     const location = useLocation();
 
-    // Hide on pages that have their own logo/hero treatment.
-    // Day 47 (Sasha): `/path` + `/zone-of-genius` + `/my-artifacts` added —
-    // all render inside GameShellV2 with `hideLogo`, the center logo is redundant.
+    // Hide on pages that have their own logo/hero treatment, or whose
+    // shell/layout supplies one via SpacesRail's top identity chip.
+    // Day 47: /path + /zone-of-genius + /my-artifacts added — they render
+    // inside GameShellV2 with `hideLogo`, the center logo is redundant.
+    // Day 48 (Sasha): /auth added — the login/signup card is its own hero;
+    // a floating logo on top of it competes with the form and mixes
+    // visual register between shell and modal.
     const hidden = [
         "/game",
         "/zone-of-genius",
         "/playbook",
         "/path",
         "/my-artifacts",
+        "/auth",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

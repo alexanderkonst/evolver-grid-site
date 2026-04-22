@@ -299,27 +299,33 @@ const Auth = () => {
   }
 
   // ── Claim-your-gift View (?claim=true) ─────────────────────────────
+  // Day 48 (Sasha): Aurora-specific class overrides (bg-white/90, text-[#2c3150],
+  // text-[#8460ea], border-[#a4a3d0], bg-[#8460ea]) removed. Card, Input, Label,
+  // and Button now use shadcn's `bg-card` / `text-foreground` / `border-input` /
+  // `bg-primary` tokens — which respect the skin via the [data-skin="navy-gold"]
+  // CSS-var block. Aurora renders via the default :root values, Navy+Gold
+  // renders via the navy-gold override. No per-page branches.
   if (claimMode) {
     return (
       <GameShellV2 hideLogo>
         <div className="min-h-dvh relative">
         <main className="flex-grow flex items-center justify-center px-4 py-24 relative z-10">
-          <Card className="w-full max-w-md bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]">
+          <Card className="w-full max-w-md">
             <CardHeader className="text-center">
-              <div className="mx-auto w-12 h-12 rounded-full bg-[#8460ea]/10 flex items-center justify-center mb-3">
-                <Sparkles className="w-6 h-6 text-[#8460ea]" />
+              <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                <Sparkles className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl font-bold text-[#2c3150]">
+              <CardTitle className="text-2xl font-bold">
                 Enter your email — your free result stays safe there.
               </CardTitle>
-              <CardDescription className="text-[#4a4a6d]">
+              <CardDescription>
                 We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleClaimSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="claim-email" className="text-[#2c3150]">Email</Label>
+                  <Label htmlFor="claim-email">Email</Label>
                   <Input
                     id="claim-email"
                     type="email"
@@ -328,17 +334,12 @@ const Auth = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     autoFocus
-                    className="border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20"
                   />
                 </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-[#8460ea] hover:bg-[#6894d0] text-white"
-                  disabled={loading}
-                >
+                <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? "Sending..." : "Send me the magic link"}
                 </Button>
-                <p className="text-xs text-[#6b6a8a] text-center pt-2">
+                <p className="text-xs text-muted-foreground text-center pt-2">
                   No password to pick. No spam. Just your result, ready when you are.
                 </p>
                 </form>
@@ -354,14 +355,12 @@ const Auth = () => {
   return (
     <GameShellV2 hideLogo>
       <main className="min-h-dvh flex items-center justify-center px-4 py-24 relative z-10">
-        <Card className={`w-full max-w-md ${isOnboardingFlow
-          ? 'bg-white/90 backdrop-blur-sm border-[#a4a3d0]/30 shadow-[0_8px_32px_rgba(132,96,234,0.15)]'
-          : ''}`}>
+        <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className={`text-2xl font-bold ${isOnboardingFlow ? 'text-[#2c3150]' : ''}`}>
+            <CardTitle className="text-2xl font-bold">
               {isOnboardingFlow ? "Create Your Account" : "Welcome to Genius Business"}
             </CardTitle>
-            <CardDescription className={isOnboardingFlow ? 'text-[#a4a3d0]' : ''}>
+            <CardDescription>
               {isOnboardingFlow
                 ? "Save your Top Talent and unlock your genius business."
                 : "Create an account or log in to save your character progress across devices."}
@@ -369,15 +368,15 @@ const Auth = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className={`grid w-full grid-cols-2 ${isOnboardingFlow ? 'bg-[#a4a3d0]/20' : ''}`}>
-                <TabsTrigger value="login" className={isOnboardingFlow ? 'data-[state=active]:bg-white data-[state=active]:text-[#8460ea]' : ''}>Log In</TabsTrigger>
-                <TabsTrigger value="signup" className={isOnboardingFlow ? 'data-[state=active]:bg-white data-[state=active]:text-[#8460ea]' : ''}>Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="login">Log In</TabsTrigger>
+                <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Email</Label>
+                    <Label htmlFor="login-email">Email</Label>
                     <Input
                       id="login-email"
                       type="email"
@@ -385,16 +384,15 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="login-password" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Password</Label>
+                      <Label htmlFor="login-password">Password</Label>
                       <button
                         type="button"
                         onClick={() => setShowForgotPassword(true)}
-                        className={`text-xs hover:underline ${isOnboardingFlow ? 'text-[#8460ea]' : 'text-primary'}`}
+                        className="text-xs text-primary hover:underline"
                       >
                         Forgot password?
                       </button>
@@ -406,18 +404,13 @@ const Auth = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
-                  <Button
-                    type="submit"
-                    className={`w-full ${isOnboardingFlow ? 'bg-[#8460ea] hover:bg-[#6894d0] text-white' : ''}`}
-                    disabled={loading}
-                  >
+                  <Button type="submit" className="w-full" disabled={loading}>
                     {loading ? "Logging in..." : "Log In"}
                   </Button>
 
-                  {/* Magic-link alternative — same OTP flow as claim mode, but
+                  {/* Magic-link alternative — same OTP flow as claim mode,
                       without the pending-claim email stash. */}
                   <Button
                     type="button"
@@ -448,7 +441,7 @@ const Auth = () => {
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-firstname" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>First Name</Label>
+                      <Label htmlFor="signup-firstname">First Name</Label>
                       <Input
                         id="signup-firstname"
                         type="text"
@@ -456,11 +449,10 @@ const Auth = () => {
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
-                        className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="signup-lastname" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Last Name</Label>
+                      <Label htmlFor="signup-lastname">Last Name</Label>
                       <Input
                         id="signup-lastname"
                         type="text"
@@ -468,12 +460,11 @@ const Auth = () => {
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
-                        className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Email</Label>
+                    <Label htmlFor="signup-email">Email</Label>
                     <Input
                       id="signup-email"
                       type="email"
@@ -481,11 +472,10 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password" className={isOnboardingFlow ? 'text-[#2c3150]' : ''}>Password</Label>
+                    <Label htmlFor="signup-password">Password</Label>
                     <Input
                       id="signup-password"
                       type="password"
@@ -494,17 +484,12 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       minLength={6}
-                      className={isOnboardingFlow ? 'border-[#a4a3d0]/40 focus:border-[#8460ea] focus:ring-[#8460ea]/20' : ''}
                     />
-                    <p className={`text-xs ${isOnboardingFlow ? 'text-[#a4a3d0]' : 'text-muted-foreground'}`}>
+                    <p className="text-xs text-muted-foreground">
                       Password must be at least 6 characters
                     </p>
                   </div>
-                  <Button
-                    type="submit"
-                    className={`w-full ${isOnboardingFlow ? 'bg-[#8460ea] hover:bg-[#6894d0] text-white' : ''}`}
-                    disabled={loading}
-                  >
+                  <Button type="submit" className="w-full" disabled={loading}>
                     {loading ? "Creating account..." : "Sign Up"}
                   </Button>
                 </form>

@@ -1,112 +1,193 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, RotateCcw, Palette, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, Palette, User, Check } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useTheme, DEFAULT_THEME, ThemeColors } from "@/contexts/ThemeContext";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
+import { useSkin, type Skin } from "@/contexts/SkinContext";
+import { cn } from "@/lib/utils";
 
 /**
  * Settings — unified settings page at /game/settings.
  *
- * Reorganized 2026-04-21 (Sasha): consolidated what used to be split
- * between /game/me/settings (Profile) and /game/settings (Appearance).
- * Now a single tabbed page:
+ * Reorganized Day 48 (Sasha):
  *   - Profile tab    → personal info, billing, danger zone
- *   - Appearance tab → color theme customization (dev-leaning)
+ *   - Appearance tab → single skin toggle (Aurora · Navy + Gold)
+ *
+ * The old Appearance tab let the user hand-mix individual panel colors.
+ * That's too much exposure for a product surface — we retired it in favor
+ * of a simple two-option skin switch. The underlying `ThemeContext` still
+ * exists for any legacy consumers; the skin system (see `SkinContext`)
+ * is the canonical aesthetic control going forward.
  *
  * Deep links:
  *   /game/settings            → Profile tab (default)
  *   /game/settings?tab=profile
  *   /game/settings?tab=appearance
- *
- * Legacy routes (/settings, /game/me/settings) redirect here.
  */
 
-interface ColorInputProps {
+interface SkinOption {
+    id: Skin;
     label: string;
-    value: string;
-    onChange: (value: string) => void;
+    tagline: string;
+    description: string;
+    /** Small square preview — the skin's signature two-color pairing. */
+    swatch: { from: string; to: string };
 }
 
-const ColorInput = ({ label, value, onChange }: ColorInputProps) => (
-    <div className="flex items-center justify-between py-2">
-        <span className="text-sm text-[#2c3150]">{label}</span>
-        <div className="flex items-center gap-2">
-            <input
-                type="color"
-                value={value}
-                onChange={e => onChange(e.target.value)}
-                className="w-10 h-8 rounded cursor-pointer border border-[#a4a3d0]/30"
-            />
-            <input
-                type="text"
-                value={value}
-                onChange={e => onChange(e.target.value)}
-                className="w-24 px-2 py-1 text-xs font-mono border border-[#a4a3d0]/30 rounded"
-            />
-        </div>
-    </div>
-);
+const SKIN_OPTIONS: SkinOption[] = [
+    {
+        id: "aurora",
+        label: "Aurora",
+        tagline: "Light · pearlescent · rainbow highlights",
+        description:
+            "The default Genius Business skin. Cream-and-pastel editorial canvas with a UV→IR rainbow running through the 7-step methodology. Optimized for daylight reading and maximum clarity.",
+        swatch: { from: "#f5f1e8", to: "#d4af37" },
+    },
+    {
+        id: "navy-gold",
+        label: "Navy + Gold",
+        tagline: "Deep navy · gold accents · editorial dark",
+        description:
+            "Premium editorial alternate. Deep navy panels with a single gold metal accent. The methodology rainbow stays rainbow; hero highlights render in a gold family. Optimized for evening reading and ceremonial focus.",
+        swatch: { from: "#0a1628", to: "#d4af37" },
+    },
+];
 
 const AppearanceTab = () => {
-    const { colors, setColors, resetToDefault } = useTheme();
-    const [localColors, setLocalColors] = useState<ThemeColors>(colors);
-
-    const handleChange = (key: keyof ThemeColors, value: string) => {
-        setLocalColors(prev => ({ ...prev, [key]: value }));
-    };
-    const handleSave = () => setColors(localColors);
-    const handleReset = () => {
-        setLocalColors(DEFAULT_THEME);
-        resetToDefault();
-    };
-    const hasChanges = JSON.stringify(localColors) !== JSON.stringify(colors);
+    const { skin, setSkin } = useSkin();
 
     return (
         <div className="space-y-6">
-            <div className="bg-white/85 backdrop-blur-sm rounded-xl border border-[#a4a3d0]/20 overflow-hidden shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                <div className="px-4 py-3 bg-[#f0f4ff]/50 border-b border-[#a4a3d0]/20 flex items-center gap-2">
-                    <Palette className="w-4 h-4 text-[rgba(44,49,80,0.7)]" />
-                    <h2 className="font-semibold text-[#2c3150]">Color Theme</h2>
-                </div>
-                <div className="p-4 space-y-4">
+            <div
+                className="rounded-2xl p-5 sm:p-6 space-y-4"
+                style={{
+                    backgroundColor: "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
+                    border: "1px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+                    boxShadow:
+                        "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
+                }}
+            >
+                <div className="flex items-start gap-3">
+                    <Palette
+                        className="w-5 h-5 mt-0.5 flex-shrink-0"
+                        style={{ color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))" }}
+                    />
                     <div>
-                        <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">Left Panel (Darkest)</h3>
-                        <ColorInput label="Background" value={localColors.panelLeftBg} onChange={v => handleChange("panelLeftBg", v)} />
-                        <ColorInput label="Text" value={localColors.panelLeftText} onChange={v => handleChange("panelLeftText", v)} />
-                        <ColorInput label="Accent" value={localColors.panelLeftAccent} onChange={v => handleChange("panelLeftAccent", v)} />
-                    </div>
-                    <hr className="border-[#a4a3d0]/20" />
-                    <div>
-                        <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">Middle Panel</h3>
-                        <ColorInput label="Background" value={localColors.panelMiddleBg} onChange={v => handleChange("panelMiddleBg", v)} />
-                        <ColorInput label="Text" value={localColors.panelMiddleText} onChange={v => handleChange("panelMiddleText", v)} />
-                        <ColorInput label="Border" value={localColors.panelMiddleBorder} onChange={v => handleChange("panelMiddleBorder", v)} />
-                    </div>
-                    <hr className="border-[#a4a3d0]/20" />
-                    <div>
-                        <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">Content Area (Gradient)</h3>
-                        <ColorInput label="Gradient Start" value={localColors.panelRightBgFrom} onChange={v => handleChange("panelRightBgFrom", v)} />
-                        <ColorInput label="Gradient Middle" value={localColors.panelRightBgVia} onChange={v => handleChange("panelRightBgVia", v)} />
-                        <ColorInput label="Gradient End" value={localColors.panelRightBgTo} onChange={v => handleChange("panelRightBgTo", v)} />
-                    </div>
-                    <hr className="border-[#a4a3d0]/20" />
-                    <div>
-                        <h3 className="text-xs font-semibold text-[#2c3150]/60 uppercase tracking-wider mb-2">Accent Colors</h3>
-                        <ColorInput label="Primary" value={localColors.primaryAccent} onChange={v => handleChange("primaryAccent", v)} />
-                        <ColorInput label="Secondary" value={localColors.secondaryAccent} onChange={v => handleChange("secondaryAccent", v)} />
+                        <h2
+                            className="text-base font-semibold leading-tight"
+                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                        >
+                            Skin
+                        </h2>
+                        <p
+                            className="text-sm mt-1 leading-relaxed"
+                            style={{ color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))" }}
+                        >
+                            Pick the aesthetic that feels right. Applies instantly across the
+                            whole app; we remember your choice on this device.
+                        </p>
                     </div>
                 </div>
-                <div className="px-4 py-3 bg-[#f0f4ff]/50 border-t border-[#a4a3d0]/20 flex items-center justify-between">
-                    <Button variant="ghost" size="sm" onClick={handleReset} className="text-[rgba(44,49,80,0.7)]">
-                        <RotateCcw className="w-4 h-4 mr-2" />Reset to Default
-                    </Button>
-                    <Button onClick={handleSave} disabled={!hasChanges} className="bg-[#8460ea] hover:bg-[#7050da]">
-                        Save Changes
-                    </Button>
+
+                <div role="radiogroup" aria-label="Skin" className="grid sm:grid-cols-2 gap-3 pt-1">
+                    {SKIN_OPTIONS.map((opt) => {
+                        const active = opt.id === skin;
+                        return (
+                            <button
+                                key={opt.id}
+                                type="button"
+                                role="radio"
+                                aria-checked={active}
+                                onClick={() => setSkin(opt.id)}
+                                className={cn(
+                                    "relative text-left rounded-xl p-4 transition-all duration-200",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                                    "hover:scale-[1.01] active:scale-[0.995]",
+                                    active ? "ring-2" : "ring-1",
+                                )}
+                                style={{
+                                    backgroundColor:
+                                        "var(--skin-input-bg, rgba(255, 255, 255, 0.6))",
+                                    borderColor: "transparent",
+                                    ...(active
+                                        ? {
+                                              // Selected ring uses the skin's own "selected" accent.
+                                              boxShadow:
+                                                  "0 0 0 2px var(--skin-selected-border, rgba(132, 96, 234, 0.45)), 0 8px 24px -10px rgba(10, 22, 40, 0.18)",
+                                          }
+                                        : {
+                                              boxShadow:
+                                                  "0 0 0 1px var(--skin-rule-medium, rgba(26, 30, 58, 0.14)), 0 4px 12px -6px rgba(10, 22, 40, 0.1)",
+                                          }),
+                                }}
+                            >
+                                <div className="flex items-start justify-between gap-3">
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        {/* Preview swatch — the skin's signature duotone. */}
+                                        <div
+                                            aria-hidden="true"
+                                            className="w-10 h-10 rounded-lg flex-shrink-0"
+                                            style={{
+                                                backgroundImage: `linear-gradient(135deg, ${opt.swatch.from} 0%, ${opt.swatch.to} 100%)`,
+                                                boxShadow:
+                                                    "inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
+                                            }}
+                                        />
+                                        <div className="min-w-0">
+                                            <div
+                                                className="text-sm font-semibold leading-tight"
+                                                style={{
+                                                    color: "var(--skin-text-primary, #0a1628)",
+                                                }}
+                                            >
+                                                {opt.label}
+                                            </div>
+                                            <div
+                                                className="text-xs mt-0.5 leading-snug"
+                                                style={{
+                                                    color: "var(--skin-text-muted-soft, rgba(26, 30, 58, 0.6))",
+                                                }}
+                                            >
+                                                {opt.tagline}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {active && (
+                                        <span
+                                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                                            style={{
+                                                backgroundColor:
+                                                    "var(--skin-selected-text, #8460ea)",
+                                            }}
+                                            aria-hidden="true"
+                                        >
+                                            <Check className="w-3 h-3 text-white" />
+                                        </span>
+                                    )}
+                                </div>
+                                <p
+                                    className="text-xs mt-3 leading-relaxed"
+                                    style={{
+                                        color: "var(--skin-text-muted, rgba(26, 30, 58, 0.7))",
+                                    }}
+                                >
+                                    {opt.description}
+                                </p>
+                            </button>
+                        );
+                    })}
                 </div>
+
+                <p
+                    className="text-[11px] leading-relaxed pt-1"
+                    style={{
+                        color: "var(--skin-text-faint, rgba(26, 30, 58, 0.5))",
+                    }}
+                >
+                    You can also flip to Navy + Gold by visiting <code>/preview</code> directly, or
+                    back to Aurora via either this toggle or the floating indicator.
+                </p>
             </div>
         </div>
     );
@@ -125,10 +206,7 @@ const Settings = () => {
 
     return (
         <GameShellV2>
-            {/* Day 47 very-late-night (autonomous skin pass):
-                Outer gradient retired — Settings now inherits Panel 3's
-                skin-aware wash from the shell. Previously this was a
-                hardcoded pearl gradient that clashed with Navy+Gold. */}
+            {/* Outer gradient retired — Settings inherits Panel 3's skin-aware wash. */}
             <div className="min-h-dvh">
                 <div className="max-w-3xl mx-auto p-6">
                     <div className="flex items-center gap-4 mb-8">

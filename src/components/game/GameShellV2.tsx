@@ -275,12 +275,18 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     }, []);
 
     // Onboarding redirect — send incomplete users to /start
-    // EXCEPT on /game/journey/* which is the public front door + ZoG flow
+    // EXCEPT on /game/journey/* (public front door + ZoG flow) or
+    // /game/settings (Day 48 Sasha: Settings is a public utility page;
+    // guests should be able to toggle the skin without hitting /start
+    // which is auth-gated and kicks them to /auth).
     useEffect(() => {
         if (!profile?.onboarding_stage) return;
         const needsOnboarding = ["new", "zog_started"].includes(profile.onboarding_stage);
-        const isJourneyPath = location.pathname === "/" || location.pathname.startsWith("/game/journey");
-        if (needsOnboarding && location.pathname.startsWith("/game") && !isJourneyPath) {
+        const publicShellPaths =
+            location.pathname === "/" ||
+            location.pathname.startsWith("/game/journey") ||
+            location.pathname === "/game/settings";
+        if (needsOnboarding && location.pathname.startsWith("/game") && !publicShellPaths) {
             navigate("/start");
         }
     }, [profile?.onboarding_stage, location.pathname, navigate]);
